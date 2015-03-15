@@ -699,7 +699,7 @@ var process=setInterval(function() {
 	clearInterval(process);}
     //
 },1000);
-window.onload(function() {
+$(document).ready(function() {
 s = Snap("#svgout");
 P = { F0:{path:s.path("M 0 0 L 0 0"), speed: 0, key:"5"},
       F1:{path:s.path("M 0 0 L 0 -80"), speed: 1, key:"8"},
