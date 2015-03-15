@@ -508,7 +508,6 @@ jwerty.key("shift+e", function() { window.location="#";nextphase();});
 jwerty.key("c", function() { center(activeunit);});
 
 
-var squadnames = ["Academy Pilot", "Academy Pilot", "Captain Kagi", "Chewbacca","Eaden Vrill", "Jan Ors"];//[ "Garven Dreis", "Arvel Crynyd", "Biggs Darklighter", "Howlrunner", ,"Academy Pilot","Academy Pilot" ];
 var a1 = [];
 a1[0]=2/8; // blank
 a1[1]=3/8; // hit
@@ -699,6 +698,9 @@ var process=setInterval(function() {
 	clearInterval(process);}
     //
 },1000);
+
+var squadnames = ["Academy Pilot", "Academy Pilot", "Captain Kagi", "Chewbacca","Eaden Vrill", "Jan Ors"];//[ "Garven Dreis", "Arvel Crynyd", "Biggs Darklighter", "Howlrunner", ,"Academy Pilot","Academy Pilot" ];
+
 $(document).ready(function() {
 s = Snap("#svgout");
 P = { F0:{path:s.path("M 0 0 L 0 0"), speed: 0, key:"5"},
@@ -753,7 +755,6 @@ $.ajax({
 	    return a.skill-b.skill;
 	});
 	phase=-1;
-	console.log("COUCOU");
 	squadron[0].select();
 	$("#panel_ACTIVATION").hide();
 	$("#panel_COMBAT").hide();

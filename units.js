@@ -140,10 +140,12 @@ function dist(p1,p2) {
 }
 function Unit(pilot) {
     $.extend(this,pilot);
+	console.log("Finding ship "+this.ship);
     var ship=unitlist[this.ship];
     var sname=this.ship;
     if (!this.unique) { this.name=this.name+(globalid++); }
     this.ship=ship;
+	console.log("Ship "+ship);
     this.ship.name=sname;
     this.islarge = (ship.islarge==true)?true:false;
     this.focus=0;
