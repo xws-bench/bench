@@ -1,92 +1,106 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-    <script src="snap.svg-min.js"></script>
+    <script src="dist/snap.svg-min.js"></script>
     <script src="jwerty.js"></script>
     <script src="jquery-1.11.2.js"></script>
     <link rel="stylesheet" href="xwings.css">
+
   </head>
 
   <body>
 
-    <header><h1 id="toto">X-Wings Miniature Trainer</h1></header>
+    <header><h1 id="toto">X-Wings Squadron Benchmark</h1></header>
 
     <aside id="info">
-      <img src="" alt="" id="unit-description"></img>
       <div class="description">
-	  <span style="border:0px;margin:0px;padding:0px;">
-	    <p id="pilot"></p>
-	    <p id="unit"></p>
-	  </span>
-	<p id="pilot-text" style="height:30px;text-align:justify;border:0px;margin:4px;padding:0px;"></p>
+	<span style="border:0px;margin:0px;padding:0px;display:table-row;">	    
+	  <a href="#" class="arrow-left" onclick="prevselect()"></a>
+	  <p id="pilot"></p>
+	  <a href="#" onclick="nextselect()" class="arrow-right"></a>
+	</span>
+	<span  style="border:0px;margin:0px;padding:0px;display:table-row;">
+	  <p></p><p id="unit"></p><p></p>
+	</span>
+	<hr/>
 	<div style="border:0px;margin:0px;padding:0px;">
-	  <p class="stat" id="skill"></p>
+	  <p class="stat" title="skill of the pilot" id="skill"></p>
 	  <p class="stat" id="fire"></p>
 	  <p class="stat" id="evade"></p>
 	  <p class="stat" id="hull"></p>
 	  <p class="stat" id="shield"></p>
 	</div>
-	<div id="actionlist" style="border:0px;margin:0px;padding:0px;">
-	</div>
+	  <p id="pilot-text"></p>
+	<div id="actionlist" style="border:0px;margin:0px;padding:0px;"></div>
+	<div style="border:0px;margin:0px;padding:0px;" id="upgrades"></div>
      </div>
       <br/>
       <div>
-	<div class="phasepanel" id="panel0">
-  	  <a href="#" onclick="activeunit.turn(-45)" title="1/4 left" class="button2">1/4 left</a>
-	  <a href="#" onclick="activeunit.turn(45)" title="1/4 right" class="button2">1/4 right</a>
-	  <a href="#" onclick="activeunit.turn(-5)" title="1/36 left" class="button2">1/36 left</a>
-	  <a href="#" onclick="activeunit.turn(5)" title="1/36 right" class="button2">1/36 right</a></div>
+	<div class="phasepanel" id="panel_SETUP">
+	  <button onclick="window.location='#import';" title="Import json" class="largebutton">Import JSON...</button>
+	  <button onclick="activeunit.turn(-45)" title="key: <T>" class="button2" disabled>Turn <span class="symbols">4</span></button>
+	  <button onclick="activeunit.turn(45)" title="key: <t>" class="button2">turn <span class="symbols">6</span></button>
+	  <button onclick="activeunit.turn(-5)" title="key: <B>" class="button2">Bank <span class="symbols">7</span></button>
+	  <button onclick="activeunit.turn(5)" title="key: <b>" class="button2">bank <span class="symbols">9</span></button>
 	</div>
-	<div class="phasepanel" id="panel1">
-	  <a href="#" onclick="activeunit.prevManeuver(); activeunit.showdial(true);" title="Previous maneuver" class="button2">Previous maneuver</a>
-	  <a href="#" onclick="activeunit.nextManeuver(); activeunit.showdial(true);" title="Next maneuver" class="button2">Next maneuver</a>	  
+	<div class="phasepanel" id="panel_ACTIVATION">
+	  <button id="manbutton" class="largebutton" title="key: <m>Next/<M>Prev" onclick="activeunit.nextmaneuver();">
+	    <b style="float:left">Maneuver:&nbsp;</b>
+	    <span>
+	      <a id="dialspeed"></a>
+	      <a id="dialdirection" class="symbols"></a>
+	    </span>
+	  </button>
+	  <button id="actionbutton" onclick="if (skillturn==activeunit.skill) activeunit.nextaction();" title="<a>Next/<A>Prev." class="largebutton">
+	    <b style="float:left">Action:&nbsp;</b>
+	    <a id="action" class="symbols"></a>
+	  </button>
 	</div>
 
-	<div class="phasepanel" id="panel2">
-	  <a href="#" onclick="" title="Apply maneuver" class="button2">Apply maneuver</a>
-	  <a href="#" onclick="" title="Prev. maneuver" class="button2">Previous action</a>
-	  <a href="#" onclick="" title="Next maneuver" class="button2">Next action</a>
-	  <a href="#" onclick="" title="Apply action" class="button2">Apply action</a>
-
-	  <img class="target-description" src="" alt=""></img>	  
+	<div class="phasepanel" id="panel_COMBAT">
+	  <button onclick="inhitrange(); window.location='#modal';" title="<p>:list targets" class="largebutton">primary weapon fire</button>
 	</div>
-
-	<div class="phasepanel" id="panel3">
-	  <div id="attack" style="display:block">
-	  </div>
-	  <div id="defense" style="display:block">
-	  </div>
-	</div>
-	</br>
-
-	<div class="targetdescription">
-	  <span style="border:0px;margin:0px;padding:0px;">
-	    <p id="tpilot"></p>
-	    <p id="tunit"></p>
-	  </span>
-	  <p id="tpilot-text" style="height:30px;text-align:justify;border:0px;margin:4px;padding:0px;"></p>
-	  <div style="border:0px;margin:0px;padding:0px;">
-	    <p class="stat" id="tskill"></p>
-	    <p class="stat" id="tfire"></p>
-	    <p class="stat" id="tevade"></p>
-	    <p class="stat" id="thull"></p>
-	    <p class="stat" id="tshield"></p>
-	  </div>
-	  <div id="tactionlist" style="border:0px;margin:0px;padding:0px;">
-	  </div>
-	</div>
-	<br/>
-	<div><a href="#" class="button2" id="nextphase" onclick="reroll(1)">End setup</a>
-	</div>
+	<hr/>
+	<button class="button2">prev. active</button><button class="button2">next active</button>
+	<button class="largebutton">show primary range...</button>
+	<button class="largebutton">Show range...</button>
+	<button class="largebutton" id="nextphase" onclick="nextphase();">End setup</button>
       </div>
 
-      <audio id="REBELfire" preload="none">
-	<source src="snd/KX9_laser_cannon.ogg" type="audio/ogg">
+      <audio id="xwing_fire" preload="none">
+	<source src="ogg/KX9_laser_cannon.ogg" type="audio/ogg">
       </audio>
-      <audio id="EMPIREfire" preload="none">
-	<source src="snd/TIE-Fire.ogg" type="audio/ogg">
+      <audio id="tie_fire" preload="none">
+	<source src="ogg/TIE-Fire.ogg" type="audio/ogg">
       </audio>
-          
+      <audio id="slave_fire" preload="none">
+	<source src="ogg/Slave1-Guns.ogg" type="audio/ogg">
+      </audio>
+      <audio id="falcon_fire" preload="none">
+	<source src="ogg/Falcon-Guns.ogg" type="audio/ogg">
+      </audio>
+      <audio id="xwing_fly" preload="none">
+	<source src="ogg/XWing-Fly1.ogg" type="audio/ogg">
+      </audio>
+      <audio id="tie_fly" preload="none">
+	<source src="ogg/TIE-Fly2.ogg" type="audio/ogg">
+      </audio>
+      <audio id="slave_fly" preload="none">
+	<source src="ogg/Slave1-Fly1.ogg" type="audio/ogg">
+      </audio>
+      <audio id="falcon_fly" preload="none">
+	<source src="ogg/Falcon-Fly1.ogg" type="audio/ogg">
+      </audio>
+      <audio id="yt2400_fly" preload="none">
+	<source src="ogg/Falcon-Fly3.ogg" type="audio/ogg">
+      </audio>
+      <audio id="ywing_fly" preload="none">
+	<source src="ogg/YWing-Fly2.ogg" type="audio/ogg">
+      </audio>
+      <audio id="isd_fly" preload="none">
+	<source src="ogg/ISD-Fly.ogg" type="audio/ogg">
+      </audio>
+
       <div id="modal" class="modalDialog">
 	<div>
 	  <a href="#close" title="Close" class="close">X</a>
@@ -94,40 +108,66 @@
 	  <div id="listunits"></div>
 	</div>
       </div>
-      <div id="warning" class="modalDialog">
+      
+      <div id="combatmodal" class="modalDialog">
+	<div>
+	  <h2>Combat</h2>
+	  <table style='display:block;font-size:6px;width:100%'>
+	    <tr id="attacker"></tr>
+	    <tr><td></td><td>vs</td><td></td></tr>
+	    <tr id="defender"></tr>
+	  </table>
+	  <br/>
+	  <h2>Result</h2>
+	  <div id="attack" style="display:block"></div>
+	  <div id="defense" style="display:block"></div>
+	  <button title="key: <enter>" onlclick="resolvedamage();" class="button2">Ok</button>
+	</div>
+      </div>
+
+      <div id="import" class="modalDialog">
+	<div>
+	  <h2 id="listtitle">Import a squadron</h2>
+	  <p>Copy and paste the 2 squad lists using XWS format into the following area. (This is in beta, and the <a href="https://github.com/elistevens/xws-spec">XWS spec</a> is still being defined, so it may not work!)</p>
+	  <div>
+	  <textarea id="jsonimport" rows="15" cols="45"></textarea>
+	  <textarea id="jsonimport2" rows="15" cols="45"></textarea>
+	  </div>
+	  <div onclick="importsquadron()" class="button">Import</div>
+	</div>
+      </div>
+
+      <div id="about" class="modalDialog">
 	<div>
 	  <a href="#close" title="Close" class="close">X</a>
-	  <h2 class="warn">&#x26A0; &#8505;Warning</h2>
-	  <div id="warning-message"></div>
+	  <h2>About the App</h2>
+
+	  Welcome to the X-Wings Squadron Benchmark web app for X-Wing: The Miniatures Game.
+
+	  <h2>Disclaimer</h2>
+	  <div>
+	    X-Wing: The Miniatures Game is a trademark of Fantasy
+	    Flight Games. This site is not endorsed by Fantasy Flight
+	    Games, Lucasfilm Ltd. or Twentieth Century Fox and is
+	    intended for entertainment and information purposes
+	    only. Star Wars, the Star Wars logo, all names and
+	    pictures of Star Wars characters, vehicles and any other
+	    Star Wars related items are registered trademarks and/or
+	    copyrights of Lucasfilm Ltd., or their respective
+	    trademark and copyright holders. This site in no way
+	    constitutes a threat to any trademark or intellectual
+	    property. This web app is not-for-profit and is only
+	    intended for use by fans of the game line.
+	  </div>
 	</div>
       </div>
 
     </aside>
 
     <nav>
-      <ul>
-	<li><a href="#">Game</a>
-	  <ul>
-	    <li><a href="#">Load...</a></li>
-	    <li><a href="#">Save...</a></li>
-	    <li><a href="#" onclick="nextphase()">Next phase</a></li>
-	    <li id="listunits"><a href="#modal">List all units...</a></li>
-	  </ul>
-	</li>
-	<li><a href="#">Unit</a>
-	  <ul>
-	    <li><a href="#modal" onclick="inrange()">List units in range...</a></li>
-	    <li><a href="#modal" onclick="inhitrange()">List units in primary weapon range...</a></li>
-	    <li><a href="#" onclick="nextselect()">Next unit         (n)</a></li>
-	    <li><a href="#" onclick="prevselect()">Prev unit (N)</a></li>
-	    <li><a href="#" onclick="center(activeunit)">Center on unit  (c)</a></li>
-	  </ul>
-	</li>
-	<li><a href="#">Help</a>
-	</li>
-	<li><a href="#">About</a>
-	</li>
-      </ul>
+      <button onclick="window.location='#about';">About...</button>
+      <button onclick="window.location='#modal';allunitlist()">List all units...</button>
+      <button onclick="help(); window.location='#modal'">Help</button>
     </nav>
     
     <article>
@@ -135,9 +175,11 @@
 	<svg id="svgout"></svg>
       </div>
     </article>
-    
     <script src="units.js"></script>
+    <script src="pilots.js"></script>
     <script src="xwings.js"></script>
+    <script src="translations.js"></script>
+    <script src="xws.js"></script>
   </body>
 </html>
 
