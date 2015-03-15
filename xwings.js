@@ -740,7 +740,9 @@ $.ajax({
     success: function(result1) {
 	unitlist=result1;
 	var r=0,e=0,i;
+	console.log("Loading ships successful");
 	for(i=0; i<squadnames.length; i++) {
+	    console.log("Building "+squadnames[i]);
 	    squadron[i] = Pilot(squadnames[i]);
 	    if (squadron[i].ship.faction=="REBEL") {
 		squadron[i].m.add(MT(80,70+82*r)).add(MR(90,0,0));
