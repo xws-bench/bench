@@ -164,8 +164,6 @@ PILOT_translation.english = {
     "At the start of the Combat phase, you may remove 1 focus or evade token from another friendly ship at Range 1-2 and assign it to yourself.",
     "Commander Alozen":
     "At the start of the Combat phase, you may acquire a target lock on an enemy ship at Range 1.",
-    "Raider-class Corvette (Fore)":
-    "Once per round, ??? perform a primary ??? attack, you may spend 2 e??? perform another primary wea???"
 };
 
 var UPGRADE_translation={};

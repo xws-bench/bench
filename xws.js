@@ -92,6 +92,7 @@ var UPGRADE_dict={
     "k4securitydroid":"K4 Security Droid",
     "outlawtech":"Outlaw Tech",
     "cannon":"Cannon",
+    "manglercannon":'"Mangler" Cannon',
     "ioncannon":"Ion Cannon",
     "heavylasercannon":"Heavy Laser Cannon",
     "autoblaster":"Autoblaster",

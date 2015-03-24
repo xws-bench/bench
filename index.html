@@ -1,75 +1,66 @@
+<!DOCTYPE html>
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-    <script src="snap.svg-min.js"></script>
+    <script src="dist/snap.svg-min.js"></script>
     <script src="jwerty.js"></script>
     <script src="jquery-1.11.2.js"></script>
     <link rel="stylesheet" href="xwings.css">
+    <title>X-Wings Squadron Benchmark</title>
     <script src="units.js"></script>
     <script src="pilots.js"></script>
     <script src="xwings.js"></script>
     <script src="translations.js"></script>
     <script src="xws.js"></script>
-
   </head>
 
-  <body>
+  <body lang="fr">
 
-    <header><h1 id="toto">X-Wings Squadron Benchmark</h1></header>
+    <div class="header"><h1>X-Wings Squadron Benchmark</h1></div>
 
     <aside id="info">
-      <div class="description">
-	<span style="border:0px;margin:0px;padding:0px;display:table-row;">	    
-	  <a href="#" class="arrow-left" onclick="prevselect()"></a>
-	  <p id="pilot"></p>
-	  <a href="#" onclick="nextselect()" class="arrow-right"></a>
-	</span>
-	<span  style="border:0px;margin:0px;padding:0px;display:table-row;">
-	  <p></p><p id="unit"></p><p></p>
-	</span>
-	<hr/>
-	<div style="border:0px;margin:0px;padding:0px;">
-	  <p class="stat" title="skill of the pilot" id="skill"></p>
-	  <p class="stat" id="fire"></p>
-	  <p class="stat" id="evade"></p>
-	  <p class="stat" id="hull"></p>
-	  <p class="stat" id="shield"></p>
-	</div>
-	  <p id="pilot-text"></p>
-	<div id="actionlist" style="border:0px;margin:0px;padding:0px;"></div>
-	<div style="border:0px;margin:0px;padding:0px;" id="upgrades"></div>
-     </div>
+      <div id="desc"></div>
       <br/>
       <div>
 	<div class="phasepanel" id="panel_SETUP">
-	  <button onclick="window.location='#import';" title="Import json" class="largebutton">Import JSON...</button>
-	  <button onclick="activeunit.turn(-45)" title="key: <T>" class="button2" disabled>Turn <span class="symbols">4</span></button>
-	  <button onclick="activeunit.turn(45)" title="key: <t>" class="button2">turn <span class="symbols">6</span></button>
-	  <button onclick="activeunit.turn(-5)" title="key: <B>" class="button2">Bank <span class="symbols">7</span></button>
-	  <button onclick="activeunit.turn(5)" title="key: <b>" class="button2">bank <span class="symbols">9</span></button>
+	  <div  style="text-align:center; padding:2px;margin:2px;"><b>Set up</b><a class="nextphase" href="#" onclick="nextphase()">End</a></div>
+	  <div data-i18n-fr="Déplacez les unités et les astéroïdes avec la souris et tournez-les avec les flèches" 
+	       data-i18n="Drag units and rocks in position and turn them with the buttons"></div>
+	  <button onclick="activeunit.turn(-45)" title="key: <T>" class="bigbutton"><b class="symbols">4</b></button>
+	  <button onclick="activeunit.turn(45)" title="key: <t>" class="bigbutton"><b class="symbols">6</b></button>
+	  <button onclick="activeunit.turn(-5)" title="key: <B>" class="bigbutton"><b class="symbols">7</b></button>
+	  <button onclick="activeunit.turn(5)" title="key: <b>" class="bigbutton"><b class="symbols">9</b></button>
 	</div>
-	<div class="phasepanel" id="panel_ACTIVATION">
-	  <button id="manbutton" class="largebutton" title="key: <m>Next/<M>Prev" onclick="activeunit.nextmaneuver();">
-	    <b style="float:left">Maneuver:&nbsp;</b>
-	    <span>
-	      <a id="dialspeed"></a>
-	      <a id="dialdirection" class="symbols"></a>
-	    </span>
-	  </button>
+
+	<div class="phasepanel" id="panel_PLANNING">
+	  <div  style="text-align:center; padding:2px;margin:2px;"><b>Planning</b><a class="nextphase" href="#" onclick="nextphase()">End</a></div>
+  
+	  <div data-i18n-fr="Cliquez sur l'une des manœuvres, pour chacunes unités"
+	       data-i18n="Select one of the maneuver of the dial, for each unit"></div>
+	  <div id="maneuverdial" style="text-align:center" class="table"></div>
 	  <button id="actionbutton" onclick="if (skillturn==activeunit.skill) activeunit.nextaction();" title="<a>Next/<A>Prev." class="largebutton">
 	    <b style="float:left">Action:&nbsp;</b>
-	    <a id="action" class="symbols"></a>
+	    <b id="action0" class="symbols"></b>
+	  </button>
+	</div>
+
+	<div class="phasepanel" id="panel_ACTIVATION">
+	  <div style="width:100%;;text-align:center; padding:2px;margin:2px;"><b>Activation</b><a class="nextphase" href="#" onclick="nextphase()">End</a></div>
+  
+	  <div data-i18n-fr="Activez les unités avec <entrée> dans l'ordre de pilotage et choisissez une action"
+	       data-i18n="Move units in increasing order of pilot skill (<enter>) and select an action."></div>
+	  <button id="actionbutton1" onclick="if (skillturn==activeunit.skill) activeunit.nextaction();" title="<a>Next/<A>Prev." class="largebutton">
+	    <b style="float:left">Action:&nbsp;</b>
+	    <b id="action" class="symbols"></b>
 	  </button>
 	</div>
 
 	<div class="phasepanel" id="panel_COMBAT">
-	  <button onclick="inhitrange(); window.location='#modal';" title="<p>:list targets" class="largebutton">primary weapon fire</button>
+	  <div  style="text-align:center; padding:2px;margin:2px;"><b>Combat</b><a class="nextphase" href="#" onclick="nextphase()">End</a></div>
+	  <div data-i18n-fr="Faites attaquer les unités par ordre décroissant de pilotage (<w>)"
+	       data-i18n="Attack by decreasing order of pilot skill (<w>)"></div>
+	  <button onclick="inhitrange(); window.location='#modal';" title="<p>:select targets" class="largebutton" id="primary">Attack...</button>
 	</div>
-	<hr/>
-	<button class="button2">prev. active</button><button class="button2">next active</button>
-	<button class="largebutton">show primary range...</button>
-	<button class="largebutton">Show range...</button>
-	<button class="largebutton" id="nextphase" onclick="nextphase();">End setup</button>
       </div>
 
       <audio id="xwing_fire" preload="none">
@@ -110,37 +101,80 @@
 	<div>
 	  <a href="#close" title="Close" class="close">X</a>
 	  <h2 id="listtitle">List of all units</h2>
-	  <div id="listunits"></div>
+	  <div id="listunits" class="table"></div>
 	</div>
       </div>
-      
+      <div class="info">
+      </div>
       <div id="combatmodal" class="modalDialog">
 	<div>
 	  <h2>Combat</h2>
-	  <table style='display:block;font-size:6px;width:100%'>
-	    <tr id="attacker"></tr>
-	    <tr><td></td><td>vs</td><td></td></tr>
-	    <tr id="defender"></tr>
-	  </table>
+	  <div class="table">
+	    <div id="attacker"></div>
+	    <div id="defender"></div>
+	  </div>
 	  <br/>
 	  <h2>Result</h2>
 	  <div id="attack" style="display:block"></div>
 	  <div id="defense" style="display:block"></div>
-	  <button title="key: <enter>" onlclick="resolvedamage();" class="button2">Ok</button>
+	  <button title="key: <enter>" onclick="resolvedamage();" class="bigbutton">Ok</button>
 	</div>
       </div>
-
+      <footer>
+      </footer>
       <div id="import" class="modalDialog">
 	<div>
-	  <h2 id="listtitle">Import a squadron</h2>
+	  <h2>Import a squadron</h2>
 	  <p>Copy and paste the 2 squad lists using XWS format into the following area. (This is in beta, and the <a href="https://github.com/elistevens/xws-spec">XWS spec</a> is still being defined, so it may not work!)</p>
 	  <div>
 	  <textarea id="jsonimport" rows="15" cols="45"></textarea>
 	  <textarea id="jsonimport2" rows="15" cols="45"></textarea>
 	  </div>
-	  <div onclick="importsquadron()" class="button">Import</div>
+	  <div onclick="squadron[];importsquadron($('#jsonimport').val());importsquadron($('#jsonimport2').val())" class="button2">Import</div>
 	</div>
       </div>
+
+      <div id="help" class="modalDialog">
+	<div>
+	  <a href="#close" title="Close" class="close">X</a>
+	  <h2>Help</h2>
+	  <div>
+	    You can consult
+	    the <a href="https://github.com/xws-bench/bench/wiki">wiki</a>
+	    on X-Wings Squadron Benchmark.
+	  </div>
+	</div>
+      </div>
+      <div id="proba" class="modalDialog">
+	<div>
+	  <a href="#close" title="Close" class="close">X</a>
+	  <h2>Probabilities in combat</h2>
+	  <div>
+	      <table style="border:1px">
+		<tr><td>Attacker</td><td>Defender</td></tr>
+		<tr>
+		  <td><input type="checkbox" onclick="fillprobatable()" id="focusA" value="focus">
+		    <label for="focusA" class="focustoken"></label>
+		    <input type="checkbox" onclick="fillprobatable()" id="targetA" value="target">
+		    <label for="targetA" class="targettoken"></label>
+		    <input type="number" min=0 max=5 step=1 style="width:2em" onchange="fillprobatable()" id="rerollA" value="0">rerolls
+		  </td>
+		  <td><input type="checkbox" onclick="fillprobatable()" id="focusD" value="focus">
+		    <label for="focusD" class="focustoken"></label>
+		    <input type="checkbox" onclick="fillprobatable()" id="evadeD" value="evade">
+		    <label for="evadeD" class="evadetoken"></label>
+		    <input type="checkbox" onclick="fillprobatable()" id="cloakD" value="0">
+		    <label for="cloakD" class="cloaktoken"></label>
+		    <input type="number" min=0 max=5 step=1 style="width:2em" onchange="fillprobatable()"  id="rerollD" value="0">rerolls
+		  </td>
+		</tr>
+	      </table>
+	    <table id="probatable">  
+	    </table>
+	  </div>
+	</div>
+      </div>
+      
 
       <div id="about" class="modalDialog">
 	<div>
@@ -167,12 +201,20 @@
 	</div>
       </div>
 
+      <div id="box"></div>
+
     </aside>
 
     <nav>
-      <button onclick="window.location='#about';">About...</button>
-      <button onclick="window.location='#modal';allunitlist()">List all units...</button>
-      <button onclick="help(); window.location='#modal'">Help</button>
+      <ul>
+	<li><a href="#import">Import JSON...</a></li>
+	<li><a href="#modal" onclick="allunitlist()">List all units...</a></li>
+	<li><a href="#proba" id="showproba">Show probabilities</a></li>
+	<li><a href="#" id="hitsector" onclick="activeunit.togglehitsector()">Toggle primary arc view</a></li>
+	<li><a href="#" id="range" onclick="activeunit.togglerange()">Toggle range view</a></li>
+	<li><a href="#help">Help</a></li>
+	<li><a href="#about">About...</a></li>
+      </ul>
     </nav>
     
     <article>
@@ -180,6 +222,7 @@
 	<svg id="svgout"></svg>
       </div>
     </article>
+
   </body>
 </html>
 
