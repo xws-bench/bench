@@ -1,23 +1,117 @@
 var REBEL="Rebel Alliance",EMPIRE="Galactic Empire",SCUM="Scum and Villainy";
 
+function Laser(u,type,fire) {
+    return new Weapon(u,{
+	type: type,
+	name:"Laser",
+	attack: fire,
+	range: [1,3],
+	isprimary: true
+    });
+}
+
+function Weapon(p,wdesc) {
+    $.extend(this,wdesc);
+    this.unit=p;
+}
+Weapon.prototype = {
+    isinrange: function(r) {
+	return (r>=this.range[0]&&r<=this.range[1]);
+    },
+    canfire: function(sh) {
+	return true;
+    },
+    canfirewithtarget:function(sh) { 
+	if (this.hasfired) return false;
+	if (typeof this.unit.targeting=="undefined") return false; 
+	return (this.unit.targeting==sh);  
+    },
+    firewithtarget:function(sh) { 
+	this.unit.istargeting=false;
+	this.unit.target--;
+	sh.istargeted--;
+	sh.show();
+	this.unit.show();
+	this.hasfired=true;
+    },
+    getattackbonus: function(sh) {
+	if (this.isprimary) {
+	    var r=this.getrange(sh);
+	    if (r==1) return 1;
+	}
+	return 0;
+    },
+    fire: function(sh) { },
+    getdefensebonus: function(sh) {
+	if (this.isprimary) {
+	    var r=this.getrange(sh);
+	    if (r==3) return 1;
+	}
+	return 0;
+    },
+    getrange: function(sh) {
+	if (this.type=="Turret")  {
+	    var r=this.unit.getrange(sh);
+	    if (this.canfire(r)) return r;
+	    else return 0;
+	}
+	for (i=this.range[0]; i<=this.range[1]; i++) {
+	    if (this.unit.isinsector(this.unit.m,i,sh)) return i; 
+	}
+	if (this.type=="bilaser") {
+	    var m=this.unit.m.clone();
+	    m.add(MR(180,0,0));
+	    for (i=this.range[0]; i<=this.range[i]; i++) {
+		if (this.unit.isinsector(m,i,sh)) { return i; }
+	    }
+	}
+	return 0;
+    }
+};
+
 function Pilot(name) {
     var i;
     for (i=0; i<PILOTS.length; i++) {
 	if (PILOTS[i].name==name) {
-	    return new Unit(PILOTS[i]);
+	   var p=new Unit(PILOTS[i]);
+	    if (p.init != undefined) p.init();
+	    return p;
 	}
     }
     console.log("Could not find pilot "+name);
 }
+function Upgrade(sh,name) {
+    var i;
+    for (i=0; i<UPGRADES.length; i++) {
+	if (UPGRADES[i].name==name) {
+	    var upg=$.extend({},UPGRADES[i]);
+	    sh.upgrades.push(upg);
+	    console.log("installed upgrade "+name+" ["+upg.type+"]");
+	    if (upg.init != undefined) upg.init(sh);
+	    return;
+	}
+    }
+    console.log("Could not find upgrade "+name);
+}
 
 var PILOTS = [
     {
-        name: "Wedge Antilles",
-        
-        
+        name: "Wedge Antilles",       
         unique: true,
+	faction:"REBEL",
         ship: "X-Wing",
         skill: 9,
+	init: function() {
+	    var ds=Unit.prototype.getdefensestrength;
+	    Unit.prototype.getdefensestrength=function(sh) {
+		var defense=ds.call(this,sh);
+		if (sh.name=="Wedge Antilles"&&defense>0) {
+		    log("["+sh.name+"] defense reduced by 1 for "+this.name);
+		    return defense-1; 
+		}
+		else return defense;
+	    };
+	},
         points: 29,
         upgrades: [
             "Elite",
@@ -27,10 +121,28 @@ var PILOTS = [
     },
     {
         name: "Garven Dreis",
-        
-        
+	faction:"REBEL",
         unique: true,
         ship: "X-Wing",
+	resolvefocus: function() {
+	    this.focus--;
+	    var p=[]; 
+	    var i;
+	    for (i=0; i<squadron.length; i++) {
+		if (squadron[i].faction==this.faction
+		    &&this!=squadron[i]
+		    &&this.getrange(squadron[i])<=2) {
+		    p.push(squadron[i]);
+		}
+	    }
+	    this.show();
+	    waitingforaction=true;
+	    log("["+this.name+"] focus -> other friendly ship");
+	    this.resolveactionselection(p,function(k) {
+		waitingforaction=false;
+		log(p[k].name+"  selected by Garven");
+		p[k].focus++;p[k].show();  });
+	},
         skill: 6,
         points: 26,
         upgrades: [
@@ -40,9 +152,8 @@ var PILOTS = [
     },
     {
         name: "Red Squadron Pilot",
-        
-        
         ship: "X-Wing",
+	faction:"REBEL",
         skill: 4,
         points: 23,
         upgrades: [
@@ -52,9 +163,8 @@ var PILOTS = [
     },
     {
         name: "Rookie Pilot",
-        
-        
         ship: "X-Wing",
+	faction:"REBEL",
         skill: 2,
         points: 21,
         upgrades: [
@@ -68,6 +178,7 @@ var PILOTS = [
         
         unique: true,
         ship: "X-Wing",
+	faction:"REBEL",
         skill: 5,
         points: 25,
         upgrades: [
@@ -77,8 +188,20 @@ var PILOTS = [
     },
     {
         name: "Luke Skywalker",
-        
-        
+	faction:"REBEL",
+	getdefensetable: function(n) {
+	    var f,e;
+	    var p=[];
+	    log("["+this.name+"] modified defense table");
+	    for (f=0; f<=n; f++) 
+		for (e=0; e<=n-f; e++)
+		    p[f*10+e]=0;
+	    for (f=0; f<=n; f++) 
+		for (e=0; e<=n-f; e++) {
+		    p[f+e]+=DEFENSE[n][f*10+e];
+		}
+	    return p;
+	},
         unique: true,
         ship: "X-Wing",
         skill: 8,
@@ -91,8 +214,7 @@ var PILOTS = [
     },
     {
         name: "Gray Squadron Pilot",
-        
-        
+	faction:"REBEL",
         ship: "Y-Wing",
         skill: 4,
         points: 20,
@@ -107,6 +229,7 @@ var PILOTS = [
         name: '"Dutch" Vander',
         
         
+	faction:"REBEL",
         unique: true,
         ship: "Y-Wing",
         skill: 6,
@@ -122,6 +245,7 @@ var PILOTS = [
         name: "Horton Salm",
         
         
+	faction:"REBEL",
         unique: true,
         ship: "Y-Wing",
         skill: 8,
@@ -135,9 +259,8 @@ var PILOTS = [
     },
     {
         name: "Gold Squadron Pilot",
-        
-        
         ship: "Y-Wing",
+	faction:"REBEL",
         skill: 2,
         points: 18,
         upgrades: [
@@ -149,27 +272,24 @@ var PILOTS = [
     },
     {
         name: "Academy Pilot",
-        
-        
         ship: "TIE Fighter",
+        faction:"EMPIRE",
         skill: 1,
         points: 12,
         upgrades: [],
     },
     {
         name: "Obsidian Squadron Pilot",
-        
-        
         ship: "TIE Fighter",
+        faction:"EMPIRE",
         skill: 3,
         points: 13,
         upgrades: [],
     },
     {
         name: "Black Squadron Pilot",
-        
-        
         ship: "TIE Fighter",
+        faction:"EMPIRE",
         skill: 4,
         points: 14,
         upgrades: [
@@ -178,8 +298,29 @@ var PILOTS = [
     },
     {
         name: '"Winged Gundark"',
-        
-        
+        faction:"EMPIRE",
+        init:  function() {
+	    var a=this.getattacktable;
+	    this.getattacktable=function(n) {
+		var i,f,h,c;
+		var p=[];
+		var result=ar.call(this,n);
+		if (this.gethitrange(0,targetunit)==1) {
+		    for (f=0; f<=n; f++) 
+			for (h=0; h<=n-f; h++)
+			    for (c=0; c<=n-f-h; c++) 
+				p[f*100+h+c*10]=0;
+		    for (f=0; f<=n; f++) 
+			for (h=0; h<=n-f; h++)
+			    for (c=0; c<=n-f-h; c++) {
+				i=f*100+h+c*10;
+				if (h>0) p[i+9]+=result[i];
+				else p[i]+=result[i];
+			    }
+		    return p;
+		} else return result;
+	    }.bind(this);
+	},        
         unique: true,
         ship: "TIE Fighter",
         skill: 5,
@@ -188,8 +329,17 @@ var PILOTS = [
     },
     {
         name: '"Night Beast"',
-        
-        
+        faction:"EMPIRE",
+        init: function () {
+	    var r=this.handledifficulty;
+	    this.handledifficulty=function(difficulty) {
+		r.call(this,difficulty);
+		if (difficulty=="GREEN") {
+		    log("["+this.name+"] green maneuver -> free focus action");
+		    this.focus++;
+		}
+	    }.bind(this);
+	},
         unique: true,
         ship: "TIE Fighter",
         skill: 5,
@@ -198,9 +348,19 @@ var PILOTS = [
     },
     {
         name: '"Backstabber"',
-        
-        
         unique: true,
+        faction:"EMPIRE",
+	init: function() {
+	    var g=this.getattackstrength;
+	    this.getattackstrength=function(sh) {
+		var a=g.call(this,sh);
+		if (sh.gethitsector(this)>3) {
+		    a=a+1;
+		    log("["+this.name+"] +1 attack dice against "+sh.name);
+		}
+		return a;
+	    }.bind(this);
+	},
         ship: "TIE Fighter",
         skill: 6,
         points: 16,
@@ -208,8 +368,7 @@ var PILOTS = [
     },
     {
         name: '"Dark Curse"',
-        
-        
+        faction:"EMPIRE",
         unique: true,
         ship: "TIE Fighter",
         skill: 6,
@@ -218,8 +377,18 @@ var PILOTS = [
     },
     {
         name: '"Mauler Mithel"',
-        
-        
+        faction:"EMPIRE",
+        init:  function() {
+	    var g=this.getattackstrength;
+	    this.getattackstrength=function(sh) {
+		var a=g.call(this,sh);
+		if (this.gethitrange(0,sh)==1) { 
+		    a=a+1;
+		    log("["+this.name+"] +1 attack dice");
+		}
+		return a;
+	    }.bind(this);
+	},
         unique: true,
         ship: "TIE Fighter",
         skill: 7,
@@ -230,11 +399,31 @@ var PILOTS = [
     },
     {
         name: '"Howlrunner"',
-        
-        
         unique: true,
+        faction:"EMPIRE",
         ship: "TIE Fighter",
         skill: 8,
+	init: function() {
+	    ar=Unit.prototype.getattacktable;
+	    Unit.prototype.getattacktable=function(n) {
+		var i;
+		var sh;
+		var result=ar(n);
+		for (i=0; i<squadron.length; i++) 
+		    if (squadron[i].name=='"Howlrunner"') break;
+		// Howlrunner dead ? 
+		if (i==squadron.length) return result;
+		var howlrunner=squadron[i];
+		if (this!=howlrunner&&this.getrange(howlrunner)==1&&this.faction==howlrunner.faction) {
+		    var p;
+		    this.reroll=1;
+		    p=attackwithreroll(this,result,n);
+		    log("["+howlrunner.name+"] 1 reroll for "+this.name);
+		    return p;
+		}
+		return result;
+	    }
+	},
         points: 18,
         upgrades: [
             "Elite",
@@ -242,10 +431,9 @@ var PILOTS = [
     },
     {
         name: "Maarek Stele",
-        
-        
         unique: true,
-        ship: "TIE Advanced",
+         faction:"EMPIRE",
+       ship: "TIE Advanced",
         skill: 7,
         points: 27,
         upgrades: [
@@ -255,8 +443,7 @@ var PILOTS = [
     },
     {
         name: "Tempest Squadron Pilot",
-        
-        
+        faction:"EMPIRE",
         ship: "TIE Advanced",
         skill: 2,
         points: 21,
@@ -266,8 +453,7 @@ var PILOTS = [
     },
     {
         name: "Storm Squadron Pilot",
-        
-        
+        faction:"EMPIRE",
         ship: "TIE Advanced",
         skill: 4,
         points: 23,
@@ -277,8 +463,7 @@ var PILOTS = [
     },
     {
         name: "Darth Vader",
-        
-        
+        faction:"EMPIRE",
         unique: true,
         ship: "TIE Advanced",
         skill: 9,
@@ -290,8 +475,7 @@ var PILOTS = [
     },
     {
         name: "Alpha Squadron Pilot",
-        
-        
+        faction:"EMPIRE",
         ship: "TIE Interceptor",
         skill: 1,
         points: 18,
@@ -299,8 +483,7 @@ var PILOTS = [
     },
     {
         name: "Avenger Squadron Pilot",
-        
-        
+        faction:"EMPIRE",
         ship: "TIE Interceptor",
         skill: 3,
         points: 20,
@@ -308,8 +491,7 @@ var PILOTS = [
     },
     {
         name: "Saber Squadron Pilot",
-        
-        
+        faction:"EMPIRE",
         ship: "TIE Interceptor",
         skill: 4,
         points: 21,
@@ -319,21 +501,39 @@ var PILOTS = [
     },
     {
         name: "\"Fel's Wrath\"",
-        
-        
+        faction:"EMPIRE",
         unique: true,
         ship: "TIE Interceptor",
-        skill: 5,
+	skill: 5,
         points: 23,
         upgrades: [ ],
     },
     {
         name: "Turr Phennir",
-        
-        
+        faction:"EMPIRE",
         unique: true,
         ship: "TIE Interceptor",
         skill: 7,
+	cleancombat: function() {
+	    Unit.prototype.cleancombat.call(this);
+	    console.log("["+this.name+"] free boost or roll action");
+	    var m0=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(-90,0,0)).add(MT(0,-20));
+	    var m1=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(90,0,0)).add(MT(0,-20));
+	    this.resolveactionmove(
+		[m0.clone().add(MT(0,0)),
+		 m0.clone().add(MT(0,20)),
+		 m0.clone().add(MT(0,40)),
+		 m1.clone().add(MT(0,0)),
+		 m1.clone().add(MT(0,20)),
+		 m1.clone().add(MT(0,40)),
+		 this.m,
+		 this.getpathmatrix(this.m.clone(),"F1"),
+		 this.getpathmatrix(this.m.clone(),"BL1"),
+		 this.getpathmatrix(this.m.clone(),"BR1")],
+		function(t) {
+		    t.show();
+		});
+	},
         points: 25,
         upgrades: [
             "Elite",
@@ -341,9 +541,14 @@ var PILOTS = [
     },
     {
         name: "Soontir Fel",
-        
-        
+        faction:"EMPIRE",
         unique: true,
+        addstress: function () {
+	    this.stress++;
+	    log("["+this.name+"] stress -> free focus action");
+	    this.focus++;
+	    this.show();
+	},
         ship: "TIE Interceptor",
         skill: 9,
         points: 27,
@@ -353,9 +558,16 @@ var PILOTS = [
     },
     {
         name: "Tycho Celchu",
-        
-        
+	faction:"REBEL",
         unique: true,
+        updateactionlist:function() {
+	    if (this.collision>0) {
+		this.actionList=["NOTHING"];
+	    } else {
+		this.actionList=this.ship.actionList.slice(0);
+		this.actionList.push("NOTHING");
+	    }
+	},
         ship: "A-Wing",
         skill: 8,
         points: 26,
@@ -366,10 +578,12 @@ var PILOTS = [
     },
     {
         name: "Arvel Crynyd",
-        
-        
+	faction:"REBEL",
         unique: true,
         ship: "A-Wing",
+	checkcollision: function(sh) {
+	    return false;
+	},
         skill: 6,
         points: 23,
         upgrades: [
@@ -378,8 +592,7 @@ var PILOTS = [
     },
     {
         name: "Green Squadron Pilot",
-        
-        
+	faction:"REBEL",
         ship: "A-Wing",
         skill: 3,
         points: 19,
@@ -390,8 +603,7 @@ var PILOTS = [
     },
     {
         name: "Prototype Pilot",
-        
-        
+	faction:"REBEL",
         ship: "A-Wing",
         skill: 1,
         points: 17,
@@ -401,9 +613,13 @@ var PILOTS = [
     },
     {
         name: "Outer Rim Smuggler",
-        
-        
+	faction:"REBEL",
         ship: "YT-1300",
+	init: function() {
+	    this.weapons[0].fire=2;
+	    this.hull=6;
+	    this.shield=4;
+	},
         skill: 1,
         points: 27,
         upgrades: [
@@ -413,9 +629,8 @@ var PILOTS = [
     },
     {
         name: "Chewbacca",
-        
-        
         unique: true,
+	faction:"REBEL",
         ship: "YT-1300",
         skill: 5,
         points: 42,
@@ -432,8 +647,7 @@ var PILOTS = [
     },
     {
         name: "Lando Calrissian",
-        
-        
+	faction:"REBEL",
         unique: true,
         ship: "YT-1300",
         skill: 7,
@@ -451,9 +665,8 @@ var PILOTS = [
     },
     {
         name: "Han Solo",
-        
-        
         unique: true,
+	faction:"REBEL",
         ship: "YT-1300",
         skill: 9,
         points: 46,
@@ -470,9 +683,8 @@ var PILOTS = [
     },
     {
         name: "Kath Scarlet",
-        
-        
         unique: true,
+        faction:"EMPIRE",
         ship: "Firespray-31",
         skill: 7,
         points: 38,
@@ -486,9 +698,8 @@ var PILOTS = [
     },
     {
         name: "Boba Fett",
-        
-        
         unique: true,
+        faction:"EMPIRE",
         ship: "Firespray-31",
         skill: 8,
         points: 39,
@@ -502,9 +713,8 @@ var PILOTS = [
     },
     {
         name: "Krassis Trelix",
-        
-        
         unique: true,
+        faction:"EMPIRE",
         ship: "Firespray-31",
         skill: 5,
         points: 36,
@@ -517,10 +727,9 @@ var PILOTS = [
     },
     {
         name: "Bounty Hunter",
-        
-        
         ship: "Firespray-31",
         skill: 3,
+        faction:"EMPIRE",
         points: 33,
         upgrades: [
             "Cannon",
@@ -531,8 +740,7 @@ var PILOTS = [
     },
     {
         name: "Ten Numb",
-        
-        
+	faction:"REBEL",
         unique: true,
         ship: "B-Wing",
         skill: 8,
@@ -547,9 +755,8 @@ var PILOTS = [
     },
     {
         name: "Ibtisam",
-        
-        
         unique: true,
+	faction:"REBEL",
         ship: "B-Wing",
         skill: 6,
         points: 28,
@@ -563,9 +770,8 @@ var PILOTS = [
     },
     {
         name: "Dagger Squadron Pilot",
-        
-        
         ship: "B-Wing",
+	faction:"REBEL",
         skill: 4,
         points: 24,
         upgrades: [
@@ -577,9 +783,8 @@ var PILOTS = [
     },
     {
         name: "Blue Squadron Pilot",
-        
-        
         ship: "B-Wing",
+	faction:"REBEL",
         skill: 2,
         points: 22,
         upgrades: [
@@ -591,9 +796,8 @@ var PILOTS = [
     },
     {
         name: "Rebel Operative",
-        
-        
         ship: "HWK-290",
+	faction:"REBEL",
         skill: 2,
         points: 16,
         upgrades: [
@@ -603,9 +807,8 @@ var PILOTS = [
     },
     {
         name: "Roark Garnet",
-        
-        
         unique: true,
+	faction:"REBEL",
         ship: "HWK-290",
         skill: 4,
         points: 19,
@@ -616,6 +819,7 @@ var PILOTS = [
     },
     {
         name: "Kyle Katarn",
+	faction:"REBEL",
         
         
         unique: true,
@@ -631,6 +835,7 @@ var PILOTS = [
     {
         name: "Jan Ors",
         
+	faction:"REBEL",
         
         unique: true,
         ship: "HWK-290",
@@ -648,6 +853,7 @@ var PILOTS = [
         
         ship: "TIE Bomber",
         skill: 2,
+        faction:"EMPIRE",
         points: 16,
         upgrades: [
             "Torpedo",
@@ -662,6 +868,7 @@ var PILOTS = [
         
         
         ship: "TIE Bomber",
+        faction:"EMPIRE",
         skill: 4,
         points: 18,
         upgrades: [
@@ -674,6 +881,7 @@ var PILOTS = [
     },
     {
         name: "Captain Jonus",
+        faction:"EMPIRE",
         
         
         unique: true,
@@ -691,6 +899,7 @@ var PILOTS = [
     },
     {
         name: "Major Rhymer",
+        faction:"EMPIRE",
         
         
         unique: true,
@@ -708,6 +917,7 @@ var PILOTS = [
     },
     {
         name: "Captain Kagi",
+        faction:"EMPIRE",
         
         
         unique: true,
@@ -723,6 +933,7 @@ var PILOTS = [
     },
     {
         name: "Colonel Jendon",
+        faction:"EMPIRE",
         
         
         unique: true,
@@ -738,6 +949,7 @@ var PILOTS = [
     },
     {
         name: "Captain Yorr",
+        faction:"EMPIRE",
         
         
         unique: true,
@@ -753,6 +965,7 @@ var PILOTS = [
     },
     {
         name: "Omicron Group Pilot",
+        faction:"EMPIRE",
         
         
         ship: "Lambda-Class Shuttle",
@@ -767,6 +980,7 @@ var PILOTS = [
     },
     {
         name: "Lieutenant Lorrir",
+        faction:"EMPIRE",
         
         
         unique: true,
@@ -777,6 +991,7 @@ var PILOTS = [
     },
     {
         name: "Royal Guard Pilot",
+        faction:"EMPIRE",
         
         
         ship: "TIE Interceptor",
@@ -788,6 +1003,7 @@ var PILOTS = [
     },
     {
         name: "Tetran Cowall",
+        faction:"EMPIRE",
         
         
         unique: true,
@@ -800,6 +1016,7 @@ var PILOTS = [
     },
     {
         name: "Kir Kanos",
+        faction:"EMPIRE",
         
         
         unique: true,
@@ -810,6 +1027,7 @@ var PILOTS = [
     },
     {
         name: "Carnor Jax",
+        faction:"EMPIRE",
         
         
         unique: true,
@@ -823,6 +1041,7 @@ var PILOTS = [
     {
         name: "GR-75 Medium Transport",
         
+	faction:"REBEL",
         
         epic: true,
         ship: "GR-75 Medium Transport",
@@ -838,6 +1057,7 @@ var PILOTS = [
     },
     {
         name: "Bandit Squadron Pilot",
+	faction:"REBEL",
         
         
         ship: "Z-95 Headhunter",
@@ -849,6 +1069,7 @@ var PILOTS = [
     },
     {
         name: "Tala Squadron Pilot",
+	faction:"REBEL",
         
         
         ship: "Z-95 Headhunter",
@@ -860,6 +1081,7 @@ var PILOTS = [
     },
     {
         name: "Lieutenant Blount",
+	faction:"REBEL",
         
         
         unique: true,
@@ -873,6 +1095,7 @@ var PILOTS = [
     },
     {
         name: "Airen Cracken",
+	faction:"REBEL",
         
         
         unique: true,
@@ -886,6 +1109,7 @@ var PILOTS = [
     },
     {
         name: "Delta Squadron Pilot",
+        faction:"EMPIRE",
         
         
         ship: "TIE Defender",
@@ -899,6 +1123,7 @@ var PILOTS = [
     {
         name: "Onyx Squadron Pilot",
         
+        faction:"EMPIRE",
         
         ship: "TIE Defender",
         skill: 3,
@@ -911,6 +1136,7 @@ var PILOTS = [
     {
         name: "Colonel Vessery",
         
+        faction:"EMPIRE",
         
         unique: true,
         ship: "TIE Defender",
@@ -925,6 +1151,7 @@ var PILOTS = [
     {
         name: "Rexler Brath",
         
+        faction:"EMPIRE",
         
         unique: true,
         ship: "TIE Defender",
@@ -939,6 +1166,7 @@ var PILOTS = [
     {
         name: "Knave Squadron Pilot",
         
+	faction:"REBEL",
         
         ship: "E-Wing",
         skill: 1,
@@ -952,6 +1180,7 @@ var PILOTS = [
     {
         name: "Blackmoon Squadron Pilot",
         
+	faction:"REBEL",
         
         ship: "E-Wing",
         skill: 3,
@@ -964,6 +1193,7 @@ var PILOTS = [
     },
     {
         name: "Etahn A'baht",
+	faction:"REBEL",
         
         
         unique: true,
@@ -980,6 +1210,7 @@ var PILOTS = [
     {
         name: "Corran Horn",
         
+	faction:"REBEL",
         
         unique: true,
         ship: "E-Wing",
@@ -994,6 +1225,7 @@ var PILOTS = [
     },
     {
         name: "Sigma Squadron Pilot",
+        faction:"EMPIRE",
         
         
         ship: "TIE Phantom",
@@ -1007,6 +1239,7 @@ var PILOTS = [
     {
         name: "Shadow Squadron Pilot",
         
+        faction:"EMPIRE",
         
         ship: "TIE Phantom",
         skill: 5,
@@ -1018,6 +1251,7 @@ var PILOTS = [
     },
     {
         name: '"Echo"',
+        faction:"EMPIRE",
         
         
         unique: true,
@@ -1033,6 +1267,7 @@ var PILOTS = [
     {
         name: '"Whisper"',
         
+        faction:"EMPIRE",
         
         unique: true,
         ship: "TIE Phantom",
@@ -1045,40 +1280,9 @@ var PILOTS = [
         ],
     },
     {
-        name: "CR90 Corvette (Fore)",
-        
-        
-        epic: true,
-        ship: "CR90 Corvette (Fore)",
-        skill: 4,
-        points: 50,
-        upgrades: [
-            "Crew",
-            "Hardpoint",
-            "Hardpoint",
-            "Team",
-            "Team",
-            "Cargo",
-        ],
-    },
-    {
-        name: "CR90 Corvette (Aft)",
-        
-        
-        epic: true,
-        ship: "CR90 Corvette (Aft)",
-        skill: 4,
-        points: 40,
-        upgrades: [
-            "Crew",
-            "Hardpoint",
-            "Team",
-            "Cargo",
-        ],
-    },
-    {
         name: "Wes Janson",
         
+	faction:"REBEL",
         
         unique: true,
         ship: "X-Wing",
@@ -1092,6 +1296,7 @@ var PILOTS = [
     },
     {
         name: "Jek Porkins",
+	faction:"REBEL",
         
         
         unique: true,
@@ -1106,6 +1311,7 @@ var PILOTS = [
     },
     {
         name: '"Hobbie" Klivian',
+	faction:"REBEL",
         
         
         unique: true,
@@ -1120,6 +1326,7 @@ var PILOTS = [
     {
         name: "Tarn Mison",
         
+	faction:"REBEL",
         
         unique: true,
         ship: "X-Wing",
@@ -1133,6 +1340,7 @@ var PILOTS = [
     {
         name: "Jake Farrell",
         
+	faction:"REBEL",
         
         unique: true,
         ship: "A-Wing",
@@ -1146,6 +1354,7 @@ var PILOTS = [
     {
         name: "Gemmer Sojan",
         
+	faction:"REBEL",
         
         unique: true,
         ship: "A-Wing",
@@ -1158,6 +1367,7 @@ var PILOTS = [
     {
         name: "Keyan Farlander",
         
+	faction:"REBEL",
         
         unique: true,
         ship: "B-Wing",
@@ -1174,6 +1384,7 @@ var PILOTS = [
     {
         name: "Nera Dantels",
         
+	faction:"REBEL",
         
         unique: true,
         ship: "B-Wing",
@@ -1187,47 +1398,11 @@ var PILOTS = [
             "Torpedo",
         ],
     },
-    {
-        name: "CR90 Corvette (Crippled Fore)",
-        skip: true,
-        
-        
-        ship: "CR90 Corvette (Fore)",
-        skill: 4,
-        points: 0,
-        epic: true,
-        upgrades: [
-            "Crew",
-        ],
-        
-        attack: 2,
-        agility: 0,
-        hull: 0,
-        shields: 0,
-        actions: [],
-    },
-    {
-        name: "CR90 Corvette (Crippled Aft)",
-        skip: true,
-        
-        
-        ship: "CR90 Corvette (Aft)",
-        skill: 4,
-        points: 0,
-        epic: true,
-        upgrades: [
-            "Cargo",
-        ],
-        
-        energy: 1,
-        agility: 0,
-        hull: 0,
-        shields: 0,
-        actions: [],
-    },
+
     {
         name: "Wild Space Fringer",
         
+	faction:"REBEL",
         
         ship: "YT-2400",
         skill: 2,
@@ -1241,6 +1416,7 @@ var PILOTS = [
     {
         name: "Eaden Vrill",
         
+	faction:"REBEL",
         
         ship: "YT-2400",
         unique: true,
@@ -1255,6 +1431,7 @@ var PILOTS = [
     {
         name: '"Leebo"',
         
+	faction:"REBEL",
         
         ship: "YT-2400",
         unique: true,
@@ -1269,6 +1446,7 @@ var PILOTS = [
     },
     {
         name: "Dash Rendar",
+	faction:"REBEL",
         
         
         ship: "YT-2400",
@@ -1285,7 +1463,8 @@ var PILOTS = [
     {
         name: "Patrol Leader",
         
-        
+         faction:"EMPIRE",
+       
         ship: "VT-49 Decimator",
         skill: 3,
         points: 40,
@@ -1300,6 +1479,7 @@ var PILOTS = [
     {
         name: "Captain Oicunn",
         
+        faction:"EMPIRE",
         
         ship: "VT-49 Decimator",
         skill: 4,
@@ -1317,6 +1497,7 @@ var PILOTS = [
     {
         name: "Commander Kenkirk",
         
+        faction:"EMPIRE",
         
         ship: "VT-49 Decimator",
         skill: 6,
@@ -1334,6 +1515,7 @@ var PILOTS = [
     {
         name: "Rear Admiral Chiraneau",
         
+        faction:"EMPIRE",
         
         ship: "VT-49 Decimator",
         skill: 8,
@@ -1350,6 +1532,7 @@ var PILOTS = [
     },
     {
         name: "Prince Xizor",
+        faction:"SCUM",
         
         
         unique: true,
@@ -1363,7 +1546,8 @@ var PILOTS = [
     },
     {
         name: "Guri",
-        
+         faction:"SCUM",
+       
         
         unique: true,
         ship: "StarViper",
@@ -1376,6 +1560,7 @@ var PILOTS = [
     },
     {
         name: "Black Sun Vigo",
+        faction:"SCUM",
         
         
         ship: "StarViper",
@@ -1387,6 +1572,7 @@ var PILOTS = [
     },
     {
         name: "Black Sun Enforcer",
+        faction:"SCUM",
         
         
         ship: "StarViper",
@@ -1398,6 +1584,7 @@ var PILOTS = [
     },
     {
         name: "Serissu",
+        faction:"SCUM",
         
         
         ship: "M3-A Interceptor",
@@ -1410,6 +1597,7 @@ var PILOTS = [
     },
     {
         name: "Laetin A'shera",
+        faction:"SCUM",
         
         
         ship: "M3-A Interceptor",
@@ -1421,6 +1609,7 @@ var PILOTS = [
     {
         name: "Tansarii Point Veteran",
         
+        faction:"SCUM",
         
         ship: "M3-A Interceptor",
         skill: 5,
@@ -1431,6 +1620,7 @@ var PILOTS = [
     },
     {
         name: "Cartel Spacer",
+        faction:"SCUM",
         
         
         ship: "M3-A Interceptor",
@@ -1440,6 +1630,7 @@ var PILOTS = [
     },
     {
         name: "IG-88A",
+	faction:"SCUM",
         
         
         unique: true,
@@ -1457,6 +1648,7 @@ var PILOTS = [
     },
     {
         name: "IG-88B",
+	faction:"SCUM",
         
         
         unique: true,
@@ -1474,6 +1666,7 @@ var PILOTS = [
     },
     {
         name: "IG-88C",
+	faction:"SCUM",
         
         
         unique: true,
@@ -1491,6 +1684,7 @@ var PILOTS = [
     },
     {
         name: "IG-88D",
+	faction:"SCUM",
         
         
         unique: true,
@@ -1509,6 +1703,7 @@ var PILOTS = [
     {
         name: "N'Dru Suhlak",
         unique: true,
+	faction:"SCUM",
         
         
         ship: "Z-95 Headhunter",
@@ -1524,6 +1719,7 @@ var PILOTS = [
         name: "Kaa'To Leeachos",
         unique: true,
         
+	faction:"SCUM",
         
         ship: "Z-95 Headhunter",
         skill: 5,
@@ -1537,6 +1733,7 @@ var PILOTS = [
     {
         name: "Black Sun Soldier",
         
+	faction:"SCUM",
         
         ship: "Z-95 Headhunter",
         skill: 3,
@@ -1548,6 +1745,7 @@ var PILOTS = [
     },
     {
         name: "Binayre Pirate",
+	faction:"SCUM",
         
         
         ship: "Z-95 Headhunter",
@@ -1560,6 +1758,7 @@ var PILOTS = [
     },
     {
         name: "Boba Fett (Scum)",
+	faction:"SCUM",
         
         
         
@@ -1580,6 +1779,7 @@ var PILOTS = [
         name: "Kath Scarlet (Scum)",
         
         unique: true,
+	faction:"SCUM",
         
         
         ship: "Firespray-31",
@@ -1597,6 +1797,7 @@ var PILOTS = [
     {
         name: "Emon Azzameen",
         unique: true,
+	faction:"SCUM",
         
         
         ship: "Firespray-31",
@@ -1612,6 +1813,7 @@ var PILOTS = [
     },
     {
         name: "Mandalorian Mercenary",
+	faction:"SCUM",
         
         
         ship: "Firespray-31",
@@ -1630,6 +1832,7 @@ var PILOTS = [
         name: "Kavil",
         unique: true,
         
+	faction:"SCUM",
         
         ship: "Y-Wing",
         skill: 7,
@@ -1645,6 +1848,7 @@ var PILOTS = [
     {
         name: "Drea Renthal",
         unique: true,
+	faction:"SCUM",
         
         
         ship: "Y-Wing",
@@ -1659,6 +1863,7 @@ var PILOTS = [
     },
     {
         name: "Hired Gun",
+	faction:"SCUM",
         
         
         ship: "Y-Wing",
@@ -1689,6 +1894,7 @@ var PILOTS = [
         name: "Dace Bonearm",
         unique: true,
         
+	faction:"SCUM",
         
         ship: "HWK-290",
         skill: 7,
@@ -1703,6 +1909,7 @@ var PILOTS = [
     {
         name: "Palob Godalhi",
         unique: true,
+	faction:"SCUM",
         
         
         ship: "HWK-290",
@@ -1719,6 +1926,7 @@ var PILOTS = [
         name: "Torkil Mux",
         unique: true,
         
+	faction:"SCUM",
         
         ship: "HWK-290",
         skill: 3,
@@ -1731,6 +1939,7 @@ var PILOTS = [
     },
     {
         name: "Spice Runner",
+	faction:"SCUM",
         
         
         ship: "HWK-290",
@@ -1744,7 +1953,7 @@ var PILOTS = [
     },
     {
         name: "Commander Alozen",
-        
+        faction:"EMPIRE",
         
         ship: "TIE Advanced",
         unique: true,
@@ -1754,62 +1963,33 @@ var PILOTS = [
             "Elite",
             "Missile",
         ],
-    },
-    {
-        name: "Raider-class Corvette (Fore)",
-        
-        
-        ship: "Raider-class Corvette (Fore)",
-        skill: 4,
-        points: 50,
-        epic: true,
-        upgrades: [
-            "Hardpoint",
-            "Team",
-            "Cargo",
-        ],
-    },
-    {
-        name: "Raider-class Corvette (Aft)",
-        
-        
-        ship: "Raider-class Corvette (Aft)",
-        skill: 4,
-        points: 50,
-        epic: true,
-        upgrades: [
-            "Crew",
-            "Crew",
-            "Hardpoint",
-            "Hardpoint",
-            "Team",
-            "Team",
-            "Cargo",
-        ],
-    },
+    }
 ];
 
 var UPGRADES= [
     {
         name: "Ion Cannon Turret",
-        
-        upgrade: "Turret",
+        init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
+        type: "Turret",
         points: 5,
         attack: 3,
-        range: "1-2",
+        range: [1,2],
     },
     {
         name: "Proton Torpedoes",
-        
-        upgrade: "Torpedo",
+        init: function(sh) {sh.weapons.push(new Weapon(sh,this)); },
+	canfire: function(sh) {return this.canfirewithtarget(sh)},
+	fire: function(sh) {return this.firewithtarget(sh)},
+        type: "Torpedo",
+	hasfired:false,
         points: 4,
         attack: 4,
-        range: "2-3",
+        range: [2,3],
     },
     {
         name: "R2 Astromech",
         
-        upgrade: "Astromech",
+        type: "Astromech",
         points: 1,
     },
     {
@@ -1818,185 +1998,185 @@ var UPGRADES= [
         
         
         unique: true,
-        upgrade: "Astromech",
+        type: "Astromech",
         points: 4,
     },
     {
         name: "R2-F2",
         
         unique: true,
-        upgrade: "Astromech",
+        type: "Astromech",
         points: 3,
     },
     {
         name: "R5-D8",
         
         unique: true,
-        upgrade: "Astromech",
+        type: "Astromech",
         points: 3,
     },
     {
         name: "R5-K6",
         
         unique: true,
-        upgrade: "Astromech",
+        type: "Astromech",
         points: 2,
     },
     {
         name: "R5 Astromech",
         
-        upgrade: "Astromech",
+        type: "Astromech",
         points: 1,
     },
     {
         name: "Determination",
         
-        upgrade: "Elite",
+        type: "Elite",
         points: 1,
     },
     {
         name: "Swarm Tactics",
         
-        upgrade: "Elite",
+        type: "Elite",
         points: 2,
     },
     {
         name: "Squad Leader",
         
         unique: true,
-        upgrade: "Elite",
+        type: "Elite",
         points: 2,
     },
     {
         name: "Expert Handling",
         
-        upgrade: "Elite",
+        type: "Elite",
         points: 2,
     },
     {
         name: "Marksmanship",
         
-        upgrade: "Elite",
+        type: "Elite",
         points: 3,
     },
     {
         name: "Concussion Missiles",
         
-        upgrade: "Missile",
+        type: "Missile",
         points: 4,
         attack: 4,
-        range: "2-3",
+        range: [2,3],
     },
     {
         name: "Cluster Missiles",
         
-        upgrade: "Missile",
+        type: "Missile",
         points: 4,
         attack: 3,
-        range: "1-2",
+        range: [1,2],
     },
     {
         name: "Daredevil",
         
-        upgrade: "Elite",
+        type: "Elite",
         points: 3,
     },
     {
         name: "Elusiveness",
         
-        upgrade: "Elite",
+        type: "Elite",
         points: 2,
     },
     {
         name: "Homing Missiles",
         
-        upgrade: "Missile",
+        type: "Missile",
         attack: 4,
-        range: "2-3",
+        range: [2,3],
         points: 5,
     },
     {
         name: "Push the Limit",
         
-        upgrade: "Elite",
+        type: "Elite",
         points: 3,
     },
     {
         name: "Deadeye",
         
-        upgrade: "Elite",
+        type: "Elite",
         points: 1,
     },
     {
         name: "Expose",
         
-        upgrade: "Elite",
+        type: "Elite",
         points: 4,
     },
     {
         name: "Gunner",
         
-        upgrade: "Crew",
+        type: "Crew",
         points: 5,
     },
     {
         name: "Ion Cannon",
-        
-        upgrade: "Cannon",
+        init:function(sh) { sh.weapons.push(new Weapon(sh,this)); },
+        type: "Cannon",
         points: 3,
         attack: 3,
-        range: "1-3",
+        range: [1,3],
     },
     {
         name: "Heavy Laser Cannon",
-        
-        upgrade: "Cannon",
+        init:function(sh) { sh.weapons.push(new Weapon(sh,this)); },
+        type: "Cannon",
         points: 7,
         attack: 4,
-        range: "2-3",
+        range: [2,3],
     },
     {
         name: "Seismic Charges",
         
-        upgrade: "Bomb",
+        type: "Bomb",
         points: 2,
     },
     {
         name: "Mercenary Copilot",
         
-        upgrade: "Crew",
+        type: "Crew",
         points: 2,
     },
     {
         name: "Assault Missiles",
         
-        upgrade: "Missile",
+        type: "Missile",
         points: 5,
         attack: 4,
-        range: "2-3",
+        range: [2,3],
     },
     {
         name: "Veteran Instincts",
         
-        upgrade: "Elite",
+        type: "Elite",
         points: 1,
     },
     {
         name: "Proximity Mines",
         
-        upgrade: "Bomb",
+        type: "Bomb",
         points: 3,
     },
     {
         name: "Weapons Engineer",
         
-        upgrade: "Crew",
+        type: "Crew",
         points: 3,
     },
     {
         name: "Draw Their Fire",
         
-        upgrade: "Elite",
+        type: "Elite",
         points: 1,
     },
     {
@@ -2004,7 +2184,7 @@ var UPGRADES= [
         
         unique: true,
         
-        upgrade: "Crew",
+        type: "Crew",
         points: 7,
     },
     {
@@ -2012,7 +2192,7 @@ var UPGRADES= [
         
         unique: true,
         
-        upgrade: "Crew",
+        type: "Crew",
         points: 1,
 
     },
@@ -2021,80 +2201,80 @@ var UPGRADES= [
         
         unique: true,
         
-        upgrade: "Crew",
+        type: "Crew",
         points: 4,
     },
     {
         name: "Advanced Proton Torpedoes",
         
         
-        upgrade: "Torpedo",
+        type: "Torpedo",
         attack: 5,
-        range: "1",
+        range: [1,1],
         points: 6,
     },
     {
         name: "Autoblaster",
-        
-        upgrade: "Cannon",
+        init:function(sh) { sh.weapons.push(new Weapon(sh,this)); },
+        type: "Cannon",
         attack: 3,
-        range: "1",
+        range: [1,1],
         points: 5,
     },
     {
         name: "Fire-Control System",
         
-        upgrade: "System",
+        type: "System",
         points: 2,
     },
     {
         name: "Blaster Turret",
-        
-        upgrade: "Turret",
+        init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
+        type: "Turret",
         points: 4,
         attack: 3,
-        range: "1-2",
+        range: [1,2],
     },
     {
         name: "Recon Specialist",
         
-        upgrade: "Crew",
+        type: "Crew",
         points: 3,
     },
     {
         name: "Saboteur",
         
-        upgrade: "Crew",
+        type: "Crew",
         points: 2,
     },
     {
         name: "Intelligence Agent",
         
-        upgrade: "Crew",
+        type: "Crew",
         points: 1,
     },
     {
         name: "Proton Bombs",
         
-        upgrade: "Bomb",
+        type: "Bomb",
         points: 5,
     },
     {
         name: "Adrenaline Rush",
         
-        upgrade: "Elite",
+        type: "Elite",
         points: 1,
     },
     {
         name: "Advanced Sensors",
         
-        upgrade: "System",
+        type: "System",
         points: 3,
     },
     {
         name: "Sensor Jammer",
         
-        upgrade: "System",
+        type: "System",
         points: 4,
     },
     {
@@ -2102,7 +2282,7 @@ var UPGRADES= [
         
         unique: true,
         
-        upgrade: "Crew",
+        type: "Crew",
         points: 3,
     },
     {
@@ -2110,102 +2290,102 @@ var UPGRADES= [
         
         unique: true,
         
-        upgrade: "Crew",
+        type: "Crew",
         points: 3,
     },
     {
         name: "Flight Instructor",
         
-        upgrade: "Crew",
+        type: "Crew",
         points: 4,
     },
     {
         name: "Navigator",
         
-        upgrade: "Crew",
+        type: "Crew",
         points: 3,
     },
     {
         name: "Opportunist",
         
-        upgrade: "Elite",
+        type: "Elite",
         points: 4,
     },
     {
         name: "Comms Booster",
         
-        upgrade: "Cargo",
+        type: "Cargo",
         points: 4,
     },
     {
         name: "Slicer Tools",
         
-        upgrade: "Cargo",
+        type: "Cargo",
         points: 7,
     },
     {
         name: "Shield Projector",
         
-        upgrade: "Cargo",
+        type: "Cargo",
         points: 4,
     },
     {
         name: "Ion Pulse Missiles",
         
-        upgrade: "Missile",
+        type: "Missile",
         points: 3,
         attack: 3,
-        range: "2-3",
+        range: [2,3],
     },
     {
         name: "Wingman",
         
-        upgrade: "Elite",
+        type: "Elite",
         points: 2,
     },
     {
         name: "Decoy",
         
-        upgrade: "Elite",
+        type: "Elite",
         points: 2,
     },
     {
         name: "Outmaneuver",
         
-        upgrade: "Elite",
+        type: "Elite",
         points: 3,
     },
     {
         name: "Predator",
         
-        upgrade: "Elite",
+        type: "Elite",
         points: 3,
     },
     {
         name: "Flechette Torpedoes",
         
-        upgrade: "Torpedo",
+        type: "Torpedo",
         points: 2,
         attack: 3,
-        range: "2-3",
+        range: [2,3],
     },
     {
         name: "R7 Astromech",
         
-        upgrade: "Astromech",
+        type: "Astromech",
         points: 2,
     },
     {
         name: "R7-T1",
         
         unique: true,
-        upgrade: "Astromech",
+        type: "Astromech",
         points: 3,
     },
     {
         name: "Tactician",
         
-        upgrade: "Crew",
+        type: "Crew",
         points: 2,
     },
     {
@@ -2214,7 +2394,7 @@ var UPGRADES= [
         
         
         unique: true,
-        upgrade: "Crew",
+        type: "Crew",
         points: 4,
         
     },
@@ -2222,39 +2402,21 @@ var UPGRADES= [
         name: "C-3PO",
         unique: true,
         
-        upgrade: "Crew",
+        type: "Crew",
         points: 3,
         
     },
     {
-        name: "Single Turbolasers",
-        
-        upgrade: "Hardpoint",
-        points: 8,
-        energy: 2,
-        attack: 4,
-        range: "3-5",
-    },
-    {
-        name: "Quad Laser Cannons",
-        
-        upgrade: "Hardpoint",
-        points: 6,
-        energy: 2,
-        attack: 3,
-        range: "1-2",
-    },
-    {
         name: "Tibanna Gas Supplies",
         
-        upgrade: "Cargo",
+        type: "Cargo",
         points: 4,
         limited: true,
     },
     {
         name: "Ionization Reactor",
         
-        upgrade: "Cargo",
+        type: "Cargo",
         points: 4,
         energy: 5,
         limited: true,
@@ -2262,7 +2424,7 @@ var UPGRADES= [
     {
         name: "Engine Booster",
         
-        upgrade: "Cargo",
+        type: "Cargo",
         points: 3,
         limited: true,
     },
@@ -2270,42 +2432,42 @@ var UPGRADES= [
         name: "R3-A2",
         
         unique: true,
-        upgrade: "Astromech",
+        type: "Astromech",
         points: 2,
     },
     {
         name: "R2-D6",
         
         unique: true,
-        upgrade: "Astromech",
+        type: "Astromech",
         points: 1,
     },
     {
         name: "Enhanced Scopes",
         
-        upgrade: "System",
+        type: "System",
         points: 1,
     },
     {
         name: "Chardaan Refit",
         
-        upgrade: "Missile",
+        type: "Missile",
         points: -2,
         ship: "A-Wing",
     },
     {
         name: "Proton Rockets",
         
-        upgrade: "Missile",
+        type: "Missile",
         points: 3,
         attack: 2,
-        range: "1",
+        range: [1,1],
     },
     {
         name: "Kyle Katarn",
         
         unique: true,
-        upgrade: "Crew",
+        type: "Crew",
         points: 3,
         
     },
@@ -2313,7 +2475,7 @@ var UPGRADES= [
         name: "Jan Ors",
         
         unique: true,
-        upgrade: "Crew",
+        type: "Crew",
         points: 2,
         
     },
@@ -2321,34 +2483,34 @@ var UPGRADES= [
         name: "Toryn Farr",
         
         unique: true,
-        upgrade: "Crew",
+        type: "Crew",
         points: 6,
     },
     {
         name: "R4-D6",
         
         unique: true,
-        upgrade: "Astromech",
+        type: "Astromech",
         points: 1,
     },
     {
         name: "R5-P9",
         
         unique: true,
-        upgrade: "Astromech",
+        type: "Astromech",
         points: 3,
     },
     {
         name: "WED-15 Repair Droid",
         
-        upgrade: "Crew",
+        type: "Crew",
         points: 2,
     },
     {
         name: "Carlist Rieekan",
         
         unique: true,
-        upgrade: "Crew",
+        type: "Crew",
         points: 3,
         
     },
@@ -2356,42 +2518,42 @@ var UPGRADES= [
         name: "Jan Dodonna",
         
         unique: true,
-        upgrade: "Crew",
+        type: "Crew",
         points: 6,
         
     },
     {
         name: "Expanded Cargo Hold",
         
-        upgrade: "Cargo",
+        type: "Cargo",
         points: 1,
         ship: "GR-75 Medium Transport",
     },
     {
         name: "Backup Shield Generator",
         
-        upgrade: "Cargo",
+        type: "Cargo",
         limited: true,
         points: 3,
     },
     {
         name: "EM Emitter",
         
-        upgrade: "Cargo",
+        type: "Cargo",
         limited: true,
         points: 3,
     },
     {
         name: "Frequency Jammer",
         
-        upgrade: "Cargo",
+        type: "Cargo",
         limited: true,
         points: 4,
     },
     {
         name: "Han Solo",
         
-        upgrade: "Crew",
+        type: "Crew",
         unique: true,
         
         points: 2,
@@ -2399,7 +2561,7 @@ var UPGRADES= [
     {
         name: "Leia Organa",
         
-        upgrade: "Crew",
+        type: "Crew",
         unique: true,
         
         points: 4,
@@ -2407,14 +2569,14 @@ var UPGRADES= [
     {
         name: "Targeting Coordinator",
         
-        upgrade: "Crew",
+        type: "Crew",
         limited: true,
         points: 4,
     },
     {
         name: "Raymus Antilles",
         
-        upgrade: "Crew",
+        type: "Crew",
         unique: true,
         
         points: 6,
@@ -2422,27 +2584,27 @@ var UPGRADES= [
     {
         name: "Gunnery Team",
         
-        upgrade: "Team",
+        type: "Team",
         limited: true,
         points: 4,
     },
     {
         name: "Sensor Team",
         
-        upgrade: "Team",
+        type: "Team",
         points: 4,
     },
     {
         name: "Engineering Team",
         
-        upgrade: "Team",
+        type: "Team",
         limited: true,
         points: 4,
     },
     {
         name: "Lando Calrissian",
         
-        upgrade: "Crew",
+        type: "Crew",
         unique: true,
         
         points: 3,
@@ -2450,7 +2612,7 @@ var UPGRADES= [
     {
         name: "Mara Jade",
         
-        upgrade: "Crew",
+        type: "Crew",
         unique: true,
         
         points: 3,
@@ -2458,21 +2620,21 @@ var UPGRADES= [
     {
         name: "Fleet Officer",
         
-        upgrade: "Crew",
+        type: "Crew",
         
         points: 3,
     },
     {
         name: "Stay On Target",
         
-        upgrade: "Elite",
+        type: "Elite",
         points: 2,
     },
     {
         name: "Dash Rendar",
         
         unique: true,
-        upgrade: "Crew",
+        type: "Crew",
         points: 2,
         
     },
@@ -2480,35 +2642,35 @@ var UPGRADES= [
         name: "Lone Wolf",
         
         unique: true,
-        upgrade: "Elite",
+        type: "Elite",
         points: 2,
     },
     {
         name: '"Leebo"',
         
         unique: true,
-        upgrade: "Crew",
+        type: "Crew",
         points: 2,
         
     },
     {
         name: "Ruthlessness",
         
-        upgrade: "Elite",
+        type: "Elite",
         points: 3,
         
     },
     {
         name: "Intimidation",
         
-        upgrade: "Elite",
+        type: "Elite",
         points: 2,
     },
     {
         name: "Ysanne Isard",
         
         unique: true,
-        upgrade: "Crew",
+        type: "Crew",
         points: 4,
         
     },
@@ -2516,99 +2678,99 @@ var UPGRADES= [
         name: "Moff Jerjerrod",
         
         unique: true,
-        upgrade: "Crew",
+        type: "Crew",
         points: 2,
         
     },
     {
         name: "Ion Torpedoes",
         
-        upgrade: "Torpedo",
+        type: "Torpedo",
         points: 5,
         attack: 4,
-        range: "2-3",
+        range: [2,3],
     },
     {
         name: "Bodyguard",
         
         unique: true,
-        upgrade: "Elite",
+        type: "Elite",
         points: 2,
         
     },
     {
         name: "Calculation",
         
-        upgrade: "Elite",
+        type: "Elite",
         points: 1,
     },
     {
         name: "Accuracy Corrector",
         
-        upgrade: "System",
+        type: "System",
         points: 3,
     },
     {
         name: "Inertial Dampeners",
         
-        upgrade: "Illicit",
+        type: "Illicit",
         points: 1,
     },
     {
         name: "Flechette Cannon",
-        
-        upgrade: "Cannon",
+        init:function(sh) { sh.weapons.push(new Weapon(sh,this)); },
+        type: "Cannon",
         points: 2,
         attack: 3,
-        range: "1-3",
+        range: [1,3],
     },
     {
         name: '"Mangler" Cannon',
-        
-        upgrade: "Cannon",
+        init:function(sh) { sh.weapons.push(new Weapon(sh,this)); },
+        type: "Cannon",
         points: 4,
         attack: 3,
-        range: "1-3",
+        range: [1,3],
     },
     {
         name: "Dead Man's Switch",
         
-        upgrade: "Illicit",
+        type: "Illicit",
         points: 2,
     },
     {
         name: "Feedback Array",
         
-        upgrade: "Illicit",
+        type: "Illicit",
         points: 2,
     },
     {
         name: '"Hot Shot" Blaster',
         
-        upgrade: "Illicit",
+        type: "Illicit",
         points: 3,
         attack: 3,
-        range: "1-2",
+        range: [1,2],
     },
     {
         name: "Greedo",
         
         unique: true,
-        upgrade: "Crew",
+        type: "Crew",
         
         points: 1,
     },
     {
         name: "Salvaged Astromech",
         
-        upgrade: "Salvaged Astromech",
+        type: "Salvaged Astromech",
         points: 2,
     },
     {
         name: "Bomb Loadout",
         
         limited: true,
-        upgrade: "Torpedo",
+        type: "Torpedo",
         points: 0,
         ship: "Y-Wing",
     },
@@ -2616,40 +2778,40 @@ var UPGRADES= [
         name: '"Genius"',
         
         unique: true,
-        upgrade: "Salvaged Astromech",
+        type: "Salvaged Astromech",
         points: 0,
     },
     {
         name: "Unhinged Astromech",
         
-        upgrade: "Salvaged Astromech",
+        type: "Salvaged Astromech",
         points: 1,
     },
     {
         name: "R4-B11",
         
         unique: true,
-        upgrade: "Salvaged Astromech",
+        type: "Salvaged Astromech",
         points: 3,
     },
     {
         name: "Autoblaster Turret",
-        
-        upgrade: "Turret",
+        init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
+        type: "Turret",
         points: 2,
         attack: 2,
-        range: "1",
+        range: [1,1],
     },
     {
         name: "R4 Agromech",
         
-        upgrade: "Salvaged Astromech",
+        type: "Salvaged Astromech",
         points: 2,
     },
     {
         name: "K4 Security Droid",
         
-        upgrade: "Crew",
+        type: "Crew",
         
         points: 3,
     },
@@ -2657,7 +2819,7 @@ var UPGRADES= [
         name: "Outlaw Tech",
         
         limited: true,
-        upgrade: "Crew",
+        type: "Crew",
         
         points: 2,
     },
@@ -2665,18 +2827,9 @@ var UPGRADES= [
         name: 'Advanced Targeting Computer',
         
         
-        upgrade: "System",
+        type: "System",
         points: 5,
         ship: "TIE Advanced",
-    },
-    {
-        name: 'Ion Cannon Battery',
-        
-        upgrade: "Hardpoint",
-        points: 6,
-        energy: 2,
-        attack: 4,
-        range: "2-4",
     },
 ];
 

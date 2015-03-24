@@ -1,47 +1,66 @@
-header,footer,
-article,section,
-hgroup,nav,
-figure{
+.header,footer,
+article,nav{
     /* Giving a display value to the HTML5 rendered elements: */
     display:block;
+}
+[data-i18n-fr]:lang(fr)::after {
+    content: attr(data-i18n-fr);
+}
+[data-i18n]:lang(en)::after {
+    content: attr(data-i18n);
 }
 #playmat {
     border-width: 2px;
     padding: 0px;
-    width: auto;
-    height: 100%;
+    width: calc(100% - 180px);
+    height:calc(100% - 60px);
+    left: 170px;
     overflow: scroll;
+    position: absolute;
 }
 article {
-    margin: 0 0 0 0px;
+    margin: 0px;
     padding: 0px;
-    width: auto;
+    width: 100%;
+    height: 100%;
 }
 #svgout {
-    background: #000000 url("img/playmat2.jpg");
+    background: #000000 url("img/playmat7.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     width: 900px;
     height: 900px;
 }
 nav,article,body, #info {
-    background-color:#333; /*#282828;*/ 
+    background:#333;
 }
 body {
-    font-size: 8px;
     width: 100%;
     margin: 0px;
     padding: 0px;
-    font-family: "aldrich";
-    overflow: hidden;
+   overflow: hidden;
 }
 nav {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+    margin: 5px;
+    padding: 5px;
+}
+nav ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+nav li {
+    display: inline;
+}
+nav a {
+    border-right:2px solid #fff;
+    text-decoration:none;
+    color: white;
+    background: #333;
+    padding: 5px;
 }
 .about {
-    overflow-y: scroll;
+/*    overflow-y: scroll;*/
 }
 .modalDialog, .about {
     position: fixed;
@@ -61,9 +80,17 @@ nav {
     opacity:1;
     pointer-events: auto;
 }
-
+.info {
+    width: 10em;
+    height: 1em;
+    color: white;
+    background: rgba(0,0,0,.3);
+    display:none;
+    position: absolute;
+    left:150px;
+    top:0px;
+}
 .modalDialog > div, .about > div {
-    width: 400px;
     position: relative;
     margin: 10% auto;
     padding: 5px 20px 13px 20px;
@@ -71,26 +98,28 @@ nav {
     background: white;
     color: black;
 }
-#combatmodal > div {
-    width: 200px;
+#import > div, #modal > div {
+    width: 800px;
+}
+#help > div,#about > div, #proba > div, #combatmodal > div {
+    width: 500px;
+}
+.menubutton {
+
 }
 #import div div {
     -webkit-column-count: 2; /* Chrome, Safari, Opera */
     -moz-column-count: 2; /* Firefox */
     column-count: 2;
 }
-textarea {
-    font-family: 'aldrich';
-    font-size: 8px;
-}
 td, th,table {
     vertical-align: middle;
     color: black;
-    background-color: white;
+    background: white;
     text-align: center;
 }
 th {
-    background-color: #888;
+    background: #888;
     color: white;
 }
 .warn {
@@ -115,7 +144,31 @@ th {
 	box-shadow: 1px 1px 3px #000;
 }
 .close:hover { background: #00d9ff; }
-
+#box{
+  width:200px;
+  height:100px;
+  background:white;
+  border-radius:5px;
+  position:absolute;
+  left:170px;
+  top:0;
+  display:none;
+}
+#box::target {
+    display:block;
+}
+#box:before{
+  content:'';
+  position:absolute;
+  width:20px;
+  height:20px;
+  background:red;
+  z-index:-1;
+  left:-10px;
+  top:20px;
+  transform:rotate(145deg) skew(20deg);
+  background:inherit;
+}
 .phasepanel {
     width: 100%;
     display: none;
@@ -129,76 +182,122 @@ th {
     border: 0px;
     padding: 0px;
 }
-#skill, #tskill,.statskill{
+.statskill{
     color: #FA0;
-    border: 0px;
 }
-#fire,#tfire,.statfire {
+.statfire {
     color: #A00;
-    border: 0px;
 }
-#evade,#tevade,.statevade {
+.statevade {
     color: #0A0;
-    border: 0px;
-    border: 0px;
 }
-#hull,#thull,.stathull {
+.stathull {
     color: #CC0;
-    border: 0px;
 }
-#shield,#tshield,.statshield {
+.statshield {
     color: #0AF;
-    border: 0px;
-}
-#pilot,#tpilot {
-    text-align: center;
-    width: 100%;
-    border: 0px;
-    font-weight: bold;
-    padding:2px 0px 2px 0px;
-    margin:0px;
-    color: black;
-    border-radius-top: 4px;
-    display: table-cell;
-}
-#unit,#tunit {
-/*    font-family: 'ships';*/
-    font-size: 6px;
-    text-align: center;
-    border: 0px;
-    padding:0px 2px 0px 2px;
-    margin:0px;
-    width: 100%;
-    display: table-cell;
-}
-#unit-faction, #tunit-faction {
-    text-align: center;
-    border: 0px;
-    padding:0px;
-    margin:0px;
-    width: auto;
-    display: table-cell;
 }
 .stat,.stathull,.statshield,.statfire,.statskill,.statevade {
-    padding: 5px 5px 5px 5px;
+    padding: 10px;
     display: inline-block;
-    margin: 4 0px;
+    margin: 1px;
     border: 0px;
+    background: #555;
     background: linear-gradient(top, #555 0%, #000 100%);  
     background: -moz-linear-gradient(top, #555 0%, #000 100%); 
     background: -webkit-linear-gradient(top, #555 0%,#000 100%); 
     text-align: center;
-    width: 8px;
     font-weight: bold;
-    line-height: 8px;
     text-decoration: none;
     -moz-box-shadow: 1px 1px 3px #000;
     -webkit-box-shadow: 1px 1px 3px #000;
     box-shadow: 1px 1px 3px #000;
 }
+#maneuverdial > div .symbols {
+    text-decoration:none;
+    text-align:center;
+    padding: 3px;
+    margin: 3px;
+    border: 20px;
+    border-color: #800;
+}
+.disabled, .disabled .selected {
+    color: #aaa;
+}
+#maneuverdial >div .symbols:hover, .selected {
+    background: #888;
+    background: linear-gradient(top, #555 0%, #888 100%);  
+    background: -moz-linear-gradient(top, #555 0%, #888 100%); 
+    background: -webkit-linear-gradient(top, #555 0%,#888 100%); 
+}
+#desc {
+    background: white;
+    color: black;
+}
+.table, #desc {
+    display:table;
+    width: 100%;
+    padding:0px;
+    border-radius: 20px;
+}
+.table .vertical, #desc .horizontal {
+    display: none;
+}
+.table > div,#desc > div {
+    display: table-row;
+    padding:2px;
+    width: 100%;
+}
+.table > div > div, #desc > div > div{
+    display: table-cell;
+    text-align: center;
+    padding: 2px;
+    border:0px;
+}
 
+.smallbutton,.bigbutton,.button,.largebutton {
+    display: inline-block;
+    margin: 5px;
+    text-align: center;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;    
+    padding: 5px;
+    color: white;
+    border: 0px;
+    background: #888;
+    background: linear-gradient(top, #555 0%, #888 100%);  
+    background: -moz-linear-gradient(top, #555 0%, #888 100%); 
+    background: -webkit-linear-gradient(top, #555 0%,#888 100%); 
+   /* font-size: large;*/
+    border-radius: 5px;
+}
+.bigbutton {
+    width: 70px;
+}
+.smallbutton{
+    width: 25px;
+}
+.GREEN {
+    color: #0F0;
+}
+.RED {
+    color: #F00;
+}
+.WHITE {
+    color:white;
+}
 .Elite,.Title,.Mod,.Torpedo,.Astromech,.Turret,.Missile,.Crew,.Cannon,.Bomb,.System,.Illicit,.Salvaged {
     color: #ffd700;
+}
+.Laser,.Turretlaser {
+    color: #F33;
+}
+.Laser::after {
+    content: "%";
+}
+.Turretlaser::after {
+    content: "$";
 }
 .Mod::after {
     content: "m";
@@ -242,15 +341,14 @@ th {
 .Mod::after {
     content:"m";
 }
-.evadetoken,.focustoken,.stresstoken,.targettoken {
+.evadetoken,.focustoken,.cloaktoken,.stresstoken,.targettoken {
     font-family: 'symbols';
-    padding: 3px 3px 3px 3px;
+    padding: 6px;
     display: inline-block;
-    margin: 2 1px;
-    font-size: 7px;
+    margin: 0px;
     text-align: center;
-    width: 8px;
-    line-height: 8px;
+    width: 14px;
+    line-height: 14px;
     text-decoration: none;
     -moz-box-shadow: 1px 1px 3px #000;
     -webkit-box-shadow: 1px 1px 3px #000;
@@ -258,19 +356,18 @@ th {
     background: linear-gradient(top, #555 0%, #000 100%);  
     background: -moz-linear-gradient(top, #555 0%, #000 100%); 
     background: -webkit-linear-gradient(top, #555 0%,#000 100%); 
-    border-radius: 15px;
+    border-radius: 20px;
     border-style: solid;
     border-width: 1px;
 }
-.Elite,.Torpedo,.Astromech,.Turret,.Missile,.Crew,.Cannon,.Bomb,.Title,.Mod,.System,.Illicit,.Salvaged {
+.Elite,.Torpedo,.Astromech,.Turret,.Missile,.Crew,.Cannon,.Bomb,.Title,.Mod,.System,.Illicit,.Salvaged,.Laser,.Turretlaser {
     font-family: 'symbols';
     padding: 0px;
+    float:left;
     display: inline-block;
     margin: 1px;
-    font-size: 12px;
+    font-size: larger;
     text-align: center;
-    width: 12px;
-    line-height: 12px;
     text-decoration: none;
     -moz-box-shadow: 1px 1px 3px #000;
     -webkit-box-shadow: 1px 1px 3px #000;
@@ -282,15 +379,21 @@ th {
     border-style: solid;
     border-width: 0px; 
 }
+label {
+    font-size: small;
+}
 .evadetoken,.focustoken {
     color: #0a0;
     border-color: #0a0;
+}
+.focustoken {
+    padding-left:0px;
 }
 .stresstoken {
     color: #f33;
     border-color: #f33;
 }
-.targettoken {
+.targettoken, .cloaktoken {
     color: #08d;
     border-color: #0af;
 }
@@ -300,7 +403,7 @@ th {
     background: -webkit-linear-gradient(top, #050 0%,#0a0 100%); 
      color: #000;
 }
-.targettoken:hover {
+.targettoken:hover, .cloaktoken:hover {
     background: linear-gradient(top, #058 0%, #0af 100%);  
     background: -moz-linear-gradient(top, #058 0%, #0af 100%); 
     background: -webkit-linear-gradient(top, #058 0%,#0af 100%); 
@@ -324,18 +427,19 @@ th {
 .stresstoken::after {
     content: "s";
 }
-
+.cloaktoken::after {
+    content: "k";
+}
 .focusgreendice,.evadegreendice,.blankgreendice,.focusreddice,.hitreddice,.criticalreddice,.blankreddice {
     font-family: 'symbols';
-    padding: 5px 5px 5px 5px;
+    padding: 5px;
     display: inline-block;
-    margin: 2 0px;
+    margin: 2px 0px;
     color: #fff;
     border: 0px;
-    font-size: 7px;
     text-align: center;
-    width: 8px;
-    line-height: 8px;
+    width: 14px;
+    line-height: 14px;
     text-decoration: none;
     -moz-box-shadow: 1px 1px 3px #000;
     -webkit-box-shadow: 1px 1px 3px #000;
@@ -366,20 +470,24 @@ th {
 .evadegreendice::after {
     content: "e";
 }
-#pilot-text , #tpilot-text{
+#pilot-text {
     height:8em;
     text-align:justify;border:0px;margin:4px;padding:0px;
 }
-#actionlist,#tactionlist {
+#actionlist {
     height: 2.5em;
 }
-#upgrades,#tupgrades {
+#upgrades {
     height: 2em;
 }
-#nextphase {
-    position: absolute;
-    bottom: 0px;
-    width: 100px;
+.nextphase {
+    background: #F00;
+    text-decoration: none;
+    color: white;
+    float:right;
+    padding: 2px;
+    margin: 2px;
+    border-radius: 5px;
 }
 .description {
     margin:0px; 
@@ -395,43 +503,41 @@ th {
 .largebutton > b::first-letter, .largebutton::first-letter, .button::first-letter, .button2::first-letter {
     text-decoration: underline;
 }
-.button2, .button, .disabled,.largebutton {
-    padding: 3px 3px 3px 3px;
+.button2, .disabled {
+    padding: 3px;
     display: table-cell;
     margin: 0px;
     text-align: center;
     text-decoration: none;
-    border: 0px thin;
+    border: 0px;
     border-radius: 4px;
 }
 .button {
-    margin: 10px;
-    padding: 10px;
-    width: 100px;
+    width: 150px;
     background: linear-gradient(top, #822 0%, #f88 100%);  
     background: -moz-linear-gradient(top, #822 0%, #f88 100%); 
     background: -webkit-linear-gradient(top, #822 0%,#f88 100%); 
 }
-.disabled, .button2,.largebutton {
+.disabled, .button2 {
+    background: #888;
     background: linear-gradient(top, #222 0%, #888 100%);  
     background: -moz-linear-gradient(top, #222 0%, #888 100%); 
     background: -webkit-linear-gradient(top, #222 0%,#888 100%); 
-    font-size: 8px;
 }
-.button2:disabled,.largebutton:disabled {
+.smallbutton:disabled,.largebutton:disabled {
     background: #555;
     color: #888;
 }
 .largebutton {
-    width: 100%;
+    width: 150px;
 }
 .button2 {
-    width: 48px;
+    width: 74px;
 }
-header {
+.header {
     clear: both;
-    line-height:20px;
-    height: 20px;
+    line-height:30px;
+    height: 30px;
     width:100%;
     margin: 0px;
     padding: 0px;
@@ -445,17 +551,12 @@ h1 {
       -1px 1px 0 #fff,
        1px 1px 0 #fff;
     width: 100%;
-    margin:0px;
-    border:0px;
+    margin:5px;
     text-align: center;
-}
-.infopanel {
-    opacity: 0.5;
-
 }
 #info {
     float: left;
-    width: 100px;
+    width: 170px;
     height: 100%;
     opacity: 1;
     color: #FFF;
@@ -463,22 +564,14 @@ h1 {
     margin: 0px;
 }
 .dialspeed{
-    font-size: 8px;
     stroke-width: 0px;
-}
-.hoverinfo{
-    font-size: 8px;
-    fill: #fff;
-    stroke-width: 2px;
 }
 .symbols{
     font-family: 'symbols';
-    font-size: 9px;
 }
-.REBEL, .EMPIRE {
+.REBEL, .EMPIRE, .SCUM {
     font-family: 'symbols';
     margin: 2px;
-    text-align: center;
 }
 .REBEL {
     color: #F00;
@@ -486,26 +579,41 @@ h1 {
 .EMPIRE {
     color: #000;
 }
+.SCUM {
+    color: #880;
+}
 .REBEL::after {
     content: "!";
 }
 .EMPIRE::after {
     content: "@";
 }
+.SCUM::after {
+    content: "#";
+}
 .xsymbols{
     font-family: 'symbols';
     font-size: 6px;
     stroke-width: 0px;
 }
+.probacell {
+    border:0px;
+    margin:0px;
+    height:2ex;
+}
 footer {
     position: absolute;
-    background: rgba(0,0,0,0.3);
-    color: white;
+    background: rgba(0,0,0,0.5);
+    color: rgba(255,255,255,0.7);
     bottom: 0px;
-    width: 100%;
-    height: 10px;
-    text-align: center;
+    width: 80ex;
+    height: 4em;
+    left: 170px;
+    z-index:1;
+    text-align: left;
+    overflow: scroll;
 }
+
 .xwingship {
     font-family:'ships';
     font-size: 40px;
@@ -517,31 +625,28 @@ footer {
     -1px 1px 0 #fff,
     1px 1px 0 #fff;
 }
+
 .arrow-right {
     border-color: transparent #888;
     border-style: solid;
-    border-width: 4px 0px 4px 8px;
+    border-width: 8px 0px 8px 16px;
     height: 0px;
     width: 0px;
     font-size: 0px;
-    line-height: 10px;
+    line-height: 20px;
 }
 .arrow-left {
     border-color: transparent #888;
     border-style: solid;
-    border-width: 4px 8px 4px 0px;
+    border-width: 8px 16px 8px 0px;
     height: 0px;
     width: 0px;
     font-size: 0;
-    line-height: 10px;
+    line-height: 20px;
 }
 @font-face {
   font-family: 'symbols';
   src: url('xwing-miniatures.ttf')  format('truetype') /* Safari, Android, iOS */
-}
-@font-face {
-  font-family: 'aldrich';
-  src: url('Aldrich-Regular.ttf')  format('truetype') /* Safari, Android, iOS */
 }
 @font-face {
   font-family: 'ships';
