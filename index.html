@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-    <script src="snap.svg-min.js"></script>
+    <script src="dist/snap.svg-min.js"></script>
     <script src="jwerty.js"></script>
     <script src="jquery-1.11.2.js"></script>
     <link rel="stylesheet" href="xwings.css">
@@ -14,18 +14,16 @@
     <script src="xws.js"></script>
   </head>
 
-  <body lang="fr">
+  <body lang="en">
 
     <div class="header"><h1>X-Wings Squadron Benchmark</h1></div>
 
     <aside id="info">
-      <div id="desc"></div>
-      <br/>
       <div>
 	<div class="phasepanel" id="panel_SETUP">
-	  <div  style="text-align:center; padding:2px;margin:2px;"><b>Set up</b><a class="nextphase" href="#" onclick="nextphase()">End</a></div>
+	  <div  style="text-align:center; padding:2px;margin:2px;"><b>Set up phase</b><button class="nextphase" href="#" onclick="nextphase()">Next</button></div>
 	  <div data-i18n-fr="Déplacez les unités et les astéroïdes avec la souris et tournez-les avec les flèches" 
-	       data-i18n="Drag units and rocks in position and turn them with the buttons"></div>
+	       data-i18n="Drag units and asteroid obstacles in position and turn them with the buttons"></div>
 	  <button onclick="activeunit.turn(-45)" title="key: <T>" class="bigbutton"><b class="symbols">4</b></button>
 	  <button onclick="activeunit.turn(45)" title="key: <t>" class="bigbutton"><b class="symbols">6</b></button>
 	  <button onclick="activeunit.turn(-5)" title="key: <B>" class="bigbutton"><b class="symbols">7</b></button>
@@ -33,33 +31,43 @@
 	</div>
 
 	<div class="phasepanel" id="panel_PLANNING">
-	  <div  style="text-align:center; padding:2px;margin:2px;"><b>Planning</b><a class="nextphase" href="#" onclick="nextphase()">End</a></div>
-  
+	  <div  style="text-align:center; padding:2px;margin:2px;"><b>Planning phase</b><button class="nextphase" href="#" onclick="nextphase()">Next</button></div>
+	  
 	  <div data-i18n-fr="Cliquez sur l'une des manœuvres, pour chacunes unités"
 	       data-i18n="Select one of the maneuver of the dial, for each unit"></div>
 	  <div id="maneuverdial" style="text-align:center" class="table"></div>
-	  <button id="actionbutton" onclick="if (skillturn==activeunit.skill) activeunit.nextaction();" title="<a>Next/<A>Prev." class="largebutton">
-	    <b style="float:left">Action:&nbsp;</b>
-	    <b id="action0" class="symbols"></b>
-	  </button>
 	</div>
 
 	<div class="phasepanel" id="panel_ACTIVATION">
-	  <div style="width:100%;;text-align:center; padding:2px;margin:2px;"><b>Activation</b><a class="nextphase" href="#" onclick="nextphase()">End</a></div>
-  
+	  <div style="width:100%;;text-align:center; padding:2px;margin:2px;">
+	    <b>Activation phase</b>
+	    <button class="nextphase" href="#" onclick="nextphase()">Next</button>
+	  </div>
+	  
 	  <div data-i18n-fr="Activez les unités avec <entrée> dans l'ordre de pilotage et choisissez une action"
-	       data-i18n="Move units in increasing order of pilot skill (<enter>) and select an action."></div>
-	  <button id="actionbutton1" onclick="if (skillturn==activeunit.skill) activeunit.nextaction();" title="<a>Next/<A>Prev." class="largebutton">
-	    <b style="float:left">Action:&nbsp;</b>
-	    <b id="action" class="symbols"></b>
-	  </button>
+	       data-i18n="Move units in increasing order of pilot skill and select an action."></div>
+	  <div>
+	    <span style="float:left;padding-top:10px;font-size:smaller">
+	      Maneuver
+	      <span id="dialspeed"></span>
+	      <span id="dialman" class="symbols"></span>:</span>
+	    <button id="manbutton"  style="float:right" class="bigbutton" onclick="applymaneuver()">Ok</button>
+	  </div>
+	  <div>
+	    <button id="actionbutton" class="bigbutton" onclick="activeunit.nextaction()" style="float:left;width:80px" title="<a>Next/<A>Prev.">
+	      <span style="float:left">Action</span>
+	      <b id="action" class="symbols"></b>
+	      <b style="float:right">&#8597;</b>
+	    </button>
+	    <button id="actionbutton2" style="float:right" onclick="resolveaction()" class="bigbutton">Ok</button>
+	  </div>
 	</div>
 
 	<div class="phasepanel" id="panel_COMBAT">
-	  <div  style="text-align:center; padding:2px;margin:2px;"><b>Combat</b><a class="nextphase" href="#" onclick="nextphase()">End</a></div>
+	  <div  style="text-align:center; padding:2px;margin:2px;"><b>Combat phase</b><button class="nextphase" href="#" onclick="nextphase()">Next</button></div>
 	  <div data-i18n-fr="Faites attaquer les unités par ordre décroissant de pilotage (<w>)"
-	       data-i18n="Attack by decreasing order of pilot skill (<w>)"></div>
-	  <button onclick="inhitrange(); window.location='#modal';" title="<p>:select targets" class="largebutton" id="primary">Attack...</button>
+	       data-i18n="Attack by decreasing order of pilot skill."></div>
+	  <button onclick="inhitrange(); window.location='#modal';" title="<p>:select targets" class="largebutton" id="primary">Attack</button>
 	</div>
       </div>
 
@@ -124,30 +132,177 @@
       </footer>
       <div id="import" class="modalDialog">
 	<div>
+	  <a href="#" title="Close" class="close">X</a>
 	  <h2>Import a squadron</h2>
-	  <p>Copy and paste the 2 squad lists using XWS format into the following area. (This is in beta, and the <a href="https://github.com/elistevens/xws-spec">XWS spec</a> is still being defined, so it may not work!)</p>
+	  <p>Copy and paste the 2 squad lists using XWS format into the following area. (This is in beta, and the <a href="https://github.com/elistevens/xws-spec">XWS spec</a> is still being defined). The following sites for instance can export squad list with this format: 
+	    <ul>
+	      <li><a href="http://xwing-builder.co.uk/build">Squad Builder web app</a> by Voidstate</li>
+	      <li><a href="http://geordanr.github.io/xwing/">(Yet another) X-Wing Miniatures Squad Builder</a> by Geordan Rosario</li>
+	      <li><a href="http://fabpsb.free.fr/">Fab's Squadrons generator</a> by Fab.</li>
+	    </ul>
+	  </p>
 	  <div>
-	  <textarea id="jsonimport" rows="15" cols="45"></textarea>
-	  <textarea id="jsonimport2" rows="15" cols="45"></textarea>
+	    <textarea id="jsonimport" rows="15" cols="45"></textarea>
+	    <textarea id="jsonimport2" rows="15" cols="45"></textarea>
 	  </div>
-	  <div onclick="squadron[];importsquadron($('#jsonimport').val());importsquadron($('#jsonimport2').val())" class="button2">Import</div>
+	  <div onclick="importsquadron($('#jsonimport').val(),$('#jsonimport2').val())" class="button2">Import</div>
 	</div>
       </div>
 
       <div id="help" class="modalDialog">
-	<div>
-	  <a href="#close" title="Close" class="close">X</a>
-	  <h2>Help</h2>
-	  <div>
-	    You can consult
-	    the <a href="https://github.com/xws-bench/bench/wiki">wiki</a>
-	    on X-Wings Squadron Benchmark.
-	  </div>
+	<div class="help">
+	  <a href="#" title="Close" class="close">X</a>
+	  <h2>How to play</h2> 
+	  <p>In X-Wings Squadron benchmark, you play
+	    one squadron against another one. These squadrons can be
+	    imported from a Squadron builder tool, freely available
+	    online such as . Both sides of the combat are played by you (no human
+	    or computer opponent). The computer helps you by taking into
+	    account the rules automatically, moving the units arounds
+	    according to their maneuvers and actions, detecting
+	    collisions, and rolling dices for combat. The objective is
+	    to be able to play quickly and try new combination, planning
+	    or strategies. The tool provides accurate to hit
+	    probability computation, for all situations, including
+	    chance to have a critical.</p>
+
+	  <p>The game area is decomposed into several zones. The top menu
+	    presents actions available at all time. The left toolbar describes
+	    the selected unit and the current game
+	    phase controls. The center area is where the game takes place. You
+	    can always select a unit by clicking on it.</p>
+	  <h3>Top Menu</h3>
+	  <p><b>Import...:</b> You can import squadrons built with
+	    online squadron builders, using a JSON description. The app
+	    does not support units in EPIC mode and will ignore
+	    them. Normally, all upgrades and units in the standard
+	    format are accepted, even if their effect is not always
+	    effective.</p>
+	  <p><b>List all units:</b> Provides the table of all alive
+	    units in the field, with their characteristics and point
+	    cost. Tokens
+	    are <b class="xfocustoken"></b> focus, <b  class="xevadetoken"></b>
+	    evade, <b  class="xtargettoken"></b>blue
+	    target lock, <b  class="xstresstoken"></b> stress,
+	    and <b  class="xcloaktoken"></b> cloak tokens. No action can
+	    be taken from this table.
+	  <p><b>Show probabilities:</b> Gives a table with the rows
+	    corresponding to the number of attack dices, columns to the
+	    number of defense dices. Each cell gives the percentage to
+	    hit for this combination of attack and defense dices, the
+	    color of the cell is red when it is over 50%, green
+	    otherwise. It also provides, when the attack hits, the mean
+	    number of hits and the mean number of criticals. The table
+	    is computed online, and the probabilities given a number of
+	    dices, for any combination of focus, hit, critical, blank
+	    are computed. The table summarizes these values. By
+	    selecting one of the tokens for the attacker/defender on the
+	    top of the table, you can see the impact of these tokens or
+	    rerolls on the probabilities. Note that when you increase
+	    the % to hit by using a <b class="xfocustoken"></b> token,
+	    the mean number of critical decreases. This is normal, the
+	    probability to have a critical stays the same and as the
+	    probability to land a hit increases, the mean value computed
+	    for all cases of hits/crits decreases.
+	  <p><b>Toggle firing arc:</b> Turns on/off the view of
+	    what is within range 1, 2 or 3 and in the firing arc. This arc show the extent
+	    of firing arc of the unit, with the different ranges
+	    (dimmer for range 3, stronger for range 1).</p>
+	  <p><b>Toggle range:</b> Turns on/off the graphical
+	    representation of what is at range 1, 2 or 3 of the selected unit.
+	  <p><b>Help / About</b> help and list of credits</p>
+	  
+	  <h3>Unit description</h3> 	  
+	  The left panel displays the characteristics of selected unit: Name of the pilot, type of ship, 
+	  <p class='statskill'>5</p><p class='statfire'>3</p><p class='statevade'>2</p><p class='stathull'>2</p><p class='statshield'>2</p>
+	  representing respectively the pilot skill, fire power,
+	  evasion, hull and shields of the unit, text of the special
+	  capacity and then the list of tokens and upgrades.
+	  
+	  In the game area, the unit is represented with an
+	  image <img style="float:left;width:20%;margin:10px;border:0;padding:0" src="img/unit-example.jpg">. The type of the ship
+	  is represented with its firing arc. There are 4
+	  lines of dots, and as many dots of a given color as the value to represent. The colors correspond to the following:
+	    <b>Orange:</b> Skill of the pilot,
+	    <b>Red:</b> Strength of the attack with the primary weapon,
+	    <b>Green:</b> Agility of the ship,
+	    <b>Blue and yellow:</b> Blue dots represent shields, yellow
+	    are hull points. The total of the two values correspond to
+	    the number of hits necessary to destroy the ship.
+
+	  These values are updated during play. 
+
+	  <h3>Phase actions</h3> Each phase enable you to do some
+	  actions. When done, press
+	  the <span style='float:none;width:20px'
+	  class='nextphase'>Next</span> button.
+
+	    <p><b>1- Setup phase:</b> You can drag units around and use
+	      the buttons to turn them (including obstables). This is
+	      not checked, but your units should not overlap obstacles
+	      or other units.</p>
+
+	    <p><b>2- Planning phase:</b> Select any unit and pick one
+	      maneuver available in the dial. Some maneuver may be
+	      automatically disabled, for instance red maneuvers for
+	      instance when stressed. When all units have been assigned
+	      a maneuver, you can change phase.</p>
+
+	    <p><b>3- Activation phase:</b> The first unit selected is
+	      one of the unit with the lowest pilot skill. Moving
+	      through units, with the arrows or using tab/shift+tab
+	      keys will select only units that you can activate (from
+	      lower skill to higher skill). You can still select
+	      manually any unit, but it is not possible to activate it
+	      if it is not its turn. Activation is done by pressing
+	      the corresponding button or enter key. Units are then
+	      moved according to the template of the selected maneuver
+	      (the template is not displayed). Collisions with
+	      obstacles and other units are automatically handled. You
+	      can then select one of the available action (or none),
+	      pressing the corresponding button multiple time, "ok"
+	      when done. If there was a collision while performing the
+	      maneuver, no action is possible for this unit. If the
+	      action requires to select a new position (roll) or a
+	      target unit, possible positions are highlighted. Select
+	      one to complete the action. 
+
+	    <p><b>4- Combat phase:</b> Units are automatically activated
+	      by decreasing pilot skill and you can move through ready
+	      to fire units with tab/shift+tab keys or the arrows. You
+	      can still select any unit manually but it cannot fire if
+	      it is not its turn. If there is no unit in range or if
+	      the selected unit overlaps an obstacle, this unit cannot
+	      fire. To fire a unit, press the corresponding button or
+	      the w key. A window opens showing the different possible
+	      target units (with their range), with the probabilities
+	      to hit, and when there is a hit, mean value of hit and
+	      mean value of critical. These values take into account
+	      tokens of the units, assuming they will be used (agility,
+	      focus for the defender, focus and blue target lock token if it
+	      corresponds to the target unit for the attacker). If
+	      different weapons are available, there is one line per
+	      weapon. Some weapons require special conditions to be
+	      fired (requiring targeting or focusing). If the conditions
+	      are not met, the line for this weapon is not
+	      displayed. When you fire a weapon, another window,
+	      showing the attacking and defending units is presented,
+	      with the result of the roll for this attack. You can
+	      modify/add dices by clicking on the tokens, on the right
+	      of the units. Remember you play both sides at the same
+	      time !  When you are done, press ok.</p>
+	 
+	  <p>The cleanup phase is here automatically done (removing
+	  unused tokens). After the combat phase, a new round starting
+	  with planning begins. There is no end game condition. To
+	  start a new game, just reload the page !</p>
 	</div>
       </div>
+	
+
       <div id="proba" class="modalDialog">
 	<div>
-	  <a href="#close" title="Close" class="close">X</a>
+	  <a href="#" title="Close" class="close">X</a>
 	  <h2>Probabilities in combat</h2>
 	  <div>
 	      <table style="border:1px">
@@ -176,15 +331,20 @@
       </div>
       
 
-      <div id="about" class="modalDialog">
+      <div id="credit" class="modalDialog">
 	<div>
-	  <a href="#close" title="Close" class="close">X</a>
-	  <h2>About the App</h2>
+	  <a href="#" title="Close" class="close">X</a>
+	  <h2>Credits and disclaimer</h2> 
 
-	  Welcome to the X-Wings Squadron Benchmark web app for X-Wing: The Miniatures Game.
+	  The app is based on the vector fonts provided
+	  by <a href="https://github.com/geordanr/xwing-miniatures-font">Xwing-miniatures-font</a>
+	  (see License thereafter).
+	  The <a href="https://github.com/elistevens/xws-spec">JSON
+	  format of X-Wings squadrons</a> provides the list of all
+	  ships, pilots, upgrades and several translations.
 
-	  <h2>Disclaimer</h2>
-	  <div>
+	  <p><b>Disclaimer</b></p>
+	  <p>
 	    X-Wing: The Miniatures Game is a trademark of Fantasy
 	    Flight Games. This site is not endorsed by Fantasy Flight
 	    Games, Lucasfilm Ltd. or Twentieth Century Fox and is
@@ -197,23 +357,48 @@
 	    constitutes a threat to any trademark or intellectual
 	    property. This web app is not-for-profit and is only
 	    intended for use by fans of the game line.
-	  </div>
+	  </p>
+	
+	  <p><b>Xwing-miniatures-font license</b></p> 
+<p>The MIT License (MIT)</p>
+<p>Copyright (c) 2014 Geordan Rosario</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.</p>
 	</div>
       </div>
 
       <div id="box"></div>
+      
+      <div >
+	<a href="#" class="smallbutton symbols" onclick="activeunit.togglehitsector()">i</a>
+	<a href="#" class="smallbutton symbols" onclick="activeunit.togglerange()">S</a>
+	<a href="#modal" class="bigbutton symbols" onclick="inhitrange()">%MUC</a>
+      <br/>
+      <div id="desc"></div>
 
     </aside>
 
     <nav>
       <ul>
-	<li><a href="#import">Import JSON...</a></li>
-	<li><a href="#modal" onclick="allunitlist()">List all units...</a></li>
+	<li><a href="#import">Import JSON</a></li>
+	<li><a href="#modal" onclick="allunitlist()">List all units</a></li>
 	<li><a href="#proba" id="showproba">Show probabilities</a></li>
-	<li><a href="#" id="hitsector" onclick="activeunit.togglehitsector()">Toggle primary arc view</a></li>
-	<li><a href="#" id="range" onclick="activeunit.togglerange()">Toggle range view</a></li>
+	<li><a href="http://xws-benchmark.blogspot.fr">Bug report/Forum</a></li>
 	<li><a href="#help">Help</a></li>
-	<li><a href="#about">About...</a></li>
+	<li><a href="#credit">Credits</a></li>
       </ul>
     </nav>
     
