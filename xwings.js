@@ -1,4 +1,5 @@
 var phase=0;
+var round=1;
 var skillturn=0;
 var waitingforaction=false;
 var tabskill;
@@ -14,11 +15,11 @@ function loadrock() {
     var i;
     for (i=1; i<=6; i++) {
 	Snap.load("data/rock"+i+".svg", function(fragment) {
-	    ROCKS.push(new Rock(fragment));
+	    ROCKS.push(new Rock(i,fragment));
 	});
     }
 }
-function Rock(fragment) {    
+function Rock(i,fragment) {    
     var k;
     this.g=fragment.select("path");
     this.g.attr({
@@ -26,12 +27,13 @@ function Rock(fragment) {
 	strokeWidth: 0,
 	stroke: "#F00",
     });
+    this.name="Asteroid #"+i;
     this.arraypts=[];
     for (k=0; k<this.g.getTotalLength(); k+=5) {
 	this.arraypts.push(this.g.getPointAtLength(k));
     }
     this.dragged=false;
-    this.m=(new Snap.Matrix()).add(MS(0.5,0.5));
+    this.m=(new Snap.Matrix()).add(MT(300+Math.random()*300,100+600*Math.random())).add(MS(0.5,0.5));
     this.g.drag(this.dragmove.bind(this), 
 		this.dragstart.bind(this),
 		this.dragstop.bind(this));
@@ -42,7 +44,12 @@ function Rock(fragment) {
 }
 
 Rock.prototype = {
-    getOutlinePts: function () {
+    getrangeallunits: function () { return Unit.prototype.getrangeallunits.call(this);},
+    getrange: function(sh) { return Unit.prototype.getrange.call(this,sh); },
+    gethitrangeallunits: function () {return [[],[],[],[]]},
+    togglehitsector: function() {},
+    togglerange: function() {},
+    getOutlinePoints: function () {
 	var k;
 	var pts=[];
 	for (k=0; k<this.arraypts.length; k++)
@@ -268,19 +275,18 @@ function nextcombat() {
 	    if (tabskill[skillturn][i].canfire()) { sk++; last=i; break;} 
 	};
 	if (sk==0) { 
-	    console.log("no more fire for units of skill "+skillturn);
 	    skillturn--;
 	    while (skillturn>=0 && tabskill[skillturn].length==0) { skillturn--; }
 	} 
     }
-    if (skillturn==-1) { return; }
+    if (skillturn==-1) { log("No more firing units, ready to end phase."); return; }
     sk=tabskill[skillturn].length;
-    console.log("found "+sk+" firing units of skill "+skillturn);
+    //console.log("found "+sk+" firing units of skill "+skillturn);
     active=last; 
     tabskill[skillturn][last].select();
     activeunit.show();
     old.unselect();
-    console.log("End nextcombat "+activeunit.name);
+    //console.log("End nextcombat "+activeunit.name);
     // More than one ? Select manually
     //if (sk>1) { bindall("select"); }
     //bindall("phase3");
@@ -293,28 +299,28 @@ function nextactivation() {
     for (i=0; i<tabskill[skillturn].length; i++) {
 	if (tabskill[skillturn][i].maneuver!=-1) { sk++; last=i; } 
     }
-    console.log("resolving nextactivation, starting with "+activeunit.name);
-    console.log(""+sk+" pilots remainings of skill "+skillturn);
+    //console.log("resolving nextactivation, starting with "+activeunit.name);
+    //console.log(""+sk+" pilots remainings of skill "+skillturn);
     if (sk==0) { 
-	console.log("no more pilots at skill "+skillturn);
+	//console.log("no more pilots at skill "+skillturn);
 	skillturn++;
 	while (skillturn<13 && tabskill[skillturn].length==0) { skillturn++; }
 	if (skillturn==13) { waitingforaction=true; return; }
 	sk=tabskill[skillturn].length;
 	last=0;
-	console.log("found "+sk+" pilots at skill "+skillturn);
+	//console.log("found "+sk+" pilots at skill "+skillturn);
     }
     var old=activeunit;
     active=last; 
     tabskill[skillturn][last].select(); 
     old.unselect();
-    console.log("selecting automatically "+activeunit.name);
+    //console.log("selecting automatically "+activeunit.name);
     // More than one ? Select manually
 //    if (sk==1) { activeunit.resolvemaneuver();}
     activeunit.show(); 
 }
 function resolveaction() {
-    console.log("resolving action for "+activeunit.name);
+    //console.log("resolving action for "+activeunit.name);
     if (activeunit.resolveaction()) { unbind("action"); }
 }
 function nextaction() {
@@ -354,13 +360,15 @@ function enablenextphase() {
     case PLANNING_PHASE:
 	for (i=0; i<squadron.length; i++)
 	    if (squadron[i].maneuver<0) { ready=false; break; }
+	if (ready&&$(".nextphase").prop("disabled")) log("All units have planned a maneuver, ready to end phase");
 	break;
     case ACTIVATION_PHASE:
 	for (i=0; i<squadron.length; i++)
 	    if (squadron[i].maneuver>=0) { ready=false; break; }
+	if (ready&&$(".nextphase").prop("disabled")) log("All units have been activated, ready to end phase");
 	break;	
     }
-    if (ready) { $("#nextphase").prop("disabled",false)
+    if (ready) { $(".nextphase").prop("disabled",false);
 	       }
     return ready;
 }
@@ -371,7 +379,7 @@ function resolvedamage() {
 	activeunit.resolvedamage();
 	nextcombat();
     } else {
-	console.log("bad resolvedamage "+activeunit.hasfired+" "+activeunit.hasdamaged);
+	//console.log("bad resolvedamage "+activeunit.hasfired+" "+activeunit.hasdamaged);
     }
 }
 function applymaneuver() {
@@ -467,13 +475,13 @@ function nextphase() {
     case SETUP_PHASE: 
 	activeunit.g.undrag(); 
 	for (i=0; i<SOUNDS.length; i++) $("#"+SOUNDS[i]).trigger("load");
-	$("#nextphase").prop("disabled",true);
+	$(".nextphase").prop("disabled",true);
 	$(".xwingship").css("cursor","pointer");
 	$("#panel_SETUP").hide();
 	for (i=0; i<ROCKS.length; i++) ROCKS[i].g.undrag();
 	break;
     case PLANNING_PHASE:
-	$("#nextphase").prop("disabled",true);
+	$(".nextphase").prop("disabled",true);
 	$("#panel_PLANNING").hide();
 	break;
     case ACTIVATION_PHASE:
@@ -491,12 +499,13 @@ function nextphase() {
 	    squadron[i].hasfired=false;
 	    squadron[i].showinfo();
 	}
+	round++;
 	break;
     }
     waitingforaction=false;
     phase=(phase==COMBAT_PHASE)?PLANNING_PHASE:phase+1;
 
-    //$("#nextphase").html(phasetext[phase]);
+    //$(".nextphase").html(phasetext[phase]);
     for (i=0; i<squadron.length; i++) {squadron[i].unselect();}
     // Init new phase
     for (i=SETUP_PHASE; i<=COMBAT_PHASE; i++) {
@@ -505,7 +514,7 @@ function nextphase() {
     }
     switch(phase) {
     case SETUP_PHASE:
-	log("<div>[phase] Setup phase</div>");
+	log("<div>[turn "+round+"] Setup phase</div>");
 	$(".xwingship").css("cursor","move");
 	$("#panel_SETUP").show();
 	bindall("select");
@@ -514,7 +523,7 @@ function nextphase() {
 	old.unselect();
 	break;
     case PLANNING_PHASE: 
-	log("<div>[phase] Planning phase</div>");
+	log("<div>[turn "+round+"] Planning phase</div>");
 	$("#manbutton").attr({"onclick":"activeunit.nextmaneuver();"});
 	$("#msg").html("Set maneuver for each unit.");
 	$("#panel_PLANNING").show();
@@ -524,7 +533,7 @@ function nextphase() {
 	old.unselect();
 	break;
     case ACTIVATION_PHASE:
-	log("<div>[phase] Activation phase</div>");
+	log("<div>[turn "+round+"] Activation phase</div>");
 	$("#manbutton").attr({"onclick":"applymaneuver();"});
 	$("#msg").html("Launch maneuver, select action and resolve it.");
 	$("#panel_ACTIVATION").show();
@@ -535,7 +544,7 @@ function nextphase() {
 	nextactivation();
 	break;
     case COMBAT_PHASE:
-	log("<div>[phase] Combat phase</div>");
+	log("<div>[turn "+round+"] Combat phase</div>");
 	$("#panel_COMBAT").show();
 	skillturn=12;
 	nextcombat();
@@ -546,35 +555,59 @@ function nextphase() {
 function log(str) {
     $("footer").append("<div>"+str+"<div>").scrollTop(10000);
 }
-function importsquadron(str) {
-    var s=jQuery.parseJSON(str);
-    var r=0,e=0;
+function importonesquadron(s,team) {
+    var upg_type=["turret","torpedo","mod","title","elite","astromech","missile","crew","cannon","bomb","system","illicit","salvaged"];
     var i,j,k;
+    var r=0;
     for (i=0; i<s.pilots.length; i++) {
 	var pilot=s.pilots[i];
 	var p;
-	var upg_type=["turret","torpedo","mod","title","elite","astromech","missile","crew","cannon","bomb","system","illicit","salvaged"];
 	p=Pilot(PILOT_dict[pilot.name]);
+	p.team=1;
 	squadron.push(p);
 	if (typeof pilot.upgrades!="undefined")  {
 	    for (j=0; j<upg_type.length; j++) { 
 		var upg=pilot.upgrades[upg_type[j]];
-		if (typeof upg!="undefined") {
-		    for (k=0; k<upg.length; k++) {
+		if (typeof upg!="undefined") 
+		    for (k=0; k<upg.length; k++) 
 			Upgrade(p,UPGRADE_dict[upg[k]]);
-		    }
-		}
+		    
 	    }
 	}
-	if (p.faction=="REBEL") {
+	if (team==1) {
 	    p.m.add(MT(80,70+82*r)).add(MR(90,0,0));
-	    r++;
 	} else {
-	    p.m.add(MT(800,70+82*e)).add(MR(-90,0,0));
-	    e++;
+	    p.m.add(MT(800,70+82*r)).add(MR(-90,0,0));
 	}
+	r++;
 	p.show();
     }
+}
+function importsquadron(str,str2) {
+    var s,s2;
+    try {
+	s=$.parseJSON(str);
+    } catch(err) {
+	alert("JSON error for 1st squad:"+err.message);
+	return;
+    }
+    try {
+	s2=$.parseJSON(str2);
+    } catch(err) {
+	alert("JSON error for 2nd squad:"+err.message);
+	return;
+    }
+    var i,j,k;
+    if (squadron.length>0) {
+	for (i=0; i<squadron.length; i++) {
+	    squadron[i].g.remove();
+	}
+    }
+    squadron=[];
+
+    importonesquadron(s,1);
+    importonesquadron(s2,2);
+
     squadron.sort(function(a,b) {
 	return a.skill-b.skill;
     });
@@ -869,8 +902,7 @@ $(document).ready(function() {
 	    unitlist=result1;
 	    var r=0,e=0,i;
 	    squadron=[];
-	    importsquadron(SQUAD[0]);
-	    importsquadron(SQUAD[1]);
+	    importsquadron(SQUAD[0],SQUAD[1]);
 	    phase=-1;
 	    $("#panel_ACTIVATION").hide();
 	    $("#panel_COMBAT").hide();
@@ -878,7 +910,7 @@ $(document).ready(function() {
 	    nextphase();
 	},
 	fail: function() {
-	    console.log("failing loading ajax");
+	    //console.log("failing loading ajax");
 	}
     });
 });

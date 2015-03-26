@@ -125,7 +125,7 @@ var A = {
     TURRET:{key:"U",color:YELLOW},
     UPGRADE:{key:"S",color:YELLOW},
     CRITICAL:{key:"c",color:RED},
-    NOTHING:{key:""}
+    NOTHING:{key:"--"}
 };
 var AINDEX = ["ROLL","FOCUS","TARGET","EVADE","BOOST","STRESS","CLOAK","ISTARGETED","ASTRO","CANNON","CREW","MISSILE","TORPEDO","ELITE","TURRET","UPGRADE","CRITICAL","NOTHING"];
 
@@ -302,7 +302,7 @@ Unit.prototype = {
 	    return d;
 	}
 	if (typeof P=="undefined") {
-	    console.log("P undefined for n="+n);
+	    //console.log("P undefined for n="+n);
 	}
 	for (f=0; f<=n; f++) {
 	    for (e=0; e<=n-f; e++) {
@@ -440,7 +440,7 @@ Unit.prototype = {
 	var o1=this.getOutline(mend);
 	// Overlapping obstacle ? 
 	for (k=0; k<ROCKS.length; k++){
-	    if (this.isintersecting(ROCKS[k].getOutlinePts(),o1)) { 
+	    if (this.isintersecting(ROCKS[k].getOutlinePoints(),o1)) { 
 		o1.remove();
 		collision.overlap=k; 
 		break;
@@ -455,7 +455,7 @@ Unit.prototype = {
 	for (j=0; j<pathpts.length; j++) {
 	    for (k=0; k<ROCKS.length; k++) {
 		if (k!=collision.overlap&&percuted.indexOf(k)==-1) { // Do not count overlapped obstacle twice
-		    var o2=ROCKS[k].getOutlinePts();
+		    var o2=ROCKS[k].getOutlinePoints();
 		    for(i=0; i<o2.length; i++) {
 			var dx=(o2[i].x-pathpts[j].x);
 			var dy=(o2[i].y-pathpts[j].y);
@@ -549,11 +549,15 @@ Unit.prototype = {
 	var d=c+h-e;
 	var he=h-e;
 	this.hasdamaged=true;
+	log("found "+h+" hits "+c+" criticals "+e+" evade");
 	if (he>0) { h=he; e=0; } else { h=0; e=-he; }
 	var ce=c-e;
 	var ts=targetunit.shield;
 	if (ce>0) { c=ce; e=0; } else { c=0; e=-ce; }
+	log("-> found "+h+" hits "+c+" criticals "+e+" evade");
 	if (c+h>0) {
+	    if (c+h<targetunit.shield) log(targetunit.name+" lost "+(c+h)+" <p class='shield'></p>");
+	    else if (targetunit.shield>0) log(targetunit.name+ " lost all <p class='shield'></p>")
 	    targetunit.resolvehit(h);
 	    targetunit.resolvecritical(c);
 	    // TODO: should be removed depending on skill
@@ -567,7 +571,7 @@ Unit.prototype = {
 		targetunit.m=MT(-30,-30);
 		targetunit.show();
 	    }
-	} else { console.log("no damage"); }
+	} //else { //console.log("no damage"); }
 	this.cleancombat();
     },
     cleancombat: function() {
@@ -587,7 +591,6 @@ Unit.prototype = {
 	    this.show();
 	    f(this,k);
 	}.bind(this);
-	log(this.name+" resolveactionmove");
 	for (i=0; i<moves.length; i++) {
 	    this.pos[i]=this.getpossibleoutline(moves[i]);
 	    if (this.pos[i].b) {
@@ -646,7 +649,6 @@ Unit.prototype = {
     resolveroll: function() {
 	var m0=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(-90,0,0)).add(MT(0,-20));
 	var m1=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(90,0,0)).add(MT(0,-20));
-	log("preparing roll for "+this.name);
 	this.resolveactionmove(
 	    [m0.clone().add(MT(0,0)),
 	     m0.clone().add(MT(0,20)),
@@ -683,7 +685,8 @@ Unit.prototype = {
 		document.dispatchEvent(actionevent());  
 	    }.bind(this));
 	    return true;
-	} else { console.log("no targeting!"); return false; }
+	} else { //console.log("no targeting!"); 
+	    return false; }
     },
     resolvecloak: function() {
 	this.iscloaked=true;
@@ -707,7 +710,7 @@ Unit.prototype = {
     },
     evaluatetohit: function(w,sh) {
 	var r=this.gethitrange(w,sh);
-	console.log("EVALUATETOHIT "+sh.name+" r"+r+" "+this.hasfired);
+	//console.log("EVALUATETOHIT "+sh.name+" r"+r+" "+this.hasfired);
 	if (sh!=this&&r<=3&&r>0&&!this.hasfired) {
 	    var attack=this.getattackstrength(w,sh);
 	    var defense=sh.getdefensestrength(w,this);
@@ -721,7 +724,7 @@ Unit.prototype = {
     canfire: function() {
         var r=this.gethitrangeallunits();
 	var b= (!this.hasfired&&(r[1].length>0||r[2].length>0||r[3].length>0)&&!this.iscloaked&&this.ocollision.overlap==-1);
-	console.log("[canfire]"+this.name+" "+b+"="+this.hasfired+" r=["+r[1].length+", "+r[2].length+", "+r[3].length+"] "+this.iscloaked)
+	//console.log("[canfire]"+this.name+" "+b+"="+this.hasfired+" r=["+r[1].length+", "+r[2].length+", "+r[3].length+"] "+this.iscloaked)
         return b;
     },
     getattackstrength: function(i,sh) {
@@ -734,7 +737,7 @@ Unit.prototype = {
     },
     resolvefire: function(w) {
 	var r=this.gethitrange(w,targetunit);
-	log("<b style='color:"+this.color+"'>"+this.name+"</b> attacks <b style='color:"+targetunit.color+"'>"+targetunit.name+"</b> with "+this.weapons[w].name);
+	log(this.name+" attacks "+targetunit.name+" with "+this.weapons[w].name);
 	var attack=this.getattackstrength(w,targetunit);
 	var defense=targetunit.getdefensestrength(w,this);
 	this.hasfired=true;
@@ -786,18 +789,18 @@ Unit.prototype = {
 	var outline;
 	var postcollision=false; // Time after a collision with a unit. Stop animation
 	// Check collision with other units
-	this.maneuver=-1;
+	//this.maneuver=-1;
 	this.showhitsector(false);
 	movePoint = path.getPointAtLength( lenC );
 	m_old=this.m;
 	if (this.islarge) lenC+=40;
 	m = this.getmatrixwithmove(path, lenC);
 	this.ocollision=this.getocollisions(this.m,m,P[dial].path);
-	if (this.ocollision.overlap>-1) { log(this.name+" overlaps obstacle: cannot perform action, cannot attack"); }
-	if (this.ocollision.template>0) { log(this.name+" template overlaps obstacle: cannot perform action"); }
+	if (this.ocollision.overlap>-1) { log(this.name+" overlaps obstacle: no action, cannot attack"); }
+	if (this.ocollision.template>0) { log(this.name+" template overlaps obstacle: no action"); }
 
 	if (this.iscollidinganyunit(m)) { 
-	    log(this.name+"  collides with "+this.collides.name);
+	    log(this.name+"  collides with "+this.collides.name+": no action");
 	    this.collision=true;
 	    while (lenC>0 && this.iscollidinganyunit(m)) {
 		m=this.getmatrixwithmove(path,lenC);
@@ -818,7 +821,7 @@ Unit.prototype = {
 		    if (dial=="K1"||dial=="K2"||dial=="K3"||dial=="K4"||dial=="K5"||dial=="SR3"||dial=="SL3") { this.m.add(MR(180,0,0))} } 
 		else { this.m=m; }
 		this.handledifficulty(difficulty);
-		console.log("End MANEUVER");
+		//console.log("End MANEUVER");
 		this.show();
 		path.remove();
 		if (this.ocollision.overlap>-1||this.ocollision.template>0) this.resolveocollision();
@@ -833,10 +836,13 @@ Unit.prototype = {
 	}
     },
     showaction: function() {
-	if (this==activeunit) $("#actionbutton").prop("disabled",((this.actiondone)||(!this.hasmoved)||(phase!=ACTIVATION_PHASE)||(this.skill!=skillturn)));
+	if (this==activeunit) {
+	    $("#actionbutton").prop("disabled",((this.actiondone)||(!this.hasmoved)||(phase!=ACTIVATION_PHASE)||(this.skill!=skillturn)));
+	    $("#actionbutton2").prop("disabled",((this.actiondone)||(!this.hasmoved)||(phase!=ACTIVATION_PHASE)||(this.skill!=skillturn)));
+	}
 	if (this.action==-1) {
 	    this.actionicon.attr({text:""});
-	    if (this==activeunit) $("#action").text("");
+	    if (this==activeunit) $("#action").text("--");
 	} else {
 	    var a = this.actionList[this.action];
 	    var c=A[a].color;
@@ -869,33 +875,44 @@ Unit.prototype = {
     }, 
     showdial: function() {
 	if (activeunit==this) 
-	    $("#manbutton").prop("disabled",this.hasmoved||!(phase==PLANNING_PHASE||phase==ACTIVATION_PHASE));
-	var m=[],i,j,d,speed=[];
-	for (i=0; i<=5; i++) {
-	    m[i]=[];speed[i]="";
-	    for (j=0; j<=5; j++) m[i][j]="<div></div>";
+	    $("#manbutton").prop("disabled",this.hasmoved||!(phase==ACTIVATION_PHASE));
+	if (phase==PLANNING_PHASE) {
+	    var m=[],i,j,d,speed=[];
+	    for (i=0; i<=5; i++) {
+		m[i]=[];speed[i]="";
+		for (j=0; j<=5; j++) m[i][j]="<div></div>";
+	    }
+	    for (i=0; i<this.dial.length; i++) {
+		d=this.dial[i];
+		var cx=MPOS[d.move][0],cy=MPOS[d.move][1];
+		m[cx][cy]="<div onclick='activeunit.setmaneuver("+i
+		    +")' class='symbols "+d.difficulty+" ";
+		m[cx][cy]+=((i==this.maneuver)?"selected'":"'")+">"
+		    +P[d.move].key+"</div>";
+		speed[cx]=P[d.move].speed;
+	    }
+	    var str="";
+	    for (i=5; i>=0; i--) {
+		str+="<div><div>"+speed[i]+"</div>";
+		for (j=0; j<=5; j++) str+=m[i][j];
+		str+="</div>\n";
+	    }
+	    $("#maneuverdial").empty();
+	    $("#maneuverdial").html(str);
 	}
-	for (i=0; i<this.dial.length; i++) {
-	    d=this.dial[i];
-	    var cx=MPOS[d.move][0],cy=MPOS[d.move][1];
-	    m[cx][cy]="<div onclick='activeunit.setmaneuver("+i
-		+")' class='symbols "+d.difficulty+" ";
-	    m[cx][cy]+=((i==this.maneuver)?"selected'":"'")+">"
-		+P[d.move].key+"</div>";
-	    speed[cx]=P[d.move].speed;
+	if (phase==ACTIVATION_PHASE) {
+	    if (this.maneuver==-1) {
+		$("#manbutton").prop("disabled",true);
+	    } else {
+		var d=this.dial[this.maneuver];
+		$("#dialspeed").html("<b class='"+d.difficulty+"'>"+P[d.move].speed+"</b>");
+		$("#dialman").html("<b class='"+d.difficulty+"'>"+P[d.move].key+"</b>");
+	    }
 	}
-	var str="";
-	for (i=5; i>=0; i--) {
-	    str+="<div><div>"+speed[i]+"</div>";
-	    for (j=0; j<=5; j++) str+=m[i][j];
-	    str+="</div>\n";
-	}
-	$("#maneuverdial").empty();
-	$("#maneuverdial").html(str);
 	if (this.stress>0) $("button RED").prop("disabled",true);
 	if (this.maneuver==-1) {
-            this.dialspeed.attr({text:""});
-            this.dialdirection.attr({text:""});
+	    this.dialspeed.attr({text:""});
+	    this.dialdirection.attr({text:""});
 	    return;
 	};
 	d = this.dial[this.maneuver];
@@ -925,11 +942,11 @@ Unit.prototype = {
 	if (typeof text=="undefined") text=""; 
 	str+="<div class='vertical' style='height:8em;'><div style='text-align:justify'><br/>"+text+"</div></div>";
 	str+="<div><div>";
-	if (this.focus>0) str+="<p title='"+this.focus+" focus token' onclick='usefocus("+i+")' class='focustoken'></p>";
-	if (this.evade>0) str+="<p title='"+this.evade+" evade token' onclick='useevade("+i+")' class='evadetoken'></p>"; 
-	if (this.target>0) str+="<p title='targeting "+this.targeting.name+"' onclick='usetarget("+i+")' class='targettoken'></p>";
-	if (this.iscloaked) str+="<p class='cloaktoken'></p>";
-	if (this.stress>0) str+="<p title='"+this.stress+" stress token' onclick='usestress("+i+")' class='stresstoken'></p>";
+	if (this.focus>0) str+="<p title='"+this.focus+" focus token' onclick='usefocus("+i+")' class='xfocustoken'></p>";
+	if (this.evade>0) str+="<p title='"+this.evade+" evade token' onclick='useevade("+i+")' class='xevadetoken'></p>"; 
+	if (this.target>0) str+="<p title='targeting "+this.targeting.name+"' onclick='usetarget("+i+")' class='xtargettoken'></p>";
+	if (this.iscloaked) str+="<p class='xcloaktoken'></p>";
+	if (this.stress>0) str+="<p title='"+this.stress+" stress token' onclick='usestress("+i+")' class='xstresstoken'></p>";
 	str+="</div></div><div class='vertical'><div>";
 	for (i=0; i<this.upgrades.length;i++) {
 	    str+="<hr><p class='"+this.upgrades[i].type+"'></p><p href='#' style='font-size:smaller'>"+this.upgrades[i].name+"</p>";
@@ -1038,7 +1055,6 @@ Unit.prototype = {
 	var i;
 	var n=this.ocollision.template;
 	if (this.ocollision.overlap>-1) n++;
-	log(this.name+" hit "+n+" obstacles");
 	for (i=0; i<n; i++) {
 	    var r=Math.floor(Math.random()*7);
 	    var roll=FACE[ATTACKDICE[r]];
@@ -1049,41 +1065,43 @@ Unit.prototype = {
     resolvehit: function(n) {
 	if (n==0) return;
 	if (this.shield>n) {
-	    log(this.name+" lost "+n+" shield");
 	    this.shield=this.shield-n
 	} else {
 	    var s=n-this.shield;
 	    this.shield=0;
-	    log(this.name+" lost all shields");
-	    this.applydamage(n);
+	    if (s>0) this.applydamage(s);
 	}
     },
     resolvecritical: function(n) {
 	if (n==0) return;
 	if (this.shield>n) {
-	    log(this.name+" lost "+n+" shield");
 	    this.shield=this.shield-n
 	} else {
 	    var s=n-this.shield;
 	    this.shield=0;
-	    log(this.name+" lost all shields");
-	    this.applycritical(n);
+	    if (s>0) this.applycritical(s);
 	}
     },
     applydamage: function(n) {
 	this.hull=this.hull-n;
+	log(this.name+" was dealt "+n+" <p class='hit'></p>, lost "+n+" <p class='hull'></p>");
     },
     applycritical: function(n) {
-	this.applydamage(n); 
+	var h=0;
+	var i;
+	for (i=0; i<n; i++) 
+	    if (Math.random()<7/25) h++;
+	log(this.name+" was dealt "+n+" <p class='critical'></p>, lost "+(h+n)+" <p class='hull'></p>");
+	this.hull=this.hull-h-n;
     },
     gethitrange: function(w,sh) {
 	var i;
 	if (sh.faction==this.faction) return 0;
  	if (this.checkcollision(sh)) return 0;
 	if (this.weapons[w].canfire(sh)==false) return 0;
-	console.log("["+this.weapons[w].name+"] in range?");
+	//console.log("["+this.weapons[w].name+"] in range?");
 	var gr=this.weapons[w].getrange(sh);
-	console.log("["+this.name+"] "+this.weapons[w].name+" gethitrange of "+sh.name+":"+gr);
+	//console.log("["+this.name+"] "+this.weapons[w].name+" gethitrange of "+sh.name+":"+gr);
 	return gr;
     },
     gethitrangeallunits: function() {
@@ -1097,7 +1115,7 @@ Unit.prototype = {
 		    var r=this.gethitrange(k,sh);
 		    if (r>0) {
 			for (j=0; j<range[r].length; j++) if (range[r][j].unit==i) break;
-			console.log("["+this.name+"] can fire "+sh.name+"/"+this.weapons[k].name);
+			//console.log("["+this.name+"] can fire "+sh.name+"/"+this.weapons[k].name);
 			if (j<range[r].length) range[r][j].wp.push(k);
 			else range[r].push({unit:i,wp:[k]});
 		    }
@@ -1117,7 +1135,7 @@ Unit.prototype = {
 	    var sh=squadron[i];
 	    if (sh!=this) {
 		var k=this.getrange(sh);
-		range[k].push({unit:sh});
+		range[k].push({unit:i});
 	    }
 	};
 	return range;

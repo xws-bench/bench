@@ -1,7 +1,8 @@
 .header,footer,
-article,nav{
+article,nav,body{
     /* Giving a display value to the HTML5 rendered elements: */
     display:block;
+    font-family: "Times New Roman", Times, serif 
 }
 [data-i18n-fr]:lang(fr)::after {
     content: attr(data-i18n-fr);
@@ -53,16 +54,13 @@ nav li {
     display: inline;
 }
 nav a {
-    border-right:2px solid #fff;
+    border-left:2px solid #fff;
     text-decoration:none;
     color: white;
     background: #333;
     padding: 5px;
 }
-.about {
-/*    overflow-y: scroll;*/
-}
-.modalDialog, .about {
+.modalDialog {
     position: fixed;
     top: 0;
     right: 0;
@@ -76,7 +74,7 @@ nav a {
     transition: opacity 400ms ease-in;
     pointer-events: none;
 }
-.modalDialog:target, .about:target {
+.modalDialog:target {
     opacity:1;
     pointer-events: auto;
 }
@@ -90,7 +88,7 @@ nav a {
     left:150px;
     top:0px;
 }
-.modalDialog > div, .about > div {
+.modalDialog > div {
     position: relative;
     margin: 10% auto;
     padding: 5px 20px 13px 20px;
@@ -98,14 +96,37 @@ nav a {
     background: white;
     color: black;
 }
-#import > div, #modal > div {
+#import > div, #modal > div,#credit > div {
     width: 800px;
 }
-#help > div,#about > div, #proba > div, #combatmodal > div {
-    width: 500px;
+#proba > div, #combatmodal > div {
+    width: 400px;
 }
-.menubutton {
-
+#credit > div {
+   -moz-column-count: 3;
+   -webkit-column-count: 3;
+   column-count: 3;
+   font-size: smaller;
+}
+.help {
+   height: 100%;
+   width: 100%;
+   -moz-column-count: 3;
+   -webkit-column-count: 3;
+   column-count: 3;
+   -webkit-column-width: 100px; /* Chrome, Safari, Opera */
+   -moz-column-width: 100px; /* Chrome, Safari, Opera */
+   column-width: 100px;
+   font-size: smaller;
+}
+#help > div {
+    width: 88%;
+    height: 88%;
+    margin: 2%;
+    text-align:justify;
+}
+#help-howtoplay > div > div {
+    overflow: scroll;
 }
 #import div div {
     -webkit-column-count: 2; /* Chrome, Safari, Opera */
@@ -185,16 +206,16 @@ th {
 .statskill{
     color: #FA0;
 }
-.statfire {
+.statfire,.hit,.critical {
     color: #A00;
 }
 .statevade {
     color: #0A0;
 }
-.stathull {
+.stathull,.hull {
     color: #CC0;
 }
-.statshield {
+.statshield,.shield {
     color: #0AF;
 }
 .stat,.stathull,.statshield,.statfire,.statskill,.statevade {
@@ -265,6 +286,7 @@ th {
     padding: 5px;
     color: white;
     border: 0px;
+    text-decoration:none;
     background: #888;
     background: linear-gradient(top, #555 0%, #888 100%);  
     background: -moz-linear-gradient(top, #555 0%, #888 100%); 
@@ -277,6 +299,7 @@ th {
 }
 .smallbutton{
     width: 25px;
+    margin: 0px;
 }
 .GREEN {
     color: #0F0;
@@ -341,7 +364,7 @@ th {
 .Mod::after {
     content:"m";
 }
-.evadetoken,.focustoken,.cloaktoken,.stresstoken,.targettoken {
+.evadetoken,.focustoken,.cloaktoken,.stresstoken,.targettoken,.hull,.shield,.hit,.critical {
     font-family: 'symbols';
     padding: 6px;
     display: inline-block;
@@ -360,6 +383,27 @@ th {
     border-style: solid;
     border-width: 1px;
 }
+.xevadetoken,.xfocustoken,.xcloaktoken,.xstresstoken,.xtargettoken {
+    font-family: 'symbols';
+    padding: 4px;
+    display: inline-block;
+    margin: 0px;
+    text-align: center;
+    width: 10px;
+    font-size: smaller;
+    line-height: 9px;
+    text-decoration: none;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+    background: linear-gradient(top, #555 0%, #000 100%);  
+    background: -moz-linear-gradient(top, #555 0%, #000 100%); 
+    background: -webkit-linear-gradient(top, #555 0%,#000 100%); 
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+}
+
 .Elite,.Torpedo,.Astromech,.Turret,.Missile,.Crew,.Cannon,.Bomb,.Title,.Mod,.System,.Illicit,.Salvaged,.Laser,.Turretlaser {
     font-family: 'symbols';
     padding: 0px;
@@ -382,18 +426,15 @@ th {
 label {
     font-size: small;
 }
-.evadetoken,.focustoken {
+.evadetoken,.focustoken, .xevadetoken,.xfocustoken {
     color: #0a0;
     border-color: #0a0;
 }
-.focustoken {
-    padding-left:0px;
-}
-.stresstoken {
+.stresstoken,.xstresstoken {
     color: #f33;
     border-color: #f33;
 }
-.targettoken, .cloaktoken {
+.targettoken, .cloaktoken, .xtargettoken, .xcloaktoken {
     color: #08d;
     border-color: #0af;
 }
@@ -415,19 +456,19 @@ label {
     background: -webkit-linear-gradient(top, #500 0%,#f33 100%); 
     color: #000;
 }
-.focustoken::after {
+.focustoken::after,.xfocustoken::after {
     content: "f";
 }
-.evadetoken::after {
+.evadetoken::after,.xevadetoken::after {
     content: "e";
 }
-.targettoken::after {
+.targettoken::after,.xtargettoken::after {
     content: "l";
 }
-.stresstoken::after {
+.stresstoken::after,.xstresstoken::after {
     content: "s";
 }
-.cloaktoken::after {
+.cloaktoken::after,.xcloaktoken::after {
     content: "k";
 }
 .focusgreendice,.evadegreendice,.blankgreendice,.focusreddice,.hitreddice,.criticalreddice,.blankreddice {
@@ -458,10 +499,10 @@ label {
 .focusreddice::after,.focusgreendice::after {
     content: "f";
 }
-.hitreddice::after {
+.hitreddice::after,.hit::after {
     content: "d";
 }
-.criticalreddice::after {
+.criticalreddice::after,.critical::after {
     content: "c";
 }
 .blankreddice::after,.blankgreendice::after {
@@ -524,7 +565,7 @@ label {
     background: -moz-linear-gradient(top, #222 0%, #888 100%); 
     background: -webkit-linear-gradient(top, #222 0%,#888 100%); 
 }
-.smallbutton:disabled,.largebutton:disabled {
+.bigbutton:disabled,.nextphase:disabled,.largebutton:disabled {
     background: #555;
     color: #888;
 }
@@ -545,14 +586,14 @@ label {
 }
 h1 {
    color: red;
+   float:left;
    text-shadow: 3px 3px 5px #fff,
      -1px -1px 0 #fff,  
       1px -1px 0 #fff,
       -1px 1px 0 #fff,
        1px 1px 0 #fff;
     width: 100%;
-    margin:5px;
-    text-align: center;
+    margin:10px 10px 10px 620px;
 }
 #info {
     float: left;
@@ -601,6 +642,28 @@ h1 {
     margin:0px;
     height:2ex;
 }
+#menuaction ul {
+    list-style:none;
+    position:relative;
+    top:-20px;
+    left:-20px;
+    width: 16px;
+    display:none;
+    visibility:hidden;
+    background:#000;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+#menuaction ul li {
+    display:block;
+    background:#000;
+}
+#menuaction ul li:hover { background: #aaa;}
+#menuaction:hover ul {
+    display:block;
+    visibility: visible;
+}
 footer {
     position: absolute;
     background: rgba(0,0,0,0.5);
@@ -625,7 +688,12 @@ footer {
     -1px 1px 0 #fff,
     1px 1px 0 #fff;
 }
-
+.hull::after{
+    content: "&";
+}
+.shield::after {
+    content:"*";
+}
 .arrow-right {
     border-color: transparent #888;
     border-style: solid;
@@ -646,7 +714,7 @@ footer {
 }
 @font-face {
   font-family: 'symbols';
-  src: url('xwing-miniatures.ttf')  format('truetype') /* Safari, Android, iOS */
+  src: url('x-wingsymbols.ttf')  format('truetype') /* Safari, Android, iOS */
 }
 @font-face {
   font-family: 'ships';
