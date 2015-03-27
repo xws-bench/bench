@@ -158,9 +158,9 @@ function hitrangetostr(r,hit) {
 			} else code="<p class='"+wp.type+"'></p>" 
 			str+="<div>"+code+wp.name+"</div>";
 			str+="<div>"+p.tohit
-			    +"</div><div>"+p.meanhit
-			    +"</div><div>"+p.meancritical
-			    +"</div><div>"+(Math.round(p.tokill[r[i][j].hull+r[i][j].shield]*10000)/100)+"</div>";
+			    +"% to hit</div><div>"+p.meanhit+"<p class='hit'></p>"+
+			    +"</div><div>"+p.meancritical+"<p class='critical'></p>"+
+			    +"</div><div>"+(Math.round(p.tokill[r[i][j].hull+r[i][j].shield]*10000)/100)+"% to kill</div>";
 			if (phase==COMBAT_PHASE && skillturn==activeunit.skill&&activeunit.canfire()) 
 			    str+="<div><a href='#combatmodal' onclick=\"resolvecombat("+k+","+w+")\" class='bigbutton'>Fire!</a></div>";
 			else str+="<div></div>";
@@ -174,7 +174,7 @@ function hitrangetostr(r,hit) {
 		   activeunit.istargeting=false; }
     else {
 	var head="<div><div>Range</div><div>Name</div><div>Stats</div><div>Points</div><div>Tokens</div>";
-	if (hit) head+="<div>avg. crit.</div><div>% to kill</div>";
+	if (hit) head+="<div></div><div></div>";
 	str=head+"<div></div></div>"+str;
     }
     return str;
@@ -856,8 +856,11 @@ var process=setInterval(function() {
 	clearInterval(process);}
 },500);
 
-var SQUAD=['{"description":"","faction":"rebels","name":"Unnamed Squadron","pilots":[{"name":"rookiepilot","points":26,"ship":"xwing","upgrades":{"torpedo":["protontorpedoes"]}},{"name":"rebeloperative","points":21,"ship":"hwk290","upgrades":{"turret":["blasterturret"],"crew":["niennunb"]}},{"name":"wildspacefringer","points":32,"ship":"yt2400freighter","upgrades":{"crew":["dashrendar"]}}],"points":79,"vendor":{"yasb":{"builder":"(Yet Another) X-Wing Miniatures Squad Builder","builder_url":"http://geordanr.github.io/xwing/","link":"http://geordanr.github.io/xwing/?f=Rebel%20Alliance&d=v3!s!3:104,-1:-1:-1:;45:37,32:-1:-1:;92:-1,-1,97:-1:-1:"}},"version":"0.2.0"}',
-	   '{"description":"","faction":"empire","name":"Unnamed Squadron","pilots":[{"name":"patrolleader","points":48,"ship":"vt49decimator","upgrades":{"torpedo":["protontorpedoes"],"crew":["mercenarycopilot","mercenarycopilot"]}},{"name":"bountyhunter","points":44,"ship":"firespray31","upgrades":{"cannon":["manglercannon"],"bomb":["seismiccharges","proximitymines","seismiccharges"],"title":["andrasta"]}}],"points":92,"vendor":{"yasb":{"builder":"(Yet Another) X-Wing Miniatures Squad Builder","builder_url":"http://geordanr.github.io/xwing/","link":"http://geordanr.github.io/xwing/?f=Galactic%20Empire&d=v3!s!96:1,25,25,-1,-1:-1:-1:;40:110,24,-1,-1:22:-1:U.28,U.24"}},"version":"0.2.0"}'];
+	 
+
+var SQUAD=['{"description":"xwings/awings","faction":"rebels","name":"Unnamed Squadron","pilots":[{"name":"tychocelchu","points":24,"ship":"awing","upgrades":{"missile":["chardaanrefit"]}},{"name":"lukeskywalker","points":32,"ship":"xwing","upgrades":{"torpedo":["protontorpedoes"]}},{"name":"wedgeantilles","points":29,"ship":"xwing"},{"name":"prototypepilot","points":15,"ship":"awing","upgrades":{"missile":["chardaanrefit"]}}],"points":100,"vendor":{"yasb":{"builder":"(Yet Another) X-Wing Miniatures Squad Builder","builder_url":"http://geordanr.github.io/xwing/","link":"http://geordanr.github.io/xwing/?f=Rebel%20Alliance&d=v3!s!29:-1,72:-1:-1:;5:-1,1,-1:-1:-1:;0:-1,-1,-1:-1:-1:;32:72:-1:-1:"}},"version":"0.2.0"}',
+	   '{"description":"","faction":"empire","name":"Unnamed Squadron","pilots":[{"name":"maulermithel","points":17,"ship":"tiefighter"},{"name":"backstabber","points":16,"ship":"tiefighter"},{"name":"howlrunner","points":18,"ship":"tiefighter"},{"name":"academypilot","points":12,"ship":"tiefighter"},{"name":"bountyhunter","points":37,"ship":"firespray31","upgrades":{"cannon":["manglercannon"]}}],"points":100,"vendor":{"yasb":{"builder":"(Yet Another) X-Wing Miniatures Squad Builder","builder_url":"http://geordanr.github.io/xwing/","link":"http://geordanr.github.io/xwing/?f=Galactic%20Empire&d=v3!s!17:-1:-1:-1:;15::-1:-1:;18:-1:-1:-1:;10::-1:-1:;40:110,-1,-1,-1:-1:-1:"}},"version":"0.2.0"}'
+];
 
 $(document).ready(function() {
     s = Snap("#svgout");
