@@ -21,6 +21,10 @@ Weapon.prototype = {
     canfire: function(sh) {
 	return true;
     },
+    getrerolldices: function(sh) {
+	if (this.unit.targeting==sh) return 10;
+	else return 0;
+    },
     canfirewithtarget:function(sh) { 
 	if (this.hasfired) return false;
 	if (typeof this.unit.targeting=="undefined") return false; 
@@ -351,12 +355,11 @@ var PILOTS = [
         unique: true,
         faction:"EMPIRE",
 	init: function() {
-	    var g=this.getattackstrength;
 	    this.getattackstrength=function(w,sh) {
-		var a=g.call(this,w,sh);
+		var a=Unit.prototype.getattackstrength.call(this,w,sh);
 		if (sh.gethitsector(this)>3) {
 		    a=a+1;
-		    log("["+this.name+"] +1 attack dice against "+sh.name);
+		    log("["+this.name+"] "+a+" attack dices against "+sh.name);
 		}
 		return a;
 	    }.bind(this);
@@ -384,7 +387,7 @@ var PILOTS = [
 		var a=g.call(this,w,sh);
 		if (this.gethitrange(w,sh)==1) { 
 		    a=a+1;
-		    log("["+this.name+"] +1 attack dice");
+		    log("["+this.name+"] +1 attack dice when attacking "+sh.name);
 		}
 		return a;
 	    }.bind(this);
@@ -1980,6 +1983,7 @@ var UPGRADES= [
         init: function(sh) {sh.weapons.push(new Weapon(sh,this)); },
 	canfire: function(sh) {return this.canfirewithtarget(sh)},
 	fire: function(sh) {return this.firewithtarget(sh)},
+	getrerolldices: function(sh) { return 0; },
         type: "Torpedo",
 	hasfired:false,
         points: 4,
