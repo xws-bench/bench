@@ -721,7 +721,6 @@ function defenseproba(n) {
 function attackwithreroll(tokensA,at,attack) {
     var f,h,c,f2,h2,c2,i,j,b;
     var p=[];
-    if (tokensA.istargeting) this.reroll=this.weapon[0].attack;
     if (tokensA.reroll==0) return at;
     if (typeof tokensA.reroll=="undefined") return at;
     //log("THERE IS REROLL:"+tokensA.reroll);
@@ -763,6 +762,22 @@ function attackwithreroll(tokensA,at,attack) {
 	    }
     return p;
 }
+// Only to compute probability to reach a given level of hull/shield points
+// p1 is the initial probability to do at least some damage, without crit. 
+function damagewithcritical(x2, x1, ncrit, p0) {
+    var p2=[];
+    for (k=0; k<=20; k++) 
+	p2[k]=addcritical(k+1,x2,x1,ncrit,p0)
+    return p2;
+}
+// k: level of damage reached. p0: probability with 1 damage.
+function addcritical(k,x2,x1,n,p0) {
+    if (n==0||x2==0) { if (k==1) return p0; else return 0; }
+    return addcritical(k,x2,x1-1,n-1,p0)*(1-(x2/x1))+
+	addcritical(k-1,x2-1,x1-1,n-1,p0)*x2/x1;
+}
+
+
 
 function tohitproba(tokensA,tokensD,at,dt,attack,defense) {
     var p=[];
@@ -782,7 +797,7 @@ function tohitproba(tokensA,tokensD,at,dt,attack,defense) {
     ATable=attackwithreroll(tokensA,at,attack);
     //log("Attack "+attack+" Defense "+defense);
 
-    for (j=0; j<10; j++) { k[j]=0; }
+    for (j=0; j<=20; j++) { k[j]=0; }
     for (f=0; f<=attack; f++) {
 	for (h=0; h<=attack-f; h++) {
 	    for (c=0; c<=attack-h-f; c++) {
@@ -809,16 +824,25 @@ function tohitproba(tokensA,tokensD,at,dt,attack,defense) {
 	for (c=0; c<=attack-h; c++) {
 	    i=h+10*c;
 	    if (c+h>0) tot+=p[i];
-	    //log("mean+="+h+" * p["+i+"] ("+p[i]+")")
+
 	    mean+=h*p[i];
 	    meanc+=c*p[i];
-	    for (j=1; j<=c+h; j++) k[j]+=p[i];
+	    // Max 3 criticals leading to 2 damages each...Proba too low anyway after that.
+	    switch(c) {
+	    case 0:
+		for(j=1; j<=c+h; j++) k[j]+=p[i];
+		break;
+	    case 1:
+		for(j=1; j<=c+h; j++) k[j]+=p[i]*(33-7)/33;
+		for(j=2; j<=c+h+1; j++) k[j]+=p[i]*7/33;
+		break;
+	    default: 
+		for(j=1; j<=c+h; j++) k[j]+=p[i]*(33-7)/33*(32-7)/32;
+		for (j=2; j<=c+h+1; j++) k[j]+=p[i]*(7/33*(1-6/32)+(1-7/33)*7/32);
+		for (j=3; j<=c+h+2; j++) k[j]+=p[i]*7/33*6/32;
+	    }
 	}
     }
-    
-    //for (j=0; j<10; j++) { log("A/D:"+attack+"/"+defense+" Kill: "+k[j]); }
-    //log("tokill"+k);
-    //log("tohit"+mean/tot);
     return {proba:p, tohit:Math.round(tot*10000)/100, meanhit:tot==0?0:Math.round(mean * 100/tot) / 100,
 	    meancritical:tot==0?0:Math.round(meanc/tot*100)/100,tokill:k} ;
 }
