@@ -1,5 +1,5 @@
 .header,footer,
-.article,nav,body{
+article,nav,body{
     /* Giving a display value to the HTML5 rendered elements: */
     display:block;
     font-family: "Times New Roman", Times, serif 
@@ -72,9 +72,11 @@ nav a {
     -webkit-transition: opacity 400ms ease-in;
     -moz-transition: opacity 400ms ease-in;
     transition: opacity 400ms ease-in;
+    pointer-events: none;
 }
 .modalDialog:target {
     opacity:1;
+    pointer-events: auto;
 }
 .info {
     width: 10em;
@@ -173,7 +175,7 @@ th {
   top:0;
   display:none;
 }
-#box:target {
+#box::target {
     display:block;
 }
 #box:before{
@@ -222,9 +224,9 @@ th {
     margin: 1px;
     border: 0px;
     background: #555;
-    background: linear-gradient(to top, #555 0%, #000 100%);  
-    background: -moz-linear-gradient(to top, #555 0%, #000 100%); 
-    background: -webkit-linear-gradient(to top, #555 0%,#000 100%); 
+    background: linear-gradient(top, #555 0%, #000 100%);  
+    background: -moz-linear-gradient(top, #555 0%, #000 100%); 
+    background: -webkit-linear-gradient(top, #555 0%,#000 100%); 
     text-align: center;
     font-weight: bold;
     text-decoration: none;
@@ -245,9 +247,9 @@ th {
 }
 #maneuverdial >div .symbols:hover, .selected {
     background: #888;
-    background: linear-gradient(to top, #555 0%, #888 100%);  
-    background: -moz-linear-gradient(to top, #555 0%, #888 100%); 
-    background: -webkit-linear-gradient(to top, #555 0%,#888 100%); 
+    background: linear-gradient(top, #555 0%, #888 100%);  
+    background: -moz-linear-gradient(top, #555 0%, #888 100%); 
+    background: -webkit-linear-gradient(top, #555 0%,#888 100%); 
 }
 #desc {
     background: white;
@@ -286,9 +288,9 @@ th {
     border: 0px;
     text-decoration:none;
     background: #888;
-    background: linear-gradient(to top, #555 0%, #888 100%);  
-    background: -moz-linear-gradient(to top, #555 0%, #888 100%); 
-    background: -webkit-linear-gradient(to top, #555 0%,#888 100%); 
+    background: linear-gradient(top, #555 0%, #888 100%);  
+    background: -moz-linear-gradient(top, #555 0%, #888 100%); 
+    background: -webkit-linear-gradient(top, #555 0%,#888 100%); 
    /* font-size: large;*/
     border-radius: 5px;
 }
@@ -374,9 +376,9 @@ th {
     -moz-box-shadow: 1px 1px 3px #000;
     -webkit-box-shadow: 1px 1px 3px #000;
     box-shadow: 1px 1px 3px #000;
-    background: linear-gradient(to top, #555 0%, #000 100%);  
-    background: -moz-linear-gradient(to top, #555 0%, #000 100%); 
-    background: -webkit-linear-gradient(to top, #555 0%,#000 100%); 
+    background: linear-gradient(top, #555 0%, #000 100%);  
+    background: -moz-linear-gradient(top, #555 0%, #000 100%); 
+    background: -webkit-linear-gradient(top, #555 0%,#000 100%); 
     border-radius: 20px;
     border-style: solid;
     border-width: 1px;
@@ -394,9 +396,9 @@ th {
     -moz-box-shadow: 1px 1px 3px #000;
     -webkit-box-shadow: 1px 1px 3px #000;
     box-shadow: 1px 1px 3px #000;
-    background: linear-gradient(to top, #555 0%, #000 100%);  
-    background: -moz-linear-gradient(to top, #555 0%, #000 100%); 
-    background: -webkit-linear-gradient(to top, #555 0%,#000 100%); 
+    background: linear-gradient(top, #555 0%, #000 100%);  
+    background: -moz-linear-gradient(top, #555 0%, #000 100%); 
+    background: -webkit-linear-gradient(top, #555 0%,#000 100%); 
     border-radius: 10px;
     border-style: solid;
     border-width: 1px;
@@ -414,9 +416,9 @@ th {
     -moz-box-shadow: 1px 1px 3px #000;
     -webkit-box-shadow: 1px 1px 3px #000;
     box-shadow: 1px 1px 3px #000;
-    background: linear-gradient(to top, #555 0%, #000 100%);  
-    background: -moz-linear-gradient(to top, #555 0%, #000 100%); 
-    background: -webkit-linear-gradient(to top, #555 0%,#000 100%);
+    background: linear-gradient(top, #555 0%, #000 100%);  
+    background: -moz-linear-gradient(top, #555 0%, #000 100%); 
+    background: -webkit-linear-gradient(top, #555 0%,#000 100%);
     border-radius: 8px;
     border-style: solid;
     border-width: 0px; 
@@ -437,21 +439,21 @@ label {
     border-color: #0af;
 }
 .evadetoken:hover,.focustoken:hover {
-    background: linear-gradient(to top, #050 0%, #0a0 100%);  
-    background: -moz-linear-gradient(to top, #050 0%, #0a0 100%); 
-    background: -webkit-linear-gradient(to top, #050 0%,#0a0 100%); 
+    background: linear-gradient(top, #050 0%, #0a0 100%);  
+    background: -moz-linear-gradient(top, #050 0%, #0a0 100%); 
+    background: -webkit-linear-gradient(top, #050 0%,#0a0 100%); 
      color: #000;
 }
 .targettoken:hover, .cloaktoken:hover {
-    background: linear-gradient(to top, #058 0%, #0af 100%);  
-    background: -moz-linear-gradient(to top, #058 0%, #0af 100%); 
-    background: -webkit-linear-gradient(to top, #058 0%,#0af 100%); 
+    background: linear-gradient(top, #058 0%, #0af 100%);  
+    background: -moz-linear-gradient(top, #058 0%, #0af 100%); 
+    background: -webkit-linear-gradient(top, #058 0%,#0af 100%); 
     color: #000;
 }
 .stresstoken:hover {
-    background: linear-gradient(to top, #500 0%, #f33 100%);  
-    background: -moz-linear-gradient(to top, #500 0%, #f33 100%); 
-    background: -webkit-linear-gradient(to top, #500 0%,#f33 100%); 
+    background: linear-gradient(top, #500 0%, #f33 100%);  
+    background: -moz-linear-gradient(top, #500 0%, #f33 100%); 
+    background: -webkit-linear-gradient(top, #500 0%,#f33 100%); 
     color: #000;
 }
 .focustoken::after,.xfocustoken::after {
@@ -485,14 +487,14 @@ label {
     box-shadow: 1px 1px 3px #000;
 }
 .focusreddice,.hitreddice,.blankreddice,.criticalreddice {
-    background: linear-gradient(to top, #f33 0%, #b00 100%);  
-    background: -moz-linear-gradient(to top, #f33 0%, #b00 100%); 
-    background: -webkit-linear-gradient(to top, #f33 0%,#b00 100%); 
+    background: linear-gradient(top, #f33 0%, #b00 100%);  
+    background: -moz-linear-gradient(top, #f33 0%, #b00 100%); 
+    background: -webkit-linear-gradient(top, #f33 0%,#b00 100%); 
 }
 .focusgreendice,.evadegreendice,.blankgreendice {
-    background: linear-gradient(to top, #3f3 0%, #0b0 100%);  
-    background: -moz-linear-gradient(to top, #3f3 0%, #0b0 100%); 
-    background: -webkit-linear-gradient(to top, #3f3 0%,#0b0 100%); 
+    background: linear-gradient(top, #3f3 0%, #0b0 100%);  
+    background: -moz-linear-gradient(top, #3f3 0%, #0b0 100%); 
+    background: -webkit-linear-gradient(top, #3f3 0%,#0b0 100%); 
 }
 .focusreddice::after,.focusgreendice::after {
     content: "f";
@@ -553,15 +555,15 @@ label {
 }
 .button {
     width: 150px;
-    background: linear-gradient(to top, #822 0%, #f88 100%);  
-    background: -moz-linear-gradient(to top, #822 0%, #f88 100%); 
-    background: -webkit-linear-gradient(to top, #822 0%,#f88 100%); 
+    background: linear-gradient(top, #822 0%, #f88 100%);  
+    background: -moz-linear-gradient(top, #822 0%, #f88 100%); 
+    background: -webkit-linear-gradient(top, #822 0%,#f88 100%); 
 }
 .disabled, .button2 {
     background: #888;
-    background: linear-gradient(to top, #222 0%, #888 100%);  
-    background: -moz-linear-gradient(to top, #222 0%, #888 100%); 
-    background: -webkit-linear-gradient(to top, #222 0%,#888 100%); 
+    background: linear-gradient(top, #222 0%, #888 100%);  
+    background: -moz-linear-gradient(top, #222 0%, #888 100%); 
+    background: -webkit-linear-gradient(top, #222 0%,#888 100%); 
 }
 .bigbutton:disabled,.nextphase:disabled,.largebutton:disabled {
     background: #555;
@@ -602,6 +604,9 @@ h1 {
     border-width: 0;
     margin: 0px;
 }
+.dialspeed{
+    stroke-width: 0px;
+}
 .symbols{
     font-family: 'symbols';
 }
@@ -630,6 +635,7 @@ h1 {
 .xsymbols{
     font-family: 'symbols';
     font-size: 6px;
+    stroke-width: 0px;
 }
 .probacell {
     border:0px;
@@ -674,6 +680,7 @@ footer {
 .xwingship {
     font-family:'ships';
     font-size: 40px;
+    fill: #000;
     cursor: move;
     text-shadow: 3px 3px 5px #fff,
     -1px -1px 0 #999,  
