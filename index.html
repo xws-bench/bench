@@ -21,7 +21,7 @@
     <aside id="info">
       <div>
 	<div class="phasepanel" id="panel_SETUP">
-	  <div  style="text-align:center; padding:2px;margin:2px;"><b>Set up phase</b><button class="nextphase" href="#" onclick="nextphase()">Next</button></div>
+	  <div  style="text-align:center; padding:2px;margin:2px;"><b>Set up phase</b><button class="nextphase" onclick="nextphase()">Next</button></div>
 	  <div data-i18n-fr="Déplacez les unités et les astéroïdes avec la souris et tournez-les avec les flèches" 
 	       data-i18n="Drag units and asteroid obstacles in position and turn them with the buttons"></div>
 	  <button onclick="activeunit.turn(-45)" title="key: <T>" class="bigbutton"><b class="symbols">4</b></button>
@@ -31,7 +31,7 @@
 	</div>
 
 	<div class="phasepanel" id="panel_PLANNING">
-	  <div  style="text-align:center; padding:2px;margin:2px;"><b>Planning phase</b><button class="nextphase" href="#" onclick="nextphase()">Next</button></div>
+	  <div  style="text-align:center; padding:2px;margin:2px;"><b>Planning phase</b><button class="nextphase" onclick="nextphase()">Next</button></div>
 	  
 	  <div data-i18n-fr="Cliquez sur l'une des manœuvres, pour chacunes unités"
 	       data-i18n="Select one of the maneuver of the dial, for each unit"></div>
@@ -41,7 +41,7 @@
 	<div class="phasepanel" id="panel_ACTIVATION">
 	  <div style="width:100%;;text-align:center; padding:2px;margin:2px;">
 	    <b>Activation phase</b>
-	    <button class="nextphase" href="#" onclick="nextphase()">Next</button>
+	    <button class="nextphase" onclick="nextphase()">Next</button>
 	  </div>
 	  
 	  <div data-i18n-fr="Activez les unités avec <entrée> dans l'ordre de pilotage et choisissez une action"
@@ -64,7 +64,7 @@
 	</div>
 
 	<div class="phasepanel" id="panel_COMBAT">
-	  <div  style="text-align:center; padding:2px;margin:2px;"><b>Combat phase</b><button class="nextphase" href="#" onclick="nextphase()">Next</button></div>
+	  <div  style="text-align:center; padding:2px;margin:2px;"><b>Combat phase</b><button class="nextphase" onclick="nextphase()">Next</button></div>
 	  <div data-i18n-fr="Faites attaquer les unités par ordre décroissant de pilotage (<w>)"
 	       data-i18n="Attack by decreasing order of pilot skill."></div>
 	  <button onclick="inhitrange(); window.location='#modal';" title="<p>:select targets" class="largebutton" id="primary">Attack</button>
@@ -381,6 +381,7 @@ THE SOFTWARE.</p>
 	<a href="#" class="smallbutton symbols" onclick="activeunit.togglehitsector()">i</a>
 	<a href="#" class="smallbutton symbols" onclick="activeunit.togglerange()">S</a>
 	<a href="#modal" class="bigbutton symbols" onclick="inhitrange()">%MUC</a>
+      </div>
       <br/>
       <div id="desc"></div>
 
