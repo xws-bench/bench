@@ -712,6 +712,7 @@ Unit.prototype = {
 	if (sh!=this&&r<=3&&r>0&&!this.hasfired) {
 	    var attack=this.getattackstrength(w,sh);
 	    var defense=sh.getdefensestrength(w,this);
+	    this.reroll=this.weapons[w].getrerolldices(sh);
 	    return tohitproba(this,sh,
 			      this.getattacktable(attack),
 			      sh.getdefensetable(defense),
