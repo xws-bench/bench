@@ -161,6 +161,7 @@ function hitrangetostr(r,hit) {
 
 			if (typeof kill=="undefined") kill=0; else 
 			    kill=Math.round(kill*10000)/100;
+		   
 			str+="<div>"+code+wp.name+"</div>";
 			str+="<div>"+p.tohit
 			    +"% to hit</div><div>"+p.meanhit+"<p class='hit'></p>"
@@ -811,7 +812,7 @@ function tohitproba(tokensA,tokensD,at,dt,attack,defense) {
 	    //log("mean+="+h+" * p["+i+"] ("+p[i]+")")
 	    mean+=h*p[i];
 	    meanc+=c*p[i];
-	    for (j=1; j<=c+h; j++) k[j]+=p[i]+7/33*c;
+	    for (j=1; j<=c+h; j++) k[j]+=p[i];
 	}
     }
     
