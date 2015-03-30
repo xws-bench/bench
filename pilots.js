@@ -13,6 +13,7 @@ function Laser(u,type,fire) {
 function Weapon(p,wdesc) {
     $.extend(this,wdesc);
     this.unit=p;
+    log("registering weapon "+this.name);
 }
 Weapon.prototype = {
     isinrange: function(r) {
@@ -75,9 +76,11 @@ Weapon.prototype = {
 
 function Pilot(name) {
     var i;
+    var id=PILOT_dict[name];
     for (i=0; i<PILOTS.length; i++) {
-	if (PILOTS[i].name==name) {
+	if (PILOTS[i].name==id) {
 	   var p=new Unit(PILOTS[i]);
+	    p.id=name;
 	    if (p.init != undefined) p.init();
 	    return p;
 	}
@@ -90,7 +93,7 @@ function Upgrade(sh,name) {
 	if (UPGRADES[i].name==name) {
 	    var upg=$.extend({},UPGRADES[i]);
 	    sh.upgrades.push(upg);
-	    console.log("installed upgrade "+name+" ["+upg.type+"]");
+	    log("installed upgrade "+name+" ["+upg.type+"]");
 	    if (upg.init != undefined) upg.init(sh);
 	    return;
 	}
@@ -230,7 +233,7 @@ var PILOTS = [
         ],
     },
     {
-        name: '"Dutch" Vander',
+        name: "'Dutch' Vander",
         
         
 	faction:"REBEL",
@@ -301,7 +304,7 @@ var PILOTS = [
         ],
     },
     {
-        name: '"Winged Gundark"',
+        name: "'Winged Gundark'",
         faction:"EMPIRE",
         init:  function() {
 	    var a=this.getattacktable;
@@ -332,7 +335,7 @@ var PILOTS = [
         upgrades: [ ],
     },
     {
-        name: '"Night Beast"',
+        name: "'Night Beast'",
         faction:"EMPIRE",
         init: function () {
 	    var r=this.handledifficulty;
@@ -351,7 +354,7 @@ var PILOTS = [
         upgrades: [ ],
     },
     {
-        name: '"Backstabber"',
+        name: "'Backstabber'",
         unique: true,
         faction:"EMPIRE",
 	init: function() {
@@ -370,7 +373,7 @@ var PILOTS = [
         upgrades: [ ],
     },
     {
-        name: '"Dark Curse"',
+        name: "'Dark Curse'",
         faction:"EMPIRE",
         unique: true,
         ship: "TIE Fighter",
@@ -379,7 +382,7 @@ var PILOTS = [
         upgrades: [ ],
     },
     {
-        name: '"Mauler Mithel"',
+        name: "'Mauler Mithel'",
         faction:"EMPIRE",
         init:  function() {
 	    var g=this.getattackstrength;
@@ -401,7 +404,7 @@ var PILOTS = [
         ],
     },
     {
-        name: '"Howlrunner"',
+        name: "'Howlrunner'",
         unique: true,
         faction:"EMPIRE",
         ship: "TIE Fighter",
@@ -413,7 +416,7 @@ var PILOTS = [
 		var sh;
 		var result=ar(n);
 		for (i=0; i<squadron.length; i++) 
-		    if (squadron[i].name=='"Howlrunner"') break;
+		    if (squadron[i].name=="'Howlrunner'") break;
 		// Howlrunner dead ? 
 		if (i==squadron.length) return result;
 		var howlrunner=squadron[i];
@@ -503,7 +506,7 @@ var PILOTS = [
         ],
     },
     {
-        name: "\"Fel's Wrath\"",
+        name: "'Fel's Wrath'",
         faction:"EMPIRE",
         unique: true,
         ship: "TIE Interceptor",
@@ -1253,7 +1256,7 @@ var PILOTS = [
         ],
     },
     {
-        name: '"Echo"',
+        name: "'Echo'",
         faction:"EMPIRE",
         
         
@@ -1268,7 +1271,7 @@ var PILOTS = [
         ],
     },
     {
-        name: '"Whisper"',
+        name: "'Whisper'",
         
         faction:"EMPIRE",
         
@@ -1313,7 +1316,7 @@ var PILOTS = [
         ],
     },
     {
-        name: '"Hobbie" Klivian',
+        name: "'Hobbie' Klivian",
 	faction:"REBEL",
         
         
@@ -1432,7 +1435,7 @@ var PILOTS = [
         ],
     },
     {
-        name: '"Leebo"',
+        name: "'Leebo'",
         
 	faction:"REBEL",
         
@@ -2065,7 +2068,8 @@ var UPGRADES= [
     },
     {
         name: "Concussion Missiles",
-        
+               init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
+ 
         type: "Missile",
         points: 4,
         attack: 4,
@@ -2073,7 +2077,8 @@ var UPGRADES= [
     },
     {
         name: "Cluster Missiles",
-        
+               init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
+ 
         type: "Missile",
         points: 4,
         attack: 3,
@@ -2093,7 +2098,8 @@ var UPGRADES= [
     },
     {
         name: "Homing Missiles",
-        
+               init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
+ 
         type: "Missile",
         attack: 4,
         range: [2,3],
@@ -2153,7 +2159,8 @@ var UPGRADES= [
     },
     {
         name: "Assault Missiles",
-        
+               init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
+ 
         type: "Missile",
         points: 5,
         attack: 4,
@@ -2210,8 +2217,7 @@ var UPGRADES= [
     },
     {
         name: "Advanced Proton Torpedoes",
-        
-        
+        init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
         type: "Torpedo",
         attack: 5,
         range: [1,1],
@@ -2335,7 +2341,8 @@ var UPGRADES= [
     },
     {
         name: "Ion Pulse Missiles",
-        
+               init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
+ 
         type: "Missile",
         points: 3,
         attack: 3,
@@ -2367,7 +2374,8 @@ var UPGRADES= [
     },
     {
         name: "Flechette Torpedoes",
-        
+               init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
+ 
         type: "Torpedo",
         points: 2,
         attack: 3,
@@ -2461,7 +2469,8 @@ var UPGRADES= [
     },
     {
         name: "Proton Rockets",
-        
+               init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
+ 
         type: "Missile",
         points: 3,
         attack: 2,
@@ -2650,7 +2659,7 @@ var UPGRADES= [
         points: 2,
     },
     {
-        name: '"Leebo"',
+        name: "'Leebo'",
         
         unique: true,
         type: "Crew",
@@ -2688,7 +2697,8 @@ var UPGRADES= [
     },
     {
         name: "Ion Torpedoes",
-        
+               init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
+ 
         type: "Torpedo",
         points: 5,
         attack: 4,
@@ -2729,7 +2739,7 @@ var UPGRADES= [
         range: [1,3],
     },
     {
-        name: '"Mangler" Cannon',
+        name: "'Mangler' Cannon",
         init:function(sh) { sh.weapons.push(new Weapon(sh,this)); },
         type: "Cannon",
         points: 4,
@@ -2749,7 +2759,7 @@ var UPGRADES= [
         points: 2,
     },
     {
-        name: '"Hot Shot" Blaster',
+        name: "'Hot Shot' Blaster",
         
         type: "Illicit",
         points: 3,
@@ -2779,7 +2789,7 @@ var UPGRADES= [
         ship: "Y-Wing",
     },
     {
-        name: '"Genius"',
+        name: "'Genius'",
         
         unique: true,
         type: "Salvaged Astromech",
@@ -2828,7 +2838,7 @@ var UPGRADES= [
         points: 2,
     },
     {
-        name: 'Advanced Targeting Computer',
+        name: "Advanced Targeting Computer",
         
         
         type: "System",
@@ -3032,7 +3042,7 @@ var TITLES= [
         ship: "StarViper",
     },
     {
-        name: '"Heavy Scyk" Interceptor (Cannon)',
+        name: "'Heavy Scyk' Interceptor (Cannon)",
         
         
         points: 2,
@@ -3040,14 +3050,14 @@ var TITLES= [
 
     },
     {
-        name: '"Heavy Scyk" Interceptor (Torpedo)',
+        name: "'Heavy Scyk' Interceptor (Torpedo)",
         
         
         points: 2,
         ship: "M3-A Interceptor",
     },
     {
-        name: '"Heavy Scyk" Interceptor (Missile)',
+        name: "'Heavy Scyk' Interceptor (Missile)",
         
         
         points: 2,

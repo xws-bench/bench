@@ -40,6 +40,7 @@ function Rock(i,fragment) {
     this.path="";
     this.g.hover(function() {this.g.attr({strokeWidth:4});}.bind(this),
 		 function()  {this.g.attr({strokeWidth:0});}.bind(this));
+    this.g.addClass("unit");
     this.show();
 }
 
@@ -133,7 +134,7 @@ function nextselect() {
     }
     old.unselect() ; 
 }
-function hitrangetostr(r,hit) {
+function hitrangetostr(r) {
     var str="";
     var i,j,k,h;
     for (h=0; h<squadron.length; h++) if (squadron[h]==activeunit) break;
@@ -142,47 +143,38 @@ function hitrangetostr(r,hit) {
 	    for (j=0; j<r[i].length; j++) {
 		var k=r[i][j].unit;
 		var sh=squadron[k];
-		str+="<div><div>"+i+"</div>";
-		str+=squadron[k];
-		if (hit) {
-		    str+="<div></div><div></div><div></div></div>";
-		    for (w=0; w<r[i][j].wp.length; w++) {
-			var wp=activeunit.weapons[w];
-			str+="<div><div></div><div>Weapon</div>";
-			//log("["+activeunit.name+"] evaluate "+squadron[k].name+" w. "+wp.name);
-		  	var p=activeunit.evaluatetohit(w,squadron[k]);
-			if (p==undefined) break;
-			var code;
-			if (wp.isprimary) { 
-			    if (wp.type=="Turret") code="<p class='Turretlaser'></p>";
-			    else code="<p class='Laser'></p>";
-			} else code="<p class='"+wp.type+"'></p>"; 
-			var kill=p.tokill[sh.hull+sh.shield];
+		str+="<div>";
+		for (h=0; h<7; h++) str+="<div><hr></div>";
+		str+="</div>";
+		str+="<div class='tohit'><div>Range "+i+"</div>";
+		str+=(squadron[k]+"").slice(5);
+		
+		for (w=0; w<r[i][j].wp.length; w++) {
+		    var wp=activeunit.weapons[w];
+		    str+="<div><div></div><div style='text-align:right'>Attacked with</div>";
 
-			if (typeof kill=="undefined") kill=0; else 
-			    kill=Math.round(kill*10000)/100;
-		   
-			str+="<div>"+code+wp.name+"</div>";
-			str+="<div>"+p.tohit
-			    +"% to hit</div><div>"+p.meanhit+"<p class='hit'></p>"
-			    +"</div><div>"+p.meancritical+"<p class='critical'></p>"
-			    +"</div><div>"+kill+"% to kill</div>";
-			if (phase==COMBAT_PHASE && skillturn==activeunit.skill&&activeunit.canfire()) 
-			    str+="<div><a href='#combatmodal' onclick=\"resolvecombat("+k+","+w+")\" class='bigbutton'>Fire!</a></div>";
-			else str+="<div></div>";
-			str+="</div>";
-		    }   
-		} else str+="</div>";
+		    var p=activeunit.evaluatetohit(w,squadron[k]);
+		    if (p==undefined) break;
+		    var kill=p.tokill[sh.hull+sh.shield];
+
+		    if (typeof kill=="undefined") kill=0; else 
+			kill=Math.round(kill*10000)/100;
+		    
+		    str+="<div>"+wp.name+":</div>";
+		    str+="<div>"+p.tohit
+			+"% to hit</div><div>"+p.meanhit+"<p class='hit'></p>"
+			+"</div><div>"+p.meancritical+"<p class='critical'></p>"
+			+"</div><div>"+kill+"% to kill</div>";
+		    if (phase==COMBAT_PHASE && skillturn==activeunit.skill&&activeunit.canfire()) 
+			str+="<div><a href='#combatmodal' onclick=\"resolvecombat("+k+","+w+")\" class='bigbutton'>Fire!</a></div>";
+		    else str+="<div></div>";
+		    str+="</div>";
+		}   
 	    }
 	}
     }
     if (str=="") { str="No unit in range of "+activeunit.name; 
 		   activeunit.istargeting=false; }
-    else {
-	var head="<div><div>Range</div><div>Name</div><div>Stats</div><div>Points</div><div>Tokens</div>";
-	if (hit) head+="<div></div><div></div>";
-	str=head+"<div></div></div>"+str;
-    }
     return str;
 }
 function resolvecombat(k,w) {
@@ -192,29 +184,22 @@ function resolvecombat(k,w) {
     $('#defender').html(""+targetunit);
     activeunit.resolvefire(w);
 }
-function inrange() {
-    $("#listtitle").html("Units in range of "+activeunit.name);
-    $("#listunits").html(hitrangetostr(activeunit.getrangeallunits(), false));
-    window.location="#modal";
-}
 function inhitrange() {
     $("#listtitle").html("Units in weapon range of "+activeunit.name);
-    $("#listunits").html(hitrangetostr(activeunit.gethitrangeallunits(), true));
+    $("#listunits").html(hitrangetostr(activeunit.gethitrangeallunits()));
     window.location="#modal";
 }
-function help() {
-    $("#listtitle").html("This is the help page");
-    $("#listunits").html("");
-}
+
 function unitstostr() {
     var s;
     var i,j;
-    var sobj={REBEL:"",EMPIRE:"",SCUM:""};
+    var sobj=["","",""];
     for (i=0; i<squadron.length; i++) {
 	var sh=squadron[i];
-	sobj[sh.faction]+="<div><div><p class='"+sh.faction+"'></p></div>"+sh+"</div>";
+	sobj[sh.team]+=sh;
     }
-    s="<div><div></div><div>Names</div><div>Stats</div><div>Points</div><div>Tokens</div></div>"+sobj["REBEL"]+sobj["EMPIRE"]+sobj["SCUM"];
+    s="<div id='squad1'><div>Stats</div><div>Names</div><div>Ship</div><div>Points</div><div>Description</div><div>Tokens</div><div>Upgrades</div></div>"+sobj[1]
+	+"<div id='squad2'><div>Stats</div><div>Names</div><div>Ship</div><div>Points</div><div>Description</div><div>Tokens</div><div>Upgrades</div></div>"+ sobj[2];
     return s;
 }
 function allunitlist() {
@@ -326,6 +311,7 @@ function nextactivation() {
     activeunit.show(); 
 }
 function resolveaction() {
+    $("#actiondial").empty();
     //console.log("resolving action for "+activeunit.name);
     if (activeunit.resolveaction()) { unbind("action"); }
 }
@@ -433,8 +419,8 @@ var keybindings={
 	}}
     ],
     select:[
-	{k:'tab', f:nextselect},
-	{k:'shift+tab',f:prevselect}
+	{k:'n', f:nextselect},
+	{k:'shift+n',f:prevselect}
     ]
 };
 function actioncomplete() {
@@ -447,12 +433,12 @@ function actioncomplete() {
 }
 function maneuvercomplete() {
     activeunit.hasmoved=true;
-    $("#manbutton").prop("disabled",true);
+    activeunit.showdial();
     nextaction();
     activeunit.showaction();
 }
 function firecomplete(e) {
-    $("#primary").prop("disabled",true);
+    $("#primary").css({display:"none"});
     showfire(e.detail.ar,e.detail.dr); 
 }
 document.addEventListener("actioncomplete", actioncomplete, false);
@@ -468,7 +454,7 @@ function bindall(name) {
 	bind(name,kb[j].k,kb[j].f);
     }	    
 }
-var phasetext = ["End setup","End planning","End activation","End combat","Next round"];
+var phasetext = ["Setup phase","Planning phase","Activation phase","Combat phase"];
 
 SOUNDS=["xwing_fire","xwing_fly","ywing_fly","tie_fire","tie_fly","isd_fly","slave_fire","slave_fly","falcon_fire","falcon_fly","yt2400_fly"];
 
@@ -482,22 +468,22 @@ function nextphase() {
 	activeunit.g.undrag(); 
 	for (i=0; i<SOUNDS.length; i++) $("#"+SOUNDS[i]).trigger("load");
 	$(".nextphase").prop("disabled",true);
-	$(".xwingship").css("cursor","pointer");
-	$("#panel_SETUP").hide();
+	$(".unit").css("cursor","pointer");
+	$("#panel_0").hide();
 	for (i=0; i<ROCKS.length; i++) ROCKS[i].g.undrag();
 	break;
     case PLANNING_PHASE:
 	$(".nextphase").prop("disabled",true);
-	$("#panel_PLANNING").hide();
+	$("#panel_1").hide();
 	break;
     case ACTIVATION_PHASE:
-	$("#panel_ACTIVATION").hide();
+	$("#panel_2").hide();
 	for (i=0; i<squadron.length; i++) {
 	    squadron[i].hasmoved=false; squadron[i].actiondone=false;
 	}
 	break;
     case COMBAT_PHASE:
-	$("#panel_COMBAT").hide();
+	$("#panel_3").hide();
 	$("#listunits").html("");
 	// Clean up phase
 	for (i=0; i<squadron.length; i++) {
@@ -511,7 +497,7 @@ function nextphase() {
     waitingforaction=false;
     phase=(phase==COMBAT_PHASE)?PLANNING_PHASE:phase+1;
  
-    //$(".nextphase").html(phasetext[phase]);
+    $("#phase").html(phasetext[phase]);
     for (i=0; i<squadron.length; i++) {squadron[i].unselect();}
     // Init new phase
     for (i=SETUP_PHASE; i<=COMBAT_PHASE; i++) {
@@ -521,8 +507,8 @@ function nextphase() {
     switch(phase) {
     case SETUP_PHASE:
 	log("<div>[turn "+round+"] Setup phase</div>");
-	$(".xwingship").css("cursor","move");
-	$("#panel_SETUP").show();
+	$(".unit").css("cursor","move");
+	$("#panel_0").show();
 	bindall("select");
 	var old=activeunit;
 	squadron[0].select();
@@ -530,10 +516,8 @@ function nextphase() {
 	break;
     case PLANNING_PHASE: 
 	log("<div>[turn "+round+"] Planning phase</div>");
-	$("#manbutton").attr({"onclick":"activeunit.nextmaneuver();"});
 	$("#msg").html("Set maneuver for each unit.");
-	$("#panel_PLANNING").show();
-	$("#actionbutton").prop("disabled",true);
+	$("#panel_1").show();
 	var old=activeunit;
 	squadron[0].select();
 	old.unselect();
@@ -542,7 +526,7 @@ function nextphase() {
 	log("<div>[turn "+round+"] Activation phase</div>");
 	$("#manbutton").attr({"onclick":"applymaneuver();"});
 	$("#msg").html("Launch maneuver, select action and resolve it.");
-	$("#panel_ACTIVATION").show();
+	$("#panel_2").show();
 	tabskill=[];
 	for (i=0; i<=12; i++) tabskill[i]=[];
 	for (i=0; i<squadron.length; i++) tabskill[squadron[i].skill].push(squadron[i]);
@@ -551,7 +535,7 @@ function nextphase() {
 	break;
     case COMBAT_PHASE:
 	log("<div>[turn "+round+"] Combat phase</div>");
-	$("#panel_COMBAT").show();
+	$("#panel_3").show();
 	skillturn=12;
 	nextcombat();
 	break;
@@ -561,33 +545,50 @@ function nextphase() {
 function log(str) {
     $("footer").append("<div>"+str+"<div>").scrollTop(10000);
 }
+function select(name) {
+    var i;
+    for (i=0; i<squadron.length; i++) {
+	if (squadron[i].id==name) break;
+    }
+    var u=activeunit;
+    activeunit=squadron[i];
+    activeunit.select();
+    $("#"+u.id).attr({color:"black",background:"white"});
+    $("#"+activeunit.id).attr({color:"white",background:"tomato"});
+    u.unselect();
+}
 function importonesquadron(s,team) {
     var upg_type=["turret","torpedo","mod","title","elite","astromech","missile","crew","cannon","bomb","system","illicit","salvaged"];
     var i,j,k;
-    var r=0;
+    var sq=[];
     for (i=0; i<s.pilots.length; i++) {
 	var pilot=s.pilots[i];
 	var p;
-	p=Pilot(PILOT_dict[pilot.name]);
-	p.team=1;
+	p=Pilot(pilot.name);
+	p.team=team;
 	squadron.push(p);
+	sq.push(p);
 	if (typeof pilot.upgrades!="undefined")  {
 	    for (j=0; j<upg_type.length; j++) { 
 		var upg=pilot.upgrades[upg_type[j]];
 		if (typeof upg!="undefined") 
-		    for (k=0; k<upg.length; k++) 
+		    for (k=0; k<upg.length; k++)
 			Upgrade(p,UPGRADE_dict[upg[k]]);
 		    
 	    }
 	}
-	if (team==1) {
-	    p.m.add(MT(80,70+82*r)).add(MR(90,0,0));
-	} else {
-	    p.m.add(MT(800,70+82*r)).add(MR(-90,0,0));
-	}
-	r++;
-	p.show();
     }
+    sq.sort(function(a,b) {return b.skill-a.skill;});
+    for (i=0; i<sq.length; i++) {
+	if (team==1) {
+	    sq[i].m.add(MT(80,70+82*i)).add(MR(90,0,0));
+	    $("#team1").append("<div id=\""+sq[i].id+"\" onclick='select(\""+sq[i].id+"\")'>"+sq[i]+"</div>");
+	} else {
+	    sq[i].m.add(MT(800,70+82*i)).add(MR(-90,0,0));
+	    $("#team2").append("<div id=\""+sq[i].id+"\" onclick='select(\""+sq[i].id+"\")'>"+sq[i]+"</div>");
+	}
+	sq[i].show();
+   }
 }
 function importsquadron(str,str2) {
     var s,s2;
@@ -624,7 +625,6 @@ function importsquadron(str,str2) {
 //$(document.body).bind('keydown.test',jwerty.event('b', function() {  activeunit.resolveboost(); } ));
 // All phases keys
 jwerty.key('l', allunitlist);
-jwerty.key('r', inrange);
 jwerty.key('w', inhitrange);
 jwerty.key('s', function() {activeunit.togglehitsector();})
 jwerty.key('shift+s', function() {activeunit.togglerange();})
@@ -888,12 +888,11 @@ var dice=1;
 var ATTACK=[]
 var DEFENSE=[]
 
-
-	 
-
 var SQUAD=['{"description":"xwings/awings","faction":"rebels","name":"Unnamed Squadron","pilots":[{"name":"tychocelchu","points":24,"ship":"awing","upgrades":{"missile":["chardaanrefit"]}},{"name":"lukeskywalker","points":32,"ship":"xwing","upgrades":{"torpedo":["protontorpedoes"]}},{"name":"wedgeantilles","points":29,"ship":"xwing"},{"name":"prototypepilot","points":15,"ship":"awing","upgrades":{"missile":["chardaanrefit"]}}],"points":100,"vendor":{"yasb":{"builder":"(Yet Another) X-Wing Miniatures Squad Builder","builder_url":"http://geordanr.github.io/xwing/","link":"http://geordanr.github.io/xwing/?f=Rebel%20Alliance&d=v3!s!29:-1,72:-1:-1:;5:-1,1,-1:-1:-1:;0:-1,-1,-1:-1:-1:;32:72:-1:-1:"}},"version":"0.2.0"}',
 	   '{"description":"","faction":"empire","name":"Unnamed Squadron","pilots":[{"name":"maulermithel","points":17,"ship":"tiefighter"},{"name":"backstabber","points":16,"ship":"tiefighter"},{"name":"howlrunner","points":18,"ship":"tiefighter"},{"name":"academypilot","points":12,"ship":"tiefighter"},{"name":"bountyhunter","points":37,"ship":"firespray31","upgrades":{"cannon":["manglercannon"]}}],"points":100,"vendor":{"yasb":{"builder":"(Yet Another) X-Wing Miniatures Squad Builder","builder_url":"http://geordanr.github.io/xwing/","link":"http://geordanr.github.io/xwing/?f=Galactic%20Empire&d=v3!s!17:-1:-1:-1:;15::-1:-1:;18:-1:-1:-1:;10::-1:-1:;40:110,-1,-1,-1:-1:-1:"}},"version":"0.2.0"}'
 ];
+
+
 
 $(document).ready(function() {
     s = Snap("#svgout");
@@ -948,6 +947,7 @@ var process=setInterval(function() {
 	    unitlist=result1;
 	    var r=0,e=0,i;
 	    squadron=[];
+	    s.attr({width:"100%",height:"100%",viewBox:"0 0 900 900"});
 	    importsquadron(SQUAD[0],SQUAD[1]);
 	    phase=-1;
 	    $("#panel_ACTIVATION").hide();

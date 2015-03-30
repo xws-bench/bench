@@ -1,5 +1,6 @@
-.header,footer,
-article,nav,body{
+html, body { margin:0; padding:0; overflow:hidden }
+/*svg { position:fixed; top:0; left:0; height:100%; width:100% }*/
+footer,article,nav,body{
     /* Giving a display value to the HTML5 rendered elements: */
     display:block;
     font-family: "Times New Roman", Times, serif 
@@ -11,13 +12,12 @@ article,nav,body{
     content: attr(data-i18n);
 }
 #playmat {
-    border-width: 2px;
     padding: 0px;
-    width: calc(100% - 180px);
-    height:calc(100% - 60px);
-    left: 170px;
+    /*width: 900px;*/
+    /*height:900px;*/ /*calc(100% - 60px);*/
+    /*left: 170px;*/
+    width: calc(100% - 340px); height: calc(100% - 200px) ; 
     overflow: scroll;
-    position: absolute;
 }
 article {
     margin: 0px;
@@ -29,21 +29,29 @@ article {
     background: #000000 url("img/playmat7.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    width: 900px;
-    height: 900px;
 }
-nav,article,body, #info {
-    background:#333;
+article,body,#leftpanel,#rightpanel {
+    background:rgba(255,255,255,0.7);
 }
 body {
     width: 100%;
     margin: 0px;
     padding: 0px;
-   overflow: hidden;
+    border:0px;
 }
 nav {
-    margin: 5px;
+    background: SteelBlue;
+    margin: 0px;
     padding: 5px;
+    clear:both;
+}
+h2 {
+    background: SteelBlue;
+    margin: 0px;
+    padding: 5px;
+    border:0;
+    color:white;
+    text-align:center;
 }
 nav ul {
     list-style-type: none;
@@ -57,7 +65,6 @@ nav a {
     border-left:2px solid #fff;
     text-decoration:none;
     color: white;
-    background: #333;
     padding: 5px;
 }
 .modalDialog {
@@ -82,11 +89,22 @@ nav a {
     width: 10em;
     height: 1em;
     color: white;
-    background: rgba(0,0,0,.3);
+    background: rgba(0,0,0,0);
     display:none;
     position: absolute;
     left:150px;
     top:0px;
+}
+.phasepanel {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    color: white;
+    background: rgba(0,0,0,0);
+   /* min-width: 70px;*/
+    width: 50px;
+/*    border-radius: 450px;*/
+   /* padding: 10px;*/
 }
 .modalDialog > div {
     position: relative;
@@ -135,13 +153,7 @@ nav a {
 }
 td, th,table {
     vertical-align: middle;
-    color: black;
-    background: white;
     text-align: center;
-}
-th {
-    background: #888;
-    color: white;
 }
 .warn {
     color: red;
@@ -191,38 +203,106 @@ th {
   background:inherit;
 }
 .phasepanel {
-    width: 100%;
     display: none;
 }
-.phasepanel div {
-    margin: 0px;
-    display: table-row;
-}
+
 #attack, #defense {
     margin: 0px;
     border: 0px;
     padding: 0px;
 }
-.statskill{
+.statskill,.statshield,.stathull,.statfire,.statevade{
+    background: #333;
+    padding: 5px;
+    line-height: 20px;
+    border-radius: 4px;
+    margin:1px;
+    font-weight:normal;
+}
+.team .name {
+    background: lightgrey;
+    color: black;
+}
+.statskill {
     color: #FA0;
 }
-.statfire,.hit,.critical {
+.statfire {
     color: #A00;
 }
 .statevade {
     color: #0A0;
 }
 .stathull,.hull {
-    color: #CC0;
+    color: #EE0;
 }
 .statshield,.shield {
     color: #0AF;
 }
-.stat,.stathull,.statshield,.statfire,.statskill,.statevade {
-    padding: 10px;
+.hull,.shield {
     display: inline-block;
-    margin: 1px;
-    border: 0px;
+    font-family: 'symbols';
+}
+.stat,.stat2,.stat3 {
+    line-height:8px;
+    width: 1.3ex;
+    letter-spacing: 4px; /* arbitrarily large letter-spacing for safety */
+}
+.statfire,.statskill,.statevade, .stathull,.statshield {
+    display: inline-block;
+}
+#team1 {
+    float:left
+} 
+#team2 {
+    float:right;
+}
+#team1 .statskill {
+    float:right;
+}
+#team1 .stat {
+    position: absolute;
+    left: 170px;
+}
+#team1 .stat2 {
+    position: absolute;
+    left: 178px;
+}
+#team1 .stat3 {
+    position: absolute;
+    left: 186px;
+}
+#team2 .stat { 
+    position: absolute;
+    right: 170px;
+}
+#team2 .stat2 { 
+    position: absolute;
+    right: 178px;
+}
+#team2 .stat3 { 
+    position: absolute;
+    right: 186px;
+}
+
+#team2 .statskill {
+    float:left;
+}
+.statfire,.statskill,.statevade {
+
+}
+.hull,.shield {
+    font-family: 'symbols';
+    line-height: 8px;
+    font-size: 20px;
+    border: 0;
+    margin:0;
+    padding: 0;
+    font-weight: bold;
+    text-shadow: -1px -1px 0 #000,  
+    1px -1px 0 #000,-1px 1px 0 #000,  
+      1px 1px 0 #000;
+/*    margin: 1px;
+      border: 0px;
     background: #555;
     background: linear-gradient(to top, #555 0%, #000 100%);  
     background: -moz-linear-gradient(to top, #555 0%, #000 100%); 
@@ -230,52 +310,76 @@ th {
     text-align: center;
     font-weight: bold;
     text-decoration: none;
-    -moz-box-shadow: 1px 1px 3px #000;
-    -webkit-box-shadow: 1px 1px 3px #000;
-    box-shadow: 1px 1px 3px #000;
+
+*/
 }
-#maneuverdial > div .symbols {
+.phasepanel .symbols {
     text-decoration:none;
     text-align:center;
-    padding: 3px;
-    margin: 3px;
-    border: 20px;
-    border-color: #800;
+    padding: 1px;
+    margin: 1px;
+    min-width: 20px;
+    border-color: white;
+    border-radius: 20px;
+    background:rgba(0,0,0,0.7);
 }
 .disabled, .disabled .selected {
     color: #aaa;
 }
-#maneuverdial >div .symbols:hover, .selected {
+#phase_0 .symbols {
+    color: white;
+}
+.team .selected {
+    background: orange;
+    color: white;
+}
+.team .selected .name {
+    background: darkorange;
+    color: white;
+}
+.phasepanel .symbols:hover, .phasepanel .selected {
     background: #888;
-    background: linear-gradient(to top, #555 0%, #888 100%);  
-    background: -moz-linear-gradient(to top, #555 0%, #888 100%); 
-    background: -webkit-linear-gradient(to top, #555 0%,#888 100%); 
 }
-#desc {
-    background: white;
-    color: black;
-}
-.table, #desc {
+.table, .team {
     display:table;
     width: 100%;
     padding:0px;
-    border-radius: 20px;
+    border:0;
 }
-.table .vertical, #desc .horizontal {
+.table .vertical, .tohit .details, .team .horizontal {
     display: none;
 }
-.table > div,#desc > div {
+ .table > div, .team > div  {
     display: table-row;
-    padding:2px;
-    width: 100%;
+    width: 160px;
+    padding:0px;
+    margin:0px;
 }
-.table > div > div, #desc > div > div{
+.table > div > div,.phasepanel .table > div > button, .team > div > div {
     display: table-cell;
     text-align: center;
-    padding: 2px;
-    border:0px;
+    margin: 0px;
+    width:160px;
 }
-
+.table .symbols {
+    border:1px;
+    border-style:solid;
+}
+.dead, .dead .name {
+    background: black;
+    color: gray;
+}
+.team > div {
+    margin:5px;
+    padding: 5px;
+     -moz-box-shadow: 1px 1px 3px black;
+    -webkit-box-shadow: 1px 1px 3px black;
+    box-shadow: 1px 1px 3px black;    
+    border:0px 0px 5px 0px;
+    border:solid;
+    color:black;
+    background: darkbrown;
+}
 .smallbutton,.bigbutton,.button,.largebutton {
     display: inline-block;
     margin: 5px;
@@ -364,7 +468,14 @@ th {
 .Mod::after {
     content:"m";
 }
-.evadetoken,.focustoken,.cloaktoken,.stresstoken,.targettoken,.hull,.shield,.hit,.critical {
+.hit, .critical {
+    font-family: 'symbols';
+    text-align: center;
+    width: 14px;
+    line-height: 14px;
+    display: inline-block;
+}
+.evadetoken,.focustoken,.cloaktoken,.stresstoken,.targettoken {
     font-family: 'symbols';
     padding: 6px;
     display: inline-block;
@@ -518,24 +629,30 @@ label {
 #actionlist {
     height: 2.5em;
 }
-#upgrades {
-    height: 2em;
+.upgrade {
+    display:table-row;
 }
 .nextphase {
     background: #F00;
     text-decoration: none;
     color: white;
-    float:right;
+    position: relative;
+    right: 5px;
     padding: 2px;
     margin: 2px;
     border-radius: 5px;
+    cursor: pointer;
+}
+.desc {
+    width:170px;
+
 }
 .description {
     margin:0px; 
     padding: 0px;
     border: 0px;
     color:#535353;
-    background: white;
+    background: rgba(255,255,255,0.7);
     border-radius: 4px;
 }
 .button2, .button,.largebutton {
@@ -575,34 +692,22 @@ label {
 .button2 {
     width: 74px;
 }
-.header {
-    clear: both;
-    line-height:30px;
-    height: 30px;
-    width:100%;
-    margin: 0px;
-    padding: 0px;
-    color:#ffffff;
-}
-h1 {
-   color: red;
-   float:left;
-   text-shadow: 3px 3px 5px #fff,
-     -1px -1px 0 #fff,  
-      1px -1px 0 #fff,
-      -1px 1px 0 #fff,
-       1px 1px 0 #fff;
-    width: 100%;
-    margin:10px 10px 10px 620px;
-}
-#info {
-    float: left;
+#leftpanel,#rightpanel {
     width: 170px;
     height: 100%;
     opacity: 1;
-    color: #FFF;
+    color: black;
     border-width: 0;
     margin: 0px;
+}
+#rightpanel {
+    float:right;
+/*    position:absolute;
+    left:1070px ; 
+    top: 100px;*/
+}
+#leftpanel {
+    float: left;
 }
 .symbols{
     font-family: 'symbols';
@@ -612,7 +717,7 @@ h1 {
     margin: 2px;
 }
 .REBEL {
-    color: #F00;
+    color: #A00;
 }
 .EMPIRE {
     color: #000;
@@ -672,22 +777,17 @@ footer {
     text-align: left;
     overflow: scroll;
 }
-
+.unit {
+    cursor: move;
+}
 .xwingship {
     font-family:'ships';
     font-size: 40px;
-    cursor: move;
     text-shadow: 3px 3px 5px #fff,
     -1px -1px 0 #999,  
     1px -1px 0 #888,
     -1px 1px 0 #fff,
     1px 1px 0 #fff;
-}
-.hull::after{
-    content: "&";
-}
-.shield::after {
-    content:"*";
 }
 .arrow-right {
     border-color: transparent #888;
