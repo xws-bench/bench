@@ -240,18 +240,16 @@ function Unit(pilot) {
     }
     // Order in the group is important. Latest is on top of stacked layers
     this.g=s.group(this.range3,this.range2,this.range1,this.sector6,this.sector5,this.sector4,this.sector3,this.sector2,this.sector1,this.sector,this.outline,this.dialspeed,this.dialdirection,this.actionicon,this.img,this.infoicon[0],this.infoicon[1],this.infoicon[2],this.infoicon[3],this.gstat);
+    this.g.addClass("unit");
     this.g.hover(
 	function () { 
 	    var bbox=this.g.getBBox();
-	    var y=$("#playmat").scrollTop();
-	    var x=$("#playmat").scrollLeft();
-	    $(".info").css({left:170+bbox.x-x,top:70+bbox.y-y,display:"block"})
-		.html(this.name).appendTo("body");
-	    //this.summary.transform('t '+bbox.x+' '+bbox.y).attr({display:"inline"}); 
+	    var p=$("#playmat").position();
+	    var x=p.left+bbox.x*$("#playmat").width()/900;
+	    var y=p.top+(bbox.y-20)*$("#playmat").height()/900;
+	    $(".info").css({left:x,top:y,display:"block"}).html(this.name).appendTo("body");
 	}.bind(this),
-	function() {
-	    $(".info").css({display: "none"});
-	    //this.summary.attr({display:"none"}); 
+	function() { $(".info").css({display:"none"}); 
 	}.bind(this));
     this.setdefaultclickhandler();
     this.maneuver=-1;
@@ -314,12 +312,12 @@ Unit.prototype = {
 	return [];
     },
     setclickhandler: function(f) {
-	this.img.unmousedown();
-	this.img.mousedown(f);
+	this.g.unmousedown();
+	this.g.mousedown(f);
     },
     setdefaultclickhandler: function() {
-	this.img.unmousedown();
-	this.img.mousedown(function() { 
+	this.g.unmousedown();
+	this.g.mousedown(function() { 
 	    if (this!=activeunit) {
 		var old=activeunit;
 		this.select();
@@ -554,20 +552,22 @@ Unit.prototype = {
 	var ts=targetunit.shield;
 	if (ce>0) { c=ce; e=0; } else { c=0; e=-ce; }
 	if (c+h>0) {
-	    if (c+h<targetunit.shield) log(targetunit.name+" lost "+(c+h)+" <p class='shield'></p>");
-	    else if (targetunit.shield>0) log(targetunit.name+ " lost all <p class='shield'></p>")
+	    if (c+h<targetunit.shield) log(targetunit.name+" lost "+(c+h)+" <b class='symbols'>*</b>");
+	    else if (targetunit.shield>0) log(targetunit.name+ " lost all <b class='symbols'>*</b>")
 	    targetunit.resolvehit(h);
 	    targetunit.resolvecritical(c);
 	    // TODO: should be removed depending on skill
 	    if (targetunit.hull<=0) {
 		var i;
+		$("#"+targetunit.id).attr("onclick","");
+		$("#"+targetunit.id).addClass("dead");
+		$("#"+targetunit.id).html(""+this)
 		for (i=0; i<squadron.length; i++) {
 		    if (squadron[i]==targetunit) {
 			squadron.splice(i,1); break;
 		    }
 		}
-		targetunit.m=MT(-30,-30);
-		targetunit.show();
+		targetunit.m=MT(-60,-60);
 	    }
 	} //else { //console.log("no damage"); }
 	this.cleancombat();
@@ -836,9 +836,15 @@ Unit.prototype = {
 	}
     },
     showaction: function() {
-	if (this==activeunit) {
-	    $("#actionbutton").prop("disabled",((this.actiondone)||(!this.hasmoved)||(phase!=ACTIVATION_PHASE)||(this.skill!=skillturn)));
-	    $("#actionbutton2").prop("disabled",((this.actiondone)||(!this.hasmoved)||(phase!=ACTIVATION_PHASE)||(this.skill!=skillturn)));
+	$("#actiondial").empty();
+	if (this==activeunit&&this.hasmoved&&!this.actiondone&&phase==ACTIVATION_PHASE) {
+	    var str="<div>";
+	    for (i=0; i<this.actionList.length; i++) {
+		var a = this.actionList[i];
+		str+="<div class='symbols "+A[a].color+"' onclick='activeunit.action="+i+";resolveaction()'>"+A[a].key+"</div>";
+	    }
+	    str+="</div>";
+	    $("#actiondial").html(str);
 	}
 	if (this.action==-1) {
 	    this.actionicon.attr({text:""});
@@ -874,43 +880,34 @@ Unit.prototype = {
         this.outline.attr({ stroke: ((activeunit==this)?this.color:halftone(this.color)) }); 
     }, 
     showdial: function() {
-	if (activeunit==this) 
-	    $("#manbutton").prop("disabled",this.hasmoved||!(phase==ACTIVATION_PHASE));
+	$("#move").css({display:"none"});
 	if (phase==PLANNING_PHASE) {
-	    var m=[],i,j,d,speed=[];
+	    var m=[],i,j,d;
 	    for (i=0; i<=5; i++) {
-		m[i]=[];speed[i]="";
+		m[i]=[];
 		for (j=0; j<=5; j++) m[i][j]="<div></div>";
 	    }
 	    for (i=0; i<this.dial.length; i++) {
 		d=this.dial[i];
 		var cx=MPOS[d.move][0],cy=MPOS[d.move][1];
-		m[cx][cy]="<div onclick='activeunit.setmaneuver("+i
-		    +")' class='symbols "+d.difficulty+" ";
-		m[cx][cy]+=((i==this.maneuver)?"selected'":"'")+">"
-		    +P[d.move].key+"</div>";
-		speed[cx]=P[d.move].speed;
+		if (d.difficulty=="RED"&&this.stress>0) m[cx][cy]="<div></div>";
+		else {
+		    m[cx][cy]="<div onclick='activeunit.setmaneuver("+i
+			+")' class='symbols "+d.difficulty;
+		    if (this.maneuver==i) m[cx][cy]+=" selected";
+		    m[cx][cy]+="' >"+P[d.move].key+"</div>";
+		}
 	    }
 	    var str="";
 	    for (i=5; i>=0; i--) {
-		str+="<div><div>"+speed[i]+"</div>";
+		str+="<div>";
 		for (j=0; j<=5; j++) str+=m[i][j];
 		str+="</div>\n";
 	    }
 	    $("#maneuverdial").empty();
 	    $("#maneuverdial").html(str);
-	}
-	if (phase==ACTIVATION_PHASE) {
-	    if (this.maneuver==-1) {
-		$("#manbutton").prop("disabled",true);
-	    } else {
-		var d=this.dial[this.maneuver];
-		$("#dialspeed").html("<b class='"+d.difficulty+"'>"+P[d.move].speed+"</b>");
-		$("#dialman").html("<b class='"+d.difficulty+"'>"+P[d.move].key+"</b>");
-	    }
-	}
-	if (this.stress>0) $("button RED").prop("disabled",true);
-	if (this.maneuver==-1) {
+	} else if (phase==ACTIVATION_PHASE&&this.skill==skillturn&&this.maneuver>-1&&!this.hasmoved) $("#move").css({display:"block"});
+	if (this.maneuver==-1||this.hasmoved) {
 	    this.dialspeed.attr({text:""});
 	    this.dialdirection.attr({text:""});
 	    return;
@@ -926,51 +923,93 @@ Unit.prototype = {
     toString: function() {
 	var i;
 	for (i=0; i<squadron.length; i++) if (this==squadron[i]) break;
-	if (i==squadron.length) return "";
-	str="<div><div style='font-weight:bold'>"+this.name+"</div></div>";
-	str+="<div class='vertical' style='font-size:smaller'><div><code class='"+this.faction+"'></code>"+this.ship.name+"</div></div>";
-	str+="<hr class='vertical'></hr>";
-	str+="<div><div>";
-	str+="<p class='statskill'>"+this.skill+"</p>";
-	str+="<p class='statfire'>"+this.weapons[0].attack+"</p>";
-	str+="<p class='statevade'>"+this.ship.evade+"</p>";
-	str+="<p class='stathull'>"+this.hull+"</p>";
-	str+="<p class='statshield'>"+this.shield+"</p>";
+	if (i==squadron.length) i=-1;;
+	if (i==-1) str="<div class='dead '>"; else str="<div>";
+	if (this.hull+this.shield<=8) {
+	    str+="<div class='vertical stat'><div class='hull'>"+repeat("u ",this.hull)+"</div>";
+	    str+="<div class='shield'>"+repeat("u ",this.shield)+"</div></div>";
+	} else {
+	    if (this.hull>8) {
+		str+="<div class='vertical stat'><div class='hull'>"+repeat("u ",8)+"</div></div>";
+		if (this.hull<=16) {
+		    str+="<div class='vertical stat2'><div class='hull'>"+repeat("u ",this.hull-8)+"</div>";
+		    if (this.shield+this.hull<=16) 
+			str+="<div class='shield'>"+repeat("u ",this.shield)+"</div></div>";
+		    else { 
+			str+="<div class='shield'>"+repeat("u ",16-this.hull)+"</div></div>";
+			str+="<div class='vertical stat3'><div class='shield'>"+repeat("u ",this.shield-16+this.hull)+"</div></div>";
+		    }
+		} else {
+		    str+="<div class='vertical stat2'><div class='hull'>"+repeat("u ",8)+"</div></div>";
+		    str+="<div class='vertical stat3'><div class='hull'>"+repeat("u ",this.hull-16)+"</div>";
+		    str+="<div class='shield'>"+repeat("u ",this.shield)+"</div></div>";
+		}
+	    } else { // No more than 8 shields ? 
+		str+="<div class='vertical stat'><div class='hull'>"+repeat("u ",this.hull)+"</div>";
+		str+="<div class='shield'>"+repeat("u ",8-this.hull)+"</div></div>";
+		str+="<div class='vertical stat2'><div class='shield'>"+repeat("u ",this.shield-8+this.hull)+"</div></div>";
+	    }    
+	}
+	str+="<div><div class='statskill'>"+this.skill+"</div>";
+	str+="<div class='horizontal statfire'>"+this.ship.fire+"</div>";
+	str+="<div class='horizontal statevade'>"+this.ship.evade+"</div>";
+	str+="<div class='horizontal statshield'>"+this.shield+"</div>";
+	str+="<div class='horizontal stathull'>"+this.hull+"</div></div>";
+	str+="<div><div style='font-weight:bold' class='name'>"+this.name+"</div></div>";
+	str+="<div><div><code class='"+this.faction+"'></code>"+this.ship.name+"</div></div>";
+	str+="<div class='vertical'><div style='text-align:center'>";
+	str+="<span class='statfire'>"+this.weapons[0].attack+"<b class='symbols'>"+(this.weapons[0].type=="laser"?"%":"$")+"</b></span>";
+	str+="<span class='statevade' >"+this.ship.evade+"<b class='symbols'>^</b></span>";
 	str+="</div></div>";
-	str+="<div class='horizontal'><div>"+this.points+"</div></div>";
+	//str+="</div></div>";
+	str+="<div class='horizontal'><div>"+this.points+"pts</div></div>";
 	var text=PILOT_translation.english[this.name];
 	if (typeof text=="undefined") text=""; 
-	str+="<div class='vertical' style='height:8em;'><div style='text-align:justify'><br/>"+text+"</div></div>";
+	str+="<div class='horizontal details'><div style='text-align:justify;margin:8px;width:100%;font-size:smaller'>"+text+"</div></div>";
 	str+="<div><div>";
-	if (this.focus>0) str+="<p title='"+this.focus+" focus token' onclick='usefocus("+i+")' class='xfocustoken'></p>";
-	if (this.evade>0) str+="<p title='"+this.evade+" evade token' onclick='useevade("+i+")' class='xevadetoken'></p>"; 
-	if (this.target>0) str+="<p title='targeting "+this.targeting.name+"' onclick='usetarget("+i+")' class='xtargettoken'></p>";
-	if (this.iscloaked) str+="<p class='xcloaktoken'></p>";
-	if (this.stress>0) str+="<p title='"+this.stress+" stress token' onclick='usestress("+i+")' class='xstresstoken'></p>";
-	str+="</div></div><div class='vertical'><div>";
+	if (i>-1) {
+	    if (this.focus>0) str+="<p title='"+this.focus+" focus token' onclick='usefocus("+i+")' class='xfocustoken'></p>";
+	    if (this.evade>0) str+="<p title='"+this.evade+" evade token' onclick='useevade("+i+")' class='xevadetoken'></p>"; 
+	    if (this.target>0) str+="<p title='targeting "+this.targeting.name+"' onclick='usetarget("+i+")' class='xtargettoken'></p>";
+	    if (this.iscloaked) str+="<p class='xcloaktoken'></p>";
+	    if (this.stress>0) str+="<p title='"+this.stress+" stress token' onclick='usestress("+i+")' class='xstresstoken'></p>";
+	}
+	str+="</div></div><div>";
 	for (i=0; i<this.upgrades.length;i++) {
-	    str+="<hr><p class='"+this.upgrades[i].type+"'></p><p href='#' style='font-size:smaller'>"+this.upgrades[i].name+"</p>";
+	    str+="<div class='details upgrade'><b class='"+this.upgrades[i].type+"'></b>"+this.upgrades[i].name+"</div>";
 	}
 	str+="</div></div>";
 	return str;
    },
-    show: function() {
-	var i;
-	this.g.transform(this.m);
-	this.g.appendTo(s); // Put to front
+    showstats: function() {
 	this.skillbar.attr({text:repeat('u',this.skill)});
 	this.firebar.attr({text:repeat('u',this.weapons[0].attack)});
 	this.evadebar.attr({text:repeat('u',this.ship.evade)});
 	this.hullbar.attr({text:repeat('u',this.hull)});
 	this.shieldbar.attr({text:repeat('u',this.shield+this.hull)});
+	$("#"+this.id).html(""+this);
+    },
+    show: function() {
+	var i;
+	this.g.transform(this.m);
+	this.g.appendTo(s); // Put to front
 	this.showoutline();
-	this.showaction();
+	this.showstats();
 	this.showinfo();
+	if (this.hull>0) $("#"+this.id).removeClass("selected");
 	if (activeunit!=this) return;
 
+	var bbox=this.g.getBBox();
+	var p=$("#playmat").position();
+	var x=p.left+(bbox.x+(this.islarge?80:40))*$("#playmat").width()/900;
+	var y=p.top+bbox.y*$("#playmat").height()/900;
+	$("#panel_"+phase).css({left:x+10,top:y,display:"block"}).appendTo("body");
 	this.showdial();
-	$("#desc").html(""+this);
-	$("#primary").prop("disabled",this.hasdamaged||(!this.canfire()));
+	this.showaction();
+	if (this.hull>0) $("#"+this.id).html(""+this);
+	$("#"+this.id).addClass("selected");
+	if (phase==COMBAT_PHASE&&this.canfire()) $("#primary").css({display:"block"});
+	else $("#primary").css({display:"none"});
     },
     showhitsector: function(b) {
         var opacity=(b)?"inline":"none";
@@ -1071,6 +1110,7 @@ Unit.prototype = {
 	    this.shield=0;
 	    if (s>0) this.applydamage(s);
 	}
+	this.showstats();
     },
     resolvecritical: function(n) {
 	if (n==0) return;
@@ -1081,17 +1121,18 @@ Unit.prototype = {
 	    this.shield=0;
 	    if (s>0) this.applycritical(s);
 	}
+	this.showstats();
     },
     applydamage: function(n) {
 	this.hull=this.hull-n;
-	log(this.name+" was dealt "+n+" <p class='hit'></p>, lost "+n+" <p class='hull'></p>");
+	log(this.name+" was dealt "+n+" <p class='hit'></p>, lost "+n+" <b class='symbols'>&</b>");
     },
     applycritical: function(n) {
 	var h=0;
 	var i;
 	for (i=0; i<n; i++) 
 	    if (Math.random()<7/33) h++;
-	log(this.name+" was dealt "+n+" <p class='critical'></p>, lost "+(h+n)+" <p class='hull'></p>");
+	log(this.name+" was dealt "+n+" <p class='critical'></p>, lost "+(h+n)+" <b class='symbols'>&</b>");
 	this.hull=this.hull-h-n;
     },
     gethitrange: function(w,sh) {
@@ -1099,9 +1140,9 @@ Unit.prototype = {
 	if (sh.faction==this.faction) return 0;
  	if (this.checkcollision(sh)) return 0;
 	if (this.weapons[w].canfire(sh)==false) return 0;
-	//console.log("["+this.weapons[w].name+"] in range?");
+	//log("["+this.weapons[w].name+"] in range?");
 	var gr=this.weapons[w].getrange(sh);
-	//console.log("["+this.name+"] "+this.weapons[w].name+" gethitrange of "+sh.name+":"+gr);
+	//log("["+this.name+"] "+this.weapons[w].name+" gethitrange of "+sh.name+":"+gr);
 	return gr;
     },
     gethitrangeallunits: function() {

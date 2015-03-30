@@ -16,105 +16,80 @@
 
   <body lang="en">
 
-    <div class="header"><h1>X-Wings Squadron Benchmark<b style="font-size:x-small">v0.1</b></h1></div>
+    <nav>
+      <h2>X-Wings Squadron Benchmark<span style="font-size:x-small">v0.2</span></h2>
+      <ul>
+	<li><a href="#import">Import JSON</a></li>
+	<li><a href="#modal" onclick="allunitlist()">List all units</a></li>
+	<li><a href="#proba" id="showproba">Show probabilities</a></li>
+	<li><a href="http://xws-benchmark.blogspot.fr">Bug report/Forum</a></li>
+	<li><a href="#help">Help</a></li>
+	<li><a href="#credit">Credits</a></li>
+	<li><a href="#" class="symbols" onclick="activeunit.togglehitsector()">i</a></li>
+	<li><a href="#" class="symbols" onclick="activeunit.togglerange()">S</a></li>
+	<li><a href="#modal" class="symbols" onclick="inhitrange()">%MUCPB</a></li>
+ 	<li style="width:100%"><a href="#" id="phase">Setup phase</a><button id="np" class="nextphase" onclick="nextphase()">Next</button></li>
+      </ul>
+    </nav>
 
-    <aside id="info">
-      <div>
-	<div class="phasepanel" id="panel_SETUP">
-	  <div  style="text-align:center; padding:2px;margin:2px;"><b>Set up phase</b><button class="nextphase" onclick="nextphase()">Next</button></div>
-	  <div data-i18n-fr="Déplacez les unités et les astéroïdes avec la souris et tournez-les avec les flèches" 
-	       data-i18n="Drag units and asteroid obstacles in position and turn them with the buttons"></div>
-	  <button onclick="activeunit.turn(-45)" title="key: <T>" class="bigbutton"><b class="symbols">4</b></button>
-	  <button onclick="activeunit.turn(45)" title="key: <t>" class="bigbutton"><b class="symbols">6</b></button>
-	  <button onclick="activeunit.turn(-5)" title="key: <B>" class="bigbutton"><b class="symbols">7</b></button>
-	  <button onclick="activeunit.turn(5)" title="key: <b>" class="bigbutton"><b class="symbols">9</b></button>
-	</div>
+    <aside id="leftpanel">
+      <section id="team1" class="team"></section>
+    </aside>
 
-	<div class="phasepanel" id="panel_PLANNING">
-	  <div  style="text-align:center; padding:2px;margin:2px;"><b>Planning phase</b><button class="nextphase" onclick="nextphase()">Next</button></div>
-	  
-	  <div data-i18n-fr="Cliquez sur l'une des manœuvres, pour chacunes unités"
-	       data-i18n="Select one of the maneuver of the dial, for each unit"></div>
-	  <div id="maneuverdial" style="text-align:center" class="table"></div>
-	</div>
+    <aside id="rightpanel">
+      <section id="team2" class="team"></section>
+    </aside>
 
-	<div class="phasepanel" id="panel_ACTIVATION">
-	  <div style="width:100%;;text-align:center; padding:2px;margin:2px;">
-	    <b>Activation phase</b>
-	    <button class="nextphase" onclick="nextphase()">Next</button>
-	  </div>
-	  
-	  <div data-i18n-fr="Activez les unités avec <entrée> dans l'ordre de pilotage et choisissez une action"
-	       data-i18n="Move units in increasing order of pilot skill and select an action."></div>
+
+    
+    <article>
+      <section class="phasepanel" id="panel_0">
+	<div id="positiondial" class="table">
 	  <div>
-	    <span style="float:left;padding-top:10px;font-size:smaller">
-	      Maneuver
-	      <span id="dialspeed"></span>
-	      <span id="dialman" class="symbols"></span>:</span>
-	    <button id="manbutton"  style="float:right" class="bigbutton" onclick="applymaneuver()">Ok</button>
+	    <div onclick="activeunit.turn(-45)" title="key: <T>" class="symbols">4</div>
+	    <div onclick="activeunit.turn(45)" title="key: <t>" class="symbols">6</div>
 	  </div>
 	  <div>
-	    <button id="actionbutton" class="bigbutton" onclick="activeunit.nextaction()" style="float:left;width:80px" title="<a>Next/<A>Prev.">
-	      <span style="float:left">Action</span>
-	      <b id="action" class="symbols"></b>
-	      <b style="float:right">&#8597;</b>
-	    </button>
-	    <button id="actionbutton2" style="float:right" onclick="resolveaction()" class="bigbutton">Ok</button>
+	    <div onclick="activeunit.turn(-5)" title="key: <B>" class="symbols">7</div>
+	    <div onclick="activeunit.turn(5)" title="key: <b>" class="symbols">9</div>
 	  </div>
 	</div>
+      </section>
 
-	<div class="phasepanel" id="panel_COMBAT">
-	  <div  style="text-align:center; padding:2px;margin:2px;"><b>Combat phase</b><button class="nextphase" onclick="nextphase()">Next</button></div>
-	  <div data-i18n-fr="Faites attaquer les unités par ordre décroissant de pilotage (<w>)"
-	       data-i18n="Attack by decreasing order of pilot skill."></div>
-	  <button onclick="inhitrange(); window.location='#modal';" title="<p>:select targets" class="largebutton" id="primary">Attack</button>
-	</div>
-      </div>
+      <section class="phasepanel" id="panel_1">
+	<div id="maneuverdial" class="table"></div>
+      </section>
 
-      <audio id="xwing_fire" preload="none">
-	<source src="ogg/KX9_laser_cannon.ogg" type="audio/ogg">
-      </audio>
-      <audio id="tie_fire" preload="none">
-	<source src="ogg/TIE-Fire.ogg" type="audio/ogg">
-      </audio>
-      <audio id="slave_fire" preload="none">
-	<source src="ogg/Slave1-Guns.ogg" type="audio/ogg">
-      </audio>
-      <audio id="falcon_fire" preload="none">
-	<source src="ogg/Falcon-Guns.ogg" type="audio/ogg">
-      </audio>
-      <audio id="xwing_fly" preload="none">
-	<source src="ogg/XWing-Fly1.ogg" type="audio/ogg">
-      </audio>
-      <audio id="tie_fly" preload="none">
-	<source src="ogg/TIE-Fly2.ogg" type="audio/ogg">
-      </audio>
-      <audio id="slave_fly" preload="none">
-	<source src="ogg/Slave1-Fly1.ogg" type="audio/ogg">
-      </audio>
-      <audio id="falcon_fly" preload="none">
-	<source src="ogg/Falcon-Fly1.ogg" type="audio/ogg">
-      </audio>
-      <audio id="yt2400_fly" preload="none">
-	<source src="ogg/Falcon-Fly3.ogg" type="audio/ogg">
-      </audio>
-      <audio id="ywing_fly" preload="none">
-	<source src="ogg/YWing-Fly2.ogg" type="audio/ogg">
-      </audio>
-      <audio id="isd_fly" preload="none">
-	<source src="ogg/ISD-Fly.ogg" type="audio/ogg">
-      </audio>
+      <section class="phasepanel" id="panel_2">
+	  <button id="move" onclick="applymaneuver()">Move</button>
+	  <div id="actiondial" class="table"></div>
+      </section>
 
-      <div id="modal" class="modalDialog">
+      <section class="phasepanel" id="panel_3">
+	<button onclick="inhitrange(); window.location='#modal';" title="<p>:select targets" id="primary">Attack</button>
+      </section>
+      
+      <section id="box"></section>
+      
+      <section>
+     </section>
+
+      <section id="playmat">
+	<svg id="svgout"></svg>
+      </section>
+
+      <section id="modal" class="modalDialog">
 	<div>
 	  <a href="#close" title="Close" class="close">X</a>
 	  <h2 id="listtitle">List of all units</h2>
-	  <div id="listunits" class="table"></div>
+
+	  <div id="listunits" style="font-size:small" class="table"></div>
 	</div>
-      </div>
-      <div class="info">
-      </div>
-      <div id="combatmodal" class="modalDialog">
+      </section>
+      
+      <section class="info"></section>
+
+      <section id="combatmodal" class="modalDialog">
 	<div>
 	  <h2>Combat</h2>
 	  <div class="table">
@@ -127,10 +102,10 @@
 	  <div id="defense" style="display:block"></div>
 	  <button title="key: <enter>" onclick="resolvedamage();" class="bigbutton">Ok</button>
 	</div>
-      </div>
-      <footer>
-      </footer>
-      <div id="import" class="modalDialog">
+      </section>
+
+
+      <section id="import" class="modalDialog">
 	<div>
 	  <a href="#" title="Close" class="close">X</a>
 	  <h2>Import a squadron</h2>
@@ -146,9 +121,9 @@
 	  </div>
 	  <a href="#" onclick="importsquadron($('#jsonimport').val(),$('#jsonimport2').val())" class="button2">Import</a>
 	</div>
-      </div>
+      </section>
 
-      <div id="help" class="modalDialog">
+      <section id="help" class="modalDialog">
 	<div class="help">
 	  <a href="#" title="Close" class="close">X</a>
 	  <h2>How to play</h2> 
@@ -289,10 +264,10 @@
 	  with planning begins. There is no end game condition. To
 	  start a new game, just reload the page !</p>
 	</div>
-      </div>
+      </section>
 	
 
-      <div id="proba" class="modalDialog">
+      <section id="proba" class="modalDialog">
 	<div>
 	  <a href="#" title="Close" class="close">X</a>
 	  <h2>Probabilities in combat</h2>
@@ -320,10 +295,10 @@
 	    </table>
 	  </div>
 	</div>
-      </div>
+      </section>
       
 
-      <div id="credit" class="modalDialog">
+      <section id="credit" class="modalDialog">
 	<div>
 	  <a href="#" title="Close" class="close">X</a>
 	  <h2>Credits and disclaimer</h2> 
@@ -352,57 +327,65 @@
 	    property. This web app is not-for-profit and is only
 	    intended for use by fans of the game line.
 	  </p>
-	
+	  
 	  <p><b>Xwing-miniatures-font license</b></p> 
-<p>The MIT License (MIT)</p>
-<p>Copyright (c) 2014 Geordan Rosario</p>
-<p>Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.</p>
+	  <p>The MIT License (MIT)</p>
+	  <p>Copyright (c) 2014 Geordan Rosario</p>
+	  <p>Permission is hereby granted, free of charge, to any person obtaining a copy
+	    of this software and associated documentation files (the "Software"), to deal
+	    in the Software without restriction, including without limitation the rights
+	    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+	    copies of the Software, and to permit persons to whom the Software is
+	    furnished to do so, subject to the following conditions:
+	    The above copyright notice and this permission notice shall be included in
+	    all copies or substantial portions of the Software.
+	    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+	    THE SOFTWARE.
+	  </p>
 	</div>
-      </div>
+      </section>
+    </article>
 
-      <div id="box"></div>
-      
-      <div >
-	<a href="#" class="smallbutton symbols" onclick="activeunit.togglehitsector()">i</a>
-	<a href="#" class="smallbutton symbols" onclick="activeunit.togglerange()">S</a>
-	<a href="#modal" class="bigbutton symbols" onclick="inhitrange()">%MUC</a>
-      </div>
-      <br/>
-      <div id="desc"></div>
+     <audio id="xwing_fire" preload="none">
+	<source src="ogg/KX9_laser_cannon.ogg" type="audio/ogg">
+      </audio>
+      <audio id="tie_fire" preload="none">
+	<source src="ogg/TIE-Fire.ogg" type="audio/ogg">
+      </audio>
+      <audio id="slave_fire" preload="none">
+	<source src="ogg/Slave1-Guns.ogg" type="audio/ogg">
+      </audio>
+      <audio id="falcon_fire" preload="none">
+	<source src="ogg/Falcon-Guns.ogg" type="audio/ogg">
+      </audio>
+      <audio id="xwing_fly" preload="none">
+	<source src="ogg/XWing-Fly1.ogg" type="audio/ogg">
+      </audio>
+      <audio id="tie_fly" preload="none">
+	<source src="ogg/TIE-Fly2.ogg" type="audio/ogg">
+      </audio>
+      <audio id="slave_fly" preload="none">
+	<source src="ogg/Slave1-Fly1.ogg" type="audio/ogg">
+      </audio>
+      <audio id="falcon_fly" preload="none">
+	<source src="ogg/Falcon-Fly1.ogg" type="audio/ogg">
+      </audio>
+      <audio id="yt2400_fly" preload="none">
+	<source src="ogg/Falcon-Fly3.ogg" type="audio/ogg">
+      </audio>
+      <audio id="ywing_fly" preload="none">
+	<source src="ogg/YWing-Fly2.ogg" type="audio/ogg">
+      </audio>
+      <audio id="isd_fly" preload="none">
+	<source src="ogg/ISD-Fly.ogg" type="audio/ogg">
+      </audio>
 
-    </aside>
-
-    <nav>
-      <ul>
-	<li><a href="#import">Import JSON</a></li>
-	<li><a href="#modal" onclick="allunitlist()">List all units</a></li>
-	<li><a href="#proba" id="showproba">Show probabilities</a></li>
-	<li><a href="http://xws-benchmark.blogspot.fr">Bug report/Forum</a></li>
-	<li><a href="#help">Help</a></li>
-	<li><a href="#credit">Credits</a></li>
-      </ul>
-    </nav>
-    
-    <div class="article">
-      <div id="playmat">
-	<svg id="svgout"></svg>
-      </div>
-    </div>
-
+    <footer></footer>      
   </body>
 </html>
 

@@ -8,27 +8,27 @@ PILOT_translation.english = {
     "Other friendly ships at Range 1 cannot be targeted by attacks if the attacker could target you instead.",
     "Luke Skywalker":
     "When defending, you may change 1 of your <b class='xfocustoken'></b> results to a <b class='xevadetoken'></b> result.",
-    '"Dutch" Vander':
+    "'Dutch' Vander":
     "After acquiring a target lock, choose another friendly ship at Range 1-2.  The chosen ship may immediately acquire a target lock.",
     "Horton Salm":
     "When attacking at Range 2-3, you may reroll any of your blank results.",
-    '"Winged Gundark"':
+    "'Winged Gundark'":
     "When attacking at Range 1, you may change 1 of your <b class='hit'></b> results to a <b class='critical'></b> result.",
-    '"Night Beast"':
+    "'Night Beast'":
     "After executing a green maneuver, you may perform a free focus action.",
-    '"Backstabber"':
+    "'Backstabber'":
     "When attacking from outside the defender's firing arc, roll 1 additional attack die.",
-    '"Dark Curse"':
+    "'Dark Curse'":
     "When defending, ships attacking you cannot spend focus tokens or reroll attack dice.",
-    '"Mauler Mithel"':
+    "'Mauler Mithel'":
     "When attacking at Range 1, roll 1 additional attack die.",
-    '"Howlrunner"':
+    "'Howlrunner'":
     "When another friendly ship at Range 1 is attacking with its primary weapon, it may reroll 1 attack die.",
     "Maarek Stele":
     "When your attack deals a faceup Damage card to the defender, instead draw 3 Damage cards, choose 1 to deal, and discard the others.",
     "Darth Vader":
     "During your 'Perform Action' step, you may perform 2 actions.",
-    '"Fel\'s Wrath"':
+    "'Fel's Wrath'":
     "When the number of Damage cards assigned to you equals or exceeds your hull value, you are not destroyed until the end of the Combat phase.",
     "Turr Phennir":
     "After you perform an attack, you may perform a free boost or barrel roll action.",
@@ -90,15 +90,15 @@ PILOT_translation.english = {
     "When an enemy ship inside your firing arc at Range 1-3 is defending, the attacker may change 1 of its <b class='hit'></b> results to a <b class='critical'></b> result.",
     "Corran Horn":
     "At the start of the End phase, you may perform one attack.  You cannot attack during the next round.",
-    '"Echo"':
+    "'Echo'":
     "When you decloak, you must use the (<code class='symbols'>7</code> 2) or (<code class='symbols'>9</code> 2) template instead of the (<code class='symbols'>5</code> 2) template.",
-    '"Whisper"':
+    "'Whisper'":
     "After you perform an attack that hits, you may assign 1 focus to your ship.",
     "Wes Janson":
     "After you perform an attack, you may remove 1 focus, evade, or blue target lock token from the defender.",
     "Jek Porkins":
     "When you receive a stress token, you may remove it and roll 1 attack die.  On a <b class='hit'></b> result, deal 1 facedown Damage card to this ship.",
-    '"Hobbie" Klivian':
+    "'Hobbie' Klivian":
     "When you acquire or spend a target lock, you may remove 1 stress token from your ship.",
     "Tarn Mison":
     "When an enemy ship declares you as the target of an attack, you may acquire a target lock on that ship.",
@@ -116,7 +116,7 @@ PILOT_translation.english = {
       "You cannot choose or execute (<code class='symbols'>5</code> 4), (<code class='symbols'>7</code> 2), or (<code class='symbols'>9</code> 2) maneuvers.",
     "Dash Rendar":
     "You may ignore obstacles during the Activation phase and when performing actions.",
-    '"Leebo"':
+    "'Leebo'":
     "When you are dealt a faceup Damage card, draw 1 additional Damage card, choose 1 to resolve, and discard the other.",
     "Eaden Vrill":
     "When performing a primary weapon attack against a stressed ship, roll 1 additional attack die.",
@@ -366,7 +366,7 @@ UPGRADE_translation.english = {
     "When you reveal a maneuver, you may rotate your dial to another maneuver with the same speed.<br>Treat that maneuver as a red maneuver.",
     "Dash Rendar":
     "Rebel only.<br>You may perform attacks while overlapping an obstacle.<br>Your attacks cannot be obstructed.",
-    '"Leebo"':
+    "'Leebo'":
     "Rebel only.<br><strong>Action:</strong> Perform a free boost action.  Then receive 1 ion token.",
     "Ruthlessness":
     "Imperial only.<br>After you perform an attack that hits, you <strong>must</strong> choose 1 other ship at Range 1 of the defender (other than yourself).  That ship suffers 1 damage.",
@@ -388,13 +388,13 @@ UPGRADE_translation.english = {
     "When you reveal your maneuver, you may discard this card to instead perform a white [0<code class='symbols'>5</code>] maneuver. Then receive 1 stress token.",
     "Flechette Cannon":
     "<strong>Attack:</strong> Attack 1 ship.<br>If this attack hits, the defender suffers 1 damage and, if the defender is not stressed, it also receives 1 stress token.  Then cancel <strong>all</strong> dice results.",
-    '"Mangler" Cannon':
+    "'Mangler' Cannon":
     "<strong>Attack:</strong> Attack 1 ship.<br>When attacking, you may change 1 of your <b class='hit'></b> results to a <b class='critical'></b> result.",
     "Dead Man's Switch":
     "When you are destroyed, each ship at Range 1 suffers 1 damage.",
     "Feedback Array":
     "During the Combat phase, instead of performing any attacks, you may receive 1 ion token and suffer 1 damage to choose 1 enemy ship at Range 1.  That ship suffers 1 damage.",
-    '"Hot Shot" Blaster':
+    "'Hot Shot' Blaster":
     "<strong>Attack:</strong> Discard this card to attack 1 ship (even a ship outside your firing arc).",
     "Greedo":
     "Scum only<br>The first time you attack each round and the first time you defend each round, the first Damage card dealt is dealt faceup.",
@@ -402,7 +402,7 @@ UPGRADE_translation.english = {
     "When you are dealt a Damage card with the <strong>Ship</strong> trait, you may immediately discard that card (before resolving its effect).<br>Then, discard this Upgrade card.",
     "Bomb Loadout":
     "<span class='card-restriction'>Y-Wing only.</span><br>Your upgrade bar gains the <code class='Bomb'></code> icon.",
-    '"Genius"':
+    "'Genius'":
     "If you are equipped with a bomb that can be dropped before you reveal your maneuver, you may drop the bomb <strong>after</strong> you execute your maneuver instead.",
     "Unhinged Astromech":
     "You may treat all 3-speed maneuvers as green maneuvers.",
@@ -487,11 +487,11 @@ TITLE_translation.english={
     "<span class='card-restriction'>VT-49 Decimator only.</span><br>After you execute a maneuver that causes you to overlap another ship, you may perform 1 free action.  Then receive 1 stress token.",
     "Virago":
     "<span class='card-restriction'>StarViper only.</span><br>Your upgrade bar gains the <b class='System'></b> and <code class='Illicit'></code> upgrade icons.<br>You cannot equip this card if your pilot skill value is '3' or lower.",
-    '"Heavy Scyk" Interceptor (Cannon)':
+    "'Heavy Scyk' Interceptor (Cannon)":
     "<span class='card-restriction'>M3-A Interceptor only.</span><br>Your upgrade bar gains the <b class='Cannon'></b>, <b class='Torpedo'></b>, or <b class='Missile'></b> upgrade icon.",
-    '"Heavy Scyk" Interceptor (Torpedo)':
+    "'Heavy Scyk' Interceptor (Torpedo)":
     "<span class='card-restriction'>M3-A Interceptor only.</span><br>Your upgrade bar gains the <b class='Cannon'></b>, <b class='Torpedo'></b>, or <b class='Missile'></b> upgrade icon.",
-    '"Heavy Scyk" Interceptor (Missile)':
+    "'Heavy Scyk' Interceptor (Missile)":
     "<span class='card-restriction'>M3-A Interceptor only.</span><br>Your upgrade bar gains the <b class='Cannon'></b>, <b class='Torpedo'></b>, or <b class='Missile'></b> upgrade icon.",
     "IG-2000":
     "<span class='card-restriction'>Aggressor only.</span><br>You have the pilot ability of each other friendly ship with the <em>IG-2000</em> Upgrade card (in addition to your own pilot ability).",
