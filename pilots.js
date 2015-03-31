@@ -1,105 +1,20 @@
 var REBEL="Rebel Alliance",EMPIRE="Galactic Empire",SCUM="Scum and Villainy";
 
-function Laser(u,type,fire) {
-    return new Weapon(u,{
-	type: type,
-	name:"Laser",
-	attack: fire,
-	range: [1,3],
-	isprimary: true
-    });
-}
-
-function Weapon(p,wdesc) {
-    $.extend(this,wdesc);
-    this.unit=p;
-    log("registering weapon "+this.name);
-}
-Weapon.prototype = {
-    isinrange: function(r) {
-	return (r>=this.range[0]&&r<=this.range[1]);
-    },
-    canfire: function(sh) {
-	return true;
-    },
-    getrerolldices: function(sh) {
-	if (this.unit.targeting==sh) return 10;
-	else return 0;
-    },
-    canfirewithtarget:function(sh) { 
-	if (this.hasfired) return false;
-	if (typeof this.unit.targeting=="undefined") return false; 
-	return (this.unit.targeting==sh);  
-    },
-    firewithtarget:function(sh) { 
-	this.unit.istargeting=false;
-	this.unit.target--;
-	sh.istargeted--;
-	sh.show();
-	this.unit.show();
-	this.hasfired=true;
-    },
-    getattackbonus: function(sh) {
-	if (this.isprimary) {
-	    var r=this.getrange(sh);
-	    if (r==1) return 1;
-	}
-	return 0;
-    },
-    fire: function(sh) { },
-    getdefensebonus: function(sh) {
-	if (this.isprimary) {
-	    var r=this.getrange(sh);
-	    if (r==3) return 1;
-	}
-	return 0;
-    },
-    getrange: function(sh) {
-	if (this.type=="Turret")  {
-	    var r=this.unit.getrange(sh);
-	    if (this.canfire(r)) return r;
-	    else return 0;
-	}
-	for (i=this.range[0]; i<=this.range[1]; i++) {
-	    if (this.unit.isinsector(this.unit.m,i,sh)) return i; 
-	}
-	if (this.type=="bilaser") {
-	    var m=this.unit.m.clone();
-	    m.add(MR(180,0,0));
-	    for (i=this.range[0]; i<=this.range[i]; i++) {
-		if (this.unit.isinsector(m,i,sh)) { return i; }
-	    }
-	}
-	return 0;
-    }
-};
-
 function Pilot(name) {
     var i;
     var id=PILOT_dict[name];
     for (i=0; i<PILOTS.length; i++) {
 	if (PILOTS[i].name==id) {
-	   var p=new Unit(PILOTS[i]);
+	    var p=new Unit(PILOTS[i]);
 	    p.id=name;
+	    if (!p.unique) { p.id=""+p.id+(globalid++); }
 	    if (p.init != undefined) p.init();
 	    return p;
 	}
     }
     console.log("Could not find pilot "+name);
 }
-function Upgrade(sh,name) {
-    var i;
-    for (i=0; i<UPGRADES.length; i++) {
-	if (UPGRADES[i].name==name) {
-	    var upg=$.extend({},UPGRADES[i]);
-	    sh.upgrades.push(upg);
-	    log("installed upgrade "+name+" ["+upg.type+"]");
-	    if (upg.init != undefined) upg.init(sh);
-	    return;
-	}
-    }
-    console.log("Could not find upgrade "+name);
-}
+
 
 var PILOTS = [
     {
@@ -181,8 +96,23 @@ var PILOTS = [
     },
     {
         name: "Biggs Darklighter",
-        
-        
+        init: function() {
+	    var ghr=Unit.prototype.gethitrangeallunits;
+	    Unit.prototype.gethitrangeallunits=function() {
+		var r=ghr.call(this);
+		var newr=[[],[],[],[],[]];
+		for (i=1; i<r.length; i++) {
+		    for (j=0; j<r[i].length; j++) {
+			if (squadron[r[i][j].unit].name=="Biggs Darklighter") {
+			    log("[Biggs Darklighter] is the target");
+			    newr[i][0]=r[i][j]; // return only Biggs...
+			    return newr;
+			}
+		    }
+		}
+		return r;
+	    }
+	},
         unique: true,
         ship: "X-Wing",
 	faction:"REBEL",
@@ -343,7 +273,7 @@ var PILOTS = [
 		r.call(this,difficulty);
 		if (difficulty=="GREEN") {
 		    log("["+this.name+"] green maneuver -> free focus action");
-		    this.focus++;
+		    this.addfocus();
 		}
 	    }.bind(this);
 	},
@@ -438,8 +368,8 @@ var PILOTS = [
     {
         name: "Maarek Stele",
         unique: true,
-         faction:"EMPIRE",
-       ship: "TIE Advanced",
+        faction:"EMPIRE",
+	ship: "TIE Advanced",
         skill: 7,
         points: 27,
         upgrades: [
@@ -1272,9 +1202,15 @@ var PILOTS = [
     },
     {
         name: "'Whisper'",
-        
         faction:"EMPIRE",
-        
+	resolvedamage:function() {
+	    var ch=targetunit.ishitbyattack(this);
+	    Unit.prototype.resolvedamage.call(this);
+	    if (ch.c+ch.h>0) {
+		log("["+this.name+"] +1 focus token when hitting "+targetunit.name);
+		this.focus++;
+	    }
+	},
         unique: true,
         ship: "TIE Phantom",
         skill: 7,
@@ -1287,9 +1223,14 @@ var PILOTS = [
     },
     {
         name: "Wes Janson",
-        
+	cleancombat:function() {
+	    log("["+this.name+"] removing token from "+targetunit.name);
+	    if (targetunit.target>0) targetunit.target--;
+	    else if (targetunit.focus>0) targetunit.focus--;
+	    else if (targetunit.evade>0) targetunit.evade--;
+	    Unit.prototype.cleancombat.call(this);
+	},
 	faction:"REBEL",
-        
         unique: true,
         ship: "X-Wing",
         skill: 8,
@@ -1302,9 +1243,14 @@ var PILOTS = [
     },
     {
         name: "Jek Porkins",
+	addstress:function() {
+	    // Automatic removal of stress
+	    var r=Math.floor(Math.random()*7);
+	    var roll=FACE[ATTACKDICE[r]];
+	    log("["+this.name+"] remove 1 stress token, roll 1 attack dice")
+	    if (roll=="hit") { this.resolvehit(1); this.checkdead(); }
+	},
 	faction:"REBEL",
-        
-        
         unique: true,
         ship: "X-Wing",
         skill: 7,
@@ -1318,8 +1264,19 @@ var PILOTS = [
     {
         name: "'Hobbie' Klivian",
 	faction:"REBEL",
-        
-        
+        usetarget: function() {
+	    if (this.stress) { 	    
+		log("["+this.name+"] using target -> removes a stress token");
+		this.stress--;
+	    }
+	},
+        resolvetarget: function(k) {
+	    if (this.stress) { 
+		this.stress--;
+		log("["+this.name+"] targeting -> removes a stress token");
+	    }
+	    return Unit.prototype.resolvetarget.call(this,k);
+	},
         unique: true,
         ship: "X-Wing",
         skill: 5,
@@ -1331,7 +1288,14 @@ var PILOTS = [
     },
     {
         name: "Tarn Mison",
-        
+        ishitbyattack: function(a) {
+	    if (this.target==0||this.skill<a.skill) { // Priority to define
+		log("["+this.name+"] free target token on "+a.name);
+		this.target=1;
+		this.targeting=a;
+		this.show();
+	    }
+	},
 	faction:"REBEL",
         
         unique: true,
@@ -1469,8 +1433,8 @@ var PILOTS = [
     {
         name: "Patrol Leader",
         
-         faction:"EMPIRE",
-       
+        faction:"EMPIRE",
+	
         ship: "VT-49 Decimator",
         skill: 3,
         points: 40,
@@ -1552,8 +1516,8 @@ var PILOTS = [
     },
     {
         name: "Guri",
-         faction:"SCUM",
-       
+        faction:"SCUM",
+	
         
         unique: true,
         ship: "StarViper",
@@ -1970,1122 +1934,4 @@ var PILOTS = [
             "Missile",
         ],
     }
-];
-
-var UPGRADES= [
-    {
-        name: "Ion Cannon Turret",
-        init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
-        type: "Turret",
-        points: 5,
-        attack: 3,
-        range: [1,2],
-    },
-    {
-        name: "Proton Torpedoes",
-        init: function(sh) {sh.weapons.push(new Weapon(sh,this)); },
-	canfire: function(sh) {return this.canfirewithtarget(sh)},
-	fire: function(sh) {return this.firewithtarget(sh)},
-	getrerolldices: function(sh) { return 0; },
-        type: "Torpedo",
-	hasfired:false,
-        points: 4,
-        attack: 4,
-        range: [2,3],
-    },
-    {
-        name: "R2 Astromech",
-        
-        type: "Astromech",
-        points: 1,
-    },
-    {
-        name: "R2-D2",
-        aka: [ "R2-D2 (Crew)" ],
-        
-        
-        unique: true,
-        type: "Astromech",
-        points: 4,
-    },
-    {
-        name: "R2-F2",
-        
-        unique: true,
-        type: "Astromech",
-        points: 3,
-    },
-    {
-        name: "R5-D8",
-        
-        unique: true,
-        type: "Astromech",
-        points: 3,
-    },
-    {
-        name: "R5-K6",
-        
-        unique: true,
-        type: "Astromech",
-        points: 2,
-    },
-    {
-        name: "R5 Astromech",
-        
-        type: "Astromech",
-        points: 1,
-    },
-    {
-        name: "Determination",
-        
-        type: "Elite",
-        points: 1,
-    },
-    {
-        name: "Swarm Tactics",
-        
-        type: "Elite",
-        points: 2,
-    },
-    {
-        name: "Squad Leader",
-        
-        unique: true,
-        type: "Elite",
-        points: 2,
-    },
-    {
-        name: "Expert Handling",
-        
-        type: "Elite",
-        points: 2,
-    },
-    {
-        name: "Marksmanship",
-        
-        type: "Elite",
-        points: 3,
-    },
-    {
-        name: "Concussion Missiles",
-               init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
- 
-        type: "Missile",
-        points: 4,
-        attack: 4,
-        range: [2,3],
-    },
-    {
-        name: "Cluster Missiles",
-               init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
- 
-        type: "Missile",
-        points: 4,
-        attack: 3,
-        range: [1,2],
-    },
-    {
-        name: "Daredevil",
-        
-        type: "Elite",
-        points: 3,
-    },
-    {
-        name: "Elusiveness",
-        
-        type: "Elite",
-        points: 2,
-    },
-    {
-        name: "Homing Missiles",
-               init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
- 
-        type: "Missile",
-        attack: 4,
-        range: [2,3],
-        points: 5,
-    },
-    {
-        name: "Push the Limit",
-        
-        type: "Elite",
-        points: 3,
-    },
-    {
-        name: "Deadeye",
-        
-        type: "Elite",
-        points: 1,
-    },
-    {
-        name: "Expose",
-        
-        type: "Elite",
-        points: 4,
-    },
-    {
-        name: "Gunner",
-        
-        type: "Crew",
-        points: 5,
-    },
-    {
-        name: "Ion Cannon",
-        init:function(sh) { sh.weapons.push(new Weapon(sh,this)); },
-        type: "Cannon",
-        points: 3,
-        attack: 3,
-        range: [1,3],
-    },
-    {
-        name: "Heavy Laser Cannon",
-        init:function(sh) { sh.weapons.push(new Weapon(sh,this)); },
-        type: "Cannon",
-        points: 7,
-        attack: 4,
-        range: [2,3],
-    },
-    {
-        name: "Seismic Charges",
-        
-        type: "Bomb",
-        points: 2,
-    },
-    {
-        name: "Mercenary Copilot",
-        
-        type: "Crew",
-        points: 2,
-    },
-    {
-        name: "Assault Missiles",
-               init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
- 
-        type: "Missile",
-        points: 5,
-        attack: 4,
-        range: [2,3],
-    },
-    {
-        name: "Veteran Instincts",
-        
-        type: "Elite",
-        points: 1,
-    },
-    {
-        name: "Proximity Mines",
-        
-        type: "Bomb",
-        points: 3,
-    },
-    {
-        name: "Weapons Engineer",
-        
-        type: "Crew",
-        points: 3,
-    },
-    {
-        name: "Draw Their Fire",
-        
-        type: "Elite",
-        points: 1,
-    },
-    {
-        name: "Luke Skywalker",
-        
-        unique: true,
-        
-        type: "Crew",
-        points: 7,
-    },
-    {
-        name: "Nien Nunb",
-        
-        unique: true,
-        
-        type: "Crew",
-        points: 1,
-
-    },
-    {
-        name: "Chewbacca",
-        
-        unique: true,
-        
-        type: "Crew",
-        points: 4,
-    },
-    {
-        name: "Advanced Proton Torpedoes",
-        init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
-        type: "Torpedo",
-        attack: 5,
-        range: [1,1],
-        points: 6,
-    },
-    {
-        name: "Autoblaster",
-        init:function(sh) { sh.weapons.push(new Weapon(sh,this)); },
-        type: "Cannon",
-        attack: 3,
-        range: [1,1],
-        points: 5,
-    },
-    {
-        name: "Fire-Control System",
-        
-        type: "System",
-        points: 2,
-    },
-    {
-        name: "Blaster Turret",
-        init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
-        type: "Turret",
-        points: 4,
-        attack: 3,
-        range: [1,2],
-    },
-    {
-        name: "Recon Specialist",
-        
-        type: "Crew",
-        points: 3,
-    },
-    {
-        name: "Saboteur",
-        
-        type: "Crew",
-        points: 2,
-    },
-    {
-        name: "Intelligence Agent",
-        
-        type: "Crew",
-        points: 1,
-    },
-    {
-        name: "Proton Bombs",
-        
-        type: "Bomb",
-        points: 5,
-    },
-    {
-        name: "Adrenaline Rush",
-        
-        type: "Elite",
-        points: 1,
-    },
-    {
-        name: "Advanced Sensors",
-        
-        type: "System",
-        points: 3,
-    },
-    {
-        name: "Sensor Jammer",
-        
-        type: "System",
-        points: 4,
-    },
-    {
-        name: "Darth Vader",
-        
-        unique: true,
-        
-        type: "Crew",
-        points: 3,
-    },
-    {
-        name: "Rebel Captive",
-        
-        unique: true,
-        
-        type: "Crew",
-        points: 3,
-    },
-    {
-        name: "Flight Instructor",
-        
-        type: "Crew",
-        points: 4,
-    },
-    {
-        name: "Navigator",
-        
-        type: "Crew",
-        points: 3,
-    },
-    {
-        name: "Opportunist",
-        
-        type: "Elite",
-        points: 4,
-    },
-    {
-        name: "Comms Booster",
-        
-        type: "Cargo",
-        points: 4,
-    },
-    {
-        name: "Slicer Tools",
-        
-        type: "Cargo",
-        points: 7,
-    },
-    {
-        name: "Shield Projector",
-        
-        type: "Cargo",
-        points: 4,
-    },
-    {
-        name: "Ion Pulse Missiles",
-               init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
- 
-        type: "Missile",
-        points: 3,
-        attack: 3,
-        range: [2,3],
-    },
-    {
-        name: "Wingman",
-        
-        type: "Elite",
-        points: 2,
-    },
-    {
-        name: "Decoy",
-        
-        type: "Elite",
-        points: 2,
-    },
-    {
-        name: "Outmaneuver",
-        
-        type: "Elite",
-        points: 3,
-    },
-    {
-        name: "Predator",
-        
-        type: "Elite",
-        points: 3,
-    },
-    {
-        name: "Flechette Torpedoes",
-               init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
- 
-        type: "Torpedo",
-        points: 2,
-        attack: 3,
-        range: [2,3],
-    },
-    {
-        name: "R7 Astromech",
-        
-        type: "Astromech",
-        points: 2,
-    },
-    {
-        name: "R7-T1",
-        
-        unique: true,
-        type: "Astromech",
-        points: 3,
-    },
-    {
-        name: "Tactician",
-        
-        type: "Crew",
-        points: 2,
-    },
-    {
-        name: "R2-D2 (Crew)",
-        aka: [ "R2-D2" ],
-        
-        
-        unique: true,
-        type: "Crew",
-        points: 4,
-        
-    },
-    {
-        name: "C-3PO",
-        unique: true,
-        
-        type: "Crew",
-        points: 3,
-        
-    },
-    {
-        name: "Tibanna Gas Supplies",
-        
-        type: "Cargo",
-        points: 4,
-        limited: true,
-    },
-    {
-        name: "Ionization Reactor",
-        
-        type: "Cargo",
-        points: 4,
-        energy: 5,
-        limited: true,
-    },
-    {
-        name: "Engine Booster",
-        
-        type: "Cargo",
-        points: 3,
-        limited: true,
-    },
-    {
-        name: "R3-A2",
-        
-        unique: true,
-        type: "Astromech",
-        points: 2,
-    },
-    {
-        name: "R2-D6",
-        
-        unique: true,
-        type: "Astromech",
-        points: 1,
-    },
-    {
-        name: "Enhanced Scopes",
-        
-        type: "System",
-        points: 1,
-    },
-    {
-        name: "Chardaan Refit",
-        
-        type: "Missile",
-        points: -2,
-        ship: "A-Wing",
-    },
-    {
-        name: "Proton Rockets",
-               init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
- 
-        type: "Missile",
-        points: 3,
-        attack: 2,
-        range: [1,1],
-    },
-    {
-        name: "Kyle Katarn",
-        
-        unique: true,
-        type: "Crew",
-        points: 3,
-        
-    },
-    {
-        name: "Jan Ors",
-        
-        unique: true,
-        type: "Crew",
-        points: 2,
-        
-    },
-    {
-        name: "Toryn Farr",
-        
-        unique: true,
-        type: "Crew",
-        points: 6,
-    },
-    {
-        name: "R4-D6",
-        
-        unique: true,
-        type: "Astromech",
-        points: 1,
-    },
-    {
-        name: "R5-P9",
-        
-        unique: true,
-        type: "Astromech",
-        points: 3,
-    },
-    {
-        name: "WED-15 Repair Droid",
-        
-        type: "Crew",
-        points: 2,
-    },
-    {
-        name: "Carlist Rieekan",
-        
-        unique: true,
-        type: "Crew",
-        points: 3,
-        
-    },
-    {
-        name: "Jan Dodonna",
-        
-        unique: true,
-        type: "Crew",
-        points: 6,
-        
-    },
-    {
-        name: "Expanded Cargo Hold",
-        
-        type: "Cargo",
-        points: 1,
-        ship: "GR-75 Medium Transport",
-    },
-    {
-        name: "Backup Shield Generator",
-        
-        type: "Cargo",
-        limited: true,
-        points: 3,
-    },
-    {
-        name: "EM Emitter",
-        
-        type: "Cargo",
-        limited: true,
-        points: 3,
-    },
-    {
-        name: "Frequency Jammer",
-        
-        type: "Cargo",
-        limited: true,
-        points: 4,
-    },
-    {
-        name: "Han Solo",
-        
-        type: "Crew",
-        unique: true,
-        
-        points: 2,
-    },
-    {
-        name: "Leia Organa",
-        
-        type: "Crew",
-        unique: true,
-        
-        points: 4,
-    },
-    {
-        name: "Targeting Coordinator",
-        
-        type: "Crew",
-        limited: true,
-        points: 4,
-    },
-    {
-        name: "Raymus Antilles",
-        
-        type: "Crew",
-        unique: true,
-        
-        points: 6,
-    },
-    {
-        name: "Gunnery Team",
-        
-        type: "Team",
-        limited: true,
-        points: 4,
-    },
-    {
-        name: "Sensor Team",
-        
-        type: "Team",
-        points: 4,
-    },
-    {
-        name: "Engineering Team",
-        
-        type: "Team",
-        limited: true,
-        points: 4,
-    },
-    {
-        name: "Lando Calrissian",
-        
-        type: "Crew",
-        unique: true,
-        
-        points: 3,
-    },
-    {
-        name: "Mara Jade",
-        
-        type: "Crew",
-        unique: true,
-        
-        points: 3,
-    },
-    {
-        name: "Fleet Officer",
-        
-        type: "Crew",
-        
-        points: 3,
-    },
-    {
-        name: "Stay On Target",
-        
-        type: "Elite",
-        points: 2,
-    },
-    {
-        name: "Dash Rendar",
-        
-        unique: true,
-        type: "Crew",
-        points: 2,
-        
-    },
-    {
-        name: "Lone Wolf",
-        
-        unique: true,
-        type: "Elite",
-        points: 2,
-    },
-    {
-        name: "'Leebo'",
-        
-        unique: true,
-        type: "Crew",
-        points: 2,
-        
-    },
-    {
-        name: "Ruthlessness",
-        
-        type: "Elite",
-        points: 3,
-        
-    },
-    {
-        name: "Intimidation",
-        
-        type: "Elite",
-        points: 2,
-    },
-    {
-        name: "Ysanne Isard",
-        
-        unique: true,
-        type: "Crew",
-        points: 4,
-        
-    },
-    {
-        name: "Moff Jerjerrod",
-        
-        unique: true,
-        type: "Crew",
-        points: 2,
-        
-    },
-    {
-        name: "Ion Torpedoes",
-               init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
- 
-        type: "Torpedo",
-        points: 5,
-        attack: 4,
-        range: [2,3],
-    },
-    {
-        name: "Bodyguard",
-        
-        unique: true,
-        type: "Elite",
-        points: 2,
-        
-    },
-    {
-        name: "Calculation",
-        
-        type: "Elite",
-        points: 1,
-    },
-    {
-        name: "Accuracy Corrector",
-        
-        type: "System",
-        points: 3,
-    },
-    {
-        name: "Inertial Dampeners",
-        
-        type: "Illicit",
-        points: 1,
-    },
-    {
-        name: "Flechette Cannon",
-        init:function(sh) { sh.weapons.push(new Weapon(sh,this)); },
-        type: "Cannon",
-        points: 2,
-        attack: 3,
-        range: [1,3],
-    },
-    {
-        name: "'Mangler' Cannon",
-        init:function(sh) { sh.weapons.push(new Weapon(sh,this)); },
-        type: "Cannon",
-        points: 4,
-        attack: 3,
-        range: [1,3],
-    },
-    {
-        name: "Dead Man's Switch",
-        
-        type: "Illicit",
-        points: 2,
-    },
-    {
-        name: "Feedback Array",
-        
-        type: "Illicit",
-        points: 2,
-    },
-    {
-        name: "'Hot Shot' Blaster",
-        
-        type: "Illicit",
-        points: 3,
-        attack: 3,
-        range: [1,2],
-    },
-    {
-        name: "Greedo",
-        
-        unique: true,
-        type: "Crew",
-        
-        points: 1,
-    },
-    {
-        name: "Salvaged Astromech",
-        
-        type: "Salvaged Astromech",
-        points: 2,
-    },
-    {
-        name: "Bomb Loadout",
-        
-        limited: true,
-        type: "Torpedo",
-        points: 0,
-        ship: "Y-Wing",
-    },
-    {
-        name: "'Genius'",
-        
-        unique: true,
-        type: "Salvaged Astromech",
-        points: 0,
-    },
-    {
-        name: "Unhinged Astromech",
-        
-        type: "Salvaged Astromech",
-        points: 1,
-    },
-    {
-        name: "R4-B11",
-        
-        unique: true,
-        type: "Salvaged Astromech",
-        points: 3,
-    },
-    {
-        name: "Autoblaster Turret",
-        init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
-        type: "Turret",
-        points: 2,
-        attack: 2,
-        range: [1,1],
-    },
-    {
-        name: "R4 Agromech",
-        
-        type: "Salvaged Astromech",
-        points: 2,
-    },
-    {
-        name: "K4 Security Droid",
-        
-        type: "Crew",
-        
-        points: 3,
-    },
-    {
-        name: "Outlaw Tech",
-        
-        limited: true,
-        type: "Crew",
-        
-        points: 2,
-    },
-    {
-        name: "Advanced Targeting Computer",
-        
-        
-        type: "System",
-        points: 5,
-        ship: "TIE Advanced",
-    },
-];
-
-var MODS=[
-    {
-        name: "Stealth Device",
-        
-        points: 3,
-    },
-    {
-        name: "Shield Upgrade",
-        
-        points: 4,
-    },
-    {
-        name: "Engine Upgrade",
-        
-        points: 4,
-    },
-    {
-        name: "Anti-Pursuit Lasers",
-        
-        points: 2,
-    },
-    {
-        name: "Targeting Computer",
-        
-        points: 2,
-    },
-    {
-        name: "Hull Upgrade",
-        
-        points: 3,
-    },
-    {
-        name: "Munitions Failsafe",
-        
-        points: 1,
-    },
-    {
-        name: "Stygium Particle Accelerator",
-        
-        points: 2,
-    },
-    {
-        name: "Advanced Cloaking Device",
-        
-        points: 4,
-        ship: "TIE Phantom",
-    },
-    {
-        name: "Combat Retrofit",
-        
-        points: 10,
-        ship: "GR-75 Medium Transport",
-        huge: true,
-    },
-    {
-        name: "B-Wing/E2",
-        
-        points: 1,
-        ship: "B-Wing",
-
-    },
-    {
-        name: "Countermeasures",
-        
-        points: 3,
-    },
-    {
-        name: "Experimental Interface",
-        
-        unique: true,
-        points: 3,
-    },
-    {
-        name: "Tactical Jammer",
-        
-        points: 1,
-    },
-    {
-        name: "Autothrusters",
-        
-        points: 2,
-    },
-    ,
-];
-
-var TITLES= [
-    {
-        name: "Slave I",
-        
-        unique: true,
-        points: 0,
-        ship: "Firespray-31",
-    },
-    {
-        name: "Millennium Falcon",
-        
-        unique: true,
-        points: 1,
-        ship: "YT-1300",
-        actions: "Evade",
-    },
-    {
-        name: "Moldy Crow",
-        
-        unique: true,
-        points: 3,
-        ship: "HWK-290",
-    },
-    {
-        name: "ST-321",
-        
-        unique: true,
-        points: 3,
-        ship: "Lambda-Class Shuttle",
-    },
-    {
-        name: "Royal Guard TIE",
-        
-        points: 0,
-        ship: "TIE Interceptor",
-    },
-    {
-        name: "Dodonna's Pride",
-        
-        unique: true,
-        points: 4,
-        ship: "CR90 Corvette (Fore)",
-    },
-    {
-        name: "A-Wing Test Pilot",
-        
-        points: 0,
-        ship: "A-Wing",
-        special_case: "A-Wing Test Pilot",
-    },
-    {
-        name: "Tantive IV",
-        
-        unique: true,
-        points: 4,
-        ship: "CR90 Corvette (Fore)",
-    },
-    {
-        name: "Bright Hope",
-        
-        energy: "+2",
-        unique: true,
-        points: 5,
-        ship: "GR-75 Medium Transport",
-    },
-    {
-        name: "Quantum Storm",
-        
-        energy: "+1",
-        unique: true,
-        points: 4,
-        ship: "GR-75 Medium Transport",
-    },
-    {
-        name: "Dutyfree",
-        
-        energy: "+0",
-        unique: true,
-        points: 2,
-        ship: "GR-75 Medium Transport",
-    },
-    {
-        name: "Jaina's Light",
-        
-        unique: true,
-        points: 2,
-        ship: "CR90 Corvette (Fore)",
-    },
-    {
-        name: "Outrider",
-        
-        unique: true,
-        points: 5,
-        ship: "YT-2400",
-    },
-    {
-        name: "Dauntless",
-        
-        unique: true,
-        points: 2,
-        ship: "VT-49 Decimator",
-    },
-    {
-        name: "Virago",
-        
-        unique: true,
-        points: 1,
-        ship: "StarViper",
-    },
-    {
-        name: "'Heavy Scyk' Interceptor (Cannon)",
-        
-        
-        points: 2,
-        ship: "M3-A Interceptor",
-
-    },
-    {
-        name: "'Heavy Scyk' Interceptor (Torpedo)",
-        
-        
-        points: 2,
-        ship: "M3-A Interceptor",
-    },
-    {
-        name: "'Heavy Scyk' Interceptor (Missile)",
-        
-        
-        points: 2,
-        ship: "M3-A Interceptor",
-    },
-    {
-        name: 'IG-2000',
-        
-        points: 0,
-        ship: "Aggressor",
-    },
-    {
-        name: "BTL-A4 Y-Wing",
-        
-        points: 0,
-        ship: "Y-Wing",
-    },
-    {
-        name: "Andrasta",
-        
-        unique: true,
-        points: 0,
-        ship: "Firespray-31",
-    },
-    {
-        name: 'TIE/x1',
-        
-        points: 0,
-        ship: "TIE Advanced",
-    },
 ];

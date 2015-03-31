@@ -31,7 +31,7 @@ article {
     background-size: 100% 100%;
 }
 article,body,#leftpanel,#rightpanel {
-    background:rgba(255,255,255,0.7);
+    background:white;
 }
 body {
     width: 100%;
@@ -117,7 +117,7 @@ nav a {
 #import > div, #modal > div,#credit > div {
     width: 800px;
 }
-#proba > div, #combatmodal > div {
+#proba > div,#combatmodal > div {
     width: 400px;
 }
 #credit > div {
@@ -220,22 +220,19 @@ td, th,table {
     font-weight:normal;
 }
 .team .name {
-    background: lightgrey;
+    background: lightsteelblue;
     color: black;
 }
 .statskill {
     color: #FA0;
 }
-.statfire {
-    color: #A00;
-}
 .statevade {
     color: #0A0;
 }
-.stathull,.hull {
+.stathull,.hull,.chull {
     color: #EE0;
 }
-.statshield,.shield {
+.statshield,.shield,.cshield {
     color: #0AF;
 }
 .hull,.shield {
@@ -330,11 +327,11 @@ td, th,table {
     color: white;
 }
 .team .selected {
-    background: orange;
+    background: tomato;
     color: white;
 }
 .team .selected .name {
-    background: darkorange;
+    background: firebrick;
     color: white;
 }
 .phasepanel .symbols:hover, .phasepanel .selected {
@@ -348,6 +345,9 @@ td, th,table {
 }
 .table .vertical, .tohit .details, .team .horizontal {
     display: none;
+}
+.details {
+    font-size: smaller;
 }
  .table > div, .team > div  {
     display: table-row;
@@ -365,7 +365,7 @@ td, th,table {
     border:1px;
     border-style:solid;
 }
-.dead, .dead .name {
+.dead, .dead .name,.dead .name .selected,.dead .REBEL,.dead .statfire, .dead .statevade,.dead .upgrades,.dead .EMPIRE,.dead .SCUM,.dead .statskill {
     background: black;
     color: gray;
 }
@@ -378,7 +378,7 @@ td, th,table {
     border:0px 0px 5px 0px;
     border:solid;
     color:black;
-    background: darkbrown;
+    background: white;
 }
 .smallbutton,.bigbutton,.button,.largebutton {
     display: inline-block;
@@ -414,9 +414,13 @@ td, th,table {
 .WHITE {
     color:white;
 }
-.Elite,.Title,.Mod,.Torpedo,.Astromech,.Turret,.Missile,.Crew,.Cannon,.Bomb,.System,.Illicit,.Salvaged {
+.upgrades {
     color: #ffd700;
 }
+.upgrades .inactive {
+    color: #ddd;
+}
+
 .Laser,.Turretlaser {
     color: #F33;
 }
@@ -468,12 +472,18 @@ td, th,table {
 .Mod::after {
     content:"m";
 }
-.hit, .critical {
+.chull::after {
+    content:"&";
+}
+.cshield::after {
+    content:"*";
+}
+.hit, .critical,.cshield,.chull {
     font-family: 'symbols';
     text-align: center;
     width: 14px;
     line-height: 14px;
-    display: inline-block;
+    display: inline;
 }
 .evadetoken,.focustoken,.cloaktoken,.stresstoken,.targettoken {
     font-family: 'symbols';
@@ -716,8 +726,8 @@ label {
     font-family: 'symbols';
     margin: 2px;
 }
-.REBEL {
-    color: #A00;
+.REBEL,.statfire {
+    color: #F33;
 }
 .EMPIRE {
     color: #000;

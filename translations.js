@@ -419,11 +419,7 @@ UPGRADE_translation.english = {
     "Advanced Targeting Computer":
     "<span class='card-restriction'>TIE Advanced only.</span><br>When attacking with your primary weapon, if you have a target lock on the defender, you may add 1 <b class='critical'></b> result to your roll.  If you do, you cannot spend target locks during this attack.",
     "Ion Cannon Battery":
-    "<strong>Attack (energy):</strong> Spend 2 energy from this card to perform this attack.  If this attack hits, the defender suffers 1 critical damage and receives 1 ion token.  Then cancel <strong>all</strong> dice results."
-}
-
-var MOD_translation={}
-MOD_translation.english = {
+    "<strong>Attack (energy):</strong> Spend 2 energy from this card to perform this attack.  If this attack hits, the defender suffers 1 critical damage and receives 1 ion token.  Then cancel <strong>all</strong> dice results.",
     "Stealth Device":
     "Increase your agility value by 1.  If you are hit by an attack, discard this card.",
     "Shield Upgrade":
@@ -453,10 +449,7 @@ MOD_translation.english = {
     "Tactical Jammer":
     "Large ship only.<br>Your ship can obstruct enemy attacks.",
     "Autothrusters":
-    "When defending, if you are beyond Range 2 or outside the attacker's firing arc, you may change 1 of your blank results to a <b class='xevadetoken'></b> result. You can equip this card only if you have the <code class='symbols'>b</code> action icon."}
-
-var TITLE_translation={};
-TITLE_translation.english={
+    "When defending, if you are beyond Range 2 or outside the attacker's firing arc, you may change 1 of your blank results to a <b class='xevadetoken'></b> result. You can equip this card only if you have the <code class='symbols'>b</code> action icon.",
     "Slave I":
     "<span class='card-restriction'>Firespray-31 only.</span><br>Your upgrade bar gains the <b class='Torpedo'></b> upgrade icon.",
     "Millennium Falcon":
