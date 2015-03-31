@@ -9,6 +9,7 @@
     <title>X-Wings Squadron Benchmark</title>
     <script src="units.js"></script>
     <script src="pilots.js"></script>
+    <script src="upgrades.js"></script>
     <script src="xwings.js"></script>
     <script src="translations.js"></script>
     <script src="xws.js"></script>
@@ -93,13 +94,9 @@
 	<div>
 	  <h2>Combat</h2>
 	  <div class="table">
-	    <div id="attacker"></div>
-	    <div id="defender"></div>
+	    <div><div id="attacker"></div><div id="atokens"></div><div id="attack"></div></div>
+	    <div><div id="defender"></div><div id="dtokens"></div><div id="defense"></div></div>
 	  </div>
-	  <br/>
-	  <h2>Result</h2>
-	  <div id="attack" style="display:block"></div>
-	  <div id="defense" style="display:block"></div>
 	  <button title="key: <enter>" onclick="resolvedamage();" class="bigbutton">Ok</button>
 	</div>
       </section>

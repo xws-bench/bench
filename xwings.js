@@ -180,8 +180,6 @@ function hitrangetostr(r) {
 function resolvecombat(k,w) {
     targetunit=squadron[k];
     activeunit.weapons[w].fire(targetunit);
-    $('#attacker').html(""+activeunit); 
-    $('#defender').html(""+targetunit);
     activeunit.resolvefire(w);
 }
 function inhitrange() {
@@ -210,7 +208,6 @@ function allunitlist() {
 function usecloak() {
     if ((phase==ACTIVATION_PHASE)&&(activeunit.stress==0)&&!activeunit.hasmoved) {
 	activeunit.resolveuncloak();
-	activeunit.show();
     }
 }
 function usefocus(i) {
@@ -223,11 +220,13 @@ function usefocus(i) {
 	    for (i=0; i<l; i++) { 	
 		$("#attack").append("<b class='hitreddice'></b>");
 	    }
+	    $("#atokens").html(activeunit.getusabletokens(i));
 	} else {
 	    targetunit.resolvefocus();
 	    targetunit.show();
 	    var l=$(".focusgreendice").length;
 	    $(".focusgreendice").remove();
+	    $("#dtokens").html(targetunit.getusabletokens(i));
 	    for (i=0; i<l; i++) { 	
 		$("#defense").append("<b class='evadegreendice'></b>");
 	    }
@@ -239,10 +238,10 @@ function usetarget(i) {
 	if (targetunit==activeunit.targeting) {
 	    var l=$(".blankreddice").length;
 	    $(".blankreddice").remove();
-	    activeunit.target--;
-	    activeunit.show();
+	    activeunit.usetarget();
 	    targetunit.istargeted--;
 	    targetunit.show();
+	    $("#atokens .targettoken").remove();
 	    if(activeunit.focus==0) {
 		l+=$(".focusreddice").length;
 		$(".focusreddice").remove();
@@ -255,6 +254,7 @@ function useevade(i) {
     if (phase==COMBAT_PHASE&&activeunit.hasfired&&squadron[i]==targetunit) {
 	targetunit.evade--;
 	targetunit.show();
+	$("#dtokens .evadetoken").remove();
 	$("#defense").append("<b class='evadegreendice'></b>");
     }
 }
@@ -325,11 +325,19 @@ function nextaction() {
 }
 
 function showfire(ar,dr) {
-    var i;
+    var i,j;
+    $("#attack").empty();
+    $("#defense").empty();
     for (i=0; i<DICES.length; i++) $("."+DICES[i]+"dice").remove();
+    $("#attacker").html(activeunit.name);
+    for (i=0; i<squadron.length; i++) if (squadron[i]==activeunit) break;
+    $("#atokens").html(activeunit.getusabletokens(i));
     for (i=0; i<ar.length; i++) {
 	$("#attack").append("<b class='"+ar[i]+"reddice'></b>");
     }
+    $("#defender").html(targetunit.name);
+    for (j=0; j<squadron.length; j++) if (squadron[j]==targetunit) break;
+    $("#dtokens").html(targetunit.getusabletokens(j));
     for (i=0; i<dr.length; i++) {
 	$("#defense").append("<b class='"+dr[i]+"greendice'></b>");
     }
@@ -438,7 +446,7 @@ function maneuvercomplete() {
     activeunit.showaction();
 }
 function firecomplete(e) {
-    $("#primary").css({display:"none"});
+    $("#primary").hide();
     showfire(e.detail.ar,e.detail.dr); 
 }
 document.addEventListener("actioncomplete", actioncomplete, false);
@@ -486,18 +494,14 @@ function nextphase() {
 	$("#panel_3").hide();
 	$("#listunits").html("");
 	// Clean up phase
-	for (i=0; i<squadron.length; i++) {
-	    squadron[i].focus=squadron[i].evade=0;
-	    squadron[i].hasfired=false;
-	    squadron[i].showinfo();
-	}
+	for (i=0; i<squadron.length; i++) squadron[i].cleanupcombat();
 	round++;
 	break;
     }
     waitingforaction=false;
     phase=(phase==COMBAT_PHASE)?PLANNING_PHASE:phase+1;
  
-    $("#phase").html(phasetext[phase]);
+    $("#phase").html("Turn #"+round+" "+phasetext[phase]);
     for (i=0; i<squadron.length; i++) {squadron[i].unselect();}
     // Init new phase
     for (i=SETUP_PHASE; i<=COMBAT_PHASE; i++) {
@@ -537,6 +541,7 @@ function nextphase() {
 	log("<div>[turn "+round+"] Combat phase</div>");
 	$("#panel_3").show();
 	skillturn=12;
+	for (i=0; i<squadron.length; i++) squadron[i].preparecombat();
 	nextcombat();
 	break;
     }
@@ -558,7 +563,7 @@ function select(name) {
     u.unselect();
 }
 function importonesquadron(s,team) {
-    var upg_type=["turret","torpedo","mod","title","elite","astromech","missile","crew","cannon","bomb","system","illicit","salvaged"];
+    var upg_type=["ept","turret","torpedo","mod","title","astromech","missile","crew","cannon","bomb","system","illicit","salvaged"];
     var i,j,k;
     var sq=[];
     for (i=0; i<s.pilots.length; i++) {
@@ -634,7 +639,7 @@ jwerty.key("c", center);
 /* By-passes */
 jwerty.key("1", function() { activeunit.focus++;activeunit.show();});
 jwerty.key("2", function() { activeunit.evade++;activeunit.show();});
-jwerty.key("3", function() { if (!activeunit.iscloaked) {activeunit.iscloaked=true;activeunit.ship.evade+=2;activeunit.show();}});
+jwerty.key("3", function() { if (!activeunit.iscloaked) {activeunit.iscloaked=true;activeunit.agility+=2;activeunit.show();}});
 jwerty.key("4", function() { activeunit.stress++;activeunit.show();});
 
 
@@ -857,7 +862,7 @@ function probatable(attacker,defender) {
 	    if (defender.adddice>0) k+=defender.adddice;
 	    var th=tohitproba(attacker,defender,ATTACK[i],DEFENSE[k],i,k);
 	    str+="<td class='probacell' style='background:hsl("+(1.2*(100-th.tohit))+",100%,80%)'>";
-	    str+="<div>"+th.tohit+"%</div><div><b class='symbols'>d</b>"+th.meanhit+"</div><div><b class='symbols'>c</b>"+th.meancritical+"</div></td>";
+	    str+="<div>"+th.tohit+"%</div><div><code class='symbols'>d</code>"+th.meanhit+"</div><div><code class='symbols'>c</code>"+th.meancritical+"</div></td>";
 	}
 	str+="</tr>";
     }
@@ -888,8 +893,8 @@ var dice=1;
 var ATTACK=[]
 var DEFENSE=[]
 
-var SQUAD=['{"description":"xwings/awings","faction":"rebels","name":"Unnamed Squadron","pilots":[{"name":"tychocelchu","points":24,"ship":"awing","upgrades":{"missile":["chardaanrefit"]}},{"name":"lukeskywalker","points":32,"ship":"xwing","upgrades":{"torpedo":["protontorpedoes"]}},{"name":"wedgeantilles","points":29,"ship":"xwing"},{"name":"prototypepilot","points":15,"ship":"awing","upgrades":{"missile":["chardaanrefit"]}}],"points":100,"vendor":{"yasb":{"builder":"(Yet Another) X-Wing Miniatures Squad Builder","builder_url":"http://geordanr.github.io/xwing/","link":"http://geordanr.github.io/xwing/?f=Rebel%20Alliance&d=v3!s!29:-1,72:-1:-1:;5:-1,1,-1:-1:-1:;0:-1,-1,-1:-1:-1:;32:72:-1:-1:"}},"version":"0.2.0"}',
-	   '{"description":"","faction":"empire","name":"Unnamed Squadron","pilots":[{"name":"maulermithel","points":17,"ship":"tiefighter"},{"name":"backstabber","points":16,"ship":"tiefighter"},{"name":"howlrunner","points":18,"ship":"tiefighter"},{"name":"academypilot","points":12,"ship":"tiefighter"},{"name":"bountyhunter","points":37,"ship":"firespray31","upgrades":{"cannon":["manglercannon"]}}],"points":100,"vendor":{"yasb":{"builder":"(Yet Another) X-Wing Miniatures Squad Builder","builder_url":"http://geordanr.github.io/xwing/","link":"http://geordanr.github.io/xwing/?f=Galactic%20Empire&d=v3!s!17:-1:-1:-1:;15::-1:-1:;18:-1:-1:-1:;10::-1:-1:;40:110,-1,-1,-1:-1:-1:"}},"version":"0.2.0"}'
+var SQUAD=['{"description":"","faction":"rebels","name":"New Squadron","pilots":[{"name":"chewbacca","points":49,"ship":"yt1300","upgrades":{"ept":["lonewolf"],"mod":["engineupgrade"],"title":["millenniumfalcon"]}},{"name":"greensquadronpilot","points":17,"ship":"awing","upgrades":{"missile":["chardaanrefit"]}},{"name":"greensquadronpilot","points":17,"ship":"awing","upgrades":{"missile":["chardaanrefit"]}},{"name":"greensquadronpilot","points":17,"ship":"awing","upgrades":{"missile":["chardaanrefit"]}}],"points":100,"vendor":{"yasb":{"builder":"(Yet Another) X-Wing Miniatures Squad Builder","builder_url":"http://geordanr.github.io/xwing/","link":"http://geordanr.github.io/xwing/?f=Rebel%20Alliance&d=v3!s!34:98,-1,-1,-1:2:3:;31:-1,72:-1:-1:;31:-1,72:-1:-1:;31:-1,72:-1:-1:"}},"version":"0.2.0"}',
+	   '{"description":"","faction":"empire","name":"Unnamed Squadron","pilots":[{"name":"academypilot","points":12,"ship":"tiefighter"},{"name":"academypilot","points":12,"ship":"tiefighter"},{"name":"backstabber","points":16,"ship":"tiefighter"},{"name":"howlrunner","points":21,"ship":"tiefighter","upgrades":{"mod":["stealthdevice"]}},{"name":"whisper","points":39,"ship":"tiephantom","upgrades":{"system":["firecontrolsystem"],"crew":["rebelcaptive"],"mod":["stygiumparticleaccelerator"]}}],"points":100,"vendor":{"yasb":{"builder":"(Yet Another) X-Wing Miniatures Squad Builder","builder_url":"http://geordanr.github.io/xwing/","link":"http://geordanr.github.io/xwing/?f=Galactic%20Empire&d=v3!s!10::-1:-1:;10::-1:-1:;15::-1:-1:;18:-1:-1:1:;79:-1,36,46:-1:8:"}},"version":"0.2.0"}'
 ];
 
 
