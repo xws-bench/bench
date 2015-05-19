@@ -1,7 +1,12 @@
+
+var UPGRADE_TYPES={
+Elite:"ept",Torpedo:"torpedo",Astromech:"amd",Turret:"turret",Missile:"missile",Crew:"crew",Cannon:"cannon",Bomb:"bomb",Title:"title",Mod:"mod",System:"system",Illicit:"illicit",Salvaged:"salvaged"
+};
 function Laser(u,type,fire) {
     return new Weapon(u,{
 	type: type,
 	name:"Laser",
+	isactive:true,
 	attack: fire,
 	range: [1,3],
 	isprimary: true
@@ -9,113 +14,223 @@ function Laser(u,type,fire) {
 }
 
 function Weapon(p,wdesc) {
+    this.isprimary=false;
     $.extend(this,wdesc);
     this.unit=p;
 }
 Weapon.prototype = {
+    toString: function() {
+	var a,b,str="";
+	var c="";
+	if (!this.isactive) c="class='inactive'"
+	else {
+	    var r=this.getrangeallunits();
+	    if (r.length==0) c="class='nofire'"
+	}
+	a="<td class='statfire'>"+this.attack+"<span class='symbols'>"+A[this.type.toUpperCase()].key+"</span></td>";
+	b="<td class='tdstat'>"+this.name+" <span style='font-size:x-small'>"
+	    +((typeof this.requires!="undefined")?
+	      "<code class='symbols'>"+A[this.requires.toUpperCase()].key+"</code>":"")
+	    +"["+this.range[0]+"-"+this.range[1]+"]</span></td>";
+	if (this.unit.team==1)  
+	    return "<tr "+c+">"+b+a+"</tr>"; 
+	else return "<tr "+c+">"+a+b+"</tr>";
+
+    },
+    isTurret: function() {
+	return this.type=="Turret";
+    },
     isinrange: function(r) {
 	return (r>=this.range[0]&&r<=this.range[1]);
     },
+    modifydamagegiven: function(ch) { return ch; },
+    modifydamageassigned: function(ch,t) { return ch; },
     canfire: function(sh) {
+	if (!this.isactive) return false;
+	if (typeof this.requires!="undefined") {
+	    if (this.requires=="Target"&&this.unit.canusetarget(sh))
+		return true;
+	    if (this.requires=="Focus"&&this.unit.canusefocus(sh)) return true;
+	    return false;
+	}
 	return true;
     },
-    getrerolldices: function(sh) {
-	if (this.unit.targeting==sh) return 10;
-	else return 0;
+    getattackreroll: function(sh) {
+	return 0;
     },
-    canfirewithtarget:function(sh) { 
-	if (this.hasfired) return false;
-	if (typeof this.unit.target==0) return false; 
-	return (this.unit.targeting==sh);  
-    },
-    firewithtarget:function(sh) { 
-	this.unit.usetarget();
-	sh.istargeted--;
-	sh.show();
-	this.hasfired=true;
+    modifyattackroll: function(n,sh) {
+	return n;
     },
     getattackbonus: function(sh) {
 	if (this.isprimary) {
 	    var r=this.getrange(sh);
-	    if (r==1) return 1;
+	    if (r==1) {
+		log(this.unit.name+" +1 attack for range 1");
+		return 1;
+	    }
 	}
 	return 0;
     },
-    fire: function(sh) { },
+
+    declareattack: function(sh) { 
+	if (typeof this.requires!="undefined") {
+	    if (this.requires=="Target") {
+		this.unit.removetargettoken();
+		sh.istargeted--;
+		sh.show();
+	    } else if (this.requires=="Focus") {
+		this.unit.removefocustoken();
+	    }
+	    this.unit.show();
+	}
+    },
     getdefensebonus: function(sh) {
 	if (this.isprimary) {
 	    var r=this.getrange(sh);
-	    if (r==3) return 1;
+	    if (r==3) {
+		log(sh.name+" +1 defense for range 3 against "+this.unit.name);
+		return 1;
+	    }
 	}
 	return 0;
     },
     getrange: function(sh) {
-	if (this.type=="Turret")  {
-	    var r=this.unit.getrange(sh);
-	    if (this.canfire(r)) return r;
+	var i;
+	if (!this.canfire(sh)) return 0;
+	var r=this.unit.getrange(sh);
+	if (this.isTurret()||this.unit.isTurret(this)) 
+	    if (r>=this.range[0]&&r<=this.range[1]) return r;
 	    else return 0;
-	}
-	for (i=this.range[0]; i<=this.range[1]; i++) {
-	    if (this.unit.isinsector(this.unit.m,i,sh)) return i; 
-	}
-	if (this.type=="bilaser") {
+	for (i=this.range[0]; i<=this.range[1]; i++) 
+	    if (this.unit.isinsector(this.unit.m,i,sh)
+		&&r==i) return i; 
+	if (this.type=="Bilaser") {
 	    var m=this.unit.m.clone();
 	    m.add(MR(180,0,0));
-	    for (i=this.range[0]; i<=this.range[1]; i++) {
-		if (this.unit.isinsector(m,i,sh)) { return i; }
-	    }
+	    for (i=this.range[0]; i<=this.range[1]; i++)
+		if (this.unit.isinsector(m,i,sh)&& r==i) return i; 
 	}
 	return 0;
+    },
+    endattack: function(c,h) {
+	if (this.type.match("Torpedo|Missile")) {
+	    this.isactive=false;
+	    log("["+this.name+"] inactive");
+	}
+    },
+    getrangeallunits: function() {
+	var i;
+	var r=[];
+	for (i=0; i<squadron.length; i++) {
+	    var s=squadron[i];
+	    if (this.unit.team!=s.team&&this.getrange(s)>0) r.push(s);
+	}
+	return r;
     }
 };
-
-function Upgrade(sh,name) {
+function Upgrade(sh,i) {
+    $.extend(this,UPGRADES[i]);
+    sh.upgrades.push(this);
+    log("going to install "+UPGRADES[i].name);
+    log("installed upgrade "+this.name+" ["+this.type+"]");
+    this.isactive=true;
+    if (this.isWeapon()) sh.weapons.push(new Weapon(sh,this));
+    if (this.init != undefined) this.init(sh);
+}
+function Upgradefromname(sh,name) {
     var i;
     for (i=0; i<UPGRADES.length; i++) {
 	if (UPGRADES[i].name==name) {
-	    var upg=$.extend({},UPGRADES[i]);
-	    sh.upgrades.push(upg);
-	    log("installed upgrade "+name+" ["+upg.type+"]");
-	    upg.isactive=true;
-	    if (upg.init != undefined) upg.init(sh);
-	    return;
+	    return new Upgrade(sh,i);
 	}
     }
     console.log("Could not find upgrade "+name);
 }
+Upgrade.prototype = {
+    isWeapon: function() {
+	if (this.type.match("Cannon|Turret|Missile|Torpedo")) return true;
+	return false;
+    }
+}
 
+var rebelonly=function(p) {
+    var i;
+    for (i=0; i<PILOTS.length; i++) 
+	if (p==PILOTS[i].name&&PILOTS[i].faction=="REBEL") return true;
+    return false;
+}
+var empireonly=function(p) {
+    var i;
+    for (i=0; i<PILOTS.length; i++) 
+	if (p==PILOTS[i].name&&PILOTS[i].faction=="EMPIRE") return true;
+    return false;
+}
 var UPGRADES= [
     {
         name: "Ion Cannon Turret",
-        init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
         type: "Turret",
+	firesnd:"falcon_fire",
         points: 5,
         attack: 3,
+	done:1,
+	modifydamageassigned: function(ch,target) {
+	    if (ch>0) {
+		ch=1;
+		log("["+this.name+"] 1<p class='hit'></p> + 1 ion token assigned to "+target.name);
+		target.addiontoken();
+	    }
+	    return ch;
+	},
         range: [1,2],
     },
     {
         name: "Proton Torpedoes",
-        init: function(sh) {sh.weapons.push(new Weapon(sh,this)); },
-	canfire: function(sh) {return this.canfirewithtarget(sh)},
-	fire: function(sh) {return this.firewithtarget(sh)},
-	getrerolldices: function(sh) { return 0; },
+	requires: "Target",
         type: "Torpedo",
-	hasfired:false,
+	firesnd:"missile",
         points: 4,
         attack: 4,
         range: [2,3],
     },
     {
         name: "R2 Astromech",
-        
+	done:true,
+        install: function(sh) {
+	    var i;
+	    sh.gdr2=sh.getdial;
+	    sh.getdial=function() {
+		var m=sh.gdr2();
+		var n=[];
+		for (var i=0; i<m.length; i++) {
+		    var s=P[m[i].move].speed;
+		    var d=m[i].difficulty;
+		    if (s==1||s==2) d="GREEN";
+		    n.push({ move:m[i].move,difficulty:d});
+		}
+		return n;
+	    }.bind(sh);
+	    log("["+this.name+"] 1, 2 speed maneuvers of "+sh.name+" are green");
+	},
+	uninstall: function(sh) {
+	    sh.getdial=sh.gdr2;
+	    log("["+this.name+"] uninstalling effect");
+	},
         type: "Astromech",
         points: 1,
     },
     {
         name: "R2-D2",
-        aka: [ "R2-D2 (Crew)" ],
-        
-        
+	done:true,
+        init: function(sh) {
+	    var hd=sh.handledifficulty;
+	    sh.handledifficulty=function(d) {
+		hd.call(this,d);
+		if (d=="GREEN"&&this.shield<this.ship.shield){ 
+		    this.shield++;
+		    log("[R2-D2] "+this.name+" recovers 1 shield");
+		}
+	    }
+	},
         unique: true,
         type: "Astromech",
         points: 4,
@@ -180,18 +295,18 @@ var UPGRADES= [
     },
     {
         name: "Concussion Missiles",
-        init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
-	
+	requires:"Target",
         type: "Missile",
+	firesnd:"missile",
         points: 4,
         attack: 4,
         range: [2,3],
     },
     {
         name: "Cluster Missiles",
-        init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
-	
         type: "Missile",
+	firesnd:"missile",
+	requires:"Target",
         points: 4,
         attack: 3,
         range: [1,2],
@@ -210,9 +325,9 @@ var UPGRADES= [
     },
     {
         name: "Homing Missiles",
-        init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
-	
+	requires:"Target",
         type: "Missile",
+	firesnd:"missile",
         attack: 4,
         range: [2,3],
         points: 5,
@@ -243,16 +358,35 @@ var UPGRADES= [
     },
     {
         name: "Ion Cannon",
-        init:function(sh) { sh.weapons.push(new Weapon(sh,this)); },
         type: "Cannon",
+	firesnd:"slave_fire",
+	done:true,
+	modifydamageassigned: function(ch,target) {
+	    if (ch>0) {
+		ch=1;
+		log("["+this.name+"] 1<p class='hit'></p> + 1 ion token assigned to "+target.name);
+		target.addiontoken();
+	    }
+	    return ch;
+	},
         points: 3,
         attack: 3,
         range: [1,3],
     },
     {
         name: "Heavy Laser Cannon",
-        init:function(sh) { sh.weapons.push(new Weapon(sh,this)); },
         type: "Cannon",
+	firesnd:"slave_fire",
+	done:true,
+	modifydamagegiven: function(ch) {
+	    if (ch>10) {
+		var c=Math.round(ch/10);
+		var h=ch-10*c;
+		log("["+this.name+"] "+c+"<p class='critical'></p>-> "+c+"<p class='hit'></p>");
+		ch=c+h;
+	    }
+	    return ch;
+	},
         points: 7,
         attack: 4,
         range: [2,3],
@@ -271,17 +405,32 @@ var UPGRADES= [
     },
     {
         name: "Assault Missiles",
-        init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
-	
         type: "Missile",
+	requires:"Target",
+	firesnd:"missile",
+	done:true,
+	modifydamageassigned: function(ch,t) {
+	    if (ch>0) {
+		log("["+this.name+"] 1 damage assigned to all units at range 1 of "+t.name);
+		var r=t.getrangeallunits();
+		for (var i=0; i<r[1].length; i++) {
+		    squadron[r[1][i].unit].resolvehit(1);
+		}
+	    }
+	    return ch;
+	},
         points: 5,
         attack: 4,
         range: [2,3],
     },
     {
         name: "Veteran Instincts",
-        init: function(sh) {
+	done:true,
+        install: function(sh) {
 	    sh.skill+=2;
+	},
+	uninstall: function(sh) {
+	    sh.skill-=2;
 	},
         type: "Elite",
         points: 1,
@@ -306,50 +455,56 @@ var UPGRADES= [
     },
     {
         name: "Luke Skywalker",
-        
+        faction:"REBEL",
         unique: true,
-        
         type: "Crew",
         points: 7,
     },
     {
         name: "Nien Nunb",
-        init: function(sh) {
+	faction:"REBEL",
+	done:true,
+        install: function(sh) {
 	    var i;
-	    for (i=0; i<sh.dial.length; i++) {
-		if (sh.dial[i].move=="F1"
-		    ||sh.dial[i].move=="F2"
-		    ||sh.dial[i].move=="F3"
-		    ||sh.dial[i].move=="F4"
-		    ||sh.dial[i].move=="F5") sh.dial[i].difficulty="GREEN";
-	    }
+	    sh.getdial=function() {
+		var m=Unit.prototype.getdial.call(this);
+		var n=[];
+		for (var i=0; i<m.length; i++) {
+		    var move=m[i].move;
+		    var d=m[i].difficulty;
+		    if (move.match("F1|F2|F3|F4|F5")) d="GREEN";
+		    n.push({move:move,difficulty:d});
+		}
+		return n;
+	    }.bind(sh);
+	},
+	uninstall:function(sh) {
+	    sh.getdial=Unit.prototype.getdial;
 	},
         unique: true,
-        
         type: "Crew",
         points: 1,
-
     },
     {
         name: "Chewbacca",
-        
+        faction:"REBEL",
         unique: true,
-        
         type: "Crew",
         points: 4,
     },
     {
         name: "Advanced Proton Torpedoes",
-        init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
+	requires:"Target",
         type: "Torpedo",
+	firesnd:"missile",
         attack: 5,
         range: [1,1],
         points: 6,
     },
     {
         name: "Autoblaster",
-        init:function(sh) { sh.weapons.push(new Weapon(sh,this)); },
         type: "Cannon",
+	firesnd:"slave_fire",
         attack: 3,
         range: [1,1],
         points: 5,
@@ -362,8 +517,9 @@ var UPGRADES= [
     },
     {
         name: "Blaster Turret",
-        init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
         type: "Turret",
+	firesnd:"falcon_fire",
+	requires:"Focus",
         points: 4,
         attack: 3,
         range: [1,2],
@@ -400,6 +556,7 @@ var UPGRADES= [
     },
     {
         name: "Advanced Sensors",
+	done:true,
         init: function(sh) {
 	    sh.candoaction=function() {
 		activeunit.updateactionlist(); 
@@ -418,7 +575,7 @@ var UPGRADES= [
     },
     {
         name: "Darth Vader",
-        
+        faction:"EMPIRE",
         unique: true,
         
         type: "Crew",
@@ -426,6 +583,8 @@ var UPGRADES= [
     },
     {
         name: "Rebel Captive",
+	faction:"EMPIRE",
+	done:true,
         init: function(sh) {
 	    sh.rebelcaptive=0;
 	    sh.ishitbyattack=function(a) {
@@ -456,7 +615,20 @@ var UPGRADES= [
     },
     {
         name: "Opportunist",
-        
+	done:true,
+        init: function(sh) {
+	    var gas=sh.getattackstrength;
+	    sh.getattackstrength=function(w,t) {
+		var a=gas.call(this.unit,w,t);
+		if (t.focus+t.evade==0) {
+		    a=a+1;
+		    this.unit.addstress();
+		    log("["+this.name+"] +1 attack against "+t.name+", 1 stress more");
+		}
+		return a;
+	    }.bind(this);
+	},
+
         type: "Elite",
         points: 4,
     },
@@ -480,9 +652,18 @@ var UPGRADES= [
     },
     {
         name: "Ion Pulse Missiles",
-        init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
-	
+	requires:"Target",
         type: "Missile",
+	firesnd:"missile",
+	done:true,
+	modifydamageassigned: function(ch,t) {
+	    if (ch>0) {
+		log("["+this.name+"] 2<p class='hit'></p> + 1 ion token assigned by "+t.name);
+		ch=2;
+		t.ionized+=2;
+	    }
+	    return ch;
+	},
         points: 3,
         attack: 3,
         range: [2,3],
@@ -507,15 +688,32 @@ var UPGRADES= [
     },
     {
         name: "Predator",
-        
+	done:true,
+        init: function(sh) {
+	    sh.addattackrerolla(
+		this,
+		["blank","focus"],
+		function() { if (targetunit.skill<=2) return 2; return 1; },
+		function(w,defender) {
+		    log("[Predator] "+(targetunit.skill<=2?2:1)+" reroll(s)");
+		    return true;
+		},
+		false
+	    )
+	},
         type: "Elite",
         points: 3,
     },
     {
         name: "Flechette Torpedoes",
-        init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
-	
+	requires:"Target",
         type: "Torpedo",
+	firesnd:"missile",
+	done:true,
+	endattack: function(c,h) {
+	    if (targetunit.hull<=4) targetunit.addstress();
+	    this.isactive=false;
+	},
         points: 2,
         attack: 3,
         range: [2,3],
@@ -535,15 +733,12 @@ var UPGRADES= [
     },
     {
         name: "Tactician",
-        
         type: "Crew",
         points: 2,
     },
     {
-        name: "R2-D2 (Crew)",
-        aka: [ "R2-D2" ],
-        
-        
+        name: "R2-D2",
+        faction:"REBEL",
         unique: true,
         type: "Crew",
         points: 4,
@@ -552,7 +747,7 @@ var UPGRADES= [
     {
         name: "C-3PO",
         unique: true,
-        
+        faction:"REBEL",
         type: "Crew",
         points: 3,
         
@@ -588,7 +783,10 @@ var UPGRADES= [
     },
     {
         name: "R2-D6",
-        
+        upgrades:["Elite"],
+	noupgrades:"Elite",
+	skillmin:3,
+	done:true,
         unique: true,
         type: "Astromech",
         points: 1,
@@ -601,23 +799,37 @@ var UPGRADES= [
     },
     {
         name: "Chardaan Refit",
-        
         type: "Missile",
+	done:true,
+	isWeapon: function() { return false; },
         points: -2,
         ship: "A-Wing",
     },
     {
         name: "Proton Rockets",
-        init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
-	
         type: "Missile",
+	firesnd:"missile",
+	requires:"Focus",
         points: 3,
         attack: 2,
+	done:true,
+        init: function(sh) {
+	    var gas=sh.getattackstrength;
+	    sh.getattackstrength=function(w,t) {
+		var a=gas.call(this.unit,w,t);
+		if (this.unit.weapons[w]==this) {
+		    if (this.agility<=3) a+=this.agility;
+		    else a+=3;
+		    log("["+this.name+"] +"+(this.agility>3?3:this.agility)+" attack for agility");
+		}
+		return a;
+	    }.bind(this);
+	},
         range: [1,1],
     },
     {
         name: "Kyle Katarn",
-        
+        faction:"REBEL",
         unique: true,
         type: "Crew",
         points: 3,
@@ -625,16 +837,16 @@ var UPGRADES= [
     },
     {
         name: "Jan Ors",
-        
+        faction:"REBEL",
         unique: true,
         type: "Crew",
         points: 2,
-        
     },
     {
         name: "Toryn Farr",
-        
         unique: true,
+	ishuge:true,
+	faction:"REBEL",
         type: "Crew",
         points: 6,
     },
@@ -654,13 +866,14 @@ var UPGRADES= [
     },
     {
         name: "WED-15 Repair Droid",
-        
+        ishuge:true,
         type: "Crew",
         points: 2,
     },
     {
         name: "Carlist Rieekan",
-        
+        ishuge:true,
+	faction:"REBEL",
         unique: true,
         type: "Crew",
         points: 3,
@@ -668,7 +881,8 @@ var UPGRADES= [
     },
     {
         name: "Jan Dodonna",
-        
+        ishuge:true,
+	faction:"REBEL",
         unique: true,
         type: "Crew",
         points: 6,
@@ -676,7 +890,6 @@ var UPGRADES= [
     },
     {
         name: "Expanded Cargo Hold",
-        
         type: "Cargo",
         points: 1,
         ship: "GR-75 Medium Transport",
@@ -704,7 +917,7 @@ var UPGRADES= [
     },
     {
         name: "Han Solo",
-        
+        faction:"REBEL",
         type: "Crew",
         unique: true,
         
@@ -712,22 +925,21 @@ var UPGRADES= [
     },
     {
         name: "Leia Organa",
-        
+        faction:"REBEL",
         type: "Crew",
         unique: true,
-        
         points: 4,
     },
     {
         name: "Targeting Coordinator",
-        
         type: "Crew",
         limited: true,
         points: 4,
     },
     {
         name: "Raymus Antilles",
-        
+        ishuge:true,
+	faction:"REBEL",
         type: "Crew",
         unique: true,
         
@@ -755,7 +967,7 @@ var UPGRADES= [
     },
     {
         name: "Lando Calrissian",
-        
+        faction:"REBEL",
         type: "Crew",
         unique: true,
         
@@ -763,7 +975,7 @@ var UPGRADES= [
     },
     {
         name: "Mara Jade",
-        
+        faction:"EMPIRE",
         type: "Crew",
         unique: true,
         
@@ -771,7 +983,7 @@ var UPGRADES= [
     },
     {
         name: "Fleet Officer",
-        
+        faction:"EMPIRE",
         type: "Crew",
         
         points: 3,
@@ -784,7 +996,7 @@ var UPGRADES= [
     },
     {
         name: "Dash Rendar",
-        
+        faction:"REBEL",
         unique: true,
         type: "Crew",
         points: 2,
@@ -792,27 +1004,22 @@ var UPGRADES= [
     },
     {
         name: "Lone Wolf",
-        init: function(sh) {
-	    sh.getbonuslone=function() {
-		var i,lone=true;
-		for (i=0; i<squadron.length; i++) {
-		    var r=this.getrange(squadron[i]);
-		    if (squadron[i].team==this.team&&r>=1&&r<=2) {
-			lone=false; break
-		    }
-		}
-		if (lone) return 1; else return 0;
-	    };
-	    sh.getattackstrength=function(w,t) {
-		var a=this.getbonuslone();
-		if (a>0) log("["+this.name+"] +1 attack for Lone Wolf");
-		return Unit.prototype.getattackstrength.call(this,w,t)+a;
-	    };
-	    sh.getdefensestrength=function(w,t) {
-		var d=this.getbonuslone();
-		if (d>0) log("["+this.name+"] +1 defense for Lone Wolf");
-		return Unit.prototype.getdefensestrength.call(this,w,t)+ d;
-	    }
+	done:true,
+	init: function(sh) {
+	    sh.addattackrerolla(
+		this,
+		["blank"],
+		function() { return 1; },
+		function(w,defender) {
+		    var r=this.unit.getrangeallunits();
+		    for (var i=0; i<squadron.length; i++) 
+			if (squadron[i].getrange(this.unit)<=2
+			    &&squadron[i].team==this.unit.team) return false;
+		    log("[Lone Wolf] 1 reroll");
+		    return true;
+		},
+		false
+	    )
 	},
         unique: true,
         type: "Elite",
@@ -820,7 +1027,7 @@ var UPGRADES= [
     },
     {
         name: "'Leebo'",
-        
+        faction:"REBEL",
         unique: true,
         type: "Crew",
         points: 2,
@@ -828,7 +1035,7 @@ var UPGRADES= [
     },
     {
         name: "Ruthlessness",
-        
+        faction:"EMPIRE",
         type: "Elite",
         points: 3,
         
@@ -841,7 +1048,7 @@ var UPGRADES= [
     },
     {
         name: "Ysanne Isard",
-        
+        faction:"EMPIRE",
         unique: true,
         type: "Crew",
         points: 4,
@@ -849,7 +1056,7 @@ var UPGRADES= [
     },
     {
         name: "Moff Jerjerrod",
-        
+        faction:"EMPIRE",
         unique: true,
         type: "Crew",
         points: 2,
@@ -857,16 +1064,28 @@ var UPGRADES= [
     },
     {
         name: "Ion Torpedoes",
-        init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
-	
+	requires:"Target",
         type: "Torpedo",
+	firesnd:"missile",
+	done:true,
+	modifydamageassigned: function(ch,t) {
+	    if (ch>0) {
+		log("["+this.name+"] 1 ion token for all units at range 1 of "+t.name);
+		t.addiontoken();
+		var r=t.getrangeallunits();
+		for (var i=0; i<r[1].length; i++) {
+		    squadron[r[1][i].unit].addiontoken();
+		}
+	    }
+	    return ch;
+	},
         points: 5,
         attack: 4,
         range: [2,3],
     },
     {
         name: "Bodyguard",
-        
+        faction:"SCUM",
         unique: true,
         type: "Elite",
         points: 2,
@@ -892,16 +1111,25 @@ var UPGRADES= [
     },
     {
         name: "Flechette Cannon",
-        init:function(sh) { sh.weapons.push(new Weapon(sh,this)); },
         type: "Cannon",
+	firesnd:"slave_fire",
+	done:true,
+	modifydamageassigned: function(ch,t) {
+	    if (ch>0) {
+		ch=1;
+		log("["+this.name+"] 1<p class='hit'></p> and stress token for "+t.name);
+		if (t.stress==0) t.addstress();
+	    }
+	    return ch;
+	},
         points: 2,
         attack: 3,
         range: [1,3],
     },
     {
         name: "'Mangler' Cannon",
-        init:function(sh) { sh.weapons.push(new Weapon(sh,this)); },
         type: "Cannon",
+	firesnd:"slave_fire",
         points: 4,
         attack: 3,
         range: [1,3],
@@ -920,29 +1148,34 @@ var UPGRADES= [
     },
     {
         name: "'Hot Shot' Blaster",
-        
+	done:true,
+        isWeapon: function() { return true;},
+	isTurret:function() { return true;},
+	endattack: function(c,h) { this.isactive=false; },
         type: "Illicit",
+	firesnd:"xwing_fire",
         points: 3,
         attack: 3,
         range: [1,2],
     },
     {
         name: "Greedo",
-        
+        faction:"SCUM",
         unique: true,
         type: "Crew",
         
         points: 1,
     },
     {
-        name: "Salvaged Astromech",
-        
-        type: "Salvaged Astromech",
+        name: "Salvaged Astromech",   
+        type: "Salvaged",
         points: 2,
     },
     {
         name: "Bomb Loadout",
-        
+        upgrades:["Bomb"],
+	done:true,
+	isWeapon: function() { return false; },
         limited: true,
         type: "Torpedo",
         points: 0,
@@ -950,28 +1183,45 @@ var UPGRADES= [
     },
     {
         name: "'Genius'",
-        
         unique: true,
-        type: "Salvaged Astromech",
+        type: "Salvaged",
         points: 0,
     },
     {
         name: "Unhinged Astromech",
-        
-        type: "Salvaged Astromech",
+        type: "Salvaged",
+	done:true,
+        install: function(sh) {
+	    var i;
+	    sh.gd=sh.getdial;
+	    sh.getdial=function() {
+		var m=sh.gd();
+		var n=[];
+		for (i=0; i<m.length; i++) {
+		    var d=m[i].difficulty;
+		    var move=m[i].move;
+		    if (move.match("F3|TL3|TR3|BL3|BR3|SR3|SR3|K3")) 
+			d="GREEN";
+		    n.push({move:move,difficulty:d});
+		}
+		return n;
+	    };
+	},
+	uninstall:function(sh) {
+	    sh.getdial=sh.gd;
+	},
         points: 1,
     },
     {
         name: "R4-B11",
-        
         unique: true,
-        type: "Salvaged Astromech",
+        type: "Salvaged",
         points: 3,
     },
     {
         name: "Autoblaster Turret",
-        init: function(sh) { sh.weapons.push(new Weapon(sh,this)); },
         type: "Turret",
+	firesnd:"falcon_fire",
         points: 2,
         attack: 2,
         range: [1,1],
@@ -979,19 +1229,18 @@ var UPGRADES= [
     {
         name: "R4 Agromech",
         
-        type: "Salvaged Astromech",
+        type: "Salvaged",
         points: 2,
     },
     {
         name: "K4 Security Droid",
-        
+        faction:"SCUM",
         type: "Crew",
-        
         points: 3,
     },
     {
         name: "Outlaw Tech",
-        
+        faction:"SCUM",
         limited: true,
         type: "Crew",
         
@@ -999,8 +1248,6 @@ var UPGRADES= [
     },
     {
         name: "Advanced Targeting Computer",
-        
-        
         type: "System",
         points: 5,
         ship: "TIE Advanced",
@@ -1008,12 +1255,18 @@ var UPGRADES= [
     {
         name: "Stealth Device",
 	type:"Mod",
-	init: function(sh) {
+	done:true,
+	install:function(sh) {
 	    sh.agility++;
+	},
+	uninstall:function(sh) {
+	    sh.agility--;
+	},
+	init: function(sh) {
 	    log("["+this.name+"] +1 agility for "+sh.name)
-	    sh.ishitbyattack=function(sh2) {
+	    sh.evadeattack=function(sh2) {
 		log("Stealth Device of "+this.name+" is hit by "+sh2.name+"=> equipment destroyed");
-		var ch=Unit.prototype.ishitbyattack.call(this,sh2);
+		var ch=Unit.prototype.evadeattack.call(this,sh2);
 		var i;
 		for (i=0;i<this.upgrades.length; i++) 
 		    if (this.upgrades[i].name=="Stealth Device") break;
@@ -1030,39 +1283,45 @@ var UPGRADES= [
     {
         name: "Shield Upgrade",
 	type:"Mod",    
-	init: function(sh) {
+	done:true,
+	install: function(sh) {
 	    sh.shield++;
+	},
+	uninstall:function(sh) {
+	    sh.shield--;
 	},
         points: 4,
     },
     {
         name: "Engine Upgrade",
 	type:"Mod",
-        init: function(sh) {
-	    sh.shipactionList.push("BOOST");
-	},
+	done:true,
+	addedaction:"Boost",
         points: 4,
     },
     {
         name: "Anti-Pursuit Lasers",
 	type:"Mod",
-        
+        islarge:true,
         points: 2,
     },
     {
         name: "Targeting Computer",
 	type:"Mod",
-        init: function(sh) {
-	    sh.shipactionList.push("TARGET");
-	},
+	done:true,
+	addedaction:"Target",
         points: 2,
     },
     {
         name: "Hull Upgrade",
 	type:"Mod",
-        init: function(sh) {
-	    this.hull++;
-	},        
+	done:true,
+        install: function(sh) {
+	    sh.hull++;
+	},     
+	uninstall:function(sh) {
+	    sh.hull--;
+	},
         points: 3,
     },
     {
@@ -1074,6 +1333,7 @@ var UPGRADES= [
     {
         name: "Stygium Particle Accelerator",
 	type:"Mod",
+	done:true,
         init: function(sh) {
 	    sh.resolvecloak=function() {
 		this.focus++;
@@ -1091,7 +1351,6 @@ var UPGRADES= [
     {
         name: "Advanced Cloaking Device",
 	type:"Mod",
-        
         points: 4,
         ship: "TIE Phantom",
     },
@@ -1106,7 +1365,8 @@ var UPGRADES= [
     {
         name: "B-Wing/E2",
 	type:"Mod",
-        
+	done:true,
+        upgrades:["Crew"],
         points: 1,
         ship: "B-Wing",
 
@@ -1114,7 +1374,7 @@ var UPGRADES= [
     {
         name: "Countermeasures",
 	type:"Mod",
-        
+        islarge:true,
         points: 3,
     },
     {
@@ -1127,13 +1387,13 @@ var UPGRADES= [
     {
         name: "Tactical Jammer",
 	type:"Mod",
-        
+        islarge:true,
         points: 1,
     },
     {
         name: "Autothrusters",
 	type:"Mod",
-        
+        actionrequired:"Boost",
         points: 2,
     },
     {
@@ -1141,18 +1401,18 @@ var UPGRADES= [
         type:"Title",
         unique: true,
         points: 0,
+	done:true,
         ship: "Firespray-31",
+	upgrades:["Torpedo"],
     },
     {
         name: "Millennium Falcon",
         type:"Title",
-        init:function(sh) {
-	    sh.shipactionList.push("EVADE");
-	},
+	done:true,
+	addedaction:"Evade",
         unique: true,
         points: 1,
         ship: "YT-1300",
-        actions: "Evade",
     },
     {
         name: "Moldy Crow",
@@ -1173,7 +1433,9 @@ var UPGRADES= [
     {
         name: "Royal Guard TIE",
         type:"Title",
-        
+	done:true,
+        upgrades:["Mod"],
+	skillmin:5,
         points: 0,
         ship: "TIE Interceptor",
     },
@@ -1188,7 +1450,9 @@ var UPGRADES= [
     {
         name: "A-Wing Test Pilot",
         type:"Title",
-        
+	done:true,
+        upgrades:["Elite"],
+	skillmin:2,
         points: 0,
         ship: "A-Wing",
         special_case: "A-Wing Test Pilot",
@@ -1255,35 +1519,21 @@ var UPGRADES= [
     {
         name: "Virago",
         type:"Title",
-        
+	done:true,
+        upgrades:["Illicit","System"],
         unique: true,
         points: 1,
+	skillmin:4,
         ship: "StarViper",
     },
     {
-        name: "'Heavy Scyk' Interceptor (Cannon)",
-        
+        name: "'Heavy Scyk' Interceptor",
+	done:true,
+        upgrades:["Cannon|Torpedo|Missile"],
         type:"Title",
-        
         points: 2,
         ship: "M3-A Interceptor",
 
-    },
-    {
-        name: "'Heavy Scyk' Interceptor (Torpedo)",
-        type:"Title",
-        
-        
-        points: 2,
-        ship: "M3-A Interceptor",
-    },
-    {
-        name: "'Heavy Scyk' Interceptor (Missile)",
-        
-        type:"Title",
-        
-        points: 2,
-        ship: "M3-A Interceptor",
     },
     {
         name: 'IG-2000',
@@ -1302,15 +1552,18 @@ var UPGRADES= [
     {
         name: "Andrasta",
         type:"Title",
-        
+	done:true,
+        upgrades:["Bomb","Bomb"],
         unique: true,
         points: 0,
         ship: "Firespray-31",
     },
     {
-        name: 'TIE/x1',
+        name: "TIE/x1",
         type:"Title",
-        
+	done:true,
+        upgrades:["System"],
+	pointsupg:-4,
         points: 0,
         ship: "TIE Advanced",
     },
