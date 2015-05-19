@@ -1,4 +1,4 @@
-html, body { margin:0; padding:0; overflow:scroll }
+html, body { margin:0; padding:0; overflow:auto }
 /*svg { position:fixed; top:0; left:0; height:100%; width:100% }*/
 footer,article,nav,body{
     /* Giving a display value to the HTML5 rendered elements: */
@@ -18,7 +18,7 @@ footer,article,nav,body{
     /*left: 170px;*/
     width: calc(100% - 340px); 
     height: calc(100% - 300px) ; 
-    overflow: scroll;
+    overflow: auto;
 }
 article {
     margin: 0px;
@@ -392,7 +392,7 @@ select {
     font-size: small;
     text-align:justify;
     margin:0px;
-    overflow:scroll;
+    overflow:auto;
     height:50px;
 }
 .upgrade select {
@@ -880,7 +880,7 @@ footer {
     height: 76px;
     z-index:1;
     text-align: left;
-    overflow: scroll;
+    overflow: auto;
 }
 .unit {
     cursor: move;
