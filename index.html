@@ -5,32 +5,31 @@
     <script src="snap.svg.js"></script>
     <script src="jwerty.js"></script>
     <script src="jquery-1.11.2.js"></script>
-    <link rel="stylesheet" href="xwings.css">
+   <link rel="stylesheet" href="xwings.css">
     <title>X-Wings Squadron Benchmark</title>
+    <script src="obstacles.js"></script>
     <script src="units.js"></script>
     <script src="pilots.js"></script>
     <script src="upgrades.js"></script>
+    <script src="team.js"></script>
     <script src="xwings.js"></script>
     <script src="translations.js"></script>
     <script src="xws.js"></script>
+    <script src="buzz.min.js"></script>
   </head>
 
   <body lang="en">
 
     <nav>
-      <h2>X-Wings Squadron Benchmark<span style="font-size:x-small">v0.2</span></h2>
+      <span><h2>X-Wings Squadron Benchmark<span style="font-size:x-small">v0.2</span></h2></span><span>
       <ul>
-	<li><a href="#import">Import JSON</a></li>
 	<li><a href="#modal" onclick="allunitlist()">List all units</a></li>
 	<li><a href="#proba" id="showproba">Show probabilities</a></li>
 	<li><a href="http://xws-benchmark.blogspot.fr">Bug report/Forum</a></li>
 	<li><a href="#help">Help</a></li>
 	<li><a href="#credit">Credits</a></li>
-	<li><a href="#" class="symbols" onclick="activeunit.togglehitsector()">i</a></li>
-	<li><a href="#" class="symbols" onclick="activeunit.togglerange()">S</a></li>
-	<li><a href="#modal" class="symbols" onclick="inhitrange()">%MUCPB</a></li>
  	<li style="width:100%"><a href="#" id="phase">Setup phase</a><button id="np" class="nextphase" onclick="nextphase()">Next</button></li>
-      </ul>
+      </ul></span>
     </nav>
 
     <aside id="leftpanel">
@@ -44,7 +43,7 @@
 
     
     <article>
-      <section class="phasepanel" id="panel_0">
+      <section class="phasepanel">
 	<div id="positiondial" class="table">
 	  <div>
 	    <div onclick="activeunit.turn(-45)" title="key: <T>" class="symbols">4</div>
@@ -55,26 +54,12 @@
 	    <div onclick="activeunit.turn(5)" title="key: <b>" class="symbols">9</div>
 	  </div>
 	</div>
-      </section>
-
-      <section class="phasepanel" id="panel_1">
 	<div id="maneuverdial" class="table"></div>
-      </section>
-
-      <section class="phasepanel" id="panel_2">
-	  <button id="move" onclick="applymaneuver()">Move</button>
-	  <div id="actiondial" class="table"></div>
-      </section>
-
-      <section class="phasepanel" id="panel_3">
-	<button onclick="inhitrange(); window.location='#modal';" title="<p>:select targets" id="primary">Attack</button>
+	<button id="move" onclick="applymaneuver()">Move</button>
+	<div id="actiondial" class="table"></div>
+	<div id="attackdial" class="table"></div>
       </section>
       
-      <section id="box"></section>
-      
-      <section>
-     </section>
-
       <section id="playmat">
 	<svg id="svgout"></svg>
       </section>
@@ -95,7 +80,9 @@
 	  <h2>Combat</h2>
 	  <div class="table">
 	    <div><div id="attacker"></div><div id="atokens"></div><div id="attack"></div></div>
+	    <div><div></div><div></div><div><input onchange="encodeattack(this)" type="text"></div></div>
 	    <div><div id="defender"></div><div id="dtokens"></div><div id="defense"></div></div>
+	    <div><div></div><div></div><div><input type="text" onchange="encodedefense(this)"></div></div>
 	  </div>
 	  <button title="key: <enter>" onclick="resolvedamage();" class="bigbutton">Ok</button>
 	</div>
@@ -106,17 +93,22 @@
 	<div>
 	  <a href="#" title="Close" class="close">X</a>
 	  <h2>Import a squadron</h2>
-	  <p>Copy and paste the 2 squad lists using XWS format into the following area. (This is in beta, and the <a href="https://github.com/elistevens/xws-spec">XWS spec</a> is still being defined). The following sites for instance can export squad list with this format:</p>
-	    <ul>
-	      <li><a href="http://xwing-builder.co.uk/build">Squad Builder web app</a> by Voidstate</li>
-	      <li><a href="http://geordanr.github.io/xwing/">(Yet another) X-Wing Miniatures Squad Builder</a> by Geordan Rosario</li>
-	      <li><a href="http://fabpsb.free.fr/">Fab's Squadrons generator</a> by Fab.</li>
-	    </ul>
+	  <p>Copy and paste the squad list using XWS format into the following area. (This is in beta, and the <a href="https://github.com/elistevens/xws-spec">XWS spec</a> is still being defined).</p>
 	  <div>
 	    <textarea id="jsonimport" rows="15" cols="45"></textarea>
-	    <textarea id="jsonimport2" rows="15" cols="45"></textarea>
 	  </div>
-	  <a href="#" onclick="importsquadron($('#jsonimport').val(),$('#jsonimport2').val())" class="button2">Import</a>
+	  <a href="#" onclick="TEAMS[currentteam].parseJSON($('#jsonimport').val())" class="button2">Import</a>
+	</div>
+      </section>
+
+      <section id="export" class="modalDialog">
+	<div>
+	  <a href="#" title="Close" class="close">X</a>
+	  <h2>Export a squadron</h2>
+	  <p>Copy and paste this into an XWS-compliant application to transfer your list. </p>
+	  <div>
+	    <textarea id="jsonexport" rows="15" cols="45"></textarea>
+	  </div>
 	</div>
       </section>
 
@@ -307,6 +299,8 @@
 	  format of X-Wings squadrons</a> provides the list of all
 	  ships, pilots, upgrades and several translations.
 
+	  The sounds of space ships, lasers and explosions come from <a href="http://www.sa-matra.net/sounds/starwars/">Sa-Matra</a> website. Thanks !
+
 	  The code of the app relies on <a href="http://snapsvg.io/">Snap</a> for SVG and <a href="https://jquery.com/">jQuery</a>. See their websites for the licenses. 
 
 	  <p><b>Disclaimer</b></p>
@@ -347,41 +341,7 @@
 	</div>
       </section>
     </article>
-
-     <audio id="xwing_fire" preload="none">
-	<source src="ogg/KX9_laser_cannon.ogg" type="audio/ogg">
-      </audio>
-      <audio id="tie_fire" preload="none">
-	<source src="ogg/TIE-Fire.ogg" type="audio/ogg">
-      </audio>
-      <audio id="slave_fire" preload="none">
-	<source src="ogg/Slave1-Guns.ogg" type="audio/ogg">
-      </audio>
-      <audio id="falcon_fire" preload="none">
-	<source src="ogg/Falcon-Guns.ogg" type="audio/ogg">
-      </audio>
-      <audio id="xwing_fly" preload="none">
-	<source src="ogg/XWing-Fly1.ogg" type="audio/ogg">
-      </audio>
-      <audio id="tie_fly" preload="none">
-	<source src="ogg/TIE-Fly2.ogg" type="audio/ogg">
-      </audio>
-      <audio id="slave_fly" preload="none">
-	<source src="ogg/Slave1-Fly1.ogg" type="audio/ogg">
-      </audio>
-      <audio id="falcon_fly" preload="none">
-	<source src="ogg/Falcon-Fly1.ogg" type="audio/ogg">
-      </audio>
-      <audio id="yt2400_fly" preload="none">
-	<source src="ogg/Falcon-Fly3.ogg" type="audio/ogg">
-      </audio>
-      <audio id="ywing_fly" preload="none">
-	<source src="ogg/YWing-Fly2.ogg" type="audio/ogg">
-      </audio>
-      <audio id="isd_fly" preload="none">
-	<source src="ogg/ISD-Fly.ogg" type="audio/ogg">
-      </audio>
-
+    
     <footer></footer>      
   </body>
 </html>
