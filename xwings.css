@@ -1,4 +1,4 @@
-html, body { margin:0; padding:0; overflow:hidden }
+html, body { margin:0; padding:0; overflow:visible }
 /*svg { position:fixed; top:0; left:0; height:100%; width:100% }*/
 footer,article,nav,body{
     /* Giving a display value to the HTML5 rendered elements: */
@@ -880,7 +880,7 @@ footer {
     height: 76px;
     z-index:1;
     text-align: left;
-    overflow: y-scroll;
+    overflow: auto;
 }
 .unit {
     cursor: move;
