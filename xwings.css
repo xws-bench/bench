@@ -1,4 +1,4 @@
-html, body { margin:0; padding:0; overflow:hidden }
+html, body { margin:0; padding:0; overflow:scroll }
 /*svg { position:fixed; top:0; left:0; height:100%; width:100% }*/
 footer,article,nav,body{
     /* Giving a display value to the HTML5 rendered elements: */
@@ -16,7 +16,8 @@ footer,article,nav,body{
     /*width: 900px;*/
     /*height:900px;*/ /*calc(100% - 60px);*/
     /*left: 170px;*/
-    width: calc(100% - 340px); height: calc(100% - 200px) ; 
+    width: calc(100% - 340px); 
+    height: calc(100% - 300px) ; 
     overflow: scroll;
 }
 article {
@@ -26,14 +27,18 @@ article {
     height: 100%;
 }
 #svgout {
-    background: #000000 url("img/playmat7.jpg");
+    background: url("img/playmat7.jpg");
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: 100%;
 }
-article,body,#leftpanel,#rightpanel {
+body,article {
+/*    background: black;*/
+}
+#leftpanel,#rightpanel {
     background:white;
 }
 body {
+    background: #000;
     width: 100%;
     margin: 0px;
     padding: 0px;
@@ -51,7 +56,7 @@ h2 {
     padding: 5px;
     border:0;
     color:white;
-    text-align:center;
+    text-align:left;
 }
 nav ul {
     list-style-type: none;
@@ -114,10 +119,10 @@ nav a {
     background: white;
     color: black;
 }
-#import > div, #modal > div,#credit > div {
+#modal > div,#credit > div {
     width: 800px;
 }
-#proba > div,#combatmodal > div {
+#import > div, #export > div, #proba > div,#combatmodal > div {
     width: 400px;
 }
 #credit > div {
@@ -177,53 +182,44 @@ td, th,table {
 	box-shadow: 1px 1px 3px #000;
 }
 .close:hover { background: #00d9ff; }
-#box{
-  width:200px;
-  height:100px;
-  background:white;
-  border-radius:5px;
-  position:absolute;
-  left:170px;
-  top:0;
-  display:none;
-}
-#box::target {
-    display:block;
-}
-#box:before{
-  content:'';
-  position:absolute;
-  width:20px;
-  height:20px;
-  background:red;
-  z-index:-1;
-  left:-10px;
-  top:20px;
-  transform:rotate(145deg) skew(20deg);
-  background:inherit;
-}
+
 .phasepanel {
     display: none;
 }
-
+.attackwp {
+    background: black;
+    color: white;
+}
 #attack, #defense {
     margin: 0px;
     border: 0px;
     padding: 0px;
 }
-.statskill,.statshield,.stathull,.statfire,.statevade{
-    background: #333;
-    padding: 5px;
+.tdstat {
     line-height: 20px;
-    border-radius: 4px;
+    padding:2px;
     margin:1px;
-    font-weight:normal;
 }
-.team .name {
+.statfire,.statevade,.PS,.statshield,.stathull,.statskill {
+    line-height: 20px;
+    padding:2px;
+    margin:1px;
+    background: #333;
+    border-radius: 4px;
+    width:20px;
+}
+.team,.name {
     background: lightsteelblue;
     color: black;
 }
-.statskill {
+.name {
+    font-weight: bold;
+}
+.total,.addunit {
+    color: lightsteelblue;
+    font-weight:bold;
+}
+.statskill,.PS {
     color: #FA0;
 }
 .statevade {
@@ -244,7 +240,7 @@ td, th,table {
     width: 1.3ex;
     letter-spacing: 4px; /* arbitrarily large letter-spacing for safety */
 }
-.statfire,.statskill,.statevade, .stathull,.statshield {
+.statfire,.statskill,.PS,.statevade, .stathull,.statshield {
     display: inline-block;
 }
 #team1 {
@@ -284,8 +280,54 @@ td, th,table {
 #team2 .statskill {
     float:left;
 }
-.statfire,.statskill,.statevade {
+#team1 .pts,#team2 .pts,#team1 .totalpts,#team2 .totalpts {
+    position:absolute;
+    color:white;
+    background: rgba(0,0,0,0);
+    text-shadow: -1px -1px 0 #000;  
+}
+.totalpts,.total {
+    font-size:30px;
+}
+#team1 .dial,#team2 .dial {
+    position:absolute;
+    color:white;
+    padding:10px;
+    background: rgba(0,0,0,0);
+    max-width: 350px;
+}
+#team2 .pts,#team2 .totalpts {
+    right: 176px;
+}
+#team1 .pts,#team1 .totalpts {
+    left: 176px;
+}
+#team2 .dial {
+    right: 216px;
+}
+#team1 .dial {
+    left: 216px;
+}
 
+.plus {
+    color:lightsteelblue;
+    font-size: large;
+    font-weight: bold;
+    padding: 5px;
+    display: inline-block;
+    margin: 5px;
+    text-align: center;
+    width: 14px;
+    line-height: 14px;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+    border-radius: 16px;
+    border-style: solid;
+    border-width: 1px;
+}
+select {
+    height: 2em;
 }
 .hull,.shield {
     font-family: 'symbols';
@@ -318,7 +360,7 @@ td, th,table {
     min-width: 20px;
     border-color: white;
     border-radius: 20px;
-    background:rgba(0,0,0,0.7);
+    background:rgba(0,0,0,0.4);
 }
 .disabled, .disabled .selected {
     color: #aaa;
@@ -327,11 +369,11 @@ td, th,table {
     color: white;
 }
 .team .selected {
-    background: tomato;
+    background: orange;
     color: white;
 }
 .team .selected .name {
-    background: firebrick;
+    background: darkorange;
     color: white;
 }
 .phasepanel .symbols:hover, .phasepanel .selected {
@@ -347,22 +389,31 @@ td, th,table {
     display: none;
 }
 .details {
-    font-size: smaller;
+    font-size: small;
+    text-align:justify;
+    margin:0px;
+    overflow:scroll;
+    height:50px;
+}
+.upgrade select {
+    width: 120px;
+    border: 2px;
+    margin:0px;
 }
  .table > div, .team > div  {
     display: table-row;
-    width: 160px;
+    width: 200px;
     padding:0px;
     margin:0px;
 }
 .table > div > div,.phasepanel .table > div > button, .team > div > div {
     display: table-cell;
     text-align: center;
-    margin: 0px;
-    width:160px;
+    width: 15px;
 }
 .table .symbols {
     border:1px;
+    border-radius: 10px;
     border-style:solid;
 }
 .dead, .dead .name,.dead .name .selected,.dead .REBEL,.dead .statfire, .dead .statevade,.dead .upgrades,.dead .EMPIRE,.dead .SCUM,.dead .statskill {
@@ -391,15 +442,16 @@ td, th,table {
     color: white;
     border: 0px;
     text-decoration:none;
-    background: #888;
-    background: linear-gradient(to top, #555 0%, #888 100%);  
+    background: lightsteelblue;
+    cursor: pointer;
+/*    background: linear-gradient(to top, #555 0%, #888 100%);  
     background: -moz-linear-gradient(to top, #555 0%, #888 100%); 
     background: -webkit-linear-gradient(to top, #555 0%,#888 100%); 
-   /* font-size: large;*/
+*/   /* font-size: large;*/
     border-radius: 5px;
 }
 .bigbutton {
-    width: 70px;
+    width: 74px;
 }
 .smallbutton{
     width: 25px;
@@ -417,14 +469,16 @@ td, th,table {
 .upgrades {
     color: #ffd700;
 }
-.upgrades .inactive {
-    color: #ddd;
+.inactive,.inactive .statfire,.dead .nofire .statfire {
+    color: gray;
 }
-
-.Laser,.Turretlaser {
+.nofire .statfire {
+    color: firebrick;
+}
+.Laser,.Turretlaser,.Bilaser {
     color: #F33;
 }
-.Laser::after {
+.Laser::after,.Bilaser::after {
     content: "%";
 }
 .Turretlaser::after {
@@ -447,6 +501,9 @@ td, th,table {
 }
 .Bomb::after {
     content: "B";
+}
+.CannonTorpedoMissile::after {
+    content:"CPM";
 }
 .Missile::after {
     content: "M";
@@ -504,7 +561,7 @@ td, th,table {
     border-style: solid;
     border-width: 1px;
 }
-.xevadetoken,.xfocustoken,.xcloaktoken,.xstresstoken,.xtargettoken {
+.xevadetoken,.xfocustoken,.xcloaktoken,.xstresstoken,.xtargettoken,.xionizedtoken {
     font-family: 'symbols';
     padding: 4px;
     display: inline-block;
@@ -525,12 +582,12 @@ td, th,table {
     border-width: 1px;
 }
 
-.Elite,.Torpedo,.Astromech,.Turret,.Missile,.Crew,.Cannon,.Bomb,.Title,.Mod,.System,.Illicit,.Salvaged,.Laser,.Turretlaser {
+.Elite,.Torpedo,.Astromech,.Turret,.Missile,.Crew,.Cannon,.Bomb,.Title,.Mod,.System,.Illicit,.Salvaged,.Laser,.Bilaser,.Turretlaser,.CannonTorpedoMissile {
     font-family: 'symbols';
     padding: 0px;
     float:left;
     display: inline-block;
-    margin: 1px;
+    margin: 4px;
     font-size: larger;
     text-align: center;
     text-decoration: none;
@@ -544,6 +601,9 @@ td, th,table {
     border-style: solid;
     border-width: 0px; 
 }
+.CannonTorpedoMissile {
+    font-size: small;
+}
 label {
     font-size: small;
 }
@@ -551,7 +611,7 @@ label {
     color: #0a0;
     border-color: #0a0;
 }
-.stresstoken,.xstresstoken {
+.stresstoken,.xstresstoken,.xionizedtoken {
     color: #f33;
     border-color: #f33;
 }
@@ -589,11 +649,13 @@ label {
 .stresstoken::after,.xstresstoken::after {
     content: "s";
 }
+.xionizedtoken::after {
+    content:"Z";
+}
 .cloaktoken::after,.xcloaktoken::after {
     content: "k";
 }
-.focusgreendice,.evadegreendice,.blankgreendice,.focusreddice,.hitreddice,.criticalreddice,.blankreddice {
-    font-family: 'symbols';
+.focusgreendice,.evadegreendice,.blankgreendice,.focusreddice,.hitreddice,.criticalreddice,.blankreddice,.reddice,.greendice {
     padding: 5px;
     display: inline-block;
     margin: 2px 0px;
@@ -607,29 +669,34 @@ label {
     -webkit-box-shadow: 1px 1px 3px #000;
     box-shadow: 1px 1px 3px #000;
 }
-.focusreddice,.hitreddice,.blankreddice,.criticalreddice {
+.focusreddice,.hitreddice,.blankreddice,.criticalreddice,.reddice {
     background: linear-gradient(to top, #f33 0%, #b00 100%);  
     background: -moz-linear-gradient(to top, #f33 0%, #b00 100%); 
     background: -webkit-linear-gradient(to top, #f33 0%,#b00 100%); 
 }
-.focusgreendice,.evadegreendice,.blankgreendice {
+.focusgreendice,.evadegreendice,.blankgreendice,.greendice {
     background: linear-gradient(to top, #3f3 0%, #0b0 100%);  
     background: -moz-linear-gradient(to top, #3f3 0%, #0b0 100%); 
     background: -webkit-linear-gradient(to top, #3f3 0%,#0b0 100%); 
 }
 .focusreddice::after,.focusgreendice::after {
+    font-family: 'symbols';
     content: "f";
 }
 .hitreddice::after,.hit::after {
+    font-family: 'symbols';
     content: "d";
 }
 .criticalreddice::after,.critical::after {
+    font-family: 'symbols';
     content: "c";
 }
 .blankreddice::after,.blankgreendice::after {
+    font-family: 'symbols';
     content: "\00a0";
 }
 .evadegreendice::after {
+    font-family: 'symbols';
     content: "e";
 }
 #pilot-text {
@@ -687,14 +754,20 @@ label {
     background: -webkit-linear-gradient(to top, #822 0%,#f88 100%); 
 }
 .disabled, .button2 {
-    background: #888;
-    background: linear-gradient(to top, #222 0%, #888 100%);  
+    background: darkgray;
+/*    background: linear-gradient(to top, #222 0%, #888 100%);  
     background: -moz-linear-gradient(to top, #222 0%, #888 100%); 
     background: -webkit-linear-gradient(to top, #222 0%,#888 100%); 
+*/
 }
 .bigbutton:disabled,.nextphase:disabled,.largebutton:disabled {
-    background: #555;
-    color: #888;
+    background: white;
+    color: lightgrey;
+    cursor:default;
+    -moz-box-shadow: 1px 1px 0 #000;
+    -webkit-box-shadow: 1px 1px 0 #000;
+    box-shadow: 1px 1px 0 #000;
+
 }
 .largebutton {
     width: 150px;
@@ -712,9 +785,6 @@ label {
 }
 #rightpanel {
     float:right;
-/*    position:absolute;
-    left:1070px ; 
-    top: 100px;*/
 }
 #leftpanel {
     float: left;
@@ -722,18 +792,37 @@ label {
 .symbols{
     font-family: 'symbols';
 }
+.factionselect code {
+    background: #eee;
+    cursor: pointer;
+    border-top: solid 2px #eaeaea;
+    border-left: solid 2px #eaeaea;
+    border-bottom: solid 2px #777;
+    border-right: solid 2px #777;
+    padding: 5px 5px;   	
+    }
+
+.factionselect .down {
+    background: #bbb;
+    border-top: solid 2px #777;
+    border-left: solid 2px #777;
+    border-bottom:solid 2px  #eaeaea;
+    border-right: solid 2px #eaeaea;
+    }
+
 .REBEL, .EMPIRE, .SCUM {
     font-family: 'symbols';
     margin: 2px;
+    border-radius:20px;
 }
 .REBEL,.statfire {
-    color: #F33;
+    color: #F00;
 }
 .EMPIRE {
     color: #000;
 }
 .SCUM {
-    color: #880;
+    color: #AA3;
 }
 .REBEL::after {
     content: "!";
@@ -749,9 +838,15 @@ label {
     font-size: 6px;
 }
 .probacell {
-    border:0px;
+    border:1px white solid;
     margin:0px;
+    padding:0px;
     height:2ex;
+    display:table-cell;
+}
+.probacell:hover {
+    border:1px solid;
+    opacity:.7;
 }
 #menuaction ul {
     list-style:none;
@@ -776,19 +871,28 @@ label {
     visibility: visible;
 }
 footer {
-    position: absolute;
+    position: fixed;
     background: rgba(0,0,0,0.5);
     color: rgba(255,255,255,0.7);
     bottom: 0px;
+    left:170px;
     width: 80ex;
-    height: 4em;
-    left: 170px;
+    height: 76px;
     z-index:1;
     text-align: left;
     overflow: scroll;
 }
 .unit {
     cursor: move;
+}
+td {
+    vertical-align:top;
+    margin:0px;
+    border:0;
+}
+tr {
+    margin:0;
+    border:0;
 }
 .xwingship {
     font-family:'ships';
@@ -798,6 +902,27 @@ footer {
     1px -1px 0 #888,
     -1px 1px 0 #fff,
     1px 1px 0 #fff;
+}
+.tokens {
+    font-family:"Times New Roman", Times, serif ;
+    padding: 4px;
+    display: inline-block;
+    margin: 0px;
+    text-align: center;
+    width: 14px;
+    font-size: smaller;
+    line-height: 9px;
+    text-decoration: none;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+    background: linear-gradient(to top, #555 0%, #000 100%);  
+    background: -moz-linear-gradient(to top, #555 0%, #000 100%); 
+    background: -webkit-linear-gradient(to top, #555 0%,#000 100%); 
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    color:#08d;
 }
 .arrow-right {
     border-color: transparent #888;
