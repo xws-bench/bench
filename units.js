@@ -1331,7 +1331,7 @@ Unit.prototype = {
     canfire: function() {
         var r=this.gethitrangeallunits();
 	var b= (this.hasfired==0&&(r[1].length>0||r[2].length>0||r[3].length>0)&&!this.iscloaked&&this.ocollision.overlap==-1);
-	log("[canfire]"+this.name+" "+b+"="+this.hasfired+"& r=["+r[1].length+", "+r[2].length+", "+r[3].length+"] &"+this.iscloaked+" &"+this.ocollision.overlap)
+	//log("[canfire]"+this.name+" "+b+"="+this.hasfired+"& r=["+r[1].length+", "+r[2].length+", "+r[3].length+"] &"+this.iscloaked+" &"+this.ocollision.overlap)
         return b;
     },
     getattackstrength: function(i,sh) {
