@@ -3,7 +3,7 @@ var round=1;
 var skillturn=0;
 var waitingforaction=0;
 var tabskill;
-var SETUP_PHASE=1,PLANNING_PHASE=2,ACTIVATION_PHASE=3,COMBAT_PHASE=4,SELECT_PHASE=0;
+var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE1=0,SELECT_PHASE2=1;
 var DICES=["focusred","hitred","criticalred","blankred","focusgreen","evadegreen","blankgreen"];
 /*
 <li><a href="#" class="symbols" onclick="activeunit.togglehitsector()">i</a></li>
@@ -218,9 +218,8 @@ function showfire(ar,dr) {
 }
 function encodeattack(t) {
     var s=t.value();
-    var n=$("#attack").children().length;
     $("#attack").remove();
-    for (i=0; i<n; i++) {
+    for (i=0; i<s.length; i++) {
 	var c=s.charAt(i);
 	switch(c) {
 	case "f": $("#attack").append("<b class='focusreddice'></b>"); break;
@@ -315,17 +314,18 @@ function applymaneuver() {
 }
 var keybindings={
     phase0:[],
-    phase1:[
+    phase1:[],
+    phase2:[
 	{k:'t',f:function() { activeunit.turn(45);}},
 	{k:"shift+t",f:function() {activeunit.turn(-45); }},
 	{k:"b",f:function() { activeunit.turn(5);}},
 	{k:"shift+b",f:function() { activeunit.turn(-5,0,0);}}],
-    phase2:[
+    phase3:[
 	{k:"m",f: function () { activeunit.nextmaneuver(); }},
 	{k:"shift+m",f:function() {activeunit.prevmaneuver(); }}
     ],
-    phase3:[{k:"enter",f:applymaneuver}],
-    phase4:[{k:'enter',f:function() {inhitrange(); window.location='#modal' }}],
+    phase4:[{k:"enter",f:applymaneuver}],
+    phase5:[{k:'enter',f:function() {inhitrange(); window.location='#modal' }}],
     action:[
 	{k:"a", f:function() { 
 	    if (!activeunit.actiondone
@@ -386,10 +386,15 @@ function combatready() {
     if (waitingforaction>0) waitingforaction--;
     if (waitingforaction==0) nextcombat();
 }
+function win() {
+    if (TEAMS[1].dead) log("Team #2 wins !");
+    else log("Team #1 wins !");
+}
 document.addEventListener("actioncomplete", actioncomplete, false);
 document.addEventListener("maneuvercomplete", maneuvercomplete, false);
 document.addEventListener("firecomplete",firecomplete, false);
 document.addEventListener("combatready",combatready,false);
+document.addEventListener("win",win,false);
 
 function bind(name,c,f) { $(document.body).bind('keydown.'+name,jwerty.event(c,f)); }
 function unbind(name) { $(document.body).unbind('keydown.'+name); } 
@@ -400,7 +405,7 @@ function bindall(name) {
 	bind(name,kb[j].k,kb[j].f);
     }	    
 }
-var phasetext = ["Build phase", "Setup phase","Planning phase","Activation phase","Combat phase"];
+var phasetext = ["Build squad #1", "Build squad #2", "Setup","Planning","Activation","Combat"];
 
 function filltabskill() {
     tabskill=[];
@@ -414,11 +419,10 @@ function nextphase() {
     if (!enablenextphase()) return;
     window.location="#"
     switch(phase) {
-    case SELECT_PHASE:
-	TEAMS[1].endselection(s);
-	TEAMS[2].endselection(s);
-	activeunit=squadron[0];
-	loadrock(s);
+    case SELECT_PHASE1:
+	$("#rightpanel").show();
+	break;
+    case SELECT_PHASE2:
 	break;
     case SETUP_PHASE: 
 	activeunit.g.undrag(); 
@@ -451,18 +455,27 @@ function nextphase() {
     waitingforaction=0;
     phase=(phase==COMBAT_PHASE)?PLANNING_PHASE:phase+1;
  
-    if (phase<2) $("#phase").html(phasetext[phase]);
+    if (phase<3) $("#phase").html(phasetext[phase]);
     else $("#phase").html("Turn #"+round+" "+phasetext[phase]);
-    if (phase>SELECT_PHASE) for (i=0; i<squadron.length; i++) {squadron[i].unselect();}
+    if (phase>SELECT_PHASE2) for (i=0; i<squadron.length; i++) {squadron[i].unselect();}
     // Init new phase
-    for (i=SELECT_PHASE; i<=COMBAT_PHASE; i++) {
+    for (i=SELECT_PHASE1; i<=COMBAT_PHASE; i++) {
 	if (i!=phase) unbind("phase"+i);
 	else bindall("phase"+i);
     }
     switch(phase) {
-    case SELECT_PHASE:
+    case SELECT_PHASE1:
+	$(".activeunit").prop("disabled",true);
+	$("#rightpanel").hide();
+	break;
+    case SELECT_PHASE2:
+	TEAMS[1].endselection(s);
 	break;
     case SETUP_PHASE:
+	$(".activeunit").prop("disabled",false);
+	TEAMS[2].endselection(s);
+	activeunit=squadron[0];
+	loadrock(s);
 	jwerty.key('l', allunitlist);
 	jwerty.key('w', inhitrange);
 	jwerty.key('s', function() {activeunit.togglehitsector();})
@@ -510,10 +523,11 @@ function nextphase() {
 	if (waitingforaction==0) document.dispatchEvent(combatreadyevent());
 	break;
     }
-    if (phase>SELECT_PHASE) activeunit.show();
+    if (phase>SELECT_PHASE2) activeunit.show();
 }
 function log(str) {
-    $("footer").append("<div>"+str+"<div>").scrollTop(10000);
+    $("#log").append("<div>"+str+"<div>");
+    $("footer").scrollTop(10000);
 }
 function select(name) {
     var i;
@@ -907,7 +921,7 @@ $(document).ready(function() {
 	    log(n+"/"+UPGRADES.length+" upgrades implemented");
 
 	    $("#leftpanel").prepend("<div id='importexport1'><button onclick='currentteam=1;window.location=\"#import\"' class='bigbutton'>Import JSON</button><button class='bigbutton' onclick='$(\"#jsonexport\").val(JSON.stringify(TEAMS[1])); window.location=\"#export\"'>Export JSON</button></div>");
-	    $("#rightpanel").prepend("<div id='importexport2'><button onclick='currentteam=2;window.location=\"#import\"' class='bigbutton'>Import JSON</button><button class='bigbutton' onclick='alert(JSON.stringify(TEAMS[2]))'>Export JSON</button></div>");
+	    $("#rightpanel").prepend("<div id='importexport2'><button onclick='currentteam=2;window.location=\"#import\"' class='bigbutton'>Import JSON</button><button class='bigbutton' onclick='$(\"#jsonexport\").val(JSON.stringify(TEAMS[2])); window.location=\"#export\"'>Export JSON</button></div>");
 	    phase=-1;
 	    $("#panel_ACTIVATION").hide();
 	    $("#panel_COMBAT").hide();

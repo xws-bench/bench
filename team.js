@@ -1,7 +1,19 @@
 var factions=["REBEL","EMPIRE"];
 var currentteam=1;
+function winevent() {
+    return new CustomEvent(
+	"win", {
+	    detail: {
+		time: new Date(),
+	    },
+	    bubbles: true,
+	    cancelable: true
+	});
+}
+
 function Team(team) {
     this.team=team;
+    this.dead=false;
 }
 Team.prototype = {
     setfaction: function(faction) {
@@ -13,13 +25,25 @@ Team.prototype = {
     },
     changefaction: function(faction) {
 	var i;
-	log("changing faction "+faction+" for team "+this.team);
 	for (var i in generics) {
 	    if (generics[i].team==this.team) {
 		delete generics[i];
 	    }
 	}
 	this.setfaction(faction);
+    },
+    checkdead: function() {
+	var i;
+	var alldead=true;
+	for (i=0; i<squadron.length; i++) {
+	    if (squadron[i].team==this.team)
+		if (!squadron[i].dead) { alldead=false; break; }
+	}
+	if (alldead) { 
+	    this.dead=true;
+	    document.dispatchEvent(winevent());
+	}
+	return alldead;
     },
     addpoints: function() { 
 	var team=this.team
@@ -56,9 +80,8 @@ Team.prototype = {
 	var team=this.team;
 	var sq=[];
 	for (var i in generics) {
-	    if (generics[i].team==team) {
+	    if (generics[i].team==this.team) {
 		u=generics[i];
-		log("converting first "+u.ship.name);
 		u.tosquadron(s);
 		squadron.push(u);
 		sq.push(u);
@@ -105,40 +128,35 @@ Team.prototype = {
 	s.version="0.2.0";
 	return s;
     },
-    parseJSON:function(str) {
+    parseJSON:function(svg,str) {
 	var s;
-	var team=this.team;
 	try {
 	    s=$.parseJSON(str);
 	} catch(err) {
 	    alert("JSON error:"+err.message);
 	    return;
 	}
-	$("#team"+team).empty();
 	var upg_type=["ept","turret","torpedo","mod","title","amd","missile","crew","cannon","bomb","system","illicit","salvaged"];
 	var i,j,k;
-	var sq=[];
+	var FACTIONS={"rebels":"REBEL","empire":"EMPIRE","scum":"SCUM"};
+	this.faction=FACTIONS[s.faction];
+
+	for (i in generics) if (generics[i].team==this.team) delete generics[i];
 	for (i=0; i<s.pilots.length; i++) {
 	    var pilot=s.pilots[i];
 	    var p;
-	    p=Pilot(pilot.name);
-	    p.team=team;
-	    squadron.push(p);
-	    sq.push(p);
+	    pilot.team=this.team;
+	    p=new Unit(this.team);
+	    p.selectship(PILOT_dict[pilot.ship],PILOT_dict[pilot.name]);
 	    if (typeof pilot.upgrades!="undefined")  {
 		for (j=0; j<upg_type.length; j++) { 
 		    var upg=pilot.upgrades[upg_type[j]];
 		    if (typeof upg!="undefined") 
 			for (k=0; k<upg.length; k++)
-			    Upgrade(p,UPGRADE_dict[upg[k]]);
-		    
+			    Upgradefromname(p,UPGRADE_dict[upg[k]]);		    
 		}
 	    }
 	}
-	squadron.sort(function(a,b) {
-	    return a.skill-b.skill;
-	});
-	squadron[0].select();
-	return sq;
+	nextphase();
     }
 }
