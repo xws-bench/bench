@@ -75,8 +75,6 @@ function loadsound() {
     });
 }
 
-
-
 function actionevent() {
     return new CustomEvent(
 	"actioncomplete", {
@@ -215,6 +213,7 @@ function Unit(team) {
     this.pilotselect="<select onchange='generics[\"u"+id+"\"].selectpilot()' id='name"+id+"' style='background:lightsteelblue;width:170px;text-align:center'></select>";
     this.name="";
     this.upgradesno=0;
+    this.upgrades=[];
     this.removeupg=[];
     for (i=0; i<10; i++) this.removeupg[i]=Unit.prototype.defaultremoveupg;
     this.stats="<div id='stats"+id+"'></div>";
@@ -226,7 +225,7 @@ function Unit(team) {
 }
 Unit.prototype = {
     tosquadron: function(s) {
-	var upgs=this.upgrades;
+	var upgs=this.upg;
 	this.maneuver=-1;
 	this.action=-1;
 	this.hasmoved=false;
@@ -243,15 +242,12 @@ Unit.prototype = {
 	this.m=new Snap.Matrix(); 
 	this.collision=false;
 	this.ocollision={overlap:-1,template:0};
-	this.upgrades=[];
 	for (j in upgs) {
 	    if (upgs[j]>-1) {
-		log("finding "+j+" "+UPGRADES[upgs[j]].name);
 		new Upgrade(this,upgs[j])
 	    }
 	}
 	this.updateactionlist();
-	
 	this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
 	if (!(this.islarge)) {
 	    this.img=s.text(-10,10,this.ship.code).transform('r -90 0 0 '+((this.faction=="EMPIRE"||this.faction=="SCUM")?'r -1 1':'')).attr({
@@ -341,7 +337,7 @@ Unit.prototype = {
 	if (typeof this.init!="undefined") this.init();
     },
     defaultremoveupg: function(upgid,init) {
-	var id=this.upgrades[upgid];
+	var id=this.upg[upgid];
 	$("#upgradetext"+this.id+"_"+upgid+" div").remove();
 	$("#pts"+this.id+"_"+upgid).html("");
 	if (id==-1) return;
@@ -350,7 +346,7 @@ Unit.prototype = {
 	this.showdial();
 	this.showstats();
 	this.showactions();
-	this.upgrades[upgid]=-1;
+	this.upg[upgid]=-1;
 	if (init) {
 	    $("#upgrade"+this.id+"_"+upgid+" option").prop("selected",false);
 	    $("#upgrade"+this.id+"_"+upgid+" option[val=-1]").prop("selected",true);
@@ -363,8 +359,8 @@ Unit.prototype = {
 	s.ship=xws_lookup(this.ship.name)
 	var upgpt={};
 	for (var i=0; i<10; i++) {
-	    if (this.upgrades[i]!=-1) {
-		var upg=UPGRADES[this.upgrades[i]];
+	    if (this.upg[i]!=-1) {
+		var upg=UPGRADES[this.upg[i]];
 		var type=UPGRADE_TYPES[upg.type];
 		if (typeof upgpt[type]=="undefined") upgpt[type]=[];
 		upgpt[type].push(upg_lookup(upg.name));
@@ -398,7 +394,7 @@ Unit.prototype = {
 	var m=[],i,j,d;
 	var gd=this.getdial();
 	$("#move").css({display:"none"});
-	if (phase==PLANNING_PHASE||phase==SELECT_PHASE) {
+	if (phase==PLANNING_PHASE||phase==SELECT_PHASE1||phase==SELECT_PHASE2) {
 	    for (i=0; i<=5; i++) {
 		m[i]=[];
 		for (j=0; j<=5; j++) m[i][j]="<div></div>";
@@ -424,7 +420,7 @@ Unit.prototype = {
 		for (j=0; j<=5; j++) str+=m[i][j];
 		str+="</div>\n";
 	    }
-	    if (phase==SELECT_PHASE) $("#dial"+this.id).html(str);
+	    if (phase==SELECT_PHASE1||phase==SELECT_PHASE2) $("#dial"+this.id).html(str);
 	    else {
 		$("#maneuverdial").empty();
 		$("#maneuverdial").html(str);
@@ -469,11 +465,12 @@ Unit.prototype = {
 	    }
 	}
     },
-    selectship:function() {
+    selectship:function(vship,vname) {
 	var i,k;
 	var s=this.id;
 	var selected=-1;
-	var ship=$("#select"+this.id).val();
+	var ship=vship;
+	if (typeof vship=="undefined") ship=$("#select"+this.id).val();
 	var u=unitlist[ship]
 	this.ship.firesnd=u.firesnd;
 	this.ship.flysnd=u.flysnd;
@@ -487,12 +484,13 @@ Unit.prototype = {
 	this.shipactionList=u.actionList.slice(0);
 	this.weapons=[];
 	this.weapons.push(Laser(this,u.weapon_type,u.fire));
+	//console.log("pushing laser for "+ship+" "+this.weapons[0].name);
 	$("#text"+this.id).html("");
 	this.showdial();
 	this.showactions();
 	this.removepilot(true);
 	this.getpilotlist();
-	this.selectpilot();
+	this.selectpilot(vname);
     },
     initupgradelist:function(type,upgid) {
 	var p=PILOTS[this.pilotid];
@@ -548,14 +546,16 @@ Unit.prototype = {
 	$("#actions"+this.id).html(str);
 
     },
-    selectpilot:function() {
+    selectpilot:function(vname) {
 	var i,j,k;
 	this.removepilot(false);
-	var name=$("#name"+this.id).val();
+	var name=vname;
+	if (typeof vname=="undefined") name=$("#name"+this.id).val();
 	for (i=0; i<PILOTS.length; i++) {
 	    if (PILOTS[i].name==name) break;
 	}
 	this.name=name;
+	//console.log("selectpilot "+this.name+" i found ? "+(i<PILOTS.length));
 	if (i==PILOTS.length) return;
 	this.pilotid=i;
 	this.unique=PILOTS[i].unique==true?true:false;
@@ -563,8 +563,8 @@ Unit.prototype = {
 	this.install=(typeof PILOTS[i].install!="undefined")?PILOTS[i].install:function() {};
 	this.uninstall=(typeof PILOTS[i].uninstall!="undefined")?PILOTS[i].uninstall:function() {};
 	var up=PILOTS[i].upgrades;
-	this.upgrades=[];
-	for (j=0; j<10; j++) {this.upgrades[j]=-1};
+	this.upg=[];
+	for (j=0; j<10; j++) {this.upg[j]=-1};
 	$("#upgrade"+this.id).html("");
 	for (k=0; k<up.length; k++) 
 	    this.addupgradetype(up[k],k);
@@ -587,7 +587,7 @@ Unit.prototype = {
 	    }.bind(this);
 	}
  
-	var up=PILOTS[this.pilotid].upgrades;
+	var up=PILOTS[this.pilotid].upg;
 	var text=PILOT_translation.english[name];
 	if (typeof text=="undefined") text=""; 
 	$("#text"+this.id).html(text);
@@ -600,7 +600,7 @@ Unit.prototype = {
 	this.removeupg[upgid].call(this,upgid,false);
 	/* Add new upgrade */
 	var upgrade=$("#upgrade"+this.id+"_"+upgid).val();
-	this.upgrades[upgid]=upgrade;
+	this.upg[upgid]=upgrade;
 	if (upgrade==-1) { 
 	    $("#upgrade"+this.id+"_"+upgid).css({margin:"0px"});
 	    $("#pts"+this.id+"_"+upgid).html("");
@@ -634,7 +634,7 @@ Unit.prototype = {
 	    this.shipactionList.push(added);
 	    log("Added action:"+addedaction);
 	    this.removeupg[upgid]=function(upgid,reset) {
-		var upgrade=this.upgrades[upgid];
+		var upgrade=this.upg[upgid];
 		var x=this.shipactionList.indexOf(UPGRADES[upgrade].addedaction.toUpperCase());
 		if (x>-1) this.shipactionList.splice(x,1);
 		this.defaultremoveupg(upgid,reset);
@@ -648,10 +648,9 @@ Unit.prototype = {
 		this.addupgradetype(upgaddons[j],this.upgradesno+j,UPGRADES[upgrade].pointsupg);
 	    $("#upgrade"+this.id+"_"+upgid).prop("start",this.upgradesno);
 	    this.removeupg[upgid]=function(upgid,reset) {
-		var upgrade=this.upgrades[upgid];
+		var upgrade=this.upg[upgid];
 		var upgaddons=UPGRADES[upgrade].upgrades;
 		var start=$("#upgrade"+this.id+"_"+upgid).prop("start");
-		log("start found at "+start);
 		for (var j=start; j<start+upgaddons.length; j++) { 
 		    $("#upgradetext"+this.id+"_"+j).remove();
 		    this.removeupg[j].call(this,j,true);
@@ -985,7 +984,7 @@ Unit.prototype = {
 	this.show();
     },
     addevade: function() { 
-	addevadetoken(); 
+	this.addevadetoken(); 
 	this.action=-1;
 	this.actiondone=true;
 	document.dispatchEvent(actionevent());
@@ -1023,6 +1022,7 @@ Unit.prototype = {
 	    this.m=MT(-60,-60);
 	    log(this.name+" has exploded !");
 	    this.show();
+	    TEAMS[this.team].checkdead(); 
 	    SOUNDS.explode.play();
 	    return true;
 	}	
@@ -1543,6 +1543,15 @@ Unit.prototype = {
 	    $("#attackdial").html("<div>"+str+"</div>").show();
 	}
     },
+    candotarget: function() {
+	return this.gettargetableunits().length>0;
+    },
+    candofocus: function() {
+	return true;
+    },
+    candoevade: function() {
+	return true;
+    },
     showaction: function() {
 	var str="";
 	var name;
@@ -1555,6 +1564,9 @@ Unit.prototype = {
 	if (this.candoaction()) {
 	    for (i=0; i<this.actionList.length; i++) {
 		var a = this.actionList[i];
+		if (a=="TARGET"&&!this.candotarget()) continue;
+		if (a=="FOCUS"&&!this.candofocus()) continue;
+		if (a=="EVADE"&&!this.candoevade()) continue;
 		str+="<div class='symbols "+A[a].color+" ";
 		if (i==this.action) str+="selected'"; else str+="'";
 		str+="onclick='activeunit.action="+i+";resolveaction()'>"+A[a].key+"</div>";
@@ -1599,7 +1611,7 @@ Unit.prototype = {
     endactivationphase: function() {},
     begincombatphase: function() {},
     toString: function() {
-	if (phase==SELECT_PHASE) return this.toString2();
+	if (phase==SELECT_PHASE1||(phase==SELECT_PHASE2&&this.team==2)) return this.toString2();
 	var i;
 	var n=8;
 	for (i=0; i<squadron.length; i++) if (this==squadron[i]) break;
@@ -1685,7 +1697,7 @@ Unit.prototype = {
 	return str;
     },
     showstats: function() {
-	if (phase==SELECT_PHASE) {
+	if (phase==SELECT_PHASE1||phase==SELECT_PHASE2) {
 	    $("#stats"+this.id).html(
 		"<div class='PS'>"+this.skill+"</div>"
 		    +"<div class='statfire'>"+this.weapons[0].attack+"</div>"
