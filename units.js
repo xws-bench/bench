@@ -250,13 +250,15 @@ Unit.prototype = {
 	this.updateactionlist();
 	this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
 	if (!(this.islarge)) {
-	    this.img=s.text(-10,10,this.ship.code).transform('r -90 0 0 '+((this.faction=="EMPIRE"||this.faction=="SCUM")?'r -1 1':'')).attr({
-		class:"xwingship",
-	    });
+	    this.img=s.image("png/"+this.ship.img[0],-20*this.scale,-20*this.scale,40*this.scale,40*this.scale).transform('r 90 0 0');
+//	    this.img=s.text(-10,10,this.ship.code).transform('r -90 0 0 '+((this.faction=="EMPIRE"||this.faction=="SCUM")?'r -1 1':'')).attr({
+//		class:"xwingship",
+//	    });
 	} else {
-	    this.img=s.text(0,0,this.ship.code).transform('r -90 0 0 '+((this.faction=="EMPIRE"||this.faction=="SCUM")?'s 2 -2':'s 2 2')+'t -15 5').attr({
-		class:"xwingship",
-	    });
+	    this.img=s.image("png/"+this.ship.img[0],-50*this.scale,-50*this.scale,100*this.scale,100*this.scale).transform('r 90 0 0');
+//	    this.img=s.text(0,0,this.ship.code).transform('r -90 0 0 '+((this.faction=="EMPIRE"||this.faction=="SCUM")?'s 2 -2':'s 2 2')+'t -15 5').attr({
+//		class:"xwingship",
+//	    });
 	}
 	var w=(this.islarge)?40:20;
 	this.outline = s.rect(-w,-w,2*w,2*w).attr({
@@ -316,7 +318,7 @@ Unit.prototype = {
 		      });
 	}
 	// Order in the group is important. Latest is on top of stacked layers
-	this.g=s.group(this.range3,this.range2,this.range1,this.sector6,this.sector5,this.sector4,this.sector3,this.sector2,this.sector1,this.sector,this.outline,this.dialspeed,this.dialdirection,this.actionicon,this.img,this.infoicon[0],this.infoicon[1],this.infoicon[2],this.infoicon[3],this.gstat);
+	this.g=s.group(this.range3,this.range2,this.range1,this.sector6,this.sector5,this.sector4,this.sector3,this.sector2,this.sector1,this.sector,this.outline,this.img,this.dialspeed,this.dialdirection,this.actionicon,this.infoicon[0],this.infoicon[1],this.infoicon[2],this.infoicon[3],this.gstat);
 	this.g.addClass("unit");
 	this.g.hover(
 	    function () { 
@@ -475,6 +477,8 @@ Unit.prototype = {
 	this.ship.firesnd=u.firesnd;
 	this.ship.flysnd=u.flysnd;
 	this.ship.code=u.code;
+	this.ship.img=u.img;
+	this.scale=u.scale;
 	this.islarge=(u.islarge==true)?true:false;
 	this.agility=u.evade;
 	this.hull=u.hull;
