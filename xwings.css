@@ -818,21 +818,32 @@ footer {
     background: rgba(0,0,0,0.5);
     color: rgba(255,255,255,0.7);
     bottom: 0px;
-    left: 40ex ;
+    left: calc( 50% - 40ex );
     width: 80ex;
-    height: 76px;
+    height: 11ex;
     z-index:1;
     text-align: left;
-    overflow: auto;
+    overflow: hidden;
 }
-#log {
-    overflow: scroll;
+#nav {
+    position: fixed;
+    background: steelblue;
+    color:white;
+    z-index:999;
+    bottom:7ex;
+    left: calc ( 50% - 40ex );
+    height: 2em;
+    width: 80ex;
 }
 footer > ul {
     position: fixed;
     background: rgba(50,50,50,0.4);
     width: inherit;
     bottom: 76px;
+}
+#log {
+    height: 11ex;
+    overflow: auto;
 }
 .unit {
     cursor: move;
