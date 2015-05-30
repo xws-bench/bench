@@ -527,7 +527,7 @@ function nextphase() {
 }
 function log(str) {
     $("#log").append("<div>"+str+"<div>");
-    $("footer").scrollTop(10000);
+    $("#log").scrollTop(10000);
 }
 function select(name) {
     var i;
