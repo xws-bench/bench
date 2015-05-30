@@ -8,7 +8,6 @@
     <script src="jwerty.js"></script>
     <script src="jquery-1.11.2.js"></script>
    <link rel="stylesheet" href="xwings.css">
-    <title>X-Wings Squadron Benchmark</title>
     <script src="obstacles.js"></script>
     <script src="units.js"></script>
     <script src="pilots.js"></script>
@@ -33,14 +32,14 @@
   <body lang="en">
 
     <nav>
-      <span><span class="h2">X-Wings Squadron Benchmark<span style="font-size:x-small">v0.4</span></span><span style="font-size:small;">
+      <span class="h2">X-Wings Squadron Benchmark<span style="font-size:x-small">v0.4</span></span><div style="font-size:small;">
       <ul>
 	<li><a href="#about">About</a></li>
 	<li><a href="#proba" id="showproba">Show probability tables</a></li>
 	<li><a href="http://xws-benchmark.blogspot.fr">Bug report/Forum</a></li>
 	<li><a href="#help">Help</a></li>
 	<li><a href="#credit">Credits</a></li>
-      </ul></span></span>
+      </ul></div>
     </nav>
 
     <aside id="leftpanel">
@@ -370,13 +369,13 @@ The app is not really a game since the user plays both sides, there is no multi-
       </section>
     </article>
     <footer>
-      <ul>
-	<li><b>Active unit:</b>
-	<li><button class="activeunit symbols" onclick="activeunit.togglehitsector()" >%</div></button>
+      <div><ul>
+	<li><b>Active unit:</b></li>
+	<li><button class="activeunit symbols" onclick="activeunit.togglehitsector()" >%</button></li>
 	<li><button class="activeunit symbols" onclick="activeunit.togglerange()">S</button></li>
 	<li><button class="activeunit symbols" onclick="inhitrange()">%CPM</button></li>
 	<li style="float:right"><b>Active phase:</b> <b id="phase">Setup</b><button id="np" class="nextphase" onclick="nextphase()"> &#9658; </button></li>
-      </ul>
+      </ul></div>
       <div id='log'></div>
     </footer>
   </body>
