@@ -16,8 +16,8 @@ footer,article,nav,footer,body{
     /*width: 900px;*/
     /*height:900px;*/ /*calc(100% - 60px);*/
     /*left: 170px;*/
-    width: calc(100% - 340px); 
-    height: calc(100% - 300px) ; 
+    width: calc( 100% - 340px ); 
+    height: calc( 100% - 300px ) ; 
     overflow: auto;
 }
 article {
@@ -407,7 +407,7 @@ select {
     margin:5px;
     padding: 5px;
     box-shadow: 1px 1px 3px black;    
-    border:0 0 5px 0;
+    border:0px 0px 5px 0px;
     border:solid;
     color:black;
     background: white;
@@ -818,7 +818,7 @@ footer {
     background: rgba(0,0,0,0.5);
     color: rgba(255,255,255,0.7);
     bottom: 0px;
-    left:calc( 50% - 40ex ) ;
+    left: 40ex ;
     width: 80ex;
     height: 76px;
     z-index:1;
