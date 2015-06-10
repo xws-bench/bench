@@ -1,5 +1,6 @@
 var factions=["REBEL","EMPIRE"];
 var currentteam=1;
+var allunits=[];
 function winevent() {
     return new CustomEvent(
 	"win", {
@@ -48,7 +49,7 @@ Team.prototype = {
     addpoints: function() { 
 	var team=this.team
 	var f=["REBEL","SCUM","EMPIRE"];
-	$("#team"+team).append("<input id='teamname"+this.team+"' type='text' placeholder='Enter the squad name' style='width:160px'>");
+	$("#team"+team).append("<input id='teamname"+this.team+"' type='text' placeholder='Team #"+team+"' style='width:160px'>");
 	$("#team"+team).append("<div id='factionselect"+team+"'></div>");
 	for (i=0; i<3; i++) {
 	    $("#factionselect"+team).append("<input id='"+f[i]+team+"' name='faction"+team+"' type='radio' onchange='TEAMS["+team+"].changefaction(\""+f[i]+"\")'>");
@@ -83,6 +84,7 @@ Team.prototype = {
 	    if (generics[i].team==this.team) {
 		u=generics[i];
 		u.tosquadron(s);
+		allunits.push(u);
 		squadron.push(u);
 		sq.push(u);
 	    }

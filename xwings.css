@@ -45,30 +45,29 @@ body {
     border:0px;
 }
 nav {
-    background: SteelBlue;
+    background: steelblue;
     margin: 0px;
     padding: 1px;
     clear:both;
 }
 .h2 {
-    background: SteelBlue;
     margin: 0px;
     padding: 0px;
     border:0;
     font-size: x-large;
     color:white;
 }
-nav ul, footer ul {
+nav ul {
     list-style-type: none;
     margin: 0px;
     padding: 0px;
     display:inline;
 }
-nav li, footer li {
+nav li {
     display: inline;
 }
-nav a, footer a {
-    border-left:2px solid #fff;
+nav a {
+    border-right:2px solid #fff;
     text-decoration:none;
     color: white;
     padding: 5px;
@@ -444,7 +443,7 @@ select {
 .upgrades {
     color: #ffd700;
 }
-.inactive,.inactive .statfire,.dead .nofire .statfire {
+.inactive,.inactive .upgrades,.inactive .statfire,.dead .nofire .statfire {
     color: gray;
 }
 .nofire .statfire {
@@ -532,7 +531,7 @@ select {
     border-style: solid;
     border-width: 1px;
 }
-.xevadetoken,.xfocustoken,.xcloaktoken,.xstresstoken,.xtargettoken,.xionizedtoken {
+.xevadetoken,.xfocustoken,.xcloaktoken,.xstresstoken,.xtargettoken,.xionizedtoken,.focusmodtokena,.focusmodtokend,.hitmodtokena,.criticalmodtokena,.blankmodtokena,.blankmodtokend,.evademodtokend {
     font-family: 'symbols';
     padding: 4px;
     display: inline-block;
@@ -612,11 +611,10 @@ label {
 .cloaktoken::after,.xcloaktoken::after {
     content: "k";
 }
-.focusgreendice,.evadegreendice,.blankgreendice,.focusreddice,.hitreddice,.criticalreddice,.blankreddice,.reddice,.greendice {
+.focusgreendice,.evadegreendice,.blankgreendice,.focusreddice,.hitreddice,.criticalreddice,.blankreddice,.reddice,.evadegreen,.greendice {
     padding: 5px;
     display: inline-block;
     margin: 2px 0px;
-    color: #fff;
     border: 0px;
     text-align: center;
     width: 14px;
@@ -624,29 +622,39 @@ label {
     text-decoration: none;
     box-shadow: 1px 1px 3px #000;
 }
-.focusreddice,.hitreddice,.blankreddice,.criticalreddice,.reddice {
+.focusreddice,.hitreddice,.blankreddice,.criticalreddice,.reddice,.focusmodtokena,.hitmodtokena,.criticalmodtokena,.blankmodtokena {
     background: #f33;
+    color: #fff;
+}
+.focusmodtokend,.blankmodtokend,.evademodtokend {
+    background: #3f3;
+    color: #fff;
 }
 .focusgreendice,.evadegreendice,.blankgreendice,.greendice {
     background: #3f3;
+    color: #fff;
 }
-.focusreddice::after,.focusgreendice::after {
+.evadegreen {
+    background: #2e2;
+    color: #fff;
+}
+.focusreddice::after,.focusgreendice::after,.focusmodtokena::after,.focusmodtokend::after {
     font-family: 'symbols';
     content: "f";
 }
-.hitreddice::after,.hit::after {
+.hitreddice::after,.hit::after,.hitmodtokena::after {
     font-family: 'symbols';
     content: "d";
 }
-.criticalreddice::after,.critical::after {
+.criticalreddice::after,.critical::after,.criticalmodtokena::after {
     font-family: 'symbols';
     content: "c";
 }
-.blankreddice::after,.blankgreendice::after {
+.blankreddice::after,.blankgreendice::after,.blankmodtokena::after,.blankmodtokend::after {
     font-family: 'symbols';
     content: "\00a0";
 }
-.evadegreendice::after {
+.evadegreendice::after,.evadegreen::after,.evademodtokend::after {
     font-family: 'symbols';
     content: "e";
 }
@@ -763,6 +771,9 @@ label {
 .REBEL,.statfire {
     color: #F00;
 }
+.statfire {
+    cursor: pointer;
+}
 .EMPIRE {
     color: #000;
 }
@@ -818,32 +829,13 @@ footer {
     background: rgba(0,0,0,0.5);
     color: rgba(255,255,255,0.7);
     bottom: 0px;
-    left: calc( 50% - 40ex );
-    width: 80ex;
-    height: 11ex;
+    left: 30%;
+    width: 50%;
+    height: 10%;
     z-index:1;
     text-align: left;
-    overflow: hidden;
-}
-#nav {
-    position: fixed;
-    background: steelblue;
-    color:white;
-    z-index:999;
-    bottom:7ex;
-    left: calc ( 50% - 40ex );
-    height: 2em;
-    width: 80ex;
-}
-footer > ul {
-    position: fixed;
-    background: rgba(50,50,50,0.4);
-    width: inherit;
-    bottom: 76px;
-}
-#log {
-    height: 11ex;
     overflow: auto;
+    font-size: small;
 }
 .unit {
     cursor: move;
@@ -859,12 +851,20 @@ tr {
 }
 .xwingship {
     font-family:'ships';
-    font-size: 40px;
-    text-shadow: 3px 3px 5px #fff,
-    -1px -1px 0 #999,  
-    1px -1px 0 #888,
-    -1px 1px 0 #fff,
-    1px 1px 0 #fff;
+    padding: 4px;
+    display: inline-block;
+    margin: 0px;
+    text-align: center;
+    width: 14px;
+/*    font-size: small;*/
+    line-height: 9px;
+    text-decoration: none;
+    box-shadow: 1px 1px 3px #000;
+    background: #333; 
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    color: #d00;
 }
 .tokens {
     font-family:"Times New Roman", Times, serif ;
