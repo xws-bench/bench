@@ -16,7 +16,7 @@
     <script src="xwings.js"></script>
     <script src="translations.js"></script>
     <script src="xws.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.1.10/buzz.min.js"></script>
+    <script src="buzz.min.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -31,13 +31,14 @@
 
   <body lang="en">
     <nav>
-      <span class="h2">X-Wings Squadron Benchmark<span style="font-size:x-small">v0.4</span></span><div style="font-size:small;">
+      <span class="h2">X-Wings Squadron Benchmark<span style="font-size:x-small">v0.5</span></span><div style="font-size:small;">
       <ul>
 	<li><a href="#about">About</a></li>
 	<li><a href="#proba" id="showproba">Show probability tables</a></li>
 	<li><a href="http://xws-benchmark.blogspot.fr">Bug report/Forum</a></li>
 	<li><a href="#help">Help</a></li>
 	<li><a href="#credit">Credits</a></li>
+	<li><b>Active phase:</b> <b id="phase">Setup</b><button id="np" class="nextphase" onclick="nextphase()">Next phase &#9658; </button></li>
       </ul></div>
     </nav>
 
@@ -62,7 +63,7 @@
 	  </div>
 	</div>
 	<div id="maneuverdial" class="table"></div>
-	<button id="move" onclick="applymaneuver()">Move</button>
+	<div id="activationdial"></div>
 	<div id="actiondial" class="table"></div>
 	<div id="attackdial" class="table"></div>
       </section>
@@ -368,13 +369,6 @@ The app is not really a game since the user plays both sides, there is no multi-
       </section>
     </article>
     <footer>
-      <div id="nav"><ul>
-	<li><b>Active unit:</b></li>
-	<li><button class="activeunit symbols" onclick="activeunit.togglehitsector()" >%</button></li>
-	<li><button class="activeunit symbols" onclick="activeunit.togglerange()">S</button></li>
-	<li><button class="activeunit symbols" onclick="inhitrange()">%CPM</button></li>
-	<li style="float:right"><b>Active phase:</b> <b id="phase">Setup</b><button id="np" class="nextphase" onclick="nextphase()"> &#9658; </button></li>
-      </ul></div>
       <div id='log'></div>
     </footer>
   </body>
