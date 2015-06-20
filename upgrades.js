@@ -208,13 +208,10 @@ Weapon.prototype = {
 	if (typeof this.getrequirements()!="undefined") {
 	    var s="Target";
 	    var u="Focus";
-	    if (s.match(this.getrequirements())&&this.unit.canusetarget(sh)) {
-		this.unit.removetargettoken();
-		sh.istargeted--;
-		sh.show();
-	    } else if (u.match(this.getrequirements())&&this.unit.canusefocus(sh)) {
+	    if (s.match(this.getrequirements())&&this.unit.canusetarget(sh)) 
+		this.unit.removetarget(sh);
+	    else if (u.match(this.getrequirements())&&this.unit.canusefocus(sh)) 
 		this.unit.removefocustoken();
-	    }
 	    this.unit.show();
 	}
     },
@@ -344,7 +341,7 @@ var UPGRADES= [
 		if (sh.weapons[sh.activeweapon]==this) return true;
 		return false;
 	    }.bind(this),function(m,n) {
-		var f=Math.round(m/100)%10;
+		var f=Math.floor(m/100)%10;
 		if (f>0) {
 		    log("[Proton Torpedoes] 1 <p class='focus'></p> -> 1 <p class='critical'></p>");
 		    return m-90;
@@ -399,7 +396,24 @@ var UPGRADES= [
     },
     {
         name: "R2-F2",
-        
+        done:true,
+	candoaction: function() { return true; },
+	action: function() {
+	    var ga=this.unit.getagility;
+	    var er=this.unit.endround;
+	    log("[R2-F2] +1 agility for "+this.unit.name+" until end of round");
+	    this.unit.getagility=function() {
+		return ga.call(this)+1;
+	    };
+	    this.unit.endround=function() {
+		this.unit.getagility=ga;
+		this.unit.endround=er;
+		er.call(this);
+	    };
+	    this.unit.showstats();
+	    this.endaction();
+	    return true;
+	},
         unique: true,
         type: "Astromech",
         points: 3,
@@ -413,7 +427,20 @@ var UPGRADES= [
     },
     {
         name: "R5-K6",
-        
+        init: function(sh) {
+	    var rtt=sh.removetarget;
+	    sh.removetarget=function(t) {
+		rtt.call(this,t);
+		var r=Math.floor(Math.random()*7);
+		var roll=FACE[DEFENSEDICE[r]];
+		if (roll=="evade") {
+		    this.addtarget(t);
+		    log("[R5-K6] target lock on "+t.name);
+		    record(this.id,"TT"+t.id);
+		}
+	    }
+	},
+	done:true,
         unique: true,
         type: "Astromech",
         points: 2,
@@ -467,18 +494,54 @@ var UPGRADES= [
     {
         name: "Squad Leader",
         unique: true,
+	done:true,
         type: "Elite",
         points: 2,
+	candoaction: function() {  
+	    this.p=this.unit.selectnearbyunits(2,function(t,s) { return t.team==s.team&&s!=t&&s.skill<t.skill;});
+	    return (this.p.length>0);
+	},
+	action: function() {
+	    var unit=this.unit;
+	    this.unit.resolveactionselection(p,function(k) {
+		p[k].freeaction(function() { unit.endaction(); });
+	    });
+	},
     },
-	{
+    {
         name: "Expert Handling",
-        
+	candoaction: function() { return true; },
+	action: function() {
+	    if (this.unit.shipactionList.indexOf("ROLL")==-1) this.unit.addstress();
+	    this.unit.resolveroll();
+	    if (this.unit.istargeted.length>0) {
+		waitingforaction++;
+		log("<b>["+this.name+"] select target lock to remove from "+this.unit.name+"</b>");
+		this.unit.resolveactionselection(this.unit.istargeted,function(k) {
+		    var unit=this.istargeted[k];
+		    unit.removetarget(this);
+		    waitingforaction--;
+		}.bind(this.unit));
+	    }
+	},        
         type: "Elite",
+	done:true,
         points: 2,
     },
     {
         name: "Marksmanship",
-        
+	candoaction: function() { return true; },
+	action: function() {
+	    this.unit.addattackmoda(this,function(m,n) {
+		return true;
+	    }.bind(this.unit),function(m,n) {
+		var f=Math.floor(m/100);
+		log("[Marksmanship] "+f+" <code class='xfocustoken'></code> -> 1 <code class='critical'></code>"+(f>1?"+ "+(f-1)+"<code class='hit'></code>":""));
+		if (f>1) return m-100*f+10+(f-1); else return m-90;
+	    },false,"focus");
+	    this.unit.endaction();
+	},
+        done:true,
         type: "Elite",
         points: 3,
     },
@@ -502,7 +565,30 @@ var UPGRADES= [
     },
     {
         name: "Daredevil",
-        
+	done:true,
+        candoaction: function() { return true; },
+	action: function() {
+	    log("<b>["+this.name+"] select maneuver to perform</b>");
+	    this.unit.resolveactionmove(
+		[this.unit.getpathmatrix(this.unit.m.clone(),"TL1"),
+		 this.unit.getpathmatrix(this.unit.m.clone(),"TR1")],
+		function(t) { 
+		    t.addstress(); 
+		    if (t.shipactionList.indexOf("BOOST")==-1) {
+			log("[Daredevil] "+t.name+" no boost -> 2 rolls for damage");
+			for (var i=0; i<2; i++) {
+			    var r=Math.floor(Math.random()*7);
+			    var roll=FACE[ATTACKDICE[r]];
+			    if (roll=="hit") { t.resolvehit(1); t.checkdead(); }
+			    else if (roll=="critical") { 
+				t.resolvecritical(1);
+				t.checkdead();
+			    }
+			}
+		    }
+		    t.endaction();
+		},true);
+	},
         type: "Elite",
         points: 3,
     },
@@ -541,31 +627,26 @@ var UPGRADES= [
     },
     {
         name: "Push the Limit",
-/*        init: function(sh) {
-	    this.ra=sh.resolveaction;
-	    this.er=sh.endround;
-	    this.useptl=false;
-	    this.hasusedptl=false;
+	init: function(sh) {
+	    this.r=-1;
+	    var ea=this.unit.endaction;
 	    var ptl=this;
-	    sh.resolveaction=function() {
-		log("ptl action "+this.action);
-		if (this.action>-1) {
-		    if (ptl.useptl&&this.actionList[this.action]!="NOTHING") 
-			ptl.hasusedptl=true;
+	    this.unit.endaction= function() {
+		var rea=ea.call(this)
+		if (rea) {
+		    if (ptl.r!=round) {
+			log("[Push the Limit] select an action or empty to cancel");
+			this.freeaction(function() { 
+			    if (ptl.unit.action>-1) { 
+				ptl.r=round; ptl.unit.addstress();
+			    }
+			});
+		    }
 		}
-		var a=ptl.ra();
-		if (!ptl.hasusedptl) { 
-		    this.actiondone=false;
-		    log("["+ptl.name+"] free action");
-		}
-		this.showaction();
-		return a;
-	    };
-	    sh.endround= function() {
-		this.hasusedptl=this.useptl=false;
-		this.er();
+		return rea;
 	    }
-	},*/
+	},
+	done:true,
         type: "Elite",
         points: 3,
     },
@@ -579,12 +660,35 @@ var UPGRADES= [
 		return g;
 	    }
 	},
+	done:true,
         type: "Elite",
         points: 1,
     },
     {
         name: "Expose",
-        
+        candoaction: function() { return true; },
+	action: function() {
+	    var ga=this.unit.getagility;
+	    var w=this.unit.weapons[0];
+	    var gat=w.getattack;
+	    var endround=this.unit.endround;
+	    log("["+this.name+"] -1 agility, +1 primary attack until end of turn");
+	    this.unit.getagility=function() {
+		var a=ga.call(this)-1;
+		if (a>=0) return a; else return 0;
+	    };
+	    w.getattack=function() {
+		return gat.call(w)+1;
+	    };
+	    this.unit.endround=function() {
+		this.getagility=ga;
+		w.getattack=gat;
+		this.endround=endround;
+	    }
+	    this.unit.showstats();
+	    this.unit.endaction();
+	},
+	done:true,
         type: "Elite",
         points: 4,
     },
@@ -592,8 +696,9 @@ var UPGRADES= [
         name: "Gunner",
 	done:true,
         init: function(sh) {
+	    var ea=sh.endattack;
 	    sh.endattack=function(c,h) {
-		Unit.prototype.endattack.call(this,c,h);
+		ea.call(this,c,h);
 		if ((c+h==0)&&this.hasfired<2) {
 		    waitingforaction++;
 		    log("[Gunner] "+this.name+" attacks again with primary weapon");
@@ -628,7 +733,7 @@ var UPGRADES= [
 	done:true,
 	modifydamagegiven: function(ch) {
 	    if (ch>10) {
-		var c=Math.round(ch/10);
+		var c=Math.floor(ch/10);
 		var h=ch-10*c;
 		log("["+this.name+"] "+c+"<p class='critical'></p>-> "+c+"<p class='hit'></p>");
 		ch=c+h;
@@ -782,7 +887,7 @@ var UPGRADES= [
 		if (sh.weapons[sh.activeweapon]==this) return true;
 		return false;
 	    }.bind(this),function(m,n) {
-		var r=m%10+(Math.round(m/10)%10)+(Math.round(m/100)%10);
+		var r=m%10+(Math.floor(m/10)%10)+(Math.floor(m/100)%10);
 		if (n-r>0) {
 		    log("[Advanced Proton Torpedoes] change "+(n-r)+" blanks by focus");
 		    if (n-r<3) m+=(n-r)*100; else m+=300;
@@ -841,7 +946,6 @@ var UPGRADES= [
     },
     {
         name: "Saboteur",
-        
         type: "Crew",
         points: 2,
     },
@@ -879,8 +983,10 @@ var UPGRADES= [
         name: "Advanced Sensors",
 	done:true,
         init: function(sh) {
-	    sh.candoaction=function() {
-		activeunit.updateactionlist(); 
+	    var as=sh.timeforaction;
+	    var upg=this;
+	    sh.timeforaction=function() {
+		if (!this.isactive) this.timeforaction=as;
 		log("[Advanced Sensors] action before maneuver for "+this.name);
 		return (this==activeunit&&!this.actiondone&&phase==ACTIVATION_PHASE);
 	    }
@@ -924,13 +1030,48 @@ var UPGRADES= [
     },
     {
         name: "Flight Instructor",
-        
+        init: function(sh) {
+	    sh.adddefensererolld(
+		this,
+		["focus"],
+		function() { if (activeunit.skill<=2) return 2; return 1; },
+		function(w,attacker) {
+		    log("[Flight Instructor] +"+(activeunit.skill<=2?2:1)+" reroll(s)");
+		    return true;
+		},
+		false
+	    )
+	},
+	done:true,
         type: "Crew",
         points: 4,
     },
     {
         name: "Navigator",
-        
+        init: function(sh) {
+	    var cm=sh.completemaneuver;
+            sh.completemaneuver= function(dial,realdial,difficulty) {
+		var bearing=realdial.replace(/\d/,'');
+		var gd=this.getdial();
+		var p=[];
+		var q=[];
+		q.push(realdial);
+		p.push(this.getpathmatrix(this.m.clone(),realdial));
+		for (i=0; i<gd.length; i++) 
+		    if (gd[i].move.match(bearing)&&gd[i].move!=realdial&&(gd[i].difficulty!=RED||this.stress==0)) { 
+			p.push(this.getpathmatrix(this.m.clone(),gd[i].move));
+			q.push(gd[i].move);
+		    }
+		if (p.length>1) {
+		    log("<b>[Navigator] choose maneuver of bearing "+bearing+"</b>");
+		    this.resolveactionmove(p,
+		    function(t,k) {
+			cm.call(t,q[k],q[k],difficulty);
+		    },false,true);
+		} else cm.call(this,dial,realdial,difficulty);
+	    }
+	},
+	done:true,
         type: "Crew",
         points: 3,
     },
@@ -1079,13 +1220,29 @@ var UPGRADES= [
     },
     {
         name: "R7 Astromech",
-        
+              
         type: "Astromech",
         points: 2,
     },
-    {
+    {/* TODO : a revoir */
         name: "R7-T1",
-        
+	candoaction: function() { 	    
+	    this.p=[];
+	    this.p=this.unit.selectnearbyunits(2,function(a,b) { return a.team!=b.team; });
+	    return this.p.length>0; },
+	action: function() {
+	    var p=this.p;
+	    var unit=this.unit;
+	    waitingforaction++;
+	    log("<b>["+this.name+"] select target enemy ship</b>");
+	    this.unit.resolveactionselection(this.p,function(k) {
+		waitingforaction--;
+		if (p[k].isinsector(p[k].m,3,unit)) unit.addtarget(p[k]);
+		waitingforaction++;
+		unit.resolveboost();
+	    });
+	},
+	done:true,
         unique: true,
         type: "Astromech",
         points: 3,
@@ -1094,6 +1251,17 @@ var UPGRADES= [
         name: "Tactician",
         type: "Crew",
         points: 2,
+	done:true,
+        init: function(sh) {
+	    var tac = sh.endattack;
+	    sh.endattack=function(c,h) {
+		tac.call(this);
+		if (this.isinsector(this.m,2,targetunit)) {
+		    targetunit.addstress();
+		    log("[Tactician] +1 stress for "+targetunit.name);
+		}
+	    }.bind(sh);
+	}
     },
     {
         name: "R2-D2",
@@ -1113,7 +1281,18 @@ var UPGRADES= [
     },
     {
         name: "R3-A2",
-        
+	done:true,
+        init: function(sh) {
+	    var da=sh.declareattack;
+	    sh.declareattack=function(w,target) {
+		da.call(this,w,target);
+		if (this.isinsector(this.m,3,target)) {
+		    this.addstress();
+		    log("[R3-A2] +1 stress for "+target.name+" and "+this.name);
+		    target.addstress();
+		}
+	    }
+	},
         unique: true,
         type: "Astromech",
         points: 2,
@@ -1285,6 +1464,30 @@ var UPGRADES= [
         name: "Stay On Target",
         type: "Elite",
         points: 2,
+	done:true,
+	init: function(sh) {
+	    var cm=sh.completemaneuver;
+            sh.completemaneuver= function(dial,realdial,difficulty) {
+		var speed=realdial.substr(-1);
+		var gd=this.getdial();
+		var p=[];
+		var q=[];
+		q.push(realdial);
+		p.push(this.getpathmatrix(this.m.clone(),realdial));
+		for (i=0; i<gd.length; i++) 
+		    if (gd[i].move.substr(-1)==speed&&gd[i].move!=realdial) { 
+			p.push(this.getpathmatrix(this.m.clone(),gd[i].move));
+			q.push(gd[i].move);
+		    }
+		if (p.length>1) {
+		    log("<b>[Stay on target] choose maneuver of speed "+speed+"</b>");
+		    this.resolveactionmove(p,
+		    function(t,k) {
+			cm.call(t,q[k],q[k],(k==0)?difficulty:RED);
+		    },false,true);
+		} else cm.call(this,dial,realdial,difficulty);
+	    }
+	}
     },
     {
         name: "Dash Rendar",
@@ -1321,6 +1524,13 @@ var UPGRADES= [
         name: "'Leebo'",
         faction:"REBEL",
         unique: true,
+	candoaction: function() { return true; },
+	action: function() {
+	    log("["+this.name+"] free boost and ion token");
+	    this.unit.addiontoken();
+	    this.unit.resolveboost();
+	},
+	done:true,
         type: "Crew",
         points: 2,
         
@@ -1330,11 +1540,36 @@ var UPGRADES= [
         faction:"EMPIRE",
         type: "Elite",
         points: 3,
-        
+	done:true,
+        init: function(sh) {
+	    var ruth = sh.endattack;
+	    sh.endattack=function(c,h) {
+		ruth.call(this);
+		var p=targetunit.selectnearbyunits(1,function(t,o) { return true; });
+		if (p.length>0) {
+		    this.resolveactionselection(p,function(k) {
+			log("[Ruthlessness] +1 hit to "+p[k].name);
+			p[k].resolvehit(1); p[k].checkdead();
+		    });
+		}
+	    }.bind(sh);
+	}
     },
     {
         name: "Intimidation",
-        
+	done:true,
+        init: function(sh) {
+	    var unit=this;
+	    unit.ga=sh.getagility;
+	    sh.getagility=function() {
+		var a=unit.ga.call(this);
+		if (this.team!=unit.team&&a>0&&this.iscollidingunit(this.m,unit)) {
+		    log("[Intimidation] -1 agility to "+this.name);
+		    return a-1;
+		}
+		return a;
+	    }
+	},
         type: "Elite",
         points: 2,
     },
@@ -1342,8 +1577,11 @@ var UPGRADES= [
         name: "Ysanne Isard",
         faction:"EMPIRE",
         unique: true,
+	done:true,
 	init: function(sh) {
+	    sh.bcpisard=sh.begincombatphase;
 	    sh.begincombatphase=function() {
+		this.bcpisard.call(this);
 		if (this.shield==0&&this.hull<this.ship.hull&&this.candoevade()) {
 		    this.addevadetoken();
 		    log("[Ysanne Isard] +1 free evade");
@@ -1397,19 +1635,23 @@ var UPGRADES= [
 		var p;
 		var i;
 		p=this.selectnearbyunits(1,function(a,b) { return a.team==b.team&&a!=b&&a.skill<b.skill; });
-		if (p.length>0&&this.canusefocus()) {
+		p.push(this);
+		if (p.length>1&&this.canusefocus()) {
 		    log("<b>["+this.name+"] select a pilot to increase his agility value</b>");
 		    waitingforaction++;
 		    this.resolveactionselection(p,function(k) {
-			p[k].agility++;
-			this.removefocustoken();
-			this.show();
-			var ecp=p[k].endcombatphase;
-			p[k].endcombatphase=function() {
-			    ecp.call(this);
-			    this.agility--;
-			    this.showstats();
-			}.bind(p[k]);
+			if (this!=p[k]) {
+			    p[k].agility++;
+			    this.removefocustoken();
+			    this.show();
+			    var ecp=p[k].endcombatphase;
+			    p[k].endcombatphase=function() {
+				ecp.call(this);
+				this.agility--;
+				this.showstats();
+				p[k].endcombatphase=ecp;
+			    }.bind(p[k]);
+			}
 			document.dispatchEvent(combatreadyevent()); 
 		    }.bind(this));
 		}
@@ -1426,7 +1668,7 @@ var UPGRADES= [
 	    sh.addattackmoda(this,function(m,n) {
 		return this.canusefocus();
 	    }.bind(sh),function(m,n) {
-		var f=Math.round(m/100)%10;
+		var f=Math.floor(m/100)%10;
 		if (f>0) {
 		    log("[Calculation] 1 <p class='focus'></p> -> 1 <p class='critical'></p>");
 		    return m-90;
@@ -1448,14 +1690,15 @@ var UPGRADES= [
 	done:true,
         init: function(sh) {
 	    var upg=this;
-	    sh.completemaneuver=function(dial,dialpath,difficulty) {
+	    var cm=sh.completemaneuver;
+	    sh.completemaneuver=function(dial,realdial,difficulty) {
 		this.resolveactionmove(
 		    [this.getpathmatrix(this.m.clone(),dial),
 		     this.getpathmatrix(this.m.clone(),"F0")],
 		    function(t,k) {
-			if (k==0) Unit.prototype.completemaneuver.call(this,dial,dialpath,difficulty);
+			if (k==0) cm.call(this,dial,realdial,difficulty);
 			else {
-			    Unit.prototype.completemaneuver.call(this,"F0",P["F0"].path,"WHITE");
+			    cm.call(this,"F0","F0","WHITE");
 			    upg.isactive=false;
 			    this.addstress();
 			}
@@ -1829,7 +2072,7 @@ var UPGRADES= [
 		if (!this.isinsector(this.m,2,activeunit)) return true;
 		return false;
 	    }.bind(sh),function(m,n) {
-		var b=n-Math.round(m/10)%10-m%10;
+		var b=n-Math.floor(m/10)%10-m%10;
 		if (b>0) {
 		    log("[Autothrusters] 1 <p class='blank'></p> -> 1 <p class='evade'></p>");
 		    return m+1;
@@ -1859,15 +2102,42 @@ var UPGRADES= [
     {
         name: "Moldy Crow",
         type:"Title",
-        
+        init: function(sh) {
+	    sh.endround=function() {
+		this.evade=0;
+		if (this.focus>0) log("["+this.name+"] keeps focus tokens");
+		this.showinfo();
+	    };
+	},
         unique: true,
+	done:true,
         points: 3,
         ship: "HWK-290",
     },
     {
         name: "ST-321",
         type:"Title",
-        
+	done:true,
+        init: function(sh) {
+	    var cdt=sh.candotarget;
+	    sh.candotarget=function() {
+		cdt.call(this);
+		return true;
+	    };
+	    sh.resolvetarget=function() {
+		var i; var p=[];
+		for (i=0; i<squadron.length; i++) 
+		    if (squadron[i].team!=this.team) p.push(squadron[i]);
+		if (p.length>0) {
+		    log("[ST-321] can target any unit on area");
+		    this.resolveactionselection(p,function(k) { 
+			this.addtarget(p[k]);
+			this.endaction();
+		    }.bind(this));
+		    return true;
+		} else { return false; }
+	    }
+	},
         unique: true,
         points: 3,
         ship: "Lambda-Class Shuttle",

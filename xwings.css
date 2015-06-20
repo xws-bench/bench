@@ -57,6 +57,9 @@ nav {
     font-size: x-large;
     color:white;
 }
+h2 {
+    color: steelblue;
+}
 nav ul {
     list-style-type: none;
     margin: 0px;
@@ -207,7 +210,7 @@ td, th,table {
     width:20px;
 }
 .team,.name {
-    background: lightsteelblue;
+    background: white;/*lightsteelblue;*/
     color: black;
 }
 .name {
@@ -382,7 +385,7 @@ select {
     border: 2px;
     margin:0px;
 }
- .table > div, .team > div  {
+ .table > div, .team > div,.team > p  {
     display: table-row;
     width: 200px;
     padding:0px;
@@ -531,7 +534,7 @@ select {
     border-style: solid;
     border-width: 1px;
 }
-.xevadetoken,.xfocustoken,.xcloaktoken,.xstresstoken,.xtargettoken,.xionizedtoken,.focusmodtokena,.focusmodtokend,.hitmodtokena,.criticalmodtokena,.blankmodtokena,.blankmodtokend,.evademodtokend {
+.xevadetoken,.xfocustoken,.xcloaktoken,.xstresstoken,.xtargetedtoken,.xtargettoken,.xionizedtoken,.focusmodtokena,.focusmodtokend,.hitmodtokena,.criticalmodtokena,.blankmodtokena,.blankmodtokend,.evademodtokend {
     font-family: 'symbols';
     padding: 4px;
     display: inline-block;
@@ -573,7 +576,7 @@ label {
     color: #0a0;
     border-color: #0a0;
 }
-.stresstoken,.xstresstoken,.xionizedtoken {
+.stresstoken,.xstresstoken,.xionizedtoken,.xtargetedtoken {
     color: #f33;
     border-color: #f33;
 }
@@ -599,7 +602,7 @@ label {
 .evadetoken::after,.xevadetoken::after {
     content: "e";
 }
-.targettoken::after,.xtargettoken::after {
+.targettoken::after,.xtargettoken::after,.xtargetedtoken::after {
     content: "l";
 }
 .stresstoken::after,.xstresstoken::after {

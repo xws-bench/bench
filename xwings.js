@@ -7,12 +7,9 @@ var VERSION="v0.5";
 
 var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE1=0,SELECT_PHASE2=1;
 var DICES=["focusred","hitred","criticalred","blankred","focusgreen","evadegreen","blankgreen"];
-/*
-<li><a href="#" class="symbols" onclick="activeunit.togglehitsector()">i</a></li>
-	<li><a href="#" class="symbols" onclick="activeunit.togglerange()">S</a></li>
-	<li><a href="#modal" class="symbols" onclick="inhitrange()">%MUCPB</a></li>
-*/
 var BOMBS=[];
+
+var allunits=[];
 
 function center() {
     var bbox=activeunit.g.getBBox();
@@ -68,7 +65,7 @@ function hitrangetostr(r) {
 		    if (p==undefined) break;
 		    var kill=p.tokill[sh.hull+sh.shield];
 		    if (typeof kill=="undefined") kill=0; else 
-			kill=Math.round(kill*10000)/100;
+			kill=Math.floor(kill*10000)/100;
 		    // Add type to possible weapons
 		    if (wn.indexOf(wp.type)==-1) wn.push(wp.type);
 		    str+="<td class='probacell' style='background:hsl("+(1.2*(100-p.tohit))+",100%,80%)'";
@@ -143,8 +140,9 @@ function nextcombat() {
     //console.log("found "+sk+" firing units of skill "+skillturn);
     active=last; 
     tabskill[skillturn][last].select();
-    activeunit.show();
     old.unselect();
+    activeunit.beginattack();
+    activeunit.show();
 }
 function nextactivation() {
     var sk=0,last=0,i;
@@ -171,19 +169,11 @@ function nextactivation() {
     //console.log("selecting automatically "+activeunit.name);
     // More than one ? Select manually
 //    if (sk==1) { activeunit.resolvemaneuver();}
-    activeunit.show(); 
+    activeunit.beginactivation(); 
 }
 function resolveaction() {
     $("#actiondial").empty();
     if (activeunit.resolveaction()) { unbind("action"); }
-}
-function nextaction() {
-    activeunit.updateactionlist(); 
-    activeunit.maneuver=-1;
-    if (activeunit.actionList.length==1) {
-	activeunit.action=0;
-	resolveaction();
-    } else { waitingforaction++; bindall("action"); }
 }
 function modroll(f,n,id) {
     var i,j=0;
@@ -192,9 +182,9 @@ function modroll(f,n,id) {
     var c=$(".criticalreddice").length;
     var r=f(100*foc+10*c+h,n);
     $("#attack").empty();
-    for (i=0; i<Math.round(r/100)%10; i++,j++)
+    for (i=0; i<Math.floor(r/100)%10; i++,j++)
 	$("#attack").append("<b class='focusreddice'></b>");
-    for (i=0; i<(Math.round(r/10))%10; i++,j++)
+    for (i=0; i<(Math.floor(r/10))%10; i++,j++)
 	$("#attack").append("<b class='criticalreddice'></b>");
     for (i=0; i<r%10; i++,j++)
 	$("#attack").append("<b class='hitreddice'></b>");
@@ -206,14 +196,14 @@ function modrolld(f,n,id) {
     var i,j=0;
     var foc=$(".focusgreendice").length;
     var e=$(".evadegreendice").length;
-    log("mod roll before "+foc+" "+e+" "+(n-foc-e));
+    //log("mod roll before "+foc+" "+e+" "+(n-foc-e));
     var r=f(10*foc+e,n);
-    var a=Math.round(r/10);
+    var a=Math.floor(r/10);
     var b=r%10;
     var c=n-a-b;
-    log("mod roll after "+a+" "+b+" "+c);
+    //log("mod roll after "+a+" "+b+" "+c);
     $("#defense").empty();
-    for (i=0; i<Math.round(r/10); i++,j++)
+    for (i=0; i<Math.floor(r/10); i++,j++)
 	$("#defense").append("<b class='focusgreendice'></b>");
     for (i=0; i<r%10; i++,j++)
 	$("#defense").append("<b class='evadegreendice'></b>");
@@ -221,39 +211,35 @@ function modrolld(f,n,id) {
 	$("#defense").append("<b class='blankgreendice'></b>");
     $("#modd"+id).remove();
 }
-function showfire(ar,dr) {
+function showfire(ar,da,dr,dd) {
     var i,j;
-    log("SHOWFIRE "+activeunit.name+" vs "+targetunit.name);
-    var r=$(".focusreddice").length*100+10*$(".hitreddice").length+$(".criticalreddice").length;
     $("#attack").empty();
     $("#defense").empty();
     for (i=0; i<DICES.length; i++) $("."+DICES[i]+"dice").remove();
     $("#attacker").html(activeunit.name);
     for (i=0; i<squadron.length; i++) if (squadron[i]==activeunit) break;
-    $("#atokens").html(activeunit.getusabletokens(i)+activeunit.getattackrerolltokens()+activeunit.getattackmodtokens(r,ar.length));
-    for (i=0; i<ar.length; i++) {
-	$("#attack").append("<b class='"+ar[i]+"reddice'></b>");
-    }    
+    $("#atokens").html(activeunit.getusabletokens(i,true)+activeunit.getattackrerolltokens()+activeunit.getattackmodtokens(ar,da));
+
+    var f=Math.floor(ar/100);
+    for (i=0; i<f; i++) $("#attack").append("<b class='focusreddice'></b>");
+    var c=Math.floor(ar/10)%10;
+    for (i=0; i<c; i++) $("#attack").append("<b class='criticalreddice'></b>");
+    var h=ar%10;
+    for (i=0; i<h; i++) $("#attack").append("<b class='hitreddice'></b>");
+    for (i=0; i<da-h-c-f; i++) $("#attack").append("<b class='blankreddice'></b>");
+    //log("attack roll: f"+f+" c"+c+" h"+h+" b"+(da-h-c-f));
 
     $("#defender").html(targetunit.name);
     for (j=0; j<squadron.length; j++) if (squadron[j]==targetunit) break;
-    $("#dtokens").html(targetunit.getusabletokens(j)+targetunit.getdefensererolltokens()+targetunit.getdefensemodtokens(r,dr.length));
-    for (i=0; i<dr.length; i++) {
-	$("#defense").append("<b class='"+dr[i]+"greendice'></b>");
-    }
-}
-function encodeattack(t) {
-    var s=t.value();
-    $("#attack").remove();
-    for (i=0; i<s.length; i++) {
-	var c=s.charAt(i);
-	switch(c) {
-	case "f": $("#attack").append("<b class='focusreddice'></b>"); break;
-	case "c": $("#attack").append("<b class='criticalreddice'></b>"); break;
-	case "h": $("#attack").append("<b class='hitreddice'></b>"); break;
-	default: $("#attack").append("<b class='blankreddice'></b>");
-	}
-    }
+    $("#dtokens").html(targetunit.getusabletokens(j,true)+targetunit.getdefensererolltokens()+targetunit.getdefensemodtokens(dr,dd));
+
+    var f=Math.floor(dr/10);
+    for (i=0; i<f; i++) $("#defense").append("<b class='focusgreendice'></b>");
+    var e=dr%10;
+    for (i=0; i<e; i++) $("#defense").append("<b class='evadegreendice'></b>");
+    for (i=0; i<dd-e-f; i++) $("#defense").append("<b class='blankgreendice'></b>");
+    //log("defense roll: f"+f+" e"+e+" b"+(dd-e-f));
+
 }
 function reroll(n,forattack,type,id) {
     var i;
@@ -272,7 +258,7 @@ function reroll(n,forattack,type,id) {
 		    $("."+attackroll[i]+"reddice:lt("+n+"):not([noreroll])").remove();
 		    m+=n;n=0;
 		}
-		type=Math.round(type/10);
+		type=Math.floor(type/10);
 	    }
 	}
 	$("#rerolla"+id).remove();
@@ -291,7 +277,7 @@ function reroll(n,forattack,type,id) {
 		    $("."+attackroll[i]+"greendice:lt("+n+"):not([noreroll])").remove();
 		    m+=n;n=0;
 		}
-		type=Math.round(type/10);
+		type=Math.floor(type/10);
 	    }
 	}
 	$("#rerolld"+id).remove();
@@ -317,8 +303,7 @@ function enablenextphase() {
 	if (ready&&$(".nextphase").prop("disabled")) log("All units have been activated, ready to end phase");
 	break;	
     }
-    if (ready) { $(".nextphase").prop("disabled",false);
-	       }
+    if (ready) $(".nextphase").prop("disabled",false);
     return ready;
 }
 function resolvedamage() {
@@ -332,11 +317,7 @@ function resolvedamage() {
     }
 }
 function applymaneuver() {
-    if (activeunit.maneuver>-1&&activeunit.hasmoved==false&&activeunit.skill==skillturn) {
-	waitingforaction++;// forbids unit cycling
-	$("#panel_3").hide();
-	activeunit.resolvemaneuver();
-    }
+    activeunit.applymaneuver();
 }
 var keybindings={
     phase0:[],
@@ -398,17 +379,9 @@ function actioncomplete() {
     activeunit.show();
     nextactivation(); 
 }
-function maneuvercomplete() {
-    activeunit.hasmoved=true;
-    activeunit.showdial();
-    nextaction();
-    activeunit.showaction();
-}
 function firecomplete(e) {
     $("#primary").hide();
-    showfire(e.detail.ar,e.detail.dr); 
-}
-function combatcomplete() {
+    showfire(e.detail.ar,e.detail.da,e.detail.dr,e.detail.dd); 
 }
 function combatready() {
     if (waitingforaction>0) waitingforaction--;
@@ -422,7 +395,7 @@ function win() {
     str[1]=""; str[2]="";
     for (i=0; i<allunits.length;i++) {
 	var u=allunits[i];
-	str[u.team]+="<tr><td>"+u.name+"</td><td>"+Math.round(100*u.hitresolved/round)/100+"</td><td>"+Math.round(100*u.criticalresolved/round)/100+"</td></tr>"
+	str[u.team]+="<tr><td>"+u.name+"</td><td>"+Math.floor(100*u.hitresolved/round)/100+"</td><td>"+Math.floor(100*u.criticalresolved/round)/100+"</td></tr>"
     }
     str[1]="<table><tr><th>Name</th><th>Avg. Hits/round</th><th>Avg. Crit./round</th></tr>"+str[1]+"</table>";
     str[2]="<table><tr><th>Name</th><th>Avg. Hits/round</th><th>Avg. Crit./round</th></tr>"+str[2]+"</table>";    
@@ -430,11 +403,9 @@ function win() {
     window.location="#modal";
 }
 document.addEventListener("actioncomplete", actioncomplete, false);
-document.addEventListener("maneuvercomplete", maneuvercomplete, false);
 document.addEventListener("firecomplete",firecomplete, false);
 document.addEventListener("combatready",combatready,false);
 document.addEventListener("win",win,false);
-document.addEventListener("combatcomplete",combatcomplete, false);
 
 function bind(name,c,f) { $(document.body).bind('keydown.'+name,jwerty.event(c,f)); }
 function unbind(name) { $(document.body).unbind('keydown.'+name); } 
@@ -456,7 +427,7 @@ function filltabskill() {
 function nextphase() {
     var i;
     // End of phases
-    if (!enablenextphase()) return;
+    //if (!enablenextphase()) return;
     window.location="#"
     switch(phase) {
     case SELECT_PHASE1:
@@ -546,6 +517,9 @@ function nextphase() {
 	var old=activeunit;
 	squadron[0].select();
 	old.unselect();
+	for (i=0; i<squadron.length; i++) {
+	    squadron[i].beginplanningphase();
+	}
 	break;
     case ACTIVATION_PHASE:
 	log("<div>[turn "+round+"] Activation phase</div>");
@@ -572,6 +546,10 @@ function log(str) {
     $("#log").append("<div>"+str+"<div>");
     $("footer").scrollTop(10000);
 }
+function record(id,str) {
+    //$("#log").append("<div style='color:red'>allunits["+id+"]."+str+"<div>");
+    //$("footer").scrollTop(10000);
+}
 function select(name) {
     var i;
     for (i=0; i<squadron.length; i++) {
@@ -584,11 +562,6 @@ function select(name) {
     $("#"+activeunit.id).attr({color:"white",background:"tomato"});
     u.unselect();
 }
-
-//$(document.body).bind('keydown.test',jwerty.event('i', function() {  activeunit.resolveroll(); } ));
-//$(document.body).bind('keydown.test',jwerty.event('b', function() {  activeunit.resolveboost(); } ));
-// All phases keys
-
 
 var a1 = [];
 a1[0]=2/8; // blank
@@ -749,22 +722,6 @@ function defendwithreroll(tokensD,dt,defense) {
 	}
     return p;
 }
-// Only to compute probability to reach a given level of hull/shield points
-// p1 is the initial probability to do at least some damage, without crit. 
-function damagewithcritical(x2, x1, ncrit, p0) {
-    var p2=[];
-    for (k=0; k<=20; k++) 
-	p2[k]=addcritical(k+1,x2,x1,ncrit,p0)
-    return p2;
-}
-// k: level of damage reached. p0: probability with 1 damage.
-function addcritical(k,x2,x1,n,p0) {
-    if (n==0||x2==0) { if (k==1) return p0; else return 0; }
-    return addcritical(k,x2,x1-1,n-1,p0)*(1-(x2/x1))+
-	addcritical(k-1,x2-1,x1-1,n-1,p0)*x2/x1;
-}
-
-
 
 function tohitproba(tokensA,tokensD,at,dt,attack,defense) {
     var p=[];
@@ -781,6 +738,7 @@ function tohitproba(tokensA,tokensD,at,dt,attack,defense) {
 	    p[i]=0;
 	}
     }
+    
     if (typeof ATable=="undefined") return {proba:[],tohit:0,meanhit:0,meancritical:0,tokill:0};
     ATable=attackwithreroll(tokensA,at,attack);
     //log("Attack "+attack+" Defense "+defense);
@@ -794,16 +752,18 @@ function tohitproba(tokensA,tokensD,at,dt,attack,defense) {
 		var a=ATable[100*f+h+10*c]; // attack index
 		if (typeof tokensA.modifyattackroll!="undefined")
 		    n=tokensA.modifyattackroll(n,tokensD);
-		fa=Math.round(n/100);
-		ca=Math.round(n/10)-10*fa;
-		ha=n%10;
+		fa=Math.floor(n/100);
+		ca=Math.floor((n-100*fa)/10);
+		ha=n-100*fa-10*ca;
+		//log("n"+n+" f"+f+" c"+c+" h"+h);
+		//log("fa"+fa+" ca"+ca+" ha"+ha);
 		for (ff=0; ff<=defense; ff++) {
 		    for (ef=0; ef<=defense-ff; ef++) {
 			var fd;
 			var m=10*ff+ef
 			if (typeof tokensD.modifydefenseroll!="undefined") 
 			    m=tokensD.modifydefenseroll(m);
-			fd=Math.round(m/10);
+			fd=Math.floor(m/10);
 			evade=m-10*fd;
 			if (defense==0) d=1; else d=DTable[m]
 			hit=ha;
@@ -814,6 +774,7 @@ function tohitproba(tokensA,tokensD,at,dt,attack,defense) {
 			if (hit>evade) { i = hit-evade; evade=0; } 
 			else { evade=evade-hit; }
 			if (ca>evade) { i+= 10*(ca-evade); }
+			//log("i "+i+" "+a+"*"+d);
 			p[i]+=a*d;
 		    }
 		}
@@ -824,7 +785,7 @@ function tohitproba(tokensA,tokensD,at,dt,attack,defense) {
 	for (c=0; c<=attack-h; c++) {
 	    i=h+10*c;
 	    if (c+h>0) tot+=p[i];
-
+	    //log("c"+c+" h"+h+" "+p[i]);
 	    mean+=h*p[i];
 	    meanc+=c*p[i];
 	    // Max 3 criticals leading to 2 damages each...Proba too low anyway after that.
@@ -843,14 +804,14 @@ function tohitproba(tokensA,tokensD,at,dt,attack,defense) {
 	    }
 	}
     }
-    return {proba:p, tohit:Math.round(tot*10000)/100, meanhit:tot==0?0:Math.round(mean * 100/tot) / 100,
-	    meancritical:tot==0?0:Math.round(meanc/tot*100)/100,tokill:k} ;
+    return {proba:p, tohit:Math.floor(tot*10000)/100, meanhit:tot==0?0:Math.floor(mean * 100/tot) / 100,
+	    meancritical:tot==0?0:Math.floor(meanc/tot*100)/100,tokill:k} ;
 }
 
 function probatable(attacker,defender) {
     var i,j;
     var str="";
-    for (i=1; i<=5; i++) {
+    for (i=0; i<=5; i++) {
 	str+="<tr><td>"+i+"</td>";
 	for (j=0; j<=5; j++) {
 	    var k=j;
@@ -934,7 +895,7 @@ $(document).ready(function() {
 		ATTACK[dice]=attackproba(dice);
 		DEFENSE[dice]=defenseproba(dice);
 		dice++;
-		if (dice==8) {
+		if (dice==7) {
 		    fillprobatable();
 		    $("#showproba").prop("disabled",false);
 		    clearInterval(process);}

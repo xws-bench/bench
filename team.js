@@ -13,8 +13,11 @@ function winevent() {
 }
 
 function Team(team) {
+    if (typeof isia=="undefined") isia=false;
     this.team=team;
     this.dead=false;
+    this.isia=false;
+    this.units=[];
 }
 Team.prototype = {
     setfaction: function(faction) {
@@ -36,9 +39,8 @@ Team.prototype = {
     checkdead: function() {
 	var i;
 	var alldead=true;
-	for (i=0; i<squadron.length; i++) {
-	    if (squadron[i].team==this.team)
-		if (!squadron[i].dead) { alldead=false; break; }
+	for (i=0; i<this.units.length; i++) {
+	    if (!this.units[i].dead) { alldead=false; break; }
 	}
 	if (alldead) { 
 	    this.dead=true;
@@ -46,11 +48,19 @@ Team.prototype = {
 	}
 	return alldead;
     },
+    changeplayer: function(name) {
+	if (name=="human") this.isia=false; else this.isia=true;
+    },
     addpoints: function() { 
 	var team=this.team
 	var f=["REBEL","SCUM","EMPIRE"];
 	$("#team"+team).append("<input id='teamname"+this.team+"' type='text' placeholder='Team #"+team+"' style='width:160px'>");
-	$("#team"+team).append("<div id='factionselect"+team+"'></div>");
+	$("#team"+team).append("<p id='playerselect"+team+"'></p>");
+	$("#playerselect"+team).append("<input id='human"+team+"' name='player"+team+"' type='radio' selected onchange='TEAMS["+team+"].changeplayer(\"human\")'>");
+	$("#playerselect"+team).append("<label for='human"+team+"' >Human</label>");
+	$("#playerselect"+team).append("<input id='computer"+team+"' name='player"+team+"' type='radio' onchange='TEAMS["+team+"].changeplayer(\"computer\")'>");
+	$("#playerselect"+team).append("<label for='computer"+team+"'>Computer</label>");
+	$("#team"+team).append("<p id='factionselect"+team+"'></p>");
 	for (i=0; i<3; i++) {
 	    $("#factionselect"+team).append("<input id='"+f[i]+team+"' name='faction"+team+"' type='radio' onchange='TEAMS["+team+"].changefaction(\""+f[i]+"\")'>");
 	    $("#factionselect"+team).append("<label for='"+f[i]+team+"' style='font-size:30px' class='"+f[i]+"'>");
@@ -79,19 +89,19 @@ Team.prototype = {
     tosquadron:function(s) {
 	var i;
 	var team=this.team;
-	var sq=[];
 	for (var i in generics) {
 	    if (generics[i].team==this.team) {
 		u=generics[i];
 		u.tosquadron(s);
 		allunits.push(u);
 		squadron.push(u);
-		sq.push(u);
+		this.units.push(u);
+		if (this.isia) u=$.extend(u,IAUnit.prototype);
 	    }
 	}
-	sq.sort(function(a,b) {return b.skill-a.skill;});
+	this.units.sort(function(a,b) {return b.skill-a.skill;});
 	squadron.sort(function(a,b) {return b.skill-a.skill;});
-	return sq;
+	return this.units;
     },
     endselection:function(s) {
 	var i;
@@ -149,6 +159,8 @@ Team.prototype = {
 	    var p;
 	    pilot.team=this.team;
 	    p=new Unit(this.team);
+	    if (this.isia) u=$.extend(u,IAUnit.prototype);
+	    this.units.push(p);
 	    p.selectship(PILOT_dict[pilot.ship],PILOT_dict[pilot.name]);
 	    if (typeof pilot.upgrades!="undefined")  {
 		for (j=0; j<upg_type.length; j++) { 
