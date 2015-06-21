@@ -69,7 +69,7 @@ function hitrangetostr(r) {
 		    // Add type to possible weapons
 		    if (wn.indexOf(wp.type)==-1) wn.push(wp.type);
 		    str+="<td class='probacell' style='background:hsl("+(1.2*(100-p.tohit))+",100%,80%)'";
-		    if (phase==COMBAT_PHASE && skillturn==activeunit.skill&&activeunit.canfire()) str+=" onclick='window.location=\"#combatmodal\"; resolvecombat("+k+","+w+")'>"; else str+=">";
+		    if (phase==COMBAT_PHASE && skillturn==activeunit.skill&&activeunit.canfire()) str+=" onclick='resolvecombat("+k+","+w+")'>"; else str+=">";
 		    str+="<div class='reddice'>"+activeunit.getattackstrength(w,sh)+"</div><div class='greendice'>"+sh.getdefensestrength(w,activeunit)+"</div>"
 		    str+="<div>"+p.tohit+"%</div><div><code class='symbols' style='border:0'>d</code>"+p.meanhit+"</div><div><code class='symbols'  style='border:0'>c</code>"+p.meancritical+"</div><div>"+kill+"% kill</div>"
 		    str+="</td>";
@@ -264,7 +264,7 @@ function reroll(n,forattack,type,id) {
 	$("#rerolla"+id).remove();
 	for (i=0; i<m; i++) {
 	    var r=Math.floor(Math.random()*7);
-	    $("#attack").append("<b noreroll='true' class='"+FACE[ATTACKDICE[r]]+"reddice'></b>");
+	    $("#attack").prepend("<td noreroll='true' class='"+FACE[ATTACKDICE[r]]+"reddice'></td>");
 	}
     } else { 
 	for (i=0; i<3; i++) {
@@ -283,7 +283,7 @@ function reroll(n,forattack,type,id) {
 	$("#rerolld"+id).remove();
 	for (i=0; i<m; i++) {
 	    var r=Math.floor(Math.random()*7);
-	    $("#defense").append("<b noreroll='true' class='"+FACE[DEFENSEDICE[r]]+"greendice'></b>");
+	    $("#defense").prepend("<td noreroll='true' class='"+FACE[DEFENSEDICE[r]]+"greendice'></td>");
 	}
     }
 }
@@ -316,9 +316,6 @@ function resolvedamage() {
 	//console.log("bad resolvedamage "+activeunit.hasfired+" "+activeunit.hasdamaged);
     }
 }
-function applymaneuver() {
-    activeunit.applymaneuver();
-}
 var keybindings={
     phase0:[],
     phase1:[],
@@ -331,7 +328,7 @@ var keybindings={
 	{k:"m",f: function () { activeunit.nextmaneuver(); }},
 	{k:"shift+m",f:function() {activeunit.prevmaneuver(); }}
     ],
-    phase4:[{k:"enter",f:applymaneuver}],
+    phase4:[],
     phase5:[{k:'enter',f:function() {inhitrange(); window.location='#modal' }}],
     action:[
 	{k:"a", f:function() { 
@@ -490,6 +487,7 @@ function nextphase() {
  
     if (phase<3) $("#phase").html(phasetext[phase]);
     else $("#phase").html("Turn #"+round+" "+phasetext[phase]);
+    $("#combatdial").hide();
     if (phase>SELECT_PHASE2) for (i=0; i<squadron.length; i++) {squadron[i].unselect();}
     // Init new phase
     for (i=SELECT_PHASE1; i<=COMBAT_PHASE; i++) {
@@ -507,8 +505,10 @@ function nextphase() {
     case SETUP_PHASE:
 	TEAMS[2].endselection(s);
 	$(".activeunit").prop("disabled",false);
-	activeunit=squadron[0];
 	loadrock(s);
+	activeunit=squadron[0];
+	activeunit.select();
+	activeunit.show();
 	jwerty.key('l', allunitlist);
 	jwerty.key('w', inhitrange);
 	jwerty.key('s', function() {activeunit.togglehitsector();})
@@ -526,9 +526,6 @@ function nextphase() {
 	$(".unit").css("cursor","move");
 	$("#positiondial").show();
 	bindall("select");
-	var old=activeunit;
-	squadron[0].select();
-	old.unselect();
 	break;
     case PLANNING_PHASE: 
 	log("<div>[turn "+round+"] Planning phase</div>");

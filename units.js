@@ -327,6 +327,9 @@ Unit.prototype = {
 	    var pb=(b.isWeapon()?2:0)+(b.isBomb()?0:1);
 	    return b-a;
 	});
+	this.g.drag(this.dragmove.bind(this),
+		    this.dragstart.bind(this),
+		    this.dragstop.bind(this));
     },
     defaultremoveupg: function(upgid,init) {
 	var id=this.upg[upgid];
@@ -416,10 +419,7 @@ Unit.prototype = {
 		str+="</div>\n";
 	    }
 	    if (phase==SELECT_PHASE1||phase==SELECT_PHASE2) $("#dial"+this.id).html(str);
-	    else {
-		$("#maneuverdial").empty();
-		$("#maneuverdial").html(str);
-	    }
+	    else $("#maneuverdial").html(str);
 	}  else if (phase==ACTIVATION_PHASE&&this.skill==skillturn&&this.maneuver>-1&&!this.hasmoved) {
 	    $("#move").css({display:"block"});
 	}
@@ -913,16 +913,14 @@ Unit.prototype = {
 	activeunit=this;
 	$("#"+this.id).addClass("selected");
 	this.show();
-	if (phase==SETUP_PHASE) { this.g.drag(this.dragmove.bind(this),
-					      this.dragstart.bind(this),
-					      this.dragstop.bind(this)); }
         center(this);
     },
     unselect: function() {
+	if (this==activeunit) return;
 	$("#"+this.id).removeClass("selected");
 	this.showoutline();
 	this.showmaneuver();
-	if (phase==SETUP_PHASE&&typeof this.g!="undefined") { this.g.undrag(); }
+	//if (phase==SETUP_PHASE&&typeof this.g!="undefined") { this.g.undrag(); }
     },
     getocollisions: function(mbegin,mend,path,len) {
 	var k,i,j;
@@ -1133,6 +1131,8 @@ Unit.prototype = {
     ishit: function(c,h) {
     },
     resolvedamage: function() {
+	waitingforaction--;
+	this.fireline.remove();
 	this.playfiresnd();
 	var ch=targetunit.evadeattack(this);
 	ch=this.weapons[this.activeweapon].modifydamageassigned(ch,targetunit);
@@ -1195,9 +1195,9 @@ Unit.prototype = {
 	var l=$(".focusreddice").length;
 	$(".focusreddice").remove();
 	for (i=0; i<l; i++) { 	
-	    $("#attack").append("<b class='hitreddice'></b>");
+	    $("#attack").prepend("<td class='hitreddice'></td>");
 	}
-	$("#atokens > .xfocustoken").remove();
+	$("#attack > .xfocustoken").remove();
     },
     usefocus:function(id) {
 	if (phase==COMBAT_PHASE) {
@@ -1208,9 +1208,9 @@ Unit.prototype = {
 		targetunit.show();
 		var l=$(".focusgreendice").length;
 		$(".focusgreendice").remove();
-		$("#dtokens > .xfocustoken").remove()
+		$("#defense > .xfocustoken").remove()
 		for (i=0; i<l; i++) { 	
-		    $("#defense").append("<b class='evadegreendice'></b>");
+		    $("#defense").prepend("<td class='evadegreendice'></td>");
 		}
 	    }
 	}
@@ -1221,7 +1221,7 @@ Unit.prototype = {
 	if (n>-1) t.istargeted.splice(n,1);
 	this.targeting.splice(t);
 	t.show();
-	if (this.targeting.length==0) $("#atokens > .xtargettoken").remove();
+	if (this.targeting.length==0) $("#attack > .xtargettoken").remove();
     },
     usetarget:function() {
 	if (phase==COMBAT_PHASE&&activeunit==this&&this.targeting.indexOf(targetunit)>-1) {
@@ -1235,8 +1235,8 @@ Unit.prototype = {
 	if (phase==COMBAT_PHASE&&this==targetunit) {
 	    this.removeevadetoken();
 	    this.show();
-	    $("#dtokens > .xevadetoken").remove();
-	    $("#defense").append("<b class='evadegreen'></b>");
+	    $("#defense > .xevadetoken").remove();
+	    $("#defense").prepend("<td class='evadegreen'></td>");
 	}
     },
     removeevadetoken: function() { record(this.id,"RE");this.evade--; this.show();},
@@ -1460,13 +1460,13 @@ Unit.prototype = {
 	for (i=0; i<ATTACKMODA.length; i++) {
 	    var a=ATTACKMODA[i];
 	    if (a.req(m,n)) {
-		str+="<div id='moda"+i+"' class='"+a.str+"modtokena' onclick='modroll(ATTACKMODA["+i+"].f,"+n+","+i+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></div>";
+		str+="<td id='moda"+i+"' class='"+a.str+"modtokena' onclick='modroll(ATTACKMODA["+i+"].f,"+n+","+i+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
 	    }
 	}   
 	for (j=0; j<this.ATTACKMODA.length; j++) {
 	    var a=this.ATTACKMODA[j];
 	    if (a.req(m,n)) {
-		str+="<div id='moda"+(i+j)+"' class='"+a.str+"modtokena' onclick='modroll(squadron["+me+"].ATTACKMODA["+j+"].f,"+n+","+(i+j)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></div>";
+		str+="<td id='moda"+(i+j)+"' class='"+a.str+"modtokena' onclick='modroll(squadron["+me+"].ATTACKMODA["+j+"].f,"+n+","+(i+j)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
 	    }
 	}   
 	return str;
@@ -1478,13 +1478,13 @@ Unit.prototype = {
 	for (i=0; i<DEFENSEMODD.length; i++) {
 	    var a=DEFENSEMODD[i];
 	    if (a.req(m,n)) {
-		str+="<div id='modd"+i+"' class='"+a.str+"modtokend' onclick='modrolld(DEFENSEMODD["+i+"].f,"+n+","+i+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></div>";
+		str+="<td id='modd"+i+"' class='"+a.str+"modtokend' onclick='modrolld(DEFENSEMODD["+i+"].f,"+n+","+i+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
 	    }
 	}   
 	for (j=0; j<this.DEFENSEMODD.length; j++) {
 	    var a=this.DEFENSEMODD[j];
 	    if (a.req(m,n)) {
-		str+="<div id='modd"+(i+j)+"' class='"+a.str+"modtokend' onclick='modrolld(squadron["+me+"].DEFENSEMODD["+j+"].f,"+n+","+(i+j)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></div>";
+		str+="<td id='modd"+(i+j)+"' class='"+a.str+"modtokend' onclick='modrolld(squadron["+me+"].DEFENSEMODD["+j+"].f,"+n+","+(i+j)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
 	    }
 	}   
 	//if (this.DEFENSEMODD.length>0) log("DEFENSEMODD "+this.DEFENSEMODD.length+" req ?"+this.DEFENSEMODD[0].req(m,n));
@@ -1499,7 +1499,7 @@ Unit.prototype = {
 	    if (a.type.indexOf("focus")>-1) s+=10*n;
 	    if (a.type.indexOf("hit")>-1) s+=100*n;
 	    if (a.type.indexOf("critical")>-1) s+=1000*n;
-	    return "<div id='rerolla"+i+"' class='tokens' onclick='reroll("+n+",true,"+s+","+i+")' title='"+n+" rerolls ["+a.org.name.replace(/\'/g,"&#39;")+"]'>R"+n+"</div>";
+	    return "<td id='rerolla"+i+"' class='tokens' onclick='reroll("+n+",true,"+s+","+i+")' title='"+n+" rerolls ["+a.org.name.replace(/\'/g,"&#39;")+"]'>R"+n+"</td>";
 	};
 	for (var i=0; i<ATTACKREROLLA.length; i++) {
 	    var a=ATTACKREROLLA[i];
@@ -1521,7 +1521,7 @@ Unit.prototype = {
 	    if (a.type.indexOf("blank")>-1) s+=n;
 	    if (a.type.indexOf("focus")>-1) s+=10*n;
 	    if (a.type.indexOf("evade")>-1) s+=100*n;
-	    return "<div id='rerolld"+i+"' class='tokens' onclick='reroll("+n+",false,"+s+","+i+")' title='"+n+" rerolls ["+a.org.name.replace(/\'/g,"&#39;")+"]'>R"+n+"</div>";
+	    return "<td id='rerolld"+i+"' class='tokens' onclick='reroll("+n+",false,"+s+","+i+")' title='"+n+" rerolls ["+a.org.name.replace(/\'/g,"&#39;")+"]'>R"+n+"</td>";
 	};
 	for (var i=0; i<DEFENSEREROLLD.length; i++) {
 	    var a=DEFENSEREROLLD[i];
@@ -1541,8 +1541,48 @@ Unit.prototype = {
 	var defense=targetunit.getdefensestrength(w,this);
 	this.hasfired++;
 	this.hasdamaged=false;
-	document.dispatchEvent(fireevent(this.attackroll(attack),attack,
-					 targetunit.defenseroll(defense),defense));
+	$("#combatdial").show();
+	var bb=targetunit.g.getBBox();
+	var start=transformPoint(this.m,{x:0,y:-(this.islarge?40:20)});
+	this.fireline=s.path("M "+start.x+" "+start.y+" L "+(bb.x+bb.w/2)+" "+(bb.y+bb.h/2))
+	    .attr({stroke:this.color,
+		   strokeWidth:2,
+		   strokeDasharray:100,
+		   "class":"animated"});
+	this.select();	targetunit.unselect(); waitingforaction++;
+	this.showattackroll(this.attackroll(attack),attack);
+	targetunit.showdefenseroll(targetunit.defenseroll(defense),defense);
+	this.show();
+    },
+    showattackroll: function(ar,da,dr,dd) {
+	var i,j;
+	$("#attackdial").empty();
+	$("#dtokens").hide();
+	$("#defense").hide();
+	for (i=0; i<DICES.length; i++) $("."+DICES[i]+"dice").remove();
+	for (i=0; i<squadron.length; i++) if (squadron[i]==this) break;
+	$("#attack").html(this.getusabletokens(i,true)+this.getattackrerolltokens()+this.getattackmodtokens(ar,da));
+	var f=Math.floor(ar/100);
+	for (i=0; i<f; i++) $("#attack").prepend("<td class='focusreddice'></td>");
+	var c=Math.floor(ar/10)%10;
+	for (i=0; i<c; i++) $("#attack").prepend("<td class='criticalreddice'></td>");
+	var h=ar%10;
+	for (i=0; i<h; i++) $("#attack").prepend("<td class='hitreddice'></td>");
+	for (i=0; i<da-h-c-f; i++) $("#attack").prepend("<td class='blankreddice'></td>");
+	$("#atokens").html("<button onclick='$(\"#defense\").show(); $(\"#dtokens\").show();$(\"#atokens\").empty()'>Done</button>");
+	//log("attack roll: f"+f+" c"+c+" h"+h+" b"+(da-h-c-f));
+    },
+    showdefenseroll: function(dr,dd) {
+	var i,j;
+	for (j=0; j<squadron.length; j++) if (squadron[j]==this) break;
+	$("#defense").html(this.getusabletokens(j,true)+this.getdefensererolltokens()+this.getdefensemodtokens(dr,dd));
+	$("#dtokens").html("<button onclick='$(\"#combatdial\").hide();resolvedamage()'>Go!</button>");
+	var f=Math.floor(dr/10);
+	for (i=0; i<f; i++) $("#defense").prepend("<td class='focusgreendice'></td>");
+	var e=dr%10;
+	for (i=0; i<e; i++) $("#defense").prepend("<td class='evadegreendice'></td>");
+	for (i=0; i<dd-e-f; i++) $("#defense").prepend("<td class='blankgreendice'></td>");
+	//log("defense roll: f"+f+" e"+e+" b"+(dd-e-f));
     },
     getmatrixwithmove: function(path, len) {
 	var lenC = path.getTotalLength();
@@ -1668,6 +1708,7 @@ Unit.prototype = {
 	return  true;
     },
     canuncloak: function() {
+	log(this.name+" can uncloak ?"+(!this.hasmoved&&this.iscloaked&&phase==ACTIVATION_PHASE));
 	return (!this.hasmoved&&this.iscloaked&&phase==ACTIVATION_PHASE);
     },
     selecttargetforattack: function(wp) {
@@ -1679,7 +1720,7 @@ Unit.prototype = {
 	this.resolveactionselection(q,function(k) { 
 	    this.declareattack(wp,q[k]); 
 	    this.resolveattack(wp,q[k]);
-	    window.location="#combatmodal";
+	    //window.location="#combatmodal";
 	}.bind(this));
 	return true;
     },
@@ -1725,16 +1766,15 @@ Unit.prototype = {
     },
     showactivation: function() {
 	var str="";
-	if (this.timeformaneuver()) {
-	    for (var i=0; i<squadron.length; i++) if (squadron[i]==this) break;
-	    str+="<button onclick='squadron["+i+"].resolvemaneuver()'>Move</button>";
-	}
-	if (this.candropbomb()) {
-	    var me;
-	    for (me=0;me<squadron.length;me++) if (squadron[me]==this) break;
+	var i;
+	for (me=0;me<squadron.length;me++) if (squadron[me]==this) break;
+	if (this.timeformaneuver()) 
+	    str+="<button onclick='squadron["+me+"].resolvemaneuver()'>Move</button>";
+	if (this.canuncloak()) 
+	    str+="<div class='symbols "+A["CLOAK"].color+"' onclick='squadron["+me+"].usecloak()'>"+A["CLOAK"].key+"</div>";
+	if (this.candropbomb())
 	    for (i=0; i<this.bombs.length; i++) 
 		if (this.bombs[i].isactive) str+="<div class='symbols bombs' onclick='$(\".bombs\").remove();squadron["+me+"].bombs["+i+"].drop(squadron["+me+"].getbomblocation())'>"+A["BOMB"].key+"</div>";
-	}
 	$("#activationdial").html("<div>"+str+"</div>");
     },
     freeaction: function(endfree) {
@@ -1762,11 +1802,6 @@ Unit.prototype = {
 	var name;
 	this.updateactionlist();
 	$("#actiondial").empty();
-	if (this.canuncloak()) {
-	    var i;
-	    for (i=0; i<squadron.length; i++) if (squadron[i]==this) break;
-	    str+="<div class='symbols "+A["CLOAK"].color+"' onclick='squadron["+i+"].usecloak()'>"+A["CLOAK"].key+"</div>";
-	}
 	if (this.candoaction()) {
 	    for (i=0; i<this.actionList.length; i++) {
 		var a = this.actionList[i];
@@ -1886,7 +1921,7 @@ Unit.prototype = {
 	if (typeof text=="undefined") text=""; 
 	str+="<div class='horizontal details'><div style='text-align:justify;margin:8px;width:100%'>"+text+"</div></div>";
 	str+="<div class='vertical'><div>";
-	if (i>-1) str+=this.getusabletokens(i,false);
+	if (i>-1) str+="<div><table style='width:100%'><tr style='width:100%'>"+this.getusabletokens(i,false)+"</tr></table></div>";
 	str+="</div></div>";
 	var a;
 	var b;
@@ -1914,16 +1949,16 @@ Unit.prototype = {
     },
     getusabletokens: function(i,isforcombat) {
 	var str=""; var targets=""
-	if (this.canusefocus()) str+="<div title='"+this.focus+" focus token(s)'"+(isforcombat?" onclick='squadron["+i+"].usefocus("+i+")'":"")+" class='xfocustoken'></div>";
-	if (this.canuseevade()>0) str+="<div title='"+this.evade+" evade token(s)'"+(isforcombat?" onclick='squadron["+i+"].useevade("+i+")'":"")+" class='xevadetoken'></div>";
+	if (this.canusefocus()) str+="<td title='"+this.focus+" focus token(s)'"+(isforcombat?" onclick='squadron["+i+"].usefocus("+i+")'":"")+" class='xfocustoken'></td>";
+	if (this.canuseevade()>0) str+="<td title='"+this.evade+" evade token(s)'"+(isforcombat?" onclick='squadron["+i+"].useevade("+i+")'":"")+" class='xevadetoken'></td>";
 	for (var j=0; j<this.targeting.length; j++) targets+=this.targeting[j].name+" ";
-	if (this.canusetarget()>0) str+="<div title='targeting "+targets.replace(/\'/g,"&#39;")+"'"+(isforcombat?" onclick='squadron["+i+"].usetarget()'":"")+" class='xtargettoken'></div>";
+	if (this.canusetarget()>0) str+="<td title='targeting "+targets.replace(/\'/g,"&#39;")+"'"+(isforcombat?" onclick='squadron["+i+"].usetarget()'":"")+" class='xtargettoken'></td>";
 	targets="";
 	for (var j=0; j<this.istargeted.length; j++) targets+=this.istargeted[j].name+" ";
-	if (targets!="") str+="<div title='targeted by "+targets.replace(/\'/g,"&#39;")+"' class='xtargetedtoken'></div>";
-	if (this.iscloaked) str+="<div class='xcloaktoken'"+(isforcombat?" onclick='squadron["+i+"].usecloack("+i+")'":"")+"></div>";
-	if (this.stress>0) str+="<div title='"+this.stress+" stress token(s)'"+(isforcombat?" onclick='squadron["+i+"].usestress("+i+")'":"")+" class='xstresstoken'></div>";	
-	if (this.ionized>0) str+="<div title='"+this.ionized+" ionization token(s)' class='xionizedtoken'></div>";	
+	if (targets!="") str+="<td title='targeted by "+targets.replace(/\'/g,"&#39;")+"' class='xtargetedtoken'></td>";
+	if (this.iscloaked) str+="<td class='xcloaktoken'"+(isforcombat?" onclick='squadron["+i+"].usecloack("+i+")'":"")+"></td>";
+	if (this.stress>0) str+="<td title='"+this.stress+" stress token(s)'"+(isforcombat?" onclick='squadron["+i+"].usestress("+i+")'":"")+" class='xstresstoken'></td>";	
+	if (this.ionized>0) str+="<td title='"+this.ionized+" ionization token(s)' class='xionizedtoken'></td>";	
 	return str;
     },
     showstats: function() {

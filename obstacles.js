@@ -1,15 +1,23 @@
 var ROCKIMG="img/asteroid.jpg";
 var OBSTACLES=[];
-
+var id=0;
 function loadrock(s) {
+    var i;
     PATTERN = s.image(ROCKIMG,0,0,200,200).pattern(0,0,200,200);
-    for (var i=1; i<=6; i++) Snap.load("data/rock"+i+".svg", function(fragment) {
-	    OBSTACLES.push(new Rock(i,fragment));
-    });
+    for (i=1; i<=6; i++)
+	Snap.load("data/rock"+i+".svg", function(fragment) {
+	    OBSTACLES.push(new Rock(fragment));
+	});
+}
+function getid() {
+    return id++;
 }
 
-function Rock(i,fragment) {    
+function Rock(fragment) {    
     var k;
+    var i=getid();
+    var px=[300,500,300,500,300,500];
+    var py=[250,250,400,400,550,550];
     this.g=fragment.select("path");
     this.g.attr({
 	fill: PATTERN,
@@ -22,8 +30,8 @@ function Rock(i,fragment) {
     for (k=0; k<this.g.getTotalLength(); k+=5) 
 	this.arraypts.push(this.g.getPointAtLength(k));
     this.dragged=false;
-    this.m=(new Snap.Matrix()).add(MT(300+Math.random()*300,100+600*Math.random())).add(MS(0.5,0.5));
-     this.g.drag(this.dragmove.bind(this), 
+    this.m=(new Snap.Matrix()).add(MT(px[i],py[i])).add(MS(0.5,0.5));
+    this.g.drag(this.dragmove.bind(this), 
 		this.dragstart.bind(this),
 		this.dragstop.bind(this));
     this.path="";
@@ -113,13 +121,12 @@ Rock.prototype = {
 	a.unselect();
     },
     dragstop: function(a) { 
-	var k;
 	if (this.dragged) { this.m=this.dragMatrix; this.showpanel();} 
 	this.dragged=false;
     },
     show: function() {
 	this.g.transform(this.m);
 	this.g.appendTo(s); // Put to front
-	this.showpanel();
+	//this.showpanel();
     }
 }

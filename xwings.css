@@ -394,7 +394,7 @@ select {
 .table > div > div,.phasepanel .table > div > button, .team > div > div {
     display: table-cell;
     text-align: center;
-    width: 15px;
+    min-width: 20px;
 }
 .table .symbols {
     border:1px;
@@ -616,25 +616,27 @@ label {
 }
 .focusgreendice,.evadegreendice,.blankgreendice,.focusreddice,.hitreddice,.criticalreddice,.blankreddice,.reddice,.evadegreen,.greendice {
     padding: 5px;
-    display: inline-block;
     margin: 2px 0px;
     border: 0px;
     text-align: center;
-    width: 14px;
+    min-width: 12px;
     line-height: 14px;
     text-decoration: none;
     box-shadow: 1px 1px 3px #000;
 }
 .focusreddice,.hitreddice,.blankreddice,.criticalreddice,.reddice,.focusmodtokena,.hitmodtokena,.criticalmodtokena,.blankmodtokena {
     background: #f33;
+    opacity: 0.9;
     color: #fff;
 }
 .focusmodtokend,.blankmodtokend,.evademodtokend {
     background: #3f3;
+    opacity: 0.9;
     color: #fff;
 }
 .focusgreendice,.evadegreendice,.blankgreendice,.greendice {
     background: #3f3;
+    opacity: 0.9;
     color: #fff;
 }
 .evadegreen {
@@ -673,6 +675,16 @@ label {
 }
 .nextphase {
     background:red;
+}
+.animated {
+    stroke-dasharray:100;
+    animation: dash 3s linear;
+    animation-iteration-count: infinite;
+}
+@keyframes dash {
+    to {
+	stroke-dashoffset: -1000;
+    }
 }
 .activeunit {
     background: black;
