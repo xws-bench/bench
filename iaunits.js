@@ -146,7 +146,6 @@ IAUnit.prototype= {
 	/* Selects first unit available */
 	this.declareattack(wp,q[0]); 
 	this.resolveattack(wp,q[0]);
-	window.location="#combatmodal";
 	return true;
     },
     beginattack: function() {
@@ -171,15 +170,15 @@ IAUnit.prototype= {
     getusabletokens: function(i,isforcombat) {
 	var str=""; var targets="";
 	targets="";
-	if (this.focus>0) str+="<div title='"+this.focus+" focus token(s)' class='xfocustoken'></div>";
-	if (this.evade>0) str+="<div title='"+this.evade+" evade token(s)' class='xevadetoken'></div>";
+	if (this.focus>0) str+="<td title='"+this.focus+" focus token(s)' class='xfocustoken'></td>";
+	if (this.evade>0) str+="<td title='"+this.evade+" evade token(s)' class='xevadetoken'></td>";
 	for (var j=0; j<this.targeting.length; j++) targets+=this.targeting[j].name+" ";
-	if (targets!="") str+="<div title='targeting "+targets.replace(/\'/g,"&#39;")+"' class='xtargettoken'></div>";
+	if (targets!="") str+="<td title='targeting "+targets.replace(/\'/g,"&#39;")+"' class='xtargettoken'></td>";
 	targets="";
 	for (var j=0; j<this.istargeted.length; j++) targets+=this.istargeted[j].name+" ";
-	if (targets!="") str+="<div title='targeted by "+targets.replace(/\'/g,"&#39;")+"' class='xtargetedtoken'></div>";
-	if (this.stress>0) str+="<div title='"+this.stress+" stress token(s)' class='xstresstoken'></div>";	
-	if (this.ionized>0) str+="<div title='"+this.ionized+" ionization token(s)' class='xionizedtoken'></div>";	
+	if (targets!="") str+="<td title='targeted by "+targets.replace(/\'/g,"&#39;")+"' class='xtargetedtoken'></td>";
+	if (this.stress>0) str+="<td title='"+this.stress+" stress token(s)' class='xstresstoken'></td>";	
+	if (this.ionized>0) str+="<td title='"+this.ionized+" ionization token(s)' class='xionizedtoken'></td>";	
 	return str;
     },
     attackroll: function(n) {

@@ -156,8 +156,6 @@ Team.prototype = {
 	    var p;
 	    pilot.team=this.team;
 	    p=new Unit(this.team);
-	    if (this.isia) u=$.extend(u,IAUnit.prototype);
-	    this.units.push(p);
 	    p.selectship(PILOT_dict[pilot.ship],PILOT_dict[pilot.name]);
 	    if (typeof pilot.upgrades!="undefined")  {
 		for (j=0; j<upg_type.length; j++) { 

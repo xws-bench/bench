@@ -67,6 +67,14 @@
 	<div id="activationdial"></div>
 	<div id="actiondial" class="table"></div>
 	<div id="attackdial" class="table"></div>
+	<div id="combatdial">
+	  <table style='width:100%'>
+	    <tr style='width:100%' id="attack"></tr>
+	    <tr style='width:100%' id="defense"></tr>
+	  </table>
+	  <div id="atokens"></div>
+	  <div id="dtokens"></div>
+	</div>
       </section>
       
       <section id="playmat">
@@ -87,11 +95,6 @@
       <section id="combatmodal" class="modalDialog">
 	<div>
 	  <h2>Combat</h2>
-	  <table>
-	    <tr><td id="attacker"></td><td id="atokens"></td><td id="attack"></td></tr>
-	    <tr><td id="defender"></td><td id="dtokens"></td><td id="defense"></td></tr>
-	  </table>
-	  <button title="key: <enter>" onclick="resolvedamage();" class="bigbutton">Ok</button>
 	</div>
       </section>
 
