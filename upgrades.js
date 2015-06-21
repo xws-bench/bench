@@ -177,6 +177,7 @@ Weapon.prototype = {
     modifydamageassigned: function(ch,t) { return ch; },
     canfire: function(sh) {
 	if (!this.isactive) return false;
+	if (this.unit.checkcollision(sh)) return false;
 	if (typeof this.getrequirements()!="undefined") {
 	    var s="Target";
 	    if (s.match(this.getrequirements())&&this.unit.canusetarget(sh))
@@ -230,7 +231,7 @@ Weapon.prototype = {
 	if (!this.canfire(sh)) return 0;
 	if (this.isTurret()||this.unit.isTurret(this)) {
 	    var r=this.unit.getrange(sh);
-	    if (r>=this.range[0]&&r<=this.range[1]) return r;
+	    if (this.isinrange(r)) return r;
 	    else return 0;
 	}
 	for (i=this.range[0]; i<=this.range[1]; i++) {
@@ -1681,7 +1682,15 @@ var UPGRADES= [
     },
     {
         name: "Accuracy Corrector",
-        
+	init: function(sh) {
+	    sh.addattackmoda(this,function(m,n) {
+		return true;
+	    }.bind(this),function(m,n) {
+		log("[Accuracy Corrector] replace all dice by 2 <p class='hit'></p>");
+		return 2;
+	    }.bind(this),false,"blank");
+	},                
+	done:true,
         type: "System",
         points: 3,
     },
@@ -2051,7 +2060,6 @@ var UPGRADES= [
     {
         name: "Experimental Interface",
 	type:"Mod",
-        
         unique: true,
         points: 3,
     },

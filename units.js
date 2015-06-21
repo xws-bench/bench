@@ -216,7 +216,6 @@ function Unit(team) {
 Unit.prototype = {
     tosquadron: function(s) {
 	var upgs=this.upg;
-	allunits[this.id]=this;
 	this.maneuver=-1;
 	this.action=-1;
 	this.actionsdone=[];
@@ -1085,7 +1084,7 @@ Unit.prototype = {
 	this.m=MT(-60,-60);
 	log(this.name+" has exploded !");
 	this.show();
-	TEAMS[this.team].checkdead(); 
+	if (TEAMS[this.team].checkdead()) win();	
 	SOUNDS.explode.play();
     },
     checkdead: function() {
@@ -1761,7 +1760,6 @@ Unit.prototype = {
     showaction: function() {
 	var str="";
 	var name;
-	log("calling showaction for "+this.name);
 	this.updateactionlist();
 	$("#actiondial").empty();
 	if (this.canuncloak()) {
@@ -2062,7 +2060,9 @@ Unit.prototype = {
     },
     isinsector: function(m,n,sh) {
 	var op2=sh.getOutlinePoints(sh.m);
-	var o1=this.getSectorString(n,m); // Could be cached...
+	var o1;
+	if (n==1) o1=this.getSectorString(1,m);
+	else o1=this.getSubSectorString(n,n-1,m); // Could be cached...
 	// Is outline points inside sector ?
 	//s.path(o1).attr({fill:this.color,stroke:this.color,opacity:0.2,pointerEvents:"none"});
 	if (this.isintersecting(op2,o1)) return true;

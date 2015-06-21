@@ -25,7 +25,8 @@ Team.prototype = {
 	this.faction=faction;
 	this.addpoints();
 	this.addunit();
-	$("#"+faction+this.team).prop("checked",true);	
+	$("#"+faction+this.team).prop("checked",true);
+	this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;	
     },
     changefaction: function(faction) {
 	var i;
@@ -39,13 +40,8 @@ Team.prototype = {
     checkdead: function() {
 	var i;
 	var alldead=true;
-	for (i=0; i<this.units.length; i++) {
+	for (i=0; i<this.units.length; i++) 
 	    if (!this.units[i].dead) { alldead=false; break; }
-	}
-	if (alldead) { 
-	    this.dead=true;
-	    document.dispatchEvent(winevent());
-	}
 	return alldead;
     },
     changeplayer: function(name) {
@@ -56,7 +52,7 @@ Team.prototype = {
 	var f=["REBEL","SCUM","EMPIRE"];
 	$("#team"+team).append("<input id='teamname"+this.team+"' type='text' placeholder='Team #"+team+"' style='width:160px'>");
 	$("#team"+team).append("<p id='playerselect"+team+"'></p>");
-	$("#playerselect"+team).append("<input id='human"+team+"' name='player"+team+"' type='radio' selected onchange='TEAMS["+team+"].changeplayer(\"human\")'>");
+	$("#playerselect"+team).append("<input id='human"+team+"' checked name='player"+team+"' type='radio' selected onchange='TEAMS["+team+"].changeplayer(\"human\")'>");
 	$("#playerselect"+team).append("<label for='human"+team+"' >Human</label>");
 	$("#playerselect"+team).append("<input id='computer"+team+"' name='player"+team+"' type='radio' onchange='TEAMS["+team+"].changeplayer(\"computer\")'>");
 	$("#playerselect"+team).append("<label for='computer"+team+"'>Computer</label>");
@@ -114,7 +110,7 @@ Team.prototype = {
 		sq[i].m.add(MT(80,70+82*i)).add(MR(90,0,0));
 		$("#team1").append("<div id=\""+sq[i].id+"\" onclick='select(\""+sq[i].id+"\")'>"+sq[i]+"</div>");
 	    } else {
-		sq[i].m.add(MT(800,70+82*i)).add(MR(-90,0,0));
+		sq[i].m.add(MT(820,70+82*i)).add(MR(-90,0,0));
 		$("#team2").append("<div id=\""+sq[i].id+"\" onclick='select(\""+sq[i].id+"\")'>"+sq[i]+"</div>");
 	    }
 	    sq[i].show();
@@ -152,6 +148,7 @@ Team.prototype = {
 	var i,j,k;
 	var FACTIONS={"rebels":"REBEL","empire":"EMPIRE","scum":"SCUM"};
 	this.faction=FACTIONS[s.faction];
+	this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
 
 	for (i in generics) if (generics[i].team==this.team) delete generics[i];
 	for (i=0; i<s.pilots.length; i++) {
