@@ -1576,7 +1576,7 @@ Unit.prototype = {
 	var i,j;
 	for (j=0; j<squadron.length; j++) if (squadron[j]==this) break;
 	$("#defense").html(this.getusabletokens(j,true)+this.getdefensererolltokens()+this.getdefensemodtokens(dr,dd));
-	$("#dtokens").html("<button onclick='$(\"#combatdial\").hide();resolvedamage()'>Go!</button>");
+	$("#dtokens").html("<button onclick='$(\"#combatdial\").hide();resolvedamage()'>Fire!</button>");
 	var f=Math.floor(dr/10);
 	for (i=0; i<f; i++) $("#defense").prepend("<td class='focusgreendice'></td>");
 	var e=dr%10;
