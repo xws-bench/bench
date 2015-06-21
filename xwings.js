@@ -390,8 +390,10 @@ function combatready() {
 function win() {
     var title;
     var str=[]
-    if (TEAMS[1].dead) title="Team #2 wins !";
-    else title="Team #1 wins !";
+    if (TEAMS[1].dead&&!TEAMS[2].dead) title="Team #2 wins !";
+    if (TEAMS[2].dead&&!TEAMS[1].dead) title="Team #1 wins !";
+    if (TEAMS[1].dead&&TEAMS[2].dead) title="Draw !";
+    $("#listtitle").html(title);
     str[1]=""; str[2]="";
     for (i=0; i<allunits.length;i++) {
 	var u=allunits[i];
@@ -424,6 +426,7 @@ function filltabskill() {
     for (i=0; i<squadron.length; i++) tabskill[squadron[i].skill].push(squadron[i]);
 }
 
+var zone=[];
 function nextphase() {
     var i;
     // End of phases
@@ -432,11 +435,27 @@ function nextphase() {
     switch(phase) {
     case SELECT_PHASE1:
 	$("#rightpanel").show();
+	zone[1]=s.rect(0,0,100,900).attr({
+            fill: TEAMS[1].color,
+            strokeWidth: 2,
+	    opacity: 0.3,
+	    pointerEvents:"none"
+	});
+	zone[1].appendTo(s);
 	break;
     case SELECT_PHASE2:
+	zone[2]=s.rect(800,0,900,900).attr({
+            fill: TEAMS[2].color,
+            strokeWidth: 2,
+	    opacity: 0.3,
+	    pointerEvents:"none"
+	});
+	zone[2].appendTo(s);
 	break;
     case SETUP_PHASE: 
 	activeunit.g.undrag(); 
+	zone[1].remove();
+	zone[2].remove();
 	for (i=0; i<SOUNDS.length; i++) $("#"+SOUNDS[i]).trigger("load");
 	$(".nextphase").prop("disabled",true);
 	$(".unit").css("cursor","pointer");
@@ -486,8 +505,8 @@ function nextphase() {
 	TEAMS[1].endselection(s);
 	break;
     case SETUP_PHASE:
-	$(".activeunit").prop("disabled",false);
 	TEAMS[2].endselection(s);
+	$(".activeunit").prop("disabled",false);
 	activeunit=squadron[0];
 	loadrock(s);
 	jwerty.key('l', allunitlist);
@@ -907,7 +926,7 @@ $(document).ready(function() {
 	    TEAMS[1].setfaction("REBEL");
 	    TEAMS[2].setfaction("EMPIRE");
 	    UPGRADES.sort(function(a,b) { if (a.name<b.name) return -1; if (a.name>b.name) return 1; return 0; });
-	    PILOTS.sort(function(a,b) { if (a.name<b.name) return -1; if (a.name>b.name) return 1; return 0; });
+	    PILOTS.sort(function(a,b) { return (a.points-b.points); });
 	    var n=0,u=0,ut=0;
 	    var str="";
 	    for (i=0; i<PILOTS.length; i++) {
