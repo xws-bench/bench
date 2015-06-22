@@ -116,7 +116,22 @@ function allunitlist() {
     $("#listunits").html(unitstostr()); 
     window.location="#modal";
 }
-
+function nextstep() {
+    //log(activeunit.name+" calling next step:"+waitingforaction);
+    if (waitingforaction==0) {
+	if (phase==ACTIVATION_PHASE) {
+	    enablenextphase();
+	    log("after enablenextphase:"+waitingforaction);
+	    activeunit.show();
+	    log("after show:"+waitingforaction);
+	    nextactivation();
+	    log("after nextactivation:"+waitingforaction);
+	}
+	if (phase==COMBAT_PHASE) {
+	    nextcombat();
+	}
+    }
+}
 function nextcombat() {
     var i,sk=0,last=0;
     var old=activeunit;
@@ -157,7 +172,7 @@ function nextactivation() {
 	//console.log("no more pilots at skill "+skillturn);
 	skillturn++;
 	while (skillturn<13 && tabskill[skillturn].length==0) { skillturn++; }
-	if (skillturn==13) { waitingforaction++; return; }
+	if (skillturn==13) { return; }
 	sk=tabskill[skillturn].length;
 	last=0;
 	//console.log("found "+sk+" pilots at skill "+skillturn);
@@ -170,10 +185,6 @@ function nextactivation() {
     // More than one ? Select manually
 //    if (sk==1) { activeunit.resolvemaneuver();}
     activeunit.beginactivation(); 
-}
-function resolveaction() {
-    $("#actiondial").empty();
-    if (activeunit.resolveaction()) { unbind("action"); }
 }
 function modroll(f,n,id) {
     var i,j=0;
@@ -211,36 +222,7 @@ function modrolld(f,n,id) {
 	$("#defense").append("<b class='blankgreendice'></b>");
     $("#modd"+id).remove();
 }
-function showfire(ar,da,dr,dd) {
-    var i,j;
-    $("#attack").empty();
-    $("#defense").empty();
-    for (i=0; i<DICES.length; i++) $("."+DICES[i]+"dice").remove();
-    $("#attacker").html(activeunit.name);
-    for (i=0; i<squadron.length; i++) if (squadron[i]==activeunit) break;
-    $("#atokens").html(activeunit.getusabletokens(i,true)+activeunit.getattackrerolltokens()+activeunit.getattackmodtokens(ar,da));
 
-    var f=Math.floor(ar/100);
-    for (i=0; i<f; i++) $("#attack").append("<b class='focusreddice'></b>");
-    var c=Math.floor(ar/10)%10;
-    for (i=0; i<c; i++) $("#attack").append("<b class='criticalreddice'></b>");
-    var h=ar%10;
-    for (i=0; i<h; i++) $("#attack").append("<b class='hitreddice'></b>");
-    for (i=0; i<da-h-c-f; i++) $("#attack").append("<b class='blankreddice'></b>");
-    //log("attack roll: f"+f+" c"+c+" h"+h+" b"+(da-h-c-f));
-
-    $("#defender").html(targetunit.name);
-    for (j=0; j<squadron.length; j++) if (squadron[j]==targetunit) break;
-    $("#dtokens").html(targetunit.getusabletokens(j,true)+targetunit.getdefensererolltokens()+targetunit.getdefensemodtokens(dr,dd));
-
-    var f=Math.floor(dr/10);
-    for (i=0; i<f; i++) $("#defense").append("<b class='focusgreendice'></b>");
-    var e=dr%10;
-    for (i=0; i<e; i++) $("#defense").append("<b class='evadegreendice'></b>");
-    for (i=0; i<dd-e-f; i++) $("#defense").append("<b class='blankgreendice'></b>");
-    //log("defense roll: f"+f+" e"+e+" b"+(dd-e-f));
-
-}
 function reroll(n,forattack,type,id) {
     var i;
     var l;
@@ -294,28 +276,19 @@ function enablenextphase() {
     switch(phase) {
     case PLANNING_PHASE:
 	for (i=0; i<squadron.length; i++)
-	    if (squadron[i].maneuver<0) { ready=false; break; }
+	    if (squadron[i].maneuver<0&&!squadron[i].isdead) { ready=false; break; }
 	if (ready&&$(".nextphase").prop("disabled")) log("All units have planned a maneuver, ready to end phase");
 	break;
     case ACTIVATION_PHASE:
 	for (i=0; i<squadron.length; i++)
-	    if (squadron[i].maneuver>=0) { ready=false; break; }
+	    if (squadron[i].maneuver>=0&&!squadron[i].isdead) { ready=false; break; }
 	if (ready&&$(".nextphase").prop("disabled")) log("All units have been activated, ready to end phase");
 	break;	
     }
     if (ready) $(".nextphase").prop("disabled",false);
     return ready;
 }
-function resolvedamage() {
-    window.location="#";
-    $("#listunits").html("");
-    if (activeunit.hasfired>0&&!activeunit.hasdamaged) {
-	activeunit.resolvedamage();
-	if (waitingforaction==0) nextcombat();
-    } else {
-	//console.log("bad resolvedamage "+activeunit.hasfired+" "+activeunit.hasdamaged);
-    }
-}
+
 var keybindings={
     phase0:[],
     phase1:[],
@@ -358,38 +331,17 @@ var keybindings={
 	{k:'shift+n',f:prevselect}
     ]
 };
-function combatreadyevent() {
-    return new CustomEvent(
-	"combatready", {
-	    detail: {
-		time: new Date(),
-	    },
-	    bubbles: true,
-	    cancelable: true
-	});
-}
-function actioncomplete() {
-    bindall("phase2");
-    enablenextphase(); 
-    waitingforaction=0; 
-    activeunit.actiondone=true;
-    activeunit.show();
-    nextactivation(); 
-}
+
 function firecomplete(e) {
     $("#primary").hide();
     showfire(e.detail.ar,e.detail.da,e.detail.dr,e.detail.dd); 
 }
-function combatready() {
-    if (waitingforaction>0) waitingforaction--;
-    if (waitingforaction==0) nextcombat();
-}
 function win() {
-    var title;
+    var title="";
     var str=[]
-    if (TEAMS[1].dead&&!TEAMS[2].dead) title="Team #2 wins !";
-    if (TEAMS[2].dead&&!TEAMS[1].dead) title="Team #1 wins !";
-    if (TEAMS[1].dead&&TEAMS[2].dead) title="Draw !";
+    if (TEAMS[1].checkdead()&&!TEAMS[2].checkdead()) title="Team #2 wins !";
+    if (TEAMS[2].checkdead()&&!TEAMS[1].checkdead()) title="Team #1 wins !";
+    if (TEAMS[1].checkdead()&&TEAMS[2].checkdead()) title="Draw !";
     $("#listtitle").html(title);
     str[1]=""; str[2]="";
     for (i=0; i<allunits.length;i++) {
@@ -401,9 +353,7 @@ function win() {
     $("#listunits").html(str[1]+str[2]);
     window.location="#modal";
 }
-document.addEventListener("actioncomplete", actioncomplete, false);
 document.addEventListener("firecomplete",firecomplete, false);
-document.addEventListener("combatready",combatready,false);
 document.addEventListener("win",win,false);
 
 function bind(name,c,f) { $(document.body).bind('keydown.'+name,jwerty.event(c,f)); }
@@ -460,7 +410,6 @@ function nextphase() {
 	for (i=0; i<OBSTACLES.length; i++) OBSTACLES[i].g.undrag();
 	break;
     case PLANNING_PHASE:
-	$(".nextphase").prop("disabled",true);
 	$("#maneuverdial").hide();
 	break;
     case ACTIVATION_PHASE:
@@ -473,7 +422,6 @@ function nextphase() {
 	var b=[];
 	for (i=0; i<BOMBS.length; i++) b[i]=BOMBS[i];
 	for (i=0; i<b.length; i++) b[i].explode();
-	$(".nextphase").prop("disabled",true);
 	break;
     case COMBAT_PHASE:
 	$("#attackdial").hide();
@@ -517,6 +465,7 @@ function nextphase() {
 	jwerty.key("escape", nextphase);
 	jwerty.key("c", center);
 	/* By-passes */
+	jwerty.key("0", function() { log("active:"+activeunit.name+" wfa:"+waitingforaction+" hasfire:"+activeunit.hasfired+" hasdamaged:"+activeunit.damage+" m:"+activeunit.maneuver+" a:"+activeunit.action); });
 	jwerty.key("1", function() { activeunit.focus++;activeunit.show();});
 	jwerty.key("2", function() { activeunit.evade++;activeunit.show();});
 	jwerty.key("3", function() { if (!activeunit.iscloaked) {activeunit.iscloaked=true;activeunit.agility+=2;activeunit.show();}});
@@ -529,6 +478,7 @@ function nextphase() {
 	break;
     case PLANNING_PHASE: 
 	log("<div>[turn "+round+"] Planning phase</div>");
+	$(".nextphase").prop("disabled",true);
 	$("#maneuverdial").show();
 	var old=activeunit;
 	squadron[0].select();
@@ -539,6 +489,7 @@ function nextphase() {
 	break;
     case ACTIVATION_PHASE:
 	log("<div>[turn "+round+"] Activation phase</div>");
+	$(".nextphase").prop("disabled",true);
 	$("#activationdial").show();
 	for (i=0; i<squadron.length; i++) {
 	    squadron[i].beginactivationphase();
@@ -553,7 +504,7 @@ function nextphase() {
 	$("#attackdial").show();
 	skillturn=12;
 	for (i=0; i<squadron.length; i++) squadron[i].begincombatphase();
-	if (waitingforaction==0) document.dispatchEvent(combatreadyevent());
+	nextstep();
 	break;
     }
     if (phase>SELECT_PHASE2) activeunit.show();

@@ -486,7 +486,8 @@ var UPGRADES= [
 			    filltabskill();
 			    this.show();
 			}.bind(p[k]);
-			document.dispatchEvent(combatreadyevent()); 
+			waitingforaction--;
+			nextstep();
 		    }.bind(sh));
 		}
 	    }
@@ -633,6 +634,7 @@ var UPGRADES= [
 	    var ea=this.unit.endaction;
 	    var ptl=this;
 	    this.unit.endaction= function() {
+		waitingforaction++;
 		var rea=ea.call(this)
 		if (rea) {
 		    if (ptl.r!=round) {
@@ -641,9 +643,11 @@ var UPGRADES= [
 			    if (ptl.unit.action>-1) { 
 				ptl.r=round; ptl.unit.addstress();
 			    }
+			    waitingforaction--;
+			    nextstep();
 			});
-		    }
-		}
+		    } else { waitingforaction--; nextstep(); }
+		} else { waitingforaction--; nextstep(); }
 		return rea;
 	    }
 	},
@@ -1126,7 +1130,8 @@ var UPGRADES= [
 		    waitingforaction++;
 		    this.resolveactionselection(p,function(k) {
 			p[k].removestresstoken();
-			document.dispatchEvent(combatreadyevent()); 
+			waitingforaction--;
+			nextstep();
 		    });
 		}
 	    } 
@@ -1155,7 +1160,8 @@ var UPGRADES= [
 			    p[k].show();
 			    this.show();
 			}
-			document.dispatchEvent(combatreadyevent()); 
+			waitingforaction--;
+			nextstep();
 		    }.bind(this));
 		}
 	    }
@@ -1653,7 +1659,8 @@ var UPGRADES= [
 				p[k].endcombatphase=ecp;
 			    }.bind(p[k]);
 			}
-			document.dispatchEvent(combatreadyevent()); 
+			waitingforaction--;
+			nextstep();
 		    }.bind(this));
 		}
 	    }.bind(sh);

@@ -57,12 +57,13 @@ var PILOTS = [
 	    p=this.selectnearbyunits(2,function(a,b) { return (a.team==b.team&&a!=b);});
 	    this.show();
 	    if (p.length>0) {
-		waitingforaction=true;
+		waitingforaction++;
 		log("["+this.name+"] focus -> other friendly ship");
 		this.resolveactionselection(p,function(k) {
 		    log(p[k].name+"  selected by Garven");
-		    p[k].addfocustoken(); 
-		    document.dispatchEvent(combatreadyevent()); 
+		    p[k].addfocustoken();
+		    waitingforaction--;
+		    nextstep();
 		});
 	    }
 	},
@@ -533,6 +534,7 @@ var PILOTS = [
 	    console.log("["+this.name+"] free boost or roll action");
 	    var m0=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(-90,0,0)).add(MT(0,-20));
 	    var m1=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(90,0,0)).add(MT(0,-20));
+	    waitingforaction++;
 	    this.resolveactionmove(
 		[m0,
 		 m0.clone().add(MT(0,20)),
@@ -545,10 +547,9 @@ var PILOTS = [
 		 this.getpathmatrix(this.m.clone(),"BL1"),
 		 this.getpathmatrix(this.m.clone(),"BR1")],
 		function(t) {
-		    waitingforaction=0;
 		    this.show();
-		    log("calling for next combat");
-		    nextcombat();
+		    waitingforaction--;
+		    nextstep();
 		}.bind(this),true,false);
 	},
         points: 25,
@@ -952,7 +953,8 @@ var PILOTS = [
 				this.show();
 			    }.bind(p[k]);
 			}
-			document.dispatchEvent(combatreadyevent()); 
+			waitingforaction--;
+			nextstep();
 		    }.bind(this))
 		}
 	    }
@@ -985,7 +987,8 @@ var PILOTS = [
 			    p[k].addfocustoken();
 			    log("["+this.name+"] focus token given to "+p[k].name);
 			}
-			document.dispatchEvent(combatreadyevent()); 
+			waitingforaction--;
+			nextstep();
 		    }.bind(this));
 		}
 	    }
@@ -1160,7 +1163,8 @@ var PILOTS = [
 			    this.removetarget(t);
 			    log("["+this.name+"] "+p[k].name+" targets "+t.name);
 			}
-			document.dispatchEvent(combatreadyevent()); 
+			waitingforaction--;
+			nextstep();
 		    }.bind(this))
 		}
 	    }
@@ -1405,7 +1409,7 @@ var PILOTS = [
 		log("<b>["+this.name+"] select unit for a free action");
 		waitingforaction++;
 		this.resolveactionselection(p,function(k) {
-		    p[k].freeaction(function() { document.dispatchEvent(combatreadyevent()); });
+		    p[k].freeaction(function() { waitingforaction--; nextstep(); });
 		});
 	    }
 	},
@@ -1620,6 +1624,7 @@ var PILOTS = [
 	    var m4=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"BR2").add(MR(-90,0,0)).add(MT(0,-20));
 	    var m5=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"BR2").add(MR(90,0,0)).add(MT(0,20));
 	    var m6=this.getpathmatrix(this.m.clone(),"F2");
+	    waitingforaction++;
 	    this.resolveactionmove(
 		[m0.clone().add(MT(0,0)),
 		 m0.clone().add(MT(0,20)),
@@ -1643,7 +1648,7 @@ var PILOTS = [
 		],
 		function (t,k) {
 		    t.agility-=2; t.iscloaked=false;t.show(); 
-		    waitingforaction=false;
+		    waitingforaction--;
 		    SOUNDS.uncloak.play();
 		},true);
 	    return true;
@@ -1779,6 +1784,7 @@ var PILOTS = [
 	    log("["+this.name+"] free boost or roll action");
 	    var m0=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(-90,0,0)).add(MT(0,-20));
 	    var m1=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(90,0,0)).add(MT(0,-20));
+	    waitingforaction++;
 	    this.resolveactionmove(
 		[m0.clone().add(MT(0,0)),
 		 m0.clone().add(MT(0,20)),
@@ -1791,6 +1797,8 @@ var PILOTS = [
 		 this.getpathmatrix(this.m.clone(),"BL1"),
 		 this.getpathmatrix(this.m.clone(),"BR1")],
 		function(t) {
+		    waitingforaction--;
+		    nextstep();
 		},true);
 	},
 	addfocustoken: function() {
@@ -2349,7 +2357,8 @@ var PILOTS = [
 				log("["+this.name+"] focus taken from "+p[k].name);
 			    }
 			}
-			document.dispatchEvent(combatreadyevent()); 			
+			waitingforaction--;
+			nextstep();
 		    }.bind(this))
 		}
 	    }
@@ -2641,7 +2650,8 @@ var PILOTS = [
 				log("["+this.name+"] focus taken from "+p[k].name);
 			    }
 			}
-			document.dispatchEvent(combatreadyevent()); 			
+			waitingforaction--;
+			nextstep();
 		    }.bind(this))
 		}
 	    }
@@ -2682,7 +2692,8 @@ var PILOTS = [
 				this.show();
 			    }.bind(p[k]);
 			}
-			document.dispatchEvent(combatreadyevent()); 
+			waitingforaction--;
+			nextstep();
 		    }.bind(this))
 		}
 	    }
@@ -2731,7 +2742,8 @@ var PILOTS = [
 			this.addtarget(p[k]);
 			log("["+this.name+"] lock target "+p[k].name);
 		    }
-		    document.dispatchEvent(combatreadyevent()); 
+		    waitingforaction--;
+		    nextstep();
 		}.bind(this));
 	    }
 	},
