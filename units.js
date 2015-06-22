@@ -75,16 +75,6 @@ function loadsound() {
     });
 }
 
-function actionevent() {
-    return new CustomEvent(
-	"actioncomplete", {
-	    detail: {
-		time: new Date(),
-	    },
-	    bubbles: true,
-	    cancelable: true
-	});
-}
 function uncloakevent() {
     return new CustomEvent(
 	"uncloakcomplete", {
@@ -1153,6 +1143,10 @@ Unit.prototype = {
 	this.weapons[this.activeweapon].endattack(c,h);
 	this.endattack(c,h);
 	targetunit.checkdead();
+	this.cleanupattack();
+    },
+    cleanupattack: function() {
+	nextstep();
     },
     endround: function() {
 	this.focus=this.evade=0;
@@ -1287,11 +1281,15 @@ Unit.prototype = {
 	}
     },
     resolveboost: function() {
+	waitingforaction++;
+	log("Before boost action:"+waitingforaction);
 	this.resolveactionmove(
 	    [this.getpathmatrix(this.m.clone().add(MT(0,(this.islarge?-20:0))),"F1").add(MT(0,-20)),
 	     this.getpathmatrix(this.m.clone().add(MT(0,(this.islarge?-20:0))),"BL1").add(MT(0,-20)),
 	     this.getpathmatrix(this.m.clone().add(MT(0,(this.islarge?-20:0))),"BR1").add(MT(0,-20))],
 	    function (t,k) {
+		waitingforaction--;
+		log("After boost action:"+waitingforaction);
 		record(t.id,t.m.toTransformString());
 		t.show(); t.endaction();
 	    },true);
@@ -1301,6 +1299,7 @@ Unit.prototype = {
 	var m0=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"F2").add(MR(-90,0,0)).add(MT(0,-20));
 	var m1=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"F2").add(MR(90,0,0)).add(MT(0,20));
 	var m2=this.getpathmatrix(this.m.clone(),"F2");
+	waitingforaction++;
 	this.resolveactionmove(
 	    [m0.clone().add(MT(0,0)),
 	     m0.clone().add(MT(0,20)),
@@ -1311,8 +1310,9 @@ Unit.prototype = {
 	     m1.clone().add(MT(0,-40))],
 	    function (t,k) {
 		t.agility-=2; t.iscloaked=false;t.show(); 
-		waitingforaction=false;
+		waitingforaction--;
 		SOUNDS.uncloak.play();
+		nextstep();
 	//	document.dispatch(uncloakevent()); 
 	    },true);
 	return true;
@@ -1320,6 +1320,7 @@ Unit.prototype = {
     resolveroll: function() {
 	var m0=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(-90,0,0)).add(MT(0,-20));
 	var m1=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(90,0,0)).add(MT(0,-20));
+	waitingforaction++;
 	this.resolveactionmove(
 	    [m0.clone().add(MT(0,0)),
 	     m0.clone().add(MT(0,20)),
@@ -1329,6 +1330,7 @@ Unit.prototype = {
 	     m1.clone().add(MT(0,40))],
 	    function(t,k) {
 		t.show();
+		waitingforaction--;
 		t.endaction();
 	    },true);
 	
@@ -1363,8 +1365,10 @@ Unit.prototype = {
 	p=this.gettargetableunits(3);
 	if (p.length>0) {
 	     log("<b>["+this.name+"] select target to lock</b>");
+	    waitingforaction++;
 	    this.resolveactionselection(p,function(k) { 
 		this.addtarget(p[k]);
+		waitingforaction--;
 		this.endaction();
 	    }.bind(this));
 	    return true;
@@ -1374,12 +1378,12 @@ Unit.prototype = {
 	this.iscloaked=true;
 	this.agility+=2;
 	SOUNDS.cloak.play();
-	document.dispatchEvent(actionevent());
+	nextstep();
 	return true;
     },
     endaction: function() {
 	this.actiondone=true; this.action=-1;
-	document.dispatchEvent(actionevent());  
+	nextstep();
 	return true;
     },
     candoevade: function() {
@@ -1387,6 +1391,7 @@ Unit.prototype = {
     },
     resolveaction: function() {
 	var a;
+	$("#actiondial").empty();
 	if (this.action==-1) a="NOTHING";
 	else {
 	    a = this.actionList[this.action];
@@ -1536,6 +1541,7 @@ Unit.prototype = {
 	return str;
     },
     resolveattack: function(w,targetunit) {
+	var i;
 	var r=this.gethitrange(w,targetunit);
 	var attack=this.getattackstrength(w,targetunit);
 	var defense=targetunit.getdefensestrength(w,this);
@@ -1550,18 +1556,18 @@ Unit.prototype = {
 		   strokeDasharray:100,
 		   "class":"animated"});
 	this.select();	targetunit.unselect(); waitingforaction++;
-	this.showattackroll(this.attackroll(attack),attack);
-	targetunit.showdefenseroll(targetunit.defenseroll(defense),defense);
+	for (i=0; i<squadron.length; i++) if (squadron[i]==this) break;
+	this.showattackroll(this.attackroll(attack),attack,i);
+	targetunit.showdefenseroll(targetunit.defenseroll(defense),defense,i);
 	this.show();
     },
-    showattackroll: function(ar,da,dr,dd) {
+    showattackroll: function(ar,da,me) {
 	var i,j;
 	$("#attackdial").empty();
 	$("#dtokens").hide();
 	$("#defense").hide();
 	for (i=0; i<DICES.length; i++) $("."+DICES[i]+"dice").remove();
-	for (i=0; i<squadron.length; i++) if (squadron[i]==this) break;
-	$("#attack").html(this.getusabletokens(i,true)+this.getattackrerolltokens()+this.getattackmodtokens(ar,da));
+	$("#attack").html(this.getusabletokens(me,true)+this.getattackrerolltokens()+this.getattackmodtokens(ar,da));
 	var f=Math.floor(ar/100);
 	for (i=0; i<f; i++) $("#attack").prepend("<td class='focusreddice'></td>");
 	var c=Math.floor(ar/10)%10;
@@ -1572,11 +1578,11 @@ Unit.prototype = {
 	$("#atokens").html("<button onclick='$(\"#defense\").show(); $(\"#dtokens\").show();$(\"#atokens\").empty()'>Done</button>");
 	//log("attack roll: f"+f+" c"+c+" h"+h+" b"+(da-h-c-f));
     },
-    showdefenseroll: function(dr,dd) {
+    showdefenseroll: function(dr,dd,me) {
 	var i,j;
 	for (j=0; j<squadron.length; j++) if (squadron[j]==this) break;
 	$("#defense").html(this.getusabletokens(j,true)+this.getdefensererolltokens()+this.getdefensemodtokens(dr,dd));
-	$("#dtokens").html("<button onclick='$(\"#combatdial\").hide();resolvedamage()'>Fire!</button>");
+	$("#dtokens").html("<button onclick='$(\"#combatdial\").hide();squadron["+me+"].resolvedamage()'>Fire!</button>");
 	var f=Math.floor(dr/10);
 	for (i=0; i<f; i++) $("#defense").prepend("<td class='focusgreendice'></td>");
 	var e=dr%10;
@@ -1699,7 +1705,7 @@ Unit.prototype = {
     endmaneuver: function() {
 	this.ionized=0;
 	this.hasmoved=true;
-	this.waitingforaction=0;
+	//this.waitingforaction=0;
 	if (this.candoaction()) this.showaction(); else this.endaction()
 	this.showstats();
     },
@@ -1743,7 +1749,7 @@ Unit.prototype = {
 		var w=A[this.weapons[wn[i]].type.toUpperCase()];
 		str+="<div class='symbols "+w.color+"' onclick='activeunit.selecttargetforattack("+wn[i]+")'>"+w.key+"</div>"
 	    }
-	    str+="<div class='symbols' onclick='activeunit.hasfired++;activeunit.show(); nextcombat()'>"+A["NOTHING"].key+"</div>"
+	    str+="<div class='symbols' onclick='activeunit.hasfired++;activeunit.show(); nextstep()'>"+A["NOTHING"].key+"</div>"
 	    $("#attackdial").html("<div>"+str+"</div>").show();
 	}
     },
@@ -1777,41 +1783,36 @@ Unit.prototype = {
 	$("#activationdial").html("<div>"+str+"</div>");
     },
     freeaction: function(endfree) {
-	waitingforaction=0;
 	this.tfa=this.timeforaction;
 	this.ea=this.endaction;
-	if (activeunit!=this) {
-	    old=activeunit;
-	    this.select();
-	    old.unselect();
-	}
 	this.timeforaction=function() { return true; }
 	this.endaction=function() {
 	    this.endaction=this.ea; 
 	    this.timeforaction=this.tfa;
 	    this.show();
 	    endfree();
-	    //this.endaction.call(this);
 	    return false;
 	};
 	this.showaction();
     },
     showaction: function() {
 	var str="";
-	var name;
+	var name,me;
 	this.updateactionlist();
 	$("#actiondial").empty();
+	for (me=0; me<squadron.length; me++) if (squadron[me]==this) break;
 	if (this.candoaction()) {
+	    var i;
 	    for (i=0; i<this.actionList.length; i++) {
 		var a = this.actionList[i];
 		if (a=="TARGET"&&!this.candotarget()) continue;
 		if (a=="FOCUS"&&!this.candofocus()) continue;
 		if (a=="EVADE"&&!this.candoevade()) continue;
-		str+="<div class='symbols' onclick='activeunit.action="+i+";resolveaction()'>"+A[a].key+"</div>";
+		str+="<div class='symbols' onclick='activeunit.action="+i+";squadron["+me+"].resolveaction()'>"+A[a].key+"</div>";
 	    }
 	}
 	if (str!="") {
-	    str+="<div class='symbols' onclick='activeunit.action=-1;resolveaction()'>"+A["NOTHING"].key+"</div>";
+	    str+="<div class='symbols' onclick='activeunit.action=-1;squadron["+me+"].resolveaction()'>"+A["NOTHING"].key+"</div>";
 	    $("#actiondial").html("<div>"+str+"</div>").show();
 	} else this.endaction();
 	if (this.action<this.actionList.length && this.action>-1) {

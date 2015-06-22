@@ -15,7 +15,7 @@ function winevent() {
 function Team(team) {
     if (typeof isia=="undefined") isia=false;
     this.team=team;
-    this.dead=false;
+    this.isdead=false;
     this.isia=false;
     this.units=[];
 }
@@ -42,6 +42,7 @@ Team.prototype = {
 	var alldead=true;
 	for (i=0; i<this.units.length; i++) 
 	    if (!this.units[i].dead) { alldead=false; break; }
+	this.isdead=alldead;
 	return alldead;
     },
     changeplayer: function(name) {

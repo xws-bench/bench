@@ -57,6 +57,9 @@ IAUnit.prototype= {
 	}
 	return d;
     },
+    freeaction: function(endfree) {
+	endfree(); // Does nothing when given a free action...
+    },
     resolveactionselection: function(units,cleanup) {
 	cleanup(0);
     },
@@ -78,7 +81,7 @@ IAUnit.prototype= {
 	if (this.maneuver==-1) {
 	    var process=setInterval(function() {
 		this.maneuver=this.getmaneuver();	
-		enablenextphase();
+		nextstep();
 		clearInterval(process);
 	    }.bind(this),200);
 	}
