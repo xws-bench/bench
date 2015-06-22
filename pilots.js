@@ -519,8 +519,17 @@ var PILOTS = [
         unique: true,
         unit: "TIE Interceptor",
 	skill: 5,
+	done:true,
+	endcombatphase: function() {
+	    this.hasfired=0;
+	    this.checkdead();
+	},
+	canbedestroyed: function(skillturn) {
+	    if (skillturn==-1) return true;
+	    return false;
+	},
         points: 23,
-        upgrades: [ ],
+        upgrades: [],
     },
     {
         name: "Turr Phennir",

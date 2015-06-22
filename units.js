@@ -86,20 +86,6 @@ function uncloakevent() {
 	});
 }
 
-function fireevent(ar,da,dr,dd) {
-    return new CustomEvent(
-	"firecomplete", {
-	    detail: {
-		ar:ar,
-		da:da,
-		dr:dr,
-		dd:dd,
-		time: new Date(),
-	    },
-	    bubbles: true,
-	    cancelable: true
-	});
-}
 function transformPoint(matrix,point)  {
     var dx = point.x * matrix.a + point.y * matrix.c + matrix.e;
     var dy = point.x * matrix.b + point.y * matrix.d + matrix.f;
@@ -354,6 +340,16 @@ Unit.prototype = {
 	s.upgrades=upgpt;
 	return s;
     },
+    toASCII: function() {
+	var s="";
+	s+=this.pilotid;
+	for (var i=0; i<10; i++) {
+	    if (this.upg[i]!=-1) {
+		s+=","+this.upg[i];
+	    }	
+	}
+	return s;
+    },
     toString2: function() {
 	var i;
 	var str="<div>";
@@ -439,7 +435,7 @@ Unit.prototype = {
 	$("#name"+this.id).append("<option disabled>Select pilot</option>");
 	for (i=0; i<PILOTS.length; i++) {
 	    if (PILOTS[i].unit==ship && PILOTS[i].faction==this.faction) {
-		$("#name"+this.id).append("<option"+(selected==-1?" selected":"")+">"+PILOTS[i].name+"</option>");
+		$("#name"+this.id).append("<option"+(selected==-1?" selected":"")+">"+PILOTS[i].name+" ("+PILOTS[i].points+")</option>");
 		if (selected==-1&&PILOTS[i].unique!=true) selected=i;
 	    }
 	}
@@ -536,9 +532,9 @@ Unit.prototype = {
 	var name=vname;
 	if (typeof vname=="undefined") name=$("#name"+this.id).val();
 	for (i=0; i<PILOTS.length; i++) {
-	    if (PILOTS[i].name==name) break;
+	    if (name.indexOf(PILOTS[i].name)==0) break;
 	}
-	this.name=name;
+	this.name=PILOTS[i].name;
 	//console.log("selectpilot "+this.name+" i found ? "+(i<PILOTS.length));
 	if (i==PILOTS.length) return;
 	this.pilotid=i;
@@ -572,7 +568,7 @@ Unit.prototype = {
 	}
  
 	var up=PILOTS[this.pilotid].upg;
-	var text=PILOT_translation.english[name];
+	var text=PILOT_translation.english[this.name];
 	if (typeof text=="undefined") text=""; 
 	$("#text"+this.id).html(text);
 	this.showstats();
@@ -983,6 +979,10 @@ Unit.prototype = {
 	var o1=this.getOutline(m).attr({fill:this.color,opacity:0.5,display:"block"});
 	var possible=true;
 	var i;
+	if (!this.isinzone(m)) {
+	    o1.attr({display:"none"});
+	    return {ol:o1,b:false};
+	}
 	for (i=0; i<squadron.length; i++) {
 	    var sh=squadron[i];
 	    if (sh!=this) {
@@ -1075,8 +1075,12 @@ Unit.prototype = {
 	if (TEAMS[this.team].checkdead()) win();	
 	SOUNDS.explode.play();
     },
+    canbedestroyed: function() {
+	if (skillturn!=this.skill) return true;
+	return false;
+    },
     checkdead: function() {
-	if (this.hull<=0) {
+	if (this.hull<=0||!this.isinzone(this.m)) {
 	    this.dies();
 	    return true;
 	}	
@@ -1142,7 +1146,7 @@ Unit.prototype = {
 	targetunit.endbeingattacked(c,h);
 	this.weapons[this.activeweapon].endattack(c,h);
 	this.endattack(c,h);
-	targetunit.checkdead();
+	if (targetunit.canbedestroyed(skillturn)) targetunit.checkdead();
 	this.cleanupattack();
     },
     cleanupattack: function() {
@@ -1259,9 +1263,9 @@ Unit.prototype = {
 					 { resolve(moves[k],k,cleanup); });}.bind(this)
 		 )(i);
 	    }
-	    ready=ready||this.pos[i].b||(possible==true);
+	    ready=ready||this.pos[i].b;
 	}
-	if (!ready) resolve(this.m,-1,cleanup);
+	if (!ready&&(possible==false))  resolve(this.m,-1,cleanup);
     },
     resolveactionselection: function(units,cleanup) {
 	var i;
@@ -1282,14 +1286,12 @@ Unit.prototype = {
     },
     resolveboost: function() {
 	waitingforaction++;
-	log("Before boost action:"+waitingforaction);
 	this.resolveactionmove(
 	    [this.getpathmatrix(this.m.clone().add(MT(0,(this.islarge?-20:0))),"F1").add(MT(0,-20)),
 	     this.getpathmatrix(this.m.clone().add(MT(0,(this.islarge?-20:0))),"BL1").add(MT(0,-20)),
 	     this.getpathmatrix(this.m.clone().add(MT(0,(this.islarge?-20:0))),"BR1").add(MT(0,-20))],
 	    function (t,k) {
 		waitingforaction--;
-		log("After boost action:"+waitingforaction);
 		record(t.id,t.m.toTransformString());
 		t.show(); t.endaction();
 	    },true);
@@ -1313,7 +1315,6 @@ Unit.prototype = {
 		waitingforaction--;
 		SOUNDS.uncloak.play();
 		nextstep();
-	//	document.dispatch(uncloakevent()); 
 	    },true);
 	return true;
     },
@@ -1705,6 +1706,7 @@ Unit.prototype = {
     endmaneuver: function() {
 	this.ionized=0;
 	this.hasmoved=true;
+	if (this.checkdead()) { this.hull=0; this.shield=0; nextstep();} // Reach the next step
 	//this.waitingforaction=0;
 	if (this.candoaction()) this.showaction(); else this.endaction()
 	this.showstats();

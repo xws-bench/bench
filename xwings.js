@@ -121,15 +121,10 @@ function nextstep() {
     if (waitingforaction==0) {
 	if (phase==ACTIVATION_PHASE) {
 	    enablenextphase();
-	    log("after enablenextphase:"+waitingforaction);
 	    activeunit.show();
-	    log("after show:"+waitingforaction);
 	    nextactivation();
-	    log("after nextactivation:"+waitingforaction);
 	}
-	if (phase==COMBAT_PHASE) {
-	    nextcombat();
-	}
+	if (phase==COMBAT_PHASE) nextcombat();
     }
 }
 function nextcombat() {
@@ -139,8 +134,16 @@ function nextcombat() {
 	for (i=0; i<tabskill[skillturn].length; i++) {
 	    if (tabskill[skillturn][i].canfire()) { sk++; last=i; break;} 
 	};
-	if (sk==0) { 
+	if (sk==0) {
+	    var dead=false;
 	    skillturn--;
+	    for (i=0; i<tabskill[skillturn].length; i++) {
+		var u=tabskill[skillturn][i];
+		if (u.canbedestroyed(skillturn))
+		    if (u.checkdead()) dead=true;
+	    }
+	    if (dead&&(TEAMS[1].checkdead()||TEAMS[2].checkdead())) win();
+	    // Change PS. Check deads here. 
 	    while (skillturn>=0 && tabskill[skillturn].length==0) { skillturn--; }
 	} 
     }
@@ -332,10 +335,6 @@ var keybindings={
     ]
 };
 
-function firecomplete(e) {
-    $("#primary").hide();
-    showfire(e.detail.ar,e.detail.da,e.detail.dr,e.detail.dd); 
-}
 function win() {
     var title="";
     var str=[]
@@ -353,7 +352,6 @@ function win() {
     $("#listunits").html(str[1]+str[2]);
     window.location="#modal";
 }
-document.addEventListener("firecomplete",firecomplete, false);
 document.addEventListener("win",win,false);
 
 function bind(name,c,f) { $(document.body).bind('keydown.'+name,jwerty.event(c,f)); }
@@ -400,7 +398,6 @@ function nextphase() {
 	zone[2].appendTo(s);
 	break;
     case SETUP_PHASE: 
-	activeunit.g.undrag(); 
 	zone[1].remove();
 	zone[2].remove();
 	for (i=0; i<SOUNDS.length; i++) $("#"+SOUNDS[i]).trigger("load");
@@ -408,6 +405,7 @@ function nextphase() {
 	$(".unit").css("cursor","pointer");
 	$("#positiondial").hide();
 	for (i=0; i<OBSTACLES.length; i++) OBSTACLES[i].g.undrag();
+	for (i=0; i<squadron.length; i++) squadron[i].g.undrag();
 	break;
     case PLANNING_PHASE:
 	$("#maneuverdial").hide();
