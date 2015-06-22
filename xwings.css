@@ -401,7 +401,7 @@ select {
     border-radius: 10px;
     border-style:solid;
 }
-.dead, .dead .name,.dead .name .selected,.dead .REBEL,.dead .statfire, .dead .statevade,.dead .upgrades,.dead .EMPIRE,.dead .SCUM,.dead .statskill {
+.dead, .dead .name,.dead .name .selected,.dead .REBEL,.dead .statfire, .dead .statevade,.dead .upgrades,.dead .EMPIRE,.dead .SCUM,.dead .statskill,.team .selected .dead .name {
     background: black;
     color: gray;
 }

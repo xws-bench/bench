@@ -118,10 +118,20 @@ Team.prototype = {
 	}
 	activeunit=sq[0];
     },
+    toASCII: function() {
+	var s="";
+	s+=this.team+":";
+	for (var i in generics) {
+	    if (generics[i].team==this.team) {
+		s+=generics[i].toASCII()+";";
+	    }
+	}
+	return s;
+    },
     toJSON:function() {
 	var s={};
 	var f={REBEL:"rebels",SCUM:"scum",EMPIRE:"empire"};
-
+	log("ASCII:"+this.toASCII());
 	s.description="";
 	s.faction=f[this.faction];
 	s.name=$("#teamname"+this.team).val();
