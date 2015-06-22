@@ -1708,7 +1708,6 @@ Unit.prototype = {
 	return  true;
     },
     canuncloak: function() {
-	log(this.name+" can uncloak ?"+(!this.hasmoved&&this.iscloaked&&phase==ACTIVATION_PHASE));
 	return (!this.hasmoved&&this.iscloaked&&phase==ACTIVATION_PHASE);
     },
     selecttargetforattack: function(wp) {
