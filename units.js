@@ -344,11 +344,10 @@ Unit.prototype = {
 	var s="";
 	s+=this.pilotid;
 	
-	log("for "+this.name+":"+this.upg[0]);
-	for (var i=0; i<this.upgrades.length; i++) {
+	for (var i=1; i<this.upgrades.length; i++) {
 	    for (var j=0; j<UPGRADES.length; j++) 
 		if (UPGRADES[j].name==this.upgrades[i].name) break;
-	    s+=","+i;
+	    s+=","+j;
 	}
 	return s;
     },
@@ -1139,7 +1138,7 @@ Unit.prototype = {
 	if (c+h>0) {
 	    if (c+h<targetunit.shield) log(targetunit.name+" lost "+(c+h)+" <p class='cshield'></p>");
 	    else if (targetunit.shield>0) log(targetunit.name+ " lost all <p class='cshield'></p>")
-	    targetunit.ishit();
+	    targetunit.ishit(this);
 	    this.hitresolved+=h;
 	    this.criticalresolved+=c;
 	    targetunit.resolvehit(h);
@@ -1389,9 +1388,6 @@ Unit.prototype = {
 	nextstep();
 	return true;
     },
-    candoevade: function() {
-	return true;
-    },
     resolveaction: function() {
 	var a;
 	$("#actiondial").empty();
@@ -1457,7 +1453,7 @@ Unit.prototype = {
     },
     getdefensestrength: function(i,sh) {
 	var def=this.getagility();
-	var obstacledef=this.getoutlinerange(sh).o?1:0;
+	var obstacledef=this.getoutlinerange(this.m,sh).o?1:0;
 	if (obstacledef>0) log(this.name+" +"+obstacledef+" defense for obstacle");
 	return def+sh.weapons[i].getdefensebonus(this)+obstacledef;
     },
@@ -2099,9 +2095,8 @@ Unit.prototype = {
     },
     isinsector: function(m,n,sh) {
 	var op2=sh.getOutlinePoints(sh.m);
-	var o1;
-	if (n==1) o1=this.getSectorString(1,m);
-	else o1=this.getSubSectorString(n,n-1,m); // Could be cached...
+	var o1=this.getSectorString(n,m);
+	if (this.getoutlinerange(m,sh).d!=n) return false;
 	// Is outline points inside sector ?
 	//s.path(o1).attr({fill:this.color,stroke:this.color,opacity:0.2,pointerEvents:"none"});
 	if (this.isintersecting(op2,o1)) return true;
@@ -2211,11 +2206,11 @@ Unit.prototype = {
 	return range;
     },
     getrange: function(sh) {
-	return this.getoutlinerange(sh).d;
+	return this.getoutlinerange(this.m,sh).d;
     },
     // Returns the range separating both units and if an obstacle is inbetween
-    getoutlinerange:function(sh) {
-	var ro=this.getOutlinePoints(this.m);
+    getoutlinerange:function(m,sh) {
+	var ro=this.getOutlinePoints(m);
 	var rsh = sh.getOutlinePoints(sh.m);
 	var min=90001;
 	var i,j,k;

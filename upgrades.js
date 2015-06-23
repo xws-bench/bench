@@ -241,7 +241,9 @@ Weapon.prototype = {
 	    var m=this.unit.m.clone();
 	    m.add(MR(180,0,0));
 	    for (i=this.range[0]; i<=this.range[1]; i++)
-		if (this.unit.isinsector(m,i,sh)) return i; 
+		if (this.unit.isinsector(m,i,sh)) {
+		    return i;
+		} 
 	}
 	return 0;
     },
@@ -923,7 +925,15 @@ var UPGRADES= [
     },
     {
         name: "Fire-Control System",
-        
+	done:true,
+        init: function(sh) {
+	    var fcs=sh.cleanupattack;
+	    sh.cleanupattack=function() {
+		log("[Fire-Control System] free target lock on "+targetunit.name);
+		this.addtarget(targetunit);
+		fcs.call(this);
+	    }.bind(sh);
+	},
         type: "System",
         points: 2,
     },
@@ -1018,15 +1028,16 @@ var UPGRADES= [
 	faction:"EMPIRE",
 	done:true,
         init: function(sh) {
+	    var ih=sh.ishit;
 	    sh.rebelcaptive=0;
-	    sh.ishitbyattack=function(a) {
+	    sh.ishit=function(t) {
 		if (this.rebelcaptive!=round) {//First attack this turn
-		    log("[Rebel Captive] +1 stress for "+a.name);
-		    a.addstress();
+		    log("[Rebel Captive] +1 stress for "+t.name);
+		    t.addstress();
 		    this.rebelcaptive=round;
 		}
-		return Unit.prototype.ishitbyattack.call(this,a);
-	    };
+		return ih.call(this,t);
+	    }.bind(sh);
 	},
         unique: true,
         
@@ -1961,7 +1972,8 @@ var UPGRADES= [
 	},
 	init: function(sh) {
 	    log("["+this.name+"] +1 agility for "+sh.name)
-	    sh.ishit=function() {
+	    var ih=sh.ishit;
+	    sh.ishit=function(t) {
 		var i;
 		for (i=0;i<this.upgrades.length; i++) 
 		    if (this.upgrades[i].name=="Stealth Device") break;
@@ -1971,7 +1983,8 @@ var UPGRADES= [
 		    log("["+this.name+"] "+this.upgrades[i].name+" is hit => equipment destroyed");
 		    this.show();
 		}
-	    };
+		ih.call(this,t);
+	    }.bind(sh);
 	},
         points: 3,
     },
