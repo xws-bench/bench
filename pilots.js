@@ -1394,7 +1394,7 @@ var PILOTS = [
 	endattack: function(c,h) {
 	    if (c+h==0) {
 		log("["+this.name+"] target is hit");
-		targetunit.ishit();
+		targetunit.ishit(this);
 	    }
 	    Unit.prototype.endattack.call(this,c,h);
 	},

@@ -516,7 +516,6 @@ function log(str) {
 }
 function permalink() {
     var s="?"+TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII();
-    log("save:"+s);
     document.location.search = s;
 }
 function resetlink() {
