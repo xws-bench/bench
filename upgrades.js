@@ -1131,8 +1131,10 @@ var UPGRADES= [
         name: "Wingman",
 	done:true,
         init: function(sh) {
+	    var bcp=sh.begincombatphase;
 	    sh.begincombatphase= function() {
 		if (this.dead) return;
+		bcp.call(this);
 		var p;
 		var i;
 		p=this.selectnearbyunits(1,function(a,b) { return a.team==b.team&&a!=b&&b.stress>0; });
@@ -1723,7 +1725,7 @@ var UPGRADES= [
 		    [this.getpathmatrix(this.m.clone(),dial),
 		     this.getpathmatrix(this.m.clone(),"F0")],
 		    function(t,k) {
-			if (k==0) cm.call(this,dial,realdial,difficulty);
+			if (k==1) cm.call(this,dial,realdial,difficulty);
 			else {
 			    cm.call(this,"F0","F0","WHITE");
 			    upg.isactive=false;
@@ -1773,10 +1775,11 @@ var UPGRADES= [
         name: "Dead Man's Switch",
 	done:true,
         init: function(sh) {
+	    var di=sh.dies;
 	    sh.dies=function() {
 		var i;
 		var r=sh.getrangeallunits();
-		Unit.prototype.dies.call(this);
+		di.call(this);
 		log("[Dead Man's Switch] 1 damage for all units in range 1");
 		for (i=0; i<r[1].length; i++) {
 		    squadron[r[1][i].unit].applydamage(1);

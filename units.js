@@ -15,7 +15,7 @@ var MPOS={ F0:[0,2],F1:[1,2],F2:[2,2],F3:[3,2],F4:[4,2],F5:[5,2],
 	 };
 var generics=[];
 var gid=0;
-var UNIQUE=[];
+var UNIQUE=[[],[],[]];
 var ATTACKREROLLA=[];
 var DEFENSEREROLLD=[];
 var ATTACKMODA=[];
@@ -312,7 +312,7 @@ Unit.prototype = {
 	$("#upgradetext"+this.id+"_"+upgid+" div").remove();
 	$("#pts"+this.id+"_"+upgid).html("");
 	if (id==-1) return;
-	if (typeof UPGRADES[id].unique!="undefined") delete UNIQUE[UPGRADES[id].name];
+	if (typeof UPGRADES[id].unique!="undefined") delete UNIQUE[this.team][UPGRADES[id].name];
 	if (typeof UPGRADES[id].uninstall!="undefined") UPGRADES[id].uninstall(this);
 	this.showdial();
 	this.showstats();
@@ -360,7 +360,7 @@ Unit.prototype = {
 	str+="<div><div>"+this.ship.select+"</div></div>";
 	str+="<div>"+this.stats+"</div>";
 	str+="<div>"+this.actions+"</div>";
-	var text=PILOT_translation.english[this.name];
+	var text=PILOT_translation.english[this.name+(this.faction=="SCUM"?" (Scum)":"")];
 	if (typeof text=="undefined") text=""; 
 	str+="<div>"+this.text+"</div>";
 	str+="<div id='upgrade"+this.id+"'></div>";
@@ -423,8 +423,8 @@ Unit.prototype = {
 	if (this.pilotid!=-1) {
 	    for (k=0; k<10; k++) this.removeupg[k].call(this,k,true);
 	    this.uninstall();
-	    if (typeof UNIQUE[this.name]!= "undefined") {
-		UNIQUE[this.name](this.name,false);
+	    if (typeof UNIQUE[this.team][this.name]!= "undefined") {
+		UNIQUE[this.team][this.name](this.name,false);
 	    }
 	}
 	if (all==true) $("#name"+this.id).empty();
@@ -533,7 +533,7 @@ Unit.prototype = {
 	var name=vname;
 	if (typeof vname=="undefined") name=$("#name"+this.id).val();
 	for (i=0; i<PILOTS.length; i++) {
-	    if (name.indexOf(PILOTS[i].name)==0) break;
+	    if (name.indexOf(PILOTS[i].name+(this.team=="SCUM"?" (Scum)":""))==0) break;
 	}
 	this.name=PILOTS[i].name;
 	//console.log("selectpilot "+this.name+" i found ? "+(i<PILOTS.length));
@@ -556,20 +556,20 @@ Unit.prototype = {
 
 	if (this.unique) {
 	    log(this.name+" is a unique pilot");
-	    var up=UNIQUE[this.name];
-	    if (typeof up != "undefined") UNIQUE[this.name](this.name,true);
-	    UNIQUE[this.name]=function(name,other) {
+	    var up=UNIQUE[this.team][this.name];
+	    if (typeof up != "undefined") UNIQUE[this.team][this.name](this.name,true);
+	    UNIQUE[this.team][this.name]=function(name,other) {
 		if (other) {
 		    log("Only one pilot "+name);
 		    this.removepilot(true);
 		    this.getpilotlist();
 		    this.selectpilot();
-		} else delete UNIQUE[name];
+		} else delete UNIQUE[this.team][name];
 	    }.bind(this);
 	}
  
 	var up=PILOTS[this.pilotid].upg;
-	var text=PILOT_translation.english[this.name];
+	var text=PILOT_translation.english[this.name+(this.faction=="SCUM"?" (Scum)":"")];
 	if (typeof text=="undefined") text=""; 
 	$("#text"+this.id).html(text);
 	this.showstats();
@@ -596,11 +596,11 @@ Unit.prototype = {
 	if (UPGRADES[upgrade].unique==true) {
 	    var up=UPGRADES[upgrade];
 	    log(up.name+" is a unique upgrade");
-	    if (typeof UNIQUE[up.name] != "undefined") UNIQUE[up.name](up.name,true);
-	    UNIQUE[up.name]=function(name,reset) {
+	    if (typeof UNIQUE[this.team][up.name] != "undefined") UNIQUE[this.team][up.name](up.name,true);
+	    UNIQUE[this.team][up.name]=function(name,reset) {
 		log("Removing unique upgrade "+name);
 		this.obj.removeupg[this.key].call(this.obj,this.key,reset);
-		delete UNIQUE[name];
+		delete UNIQUE[this.team][name];
 	    }.bind({key:upgid,obj:this});
 	}
 	var pts=UPGRADES[upgrade].points+bonus;
@@ -1917,7 +1917,7 @@ Unit.prototype = {
 	str+="<div class='name'><div>"+this.name+"</div></div>";
 	str+="<div><div style='font-size:small'><code class='"+this.faction+"'></code>"+this.ship.name+"</div></div>";
 	str+="<div class='horizontal'><div>"+PILOTS[this.pilotid].points+"pts</div></div>";
-	var text=PILOT_translation.english[this.name];
+	var text=PILOT_translation.english[this.name+(this.faction=="SCUM"?" (Scum)":"")];
 	if (typeof text=="undefined") text=""; 
 	str+="<div class='horizontal details'><div style='text-align:justify;margin:8px;width:100%'>"+text+"</div></div>";
 	str+="<div class='vertical'><div>";

@@ -126,41 +126,41 @@ PILOT_translation.english = {
     "If you have no shields and at least 1 Damage card assigned to you, increase your agility value by 1.",
     "Captain Oicunn":
     "After executing a maneuver, each enemy ship you are touching suffers 1 damage.",
-    "Prince Xizor":
+    "Prince Xizor (Scum)":
     "When defending, a friendly ship at Range 1 may suffer 1 uncanceled <code class='hit'></code> or <code class='critical'></code> result instead of you.",
-    "Guri":
+    "Guri (Scum)":
     "At the start of the Combat phase, if you are at Range 1 of an enemy ship, you may assign 1 focus token to your ship.",
-    "Serissu":
+    "Serissu (Scum)":
     "When another friendly ship at Range 1 is defending, it may reroll 1 defense die.",
-    "Laetin A'shera":
+    "Laetin A'shera (Scum)":
     "After you defend against an attack, if the attack did not hit, you may assign 1 evade token to your ship.",
-    "IG-88A":
+    "IG-88A (Scum)":
     "After you perform an attack that destroys the defender, you may recover 1 shield.",
-    "IG-88B":
+    "IG-88B (Scum)":
     "Once per round, after you perform an attack that does not hit, you may perform an attack with an equipped <code class='symbols'>C</code> secondary weapon.",
-    "IG-88C":
+    "IG-88C (Scum)":
     "After you perform a boost action, you may perform a free evade action.",
-    "IG-88D":
+    "IG-88D (Scum)":
     "You may execute the (<code class='symbols'>1</code>3) or (<code class='symbols'>3</code>3) maneuver using the corresponding (<code class='symbols'>4</code>3) or (<code class='symbols'>6</code>3) template.",
     "Boba Fett (Scum)":
     "When attacking or defending, you may reroll 1 of your dice for each enemy ship at Range 1.",
     "Kath Scarlet (Scum)":
     "When attacking a ship inside your auxiliary firing arc, roll 1 additional attack die.",
-    "Emon Azzameen":
+    "Emon Azzameen (Scum)":
     "When dropping a bomb, you may use the [<code class='symbols'>4</code> 3], [<code class='symbols'>5</code> 3], or [<code class='symbols'>6</code> 3] template instead of the [<code class='symbols'>5</code> 1] template.",
-    "Kavil":
+    "Kavil (Scum)":
     "When attacking a ship outside your firing arc, roll 1 additional attack die.",
-    "Drea Renthal":
+    "Drea Renthal (Scum)":
     "After you spend a target lock, you may receive 1 stress token to acquire a target lock.",
-    "Dace Bonearm":
+    "Dace Bonearm (Scum)":
     "When an enemy ship at Range 1-3 receives at least 1 ion token, if you are not stressed, you may receive 1 stress token to cause that ship to suffer 1 damage.",
-    "Palob Godalhi":
+    "Palob Godalhi (Scum)":
     "At the start of the Combat phase, you may remove 1 focus or evade token from an enemy ship at Range 1-2 and assign it to yourself.",
-    "Torkil Mux":
+    "Torkil Mux (Scum)":
     "At the end of the Activation phase, choose 1 enemy ship at Range 1-2. Until the end of the Combat phase, treat that ship's pilot skill value as 0.",
-    "N'Dru Suhlak":
+    "N'Dru Suhlak (Scum)":
     "When attacking, if there are no other friendly ships at Range 1-2, roll 1 additional attack die.",
-    "Kaa'To Leeachos":
+    "Kaa'To Leeachos (Scum)":
     "At the start of the Combat phase, you may remove 1 focus or evade token from another friendly ship at Range 1-2 and assign it to yourself.",
     "Commander Alozen":
     "At the start of the Combat phase, you may acquire a target lock on an enemy ship at Range 1.",
