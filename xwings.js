@@ -442,6 +442,7 @@ function nextphase() {
     }
     switch(phase) {
     case SELECT_PHASE1:
+	$(".permalink").hide()
 	$(".activeunit").prop("disabled",true);
 	$("#rightpanel").hide();
 	break;
@@ -473,8 +474,10 @@ function nextphase() {
 	$(".unit").css("cursor","move");
 	$("#positiondial").show();
 	bindall("select");
+	$(".permalink").show()
 	break;
     case PLANNING_PHASE: 
+	$(".permalink").hide();
 	log("<div>[turn "+round+"] Planning phase</div>");
 	$(".nextphase").prop("disabled",true);
 	$("#maneuverdial").show();
@@ -510,6 +513,14 @@ function nextphase() {
 function log(str) {
     $("#log").append("<div>"+str+"<div>");
     $("footer").scrollTop(10000);
+}
+function permalink() {
+    var s="?"+TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII();
+    log("save:"+s);
+    document.location.search = s;
+}
+function resetlink() {
+    document.location.search="";
 }
 function record(id,str) {
     //$("#log").append("<div style='color:red'>allunits["+id+"]."+str+"<div>");
@@ -899,7 +910,13 @@ $(document).ready(function() {
 	    $("#panel_ACTIVATION").hide();
 	    $("#panel_COMBAT").hide();
 	    $("#showproba").prop("disabled",true);
+	    var args= window.location.search.substr(1).split('&');
 	    nextphase();
+	    if (args[0]!="") {
+		log("Loading permalink...");
+		TEAMS[1].parseASCII(s,args[0]);
+		TEAMS[2].parseASCII(s,args[1]);
+	    } 
 	    loadsound();
 	},
 	fail: function() {

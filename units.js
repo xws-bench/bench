@@ -343,10 +343,12 @@ Unit.prototype = {
     toASCII: function() {
 	var s="";
 	s+=this.pilotid;
-	for (var i=0; i<10; i++) {
-	    if (this.upg[i]!=-1) {
-		s+=","+this.upg[i];
-	    }	
+	
+	log("for "+this.name+":"+this.upg[0]);
+	for (var i=0; i<this.upgrades.length; i++) {
+	    for (var j=0; j<UPGRADES.length; j++) 
+		if (UPGRADES[j].name==this.upgrades[i].name) break;
+	    s+=","+i;
 	}
 	return s;
     },
