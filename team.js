@@ -120,7 +120,6 @@ Team.prototype = {
     },
     toASCII: function() {
 	var s="";
-	s+=this.team+":";
 	for (var i in generics) {
 	    if (generics[i].team==this.team) {
 		s+=generics[i].toASCII()+";";
@@ -146,6 +145,22 @@ Team.prototype = {
 	s.vendor={xwsbenchmark:{builder:"X-Wings Squadron Benchmark",builder_url:"http://xws-bench.github.io/bench/"}};
 	s.version="0.2.0";
 	return s;
+    },
+    parseASCII: function(svg,str) {
+	var pilots=str.split(";");
+	for (i in generics) if (generics[i].team==this.team) delete generics[i];
+	for (i=0; i<pilots.length-1; i++) {
+	    var pid=parseInt(pilots[i]);
+	    var updstr=pilots[i].split(",");
+	    this.faction=PILOTS[pid].faction;
+	    this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
+	    var p=new Unit(this.team);
+	    p.selectship(PILOTS[pid].unit,PILOTS[pid].name);
+	    for (j=1; j<updstr.length; j++) {
+		Upgradefromname(p,UPGRADES[parseInt(updstr[j])].name);
+	    }
+	}
+	nextphase();
     },
     parseJSON:function(svg,str) {
 	var s;
