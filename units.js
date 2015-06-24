@@ -209,7 +209,6 @@ Unit.prototype = {
 	this.hasfired=0;
 	this.hitresolved=0;
 	this.criticalresolved=0;
-	this.bombs=[];
 	this.m=new Snap.Matrix(); 
 	this.collision=false;
 	this.ocollision={overlap:-1,template:0};
@@ -464,6 +463,8 @@ Unit.prototype = {
 	this.shipactionList=u.actionList.slice(0);
 	this.weapons=[];
 	this.upgrades=[];
+	this.bombs=[];
+	this.lastdrop=-1;
 	Laser(this,u.weapon_type,u.fire);
 	//console.log("pushing laser for "+ship+" "+this.weapons[0].name);
 	$("#text"+this.id).html("");
@@ -896,7 +897,7 @@ Unit.prototype = {
 	this.show();
     },
     select: function() {
-	if (waitingforaction) return;
+	if (waitingforaction.length>0) return;
 	activeunit=this;
 	$("#"+this.id).addClass("selected");
 	this.show();
@@ -1126,7 +1127,6 @@ Unit.prototype = {
     ishit: function(c,h) {
     },
     resolvedamage: function() {
-	waitingforaction--;
 	this.fireline.remove();
 	this.playfiresnd();
 	var ch=targetunit.evadeattack(this);
@@ -1169,7 +1169,6 @@ Unit.prototype = {
 	record(this.id,"playfiresnd()");
     },
     endattack: function(c,h) {
-	window.location="#";
 	for (i=0; i<DICES.length; i++) $("."+DICES[i]+"dice").remove();
 	this.show();
     },
@@ -1182,7 +1181,7 @@ Unit.prototype = {
 	//this.show();
     //},
     usecloak: function(id) {
-	if (!waitingforaction&&(phase==ACTIVATION_PHASE)&&(this.stress==0)&&!this.hasmoved) {
+	if (waitingforaction.length==0&&(phase==ACTIVATION_PHASE)&&(this.stress==0)&&!this.hasmoved) {
 	    this.resolveuncloak();
 	}
     },
@@ -1245,7 +1244,7 @@ Unit.prototype = {
 	this.pos=[];
 	var ready=false;
 	var resolve=function(m,k,f) {
-	    for (i=0; i<moves.length; i++) this.pos[i].ol.remove();
+	    for (i=0; i<this.pos.length; i++) this.pos[i].ol.remove();
 	    if (automove) {
 		this.m=m;
 		this.show();
@@ -1253,20 +1252,23 @@ Unit.prototype = {
 	    f(this,k);
 	}.bind(this);
 	for (i=0; i<moves.length; i++) {
-	    this.pos[i]=this.getpossibleoutline(moves[i]);
-	    if (possible) this.pos[i].ol.attr({display:"block"});
-	    if (this.pos[i].b||possible) {
-		(function(k) {
-		    this.pos[k].ol.hover(function() { this.pos[k].ol.attr({stroke:this.color,strokeWidth:"4px"})}.bind(this),
-					 function() { this.pos[k].ol.attr({strokeWidth:"0px"})}.bind(this));
-
-		    this.pos[k].ol.click(function() 
-					 { resolve(moves[k],k,cleanup); });}.bind(this)
-		 )(i);
-	    }
-	    ready=ready||this.pos[i].b;
+	    var p=this.getpossibleoutline(moves[i]);
+	    if (possible||p.b) {
+		p.ol.attr({display:"block"});
+		this.pos.push({ol:p.ol,k:i});
+	    } else p.ol.remove();
 	}
-	if (!ready&&(possible==false))  resolve(this.m,-1,cleanup);
+	if (this.pos.length>0) {
+	    if (this.pos.length==1) resolve(this.pos[0].ol,this.pos[0].k,cleanup);
+	    else for (i=0; i<this.pos.length; i++) {
+		(function(i) {
+		var p=this.pos[i];
+		p.ol.hover(function() { this.pos[i].ol.attr({stroke:this.color,strokeWidth:"4px"})}.bind(this),
+			   function() { this.pos[i].ol.attr({strokeWidth:"0px"})}.bind(this));
+		p.ol.click(function() { resolve(moves[this.pos[i].k],this.pos[i].k,cleanup); }.bind(this));
+		    }.bind(this))(i);
+	    }
+	} else resolve(this.m,-1,cleanup);
     },
     resolveactionselection: function(units,cleanup) {
 	var i;
@@ -1279,30 +1281,32 @@ Unit.prototype = {
 	    }
 	    cleanup(k);
 	}.bind(this);
-
-	for (i=0; i<units.length; i++) {
+	if (units.length==0) resolve(-1);
+	else if (units.length==1) resolve(0);
+	else for (i=0; i<units.length; i++) {
 	    units[i].outline.attr({fill:"rgba(100,100,100,0.8)"});
 	    (function(k) { units[k].setclickhandler(function() { resolve(k);}); })(i);
 	}
     },
     resolveboost: function() {
-	waitingforaction++;
+	waitingforaction.push(function() {
 	this.resolveactionmove(
 	    [this.getpathmatrix(this.m.clone().add(MT(0,(this.islarge?-20:0))),"F1").add(MT(0,-20)),
 	     this.getpathmatrix(this.m.clone().add(MT(0,(this.islarge?-20:0))),"BL1").add(MT(0,-20)),
 	     this.getpathmatrix(this.m.clone().add(MT(0,(this.islarge?-20:0))),"BR1").add(MT(0,-20))],
 	    function (t,k) {
-		waitingforaction--;
 		record(t.id,t.m.toTransformString());
 		t.show(); t.endaction();
 	    },true);
+	}.bind(this));
+	if (waitingforaction.length==1) nextstep();
 	return true;
     },
     resolveuncloak: function() {
 	var m0=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"F2").add(MR(-90,0,0)).add(MT(0,-20));
 	var m1=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"F2").add(MR(90,0,0)).add(MT(0,20));
 	var m2=this.getpathmatrix(this.m.clone(),"F2");
-	waitingforaction++;
+	waitingforaction.push(function() {
 	this.resolveactionmove(
 	    [m0.clone().add(MT(0,0)),
 	     m0.clone().add(MT(0,20)),
@@ -1313,29 +1317,30 @@ Unit.prototype = {
 	     m1.clone().add(MT(0,-40))],
 	    function (t,k) {
 		t.agility-=2; t.iscloaked=false;t.show(); 
-		waitingforaction--;
 		SOUNDS.uncloak.play();
 		nextstep();
 	    },true);
+	}.bind(this));
+	if (waitingforaction.length==1) nextstep();
 	return true;
     },
     resolveroll: function() {
 	var m0=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(-90,0,0)).add(MT(0,-20));
 	var m1=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(90,0,0)).add(MT(0,-20));
-	waitingforaction++;
-	this.resolveactionmove(
-	    [m0.clone().add(MT(0,0)),
-	     m0.clone().add(MT(0,20)),
-	     m0.clone().add(MT(0,40)),
-	     m1.clone().add(MT(0,0)),
-	     m1.clone().add(MT(0,20)),
-	     m1.clone().add(MT(0,40))],
-	    function(t,k) {
-		t.show();
-		waitingforaction--;
-		t.endaction();
-	    },true);
-	
+	waitingforaction.push(function() {
+	    this.resolveactionmove(
+		[m0.clone().add(MT(0,0)),
+		 m0.clone().add(MT(0,20)),
+		 m0.clone().add(MT(0,40)),
+		 m1.clone().add(MT(0,0)),
+		 m1.clone().add(MT(0,20)),
+		 m1.clone().add(MT(0,40))],
+		function(t,k) {
+		    t.show();
+		    t.endaction();
+		},true);
+	}.bind(this));
+	if (waitingforaction.length==1) nextstep();
 	return true;
     },
     addtarget: function(sh) {
@@ -1358,21 +1363,24 @@ Unit.prototype = {
     },
     selectnearbyunits: function(n,f) {
 	var p=[];
-	for (var i=0; i<squadron.length; i++)
-	    if (f(this,squadron[i])&&this.getrange(squadron[i])<=n) p.push(squadron[i]);
+	for (var i=0; i<squadron.length; i++) {
+	    log(this.name+":"+squadron[i].name+" "+f(this,squadron[i])+" "+(this.getrange(squadron[i])<=n));
+	    if (f(this,squadron[i])&&(this.getrange(squadron[i])<=n)) p.push(squadron[i]);
+	}
 	return p;
     },
     resolvetarget: function() {
 	var i; var p;
 	p=this.gettargetableunits(3);
 	if (p.length>0) {
-	     log("<b>["+this.name+"] select target to lock</b>");
-	    waitingforaction++;
-	    this.resolveactionselection(p,function(k) { 
-		this.addtarget(p[k]);
-		waitingforaction--;
-		this.endaction();
+	    log("<b>["+this.name+"] select target to lock</b>");
+	    waitingforaction.push(function() {
+		this.resolveactionselection(p,function(k) { 
+		    if (k>=0) this.addtarget(p[k]);
+		    this.endaction();
+		}.bind(this));
 	    }.bind(this));
+	    if (waitingforaction.length==1) nextstep();
 	    return true;
 	} else return false; 
     },
@@ -1399,7 +1407,7 @@ Unit.prototype = {
 	if (a=="BOOST") { return this.resolveboost(); }
 	else if (a=="ROLL") {return this.resolveroll(); }
 	else if (a=="CLOAK") { return this.resolvecloak();}
-	else if (a=="FOCUS") {return this.addfocus(); }
+	else if (a=="FOCUS") { return this.addfocus(); }
 	else if (a=="EVADE")  { return this.addevade(); }
 	else if (a=="TARGET") { return this.resolvetarget(); }
 	else {
@@ -1554,7 +1562,8 @@ Unit.prototype = {
 		   strokeWidth:2,
 		   strokeDasharray:100,
 		   "class":"animated"});
-	this.select();	targetunit.unselect(); waitingforaction++;
+	
+	this.select();	targetunit.unselect(); 
 	for (i=0; i<squadron.length; i++) if (squadron[i]==this) break;
 	this.showattackroll(this.attackroll(attack),attack,i);
 	targetunit.showdefenseroll(targetunit.defenseroll(defense),defense,i);
@@ -1690,7 +1699,6 @@ Unit.prototype = {
 	// -1: No maneuver
 	if (this.maneuver<0||this.hasmoved) return;
 	this.hasmoved=true;
-	this.waitingforaction++;
 	var dial=this.getdial()[this.maneuver].move;
 	var difficulty=this.getdial()[this.maneuver].difficulty;
 	// Move = forward 0. No movement. 
@@ -1704,9 +1712,8 @@ Unit.prototype = {
     endmaneuver: function() {
 	this.ionized=0;
 	this.hasmoved=true;
-	if (this.checkdead()) { this.hull=0; this.shield=0; nextstep();} // Reach the next step
-	//this.waitingforaction=0;
-	if (this.candoaction()) this.showaction(); else this.endaction()
+	if (this.checkdead()) { this.hull=0; this.shield=0; nextstep(); } 
+	else if (this.candoaction()) this.showaction(); else this.endaction();
 	this.showstats();
     },
     candoaction: function() {
@@ -1723,9 +1730,10 @@ Unit.prototype = {
 	for (i=0; i<p.length; i++) if (p[i].team!=this.team) q.push(p[i]);
 	if (q.length==0) return false;
 	this.resolveactionselection(q,function(k) { 
-	    this.declareattack(wp,q[k]); 
-	    this.resolveattack(wp,q[k]);
-	    //window.location="#combatmodal";
+	    if (k>=0) {
+		this.declareattack(wp,q[k]); 
+		this.resolveattack(wp,q[k]);
+	    }
 	}.bind(this));
 	return true;
     },
@@ -1734,7 +1742,7 @@ Unit.prototype = {
 	var wn=[];
 	var i,j,w;
 	$("#attackdial").hide();
-	if (phase==COMBAT_PHASE&&waitingforaction==0&&skillturn==this.skill&&this.canfire()) {
+	if (phase==COMBAT_PHASE&&waitingforaction.length==0&&skillturn==this.skill&&this.canfire()) {
 	    var r=this.gethitrangeallunits();
 	    $("#attackdial").empty();
 	    for (i=1; i<=3; i++) {
@@ -1764,23 +1772,43 @@ Unit.prototype = {
 	return true;
     },
     candropbomb: function() {
-	return (!this.hasmoved&&this.skill==skillturn&&phase==ACTIVATION_PHASE);
+	return (this.lastdrop!=round&&!this.hasmoved&&this.skill==skillturn&&phase==ACTIVATION_PHASE);
     },
-    getbomblocation: function() {
-	return this.getpathmatrix(this.m.clone().add(MR(180,0,0)),"F1");
+    addactivationdial: function(pred,action,html,elt) {
+	this.activationdial.push({pred:pred,action:action,html:html,elt:elt});
+    },
+    updateactivationdial: function() {
+	this.activationdial=[];
+	this.addactivationdial(function() { return this.canuncloak(); }.bind(this),
+			       function() {this.usecloak(); }.bind(this),
+			       A["CLOAK"].key,
+			       $("<div>").attr({class:"symbols"}));
+	if (this.candropbomb()) 
+	    for (var i=0; i<this.bombs.length; i++) {
+		var bomb=this.bombs[i];
+		this.addactivationdial(function() {return this.isactive; }.bind(bomb),
+		    function() {
+			this.unit.lastdrop=round;
+			$(".bombs").remove(); 
+			this.drop(this.getbomblocation());
+			this.unit.showactivation();
+		    }.bind(bomb),
+		    A["BOMB"].key,
+		    $("<div>").attr({class:"symbols"}));
+	    }
+	return this.activationdial;
     },
     showactivation: function() {
-	var str="";
-	var i;
-	for (me=0;me<squadron.length;me++) if (squadron[me]==this) break;
+	var ad=this.updateactivationdial();
+	$("#activationdial").html("<div></div>");
+	for (var i=0; i<ad.length; i++) {
+	    var adi=ad[i];
+	    if (adi.pred()) 
+		adi.elt.appendTo("#activationdial > div").click(adi.action).html(adi.html);
+	}
 	if (this.timeformaneuver()) 
-	    str+="<button onclick='squadron["+me+"].resolvemaneuver()'>Move</button>";
-	if (this.canuncloak()) 
-	    str+="<div class='symbols "+A["CLOAK"].color+"' onclick='squadron["+me+"].usecloak()'>"+A["CLOAK"].key+"</div>";
-	if (this.candropbomb())
-	    for (i=0; i<this.bombs.length; i++) 
-		if (this.bombs[i].isactive) str+="<div class='symbols bombs' onclick='$(\".bombs\").remove();squadron["+me+"].bombs["+i+"].drop(squadron["+me+"].getbomblocation())'>"+A["BOMB"].key+"</div>";
-	$("#activationdial").html("<div>"+str+"</div>");
+	    $("<button>").html("Move").click(function() {this.resolvemaneuver(); }.bind(this)).appendTo("#activationdial > div");
+
     },
     freeaction: function(endfree) {
 	this.tfa=this.timeforaction;
@@ -2005,7 +2033,7 @@ Unit.prototype = {
 	this.showdial();
 	this.showmaneuver();
 	if (this.timeforaction()) this.showaction(); else $("#actiondial").empty();
-	this.showactivation();
+	if (phase==ACTIVATION_PHASE) this.showactivation();
 	this.showattack();
 	if (this.hull>0) { 
 	    $("#"+this.id).html(""+this);

@@ -1,7 +1,7 @@
 var phase=0;
 var round=1;
 var skillturn=0;
-var waitingforaction=0;
+var waitingforaction=[];
 var tabskill;
 var VERSION="v0.5";
 
@@ -18,7 +18,7 @@ function center() {
 }
 
 function prevselect() {
-    if(waitingforaction>0) { return; }
+    if(waitingforaction.length>0) { return; }
     var old=activeunit;
     if (phase==ACTIVATION_PHASE||phase==COMBAT_PHASE) {
 	if (skillturn==-1) return;
@@ -31,7 +31,6 @@ function prevselect() {
     old.unselect() ;
 }
 function nextselect() {
-    if (waitingforaction>0) { return; }
     var old=activeunit;
     if (phase==ACTIVATION_PHASE||phase==COMBAT_PHASE) {
 	if (skillturn==-1) return;
@@ -118,7 +117,10 @@ function allunitlist() {
 }
 function nextstep() {
     //log(activeunit.name+" calling next step:"+waitingforaction);
-    if (waitingforaction==0) {
+    if (waitingforaction.length>0) {
+	var fct=waitingforaction.shift();
+	fct();
+    } else {
 	if (phase==ACTIVATION_PHASE) {
 	    enablenextphase();
 	    activeunit.show();
@@ -151,7 +153,6 @@ function nextcombat() {
 	log("No more firing units, ready to end phase."); 	
 	// Clean up phase
 	for (i=0; i<squadron.length; i++) squadron[i].endcombatphase();
-	$(".nextphase").prop("disabled",false);
 	return; 
     }
     sk=tabskill[skillturn].length;
@@ -428,7 +429,6 @@ function nextphase() {
 	round++;
 	break;
     }
-    waitingforaction=0;
     phase=(phase==COMBAT_PHASE)?PLANNING_PHASE:phase+1;
  
     if (phase<3) $("#phase").html(phasetext[phase]);
@@ -464,7 +464,7 @@ function nextphase() {
 	jwerty.key("escape", nextphase);
 	jwerty.key("c", center);
 	/* By-passes */
-	jwerty.key("0", function() { log("active:"+activeunit.name+" wfa:"+waitingforaction+" hasfire:"+activeunit.hasfired+" hasdamaged:"+activeunit.damage+" m:"+activeunit.maneuver+" a:"+activeunit.action); });
+	jwerty.key("0", function() { log("active:"+activeunit.name+" wfa:"+waitingforaction.length+" hasfire:"+activeunit.hasfired+" hasdamaged:"+activeunit.damage+" m:"+activeunit.maneuver+" a:"+activeunit.action+" o"+activeunit.ocollision.overlap); });
 	jwerty.key("1", function() { activeunit.focus++;activeunit.show();});
 	jwerty.key("2", function() { activeunit.evade++;activeunit.show();});
 	jwerty.key("3", function() { if (!activeunit.iscloaked) {activeunit.iscloaked=true;activeunit.agility+=2;activeunit.show();}});
@@ -497,10 +497,9 @@ function nextphase() {
 	}
 	filltabskill();
 	skillturn=0;
-	nextactivation();
+	nextstep();
 	break;
     case COMBAT_PHASE:
-	waitingforaction=0;
 	log("<div>[turn "+round+"] Combat phase</div>");
 	$("#attackdial").show();
 	skillturn=12;
@@ -906,8 +905,6 @@ $(document).ready(function() {
 	    $("#leftpanel").prepend("<div id='importexport1'><button onclick='currentteam=1;window.location=\"#import\"' class='bigbutton'>Import Squadron</button><button class='bigbutton' onclick='$(\"#jsonexport\").val(JSON.stringify(TEAMS[1])); window.location=\"#export\"'>Export Squadron</button></div>");
 	    $("#rightpanel").prepend("<div id='importexport2'><button onclick='currentteam=2;window.location=\"#import\"' class='bigbutton'>Import Squadron</button><button class='bigbutton' onclick='$(\"#jsonexport\").val(JSON.stringify(TEAMS[2])); window.location=\"#export\"'>Export Squadron</button></div>");
 	    phase=-1;
-	    $("#panel_ACTIVATION").hide();
-	    $("#panel_COMBAT").hide();
 	    $("#showproba").prop("disabled",true);
 	    var args= window.location.search.substr(1).split('&');
 	    nextphase();

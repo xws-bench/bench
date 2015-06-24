@@ -44,6 +44,9 @@ Bomb.prototype = {
 	};
 	return range;
     },
+    getbomblocation: function() {
+	return this.unit.getpathmatrix(this.unit.m.clone().add(MR(180,0,0)),"F1");
+    },
     getrange: function(sh) { 
 	var ro=this.getOutlinePoints(this.m);
 	var rsh = sh.getOutlinePoints(sh.m);
@@ -240,10 +243,12 @@ Weapon.prototype = {
 	if (this.type=="Bilaser") {
 	    var m=this.unit.m.clone();
 	    m.add(MR(180,0,0));
-	    for (i=this.range[0]; i<=this.range[1]; i++)
+	    for (i=this.range[0]; i<=this.range[1]; i++) {
+		if (this.unit.isinsector(m,i,sh)) log(sh.name+" in range "+i);
 		if (this.unit.isinsector(m,i,sh)) {
 		    return i;
 		} 
+	    }
 	}
 	return 0;
     },
@@ -468,30 +473,30 @@ var UPGRADES= [
 	init: function(sh) {
 	    sh.begincombatphase= function() {
 		if (sh.dead) return;
-		var p;
-		var i;
-		p=sh.selectnearbyunits(1,function(a,b) { return a.team==b.team&&a!=b; });
-		/* TODO: should stop attack actions */
-		if (p.length>0) {
-		    log("<b>["+this.name+"] select a pilot to set its skill to the skill of "+sh.name+"</b>");
-		    waitingforaction++;
-		    sh.resolveactionselection(p,function(k) {
-			p[k].oldskill=p[k].skill;
-			p[k].skill=sh.skill;
-			filltabskill();
-			p[k].show();
-			var ecp=p[k].endcombatphase;
-			p[k].endcombatphase=function() {
-			    ecp.call(this)
-			    this.skill=this.oldskill;
-			    squadron.sort(function(a,b) {return b.skill-a.skill;});
+		waitingforaction.push(function() {
+		    var p=sh.selectnearbyunits(1,function(a,b) { return a.team==b.team&&a!=b; });
+		    if (p.length>0) {
+			log("<b>["+this.name+"] sets a pilot skill to the skill of "+sh.name+"</b>");
+			sh.resolveactionselection(p,function(k) {
+			    log(p[k].name+" has "+sh.skill+" pilot skill");
+			    p[k].oldskill=p[k].skill;
+			    log("old skill :"+p[k].oldskill);
+			    p[k].skill=sh.skill;
 			    filltabskill();
-			    this.show();
-			}.bind(p[k]);
-			waitingforaction--;
-			nextstep();
-		    }.bind(sh));
-		}
+			    p[k].show();
+			    var ecp=p[k].endcombatphase;
+			    p[k].endcombatphase=function() {
+				ecp.call(this)
+				this.skill=this.oldskill;
+				log(this.name+" has "+this.skill+" pilot skill");
+				squadron.sort(function(a,b) {return b.skill-a.skill;});
+				filltabskill();
+				this.show();
+			    }.bind(p[k]);
+			    nextstep();
+			}.bind(sh));
+		    } else nextstep();
+		}.bind(this));
 	    }
 	}
     },
@@ -519,13 +524,14 @@ var UPGRADES= [
 	    if (this.unit.shipactionList.indexOf("ROLL")==-1) this.unit.addstress();
 	    this.unit.resolveroll();
 	    if (this.unit.istargeted.length>0) {
-		waitingforaction++;
-		log("<b>["+this.name+"] select target lock to remove from "+this.unit.name+"</b>");
-		this.unit.resolveactionselection(this.unit.istargeted,function(k) {
-		    var unit=this.istargeted[k];
-		    unit.removetarget(this);
-		    waitingforaction--;
-		}.bind(this.unit));
+		waitingforaction.push(function() {
+		    log("<b>["+this.name+"] remove 1 target lock from "+this.unit.name+"</b>");
+		    this.unit.resolveactionselection(this.unit.istargeted,function(k) {
+			var unit=this.istargeted[k];
+			unit.removetarget(this);
+			nextstep();
+		    }.bind(this.unit));
+		}.bind(this));
 	    }
 	},        
         type: "Elite",
@@ -636,20 +642,19 @@ var UPGRADES= [
 	    var ea=this.unit.endaction;
 	    var ptl=this;
 	    this.unit.endaction= function() {
-		waitingforaction++;
 		var rea=ea.call(this)
 		if (rea) {
 		    if (ptl.r!=round) {
-			log("[Push the Limit] select an action or empty to cancel");
-			this.freeaction(function() { 
-			    if (ptl.unit.action>-1) { 
-				ptl.r=round; ptl.unit.addstress();
-			    }
-			    waitingforaction--;
-			    nextstep();
-			});
-		    } else { waitingforaction--; nextstep(); }
-		} else { waitingforaction--; nextstep(); }
+			waitingforaction.push(function() {
+			    log("[Push the Limit] select an action or empty to cancel");
+			    this.freeaction(function() { 
+				if (ptl.unit.action>-1) { 
+				    ptl.r=round; ptl.unit.addstress();
+				}
+			    })
+			}.bind(this));
+		    } 
+		}
 		return rea;
 	    }
 	},
@@ -707,10 +712,9 @@ var UPGRADES= [
 	    sh.endattack=function(c,h) {
 		ea.call(this,c,h);
 		if ((c+h==0)&&this.hasfired<2) {
-		    waitingforaction++;
 		    log("[Gunner] "+this.name+" attacks again with primary weapon");
-		    if (!this.selecttargetforattack(0)) waitingforaction=0;
-		} else waitingforaction=0;
+		    this.selecttargetforattack(0); 
+		} 
 	    };
 	},
         type: "Crew",
@@ -831,13 +835,13 @@ var UPGRADES= [
         unique: true,
 	done:true,
         init: function(sh) {
+	    var ea=sh.endattack;
 	    sh.endattack=function(c,h) {
-		Unit.prototype.endattack.call(this,c,h);
+		ea.call(this,c,h);
 		if ((c+h==0)&&this.hasfired<2) {
-		    waitingforaction++;
 		    log("[Luke Skywalker] "+this.name+" attacks again with primary weapon");
-		    if (!this.selecttargetforattack(0)) waitingforaction=0;
-		} else waitingforaction=0;
+		    this.selecttargetforattack(0);
+		} 
 	    };
 	    sh.addattackmoda(this,function(m,n) {
 		if (this.hasfired==2) return true;
@@ -1135,19 +1139,17 @@ var UPGRADES= [
 	    sh.begincombatphase= function() {
 		if (this.dead) return;
 		bcp.call(this);
-		var p;
-		var i;
-		p=this.selectnearbyunits(1,function(a,b) { return a.team==b.team&&a!=b&&b.stress>0; });
-		if (p.length>0) {
-		    log("<b>[Wingman] select a pilot with stress to remove.</b>");
-		    waitingforaction++;
-		    this.resolveactionselection(p,function(k) {
-			p[k].removestresstoken();
-			waitingforaction--;
-			nextstep();
-		    });
-		}
-	    } 
+		waitingforaction.push(function() {
+		    var p=this.selectnearbyunits(1,function(a,b) { return a.team==b.team&&a!=b&&b.stress>0; });
+		    if (p.length>0) {
+			log("<b>[Wingman] select a pilot with stress to remove.</b>");
+			this.resolveactionselection(p,function(k) {
+			    p[k].removestresstoken();
+			    nextstep();
+			});
+		    } else nextstep();
+		}.bind(this)); 
+	    }
 	},
         type: "Elite",
         points: 2,
@@ -1157,26 +1159,24 @@ var UPGRADES= [
         init: function(sh) {
 	    sh.begincombatphase= function() {
 		if (this.dead) return;
-		var p;
-		var i;
-		p=this.selectnearbyunits(2,function(a,b) { return a.team==b.team&&a!=b; });
-		p.push(this);
-		if (p.length>1) {
-		    log("<b>[Decoy] select a pilot skill to exchange with "+this.name+" (or self to cancel)</b>");
-		    waitingforaction++;
-		    this.resolveactionselection(p,function(k) {
-			if (p[k]!=this) {
-			    var s=this.skill;
-			    this.skill=p[k].skill;
-			    p[k].skill=s;
-			    filltabskill();
-			    p[k].show();
-			    this.show();
-			}
-			waitingforaction--;
-			nextstep();
-		    }.bind(this));
-		}
+		waitingforaction.push(function() {
+		var p=this.selectnearbyunits(2,function(a,b) { return a.team==b.team&&a!=b; });
+		    p.push(this);
+		    if (p.length>1) {
+			log("<b>[Decoy] select a pilot skill to exchange with "+this.name+" (or self to cancel)</b>");
+			this.resolveactionselection(p,function(k) {
+			    if (p[k]!=this) {
+				var s=this.skill;
+				this.skill=p[k].skill;
+				p[k].skill=s;
+				filltabskill();
+				p[k].show();
+				this.show();
+			    }
+			    nextstep();
+			}.bind(this));
+		    } else nextstep();
+		}.bind(this));
 	    }
 	},
 	done:true,
@@ -1244,23 +1244,26 @@ var UPGRADES= [
         type: "Astromech",
         points: 2,
     },
-    {/* TODO : a revoir */
+    {
         name: "R7-T1",
-	candoaction: function() { 	    
-	    this.p=[];
-	    this.p=this.unit.selectnearbyunits(2,function(a,b) { return a.team!=b.team; });
-	    return this.p.length>0; },
+	candoaction: function() { 		log("R7-T1 pretested");
+return true; },	    
 	action: function() {
-	    var p=this.p;
-	    var unit=this.unit;
-	    waitingforaction++;
-	    log("<b>["+this.name+"] select target enemy ship</b>");
-	    this.unit.resolveactionselection(this.p,function(k) {
-		waitingforaction--;
-		if (p[k].isinsector(p[k].m,3,unit)) unit.addtarget(p[k]);
-		waitingforaction++;
-		unit.resolveboost();
-	    });
+		log("R7-T1 preactivated");
+		var p=this.unit.selectnearbyunits(2,function(a,b) { return a.team!=b.team; });
+		log("R7-T1 activated");
+		if (p.length>0) {
+		    p.push(this.unit);
+		    log("<b>[R7-T1] acquire target lock on target enemy ship (self to ignore)</b>");
+		    this.unit.resolveactionselection(p,function(k) {
+			if (p[k]!=this) { 
+			    log("selected: "+p[k].name+" from "+this.name);
+			    if (p[k].gethitsector(this)<=3) this.addtarget(p[k]);
+			    this.resolveboost();
+			    log("done2");
+			} else this.endaction();
+		    }.bind(this.unit));
+		} else this.unit.endaction();
 	},
 	done:true,
         unique: true,
@@ -1376,8 +1379,9 @@ var UPGRADES= [
         type: "Crew",
         points: 3,
 	init: function(sh) {
+	    var rst=sh.removestresstoken;
 	    sh.removestresstoken=function() {
-		Unit.prototype.removestresstoken.call(this);
+		rst.call(this);
 		this.addfocustoken();
 	    }.bind(sh);
 	}
@@ -1394,8 +1398,9 @@ var UPGRADES= [
     {
         name: "R4-D6",
         init: function(sh) {
+	    var ch=sh.cancelhit;
 	    sh.cancelhit=function(h,e,org) {
-		var h=Unit.prototype.cancelhit.call(this,h,e,org);
+		var h=ch.call(this,h,e,org);
 		if (h>=3) {
 		    var d=h-2;
 		    for (var i=0; i<d; i++) sh.addstress();
@@ -1413,7 +1418,9 @@ var UPGRADES= [
         name: "R5-P9",
 	done:true,
         init: function(sh) {
+	    var ecp=sh.endcombatphase;
 	    sh.endcombatphase=function() {
+		ecp.call(this);
 		if (this.shield<this.ship.shield&&this.canusefocus()) {
 		    this.shield++;
 		    log("[R5-P9] 1 <code class='xfocustoken'></code> -> 1 <code class='cshield'></code>");
@@ -1652,31 +1659,29 @@ var UPGRADES= [
 	    sh.begincombatphase= function() {
 		bcp.call(this);
 		if (this.dead) return;
-		var p;
-		var i;
-		p=this.selectnearbyunits(1,function(a,b) { return a.team==b.team&&a!=b&&a.skill<b.skill; });
-		p.push(this);
-		if (p.length>1&&this.canusefocus()) {
-		    log("<b>["+this.name+"] select a pilot to increase his agility value</b>");
-		    waitingforaction++;
-		    this.resolveactionselection(p,function(k) {
-			if (this!=p[k]) {
-			    p[k].agility++;
-			    this.removefocustoken();
-			    this.show();
-			    var ecp=p[k].endcombatphase;
-			    p[k].endcombatphase=function() {
-				ecp.call(this);
-				this.agility--;
-				this.showstats();
-				p[k].endcombatphase=ecp;
-			    }.bind(p[k]);
-			}
-			waitingforaction--;
-			nextstep();
-		    }.bind(this));
-		}
-	    }.bind(sh);
+		waitingforaction(function() {
+		    var p=this.selectnearbyunits(1,function(a,b) { return a.team==b.team&&a!=b&&a.skill<b.skill; });
+		    p.push(this);
+		    if (p.length>1&&this.canusefocus()) {
+			log("<b>["+this.name+"] increase agility of selected pilot</b>");
+			this.resolveactionselection(p,function(k) {
+			    if (this!=p[k]) {
+				p[k].agility++;
+				this.removefocustoken();
+				this.show();
+				var ecp=p[k].endcombatphase;
+				p[k].endcombatphase=function() {
+				    ecp.call(this);
+				    this.agility--;
+				    this.showstats();
+				    p[k].endcombatphase=ecp;
+				}.bind(p[k]);
+			    }
+			    nextstep();
+			}.bind(this));
+		    } else nextstep();
+		}.bind(sh));
+	    }
 	},
         type: "Elite",
         points: 2,
@@ -1718,21 +1723,21 @@ var UPGRADES= [
         name: "Inertial Dampeners",
 	done:true,
         init: function(sh) {
+	    var uad=sh.updateactivationdial;
 	    var upg=this;
-	    var cm=sh.completemaneuver;
-	    sh.completemaneuver=function(dial,realdial,difficulty) {
-		this.resolveactionmove(
-		    [this.getpathmatrix(this.m.clone(),dial),
-		     this.getpathmatrix(this.m.clone(),"F0")],
-		    function(t,k) {
-			if (k==1) cm.call(this,dial,realdial,difficulty);
-			else {
-			    cm.call(this,"F0","F0","WHITE");
-			    upg.isactive=false;
-			    this.addstress();
-			}
-		    }.bind(this),false,true);
-	    };
+
+	    sh.updateactivationdial=function() {
+		var ad=uad.call(this);
+		this.addactivationdial(function() { return !upg.unit.hasmoved&&upg.isactive; },
+				       function() {
+					   upg.unit.completemaneuver("F0","F0","WHITE");
+					   upg.isactive=false;
+					   upg.unit.addstress();
+				       }, 
+				       A["ILLICIT"].key,
+				       $("<div>").attr({class:"symbols"}));
+		return ad;
+	    }
 	},
         type: "Illicit",
         points: 1,
@@ -1924,22 +1929,22 @@ var UPGRADES= [
 	    sh.handledifficulty=function(d) {
 		Unit.prototype.handledifficulty.call(this,d);
 		if (d=="GREEN") {
-		    var p=this.gettargetableunits(3);
-		    var i;
-		    if (p.length>0) {
-			waitingforaction++;
-			p.push(this);
-			log("[K4 Security Droid] free target lock");
-			log("<b>["+this.name+"] select target to lock</b>");
-			this.resolveactionselection(p,function(k) {
-			    if (this!=p[k]) {
-				this.addtarget(p[k]);
-				log("["+this.name+"] lock target "+p[k].name);
-			    }
-			}.bind(this));
-		    }
+		    waitingforaction.push(function() {
+			var p=this.gettargetableunits(3);
+		  	if (p.length>0) {
+			    p.push(this);
+			    log("[K4 Security Droid] select unit to target lock for "+this.name+" (self to cancel)");
+			    this.resolveactionselection(p,function(k) {
+				if (this!=p[k]) {
+				    this.addtarget(p[k]);
+				    log("["+this.name+"] lock target "+p[k].name);
+				}
+				nextstep();
+			    }.bind(this));
+			} else nextstep();
+		    }.bind(this));
 		}
-	    }.bind(sh);
+	    }
 	},
         points: 3,
     },
@@ -2266,10 +2271,9 @@ var UPGRADES= [
 		for (i=0; i<this.weapons.length; i++) if (this.weapons[i].type=="Turret") break;
 		
 		if (i<this.weapons.length&&this.hasfired<2&&this.weapons[this.activeweapon].isprimary) {
-		    waitingforaction++;
 		    log("[BTL-A4 Y-Wing] "+this.name+" attacks again with secondary weapon");
-		    if (!this.selecttargetforattack(i)) waitingforaction=0;
-		} else waitingforaction=0;
+		    this.selecttargetforattack(i);
+		} 
 	    };
 	},
         points: 0,
