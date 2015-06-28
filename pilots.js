@@ -1403,16 +1403,22 @@ var PILOTS = [
 	faction:"REBEL",
 	done:true,
         endattack: function() {
-	    waitingforaction.add(function() {
-		var p=this.selectnearbyunits(1,function(t,s) { return (t.team==s.team)&&(s!=t)&&(s.candoaction()); });
-		if (p.length>0) {
-		    log("<b>["+this.name+"] assigns a free action to friendly unit");
-		    
-		    this.resolveactionselection(p,function(k) {
-		    p[k].freeaction(function() { nextstep(); });
-		    });
-		} else nextstep();
-	    }.bind(this));
+	    var p=this.selectnearbyunits(1,function(t,s) { return (t.team==s.team)&&(s!=t)&&(s.candoaction()); });
+	    if (p.length>0) {
+		var unit=this;
+		log("<b>["+this.name+"] assigns a free action to friendly unit");
+		waitingforaction.add(function() {
+		this.resolveactionselection(p,function(k) {
+		    activeunit=p[k];
+		    $("#"+p[k].id).addClass("selected");
+		    center(activeunit);
+		    activeunit.show();
+		    $("#"+unit.id).removeClass("selected");
+		    unit.show();
+		    p[k].freeaction(function() { $("#"+unit.id).addClass("selected"); $("#"+p[k].id).removeClass("selected"); activeunit=unit; unit.endaction(); });
+		});
+		}.bind(this));
+	    }
 	},
         unique: true,
         unit: "Z-95 Headhunter",

@@ -37,7 +37,6 @@ waitingforaction=new ActionQueue();
 function nextstep() {
     var i;
     if (activeunit.incombat) return;
-    if (waitingforaction.queue.length>0) log("NEXT STEP");
     waitingforaction.next();
     if (!waitingforaction.isexecuting&&waitingforaction.queue.length==0) {
 	waitingforaction.isexecuting=false;
@@ -522,7 +521,6 @@ function nextphase() {
 	}
 	filltabskill();
 	skillturn=0;
-	log("STARTACTIVATIONPHASE");
 	nextstep();
 	break;
     case COMBAT_PHASE:
@@ -530,7 +528,6 @@ function nextphase() {
 	$("#attackdial").show();
 	skillturn=12;
 	for (i=0; i<squadron.length; i++) squadron[i].begincombatphase();
-	log("STARTCOMBATPHASE");
 	nextstep();
 	break;
     }
