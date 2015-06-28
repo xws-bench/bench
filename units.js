@@ -1045,7 +1045,6 @@ Unit.prototype = {
     },
     addfocus: function() { 
 	this.addfocustoken(); 
-	log("ENDACTION FOCUS");
 	this.endaction();
 	return true;
     },
@@ -1304,7 +1303,7 @@ Unit.prototype = {
 	}
     },
     resolveboost: function() {
-	log("ADD ACTION");
+	//log("ADD ACTION");
 	waitingforaction.add(function() {
 	this.resolveactionmove(
 	    [this.getpathmatrix(this.m.clone().add(MT(0,(this.islarge?-20:0))),"F1").add(MT(0,-20)),
@@ -1337,7 +1336,7 @@ Unit.prototype = {
 	return true;
     },
     resolveroll: function() {
-	log("ADD ACTION");
+	//log("ADD ACTION");
 	waitingforaction.add(function() {
 	    var m0=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(-90,0,0)).add(MT(0,-20));
 	    var m1=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(90,0,0)).add(MT(0,-20));
@@ -1384,7 +1383,7 @@ Unit.prototype = {
 	var i; var p;
 	p=this.gettargetableunits(3);
 	if (p.length>0) {
-	    log("ADD ACTION");
+	    //log("ADD ACTION");
 	    //log("<b>["+this.name+"] select target to lock</b>");
 	    waitingforaction.add(function() {
 		this.resolveactionselection(p,function(k) { 
@@ -1406,7 +1405,6 @@ Unit.prototype = {
     },
     endaction: function() {
 	this.actiondone=true; this.action=-1;
-	log("END ACTION");
 	nextstep();
 	return true;
     },
@@ -1745,8 +1743,8 @@ Unit.prototype = {
 	if (this.checkdead()) { this.hull=0; this.shield=0; nextstep(); } 
 	else if (this.timeforaction()) {
 	    if (this.candoaction()) this.showaction(); else {
-		log("CANNOT DO ACTION"+this.name);
-		log(this.candoaction()+":"+this.stress+" "+this.collision+" "+this.ocollision.overlap);
+		//log("CANNOT DO ACTION"+this.name);
+		//log(this.candoaction()+":"+this.stress+" "+this.collision+" "+this.ocollision.overlap);
 		this.action=-1; this.actiondone=true;
 		nextstep();
 	    }
@@ -1870,7 +1868,7 @@ Unit.prototype = {
 	$("#actiondial").empty();
 	//if (waitingforaction.isexecuting) return;
 	this.updateactionlist();
-	log("SHOWACTION for "+this.name);
+	//log("SHOWACTION for "+this.name);
 	for (me=0; me<squadron.length; me++) if (squadron[me]==this) break;
 	if (this.candoaction()) {
 	    var i;
