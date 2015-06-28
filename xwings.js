@@ -1,7 +1,6 @@
 var phase=0;
 var round=1;
 var skillturn=0;
-var waitingforaction=[];
 var tabskill;
 var VERSION="v0.5";
 
@@ -11,6 +10,45 @@ var BOMBS=[];
 
 var allunits=[];
 
+function ActionQueue() {
+    this.queue=[];
+    this.isexecuting=false;
+}
+ActionQueue.prototype= {
+    add: function(f) {
+	/*if (!this.isexecuting&&!activeunit.incombat) {
+	    this.isexecuting=true;
+	    activeunit.show();
+	    f.call()
+	} else*/ this.queue.push(f);
+    },
+    next: function() {
+	if (this.queue.length>0) {
+	    var f;
+	    f=this.queue.shift();
+	    this.isexecuting=true;
+	    activeunit.show();
+	    f.call();
+	} else this.isexecuting=false;
+    },
+}
+waitingforaction=new ActionQueue();
+
+function nextstep() {
+    var i;
+    if (activeunit.incombat) return;
+    if (waitingforaction.queue.length>0) log("NEXT STEP");
+    waitingforaction.next();
+    if (!waitingforaction.isexecuting&&waitingforaction.queue.length==0) {
+	waitingforaction.isexecuting=false;
+	if (phase==ACTIVATION_PHASE) {
+	    enablenextphase();
+	    activeunit.show();
+	    nextactivation();
+	}
+	if (phase==COMBAT_PHASE) nextcombat();
+    }
+}
 function center() {
     var bbox=activeunit.g.getBBox();
     $("#playmat").scrollLeft(bbox.x-window.innerWidth/2+bbox.width/2);
@@ -18,7 +56,7 @@ function center() {
 }
 
 function prevselect() {
-    if(waitingforaction.length>0) { return; }
+    if(waitingforaction.isexecuting) { return; }
     var old=activeunit;
     if (phase==ACTIVATION_PHASE||phase==COMBAT_PHASE) {
 	if (skillturn==-1) return;
@@ -115,20 +153,7 @@ function allunitlist() {
     $("#listunits").html(unitstostr()); 
     window.location="#modal";
 }
-function nextstep() {
-    //log(activeunit.name+" calling next step:"+waitingforaction);
-    if (waitingforaction.length>0) {
-	var fct=waitingforaction.shift();
-	fct();
-    } else {
-	if (phase==ACTIVATION_PHASE) {
-	    enablenextphase();
-	    activeunit.show();
-	    nextactivation();
-	}
-	if (phase==COMBAT_PHASE) nextcombat();
-    }
-}
+
 function nextcombat() {
     var i,sk=0,last=0;
     var old=activeunit;
@@ -139,8 +164,8 @@ function nextcombat() {
 	if (sk==0) {
 	    var dead=false;
 	    skillturn--;
-	    for (i=0; i<tabskill[skillturn].length; i++) {
-		var u=tabskill[skillturn][i];
+	    for (i=0; i<tabskill[skillturn+1].length; i++) {
+		var u=tabskill[skillturn+1][i];
 		if (u.canbedestroyed(skillturn))
 		    if (u.checkdead()) dead=true;
 	    }
@@ -464,7 +489,7 @@ function nextphase() {
 	jwerty.key("escape", nextphase);
 	jwerty.key("c", center);
 	/* By-passes */
-	jwerty.key("0", function() { log("active:"+activeunit.name+" wfa:"+waitingforaction.length+" hasfire:"+activeunit.hasfired+" hasdamaged:"+activeunit.damage+" m:"+activeunit.maneuver+" a:"+activeunit.action+" o"+activeunit.ocollision.overlap); });
+	jwerty.key("0", function() { log("active:"+activeunit.name+" wfa:"+waitingforaction.isexecuting+" hasfire:"+activeunit.hasfired+" hasdamaged:"+activeunit.damage+" m:"+activeunit.maneuver+" a:"+activeunit.action+" o"+activeunit.ocollision.overlap+" ad"+activeunit.actiondone); });
 	jwerty.key("1", function() { activeunit.focus++;activeunit.show();});
 	jwerty.key("2", function() { activeunit.evade++;activeunit.show();});
 	jwerty.key("3", function() { if (!activeunit.iscloaked) {activeunit.iscloaked=true;activeunit.agility+=2;activeunit.show();}});
@@ -497,6 +522,7 @@ function nextphase() {
 	}
 	filltabskill();
 	skillturn=0;
+	log("STARTACTIVATIONPHASE");
 	nextstep();
 	break;
     case COMBAT_PHASE:
@@ -504,6 +530,7 @@ function nextphase() {
 	$("#attackdial").show();
 	skillturn=12;
 	for (i=0; i<squadron.length; i++) squadron[i].begincombatphase();
+	log("STARTCOMBATPHASE");
 	nextstep();
 	break;
     }

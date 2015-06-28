@@ -51,7 +51,7 @@ var PILOTS = [
         unique: true,
         unit: "X-Wing",
 	removefocustoken: function() {
-	    waitingforaction.push(function() {
+	    waitingforaction.add(function() {
 		this.focus--;
 		this.show();
 		var p=[]; 
@@ -101,11 +101,11 @@ var PILOTS = [
         name: "Biggs Darklighter",
 	done:true,
         init: function() {
+	    log("[Biggs Darklighter] is the only target");
 	    var gr=Weapon.prototype.getrangeallunits;
 	    Weapon.prototype.getrangeallunits=function() {
 		var r=gr.call(this);
 		var newr=[];
-		log("[Biggs Darklighter] is the only target");
 		for (i=0; i<r.length; i++) {
 		    var sh=r[i];
 		    if (sh.name=="Biggs Darklighter") {
@@ -170,7 +170,7 @@ var PILOTS = [
         name: "'Dutch' Vander",
 	done:true,
         addtarget: function(t) {
-	    waitingforaction(function() {
+	    waitingforaction.add(function() {
 		Unit.prototype.addtarget.call(this,t);
 		var p=this.selectnearbyunits(2,function(a,b) { return a.team==b.team&&a!=b; });
 		if (p.length>0) {
@@ -178,7 +178,6 @@ var PILOTS = [
 		    log("<b>["+this.name+"] selects ship that may acquire target lock (self to cancel)</b>");
 		    this.resolveactionselection(p,function(k) {
 			if (k<p.length-1) { 
-			    log(p[k].name+"  selected by 'Dutch' Vander");
 			    p[k].resolvetarget();  
 			}
 		    });
@@ -465,7 +464,8 @@ var PILOTS = [
 	},
 	endaction: function() {
 	    this.nbaction++; this.action=-1; this.actiondone=true;
-	    document.dispatchEvent(actionevent());  
+	    nextstep();
+	    nextstep();
 	    return true;
 	},
 	endactivationphase:function() {
@@ -536,11 +536,11 @@ var PILOTS = [
         unit: "TIE Interceptor",
         skill: 7,
 	endattack: function(c,h) {
-	    waitingforaction.push(function() {
-	    Unit.prototype.endattack.call(this,c,h);
-	    console.log("["+this.name+"] free boost or roll action");
-	    var m0=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(-90,0,0)).add(MT(0,-20));
-	    var m1=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(90,0,0)).add(MT(0,-20));
+	    if (this.candoaction()) {
+	    waitingforaction.add(function() {
+		console.log("["+this.name+"] free boost or roll action");
+		var m0=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(-90,0,0)).add(MT(0,-20));
+		var m1=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(90,0,0)).add(MT(0,-20));
 		this.resolveactionmove(
 		    [m0,
 		     m0.clone().add(MT(0,20)),
@@ -554,9 +554,11 @@ var PILOTS = [
 		     this.getpathmatrix(this.m.clone(),"BR1")],
 		    function(t) {
 			this.show();
-			nextstep();
+			this.endaction();
 		    }.bind(this),true,false);
 	    }.bind(this));
+	    }
+	    Unit.prototype.endattack.call(this,c,h);
 	},
         points: 25,
         upgrades: [
@@ -571,7 +573,7 @@ var PILOTS = [
         addstress: function () {
 	    this.stress++;
 	    log("["+this.name+"] stress -> free focus action");
-	    this.addfocustoken();
+	    this.addfocus();
 	},
         unit: "TIE Interceptor",
         skill: 9,
@@ -585,13 +587,9 @@ var PILOTS = [
 	faction:"REBEL",
         unique: true,
 	done:true,
-        updateactionlist:function() {
-	    if (this.collision>0||this.ocollision.template>0||this.ocollision.overlap>-1) {
-		this.actionList=["NOTHING"];
-	    } else {
-		this.actionList=this.ship.actionList.slice(0);
-		this.actionList.push("NOTHING");
-	    }
+        candoaction:function() {
+	    if (this.collision>0||this.ocollision.template>0||this.ocollision.overlap>-1) return false;
+	    return  true;
 	},
         unit: "A-Wing",
         skill: 8,
@@ -940,7 +938,7 @@ var PILOTS = [
         skill: 4,
 	begincombatphase: function() {
 	    if (!this.dead) {
-		waitingforaction.push(function() {
+		waitingforaction.add(function() {
 		    log("<b>["+this.name+"] select a pilot to set its skill to 12</b>");
 		    var p=selectnearbyunits(3,function(t,s) { return t.team==s.team&&t!=s; })
 		    if (p.length>0) {
@@ -978,8 +976,8 @@ var PILOTS = [
         points: 21,
 	begincombatphase: function() {
 	    if (this.focus>0) {
-		waitingforaction.push(function() {
-		    var p=selectnearbyunits(3,function(t,s) { return s.team==t.team&&s!=t; });
+		waitingforaction.add(function() {
+		    var p=this.selectnearbyunits(3,function(t,s) { return s.team==t.team&&s!=t; });
 		    if (p.length>0) {
 			p.push(this);
 			log("<b>["+this.name+"] assigns one focus token to a friendly unit (self to cancel)</b>");
@@ -1153,7 +1151,7 @@ var PILOTS = [
         faction:"EMPIRE",
         begincombatphase: function() {
 	    if (!this.dead) {
-		waitingforaction.push(function() {
+		waitingforaction.add(function() {
 		    var p=selectnearbyunits(1,function(s,t) { return s.team==t.team&&s.targeting.length==0&&s!=t; });
 		    if (p.length>0) {
 			p.push(this);
@@ -1405,8 +1403,8 @@ var PILOTS = [
 	faction:"REBEL",
 	done:true,
         endattack: function() {
-	    waitingforaction.push(function() {
-		var p=this.selectnearbyunits(1,function(t,s) { return (t.team==s.team)&&(s!=t); });
+	    waitingforaction.add(function() {
+		var p=this.selectnearbyunits(1,function(t,s) { return (t.team==s.team)&&(s!=t)&&(s.candoaction()); });
 		if (p.length>0) {
 		    log("<b>["+this.name+"] assigns a free action to friendly unit");
 		    
@@ -1619,7 +1617,7 @@ var PILOTS = [
         faction:"EMPIRE",
 	done:true,
 	resolveuncloak: function() {
-	    waitingforaction.push(function() {
+	    waitingforaction.add(function() {
 	    var m0=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"F2").add(MR(-90,0,0)).add(MT(0,-20));
 	    var m1=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"F2").add(MR(90,0,0)).add(MT(0,20));
 	    var m2=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"BL2").add(MR(-90,0,0)).add(MT(0,-20));
@@ -1784,7 +1782,7 @@ var PILOTS = [
        	faction:"REBEL",
 	done:true,
         freemove: function() {
-	    waitingforaction.push(function() {
+	    waitingforaction.add(function() {
 	    log("["+this.name+"] free boost or roll action");
 	    var m0=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(-90,0,0)).add(MT(0,-20));
 	    var m1=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(90,0,0)).add(MT(0,-20));
@@ -1799,16 +1797,16 @@ var PILOTS = [
 		 this.getpathmatrix(this.m.clone(),"F1"),
 		 this.getpathmatrix(this.m.clone(),"BL1"),
 		 this.getpathmatrix(this.m.clone(),"BR1")],
-		function(t) { nextstep();} ,true);
+		function(t) { this.endaction();}.bind(this) ,true);
 	    }.bind(this));
 	},
 	addfocustoken: function() {
+	    if (this.candoaction()) this.freemove();
 	    Unit.prototype.addfocustoken.call(this);
-	    this.freemove();
 	},
 	removefocustoken: function() {
+	    if (this.candoaction()) this.freemove();
 	    Unit.prototype.removefocustoken.call(this);
-	    this.freemove();
 	},
         unique: true,
         unit: "A-Wing",
@@ -2000,6 +1998,17 @@ var PILOTS = [
         skill: 4,
         points: 42,
         unique: true,
+	done:true,
+	resolvecollision: function() {
+	    var i;
+	    for (i=0; i<this.touching.length; i++) {
+		var u=touching[i];
+		log("["+this.name+"] touching "+u.name+" -> 1 <code class='hit'></code>");
+		u.resolvehit(1);
+		u.checkdead();
+	    }
+	    Unit.prototype.resolvecollision.call(this);
+	},
         upgrades: [
             "Elite",
             "Torpedo",
@@ -2340,7 +2349,7 @@ var PILOTS = [
 	done:true,
         begincombatphase: function() {
 	    if (!this.dead) {
-		waitingforaction.push(function() {
+		waitingforaction.add(function() {
 		var p=this.selectnearbyunits(2,function(a,b) {return a.team==b.team&&a!=b&&a.canuseevade(); });
 		/* TODO: should be an option */
 		if (p.length>0) {
@@ -2474,7 +2483,7 @@ var PILOTS = [
 	    var unit=this;
 	    Bomb.prototype.drop=function(m) {
 		if (this.unit==unit) {
-		    waitingforaction.push(function() {
+		    waitingforaction.add(function() {
 			this.resolveactionmove(
 			    [
 				unit.getpathmatrix(unit.m.clone().add(MR(180,0,0)),"BL3"),
@@ -2549,7 +2558,7 @@ var PILOTS = [
         skill: 5,
 	done:true,
 	removetarget: function(t) {
-	    waitingforaction.push(function() {
+	    waitingforaction.add(function() {
 		Unit.prototype.removetarget.call(this,t);
 		var p=this.gettargetableunits(3);
 		p.push(this);
@@ -2634,7 +2643,7 @@ var PILOTS = [
         unit: "HWK-290",
         begincombatphase: function() {
 	    if (!this.dead) {
-		waitingforaction.push(function() {
+		waitingforaction.add(function() {
 		var p=this.selectnearbyunits(2,function(a,b) {return a.team!=b.team&&(a.canusefocus()||a.canuseevade()); });
 		/* TODO: should be an option */
 		if (p.length>0) {
@@ -2672,7 +2681,7 @@ var PILOTS = [
 	done:true,
         endactivationphase: function() {
 	    if (!this.dead) {
-		waitingforaction.push(function() {
+		waitingforaction.add(function() {
 		    var p=this.gettargetableunits(2);
 		    if (p.length>0) {
 			log("<b>["+this.name+"] select a pilot to set its skill to 0.</b>");
@@ -2730,7 +2739,7 @@ var PILOTS = [
         skill: 5,
         points: 25,
 	begincombatphase: function() {
-	    waitingforaction.push(function() {
+	    waitingforaction.add(function() {
 		var p=this.gettargetableunits(1);
 		var i;
 		if (p.length>0) { 

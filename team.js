@@ -51,17 +51,17 @@ Team.prototype = {
     addpoints: function() { 
 	var team=this.team
 	var f=["REBEL","SCUM","EMPIRE"];
+	$("#team"+team).append("<p id='factionselect"+team+"'></p>");
+	for (i=0; i<3; i++) {
+	    $("#factionselect"+team).append("<input id='"+f[i]+team+"' name='faction"+team+"' type='radio' onchange='TEAMS["+team+"].changefaction(\""+f[i]+"\")'>");
+	    $("#factionselect"+team).append("<label for='"+f[i]+team+"' style='font-size:30px' class='"+f[i]+"'>");
+	}
 	$("#team"+team).append("<input id='teamname"+this.team+"' type='text' placeholder='Team #"+team+"' style='width:160px'>");
 	$("#team"+team).append("<p id='playerselect"+team+"'></p>");
 	$("#playerselect"+team).append("<input id='human"+team+"' checked name='player"+team+"' type='radio' selected onchange='TEAMS["+team+"].changeplayer(\"human\")'>");
 	$("#playerselect"+team).append("<label for='human"+team+"' >Human</label>");
 	$("#playerselect"+team).append("<input id='computer"+team+"' name='player"+team+"' type='radio' onchange='TEAMS["+team+"].changeplayer(\"computer\")'>");
 	$("#playerselect"+team).append("<label for='computer"+team+"'>Computer</label>");
-	$("#team"+team).append("<p id='factionselect"+team+"'></p>");
-	for (i=0; i<3; i++) {
-	    $("#factionselect"+team).append("<input id='"+f[i]+team+"' name='faction"+team+"' type='radio' onchange='TEAMS["+team+"].changefaction(\""+f[i]+"\")'>");
-	    $("#factionselect"+team).append("<label for='"+f[i]+team+"' style='font-size:30px' class='"+f[i]+"'>");
-	}
     },
     updatepoints: function() {
 	var score1=$("#team"+this.team+" .pts").map(function() {
@@ -103,17 +103,23 @@ Team.prototype = {
     endselection:function(s) {
 	var i;
 	var team=this.team;
+	this.name=$("#teamname"+this.team).val();
+	if (this.name=="") this.name="Squad #"+team;
+
 	$("#team"+team).empty();
 	$("#importexport"+team).remove();
+	//$("#team"+team).append("<div class='total'>"+this.name+"</div>");
 	sq=this.tosquadron(s);
 	for (i=0; i<sq.length; i++) {
 	    if (team==1) {
 		sq[i].m.add(MT(80,70+82*i)).add(MR(90,0,0));
+
 		$("#team1").append("<div id=\""+sq[i].id+"\" onclick='select(\""+sq[i].id+"\")'>"+sq[i]+"</div>");
 	    } else {
 		sq[i].m.add(MT(820,70+82*i)).add(MR(-90,0,0));
 		$("#team2").append("<div id=\""+sq[i].id+"\" onclick='select(\""+sq[i].id+"\")'>"+sq[i]+"</div>");
 	    }
+
 	    sq[i].show();
 	}
 	activeunit=sq[0];
