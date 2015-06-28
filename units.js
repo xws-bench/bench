@@ -1209,7 +1209,7 @@ Unit.prototype = {
 	for (i=0; i<l; i++) { 	
 	    $("#attack").prepend("<td class='hitreddice'></td>");
 	}
-	$("#attack > .xfocustoken").remove();
+	$("#atokens > .xfocustoken").remove();
     },
     usefocus:function(id) {
 	if (phase==COMBAT_PHASE) {
@@ -1220,7 +1220,7 @@ Unit.prototype = {
 		targetunit.show();
 		var l=$(".focusgreendice").length;
 		$(".focusgreendice").remove();
-		$("#defense > .xfocustoken").remove()
+		$("#dtokens > .xfocustoken").remove()
 		for (i=0; i<l; i++) { 	
 		    $("#defense").prepend("<td class='evadegreendice'></td>");
 		}
@@ -1233,7 +1233,7 @@ Unit.prototype = {
 	if (n>-1) t.istargeted.splice(n,1);
 	this.targeting.splice(t);
 	t.show();
-	if (this.targeting.length==0) $("#attack > .xtargettoken").remove();
+	if (this.targeting.length==0) $("#atokens > .xtargettoken").remove();
     },
     usetarget:function() {
 	if (phase==COMBAT_PHASE&&activeunit==this&&this.targeting.indexOf(targetunit)>-1) {
