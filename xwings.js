@@ -222,13 +222,13 @@ function modroll(f,n,id) {
     var r=f(100*foc+10*c+h,n);
     $("#attack").empty();
     for (i=0; i<Math.floor(r/100)%10; i++,j++)
-	$("#attack").append("<b class='focusreddice'></b>");
+	$("#attack").append("<td class='focusreddice'></td>");
     for (i=0; i<(Math.floor(r/10))%10; i++,j++)
-	$("#attack").append("<b class='criticalreddice'></b>");
+	$("#attack").append("<td class='criticalreddice'></td>");
     for (i=0; i<r%10; i++,j++)
-	$("#attack").append("<b class='hitreddice'></b>");
+	$("#attack").append("<td class='hitreddice'></td>");
     for (i=j; i<n; i++)
-	$("#attack").append("<b class='blankreddice'></b>");
+	$("#attack").append("<td class='blankreddice'></td>");
     $("#moda"+id).remove();
 }
 function modrolld(f,n,id) {
@@ -243,11 +243,11 @@ function modrolld(f,n,id) {
     //log("mod roll after "+a+" "+b+" "+c);
     $("#defense").empty();
     for (i=0; i<Math.floor(r/10); i++,j++)
-	$("#defense").append("<b class='focusgreendice'></b>");
+	$("#defense").append("<td class='focusgreendice'></td>");
     for (i=0; i<r%10; i++,j++)
-	$("#defense").append("<b class='evadegreendice'></b>");
+	$("#defense").append("<td class='evadegreendice'></td>");
     for (i=j; i<n; i++)
-	$("#defense").append("<b class='blankgreendice'></b>");
+	$("#defense").append("<td class='blankgreendice'></td>");
     $("#modd"+id).remove();
 }
 

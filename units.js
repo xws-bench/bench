@@ -1587,7 +1587,7 @@ Unit.prototype = {
 	$("#dtokens").hide();
 	$("#defense").hide();
 	for (i=0; i<DICES.length; i++) $("."+DICES[i]+"dice").remove();
-	$("#attack").html(this.getusabletokens(me,true)+this.getattackrerolltokens()+this.getattackmodtokens(ar,da));
+	$("#atokens").html(this.getusabletokens(me,true)+this.getattackrerolltokens()+this.getattackmodtokens(ar,da));
 	var f=Math.floor(ar/100);
 	for (i=0; i<f; i++) $("#attack").prepend("<td class='focusreddice'></td>");
 	var c=Math.floor(ar/10)%10;
@@ -1595,14 +1595,14 @@ Unit.prototype = {
 	var h=ar%10;
 	for (i=0; i<h; i++) $("#attack").prepend("<td class='hitreddice'></td>");
 	for (i=0; i<da-h-c-f; i++) $("#attack").prepend("<td class='blankreddice'></td>");
-	$("#atokens").html("<button onclick='$(\"#defense\").show(); $(\"#dtokens\").show();$(\"#atokens\").empty()'>Done</button>");
+	$("#atokens").append("<button onclick='$(\"#defense\").show(); $(\"#dtokens\").show();$(\"#atokens\").empty()'>Done</button>");
 	//log("attack roll: f"+f+" c"+c+" h"+h+" b"+(da-h-c-f));
     },
     showdefenseroll: function(dr,dd,me) {
 	var i,j;
 	for (j=0; j<squadron.length; j++) if (squadron[j]==this) break;
-	$("#defense").html(this.getusabletokens(j,true)+this.getdefensererolltokens()+this.getdefensemodtokens(dr,dd));
-	$("#dtokens").html("<button onclick='$(\"#combatdial\").hide();squadron["+me+"].resolvedamage()'>Fire!</button>");
+	$("#dtokens").html(this.getusabletokens(j,true)+this.getdefensererolltokens()+this.getdefensemodtokens(dr,dd));
+	$("#dtokens").append("<button onclick='$(\"#combatdial\").hide();squadron["+me+"].resolvedamage()'>Fire!</button>");
 	var f=Math.floor(dr/10);
 	for (i=0; i<f; i++) $("#defense").prepend("<td class='focusgreendice'></td>");
 	var e=dr%10;
