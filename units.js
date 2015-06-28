@@ -192,6 +192,7 @@ function Unit(team) {
 Unit.prototype = {
     tosquadron: function(s) {
 	var upgs=this.upg;
+	this.touching=[];
 	this.maneuver=-1;
 	this.action=-1;
 	this.actionsdone=[];
@@ -223,8 +224,12 @@ Unit.prototype = {
 //	    this.img=s.text(-10,10,this.ship.code).transform('r -90 0 0 '+((this.faction=="EMPIRE"||this.faction=="SCUM")?'r -1 1':'')).attr({
 //		class:"xwingship",
 //	    });
+	    this.imgsmoke= s.image("png/smoke.gif",-20,-60,30,50).transform('r 180 0 0').attr({display:"none"});
+	    this.imgflame=s.image("png/out.gif",-15,-40,20,40).transform('r 180 0 0').attr({display:"none"});
 	} else {
 	    this.img=s.image("png/"+this.ship.img[0],-50*this.scale,-50*this.scale,100*this.scale,100*this.scale).transform('r 90 0 0');
+	    this.imgsmoke= s.image("png/smoke.gif",-20,-60,30,50).transform('r 180 0 0').attr({display:"none"});
+	    this.imgflame=s.image("png/out.gif",-15,-40,20,40).transform('r 180 0 0').attr({display:"none"});
 //	    this.img=s.text(0,0,this.ship.code).transform('r -90 0 0 '+((this.faction=="EMPIRE"||this.faction=="SCUM")?'s 2 -2':'s 2 2')+'t -15 5').attr({
 //		class:"xwingship",
 //	    });
@@ -277,6 +282,7 @@ Unit.prototype = {
 		.attr({class: "xsymbols",fill:A[AINDEX[i+2]].color,strokeWidth: 0
 		      });
 	}
+	this.geffect=s.group(this.imgflame,this.imgsmoke);
 	// Order in the group is important. Latest is on top of stacked layers
 	this.g=s.group(this.sector,this.outline,this.img,this.dialspeed,this.dialdirection,this.actionicon,this.infoicon[0],this.infoicon[1],this.infoicon[2],this.infoicon[3],this.gstat);
 	this.g.addClass("unit");
@@ -726,6 +732,7 @@ Unit.prototype = {
 	this.dragged=true;
 	$(".phasepanel").hide();
 	this.g.transform(this.dragMatrix);
+	this.geffect.transform(this.dragMatrix);
     },
     dragstart:function(x,y,a) { this.showhitsector(false); this.dragged=false; },
     dragstop: function(a) { 
@@ -897,7 +904,7 @@ Unit.prototype = {
 	this.show();
     },
     select: function() {
-	if (waitingforaction.length>0) return;
+	if (waitingforaction.isexecuting) return;
 	activeunit=this;
 	$("#"+this.id).addClass("selected");
 	this.show();
@@ -957,18 +964,15 @@ Unit.prototype = {
 	o2.remove();
 	return collision;
     },
-    iscollidinganyunit: function(m) {
+    getcollidingunits: function(m) {
 	var i;
+	var c=[];
 	for (i=0; i<squadron.length; i++) {
 	    var sh=squadron[i];
-	    if (sh!=this) {
-		if (this.iscollidingunit(m,sh)) {  
-		    this.collides=sh;
-		    return true;
-		}
-	    }
+	    if (sh!=this)
+		if (this.iscollidingunit(m,sh)) c.push(sh);
 	};
-	return false;
+	return c;
     },
     getpathmatrix: function(m,maneuver) {
 	var path =  P[maneuver].path.transform(this.m).attr({display:"none"});
@@ -1041,6 +1045,7 @@ Unit.prototype = {
     },
     addfocus: function() { 
 	this.addfocustoken(); 
+	log("ENDACTION FOCUS");
 	this.endaction();
 	return true;
     },
@@ -1070,6 +1075,14 @@ Unit.prototype = {
 		squadron.splice(i,1); break;
 	    }
 	}
+	for (i=0; i<this.targeting.length; i++) {
+	    var t=this.targeting[i];
+	    n=t.istargeted.indexOf(this);
+	    if (n>-1) t.istargeted.splice(n,1);
+	    t.show();
+	}
+	this.targeting=[];
+
 	this.dead=true;
 	this.m=MT(-60,-60);
 	log(this.name+" has exploded !");
@@ -1151,6 +1164,8 @@ Unit.prototype = {
 	this.cleanupattack();
     },
     cleanupattack: function() {
+	this.incombat=false;
+	//log("calling nextstep from cleanup");
 	nextstep();
     },
     endround: function() {
@@ -1181,7 +1196,7 @@ Unit.prototype = {
 	//this.show();
     //},
     usecloak: function(id) {
-	if (waitingforaction.length==0&&(phase==ACTIVATION_PHASE)&&(this.stress==0)&&!this.hasmoved) {
+	if ((!waitingforaction.isexecuting)&&(phase==ACTIVATION_PHASE)&&(this.stress==0)&&!this.hasmoved) {
 	    this.resolveuncloak();
 	}
     },
@@ -1247,9 +1262,9 @@ Unit.prototype = {
 	    for (i=0; i<this.pos.length; i++) this.pos[i].ol.remove();
 	    if (automove) {
 		this.m=m;
-		this.show();
 	    }
 	    f(this,k);
+	    this.show();
 	}.bind(this);
 	for (i=0; i<moves.length; i++) {
 	    var p=this.getpossibleoutline(moves[i]);
@@ -1289,24 +1304,22 @@ Unit.prototype = {
 	}
     },
     resolveboost: function() {
-	waitingforaction.push(function() {
+	log("ADD ACTION");
+	waitingforaction.add(function() {
 	this.resolveactionmove(
 	    [this.getpathmatrix(this.m.clone().add(MT(0,(this.islarge?-20:0))),"F1").add(MT(0,-20)),
 	     this.getpathmatrix(this.m.clone().add(MT(0,(this.islarge?-20:0))),"BL1").add(MT(0,-20)),
 	     this.getpathmatrix(this.m.clone().add(MT(0,(this.islarge?-20:0))),"BR1").add(MT(0,-20))],
-	    function (t,k) {
-		record(t.id,t.m.toTransformString());
-		t.show(); t.endaction();
-	    },true);
+	    function (t,k) {	t.endaction(); },true);
 	}.bind(this));
-	if (waitingforaction.length==1) nextstep();
+	this.endaction();
 	return true;
     },
     resolveuncloak: function() {
 	var m0=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"F2").add(MR(-90,0,0)).add(MT(0,-20));
 	var m1=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"F2").add(MR(90,0,0)).add(MT(0,20));
 	var m2=this.getpathmatrix(this.m.clone(),"F2");
-	waitingforaction.push(function() {
+	waitingforaction.add(function() {
 	this.resolveactionmove(
 	    [m0.clone().add(MT(0,0)),
 	     m0.clone().add(MT(0,20)),
@@ -1316,18 +1329,18 @@ Unit.prototype = {
 	     m1.clone().add(MT(0,-20)),
 	     m1.clone().add(MT(0,-40))],
 	    function (t,k) {
-		t.agility-=2; t.iscloaked=false;t.show(); 
+		t.agility-=2; t.iscloaked=false;
 		SOUNDS.uncloak.play();
-		nextstep();
 	    },true);
 	}.bind(this));
-	if (waitingforaction.length==1) nextstep();
+	nextstep();
 	return true;
     },
     resolveroll: function() {
-	var m0=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(-90,0,0)).add(MT(0,-20));
-	var m1=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(90,0,0)).add(MT(0,-20));
-	waitingforaction.push(function() {
+	log("ADD ACTION");
+	waitingforaction.add(function() {
+	    var m0=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(-90,0,0)).add(MT(0,-20));
+	    var m1=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(90,0,0)).add(MT(0,-20));
 	    this.resolveactionmove(
 		[m0.clone().add(MT(0,0)),
 		 m0.clone().add(MT(0,20)),
@@ -1335,12 +1348,10 @@ Unit.prototype = {
 		 m1.clone().add(MT(0,0)),
 		 m1.clone().add(MT(0,20)),
 		 m1.clone().add(MT(0,40))],
-		function(t,k) {
-		    t.show();
-		    t.endaction();
-		},true);
+		function(t,k) {	t.endaction();
+},true);
 	}.bind(this));
-	if (waitingforaction.length==1) nextstep();
+	this.endaction();
 	return true;
     },
     addtarget: function(sh) {
@@ -1373,26 +1384,29 @@ Unit.prototype = {
 	var i; var p;
 	p=this.gettargetableunits(3);
 	if (p.length>0) {
-	    log("<b>["+this.name+"] select target to lock</b>");
-	    waitingforaction.push(function() {
+	    log("ADD ACTION");
+	    //log("<b>["+this.name+"] select target to lock</b>");
+	    waitingforaction.add(function() {
 		this.resolveactionselection(p,function(k) { 
 		    if (k>=0) this.addtarget(p[k]);
 		    this.endaction();
 		}.bind(this));
 	    }.bind(this));
-	    if (waitingforaction.length==1) nextstep();
+	    this.endaction();
 	    return true;
-	} else return false; 
+	}
+	return false; 
     },
     resolvecloak: function() {
 	this.iscloaked=true;
 	this.agility+=2;
 	SOUNDS.cloak.play();
-	nextstep();
+	this.endaction();
 	return true;
     },
     endaction: function() {
 	this.actiondone=true; this.action=-1;
+	log("END ACTION");
 	nextstep();
 	return true;
     },
@@ -1643,14 +1657,27 @@ Unit.prototype = {
 	if (this.islarge) lenC+=40;
 	oldm=this.m;
 	m = this.getmatrixwithmove(path, lenC);
-	if (this.iscollidinganyunit(m)) { 
-	    log(this.name+"  collides with "+this.collides.name+": no action");
+
+	var c=this.getcollidingunits(m);
+	var col=[];
+	if (c.length>0) {
+	    log(this.name+"  collides with "+c[0].name+": no action");
 	    this.collision=true;
-	    while (lenC>0 && this.iscollidinganyunit(m)) {
-		m=this.getmatrixwithmove(path,lenC);
+	    while (lenC>0 && c.length>0) {
+		col=c;
 		lenC=lenC-1;
+		m=this.getmatrixwithmove(path,lenC);
+		c=this.getcollidingunits(m);
 	    }
-	} 
+	}
+	// Handle collision: removes old collisions
+	for (i=0; i<this.touching.length; i++) {
+	    var sh=this.touching[i];
+	    sh.touching.splice(sh.touching.indexOf(this),1);
+	}
+	this.touching=col;
+	
+   
 	this.m=m;
 	this.ocollision=this.getocollisions(oldm,this.m,dialpath,lenC);
 	if (this.ocollision.overlap>-1) { log(this.name+" overlaps obstacle: no action, cannot attack"); }
@@ -1665,6 +1692,7 @@ Unit.prototype = {
 		m = this.getmatrixwithmove(path,value);
 		this.m=mm;
 		this.g.transform(m);
+		this.geffect.transform(m);
 	    }.bind(this), TIMEANIM*lenC/200,mina.linear, function(){
 		if (!this.collision) { 
 		    // Special handling of K turns: half turn at end of movement. Straight line if collision.
@@ -1683,6 +1711,7 @@ Unit.prototype = {
 		this.show();
 		path.remove();
 		if (this.ocollision.overlap>-1||this.ocollision.template>0) this.resolveocollision();
+		if (this.collision) this.resolvecollision();
 		this.endmaneuver();
 	    }.bind(this));
 	} else { 
@@ -1691,6 +1720,7 @@ Unit.prototype = {
 	    this.maneuver=-1;
 	    this.show();
 	    path.remove();
+	    if (this.collision) this.resolvecollision();
 	    this.endmaneuver();
 	}
     },
@@ -1713,11 +1743,18 @@ Unit.prototype = {
 	this.ionized=0;
 	this.hasmoved=true;
 	if (this.checkdead()) { this.hull=0; this.shield=0; nextstep(); } 
-	else if (this.candoaction()) this.showaction(); else this.endaction();
+	else if (this.timeforaction()) {
+	    if (this.candoaction()) this.showaction(); else {
+		log("CANNOT DO ACTION"+this.name);
+		log(this.candoaction()+":"+this.stress+" "+this.collision+" "+this.ocollision.overlap);
+		this.action=-1; this.actiondone=true;
+		nextstep();
+	    }
+	}
 	this.showstats();
     },
     candoaction: function() {
-	if (this.stress>0||this.collision>0||this.ocollision.template>0||this.ocollision.overlap>-1) return false;
+	if (this.stress>0||this.collision||this.ocollision.template>0||this.ocollision.overlap>-1) return false;
 	return  true;
     },
     canuncloak: function() {
@@ -1728,10 +1765,14 @@ Unit.prototype = {
 	var i;
 	var q=[];
 	for (i=0; i<p.length; i++) if (p[i].team!=this.team) q.push(p[i]);
-	if (q.length==0) return false;
+	if (q.length==0) {
+	    log(this.name+": no target for "+this.weapons[wp].name);
+	    return false;
+	}
 	this.resolveactionselection(q,function(k) { 
 	    if (k>=0) {
 		this.declareattack(wp,q[k]); 
+		this.incombat=true;
 		this.resolveattack(wp,q[k]);
 	    }
 	}.bind(this));
@@ -1742,7 +1783,7 @@ Unit.prototype = {
 	var wn=[];
 	var i,j,w;
 	$("#attackdial").hide();
-	if (phase==COMBAT_PHASE&&waitingforaction.length==0&&skillturn==this.skill&&this.canfire()) {
+	if (phase==COMBAT_PHASE&&(!waitingforaction.isexecuting)&&skillturn==this.skill&&this.canfire()) {
 	    var r=this.gethitrangeallunits();
 	    $("#attackdial").empty();
 	    for (i=1; i<=3; i++) {
@@ -1757,7 +1798,7 @@ Unit.prototype = {
 		var w=A[this.weapons[wn[i]].type.toUpperCase()];
 		str+="<div class='symbols "+w.color+"' onclick='activeunit.selecttargetforattack("+wn[i]+")'>"+w.key+"</div>"
 	    }
-	    str+="<div class='symbols' onclick='activeunit.hasfired++;activeunit.show(); nextstep()'>"+A["NOTHING"].key+"</div>"
+	    str+="<button onclick='activeunit.hasfired++;activeunit.show();nextstep()'>Skip</button>"
 	    $("#attackdial").html("<div>"+str+"</div>").show();
 	}
     },
@@ -1821,13 +1862,15 @@ Unit.prototype = {
 	    endfree();
 	    return false;
 	};
-	this.showaction();
+	if (this.timeforaction()) this.showaction();
     },
     showaction: function() {
 	var str="";
 	var name,me;
-	this.updateactionlist();
 	$("#actiondial").empty();
+	//if (waitingforaction.isexecuting) return;
+	this.updateactionlist();
+	log("SHOWACTION for "+this.name);
 	for (me=0; me<squadron.length; me++) if (squadron[me]==this) break;
 	if (this.candoaction()) {
 	    var i;
@@ -1840,14 +1883,15 @@ Unit.prototype = {
 	    }
 	}
 	if (str!="") {
-	    str+="<div class='symbols' onclick='activeunit.action=-1;squadron["+me+"].resolveaction()'>"+A["NOTHING"].key+"</div>";
+	    str+="<button onclick='activeunit.action=-1;squadron["+me+"].resolveaction()'>Skip</button>";
 	    $("#actiondial").html("<div>"+str+"</div>").show();
-	} else this.endaction();
+	} 
 	if (this.action<this.actionList.length && this.action>-1) {
 	    var a = this.actionList[this.action];
 	    var c=A[a].color;
 	    this.actionicon.attr({fill:((this==activeunit)?c:halftone(c))});
 	} else this.actionicon.attr({text:""});
+	if (str!="") return true; else return false;
     },
     showinfo: function() {
 	var i=0,j;
@@ -2014,7 +2058,7 @@ Unit.prototype = {
 	$(".phasepanel").css({left:x+10,top:y}).appendTo("body").show();
     },
     timeforaction: function() {
-	return (this==activeunit&&this.hasmoved&&!this.actiondone&&phase==ACTIVATION_PHASE);
+	return (!waitingforaction.isexecuting&&this==activeunit&&this.hasmoved&&!this.actiondone&&phase==ACTIVATION_PHASE);
     },
     timeformaneuver: function() {
 	return (this==activeunit&&this.maneuver>-1&&!this.hasmoved&&this.skill==skillturn);
@@ -2024,7 +2068,10 @@ Unit.prototype = {
 	if (typeof this.g=="undefined") return;
 	this.g.transform(this.m);
 	this.g.appendTo(s); // Put to front
+	this.geffect.transform(this.m);
+	this.geffect.appendTo(s);
 	this.showoutline();
+	this.flameno++;
 	this.showstats();
 	this.showinfo();
 	if (activeunit!=this) return;
@@ -2149,7 +2196,19 @@ Unit.prototype = {
 	return this.isintersecting(sh.getOutlinePoints(m),o1);
     },
     checkcollision: function(sh) {
-	return ((this.collision&&this.collides==sh)||(sh.collision&&sh.collides==this));
+	return (this.touching.indexOf(sh)>-1);
+    },
+    resolvecollision: function() {
+	var i;
+	for (i=0; i<this.touching.length; i++) {
+	    var u=this.touching[i];
+	    if (u.touching.indexOf(this)==-1) {
+		u.touching.push(this);
+		u.collidedby(this);
+	    }
+	}   
+    },
+    collidedby: function(sh) {
     },
     resolveocollision: function() {
 	var i;
@@ -2191,6 +2250,11 @@ Unit.prototype = {
     removehull: function(n) {
 	record(this.id,"removehull("+(n)+")");
 	this.hull=this.hull-n;
+	if (this.hull<this.ship.hull/2) this.imgsmoke.attr({display:"block"});
+	if (this.hull==1) {
+	    this.imgsmoke.attr({display:"none"});
+	    this.imgflame.attr({display:"block"});
+	}
     },
     applydamage: function(n) {
 	this.removehull(n);

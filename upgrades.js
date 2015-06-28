@@ -473,7 +473,7 @@ var UPGRADES= [
 	init: function(sh) {
 	    sh.begincombatphase= function() {
 		if (sh.dead) return;
-		waitingforaction.push(function() {
+		waitingforaction.add(function() {
 		    var p=sh.selectnearbyunits(1,function(a,b) { return a.team==b.team&&a!=b; });
 		    if (p.length>0) {
 			log("<b>["+this.name+"] sets a pilot skill to the skill of "+sh.name+"</b>");
@@ -507,12 +507,15 @@ var UPGRADES= [
         type: "Elite",
         points: 2,
 	candoaction: function() {  
-	    this.p=this.unit.selectnearbyunits(2,function(t,s) { return t.team==s.team&&s!=t&&s.skill<t.skill;});
-	    return (this.p.length>0);
+	    var p=this.unit.selectnearbyunits(2,function(t,s) { return t.team==s.team&&s!=t&&s.skill<t.skill&&s.candoaction();});
+	    return (p.length>0);
 	},
 	action: function() {
 	    var unit=this.unit;
+	    var p=this.unit.selectnearbyunits(2,function(t,s) { return t.team==s.team&&s!=t&&s.skill<t.skill&&s.candoaction();});
 	    this.unit.resolveactionselection(p,function(k) {
+		p[k].select();
+		unit.unselect();
 		p[k].freeaction(function() { unit.endaction(); });
 	    });
 	},
@@ -524,7 +527,7 @@ var UPGRADES= [
 	    if (this.unit.shipactionList.indexOf("ROLL")==-1) this.unit.addstress();
 	    this.unit.resolveroll();
 	    if (this.unit.istargeted.length>0) {
-		waitingforaction.push(function() {
+		waitingforaction.add(function() {
 		    log("<b>["+this.name+"] remove 1 target lock from "+this.unit.name+"</b>");
 		    this.unit.resolveactionselection(this.unit.istargeted,function(k) {
 			var unit=this.istargeted[k];
@@ -638,25 +641,26 @@ var UPGRADES= [
     {
         name: "Push the Limit",
 	init: function(sh) {
-	    this.r=-1;
-	    var ea=this.unit.endaction;
+	    var ea=sh.endaction;
+	    sh.r=-1;
 	    var ptl=this;
-	    this.unit.endaction= function() {
-		var rea=ea.call(this)
-		if (rea) {
-		    if (ptl.r!=round) {
-			waitingforaction.push(function() {
-			    log("[Push the Limit] select an action or empty to cancel");
-			    this.freeaction(function() { 
-				if (ptl.unit.action>-1) { 
-				    ptl.r=round; ptl.unit.addstress();
-				}
-			    })
+	    sh.endaction= function() {
+		if (this.r!=round) {
+		    this.r=round;
+		    if (this.candoaction()) {
+		    waitingforaction.add(function() {
+			log("[Push the Limit] select an action or empty to cancel");
+			this.freeaction(function() { 
+			    if (this.action>-1) { 
+				this.r=round; this.addstress();
+			    } else  this.r=-1; 
+			    nextstep(); 
 			}.bind(this));
-		    } 
+		    }.bind(this));
+		    }
 		}
-		return rea;
-	    }
+		ea.call(this);
+	    };
 	},
 	done:true,
         type: "Elite",
@@ -1139,7 +1143,7 @@ var UPGRADES= [
 	    sh.begincombatphase= function() {
 		if (this.dead) return;
 		bcp.call(this);
-		waitingforaction.push(function() {
+		waitingforaction.add(function() {
 		    var p=this.selectnearbyunits(1,function(a,b) { return a.team==b.team&&a!=b&&b.stress>0; });
 		    if (p.length>0) {
 			log("<b>[Wingman] select a pilot with stress to remove.</b>");
@@ -1159,7 +1163,7 @@ var UPGRADES= [
         init: function(sh) {
 	    sh.begincombatphase= function() {
 		if (this.dead) return;
-		waitingforaction.push(function() {
+		waitingforaction.add(function() {
 		var p=this.selectnearbyunits(2,function(a,b) { return a.team==b.team&&a!=b; });
 		    p.push(this);
 		    if (p.length>1) {
@@ -1246,23 +1250,20 @@ var UPGRADES= [
     },
     {
         name: "R7-T1",
-	candoaction: function() { 		log("R7-T1 pretested");
-return true; },	    
+	candoaction: function() { return true; },	    
 	action: function() {
-		log("R7-T1 preactivated");
+		//log("R7-T1 preactivated");
 		var p=this.unit.selectnearbyunits(2,function(a,b) { return a.team!=b.team; });
-		log("R7-T1 activated");
+		//log("R7-T1 activated");
 		if (p.length>0) {
 		    p.push(this.unit);
 		    log("<b>[R7-T1] acquire target lock on target enemy ship (self to ignore)</b>");
 		    this.unit.resolveactionselection(p,function(k) {
 			if (p[k]!=this) { 
-			    log("selected: "+p[k].name+" from "+this.name);
 			    if (p[k].gethitsector(this)<=3) this.addtarget(p[k]);
 			    this.resolveboost();
-			    log("done2");
 			} else this.endaction();
-		    }.bind(this.unit));
+		    });
 		} else this.unit.endaction();
 	},
 	done:true,
@@ -1659,7 +1660,7 @@ return true; },
 	    sh.begincombatphase= function() {
 		bcp.call(this);
 		if (this.dead) return;
-		waitingforaction(function() {
+		waitingforaction.add(function() {
 		    var p=this.selectnearbyunits(1,function(a,b) { return a.team==b.team&&a!=b&&a.skill<b.skill; });
 		    p.push(this);
 		    if (p.length>1&&this.canusefocus()) {
@@ -1929,7 +1930,7 @@ return true; },
 	    sh.handledifficulty=function(d) {
 		Unit.prototype.handledifficulty.call(this,d);
 		if (d=="GREEN") {
-		    waitingforaction.push(function() {
+		    waitingforaction.add(function() {
 			var p=this.gettargetableunits(3);
 		  	if (p.length>0) {
 			    p.push(this);
@@ -2272,8 +2273,10 @@ return true; },
 		
 		if (i<this.weapons.length&&this.hasfired<2&&this.weapons[this.activeweapon].isprimary) {
 		    log("[BTL-A4 Y-Wing] "+this.name+" attacks again with secondary weapon");
-		    this.selecttargetforattack(i);
+		    waitingforaction.add(function(){ 
+		    this.selecttargetforattack(i);}.bind(this))
 		} 
+
 	    };
 	},
         points: 0,
