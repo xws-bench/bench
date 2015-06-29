@@ -458,22 +458,25 @@ var PILOTS = [
 	done:true,
         unit: "TIE Advanced",
         skill: 9,
-	timeforaction: function() {
-	    if (this.nbaction==1) log("["+this.name+"] 2 actions / round");
-	    return (this==activeunit&&this.hasmoved&&this.nbaction<2&&phase==ACTIVATION_PHASE);
-	},
 	endaction: function() {
-	    this.nbaction++; this.action=-1; this.actiondone=true;
-	    nextstep();
-	    nextstep();
-	    return true;
-	},
-	endactivationphase:function() {
-	    Unit.prototype.endactivationphase.call(this);
-	    this.nbaction=0;
+	    //if (this.endaction==Unit.prototype.endaction) log("SOME");
+
+	    if (this.actionr!=round) {
+		this.actionr=round;
+		if (this.candoaction()) {
+		    waitingforaction.add(function() {
+			log("["+this.name+"] 2 actions / round");
+			this.freeaction(function() {
+			    nextstep();
+			}.bind(this));
+		    }.bind(this));
+		}
+	    }
+	    Unit.prototype.endaction.call(this);
 	},
 	init: function() {
-	    this.nbaction=0;
+	    this.actionr=0;
+	    //log("INSTALLING VADER ENDACTION");
 	},
         points: 29,
         upgrades: [
@@ -1460,7 +1463,7 @@ var PILOTS = [
         done:true,
         faction:"EMPIRE",
         attackroll:function(n) {
-	    var ar=Unit.prototype.ar;
+	    var ar=Unit.prototype.attackroll;
 	    var r=ar.call(this);
 	    if (targetunit.istargeted&&this.target==0) {
 		this.addtarget(targetunit);
@@ -2008,7 +2011,7 @@ var PILOTS = [
 	resolvecollision: function() {
 	    var i;
 	    for (i=0; i<this.touching.length; i++) {
-		var u=touching[i];
+		var u=this.touching[i];
 		log("["+this.name+"] touching "+u.name+" -> 1 <code class='hit'></code>");
 		u.resolvehit(1);
 		u.checkdead();
@@ -2570,7 +2573,7 @@ var PILOTS = [
 		p.push(this);
 		log("<b>["+this.name+"] selects new target to lock at the cost of 1 stress (self to cancel)</b>");
 		this.resolveactionselection(p,function(k) { 
-		    if (k<p.length-1) { 
+		    if (k<p.length-1&&k>-1) { 
 			this.addtarget(p[k]);
 			this.addstress();
 		    }

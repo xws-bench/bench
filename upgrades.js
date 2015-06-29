@@ -643,8 +643,11 @@ var UPGRADES= [
 	init: function(sh) {
 	    var ea=sh.endaction;
 	    sh.r=-1;
+	    //if (sh.endaction==Unit.prototype.endaction) log("SAME");
 	    var ptl=this;
+	    //log("INSTALLING PTL");
 	    sh.endaction= function() {
+			log("[Push the Limit] trying..."+this.r);
 		if (this.r!=round) {
 		    this.r=round;
 		    if (this.candoaction()) {
@@ -940,7 +943,7 @@ var UPGRADES= [
 		log("[Fire-Control System] free target lock on "+targetunit.name);
 		this.addtarget(targetunit);
 		fcs.call(this);
-	    }.bind(sh);
+	    };
 	},
         type: "System",
         points: 2,
