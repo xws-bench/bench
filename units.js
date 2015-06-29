@@ -213,11 +213,6 @@ Unit.prototype = {
 	this.m=new Snap.Matrix(); 
 	this.collision=false;
 	this.ocollision={overlap:-1,template:0};
-	/* Copy all functions for manual inheritance. Call init. */
-	for (var i in PILOTS[this.pilotid]) {
-	    var p=PILOTS[this.pilotid];
-	    if (typeof p[i]=="function") this[i]=p[i];
-	}
 	if (typeof this.init!="undefined") this.init();
 	for (j in upgs) {
 	    if (upgs[j]>-1) {

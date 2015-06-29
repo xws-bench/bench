@@ -37,6 +37,7 @@
       <ul>
 	<li><a href="#about">About</a></li>
 	<li><a href="#proba" id="showproba">Show probability tables</a></li>
+	<li><a href="#" onclick="$('#log').show();$('#closeconsole').show();">Show console</a></li>
 	<li><a href="http://xws-benchmark.blogspot.fr">Bug report/Forum</a></li>
 	<li><a href="#help">Help</a></li>
 	<li><a href="#credit">Credits</a></li>
@@ -344,6 +345,7 @@ The app is not really a game since the user plays both sides, there is no multi-
       </section>
     </article>
     <footer>
+      <a href="#close" title="Close" id="closeconsole" class="close" onclick="$('#log').hide();$('#closeconsole').hide();">X</a>
       <div id='log'></div>
     </footer>
   </body>
