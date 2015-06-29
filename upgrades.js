@@ -643,11 +643,9 @@ var UPGRADES= [
 	init: function(sh) {
 	    var ea=sh.endaction;
 	    sh.r=-1;
-	    //if (sh.endaction==Unit.prototype.endaction) log("SAME");
 	    var ptl=this;
-	    //log("INSTALLING PTL");
 	    sh.endaction= function() {
-			log("[Push the Limit] trying..."+this.r);
+		log("[Push the Limit] trying..."+this.r);
 		if (this.r!=round) {
 		    this.r=round;
 		    if (this.candoaction()) {

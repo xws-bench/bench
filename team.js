@@ -89,6 +89,11 @@ Team.prototype = {
 	for (var i in generics) {
 	    if (generics[i].team==this.team) {
 		u=generics[i];
+		/* Copy all functions for manual inheritance. Call init. */
+		for (var i in PILOTS[u.pilotid]) {
+		    var p=PILOTS[u.pilotid];
+		    if (typeof p[i]=="function") u[i]=p[i];
+		}
 		u.tosquadron(s);
 		allunits.push(u);
 		squadron.push(u);
@@ -162,6 +167,11 @@ Team.prototype = {
 	    this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
 	    var p=new Unit(this.team);
 	    p.selectship(PILOTS[pid].unit,PILOTS[pid].name);
+	    /* Copy all functions for manual inheritance. Call init. */
+	    for (var k in PILOTS[this.pilotid]) {
+		var p=PILOTS[this.pilotid];
+		if (typeof p[k]=="function") this[k]=p[k];
+	    }
 	    for (j=1; j<updstr.length; j++) {
 		Upgradefromname(p,UPGRADES[parseInt(updstr[j])].name);
 	    }

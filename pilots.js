@@ -459,15 +459,13 @@ var PILOTS = [
         unit: "TIE Advanced",
         skill: 9,
 	endaction: function() {
-	    //if (this.endaction==Unit.prototype.endaction) log("SOME");
-
 	    if (this.actionr!=round) {
 		this.actionr=round;
 		if (this.candoaction()) {
 		    waitingforaction.add(function() {
 			log("["+this.name+"] 2 actions / round");
 			this.freeaction(function() {
-			    nextstep();
+			    this.endaction();
 			}.bind(this));
 		    }.bind(this));
 		}
@@ -476,7 +474,6 @@ var PILOTS = [
 	},
 	init: function() {
 	    this.actionr=0;
-	    //log("INSTALLING VADER ENDACTION");
 	},
         points: 29,
         upgrades: [
@@ -2054,8 +2051,7 @@ var PILOTS = [
 	    this.addattackmoda(this,function(m,n) {
 		return  (this.getrange(targetunit)<=2);
 	    }.bind(this),function(m,n) {
-		var c=Math.floor(m/10);
-		var h=(m-c*10)%100;
+		var h=m%10;
 		if (h>0) {
 		    log("["+this.name+"] 1 <code class='hit'></code> -> 1 <code class='critical'></code>");
 		    return m+9;
