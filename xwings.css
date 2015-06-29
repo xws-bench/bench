@@ -194,9 +194,10 @@ background:#606061;
 color:#FFF;
 line-height:25px;
 position:absolute;
-right:-12px;
+right:0;/*-12px;*/
 text-align:center;
-top:-10px;
+top:0;/*-10px;*/
+z-index:1;
 width:24px;
 text-decoration:none;
 font-weight:700;
@@ -1014,7 +1015,7 @@ display:block;
 visibility:visible
 }
 
-footer {
+footer > div {
 position:fixed;
 background:rgba(0,0,0,0.5);
 color:rgba(255,255,255,0.7);
@@ -1027,7 +1028,18 @@ text-align:left;
 overflow:auto;
 font-size:small
 }
-
+footer {
+position:fixed;
+background:rgba(0,0,0,0);
+bottom:25px;
+left:30%;
+width:50%;
+height:10%;
+z-index:1;
+text-align:left;
+overflow:hidden;
+font-size:small
+}
 .unit {
 cursor:move
 }
