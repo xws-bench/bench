@@ -1623,41 +1623,25 @@ var PILOTS = [
         faction:"EMPIRE",
 	done:true,
 	resolveuncloak: function() {
-	    waitingforaction.add(function() {
-	    var m0=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"F2").add(MR(-90,0,0)).add(MT(0,-20));
-	    var m1=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"F2").add(MR(90,0,0)).add(MT(0,20));
-	    var m2=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"BL2").add(MR(-90,0,0)).add(MT(0,-20));
-	    var m3=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"BL2").add(MR(90,0,0)).add(MT(0,20));
-	    var m4=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"BR2").add(MR(-90,0,0)).add(MT(0,-20));
-	    var m5=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"BR2").add(MR(90,0,0)).add(MT(0,20));
-	    var m6=this.getpathmatrix(this.m.clone(),"F2");
+	    var m0=this.getpathmatrix(this.m.clone(),"BL2");
+	    var m1=this.getpathmatrix(this.m.clone(),"BR2");
+	    var m2=this.getpathmatrix(this.m.clone().add(MR(90,0,0)),"BL2").add(MR(-90,0,0));
+	    var m3=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)),"BL2").add(MR(90,0,0));
+	    var m4=this.getpathmatrix(this.m.clone().add(MR(90,0,0)),"BR2").add(MR(-90,0,0));
+	    var m5=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)),"BR2").add(MR(90,0,0));
 	    this.resolveactionmove(
-		[m0.clone().add(MT(0,0)),
-		 m0.clone().add(MT(0,20)),
-		 m0.clone().add(MT(0,40)),
-		 m6,
-		 m1.clone().add(MT(0,0)),
-		 m1.clone().add(MT(0,-20)),
-		 m1.clone().add(MT(0,-40)),
-		 m2.clone().add(MT(0,0)),
-		 m2.clone().add(MT(0,20)),
-		 m2.clone().add(MT(0,40)),
-		 m3.clone().add(MT(0,0)),
-		 m3.clone().add(MT(0,20)),
-		 m3.clone().add(MT(0,40)),
-		 m4.clone().add(MT(0,0)),
-		 m4.clone().add(MT(0,20)),
-		 m4.clone().add(MT(0,40)),
-		 m5.clone().add(MT(0,0)),
-		 m5.clone().add(MT(0,20)),
-		 m5.clone().add(MT(0,40)),
+		[m0,
+		 m1,
+		 m2.clone(),
+		 m3.clone(),
+		 m4.clone(),
+		 m5.clone(),
 		],
 		function (t,k) {
 		    t.agility-=2; t.iscloaked=false;t.show(); 
 		    SOUNDS.uncloak.play();
 		    nextstep();
 		},true);
-	    }.bind(this));
 	    return true;
 	},          
         unique: true,
