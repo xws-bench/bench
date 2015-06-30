@@ -168,12 +168,13 @@ Team.prototype = {
 	    var p=new Unit(this.team);
 	    p.selectship(PILOTS[pid].unit,PILOTS[pid].name);
 	    /* Copy all functions for manual inheritance. Call init. */
-	    for (var k in PILOTS[this.pilotid]) {
-		var p=PILOTS[this.pilotid];
-		if (typeof p[k]=="function") this[k]=p[k];
+	    for (var k in PILOTS[pid]) {
+		var u=PILOTS[pid];
+		if (typeof u[k]=="function") p[k]=u[k];
 	    }
 	    for (j=1; j<updstr.length; j++) {
-		Upgradefromname(p,UPGRADES[parseInt(updstr[j])].name);
+		var u=Upgradefromname(p,UPGRADES[parseInt(updstr[j])].name);
+		if (typeof u.install != "undefined") u.install(p);
 	    }
 	}
 	nextphase();
@@ -199,12 +200,19 @@ Team.prototype = {
 	    pilot.team=this.team;
 	    p=new Unit(this.team);
 	    p.selectship(PILOT_dict[pilot.ship],PILOT_dict[pilot.name]);
+	    /* Copy all functions for manual inheritance. Call init. */
+	    for (k in PILOTS[pid]) {
+		var u=PILOTS[pid];
+		if (typeof u[k]=="function") p[k]=u[k];
+	    }
 	    if (typeof pilot.upgrades!="undefined")  {
 		for (j=0; j<upg_type.length; j++) { 
 		    var upg=pilot.upgrades[upg_type[j]];
 		    if (typeof upg!="undefined") 
-			for (k=0; k<upg.length; k++)
-			    Upgradefromname(p,UPGRADE_dict[upg[k]]);		    
+			for (k=0; k<upg.length; k++) {
+			    var u=Upgradefromname(p,UPGRADE_dict[upg[k]]);		    
+			    if (typeof u.install != "undefined") u.install(p);
+			}
 		}
 	    }
 	}
