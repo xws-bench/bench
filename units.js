@@ -1165,6 +1165,8 @@ Unit.prototype = {
     },
     endround: function() {
 	this.focus=this.evade=0;
+	this.ocollision.overlap=-1;
+	this.ocollision.template=0;
 	this.showinfo();
     },
     playfiresnd: function() {
@@ -1746,7 +1748,7 @@ Unit.prototype = {
 		nextstep();
 		nextstep();
 	    }
-	}
+	} else { nextstep(); nextstep();}
 	this.showstats();
     },
     candoaction: function() {

@@ -1558,8 +1558,10 @@ var PILOTS = [
         
 	faction:"REBEL",
 	done:true,
+	init: function() {
+	    this.hasdoubledfired=0;
+	},
         endcombatphase: function() {
-	    if (typeof this.hasdoubledfired=="undefined") this.hasdoubledfired=0;
 	    if (this.hasdoubledfired==0) {
 		Unit.prototype.endcombatphase.call(this);
 		var old=activeunit;

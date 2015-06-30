@@ -1010,10 +1010,11 @@ var UPGRADES= [
 	    var as=sh.timeforaction;
 	    var upg=this;
 	    sh.timeforaction=function() {
-		if (!this.isactive) this.timeforaction=as;
-		log("[Advanced Sensors] action before maneuver for "+this.name);
-		return (this==activeunit&&!this.actiondone&&phase==ACTIVATION_PHASE);
-	    }
+		var b=(!waitingforaction.isexecuting&&this==activeunit&&!this.actiondone&&phase==ACTIVATION_PHASE);
+		if (!upg.isactive) this.timeforaction=as;
+		if (b) log("[Advanced Sensors] action before maneuver for "+this.name);
+		return b;
+	    }.bind(sh);
 	},
         type: "System",
         points: 3,
