@@ -64,14 +64,17 @@ function loadsound() {
     var sound;
     for (i=0; i<SOUND_FILES.length; i++) {
 	SOUNDS[SOUND_NAMES[i]]=new buzz.sound( SOUND_FILES[i], {
-	    formats: [ "ogg","wav" ]
+	    formats: [ "ogg","wav" ],
+	    preload: true
 	});
     }
     SOUNDS["cloak"] = new buzz.sound( "ogg/cloak_romulan", {
-	formats: [ "ogg","mp3" ]
+	formats: [ "ogg","mp3" ],
+	preload: true
     });
     SOUNDS["uncloak"] = new buzz.sound( "ogg/decloak_romulan", {
-	formats: [ "ogg","mp3" ]
+	formats: [ "ogg","mp3" ],
+	preload: true
     });
 }
 
@@ -760,20 +763,20 @@ Unit.prototype = {
 	var w=(this.islarge)?40:20;
 	var p1=transformPoint(m,{x:-w,y:-100*n-w});
 	var p2=transformPoint(m,{x:w,y:-100*n-w});	
-	var p3=transformPoint(m,{x:100*n+w,y:-w});
-	var p4=transformPoint(m,{x:100*n+w,y:w});
-	var p5=transformPoint(m,{x:w,y:100*n+w});
-	var p6=transformPoint(m,{x:-w,y:100*n+w});
-	var p7=transformPoint(m,{x:-100*n-w,y:w});
-	var p8=transformPoint(m,{x:-100*n-w,y:-w});
-	var p9=transformPoint(m,{x:50*n+w,y:-100*n-w});
-	var p10=transformPoint(m,{x:100*n+w,y:-50*n-w});
-	var p11=transformPoint(m,{x:100*n+w,y:50*n+w});	
-	var p12=transformPoint(m,{x:50*n+w,y:100*n+w});
-	var p13=transformPoint(m,{x:-50*n-w,y:100*n+w});
-	var p14=transformPoint(m,{x:-100*n-w,y:50*n+w});
-	var p15=transformPoint(m,{x:-100*n-w,y:-50*n-w});
-	var p16=transformPoint(m,{x:-50*n-w,y:-100*n-w});
+	var p3=transformPoint(m,{x:100*n+1+w,y:-w});
+	var p4=transformPoint(m,{x:100*n+1+w,y:w});
+	var p5=transformPoint(m,{x:w,y:100*n+1+w});
+	var p6=transformPoint(m,{x:-w,y:100*n+1+w});
+	var p7=transformPoint(m,{x:-100*n-w-1,y:w});
+	var p8=transformPoint(m,{x:-100*n-w-1,y:-w});
+	var p9=transformPoint(m,{x:50*n+w,y:-100*n-1-w});
+	var p10=transformPoint(m,{x:100*n+1+w,y:-50*n-w});
+	var p11=transformPoint(m,{x:100*n+1+w,y:50*n+w});	
+	var p12=transformPoint(m,{x:50*n+w,y:100*n+1+w});
+	var p13=transformPoint(m,{x:-50*n-w,y:100*n+1+w});
+	var p14=transformPoint(m,{x:-100*n-1-w,y:50*n+w});
+	var p15=transformPoint(m,{x:-100*n-1-w,y:-50*n-w});
+	var p16=transformPoint(m,{x:-50*n-w,y:-100*n-1-w});
 	return ("M "+p1.x+" "+p1.y+" L "+p2.x+" "+p2.y+" C "+p9.x+" "+p9.y+" "+p10.x+" "+p10.y+" "+p3.x+" "+p3.y+" L "+p4.x+" "+p4.y+" C "+p11.x+" "+p11.y+" "+" "+p12.x+" "+p12.y+" "+p5.x+" "+p5.y+" L "+p6.x+" "+p6.y+" C "+p13.x+" "+p13.y+" "+p14.x+" "+p14.y+" "+p7.x+" "+p7.y+" L "+p8.x+" "+p8.y+" C "+p15.x+" "+p15.y+" "+p16.x+" "+p16.y+" "+p1.x+" "+p1.y);
     },
     getSubRangeString: function(n1,n2,m) {
@@ -847,12 +850,12 @@ Unit.prototype = {
     getSectorPoints: function(n,m) {
 	var w=(this.islarge)?40:20;
 	var socle=Math.sqrt((w-3)*(w-3)+w*w);
-	var p1 = transformPoint(m,{x:-.95*(socle+100*n)/Math.sqrt(1+w*w/(w-3)/(w-3)),
+	var p1 = transformPoint(m,{x:-(socle+100*n)/Math.sqrt(1+w*w/(w-3)/(w-3)),
 		  y:-(socle+100*n)/Math.sqrt(1+(w-3)*(w-3)/w/w)});
-	var p2 = transformPoint(m,{x:-w+3,y:-w-100*n});
-	var p3 = transformPoint(m,{x:w-3,y:-w-100*n});
-	var p4 = transformPoint(m,{x:.95*(socle+100*n)/Math.sqrt(1+w*w/(w-3)/(w-3)),
-		  y:-(socle+100*n)/Math.sqrt(1+(w-3)*(w-3)/w/w)});
+	var p2 = transformPoint(m,{x:-w+3,y:-w-100*n-1});
+	var p3 = transformPoint(m,{x:w-3,y:-w-100*n-1});
+	var p4 = transformPoint(m,{x:(socle+100*n)/Math.sqrt(1+w*w/(w-3)/(w-3)),
+		  y:-(socle+2+100*n)/Math.sqrt(1+(w-3)*(w-3)/w/w)});
 	return [p1,p2,p3,p4];
     },
     setmaneuver: function(i) {
@@ -1352,7 +1355,10 @@ Unit.prototype = {
 	return true;
     },
     addtarget: function(sh) {
-	for (var i=0; i<this.targeting.length; i++) this.removetarget(this.targeting[i]);
+	var i;
+	for (i=0; i<this.targeting.length; i++) 
+	    if (this.targeting[i]==sh) return;
+	for (i=0; i<this.targeting.length; i++) this.removetarget(this.targeting[i]);
 	this.targeting.push(sh);
 	sh.istargeted.push(this);
 	sh.show();
@@ -1435,23 +1441,13 @@ Unit.prototype = {
 	this.endaction();
 	return true;
     },
-    getattackreroll: function(w,sh) {
-	return 0
-    },
-    modifyattackroll: function(n,sh) {
-	return n;
-    },
-    getdefensereroll: function(w,sh) {
-	return 0;
-    },
     evaluatetohit: function(w,sh) {
 	var r=this.gethitrange(w,sh);
 	if (sh!=this&&r<=3&&r>0) {
 	    var attack=this.getattackstrength(w,sh);
 	    var defense=sh.getdefensestrength(w,this);
 	    if (this.targeting.indexOf(sh)>-1) this.reroll=10;
-	    else this.reroll=this.weapons[w].getattackreroll(sh)
-		+this.getattackreroll(w,sh);
+	    else this.reroll=0;
 	    return tohitproba(this,sh,
 			      this.getattacktable(attack),
 			      sh.getdefensetable(defense),
@@ -1860,7 +1856,8 @@ Unit.prototype = {
 	    endfree();
 	    return false;
 	};
-	if (this.timeforaction()) this.showaction();
+	log("showing action for "+this.name);
+	this.showaction();
     },
     showaction: function() {
 	var str="";
@@ -1868,7 +1865,6 @@ Unit.prototype = {
 	$("#actiondial").empty();
 	//if (waitingforaction.isexecuting) return;
 	this.updateactionlist();
-	//log("SHOWACTION for "+this.name);
 	for (me=0; me<squadron.length; me++) if (squadron[me]==this) break;
 	if (this.candoaction()) {
 	    var i;
@@ -1883,7 +1879,7 @@ Unit.prototype = {
 	if (str!="") {
 	    str+="<button onclick='activeunit.action=-1;squadron["+me+"].resolveaction()'>Skip</button>";
 	    $("#actiondial").html("<div>"+str+"</div>").show();
-	} 
+	} else { this.action=-1; this.resolveaction(); }
 	if (this.action<this.actionList.length && this.action>-1) {
 	    var a = this.actionList[this.action];
 	    var c=A[a].color;
@@ -1916,6 +1912,7 @@ Unit.prototype = {
     endcombatphase:function() {
 	this.hasfired=0;
     },
+//?28;36;&56;#
     beginplanningphase: function() {
     },
     beginactivationphase: function() {
@@ -2172,9 +2169,11 @@ Unit.prototype = {
 	if (this.getoutlinerange(m,sh).d!=n) return false;
 	// Is outline points inside sector ?
 	//s.path(o1).attr({fill:this.color,stroke:this.color,opacity:0.2,pointerEvents:"none"});
-	if (this.isintersecting(op2,o1)) return true;
 	var o2=sh.getOutline(sh.m);
 	var op1=this.getSectorPoints(n,m);
+	//log("distance "+n+"/"+this.getoutlinerange(m,sh).d);
+	//log("inter1 "+this.isintersecting(op2,o1)+" inter2 "+this.isintersecting(op1,o2));
+	if (this.isintersecting(op2,o1)) return true;
 	// or is extreme sector points inside outline ?
 	if (this.isintersecting(op1,o2)) {
 	    o2.remove();
@@ -2270,7 +2269,7 @@ Unit.prototype = {
 	var i;
 	if (sh.team==this.team) return 0;
  	if (this.checkcollision(sh)) return 0;
-	if (this.weapons[w].canfire(sh)==false) return 0;
+	if (!this.weapons[w].canfire(sh)) return 0;
 	//log("["+this.weapons[w].name+"] in range?");
 	var gr=this.weapons[w].getrange(sh);
 	//log("["+this.name+"] "+this.weapons[w].name+" gethitrange of "+sh.name+":"+gr);
@@ -2285,9 +2284,10 @@ Unit.prototype = {
 	    if (sh!=this) 
 		for (k=0; k<this.weapons.length; k++){
 		    var r=this.gethitrange(k,sh);
+		    //log("ghrau "+sh.name+" in range "+r+" with "+this.weapons[k].name);
 		    if (r>0) {
 			for (j=0; j<range[r].length; j++) if (range[r][j].unit==i) break;
-			//console.log("["+this.name+"] can fire "+sh.name+"/"+this.weapons[k].name);
+			//log("["+this.name+"] can fire "+sh.name+"/"+this.weapons[k].name);
 			if (j<range[r].length) range[r][j].wp.push(k);
 			else range[r].push({unit:i,wp:[k]});
 		    }

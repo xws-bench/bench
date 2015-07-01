@@ -209,7 +209,7 @@ var PILOTS = [
 	    this.addattackrerolla(
 		this,
 		["blank"],
-		function() { return 10;	},
+		function() { return 9;	},
 		function(w,defender) {
 		    var r=this.getrange(defender);
 		    if (r>=2&&r<=3) {
@@ -680,6 +680,35 @@ var PILOTS = [
         unit: "YT-1300",
         skill: 7,
         points: 44,
+	handledifficulty: function(d) {
+	    var unit=this;
+	    var p=this.selectnearbyunits(1,function(t,s) { return t.team==s.team&&t!=s; })
+	    if (p.length>0) {
+		log("<b>["+this.name+"] select a pilot for a free action</b>");
+		waitingforaction.add(function() {
+		    this.resolveactionselection(p,function(k) {
+			activeunit=p[k];
+			$("#"+p[k].id).addClass("selected");
+			center(activeunit);
+			activeunit.show();
+			$("#"+unit.id).removeClass("selected");
+			unit.show();
+			$("#actiondial").show();
+			activeunit.freeaction(function() { 
+			    var u=activeunit;
+			    $("#"+unit.id).addClass("selected");
+			    center(unit);
+			    activeunit=unit;
+			    $("#"+u.id).removeClass("selected");
+			    u.show();
+			    u.endaction();
+			});
+		    }.bind(this))
+		}.bind(this))
+	    } 
+	    Unit.prototype.handledifficulty.call(this,d);
+	},
+	done:true,
         upgrades: [
             "Elite",
             "Missile",
@@ -703,7 +732,7 @@ var PILOTS = [
 	    this.addattackrerolla(
 		this,
 		["blank","focus","hit","critical"],
-		function() { return 10; },
+		function() { return 9; },
 		function(w,defender) {
 		    return true;
 		}.bind(this),
@@ -725,10 +754,14 @@ var PILOTS = [
         skill: 7,
 	done:true,
 	init: function() {
+	    var unit=this;
 	    var cc=Unit.prototype.cancelcritical;
-	    Unit.prototype.cancelcritical=function(c,h,sh) {
-		var ce=cc.call(this,c,h,sh);
-		if (ce>0) this.addstress();
+	    Unit.prototype.cancelcritical=function(c,e,sh) {
+		var ce=cc.call(this,c,e,sh);
+		log("[Kath Scarlet] +1 stress for "+this.name+" for cancelling <code class='critical'></code>");
+		if (c>ce&&sh!=this) {
+		    this.addstress();
+		}
 		return ce;
 	    }
 	},
@@ -938,25 +971,30 @@ var PILOTS = [
         skill: 4,
 	begincombatphase: function() {
 	    if (!this.dead) {
-		waitingforaction.add(function() {
-		    log("<b>["+this.name+"] select a pilot to set its skill to 12</b>");
-		    var p=selectnearbyunits(3,function(t,s) { return t.team==s.team&&t!=s; })
-		    if (p.length>0) {
+		log("<b>["+this.name+"] select a pilot for a skill of 12</b>");
+		var p=this.selectnearbyunits(3,function(t,s) { return t.team==s.team&&t!=s; })
+		if (p.length>0) {
+		    waitingforaction.add(function() {
 			this.resolveactionselection(p,function(k) {
-			    p[k].oldskill=p[k].skill;
-			    p[k].skill=12;
-			    filltabskill();
-			    p[k].show();
-			    log("["+this.name+"] pilot skill of 12 for "+p[k].name);
-			    p[k].endcombatphase=function() {
-				this.skill=this.oldskill;
-				squadron.sort(function(a,b) {return b.skill-a.skill;});
-				this.show();
-			    }.bind(p[k]);
+			    if (k>-1) {
+				p[k].oldskill=p[k].skill;
+				p[k].skill=12;
+				filltabskill();
+				//squadron.sort(function(a,b) {return b.skill-a.skill;});
+				p[k].showstats();
+				log("["+this.name+"] pilot skill of 12 for "+p[k].name);
+				p[k].endcombatphase=function() {
+				    this.skill=this.oldskill;
+				    filltabskill();
+				    this.hasfired=0;
+				    //squadron.sort(function(a,b) {return b.skill-a.skill;});
+				    this.showstats();
+				}.bind(p[k]);
+			    }
+			    nextstep();
 			}.bind(this));
-			nextstep();
-		    }
-		}.bind(this));
+		    }.bind(this));
+		};
 	    }
 	},     
 	done:true,
@@ -1007,6 +1045,7 @@ var PILOTS = [
         unit: "HWK-290",
         skill: 8,
 	init: function() {
+	    // TODO : add a type of modifier: add a die/dices
 	    var unit=this;
 	    this.addattackmoda(this, function(m,n) {
 		return (unit.stress==0)&&
@@ -1151,23 +1190,24 @@ var PILOTS = [
         faction:"EMPIRE",
         begincombatphase: function() {
 	    if (!this.dead) {
-		waitingforaction.add(function() {
-		    var p=selectnearbyunits(1,function(s,t) { return s.team==t.team&&s.targeting.length==0&&s!=t; });
-		    if (p.length>0) {
-			p.push(this);
-			log("["+this.name+"] assigns target lock to a friendly unit (self to cancel)");
+		log("JENDON"+this.targeting.length);
+		var p=this.selectnearbyunits(1,function(s,t) { return s.team==t.team&&s!=t; });
+		if (p.length>0&&this.targeting.length) {
+		    p.push(this);
+		    log("["+this.name+"] assigns target lock to a friendly unit (self to cancel)");
+		    waitingforaction.add(function() {
 			this.resolveactionselection(p,function(k) {
 			    if (this!=p[k]) {
 				var t=this.targeting[0];
 				p[k].addtarget(t);
 				this.removetarget(t);
 				log("["+this.name+"] "+p[k].name+" targets "+t.name);
-			}
-			nextstep();
+			    }
+			    nextstep();
+			}.bind(this));
 		    }.bind(this));
-		} else nextstep();
-	    }.bind(this));
-	}
+		}
+	    }
 	},       
 	done:true,
         unique: true,
@@ -1192,9 +1232,11 @@ var PILOTS = [
 	    var as=Unit.prototype.addstress;
 	    var unit=this;
 	    Unit.prototype.addstress=function() {
-		if (this.getrange(unit)<=2&&unit.stress<=2) {
+		if (this!=unit&&this.getrange(unit)<=2&&unit.stress<=2) {
+		    log("["+this.name+"] transferred stress to "+unit.name); 
 		    unit.addstress();
-		}
+		    unit.showinfo();
+		} else this.stress++;
 	    };
 	},
         points: 24,
@@ -1682,13 +1724,12 @@ var PILOTS = [
         name: "Wes Janson",
 	done:true,
 	endattack:function(c,h) {
-	    Unit.prototype.endattack.call(this,c,h);
-	    if (targetunit.target+targetunit.focus+targetunit.evade>0)
+	    if (targetunit.targeting.length+targetunit.focus+targetunit.evade>0)
 		log("["+this.name+"] removing token from "+targetunit.name);
 	    if (targetunit.targeting.length>0) targetunit.removetarget(targetunit.targeting[0]);
 	    else if (targetunit.focus>0) targetunit.removefocustoken();
 	    else if (targetunit.evade>0) targetunit.removeevadetoken();
-	    Unit.prototype.endcombatphase.call(this);
+	    Unit.prototype.endattack.call(this,c,h);
 	},
 	faction:"REBEL",
         unique: true,
@@ -1952,12 +1993,8 @@ var PILOTS = [
         unique: true,
         skill: 7,
 	done:true,
-	isintersecting: function(o1,o2) {
-	    if (o1.obstacle==true&&phase==ACTIVATION_PHASE) {
-		log("["+this.name+"] ignores obstacles");
-		return false;
-	    }
-	    return Unit.prototype.isintersecting.call(this,o1,o2);
+	getocollisions: function(mbegin,mend,path,len) { 
+	    return {overlap:-1,template:0};
 	},
         points: 36,
         upgrades: [
@@ -2340,26 +2377,26 @@ var PILOTS = [
 	done:true,
         begincombatphase: function() {
 	    if (!this.dead) {
-		waitingforaction.add(function() {
 		var p=this.selectnearbyunits(2,function(a,b) {return a.team==b.team&&a!=b&&a.canuseevade(); });
 		/* TODO: should be an option */
 		if (p.length>0) {
 		    p.push(this)
 		    log("["+this.name+"] select a focus/evade token to take");
-		    this.resolveactionselection(p,function(k) {
-			if (this!=p[k]) { 
-			    if (p[k].evade>0) { 
-				p[k].removeevadetoken(); this.addevade(); 
-				log("["+this.name+"] evade taken from "+p[k].name);
-			    } else if (p[k].focus>0) { 
-				p[k].removefocustoken(); this.addfocustoken(); 
-				log("["+this.name+"] focus taken from "+p[k].name);
+		    waitingforaction.add(function() {
+			this.resolveactionselection(p,function(k) {
+			    if (this!=p[k]) { 
+				if (p[k].evade>0) { 
+				    p[k].removeevadetoken(); this.addevadetoken(); 
+				    log("["+this.name+"] evade taken from "+p[k].name);
+				} else if (p[k].focus>0) { 
+				    p[k].removefocustoken(); this.addfocustoken(); 
+				    log("["+this.name+"] focus taken from "+p[k].name);
+				}
 			    }
-			}
-			nextstep();
+			    nextstep();
+			}.bind(this));
 		    }.bind(this));
 		}
-	    }.bind(this));
 	    }
 	},    
         unit: "Z-95 Headhunter",
@@ -2549,19 +2586,21 @@ var PILOTS = [
         skill: 5,
 	done:true,
 	removetarget: function(t) {
-	    waitingforaction.add(function() {
-		Unit.prototype.removetarget.call(this,t);
-		var p=this.gettargetableunits(3);
+	    var p=this.gettargetableunits(3);
+	    if (p.length>0) {
 		p.push(this);
-		log("<b>["+this.name+"] selects new target to lock at the cost of 1 stress (self to cancel)</b>");
-		this.resolveactionselection(p,function(k) { 
-		    if (k<p.length-1&&k>-1) { 
-			this.addtarget(p[k]);
-			this.addstress();
-		    }
-		    nextstep();
+		waitingforaction.add(function() {
+		    log("<b>["+this.name+"] selects new target to lock at the cost of 1 stress (self to cancel)</b>");
+		    this.resolveactionselection(p,function(k) { 
+			if (k<p.length-1&&k>-1&&this.targeting.indexOf(p[k])==-1) { 
+			    this.addtarget(p[k]);
+			    this.addstress();
+			}
+			nextstep();
+		    }.bind(this));
 		}.bind(this));
-	    }.bind(this));
+	    }
+	    Unit.prototype.removetarget.call(this,t);
 	},
         points: 22,
         upgrades: [
