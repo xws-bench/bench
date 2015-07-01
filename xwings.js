@@ -425,7 +425,7 @@ function nextphase() {
     case SETUP_PHASE: 
 	zone[1].remove();
 	zone[2].remove();
-	for (i=0; i<SOUNDS.length; i++) $("#"+SOUNDS[i]).trigger("load");
+
 	$(".nextphase").prop("disabled",true);
 	$(".unit").css("cursor","pointer");
 	$("#positiondial").hide();
@@ -487,7 +487,7 @@ function nextphase() {
 	jwerty.key("escape", nextphase);
 	jwerty.key("c", center);
 	/* By-passes */
-	jwerty.key("0", function() { log("active:"+activeunit.name+" pending actions:"+waitingforaction.isexecuting+" can fire:"+activeunit.canfire()+" has damaged:"+activeunit.damage+" m:"+activeunit.maneuver+" a:"+activeunit.action+" o"+activeunit.ocollision.overlap+" ad"+activeunit.actiondone); });
+	jwerty.key("0", function() { log("active:"+activeunit.name+" pending actions:"+waitingforaction.isexecuting+" can fire:"+activeunit.canfire()+" has damaged:"+activeunit.damage+" m:"+activeunit.maneuver+" a:"+activeunit.action+" skillturn"+skillturn+" ad"+activeunit.actiondone); });
 	jwerty.key("1", function() { activeunit.focus++;activeunit.show();});
 	jwerty.key("2", function() { activeunit.evade++;activeunit.show();});
 	jwerty.key("3", function() { if (!activeunit.iscloaked) {activeunit.iscloaked=true;activeunit.agility+=2;activeunit.show();}});

@@ -191,12 +191,6 @@ Weapon.prototype = {
 	}
 	return true;
     },
-    getattackreroll: function(sh) {
-	return 0;
-    },
-    modifyattackroll: function(n,sh) {
-	return n;
-    },
     getattackbonus: function(sh) {
 	if (this.isprimary) {
 	    var r=this.getrange(sh);
@@ -238,13 +232,14 @@ Weapon.prototype = {
 	    else return 0;
 	}
 	for (i=this.range[0]; i<=this.range[1]; i++) {
+	    //log("is in sector "+i+" "+this.unit.isinsector(this.unit.m,i,sh))
 	    if (this.unit.isinsector(this.unit.m,i,sh)) return i; 
 	}
 	if (this.type=="Bilaser") {
 	    var m=this.unit.m.clone();
 	    m.add(MR(180,0,0));
 	    for (i=this.range[0]; i<=this.range[1]; i++) {
-		if (this.unit.isinsector(m,i,sh)) log(sh.name+" in range "+i);
+		//if (this.unit.isinsector(m,i,sh)) log(sh.name+" in range "+i);
 		if (this.unit.isinsector(m,i,sh)) {
 		    return i;
 		} 
@@ -547,7 +542,7 @@ var UPGRADES= [
 	action: function() {
 	    this.unit.addattackmoda(this,function(m,n) {
 		return true;
-	    }.bind(this.unit),function(m,n) {
+	    },function(m,n) {
 		var f=Math.floor(m/100);
 		log("[Marksmanship] "+f+" <code class='xfocustoken'></code> -> 1 <code class='critical'></code>"+(f>1?"+ "+(f-1)+"<code class='hit'></code>":""));
 		if (f>1) return m-100*f+10+(f-1); else return m-90;
@@ -1542,7 +1537,7 @@ var UPGRADES= [
 			    &&squadron[i].team==this.unit.team) return false;
 		    log("[Lone Wolf] 1 reroll");
 		    return true;
-		},
+		}.bind(this),
 		false
 	    )
 	},
@@ -1769,14 +1764,19 @@ var UPGRADES= [
         points: 4,
         attack: 3,
 	done:true,
-	modifydamagegiven: function(ch) {
-	    if (ch%10>0) {
-		log("["+this.name+"] "+1+"<p class='hit'></p>-> 1 <p class='critical'></p>");
-		ch=ch+9;
-	    }
-	    return ch;
+	init: function(sh) {
+	    sh.addattackmoda(this,function(m,n) {
+		if (sh.weapons[sh.activeweapon]==this) return true;
+		return false;
+	    }.bind(this),function(m,n) {
+		var h=m%10;
+		if (h>0) {
+		    log("['Mangler' Cannon] 1 <p class='hit'></p> -> 1 <p class='critical'></p>");
+		    return m+9;
+		}
+		return m;
+	    }.bind(this),false,"hit");
 	},
-
         range: [1,3],
     },
     {
