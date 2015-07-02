@@ -147,7 +147,7 @@ PILOT_translation.english = {
     "Kath Scarlet (Scum)":
     "When attacking a ship inside your auxiliary firing arc, roll 1 additional attack die.",
     "Emon Azzameen (Scum)":
-    "When dropping a bomb, you may use the [<code class='symbols'>4</code> 3], [<code class='symbols'>5</code> 3], or [<code class='symbols'>6</code> 3] template instead of the [<code class='symbols'>5</code> 1] template.",
+    "When dropping a bomb, you may use the [<code class='symbols'>4</code> 3], [<code class='symbols'>8</code> 3], or [<code class='symbols'>6</code> 3] template instead of the [<code class='symbols'>8</code> 1] template.",
     "Kavil (Scum)":
     "When attacking a ship outside your firing arc, roll 1 additional attack die.",
     "Drea Renthal (Scum)":
