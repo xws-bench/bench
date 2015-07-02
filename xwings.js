@@ -38,6 +38,7 @@ function nextstep() {
     var i;
     if (activeunit.incombat) return;
     waitingforaction.next();
+    log(waitingforaction.isexecuting)
     if (!waitingforaction.isexecuting&&waitingforaction.queue.length==0) {
 	waitingforaction.isexecuting=false;
 	if (phase==ACTIVATION_PHASE) {
@@ -309,7 +310,7 @@ function enablenextphase() {
 	break;
     case ACTIVATION_PHASE:
 	for (i=0; i<squadron.length; i++)
-	    if (squadron[i].maneuver>=0&&!squadron[i].isdead) { ready=false; break; }
+	    if (squadron[i].maneuver>-1&&!squadron[i].isdead) { log("block:"+squadron[i].name); ready=false; break; }
 	if (ready&&$(".nextphase").prop("disabled")) log("All units have been activated, ready to end phase");
 	break;	
     }
@@ -493,6 +494,11 @@ function nextphase() {
 	jwerty.key("3", function() { if (!activeunit.iscloaked) {activeunit.iscloaked=true;activeunit.agility+=2;activeunit.show();}});
 	jwerty.key("4", function() { activeunit.stress++;activeunit.show();});
 	jwerty.key("5", function() { activeunit.ionized++;activeunit.show();});
+	jwerty.key("shift+1", function() { if (activeunit.focus>0) activeunit.focus--;activeunit.show();});
+	jwerty.key("shift+2", function() { if (activeunit.evade>0) activeunit.evade--;activeunit.show();});
+	jwerty.key("shift+3", function() { if (activeunit.iscloaked) {activeunit.iscloaked=false;activeunit.agility-=2;activeunit.show();}});
+	jwerty.key("shift+4", function() { if (activeunit.stress>0) activeunit.stress--;activeunit.show();});
+	jwerty.key("shift+5", function() { if (activeunit.ionized>0) activeunit.ionized--;activeunit.show();});
 
 	log("<div>[turn "+round+"] Setup phase</div>");
 	$(".unit").css("cursor","move");

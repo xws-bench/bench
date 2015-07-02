@@ -1655,7 +1655,15 @@ Unit.prototype = {
     },
     completemaneuver: function(dial,realdial,difficulty) {
 	var dialpath=P[realdial].path;
-	var path =  dialpath.transform(this.m.clone().add(MT(0,(this.islarge?-20:0)))).attr({display:"none"});
+	var path ;
+	if (dial=="F0") {
+	    this.maneuver=-1;
+	    this.hasmoved=true;
+	    this.handledifficulty(difficulty);
+	    this.endmaneuver();
+	    return;
+	}
+	path=  dialpath.transform(this.m.clone().add(MT(0,(this.islarge?-20:0)))).attr({display:"none"});
 	path.appendTo(s);   //attr({fill:"#FFF"});//.attr({display:"none"});
 	var lenC = path.getTotalLength();
 	this.collision=false; // Any collision with other units ?

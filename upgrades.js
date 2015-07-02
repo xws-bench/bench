@@ -1728,9 +1728,9 @@ var UPGRADES= [
 		var ad=uad.call(this);
 		this.addactivationdial(function() { return !upg.unit.hasmoved&&upg.isactive; },
 				       function() {
-					   upg.unit.completemaneuver("F0","F0","WHITE");
 					   upg.isactive=false;
 					   upg.unit.addstress();
+					   upg.unit.completemaneuver("F0","F0","WHITE");					   
 				       }, 
 				       A["ILLICIT"].key,
 				       $("<div>").attr({class:"symbols"}));
