@@ -38,7 +38,6 @@ function nextstep() {
     var i;
     if (activeunit.incombat) return;
     waitingforaction.next();
-    log(waitingforaction.isexecuting)
     if (!waitingforaction.isexecuting&&waitingforaction.queue.length==0) {
 	waitingforaction.isexecuting=false;
 	if (phase==ACTIVATION_PHASE) {
@@ -310,7 +309,7 @@ function enablenextphase() {
 	break;
     case ACTIVATION_PHASE:
 	for (i=0; i<squadron.length; i++)
-	    if (squadron[i].maneuver>-1&&!squadron[i].isdead) { log("block:"+squadron[i].name); ready=false; break; }
+	    if (squadron[i].maneuver>-1&&!squadron[i].isdead) { ready=false; break; }
 	if (ready&&$(".nextphase").prop("disabled")) log("All units have been activated, ready to end phase");
 	break;	
     }

@@ -1884,7 +1884,6 @@ Unit.prototype = {
 	    endfree();
 	    return false;
 	};
-	log("showing action for "+this.name);
 	this.showaction();
     },
     showaction: function() {
