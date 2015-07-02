@@ -190,6 +190,7 @@ function Unit(team) {
     this.DEFENSEREROLLD=[];
     this.ATTACKREROLLA=[];
     this.ATTACKMODA=[];
+    this.ATTACKADD=[];
     this.DEFENSEMODD=[];
 }
 Unit.prototype = {
@@ -539,7 +540,7 @@ Unit.prototype = {
 	var name=vname;
 	if (typeof vname=="undefined") name=$("#name"+this.id).val();
 	for (i=0; i<PILOTS.length; i++) {
-	    if (name.indexOf(PILOTS[i].name+(this.team=="SCUM"?" (Scum)":""))==0) break;
+	    if (name.indexOf(PILOTS[i].name)==0&&this.faction==PILOTS[i].faction) break;
 	}
 	this.name=PILOTS[i].name;
 	//console.log("selectpilot "+this.name+" i found ? "+(i<PILOTS.length));
@@ -704,6 +705,9 @@ Unit.prototype = {
     addattackmoda: function(org,require,f,global,str) {
 	if (global) ATTACKMODA.push({org:org,req:require,f:f,str:str});
 	else this.ATTACKMODA.push({org:org,req:require,f:f,str:str});
+    },
+    addattackadd: function(org,require,f,add,str) {
+	this.ATTACKADD.push({org:org,req:require,f:f,add:add,str:str});
     },
     adddefensemodd: function(org,require,f,global,str) {
 	if (global) DEFENSEMODD.push({org:org,req:require,f:f,str:str});
@@ -1248,7 +1252,7 @@ Unit.prototype = {
 	if (phase==COMBAT_PHASE&&this==targetunit) {
 	    this.removeevadetoken();
 	    this.show();
-	    $("#defense > .xevadetoken").remove();
+	    $("#dtokens > .xevadetoken").remove();
 	    $("#defense").prepend("<td class='evadegreen'></td>");
 	}
     },
@@ -1471,6 +1475,22 @@ Unit.prototype = {
 	if (obstacledef>0) log(this.name+" +"+obstacledef+" defense for obstacle");
 	return def+sh.weapons[i].getdefensebonus(this)+obstacledef;
     },
+    addroll: function(j,n) {
+	var a=this.ATTACKADD[j];
+	a.add(n);	
+    },
+    getattackaddtokens: function(m,n) {
+	var str="";
+	var i,j;
+	for (me=0; me<squadron.length; me++) if (squadron[me]==this) break;
+	for (j=0; j<this.ATTACKADD.length; j++) {
+	    var a=this.ATTACKADD[j];
+	    if (a.req(m,n)) {
+		str+="<td id='adda"+j+"' class='addtoken' onclick='squadron["+me+"].addroll("+j+","+n+")' title='add roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'>squadron["+me+"].ATTACKADD["+j+"].str</td>";
+	    }
+	}   
+	return str;
+    },
     getattackmodtokens: function(m,n) {
 	var str="";
 	var i,j;
@@ -1635,7 +1655,7 @@ Unit.prototype = {
     },
     completemaneuver: function(dial,realdial,difficulty) {
 	var dialpath=P[realdial].path;
-	var path =  dialpath.transform(this.m).attr({display:"none"});
+	var path =  dialpath.transform(this.m.clone().add(MT(0,(this.islarge?-20:0)))).attr({display:"none"});
 	path.appendTo(s);   //attr({fill:"#FFF"});//.attr({display:"none"});
 	var lenC = path.getTotalLength();
 	this.collision=false; // Any collision with other units ?

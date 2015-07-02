@@ -45,7 +45,7 @@ Bomb.prototype = {
 	return range;
     },
     getbomblocation: function() {
-	return this.unit.getpathmatrix(this.unit.m.clone().add(MR(180,0,0)),"F1");
+	return this.unit.getpathmatrix(this.unit.m.clone().add(MR(180,0,0)).add(MT(0,(this.unit.islarge?-20:0))),"F1");
     },
     getrange: function(sh) { 
 	var ro=this.getOutlinePoints(this.m);
@@ -578,8 +578,8 @@ var UPGRADES= [
 	action: function() {
 	    log("<b>["+this.name+"] select maneuver to perform</b>");
 	    this.unit.resolveactionmove(
-		[this.unit.getpathmatrix(this.unit.m.clone(),"TL1"),
-		 this.unit.getpathmatrix(this.unit.m.clone(),"TR1")],
+		[this.unit.getpathmatrix(this.unit.m.clone().add(MT(0,(this.unit.islarge?-20:0))),"TL1"),
+		 this.unit.getpathmatrix(this.unit.m.clone().add(MT(0,(this.unit.islarge?-20:0))),"TR1")],
 		function(t) { 
 		    t.addstress(); 
 		    if (t.shipactionList.indexOf("BOOST")==-1) {
@@ -1077,10 +1077,10 @@ var UPGRADES= [
 		var p=[];
 		var q=[];
 		q.push(realdial);
-		p.push(this.getpathmatrix(this.m.clone(),realdial));
+		p.push(this.getpathmatrix(this.m.clone().add(MT(0,(this.unit.islarge?-20:0))),realdial));
 		for (i=0; i<gd.length; i++) 
 		    if (gd[i].move.match(bearing)&&gd[i].move!=realdial&&(gd[i].difficulty!=RED||this.stress==0)) { 
-			p.push(this.getpathmatrix(this.m.clone(),gd[i].move));
+			p.push(this.getpathmatrix(this.m.clone().add(MT(0,(this.unit.islarge?-20:0))),gd[i].move));
 			q.push(gd[i].move);
 		    }
 		if (p.length>1) {
@@ -1498,10 +1498,10 @@ var UPGRADES= [
 		var p=[];
 		var q=[];
 		q.push(realdial);
-		p.push(this.getpathmatrix(this.m.clone(),realdial));
+		p.push(this.getpathmatrix(this.m.clone().add(MT(0,(this.unit.islarge?-20:0))),realdial));
 		for (i=0; i<gd.length; i++) 
 		    if (gd[i].move.substr(-1)==speed&&gd[i].move!=realdial) { 
-			p.push(this.getpathmatrix(this.m.clone(),gd[i].move));
+			p.push(this.getpathmatrix(this.m.clone().add(MT(0,(this.unit.islarge?-20:0))),gd[i].move));
 			q.push(gd[i].move);
 		    }
 		if (p.length>1) {

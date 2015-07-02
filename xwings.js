@@ -487,11 +487,12 @@ function nextphase() {
 	jwerty.key("escape", nextphase);
 	jwerty.key("c", center);
 	/* By-passes */
-	jwerty.key("0", function() { log("active:"+activeunit.name+" pending actions:"+waitingforaction.isexecuting+" can fire:"+activeunit.canfire()+" has damaged:"+activeunit.damage+" m:"+activeunit.maneuver+" a:"+activeunit.action+" skillturn"+skillturn+" ad"+activeunit.actiondone); });
+	jwerty.key("0", function() { log("active:"+activeunit.name+" pending actions:"+waitingforaction.isexecuting+" can fire:"+activeunit.canfire()+" has damaged:"+activeunit.damage+" m:"+activeunit.maneuver+" a:"+activeunit.action+" skillturn"+skillturn+" faction"+activeunit.faction); });
 	jwerty.key("1", function() { activeunit.focus++;activeunit.show();});
 	jwerty.key("2", function() { activeunit.evade++;activeunit.show();});
 	jwerty.key("3", function() { if (!activeunit.iscloaked) {activeunit.iscloaked=true;activeunit.agility+=2;activeunit.show();}});
 	jwerty.key("4", function() { activeunit.stress++;activeunit.show();});
+	jwerty.key("5", function() { activeunit.ionized++;activeunit.show();});
 
 	log("<div>[turn "+round+"] Setup phase</div>");
 	$(".unit").css("cursor","move");
