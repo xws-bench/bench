@@ -432,16 +432,17 @@ var UPGRADES= [
         init: function(sh) {
 	    var rtt=sh.removetarget;
 	    sh.removetarget=function(t) {
-		rtt.call(this,t);
 		var r=Math.floor(Math.random()*7);
 		var roll=FACE[DEFENSEDICE[r]];
 		if (roll=="evade") {
 		    waitingforaction.add(function() {
 			this.addtarget(t);
 			log("[R5-K6] target lock on "+t.name);
-			record(this.id,"TT"+t.id);
+			nextstep();
 		    }.bind(this));
+		    nextstep();
 		}
+		rtt.call(this,t);		    
 	    }
 	},
 	done:true,
@@ -1054,19 +1055,18 @@ var UPGRADES= [
 
 	    sh.updateactivationdial=function() {
 		var ad=uad.call(this);
-		this.addactivationdial(function() { return !upg.unit.hasmoved&&upg.isactive&&upg.unit.maneuver>-1&&(upg.unit.getdial()[upg.unit.maneuver].difficulty=="RED"); },
-				       function() {
-					   log("["+upg.name+"] changes red into white maneuver");
-					   var d=upg.unit.getdial()[upg.unit.maneuver]; 
-					   upg.isactive=false;
-					   var c  =C["WHITE"];
-					   if (!(activeunit==this)) c = halftone(c);
-					   upg.unit.dialspeed.attr({text:P[d.move].speed,fill:c});
-					   upg.unit.dialdirection.attr({text:P[d.move].key,fill:c});
-					   upg.unit.completemaneuver(d.move,d.move,"WHITE");
-				       }, 
-				       A["ELITE"].key,
-				       $("<div>").attr({class:"symbols"}));
+		this.addactivationdial(function() { 
+		    return !upg.unit.hasmoved&&upg.isactive&&upg.unit.maneuver>-1&&(upg.unit.getdial()[upg.unit.maneuver].difficulty=="RED"); 
+		},function() {
+		    log("["+upg.name+"] changes red into white maneuver");
+		    var d=upg.unit.getdial()[upg.unit.maneuver]; 
+		    upg.isactive=false;
+		    var c  =C["WHITE"];
+		    if (!(activeunit==this)) c = halftone(c);
+		    upg.unit.dialspeed.attr({text:P[d.move].speed,fill:c});
+		    upg.unit.dialdirection.attr({text:P[d.move].key,fill:c});
+		    upg.unit.completemaneuver(d.move,d.move,"WHITE");
+		}, A["ELITE"].key, $("<div>").attr({class:"symbols"}));
 		return ad;
 	    }
 	},        
@@ -1093,7 +1093,6 @@ var UPGRADES= [
         name: "Sensor Jammer",
         init: function(sh) {
 	    sh.addattackmodd(this,function(m,n) {
-		log("Sensor:"+targetunit.name+" "+this.name);
 		return (targetunit==this);
 	    }.bind(sh),function(m,n) {
 		var h=m%10;
