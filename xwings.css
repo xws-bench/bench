@@ -635,7 +635,7 @@ border-style:solid;
 border-width:1px
 }
 
-.xevadetoken,.xfocustoken,.xcloaktoken,.xstresstoken,.xtargetedtoken,.xtargettoken,.xionizedtoken,.focusmodtokena,.focusmodtokend,.hitmodtokena,.criticalmodtokena,.blankmodtokena,.blankmodtokend,.evademodtokend {
+.xevadetoken,.xfocustoken,.xcloaktoken,.xstresstoken,.xtargetedtoken,.xtargettoken,.xionizedtoken,.focusmodtokena,.focusmodtokend,.hitmodtokena,.hitmodtokend,.criticalmodtokena,.blankmodtokena,.blankmodtokend,.evademodtokend,.targetmodtokena {
 font-family:'symbols';
 padding:4px;
 display:inline-block;
@@ -714,7 +714,7 @@ content:"f"
 content:"e"
 }
 
-.targettoken::after,.xtargettoken::after,.xtargetedtoken::after {
+.targettoken::after,.xtargettoken::after,.xtargetedtoken::after,.targetmodtokena::after {
 content:"l"
 }
 
@@ -741,13 +741,13 @@ text-decoration:none;
 box-shadow:1px 1px 3px #000
 }
 
-.focusreddice,.hitreddice,.blankreddice,.criticalreddice,.reddice,.focusmodtokena,.hitmodtokena,.criticalmodtokena,.blankmodtokena {
+.focusreddice,.hitreddice,.blankreddice,.criticalreddice,.reddice,.focusmodtokena,.targetmodtokena,.hitmodtokena,.criticalmodtokena,.blankmodtokena {
 background:#f33;
 opacity:.9;
 color:#fff
 }
 
-.focusmodtokend,.blankmodtokend,.evademodtokend {
+.focusmodtokend,.blankmodtokend,.evademodtokend,.hitmodtokend {
 background:#3f3;
 opacity:.9;
 color:#fff
@@ -768,8 +768,7 @@ color:#fff
 font-family:'symbols';
 content:"f"
 }
-
-.hitreddice::after,.hit::after,.hitmodtokena::after {
+.hitreddice::after,.hit::after,.hitmodtokena::after,.hitmodtokend::after {
 font-family:'symbols';
 content:"d"
 }
