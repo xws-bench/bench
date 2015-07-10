@@ -214,6 +214,25 @@ function nextactivation() {
 //    if (sk==1) { activeunit.resolvemaneuver();}
     activeunit.beginactivation(); 
 }
+function addroll(f,n,id) {
+    var i,j=0;
+    var foc=$(".focusreddice").length;
+    var h=$(".hitreddice").length;
+    var c=$(".criticalreddice").length;
+    var t=f(100*foc+10*c+h,n);
+    n=t.n;
+    var r=t.m; 
+    $("#attack").empty();
+    for (i=0; i<Math.floor(r/100)%10; i++,j++)
+	$("#attack").append("<td class='focusreddice'></td>");
+    for (i=0; i<(Math.floor(r/10))%10; i++,j++)
+	$("#attack").append("<td class='criticalreddice'></td>");
+    for (i=0; i<r%10; i++,j++)
+	$("#attack").append("<td class='hitreddice'></td>");
+    for (i=j; i<n; i++)
+	$("#attack").append("<td class='blankreddice'></td>");
+    $("#moda"+id).remove();
+}
 function modroll(f,n,id) {
     var i,j=0;
     var foc=$(".focusreddice").length;
