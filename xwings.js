@@ -2,7 +2,7 @@ var phase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.5";
+var VERSION="v0.5.5";
 
 var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE1=0,SELECT_PHASE2=1;
 var DICES=["focusred","hitred","criticalred","blankred","focusgreen","evadegreen","blankgreen"];
