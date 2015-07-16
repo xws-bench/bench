@@ -666,7 +666,6 @@ var UPGRADES= [
 	    sh.r=-1;
 	    var ptl=this;
 	    sh.endaction= function() {
-		log("[Push the Limit] trying..."+this.r);
 		if (this.r!=round) {
 		    this.r=round;
 		    if (this.candoaction()) {

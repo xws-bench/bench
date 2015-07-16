@@ -559,7 +559,7 @@ function nextphase() {
 }
 function log(str) {
     $("#log").append("<div>"+str+"<div>");
-    $("footer > div").scrollTop(10000);
+    $("footer").scrollTop(10000);
 }
 function permalink() {
     var s="?"+TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII();

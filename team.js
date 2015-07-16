@@ -166,16 +166,9 @@ Team.prototype = {
 	    this.faction=PILOTS[pid].faction;
 	    this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
 	    var p=new Unit(this.team);
+	    p.upg=[];
 	    p.selectship(PILOTS[pid].unit,PILOTS[pid].name);
-	    /* Copy all functions for manual inheritance. Call init. */
-	    for (var k in PILOTS[pid]) {
-		var u=PILOTS[pid];
-		if (typeof u[k]=="function") p[k]=u[k];
-	    }
-	    for (j=1; j<updstr.length; j++) {
-		var u=Upgradefromname(p,UPGRADES[parseInt(updstr[j])].name);
-		if (typeof u.install != "undefined") u.install(p);
-	    }
+	    for (j=1; j<updstr.length; j++) p.upg.push(parseInt(updstr[j]));
 	}
 	nextphase();
     },
