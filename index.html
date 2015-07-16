@@ -37,9 +37,8 @@
       <span class="h2">X-Wings Squadron Benchmark<span style="font-size:x-small">v0.5.5</span></span><div style="font-size:small;">
       <ul>
 	<li><a href="#about">About</a></li>
-	<li><a href="#proba" id="showproba">Show probability tables</a></li>
-	<li><a href="#" onclick="$('#log').show();$('#closeconsole').show();">Show console</a></li>
-	<li><a href="http://xws-benchmark.blogspot.fr">Bug report/Forum</a></li>
+	<li><a href="#proba" id="showproba">Probabilities</a></li>
+	<li><a href="http://xws-benchmark.blogspot.fr">Bug report</a></li>
 	<li><a href="#help">Help</a></li>
 	<li><a href="#credit">Credits</a></li>
 	<li><b>Active phase:</b> <b id="phase">Setup</b><button id="np" class="nextphase" onclick="nextphase()">Next phase &#9658; </button></li>
@@ -345,9 +344,7 @@ The app is not really a game since the user plays both sides, there is no multi-
 	</div>
       </section>
     </article>
-    <footer>
-      <a href="#close" title="Close" id="closeconsole" class="close" onclick="$('#log').hide();$('#closeconsole').hide();">X</a>
-      <div id='log'></div>
+    <footer id='log'>
     </footer>
   </body>
 </html>
