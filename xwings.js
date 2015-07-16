@@ -517,7 +517,7 @@ function nextphase() {
 	jwerty.key("shift+3", function() { if (activeunit.iscloaked) {activeunit.iscloaked=false;activeunit.agility-=2;activeunit.show();}});
 	jwerty.key("shift+4", function() { if (activeunit.stress>0) activeunit.stress--;activeunit.show();});
 	jwerty.key("shift+5", function() { if (activeunit.ionized>0) activeunit.ionized--;activeunit.show();});
-
+	jwerty.key("f",function() { activeunit.showattack(true);});
 	log("<div>[turn "+round+"] Setup phase</div>");
 	$(".unit").css("cursor","move");
 	$("#positiondial").show();
@@ -961,6 +961,8 @@ $(document).ready(function() {
 		TEAMS[1].parseASCII(s,args[0]);
 		TEAMS[2].parseASCII(s,args[1]);
 	    } 
+	    var d=new Date();
+	    for (i=0; i<d.getMinutes(); i++) Math.random();
 	    loadsound();
 	},
 	fail: function() {

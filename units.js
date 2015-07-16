@@ -1810,12 +1810,12 @@ Unit.prototype = {
 	}.bind(this));
 	return true;
     },
-    showattack: function() {
+    showattack: function(forced) {
 	var str="";
 	var wn=[];
 	var i,j,w;
 	$("#attackdial").hide();
-	if (phase==COMBAT_PHASE&&(!waitingforaction.isexecuting)&&skillturn==this.skill&&this.canfire()) {
+	if (forced==true || (phase==COMBAT_PHASE&&(!waitingforaction.isexecuting)&&skillturn==this.skill&&this.canfire())) {
 	    var r=this.gethitrangeallunits();
 	    $("#attackdial").empty();
 	    for (i=1; i<=3; i++) {
