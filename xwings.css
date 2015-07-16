@@ -1013,31 +1013,18 @@ background:#aaa
 display:block;
 visibility:visible
 }
-
-footer > div {
-position:fixed;
-background:rgba(0,0,0,0.5);
-color:rgba(255,255,255,0.7);
-bottom:0;
-left:30%;
-width:50%;
-height:10%;
-z-index:1;
-text-align:left;
-overflow:auto;
-font-size:small
-}
 footer {
 position:fixed;
 background:rgba(0,0,0,0);
-bottom:25px;
-left:30%;
-width:50%;
-height:10%;
+top:0;
+right:0;
+width:30%;
+height:60px;
 z-index:1;
 text-align:left;
-overflow:hidden;
-font-size:small
+overflow:auto;
+font-size:small;
+color:lightgrey
 }
 .unit {
 cursor:move
