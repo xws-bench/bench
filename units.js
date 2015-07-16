@@ -1178,6 +1178,8 @@ Unit.prototype = {
 	this.focus=this.evade=0;
 	this.ocollision.overlap=-1;
 	this.ocollision.template=0;
+	this.collision=false;
+	this.touching=[];
 	this.showinfo();
     },
     playfiresnd: function() {
