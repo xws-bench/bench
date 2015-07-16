@@ -1670,6 +1670,7 @@ Unit.prototype = {
 	    this.maneuver=-1;
 	    this.hasmoved=true;
 	    this.handledifficulty(difficulty);
+	    this.show();
 	    this.endmaneuver();
 	    return;
 	}
@@ -1763,11 +1764,6 @@ Unit.prototype = {
 	var dial=this.getdial()[this.maneuver].move;
 	var difficulty=this.getdial()[this.maneuver].difficulty;
 	// Move = forward 0. No movement. 
-	if (dial=="F0") {
-	    this.handledifficulty(difficulty);
-	    this.endmaneuver();
-	    return;
-	}
 	this.completemaneuver(dial,dial,difficulty);
     },
     endmaneuver: function() {
