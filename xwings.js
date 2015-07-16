@@ -518,6 +518,12 @@ function nextphase() {
 	jwerty.key("shift+4", function() { if (activeunit.stress>0) activeunit.stress--;activeunit.show();});
 	jwerty.key("shift+5", function() { if (activeunit.ionized>0) activeunit.ionized--;activeunit.show();});
 	jwerty.key("f",function() { activeunit.showattack(true);});
+	jwerty.key("d",function() { activeunit.resolvehit(1);});
+	jwerty.key("shift+d",function() { 
+	    if (activeunit.hull<activeunit.ship.hull) activeunit.hull++; 
+	    else if (activeunit.shield<activeunit.ship.shield) activeunit.shield++; 
+	    activeunit.show();
+	});
 	log("<div>[turn "+round+"] Setup phase</div>");
 	$(".unit").css("cursor","move");
 	$("#positiondial").show();
