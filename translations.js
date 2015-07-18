@@ -165,7 +165,36 @@ PILOT_translation.english = {
     "Commander Alozen":
     "At the start of the Combat phase, you may acquire a target lock on an enemy ship at Range 1.",
 };
-
+var CRITICAL_translation={};
+CRITICAL_translation.english = {
+    "Structural Damage": 
+    "Reduce your agility value by 1 (to a minimum of '0'). <strong>Action:</strong> Roll 1 attack die, on a <code class='hit'></code> result, flip this card facedown.",
+    "Damaged Engine":
+    "Treat all turn maneuvers (sharp left OR sharp right) as red maneuvers.",
+    "Console Fire":
+    "At the start of each combat phase, roll 1 attack die.  On a <code class='hit'></code> result, suffer 1 damage. <strong>Action:</strong> Flip this card facedown.",
+    "Weapon Malfunction":
+    "Reduce your primary weapon value by 1 (to a minimum of '0'). <strong>Action:</strong> Roll 1 attack die. On a <code class='hit'></code> or <code class='crit'></code> result, flip this card facedown.",
+    "Damaged Sensor Array":
+    "You cannot perform the actions listed in your action bar. <strong>Action:</strong> Roll 1 attack die.  On a <code class='hit'></code> result, flip this card facedown.",
+    "Minor Explosion":
+    "Immediately roll 1 attack die.  On a <code class='hit'></code> result, suffer 1 damage.  Then flip this card facedown.",
+    "Thrust Control Fire":
+    "Immediately receive 1 stress token.  Then flip this card facedown.",
+    "Direct Hit!":"This card counts as 2 damage against your hull.",
+    "Munitions Failure":
+    "Immediately choose 1 of your secondary weapon upgrade cards and discard it.  Then flip this card facedown.",
+    "Minor Hull Breach":
+    "After executing a red maneuver, roll 1 attack die.  On a <code class='hit'></code> result, suffer 1 damage.",
+    "Damaged Cockpit":
+    "After the round in which you receive this card, treat your pilot skill value as '0'",
+    "Blinded Pilot":
+    "The next time you attack, do not roll any attack dice.  Then flip this card facedown.",
+    "Injured Pilot":
+    "All players must ignore your pilot ability and all of your <code class='Elite'></code> upgrade cards.",
+    "Stunned Pilot":
+    "After you execute a maneuver that causes you to overlap either another ship or obstacle token, suffer 1 damage."
+}
 var UPGRADE_translation={};
 UPGRADE_translation.english = {
     "Ion Cannon Turret":

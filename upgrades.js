@@ -26,14 +26,15 @@ Bomb.prototype = {
     isWeapon: function() { return false; },
     isBomb: function() { return true; },
     toString: function() {
-	var a,b,str="";
+	var a,b,d,str="";
 	var c="";
 	if (!this.isactive) c="class='inactive'"
 	a="<td><code class='"+this.type+" upgrades'></code></td>"; 
 	b="<td class='tdstat'>"+this.name+"</td>";
+	d="<td class='tooltip'>"+UPGRADE_translation.english[this.name]+"</td>";
 	if (this.unit.team==1)  
-	    return "<tr "+c+">"+b+a+"</tr>"; 
-	else return "<tr "+c+">"+a+b+"</tr>";
+	    return "<tr "+c+">"+b+a+d+"</tr>"; 
+	else return "<tr "+c+">"+a+b+d+"</tr>";
     },
     getrangeallunits: function () { 
 	var range=[[],[],[],[],[]],i;
@@ -142,7 +143,7 @@ Weapon.prototype = {
     isBomb: function() { return false; },
     isWeapon: function() { return true; },
     toString: function() {
-	var a,b,str="";
+	var a,b,d,str="";
 	var c="";
 	if (!this.isactive) c="class='inactive'"
 	else {
@@ -160,9 +161,11 @@ Weapon.prototype = {
 	    if ("Focus".match(this.getrequirements())) b+=(this.getrequirements().length>5?"/":"")+"<code class='symbols'>"+A["FOCUS"].key+"</code>"
 	}
 	b+="["+this.range[0]+"-"+this.range[1]+"]</span></td>";
+	d="<td class='tooltip'>"+UPGRADE_translation.english[this.name]+"</td>";
+	if (typeof UPGRADE_translation.english[this.name]=="undefined") d="<td class='tooltip'></td>"
 	if (this.unit.team==1)  
-	    return "<tr "+c+">"+b+a+"</tr>"; 
-	else return "<tr "+c+">"+a+b+"</tr>";
+	    return "<tr "+c+">"+b+d+a+"</tr>"; 
+	else return "<tr "+c+">"+d+a+b+"</tr>";
     },
     getrequirements: function() {
 	return this.requires;
@@ -269,7 +272,7 @@ function Upgrade(sh,i) {
     log("Installing upgrade "+this.name.replace(/\'/g,"&#39;")+" ["+this.type+"]");
     this.isactive=true;
     this.unit=sh;
-    if (this.init != undefined) this.init(sh);
+    if (typeof this.init != "undefined") this.init(sh);
 }
 function Upgradefromname(sh,name) {
     var i;
@@ -290,12 +293,14 @@ Upgrade.prototype = {
     toString: function() {
 	var a,b,str="";
 	var c="";
+	var d;
 	if (!this.isactive) c="class='inactive'"
 	a="<td><code class='"+this.type+" upgrades'></code></td>"; 
 	b="<td class='tdstat'>"+this.name.replace(/\'/g,"&#39;")+"</td>";
+	d="<td class='tooltip'>"+UPGRADE_translation.english[this.name+(this.type=="Crew"?"(Crew)":"")]+"</td>";
 	if (this.unit.team==1)  
-	    return "<tr "+c+">"+b+a+"</tr>"; 
-	else return "<tr "+c+">"+a+b+"</tr>";
+	    return "<tr "+c+">"+b+a+d+"</tr>"; 
+	else return "<tr "+c+">"+a+b+d+"</tr>";
     },
     isWeapon: function() { return false; },
     isBomb: function() { return false; }
@@ -485,7 +490,6 @@ var UPGRADES= [
 			    var ecp=sh.endcombatphase;
 			    sh.endcombatphase=function() {
 				this.u.skill=this.oldskill;
-				squadron.sort(function(a,b) {return b.skill-a.skill;});
 				filltabskill();
 				this.u.show();
 				this.endcombatphase=ecp;
