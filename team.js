@@ -80,7 +80,7 @@ Team.prototype = {
 	$("#total"+team).remove();
 	$("#totallbl"+team).remove();
 	$("#team"+team).append("<div>"+(new Unit(team))+"</div>");
-	$("#team"+team).append("<div id='addunit"+team+"' onclick='TEAMS["+team+"].addunit("+team+")'><span class='plus addunit'>+</span><span class='addunit'>Add new unit</span></div><div><div><div class='totalpts' id='total"+team+"'>0</div></div></div><div  id='totallbl"+team+"'><div><div class='total'>Total points</div></div></div>");
+	$("#team"+team).append("<div id='addunit"+team+"' onclick='TEAMS["+team+"].addunit("+team+")'><span class='addunit'>Add new unit</span><span class='plus addunit'>+</span></div><div><div><div class='totalpts' id='total"+team+"'>0</div></div></div><div  id='totallbl"+team+"'><div><div class='total'>Total points<span class='plus'>=</span></div></div></div>");
 	this.updatepoints();
     },
     tosquadron:function(s) {

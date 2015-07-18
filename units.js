@@ -185,6 +185,7 @@ function Unit(team) {
     this.upgradesno=0;
     this.upgrades=[];
     this.removeupg=[];
+    this.criticals=[];
     for (i=0; i<10; i++) this.removeupg[i]=Unit.prototype.defaultremoveupg;
     this.stats="<div id='stats"+id+"'></div>";
     this.actions="<div id='actions"+id+"'></div>";
@@ -470,6 +471,7 @@ Unit.prototype = {
 	this.shipactionList=u.actionList.slice(0);
 	this.weapons=[];
 	this.upgrades=[];
+	this.criticals=[];
 	this.bombs=[];
 	this.lastdrop=-1;
 	Laser(this,u.weapon_type,u.fire);
@@ -663,6 +665,7 @@ Unit.prototype = {
 	var P=this.getattacktable(n);
 	var ptot=0;
 	var r=Math.random();
+	if (n==0) return 0;
 	for (f=0; f<=n; f++) {
 	    for (h=0; h<=n-f; h++) {
 		for (c=0; c<=n-f-h; c++) {
@@ -1023,17 +1026,39 @@ Unit.prototype = {
     isTurret: function(w) {
 	return (w.type=="Turretlaser");
     },
-    updateactionlist: function() {
-	var i;
-	this.actionList=[];
+    getshipactionlist: function() {
+	var i,al=[];
 	for (i=0; i<this.shipactionList.length; i++) {
 	    var a=this.shipactionList[i];
-	    if (this.actionsdone.indexOf(a)==-1) this.actionList.push(a);
+	    if (this.actionsdone.indexOf(a)==-1) al.push(a);
 	}
+	return al;
+    },
+    getupgactionlist: function() {
+	var i,al=[];
 	for (i=0; i<this.upgrades.length; i++) {
 	    var upg=this.upgrades[i];
-	    if (upg.isactive&&typeof upg.action=="function"&&upg.candoaction()) this.actionList.push(upg.type.toUpperCase());
+	    if (upg.isactive&&typeof upg.action=="function"&&upg.candoaction()) al.push(upg.type.toUpperCase());
 	}
+	return al;
+    },
+    getcritactionlist: function() {
+	var i,al=[];
+	for (i=0; i<this.criticals.length; i++) {
+	    var crit=this.criticals[i];
+	    if (crit.isactive&&typeof crit.action=="function") al.push("CRITICAL");
+	}
+	return al;
+    },
+    updateactionlist: function() {
+	var i;
+	var sal=this.getshipactionlist();
+	var ual=this.getupgactionlist();
+	var cal=this.getcritactionlist();
+	this.actionList=[];
+	for (i=0; i<sal.length; i++) this.actionList.push(sal[i]);
+	for (i=0; i<ual.length; i++) this.actionList.push(ual[i]);
+	for (i=0; i<cal.length; i++) this.actionList.push(cal[i]);
     },
     addevadetoken: function() {
 	this.evade++;
@@ -1439,12 +1464,19 @@ Unit.prototype = {
 	else if (a=="EVADE")  { return this.addevade(); }
 	else if (a=="TARGET") { return this.resolvetarget(); }
 	else {
-	    var i,n=this.shipactionList.length;
+	    var i,n=this.getshipactionlist().length;
 	    for (i=0; i<this.upgrades.length; i++) {
 		var upg=this.upgrades[i];
 		if (typeof upg.action=="function"&&upg.isactive) {
 		    if (upg.type.toUpperCase()==a
 			&&this.action==n)  return upg.action(); 
+		    n++;
+		}
+	    }
+	    for (i=0; i<this.criticals.length; i++) {
+		var crit=this.criticals[i];
+		if (typeof crit.action=="function"&&crit.isactive) {
+		    if (this.action==n)  return crit.action(); 
 		    n++;
 		}
 	    }
@@ -2042,18 +2074,18 @@ Unit.prototype = {
 	str+="<div class='horizontal statevade'>"+this.getagility()+"</div>";
 	str+="<div class='horizontal statshield'>"+this.shield+"</div>";
 	str+="<div class='horizontal stathull'>"+this.hull+"</div></div>";
-	str+="<div class='name'><div>"+this.name+"</div></div>";
-	str+="<div><div style='font-size:small'><code class='"+this.faction+"'></code>"+this.ship.name+"</div></div>";
-	str+="<div class='horizontal'><div>"+PILOTS[this.pilotid].points+"pts</div></div>";
 	var text=PILOT_translation.english[this.name+(this.faction=="SCUM"?" (Scum)":"")];
 	if (typeof text=="undefined") text=""; 
+	str+="<div class='name'><div class='tooltip'>"+text+"</div><div>"+this.name+"</div></div>";
+	str+="<div><div style='font-size:small'><code class='"+this.faction+"'></code>"+this.ship.name+"</div></div>";
+	str+="<div class='horizontal'><div>"+PILOTS[this.pilotid].points+"pts</div></div>";
 	str+="<div class='horizontal details'><div style='text-align:justify;margin:8px;width:100%'>"+text+"</div></div>";
 	str+="<div class='vertical'><div>";
 	if (i>-1) str+="<div><table style='width:100%'><tr style='width:100%'>"+this.getusabletokens(i,false)+"</tr></table></div>";
 	str+="</div></div>";
 	var a;
 	var b;
-	var strw="",stru="";
+	var strw="",stru="",strc="";
 	
 	a="<td class='statevade' onclick='if (!squadron["+i+"].dead) squadron["+i+"].togglerange();'>"+this.getagility()+"<span class='symbols'>^</span></td>";
 	b="<td></td>";
@@ -2061,8 +2093,9 @@ Unit.prototype = {
 
 	//for (i=0; i<this.weapons.length; i++) strw+=this.weapons[i];
 	for (i=0; i<this.upgrades.length;i++) stru+=this.upgrades[i];
+	for (i=0; i<this.criticals.length;i++) strc+=this.criticals[i];
 
-	str+="<table class='details' style='width:100%'>"+strw+stru+"</table></div>"
+	str+="<table class='details' style='width:100%'>"+strw+stru+strc+"</table></div>"
 	return str;
     },
     canusefocus: function() {
@@ -2308,23 +2341,68 @@ Unit.prototype = {
     removehull: function(n) {
 	record(this.id,"removehull("+(n)+")");
 	this.hull=this.hull-n;
+	log(this.name+" lost "+n+" <p class='chull'></p>");
 	if (this.hull<=this.ship.hull/2) this.imgsmoke.attr({display:"block"});
 	if (this.hull==1) {
 	    this.imgsmoke.attr({display:"none"});
 	    this.imgflame.attr({display:"block"});
 	}
     },
+    selectcritical: function(crits,endselect) {
+	var sa=this.showaction
+	var tfa=this.timeforaction;
+	var cda=this.candoaction;
+	this.candoaction=function() { return true; }
+	this.resolveoneaction=function(n) {
+	    endselect(n);
+	    this.endoneaction();
+	};
+	this.endoneaction=function() {
+	    this.showaction=sa;
+	    this.timeforaction=tfa;
+	    this.show();
+	};
+	this.timeforaction=function() { return true; }
+	this.showaction=function() {
+	    var i,str="";
+	    $("#actiondial").empty();
+	    for (me=0; me<squadron.length; me++) if (squadron[me]==this) break;
+	    for (i=0; i<crits.length; i++)
+		str+="<button onclick='squadron["+me+"].resolveoneaction("+crits[i]+")'>"+CRITICAL_DECK[crits[i]].name+"</button>";
+	    $("#actiondial").html("<div>"+str+"</div>").show();
+	};
+	this.showaction();
+    },
+    selectdamage: function(crit) {
+	var i,s=0,m,j;
+	for (i=0; i<CRITICAL_DECK.length; i++) s+=CRITICAL_DECK[i].count;
+	var r=Math.floor(Math.random()*s);
+	m=0;
+	for (i=0; i<CRITICAL_DECK.length; i++) {
+	    m+=CRITICAL_DECK[i].count;
+	    if (m>r) return i;
+	}
+	return 0;	
+    },
     applydamage: function(n) {
+	var s,j;
+	for (j=0; j<n; j++) {
+	    s=this.selectdamage(false);
+	    CRITICAL_DECK[s].count--;
+	    new Critical(this,s);
+	}
 	this.removehull(n);
-	log(this.name+" was dealt "+n+" <p class='hit'></p>, lost "+n+" <p class='chull'></p>");
+	this.show();
     },
     applycritical: function(n) {
-	var h=0;
-	var i;
-	for (i=0; i<n; i++) 
-	    if (Math.random()<7/33) h++;
-	log(this.name+" was dealt "+n+" <p class='critical'></p>, lost "+(h+n)+" <p class='chull'></p>");
-	this.removehull(h+n);
+	var s,j;
+	for (j=0; j<n; j++) {
+	    s=this.selectdamage(true);
+	    CRITICAL_DECK[s].count--;
+	    (new Critical(this,s)).faceup();
+	}
+	this.removehull(n);
+	this.show();
     },
     gethitrange: function(w,sh) {
 	var i;
