@@ -2,13 +2,13 @@ function IAUnit() {
 }
 
 IAUnit.prototype= {
-    getmaneuver: function() {
+    computemaneuver: function() {
 	var i,j,k,d;
 	var p=[];
 	var q=[];
 	var possible=[];
 	var gd=this.getdial();
-	//log("Moves for "+this.name);
+	log("Moves for "+this.name);
 	// Find all possible future positions of enemies
 	for (i=0; i<squadron.length; i++) 
 	    if (squadron[i].team!=this.team) {
@@ -46,7 +46,7 @@ IAUnit.prototype= {
 	if (q.length>0) {
 	    q.sort(function(a,b) { return b.n-a.n; });
 	    d=q[0].m;
-	    //log("finding best out of "+(gd.length*p.length)+" positions:"+gd[d].move)
+	    log("finding best out of "+(gd.length*p.length)+" positions:"+gd[d].move)
 	} else {
 	    for (d=0; d<possible.length; d++) {
 		if (gd[possible[d]].move.match(/F\d/)) break;
@@ -80,7 +80,7 @@ IAUnit.prototype= {
     beginplanningphase: function() {
 	if (this.maneuver==-1) {
 	    var process=setInterval(function() {
-		this.maneuver=this.getmaneuver();	
+		this.maneuver=this.computemaneuver();	
 		nextstep();
 		clearInterval(process);
 	    }.bind(this),200);
