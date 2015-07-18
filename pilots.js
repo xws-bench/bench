@@ -420,10 +420,36 @@ var PILOTS = [
     {
         name: "Maarek Stele",
         unique: true,
+	done:true,
         faction:"EMPIRE",
 	unit: "TIE Advanced",
         skill: 7,
         points: 27,
+	init: function() {
+	    var unit=this;
+	    this.ac=Unit.prototype.applycritical;
+	    Unit.prototype.applycritical=function(n) {
+		if (activeunit==unit&&targetunit!=unit) {
+		    for (j=0; j<n; j++) {
+			var s1=this.selectdamage(true);
+			CRITICAL_DECK[s1].count--;
+			var s2=this.selectdamage(true);
+			CRITICAL_DECK[s2].count--;
+			var s3=this.selectdamage(true);
+			CRITICAL_DECK[s3].count--;
+			var sc=[s1,s2,s3];
+			log("<b>[Maarek Stele] select one of 3 criticals</b>");
+			unit.selectcritical(sc,function(m) { 
+			    CRITICAL_DECK[m].count++;
+			    (new Critical(this,m)).faceup();
+			    this.show();
+			}.bind(this));
+		    }
+		    this.removehull(n);
+		    this.show();
+		} else unit.ac.call(this,n);
+	    }
+	},
         upgrades: [
             "Elite",
             "Missile",
@@ -662,10 +688,12 @@ var PILOTS = [
     {
         name: "Chewbacca",
         unique: true,
+	done:true,
 	faction:"REBEL",
         unit: "YT-1300",
         skill: 5,
         points: 42,
+	applycritical: Unit.prototype.applydamage,
         upgrades: [
             "Elite",
             "Missile",
@@ -980,14 +1008,12 @@ var PILOTS = [
 				p[k].oldskill=p[k].skill;
 				p[k].skill=12;
 				filltabskill();
-				//squadron.sort(function(a,b) {return b.skill-a.skill;});
 				p[k].showstats();
 				log("["+this.name+"] pilot skill of 12 for "+p[k].name);
 				p[k].endcombatphase=function() {
 				    this.skill=this.oldskill;
 				    filltabskill();
 				    this.hasfired=0;
-				    //squadron.sort(function(a,b) {return b.skill-a.skill;});
 				    this.showstats();
 				}.bind(p[k]);
 			    }
@@ -1522,9 +1548,25 @@ var PILOTS = [
     },
     {
         name: "Rexler Brath",
-        
         faction:"EMPIRE",
-        
+	done:true,
+        endattack: function(c,h) {
+	    log("h="+h);
+	    if (this.canusefocus()&&h>0) {
+		waitingforaction.add(function() {
+		    this.addaction(["FOCUS"],function() { 
+			return true; }, function() {
+			    var i,l=targetunit.criticals.length-1;
+			    this.removefocustoken();
+			    for (i=0; i<h; i++) 
+				targetunit.criticals[l-i-c].faceup();
+			    targetunit.show();
+			    Unit.prototype.endattack.call(this,c,h);
+			}.bind(this));
+		}.bind(this));
+		nextstep();
+	    } else Unit.prototype.endattack.call(this,c,h);
+	},
         unique: true,
         unit: "TIE Defender",
         skill: 8,
@@ -1972,9 +2014,25 @@ var PILOTS = [
     },
     {
         name: "'Leebo'",
-        
 	faction:"REBEL",
-        
+	done:true,
+        applycritical: function(n) {
+	    var j;
+	    for (j=0; j<n; j++) {
+		var s1=this.selectdamage(true);
+		CRITICAL_DECK[s1].count--;
+		var s2=this.selectdamage(true);
+		CRITICAL_DECK[s2].count--;
+		var sc=[s1,s2];
+		log("<b>["+this.name+"] select one of 2 criticals</b>");
+		this.selectcritical(sc,function(m) { 
+		    CRITICAL_DECK[m].count++;
+		    (new Critical(this,m)).faceup();
+		}.bind(this));
+	    }
+	    this.removehull(n);
+	    this.show();
+   	},
         unit: "YT-2400",
         unique: true,
         skill: 5,
@@ -2741,7 +2799,7 @@ var PILOTS = [
 				log("["+this.name+"] pilot skill 0 for "+p[k].name);
 				p[k].endcombatphase=function() {
 				    this.skill=this.oldskill;
-				    squadron.sort(function(a,b) {return b.skill-a.skill;});
+				    filltabskill();
 				    this.show();
 				    ecp.call(this);
 				    nextstep();

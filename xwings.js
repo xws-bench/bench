@@ -2,7 +2,7 @@ var phase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.5.5";
+var VERSION="v0.6";
 
 var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE1=0,SELECT_PHASE2=1;
 var DICES=["focusred","hitred","criticalred","blankred","focusgreen","evadegreen","blankgreen"];
@@ -518,7 +518,7 @@ function nextphase() {
 	jwerty.key("shift+4", function() { if (activeunit.stress>0) activeunit.stress--;activeunit.show();});
 	jwerty.key("shift+5", function() { if (activeunit.ionized>0) activeunit.ionized--;activeunit.show();});
 	jwerty.key("f",function() { activeunit.showattack(true);});
-	jwerty.key("d",function() { activeunit.resolvehit(1);});
+	jwerty.key("d",function() { activeunit.resolvecritical(1);});
 	jwerty.key("shift+d",function() { 
 	    if (activeunit.hull<activeunit.ship.hull) activeunit.hull++; 
 	    else if (activeunit.shield<activeunit.ship.shield) activeunit.shield++; 

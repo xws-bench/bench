@@ -6,7 +6,8 @@ overflow:auto
 
 footer,article,nav,footer,body {
 display:block;
-font-family:"Times New Roman",Times,serif
+font-family:sans-serif;
+font-size-adjust: 0.5
 }
 
 [data-i18n-fr]:lang(fr)::after {
@@ -30,7 +31,27 @@ padding:0;
 width:100%;
 height:100%
 }
-
+.tooltip {  
+position:absolute;
+width:20%;
+color:white;
+font-weight:normal;
+font-size:small;
+opacity:0;
+pointer-events:none;
+}
+#team1 .tooltip {
+left:170px
+}
+#team2 .tooltip {
+right:170px
+}
+tr:hover .tooltip,.name:hover .tooltip { 
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;       
+    opacity : 1;
+}
 #svgout {
 background:url(img/playmat7.jpg);
 background-repeat:no-repeat;
@@ -236,7 +257,7 @@ line-height:20px;
 padding:2px;
 margin:1px;
 background:#333;
-border-radius:4px;
+border-radius:18px;
 width:20px
 }
 
@@ -277,6 +298,7 @@ font-family:'symbols'
 
 .stat,.stat2,.stat3 {
 line-height:8px;
+position:absolute;
 width:1.3ex;
 letter-spacing:4px
 }
@@ -298,32 +320,26 @@ float:right
 }
 
 #team1 .stat {
-position:absolute;
 left:170px
 }
 
 #team1 .stat2 {
-position:absolute;
 left:178px
 }
 
 #team1 .stat3 {
-position:absolute;
 left:186px
 }
 
 #team2 .stat {
-position:absolute;
 right:170px
 }
 
 #team2 .stat2 {
-position:absolute;
 right:178px
 }
 
 #team2 .stat3 {
-position:absolute;
 right:186px
 }
 
@@ -339,7 +355,7 @@ text-shadow:-1px -1px 0 #000
 }
 
 .totalpts,.total {
-font-size:30px
+/*font-size:30px*/
 }
 
 #team1 .dial,#team2 .dial {
@@ -652,13 +668,13 @@ border-style:solid;
 border-width:1px
 }
 
-.Elite,.Torpedo,.Astromech,.Turret,.Missile,.Crew,.Cannon,.Bomb,.Title,.Mod,.System,.Illicit,.Salvaged,.Laser,.Bilaser,.Turretlaser,.CannonTorpedoMissile {
+.Criticalupg,.Elite,.Torpedo,.Astromech,.Turret,.Missile,.Crew,.Cannon,.Bomb,.Title,.Mod,.System,.Illicit,.Salvaged,.Laser,.Bilaser,.Turretlaser,.CannonTorpedoMissile {
 font-family:'symbols';
 padding:0;
-float:left;
+/*float:left;*/
 display:inline-block;
 margin:4px;
-font-size:larger;
+font-size:x-large;
 text-align:center;
 text-decoration:none;
 box-shadow:1px 1px 3px #000;
@@ -667,25 +683,20 @@ border-radius:8px;
 border-style:solid;
 border-width:0
 }
-
 .CannonTorpedoMissile {
 font-size:small
 }
-
 label {
 font-size:small
 }
-
 .evadetoken,.focustoken,.xevadetoken,.xfocustoken {
 color:#0a0;
 border-color:#0a0
 }
-
 .stresstoken,.xstresstoken,.xionizedtoken,.xtargetedtoken {
 color:#f33;
 border-color:#f33
 }
-
 .targettoken,.cloaktoken,.xtargettoken,.xcloaktoken {
 color:#08d;
 border-color:#0af
@@ -773,7 +784,7 @@ font-family:'symbols';
 content:"d"
 }
 
-.criticalreddice::after,.critical::after,.criticalmodtokena::after {
+.criticalreddice::after,.critical::after,.Criticalupg::after,.criticalmodtokena::after {
 font-family:'symbols';
 content:"c"
 }
@@ -941,8 +952,8 @@ border-radius:20px
 color:red
 }
 
-.statfire {
-cursor:pointer
+.statfire,.statevade {
+cursor:pointer;
 }
 
 .EMPIRE {
