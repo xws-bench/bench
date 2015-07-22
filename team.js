@@ -45,23 +45,18 @@ Team.prototype = {
 	this.isdead=alldead;
 	return alldead;
     },
-    changeplayer: function(name) {
-	if (name=="human") this.isia=false; else this.isia=true;
+    toggleplayer: function(name) {
+	this.isia=!this.isia;
     },
     addpoints: function() { 
 	var team=this.team
 	var f=["REBEL","SCUM","EMPIRE"];
-	$("#team"+team).append("<p id='factionselect"+team+"'></p>");
+	$("#team"+team).append("<div id='factionselect"+team+"'></div>");
 	for (i=0; i<3; i++) {
-	    $("#factionselect"+team).append("<input id='"+f[i]+team+"' name='faction"+team+"' type='radio' onchange='TEAMS["+team+"].changefaction(\""+f[i]+"\")'>");
-	    $("#factionselect"+team).append("<label for='"+f[i]+team+"' style='font-size:30px' class='"+f[i]+"'>");
+	    $("#factionselect"+team).append("<input class='factionselect' id='"+f[i]+team+"' name='faction"+team+"' type='radio' onchange='TEAMS["+team+"].changefaction(\""+f[i]+"\")'>");
+	    $("#factionselect"+team).append("<label for='"+f[i]+team+"' class='"+f[i]+"'>");
 	}
-	$("#team"+team).append("<input id='teamname"+this.team+"' type='text' placeholder='Team #"+team+"' style='width:160px'>");
-	$("#team"+team).append("<p id='playerselect"+team+"'></p>");
-	$("#playerselect"+team).append("<input id='human"+team+"' checked name='player"+team+"' type='radio' selected onchange='TEAMS["+team+"].changeplayer(\"human\")'>");
-	$("#playerselect"+team).append("<label for='human"+team+"' >Human</label>");
-	$("#playerselect"+team).append("<input id='computer"+team+"' name='player"+team+"' type='radio' onchange='TEAMS["+team+"].changeplayer(\"computer\")'>");
-	$("#playerselect"+team).append("<label for='computer"+team+"'>Computer</label>");
+	$("#team"+team).append("<input class='generic' id='teamname"+this.team+"' type='text' placeholder='Team #"+team+"' style='width:160px'>");
     },
     updatepoints: function() {
 	var score1=$("#team"+this.team+" .pts").map(function() {
@@ -80,7 +75,7 @@ Team.prototype = {
 	$("#total"+team).remove();
 	$("#totallbl"+team).remove();
 	$("#team"+team).append("<div>"+(new Unit(team))+"</div>");
-	$("#team"+team).append("<div id='addunit"+team+"' onclick='TEAMS["+team+"].addunit("+team+")'><span class='addunit'>Add new unit</span><span class='plus addunit'>+</span></div><div><div><div class='totalpts' id='total"+team+"'>0</div></div></div><div  id='totallbl"+team+"'><div><div class='total'>Total points<span class='plus'>=</span></div></div></div>");
+	$("#team"+team).append("<div id='addunit"+team+"' onclick='TEAMS["+team+"].addunit("+team+")'><span class='addunit generic'>Add new unit</span><span class='plus addunit'>+</span></div><div><div><div class='totalpts' id='total"+team+"'>0</div></div></div><div  id='totallbl"+team+"'></span><span class='generic total'>Total points</span><span class='plus'>=</span></div>");
 	this.updatepoints();
     },
     tosquadron:function(s) {
@@ -105,6 +100,14 @@ Team.prototype = {
 	squadron.sort(function(a,b) {return b.skill-a.skill;});
 	return this.units;
     },
+    endsetup: function() {
+	if (this.isia)
+	    for (i=0; i<this.units.length; i++) 
+		$.extend(this.units[i],IAUnit.prototype);
+	for (i=0; i<this.units.length; i++) { 
+	    this.units[i].g.undrag();
+	}
+    },
     endselection:function(s) {
 	var i;
 	var team=this.team;
@@ -113,18 +116,28 @@ Team.prototype = {
 
 	$("#team"+team).empty();
 	$("#importexport"+team).remove();
-	//$("#team"+team).append("<div class='total'>"+this.name+"</div>");
 	sq=this.tosquadron(s);
+	$("#team"+team).append("<div class='playerselect'></div>");
+	$("#team"+team+" .playerselect").append("<input id='human"+team+"' class='human' type='checkbox' onchange='TEAMS["+team+"].toggleplayer()'>"); 
+	$("#team"+team+" .playerselect").append("<label for='human"+team+"' data-off='Human' data-on='Computer'></label>");
+
 	for (i=0; i<sq.length; i++) {
 	    if (team==1) {
-		sq[i].m.add(MT(80,70+82*i)).add(MR(90,0,0));
-
+		if (sq[i].tx<=0||sq[i].ty<=0) {
+		    sq[i].tx=80-(sq[i].islarge?20:0);
+		    sq[i].ty=70+82*i;
+		    sq[i].alpha=90;
+		}
 		$("#team1").append("<div id=\""+sq[i].id+"\" onclick='select(\""+sq[i].id+"\")'>"+sq[i]+"</div>");
 	    } else {
-		sq[i].m.add(MT(820,70+82*i)).add(MR(-90,0,0));
+		if (sq[i].tx<=0||sq[i].ty<=0) {
+		    sq[i].tx=820+(sq[i].islarge?20:0);
+		    sq[i].ty=70+82*i;
+		    sq[i].alpha=-90;
+		}
 		$("#team2").append("<div id=\""+sq[i].id+"\" onclick='select(\""+sq[i].id+"\")'>"+sq[i]+"</div>");
 	    }
-
+	    sq[i].m.translate(sq[i].tx,sq[i].ty).rotate(sq[i].alpha,0,0);
 	    sq[i].show();
 	}
 	activeunit=sq[0];
@@ -161,14 +174,21 @@ Team.prototype = {
 	var pilots=str.split(";");
 	for (i in generics) if (generics[i].team==this.team) delete generics[i];
 	for (i=0; i<pilots.length-1; i++) {
-	    var pid=parseInt(pilots[i]);
-	    var updstr=pilots[i].split(",");
+	    var coord=pilots[i].split("%");
+	    var updstr=coord[0].split(",");
+	    var pid=Base64.toNumber(updstr[0]);
 	    this.faction=PILOTS[pid].faction;
 	    this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
 	    var p=new Unit(this.team);
 	    p.upg=[];
 	    p.selectship(PILOTS[pid].unit,PILOTS[pid].name);
-	    for (j=1; j<updstr.length; j++) p.upg.push(parseInt(updstr[j]));
+	    for (j=1; j<updstr.length; j++) p.upg.push(Base64.toNumber(updstr[j]));
+	    if (coord.length>1) {
+		var c=Base64.toCoord(coord[1]);
+		p.tx=c[0];
+		p.ty=c[1];
+		p.alpha=c[2];
+	    }
 	}
 	nextphase();
     },
