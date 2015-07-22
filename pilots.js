@@ -8,7 +8,7 @@ function Pilot(name) {
 	    return Pilotfromid(i);
 	}
     }
-    console.log("Could not find pilot "+name);
+    log("Could not find pilot "+name);
 }
 function Pilotfromid(i) {
     var p=new Unit(PILOTS[i]);
@@ -101,16 +101,13 @@ var PILOTS = [
         name: "Biggs Darklighter",
 	done:true,
         init: function() {
+	    var biggs=this;
 	    log("[Biggs Darklighter] is the only target");
 	    var gr=Weapon.prototype.getrangeallunits;
 	    Weapon.prototype.getrangeallunits=function() {
 		var r=gr.call(this);
-		var newr=[];
-		for (i=0; i<r.length; i++) {
-		    var sh=r[i];
-		    if (sh.name=="Biggs Darklighter") {
-			return [sh];
-		    }
+		if (this.unit.team!=biggs.team&&r.indexOf(biggs)>-1) {
+		    return [biggs];
 		}
 		return r;
 	    }
@@ -441,11 +438,10 @@ var PILOTS = [
 			log("<b>[Maarek Stele] select one of 3 criticals</b>");
 			unit.selectcritical(sc,function(m) { 
 			    CRITICAL_DECK[m].count++;
-			    (new Critical(this,m)).faceup();
+			    if (this.faceup(new Critical(this,m))) this.removehull(1);
 			    this.show();
 			}.bind(this));
 		    }
-		    this.removehull(n);
 		    this.show();
 		} else unit.ac.call(this,n);
 	    }
@@ -564,20 +560,20 @@ var PILOTS = [
 	endattack: function(c,h) {
 	    if (this.candoaction()) {
 	    waitingforaction.add(function() {
-		console.log("["+this.name+"] free boost or roll action");
-		var m0=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(-90,0,0)).add(MT(0,-20));
-		var m1=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(90,0,0)).add(MT(0,-20));
+		log("["+this.name+"] free boost or roll action (select self to cancel)");
+		var m0=this.getpathmatrix(this.m.clone().rotate(90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(-90,0,0);
+		var m1=this.getpathmatrix(this.m.clone().rotate(-90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(90,0,0);
 		this.resolveactionmove(
-		    [m0,
-		     m0.clone().add(MT(0,20)),
-		     m0.clone().add(MT(0,40)),
-		     m1.clone(),
-		     m1.clone().add(MT(0,20)),
-		     m1.clone().add(MT(0,40)),
+		    [m0.clone().translate(0,-20),
+		     m0,
+		     m0.clone().translate(0,20),
+		     m1.clone().translate(0,-20),
+		     m1,
+		     m1.clone().translate(0,20),
 		     this.m,
-		     this.getpathmatrix(this.m.clone(),"F1"),
-		     this.getpathmatrix(this.m.clone(),"BL1"),
-		     this.getpathmatrix(this.m.clone(),"BR1")],
+		     this.getpathmatrix(this.m,"F1"),
+		     this.getpathmatrix(this.m,"BL1"),
+		     this.getpathmatrix(this.m,"BR1")],
 		    function(t) {
 			this.show();
 			this.endaction();
@@ -693,7 +689,10 @@ var PILOTS = [
         unit: "YT-1300",
         skill: 5,
         points: 42,
-	applycritical: Unit.prototype.applydamage,
+	faceup: function(c) {
+	    this.log("ignores critical "+c.name);
+	    return true;
+	},
         upgrades: [
             "Elite",
             "Missile",
@@ -786,8 +785,8 @@ var PILOTS = [
 	    var cc=Unit.prototype.cancelcritical;
 	    Unit.prototype.cancelcritical=function(c,e,sh) {
 		var ce=cc.call(this,c,e,sh);
-		log("[Kath Scarlet] +1 stress for "+this.name+" for cancelling <code class='critical'></code>");
-		if (c>ce&&sh!=this) {
+		if (c>ce&&sh!=this&&activeunit.name=="Kath Scarlet") {
+		    log("[Kath Scarlet] +1 stress for "+this.name+" for cancelling <code class='critical'></code>");
 		    this.addstress();
 		}
 		return ce;
@@ -809,19 +808,21 @@ var PILOTS = [
         faction:"EMPIRE",
         completemaneuver: function(dial,realdial,difficulty) {
 	    if (dial.match("BL3|BL2|BL1")) {
+		log("["+this.name+"] change bank turn speed");
 		var newdial=dial.replace(/L/,"R");
 		this.resolveactionmove(
-		    [this.getpathmatrix(this.m.clone(),realdial),
-		     this.getpathmatrix(this.m.clone(),newdial)],
+		    [this.getpathmatrix(this.m,realdial),
+		     this.getpathmatrix(this.m,newdial)],
 		    function(t,k) {
 			if (k==0) Unit.prototype.completemaneuver.call(this,dial,realdial,difficulty);
 			else Unit.prototype.completemaneuver.call(this,newdial,newdial,difficulty);
 		    }.bind(this),false,true);
 	    } else if (dial.match("BR3|BR2|BR1")) {
+		log("["+this.name+"] change bank turn speed");
 		var newdial=dial.replace(/R/,"L");
 		this.resolveactionmove(
-		    [this.getpathmatrix(this.m.clone(),dial),
-		     this.getpathmatrix(this.m.clone(),newdial)],
+		    [this.getpathmatrix(this.m,dial),
+		     this.getpathmatrix(this.m,newdial)],
 		    function(t,k) {
 			if (k==0) Unit.prototype.completemaneuver.call(this,dial,realdial,difficulty);
 			else Unit.prototype.completemaneuver.call(this,dial,newdial,difficulty);
@@ -1078,7 +1079,7 @@ var PILOTS = [
 			(activeunit.team==unit.team)&&(activeunit!=unit)
 			&&(unit.getrange(activeunit)<=3);
 	    }.bind(this), function(m,n) {
-		var r=Math.floor(Math.random()*7);
+		var r=Math.floor(Math.random()*8);
 		var f=FACE[ATTACKDICE[r]];
 		unit.addstress();
 		log("["+unit.name+"] +1 attack die");
@@ -1296,38 +1297,37 @@ var PILOTS = [
         skill: 5,
         points: 23,
 	resolveroll: function() {
-	    var m0=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(-90,0,0)).add(MT(0,-20));
-	    var m1=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(90,0,0)).add(MT(0,-20));
-	    var m2=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"BR1").add(MR(-90,0,0)).add(MT(0,-20));
-	    var m3=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"BR1").add(MR(90,0,0)).add(MT(0,-20));
-	    var m4=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"BL1").add(MR(-90,0,0)).add(MT(0,-20));
-	    var m5=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"BL1").add(MR(90,0,0)).add(MT(0,-20));
+	    var m0=this.getpathmatrix(this.m.clone().rotate(90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(-90,0,0);
+	    var m1=this.getpathmatrix(this.m.clone().rotate(-90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(90,0,0);
+	    var m2=this.getpathmatrix(this.m.clone().rotate(90,0,0),"BR1").translate(0,(this.islarge?20:0)).rotate(-90,0,0);
+	    var m3=this.getpathmatrix(this.m.clone().rotate(-90,0,0),"BR1").translate(0,(this.islarge?20:0)).rotate(90,0,0);
+	    var m4=this.getpathmatrix(this.m.clone().rotate(90,0,0),"BL1").translate(0,(this.islarge?20:0)).rotate(-90,0,0);
+	    var m5=this.getpathmatrix(this.m.clone().rotate(-90,0,0),"BL1").translate(0,(this.islarge?20:0)).rotate(90,0,0);
 	    this.resolveactionmove(
-		[m0.clone().add(MT(0,0)),
-		 m0.clone().add(MT(0,20)),
-		 m0.clone().add(MT(0,40)),
-		 m1.clone().add(MT(0,0)),
-		 m1.clone().add(MT(0,20)),
-		 m1.clone().add(MT(0,40)),
-		 m2.clone().add(MT(0,0)),
-		 m2.clone().add(MT(0,20)),
-		 m2.clone().add(MT(0,40)),
-		 m3.clone().add(MT(0,0)),
-		 m3.clone().add(MT(0,20)),
-		 m3.clone().add(MT(0,40)),
-		 m4.clone().add(MT(0,0)),
-		 m4.clone().add(MT(0,20)),
-		 m4.clone().add(MT(0,40)),
-		 m5.clone().add(MT(0,0)),
-		 m5.clone().add(MT(0,20)),
-		 m5.clone().add(MT(0,40))],
+		[m0.clone().translate(0,-20),
+		 m0,
+		 m0.clone().translate(0,20),
+		 m1.clone().translate(0,-20),
+		 m1,
+		 m1.clone().translate(0,20),
+		 m2.clone().translate(0,-20),
+		 m2,
+		 m2.clone().translate(0,20),
+		 m3.clone().translate(0,-20),
+		 m3,
+		 m3.clone().translate(0,20),
+		 m4.clone().translate(0,-20),
+		 m4,
+		 m4.clone().translate(0,20),
+		 m5.clone().translate(0,-20),
+		 m5,
+		 m5.clone().translate(0,20)],
 		function(t,k) {
 		    if (k>5) t.addstress();
 		    t.endaction();
 		},true);
 	    return true;
 	},
-
         upgrades: [ ],
     },
     {
@@ -1348,10 +1348,11 @@ var PILOTS = [
 	done:true,
         completemaneuver: function(dial,realdial,difficulty) {
 	    if (dial.match("K5|K3")) {
+		log("["+this.name+"] select one K-turn");
 		this.resolveactionmove(
-		    [this.getpathmatrix(this.m.clone(),"K1"),
-		     this.getpathmatrix(this.m.clone(),"K3"),
-		     this.getpathmatrix(this.m.clone(),"K5")],
+		    [this.getpathmatrix(this.m,"K1"),
+		     this.getpathmatrix(this.m,"K3"),
+		     this.getpathmatrix(this.m,"K5")],
 		    function(t,k) {
 			var m="K5";
 			if (k==0) m="K1";
@@ -1559,7 +1560,7 @@ var PILOTS = [
 			    var i,l=targetunit.criticals.length-1;
 			    this.removefocustoken();
 			    for (i=0; i<h; i++) 
-				targetunit.criticals[l-i-c].faceup();
+				if (targetunit.faceup(criticals[l-i-c])) targetunit.removehull(1);
 			    targetunit.show();
 			    Unit.prototype.endattack.call(this,c,h);
 			}.bind(this));
@@ -1709,20 +1710,18 @@ var PILOTS = [
         faction:"EMPIRE",
 	done:true,
 	resolveuncloak: function() {
-	    var m0=this.getpathmatrix(this.m.clone(),"BL2");
-	    var m1=this.getpathmatrix(this.m.clone(),"BR2");
-	    var m2=this.getpathmatrix(this.m.clone().add(MR(90,0,0)),"BL2").add(MR(-90,0,0));
-	    var m3=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)),"BL2").add(MR(90,0,0));
-	    var m4=this.getpathmatrix(this.m.clone().add(MR(90,0,0)),"BR2").add(MR(-90,0,0));
-	    var m5=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)),"BR2").add(MR(90,0,0));
-	    this.resolveactionmove(
-		[m0,
-		 m1,
-		 m2.clone(),
-		 m3.clone(),
-		 m4.clone(),
-		 m5.clone(),
-		],
+	    var i=0;
+	    var m0=this.getpathmatrix(this.m,"BL2");
+	    var m1=this.getpathmatrix(this.m,"BR2");
+	    var p=[m0,m1];
+	    for (i=-20; i<=20; i+=20) {
+		var m2=this.getpathmatrix(this.m.clone().translate(0,i).rotate(90,0,0),"BL2").rotate(-90,0,0);
+		var m3=this.getpathmatrix(this.m.clone().translate(0,i).rotate(-90,0,0),"BL2").rotate(90,0,0);
+		var m4=this.getpathmatrix(this.m.clone().translate(0,i).rotate(90,0,0),"BR2").rotate(-90,0,0);
+		var m5=this.getpathmatrix(this.m.clone().translate(0,i).rotate(-90,0,0),"BR2").rotate(90,0,0);
+		p=p.concat([m2,m3,m4,m5]);
+	    }
+	    this.resolveactionmove(p,
 		function (t,k) {
 		    t.agility-=2; t.iscloaked=false;t.show(); 
 		    SOUNDS.uncloak.play();
@@ -1789,7 +1788,7 @@ var PILOTS = [
 	done:true,
 	addstress:function() {
 	    // Automatic removal of stress
-	    var r=Math.floor(Math.random()*7);
+	    var r=Math.floor(Math.random()*8);
 	    var roll=FACE[ATTACKDICE[r]];
 	    log("["+this.name+"] remove 1 stress token, roll 1 attack dice")
 	    if (roll=="hit") { this.resolvehit(1); this.checkdead(); }
@@ -1858,21 +1857,24 @@ var PILOTS = [
 	done:true,
         freemove: function() {
 	    waitingforaction.add(function() {
-	    log("["+this.name+"] free boost or roll action");
-	    var m0=this.getpathmatrix(this.m.clone().add(MR(90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(-90,0,0)).add(MT(0,-20));
-	    var m1=this.getpathmatrix(this.m.clone().add(MR(-90,0,0)).add(MT(0,(this.islarge?-20:0))),"F1").add(MR(90,0,0)).add(MT(0,-20));
-	    this.resolveactionmove(
-		[m0.clone().add(MT(0,0)),
-		 m0.clone().add(MT(0,20)),
-		 m0.clone().add(MT(0,40)),
-		 m1.clone().add(MT(0,0)),
-		 m1.clone().add(MT(0,20)),
-		 m1.clone().add(MT(0,40)),
-		 this.m,
-		 this.getpathmatrix(this.m.clone(),"F1"),
-		 this.getpathmatrix(this.m.clone(),"BL1"),
-		 this.getpathmatrix(this.m.clone(),"BR1")],
-		function(t) { this.endaction();}.bind(this) ,true);
+		log("["+this.name+"] free boost or roll action (select self to cancel)");
+		var m0=this.getpathmatrix(this.m.clone().rotate(90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(-90,0,0);
+		var m1=this.getpathmatrix(this.m.clone().rotate(-90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(90,0,0);
+		this.resolveactionmove(
+		    [m0.clone().translate(0,-20),
+		     m0,
+		     m0.clone().translate(0,20),
+		     m1.clone().translate(0,-20),
+		     m1,
+		     m1.clone().translate(0,20),
+		     this.m,
+		     this.getpathmatrix(this.m,"F1"),
+		     this.getpathmatrix(this.m,"BL1"),
+		     this.getpathmatrix(this.m,"BR1")],
+		    function(t) {
+			this.show();
+			this.endaction();
+		    }.bind(this) ,true);
 	    }.bind(this));
 	},
 	addfocustoken: function() {
@@ -2017,7 +2019,7 @@ var PILOTS = [
 	faction:"REBEL",
 	done:true,
         applycritical: function(n) {
-	    var j;
+	    var j,s;
 	    for (j=0; j<n; j++) {
 		var s1=this.selectdamage(true);
 		CRITICAL_DECK[s1].count--;
@@ -2027,10 +2029,9 @@ var PILOTS = [
 		log("<b>["+this.name+"] select one of 2 criticals</b>");
 		this.selectcritical(sc,function(m) { 
 		    CRITICAL_DECK[m].count++;
-		    (new Critical(this,m)).faceup();
+		    if (this.faceup(new Critical(this,m))) this.removehull(1);
 		}.bind(this));
 	    }
-	    this.removehull(n);
 	    this.show();
    	},
         unit: "YT-2400",
@@ -2337,7 +2338,7 @@ var PILOTS = [
     {
         name: "IG-88B",
 	faction:"SCUM",/*
-        init: function(sh) {
+        init: function() {
 	    var i;
 	    for (i=0; i<sh.weapons.length; i++) if (sh.weapons[i].type=="Cannon") break;
 	    if (i==sh.weapons.length) return;
@@ -2394,17 +2395,19 @@ var PILOTS = [
 	faction:"SCUM",  
         completemaneuver: function(dial,realdial,difficulty) {
 	    if (dial=="SL3") {
+		log("["+this.name+"] pick a Sengor turn");
 		this.resolveactionmove(
-		    [this.getpathmatrix(this.m.clone().add(MT(0,(this.unit.islarge?-20:0))),"SL3"),
-		     this.getpathmatrix(this.m.clone().add(MT(0,(this.unit.islarge?-20:0))),"TL3")],
+		    [this.getpathmatrix(this.m,"SL3"),
+		     this.getpathmatrix(this.m,"TL3")],
 		    function(t,k) {
 			if (k==0) Unit.prototype.completemaneuver.call(this,dial,realdial,difficulty);
 			else Unit.prototype.completemaneuver.call(this,dial,"TL3",difficulty);
 		    }.bind(this),false,true);
 	    } else if (dial=="SR3") {
+		log("["+this.name+"] pick a Sengor turn");
 		this.resolveactionmove(
-		    [this.getpathmatrix(this.m.clone().add(MT(0,(this.unit.islarge?-20:0))),"SR3"),
-		     this.getpathmatrix(this.m.clone().add(MT(0,(this.unit.islarge?-20:0))),"TR3")],
+		    [this.getpathmatrix(this.m,"SR3"),
+		     this.getpathmatrix(this.m,"TR3")],
 		    function(t,k) {
 			if (k==0) Unit.prototype.completemaneuver.call(this,dial,realpath,difficulty);
 			else Unit.prototype.completemaneuver.call(this,dial,"TR3",difficulty);
@@ -2557,7 +2560,7 @@ var PILOTS = [
         getattackstrength:  function(w,sh) {
 	    var a=Unit.prototype.getattackstrength.call(this,w,sh);
 	    var m=this.m.clone();
-	    this.m.add(MR(180,0,0));
+	    this.m.rotate(180,0,0);
 	    if (this.gethitsector(sh)<=3) { 
 		log("["+this.name+"] +1 attacking "+sh.name+" in auxiliary arc");
 		a=a+1;
@@ -2588,11 +2591,13 @@ var PILOTS = [
 	    var unit=this;
 	    Bomb.prototype.drop=function(m) {
 		if (this.unit==unit) {
+		    log("["+this.name+"] select location to drop bomb");
 		    this.resolveactionmove(
 			[
-			    unit.getpathmatrix(unit.m.clone().add(MR(180,0,0)).add(MT(0,(this.unit.islarge?-20:0))),"TL3"),
-			    unit.getpathmatrix(unit.m.clone().add(MR(180,0,0)).add(MT(0,(this.unit.islarge?-20:0))),"TR3"),
-			    unit.getpathmatrix(unit.m.clone().add(MR(180,0,0)).add(MT(0,(this.unit.islarge?-20:0))),"F3")
+			    unit.getpathmatrix(unit.m.clone().rotate(180,0,0).translate(0,30),"F1"),
+			    unit.getpathmatrix(unit.m.clone().rotate(180,0,0).translate(30,0),"TL3"),
+			    unit.getpathmatrix(unit.m.clone().rotate(180,0,0).translate(-30,0),"TR3"),
+			    unit.getpathmatrix(unit.m.clone().rotate(180,0,0).translate(0,30),"F3")
 			],
 			function(k) { d.call(this,this.m); nextstep(); }.bind(this));
 		} else d.call(this,m);
