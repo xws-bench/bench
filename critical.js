@@ -1,22 +1,12 @@
 function Critical(sh,i) {
+    this.lethal=false;
     $.extend(this,CRITICAL_DECK[i]);
+    this.no=i;
     sh.criticals.push(this);
-    log("Critical for "+sh.name.replace(/\'/g,"&#39;")+":"+this.name.replace(/\'/g,"&#39;"));
     this.isactive=false;
     this.unit=sh;
-    //log("["+this.name+"] "+CRITICAL_translation.english[this.name]);
-    //this.faceup();
 }
 
-function Criticalfromname(sh,name) {
-    var i;
-    for (i=0; i<CRITICAL_DECK.length; i++) {
-	if (CRITICAL_DECK[i].name==name) {
-	    return new Critical(sh,i);
-	}
-    }
-    console.log("Could not find upgrade "+name);
-}
 Critical.prototype= {
     toString: function() {
 	var a,b,str="";
@@ -28,14 +18,16 @@ Critical.prototype= {
 	if (this.unit.team==1)  
 	    return "<tr "+c+">"+b+a+d+"</tr>"; 
 	else return "<tr "+c+">"+a+b+d+"</tr>";
-    }
+    },
 }
+// TODO: a facedown for all effects
 var CRITICAL_DECK=[
     {
 	type:"ship",
 	count: 2,
 	name:"Structural Damage",
 	faceup: function() {
+	    this.unit.log("Critical: "+this.name.replace(/\'/g,"&#39;"));
 	    this.isactive=true;
 	    this.ga=this.unit.getagility;
 	    this.unit.getagility=function() {
@@ -64,6 +56,7 @@ var CRITICAL_DECK=[
 	name:"Damaged Engine",
 	count: 1,
 	faceup: function() {
+	    this.unit.log("Critical: "+this.name.replace(/\'/g,"&#39;"));
 	    this.isactive=true;
 	    this.gd=this.unit.getdial;
 	    this.unit.getdial=function() {
@@ -89,11 +82,13 @@ var CRITICAL_DECK=[
 	type:"ship",
 	name:"Console Fire",
 	count: 2,
+	lethal:true,
 	faceup: function() {
+	    this.unit.log("Critical: "+this.name.replace(/\'/g,"&#39;"));
 	    this.isactive=true;
 	    this.bcp=this.unit.begincombatphase;
 	    this.unit.begincombatphase=function() {
-		var r=Math.floor(Math.random()*7);
+		var r=Math.floor(Math.random()*8);
 		var roll=FACE[ATTACKDICE[r]];
 		if (roll=="hit") {
 		    log("Console in fire for "+this.unit.name+": 1 <code class='hit'></code>");
@@ -119,6 +114,7 @@ var CRITICAL_DECK=[
 	count: 2,
 	name:"Weapon Malfunction",
 	faceup:function() {
+	    this.unit.log("Critical: "+this.name.replace(/\'/g,"&#39;"));
 	    this.isactive=true;
 	    var i;
 	    for (i=0; i<this.unit.weapons.length;i++) 
@@ -139,7 +135,7 @@ var CRITICAL_DECK=[
 	    }
 	},
 	action: function() {
-	    var r=Math.floor(Math.random()*7);
+	    var r=Math.floor(Math.random()*8);
 	    var roll=FACE[ATTACKDICE[r]];
 	    if (roll=="critical"||roll=="hit") this.facedown();
 	    else log("Primary weapon for "+this.unit.name+" not functioning.");
@@ -151,6 +147,7 @@ var CRITICAL_DECK=[
 	count:2,
 	name:"Damaged Sensor Array",
 	faceup: function() {
+	    this.unit.log("Critical: "+this.name.replace(/\'/g,"&#39;"));
 	    this.isactive=true;
 	    this.gsal=this.unit.getshipactionlist;
 	    this.unit.getshipactionlist=function() { return [];};
@@ -163,7 +160,7 @@ var CRITICAL_DECK=[
 	    }
 	},
 	action: function() {
-	    var r=Math.floor(Math.random()*7);
+	    var r=Math.floor(Math.random()*8);
 	    var roll=FACE[ATTACKDICE[r]];
 	    if (roll=="hit") this.facedown();
 	    else log("Sensor array still damaged for "+this.unit.name);
@@ -174,8 +171,10 @@ var CRITICAL_DECK=[
 	name:"Minor Explosion",
 	count: 2,
 	type:"ship",
+	lethal:true,
 	faceup: function() {
-	    var r=Math.floor(Math.random()*7);
+	    this.unit.log("Critical: "+this.name.replace(/\'/g,"&#39;"));
+	    var r=Math.floor(Math.random()*8);
 	    var roll=FACE[ATTACKDICE[r]];
 	    this.isactive=false;
 	    if (roll=="hit") this.unit.removehull(1); 
@@ -189,6 +188,7 @@ var CRITICAL_DECK=[
 	count: 2,
 	type:"ship",
 	faceup: function() {
+	    this.unit.log("Critical: "+this.name.replace(/\'/g,"&#39;"));
 	    this.unit.addstress();
 	    this.isactive=false;
 	},
@@ -200,7 +200,9 @@ var CRITICAL_DECK=[
 	name:"Direct Hit!",
 	count:7,
 	type:"ship",
+	lethal:true,
 	faceup: function() {
+	    this.unit.log("Critical: "+this.name.replace(/\'/g,"&#39;"));
 	    this.isactive=false;
 	    this.unit.removehull(1);
 	},
@@ -212,7 +214,9 @@ var CRITICAL_DECK=[
 	name:"Munitions Failure",
 	count:2,
 	type:"ship",
+	lethal:true,
 	faceup: function() {
+	    this.unit.log("Critical: "+this.name.replace(/\'/g,"&#39;"));
 	    var m=[];
 	    for (i=0; i<this.unit.weapons.length; i++) {
 		if (!this.unit.weapons[i].isprimary) m.push(this.unit.weapons[i]);
@@ -232,13 +236,14 @@ var CRITICAL_DECK=[
 	name:"Minor Hull Breach",
 	count:2,
 	type:"ship",
+	lethal:true,
 	faceup: function() {
+	    this.unit.log("Critical: "+this.name.replace(/\'/g,"&#39;"));
 	    this.isactive=true;
 	    this.hd=this.unit.handledifficulty;
 	    this.unit.handledifficulty=function(d) {
-		log("Calling minor hull");
 		this.hd.call(this.unit,d);
-		var r=Math.floor(Math.random()*7);
+		var r=Math.floor(Math.random()*8);
 		var roll=FACE[ATTACKDICE[r]];
 		if (roll=="hit"&&d=="RED") {
 		    log(this.name+" causes 1 <code class='hit'></code> for "+this.unit.name);
@@ -259,6 +264,7 @@ var CRITICAL_DECK=[
 	count:2,
 	type:"pilot",
 	faceup: function() {
+	    this.unit.log("Critical: "+this.name.replace(/\'/g,"&#39;"));
 	    this.isactive=true;
 	    this.er=this.unit.endround;
 	    this.skill=this.unit.skill;
@@ -291,6 +297,7 @@ var CRITICAL_DECK=[
 	count:2,
 	type:"pilot",
 	faceup: function() {
+	    this.unit.log("Critical: "+this.name.replace(/\'/g,"&#39;"));
 	    this.isactive=true;
 	    this.gas=this.unit.getattackstrength;
 	    this.cua=this.unit.cleanupattack;
@@ -310,7 +317,9 @@ var CRITICAL_DECK=[
 	name:"Injured Pilot",
 	count:2,
 	type:"pilot",
+	lethal:true,
 	faceup: function() {
+	    this.unit.log("Critical: "+this.name.replace(/\'/g,"&#39;"));
 	    var i;
 	    this.isactive=true;
 	    for (i=0; i<this.unit.upgrades.length; i++) {
@@ -324,6 +333,8 @@ var CRITICAL_DECK=[
 		    delete this.unit[i];
 		}
 	    }
+	    // Do not loose IA control on the unit !
+	    if (TEAMS[this.unit.team].isia) $.extend(this.unit,IAUnit.prototype);
 	    this.unit.show();
 	},
 	facedown: function() {
@@ -345,7 +356,9 @@ var CRITICAL_DECK=[
 	name:"Stunned Pilot",
 	count:2,
 	type:"pilot",
+	lethal:true,
 	faceup: function() {
+	    this.unit.log("Critical: "+this.name.replace(/\'/g,"&#39;"));
 	    this.isactive=true;
 	    this.rc=this.unit.resolvecollision;
 	    this.roc=this.unit.resolveocollision;

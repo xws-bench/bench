@@ -106,7 +106,10 @@ text-decoration:none;
 color:#fff;
 padding:5px
 }
-
+.name select {
+background:steelblue;
+color:white;width:100%;text-align:center;
+}
 .modalDialog {
 position:fixed;
 top:0;
@@ -397,11 +400,10 @@ border-radius:16px;
 border-style:solid;
 border-width:1px
 }
-
 select {
-height:2em
+height:2em;
+width:150px
 }
-
 .hull,.shield {
 font-family:'symbols';
 line-height:8px;
@@ -1024,13 +1026,16 @@ background:#aaa
 display:block;
 visibility:visible
 }
+.ver {
+font-size:x-small
+}
 footer {
 position:fixed;
-background:rgba(0,0,0,0);
+background:rgba(0,0,0,0.5);
 top:0;
 right:0;
-width:30%;
-height:60px;
+width:40%;
+height:58px;
 z-index:1;
 text-align:left;
 overflow:auto;
@@ -1106,7 +1111,63 @@ width:0;
 font-size:0;
 line-height:20px
 }
-
+input.factionselect + label {
+  padding: 4px;
+  margin:10px;
+  font-size: xx-large;
+  height: 40px;
+  width: 30%;
+  line-height:50px;
+  border-radius: 100%;
+  display:inline;
+  cursor: pointer;
+}
+input.factionselect:checked + label {
+    border:1px solid;
+    box-shadow: 5px 5px 5px #888888;
+}
+input.human + label {
+  padding:0;
+  width: 170px;
+  height: 20px;
+  border:1px outset;
+}
+.human,.factionselect {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+}
+.human + label {
+  display: block;
+  width:100%;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  font-size:large;
+  height:28px;
+}
+input.human + label:after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  color: #fff;
+  text-align: center;
+  font-size:large;
+  border:0 0 0 4px solid;
+}
+input.human:checked + label:after {
+  background-color:#4682b4;
+  color: #ffffff;
+  content: attr(data-on);
+}
+input.human:not(:checked) + label:after {
+  color:#4682b4;
+  background-color: #ffffff;
+  content: attr(data-off);
+}
 @font-face {
 font-family:'symbols';
 src:url(x-wingsymbols.ttf) format("truetype")
