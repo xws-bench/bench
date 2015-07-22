@@ -55,7 +55,7 @@ var SOUND_FILES=[
     "ogg/Falcon-Fly3",
     "ogg/YWing-Fly2",
     "ogg/ISD-Fly",
-    "ogg/Missile"
+    "ogg/missile"
 ];
 var SOUNDS={};
 var SOUND_NAMES=["explode","xwing_fire","tie_fire","slave_fire","falcon_fire","xwing_fly","tie_fly","slave_fly","falcon_fly","yt2400_fly","ywing_fly","isd_fly","missile"];
