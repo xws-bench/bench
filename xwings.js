@@ -110,11 +110,8 @@ waitingforaction=new ActionQueue();
 
 function nextstep() {
     var i;
-    console.log("nextstep:"+phase+" "+activeunit.name);
     if (activeunit.incombat) return;
-    console.log("nextstep:waitingforaction.next(begin):"+waitingforaction.queue.length);
     if (!waitingforaction.next()&&waitingforaction.queue.length==0) {
-	console.log("nextstep:"+activeunit.name);
 	switch(phase) {
 	case PLANNING_PHASE:
 	    enablenextphase(); 
@@ -122,11 +119,9 @@ function nextstep() {
 	    break;
 	case ACTIVATION_PHASE:
 	    enablenextphase();
-	    console.log("nextstep:nextactivation");
 	    nextactivation();
 	    break;
 	case COMBAT_PHASE:
-	    console.log("nextstep:nextcombat");
 	    nextcombat();
 	    break;
 	}
@@ -265,7 +260,6 @@ function nextcombat() {
     active=last; 
     tabskill[skillturn][last].select();
     old.unselect();
-    console.log("nextcombat:"+activeunit.name);
     activeunit.beginattack();
     activeunit.doattack(false);
 }
@@ -332,14 +326,12 @@ function modroll(f,n,id) {
     var c=$(".criticalreddice").length;
     var r=f(100*foc+10*c+h,n);
     $("#attack").empty();
-    console.log("modifying with "+(100*foc+10*c+h)+"->"+r+" value dice/"+n);
     for (i=0; i<Math.floor(r/100)%10; i++,j++)
 	$("#attack").append("<td class='focusreddice'></td>");
     for (i=0; i<(Math.floor(r/10))%10; i++,j++)
 	$("#attack").append("<td class='criticalreddice'></td>");
     for (i=0; i<r%10; i++,j++)
 	$("#attack").append("<td class='hitreddice'></td>");
-    console.log("modifying with "+(n-j)+" blank dices");
     for (i=j; i<n; i++)
 	$("#attack").append("<td class='blankreddice'></td>");
     $("#moda"+id).remove();
@@ -384,7 +376,6 @@ function reroll(n,forattack,type,id) {
 		type=Math.floor(type/10);
 	    }
 	}
-	console.log("rerolling "+m+" dices");
 	$("#rerolla"+id).remove();
 	for (i=0; i<m; i++) {
 	    var r=Math.floor(Math.random()*8);
@@ -664,18 +655,14 @@ function nextphase() {
 	}
 	filltabskill();
 	skillturn=0;
-	console.log("nextphase:ACTI>nextstep");
 	nextstep();
-	console.log("nextphase:ACTI<nextstep");
 	break;
     case COMBAT_PHASE:
 	log("<div>[turn "+round+"] Combat phase</div>");
 	$("#attackdial").show();
 	skillturn=12;
 	for (i=0; i<squadron.length; i++) squadron[i].begincombatphase();
-	console.log("nextphase:COMBAT>nextstep");
 	nextstep();
-	console.log("nextphase:COMBAT<nextstep");
 	break;
     }
     if (phase>SELECT_PHASE2) activeunit.show();
