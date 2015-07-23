@@ -31,7 +31,7 @@ var PILOTS = [
 	    Unit.prototype.getdefensestrength=function(w,sh) {
 		var defense=ds.call(this,w,sh);
 		if (sh.name=="Wedge Antilles"&&defense>0) {
-		    log("["+sh.name+"] defense reduced from "+defense+" to "+(defense-1)+" for "+this.name);
+		    sh.log("defense reduced from "+defense+" to "+(defense-1)+" for "+this.name);
 		    return defense-1; 
 		}
 		else return defense;
@@ -57,12 +57,12 @@ var PILOTS = [
 		var p=[]; 
 		p=this.selectnearbyunits(2,function(a,b) { return (a.team==b.team&&a!=b);});
 		if (p.length>0) {
-		    log("["+this.name+"] focus -> other friendly ship");
+		    this.log("<code class='xfocustoken'></code> -> other friendly ship");
 		    this.resolveactionselection(p,function(k) {
-			log(p[k].name+"  selected by Garven");
+			p[k].log("+1 <code class='xfocustoken'></code> from "+this.name);
 			p[k].addfocustoken();
 			nextstep();
-		    });
+		    }.bind(this));
 		}
 	    }.bind(this));
 	},
@@ -102,7 +102,6 @@ var PILOTS = [
 	done:true,
         init: function() {
 	    var biggs=this;
-	    log("[Biggs Darklighter] is the only target");
 	    var gr=Weapon.prototype.getrangeallunits;
 	    Weapon.prototype.getrangeallunits=function() {
 		var r=gr.call(this);
@@ -133,7 +132,7 @@ var PILOTS = [
 		var f=Math.floor(m/10);
 		var e=m-f*10;
 		if (f>0) {
-		    log("["+this.name+"] 1 <code class='xfocustoken'></code>-> 1 <code class='xevadetoken'></code>");
+		    this.log("1 <code class='xfocustoken'></code>-> 1 <code class='xevadetoken'></code>");
 		    return m-9;
 		} 
 		return m;
@@ -172,7 +171,7 @@ var PILOTS = [
 		var p=this.selectnearbyunits(2,function(a,b) { return a.team==b.team&&a!=b; });
 		if (p.length>0) {
 		    p.push(this);
-		    log("<b>["+this.name+"] selects ship that may acquire target lock (self to cancel)</b>");
+		    log("<b>selects ship that may acquire target lock ("+this.name+" to cancel)</b>");
 		    this.resolveactionselection(p,function(k) {
 			if (k<p.length-1) { 
 			    p[k].resolvetarget();  
@@ -210,7 +209,7 @@ var PILOTS = [
 		function(w,defender) {
 		    var r=this.getrange(defender);
 		    if (r>=2&&r<=3) {
-			log("["+this.name+"] reroll any blank result");
+			this.log("reroll any blank result");
 			return true;
 		    }
 		    return false;
@@ -278,7 +277,7 @@ var PILOTS = [
 		var c=Math.floor(m/10);
 		var h=(m-c*10)%100;
 		if (h>0) {
-		    log("["+this.name+"] 1 <code class='hit'></code> -> 1 <code class='critical'></code>");
+		    this.log("1 <code class='hit'></code> -> 1 <code class='critical'></code>");
 		    return m+9;
 		}
 		return m;
@@ -300,7 +299,7 @@ var PILOTS = [
 	    this.handledifficulty=function(difficulty) {
 		r.call(this,difficulty);
 		if (difficulty=="GREEN") {
-		    log("["+this.name+"] green maneuver -> free focus action");
+		    this.log("green maneuver -> free focus action");
 		    this.addfocus();
 		}
 	    }.bind(this);
@@ -320,9 +319,9 @@ var PILOTS = [
 	    var gas=this.getattackstrength;
 	    this.getattackstrength=function(w,sh) {
 		var a=gas.call(this,w,sh);
-		if (sh.gethitsector(this)>3) {
+		if (!sh.isinsector(sh.m,3,this)) {
 		    a=a+1;
-		    log("["+this.name+"] +1 attack against "+sh.name);
+		    this.log("+1 attack against "+sh.name);
 		}
 		return a;
 	    };
@@ -370,7 +369,7 @@ var PILOTS = [
 	    this.getattackstrength=function(w,sh) {
 		var a=g.call(this,w,sh);
 		if (this.gethitrange(w,sh)==1) { 
-		    log("["+this.name+"] +1 attacking "+sh.name);
+		    this.log("+1 attack against "+sh.name);
 		    return a+1;
 		}
 		return a;
@@ -401,7 +400,7 @@ var PILOTS = [
 		    if (!this.dead&&attacker!=this
 			&&attacker.getrange(this)==1
 			&&attacker.team==this.team&&w.isprimary) {
-			log("["+this.name+"] 1 attack reroll for "+attacker.name);
+			attacker.log("+1 reroll given by "+this.name);
 			return true;
 		    }
 		    return false;
@@ -435,7 +434,7 @@ var PILOTS = [
 			var s3=this.selectdamage(true);
 			CRITICAL_DECK[s3].count--;
 			var sc=[s1,s2,s3];
-			log("<b>[Maarek Stele] select one of 3 criticals</b>");
+			log("<b>"+unit.name+" selects one of 3 criticals</b>");
 			unit.selectcritical(sc,function(m) { 
 			    CRITICAL_DECK[m].count++;
 			    if (this.faceup(new Critical(this,m))) this.removehull(1);
@@ -485,7 +484,7 @@ var PILOTS = [
 		this.actionr=round;
 		if (this.candoaction()) {
 		    waitingforaction.add(function() {
-			log("["+this.name+"] 2 actions / round");
+			this.log("2 actions / round");
 			this.freeaction(function() {
 			    this.endaction();
 			}.bind(this));
@@ -528,12 +527,10 @@ var PILOTS = [
         unit: "TIE Interceptor",
         skill: 4,
         points: 21,
-        upgrades: [
-            "Elite",
-        ],
+        upgrades: ["Elite"],
     },
     {
-        name: "'Fel's Wrath'",
+        name: "'Fel\'s Wrath'",
         faction:"EMPIRE",
         unique: true,
         unit: "TIE Interceptor",
@@ -560,7 +557,7 @@ var PILOTS = [
 	endattack: function(c,h) {
 	    if (this.candoaction()) {
 	    waitingforaction.add(function() {
-		log("["+this.name+"] free boost or roll action (select self to cancel)");
+		this.log("free boost or roll action (select self to cancel)");
 		var m0=this.getpathmatrix(this.m.clone().rotate(90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(-90,0,0);
 		var m1=this.getpathmatrix(this.m.clone().rotate(-90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(90,0,0);
 		this.resolveactionmove(
@@ -594,7 +591,7 @@ var PILOTS = [
 	done:true,
         addstress: function () {
 	    this.stress++;
-	    log("["+this.name+"] stress -> free focus action");
+	    this.log("stress token -> free focus action");
 	    this.addfocus();
 	},
         unit: "TIE Interceptor",
@@ -711,10 +708,11 @@ var PILOTS = [
 	    var unit=this;
 	    var p=this.selectnearbyunits(1,function(t,s) { return t.team==s.team&&t!=s; })
 	    if (p.length>0) {
-		log("<b>["+this.name+"] select a pilot for a free action</b>");
+		log("<b>select a pilot for a free action given by "+this.name+"</b>");
 		waitingforaction.add(function() {
 		    this.resolveactionselection(p,function(k) {
 			activeunit=p[k];
+			p[k].log("free action");
 			$("#"+p[k].id).addClass("selected");
 			center(activeunit);
 			activeunit.show();
@@ -786,7 +784,7 @@ var PILOTS = [
 	    Unit.prototype.cancelcritical=function(c,e,sh) {
 		var ce=cc.call(this,c,e,sh);
 		if (c>ce&&sh!=this&&activeunit.name=="Kath Scarlet") {
-		    log("[Kath Scarlet] +1 stress for "+this.name+" for cancelling <code class='critical'></code>");
+		    this.log("+1 stress for cancelling <code class='critical'></code> given by "+unit.name);
 		    this.addstress();
 		}
 		return ce;
@@ -808,7 +806,7 @@ var PILOTS = [
         faction:"EMPIRE",
         completemaneuver: function(dial,realdial,difficulty) {
 	    if (dial.match("BL3|BL2|BL1")) {
-		log("["+this.name+"] change bank turn speed");
+		this.log("change bank turn speed");
 		var newdial=dial.replace(/L/,"R");
 		this.resolveactionmove(
 		    [this.getpathmatrix(this.m,realdial),
@@ -818,7 +816,7 @@ var PILOTS = [
 			else Unit.prototype.completemaneuver.call(this,newdial,newdial,difficulty);
 		    }.bind(this),false,true);
 	    } else if (dial.match("BR3|BR2|BR1")) {
-		log("["+this.name+"] change bank turn speed");
+		this.log("change bank turn speed");
 		var newdial=dial.replace(/R/,"L");
 		this.resolveactionmove(
 		    [this.getpathmatrix(this.m,dial),
@@ -853,7 +851,7 @@ var PILOTS = [
 		function() { return 1; },
 		function(w,defender) {
 		    if (!w.isprimary) {
-			log("["+this.name+"] +1 reroll");
+			this.log("+1 reroll for secondary weapon");
 			return true;
 		    }
 		    return false;
@@ -923,7 +921,7 @@ var PILOTS = [
 		function() { return 1; },
 		function(w,defender) {
 		    if (this.stress>0) {
-			log("["+this.name+"] +1 attack reroll (stressed)");
+			this.log("+1 attack reroll (stressed)");
 			return true;
 		    }
 		    return false;
@@ -936,7 +934,7 @@ var PILOTS = [
 		function() { return 1; },
 		function(w,attacker) {
 		    if (this.stress>0) {
-			log("["+this.name+"] +1 defense reroll (stressed)");
+			this.log("+1 defense reroll (stressed)");
 			return true;
 		    }
 		    return false;
@@ -1000,7 +998,7 @@ var PILOTS = [
         skill: 4,
 	begincombatphase: function() {
 	    if (!this.dead) {
-		log("<b>["+this.name+"] select a pilot for a skill of 12</b>");
+		log("<b>select a pilot for a PS of 12 ("+this.name+")</b>");
 		var p=this.selectnearbyunits(3,function(t,s) { return t.team==s.team&&t!=s; })
 		if (p.length>0) {
 		    waitingforaction.add(function() {
@@ -1010,7 +1008,7 @@ var PILOTS = [
 				p[k].skill=12;
 				filltabskill();
 				p[k].showstats();
-				log("["+this.name+"] pilot skill of 12 for "+p[k].name);
+				this.log("pilot skill of 12");
 				p[k].endcombatphase=function() {
 				    this.skill=this.oldskill;
 				    filltabskill();
@@ -1045,12 +1043,12 @@ var PILOTS = [
 		    var p=this.selectnearbyunits(3,function(t,s) { return s.team==t.team&&s!=t; });
 		    if (p.length>0) {
 			p.push(this);
-			log("<b>["+this.name+"] assigns one focus token to a friendly unit (self to cancel)</b>");
+			log("<b>assign one focus token to a friendly unit ("+this.name+" to cancel)</b>");
 			this.resolveactionselection(p,function(k) {
 			    if (this!=p[k]) {
 				this.removefocustoken();
 				p[k].addfocustoken();
-				log("["+this.name+"] focus token assigned to "+p[k].name);
+				p[k].log("+1 <code class='xcodetoken'></code> token");
 			    }
 			    nextstep();
 			}.bind(this));
@@ -1082,7 +1080,7 @@ var PILOTS = [
 		var r=Math.floor(Math.random()*8);
 		var f=FACE[ATTACKDICE[r]];
 		unit.addstress();
-		log("["+unit.name+"] +1 attack die");
+		unit.log("+1 attack die");
 		if (f=="focus") return m+100;
 		if (f=="hit") return m+1;
 		if (f=="critical") return m+10;
@@ -1141,7 +1139,7 @@ var PILOTS = [
 			&&attacker.getrange(this)==1
 			&&attacker.team==this.team
 			&&w.isprimary!=true) {
-			log("["+this.name+"] 2 reroll for "+attacker.name);
+			attacker.log("+2 rerolls given by "+this.name);
 			return true;
 		    }
 		    return false;
@@ -1173,7 +1171,7 @@ var PILOTS = [
 		if (r0>1) this.weapons[i].range[0]--;
 		if (r1<3) this.weapons[i].range[1]++;
 	    }
-	    log("["+this.name+"] extending weapon ranges");
+	    this.log("extending weapon ranges");
 	},
         unique: true,
         unit: "TIE Bomber",
@@ -1217,18 +1215,17 @@ var PILOTS = [
         faction:"EMPIRE",
         begincombatphase: function() {
 	    if (!this.dead) {
-		log("JENDON"+this.targeting.length);
 		var p=this.selectnearbyunits(1,function(s,t) { return s.team==t.team&&s!=t; });
 		if (p.length>0&&this.targeting.length) {
 		    p.push(this);
-		    log("["+this.name+"] assigns target lock to a friendly unit (self to cancel)");
+		    this.log("<b>move target lock to a friendly unit (self to cancel)</b>");
 		    waitingforaction.add(function() {
 			this.resolveactionselection(p,function(k) {
 			    if (this!=p[k]) {
 				var t=this.targeting[0];
 				p[k].addtarget(t);
 				this.removetarget(t);
-				log("["+this.name+"] "+p[k].name+" targets "+t.name);
+				p[k].log("targets "+t.name);
 			    }
 			    nextstep();
 			}.bind(this));
@@ -1260,7 +1257,7 @@ var PILOTS = [
 	    var unit=this;
 	    Unit.prototype.addstress=function() {
 		if (this!=unit&&this.getrange(unit)<=2&&unit.stress<=2) {
-		    log("["+this.name+"] transferred stress to "+unit.name); 
+		    this.log("transferred stress to "+unit.name); 
 		    unit.addstress();
 		    unit.showinfo();
 		} else this.stress++;
@@ -1348,7 +1345,7 @@ var PILOTS = [
 	done:true,
         completemaneuver: function(dial,realdial,difficulty) {
 	    if (dial.match("K5|K3")) {
-		log("["+this.name+"] select one K-turn");
+		this.log("select one K-turn");
 		this.resolveactionmove(
 		    [this.getpathmatrix(this.m,"K1"),
 		     this.getpathmatrix(this.m,"K3"),
@@ -1379,7 +1376,7 @@ var PILOTS = [
 		this.removeevadetoken();
 		$("atokens .xevadetoken").remove();
 		$("#attack").append("<b class='hitreddice'></b>");
-		log("["+this.name+"] +1 <code class='hit'></code> for attacking at range 2-3");
+		this.log("+1 <code class='hit'></code> for attacking at range 2-3");
 	    }
 	},   
 	done:true,
@@ -1453,7 +1450,7 @@ var PILOTS = [
         done:true,
 	endattack: function(c,h) {
 	    if (c+h==0) {
-		log("["+this.name+"] target is hit");
+		this.log(targetunit.name+" is hit");
 		targetunit.ishit(this);
 	    }
 	    Unit.prototype.endattack.call(this,c,h);
@@ -1475,7 +1472,7 @@ var PILOTS = [
 	    var p=this.selectnearbyunits(1,function(t,s) { return (t.team==s.team)&&(s!=t)&&(s.candoaction()); });
 	    if (p.length>0) {
 		var unit=this;
-		log("<b>["+this.name+"] assigns a free action to friendly unit");
+		this.log("assign a free action to friendly unit");
 		waitingforaction.add(function() {
 		this.resolveactionselection(p,function(k) {
 		    activeunit=p[k];
@@ -1533,7 +1530,7 @@ var PILOTS = [
 	    var r=ar.call(this);
 	    if (targetunit.istargeted&&this.target==0) {
 		this.addtarget(targetunit);
-		log("["+this.name+"] lock target "+targetunit.name);	
+		this.log("target locks "+targetunit.name);	
 	    }
 	    return r;
 	},
@@ -1552,7 +1549,6 @@ var PILOTS = [
         faction:"EMPIRE",
 	done:true,
         endattack: function(c,h) {
-	    log("h="+h);
 	    if (this.canusefocus()&&h>0) {
 		waitingforaction.add(function() {
 		    this.addaction(["FOCUS"],function() { 
@@ -1619,7 +1615,7 @@ var PILOTS = [
 		var c=Math.floor(m/10);
 		var h=(m-c*10)%100;
 		if (h>0) {
-		    log("["+unit.name+"] 1 <code class='hit'></code>-> 1 <code class='critical'></code>");
+		    unit.log("1 <code class='hit'></code>-> 1 <code class='critical'></code>");
 		    return m+9;
 		} 
 		return m;
@@ -1657,7 +1653,7 @@ var PILOTS = [
 		this.skill=-1;
 		this.select();
 		old.unselect();
-		log("["+this.name+"] New attack possible (no attack next turn)");
+		this.log("new attack possible (no attack next turn)");
 		this.showattack();
 		this.skill=oldskill;
 		this.showstats();
@@ -1665,7 +1661,7 @@ var PILOTS = [
 	    if (this.hasdoubledfired==round-1) {
 		this.hasfired=0;
 		this.hasdoubledfired=0;
-		log("["+this.name+"] can fire next turn.");
+		this.log("can fire next turn.");
 	    }
 	},
         unique: true,
@@ -1747,7 +1743,7 @@ var PILOTS = [
 	    var ch=targetunit.evadeattack(this);
 	    Unit.prototype.resolvedamage.call(this);
 	    if (ch.c+ch.h>0) {
-		log("["+this.name+"] +1 focus token when hitting "+targetunit.name);
+		this.log("+1 <code class='xfocustoken'></code>");
 		this.addfocustoken();
 	    }
 	},
@@ -1766,7 +1762,7 @@ var PILOTS = [
 	done:true,
 	endattack:function(c,h) {
 	    if (targetunit.targeting.length+targetunit.focus+targetunit.evade>0)
-		log("["+this.name+"] removing token from "+targetunit.name);
+		this.log("remove token from "+targetunit.name);
 	    if (targetunit.targeting.length>0) targetunit.removetarget(targetunit.targeting[0]);
 	    else if (targetunit.focus>0) targetunit.removefocustoken();
 	    else if (targetunit.evade>0) targetunit.removeevadetoken();
@@ -1790,7 +1786,7 @@ var PILOTS = [
 	    // Automatic removal of stress
 	    var r=Math.floor(Math.random()*8);
 	    var roll=FACE[ATTACKDICE[r]];
-	    log("["+this.name+"] remove 1 stress token, roll 1 attack dice")
+	    this.log("remove 1 stress token, roll 1 attack dice")
 	    if (roll=="hit") { this.resolvehit(1); this.checkdead(); }
 	},
 	faction:"REBEL",
@@ -1810,7 +1806,7 @@ var PILOTS = [
 	done:true,
         removetarget: function(t) {
 	    if (this.stress) { 	    
-		log("["+this.name+"] using target -> removes a stress token");
+		this.log("using target -> removes a stress token");
 		this.removestresstoken();
 	    }
 	    Unit.prototype.removetarget.call(this,t);
@@ -1818,7 +1814,7 @@ var PILOTS = [
         addtarget: function(t) {
 	    if (this.stress) { 
 		this.removestresstoken();
-		log("["+this.name+"] targeting -> removes a stress token");
+		this.log("targeting -> removes a stress token");
 	    }
 	    Unit.prototype.addtarget.call(this,t);
 	},
@@ -1836,7 +1832,7 @@ var PILOTS = [
 	done:true,
         isattackedby: function(w,a) {
 	    if (this.target==0||this.skill<a.skill) { // Priority to define
-		log("["+this.name+"] free target token on "+a.name);
+		this.log("free target token on "+a.name);
 		this.addtarget(a);
 	    }
 	},
@@ -1857,7 +1853,7 @@ var PILOTS = [
 	done:true,
         freemove: function() {
 	    waitingforaction.add(function() {
-		log("["+this.name+"] free boost or roll action (select self to cancel)");
+		this.log("free boost or roll action (select self to cancel)");
 		var m0=this.getpathmatrix(this.m.clone().rotate(90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(-90,0,0);
 		var m1=this.getpathmatrix(this.m.clone().rotate(-90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(90,0,0);
 		this.resolveactionmove(
@@ -1903,7 +1899,7 @@ var PILOTS = [
 	    var i;
 	    for (i=0; i<r[1].length; i++) {
 		if (squadron[r[1][i].unit].team!=this.team) {
-		    log("["+this.name+"] +1 defense due to ennemy at range 1");
+		    this.log("+1 defense due to ennemy at range 1");
 		    return d+1;
 		}
 	    }
@@ -1932,7 +1928,7 @@ var PILOTS = [
 		    for (i=0; i<l; i++) { 	
 			$("#attack").append("<b class='hitreddice'></b>");
 		    }
-		    log("["+this.name+"] focus -> hit due to stress");
+		    this.log("focus -> hit, removing all stress");
 		    $("#atokens .xstresstoken").remove();
 		} 
 	    }
@@ -1955,7 +1951,7 @@ var PILOTS = [
 	done:true,
         isTurret: function(w) {
 	    if (w.type=="Torpedo") {
-		log("["+this.name+"] can fire torpedos at 360 degrees");
+		this.log("can fire torpedos at 360 degrees");
 		return true;
 	    }
 	    return false;
@@ -1995,7 +1991,7 @@ var PILOTS = [
 	    this.getattackstrength=function(w,sh) {
 		var a=g.call(this,w,sh);
 		if (sh.stress>0&&this.weapons[w].isprimary) { 
-		    log("["+this.name+"] +1 attacking "+sh.name);
+		    this.log("+1 attack roll against "+sh.name);
 		    return a+1;
 		}
 		return a;
@@ -2026,7 +2022,7 @@ var PILOTS = [
 		var s2=this.selectdamage(true);
 		CRITICAL_DECK[s2].count--;
 		var sc=[s1,s2];
-		log("<b>["+this.name+"] select one of 2 criticals</b>");
+		this.log("<b>select one out of 2 criticals</b>");
 		this.selectcritical(sc,function(m) { 
 		    CRITICAL_DECK[m].count++;
 		    if (this.faceup(new Critical(this,m))) this.removehull(1);
@@ -2091,7 +2087,7 @@ var PILOTS = [
 	    var i;
 	    for (i=0; i<this.touching.length; i++) {
 		var u=this.touching[i];
-		log("["+this.name+"] touching "+u.name+" -> 1 <code class='hit'></code>");
+		this.log("touching "+u.name+" -> 1 <code class='hit'></code>");
 		u.resolvehit(1);
 		u.checkdead();
 	    }
@@ -2133,10 +2129,10 @@ var PILOTS = [
 	    this.addattackmoda(this,function(m,n) {
 		return  (this.getrange(targetunit)<=2);
 	    }.bind(this),function(m,n) {
-		var h=m%10;
-		if (h>0) {
-		    log("["+this.name+"] 1 <code class='hit'></code> -> 1 <code class='critical'></code>");
-		    return m+9;
+		var f=Math.floor(m/100)%10;
+		if (f>0) {
+		    this.log("1 <code class='xfocustoken'></code> -> 1 <code class='critical'></code>");
+		    return m+99;
 		}
 		return m;
 	    }.bind(this),false,"hit");
@@ -2173,12 +2169,12 @@ var PILOTS = [
 		    return 0; });
 		if (ch>=10) {
 		    p[0].resolvecritical(1);
-		    log("["+this.name+"] transferred 1 critical to "+p[0].name);
+		    this.log("1 critical transferred to "+p[0].name);
 		    return ch-10;
 		} 
 		p[0].resolvehit(1);
 		p[0].checkdead();
-		log("["+this.name+"] transferred 1 hit to "+p[0].name);
+		this.log("1 hit transferred to "+p[0].name);
 		return ch-1;
 	    }
 	    return ch;
@@ -2205,7 +2201,7 @@ var PILOTS = [
 		    var p=this.gettargetableunits(1);
 		    var i;
 		    if (p.length>0) {
-			log("["+this.name+"] +1 focus, ennemy at range 1");
+			this.log("+1 <code class='xfocustoken'></code>, ennemy at range 1");
 			this.addfocustoken();
 		    }
 		}
@@ -2257,7 +2253,7 @@ var PILOTS = [
 		    // Serissu dead ? 
 		    if (this.dead) return false;
 		    if (defender!=this&&defender.getrange(this)==1&&defender.team==this.team) {
-			log("["+this.name+"] 1 reroll for "+defender.name);
+			defender.log("+1 reroll from "+this.name);
 			return true;
 		    }
 		    return false;
@@ -2279,7 +2275,7 @@ var PILOTS = [
         endbeingattacked: function(c,h) {
 	    Unit.prototype.endbeingattacked.call(this,c,h);
 	    if (c+h==0) {
-		log("["+this.name+"] not hit, +1 <code class='xevadetoken'></code>");
+		this.log("no hit, +1 <code class='xevadetoken'></code>");
 		this.addevade();
 	    }
 	},        
@@ -2322,7 +2318,7 @@ var PILOTS = [
 	    if (targetunit.hull<=0&&(this.shield<this.ship.shield)) {
 		this.shield++;
 		this.showstats();
-		log("["+this.name+"] +1 <code class='cshield'></code>");
+		this.log("+1 <code class='cshield'></code> for a kill");
 	    }
 	},
 	done:true,
@@ -2395,7 +2391,7 @@ var PILOTS = [
 	faction:"SCUM",  
         completemaneuver: function(dial,realdial,difficulty) {
 	    if (dial=="SL3") {
-		log("["+this.name+"] pick a Sengor turn");
+		this.log("pick a Sengor turn");
 		this.resolveactionmove(
 		    [this.getpathmatrix(this.m,"SL3"),
 		     this.getpathmatrix(this.m,"TL3")],
@@ -2404,7 +2400,7 @@ var PILOTS = [
 			else Unit.prototype.completemaneuver.call(this,dial,"TL3",difficulty);
 		    }.bind(this),false,true);
 	    } else if (dial=="SR3") {
-		log("["+this.name+"] pick a Sengor turn");
+		this.log("pick a Sengor turn");
 		this.resolveactionmove(
 		    [this.getpathmatrix(this.m,"SR3"),
 		     this.getpathmatrix(this.m,"TR3")],
@@ -2439,7 +2435,7 @@ var PILOTS = [
 		var a=g.call(this,w,sh);
 		var p=this.selectnearbyunits(2,function(a,b) {return a.team==b.team&&a!=b });
 		if (p.length==0) {
-		    log("["+this.name+"] +1 attacking "+sh.name+" at range >=3 of friendly ships");
+		    this.log("+1 attacking "+sh.name+" at range >=3 of friendly ships");
 		    return a+1;
 		} return a;
 	    }.bind(this);
@@ -2464,16 +2460,16 @@ var PILOTS = [
 		/* TODO: should be an option */
 		if (p.length>0) {
 		    p.push(this)
-		    log("<b>["+this.name+"] select a focus/evade token to take (self to cancel)</b>");
+		    this.log("<b>select a focus/evade token to take (self to cancel)</b>");
 		    waitingforaction.add(function() {
 			this.resolveactionselection(p,function(k) {
 			    if (this!=p[k]) { 
 				if (p[k].evade>0) { 
 				    p[k].removeevadetoken(); this.addevadetoken(); 
-				    log("["+this.name+"] evade taken from "+p[k].name);
+				    this.log("evade taken from "+p[k].name);
 				} else if (p[k].focus>0) { 
 				    p[k].removefocustoken(); this.addfocustoken(); 
-				    log("["+this.name+"] focus taken from "+p[k].name);
+				    this.log("focus taken from "+p[k].name);
 				}
 			    }
 			    nextstep();
@@ -2561,8 +2557,8 @@ var PILOTS = [
 	    var a=Unit.prototype.getattackstrength.call(this,w,sh);
 	    var m=this.m.clone();
 	    this.m.rotate(180,0,0);
-	    if (this.gethitsector(sh)<=3) { 
-		log("["+this.name+"] +1 attacking "+sh.name+" in auxiliary arc");
+	    if (this.isinsector(this.m,3,sh)) { 
+		this.log("+1 attack roll against "+sh.name+" in auxiliary arc");
 		a=a+1;
 	    }
 	    this.m=m;
@@ -2591,7 +2587,7 @@ var PILOTS = [
 	    var unit=this;
 	    Bomb.prototype.drop=function(m) {
 		if (this.unit==unit) {
-		    log("["+this.name+"] select location to drop bomb");
+		    this.log("select location to drop bomb");
 		    this.resolveactionmove(
 			[
 			    unit.getpathmatrix(unit.m.clone().rotate(180,0,0).translate(0,30),"F1"),
@@ -2639,8 +2635,8 @@ var PILOTS = [
 	    var g=this.getattackstrength;
 	    this.getattackstrength=function(w,sh) {
 		var a=g.call(this,w,sh);
-		if (this.gethitsector(sh)>3) { 
-		    log("["+this.name+"] +1 attacking "+sh.name+" outside firing arc");
+		if (!this.isinsector(this.m,3,sh)) { 
+		    this.log("+1 attack roll against "+sh.name+" outside firing arc");
 		    return a+1;
 		}
 		return a;
@@ -2670,7 +2666,7 @@ var PILOTS = [
 	    if (p.length>0) {
 		p.push(this);
 		waitingforaction.add(function() {
-		    log("<b>["+this.name+"] selects new target to lock at the cost of 1 stress (self to cancel)</b>");
+		    this.log("<b>select new target to lock at the cost of 1 stress (self to cancel)</b>");
 		    this.resolveactionselection(p,function(k) { 
 			if (k<p.length-1&&k>-1&&this.targeting.indexOf(p[k])==-1) { 
 			    this.addtarget(p[k]);
@@ -2732,7 +2728,7 @@ var PILOTS = [
 		if (this.getrange(unit)<=3 &&unit.team!=this.team&&unit.stress==0) {
 		    unit.addstress();
 		    this.resolvehit(1);
-		    log("["+unit.name+"] +1 stress for +1 <code class='hit'></code> to "+this.name);
+		    unit.log("+1 stress for +1 <code class='hit'></code> to "+this.name);
 		    this.checkdead();
 		}
 	    }
@@ -2756,16 +2752,16 @@ var PILOTS = [
 		var p=this.selectnearbyunits(2,function(a,b) {return a.team!=b.team; });
 		if (p.length>0) {
 		    p.push(this)
-		    log("<b>["+this.name+"] select a focus/evade token to take (self to cancel)</b>");
+		    this.log("<b>select a focus/evade token to take (self to cancel)</b>");
 		    waitingforaction.add(function() {
 			this.resolveactionselection(p,function(k) {
 			    if (this!=p[k]) { 
 				if (p[k].evade>0) { 
 				    p[k].removeevadetoken(); this.addevadetoken(); 
-				    log("["+this.name+"] evade taken from "+p[k].name);
+				    this.log("evade taken from "+p[k].name);
 				} else if (p[k].focus>0) { 
 				    p[k].removefocustoken(); this.addfocustoken(); 
-				    log("["+this.name+"] focus taken from "+p[k].name);
+				    this.log("focus taken from "+p[k].name);
 				}
 			    }
 			    nextstep();
@@ -2793,7 +2789,7 @@ var PILOTS = [
 		waitingforaction.add(function() {
 		    var p=this.gettargetableunits(2);
 		    if (p.length>0) {
-			log("<b>["+this.name+"] select a pilot to set its skill to 0.</b>");
+			this.log("<b>select a pilot to set its skill to 0.</b>");
 			this.resolveactionselection(p,function(k) {
 			    if (this!=p[k]) {
 				var ecp=p[k].ecp;
@@ -2801,7 +2797,7 @@ var PILOTS = [
 				p[k].skill=0;
 				filltabskill();
 				p[k].show();
-				log("["+this.name+"] pilot skill 0 for "+p[k].name);
+				p[k].log("PS set to 0 for this combat");
 				p[k].endcombatphase=function() {
 				    this.skill=this.oldskill;
 				    filltabskill();
@@ -2853,11 +2849,11 @@ var PILOTS = [
 		var i;
 		if (p.length>0) { 
 		    p.push(this);
-		    log("<b>["+this.name+"] selects target to lock</b>");
+		    this.log("<b>select target to lock</b>");
 		    this.resolveactionselection(p,function(k) {
 			if (this!=p[k]) {
 			    this.addtarget(p[k]);
-			    log("["+this.name+"] lock target "+p[k].name);
+			    this.log("target locks "+p[k].name);
 			}
 			nextstep();
 		    }.bind(this));
