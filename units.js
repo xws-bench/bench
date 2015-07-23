@@ -374,10 +374,13 @@ Unit.prototype = {
 	return this.dial;
     },
     doplan: function() { this.showdial(); },
+    candodial: function() {
+	return (phase==PLANNING_PHASE||phase==SELECT_PHASE1||phase==SELECT_PHASE2);
+    },
     showdial: function() {
 	var m=[],i,j,d;
 	var gd=this.getdial();
-	if (phase==PLANNING_PHASE||phase==SELECT_PHASE1||phase==SELECT_PHASE2) {
+	if  (this.candodial()) {
 	    for (i=0; i<=5; i++) {
 		m[i]=[];
 		for (j=0; j<=5; j++) m[i][j]="<div></div>";
@@ -389,7 +392,7 @@ Unit.prototype = {
 		if (d.difficulty=="RED"&&this.stress>0) m[cx][cy]="<div></div>";
 		else {
 		    m[cx][cy]="<div";
-		    if (phase==PLANNING_PHASE) 
+		    if (phase>=PLANNING_PHASE) 
 			m[cx][cy]+=" onclick='activeunit.setmaneuver("+i+")'";
 		    m[cx][cy]+=" class='symbols "+d.difficulty;
 		    if (this.maneuver==i) m[cx][cy]+=" selected";
@@ -765,7 +768,11 @@ Unit.prototype = {
 	return {s:"M "+p[0].x+" "+p[0].y+" L "+p[1].x+" "+p[1].y+" "+p[2].x+" "+p[2].y+" "+p[3].x+" "+p[3].y+" Z",p:p};  
     },
     getOutline: function(m) {
-	return s.path(this.getOutlineString(m).s).attr({display:"none"})    
+	var w=(this.islarge)?40:20;
+	var r=s.rect(-w,-w,2*w,2*w);
+	var t = s.text(w+5,3-w,"8").attr({class:'symbols'});
+	var g= s.group(r,t).transform(m).attr({display:'none'});
+	return g;
     },
     getRangeString: function(n,m) {
 	var w=(this.islarge)?40:20;
@@ -928,16 +935,14 @@ Unit.prototype = {
     },
     getocollisions: function(mbegin,mend,path,len) {
 	var k,i,j;
-	var pathpts=[],os=[],op=[];
+	var pathpts=[];
 	var collision={overlap:-1,template:0};
 	// Overlapping obstacle ? 
-	var so=this.getOutlineString(mend);
-	os[i]=so.s;
-	op[i]=so.p;
+	var os=this.getOutlineString(mend);
 	for (k=0; k<OBSTACLES.length; k++){
-	    if (Snap.path.intersection(OBSTACLES[k].path,os[i]).length>0 
-		||this.isPointInside(OBSTACLES[k].path,op[i])
-		||this.isPointInside(os[i],OBSTACLES[k].getOutlinePoints())) {
+	    if (Snap.path.intersection(OBSTACLES[k].path,os.s).length>0 
+		||this.isPointInside(OBSTACLES[k].path,os.p)
+		||this.isPointInside(os.s,OBSTACLES[k].getOutlinePoints())) {
 		collision.overlap=k; 
 		break;
 	    }
@@ -963,15 +968,13 @@ Unit.prototype = {
 	return collision;
     },
     iscollidingunit: function(m,sh) {
-	var o1=this.getOutline(m);
-	var o2=sh.getOutline(sh.m); 
+	var o1=this.getOutlineString(m);
+	var o2=sh.getOutlineString(sh.m); 
 	var inter=Snap.path.intersection(o1, o2);
 	var collision=(inter.length>0);
 	// If unit is large, add another check
 	if (this.islarge) { collision=collision||this.isinoutline(o1,sh,sh.m); }
 	if (sh.islarge)  { collision = collision||sh.isinoutline(o2,this,m); }
-	o1.remove();
-	o2.remove();
 	return collision;
     },
     getcollidingunits: function(m) {
@@ -989,35 +992,28 @@ Unit.prototype = {
 	var len=path.getTotalLength();
 	if (this.islarge) len+=40;
 	m=this.getmatrixwithmove(m, path, len);
+	if (maneuver.match(/K\d|SR\d|SL\d/))
+	    m.rotate(180,0,0);
 	path.remove();
 	return m;
     },
     getpossibleoutline: function(m) {
-	var o1=this.getOutline(m).attr({fill:this.color,opacity:0.5,display:"block"});
+	var os1=this.getOutlineString(m).s;
+	var o1=this.getOutline(m);
 	var possible=true;
 	var i;
-	if (!this.isinzone(m)) {
-	    o1.attr({display:"none"});
-	    return {ol:o1,b:false};
-	}
+	if (!this.isinzone(m)) return {ol:o1,b:false};
 	for (i=0; i<squadron.length; i++) {
 	    var sh=squadron[i];
-	    if (sh!=this) {
-		var o2=sh.getOutline(sh.m);
-		var inter=Snap.path.intersection(o1, o2);
-		o2.remove();
-		if (inter.length>0) {
-		    possible=false;
-		    o1.attr({display:"none"}); 
-		    break; 
-		}
+	    if (sh!=this&&Snap.path.intersection(os1, sh.getOutlineString(sh.m).s).length>0) {
+		possible=false;
+		break; 
 	    }
 	}
 	if (possible) {
 	    for (i=0; i<OBSTACLES.length; i++) {
-		if (this.isintersecting(OBSTACLES[i].getOutlinePoints(),o1)) {
+		if (this.isPointInside(os1,OBSTACLES[i].getOutlinePoints())) {
 		    possible=false;
-		    o1.attr({display:"none"}); 
 		    break; 
 		}
 	    } 
@@ -1272,6 +1268,7 @@ Unit.prototype = {
 		var so=this.getOutlineString(mm);
 		os[i]=so.s;
 		op[i]=so.p;
+		console.log("evaluatepositions");
 		for (k=0; k<OBSTACLES.length; k++){
 		    if (Snap.path.intersection(OBSTACLES[k].path,os[i]).length>0 
 			||this.isPointInside(OBSTACLES[k].path,op[i])
@@ -1285,6 +1282,7 @@ Unit.prototype = {
 		for (k=0; k<squadron.length; k++) {
 		    var u=squadron[k];
 		    if (u==this) continue;
+		    console.log("evaluatepositions");
 		    if (Snap.path.intersection(s1[k],os[i]).length>0
 			||((this.islarge&&!u.islarge&&this.isPointInside(os[i],sp1[k])))
 			||((!this.islarge&&u.islarge)&&this.isPointInside(s1[k],op[i]))) {
@@ -1370,7 +1368,7 @@ Unit.prototype = {
 	for (i=0; i<moves.length; i++) {
 	    var p=this.getpossibleoutline(moves[i]);
 	    if (possible||p.b) {
-		p.ol.attr({display:"block"});
+		p.ol.attr({display:"block",opacity:0.4,fill:halftone(this.color)});
 		this.pos.push({ol:p.ol,k:i});
 	    } //else p.ol.remove();
 	}
@@ -1389,7 +1387,6 @@ Unit.prototype = {
     },
     resolveactionselection: function(units,cleanup) {
 	var i;
-	this.pos=[];
 	var ready=false;
 	var resolve=function(k) {
 	    for (i=0; i<units.length; i++) {
@@ -2326,20 +2323,14 @@ Unit.prototype = {
 	if (this.ranges.length>0) b=false; else b=true;
 	this.showrange(b,1,3);
     },
-    isintersecting: function(apts,path) {
-	for (var i=0; i<apts.length; i++)
-	    if (Snap.path.isPointInside(path,apts[i].x,apts[i].y)) return true;
-	return false;
-    },
     isinsector: function(m,n,sh) {
 	var o1=this.getSectorString(n,m);
-	var o2=sh.getOutlineString(sh.m);
-	var o2s=o2.s;
-	var o2p=o2.p;
 	var op1=this.getSectorPoints(n,m);
-	if (Snap.path.intersection(o2s,o1).length>0
-	    ||this.isPointInside(o1,o2p)
-	    ||this.isPointInside(o2s,op1)) return true
+	var o2=sh.getOutlineString(sh.m);
+	console.log("isinsector");
+	if (Snap.path.intersection(o2.s,o1).length>0
+	    ||this.isPointInside(o1.s,o2.p)
+	    ||this.isPointInside(o2.s,op1)) return true
 	return false;
     },
     gethitsector: function(sh) {
@@ -2350,7 +2341,8 @@ Unit.prototype = {
 	return 4;
     },
     isinoutline: function(o1,sh,m) {
-	return this.isintersecting(sh.getOutlinePoints(m),o1);
+	console.log("isinoutline");
+	return this.isPointInside(o1,sh.getOutlinePoints(m));
     },
     checkcollision: function(sh) {
 	return (this.touching.indexOf(sh)>-1);

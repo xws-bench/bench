@@ -733,7 +733,9 @@ var UPGRADES= [
 			this.freeaction(function() { 
 			    if (this.action>-1) { 
 				this.r=round; this.addstress();
-			    } else  this.r=-1; 
+			    } else  {
+				this.r=-1;
+			    }
 			    nextstep(); 
 			}.bind(this));
 		    }.bind(this));
@@ -1302,7 +1304,7 @@ var UPGRADES= [
 		q.push(realdial);
 		p.push(this.getpathmatrix(this.m,realdial));
 		for (i=0; i<gd.length; i++) 
-		    if (gd[i].move.match(bearing)&&gd[i].move!=realdial&&(gd[i].difficulty!=RED||this.stress==0)) { 
+		    if (gd[i].move.match(bearing)&&gd[i].move!=realdial&&(gd[i].difficulty!="RED"||this.stress==0)) { 
 			p.push(this.getpathmatrix(this.m,gd[i].move));
 			q.push(gd[i].move);
 		    }
@@ -1426,7 +1428,7 @@ var UPGRADES= [
 	    Unit.prototype.getdefensestrength=function(i,t) {
 		var d=gds.call(this,i,t);
 		if (t==sh) {
-		    if(!this.gethitsector(t)<=3&&t.gethitsector(this)<=3&&d>0) {
+		    if(!this.isinsector(this.m,3,t)&&t.isinsector(t.m,3,this)&&d>0) {
 			this.log("-1 defense due to Outmaneuver");
 			return d-1;
 		    } 
@@ -1487,7 +1489,7 @@ var UPGRADES= [
 		    this.unit.log("<b>R7-T1 acquires target lock on target enemy ship (self to ignore)</b>");
 		    this.unit.resolveactionselection(p,function(k) {
 			if (p[k]!=this) { 
-			    if (p[k].gethitsector(this)<=3) this.addtarget(p[k]);
+			    if (p[k].isinsector(p[k].m,3,this)) this.addtarget(p[k]);
 			    this.resolveboost();
 			} else this.endaction();
 		    });
@@ -1537,7 +1539,7 @@ var UPGRADES= [
 	    var da=sh.declareattack;
 	    sh.declareattack=function(w,target) {
 		da.call(this,w,target);
-		if (this.gethitsector(target)<=3) {
+		if (this.isinsector(this.m,3,target)) {
 		    this.addstress();
 		    this.log("[R3-A2] +1 stress");
 		    target.log("[R3-A2] +1 stress");
@@ -1821,7 +1823,7 @@ var UPGRADES= [
 		    this.log("<b>Stay on target chooses maneuver of speed "+speed+"</b>");
 		    this.resolveactionmove(p,
 		    function(t,k) {
-			cm.call(t,q[k],q[k],(k==0)?difficulty:RED);
+			cm.call(t,q[k],q[k],(k==0)?difficulty:"RED");
 		    },false,true);
 		} else cm.call(this,dial,realdial,difficulty);
 	    }
