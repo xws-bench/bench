@@ -1504,7 +1504,6 @@ Unit.prototype = {
     },
     endaction: function() {
 	this.actiondone=true; this.action=-1;
-	this.show();
 	//console.log("endaction "+this.name+">nextstep");
 	nextstep();
 	//console.log("endaction "+this.name+"<nextstep");
