@@ -29,7 +29,7 @@ IAUnit.prototype= {
 		    var mm=this.getpathmatrix(this.m,gd[i].move);
 		    if (gd[i].move.match(/K\d|SL\d|SR\d/)) mm=mm.rotate(180,0,0);
 		    var s=this.getSectorString(3,mm);
-		    if (this.isPointInside(s,p)) n++;
+		    for (j=0; j<p.length; j++) if (this.isintersecting(p[j],s)) n++;
 		    if (n>0) q.push({n:n,m:i});
 		}
 	    }
