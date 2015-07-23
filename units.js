@@ -1268,7 +1268,6 @@ Unit.prototype = {
 		var so=this.getOutlineString(mm);
 		os[i]=so.s;
 		op[i]=so.p;
-		console.log("evaluatepositions");
 		for (k=0; k<OBSTACLES.length; k++){
 		    if (Snap.path.intersection(OBSTACLES[k].path,os[i]).length>0 
 			||this.isPointInside(OBSTACLES[k].path,op[i])
@@ -1282,7 +1281,6 @@ Unit.prototype = {
 		for (k=0; k<squadron.length; k++) {
 		    var u=squadron[k];
 		    if (u==this) continue;
-		    console.log("evaluatepositions");
 		    if (Snap.path.intersection(s1[k],os[i]).length>0
 			||((this.islarge&&!u.islarge&&this.isPointInside(os[i],sp1[k])))
 			||((!this.islarge&&u.islarge)&&this.isPointInside(s1[k],op[i]))) {
@@ -2327,7 +2325,6 @@ Unit.prototype = {
 	var o1=this.getSectorString(n,m);
 	var op1=this.getSectorPoints(n,m);
 	var o2=sh.getOutlineString(sh.m);
-	console.log("isinsector");
 	if (Snap.path.intersection(o2.s,o1).length>0
 	    ||this.isPointInside(o1.s,o2.p)
 	    ||this.isPointInside(o2.s,op1)) return true
@@ -2341,7 +2338,6 @@ Unit.prototype = {
 	return 4;
     },
     isinoutline: function(o1,sh,m) {
-	console.log("isinoutline");
 	return this.isPointInside(o1,sh.getOutlinePoints(m));
     },
     checkcollision: function(sh) {
