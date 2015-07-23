@@ -154,7 +154,6 @@ Team.prototype = {
     toJSON:function() {
 	var s={};
 	var f={REBEL:"rebels",SCUM:"scum",EMPIRE:"empire"};
-	log("ASCII:"+this.toASCII());
 	s.description="";
 	s.faction=f[this.faction];
 	s.name=$("#teamname"+this.team).val();
@@ -214,8 +213,8 @@ Team.prototype = {
 	    p=new Unit(this.team);
 	    p.selectship(PILOT_dict[pilot.ship],PILOT_dict[pilot.name]);
 	    /* Copy all functions for manual inheritance. Call init. */
-	    for (k in PILOTS[pid]) {
-		var u=PILOTS[pid];
+	    for (k in PILOTS[this.pilotid]) {
+		var u=PILOTS[this.pilotpid];
 		if (typeof u[k]=="function") p[k]=u[k];
 	    }
 	    if (typeof pilot.upgrades!="undefined")  {
