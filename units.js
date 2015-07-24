@@ -13,6 +13,7 @@ var MPOS={ F0:[0,2],F1:[1,2],F2:[2,2],F3:[3,2],F4:[4,2],F5:[5,2],
 	   K1:[1,5],K2:[2,5],K3:[3,5],K4:[4,4],K5:[5,4],
 	   SL3:[3,0],SR3:[3,4]
 	 };
+
 var generics=[];
 var gid=0;
 var UNIQUE=[[],[],[]];
@@ -374,13 +375,10 @@ Unit.prototype = {
 	return this.dial;
     },
     doplan: function() { this.showdial(); },
-    candodial: function() {
-	return (phase==PLANNING_PHASE||phase==SELECT_PHASE1||phase==SELECT_PHASE2);
-    },
     showdial: function() {
 	var m=[],i,j,d;
 	var gd=this.getdial();
-	if  (this.candodial()) {
+	if (phase==PLANNING_PHASE||phase==SELECT_PHASE1||phase==SELECT_PHASE2) {
 	    for (i=0; i<=5; i++) {
 		m[i]=[];
 		for (j=0; j<=5; j++) m[i][j]="<div></div>";
@@ -392,7 +390,7 @@ Unit.prototype = {
 		if (d.difficulty=="RED"&&this.stress>0) m[cx][cy]="<div></div>";
 		else {
 		    m[cx][cy]="<div";
-		    if (phase>=PLANNING_PHASE) 
+		    if (phase==PLANNING_PHASE) 
 			m[cx][cy]+=" onclick='activeunit.setmaneuver("+i+")'";
 		    m[cx][cy]+=" class='symbols "+d.difficulty;
 		    if (this.maneuver==i) m[cx][cy]+=" selected";
@@ -768,11 +766,7 @@ Unit.prototype = {
 	return {s:"M "+p[0].x+" "+p[0].y+" L "+p[1].x+" "+p[1].y+" "+p[2].x+" "+p[2].y+" "+p[3].x+" "+p[3].y+" Z",p:p};  
     },
     getOutline: function(m) {
-	var w=(this.islarge)?40:20;
-	var r=s.rect(-w,-w,2*w,2*w);
-	var t = s.text(w+5,3-w,"8").attr({class:'symbols'});
-	var g= s.group(r,t).transform(m).attr({display:'none'});
-	return g;
+	return s.path(this.getOutlineString(m).s).attr({display:"none"})    
     },
     getRangeString: function(n,m) {
 	var w=(this.islarge)?40:20;
@@ -935,14 +929,16 @@ Unit.prototype = {
     },
     getocollisions: function(mbegin,mend,path,len) {
 	var k,i,j;
-	var pathpts=[];
+	var pathpts=[],os=[],op=[];
 	var collision={overlap:-1,template:0};
 	// Overlapping obstacle ? 
-	var os=this.getOutlineString(mend);
+	var so=this.getOutlineString(mend);
+	os[i]=so.s;
+	op[i]=so.p;
 	for (k=0; k<OBSTACLES.length; k++){
-	    if (Snap.path.intersection(OBSTACLES[k].path,os.s).length>0 
-		||this.isPointInside(OBSTACLES[k].path,os.p)
-		||this.isPointInside(os.s,OBSTACLES[k].getOutlinePoints())) {
+	    if (Snap.path.intersection(OBSTACLES[k].path,os[i]).length>0 
+		||this.isPointInside(OBSTACLES[k].path,op[i])
+		||this.isPointInside(os[i],OBSTACLES[k].getOutlinePoints())) {
 		collision.overlap=k; 
 		break;
 	    }
@@ -968,13 +964,15 @@ Unit.prototype = {
 	return collision;
     },
     iscollidingunit: function(m,sh) {
-	var o1=this.getOutlineString(m);
-	var o2=sh.getOutlineString(sh.m); 
+	var o1=this.getOutline(m);
+	var o2=sh.getOutline(sh.m); 
 	var inter=Snap.path.intersection(o1, o2);
 	var collision=(inter.length>0);
 	// If unit is large, add another check
 	if (this.islarge) { collision=collision||this.isinoutline(o1,sh,sh.m); }
 	if (sh.islarge)  { collision = collision||sh.isinoutline(o2,this,m); }
+	o1.remove();
+	o2.remove();
 	return collision;
     },
     getcollidingunits: function(m) {
@@ -992,28 +990,35 @@ Unit.prototype = {
 	var len=path.getTotalLength();
 	if (this.islarge) len+=40;
 	m=this.getmatrixwithmove(m, path, len);
-	if (maneuver.match(/K\d|SR\d|SL\d/))
-	    m.rotate(180,0,0);
 	path.remove();
 	return m;
     },
     getpossibleoutline: function(m) {
-	var os1=this.getOutlineString(m).s;
-	var o1=this.getOutline(m);
+	var o1=this.getOutline(m).attr({fill:this.color,opacity:0.5,display:"block"});
 	var possible=true;
 	var i;
-	if (!this.isinzone(m)) return {ol:o1,b:false};
+	if (!this.isinzone(m)) {
+	    o1.attr({display:"none"});
+	    return {ol:o1,b:false};
+	}
 	for (i=0; i<squadron.length; i++) {
 	    var sh=squadron[i];
-	    if (sh!=this&&Snap.path.intersection(os1, sh.getOutlineString(sh.m).s).length>0) {
-		possible=false;
-		break; 
+	    if (sh!=this) {
+		var o2=sh.getOutline(sh.m);
+		var inter=Snap.path.intersection(o1, o2);
+		o2.remove();
+		if (inter.length>0) {
+		    possible=false;
+		    o1.attr({display:"none"}); 
+		    break; 
+		}
 	    }
 	}
 	if (possible) {
 	    for (i=0; i<OBSTACLES.length; i++) {
-		if (this.isPointInside(os1,OBSTACLES[i].getOutlinePoints())) {
+		if (this.isintersecting(OBSTACLES[i].getOutlinePoints(),o1)) {
 		    possible=false;
+		    o1.attr({display:"none"}); 
 		    break; 
 		}
 	    } 
@@ -1366,7 +1371,7 @@ Unit.prototype = {
 	for (i=0; i<moves.length; i++) {
 	    var p=this.getpossibleoutline(moves[i]);
 	    if (possible||p.b) {
-		p.ol.attr({display:"block",opacity:0.4,fill:halftone(this.color)});
+		p.ol.attr({display:"block"});
 		this.pos.push({ol:p.ol,k:i});
 	    } //else p.ol.remove();
 	}
@@ -1385,6 +1390,7 @@ Unit.prototype = {
     },
     resolveactionselection: function(units,cleanup) {
 	var i;
+	this.pos=[];
 	var ready=false;
 	var resolve=function(k) {
 	    for (i=0; i<units.length; i++) {
@@ -1504,6 +1510,7 @@ Unit.prototype = {
     },
     endaction: function() {
 	this.actiondone=true; this.action=-1;
+	this.show();
 	//console.log("endaction "+this.name+">nextstep");
 	nextstep();
 	//console.log("endaction "+this.name+"<nextstep");
@@ -2321,13 +2328,20 @@ Unit.prototype = {
 	if (this.ranges.length>0) b=false; else b=true;
 	this.showrange(b,1,3);
     },
+    isintersecting: function(apts,path) {
+	for (var i=0; i<apts.length; i++)
+	    if (Snap.path.isPointInside(path,apts[i].x,apts[i].y)) return true;
+	return false;
+    },
     isinsector: function(m,n,sh) {
 	var o1=this.getSectorString(n,m);
-	var op1=this.getSectorPoints(n,m);
 	var o2=sh.getOutlineString(sh.m);
-	if (Snap.path.intersection(o2.s,o1).length>0
-	    ||this.isPointInside(o1.s,o2.p)
-	    ||this.isPointInside(o2.s,op1)) return true
+	var o2s=o2.s;
+	var o2p=o2.p;
+	var op1=this.getSectorPoints(n,m);
+	if (Snap.path.intersection(o2s,o1).length>0
+	    ||this.isPointInside(o1,o2p)
+	    ||this.isPointInside(o2s,op1)) return true
 	return false;
     },
     gethitsector: function(sh) {
@@ -2338,7 +2352,7 @@ Unit.prototype = {
 	return 4;
     },
     isinoutline: function(o1,sh,m) {
-	return this.isPointInside(o1,sh.getOutlinePoints(m));
+	return this.isintersecting(sh.getOutlinePoints(m),o1);
     },
     checkcollision: function(sh) {
 	return (this.touching.indexOf(sh)>-1);
