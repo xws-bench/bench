@@ -283,13 +283,27 @@ Unit.prototype = {
 	this.geffect=s.group(this.imgflame,this.imgsmoke);
 	// Order in the group is important. Latest is on top of stacked layers
 	this.g=s.group(this.sector,this.outline,this.img,this.dialspeed,this.dialdirection,this.actionicon,this.infoicon[0],this.infoicon[1],this.infoicon[2],this.infoicon[3],this.gstat);
+	VIEWPORT.add(this.g);
+	VIEWPORT.add(this.geffect);
 	this.g.addClass("unit");
 	this.g.hover(
 	    function () { 
+		var m=VIEWPORT.m.clone();
+		var w=$("#svgout").width();
+		var h=$("#svgout").height();
+		var startX=0;
+		var startY=0;
+		if (h>w) startY=(h-w)/2;
+		else startX=(w-h)/2;
+		var max=Math.max(900./w,900./h);
+		
 		var bbox=this.g.getBBox();
-		var p=$("#playmat").position();
-		var x=p.left+bbox.x*$("#playmat").width()/900;
-		var y=p.top+(bbox.y-20)*$("#playmat").height()/900;
+		var p=$("#svgout").position();
+		var min=Math.min($("#playmat").width(),$("#playmat").height());
+		var x=m.x(bbox.x,bbox.y-20)/max;
+		x+=p.left+startX;
+		var y=m.y(bbox.x,bbox.y-20)/max;
+		y+=p.top+startY;
 		$(".info").css({left:x,top:y}).html(this.name).appendTo("body").show();
 	    }.bind(this),
 	    function() { $(".info").hide(); 
@@ -608,7 +622,7 @@ Unit.prototype = {
 	var pts=UPGRADES[upgrade].points+bonus;
 	$("#pts"+this.id+"_"+upgid).html(pts);
 	var u=UPGRADES[upgrade];
-	$("#upgradetext"+this.id+"_"+upgid).prepend("<div class='dial details'>"+(u.attack?"<b class='statfire'>"+u.attack+"</b>["+u.range[0]+"-"+u.range[1]+"], ":"")+UPGRADE_translation.english[u.name+(type=="Crew"?"(Crew)":"")]+"</div>");
+	$("#upgradetext"+this.id+"_"+upgid).prepend("<div class='upgtxt details'>"+(u.attack?"<b class='statfire'>"+u.attack+"</b>["+u.range[0]+"-"+u.range[1]+"], ":"")+UPGRADE_translation.english[u.name+(type=="Crew"?"(Crew)":"")]+"</div>");
 
 	/* Add action */
 	var addedaction=UPGRADES[upgrade].addedaction;
@@ -726,25 +740,31 @@ Unit.prototype = {
 	    }
 	}.bind(this));
     },
+    dragshow: function() {
+	this.g.transform(this.dragMatrix);
+	this.geffect.transform(this.dragMatrix);
+    },
     dragmove: function(dx,dy,x,y) {
 	// scaling factor
-	var ddx=dx*900./$("#playmat").width();
-	var ddy=dy*900./$("#playmat").height();
+	var spl=VIEWPORT.m.split();
+	var max=Math.max(900./$("#svgout").width(),900./$("#svgout").height());
+	var ddx=dx*max/spl.scalex;
+	var ddy=dy*max/spl.scalex;
 	this.dragMatrix=MT(ddx,ddy).add(this.m);
 	this.dx=ddx;
 	this.dy=ddy;
 	this.dragged=true;
 	$(".phasepanel").hide();
-	this.g.transform(this.dragMatrix);
-	this.geffect.transform(this.dragMatrix);
+	this.dragshow();
     },
-    dragstart:function(x,y,a) { this.showhitsector(false); this.dragged=false; },
+    dragstart:function(x,y,a) { this.showhitsector(false); this.dragMatrix=this.m; this.dragged=false; },
     dragstop: function(a) { 
 	if (this.dragged) { 
 	    this.m=this.dragMatrix; this.showpanel();
 	    this.tx+=this.dx; this.ty+=this.dy;
-			  }
+	}
 	this.dragged=false;
+	/*PANZOOM.enablePan(); PANZOOM.enableZoom(); */
     },
     isinzone: function(m) {
 	var o1=this.getOutlinePoints(m);
@@ -766,7 +786,11 @@ Unit.prototype = {
 	return {s:"M "+p[0].x+" "+p[0].y+" L "+p[1].x+" "+p[1].y+" "+p[2].x+" "+p[2].y+" "+p[3].x+" "+p[3].y+" Z",p:p};  
     },
     getOutline: function(m) {
-	return s.path(this.getOutlineString(m).s).attr({display:"none"})    
+	var w=(this.islarge)?40:20;
+	var p=s.rect(-w,-w,2*w,2*w);
+	var t=s.text(w+8,3-w,"8").attr({class: "symbols",fontSize:"1.3em"});
+	var g=s.g(t,p).transform(m).attr({fill:this.color,opacity:0.3,display:"none"});
+	return g;
     },
     getRangeString: function(n,m) {
 	var w=(this.islarge)?40:20;
@@ -964,15 +988,13 @@ Unit.prototype = {
 	return collision;
     },
     iscollidingunit: function(m,sh) {
-	var o1=this.getOutline(m);
-	var o2=sh.getOutline(sh.m); 
+	var o1=this.getOutlineString(m).s;
+	var o2=sh.getOutlineString(sh.m).s; 
 	var inter=Snap.path.intersection(o1, o2);
 	var collision=(inter.length>0);
 	// If unit is large, add another check
 	if (this.islarge) { collision=collision||this.isinoutline(o1,sh,sh.m); }
 	if (sh.islarge)  { collision = collision||sh.isinoutline(o2,this,m); }
-	o1.remove();
-	o2.remove();
 	return collision;
     },
     getcollidingunits: function(m) {
@@ -990,40 +1012,37 @@ Unit.prototype = {
 	var len=path.getTotalLength();
 	if (this.islarge) len+=40;
 	m=this.getmatrixwithmove(m, path, len);
+	if (maneuver.match(/K\d|SR\d|SL\d/)) m.rotate(180,0,0);
 	path.remove();
 	return m;
     },
     getpossibleoutline: function(m) {
-	var o1=this.getOutline(m).attr({fill:this.color,opacity:0.5,display:"block"});
+	var ol=this.getOutline(m);
+	var o1=this.getOutlineString(m).s;
 	var possible=true;
 	var i;
 	if (!this.isinzone(m)) {
-	    o1.attr({display:"none"});
-	    return {ol:o1,b:false};
+	    return {ol:ol,b:false};
 	}
 	for (i=0; i<squadron.length; i++) {
 	    var sh=squadron[i];
 	    if (sh!=this) {
-		var o2=sh.getOutline(sh.m);
-		var inter=Snap.path.intersection(o1, o2);
-		o2.remove();
-		if (inter.length>0) {
+		var o2=sh.getOutlineString(sh.m).s;
+		if (Snap.path.intersection(o1, o2).length>0) {
 		    possible=false;
-		    o1.attr({display:"none"}); 
 		    break; 
 		}
 	    }
 	}
 	if (possible) {
 	    for (i=0; i<OBSTACLES.length; i++) {
-		if (this.isintersecting(OBSTACLES[i].getOutlinePoints(),o1)) {
+		if (this.isPointInside(o1,OBSTACLES[i].getOutlinePoints())) {
 		    possible=false;
-		    o1.attr({display:"none"}); 
 		    break; 
 		}
 	    } 
 	}
-	return {ol:o1,b:possible};
+	return {ol:ol,b:possible};
     },
     isTurret: function(w) {
 	return (w.type=="Turretlaser");
@@ -1215,7 +1234,7 @@ Unit.prototype = {
     playfiresnd: function() {
 	var bb=targetunit.g.getBBox();
 	var start=transformPoint(this.m,{x:0,y:-(this.islarge?40:20)});
-	var p=s.path("M "+start.x+" "+start.y+" L "+(bb.x+bb.w/2)+" "+(bb.y+bb.h/2)).attr({stroke:this.color,strokeWidth:2});
+	var p=s.path("M "+start.x+" "+start.y+" L "+(bb.x+bb.w/2)+" "+(bb.y+bb.h/2)).appendTo(VIEWPORT).attr({stroke:this.color,strokeWidth:2});
 	var process=setInterval(function() { p.remove(); clearInterval(process);
 	},200);
 	if (typeof this.weapons[this.activeweapon].firesnd!="undefined") 
@@ -1230,12 +1249,6 @@ Unit.prototype = {
     endbeingattacked: function(c,h) {
 	this.show();
 	this.activeweapon=-1;
-    },
-    isPointInside:function(path,op) {
-	var i;
-	for (i=0; i<op.length; i++) 
-	    if (Snap.path.isPointInside(path,op[i].x,op[i].y)) return true;
-	return false;
     },
     showpossiblepositions:function() {
 	this.evaluatepositions(true,true);
@@ -1371,7 +1384,7 @@ Unit.prototype = {
 	for (i=0; i<moves.length; i++) {
 	    var p=this.getpossibleoutline(moves[i]);
 	    if (possible||p.b) {
-		p.ol.attr({display:"block"});
+		p.ol.attr({display:"block"}).appendTo(VIEWPORT);
 		this.pos.push({ol:p.ol,k:i});
 	    } //else p.ol.remove();
 	}
@@ -1698,7 +1711,7 @@ Unit.prototype = {
 	    .attr({stroke:this.color,
 		   strokeWidth:2,
 		   strokeDasharray:100,
-		   "class":"animated"});
+		   "class":"animated"}).appendTo(VIEWPORT);
 	//console.log("resolveattack:"+this.name+" "+attack+"/"+defense);
 	this.select();	targetunit.unselect(); 
 	for (i=0; i<squadron.length; i++) if (squadron[i]==this) break;
@@ -1806,11 +1819,10 @@ Unit.prototype = {
 	this.touching=col;
 	
    
-	this.m=m;
-	this.ocollision=this.getocollisions(oldm,this.m,path,lenC);
+	this.ocollision=this.getocollisions(oldm,m,path,lenC);
 	if (this.isfireobstructed()) { this.log("overlaps obstacle: no action, cannot attack"); }
 	if (this.ocollision.template>0) { this.log("template overlaps obstacle: no action"); }
-
+	if (lenC>0) this.m=m;
 	// Animate movement
 	if (lenC>0) {
 	    SOUNDS[this.ship.flysnd].play();
@@ -2218,11 +2230,20 @@ Unit.prototype = {
 	}
     },
     showpanel: function() {
+	var m=VIEWPORT.m.clone();
 	var bbox=this.g.getBBox();
-	var p=$("#playmat").position();
-	var x=p.left+(bbox.x+(this.islarge?80:40))*$("#playmat").width()/900;
-	var y=p.top+bbox.y*$("#playmat").height()/900;
-	$(".phasepanel").css({left:x+10,top:y}).appendTo("body").show();
+	var w=$("#svgout").width();
+	var h=$("#svgout").height();
+	var startX=0;
+	var startY=0;
+	if (h>w) startY=(h-w)/2;
+	else startX=(w-h)/2;
+	var min=Math.min(w/900.,h/900.);
+	var x=startX+m.x(bbox.x,bbox.y)*min;
+	var y=startY+m.y(bbox.x,bbox.y)*min
+	var mm=m.split();
+	var d=mm.scalex;
+	$(".phasepanel").css({left:x+d*(this.islarge?40:20),top:y}).show();
     },
     timeforaction: function() {
 	return (!waitingforaction.isexecuting&&this==activeunit&&this.hasmoved&&!this.actiondone&&phase==ACTIVATION_PHASE);
@@ -2234,9 +2255,9 @@ Unit.prototype = {
 	var i;
 	if (typeof this.g=="undefined") return;
 	this.g.transform(this.m);
-	this.g.appendTo(s); // Put to front
+	this.g.appendTo(VIEWPORT); // Put to front
 	this.geffect.transform(this.m);
-	this.geffect.appendTo(s);
+	this.geffect.appendTo(VIEWPORT);
 	this.showoutline();
 	this.flameno++;
 	this.showstats();
@@ -2281,16 +2302,16 @@ Unit.prototype = {
 	    var i,k;
 	    if (r0==1) {
 		for (i=r0;i<=r1; i++) { 
-		    this.sectors.push(s.path(this.getSectorString(i,this.m)).attr({fill:this.color,stroke:this.color,opacity:0.3,pointerEvents:"none"}));
+		    this.sectors.push(s.path(this.getSectorString(i,this.m)).attr({fill:this.color,stroke:this.color,opacity:0.3,pointerEvents:"none"}).appendTo(VIEWPORT));
 		}
 		if (this.weapons[k].type=="Bilaser") {
 		    for (i=r0;i<=r1; i++) { 
-			this.sectors.push(s.path(this.getSectorString(i,this.m.clone().rotate(180,0,0))).attr({fill:this.color,stroke:this.color,opacity:0.3,pointerEvents:"none"}));
+			this.sectors.push(s.path(this.getSectorString(i,this.m.clone().rotate(180,0,0))).attr({fill:this.color,stroke:this.color,opacity:0.3,pointerEvents:"none"}).appendTo(VIEWPORT));
 		    }
 		}
 	    } else {
 		for (i=r0; i<=r1; i++) {
-		    this.sectors.push(s.path(this.getSubSectorString(r0-1,i,this.m)).attr({fill:this.color,stroke:this.color,opacity:0.3,pointerEvents:"none"}));
+		    this.sectors.push(s.path(this.getSubSectorString(r0-1,i,this.m)).attr({fill:this.color,stroke:this.color,opacity:0.3,pointerEvents:"none"}).appendTo(VIEWPORT));
 		}
 	    }
 	}
@@ -2312,10 +2333,10 @@ Unit.prototype = {
 	}
 	if (r0==1) {
 	    for (i=r0; i<=r1; i++) 
-		this.ranges.push(s.path(this.getRangeString(i,this.m)).attr({fill:this.color,stroke:this.color,opacity:0.3,pointerEvents:"none"}));
+		this.ranges.push(s.path(this.getRangeString(i,this.m)).attr({fill:this.color,stroke:this.color,opacity:0.3,pointerEvents:"none"}).appendTo(VIEWPORT));
 	} else {
 	    for (i=r0; i<=r1; i++) 
-		this.ranges.push(s.path(this.getSubRangeString(r0-1,i,this.m)).attr({fill:this.color,stroke:this.color,opacity:0.3,pointerEvents:"none"}));
+		this.ranges.push(s.path(this.getSubRangeString(r0-1,i,this.m)).attr({fill:this.color,stroke:this.color,opacity:0.3,pointerEvents:"none"}).appendTo(VIEWPORT));
 	}  
     },
     togglehitsector: function(name) {
@@ -2328,31 +2349,32 @@ Unit.prototype = {
 	if (this.ranges.length>0) b=false; else b=true;
 	this.showrange(b,1,3);
     },
-    isintersecting: function(apts,path) {
-	for (var i=0; i<apts.length; i++)
-	    if (Snap.path.isPointInside(path,apts[i].x,apts[i].y)) return true;
+    isPointInside:function(path,op) {
+	var i;
+	for (i=0; i<op.length; i++) 
+	    if (Snap.path.isPointInside(path,op[i].x,op[i].y)) return true;
 	return false;
     },
     isinsector: function(m,n,sh) {
-	var o1=this.getSectorString(n,m);
+	var o1;
+	if (this.getoutlinerange(this.m,sh).d!=n) return false;
 	var o2=sh.getOutlineString(sh.m);
-	var o2s=o2.s;
-	var o2p=o2.p;
-	var op1=this.getSectorPoints(n,m);
-	if (Snap.path.intersection(o2s,o1).length>0
-	    ||this.isPointInside(o1,o2p)
-	    ||this.isPointInside(o2s,op1)) return true
-	return false;
+	if (n>1) o1=this.getSubSectorString(n-1,n,m); else o1=this.getSectorString(n,m);
+	return (Snap.path.intersection(o2.s,o1).length>0
+	       	||this.isPointInside(o1,o2.p))
     },
-    gethitsector: function(sh) {
+    isinfiringarc: function(sh) {
+	return this.gethitsector(sh)<=3;
+    },
+    gethitsector: function(sh,m) {
 	var i;
-	for (i=1; i<=3; i++) {
-	    if (this.isinsector(this.m,i,sh)) return i;
-	}
+	if (typeof m=="undefined") m=this.m;
+	var n=this.getoutlinerange(m,sh).d
+	if (this.isinsector(m,n,sh)) return n;
 	return 4;
     },
     isinoutline: function(o1,sh,m) {
-	return this.isintersecting(sh.getOutlinePoints(m),o1);
+	return this.isPointInside(o1,sh.getOutlinePoints(m));
     },
     checkcollision: function(sh) {
 	return (this.touching.indexOf(sh)>-1);

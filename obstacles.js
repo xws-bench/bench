@@ -57,9 +57,12 @@ function Rock(fragment,coord) {
 		 function()  {this.g.attr({strokeWidth:0});}.bind(this));
     this.g.addClass("unit");
     var b=this.g.getBBox();
+    this.o=[];
+    for (k=1; k<4; k++) {
+	this.o[k]=s.ellipse(b.x+b.width/2,b.y+b.height/2,100*k+b.width/2,100*k+b.height/2).attr({pointerEvents:"none",display:"none",fill:WHITE,opacity:0.3,strokeWidth:2});
+    }
     this.g.transform('t '+(-b.width/2)+" "+(-b.height/2));
     this.getOutlineString();
-    this.showrange=true;
     this.show();
 }
 
@@ -111,55 +114,35 @@ Rock.prototype = {
     },
     select: function() { 
 	if (phase==SETUP_PHASE) {
+	    var old=activeunit;
+	    activeunit=this;
+	    old.unselect();
 	    this.showpanel();
-	    if (this.showrange) {
-		var b=this.g.getBBox();
-		for (var k=1; k<4; k++) {
-		    this.o[k]=s.ellipse(b.x+b.width/2,b.y+b.height/2,100*k+b.width/2,100*k+b.height/2).attr({pointerEvents:"none",display:"block",fill:WHITE,opacity:0.3,strokeWidth:2});
-		    this.o[k].prependTo(s);
-		}
-		this.showrange=false;
-	    } else { 
-		for (var i=1; i<4; i++) this.o[i].remove();
-		this.showrange=true;
-	    }
 	}
     },
-    showpanel:  function() {
-	var bbox=this.g.getBBox();
-	var p=$("#playmat").position();
-	var x=p.left+(bbox.x+(this.islarge?80:40))*$("#playmat").width()/900;
-	var y=p.top+bbox.y*$("#playmat").height()/900;
-	$(".phasepanel").css({left:x+10,top:y}).appendTo("body").show();
+    showpanel: function() { Unit.prototype.showpanel.call(this); },
+    dragmove: function(dx,dy,x,y) { Unit.prototype.dragmove.call(this,dx,dy,x,y); },
+    dragstart: function(x,y,a) {
+	var old=activeunit;
+	activeunit=this;
+	old.unselect();
+	Unit.prototype.dragstart.call(this,x,y,a);
+	this.dragshow(); 
     },
-    dragmove: function(dx,dy,x,y) {
-	var ddx=dx*900./$("#playmat").width();
-	var ddy=dy*900./$("#playmat").height();
-	this.dragMatrix=MT(ddx,ddy).add(this.m);
-	this.dx=ddx;
-	this.dy=ddy;
-	if (phase==SETUP_PHASE) for (var i=1; i<4; i++) this.o[i].remove();
-	this.dragged=true;
-	$(".phasepanel").hide();
+    dragshow: function() {
+	for (var k=1; k<4; k++) 
+	    this.o[k].transform(this.dragMatrix).attr({display:"block"}).appendTo(VIEWPORT);
 	this.g.transform(this.dragMatrix);
+	this.g.appendTo(VIEWPORT);
     },
-    dragstart:function(x,y,a) { 
-	this.dragged=false; 
-	var a=activeunit;
-	activeunit=this; 
-	this.select();
-	a.unselect();
-    },
+    showhitsector: function() {},
     dragstop: function(a) { 
-	if (this.dragged) { this.m=this.dragMatrix; 	
-			    this.getOutlineString();
-			    this.tx+=this.dx; this.ty+=this.dy;
-			    this.showpanel();} 
-	this.dragged=false;
+	for (var k=1; k<4; k++) 
+	    this.o[k].attr({display:"none"});
+	Unit.prototype.dragstop.call(this,a); 
     },
     show: function() {
 	this.g.transform(this.m);
-	this.g.appendTo(s); // Put to front
-	//this.showpanel();
+	this.g.appendTo(VIEWPORT);
     }
 }
