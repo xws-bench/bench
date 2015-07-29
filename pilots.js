@@ -319,7 +319,7 @@ var PILOTS = [
 	    var gas=this.getattackstrength;
 	    this.getattackstrength=function(w,sh) {
 		var a=gas.call(this,w,sh);
-		if (!sh.isinsector(sh.m,3,this)) {
+		if (!sh.isinfiringarc(this)) {
 		    a=a+1;
 		    this.log("+1 attack against "+sh.name);
 		}
@@ -1610,7 +1610,7 @@ var PILOTS = [
 	    var unit=this;
 	    this.addattackmoda(this, function(m,n) {
 		return (targetunit.team!=unit.team)
-		    &&unit.isinsector(unit.m,3,targetunit);
+		    &&unit.isinfiringarc(targetunit);
 	    }.bind(this), function(m,n) {
 		var c=Math.floor(m/10);
 		var h=(m-c*10)%100;
@@ -2557,7 +2557,7 @@ var PILOTS = [
 	    var a=Unit.prototype.getattackstrength.call(this,w,sh);
 	    var m=this.m.clone();
 	    this.m.rotate(180,0,0);
-	    if (this.isinsector(this.m,3,sh)) { 
+	    if (this.isinfiringarc(sh)) { 
 		this.log("+1 attack roll against "+sh.name+" in auxiliary arc");
 		a=a+1;
 	    }
@@ -2635,7 +2635,7 @@ var PILOTS = [
 	    var g=this.getattackstrength;
 	    this.getattackstrength=function(w,sh) {
 		var a=g.call(this,w,sh);
-		if (!this.isinsector(this.m,3,sh)) { 
+		if (!this.isinfiringarc(sh)) { 
 		    this.log("+1 attack roll against "+sh.name+" outside firing arc");
 		    return a+1;
 		}
