@@ -611,11 +611,11 @@ function nextphase() {
 	$("#rightpanel").hide();
 	break;
     case SELECT_PHASE2:
-	$("#team1").css("top",0);
+	$("#team1").css("top",$("nav").height());
 	TEAMS[1].endselection(s);
 	break;
     case SETUP_PHASE:
-	$("#team2").css("top",0);
+	$("#team2").css("top",$("nav").height());
 	TEAMS[2].endselection(s);
 	$(".activeunit").prop("disabled",false);
 	activeunit=squadron[0];
@@ -634,9 +634,9 @@ function nextphase() {
 	    var offsetX=(e.clientX-$("#team1").width()-startX)*max;
 	    var offsetY=(e.clientY-$("nav").height()-startY)*max;
 	    var delta;
-	    if (e.wheelDelta > 0) 
-		delta=e.wheelDelta / 360;
-	    else delta = e.detail/ -9;
+	    if (typeof e.wheelDelta != "undefined") 
+		delta=e.wheelDelta / 360.;
+	    else delta = e.detail/ -9.;
 	    var z=Math.pow(1.1, delta);
 	    var vm=VIEWPORT.m.clone().invert();
 	    var x=vm.x(offsetX,offsetY);
