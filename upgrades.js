@@ -96,16 +96,28 @@ Bomb.prototype = {
 	this.g=s.group(this.outline,this.img);
 	this.g.hover(
 	    function () { 
+		var m=VIEWPORT.m.clone();
+		var w=$("#svgout").width();
+		var h=$("#svgout").height();
+		var startX=0;
+		var startY=0;
+		if (h>w) startY=(h-w)/2;
+		else startX=(w-h)/2;
+		var max=Math.max(900./w,900./h);
+		
 		var bbox=this.g.getBBox();
-		var p=$("#playmat").position();
-		var x=p.left+bbox.x*$("#playmat").width()/900;
-		var y=p.top+(bbox.y-20)*$("#playmat").height()/900;
+		var p=$("#svgout").position();
+		var min=Math.min($("#playmat").width(),$("#playmat").height());
+		var x=m.x(bbox.x,bbox.y-20)/max;
+		x+=p.left+startX;
+		var y=m.y(bbox.x,bbox.y-20)/max;
+		y+=p.top+startY;
 		$(".info").css({left:x,top:y}).html(this.name).appendTo("body").show();
 	    }.bind(this),
 	    function() { $(".info").hide(); 
 		       }.bind(this));
 	this.g.transform(this.m);
-	this.g.appendTo(s);
+	this.g.appendTo(VIEWPORT);
 	BOMBS.push(this);	 
     },
     getOutlinePoints: function(m) {
@@ -120,7 +132,7 @@ Bomb.prototype = {
     getOutline: function(m) {
 	var p=this.getOutlinePoints(m);
 	var pa=s.path("M "+p[0].x+" "+p[0].y+" L "+p[1].x+" "+p[1].y+" "+p[2].x+" "+p[2].y+" "+p[3].x+" "+p[3].y+" Z");
-	pa.appendTo(s);
+	pa.appendTo(VIEWPORT);
 	return pa;
     },
     explode: function() {
@@ -235,19 +247,13 @@ Weapon.prototype = {
 	    if (this.isinrange(r)) return r;
 	    else return 0;
 	}
-	for (i=this.range[0]; i<=this.range[1]; i++) {
-	    //log("is in sector "+i+" "+this.unit.isinsector(this.unit.m,i,sh))
-	    if (this.unit.isinsector(this.unit.m,i,sh)) return i; 
-	}
+	var ghs=this.unit.gethitsector(sh);
+	if (ghs>=this.range[0]&&ghs<=this.range[1]) return ghs;
 	if (this.type=="Bilaser") {
 	    var m=this.unit.m.clone();
 	    m.rotate(180,0,0);
-	    for (i=this.range[0]; i<=this.range[1]; i++) {
-		//if (this.unit.isinsector(m,i,sh)) log(sh.name+" in range "+i);
-		if (this.unit.isinsector(m,i,sh)) {
-		    return i;
-		} 
-	    }
+	    ghs=this.unit.gethitsector(sh,m);
+	    if (ghs>=this.range[0]&&ghs<=this.range[1]) return ghs;
 	}
 	return 0;
     },
@@ -1428,7 +1434,7 @@ var UPGRADES= [
 	    Unit.prototype.getdefensestrength=function(i,t) {
 		var d=gds.call(this,i,t);
 		if (t==sh) {
-		    if(!this.isinsector(this.m,3,t)&&t.isinsector(t.m,3,this)&&d>0) {
+		    if(!this.isinfiringarc(t)&&t.isinfiringarc(this)&&d>0) {
 			this.log("-1 defense due to Outmaneuver");
 			return d-1;
 		    } 
@@ -1489,7 +1495,7 @@ var UPGRADES= [
 		    this.unit.log("<b>R7-T1 acquires target lock on target enemy ship (self to ignore)</b>");
 		    this.unit.resolveactionselection(p,function(k) {
 			if (p[k]!=this) { 
-			    if (p[k].isinsector(p[k].m,3,this)) this.addtarget(p[k]);
+			    if (p[k].isinfiringarc(this)) this.addtarget(p[k]);
 			    this.resolveboost();
 			} else this.endaction();
 		    });
@@ -1539,7 +1545,7 @@ var UPGRADES= [
 	    var da=sh.declareattack;
 	    sh.declareattack=function(w,target) {
 		da.call(this,w,target);
-		if (this.isinsector(this.m,3,target)) {
+		if (this.isinfiringarc(target)) {
 		    this.addstress();
 		    this.log("[R3-A2] +1 stress");
 		    target.log("[R3-A2] +1 stress");
@@ -1821,10 +1827,14 @@ var UPGRADES= [
 		    }
 		if (p.length>1) {
 		    this.log("<b>Stay on target chooses maneuver of speed "+speed+"</b>");
-		    this.resolveactionmove(p,
-		    function(t,k) {
-			cm.call(t,q[k],q[k],(k==0)?difficulty:"RED");
-		    },false,true);
+		    waitingforaction.add(function() {
+			this.resolveactionmove(p,
+					       function(t,k) {
+						   cm.call(t,q[k],q[k],(k==0)?difficulty:"RED");
+						   nextstep();
+					       },false,true);
+		    }.bind(this));
+		    nextstep();
 		} else cm.call(this,dial,realdial,difficulty);
 	    }
 	}

@@ -9,6 +9,7 @@
     <script src="snap.svg-min-0.4.1.js"></script>
     <script src="jwerty.js"></script>
     <script src="jquery-1.11.2.js"></script>
+    <script src="svg-pan-zoom.min.js"></script>
     <link rel="stylesheet" href="xwings.css">
     <script src="obstacles.js"></script>
     <script src="critical.js"></script>
@@ -32,6 +33,7 @@
 
 </script>
   </head>
+
   <body lang="en">
     <nav>
       <span class="h2">X-Wings Squadron Benchmark<span class="ver"></span></span><div style="font-size:small;">
@@ -41,7 +43,7 @@
 	<li><a href="http://xws-benchmark.blogspot.fr">Bug report</a></li>
 	<li><a href="#help">Help</a></li>
 	<li><a href="#credit">Credits</a></li>
-	<li><a href="#">Active phase:<span id="phase">Setup</span></a><button id="np" class="nextphase" onclick="nextphase()">Next phase <span id='npimg'>&#9658;</span></button></li>
+	<li><a href="#">Phase:<span id="phase">Setup</span></a><button id="np" class="nextphase" onclick="nextphase()">Next phase <span id='npimg'>&#9658;</span></button></li>
 	<li><button class="permalink" onclick="permalink()">Save</button>
 	<li><button class="permalink" onclick="resetlink()">Reset</button>
       </ul></div>
@@ -55,7 +57,7 @@
       <section id="team2" class="team"></section>
     </aside>
     
-    <article>
+    <article id="main">
       <section class="phasepanel">
 	<div id="positiondial" class="table">
 	  <div>
