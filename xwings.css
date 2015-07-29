@@ -1,7 +1,10 @@
 html,body {
 margin:0;
 padding:0;
-overflow:auto
+overflow:hidden;
+width:100%;
+height:100%;
+background-color:white;
 }
 
 footer,article,nav,footer,body {
@@ -17,14 +20,27 @@ content:attr(data-i18n-fr)
 [data-i18n]:lang(en)::after {
 content:attr(data-i18n)
 }
-
+#main {
+height:calc(100% - 60px);
+width:calc(100% - 340px);
+position:absolute;
+top:57px;
+left:170px;
+z-index:0;
+}
 #playmat {
 padding:0;
-width:calc(100% - 340px);
-height:calc(100% - 300px);
-overflow:auto
+background:url(img/playmat7.jpg);
+background-repeat:no-repeat;
+background-size:100% 100%;
+width:100%;
+height:100%;
+overflow:hidden
 }
-
+#playmat img {
+width:100%;
+height:100%;
+}
 article {
 margin:0;
 padding:0;
@@ -33,7 +49,7 @@ height:100%
 }
 .tooltip {  
 position:absolute;
-width:20%;
+width:20em;
 color:white;
 font-weight:normal;
 font-size:small;
@@ -52,12 +68,6 @@ tr:hover .tooltip,.name:hover .tooltip {
     -webkit-transition: opacity .25s ease-in-out;       
     opacity : 1;
 }
-#svgout {
-background:url(img/playmat7.jpg);
-background-repeat:no-repeat;
-background-size:100%
-}
-
 #leftpanel,#rightpanel {
 background:#fff
 }
@@ -74,7 +84,13 @@ nav {
 background:#4682b4;
 margin:0;
 padding:1px;
-clear:both
+clear:both;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:57px;
+z-index:10;
 }
 
 .h2 {
@@ -117,7 +133,7 @@ right:0;
 bottom:0;
 left:0;
 background:rgba(0,0,0,0.8);
-z-index:99999;
+z-index:999;
 opacity:0;
 -webkit-transition:opacity 400ms ease-in;
 -moz-transition:opacity 400ms ease-in;
@@ -147,7 +163,7 @@ top:0;
 left:0;
 color:#fff;
 background:rgba(0,0,0,0);
-width:50px
+width:50px;
 }
 
 .modalDialog > div {
@@ -256,14 +272,14 @@ margin:1px
 }
 
 .statfire,.statevade,.PS,.statshield,.stathull,.statskill {
-line-height:20px;
-padding:2px;
-margin:1px;
+line-height:1.5em;
+padding:.1em;
+margin:.1em;
 background:#333;
-border-radius:18px;
-width:20px
+border-radius:100%;
+width:1.5em;
+text-align:center;
 }
-
 .team,.name {
 background:#fff;
 color:#000
@@ -309,13 +325,17 @@ letter-spacing:4px
 .statfire,.statskill,.PS,.statevade,.stathull,.statshield {
 display:inline-block
 }
-
 #team1 {
-float:left
+position:absolute;
+top:57px;
+width:170px;
+z-index:2;
 }
-
 #team2 {
-float:right
+position:absolute;
+top:57px;
+width:170px;
+z-index:2;
 }
 
 #team1 .statskill {
@@ -351,40 +371,52 @@ float:left
 }
 
 #team1 .pts,#team2 .pts,#team1 .totalpts,#team2 .totalpts {
-position:absolute;
 color:#fff;
-background:rgba(0,0,0,0);
-text-shadow:-1px -1px 0 #000
+position:absolute;
+background:rgba(255,0,0,0);
+text-align:left;
+text-shadow:-1px -1px 0 #000;
+z-index:1;
+margin-top:0.5em;
 }
 
 .totalpts,.total {
 /*font-size:30px*/
 }
-
-#team1 .dial,#team2 .dial {
-position:absolute;
-color:#fff;
-padding:10px;
-background:rgba(0,0,0,0);
-max-width:350px
-}
-
-#team2 .pts,#team2 .totalpts {
-right:176px
-}
-
 #team1 .pts,#team1 .totalpts {
 left:176px
 }
-
-#team2 .dial {
+#team2 .pts,#team2 .totalpts {
+right:176px
+}
+td,tr,table {
+margin:0;
+border:0;
+padding:0
+}
+.dial {
+position:absolute;
+color:#fff;
+padding:1.5em;
+max-width:10em;
+width:10em
+z-index:1;
+}
+.upgtxt {
+position:absolute;
+color:#fff;
+padding-left:1em;
+max-width:350px;
+width:350px;
+z-index:1;
+}
+#team2 .dial,#team2 .upgtxt {
 right:216px
 }
 
-#team1 .dial {
-left:216px
+#team1 .dial,#team1 .upgtxt {
+left:176px
 }
-
 .plus {
 color:#b0c4de;
 font-size:large;
@@ -402,7 +434,10 @@ border-width:1px
 }
 select {
 height:2em;
-width:150px
+width:15em;
+padding-left:0;
+margin-left:0;
+text-align:center;
 }
 .hull,.shield {
 font-family:'symbols';
@@ -456,8 +491,8 @@ display:none
 
 .details {
 font-size:small;
-text-align:justify;
-margin:0;
+text-align:center;
+margin:0.1em;
 overflow:auto;
 height:50px
 }
@@ -493,8 +528,8 @@ color:gray
 }
 
 .team > div {
-margin:5px;
-padding:5px;
+margin-left:0px;
+padding-left:0px;
 box-shadow:1px 1px 3px #000;
 border:0 0 5px 0;
 border:solid;
@@ -905,23 +940,26 @@ width:150px
 width:74px
 }
 
-#leftpanel,#rightpanel {
-width:170px;
-height:100%;
-opacity:1;
+#leftpanel {
+width: 170px;
+height:calc(100% - 60px);
+background-color:rgba(255,255,255,0);
 color:#000;
 border-width:0;
-margin:0
+margin:0;
+overflow:hidden;
+float:left;
 }
-
 #rightpanel {
-float:right
+width:170px;
+height:calc(100% - 60px);
+background-color:rgba(255,255,255,0);
+color:#000;
+border-width:0;
+margin:0;
+overflow:hidden;
+float:right;
 }
-
-#leftpanel {
-float:left
-}
-
 .symbols {
 font-family:'symbols'
 }
@@ -1036,7 +1074,7 @@ top:0;
 right:0;
 width:40%;
 height:58px;
-z-index:1;
+z-index:16;
 text-align:left;
 overflow:auto;
 font-size:small;

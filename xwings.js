@@ -2,7 +2,7 @@ var phase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.6.0";
+var VERSION="v0.6.1";
 
 var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE1=0,SELECT_PHASE2=1;
 var DICES=["focusred","hitred","criticalred","blankred","focusgreen","evadegreen","blankgreen"];
@@ -134,8 +134,23 @@ function nextstep() {
 }
 function center() {
     var bbox=activeunit.g.getBBox();
-    $("#playmat").scrollLeft(bbox.x-window.innerWidth/2+bbox.width/2);
-    $("#playmat").scrollTop(bbox.y-window.innerHeight/2+bbox.height/2);
+    var xx=(bbox.x+bbox.width/2);
+    var yy=(bbox.y+bbox.height/2)
+    var w=$("#svgout").width();
+    var h=$("#svgout").height();
+    var startX=0;
+    var startY=0;
+    if (h>w) startY=(h-w)/2;
+    else startX=(w-h)/2;
+    var min=Math.min(w/900.,h/900.);
+    var x=startX+VIEWPORT.m.x(xx,yy)*min;
+    var y=startY+VIEWPORT.m.y(xx,yy)*min
+    var mm=VIEWPORT.m.invert();
+    if (x<0||x>w) VIEWPORT.m=MT((-x+w/2-startX)/min,0).add(VIEWPORT.m);
+    if (y<0||y>h) VIEWPORT.m=MT(0,(-y+h/2-startY)/min).add(VIEWPORT.m);
+
+    VIEWPORT.transform(VIEWPORT.m);
+    activeunit.show();
 }
 
 function prevselect() {
@@ -510,7 +525,8 @@ function filltabskill() {
     for (i=0; i<squadron.length; i++) tabskill[squadron[i].skill].push(squadron[i]);
 }
 
-var zone=[];
+var ZONE=[];
+
 function nextphase() {
     var i;
     // End of phases
@@ -519,26 +535,35 @@ function nextphase() {
     switch(phase) {
     case SELECT_PHASE1:
 	$("#rightpanel").show();
-	zone[1]=s.rect(0,0,100,900).attr({
+	ZONE[3]=s.rect(0,0,900,900).attr({
+            strokeWidth: 6,
+	    stroke:halftone(WHITE),
+	    strokeDasharray:"20,10,5,5,5,10",
+	    fillOpacity: 0,
+	    id:'ZONE',
+	    pointerEvents:"none"
+	});
+	ZONE[3].appendTo(VIEWPORT);
+	ZONE[1]=s.rect(0,0,100,900).attr({
             fill: TEAMS[1].color,
             strokeWidth: 2,
 	    opacity: 0.3,
 	    pointerEvents:"none"
 	});
-	zone[1].appendTo(s);
+	ZONE[1].appendTo(VIEWPORT);
 	break;
     case SELECT_PHASE2:
-	zone[2]=s.rect(800,0,900,900).attr({
+	ZONE[2]=s.rect(800,0,100,900).attr({
             fill: TEAMS[2].color,
             strokeWidth: 2,
 	    opacity: 0.3,
 	    pointerEvents:"none"
 	});
-	zone[2].appendTo(s);
+	ZONE[2].appendTo(VIEWPORT);
 	break;
     case SETUP_PHASE: 
-	zone[1].remove();
-	zone[2].remove();
+	ZONE[1].remove();
+	ZONE[2].remove();
 	TEAMS[1].endsetup();
 	TEAMS[2].endsetup();
 	$(".playerselect").remove();
@@ -586,14 +611,46 @@ function nextphase() {
 	$("#rightpanel").hide();
 	break;
     case SELECT_PHASE2:
+	$("#team1").css("top",0);
 	TEAMS[1].endselection(s);
 	break;
     case SETUP_PHASE:
+	$("#team2").css("top",0);
 	TEAMS[2].endselection(s);
 	$(".activeunit").prop("disabled",false);
 	activeunit=squadron[0];
 	activeunit.select();
 	activeunit.show();
+
+	$("#svgout").bind('mousewheel DOMMouseScroll', function(event){
+	    var e = event.originalEvent; // old IE support
+	    var w=$("#svgout").width();
+	    var h=$("#svgout").height();
+	    var startX=0;
+	    var startY=0;
+	    if (h>w) startY=(h-w)/2;
+	    else startX=(w-h)/2;
+	    var max=Math.max(900./w,900./h);
+	    var offsetX=(e.clientX-$("#team1").width()-startX)*max;
+	    var offsetY=(e.clientY-$("nav").height()-startY)*max;
+	    var delta;
+	    if (e.wheelDelta > 0) 
+		delta=e.wheelDelta / 360;
+	    else delta = e.detail/ -9;
+	    var z=Math.pow(1.1, delta);
+	    var vm=VIEWPORT.m.clone().invert();
+	    var x=vm.x(offsetX,offsetY);
+	    var y=vm.y(offsetX,offsetY);
+
+	    VIEWPORT.m.translate(x,y).scale(z).translate(-x,-y);
+	    VIEWPORT.transform(VIEWPORT.m);
+	    activeunit.show();
+	});
+
+	$("#svgout").mousedown(function(event) { dragstart(event);});
+	$("#svgout").mousemove(function(e) {dragmove(e);});
+	$("#svgout").mouseup(function(e) {dragstop(e);});
+
 	jwerty.key('l', allunitlist);
 	jwerty.key('w', inhitrange);
 	jwerty.key('s', nextstep);
@@ -995,9 +1052,48 @@ var ATTACK=[]
 var DEFENSE=[]
 
 var TEAMS=[0,new Team(1),new Team(2)];
+var VIEWPORT;
+
+var dragmove=function(event) {
+    var e = event; // old IE support
+    var x=e.offsetX,y=e.offsetY;
+    if (VIEWPORT.dragged) {
+	var w=$("#svgout").width();
+	var h=$("#svgout").height();
+	var max=Math.max(900./w,900./h);
+	var ddx=(e.offsetX-VIEWPORT.x0)*max;
+	var ddy=(e.offsetY-VIEWPORT.y0)*max;
+	VIEWPORT.dragMatrix=MT(ddx,ddy).add(VIEWPORT.m);
+	VIEWPORT.dragged=true;
+	$(".phasepanel").hide();
+	VIEWPORT.transform(VIEWPORT.dragMatrix);
+    }
+}
+var dragstart=function(event) { 
+    var e = event; // old IE support
+    VIEWPORT.dragged=true;
+    if (e.originalEvent.originalTarget.id == "svgout") {
+	VIEWPORT.x0=e.offsetX;
+	VIEWPORT.y0=e.offsetY;
+	VIEWPORT.dragged=true; 
+	VIEWPORT.dragMatrix=VIEWPORT.m;
+    } else VIEWPORT.dragged=false;
+}
+var   dragstop= function(e) { 
+    if (VIEWPORT.dragged) { 
+	VIEWPORT.m=VIEWPORT.dragMatrix;
+	VIEWPORT.m.clone();
+	VIEWPORT.transform(VIEWPORT.m);
+	activeunit.show();
+    }
+    VIEWPORT.dragged=false;
+}
 
 $(document).ready(function() {
-    s = Snap("#svgout");
+    s= Snap("#svgout")
+    VIEWPORT = s.g().attr({id:"viewport"});
+    VIEWPORT.m=new Snap.Matrix();
+
     P = { F0:{path:s.path("M 0 0 L 0 0"), speed: 0, key:"5"},
 	  F1:{path:s.path("M 0 0 L 0 -80"), speed: 1, key:"8"},
 	  F2:{path:s.path("M 0 0 L 0 -120"), speed: 2, key:"8"},
@@ -1073,8 +1169,6 @@ $(document).ready(function() {
 	    $(".ver").html(VERSION);
 	    log(n+"/"+UPGRADES.length+" upgrades implemented");
 	    log("Upgrades NOT implemented"+str);
-	    $("#leftpanel").prepend("<div id='importexport1'><button onclick='currentteam=1;window.location=\"#import\"' class='bigbutton'>Import Squadron</button><button class='bigbutton' onclick='$(\"#jsonexport\").val(JSON.stringify(TEAMS[1])); window.location=\"#export\"'>Export Squadron</button></div>");
-	    $("#rightpanel").prepend("<div id='importexport2'><button onclick='currentteam=2;window.location=\"#import\"' class='bigbutton'>Import Squadron</button><button class='bigbutton' onclick='$(\"#jsonexport\").val(JSON.stringify(TEAMS[2])); window.location=\"#export\"'>Export Squadron</button></div>");
 	    phase=-1;
 	    $("#showproba").prop("disabled",true);
 	    var args= window.location.search.substr(1).split('&');
@@ -1089,6 +1183,26 @@ $(document).ready(function() {
 	    var d=new Date();
 	    for (i=0; i<d.getMinutes(); i++) Math.random();
 	    loadsound();
+	    $("#team1").bind('mousewheel DOMMouseScroll', function(event) {
+		var min=$("nav").height();
+		var e = event.originalEvent; // old IE support
+		var delta = Math.max(-100, Math.min(100, (e.wheelDelta || -e.detail)));
+		var top=parseInt($("#team1").css("top"),10)+delta;
+		if (top>min) top=min;
+		var w=$("#team1").height();
+		if (w>50 && top<min-w+50) top=min-w+50;
+		$("#team1").css("top",(top+"px"));
+	    });
+	    $("#team2").bind('mousewheel DOMMouseScroll', function(event){
+		var min=$("nav").height();
+		var e = event.originalEvent; // old IE support
+		var delta = Math.max(-100, Math.min(100, (e.wheelDelta || -e.detail)));
+		var top=parseInt($("#team2").css("top"),10)+delta;
+		if (top>min) top=min;
+		var w=$("#team2").height();
+		if (w>50 && top<min-w+50) top=min-w+50;
+		$("#team2").css("top",(top+"px"));
+	    });
 	},
 	fail: function() {
 	    //console.log("failing loading ajax");
