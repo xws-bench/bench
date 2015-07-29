@@ -1072,7 +1072,6 @@ var dragmove=function(event) {
 var dragstart=function(event) { 
     var e = event; // old IE support
     VIEWPORT.dragged=true;
-    log("targeted:"+e.originalEvent.target.id);
     if (e.originalEvent.target.id == "svgout") {
 	VIEWPORT.x0=e.offsetX;
 	VIEWPORT.y0=e.offsetY;
