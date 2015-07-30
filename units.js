@@ -311,9 +311,9 @@ Unit.prototype = {
 	this.setdefaultclickhandler();
 
 	this.upgrades.sort(function(a,b) { 
-	    var pa=(a.isWeapon()?2:0)+(a.isBomb()?0:1); 
-	    var pb=(b.isWeapon()?2:0)+(b.isBomb()?0:1);
-	    return b-a;
+	    var pa=(a.isWeapon()?4:0)+(a.isBomb()?1:0); 
+	    var pb=(b.isWeapon()?4:0)+(b.isBomb()?1:0);
+	    return pb-pa;;
 	});
 	this.g.drag(this.dragmove.bind(this),
 		    this.dragstart.bind(this),
@@ -1180,7 +1180,7 @@ Unit.prototype = {
 	return false;
     },
     checkdead: function() {
-	if (this.hull<=0||!this.isinzone(this.m)) {
+	if (!this.dead&&(this.hull<=0||!this.isinzone(this.m))) {
 	    this.dies();
 	    return true;
 	}	
