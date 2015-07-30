@@ -1308,6 +1308,7 @@ Unit.prototype = {
 	    }
 	    mm = this.getpathmatrix(this.m,gd[i].move);
 	    gd[i].color=GREEN;
+	    gd[i].m=mm;
 	    //if (gd[i].move.match(/K\d|SL\d|SR\d/)) mm=mm.rotate(180,0,0);
 	    if (!this.isinzone(mm)) {
 		gd[i].color=RED;
