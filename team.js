@@ -51,7 +51,7 @@ Team.prototype = {
     addpoints: function() { 
 	var team=this.team
 	var f=["REBEL","SCUM","EMPIRE"];
-	$("#team"+team).append("<div id='importexport1'><button onclick='currentteam="+team+";window.location=\"#import\"' class='bigbutton'>Import Squadron</button><button class='bigbutton' onclick='$(\"#jsonexport\").val(JSON.stringify(TEAMS["+team+"])); window.location=\"#export\"'>Export Squadron</button></div>");
+	$("#team"+team).append("<div><button onclick='currentteam="+team+";window.location=\"#import\"' class='bigbutton'>Import Squadron</button><button class='bigbutton' onclick='$(\"#jsonexport\").val(JSON.stringify(TEAMS["+team+"])); window.location=\"#export\"'>Export Squadron</button></div>");
 	$("#team"+team).append("<div id='factionselect"+team+"'></div>");
 	for (i=0; i<3; i++) {
 	    $("#factionselect"+team).append("<input class='factionselect' id='"+f[i]+team+"' name='faction"+team+"' type='radio' onchange='TEAMS["+team+"].changefaction(\""+f[i]+"\")'>");
@@ -120,7 +120,7 @@ Team.prototype = {
 	sq=this.tosquadron(s);
 	$("#team"+team).append("<div class='playerselect'></div>");
 	$("#team"+team+" .playerselect").append("<input id='human"+team+"' class='human' type='checkbox' onchange='TEAMS["+team+"].toggleplayer()'>"); 
-	$("#team"+team+" .playerselect").append("<label for='human"+team+"' data-off='Human' data-on='Computer'></label>");
+	$("#team"+team+" .playerselect").append("<label for='human"+team+"' data-off='&#9668; Human &#9658;' data-on='&#9668; Computer &#9658;'></label>");
 
 	for (i=0; i<sq.length; i++) {
 	    if (team==1) {
@@ -141,7 +141,7 @@ Team.prototype = {
 	    sq[i].m.translate(sq[i].tx,sq[i].ty).rotate(sq[i].alpha,0,0);
 	    sq[i].show();
 	}
-	$("#team"+team).css("top",$("nav").height());
+	$("#team"+team).css("top",$("nav").height()+2);
 	activeunit=sq[0];
     },
     toASCII: function() {
