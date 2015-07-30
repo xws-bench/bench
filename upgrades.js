@@ -2794,4 +2794,12 @@ var UPGRADES= [
         points: 0,
         ship: "TIE Advanced",
     },
+    {
+        name: "Emperor Palpatine",
+        type:"Crew",
+	unique:true,
+	takesdouble:true,
+        points: 8,
+        faction: "EMPIRE"
+    },
 ];
