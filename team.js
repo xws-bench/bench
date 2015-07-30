@@ -51,12 +51,13 @@ Team.prototype = {
     addpoints: function() { 
 	var team=this.team
 	var f=["REBEL","SCUM","EMPIRE"];
+	$("#team"+team).append("<div id='importexport1'><button onclick='currentteam="+team+";window.location=\"#import\"' class='bigbutton'>Import Squadron</button><button class='bigbutton' onclick='$(\"#jsonexport\").val(JSON.stringify(TEAMS["+team+"])); window.location=\"#export\"'>Export Squadron</button></div>");
 	$("#team"+team).append("<div id='factionselect"+team+"'></div>");
 	for (i=0; i<3; i++) {
 	    $("#factionselect"+team).append("<input class='factionselect' id='"+f[i]+team+"' name='faction"+team+"' type='radio' onchange='TEAMS["+team+"].changefaction(\""+f[i]+"\")'>");
 	    $("#factionselect"+team).append("<label for='"+f[i]+team+"' class='"+f[i]+"'>");
 	}
-	$("#team"+team).append("<input class='generic' id='teamname"+this.team+"' type='text' placeholder='Team #"+team+"' style='width:160px'>");
+	$("#team"+team).append("<input class='generic' id='teamname"+this.team+"' type='text' placeholder='Team #"+team+"'>");
     },
     updatepoints: function() {
 	var score1=$("#team"+this.team+" .pts").map(function() {
@@ -140,6 +141,7 @@ Team.prototype = {
 	    sq[i].m.translate(sq[i].tx,sq[i].ty).rotate(sq[i].alpha,0,0);
 	    sq[i].show();
 	}
+	$("#team"+team).css("top",$("nav").height());
 	activeunit=sq[0];
     },
     toASCII: function() {
@@ -181,7 +183,11 @@ Team.prototype = {
 	    var p=new Unit(this.team);
 	    p.upg=[];
 	    p.selectship(PILOTS[pid].unit,PILOTS[pid].name);
-	    for (j=1; j<updstr.length; j++) p.upg.push(Base64.toNumber(updstr[j]));
+	    for (j=1; j<updstr.length; j++) {
+		var n=Base64.toNumber(updstr[j]);
+		p.upg.push(n);
+	        if (typeof UPGRADES[n].install!="undefined") UPGRADES[n].install(p);
+	    }
 	    if (coord.length>1) {
 		var c=Base64.toCoord(coord[1]);
 		p.tx=c[0];
