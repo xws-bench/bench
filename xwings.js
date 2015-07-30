@@ -1,9 +1,11 @@
 var phase=0;
+var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
 var VERSION="v0.6.1";
 
+var DECLOAK_PHASE=1;
 var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE1=0,SELECT_PHASE2=1;
 var DICES=["focusred","hitred","criticalred","blankred","focusgreen","evadegreen","blankgreen"];
 var BOMBS=[];
@@ -123,7 +125,8 @@ function nextstep() {
 	case ACTIVATION_PHASE:
 	    enablenextphase();
 	    //console.log("nextstep:nextactivation");
-	    nextactivation();
+	    if (subphase==DECLOAK_PHASE) nextdecloak();
+	    else nextactivation();
 	    break;
 	case COMBAT_PHASE:
 	    //console.log("nextstep:nextcombat");
@@ -305,6 +308,29 @@ function nextactivation() {
     activeunit.select(); 
     activeunit.beginactivation(); 
     activeunit.doactivation();
+}
+function nextdecloak() {
+    var sk=0,last=0,i;
+    if (skillturn>12) { subphase=ACTIVATION_PHASE; skillturn=0; return nextstep(); }
+    // Counts how many remaining units with same skill
+    while (sk==0) {
+	for (i=0; i<tabskill[skillturn].length; i++) {
+	    if (tabskill[skillturn][i].candecloak()) { sk++; last=i; } 
+	}
+	if (sk==0) { 
+	    skillturn++;
+	    while (skillturn<13 && tabskill[skillturn].length==0) { skillturn++; }
+	    if (skillturn==13) { subphase=ACTIVATION_PHASE; skillturn=0; return nextstep(); }
+	    sk=tabskill[skillturn].length;
+	    last=0;
+	}
+    }
+    var old=activeunit;
+    active=last; 
+    activeunit=tabskill[skillturn][last];
+    old.unselect();    
+    activeunit.select(); 
+    activeunit.dodecloak();
 }
 function nextplanning() {
     var current=active;
@@ -720,6 +746,7 @@ function nextphase() {
 	    squadron[i].beginactivationphase();
 	}
 	filltabskill();
+	//subphase=DECLOAK_PHASE;
 	skillturn=0;
 	//console.log("nextphase:ACTI>nextstep");
 	nextstep();

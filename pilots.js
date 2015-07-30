@@ -1705,7 +1705,7 @@ var PILOTS = [
         name: "'Echo'",
         faction:"EMPIRE",
 	done:true,
-	resolveuncloak: function() {
+	resolvedecloak: function() {
 	    var i=0;
 	    var m0=this.getpathmatrix(this.m,"BL2");
 	    var m1=this.getpathmatrix(this.m,"BR2");
@@ -2087,9 +2087,11 @@ var PILOTS = [
 	    var i;
 	    for (i=0; i<this.touching.length; i++) {
 		var u=this.touching[i];
-		this.log("touching "+u.name+" -> 1 <code class='hit'></code>");
-		u.resolvehit(1);
-		u.checkdead();
+		if (u.team!=this.team) {
+		    this.log("touching "+u.name+" -> 1 <code class='hit'></code>");
+		    u.resolvehit(1);
+		    u.checkdead();
+		}
 	    }
 	    Unit.prototype.resolvecollision.call(this);
 	},
