@@ -620,6 +620,7 @@ Unit.prototype = {
 	    }.bind({key:upgid,obj:this});
 	}
 	var pts=UPGRADES[upgrade].points+bonus;
+	if (pts<0) pts=0;
 	$("#pts"+this.id+"_"+upgid).html(pts);
 	var u=UPGRADES[upgrade];
 	$("#upgradetext"+this.id+"_"+upgid).prepend("<div class='upgtxt details'>"+(u.attack?"<b class='statfire'>"+u.attack+"</b>["+u.range[0]+"-"+u.range[1]+"], ":"")+UPGRADE_translation.english[u.name+(type=="Crew"?"(Crew)":"")]+"</div>");

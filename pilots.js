@@ -1539,7 +1539,7 @@ var PILOTS = [
         attackroll:function(n) {
 	    var ar=Unit.prototype.attackroll;
 	    var r=ar.call(this);
-	    if (targetunit.istargeted&&this.target==0) {
+	    if (targetunit.istargeted.length>0&&this.target==0) {
 		this.addtarget(targetunit);
 		this.log("target locks "+targetunit.name);	
 	    }
@@ -2407,7 +2407,7 @@ var PILOTS = [
 		this.log("pick a Sengor turn");
 		this.resolveactionmove(
 		    [this.getpathmatrix(this.m,"SL3"),
-		     this.getpathmatrix(this.m,"TL3")],
+		     this.getpathmatrix(this.m,"TL3").rotate(180,0,0)],
 		    function(t,k) {
 			if (k==0) Unit.prototype.completemaneuver.call(this,dial,realdial,difficulty);
 			else Unit.prototype.completemaneuver.call(this,dial,"TL3",difficulty);
@@ -2416,7 +2416,7 @@ var PILOTS = [
 		this.log("pick a Sengor turn");
 		this.resolveactionmove(
 		    [this.getpathmatrix(this.m,"SR3"),
-		     this.getpathmatrix(this.m,"TR3")],
+		     this.getpathmatrix(this.m,"TR3").rotate(180,0,0)],
 		    function(t,k) {
 			if (k==0) Unit.prototype.completemaneuver.call(this,dial,realpath,difficulty);
 			else Unit.prototype.completemaneuver.call(this,dial,"TR3",difficulty);
