@@ -86,7 +86,12 @@
 	<svg id="svgout"></svg>
       </section>
 
-      <section id="modal" class="modalDialog">
+      
+      <section class="info"></section>
+
+
+    </article>
+     <section id="modal" class="modalDialog">
 	<div>
 	  <a href="#close" title="Close" class="close">X</a>
 	  <h2 id="listtitle">List of all units</h2>
@@ -94,9 +99,7 @@
 	  <div id="listunits" style="font-size:small" class="table"></div>
 	</div>
       </section>
-      
-      <section class="info"></section>
-
+ 
       <section id="combatmodal" class="modalDialog">
 	<div>
 	  <h2>Combat</h2>
@@ -153,29 +156,16 @@
 	    place. It has a size corresponding to a 90cmx90cm area (normal size area) at the scale of the ships. You can select a unit by clicking on it on the
 	    center area or on its left/right description.</p>
 
-	  <p>The top menu has a <b>Show probabilities</b> entry. It gives a table with the rows
-	    corresponding to the number of attack dices, columns to the
-	    number of defense dices. Each cell gives the percentage to
-	    hit for this combination of attack and defense dices, the
-	    color of the cell is red when it is over 50%, green
-	    otherwise. It also provides, when the attack hits, the mean
-	    number of hits and the mean number of criticals. The table
-	    is computed online, and the probabilities given a number of
-	    dices, for any combination of focus, hit, critical, blank
-	    are computed. The table summarizes these values. By
-	    selecting one of the tokens for the attacker/defender on the
-	    top of the table, you can see the impact of these tokens or
-	    rerolls on the probabilities. 
-
-	    <h2>Squad building</h2> In this phase, only the left then
+	 	    <h2>Squad building</h2> In this phase, only the left then
 	    right panels are activated. You first select the kind of
 	    ship, then the pilot and its upgrades. All pilots upto
 	    wave 6 are available, but the EPIC format is not handled
 	    (no huge ships).
 	    The controls to create a squad should be straightforward. When the first squad is built, press the red button "Next Phase" to build the second one.
+		    You can also Import/Export your squad using XWS format or plain text.
 
 	    When both squads are built, press again the red button to
-	    start the combat !
+	    start the combat ! 
 	  
 	  <h2>Combat</h2> The left/right panels display the
 	  characteristics of selected unit: Name of the pilot, type of
@@ -205,7 +195,9 @@
 	    <p><b>1- Setup phase:</b> You can drag units around and use
 	      the buttons in the left panel to turn them (including obstacles). This is
 	      not checked, but your units should not overlap obstacles
-	      or other units.</p>
+	      or other units. You can save your setup by clicking on save, this create a permalink. Next time you reload, you will go to this screen again, bypassing the creation process. You can also copy/paste the link to show your setup in a forum :)
+	      Finally, you can select for each squad whether it's controlled by you or an IA. 
+	    </p>
 
 	    <p><b>2- Planning phase:</b> Select any unit and pick one
 	      maneuver available in the dial. Some maneuver may be
@@ -352,7 +344,6 @@ The app is not really a game since the user plays both sides, there is no multi-
 	  </p>
 	</div>
       </section>
-    </article>
     <footer id='log'>
     </footer>
   </body>
