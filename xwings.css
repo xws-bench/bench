@@ -127,7 +127,7 @@ background:steelblue;
 color:white;width:100%;text-align:center;
 }
 .modalDialog {
-position:fixed;
+position:absolute;
 top:0;
 right:0;
 bottom:0;
@@ -174,7 +174,8 @@ margin:10% auto;
 padding:5px 20px 13px;
 border-radius:10px;
 background:#fff;
-color:#000
+color:#000;
+z-index:999;
 }
 
 #modal > div,#credit > div,#about > div {
@@ -194,8 +195,6 @@ text-align:justify
 }
 
 .help {
-height:100%;
-width:100%;
 -moz-column-count:3;
 -webkit-column-count:3;
 column-count:3;
@@ -206,10 +205,9 @@ font-size:smaller
 }
 
 #help > div {
-width:88%;
-height:88%;
-margin:2%;
-text-align:justify
+text-align:justify;
+margin:10%;
+font-size:x-small;
 }
 
 #help-howtoplay > div > div {
@@ -236,9 +234,9 @@ background:#606061;
 color:#FFF;
 line-height:25px;
 position:absolute;
-right:0;/*-12px;*/
+right:-12px;
 text-align:center;
-top:0;/*-10px;*/
+top:-10px;
 z-index:1;
 width:24px;
 text-decoration:none;
@@ -1040,8 +1038,10 @@ display:table-cell
 border:1px solid;
 opacity:.7
 }
-
-#menuaction ul {
+#menut + .rssFeed .rssHeader {
+display:none;
+}
+#menut + .rssFeed ul {
 list-style:none;
 position:relative;
 top:-20px;
@@ -1053,16 +1053,16 @@ background:#000;
 box-shadow:0 0 5px rgba(0,0,0,0.15)
 }
 
-#menuaction ul li {
+#menut + .rssFeed ul li {
 display:block;
 background:#000
 }
 
-#menuaction ul li:hover {
+#menut + .rssFeed ul:hover li {
 background:#aaa
 }
 
-#menuaction:hover ul {
+.rssFeed + #menut:hover {
 display:block;
 visibility:visible
 }
