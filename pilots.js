@@ -27,14 +27,15 @@ var PILOTS = [
         unit: "X-Wing",
         skill: 9,
 	init: function() {
-	    var ds=Unit.prototype.getdefensestrength;
-	    Unit.prototype.getdefensestrength=function(w,sh) {
-		var defense=ds.call(this,w,sh);
-		if (sh.name=="Wedge Antilles"&&defense>0) {
-		    sh.log("defense reduced from "+defense+" to "+(defense-1)+" for "+this.name);
-		    return defense-1; 
+	    var unit=this;
+	    var ds=Unit.prototype.getagility;
+	    Unit.prototype.getagility=function() {
+		var a=ds.call(this);
+		if (activeunit==unit&&a>0&&this==targetunit) {
+		    this.log("defense reduced from "+a+" to "+(a-1)+" by "+unit.name);
+		    return a-1; 
 		}
-		else return defense;
+		else return a;
 	    };
 	},
         points: 29,
