@@ -194,12 +194,14 @@ Team.prototype = {
 	for (i in generics) if (generics[i].team==this.team) delete generics[i];
 	for (i=0; i<pilots.length; i++) {
 	    var pstr=pilots[i].split(/\s+\+\s+/);
-	    //log("Searching pilot "+pstr[0]);
 	    var lf=0;
-	    for (j=0;j<PILOTS.length; j++) if (PILOTS[j].name.replace(/\'/g,"")==pstr[0]) lf=lf|getf(PILOTS[j].faction); 
+	    for (j=0;j<PILOTS.length; j++) if (PILOTS[j].name.replace(/\'/g,"")==pstr[0]) {
+		    lf=lf|getf(PILOTS[j].faction);
+		    log("Found "+PILOTS[j].name+" "+PILOTS[j].faction)
+		}
 	    f=f&lf;
 	}
-	if (f&1==1) this.faction="REBEL"; else if (f&2==2) this.faction="SCUM"; else this.faction="EMPIRE";
+	if ((f&1)==1) this.faction="REBEL"; else if ((f&2)==2) this.faction="SCUM"; else this.faction="EMPIRE";
 	this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
 
 	for (i=0; i<pilots.length; i++) {
