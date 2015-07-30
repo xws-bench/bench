@@ -649,7 +649,7 @@ Unit.prototype = {
 	    $("#upgrade"+this.id+"_"+rupg[0]).prop("disabled",true);
 	    this.removeupg[upgid]=function(upgid,reset) {
 		for (j=0; j<10; j++) {
-		    if (upgid!=j&&$("#upgrade"+this.id+"_"+j).prop("disabled")) {
+		    if (upgid!=j&&$("#upgrade"+this.id+"_"+j).is(":disabled")) {
 			$("#upgrade"+this.id+"_"+j).prop("disabled",false);
 		    }
 		}
@@ -1276,7 +1276,7 @@ Unit.prototype = {
 	var o=[];
 	for (i=0; i<gd.length; i++) {
 	    mm = this.getpathmatrix(this.m,gd[i].move);
-	    o[i]=this.getOutline(mm).attr({title:gd[i].move,opacity:0.4,fill:halftone(gd[i].color),display:"block",class:'possible'});
+	    o[i]=this.getOutline(mm).attr({title:gd[i].move,opacity:0.4,fill:halftone(gd[i].color),display:"block",class:'possible'}).appendTo(VIEWPORT);
 	    (function(i) {o[i].hover(function() { o[i].attr({stroke:gd[i].color,strokeWidth:4})}.bind(this),
 				     function() { o[i].attr({strokeWidth:0})}.bind(this)); }.bind(this))(i);
 	}
