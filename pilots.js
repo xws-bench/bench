@@ -1720,7 +1720,7 @@ var PILOTS = [
 	    this.resolveactionmove(p,
 		function (t,k) {
 		    t.agility-=2; t.iscloaked=false;t.show(); 
-		    SOUNDS.uncloak.play();
+		    SOUNDS.decloak.play();
 		    nextstep();
 		},true);
 	    return true;
