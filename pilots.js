@@ -301,7 +301,17 @@ var PILOTS = [
 		r.call(this,difficulty);
 		if (difficulty=="GREEN") {
 		    this.log("green maneuver -> free focus action");
-		    this.addfocus();
+		    this.type="FOCUS";
+		    this.ea=this.endaction;
+		    this.endaction=function() { nextstep(); this.endaction=this.ea; };
+		    waitingforaction.add(function() {
+			    this.addaction(this,function() { return true; },function() {
+				    this.addfocustoken();
+				    this.actionsdone.push("FOCUS");
+				    this.endaction();
+				}.bind(this));
+			}.bind(this));
+		    nextstep();
 		}
 	    }.bind(this);
 	},
