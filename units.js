@@ -645,7 +645,6 @@ Unit.prototype = {
 	    var rupg=[];
 	    var j;
 	    for (j=0; j<10; j++) if (upgid!=j&&$("#upgradetext"+this.id+"_"+j+" ."+type).length>0) rupg.push(j);
-	    log("found "+this.id+"_"+rupg[0]);
 	    $("#upgrade"+this.id+"_"+rupg[0]).val(-1).change();
 	    $("#upgrade"+this.id+"_"+rupg[0]).prop("disabled",true);
 	    this.removeupg[upgid]=function(upgid,reset) {
