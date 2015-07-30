@@ -1241,8 +1241,8 @@ $(document).ready(function() {
 	    };
 	    $(".modalDialog").draggable();
 	    $("footer").draggable();
-	    $("#team1").bind('mousewheel DOMMouseScroll', mousewheel);
-	    $("#team2").bind('mousewheel DOMMouseScroll', mousewheel);
+	    $("#team1").bind('mousewheel DOMMouseScroll', function(event) { mousewheel(this,event); }.bind(TEAMS[1]));
+	    $("#team2").bind('mousewheel DOMMouseScroll', function(event) { mousewheel(this,event); }.bind(TEAMS[2]));
 	},
 	fail: function() {
 	    //console.log("failing loading ajax");
