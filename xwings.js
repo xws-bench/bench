@@ -643,11 +643,11 @@ function nextphase() {
 	$("#rightpanel").hide();
 	break;
     case SELECT_PHASE2:
-	$("#team1").css("top",$("nav").height());
+	$("#team1").css("top",$("nav").height()+2);
 	TEAMS[1].endselection(s);
 	break;
     case SETUP_PHASE:
-	$("#team2").css("top",$("nav").height());
+	$("#team2").css("top",$("nav").height()+2);
 	TEAMS[2].endselection(s);
 	$(".activeunit").prop("disabled",false);
 	activeunit=squadron[0];
@@ -1217,7 +1217,7 @@ $(document).ready(function() {
 	    for (i=0; i<d.getMinutes(); i++) Math.random();
 	    loadsound();
 	    $("#team1").bind('mousewheel DOMMouseScroll', function(event) {
-		var min=$("nav").height();
+		var min=$("nav").height()+2;
 		var e = event.originalEvent; // old IE support
 		var delta = Math.max(-100, Math.min(100, (e.wheelDelta || -e.detail)));
 		var top=parseInt($("#team1").css("top"),10)+delta;
@@ -1227,7 +1227,7 @@ $(document).ready(function() {
 		$("#team1").css("top",(top+"px"));
 	    });
 	    $("#team2").bind('mousewheel DOMMouseScroll', function(event){
-		var min=$("nav").height();
+		var min=$("nav").height()+2;
 		var e = event.originalEvent; // old IE support
 		var delta = Math.max(-100, Math.min(100, (e.wheelDelta || -e.detail)));
 		var top=parseInt($("#team2").css("top"),10)+delta;
