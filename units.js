@@ -1966,6 +1966,16 @@ Unit.prototype = {
     addactivationdial: function(pred,action,html,elt) {
 	this.activationdial.push({pred:pred,action:action,html:html,elt:elt});
     },
+    dodecloak: function() {
+	this.type="CLOAK";
+	if (this.candecloak()) {
+	    waitingforaction.add(function() {
+		    this.addaction(this,function() { return this.candecloak(); }.bind(this),
+				   function() {this.usecloak(); nextstep(); }.bind(this));
+		}.bind(this));
+	    nextstep();
+	}
+    },
     updateactivationdial: function() {
 	this.activationdial=[];
 	this.addactivationdial(function() { return this.candecloak(); }.bind(this),
