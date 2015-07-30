@@ -377,7 +377,7 @@
 	    {"move":"F4","difficulty":"WHITE"},
 	    {"move":"K5","difficulty":"RED"} 
 	],
-	"actionList":["FOCUS","TARGET","EVADE","ROLL"]
+	"actionList":["FOCUS","TARGET","ROLL"]
     },
     "TIE Phantom":{
 	"firesnd":"tie_fire",
@@ -584,7 +584,6 @@
 	"dial": [
 	    {"move":"TL1","difficulty":"WHITE"},
 	    {"move":"BL1","difficulty":"WHITE"},
-	    {"move":"F1","difficulty":"WHITE"},
 	    {"move":"BR1","difficulty":"WHITE"},
 	    {"move":"TR1","difficulty":"WHITE"},
 	    {"move":"TL2","difficulty":"WHITE"},
