@@ -128,17 +128,19 @@ color:white;width:100%;text-align:center;
 }
 .modalDialog {
 position:absolute;
-top:0;
+/*top:0;
 right:0;
 bottom:0;
-left:0;
+left:0;*/
+top:5%;
+left:5%
 background:rgba(0,0,0,0.8);
-z-index:999;
+/*z-index:999;
 opacity:0;
 -webkit-transition:opacity 400ms ease-in;
 -moz-transition:opacity 400ms ease-in;
-transition:opacity 400ms ease-in;
-display:none
+transition:opacity 400ms ease-in;*/
+display:none;
 }
 
 .modalDialog:target {
@@ -178,7 +180,7 @@ color:#000;
 z-index:999;
 }
 
-#modal > div,#credit > div,#about > div {
+#modal > div,#credit > div,#about > div,#help > div {
 width:800px;
 font-size:smaller;
 }
@@ -188,31 +190,11 @@ width:400px;
 font-size:small;
 }
 
-#credit > div,#about > div {
+#credit > div,#about > div,#help > div {
 -moz-column-count:3;
 -webkit-column-count:3;
 column-count:3;
 text-align:justify
-}
-
-.help {
--moz-column-count:3;
--webkit-column-count:3;
-column-count:3;
--webkit-column-width:100px;
--moz-column-width:100px;
-column-width:100px;
-font-size:smaller
-}
-
-#help > div {
-text-align:justify;
-margin:10%;
-font-size:x-small;
-}
-
-#help-howtoplay > div > div {
-overflow:scroll
 }
 
 #import div div {
@@ -1073,15 +1055,26 @@ font-size:x-small
 footer {
 position:fixed;
 background:rgba(0,0,0,0.5);
-top:0;
-right:0;
+bottom:0px;
+left:0;
 width:40%;
-height:58px;
 z-index:16;
+color:lightgrey;
+height:6em;
+}
+footer .title {
+color:white;
+background:rgba(50,50,50,0.5);
+cursor:move;
+height:1em;
+}
+#log {
 text-align:left;
-overflow:auto;
+overflow-y:scroll;
 font-size:small;
-color:lightgrey
+color:lightgrey;
+height:5em;
+/*border-top:10px solid rgba(100,100,100,0.5);}*/
 }
 .unit {
 cursor:move
