@@ -95,15 +95,15 @@ IAUnit.prototype= {
 		$("#npimg").append("<img style='width:10px' src='img/waiting.gif'/>");
 	    }
 	    var process=setInterval(function() {
-		var m=this.computemaneuver();	
-		IACOMPUTING--;
-		if (IACOMPUTING==0) {
-		    $("#npimg").empty();
-		    $("#npimg").append("&#9658;");
-		}
-		this.setmaneuver(m);
-		clearInterval(process);
-	    }.bind(this),500);
+		    var m=this.computemaneuver();	
+		    IACOMPUTING--;
+		    if (IACOMPUTING==0) {
+			$("#npimg").empty();
+			$("#npimg").append("&#9658;");
+		    }
+		    this.setmaneuver(m);
+		    clearInterval(process);
+		}.bind(this),1000);
 	}
 
     },

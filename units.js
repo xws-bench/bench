@@ -1168,6 +1168,8 @@ Unit.prototype = {
 
 	this.dead=true;
 	this.m=MT(-60,-60);
+	this.g.attr({display:"none"});
+	this.geffect.attr({display:"none"});
 	this.log("has exploded !");
 	this.show();
 	if (TEAMS[this.team].checkdead()) win();	
