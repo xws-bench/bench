@@ -771,7 +771,7 @@ function nextphase() {
 }
 function log(str) {
     $("#log").append("<div>"+str+"<div>");
-    $("footer").scrollTop(10000);
+    $("#log").scrollTop(10000);
 }
 function permalink() {
    var s="?"+TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock();
@@ -1205,7 +1205,6 @@ $(document).ready(function() {
 		}
 	    }
 	    */
-	    log("<b>X-Wings Squadron Benchmark console</b>");
 	    log(n+"/"+PILOTS.length+" pilots with full effect");
 	    log("Pilots NOT implemented"+str);
 	    n=0;
@@ -1231,26 +1230,20 @@ $(document).ready(function() {
 	    var d=new Date();
 	    for (i=0; i<d.getMinutes(); i++) Math.random();
 	    loadsound();
-	    $("#team1").bind('mousewheel DOMMouseScroll', function(event) {
+	    var mousewheel=function(t,event) {
 		var min=$("nav").height()+2;
 		var e = event.originalEvent; // old IE support
 		var delta = Math.max(-100, Math.min(100, (e.wheelDelta || -e.detail)));
-		var top=parseInt($("#team1").css("top"),10)+delta;
+		var top=parseInt($("#team"+t.team).css("top"),10)+delta;
 		if (top>min) top=min;
-		var w=$("#team1").height();
+		var w=$("#team"+t.team).height();
 		if (w>50 && top<min-w+50) top=min-w+50;
-		$("#team1").css("top",(top+"px"));
-	    });
-	    $("#team2").bind('mousewheel DOMMouseScroll', function(event){
-		var min=$("nav").height()+2;
-		var e = event.originalEvent; // old IE support
-		var delta = Math.max(-100, Math.min(100, (e.wheelDelta || -e.detail)));
-		var top=parseInt($("#team2").css("top"),10)+delta;
-		if (top>min) top=min;
-		var w=$("#team2").height();
-		if (w>50 && top<min-w+50) top=min-w+50;
-		$("#team2").css("top",(top+"px"));
-	    });
+		$("#team"+t.team).css("top",(top+"px"));
+	    };
+	    $(".modalDialog").draggable();
+	    $("footer").draggable();
+	    $("#team1").bind('mousewheel DOMMouseScroll', mousewheel);
+	    $("#team2").bind('mousewheel DOMMouseScroll', mousewheel);
 	},
 	fail: function() {
 	    //console.log("failing loading ajax");
