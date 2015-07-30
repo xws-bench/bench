@@ -969,7 +969,7 @@ Unit.prototype = {
 	this.show();
     },
     select: function() {
-	if (waitingforaction.isexecuting) return;
+	if (waitingforaction.isexecuting||activeunit.incombat) return;
 	activeunit=this;
 	$("#"+this.id).addClass("selected");
 	this.show();
@@ -1980,6 +1980,7 @@ Unit.prototype = {
 		var w=A[this.weapons[wn[i]].type.toUpperCase()];
 		str+="<div class='symbols "+w.color+"' onclick='activeunit.selecttargetforattack("+wn[i]+")'>"+w.key+"</div>"
 	    }
+	    // activeunit.hasfired++ ?
 	    str+="<button onclick='activeunit.hasfired++;activeunit.show();nextstep()'>Skip</button>"
 	    $("#attackdial").html("<div>"+str+"</div>").show();
 	}
@@ -2049,6 +2050,7 @@ Unit.prototype = {
 	var tfa=this.timeforaction;
 	this.resolveoneaction=function() {
 	    action();
+	    this.actionsdone.push(org.type.toUpperCase());
 	    this.endoneaction();
 	};
 	this.endoneaction=function() {

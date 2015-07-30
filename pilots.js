@@ -1647,32 +1647,39 @@ var PILOTS = [
     },
     {
         name: "Corran Horn",
-        
 	faction:"REBEL",
 	done:true,
 	init: function() {
-	    this.hasdoubledfired=0;
+	    this.hasdoubledfired=-1;
+	    this.endc=0;
+	},
+	canfire: function() {
+	    var r=this.gethitrangeallunits();
+	    var b= ((this.endc==0&&this.hasfired==0)||(this.hasfired==1&&this.endc==1))&&(this.hasdoubledfired<round-1)&&((r[1].length>0||r[2].length>0||r[3].length>0)&&!this.iscloaked&&!this.isfireobstructed());
+	    //log("[canfire]"+this.name+" "+b+"="+this.hasfired+"& r=["+r[1].length+", "+r[2].length+", "+r[3].length+"] &"+this.iscloaked+" &"+this.ocollision.overlap)
+	    return b;
 	},
         endcombatphase: function() {
-	    if (this.hasdoubledfired==0) {
-		Unit.prototype.endcombatphase.call(this);
+	    this.endc++;
+	    //this.log("fired:"+this.hasfired+" hasdamaged"+this.hasdamaged+" doubledfired:"+this.hasdoubledfired+"/"+(round-1)+" canfire?"+this.canfire());
+	    if (this.canfire()) {
+		//Unit.prototype.endcombatphase.call(this);
 		var old=activeunit;
-		var oldskill=this.skill;
 		activeunit=this;
-		this.hasfired=0;
-		this.hasdoubledfired=round;
-		this.skill=-1;
-		this.select();
-		old.unselect();
+		if (old!=this) {
+		    this.select();
+		    old.unselect();
+		}
 		this.log("new attack possible (no attack next turn)");
-		this.showattack();
-		this.skill=oldskill;
-		this.showstats();
-	    }
-	    if (this.hasdoubledfired==round-1) {
-		this.hasfired=0;
-		this.hasdoubledfired=0;
-		this.log("can fire next turn.");
+		this.hasdamaged=false;
+		this.doattack(true);
+	    } else {
+		if (this.hasfired==2&&this.hasdamaged) {
+		    this.hasdoubledfired=round;
+		    this.log("no attack next turn");
+		}
+		this.endc=0;
+		Unit.prototype.endcombatphase.call(this);
 	    }
 	},
         unique: true,
@@ -2881,10 +2888,32 @@ var PILOTS = [
     {
         name: "Juno Eclipse",
         unique: true,
+	done:true,
         faction:"EMPIRE",
 	unit: "TIE Advanced",
         skill: 8,
         points: 28,
+	completemaneuver: function(dial,realdial,difficulty) {
+	    var speed=parseInt(realdial.substr(-1),10);
+	    var p=[];
+	    var q=[];
+	    for (var i=-1; i<=1; i++) {
+		var r=realdial.replace(/\d/,(speed+i)+"");
+		if (typeof P[r]!="undefined") {
+		    q.push(r);
+		    p.push(this.getpathmatrix(this.m,r));
+		}
+		}
+	    this.log("<b>choose speed for maneuver</b>");
+	    waitingforaction.add(function() {
+		    this.resolveactionmove(p,
+					   function(t,k) {
+					       Unit.prototype.completemaneuver.call(t,dial,q[k],difficulty);
+					       nextstep();
+					   },false,true);
+		}.bind(this));
+	    nextstep();
+	},
         upgrades: [
             "Elite",
             "Missile",
@@ -2893,9 +2922,21 @@ var PILOTS = [
     {
         name: "Zertik Strom",
         unique: true,
+	done:true,
         faction:"EMPIRE",
 	unit: "TIE Advanced",
         skill: 6,
+	init: function() {
+	    var unit=this;
+	    this.gras=Weapon.prototype.getrangeattackbonus;
+	    Weapon.prototype.getrangeattackbonus=function(sh) {
+		if (this.unit.team!=unit.team&&unit.getrange(this.unit)==1) {
+		    if (this.unit.getrange(targetunit)==1) this.unit.log("no attack range bonus due to "+unit.name);
+		    return 0;
+		}
+		return unit.gras.call(this,sh);
+	    };
+	},
         points: 26,
         upgrades: [
             "Elite",
