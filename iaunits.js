@@ -8,6 +8,7 @@ IAUnit.prototype= {
 	var p=[],q=[],possible=-1;
 	this.evaluatepositions(true,true);
 	var gd=this.getdial();
+	//log("computing all enemy positions");
 	// Find all possible future positions of enemies
 	for (i=0; i<squadron.length; i++) 
 	    if (squadron[i].team!=this.team) {
@@ -15,24 +16,26 @@ IAUnit.prototype= {
 		var sgd=u.getdial();
 		for (j=0; j<sgd.length; j++)
 		    if (sgd[j].color==GREEN)
-			p.push(u.getOutlinePoints(u.getpathmatrix(u.m,sgd[j].move)));
+			p.push(u.getOutlinePoints(sgd[j].m));
 	    }
 	// Find all possible moves, with no collision and units in range 
 	var COLOR=[GREEN,WHITE,YELLOW];
 	for (c=0; c<COLOR.length&&q.length==0; c++) {
+	    //log("find positions with color "+c);
 	    for (i=0; i<gd.length; i++) {
 		var d=gd[i];
 		if (d.color==COLOR[c]) {
 		    var n=0;
 		    if (possible<0) possible=i;
 		    if (d.difficulty=="GREEN") possible=i;
-		    var mm=this.getpathmatrix(this.m,gd[i].move);
-		    if (gd[i].move.match(/K\d|SL\d|SR\d/)) mm=mm.rotate(180,0,0);
-		    var s=this.getSectorString(3,mm);
+		    //var mm=this.getpathmatrix(this.m,gd[i].move);
+		    //if (gd[i].move.match(/K\d|SL\d|SR\d/)) mm=mm.rotate(180,0,0);
+		    var s=this.getSectorString(3,gd[i].m);
 		    for (j=0; j<p.length; j++) if (this.isPointInside(s,p[j])) n++;
 		    if (n>0) q.push({n:n,m:i});
 		}
 	    }
+	    if (q.length>=0) break;
 	}
 	if (q.length>0) {
 	    q.sort(function(a,b) { return b.n-a.n; });
@@ -100,7 +103,7 @@ IAUnit.prototype= {
 		}
 		this.setmaneuver(m);
 		clearInterval(process);
-	    }.bind(this),8000);
+	    }.bind(this),500);
 	}
 
     },
