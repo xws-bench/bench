@@ -199,7 +199,7 @@ Team.prototype = {
 	    for (j=0;j<PILOTS.length; j++) if (PILOTS[j].name.replace(/\'/g,"")==pstr[0]) lf=lf|getf(PILOTS[j].faction); 
 	    f=f&lf;
 	}
-	if (f==1) this.faction="REBEL"; else if (f==2) this.faction="SCUM"; else this.faction="EMPIRE";
+	if (f&1==1) this.faction="REBEL"; else if (f&2==2) this.faction="SCUM"; else this.faction="EMPIRE";
 	this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
 
 	for (i=0; i<pilots.length; i++) {
