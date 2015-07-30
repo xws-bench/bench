@@ -2877,5 +2877,41 @@ var PILOTS = [
             "Elite",
             "Missile",
         ],
-    }
+    },
+    {
+        name: "Juno Eclipse",
+        unique: true,
+        faction:"EMPIRE",
+	unit: "TIE Advanced",
+        skill: 8,
+        points: 28,
+        upgrades: [
+            "Elite",
+            "Missile",
+        ],
+    },
+    {
+        name: "Zertik Strom",
+        unique: true,
+        faction:"EMPIRE",
+	unit: "TIE Advanced",
+        skill: 6,
+        points: 26,
+        upgrades: [
+            "Elite",
+            "Missile",
+        ],
+    },
+    {
+        name: "Lieutenant Colzet",
+        unique: true,
+        faction:"EMPIRE",
+	unit: "TIE Advanced",
+        skill: 3,
+        points: 23,
+        upgrades: [
+            "Elite",
+            "Missile",
+        ],
+    },
 ];

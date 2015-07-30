@@ -172,7 +172,8 @@ var UPGRADE_dict={
     "ig2000":"IG-2000",
     "btla4ywing":"BTL-A4 Y-Wing",
     "andrasta":"Andrasta",
-    "tiex1":"TIE/x1"
+    "tiex1":"TIE/x1",
+    "emperorpalpatine":"Emperor Palpatine",
 }
 var PILOT_dict={
     "rebels":"Rebel Alliance",
@@ -322,5 +323,8 @@ var PILOT_dict={
     "hwk290":"HWK-290",
     "dacebonearm":"Dace Bonearm",
     "palobgodalhi":"Palob Godalhi",
-    "torkilmux":"Torkil Mux"
+    "torkilmux":"Torkil Mux",
+    "junoeclipse":"Juno Eclipse",
+    "zertikstrom":"Zertik Strom",
+    "lieutenantcolzet":"Lieutenant Colzet",
 };
