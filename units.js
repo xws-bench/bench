@@ -2250,8 +2250,8 @@ Unit.prototype = {
 	if (h>w) startY=(h-w)/2;
 	else startX=(w-h)/2;
 	var min=Math.min(w/900.,h/900.);
-	var x=startX+m.x(bbox.x,bbox.y)*min;
-	var y=startY+m.y(bbox.x,bbox.y)*min
+	var x=startX+(m.x(bbox.x,bbox.y)+bbox.width/2)*min;
+	var y=startY+(m.y(bbox.x,bbox.y))*min
 	var mm=m.split();
 	var d=mm.scalex;
 	$(".phasepanel").css({left:x+d*(this.islarge?40:20),top:y}).show();
