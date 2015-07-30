@@ -51,7 +51,7 @@ Team.prototype = {
     addpoints: function() { 
 	var team=this.team
 	var f=["REBEL","SCUM","EMPIRE"];
-	$("#team"+team).append("<div><button onclick='currentteam="+team+";window.location=\"#import\"' class='bigbutton'>Import Squadron</button><button class='bigbutton' onclick='$(\"#jsonexport\").val(JSON.stringify(TEAMS["+team+"])); window.location=\"#export\"'>Export Squadron</button></div>");
+	$("#team"+team).append("<div><button onclick='currentteam="+team+";window.location=\"#import\"' class='bigbutton'>Import Squadron</button><button class='bigbutton' onclick='$(\"#jsonexport\").val(JSON.stringify(TEAMS["+team+"]));$(\"#jugglerexport\").val(TEAMS["+team+"].toJuggler()); window.location=\"#export\"'>Export Squadron</button></div>");
 	$("#team"+team).append("<div id='factionselect"+team+"'></div>");
 	for (i=0; i<3; i++) {
 	    $("#factionselect"+team).append("<input class='factionselect' id='"+f[i]+team+"' name='faction"+team+"' type='radio' onchange='TEAMS["+team+"].changefaction(\""+f[i]+"\")'>");
@@ -171,6 +171,41 @@ Team.prototype = {
 	s.version="0.2.0";
 	return s;
     },
+    toJuggler:function() {
+	var s="";
+	var f={REBEL:"rebels",SCUM:"scum",EMPIRE:"empire"};
+	for (var i in generics) {
+	    if (generics[i].team==this.team) {
+		s=s+generics[i].toJuggler()+"\n";
+	    }
+	}
+	return s;
+    },
+    parseJuggler : function(svg,str) {
+	var i,j,k;
+	var pilots=str.trim().split("\n");
+	for (i in generics) if (generics[i].team==this.team) delete generics[i];
+	for (i=0; i<pilots.length; i++) {
+	    var pstr=pilots[i].split(/\s+\+\s+/);
+	    log("Searching pilot "+pstr[0]);
+	    for (j=0;j<PILOTS.length; j++) if (PILOTS[j].name.replace(/\'/g,"")==pstr[0]) { pid=j; break; } 
+	    this.faction=PILOTS[pid].faction;
+	    this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
+	    var p=new Unit(this.team);
+	    p.upg=[];
+	    p.selectship(PILOTS[pid].unit,PILOTS[pid].name);
+	    for (j=1; j<pstr.length; j++) {
+		log("Searching upg "+pstr[j]);
+		for (k=0; k<UPGRADES.length; k++) if (UPGRADES[k].name.replace(/\'/g,"")==pstr[j]) {
+			p.upg.push(k);
+			if (typeof UPGRADES[k].install!="undefined") UPGRADES[k].install(p);
+			break;
+		    }
+	    }
+	}
+	nextphase();
+	
+    },
     parseASCII: function(svg,str) {
 	var pilots=str.split(";");
 	for (i in generics) if (generics[i].team==this.team) delete generics[i];
@@ -202,8 +237,7 @@ Team.prototype = {
 	try {
 	    s=$.parseJSON(str);
 	} catch(err) {
-	    alert("JSON error:"+err.message);
-	    return;
+	    return this.parseJuggler(svg,str);
 	}
 	var upg_type=["ept","turret","torpedo","mod","title","amd","missile","crew","cannon","bomb","system","illicit","salvaged"];
 	var i,j,k;

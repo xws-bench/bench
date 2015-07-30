@@ -1190,6 +1190,21 @@ $(document).ready(function() {
 		    str+=PILOTS[i].name; 
 		}
 	    }
+	    /*
+	    setRSSFeed('#menu');	
+	    
+	    $('#menu').change(function() {
+		    setRSSFeed(this);
+		});
+	    
+	    function setRSSFeed(obj) {
+		var feedurl = $('option:selected', obj).val();
+		
+		if (feedurl) {
+			$('#test').rssfeed(feedurl);
+		}
+	    }
+	    */
 	    log("<b>X-Wings Squadron Benchmark console</b>");
 	    log(n+"/"+PILOTS.length+" pilots with full effect");
 	    log("Pilots NOT implemented"+str);

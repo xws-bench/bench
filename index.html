@@ -108,11 +108,17 @@
 	<div>
 	  <a href="#" title="Close" class="close">X</a>
 	  <h2>Import a squadron</h2>
-	  <p>Copy and paste the squad list using XWS format into the following area. (This is in beta, and the <a href="https://github.com/elistevens/xws-spec">XWS spec</a> is still being defined).</p>
+	  <form>
+	  <p>Copy and paste the squad list using one of the two formats. It will determine automatically which one you use.</p>
+	  <ul>
+	    <li>JSON format: The JSON format corresponds to <a href="https://github.com/elistevens/xws-spec">XWS</a>, used by other squad builders.</li>
+	    <li>Plain text: This format describes units one per line, starting with the pilot's name and followed by the list of upgrades, separated by ' + '. See <a href="http://lists.starwarsclubhouse.com/tourneys">X-Wings Juggler lists</a> for an example. You can directly copy lists from X-Wings Juggler with this import.</li>
+	  </ul>
 	  <div>
 	    <textarea id="jsonimport" rows="15" cols="45"></textarea>
 	  </div>
 	  <a href="#" onclick="TEAMS[currentteam].parseJSON(s,$('#jsonimport').val())" class="button2">Import</a>
+	  </form>
 	</div>
       </section>
 
@@ -120,9 +126,11 @@
 	<div>
 	  <a href="#" title="Close" class="close">X</a>
 	  <h2>Export a squadron</h2>
-	  <p>Copy and paste this into an XWS-compliant application to transfer your list. </p>
 	  <div>
-	    <textarea id="jsonexport" rows="15" cols="45"></textarea>
+	    <p>JSON export</p>
+	    <textarea id="jsonexport" rows="8" cols="45"></textarea>
+	    <p>Text format</p>
+	    <textarea id="jugglerexport" rows="8" cols="45"></textarea>
 	  </div>
 	</div>
       </section>
