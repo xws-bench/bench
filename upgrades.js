@@ -615,6 +615,7 @@ var UPGRADES= [
 		} 
 		return m;
 	    }.bind(this),false,"focus");
+	    this.unit.endaction();
 	},
         done:true,
         type: "Elite",
