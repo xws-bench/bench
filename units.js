@@ -352,6 +352,17 @@ Unit.prototype = {
 	s.upgrades=upgpt;
 	return s;
     },
+    toJuggler: function() {
+	var s="";
+	s=this.name.replace(/\'/g,"");
+	for (var i=0; i<10; i++) {
+	    if (this.upg[i]!=-1) {
+		var upg=UPGRADES[this.upg[i]];
+		s = s + " + "+upg.name.replace(/\'/g,"");
+	    }	
+	}
+	return s;
+    },
     toASCII: function() {
 	var s="";
 	s+=Base64.fromNumber(this.pilotid);
@@ -1610,7 +1621,7 @@ Unit.prototype = {
     },
     getattackstrength: function(i,sh) {
 	var att=this.weapons[i].getattack();
-	return att+this.weapons[i].getattackbonus(sh);
+	return att+this.weapons[i].getrangeattackbonus(sh);
     },
     getobstructiondef: function(sh) {
 	return this.getoutlinerange(this.m,sh).o?1:0;
