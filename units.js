@@ -644,17 +644,13 @@ Unit.prototype = {
 	if (UPGRADES[upgrade].takesdouble==true) {
 	    var rupg=[];
 	    var j;
-	    log("takes double of type "+type);
 	    for (j=0; j<10; j++) if (upgid!=j&&$("#upgradetext"+this.id+"_"+j+" ."+type).length>0) rupg.push(j);
 	    log("found "+this.id+"_"+rupg[0]);
 	    $("#upgrade"+this.id+"_"+rupg[0]).val(-1).change();
 	    $("#upgrade"+this.id+"_"+rupg[0]).prop("disabled",true);
 	    this.removeupg[upgid]=function(upgid,reset) {
-		log("calling remove");
 		for (j=0; j<10; j++) {
-		    log(j+" :"+$("#upgrade"+this.id+"_"+j).prop("disabled"));
 		    if (upgid!=j&&$("#upgrade"+this.id+"_"+j).prop("disabled")) {
-			log("enabling select");
 			$("#upgrade"+this.id+"_"+j).prop("disabled",false);
 		    }
 		}
