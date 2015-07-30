@@ -207,7 +207,7 @@ Weapon.prototype = {
 	}
 	return true;
     },
-    getattackbonus: function(sh) {
+    getrangeattackbonus: function(sh) {
 	if (this.isprimary) {
 	    var r=this.getrange(sh);
 	    if (r==1) {
@@ -1820,7 +1820,7 @@ var UPGRADES= [
 		var q=[];
 		q.push(realdial);
 		p.push(this.getpathmatrix(this.m,realdial));
-		for (i=0; i<gd.length; i++) 
+		for (var i=0; i<gd.length; i++) 
 		    if (gd[i].move.substr(-1)==speed&&gd[i].move!=realdial) { 
 			p.push(this.getpathmatrix(this.m,gd[i].move));
 			q.push(gd[i].move);
