@@ -603,18 +603,22 @@ var UPGRADES= [
     },
     {
         name: "Marksmanship",
+	init: function(sh) {
+	    this.mark=-1;;
+	    sh.addattackmoda(this,function(m,n) {
+		    return (this.mark==round);
+		}.bind(this),function(m,n) {
+		    var f=Math.floor(m/100)%10;
+		    if (f>0&&this.mark==round) {		
+			this.unit.log("Marksmanship: "+f+" <code class='xfocustoken'></code> -> 1 <code class='critical'></code>"+(f>1?"+ "+(f-1)+"<code class='hit'></code>":""));
+			return m-100*f+10+(f-1); 
+		    } 
+		    return m;
+		}.bind(this),false,"focus");
+	},
 	candoaction: function() { return true; },
 	action: function() {
-	    this.unit.addattackmoda(this,function(m,n) {
-		return true;
-	    },function(m,n) {
-		var f=Math.floor(m/100)%10;
-		if (f>0) {		
-		    this.unit.log("Marksmanship: "+f+" <code class='xfocustoken'></code> -> 1 <code class='critical'></code>"+(f>1?"+ "+(f-1)+"<code class='hit'></code>":""));
-		    return m-100*f+10+(f-1); 
-		} 
-		return m;
-	    }.bind(this),false,"focus");
+	    this.mark=round;
 	    this.unit.endaction();
 	},
         done:true,

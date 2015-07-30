@@ -1677,8 +1677,10 @@ var PILOTS = [
 		if (this.hasfired==2&&this.hasdamaged) {
 		    this.hasdoubledfired=round;
 		    this.log("no attack next turn");
-		}
+		} else this.log("can attack next turn");
 		this.endc=0;
+		this.hasdamaged=false;
+		this.hasfired=0;
 		Unit.prototype.endcombatphase.call(this);
 	    }
 	},
