@@ -182,20 +182,35 @@ Team.prototype = {
 	return s;
     },
     parseJuggler : function(svg,str) {
-	var i,j,k;
+	var f,i,j,k;
+	var pid;
+	var getf=function(f) {
+	    if (f=="REBEL") return 1;
+	    if (f=="SCUM") return 2;
+	    return 4;
+	};
+	var f=7;
 	var pilots=str.trim().split("\n");
 	for (i in generics) if (generics[i].team==this.team) delete generics[i];
 	for (i=0; i<pilots.length; i++) {
 	    var pstr=pilots[i].split(/\s+\+\s+/);
-	    log("Searching pilot "+pstr[0]);
-	    for (j=0;j<PILOTS.length; j++) if (PILOTS[j].name.replace(/\'/g,"")==pstr[0]) { pid=j; break; } 
-	    this.faction=PILOTS[pid].faction;
-	    this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
+	    //log("Searching pilot "+pstr[0]);
+	    var lf=0;
+	    for (j=0;j<PILOTS.length; j++) if (PILOTS[j].name.replace(/\'/g,"")==pstr[0]) lf=lf|getf(PILOTS[j].faction); 
+	    f=f&lf;
+	}
+	if (f==1) this.faction="REBEL"; else if (f==2) this.faction="SCUM"; else this.faction="EMPIRE";
+	this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
+
+	for (i=0; i<pilots.length; i++) {
+	    var pstr=pilots[i].split(/\s+\+\s+/);
+	    //log("Searching pilot "+pstr[0]);
+	    for (j=0;j<PILOTS.length; j++) if (PILOTS[j].name.replace(/\'/g,"")==pstr[0]&&PILOTS[j].faction==this.faction) { pid=j; break; } 
 	    var p=new Unit(this.team);
 	    p.upg=[];
 	    p.selectship(PILOTS[pid].unit,PILOTS[pid].name);
 	    for (j=1; j<pstr.length; j++) {
-		log("Searching upg "+pstr[j]);
+		//log("Searching upg "+pstr[j]);
 		for (k=0; k<UPGRADES.length; k++) if (UPGRADES[k].name.replace(/\'/g,"")==pstr[j]) {
 			p.upg.push(k);
 			if (typeof UPGRADES[k].install!="undefined") UPGRADES[k].install(p);
