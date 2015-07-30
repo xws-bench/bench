@@ -179,18 +179,19 @@ z-index:999;
 }
 
 #modal > div,#credit > div,#about > div {
-width:800px
+width:800px;
+font-size:smaller;
 }
 
 #import > div,#export > div,#proba > div,#combatmodal > div {
-width:400px
+width:400px;
+font-size:small;
 }
 
 #credit > div,#about > div {
 -moz-column-count:3;
 -webkit-column-count:3;
 column-count:3;
-font-size:smaller;
 text-align:justify
 }
 
