@@ -413,7 +413,11 @@ function reroll(n,forattack,type,id) {
     var defenseroll=["blank","focus","evade"];
     if (forattack) {
 	for (i=0; i<4; i++) {
-	    if (type%10>=1) {
+	    var t=type;
+	    type=Math.floor(type/10);
+	    // Do not reroll focus
+	    if (activeunit.canusefocus()&&activeunit.candofocus()&&i==1) continue;
+	    if (t%10>=1) {
 		l=$("."+attackroll[i]+"reddice:not([noreroll])");
 		if (l.length<n) {
 		    l.remove();
@@ -422,7 +426,6 @@ function reroll(n,forattack,type,id) {
 		    $("."+attackroll[i]+"reddice:lt("+n+"):not([noreroll])").remove();
 		    m+=n;n=0;
 		}
-		type=Math.floor(type/10);
 	    }
 	}
 	//console.log("rerolling "+m+" dices");
@@ -433,7 +436,11 @@ function reroll(n,forattack,type,id) {
 	}
     } else { 
 	for (i=0; i<3; i++) {
-	    if (type%10>=1) {
+	    var t=type;
+	    type=Math.floor(type/10);
+	    // Do not reroll focus
+	    if (targetunit.canusefocus()&&targetunit.candofocus()&&i==1) continue;
+	    if (t%10>=1) {
 		l=$("."+defenseroll[i]+"greendice:not([noreroll])");
 		if (l.length<n) {
 		    l.remove();
@@ -442,7 +449,6 @@ function reroll(n,forattack,type,id) {
 		    $("."+attackroll[i]+"greendice:lt("+n+"):not([noreroll])").remove();
 		    m+=n;n=0;
 		}
-		type=Math.floor(type/10);
 	    }
 	}
 	$("#rerolld"+id).remove();
