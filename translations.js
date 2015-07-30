@@ -164,6 +164,12 @@ PILOT_translation.english = {
     "At the start of the Combat phase, you may remove 1 focus or evade token from another friendly ship at Range 1-2 and assign it to yourself.",
     "Commander Alozen":
     "At the start of the Combat phase, you may acquire a target lock on an enemy ship at Range 1.",
+    "Lieutenant Colzet":
+    "At the start of the End phase, you may spend a target lock you have on an enemy ship to flip 1 random facedown Damage card assigned to it faceup.",
+    "Zertik Strom":
+    "Enemy ships at Range 1 cannot add their range combat bonus when attacking.",
+    "Juno Eclipse":
+    "When you reveal your maneuver, you may increase or decrease its speed by 1 (to a minimum of 1).",
 };
 var CRITICAL_translation={};
 CRITICAL_translation.english = {
@@ -519,4 +525,6 @@ UPGRADE_translation.english = {
     "Your upgrade bar gains two additional <code class='symbols'>B</code> upgrade icons.",
     "TIE/x1":
     "Your upgrade bar gains the <code class='symbols'>S</code> upgrade icon. If you equip a <code class='symbols'>S</code> upgrade, its squad point cost is reduced by 4 (to a minimum of 0).",
+    "Emperor Palpatine(Crew)":
+    "Once per round, you may change a friendly ship's die result. That die result cannot be modified again.",
 }
