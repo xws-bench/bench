@@ -863,10 +863,12 @@ var UPGRADES= [
 	    if (phase==ACTIVATION_PHASE&&!this.exploded) {
 		var r=this.getrangeallunits();
 		var i;
-		for (i=0; i<r[1].length; i++) 
-		    squadron[r[1][i].unit].resolvehit(1);
 		BOMBS.splice(BOMBS.indexOf(this),1);
 		Bomb.prototype.explode.call(this);
+		for (i=0; i<r[1].length; i++) {
+		    squadron[r[1][i].unit].resolvehit(1);
+		    squadron[r[1][i].unit].checkdead();
+		}
 	    }
 	},
         type: "Bomb",
@@ -1166,11 +1168,12 @@ var UPGRADES= [
         explode: function() {
 	    if (phase==ACTIVATION_PHASE&&!this.exploded) {
 		var r=this.getrangeallunits();
-		var i;
-		for (i=0; i<r[1].length; i++) 
-		    squadron[r[1][i].unit].applycritical(1);
 		BOMBS.splice(BOMBS.indexOf(this),1);
 		Bomb.prototype.explode.call(this);
+		for (var i=0; i<r[1].length; i++) {
+		    squadron[r[1][i].unit].applycritical(1);
+		    squadron[r[1][i].unit].checkdead();
+		}
 	    }
 	},
         type: "Bomb",
@@ -2131,7 +2134,7 @@ var UPGRADES= [
 	    }.bind(this),function(m,n) {
 		var h=m%10;
 		if (h>0) {
-		    this.log("'Mangler' Cannon: 1 <code class='hit'></code> -> 1 <code class='critical'></code>");
+		    this.unit.log("'Mangler' Cannon: 1 <code class='hit'></code> -> 1 <code class='critical'></code>");
 		    return m+9;
 		}
 		return m;
