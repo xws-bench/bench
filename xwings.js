@@ -404,7 +404,6 @@ function modrolld(f,n,id) {
 	$("#defense").append("<td class='blankgreendice'></td>");
     $("#modd"+id).remove();
 }
-
 function reroll(n,forattack,type,id) {
     var i;
     var l;
@@ -1068,6 +1067,7 @@ function fillprobatable() {
 		  reroll:0}
     //log("REROLL1:"+attacker.reroll);
     var ra;
+    console.log("cloak ?"+$("#cloakD").prop("checked"));
     ra=parseInt($("#rerollA").val(),10);
     var rd=parseInt($("#rerollD").val(),10);
     //log("REROLL2:"+ra+"-"+$("#rerollA").val());
@@ -1168,7 +1168,7 @@ $(document).ready(function() {
 		ATTACK[dice]=attackproba(dice);
 		DEFENSE[dice]=defenseproba(dice);
 		dice++;
-		if (dice==7) {
+		if (dice==8) {
 		    fillprobatable();
 		    $("#showproba").prop("disabled",false);
 		    clearInterval(process);}
