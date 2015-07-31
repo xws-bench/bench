@@ -1538,7 +1538,7 @@ var PILOTS = [
         faction:"EMPIRE",
         attackroll:function(n) {
 	    var ar=Unit.prototype.attackroll;
-	    var r=ar.call(this);
+	    var r=ar.call(this,n);
 	    if (targetunit.istargeted.length>0&&this.target==0) {
 		this.addtarget(targetunit);
 		this.log("target locks "+targetunit.name);	
