@@ -103,7 +103,7 @@ IAUnit.prototype= {
 		    }
 		    this.setmaneuver(m);
 		    clearInterval(process);
-		}.bind(this),1000);
+		}.bind(this),2000);
 	}
 
     },
