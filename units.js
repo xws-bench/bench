@@ -1,3 +1,7 @@
+/*
+  factorized code and a bug in cache allowed moves
+
+ */
 var s;
 var GREEN="#0F0",RED="#F00",WHITE="#FFF",BLUE="#0AF",YELLOW="#FF0";
 var HALFGREEN="#080",HALFRED="#800",HALFWHITE="#888",HALFBLUE="#058",HALFYELLOW="#880";
@@ -189,6 +193,7 @@ Unit.prototype = {
     tosquadron: function(s) {
 	var upgs=this.upg;
 	//log(this.name+" has touching");
+	this.incombat=false;
 	this.touching=[];
 	this.maneuver=-1;
 	this.action=-1;
@@ -763,13 +768,7 @@ Unit.prototype = {
     },
     setdefaultclickhandler: function() {
 	this.g.unmousedown();
-	this.g.mousedown(function() { 
-	    if (this!=activeunit) {
-		var old=activeunit;
-		this.select();
-		old.unselect();
-	    }
-	}.bind(this));
+	this.g.mousedown(function() { this.select();}.bind(this));
     },
     dragshow: function() {
 	this.g.transform(this.dragMatrix);
@@ -970,7 +969,9 @@ Unit.prototype = {
     },
     select: function() {
 	if (waitingforaction.isexecuting||activeunit.incombat) return;
+	var old=activeunit;
 	activeunit=this;
+	if (old!=this) old.unselect();
 	$("#"+this.id).addClass("selected");
 	this.show();
         center(this);
@@ -1047,33 +1048,29 @@ Unit.prototype = {
 	path.remove();
 	return m;
     },
-    getpossibleoutline: function(m) {
-	var ol=this.getOutline(m);
-	var o1=this.getOutlineString(m).s;
-	var possible=true;
-	var i;
-	if (!this.isinzone(m)) {
-	    return {ol:ol,b:false};
+    getmovecolor: function(m,withcollisions,withobstacles) {
+	var i,k;
+	if (!this.isinzone(m)) return RED;
+	var so=this.getOutlineString(m);
+	if (withobstacles) {
+	    for (k=0; k<OBSTACLES.length; k++)
+		if (Snap.path.intersection(OBSTACLES[k].path,so.s).length>0 
+		    ||this.isPointInside(OBSTACLES[k].path,so.p)
+		    ||this.isPointInside(so.s,OBSTACLES[k].getOutlinePoints())) 
+		    return YELLOW;
 	}
-	for (i=0; i<squadron.length; i++) {
-	    var sh=squadron[i];
-	    if (sh!=this) {
-		var o2=sh.getOutlineString(sh.m).s;
-		if (Snap.path.intersection(o1, o2).length>0) {
-		    possible=false;
-		    break; 
-		}
+ 	if (withcollisions) {
+	    for (k=0; k<squadron.length; k++) {
+		var u=squadron[k];
+		if (u==this) continue;
+		var su=u.getOutlineString(u.m);
+		if (Snap.path.intersection(su.s,so.s).length>0
+		    ||((this.islarge&&!u.islarge&&this.isPointInside(so.s,su.p)))
+		    ||((!this.islarge&&u.islarge)&&this.isPointInside(su.s,so.p))) 
+		    return WHITE;
 	    }
 	}
-	if (possible) {
-	    for (i=0; i<OBSTACLES.length; i++) {
-		if (this.isPointInside(o1,OBSTACLES[i].getOutlinePoints())) {
-		    possible=false;
-		    break; 
-		}
-	    } 
-	}
-	return {ol:ol,b:possible};
+	return GREEN;
     },
     isTurret: function(w) {
 	return (w.type=="Turretlaser");
@@ -1288,7 +1285,7 @@ Unit.prototype = {
 	var gd=this.getdial();
 	var o=[];
 	for (i=0; i<gd.length; i++) {
-	    mm = this.getpathmatrix(this.m,gd[i].move);
+	    mm = gd[i].m;
 	    o[i]=this.getOutline(mm).attr({title:gd[i].move,opacity:0.4,fill:halftone(gd[i].color),display:"block",class:'possible'}).appendTo(VIEWPORT);
 	    (function(i) {o[i].hover(function() { o[i].attr({stroke:gd[i].color,strokeWidth:4})}.bind(this),
 				     function() { o[i].attr({strokeWidth:0})}.bind(this)); }.bind(this))(i);
@@ -1296,51 +1293,12 @@ Unit.prototype = {
     },
     evaluatepositions: function(withcollisions,withobstacles) {
 	var gd=this.getdial();
-	var i,j,k,os=[],op=[],s1=[],sp1=[];
-	for (k=0; k<squadron.length; k++) {
-	    var u=squadron[k];
-	    if (u==this) continue;
-	    var su=u.getOutlineString(u.m);
-	    s1[k]=su.s;
-	    sp1[k]=su.p;
-	}
+	var i;
 	for (i=0; i<gd.length; i++) {
-	    if (gd[i].difficulty=="RED"&&this.stress>0) {
-		gd[i].color=RED; continue; 
-	    }
-	    mm = this.getpathmatrix(this.m,gd[i].move);
-	    gd[i].color=GREEN;
+	    var mm = this.getpathmatrix(this.m,gd[i].move);
 	    gd[i].m=mm;
-	    //if (gd[i].move.match(/K\d|SL\d|SR\d/)) mm=mm.rotate(180,0,0);
-	    if (!this.isinzone(mm)) {
-		gd[i].color=RED;
-		continue;
-	    }
-	    if (withobstacles) {
-		var so=this.getOutlineString(mm);
-		os[i]=so.s;
-		op[i]=so.p;
-		for (k=0; k<OBSTACLES.length; k++){
-		    if (Snap.path.intersection(OBSTACLES[k].path,os[i]).length>0 
-			||this.isPointInside(OBSTACLES[k].path,op[i])
-			||this.isPointInside(os[i],OBSTACLES[k].getOutlinePoints())) {
-			gd[i].color=YELLOW;
-			break;
-		    }
-		}
-	    }
-	    if (gd[i].color!=YELLOW&&withcollisions) {
-		for (k=0; k<squadron.length; k++) {
-		    var u=squadron[k];
-		    if (u==this) continue;
-		    if (Snap.path.intersection(s1[k],os[i]).length>0
-			||((this.islarge&&!u.islarge&&this.isPointInside(os[i],sp1[k])))
-			||((!this.islarge&&u.islarge)&&this.isPointInside(s1[k],op[i]))) {
-			gd[i].color=WHITE;
-			break;
-		    }
-		}
-	    }
+	    if (gd[i].difficulty=="RED"&&this.stress>0) gd[i].color=RED; 
+	    else gd[i].color=this.getmovecolor(mm,withcollisions,withobstacles);
 	}
     },
     usecloak: function(id) {
@@ -1416,11 +1374,10 @@ Unit.prototype = {
 	    this.show();
 	}.bind(this);
 	for (i=0; i<moves.length; i++) {
-	    var p=this.getpossibleoutline(moves[i]);
-	    if (possible||p.b) {
-		p.ol.attr({display:"block"}).appendTo(VIEWPORT);
-		this.pos.push({ol:p.ol,k:i});
-	    } //else p.ol.remove();
+	    if (possible||this.getmovecolor(moves[i],true,true)==GREEN) {
+		p=this.getOutline(moves[i]).attr({display:"block"}).appendTo(VIEWPORT);
+		this.pos.push({ol:p,k:i});
+	    }
 	}
 	if (this.pos.length>0) {
 	    if (this.pos.length==1) {
@@ -1747,7 +1704,7 @@ Unit.prototype = {
 		   strokeDasharray:100,
 		   "class":"animated"}).appendTo(VIEWPORT);
 	//console.log("resolveattack:"+this.name+" "+attack+"/"+defense);
-	this.select();	targetunit.unselect(); 
+	this.select();	
 	for (i=0; i<squadron.length; i++) if (squadron[i]==this) break;
 	this.doattackroll(this.attackroll(attack),attack,defense,i);
 	//this.show();
@@ -2067,7 +2024,7 @@ Unit.prototype = {
 	    str+="<button onclick='squadron["+me+"].endoneaction()'>Skip</button>";
 	    $("#actiondial").html("<div>"+str+"</div>").show();
 	};
-	this.showaction();
+	this.doaction();
     },
     log: function(str) {
 	log("<div><span style='color:"+this.color+"'>["+this.name+"]</span> "+str+"</div>");
@@ -2316,19 +2273,14 @@ Unit.prototype = {
 	if (this.timeforaction()) this.showaction(); else $("#actiondial").empty();
 	if (phase==ACTIVATION_PHASE) this.showactivation();
 	this.showattack();
-	if (this.hull>0) { 
+	if (!this.dead) { 
 	    $("#"+this.id).html(""+this);
-	    $("#"+this.id).addClass("selected");
+	    //$("#"+this.id).addClass("selected");
 	}
     },
     showhitsector: function(b,name) {
         var opacity=(b)?"inline":"none";
-	var old=activeunit;
-	activeunit=this;
-	if (old!=this) { 
-	    old.unselect();
-	    this.select();
-	}
+	this.select();
 	if (!b) {
 	    for (i=0; i<this.sectors.length; i++) this.sectors[i].remove();
 	    for (i=0; i<this.ranges.length; i++) this.ranges[i].remove();
@@ -2365,12 +2317,7 @@ Unit.prototype = {
     showrange: function(b,r0,r1) {
         var opacity=(b)?"inline":"none";
 	var i;
-	var old=activeunit;
-	activeunit=this;
-	if (old!=activeunit) {
-	    old.unselect();
-	    this.select();
-	}
+	this.select();
 	if (!b) {
 	    for (i=0; i<this.ranges.length; i++) 
 		this.ranges[i].remove();

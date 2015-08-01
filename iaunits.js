@@ -5,53 +5,54 @@ function IAUnit() {
 IAUnit.prototype= {
     computemaneuver: function() {
 	var i,j,k,d=0;
-	var p=[],q=[],possible=-1;
-	this.evaluatepositions(true,true);
+	var q=[],p=[],possible=-1;
 	var gd=this.getdial();
 	//log("computing all enemy positions");
 	// Find all possible future positions of enemies
-	for (i=0; i<squadron.length; i++) 
-	    if (squadron[i].team!=this.team) {
-		var u=squadron[i];
+	for (i=0; i<squadron.length; i++) {
+	    var u=squadron[i];
+	    if (u.team!=this.team) {
 		var sgd=u.getdial();
 		for (j=0; j<sgd.length; j++)
 		    if (sgd[j].color==GREEN)
 			p.push(u.getOutlinePoints(sgd[j].m));
-	    }
-	// Find all possible moves, with no collision and units in range 
-	var COLOR=[GREEN,WHITE,YELLOW];
-	for (c=0; c<COLOR.length&&q.length==0; c++) {
-	    //log("find positions with color "+c);
-	    for (i=0; i<gd.length; i++) {
-		var d=gd[i];
-		if (d.color==COLOR[c]) {
-		    var n=0;
-		    if (possible<0) possible=i;
-		    if (d.difficulty=="GREEN") possible=i;
-		    //var mm=this.getpathmatrix(this.m,gd[i].move);
-		    //if (gd[i].move.match(/K\d|SL\d|SR\d/)) mm=mm.rotate(180,0,0);
-		    var s=this.getSectorString(3,gd[i].m);
-		    for (j=0; j<p.length; j++) if (this.isPointInside(s,p[j])) n++;
-		    if (n>0) q.push({n:n,m:i});
+	    } else if (u.skill<this.skill) p.push(u.getOutlinePoints(u.m));
+	}
+	var findpositions=function(gd,p,scale) {
+	    var q=[],c,j,i;
+	// Find all possible moves, with no collision and with units in range 
+	    var COLOR=[GREEN,WHITE,YELLOW];
+	    this.evaluatepositions(true,true);
+	    for (c=0; c<COLOR.length&&q.length==0; c++) {
+		//log("find positions with color "+c);
+		for (i=0; i<gd.length&&q.length==0; i++) {
+		    var d=gd[i];
+		    var mm=this.getpathmatrix(this.m.clone().scale(scale),gd[i].move);
+		    //log(this.name+":"+d.move+":"+d.color);
+		    if (d.color==COLOR[c]) {
+			var n=0;
+			var s=this.getSectorString(3,mm);
+			for (j=0; j<p.length; j++) if (this.isPointInside(s,p[j])) n++;
+			if (n>0) q.push({n:n,m:i});
+		    }
 		}
 	    }
-	    if (q.length>=0) break;
-	}
+	    return q;
+	}.bind(this);
+	q=findpositions(gd,p,1);
+	if (q.length==0) q=findpositions(gd,p,3);
 	if (q.length>0) {
 	    q.sort(function(a,b) { return b.n-a.n; });
 	    d=q[0].m;
 	    //if (typeof gd[d] == "undefined") log("GD NON DEFINI POUR "+this.name+" "+gd.length+" "+d);	    
 	} else {
-	    d=possible;
-	    if (possible==-1) {
-		for (i=0; i<gd.length; i++) 
-		    if (gd[i].difficulty!="RED"||this.stress>0) break;
-		d=i;
-	    }
+	    for (i=0; i<gd.length; i++) 
+		if (gd[i].difficulty!="RED"||gd[i].move.match(/F\d/)) break;
+	    d=i;
 	    //if (typeof gd[d] == "undefined") log("(q=vide) UNDEFINED GD FOR "+this.name+" "+gd.length+" "+possible);
 
 	}
-	log("Maneuver set for "+this.name);//+":"+d+"/"+gd.length+"->"+gd[d].move);
+	log("Maneuver set for "+this.name);//+":"+d+"/"+q.length+" possible?"+possible+"->"+gd[d].move);
 	return d;
     },
     freeaction: function(endfree) {
@@ -70,15 +71,9 @@ IAUnit.prototype= {
     },
     resolveactionmove: function(moves,cleanup,automove,possible) {
 	var i;
-	var p=[];
 	var ready=false;
-	for (i=0; i<moves.length; i++) {
-	    p[i]=this.getpossibleoutline(moves[i]);
-	    p[i].ol.remove();
-	}
-	for (i=0; i<moves.length; i++) {
-	    if (p[i].b||possible) { ready=true; break; }
-	}
+	for (i=0; i<moves.length&&!ready; i++) 
+	    if (possible||this.getmovecolor(moves[i],true,true)==GREEN) ready=true;
 	if (ready) { this.m=moves[i]; cleanup(this,i); }
 	else cleanup(this,-1);
     },
