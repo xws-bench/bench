@@ -551,34 +551,34 @@ function nextphase() {
     var i;
     // End of phases
     //if (!enablenextphase()) return;
-    window.location="#"
+    window.location="#";
     switch(phase) {
     case SELECT_PHASE1:
 	$("#rightpanel").show();
 	ZONE[3]=s.rect(0,0,900,900).attr({
-            strokeWidth: 6,
-	    stroke:halftone(WHITE),
-	    strokeDasharray:"20,10,5,5,5,10",
-	    fillOpacity: 0,
-	    id:'ZONE',
-	    pointerEvents:"none"
-	});
+		strokeWidth: 6,
+		stroke:halftone(WHITE),
+		strokeDasharray:"20,10,5,5,5,10",
+		fillOpacity: 0,
+		id:'ZONE',
+		pointerEvents:"none"
+	    });
 	ZONE[3].appendTo(VIEWPORT);
 	ZONE[1]=s.rect(0,0,100,900).attr({
-            fill: TEAMS[1].color,
-            strokeWidth: 2,
-	    opacity: 0.3,
-	    pointerEvents:"none"
-	});
+		fill: TEAMS[1].color,
+		strokeWidth: 2,
+		opacity: 0.3,
+		pointerEvents:"none"
+	    });
 	ZONE[1].appendTo(VIEWPORT);
 	break;
     case SELECT_PHASE2:
 	ZONE[2]=s.rect(800,0,100,900).attr({
-            fill: TEAMS[2].color,
-            strokeWidth: 2,
-	    opacity: 0.3,
-	    pointerEvents:"none"
-	});
+		fill: TEAMS[2].color,
+		strokeWidth: 2,
+		opacity: 0.3,
+		pointerEvents:"none"
+	    });
 	ZONE[2].appendTo(VIEWPORT);
 	break;
     case SETUP_PHASE: 
