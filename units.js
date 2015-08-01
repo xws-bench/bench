@@ -1888,6 +1888,7 @@ Unit.prototype = {
 	this.showaction();
     },
     candoaction: function() {
+	log("stress:"+this.stress+" collision:"+this.collision+" template"+this.ocollision.template+" overlap"+this.ocollision.overlap);
 	if (this.stress>0||this.collision||this.ocollision.template>0||this.ocollision.overlap>-1) return false;
 	return  true;
     },
@@ -2099,6 +2100,7 @@ Unit.prototype = {
     beginplanningphase: function() {
     },
     beginactivationphase: function() {
+	this.actiondone=false;
 	this.showmaneuver();
     },
     timetoshowmaneuver: function() {
@@ -2249,6 +2251,7 @@ Unit.prototype = {
 	$(".phasepanel").css({left:x+d*(this.islarge?40:20),top:y}).show();
     },
     timeforaction: function() {
+	log("waiting ?"+waitingforaction.isexecuting+" active?"+(this==activeunit)+" moved?"+this.hasmoved+" actiondone?"+this.actiondone);
 	return (!waitingforaction.isexecuting&&this==activeunit&&this.hasmoved&&!this.actiondone&&phase==ACTIVATION_PHASE);
     },
     timeformaneuver: function() {
