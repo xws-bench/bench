@@ -992,9 +992,10 @@ Unit.prototype = {
 	os[i]=so.s;
 	op[i]=so.p;
 	for (k=0; k<OBSTACLES.length; k++){
-	    if (Snap.path.intersection(OBSTACLES[k].path,os[i]).length>0 
-		||this.isPointInside(OBSTACLES[k].path,op[i])
-		||this.isPointInside(os[i],OBSTACLES[k].getOutlinePoints())) {
+	    var ob=OBSTACLES[k].getOutlineString();
+	    if (Snap.path.intersection(ob.s,os[i]).length>0 
+		||this.isPointInside(ob.s,op[i])
+		||this.isPointInside(os[i],ob.p)) {
 		collision.overlap=k; 
 		break;
 	    }
@@ -1008,7 +1009,7 @@ Unit.prototype = {
 	for (j=0; j<pathpts.length; j++) {
 	    for (k=0; k<OBSTACLES.length; k++) {
 		if (k!=collision.overlap&&percuted.indexOf(k)==-1) { // Do not count overlapped obstacle twice
-		    var o2=OBSTACLES[k].getOutlinePoints();
+		    var o2=OBSTACLES[k].getOutlineString().p;
 		    for(i=0; i<o2.length; i++) {
 			var dx=(o2[i].x-pathpts[j].x);
 			var dy=(o2[i].y-pathpts[j].y);
@@ -1053,11 +1054,14 @@ Unit.prototype = {
 	if (!this.isinzone(m)) return RED;
 	var so=this.getOutlineString(m);
 	if (withobstacles) {
-	    for (k=0; k<OBSTACLES.length; k++)
-		if (Snap.path.intersection(OBSTACLES[k].path,so.s).length>0 
-		    ||this.isPointInside(OBSTACLES[k].path,so.p)
-		    ||this.isPointInside(so.s,OBSTACLES[k].getOutlinePoints())) 
+	    /*log("obstacles: "+OBSTACLES.length);*/
+	    for (k=0; k<OBSTACLES.length; k++) { 
+		var os=OBSTACLES[k].getOutlineString();
+		if (Snap.path.intersection(os.s,so.s).length>0 
+		    ||this.isPointInside(os.s,so.p)
+		    ||this.isPointInside(so.s,os.p)) 
 		    return YELLOW;
+	    }
 	}
  	if (withcollisions) {
 	    for (k=0; k<squadron.length; k++) {
@@ -2544,7 +2548,7 @@ Unit.prototype = {
 	var a=-ro[mini].x*dy+ro[mini].y*dx; //(x-x0)*dy-(y-y0)*dx>0
 	
 	for (k=0; k<OBSTACLES.length; k++) {
-	    var op=OBSTACLES[k].getOutlinePoints();
+	    var op=OBSTACLES[k].getOutlineString().p;
 	    var s=op[0].x*dy-op[0].y*dx+a;
 	    var v=s;
 	    for (i=1; i<op.length; i++) {
