@@ -1,3 +1,5 @@
+/* 31/06/15: XW FAQ with Garven Dreis 
+*/
 
 var UPGRADE_TYPES={
 Elite:"ept",Torpedo:"torpedo",Astromech:"amd",Turret:"turret",Missile:"missile",Crew:"crew",Cannon:"cannon",Bomb:"bomb",Title:"title",Mod:"mod",System:"system",Illicit:"illicit",Salvaged:"salvaged"
@@ -578,7 +580,6 @@ var UPGRADES= [
 	    var p=this.unit.selectnearbyunits(2,function(t,s) { return t.team==s.team&&s!=t&&s.skill<t.skill&&s.candoaction();});
 	    this.unit.resolveactionselection(p,function(k) {
 		p[k].select();
-		unit.unselect();
 		p[k].freeaction(function() { unit.endaction(); });
 	    });
 	},
@@ -693,7 +694,7 @@ var UPGRADES= [
 			}
 		    }
 		    t.endaction();
-		},true,false);
+		},true,true);
 	},
         type: "Elite",
         points: 3,
@@ -1519,6 +1520,7 @@ var UPGRADES= [
     {
         name: "Tactician",
         type: "Crew",
+	limited:true,
         points: 2,
 	done:true,
         init: function(sh) {
@@ -1669,12 +1671,21 @@ var UPGRADES= [
         name: "R5-P9",
 	done:true,
         init: function(sh) {
+	    var upg=this;
 	    var ecp=sh.endcombatphase;
 	    sh.endcombatphase=function() {
-		if (this.shield<this.ship.shield&&this.canusefocus()) {
-		    this.shield++;
-		    this.log("R5-P9: 1 <code class='xfocustoken'></code> -> 1 <code class='cshield'></code>");
-		    this.removefocustoken();
+		if (activeunit!=this) this.select();
+		if (this.canusefocus()) {
+		    this.addaction(upg,function() { return true; }.bind(this),
+				   function() {
+				       log("canfocus ?"+this.canusefocus());
+				       if (this.canusefocus()) {
+				       if (this.shield<this.ship.shield) this.shield++;
+				       this.log("R5-P9: 1 <code class='xfocustoken'></code> -> 1 <code class='cshield'></code>");
+				       this.removefocustoken();
+				       this.showaction();
+				       }
+				   }.bind(this));
 		}
 		ecp.call(this);
 	    }.bind(sh);

@@ -157,8 +157,7 @@ function center() {
 }
 
 function prevselect() {
-    if(waitingforaction.isexecuting) { return; }
-    var old=activeunit;
+    if(waitingforaction.isexecuting||activeunit.incombat) { return; }
     if (phase==ACTIVATION_PHASE||phase==COMBAT_PHASE) {
 	if (skillturn==-1) return;
 	active=(active==0)?tabskill[skillturn].length-1:active-1;
@@ -167,10 +166,9 @@ function prevselect() {
 	active=(active==0)?squadron.length-1:active-1; 
 	squadron[active].select();
     }
-    old.unselect() ;
 }
 function nextselect() {
-    var old=activeunit;
+    if(waitingforaction.isexecuting||activeunit.incombat) { return; }
     if (phase==ACTIVATION_PHASE||phase==COMBAT_PHASE) {
 	if (skillturn==-1) return;
 	active=(active==tabskill[skillturn].length-1)?0:active+1;
@@ -179,7 +177,6 @@ function nextselect() {
 	active=(active==squadron.length-1)?0:active+1;
 	squadron[active].select();
     }
-    old.unselect() ; 
 }
 function hitrangetostr(r) {
     var str="";
@@ -282,7 +279,6 @@ function nextcombat() {
     //console.log("found "+sk+" firing units of skill "+skillturn);
     active=last; 
     tabskill[skillturn][last].select();
-    old.unselect();
     //console.log("nextcombat:"+activeunit.name);
     activeunit.beginattack();
     activeunit.doattack(false);
@@ -301,11 +297,8 @@ function nextactivation() {
 	sk=tabskill[skillturn].length;
 	last=0;
     }
-    var old=activeunit;
     active=last; 
-    activeunit=tabskill[skillturn][last];
-    old.unselect();    
-    activeunit.select(); 
+    tabskill[skillturn][last].select();
     activeunit.beginactivation(); 
     activeunit.doactivation();
 }
@@ -325,11 +318,8 @@ function nextdecloak() {
 	    last=0;
 	}
     }
-    var old=activeunit;
     active=last; 
-    activeunit=tabskill[skillturn][last];
-    old.unselect();    
-    activeunit.select(); 
+    tabskill[skillturn][last].select();
     activeunit.dodecloak();
 }
 function nextplanning() {
@@ -337,12 +327,11 @@ function nextplanning() {
     for (var i=0; i<squadron.length; i++,active=(active+1)%squadron.length) {
 	if (squadron[active].maneuver==-1) break;
     }
+    //log("current active:"+squadron[current].name+" next:"+squadron[active].name+" "+activeunit.incombat+" "+waitingforaction.isexecuting);
     if (squadron[active].maneuver>-1) active=current;
     else {
-	var old=activeunit;
-	activeunit=squadron[active];
-	activeunit.select();
-	old.unselect();
+	squadron[active].select();
+	//log("do plan for "+activeunit.name);
 	activeunit.doplan();
     }
 }
@@ -734,9 +723,7 @@ function nextphase() {
 	log("<div>[turn "+round+"] Planning phase</div>");
 	$(".nextphase").prop("disabled",true);
 	$("#maneuverdial").show();
-	var old=activeunit;
 	squadron[0].select();
-	old.unselect();
 	for (i=0; i<squadron.length; i++) {
 	    squadron[i].evaluatepositions(false,false);
 	    squadron[i].beginplanningphase();
@@ -789,12 +776,9 @@ function select(name) {
     for (i=0; i<squadron.length; i++) {
 	if (squadron[i].id==name) break;
     }
-    var u=activeunit;
-    activeunit=squadron[i];
-    activeunit.select();
+    squadron[i].select();
     $("#"+u.id).attr({color:"black",background:"white"});
     $("#"+activeunit.id).attr({color:"white",background:"tomato"});
-    u.unselect();
 }
 
 var a1 = [];
