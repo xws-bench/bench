@@ -79,11 +79,8 @@ Rock.prototype = {
     getOutlinePoints: function () {
 	var k;
 	var pts=[];
-	if (this.m==this.mop) return this.op;
-	for (k=0; k<this.arraypts.length; k++)
+	for (k=0; k<this.arraypts.length; k+=5)
 	    pts.push(transformPoint(this.m,this.arraypts[k]));
-	this.op=pts;
-	this.mop=this.m;
 	pts.obstacle=true;
 	return pts;
     },
@@ -95,15 +92,17 @@ Rock.prototype = {
     },
     getOutlineString: function() {
 	var k;
+	var pts=[];
 	this.path="M ";
 	for (k=0; k<this.arraypts.length; k+=5) {
 	    var p=transformPoint(this.m,this.arraypts[k]);
+	    pts.push(p);
 	    this.path+=p.x+" "+p.y+" ";
 	    if (k==0) this.path+="L ";
 	}
 	this.path+="Z";
 	//s.path(this.path).attr({fill:WHITE,opacity:0.5,class:"possible"});
-	return this.path;
+	return {s:this.path,p:pts};
     },
     turn: function(n) {
 	this.m.add(MR(n,0,0));
