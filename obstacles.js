@@ -59,7 +59,7 @@ function Rock(fragment,coord) {
     var b=this.g.getBBox();
     this.o=[];
     for (k=1; k<4; k++) {
-	this.o[k]=s.ellipse(b.x+b.width/2,b.y+b.height/2,100*k+b.width/2,100*k+b.height/2).attr({pointerEvents:"none",display:"none",fill:WHITE,opacity:0.3,strokeWidth:2});
+	this.o[k]=s.ellipse(b.x+b.width/2,b.y+b.height/2,200*k+b.width/2,200*k+b.height/2).attr({pointerEvents:"none",display:"none",fill:WHITE,opacity:0.3,strokeWidth:2});
     }
     this.g.transform('t '+(-b.width/2)+" "+(-b.height/2));
     this.getOutlineString();
