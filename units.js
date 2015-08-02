@@ -1108,10 +1108,7 @@ Unit.prototype = {
 	var sal=this.getshipactionlist();
 	var ual=this.getupgactionlist();
 	var cal=this.getcritactionlist();
-	this.actionList=[];
-	for (i=0; i<sal.length; i++) this.actionList.push(sal[i]);
-	for (i=0; i<ual.length; i++) this.actionList.push(ual[i]);
-	for (i=0; i<cal.length; i++) this.actionList.push(cal[i]);
+	this.actionList=sal.concat(ual).concat(cal);
     },
     addevadetoken: function() {
 	this.evade++;
@@ -1517,7 +1514,7 @@ Unit.prototype = {
 	return true;
     },
     endaction: function() {
-	this.actiondone=true; this.action=-1;
+	this.actiondone=true; this.clearaction();
 	this.show();
 	//console.log("endaction "+this.name+">nextstep");
 	nextstep();
@@ -2036,17 +2033,17 @@ Unit.prototype = {
     },
     freeaction: function(endfree) {
 	this.tfa=this.timeforaction;
-	this.ea=this.endaction;
+	this.ea=this.clearaction;
 	this.timeforaction=function() { return true; }
-	this.endaction=function() {
-	    this.endaction=this.ea; 
+	this.clearaction=function() {
+	    this.clearaction=this.ea; 
 	    this.timeforaction=this.tfa;
-	    this.show();
 	    endfree();
-	    return false;
+	    this.ea.call(this);
 	};
-	this.showaction();
+	this.doaction();
     },
+    clearaction: function() { this.action=-1; },
     showaction: function() {
 	var str="";
 	var name,me;
@@ -2067,7 +2064,7 @@ Unit.prototype = {
 	if (str!="") {
 	    str+="<button onclick='activeunit.action=-1;squadron["+me+"].resolveaction()'>Skip</button>";
 	    $("#actiondial").html("<div>"+str+"</div>").show();
-	} else { this.action=-1; this.resolveaction(); }
+	} else { this.clearaction(); /* this.resolveaction();*/ }
 	if (this.action<this.actionList.length && this.action>-1) {
 	    var a = this.actionList[this.action];
 	    var c=A[a].color;
@@ -2104,7 +2101,6 @@ Unit.prototype = {
     beginplanningphase: function() {
     },
     beginactivationphase: function() {
-	this.actiondone=false;
 	this.showmaneuver();
     },
     timetoshowmaneuver: function() {
