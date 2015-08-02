@@ -741,18 +741,19 @@ var UPGRADES= [
 	    sh.endaction= function() {
 		if (this.r!=round) {
 		    this.r=round;
-		    if (this.candoaction()) {
-		    waitingforaction.add(function() {
-			this.log("Push the Limit: select an action or Skip to cancel");
-			this.freeaction(function() { 
-			    if (this.action>-1) { 
-				this.r=round; this.addstress();
-			    } else  {
-				this.r=-1;
-			    }
-			    nextstep(); 
-			}.bind(this));
-		    }.bind(this));
+		    this.updateactionlist();
+		    if (this.candoaction()&&this.actionList.length>0) {
+			waitingforaction.add(function() {
+				this.log("Push the Limit: select an action or Skip to cancel");
+				this.freeaction(function() { 
+					if (this.action>-1) { 
+					    this.r=round; this.addstress();
+					} else  {
+					    this.r=-1;
+					}
+					nextstep(); 
+				    }.bind(this));
+			    }.bind(this));
 		    }
 		}
 		ea.call(this);
