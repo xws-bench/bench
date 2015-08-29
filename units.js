@@ -317,7 +317,10 @@ Unit.prototype = {
 		x+=p.left+startX;
 		var y=m.y(bbox.x,bbox.y-20)/max;
 		y+=p.top+startY;
-		$(".info").css({left:x,top:y}).html(this.name).appendTo("body").show();
+		var name=this.name;
+		var text=PILOT_translation[this.name+(this.faction=="SCUM"?" (Scum)":"")];
+		if (typeof text!="undefined"&&typeof text.name!="undefined") name=text.name;
+		$(".info").css({left:x,top:y}).html(name).appendTo("body").show();
 	    }.bind(this),
 	    function() { $(".info").hide(); 
 		       }.bind(this));
