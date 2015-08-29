@@ -51,13 +51,13 @@ Team.prototype = {
     addpoints: function() { 
 	var team=this.team
 	var f=["REBEL","SCUM","EMPIRE"];
-	$("#team"+team).append("<div><button onclick='currentteam="+team+";window.location=\"#import\"' class='bigbutton'>Import Squadron</button><button class='bigbutton' onclick='$(\"#jsonexport\").val(JSON.stringify(TEAMS["+team+"]));$(\"#jugglerexport\").val(TEAMS["+team+"].toJuggler()); window.location=\"#export\"'>Export Squadron</button></div>");
+	$("#team"+team).append("<div><button onclick='currentteam="+team+";window.location=\"#import\"' class='bigbutton m-import'></button><button class='bigbutton m-export' onclick='$(\"#jsonexport\").val(JSON.stringify(TEAMS["+team+"]));$(\"#jugglerexport\").val(TEAMS["+team+"].toJuggler()); window.location=\"#export\"'></button></div>");
 	$("#team"+team).append("<div id='factionselect"+team+"'></div>");
 	for (i=0; i<3; i++) {
 	    $("#factionselect"+team).append("<input class='factionselect' id='"+f[i]+team+"' name='faction"+team+"' type='radio' onchange='TEAMS["+team+"].changefaction(\""+f[i]+"\")'>");
 	    $("#factionselect"+team).append("<label for='"+f[i]+team+"' class='"+f[i]+"'>");
 	}
-	$("#team"+team).append("<input class='generic' id='teamname"+this.team+"' type='text' placeholder='Team #"+team+"'>");
+	$("#team"+team).append("<input class='generic' id='teamname"+this.team+"' type='text' placeholder='"+UI_translation.squadron+" #"+team+"'>");
     },
     updatepoints: function() {
 	var score1=$("#team"+this.team+" .pts").map(function() {
@@ -76,7 +76,7 @@ Team.prototype = {
 	$("#total"+team).remove();
 	$("#totallbl"+team).remove();
 	$("#team"+team).append("<div>"+(new Unit(team))+"</div>");
-	$("#team"+team).append("<div id='addunit"+team+"' onclick='TEAMS["+team+"].addunit("+team+")'><span class='addunit generic'>Add new unit</span><span class='plus addunit'>+</span></div><div><div><div class='totalpts' id='total"+team+"'>0</div></div></div><div  id='totallbl"+team+"'></span><span class='generic total'>Total points</span><span class='plus'>=</span></div>");
+	$("#team"+team).append("<div id='addunit"+team+"' onclick='TEAMS["+team+"].addunit("+team+")'><span class='plus addunit'>+</span><span class='addunit generic m-addunit'></span></div><div><div><div class='totalpts' id='total"+team+"'>0</div></div></div><div  id='totallbl"+team+"'></span><span class='plus'>=</span><span class='generic total m-totalpts'></span></div>");
 	this.updatepoints();
     },
     tosquadron:function(s) {
@@ -120,7 +120,7 @@ Team.prototype = {
 	sq=this.tosquadron(s);
 	$("#team"+team).append("<div class='playerselect'></div>");
 	$("#team"+team+" .playerselect").append("<input id='human"+team+"' class='human' type='checkbox' onchange='TEAMS["+team+"].toggleplayer()'>"); 
-	$("#team"+team+" .playerselect").append("<label for='human"+team+"' data-off='&#9668; Human &#9658;' data-on='&#9668; Computer &#9658;'></label>");
+	$("#team"+team+" .playerselect").append("<label for='human"+team+"' data-off='&#9668; "+UI_translation["human"]+" &#9658;' data-on='&#9668; "+UI_translation["computer"]+" &#9658;'></label>");
 
 	for (i=0; i<sq.length; i++) {
 	    if (team==1) {

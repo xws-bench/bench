@@ -12,9 +12,13 @@ Critical.prototype= {
 	var a,b,str="";
 	var c="";
 	if (!this.isactive) return "";
+	var n=this.name;
+	if (typeof CRIT_translation[this.name].name!="undefined") n=CRIT_translation[this.name].name;
 	a="<td><code class='Criticalupg upgrades'></code></td>"; 
-	b="<td class='tdstat'>"+this.name.replace(/\'/g,"&#39;")+"</td>";
-	d="<td class='tooltip'>"+CRITICAL_translation.english[this.name]+"</td>";
+	b="<td class='tdstat'>"+n+"</td>";
+	n="";
+	if (typeof CRIT_translation[this.name].text!="undefined") n=formatstring(CRIT_translation[this.name].text)
+	d="<td class='tooltip'>"+n+"</td>";
 	if (this.unit.team==1)  
 	    return "<tr "+c+">"+b+a+d+"</tr>"; 
 	else return "<tr "+c+">"+a+b+d+"</tr>";

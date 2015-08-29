@@ -437,21 +437,25 @@ var PILOTS = [
 	    this.ac=Unit.prototype.applycritical;
 	    Unit.prototype.applycritical=function(n) {
 		if (activeunit==unit&&targetunit!=unit) {
-		    for (j=0; j<n; j++) {
-			var s1=this.selectdamage(true);
-			CRITICAL_DECK[s1].count--;
-			var s2=this.selectdamage(true);
-			CRITICAL_DECK[s2].count--;
-			var s3=this.selectdamage(true);
-			CRITICAL_DECK[s3].count--;
-			var sc=[s1,s2,s3];
-			log("<b>"+unit.name+" selects one of 3 criticals</b>");
-			unit.selectcritical(sc,function(m) { 
-			    CRITICAL_DECK[m].count++;
-			    if (this.faceup(new Critical(this,m))) this.removehull(1);
-			    this.show();
-			}.bind(this));
-		    }
+		    waitingforaction.add(function() {
+			for (var j=0; j<n; j++) {
+			    var s1=this.selectdamage(true);
+			    CRITICAL_DECK[s1].count--;
+			    var s2=this.selectdamage(true);
+			    CRITICAL_DECK[s2].count--;
+			    var s3=this.selectdamage(true);
+			    CRITICAL_DECK[s3].count--;
+			    sc=[s1,s2,s3];
+			    log("<b>"+unit.name+" selects one of 3 criticals</b>");
+			    unit.selectcritical(sc,function(m) { 
+				CRITICAL_DECK[m].count++;
+				if (this.faceup(new Critical(this,m))) this.removehull(1);
+				this.checkdead();
+				this.show();
+			    }.bind(this));
+			}
+			nextstep();
+		    }.bind(this));
 		    this.show();
 		} else unit.ac.call(this,n);
 	    }
@@ -901,6 +905,7 @@ var PILOTS = [
         unit: "B-Wing",
         skill: 8,
 	init: function() {
+	    this.shipimg="b-wing-1.png";
 	    var cc=Unit.prototype.cancelcritical;
 	    Unit.prototype.cancelcritical=function(c,h,sh) {
 		var ce=cc.call(this,c,h,sh);
@@ -926,6 +931,7 @@ var PILOTS = [
         skill: 6,
         points: 28,
 	init: function() {
+	    this.shipimg="b-wing-1.png";
 	    this.addattackrerolla(
 		this,
 		["blank","focus"],
@@ -1561,14 +1567,18 @@ var PILOTS = [
 	done:true,
         endattack: function(c,h) {
 	    if (this.canusefocus()&&h>0) {
+		this.log("can turn "+h+" damage(s) into critical(s)");
 		waitingforaction.add(function() {
-		    this.addaction(["FOCUS"],function() { 
-			return true; }, function() {
+		    this.addaction({type:"FOCUS"},function() { 
+			return this.canusefocus(); }, function() {
 			    var i,l=targetunit.criticals.length-1;
 			    this.removefocustoken();
 			    for (i=0; i<h; i++) 
-				if (targetunit.faceup(criticals[l-i-c])) targetunit.removehull(1);
+				targetunit.faceup(targetunit.criticals[l-i-c])
+			    targetunit.checkdead();
 			    targetunit.show();
+			    Unit.prototype.endattack.call(this,c,h);
+			}.bind(this),function() {
 			    Unit.prototype.endattack.call(this,c,h);
 			}.bind(this));
 		}.bind(this));
@@ -1737,6 +1747,7 @@ var PILOTS = [
 		var m5=this.getpathmatrix(this.m.clone().translate(0,i).rotate(-90,0,0),"BR2").rotate(90,0,0);
 		p=p.concat([m2,m3,m4,m5]);
 	    }
+	    waitingforaction.add(function() {
 	    this.resolveactionmove(p,
 		function (t,k) {
 		    t.agility-=2; t.iscloaked=false;t.show(); 
@@ -1744,6 +1755,7 @@ var PILOTS = [
 		    nextstep();
 		},true);
 	    return true;
+	    }.bind(this));
 	},          
         unique: true,
         unit: "TIE Phantom",
@@ -1938,7 +1950,9 @@ var PILOTS = [
         name: "Keyan Farlander",
 	faction:"REBEL",
 	done:true,
-	
+	init: function() {
+	    this.shipimg="b-wing-1.png";
+	},
         usestress: function() {
 	    if (phase==COMBAT_PHASE&&this.hasfired>0&&this==activeunit) {
 		if (this==activeunit&&this.stress>0) {
@@ -1969,6 +1983,9 @@ var PILOTS = [
         name: "Nera Dantels",
 	faction:"REBEL",
 	done:true,
+	init: function() {
+	    this.shipimg="b-wing-1.png";
+	},
         isTurret: function(w) {
 	    if (w.type=="Torpedo") {
 		this.log("can fire torpedos at 360 degrees");
@@ -2046,6 +2063,7 @@ var PILOTS = [
 		this.selectcritical(sc,function(m) { 
 		    CRITICAL_DECK[m].count++;
 		    if (this.faceup(new Critical(this,m))) this.removehull(1);
+		    this.checkdead();
 		}.bind(this));
 	    }
 	    this.show();
@@ -2069,6 +2087,7 @@ var PILOTS = [
         skill: 7,
 	done:true,
 	getocollisions: function(mbegin,mend,path,len) { 
+	    //this.log("dash rendar getocollision");
 	    return {overlap:-1,template:0};
 	},
         points: 36,
