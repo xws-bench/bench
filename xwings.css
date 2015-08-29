@@ -13,13 +13,6 @@ font-family:sans-serif;
 font-size-adjust: 0.5
 }
 
-[data-i18n-fr]:lang(fr)::after {
-content:attr(data-i18n-fr)
-}
-
-[data-i18n]:lang(en)::after {
-content:attr(data-i18n)
-}
 #main {
 height:calc(100% - 60px);
 width:calc(100% - 340px);
@@ -1060,38 +1053,9 @@ padding:0;
 height:2ex;
 display:table-cell
 }
-
 .probacell:hover {
 border:1px solid;
 opacity:.7
-}
-#menut + .rssFeed .rssHeader {
-display:none;
-}
-#menut + .rssFeed ul {
-list-style:none;
-position:relative;
-top:-20px;
-left:-20px;
-width:16px;
-display:none;
-visibility:hidden;
-background:#000;
-box-shadow:0 0 5px rgba(0,0,0,0.15)
-}
-
-#menut + .rssFeed ul li {
-display:block;
-background:#000
-}
-
-#menut + .rssFeed ul:hover li {
-background:#aaa
-}
-
-.rssFeed + #menut:hover {
-display:block;
-visibility:visible
 }
 .ver {
 font-size:x-small
