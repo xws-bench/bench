@@ -31,9 +31,13 @@ Bomb.prototype = {
 	var a,b,d,str="";
 	var c="";
 	if (!this.isactive) c="class='inactive'"
-	a="<td><code class='"+this.type+" upgrades'></code></td>"; 
-	b="<td class='tdstat'>"+this.name+"</td>";
-	d="<td class='tooltip'>"+UPGRADE_translation.english[this.name]+"</td>";
+	a="<td><code class='"+this.type+" upgrades'></code></td>";
+	var text=UPGRADE_translation[this.name];
+	var name=this.name;
+	if (typeof text!="undefined"&&typeof text.name!="undefined") name=text.name;
+	b="<td class='tdstat'>"+name.replace(/\'/g,"&#39;")+"</td>";
+	if (typeof text!="undefined"&&typeof text.text!="undefined") text=text.text; else text="";
+	d="<td class='tooltip'>"+formatstring(text)+"</td>";
 	if (this.unit.team==1)  
 	    return "<tr "+c+">"+b+a+d+"</tr>"; 
 	else return "<tr "+c+">"+a+b+d+"</tr>";
@@ -170,14 +174,18 @@ Weapon.prototype = {
 	a="<td class='statfire'";
 	a+=" onclick='if (!squadron["+i+"].dead) squadron["+i+"].togglehitsector(\""+this.name.replace(/\'/g,"&#39;")+"\")'";
 	a+=">"+this.getattack()+"<span class='symbols'>"+A[this.type.toUpperCase()].key+"</span></td>";
-	b="<td class='tdstat'>"+this.name.replace(/\'/g,"&#39;")+" <span style='font-size:x-small'>";
+	var text=UPGRADE_translation[this.name];
+	var name=this.name;
+	if (typeof text!="undefined"&&typeof text.name!="undefined") name=text.name;
+	b="<td class='tdstat'>"+name.replace(/\'/g,"&#39;")+" <span style='font-size:x-small'>";
 	if ((typeof this.getrequirements()!="undefined")) {
 	    if ("Target".match(this.getrequirements())) b+="<code class='symbols'>"+A["TARGET"].key+"</code>"
 	    if ("Focus".match(this.getrequirements())) b+=(this.getrequirements().length>5?"/":"")+"<code class='symbols'>"+A["FOCUS"].key+"</code>"
 	}
 	b+="["+this.range[0]+"-"+this.range[1]+"]</span></td>";
-	d="<td class='tooltip'>"+UPGRADE_translation.english[this.name]+"</td>";
-	if (typeof UPGRADE_translation.english[this.name]=="undefined") d="<td class='tooltip'></td>"
+	if (typeof text!="undefined"&&typeof text.text!="undefined") text=text.text; else text="";
+	d="<td class='tooltip'>"+formatstring(text)+"</td>";
+
 	if (this.unit.team==1)  
 	    return "<tr "+c+">"+b+d+a+"</tr>"; 
 	else return "<tr "+c+">"+d+a+b+"</tr>";
@@ -305,8 +313,12 @@ Upgrade.prototype = {
 	var d;
 	if (!this.isactive) c="class='inactive'"
 	a="<td><code class='"+this.type+" upgrades'></code></td>"; 
-	b="<td class='tdstat'>"+this.name.replace(/\'/g,"&#39;")+"</td>";
-	d="<td class='tooltip'>"+UPGRADE_translation.english[this.name+(this.type=="Crew"?"(Crew)":"")]+"</td>";
+	var text=UPGRADE_translation[this.name+(this.type=="Crew"?"(Crew)":"")];
+	var name=this.name;
+	if (typeof text!="undefined"&&typeof text.name!="undefined") name=text.name;
+	b="<td class='tdstat'>"+name.replace(/\'/g,"&#39;")+"</td>";
+	if (typeof text!="undefined"&&typeof text.text!="undefined") text=text.text; else text="";
+	d="<td class='tooltip'>"+formatstring(text)+"</td>";
 	if (this.unit.team==1)  
 	    return "<tr "+c+">"+b+a+d+"</tr>"; 
 	else return "<tr "+c+">"+a+b+d+"</tr>";
@@ -1263,7 +1275,8 @@ var UPGRADES= [
 				this.checkdead();
 				targetunit.checkdead();
 				nextstep();
-			    }.bind(this));
+			    }.bind(this),function() {
+			    });
 		    }.bind(this));
 		cla.call(this);
 	    };
@@ -1686,7 +1699,8 @@ var UPGRADES= [
 				       this.removefocustoken();
 				       this.showaction();
 				       }
-				   }.bind(this));
+				   }.bind(this),function() {
+				   });
 		}
 		ecp.call(this);
 	    }.bind(sh);
@@ -1740,7 +1754,7 @@ var UPGRADES= [
 			}
 		    }
 		    this.show();
-		}.bind(this));
+		}.bind(this),function() {});
 	    };
 	},
         points: 4,
@@ -2509,15 +2523,40 @@ var UPGRADES= [
 	type:"Mod",
 	done:true,
         init: function(sh) {
+	    var rc=sh.resolvecloak;
+	    var rdc=sh.resolvedecloak;
 	    sh.resolvecloak=function() {
-		this.focus++;
-		this.log("Stygium P.A.: +1 <code class='xfocustoken'></code>");
-		return Unit.prototype.resolvecloak.call(this);
+/*
+		this.type="EVADE";
+		waitingforaction.add(function() {
+		this.addaction(this,function() { 
+		    return this.candoevade(); }.bind(this),
+			       function() { this.addevade(); }.bind(this),
+			       function() { this.actiondone=false; nextstep(); });
+		    }.bind(this));
+*/
+		rc.call(this);
+		if (this.candoevade()) { 
+		    this.addevadetoken();
+		    this.log("Stygium P.A.: +1 <code class='xevadetoken'></code>");
+		}
 	    };
-	    sh.resolveuncloak=function() {
-		this.focus++;
-		this.log("Stygium P.A.: +1 <code class='xfocustoken'></code>");
-		return Unit.prototype.resolveuncloak.call(this);
+	    sh.resolvedecloak=function() {		
+		rdc.call(this);
+		/*
+		this.type="EVADE";
+		waitingforaction.add(function() { 
+		    this.addaction(this,function() { 		
+			this.log("Stygium P.A.: +1 <code class='xevadetoken'></code>");
+			return this.candoevade(); }.bind(this),
+				   function() { this.addevade(); }.bind(this),
+				   function() { this.actiondone=false; nextstep(); }.bind(this));
+		}.bind(this));
+		*/
+		if (this.candoevade()) {
+		    this.addevadetoken();
+		    this.log("Stygium P.A.: +1 <code class='xevadetoken'></code>");
+		}
 	    };
 	},
         points: 2,
@@ -2537,7 +2576,7 @@ var UPGRADES= [
 			    }.bind(this),function() {
 				this.log("Advanced Cloaking Device: free cloack action");
 				this.resolvecloak();
-			    }.bind(this));
+			    }.bind(this),function() {});
 		    }.bind(this));
 		cla.call(this);
 	    };
@@ -2582,7 +2621,7 @@ var UPGRADES= [
 				nextstep()
 			    }.bind(this));
 			else nextstep();
-		    }.bind(this));
+		    }.bind(this),function() {});
 		}.bind(this));
 		nextstep();
 	    }
@@ -2689,6 +2728,12 @@ var UPGRADES= [
         upgrades:["Mod"],
 	skillmin:5,
         points: 0,
+	install: function(sh) {
+	    sh.shipimg="tie-interceptor-1.png";
+	},
+	uninstall: function(sh) {
+	    sh.shipimg="tie-interceptor-2.png";
+	},
         ship: "TIE Interceptor",
     },
     {
@@ -2699,6 +2744,12 @@ var UPGRADES= [
 	skillmin:2,
         points: 0,
         ship: "A-Wing",
+	install: function(sh) {
+	    sh.shipimg="a-wing-1.png";
+	},
+	uninstall:function(sh) {
+	    sh.shipimg="a-wing-2.png";
+	},
         special_case: "A-Wing Test Pilot",
     },
     {
