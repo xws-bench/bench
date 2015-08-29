@@ -1,0 +1,1072 @@
+{ 
+    "ships":{
+	"TIE Fighter":"Chasseur TIE",
+   "TIE Interceptor":"Intercepteur TIE",
+    "TIE Defender":"D&eacute;fenseur TIE",
+    "TIE Phantom":"TIE Fant&ocirc;me",
+    "TIE Bomber":"Bombardier TIE",
+    "Lambda-Class Shuttle":"Navette de classe Lambda",
+    "VT-49 Decimator":"D&eacute;cimateur VT-49",
+    "Z-95 Headhunter":"Chasseur de t&ecirc;tes Z-95",
+    "M3-A Interceptor":"Intercepteur M3-A"
+    },
+    "pilots": {
+	"Academy Pilot": {
+	    "name":"Pilote de l'acad&eacute;mie"
+	},
+      "Obsidian Squadron Pilot": {
+        "name": "Pilote de l'escadron Obsidian"
+      },
+      "Black Squadron Pilot": {
+        "name": "Pilote de l'escadron Noir"
+      },
+      "'Winged Gundark'": {
+        "text": "Quand vous attaquez &agrave; port&eacute;e 1, vous pouvez &eacute;changer 1 de vos r&eacute;sultats %HIT% contre 1 r&eacute;sultat %CRIT%."
+      },
+      "'Night Beast'": {
+        "text": "Apr&egrave;s avoir ex&eacute;cut&eacute; une manoeuvre verte, vous pouvez effectuer une action de concentration gratuite."
+      },
+      "'Backstabber'": {
+        "text": "Quand vous attaquez en dehors de l'arc de tir du d&eacute;fenseur, lancez 1 d&eacute; d'attaque suppl&eacute;mentaire."
+      },
+      "'Dark Curse'": {
+        "text": "Quand vous d&eacute;fendez, les vaisseaux qui vous attaquent ne peuvent ni utiliser de marqueurs de concentration, ni relancer les d&eacute;s d'attaque."
+      },
+      "'Mauler Mithel'": {
+        "text": "Quand vous attaquez &agrave; port&eacute;e 1, lancez 1 d&eacute; d'attaque suppl&eacute;mentaire."
+      },
+      "'Howlrunner'": {
+        "text": "Quand un autre vaisseau alli&eacute; situ&eacute; &agrave; port&eacute;e 1 attaque avec son arme principale, il peut relancer 1 d&eacute; d'attaque."
+      },
+      "Alpha Squadron Pilot": {
+        "name": "Pilote de l'escadron Alpha"
+      },
+      "Avenger Squadron Pilot": {
+        "name": "Pilote de l'escadron Avenger"
+      },
+      "Saber Squadron Pilot": {
+        "name": "Pilote de l'escadron Sabre"
+      },
+      "Royal Guard Pilot": {
+        "name": "Pilote de la Garde royale"
+      },
+      "'Fel's Wrath'": {
+        "name": "'Col&egrave;re de Fel'",
+        "text": "Quand le nombre de cartes de d&eacute;g&acirc;ts qui vous est assign&eacute; est sup&eacute;rieur ou &eacute;gal &agrave; votre valeur de coque, vous n'&ecirc;tes pas d&eacute;truit avant la fin de la phase de combat."
+      },
+      "Lieutenant Lorrir": {
+        "text": "Quand vous effectuez une action de tonneau, vous pouvez recevoir 1 marqueur de stress pour utiliser le gabarit (%BANKLEFT% 1) ou (%BANKRIGHT% 1) &agrave; la place du gabarit (%STRAIGHT% 1)."
+      },
+      "Kir Kanos": {
+        "text": "Quand vous attaquez &agrave; port&eacute;e 2-3, vous pouvez d&eacute;penser 1 marqueur d'&eacute;vasion pour ajouter 1 r&eacute;sultat %HIT% &agrave; votre jet."
+      },
+      "Tetran Cowall": {
+        "text": "Quand vous r&eacute;v&eacute;lez une manoeuvre %UTURN%, vous pouvez consid&eacute;rer la vitesse de celle-ci comme \"1\", \"3\" ou \"5\"."
+      },
+      "Turr Phennir": {
+        "text": "Apr&egrave;s avoir effectu&eacute; une attaque, vous pouvez effectuer une action gratuite d'acc&eacute;l&eacute;ration ou de tonneau."
+      },
+      "Carnor Jax": {
+        "text": "Les vaisseaux ennemis situ&eacute;s &agrave; port&eacute;e 1 ne peuvent pas effectuer d'actions de concentration ou d'&eacute;vasion, et ne peuvent pas d&eacute;penser de marqueur de concentration ou d'&eacute;vasion."
+      },
+      "Soontir Fel": {
+        "text": "Quand vous recevez un marqueur de stress, vous pouvez assigner 1 marqueur de concentration &agrave; votre vaisseau."
+      },
+      "Sigma Squadron Pilot": {
+        "name": "Pilote de l'escadron Sigma"
+      },
+      "Shadow Squadron Pilot": {
+        "name": "Pilote de l'escadron Ombre"
+      },
+      "'Echo'": {
+        "text": "Quand vous vous d&eacute;soccultez, vous devez utiliser le gabarit (%BANKLEFT% 2) ou (%BANKRIGHT% 2) &agrave; la place du gabarit (%STRAIGHT% 2)."
+      },
+      "'Whisper'": {
+        "text": "Apr&egrave;s avoir effectu&eacute; une attaque qui touche, vous pouvez assigner un marqueur de concentration &agrave; votre vaisseau."
+      },
+      "Onyx Squadron Pilot": {
+        "name": "Pilote de l'escadron Onyx"
+      },
+      "Delta Squadron Pilot": {
+        "name": "Pilote de l'escadron Delta"
+      },
+      "Colonel Vessery": {
+        "text": "Quand vous attaquez, juste apr&egrave;s avoir lanc&eacute; les d&eacute;s d'attaque, vous pouvez verrouiller le d&eacute;fenseur s'il a d&eacute;j&agrave; un marqueur d'acquisition de cible rouge."
+      },
+      "Rexler Brath": {
+        "text": "Apr&egrave;s avoir effectu&eacute; une attaque qui inflige au moins 1 carte de d&eacute;g&acirc;ts au d&eacute;fenseur, vous pouvez d&eacute;penser 1 marqueur de concentration pour retourner ces cartes face visible."
+      },
+      "Scimitar Squadron Pilot": {
+        "name": "Pilote de l'escadron Cimeterre"
+      },
+      "Gamma Squadron Pilot": {
+        "name": "Pilote de l'escadron Gamma"
+      },
+      "Captain Jonus": {
+        "name": "Capitaine Jonus",
+        "text": "Quand un autre vaisseau alli&eacute; situ&eacute; &agrave; port&eacute;e 1 attaque avec une arme secondaire, il peut relancer jusqu'&agrave; 2 d&eacute;s d'attaque."
+      },
+      "Major Rhymer": {
+        "text": "Quand vous attaquez avec une arme secondaire, vous pouvez augmenter ou r&eacute;duire de 1 la port&eacute;e de l'arme dans une limite de port&eacute;e 1-3."
+      },
+      "Tempest Squadron Pilot": {
+        "name": "Pilote de l'escadron Tempest"
+      },
+      "Storm Squadron Pilot": {
+        "name": "Pilote de l'escadron Storm"
+      },
+      "Maarek Stele": {
+        "text": "Si votre attaque se solde par une carte de d&eacute;g&acirc;ts face visible pour le d&eacute;fenseur, piochez 3 cartes de d&eacute;g&acirc;ts, choisissez-en une que vous lui infligez et d&eacute;faussez les autres."
+      },
+      "Darth Vader": {
+        "name": "Dark Vador",
+        "text": "Vous pouvez effectuer 2 actions lors de l'&eacute;tape \"Effectuer une action\"."
+      },
+      "Commander Alozen": {
+        "text": "Au d&eacute;but de la phase de combat, vous pouvez verrouiller un vaisseau ennemi situ&eacute; &agrave; port&eacute;e 1."
+      },
+      "Bounty Hunter": {
+        "name": "Chasseur de primes"
+      },
+      "Kath Scarlet": {
+        "text": "Quand vous attaquez, le d&eacute;fenseur reçoit 1 marqueur de stress s'il annule au moins 1 r&eacute;sultat %CRIT%."
+      },
+      "Boba Fett": {
+        "text": "Quand vous r&eacute;v&eacute;lez une manoeuvre de virage sur l'aile (%BANKLEFT% ou %BANKRIGHT%), vous pouvez tourner votre cadran sur la manoeuvre de virage sur l'aile oppos&eacute;e, &agrave; la m&ecirc;me vitesse."
+      },
+      "Krassis Trelix": {
+        "text": "Quand vous attaquez avec une arme secondaire, vous pouvez relancer 1 d&eacute; d'attaque."
+      },
+      "Captain Kagi": {
+        "name": "Capitaine Kagi",
+        "text": "Quand un vaisseau ennemi verrouille une cible, il doit verrouiller votre vaisseau, si possible."
+      },
+      "Colonel Jendon": {
+        "text": "Au d&eacute;but de la phase de combat, vous pouvez assigner 1 de vos marqueurs d'acquisition de cible bleus &agrave; un vaisseau alli&eacute; situ&eacute; &agrave; port&eacute;e 1 s'il n'a pas de marqueur d'acquisition de cible bleu."
+      },
+      "Captain Yorr": {
+        "name": "Capitaine Yorr",
+        "text": "Quand un autre vaisseau alli&eacute; situ&eacute; &agrave; port&eacute;e 1-2 est cens&eacute; recevoir un marqueur de stress, vous pouvez le recevoir &agrave; sa place si vous n'avez pas d&eacute;j&agrave; plus de 2 marqueurs de stress."
+      },
+      "Omicron Group Pilot": {
+        "name": "Pilote du groupe Omicron"
+      },
+      "Captain Oicunn": {
+        "name": "Capitaine Oicunn",
+        "text": "Apr&egrave;s avoir ex&eacute;cut&eacute; une manoeuvre, chaque vaisseau ennemi avec lequel vous &ecirc;tes au contact subit 1 d&eacute;g&acirc;t."
+      },
+      "Rear Admiral Chiraneau": {
+        "name": "Contre-Amiral Chiraneau",
+        "text": "Quand vous attaquez &agrave; port&eacute;e 1-2, vous pouvez changer 1 de vos r&eacute;sultats %FOCUS% en r&eacute;sultat %CRIT%."
+      },
+      "Patrol Leader": {
+        "name": "Chef de Patrouille"
+      },
+      "Commander Kenkirk": {
+        "name": "Commandant Kenkirk",
+        "text": "Si vous n'avez pas de boucliers et qu'au moins 1 carte d&eacute;g&acirc;ts vous est assign&eacute;e, augmentez de 1 votre valeur d'agilit&eacute;."
+      },
+      "Red Squadron Pilot": {
+        "name": "Pilote de l'escadron Rouge"
+      },
+      "Rookie Pilot": {
+        "name": "Pilote d&eacute;butant"
+      },
+      "Wedge Antilles": {
+        "text": "Quand vous attaquez, r&eacute;duisez la valeur d'agilit&eacute; du d&eacute;fenseur de 1 (jusqu'&agrave; un minimum de 0)."
+      },
+      "Garven Dreis": {
+        "text": "Apr&egrave;s avoir utilis&eacute; un marqueur de concentration, vous pouvez placer ce dernier sur tout autre vaisseau alli&eacute; situ&eacute; &agrave; port&eacute;e 1 ou 2 (plut&ocirc;t que de le d&eacute;fausser)."
+      },
+      "Biggs Darklighter": {
+        "text": "Les autres vaisseaux alli&eacute;s situ&eacute;s &agrave; port&eacute;e 1 ne peuvent &ecirc;tre les cibles d'attaques si l'assaillant est en mesure de vous attaquer &agrave; la place."
+      },
+      "Luke Skywalker": {
+        "text": "Quand vous d&eacute;fendez, vous pouvez &eacute;changer 1 de vos r&eacute;sultats %FOCUS% contre un r&eacute;sultat %EVADE%."
+      },
+      "Wes Janson": {
+        "text": "Apr&egrave;s avoir effectu&eacute; une attaque, vous pouvez retirer 1 marqueur de concentration, d'&eacute;vasion ou d'acquisition de cible bleu au d&eacute;fenseur."
+      },
+      "Jek Porkins": {
+        "text": "Quand vous recevez un marqueur de stress, vous pouvez le retirer et lancer 1 d&eacute; d'attaque. Sur un r&eacute;sultat %HIT%, infligez 1 carte de d&eacute;g&acirc;ts face cach&eacute;e &agrave; ce vaisseau."
+      },
+      "'Hobbie' Klivian": {
+        "text": "Quand vous effectuez ou d&eacute;pensez une acquisition de cible, vous pouvez retirer 1 marqueur de stress de votre vaisseau."
+      },
+      "Tarn Mison": {
+        "text": "Quand un vaisseau ennemi vous d&eacute;clare comme cible d'une attaque, vous pouvez le verrouiller."
+      },
+      "Gold Squadron Pilot": {
+        "name": "Pilote de l'escadron Or"
+      },
+      "Gray Squadron Pilot": {
+        "name": "Pilote de l'escadron Gris"
+      },
+      "'Dutch' Vander": {
+        "text": "Apr&egrave;s avoir verrouill&eacute; une cible, choisissez un vaisseau alli&eacute; situ&eacute; &agrave; port&eacute;e 1 ou 2. Cet autre vaisseau peut aussit&ocirc;t verrouiller une cible."
+      },
+      "Horton Salm": {
+        "text": "Quand vous attaquez &agrave; port&eacute;e 2 ou 3, vous pouvez relancer vos r&eacute;sultats vierges."
+      },
+      "Green Squadron Pilot": {
+        "name": "Pilote de l'escadron Vert"
+      },
+      "Prototype Pilot": {
+        "name": "Pilote sur prototype"
+      },
+      "Tycho Celchu": {
+        "text": "Vous pouvez effectuer des actions m&ecirc;me quand vous avez des marqueurs de stress."
+      },
+      "Arvel Crynyd": {
+        "text": "Vous pouvez attaquer un vaisseau situ&eacute; dans votre arc de tir, m&ecirc;me si vos socles se touchent."
+      },
+      "Outer Rim Smuggler": {
+        "name": "Contrebandier de la Bordure ext&eacute;rieure"
+      },
+      "Chewbacca": {
+        "text": "Quand vous recevez une carte de d&eacute;g&acirc;ts face visible, retournez-l&agrave; aussit&ocirc;t face cach&eacute;e (sans r&eacute;soudre sa capacit&eacute;)."
+      },
+      "Lando Calrissian": {
+        "text": "Apr&egrave;s avoir ex&eacute;cut&eacute; une manoeuvre verte, choisissez un autre vaisseau alli&eacute; situ&eacute; &agrave; port&eacute;e 1. Ce vaisseau peut effectuer 1 action gratuite figurant dans sa barre d'action."
+      },
+      "Han Solo": {
+        "text": "Quand vous attaquez, vous pouvez relancer tous vos d&eacute;s. Si vous d&eacute;cidez de le faire, vous devez relancer autant de vos d&eacute;s que possible."
+      },
+      "Dagger Squadron Pilot": {
+        "name": "Pilote de l'escadron Dague"
+      },
+      "Blue Squadron Pilot": {
+        "name": "Pilote de l'escadron Bleu"
+      },
+      "Ten Numb": {
+        "text": "Quand vous attaquez ,1 de vos r&eacute;sultats %CRIT% ne peut pas &ecirc;tre annul&eacute; par les d&eacute;s de d&eacute;fense."
+      },
+      "Ibtisam": {
+        "text": "Quand vous attaquez ou d&eacute;fendez, si vous avez au moins 1 marqueur de stress, vous pouvez relancer un de vos d&eacute;s."
+      },
+      "Rebel Operative": {
+        "name": "Agent rebelle"
+      },
+      "Roark Garnet": {
+        "text": "Au d&eacute;but de la phase de combat, choisissez 1 autre vaisseau alli&eacute; situ&eacute; &agrave; port&eacute;e 1-3. Jusqu'&agrave; la fin de la phase, consid&eacute;rez que la valeur de pilotage de ce vaisseau est &eacute;gale &agrave; 12."
+      },
+      "Kyle Katarn": {
+        "text": "Au d&eacute;but de la phase de combat, vous pouvez assigner 1 de vos marqueurs de concentration &agrave; un autre vaisseau alli&eacute; situ&eacute; &agrave; port&eacute;e 1-3."
+      },
+      "Jan Ors": {
+        "text": "Quand un autre vaisseau alli&eacute; situ&eacute; &agrave; port&eacute;e 1-3 attaque, si vous n'avez aucun marqueur de stress, vous pouvez recevoir 1 marqueur de stress pour permettre &agrave; ce vaisseau de lancer 1 d&eacute; d'attaque suppl&eacute;mentaire."
+      },
+      "Bandit Squadron Pilot": {
+        "name": "Pilote de l'escadron Bandit"
+      },
+      "Tala Squadron Pilot": {
+        "name": "Pilote de l'escadron Tala"
+      },
+      "Lieutenant Blount": {
+        "text": "Quand vous attaquez, le d&eacute;fenseur est touch&eacute; par votre attaque, m&ecirc;me s'il ne subit pas de d&eacute;g&acirc;ts."
+      },
+      "Airen Cracken": {
+        "text": "Apr&egrave;s avoir effectu&eacute; une attaque, vous pouvez choisir un autre vaisseau alli&eacute; situ&eacute; &agrave; port&eacute;e 1. Ce vaisseau peut effectuer une action gratuite."
+      },
+      "Knave Squadron Pilot": {
+        "name": "Pilote de l'escadron Valet"
+      },
+      "Blackmoon Squadron Pilot": {
+        "name": "Pilote de l'escadron Lune noire"
+      },
+      "Etahn A'baht": {
+        "text": "Quand un vaisseau ennemi situ&eacute;e dans votre arc de tir et &agrave; port&eacute;e 1-3 se d&eacute;fend, l'attaquant peut changer 1 des ses r&eacute;sultats %HIT% en r&eacute;sultat %CRIT%."
+      },
+      "Corran Horn": {
+        "text": "Au d&eacute;but de la phase de d&eacute;nouement, vous pouvez effectuer une attaque. Vous ne pouvez pas attaquer au tour suivant."
+      },
+      "Jake Farrell": {
+        "text": "Apr&egrave;s avoir effectu&eacute; une action de concentration ou reçu un marqueur de concentration, vous pouvez effectuer une action gratuite d'acc&eacute;l&eacute;ration ou de tonneau."
+      },
+      "Gemmer Sojan": {
+        "text": "Tant que vous &ecirc;tes &agrave; port&eacute;e 1 d'au moins 1 vaisseau ennemi, augmentez de 1 votre valeur d'agilit&eacute;."
+      },
+      "Keyan Farlander": {
+        "text": "Quand vous attaquez, vous pouvez retirer 1 marqueur de stress pour changer tous vos r&eacute;sultats %FOCUS% en r&eacute;sultats %HIT%."
+      },
+      "Nera Dantels": {
+        "text": "Vous pouvez effectuer des attaques d'arme secondaire %TORPEDO% contre des vaisseaux ennemis situ&eacute;s en dehors de votre arc de tir."
+      },
+      "GR-75 Medium Transport": {
+        "name": "Transport moyen GR-75"
+      },
+      "CR90 Corvette (Fore)": {
+        "name": "Corvette CR90 (proue)",
+        "text": "Quand vous attaquez avec votre arme principale, vous pouvez d&eacute;penser 1 &eacute;nergie pour lancer 1 d&eacute; d'attaque suppl&eacute;mentaire."
+      },
+      "CR90 Corvette (Aft)": {
+        "name": "Corvette CR90 (poupe)"
+      },
+      "Dash Rendar": {
+        "text": "Vous pouvez ignorer les obstacles durant la phase d'activation et quand vous effectuez des actions."
+      },
+      "'Leebo'": {
+        "text": "Quand vous recevez une carte de d&eacute;g&acirc;ts face visible, piochez 1 carte de d&eacute;g&acirc;ts additionnelle ; choisissez-en 1 que vous r&eacute;solvez et d&eacute;faussez l'autre."
+      },
+      "Eaden Vrill": {
+        "text": "Quand vous effectuez une attaque d'arme principale contre un vaisseau sous l'effet du stress, lancez 1 d&eacute; d'attaque additionnel."
+      },
+      "Wild Space Fringer": {
+        "name": "Frontalier de l'espace sauvage"
+      },
+      "Prince Xizor (Scum)": {
+        "text": "Quand vous d&eacute;fendez, un vaisseau alli&eacute; &agrave; port&eacute;e 1 peut subir 1 d&eacute;g&acirc;t %HIT% ou %CRIT% restant &agrave; votre place."
+      },
+      "Guri (Scum)": {
+        "text": "Au d&eacute;but de la phase de combat, si vous &ecirc;tes &agrave; port&eacute;e 1 d'un vaisseau ennemi, vous pouvez assigner 1 marqueur de concentration &agrave; votre vaisseau."
+      },
+      "Black Sun Vigo (Scum)": {
+        "name": "Vigo du Soleil Noir"
+      },
+      "Black Sun Enforcer (Scum)": {
+        "name": "Homme de main du Soleil Noir"
+      },
+      "Cartel Spacer (Scum)": {
+        "name": "Astropilote du Cartel"
+      },
+      "Tansarii Point Veteran (Scum)": {
+        "name": "V&eacute;t&eacute;ran de Tansarii Point"
+      },
+      "Serissu (Scum)": {
+        "text": "Quand un autre vaisseau alli&eacute; &agrave; port&eacute;e 1 d&eacute;fend, it peut relancer 1 d&eacute; de d&eacute;fense."
+      },
+      "Laetin A'shera (Scum)": {
+        "text": "Apr&egrave;s avoir d&eacute;fendu contre une attaque, si cette derni&egrave;re ne vous a pas touch&eacute;, vous pouvez assigner 1 marqueur d'&eacute;vasion &agrave; votre vaisseau."
+      },
+      "IG-88A (Scum)": {
+        "text": "Après avoir effectué une attaque qui détruit le défenseur, vous pouvez récupérer 1 bouclier."
+      },
+      "IG-88B (Scum)": {
+        "text": "Une fois par tour, après avoir effectué une attaque qui ne touche pas, vous pouvez effectuer une attaque avec une arme secondaire %CANNON% équipée."
+      },
+      "IG-88C (Scum)": {
+        "text": "Après avoir effectué une action d'accélération, vous pouvez effectuer une action d'évasion gratuite."
+      },
+      "IG-88D (Scum)": {
+        "text": "Vous pouvez ex&eacute;cuter la manoeuvre (%SLOOPLEFT% 3) ou (%SLOOPRIGHT% 3) en utilisant le gabarit (%TURNLEFT% 3) ou (%TURNRIGHT% 3) correspondant."
+      },
+      "Boba Fett (Scum)": {
+        "name": "Boba Fett (Racailles)",
+        "text": "Quand vous attaquez ou d&eacute;fendez, vous pouvez relancer 1 de vos d&eacute;s pour chaque vaisseau ennemi &agrave; port&eacute;e 1."
+      },
+      "Kath Scarlet (Scum)": {
+        "name": "Kath Scarlet (Racailles)",
+        "text": "Quand vous attaquez un vaisseau dans votre arc de tir auxiliaire, lancez 1 d&eacute; d'attaque suppl&eacute;mentaire."
+      },
+      "Emon Azzameen (Scum)": {
+        "text": "Quand vous larguez une bombe, vous pouvez utiliser le gabarit [%TURNLEFT% 3], [%STRAIGHT% 3], ou [%TURNRIGHT% 3] au lieu du gabarit [%STRAIGHT% 1]."
+      },
+      "Mandalorian Mercenary (Scum)": {
+        "name": "Mercenaire mandalorien"
+      },
+      "Kavil (Scum)": {
+        "text": "Quand vous attaquez un vaisseau en dehors de votre arc de tir, lancez 1 d&eacute; d'attaque suppl&eacute;mentaire."
+      },
+      "Drea Renthal (Scum)": {
+        "text": "Apr&egrave;s avoir d&eacute;pens&eacute; une acquisition de cible, vous pouvez recevoir 1 marqueur de stress pour verrouiller une cible."
+      },
+      "Hired Gun (Scum)": {
+        "name": "Soudard"
+      },
+      "Syndicate Thug (Scum)": {
+        "name": "Malfrat"
+      },
+      "Dace Bonearm (Scum)": {
+        "text": "Quand un vaisseau ennemi situ&eacute; &agrave; port&eacute;e 1-3 reçoit au moins 1 marqueur ionique, si vous n'&ecirc;tes pas d&eacute;j&agrave; sous l'effet du stress, vous pouvez recevoir 1 marqueur de stress pour que ce vaisseau subisse 1 d&eacute;g&acirc;t."
+      },
+      "Palob Godalhi (Scum)": {
+        "text": "Au d&eacute;but de la phase de combat, vous pouvez enlever 1 marqueur de concentration ou d'&eacute;vasion d'un vaisseau ennemi situ&eacute; &agrave; port&eacute;e 1-2 et vous l'assigner."
+      },
+      "Torkil Mux (Scum)": {
+        "text": "&Agrave; la fin de la phase d'activation, choisissez 1 vaisseau ennemi situ&eacute; &agrave; port&eacute;e 1-2. Jusqu'&agrave; la fin de la phase de combat, consid&eacute;rez la valeur de pilotage de ce vaisseau &eacute;gale \"0\"."
+      },
+      "Spice Runner (Scum)": {
+        "name": "Trafiquant d'&eacute;pice"
+      },
+      "Black Sun Soldier (Scum)": {
+        "name": "Soldat du Soleil Noir"
+      },
+      "Binayre Pirate (Scum)": {
+        "name": "Pirate Binayre"
+      },
+      "N'Dru Suhlak (Scum)": {
+        "text": "Quand vous attaquez, s'il n'y a pas d'autres vaisseaux alli&eacute;s &agrave; port&eacute;e 1-2, lancez 1 d&eacute; d'attaque suppl&eacute;mentaire."
+      },
+      "Kaa'To Leeachos (Scum)": {
+        "text": "Au d&eacute;but de la phase de combat, vous pouvez enlever 1 marqueur de concentration ou d'&eacute;vasion d'un autre vaisseau alli&eacute; situ&eacute; &agrave; port&eacute;e 1-2 et vous l'assigner."
+      }
+    },
+    "upgrades" : {
+      "Determination": {
+        "name": "D&eacute;termination",
+        "text": "Quand vous recevez une carte de d&eacute;g&acirc;ts assortie du trait Pilote face visible, d&eacute;faussez-la aussit&ocirc;t (sans r&eacute;soudre sa capacit&eacute;)."
+      },
+      "Swarm Tactics": {
+        "name": "Tactique de nu&eacute;e",
+        "text": "Au d&eacute;but de la phase de combat, choisissez 1 vaisseau alli&eacute; situ&eacute; &agrave; port&eacute;e 1. Jusqu'&agrave; la fin de cette phase, consid&eacute;rez que la valeur de pilotage du vaisseau en question est &eacute;gale &agrave; la v&ocirc;tre."
+      },
+      "Squad Leader": {
+        "name": "Chef d'escouade",
+        "text": "<strong>Action :</strong> choisissez 1 vaisseau situ&eacute; &agrave; port&eacute;e 1 ou 2 dont la valeur de pilotage est inf&eacute;rieure &agrave; la v&ocirc;tre. Ce vaisseau peut aussit&ocirc;t effectuer 1 action gratuite."
+      },
+      "Expert Handling": {
+        "name": "As de l'espace",
+        "text": "<strong>Action :</strong> effectuez une <strong>action gratuite</strong> de tonneau. Si vous n'avez pas l'icone d'action %BARRELROLL%, recevez 1 marqueur de stress. Ensuite, vous pouvez retirer 1 acquisition de cible ennemie de votre vaisseau."
+      },
+      "Marksmanship": {
+        "name": "Adresse au tir",
+        "text": "<strong>Action :</strong> en attaquant ce tour-ci, vous pouvez &eacute;changer 1 de vos r&eacute;sultats %FOCUS% contre 1 r&eacute;sultat %CRIT%, et tous vos autres r&eacute;sultats %FOCUS% contre des r&eacute;sultats %HIT%."
+      },
+      "Daredevil": {
+        "name": "Casse-cou",
+        "text": "<strong>Action :</strong> ex&eacute;cuter une manoeuvre blanche (%TURNLEFT% 1) ou (%TURNRIGHT% 1).  Puis, recevez un marqueur de stress. Ensuite, si vous n'avez pas l'icone d'action %BOOST%, lancez 2 d&eacute;s d'attaque et subissez les d&eacute;g&acirc;ts (%HIT%) et les d&eacute;g&acirc;ts critiques (%CRIT%) obtenus."
+      },
+      "Elusiveness": {
+        "name": "Insaisissable",
+        "text": "Quand vous d&eacute;fendez, vous pouvez recevoir un marqueur de stress pour choisir 1 d&eacute; d'attaque. Si vous avez au moins un marqueur de stress, vous ne pouvez pas utiliser cette capacit&eacute;."
+      },
+      "Push the Limit": {
+        "name": "Repousser les limites",
+        "text": "Une fois par tour, apr&egrave;s avoir effectu&eacute; une action, vous pouvez effectuer 1 action gratuite figurant dans votre barre d'action. Recevez ensuite un marqueur de stress."
+      },
+      "Deadeye": {
+        "name": "Tireur d'&eacute;lite",
+        "text": "Vous pouvez consid&eacute;rer l'intitul&eacute; \"<strong>Attaque (acquisition de cible)</strong>\" comme un intitul&eacute; \"<strong>Attaque (concentration)</strong>\". Quand une attaque vous demande d'utiliser un marqueur d'acquisition de cible, vous pouvez utiliser un marqueur de concentration &agrave; la place."
+      },
+      "Expose": {
+        "name": "Prise de risque",
+        "text": "<strong>Action :</strong> jusqu'&agrave; la fin du tour, augmentez votre valeur d'arme principale de 1 et r&eacute;duisez votre valeur d'agilit&eacute; de 1."
+      },
+      "Wingman": {
+        "name": "Ailier",
+        "text": "Au d&eacute;but de la phase de combat, retirez 1 marqueur de stress d'un autre vaisseau alli&eacute; situ&eacute; &agrave; port&eacute;e 1."
+      },
+      "Decoy": {
+        "name": "Leurre",
+        "text": "Au d&eacute;but de la phase de combat, vous pouvez choisir 1 vaisseau alli&eacute; situ&eacute; &agrave; port&eacute;e 1-2. &Eacute;changez votre valeur de pilotage avec celle de ce vaisseau jusqu'&agrave; la fin de la phase."
+      },
+      "Outmaneuver": {
+        "name": "Manoeuvre improbable",
+        "text": "Quand vous attaquez un vaisseau situ&eacute; dans votre arc de tir, si vous n'&ecirc;tes pas dans l'arc de tir de ce vaisseau, r&eacute;duisez sa valeur d'agilit&eacute; de 1 (jusqu'&agrave; un minimum de 0)."
+      },
+      "Predator": {
+        "name": "Pr&eacute;dateur",
+        "text": "Quand vous attaquez, vous pouvez relancer 1 d&eacute; d'attaque. Si la valeur de pilote du d&eacute;fenseur est de \"2\" ou moins, vous pouvez relancer jusqu'&agrave; 2 d&eacute;s d'attaque &agrave; la place."
+      },
+      "Draw Their Fire": {
+        "name": "Je les attire !",
+        "text": "Quand un vaisseau alli&eacute; situ&eacute; &agrave; port&eacute;e 1 est touch&eacute; par une attaque, vous pouvez subir 1 des r&eacute;sultats %CRIT% non annul&eacute;s &agrave; la place de l'appareil vis&eacute;."
+      },
+      "Adrenaline Rush": {
+        "name": "Mont&eacute;e d'adr&eacute;naline",
+        "text": "Quand vous r&eacute;v&eacute;lez une manoeuvre rouge, vous pouvez d&eacute;fausser cette carte pour traiter cette manoeuvre comme une manoeuvre blanche jusqu'&agrave; la fin de la phase d'activation."
+      },
+      "Veteran Instincts": {
+        "name": "Instinct de v&eacute;t&eacute;ran",
+        "text": "Augmentez votre valeur de pilotage de 2."
+      },
+      "Opportunist": {
+        "name": "Opportuniste",
+        "text": "Quand vous attaquez, si le d&eacute;fenseur n'a pas de marqueur de concentration ou d'&eacute;vasion, vous pouvez recevoir 1 marqueur de stress pour lancer 1 d&eacute; d'attaque suppl&eacute;mentaire. Vous ne pouvez pas utiliser cette capacit&eacute; si vous avez au moins un marqueur de stress."
+      },
+      "Lone Wolf": {
+        "name": "Loup Solitaire",
+        "text": "Quand vous attaquez ou d&eacute;fendez, s'il n'y a pas de vaisseaux alli&eacute;s &agrave; port&eacute;e 1-2, vous pouvez relancer 1 de vos r&eacute;sultats vierges."
+      },
+      "Stay On Target": {
+        "name": "Restez en ligne",
+        "text": "Quand vous r&eacute;v&eacute;lez une manoeuvre, vous pouvez tourner votre cadran sur une autre manoeuvre ayant la m&ecirc;me vitesse. Traitez cette manoeuvre comme une manoeuvre rouge."
+      },
+      "Ruthlessness": {
+        "name": "Impitoyable",
+        "text": " Apr&egrave;s avoir effectu&eacute; une attaque qui touche, vous <strong>devez</strong> choisir 1 autre vaisseau situ&eacute; &agrave; port&eacute;e 1 du d&eacute;fenseur (autre que vous-m&ecirc;me). Ce vaisseau subit 1 d&eacute;g&acirc;t."
+      },
+      "Intimidation": {
+        "text": "Tant que vous &ecirc;tes au contact avec un vaisseau ennemi, r&eacute;duisez de 1 la valeur d'agilit&eacute; de ce vaisseau."
+      },
+      "Calculation": {
+        "name": "Calcul",
+        "text": "Quand vous attaquez, vous pouvez d&eacute;penser un marqueur de concentration pour changer 1 de vos r&eacute;sultats %FOCUS% en un r&eacute;sultat %CRIT%."
+      },
+      "Bodyguard": {
+        "name": "Garde du corps",
+        "text": " Au d&eacute;but de la phase de combat, vous pouvez d&eacute;penser un marqueur de concentration pour choisir un vaisseau alli&eacute; &agrave; port&eacute;e 1 ayant une valeur de pilotage sup&eacute;rieure &agrave; la votre. Augmentez sa valeur d'agilit&eacute; de 1 jusqu'&agrave; la fin du tour."
+      },
+      "R2 Astromech": {
+        "name": "Astromech R2",
+        "text": "Consid&eacute;rez toutes les manoeuvres &agrave; vitesse 1 ou 2 comme des manoeuvres vertes."
+      },
+      "R2-D2": {
+        "text": "Apr&egrave;s avoir ex&eacute;cut&eacute; une manoeuvre verte, vous pouvez r&eacute;cup&eacute;rer 1 bouclier (sans pouvoir d&eacute;passer votre valeur de boucliers)."
+      },
+      "R2-F2": {
+        "text": "<strong>Action :</strong> augmentez votre valeur d'agilit&eacute; de 1 jusqu'&agrave; la fin de ce tour."
+      },
+      "R5-D8": {
+        "text": "<strong>Action :</strong> lancez 1 d&eacute; de d&eacute;fense. Sur un r&eacute;sultat %EVADE% ou %FOCUS%, d&eacute;faussez 1 de vos cartes de d&eacute;g&acirc;ts face cach&eacute;e."
+      },
+      "R5-K6": {
+        "text": "Apr&egrave;s avoir utilis&eacute; votre acquisition de cible, lancez 1 d&eacute; de d&eacute;fense. Sur un r&eacute;sultat %EVADE%, verrouillez aussit&ocirc;t le m&ecirc;me vaisseau. Vous ne pouvez cependant pas utiliser cette nouvelle acquisition de cible durant cette attaque."
+      },
+      "R5 Astromech": {
+        "name": "Astromech R5",
+        "text": "Pendant la phase de d&eacute;nouement, choisissez une de vos cartes d&eacute;g&acirc;ts face visible assortie du trait <strong>Vaisseau</strong>, et retournez-la face cach&eacute;e."
+      },
+      "R7 Astromech": {
+        "name": "Astromech R7",
+        "text": "Une fois par tour, quand vous d&eacute;fendez, si vous avez verrouill&eacute; l'attaquant, vous pouvez d&eacute;penser l'acquisition de cible pour choisir tout ou partie des d&eacute;s d'attaque. L'attaquant doit relancer les d&eacute;s choisis."
+      },
+      "R7-T1": {
+        "text": "<strong>Action :</strong> choisissez un vaisseau ennemi situ&eacute; &agrave; port&eacute;e 1-2. Si vous &ecirc;tes dans son arc de tir, vous pouvez le verrouiller. Ensuite, vous pouvez effectuer une action d'acc&eacute;l&eacute;ration gratuite."
+      },
+      "R4-D6": {
+        "text": "Quand vous &ecirc;tes touch&eacute; par une attaque ayant g&eacute;n&eacute;r&eacute; au moins 3 r&eacute;sultats %HIT% non annul&eacute;s, vous pouvez annuler les r&eacute;sultats que vous souhaitez jusqu'&agrave; ce qu'il n'en reste que 2. Pour chaque r&eacute;sultat annul&eacute; de la sorte, recevez 1 marqueur de stess."
+      },
+      "R5-P9": {
+        "text": "&Agrave; la fin de la phase de combat, vous pouvez d&eacute;penser 1 de vos marqueurs de concentration pour r&eacute;cup&eacute;rer 1 bouclier (jusqu'&agrave; concurrence de votre valeur de boucliers)."
+      },
+      "R3-A2": {
+        "text": "Quand vous d&eacute;clarez la cible de votre attaque, si le d&eacute;fenseur est dans votre arc de tir, vous pouvez recevoir 1 marqueur de stress pour que le d&eacute;fenseur en reçoive 1 aussi."
+      },
+      "R2-D6": {
+        "text": "Votre bandeau d'am&eacute;lioration gagne l'icone d'am&eacute;lioration %ELITE%."
+      },
+      "Proton Torpedoes": {
+        "name": "Torpilles &agrave; protons",
+        "text": "<strong>Attaque (acquisition de cible) :</strong> utilisez votre acquisition de cible et d&eacute;faussez cette carte pour effectuer cette attaque. Vous pouvez &eacute;changer 1 de vos r&eacute;sultats %FOCUS% contre 1 r&eacute;sultat %CRIT%."
+      },
+      "Advanced Proton Torpedoes": {
+        "name": "Torpilles &agrave; protons avanc&eacute;es",
+        "text": "<strong>Attaque (acquisition de cible) :</strong> utilisez votre acquisition de cible et d&eacute;faussez cette carte pour effectuer cette attaque. Vous pouvez &eacute;changer jusqu'&agrave; 3 de vos r&eacute;sultats vierge contre autant de r&eacute;sultats %FOCUS%."
+      },
+      "Flechette Torpedoes": {
+        "name": "Torpilles fl&eacute;chettes",
+        "text": "<strong>Attaque (acquisition de cible) :</strong> d&eacute;faussez cette carte et d&eacute;pensez votre acquisition de cible pour effectuer cette attaque. Apr&egrave;s que vous avez effectu&eacute; cette attaque, le d&eacute;fenseur reçoit 1 marqueur de stress si sa valeur de coque est de \"4\" ou moins."
+      },
+      "Ion Torpedoes": {
+        "name": "Torpilles ioniques",
+        "text": "<strong>Attaque (acquisition de cible) :</strong> utilisez votre acquisition de cible et d&eacute;faussez cette carte pour effectuer cette attaque. Si cette attaique touche, le d&eacute;fenseur et chaque vaisseau situ&eacute; &agrave; port&eacute;e 1 de celui-ci reçoit 1 marqueur ionique."
+      },
+      "Bomb Loadout": {
+        "name": "Chargement de bombes",
+        "text": "Votre bandeau d'am&eacute;lioration gagne l'icone d'am&eacute;lioration %BOMB%."
+      },
+      "Ion Cannon Turret": {
+        "name": "Tourelles &agrave; canons ioniques",
+        "text": "<strong>Attaque :</strong> attaquez 1 vaisseau (m&ecirc;me s'il se situe en dehors de votre arc de tir). Si cette attaque touche la cible, cette derni&egrave;re subit 1 d&eacute;g&acirc;t et reçoit 1 marqueur ionique. Ensuite, annulez tous les r&eacute;sultats des d&eacute;s."
+      },
+      "Blaster Turret": {
+        "name": "Tourelles blaster",
+        "text": "<strong>Attaque (concentration) :</strong> d&eacute;pensez un marqueur concentration pour effectuer cette attaque contre 1 vaisseau (m&ecirc;me s'il se situe en dehors de votre arc de tir)."
+      },
+      "Autoblaster Turret": {
+        "name": "Tourelle autoblaster",
+        "text": "<strong>Attaque :</strong> attaquez 1 vaisseau (m&ecirc;me s'il se trouve en dehors de votre arc de tir). Vos r&eacute;sultats %HIT% ne peuvent pas &ecirc;tre annul&eacute;s par des d&eacute;s de d&eacute;fense. Le d&eacute;fenseur peut annuler les r&eacute;sultats %CRIT% avant les r&eacute;sultats %HIT%."
+      },
+      "Concussion Missiles": {
+        "name": "Missiles &agrave; concussion",
+        "text": "<strong>Attaque (acquisition de cible) :</strong> utilisez votre acquisition de cible et d&eacute;faussez cette carte pour effectuer cette attaque. Vous pouvez &eacute;changer 1 de vos r&eacute;sultats vierges contre 1 r&eacute;sultat %HIT%."
+      },
+      "Cluster Missiles": {
+        "name": "Missiles group&eacute;s",
+        "text": "<strong>Attaque (acquisition de cible) :</strong> utilisez votre acquisition de cible et d&eacute;faussez cette carte pour effectuer cette attaque <strong>deux fois</strong>."
+      },
+      "Homing Missiles": {
+        "name": "Missiles &agrave; t&ecirc;te chercheuse",
+        "text": "<strong>Attaque (acquisition de cible) :</strong> d&eacute;faussez cette carte pour effectuer cette attaque. Le d&eacute;fenseur ne peut pas utiliser de marqueurs d'&eacute;vasion durant cette attaque."
+      },
+      "Assault Missiles": {
+        "name": "Missiles d'assaut",
+        "text": "<strong>Attaque (acquisition de cible) :</strong> utilisez votre acquisition de cible et d&eacute;faussez cette carte pour effectuer cette attaque. Si cette attaque touche, chaque vaisseau situ&eacute; &agrave; port&eacute;e 1 du d&eacute;fenseur subit 1 d&eacute;g&acirc;t."
+      },
+      "Ion Pulse Missiles": {
+        "name": "Missiles &agrave; pulsations ioniques",
+        "text": "<strong>Attaque (acquisition de cible) :</strong> d&eacute;faussez cette carte pour effectuer cette attaque. Si cette attaque touche, le d&eacute;fenseur subit 1 d&eacute;g&acirc;t et reçoit 2 marqueurs ioniques. Ensuite, annulez le r&eacute;sultat de <strong>tous<strong> les d&eacute;s."
+      },
+      "Chardaan Refit": {
+        "name": "Radoub &agrave; Chardaan",
+        "text": "Cette carte a un co&ucirc;t en points d'escadron n&eacute;gatif."
+      },
+      "Proton Rockets": {
+        "name": "Roquettes &agrave; proton",
+        "text": "<strong>Attaque (concentration) :</strong> d&eacute;faussez cette carte pour effectuer cette attaque. Vous pouvez lancer un nombre de d&eacute;s d'attaque additionnels &eacute;gal &agrave; votre valeur d'agilit&eacute;, jusqu'&agrave; un maximum de 3 d&eacute;s additionnels."
+      },
+      "Seismic Charges": {
+        "name": "Charges sismiques",
+        "text": "Quand vous r&eacute;v&eacute;lez votre cadran de manoeuvres, vous pouvez d&eacute;fausser cette carte pour  <strong>larguer</strong> 1 marqueur de charges sismiques. Ce marqueur <strong>explose</strong> &agrave; la fin de la phase d'activation."
+      },
+      "Proximity Mines": {
+        "name": "Mines de proximit&eacute;",
+        "text": "<strong>Action :</strong> d&eacute;faussez cette carte pour <strong>larguer</strong> 1 marqueur de mines de proximit&eacute;. Quand un vaisseau ex&eacute;cute une manoeuvre, si son socle ou son gabarit de manoeuvre chevauche ce marqueur, ce marqueur <strong>explose</strong>."
+      },
+      "Proton Bombs": {
+        "name": "Bombes &agrave; protons",
+        "text": "Quand vous r&eacute;v&eacute;lez votre cadran de manoeuvres, vous pouvez d&eacute;fausser cette carte pour <strong>larguer</strong> 1 marqueur de bombe &agrave; protons. Ce marqueur <strong>explose</strong> &agrave; la fin de la phase d'activation."
+      },
+      "Ion Cannon": {
+        "name": "Canon ionique",
+        "text": "<strong>Attaque :</strong> Attaque : attaquez 1 vaisseau. Si cette attaque touche, le d&eacute;fenseur subit 1 d&eacute;g&acirc;t et reçoit 1 marqueur ionique. Ensuite annulez le r&eacute;sultat de tous les d&eacute;s."
+      },
+      "Heavy Laser Cannon": {
+        "name": "Canon laser lourd",
+        "text": "<strong>Attaque :</strong> attaquez 1 vaisseau. Juste apr&egrave;s avoir lanc&eacute; vos d&eacute;s d'attaque, vous devez changer tous vos r&eacute;sultats %CRIT% en r&eacute;sultats %HIT%."
+      },
+      "Autoblaster": {
+        "text": "<strong>Attaque :</strong> attaquez 1 vaisseau. Vos r&eacute;sultats %HIT% ne peuvent pas &ecirc;tre annul&eacute;s par des d&eacute;s de d&eacute;fense. Le d&eacute;fenseur peut annuler les r&eacute;sultats %CRIT% avant les r&eacute;sultats %HIT%."
+      },
+      "Flechette Cannon": {
+        "name": "Canon &agrave; fl&eacute;chettes",
+        "text": "<strong>Attaque :</strong> Attaquez 1 vaisseau. Si cette attaque touche, le d&eacute;fenseur subit 1 d&eacute;g&acirc;t et, si le d&eacute;fenseur n'est pas sous l'effet du stress, il reçoit aussi 1 marqueur de stress. Ensuite, annulez le r&eacute;sultat de <strong>tous</strong> les d&eacute;s."
+      },
+      "'Mangler' Cannon": {
+        "name": "Canon 'Lac&eacute;rateur'",
+        "text": "<strong>Attaque :</strong> Attaquez 1 vaisseau.  Quand vous attaquez, vous pouvez &eacute;changer 1 de vos r&eacute;sultats %HIT% contre 1 r&eacute;sultat %CRIT%."
+      },
+      "Enhanced Scopes": {
+        "name": "Radars am&eacute;lior&eacute;s",
+        "text": "Durant la phase d'activation, consid&eacute;rez que votre valeur de pilotage est &eacute;gale &agrave; 0."
+      },
+      "Fire-Control System": {
+        "name": "Syst&egrave;me de commande de tir",
+        "text": "Apr&egrave;s avoir effectu&eacute; une attaque, vous pouvez verrouiller le d&eacute;fenseur."
+      },
+      "Advanced Sensors": {
+        "name": "Senseurs avanc&eacute;s",
+        "text": "Juste avant de r&eacute;v&eacute;ler votre manoeuvre, vous pouvez effectuer 1 action gratuite. Si vous utilisez cette capacit&eacute;, vous devez passer l'&eacute;tape \"Effectuer une action\" ce tour-ci."
+      },
+      "Sensor Jammer": {
+        "name": "Brouilleur de senseurs",
+        "text": "Quand vous d&eacute;fendez, vous pouvez changer un des r&eacute;sultats %HIT% de l'attaquant en r&eacute;sultat %FOCUS%. L'attaquant ne peut pas relancer le d&eacute;s au r&eacute;sultat modifi&eacute;."
+      },
+      "Accuracy Corrector": {
+        "name": "Correcteur de Pr&eacute;cision",
+        "text": "Quand vous attaquez, vous pouvez annuler le r&eacute;sultat de tous vos d&eacute;s. Puis, vous pouvez ajouter 2 r&eacute;sultats %HIT%. Vos d&eacute;s ne peuvent pas &ecirc;tre modifi&eacute;s &agrave; nouveau lors de cette attaque."
+      },
+      "Gunner(Crew)": {
+        "name": "Cannonier",
+        "text": "Apr&egrave;s avoir effectu&eacute; une attaque qui ne touche pas, vous pouvez effectuer imm&eacute;diatement une attaque d'arme principale. Vous ne pouvez pas effectuer d'autre attaque ce tour-ci."
+      },
+      "Mercenary Copilot(Crew)": {
+        "name": "Copilote mercenaire",
+        "text": "Quand vous attaquez &agrave; port&eacute;e 3, vous pouvez &eacute;changer 1 de vos r&eacute;sultats %HIT% contre 1 r&eacute;sultat %CRIT%."
+      },
+      "Weapons Engineer(Crew)": {
+        "name": "Ing&eacute;nieur en armement",
+        "text": "Vous pouvez verrouiller 2 cibles (1 seule acquisition de cible par vaisseau ennemi). Quand vous verrouillez une cible, vous pouvez verrouiller 2 vaisseaux diff&eacute;rents."
+      },
+      "Luke Skywalker(Crew)": {
+        "text": " Quand vous effectuez une attaque qui ne touche pas, effectuez aussit&ocirc;t une attaque d'arme principale. Vous pouvez &eacute;changer un r&eacute;sultat %FOCUS% contre 1 r&eacute;sultat %HIT%. Vous ne pouvez pas effectuer d'autre attaque ce tour-ci."
+      },
+      "Nien Nunb(Crew)": {
+        "text": " Vous pouvez traiter toute les manoeuvres %STRAIGHT% comme des manoeuvres vertes."
+      },
+      "Chewbacca(Crew)": {
+        "text": " Quand vous recevez une carte de d&eacute;g&acirc;ts, vous pouvez la d&eacute;faussez sur-le-champs et r&eacute;cup&eacute;rer 1 bouclier. Ensuite, d&eacute;faussez cette carte d'am&eacute;lioration."
+      },
+      "Recon Specialist(Crew)": {
+        "name": "Officier en reconnaissance",
+        "text": "Quand vous effectuez une action de concentration, assignez 1 marqueur de concentration suppl&eacute;mentaire &agrave; votre vaisseau."
+      },
+      "Saboteur(Crew)": {
+        "text": "<strong>Action :</strong> choisissez 1 vaisseau ennemi situ&eacute; &agrave; port&eacute;e 1 et lancez 1 d&eacute; d'attaque. Sur un r&eacute;sultat %HIT% ou %CRIT%, choisissez au hasard une carte de d&eacute;g&acirc;ts face cach&eacute;e assign&eacute;e &agrave; ce vaisseau, retrounez-la et r&eacute;solvez-la."
+      },
+      "Intelligence Agent(Crew)": {
+        "name": "Agent de renseignements",
+        "text": "Au d&eacute;but de la phase d'activation, choisissez 1 vaisseau ennemi situ&eacute; &agrave; port&eacute;e 1-2. Vous pouvez regarder la manoeuvre choisie pour ce vaisseau."
+      },
+      "Darth Vader(Crew)": {
+        "name": "Dark Vador",
+        "text": " Apr&egrave;s avoir effectu&eacute; une attaque contre un vaisseau ennemi, vous pouvez subir 2 d&eacute;g&acirc;ts pour infliger 1 d&eacute;g&acirc;t critique &agrave; cet appareil."
+      },
+      "Rebel Captive(Crew)": {
+        "name": "Prisonnier rebelle",
+        "text": " Une fois par tour, le premier vaisseau qui vous d&eacute;clare comme la cible d'une attaque reçoit aussit&ocirc;t 1 marqueur de stress."
+      },
+      "Flight Instructor(Crew)": {
+        "name": "Pilote instructeur",
+        "text": "Quand vous d&eacute;fendez, vous pouvez relancer 1 de vos r&eacute;sultats %FOCUS%. Si la valeur de pilotage de l'attaquant est de 2 ou moins, vous pouvez relancer 1 de vos r&eacute;sultats vierges &agrave; la place."
+      },
+      "Navigator(Crew)": {
+        "name": "Navigateur",
+        "text": "Quand vous r&eacute;v&eacute;lez une manoeuvre, vous pouvez tourner le cadran sur une autre manoeuvre ayant la m&ecirc;me direction. Vous ne pouvez pas tourner le cadran sur une manoeuvre rouge si vous avez au moins un marqueurs de stress."
+      },
+      "Lando Calrissian(Crew)": {
+        "text": " <strong>Action :</strong> lancez 2 d&eacute;s de d&eacute;fense. Pour chaque r&eacute;sultat %FOCUS%, assignez 1 marqueur de concentration &agrave; votre vaisseau. Pour chaque r&eacute;sultat %EVADE%, assignez 1 marqueur d'&eacute;vasion &agrave; votre vaisseau."
+      },
+      "Mara Jade(Crew)": {
+        "text": " &Agrave; la fin de la phase de combat, chaque vaisseau ennemi situ&eacute; &agrave; port&eacute;e 1 qui n'a pas de marqueur de stress reçoit 1 marqueur de stress."
+      },
+      "Fleet Officer(Crew)": {
+        "name": "Officier de la flotte",
+        "text": " <strong>Action :</strong> choisissez jusqu'&agrave; 2 vaisseaux alli&eacute;s situ&eacute;s &agrave; port&eacute;e 1-2 et assignez 1 marqueur de concentration &agrave; chacun d'eux. Ensuite, recevez 1 marqueur de stress."
+      },
+      "Han Solo(Crew)": {
+        "text": " Quand vous attaquez, si vous avez verrouill&eacute; le d&eacute;fenseur, vous pouvez d&eacute;penser ce marqueur d'acquisition de cible pour changer tous vos r&eacute;sultats %FOCUS% en r&eacute;sultats %HIT%."
+      },
+      "Leia Organa(Crew)": {
+        "text": " Au d&eacute;but de la phase d'activation, vous pouvez d&eacute;fausser cette carte pour permettre &agrave; tous les vaisseaux alli&eacute;s qui d&eacute;voilent une manoeuvre rouge de consid&eacute;rer cette derni&egrave;re comme une manoeuvre blanche jusqu'&agrave; la fin de la phase."
+      },
+      "WED-15 Repair Droid(Crew)": {
+        "name": "Droide de r&eacute;paration WED-15",
+        "text": "<strong>Action :</strong> d&eacute;pensez 1 &eacute;nergie pour d&eacute;fausser 1 de vos cartes de d&eacute;g&acirc;ts face cach&eacute;e, ou d&eacute;pensez 3 &eacute;nergie pour d&eacute;fausser 1 de vos cartes de d&eacute;g&acirc;ts face visible."
+      },
+      "Carlist Rieekan(Crew)": {
+        "text": "Au d&eacute;but de la phase d'activation, vous pouvez d&eacute;fausser cette carte pour traiter la valeur de pilotage de chaque vaisseau alli&eacute; comme si elle s'&eacute;levait &agrave; \"12\", jusqu'&agrave; la fin de la phase."
+      },
+      "Jan Dodonna(Crew)": {
+        "text": "Quand un autre vaisseau alli&eacute; situ&eacute; &agrave; port&eacute;e 1 attaque, il peut &eacute;changer 1 de ses r&eacute;sultats %HIT% contre un r&eacute;sultat %CRIT%."
+      },
+      "Tactician(Crew)": {
+        "name": "Tacticien",
+        "text": "Apr&egrave;s que vous avez effectu&eacute; une attaque contre un vaisseau situ&eacute; dans votre arc de tir &agrave; port&eacute;e 2, ce vaisseau reçoit 1 marqueur de stress."
+      },
+      "R2-D2 (Crew)": {
+        "name": "R2-D2 (&Eacute;quipage)",
+        "text": " &Agrave; la fin de la phase de d&eacute;nouement, si vous n'avez pas de boucliers, vous pouvez r&eacute;cup&eacute;rer 1 bouclier et lancer 1 d&eacute; d'attaque. Sur un r&eacute;sultat %HIT%, prenez au hasard 1 de vos cartes de d&eacute;g&acirc;ts face cach&eacute;e, retournez-la et r&eacute;solvez-la."
+      },
+      "C-3PO(Crew)": {
+        "name": "Z-6PO",
+        "text": " Une fois par tour, avant de lancer 1 ou plusieurs d&eacute;s de d&eacute;fense, vous pouvez tenter d'en deviner &agrave; voix haute le nombre de r&eacute;sultats %EVADE%. Si vous obtenez le nombre annonc&eacute; (avant de modifier des d&eacute;s), ajoutez 1 r&eacute;sultat %EVADE%."
+      },
+      "Kyle Katarn(Crew)": {
+        "text": " Apr&egrave;s avoir retir&eacute; un marqueur stress de votre vaisseau, vous pouvez assigner un marqueur concentration &agrave; votre vaisseau."
+      },
+      "Jan Ors(Crew)": {
+        "text": " Une fois par tour, quand un vaisseau alli&eacute; &agrave; port&eacute;e 1-3 effectue une action de concentration ou reçoit un marqueur de concentration, vous pouvez assigner un marqueur d'&eacute;vasion &agrave; la place."
+      },
+      "Toryn Farr(Crew)": {
+        "text": "<strong>Action :</strong> d&eacute;pensez n'importe quelle quantit&eacute; d'&eacute;nergie pour choisir autant de vaisseaux ennemis situ&eacute;s &agrave; port&eacute;e 1-2. Retirez tous les marqueurs de concentratino, d'&eacute;vasion et d'acquisition de cible bleus de ces vaisseaux."
+      },
+      "Targeting Coordinator(Crew)": {
+        "name": "Coordinateur de vis&eacute;e",
+        "text": "<strong>&Eacute;nergie :</strong> vous pouvez d&eacute;penser 1 &eacute;nergie pour choisir un vaisseau alli&eacute; situ&eacute; &agrave; port&eacute;e 1-2. Verrouillez une cible, puis assignez le marqueur d'acquisition de cible bleu au vaisseau choisi."
+      },
+      "Raymus Antilles(Crew)": {
+        "text": "Au d&eacute;but de la phase d'activation, choisissez 1 vaisseau ennemi situ&eacute; &agrave; port&eacute;e 1-3. Vous pouvez regarder la manoeuvre choisie pour ce vaisseau. Si la manoeuvre est blanche, assignez 1 marqueur de stress &agrave; ce vaisseau."
+      },
+      "'Leebo'(Crew)": {
+        "text": "<strong>Action :</strong> Effectuez une action d'acc&eacute;l&eacute;ration gratuite. Ensuite, recevez 1 marqueur ionique."
+      },
+      "Dash Rendar(Crew)": {
+        "text": "Vous pouvez effectuer des attaques tout en chevauchant un obstacle. Vos attaques ne peuvent pas &ecirc;tre g&ecirc;n&eacute;es."
+      },
+      "Ysanne Isard(Crew)": {
+        "text": " Au d&eacute;but de la phase de combat, si vous n'avez pas de boucliers et qu'au moins 1 carte de d&eacute;g&acirc;ts est assign&eacute;e &agrave; votre vaisseau, vous pouvez effectuer une action d'&eacute;vasion gratuite."
+      },
+      "Moff Jerjerrod(Crew)": {
+        "text": " Quand vous recevez une carte de d&eacute;g&acirc;ts face visible, vous pouvez d&eacute;fausser cette carte d'am&eacute;lioration ou une autre carte d'am&eacute;lioration %CREW% pour retourner cette carte d&eacute;g&acirc;ts face cach&eacute;e (sans en r&eacute;soudre l'effet)."
+      },
+      "Greedo(Crew)": {
+        "text": " La premi&egrave;re fois que vous attaquez &agrave; chaque tour et la premi&egrave;re fois que vous d&eacute;fendez &agrave; chaque tour, la premi&egrave;re carte d&eacute;g&acirc;ts inflig&eacute;e l'est face visible."
+      },
+      "Outlaw Tech(Crew)": {
+        "name": "Technicien hors la loi",
+        "text": "Apr&egrave;s avoir ex&eacute;cut&eacute; une manoeuvre rouge, vous pouvez assigner 1 marqueur de concentration &agrave; votre vaisseau."
+      },
+      "Frequency Jammer": {
+        "name": "Brouilleurs de fr&eacute;quence",
+        "text": "Quand vous effectuez une action de brouillage, choisissez 1 vaisseau ennemi qui n'a pas de marqueur de stress et se situe &agrave; port&eacute;e 1 du vaisseau brouill&eacute;. Le vaisseau choisi reçoit 1 marqueur de stress."
+      },
+      "Expanded Cargo Hold": {
+        "name": "Compartiments suppl&eacute;mentaires",
+        "text": "Une fois par tour, quand vous &ecirc;tes cens&eacute; recevoir une carte de d&eacute;g&acirc;ts face visible, vous pouvez la piocher dans le paquet de d&eacute;g&acirc;ts de poupe ou de proue."
+      },
+      "Comms Booster": {
+        "name": "Amplificateur Comm",
+        "text": "<strong>&Eacute;nergie :</strong> d&eacute;pensez 1 &eacute;nergie pour retirer tous les marqueurs de stress d'un vaisseau alli&eacute; situ&eacute; &agrave; port&eacute;e 1-3. Ensuite, assignez 1 marqueur de concentration &agrave; ce vaisseau."
+      },
+      "Slicer Tools": {
+        "name": "Outils de slicer",
+        "text": "<strong>Action :</strong> choisissez 1 ou plusieurs vaisseaux ennemis situ&eacute;s &agrave; port&eacute;e 1-3 ayant un marqueur de stress. Pour chaque vaisseau choisi, vous pouvez d&eacute;penser 1 &eacute;nergie pour forcer ce vaisseau &agrave; subir 1 d&eacute;g&acirc;t."
+      },
+      "Shield Projector": {
+        "name": "Projecteur de boucliers",
+        "text": "Quand un vaisseau ennemi devient le vaisseau actif durant la phase de combat, vous pouvez d&eacute;penser 3 &eacute;nergie pour l'obliger &agrave; vous attaquer, si possible, jusqu'&agrave; la fin de la phase."
+      },
+      "Tibanna Gas Supplies": {
+        "name": "R&eacute;serves de gaz Tibanna",
+        "text": "<strong>&Eacute;nergie :</strong> vous pouvez d&eacute;fausser cette carte pour gagner 3 &eacute;nergie."
+      },
+      "Ionization Reactor": {
+        "name": "R&eacute;acteur &agrave; ionisation",
+        "text": "<strong>&Eacute;nergie :</strong> d&eacute;pensez 5 &eacute;nergie de cette carte et d&eacute;faussez-la pour que chaque autre vaisseau situ&eacute; &agrave; port&eacute;e 1 subisse 1 d&eacute;g&acirc;t et reçoive un marqueur ionique."
+      },
+      "Engine Booster": {
+        "name": "Booster",
+        "text": "Juste avant de d&eacute;voiler votre cadran de manoeuvres, vous pouvez d&eacute;penser 1 &eacute;nergie pour ex&eacute;cuter une manoeuvre (%STRAIGHT%) blanche. Vous ne pouvez pas utiliser cette capacit&eacute; si elle vous fait chevaucher un autre vaisseau."
+      },
+      "Backup Shield Generator": {
+        "name": "G&eacute;n&eacute;rateur de boucliers auxiliaire",
+        "text": "&Agrave; la fin de chaque tour, vous pouvez d&eacute;penser 1 &eacute;nergie pour r&eacute;cup&eacute;rer 1 bouclier (jusqu'&agrave; concurrence de votre valeur de boucliers)."
+      },
+      "EM Emitter": {
+        "name": "&Eacute;metteur EM",
+        "text": "Quand vous g&ecirc;nez une attaque, le d&eacute;fenseur lance 3 d&eacute;s de d&eacute;fense suppl&eacute;mentaires (au lieu de 1)."
+      },
+      "Ion Cannon Battery": {
+        "text": "<strong>Attaque (&eacute;nergie):</strong> D&eacute;pensez 2 &eacute;nergie de cette carte pour effectuer une attaque. Si cette attaque touche, le d&eacute;fenseur subit 1 d&eacute;g&acirc;t critique et reçoit 1 marqueur inioque. Puis annulez <strong>tous</strong> les r&eacute;sultats des d&eacute;s."
+      },
+      "Single Turbolasers": {
+        "name": "Turbolaser",
+        "text": "<strong>Attaque (&eacute;nergie) :</strong> d&eacute;pensez 2 &eacute;nergie de cette carte pour effectuer cette attaque. Le d&eacute;fenseur double sa valeur d'agilit&eacute; contre cette attaque. Vous pouvez changer 1 de vos r&eacute;sultats %FOCUS% en r&eacute;sultat %HIT%."
+      },
+      "Quad Laser Cannons": {
+        "name": "Canons quadrilaser",
+        "text": "<strong>Attaque (&eacute;nergie) :</strong> d&eacute;pensez 1 &eacute;nergie de cette carte pour effectuer cette attaque. Si cette attaque ne touche pas, vous pouvez aussit&ocirc;t d&eacute;penser 1 &eacute;nergie de cette carte pour effectuer &agrave; nouveau cette attaque."
+      },
+      "Gunnery Team": {
+        "name": "&Eacute;quipe d'artilleurs",
+        "text": "Une fois par tour, quand vous attaquez avec une arme secondaire, vous pouvez d&eacute;penser 1 &eacute;nergie pour change 1 de vos r&eacute;sultats vierges en r&eacute;sultat %HIT%."
+      },
+      "Sensor Team": {
+        "name": "&Eacute;quipe des senseurs",
+        "text": "Quand vous verrouillez une cible, vous pouvez verrouiller un vaisseau ennemi &agrave; port&eacute;e 1-5 (au lieu de port&eacute;e 1-3)."
+      },
+      "Engineering Team": {
+        "name": "&Eacute;quipe de m&eacute;caniciens",
+        "text": "Durant la phase d'activation, quand vous d&eacute;voilez une manoeuvre %STRAIGHT%, gagnez 1 &eacute;nergie suppl&eacute;mentaire lors de l'&eacute;tape \"Gagner de l'&eacute;nergie\"."
+      },
+      "Inertial Dampeners": {
+        "name": "Amortisseurs inertiels",
+        "text": "Quand vous r&eacute;v&eacute;lez votre cadran de manoeuvre, vous pouvez d&eacute;fausser cette carte pour ex&eacute;cuter une manoeuvre blanche [0%STOP%] &agrave; la place. Ensuite, recevez 1 marqueur de stress."
+      },
+      "Dead Man's Switch": {
+        "text": "Quand vous &ecirc;tes d&eacute;truit, chaque vaisseau &agrave; port&eacute;e 1 subit 1 d&eacute;g&acirc;t."
+      },
+      "Feedback Array": {
+        "text": "Durant la phase de combat, au lieu d'effectuer des attaques, vous pouvez recevoir 1 marqueur ionique et subit 1 d&eacute;g&acirc;t pour choisir un vaisseau ennemi &agrave; port&eacute;e 1. Ce vaisseau subit 1 d&eacute;g&acirc;t."
+      },
+      "'Hot Shot' Blaster": {
+        "name": "Blaster 'de la mort'",
+        "text": "<strong>Attaque :</strong> d&eacute;faussez cette carte pour attaquer 1 vaisseau (m&ecirc;me s'il est en dehors de votre arc de tir)."
+      },
+      "Salvaged Astromech": {
+        "name": "Atromech r&eacute;cup&eacute;r&eacute;",
+        "text": "Quand vous recevez une carte de d&eacute;g&acirc;ts ayant le trait <strong>Vaisseau</strong>, vous pouvez imm&eacute;diatement la d&eacute;fausser (avant d'en r&eacute;soudre l'effet). Puis, d&eacute;faussez cette carte d'am&eacute;lioration."
+      },
+      "'Genius'": {
+        "name": "G&eacute;nie",
+        "text": "Si vous &ecirc;tes &eacute;quip&eacute; d'une bombe qui peut &ecirc;tre largu&eacute;e avant que vous ne r&eacute;v&eacute;liez votre manoeuvre, vous pouvez au lieu de cela larguer la bombe <strong>apr&egrave;s</strong> avoir &eacute;xecut&eacute; votre manoeuvre."
+      },
+      "Unhinged Astromech": {
+        "name": "Atromech d&eacute;glingu&eacute;",
+        "text": "Vous pouvez consid&eacute;rer toutes les manoeuvres de vitesse 3 comme manoeuvres vertes."
+      },
+      "R4-B11": {
+        "text": "Quand vous attaquez, si vous avez verrouill&eacute; le d&eacute;fenseur, vous pouvez d&eacute;penser l'acquisition de cible pour choisir tout ou partie des d&eacute;s de d&eacute;fense. Le d&eacute;fenseur doit relancer les d&eacute;s choisis."
+      },
+      "R4 Agromech": {
+        "name": "Astromech R4",
+        "text": "Quand vous attaquez, apr&egrave;s avoir d&eacute;pens&eacute; un marqueur de concentration, vous pouvez verrouiller le d&eacute;fenseur."
+      },
+      "K4 Security Droid": {
+        "name": "Droide de s&eacute;curit&eacute; K4",
+        "text": " Apr&egrave;s avoir ex&eacute;cut&eacute; une manoeuvre verte, vous pouvez verrouiller cible."
+      },
+      "Advanced Targeting Computer": {
+        "text": "Quand vous attaquez avec votre arme principale, si vous avez verrouill&eacute; le d&eacute;fenseur, vous pouvez ajouter un r&eacute;sultat %CRIT% result &agrave; votre lancer de d&eacute;s. Si vous le fa&icirc;tes, vous ne pouvez pas d&eacute;penser de marqueur d'acquisition de cible durant cette attaque."
+      },
+      "Shield Upgrade": {
+        "name": "Boucliers am&eacute;lior&eacute;s",
+        "text": "Augmentez votre valeur de boucliers de 1."
+      },
+      "Advanced Cloaking Device": {
+        "name": "Syst&egrave;me d'occultation avanc&eacute;",
+        "text": "Apr&egrave;s avoir effectu&eacute; une attaque, vous pouvez effectuer une action d'occultation gratuite."
+      },
+      "Stealth Device": {
+        "name": "Syst&egrave;me d'occultation",
+        "text": "Augmentez votre valeur d'agilit&eacute; de 1. Si une attaque vous touche, d&eacute;faussez cette carte."
+      },
+      "Engine Upgrade": {
+        "name": "Moteurs am&eacute;lior&eacute;s",
+        "text": "Votre barre d'actions gagne l'icone d'action %BOOST%."
+      },
+      "Anti-Pursuit Lasers": {
+        "name": "Lasers antipoursuite",
+        "text": "Quand un vaisseau ennemi ex&eacute;cute une manoeuvre qui l'oblige &agrave; chevaucher votre appareil, lancez 1 d&eacute; d'attaque. Sur un r&eacute;sultat %HIT% ou %CRIT%, le vaisseau ennemi subit 1 d&eacute;g&acirc;t."
+      },
+      "Targeting Computer": {
+        "name": "Ordinateur de vis&eacute;e",
+        "text": "Votre barre d'action gagne l'icone d'action %TARGETLOCK%."
+      },
+      "Hull Upgrade": {
+        "name": "Coque am&eacute;lior&eacute;e",
+        "text": "Augmentez votre valeur de coque de 1."
+      },
+      "Munitions Failsafe": {
+        "name": "Munitions &agrave; s&ucirc;ret&eacute; int&eacute;gr&eacute;e",
+        "text": "Quand vous attaquez avec une arme secondaire qui vous demande de la d&eacute;fausser pour effectuer cette attaque, d&eacute;faussez-la seulement si l'attaque touche."
+      },
+      "Stygium Particle Accelerator": {
+        "name": "Acc&eacute;l&eacute;rateur de particules de Stygium",
+        "text": "Quand vous vous d&eacute;soccultez ou effectuez une action d'occultation, vous pouvez effectuer une action d'&eacute;vasion gratuite."
+      },
+      "Combat Retrofit": {
+        "name": "Pr&eacute;par&eacute; pour le combat",
+        "text": "Augmentez votre valeur de coque de 2 et votre valeur de boucliers de 1."
+      },
+      "B-Wing/E2": {
+        "text": "Votre bandeau d'am&eacute;liorations gagne l'icone d'am&eacute;lioration %CREW%."
+      },
+      "Countermeasures": {
+        "name": "Contre-mesures",
+        "text": "Au d&eacute;but de la phase de combat, vous pouvez d&eacute;fausser cette carte pour augmenter votre valeur d'agilit&eacute; de 1 jusqu'&agrave; la fin du tour. Ensuite, vous pouvez retirer 1 acquisition de cible ennemie de votre vaisseau."
+      },
+      "Experimental Interface": {
+        "name": "Interface exp&eacute;rimentale",
+        "text": "Une fois par tour, apr&egrave;s avoir effectu&eacute; une action, vous pouvez effectuer 1 action gratuite d'une de vos cartes am&eacute;lioration &eacute;quip&eacute;e ayant l'entr&eacute;e \"<strong>Action :</strong>\". Ensuite, recevez 1 marqueur de stress."
+      },
+      "Tactical Jammer": {
+        "name": "Brouilleur tactique",
+        "text": "Votre vaisseau peut g&ecirc;ner les attaques ennemies."
+      },
+      "Autothrusters": {
+        "name": "Autopropulseurs",
+        "text": "Quand vous d&eacute;fendez, si vous &ecirc;tes au-del&agrave; de la port&eacute;e 2 ou en dehors de l'arc de tir de l'attaquant, vous pouvez changer 1 de vos r&eacute;sultats vierges en un r&eacute;sultat %EVADE%. Vous ne pouvez vous &eacute;quiper de cette carte que si vous avez l'icone d'action %BOOST%."
+      },
+      "Slave I": {
+        "text": "Votre bandeau d'am&eacute;lioration gagne l'icone %TORPEDO%."
+      },
+      "Millennium Falcon": {
+        "name": "Faucon Millenium",
+        "text": "Votre barre d'actions gagne l'icone d'action %EVADE%."
+      },
+      "Moldy Crow": {
+        "text": "Lors de la phase de d&eacute;nouement, ne retirez pas les marqueurs concentrations inutilis&eacute;s de votre vaisseau."
+      },
+      "ST-321": {
+        "text": "Quand vous verrouillez une cible, vous pouvez verrouiller n'importe quel vaisseau ennemi situ&eacute; dans la zone de jeu."
+      },
+      "Royal Guard TIE": {
+        "name": "TIE de la Garde royale",
+        "text": "Vous pouvez vous &eacute;quiper de 2 am&eacute;liorations Modification diff&eacute;rentes (au lieu de 1). Cette carte ne peut pas &eacute;quiper un vaisseau dont la valeur de pilotage est de \"4\" ou moins."
+      },
+      "Dodonna's Pride": {
+        "text": "Quand vous effectuez une action de coordination, vous pouvez choisir 2 vaisseaux alli&eacute;s (au lieu de 1). Chacun de ces vaisseaux peut effectuer 1 action gratuite."
+      },
+      "A-Wing Test Pilot": {
+        "name": "Pilote d'essai sur A-Wing",
+        "text": "Votre bandeau d'am&eacute;lioration gagne 1 icone d'am&eacute;lioration %ELITE%."
+      },
+      "Tantive IV": {
+        "text": "Le bandeau d'am&eacute;lioration de votre proue gagne 1 icone %CREW% et 1 icone %TEAM% d'am&eacute;liorations suppl&eacute;mentaires."
+      },
+      "Bright Hope": {
+        "text": "Un marqueur de renforcement assign&eacute; &agrave; votre proue ajoute 2 r&eacute;sultats %EVADE% (au lieu de 1)."
+      },
+      "Quantum Storm": {
+        "text": "Au d&eacute;but de la phase de d&eacute;nouement, si vous avez 1 marqueur d'&eacute;nergie ou moins, vous gagnez 1 marqueur d'&eacute;nergie."
+      },
+      "Dutyfree": {
+        "text": "Quand vous effectuez une action de brouillage, vous pouvez choisir un vaisseau ennemi situ&eacute; &agrave; port&eacute;e 1-3 (au lieu de port&eacute;e 1-2)."
+      },
+      "Jaina's Light": {
+        "text": "Quand vous d&eacute;fendez, une fois par attaque, si vous recevez une carte de d&eacute;g&acirc;ts face visible, vous pouvez la d&eacute;fausser et piocher une autre carte de d&eacute;g&acirc;ts face visible."
+      },
+      "Outrider": {
+        "text": "Tant que vous &ecirc;tes &eacute;quip&eacute; d'une carte d'am&eacute;lioration %CANNON%, vous <strong>ne pouvez pas</strong> effectuer d'attaques d'arme principale et vous pouvez effectuer des attaques d'arme secondaire %CANNON% contre des vaisseaux situ&eacute;s en dehors de votre arc de tir."
+      },
+      "Dauntless": {
+        "text": "Apr&egrave;s avoir ex&eacute;cut&eacute; une manoeuvre qui vous fait chevaucher un autre vaisseau, vous pouvez effectuer 1 action gratuite. Ensuite, recevez 1 marqueur de stress."
+      },
+      "Virago": {
+        "text": "Votre bandeau d'am&eacute;lioration gagne les icones d'am&eacute;lioration %SYSTEM% et %ILLICIT%."
+      },
+      "'Heavy Scyk' Interceptor": {
+        "name": "Intercepteur 'Scyk Lourd'",
+        "text": "Votre bandeau d'am&eacute;lioration gagne l'icone d'am&eacute;lioration %CANNON%, %TORPEDO%, ou %MISSILE%."
+      },
+      "IG-2000": {
+        "text": "Vous avez la capacit&eacute; de pilote de chaque autre vaisseau alli&eacute; avec la carte d'am&eacute;lioration <em>IG-2000</em> (en plus de votre propre capacit&eacute; de pilote)."
+      },
+      "BTL-A4 Y-Wing": {
+        "name": "Y-wing BTL-A4",
+        "text": "Vous ne pouvez pas attaquer les vaisseaux en dehors de votre arc de tir. Apr&egrave;s avoir effectu&eacute; une attaque d'arme principale, vous pouvez imm&eacute;diatement effectuer une attaque avec une arme secondaire %TURRET%."
+      },
+      "Andrasta": {
+        "text": "Votre bandeau d'am&eacute;lioration gagne deux icones d'am&eacute;lioration %BOMB% suppl&eacute;mentaires."
+      },
+      "TIE/x1": {
+        "text": "Votre bandeau d'am&eacute;liorations gagne l'icone d'am&eacute;lioration %SYSTEM%. Si vous &ecirc;tes &eacute;quip&eacute; d'une am&eacute;lioration %SYSTEM%, ses points d'escadron sont r&eacute;duits de 4 (jusqu'&agrave; un minimum de 0)."
+      }
+    },
+    "css":{
+	"m-about":"À propos",
+	"m-help":"Aide",
+	"m-credits":"Crédits",
+	"m-report":"Blog",
+	"m-proba":"Probabilités",
+	"m-save":"Permalink",
+	"m-reset":"Réinitialise",
+	"np":"Phase suivante",
+	"m-import":"Importer",
+	"m-export":"Exporter",
+	"m-addunit":"Nouvelle unité",
+	"m-totalpts":"Total des points",
+	"m-console":"Console"
+    },
+    "ui":{
+	"selectu":"Choisir une unité",
+	"none":"aucun",
+	"squadron":"Escadron",
+	"phase0":"Construction Escadron n<sup>o</sup>1",
+	"phase1":"Construction Escadron n<sup>o</sup>2",
+	"phase2":"Mise en place",
+	"phase3":"Plannification",
+	"phase4":"Activation",
+	"phase5":"Combat",
+	"turn #":"Tour n<sup>o</sup>",
+	"human":"Joueur",
+	"computer":"Ordinateur"
+    },
+    "criticals":{
+	"Structural Damage":{
+	    "name":"Dommages structurels"
+	},
+	"Damage Engine":{
+	    "name":"Moteur endommagé"
+	},
+	"Console Fire":{
+	    "name":"Pupitre en feu"
+	},
+	"Weapon Malfunction":{
+	    "name":"Panne d'armement"
+	},
+	"Damaged Sensor Array":{
+	    "name":"Console de senseurs endommag&eacute;e"
+	},
+	"Minor Explosion":{
+	    "name":"Explosion l&eacute;g&egrave;re"
+	},
+	"Thrust Control Fire":{
+	    "name":"R&eacute;acteur en feu"
+	},
+	"Direct Hit!":{
+	    "name":"Coup au but !"
+	},
+	"Munitions Failure":{
+	    "name":"Munitions d&eacute;faillantes"
+	},
+	"Minor Hull Breach":{
+	    "name":"Coque fissur&eacute;e"
+	},
+	"Damaged Cockpit":{
+	    "name":"Cockpit endommag&eacute;"
+	},
+	"Blinded Pilot":{
+	    "name":"Pilote aveugl&eacute;"
+	},
+	"Injured Pilot":{
+	    "name":"Pilote bless&eacute;"
+	},
+	"Stunned Pilot":{
+	    "name":"Pilote assomm&eacute;"
+	}
+    }
+}

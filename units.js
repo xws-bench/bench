@@ -161,10 +161,12 @@ function Unit(team) {
     this.ship.select="<select id='select"+id+"' onchange='generics[\"u"+id+"\"].selectship()'>";
     this.team=team;
     this.faction=TEAMS[team].faction;
-    this.ship.select+="<option disabled selected>Select unit</option>";
+    this.ship.select+="<option disabled selected>"+UI_translation.selectu+"</option>";
     for (var s in unitlist) {
 	if (unitlist[s].faction.indexOf(this.faction)>=0) {
-	    this.ship.select+="<option>"+s+"</option>"
+	    var n=s;
+	    if (typeof SHIP_translation[n]!="undefined") n=SHIP_translation[n];
+	    this.ship.select+="<option value=\""+s+"\">"+n+"</option>"
 	}
     } 
     this.ship.select+="</select>";
@@ -199,6 +201,7 @@ Unit.prototype = {
 	this.action=-1;
 	this.actionsdone=[];
 	this.hasmoved=false;
+	this.hasdecloaked=false;
 	this.actiondone=false;
 	this.reroll=0;
 	this.focus=0;
@@ -223,7 +226,12 @@ Unit.prototype = {
 	}
 	this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
 	if (!(this.islarge)) {
-	    this.img=s.image("png/"+this.ship.img[0],-20*this.scale,-20*this.scale,40*this.scale,40*this.scale).transform('r 90 0 0');
+	    var img=this.ship.img[0];
+	    if (typeof this.shipimg!="undefined") {
+		this.log("alternative image");
+		img=this.shipimg;
+	    }
+	    this.img=s.image("png/"+img,-20*this.scale,-20*this.scale,40*this.scale,40*this.scale).transform('r 90 0 0');
 //	    this.img=s.text(-10,10,this.ship.code).transform('r -90 0 0 '+((this.faction=="EMPIRE"||this.faction=="SCUM")?'r -1 1':'')).attr({
 //		class:"xwingship",
 //	    });
@@ -383,15 +391,14 @@ Unit.prototype = {
     toString2: function() {
 	var i;
 	var str="<div class='generic' id='unit"+this.id+"'>";
-	str+="<div><div class='dial'>"+this.dialselect+"</div></div>";
 	str+="<div><div>"+this.pts+"</div></div>";
-	str+="<div><div class='name'>"+this.pilotselect+"</div></div>";
+	var text=PILOT_translation[this.name+(this.faction=="SCUM"?" (Scum)":"")];
+	if (typeof text=="undefined"||typeof text.text=="undefined") text=""; else text=formatstring(text.text);
+	str+="<div><div id='text"+this.id+"' class='upgtxt details'>"+text+"</div><div class='name'>"+this.pilotselect+"</div></div>";
+	str+="<div><div class='dial'>"+this.dialselect+"</div></div>";
 	str+="<div><div>"+this.ship.select+"</div></div>";
 	str+="<div>"+this.stats+"</div>";
-	str+="<div>"+this.actions+"</div>";
-	var text=PILOT_translation.english[this.name+(this.faction=="SCUM"?" (Scum)":"")];
-	if (typeof text=="undefined") text=""; 
-	str+="<div>"+this.text+"</div>";
+	str+="<div style='height:4em'>"+this.actions+"</div>";
 	str+="<div id='upgrade"+this.id+"'></div>";
 	str+="</div>";
 	str+="</div>";
@@ -460,10 +467,11 @@ Unit.prototype = {
 	var i;
 	var selected=-1;
 	var ship=$("#select"+this.id).val();
-	$("#name"+this.id).append("<option disabled>Select pilot</option>");
 	for (i=0; i<PILOTS.length; i++) {
 	    if (PILOTS[i].unit==ship && PILOTS[i].faction==this.faction) {
-		$("#name"+this.id).append("<option"+(selected==-1?" selected":"")+">"+PILOTS[i].name+" ("+PILOTS[i].points+")</option>");
+		var n=PILOTS[i].name;
+		if (typeof PILOT_translation[n]!="undefined"&& typeof PILOT_translation[n].name!="undefined") n=PILOT_translation[n].name;
+		$("#name"+this.id).append("<option"+(selected==-1?" selected":"")+" value=\""+PILOTS[i].name+"\">"+n+" ("+PILOTS[i].points+")</option>");
 		if (selected==-1&&PILOTS[i].unique!=true) selected=i;
 	    }
 	}
@@ -525,8 +533,11 @@ Unit.prototype = {
 	    if (typeof u.actionrequired != "undefined"
 		&& this.shipactionList.indexOf(u.actionrequired.toUpperCase())==-1) continue;
 	    if (type.match(u.type)) {
+		var n=u.name;
+		var n2=u.name+((u.type=="Crew")?"(Crew)":"")
 		if (u.takesdouble==true && p.upgrades.indexOf(u.type)==p.upgrades.lastIndexOf(u.type)) continue;
-		str+="<option value='"+j+"'>"+u.name+"</option>";
+		if (typeof UPGRADE_translation[n2]!="undefined"&&typeof UPGRADE_translation[n2].name!="undefined") n=UPGRADE_translation[n2].name;
+		str+="<option value='"+j+"'>"+n+"</option>";
 	    }
 	}
 	return str;
@@ -538,7 +549,7 @@ Unit.prototype = {
 	head+="<span class='pts' id='pts"+this.id+"_"+upgid+"'></span>";
 	head+="<a href='#' class='upgrades "+(type=="Cannon|Torpedo|Missile"?"CannonTorpedoMissile":type)+"'></a>"; /* type.replace(/|/g,'')*/
 	head+="<select id='upgrade"+this.id+"_"+upgid+"' onchange='generics[\"u"+this.id+"\"].selectupgrade(\""+type+"\","+upgid+","+bs+")'>";
-	head+="<option value='-1' selected>none</option>";
+	head+="<option value='-1' selected>"+UI_translation.none+"</option>";
 	str=this.initupgradelist(type,upgid);
 	if (str!="") {
 	    head+=str+"</select></div>";
@@ -593,7 +604,6 @@ Unit.prototype = {
 	    if (typeof up != "undefined") UNIQUE[this.team][this.name](this.name,true);
 	    UNIQUE[this.team][this.name]=function(name,other) {
 		if (other) {
-		    log("Only one pilot "+name);
 		    this.removepilot(true);
 		    this.getpilotlist();
 		    this.selectpilot();
@@ -602,8 +612,8 @@ Unit.prototype = {
 	}
  
 	var up=PILOTS[this.pilotid].upg;
-	var text=PILOT_translation.english[this.name+(this.faction=="SCUM"?" (Scum)":"")];
-	if (typeof text=="undefined") text=""; 
+	var text=PILOT_translation[this.name+(this.faction=="SCUM"?" (Scum)":"")];
+	if (typeof text=="undefined"||typeof text.text=="undefined") text=""; else text=formatstring(text.text);
 	$("#text"+this.id).html(text);
 	this.showstats();
 	$("#pts"+this.id).html(PILOTS[this.pilotid].points);
@@ -640,7 +650,7 @@ Unit.prototype = {
 	if (pts<0) pts=0;
 	$("#pts"+this.id+"_"+upgid).html(pts);
 	var u=UPGRADES[upgrade];
-	$("#upgradetext"+this.id+"_"+upgid).prepend("<div class='upgtxt details'>"+(u.attack?"<b class='statfire'>"+u.attack+"</b>["+u.range[0]+"-"+u.range[1]+"], ":"")+UPGRADE_translation.english[u.name+(type=="Crew"?"(Crew)":"")]+"</div>");
+	$("#upgradetext"+this.id+"_"+upgid).prepend("<div class='upgtxt details'>"+(u.attack?"<b class='statfire'>"+u.attack+"</b>["+u.range[0]+"-"+u.range[1]+"], ":"")+formatstring(UPGRADE_translation[u.name+(type=="Crew"?"(Crew)":"")].text)+"</div>");
 
 	/* Add action */
 	var addedaction=UPGRADES[upgrade].addedaction;
@@ -1000,20 +1010,22 @@ Unit.prototype = {
 		break;
 	    }
 	}
-	// Template overlaps ? 
-	for (i=0; i<=len; i++) {
-	    var p=path.getPointAtLength(i);
-	    pathpts.push({x:mbegin.x(p.x,p.y),y:mbegin.y(p.x,p.y)});
-	}
-	var percuted=[];
-	for (j=0; j<pathpts.length; j++) {
-	    for (k=0; k<OBSTACLES.length; k++) {
-		if (k!=collision.overlap&&percuted.indexOf(k)==-1) { // Do not count overlapped obstacle twice
-		    var o2=OBSTACLES[k].getOutlineString().p;
-		    for(i=0; i<o2.length; i++) {
-			var dx=(o2[i].x-pathpts[j].x);
-			var dy=(o2[i].y-pathpts[j].y);
-			if (dx*dx+dy*dy<=100) {  percuted.push(k); collision.template++; break } 
+	if (typeof path!=undefined) {
+	    // Template overlaps ? 
+	    for (i=0; i<=len; i++) {
+		var p=path.getPointAtLength(i);
+		pathpts.push({x:mbegin.x(p.x,p.y),y:mbegin.y(p.x,p.y)});
+	    }
+	    var percuted=[];
+	    for (j=0; j<pathpts.length; j++) {
+		for (k=0; k<OBSTACLES.length; k++) {
+		    if (k!=collision.overlap&&percuted.indexOf(k)==-1) { // Do not count overlapped obstacle twice
+			var o2=OBSTACLES[k].getOutlineString().p;
+			for(i=0; i<o2.length; i++) {
+			    var dx=(o2[i].x-pathpts[j].x);
+			    var dy=(o2[i].y-pathpts[j].y);
+			    if (dx*dx+dy*dy<=100) {  percuted.push(k); collision.template++; break } 
+			}
 		    }
 		}
 	    }
@@ -1054,14 +1066,17 @@ Unit.prototype = {
 	if (!this.isinzone(m)) return RED;
 	var so=this.getOutlineString(m);
 	if (withobstacles) {
+	    //this.log("getmovecolor ");
+	    var c=this.getocollisions(this.m,m);
+	    if (c.overlap!=-1) return YELLOW;
 	    /*log("obstacles: "+OBSTACLES.length);*/
-	    for (k=0; k<OBSTACLES.length; k++) { 
+/*	    for (k=0; k<OBSTACLES.length; k++) { 
 		var os=OBSTACLES[k].getOutlineString();
 		if (Snap.path.intersection(os.s,so.s).length>0 
 		    ||this.isPointInside(os.s,so.p)
 		    ||this.isPointInside(so.s,os.p)) 
-		    return YELLOW;
-	    }
+		    return YELLOW; 
+	    }*/
 	}
  	if (withcollisions) {
 	    for (k=0; k<squadron.length; k++) {
@@ -1214,7 +1229,7 @@ Unit.prototype = {
 	targetunit=target;
 	this.activeweapon=w;
 	this.weapons[w].declareattack(target);
-	this.log("attacks "+target.name+" with "+this.weapons[w].name);
+	this.log("attacks %0 with %1",target.name,this.weapons[w].name);
 	target.isattackedby(w,this);
     },
     isattackedby:function(k,a) {},
@@ -1303,7 +1318,7 @@ Unit.prototype = {
 	}
     },
     usecloak: function(id) {
-	if ((!waitingforaction.isexecuting)&&(phase==ACTIVATION_PHASE)&&!this.hasmoved) {
+	if ((!waitingforaction.isexecuting)&&(phase==ACTIVATION_PHASE)&&!this.hasmoved&&!this.hasdecloaked) {
 	    this.resolvedecloak();
 	}
     },
@@ -1438,9 +1453,9 @@ Unit.prototype = {
 	    function (t,k) {
 		t.agility-=2; t.iscloaked=false;
 		SOUNDS.decloak.play();
+		nextstep();
 	    },true);
 	}.bind(this));
-	nextstep();
 	return true;
     },
     resolveroll: function() {
@@ -1728,6 +1743,21 @@ Unit.prototype = {
 	for (i=0; i<da-h-c-f; i++) $("#attack").prepend("<td class='blankreddice'></td>");
 	$("#atokens").html(this.getusabletokens(me,true)+this.getattackrerolltokens()+this.getattackmodtokens(ar,da));
 	$("#atokens").append("<button onclick='$(\"#atokens\").empty();targetunit.dodefenseroll(targetunit.defenseroll("+defense+")"+","+defense+","+me+")'>Done</button>");
+	var change=function() { 
+	    if ($(this).hasClass("focusreddice")) {
+		$(this).removeClass("focusreddice"); $(this).addClass("hitreddice");
+	    }  else if ($(this).hasClass("blankreddice")) {
+		$(this).removeClass("blankreddice"); $(this).addClass("focusreddice");
+	    } else if ($(this).hasClass("hitreddice")) {
+		$(this).removeClass("hitreddice"); $(this).addClass("criticalreddice");
+	    } else if ($(this).hasClass("criticalreddice")) {
+		$(this).removeClass("criticalreddice"); $(this).addClass("blankreddice");
+	    }
+	}
+	$(".focusreddice").click(change);
+	$(".hitreddice").click(change);
+	$(".blankreddice").click(change);
+	$(".criticalreddice").click(change);
 	//console.log("showattackroll:"+this.name);
 	//log("attack roll: f"+f+" c"+c+" h"+h+" b"+(da-h-c-f));
     },
@@ -1741,7 +1771,18 @@ Unit.prototype = {
 	for (j=0; j<squadron.length; j++) if (squadron[j]==this) break;
 	$("#dtokens").html(this.getusabletokens(j,true)+this.getdefensererolltokens()+this.getdefensemodtokens(dr,dd));
 	$("#dtokens").append("<button onclick='$(\"#combatdial\").hide();squadron["+me+"].resolvedamage()'>Fire!</button>");
-	//log("defense roll: f"+f+" e"+e+" b"+(dd-e-f));
+	var change=function() { 
+	    if ($(this).hasClass("focusgreendice")) {
+		$(this).removeClass("focusgreendice"); $(this).addClass("evadegreendice");
+	    } else if ($(this).hasClass("blankgreendice")) {
+		$(this).removeClass("blankgreendice"); $(this).addClass("focusgreendice");
+	    } else if ($(this).hasClass("evadegreendice")) {
+		$(this).removeClass("evadegreendice"); $(this).addClass("blankgreendice");
+	    }
+	}	//log("defense roll: f"+f+" e"+e+" b"+(dd-e-f));
+	$(".focusgreendice").click(change);
+	$(".evadegreendice").click(change);
+	$(".blankgreendice").click(change);
 	//console.log("showdefenseroll:"+this.name);
     },
     getmatrixwithmove: function(mm,path, len) {
@@ -1817,12 +1858,14 @@ Unit.prototype = {
 	if (lenC>0) this.m=m;
 	// Animate movement
 	if (lenC>0) {
+	    $("#activationdial > div").empty()
 	    SOUNDS[this.ship.flysnd].play();
 	    Snap.animate(0, lenC, function( value ) {
 		m = this.getmatrixwithmove(oldm,path,value);
 		this.g.transform(m);
 		this.geffect.transform(m);
 	    }.bind(this), TIMEANIM*lenC/200,mina.linear, function(){
+		this.hasmoved=true;
 		if (!this.collision) { 
 		    // Special handling of K turns: half turn at end of movement. Straight line if collision.
 		    if (dial.match(/K\d|SR\d|SL\d/)) {
@@ -1843,7 +1886,8 @@ Unit.prototype = {
 		if (this.collision) this.resolvecollision();
 		this.endmaneuver();
 	    }.bind(this));
-	} else { 
+	} else {
+	    this.hasmoved=true;
 	    this.log("cannot move");
 	    this.handledifficulty(difficulty);
 	    this.maneuver=-1;
@@ -1857,7 +1901,6 @@ Unit.prototype = {
 	$("#activationdial").empty();
 	// -1: No maneuver
 	if (this.maneuver<0||this.hasmoved) return;
-	this.hasmoved=true;
 	var dial=this.getdial()[this.maneuver].move;
 	var difficulty=this.getdial()[this.maneuver].difficulty;
 	// Move = forward 0. No movement. 
@@ -1883,7 +1926,7 @@ Unit.prototype = {
 		nextstep();
 		//console.log("endmaneuver noaction"+this.name+"<nextstep");
 	}
-	this.showstats();
+	this.show();
     },
     doaction: function() {
 	this.showaction();
@@ -1894,7 +1937,7 @@ Unit.prototype = {
 	return  true;
     },
     candecloak: function() {
-	return (!this.hasmoved&&this.iscloaked&&phase==ACTIVATION_PHASE);
+	return (!this.hasmoved&&this.iscloaked&&phase==ACTIVATION_PHASE&&!this.hasdecloaked);
     },
     selecttargetforattack: function(wp) {
 	var grau=this.weapons[wp].getrangeallunits();
@@ -1962,20 +2005,27 @@ Unit.prototype = {
     },
     dodecloak: function() {
 	this.type="CLOAK";
-	if (this.candecloak()) {
-	    waitingforaction.add(function() {
-		    this.addaction(this,function() { return this.candecloak(); }.bind(this),
-				   function() {this.usecloak(); nextstep(); }.bind(this));
-		}.bind(this));
-	    nextstep();
-	}
+	waitingforaction.add(function() {
+	    this.addaction(this,function() { 
+		return true; 
+	    },function() {
+		this.resolvedecloak(); 
+		this.hasdecloaked=true;
+	    }.bind(this),function() {
+		this.hasdecloaked=true;
+		nextstep();
+	    }.bind(this),true);
+	}.bind(this));
+	nextstep();
     },
     updateactivationdial: function() {
 	this.activationdial=[];
+	/*
 	this.addactivationdial(function() { return this.candecloak(); }.bind(this),
 			       function() {this.usecloak(); }.bind(this),
 			       A["CLOAK"].key,
 			       $("<div>").attr({class:"symbols"}));
+	*/
 	if (this.candropbomb()) 
 	    for (var i=0; i<this.bombs.length; i++) {
 		var bomb=this.bombs[i];
@@ -2004,15 +2054,16 @@ Unit.prototype = {
 	    $("<button>").html("Move").click(function() {this.resolvemaneuver(); }.bind(this)).appendTo("#activationdial > div");
 
     },
-    addaction: function(org,timeforaction,action) {
+    addaction: function(org,timeforaction,action,endaction,noaction) {
 	var sa=this.showaction
 	var tfa=this.timeforaction;
 	this.resolveoneaction=function() {
 	    action();
-	    this.actionsdone.push(org.type.toUpperCase());
+	    if (typeof noaction=="undefined") this.actionsdone.push(org.type.toUpperCase());
 	    this.endoneaction();
 	};
 	this.endoneaction=function() {
+	    endaction();
 	    this.showaction=sa;
 	    this.timeforaction=tfa;
 	    this.show();
@@ -2028,7 +2079,10 @@ Unit.prototype = {
 	};
 	this.doaction();
     },
-    log: function(str) {
+    log: function(str,a,b,c) {
+	if (typeof a!="undefined") str=str.replace(/%0/,a)
+	if (typeof b!="undefined") str=str.replace(/%1/,b)
+	if (typeof c!="undefined") str=str.replace(/%2/,c)
 	log("<div><span style='color:"+this.color+"'>["+this.name+"]</span> "+str+"</div>");
     },
     freeaction: function(endfree) {
@@ -2042,6 +2096,9 @@ Unit.prototype = {
 	    this.ea.call(this);
 	};
 	this.doaction();
+    },
+    candocloak: function() {
+	return !this.iscloaked;
     },
     clearaction: function() { this.action=-1; },
     showaction: function() {
@@ -2058,6 +2115,7 @@ Unit.prototype = {
 		if (a=="TARGET"&&!this.candotarget()) continue;
 		if (a=="FOCUS"&&!this.candofocus()) continue;
 		if (a=="EVADE"&&!this.candoevade()) continue;
+		if (a=="CLOAK"&&!this.candocloak()) continue;
 		str+="<div class='symbols' onclick='activeunit.action="+i+";squadron["+me+"].resolveaction()'>"+A[a].key+"</div>";
 	    }
 	}
@@ -2123,7 +2181,7 @@ Unit.prototype = {
     },
     endactivationphase: function() {
 	this.actionsdone=[];
-	/* TODO: check this */
+	this.hasdecloaked=false;
     },
     begincombatphase: function() {},
     beginattack: function() {},
@@ -2169,10 +2227,15 @@ Unit.prototype = {
 	str+="<div class='horizontal statevade'>"+this.getagility()+"</div>";
 	str+="<div class='horizontal statshield'>"+this.shield+"</div>";
 	str+="<div class='horizontal stathull'>"+this.hull+"</div></div>";
-	var text=PILOT_translation.english[this.name+(this.faction=="SCUM"?" (Scum)":"")];
-	if (typeof text=="undefined") text=""; 
-	str+="<div class='name'><div class='tooltip'>"+text+"</div><div>"+this.name+"</div></div>";
-	str+="<div><div style='font-size:small'><code class='"+this.faction+"'></code>"+this.ship.name+"</div></div>";
+	var text=PILOT_translation[this.name+(this.faction=="SCUM"?" (Scum)":"")];
+	var t=text;
+	var name;
+	if (typeof text=="undefined"||typeof text.text=="undefined") t=""; else t=formatstring(text.text); 
+	if (typeof text=="undefined"||typeof text.name=="undefined") name=this.name; else name=text.name;
+	str+="<div class='name'><div class='tooltip'>"+t+"</div><div>"+name+"</div></div>";
+	text=SHIP_translation[this.ship.name];
+	if (typeof text=="undefined") text=this.ship.name;
+	str+="<div><div style='font-size:small'><code class='"+this.faction+"'></code>"+text+"</div></div>";
 	str+="<div class='horizontal'><div>"+PILOTS[this.pilotid].points+"pts</div></div>";
 	str+="<div class='horizontal details'><div style='text-align:justify;margin:8px;width:100%'>"+text+"</div></div>";
 	str+="<div class='vertical'><div>";
@@ -2255,7 +2318,7 @@ Unit.prototype = {
 	return (!waitingforaction.isexecuting&&this==activeunit&&this.hasmoved&&!this.actiondone&&phase==ACTIVATION_PHASE);
     },
     timeformaneuver: function() {
-	return (this==activeunit&&this.maneuver>-1&&!this.hasmoved&&this.skill==skillturn);
+	return (this==activeunit&&this.maneuver>-1&&!this.hasmoved&&this.skill==skillturn&&subphase==ACTIVATION_PHASE);
     },
     show: function() {
 	var i;
