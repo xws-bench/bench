@@ -105,7 +105,7 @@ padding:0;
 display:inline;
 }
 
-#menu-vertical ul{
+nav span ul{
 display:none;
 position:absolute;
 right:0;
@@ -116,22 +116,23 @@ margin: 0;
 visibility: hidden;
 z-index: 100;
 }
-#menu-vertical ul li {
+nav span ul li {
 display:block;
 background:rgba(46,82,200,1);
 background:lightsteelblue;
 padding:5px;
 width:120px;
 }
+/*
 #menu-vertical:hover ul {
 display:block;
 visibility:visible;
-}
+}*/
 nav a {
 text-decoration:none;
 color:#fff;
 }
-#menu-vertical ul li:hover {
+nav span ul li:hover {
 background:steelblue;
 }
 .name select {
