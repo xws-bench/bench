@@ -546,13 +546,15 @@ left:190px;
 cursor:pointer;
 bottom:0;
 color:black;
-background:rgba(0,0,0,0);
+background:rgba(50,50,50,0.5);
+border-radius:100%;
 margin:5px;
 padding:0;
 text-align:center;
 }
 .ctrl table,.ctrl button {
 border-radius:100%;
+padding:8px;
 background:white;
 }
 .smallbutton,.bigbutton,.button,.largebutton,.permalink,.nextphase,#menu-vertical {
