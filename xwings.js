@@ -233,6 +233,7 @@ function inhitrange() {
 }
 function formatstring(s) {
     return s.replace(/%HIT%/g,"<code class='hit'></code>")
+	.replace(/%ACTION%/g,"<strong>Action:</strong>")
 	.replace(/%CRIT%/g,"<code class='critical'></code>")
 	.replace(/%EVADE%/g,"<code class='symbols'>e</code>")
 	.replace(/%FOCUS%/g,"<code class='symbols'>f</code>")
@@ -1059,8 +1060,8 @@ function tohitproba(tokensA,tokensD,at,dt,attack,defense) {
 	    }
 	}
     }
-    return {proba:p, tohit:Math.floor(tot*10000)/100, meanhit:tot==0?0:Math.floor(mean * 100/tot) / 100,
-	    meancritical:tot==0?0:Math.floor(meanc/tot*100)/100,tokill:k} ;
+    return {proba:p, tohit:Math.floor(tot*10000)/100, meanhit:tot==0?0:Math.floor(mean * 100) / 100,
+	    meancritical:tot==0?0:Math.floor(meanc*100)/100,tokill:k} ;
 }
 
 function probatable(attacker,defender) {
