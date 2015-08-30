@@ -2360,8 +2360,8 @@ var UPGRADES= [
         type: "Crew",
 	done:true,
         init: function(sh) {
+	    var hd=sh.handledifficulty;
 	    sh.handledifficulty=function(d) {
-		Unit.prototype.handledifficulty.call(this,d);
 		if (d=="GREEN") {
 		    waitingforaction.add(function() {
 			var p=this.gettargetableunits(3);
@@ -2375,9 +2375,14 @@ var UPGRADES= [
 				}
 				nextstep();
 			    }.bind(this));
-			} else nextstep();
+			} else 	{
+			    this.log("no available target for K4 Security Droid");
+			    nextstep();
+			}
 		    }.bind(this));
 		}
+		hd.call(this,d);
+
 	    }
 	},
         points: 3,
@@ -2648,16 +2653,16 @@ var UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    sh.adddefensemodd(this,function(m,n) {
-		if (this.gethitsector(activeunit)>2) return true;
-		return false;
-	    }.bind(sh),function(m,n) {
+		    if (activeunit.gethitsector(this)>2) return true;
+		    return false;
+		}.bind(sh),function(m,n) {
 		var b=n-Math.floor(m/10)%10-m%10;
 		if (b>0) {
 		    this.log("Autothrusters: 1 <code class='blank'></code> -> 1 <code class='xevadetoken'></code>");
 		    return m+1;
 		}
 		return m;
-	    }.bind(sh),false," ");
+	    }.bind(sh),false,"blank");
 	}
     },
     {

@@ -1883,11 +1883,11 @@ Unit.prototype = {
 		}
 		this.handledifficulty(difficulty);
 		this.maneuver=-1;
-		this.show();
 		path.remove();
 		if (this.ocollision.overlap>-1||this.ocollision.template>0) this.resolveocollision();
 		if (this.collision) this.resolvecollision();
 		this.endmaneuver();
+		this.show();
 	    }.bind(this));
 	} else {
 	    this.hasmoved=true;
@@ -2108,7 +2108,8 @@ Unit.prototype = {
 	var str="";
 	var name,me;
 	$("#actiondial").empty();
-	//if (waitingforaction.isexecuting) return;
+	//this.log("showing actionlist");
+	//if (waitingforaction.queue.length>0) return;
 	this.updateactionlist();
 	for (me=0; me<squadron.length; me++) if (squadron[me]==this) break;
 	if (this.candoaction()) {
