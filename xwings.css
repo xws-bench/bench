@@ -540,15 +540,20 @@ background:#fff
 }
 .ctrl {
 position:absolute;
-right:5%;
+width:6em;
+display:none;
+left:190px;
 cursor:pointer;
-bottom:5%;
+bottom:0;
 color:black;
-font-size:small;
-background-color: rgba(255,255,255,.5);
-border-radius:100%;
-margin:0;
+background:rgba(0,0,0,0);
+margin:5px;
 padding:0;
+text-align:center;
+}
+.ctrl table,.ctrl button {
+border-radius:100%;
+background:white;
 }
 .smallbutton,.bigbutton,.button,.largebutton,.permalink,.nextphase,#menu-vertical {
 display:inline-block;
