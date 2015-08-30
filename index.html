@@ -35,15 +35,15 @@
   <body>
     <nav>
       <div>
-	<span class="h2">Squadron Benchmark<span class="ver"></span>
-	<span><select id="language" class="bigbutton"></select></span></span>
+	<span class="h2"><span style='font-family:ships;font-size:larger;'>x</span>Squadron Benchmark<span class="ver"></span></span>
 	<span style="float:right;font-size:small">
 	  <span class="m-save permalink" onclick="permalink()"> &#128279;</span>
 	  <span class="m-reset permalink" onclick="resetlink()"> &#128279;</span>
 	  <span id="phase" style="font-size:small"></span>
 	  <span class="nextphase" onclick="nextphase()"><span class='np'></span> <span id='npimg'>&#9658;</span></span>
-	  <span id="menu-vertical" onmouseover="$('nav ul').css({display:'block',visibility:'visible'})" onmouseout="$('nav ul').css({display:'none',visibility:'hidden'})">☰
-	  <ul id="collapse">
+	  <span><select id="language" class="langselect"></select></span>
+	  <span class="menu-vertical" onmouseover="$('nav ul').css({display:'block',visibility:'visible'})" onmouseout="$('nav ul').css({display:'none',visibility:'hidden'})">Info
+	  <ul>
 	    <li><a class="m-about" href="#about"></a></li>
 	    <li><a class="m-proba" href="#proba" id="showproba"></a></li>
 	    <li><a class="m-console" href="#" onclick="$('footer').css({display:'block',visibility:'visible'})"></a></li>
@@ -252,21 +252,24 @@ A window opens showing the rolls for the attacker and its target.You can play an
 	  <summary><span class="m-proba"></span><a href="#" title="Close" class="close">&#10062;</a>
 	  </summary>
 	  <div>
-	      <table style="border:1px">
+	    <p>
+	    This table gives the % of chance to hit for an attacker. In rows, the number of dice for the attacker, and in column the number of dice of the defender. You can set the tokens or rerolls for both units. Each cell gives the % of chance for the attacker to hit the defender, the mean number of hits (<code class="hit"></code>) and criticals (<code class="critical"></code>) given. 
+	    </p>
+	      <table>
 		<tr><td>Attacker</td><td>Defender</td></tr>
 		<tr>
 		  <td><input type="checkbox" onclick="fillprobatable()" id="focusA" value="focus">
-		    <label for="focusA" class="focustoken"></label>
+		    <label for="focusA" class="xfocustoken"></label>
 		    <input type="checkbox" onclick="fillprobatable()" id="targetA" value="target">
-		    <label for="targetA" class="targettoken"></label>
+		    <label for="targetA" class="xtargettoken"></label>
 		    <input type="number" min=0 max=5 step=1 style="width:2em" onchange="fillprobatable()" id="rerollA" value="0">rerolls
 		  </td>
 		  <td><input type="checkbox" onclick="fillprobatable()" id="focusD" value="focus">
-		    <label for="focusD" class="focustoken"></label>
+		    <label for="focusD" class="xfocustoken"></label>
 		    <input type="checkbox" onclick="fillprobatable()" id="evadeD" value="evade">
-		    <label for="evadeD" class="evadetoken"></label>
+		    <label for="evadeD" class="xevadetoken"></label>
 		    <input type="checkbox" onclick="fillprobatable()" id="cloakD" value="0">
-		    <label for="cloakD" class="cloaktoken"></label>
+		    <label for="cloakD" class="xcloaktoken"></label>
 		    <input type="number" min=0 max=5 step=1 style="width:2em" onchange="fillprobatable()"  id="rerollD" value="0">rerolls
 		  </td>
 		</tr>
@@ -300,6 +303,8 @@ A window opens showing the rolls for the attacker and its target.You can play an
 </ul>
 
 The app is not really a game since the user plays both sides, there is no multi-player version of the app and there will not be. This is in no way a substitute for the real game but is a complementary tool.
+<br/>
+ The app is (c) Denis Wings (deniswings@free.fr). MIT license. <br>
 </div>
 
 	</div>
@@ -310,6 +315,7 @@ The app is not really a game since the user plays both sides, there is no multi-
 	  <summary><span class="m-credits"></span><a href="#" title="Close" class="close">&#10062;</a>
 	  </summary>
 	  <div>
+	  The app is (c) Denis Wings (deniswings@free.fr). The License of the code is an MIT license. <br/>
 	  The app is based on the vector fonts provided
 	  by <a href="https://github.com/geordanr/xwing-miniatures-font">Xwing-miniatures-font</a>
 	  (see License thereafter).
