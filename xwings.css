@@ -105,7 +105,7 @@ padding:0;
 display:inline;
 }
 
-nav span > ul{
+.collapse ul{
 display:none;
 position:absolute;
 right:0;
@@ -116,17 +116,17 @@ margin: 0;
 visibility: hidden;
 z-index: 100;
 }
-nav span > ul li {
+.collapse ul li {
 display:block;
 background:rgba(46,82,200,1);
 background:lightsteelblue;
 padding:5px;
 width:120px;
 }
-nav span > ul li ul {
+.collapse ul li ul {
 right:120px;
 }
-nav span:hover > ul {
+.collapse:hover ul {
 display:block;
 visibility:visible;
 }
@@ -134,7 +134,7 @@ nav a {
 text-decoration:none;
 color:#fff;
 }
-nav span > ul li:hover,nav span > ul li:focus {
+.collapse ul li:hover,nav span > ul li:focus {
 background:steelblue;
 }
 .name select {
