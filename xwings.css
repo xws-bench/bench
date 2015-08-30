@@ -109,28 +109,26 @@ nav span ul{
 display:none;
 position:absolute;
 right:0;
-border-top: 0;
 border-radius: 0 0 4px 4px;
 box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
 margin: 0;
+padding:0;
+border:0;
 visibility: hidden;
 z-index: 100;
+width:10em;
 }
 nav span ul li {
-display:block;
+display:inline-block;
 background:rgba(46,82,200,1);
 background:lightsteelblue;
 padding:5px;
-width:120px;
+width:100%;
 }
-/*
-#menu-vertical:hover ul {
-display:block;
-visibility:visible;
-}*/
 nav a {
 text-decoration:none;
 color:#fff;
+display:block;
 }
 nav span ul li:hover {
 background:steelblue;
