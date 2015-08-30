@@ -606,8 +606,8 @@ var PILOTS = [
 	done:true,
         addstress: function () {
 	    this.stress++;
-	    this.log("stress token -> free focus action");
-	    this.addfocus();
+	    this.log("stress token -> free focus token");
+	    this.addfocustoken();
 	},
         unit: "TIE Interceptor",
         skill: 9,
