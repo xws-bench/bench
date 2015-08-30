@@ -105,7 +105,7 @@ padding:0;
 display:inline;
 }
 
-.collapse ul{
+nav ul{
 display:none;
 position:absolute;
 right:0;
@@ -116,25 +116,26 @@ margin: 0;
 visibility: hidden;
 z-index: 100;
 }
-.collapse ul li {
+nav ul li {
 display:block;
 background:rgba(46,82,200,1);
 background:lightsteelblue;
 padding:5px;
 width:120px;
 }
-.collapse ul li ul {
+nav ul li ul {
 right:120px;
 }
-.collapse:hover ul,.collapse:focus ul {
+/*
+.collapse:hover ul {
 display:block;
 visibility:visible;
-}
+}*/
 nav a {
 text-decoration:none;
 color:#fff;
 }
-.collapse ul li:hover,nav span > ul li:focus {
+nav ul li:hover,nav span > ul li:focus {
 background:steelblue;
 }
 .name select {
