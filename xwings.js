@@ -672,6 +672,7 @@ function nextphase() {
 	break;
     case SETUP_PHASE:
 	$("#team2").css("top",$("nav").height()+2);
+	$(".ctrl").css("display","block");
 	TEAMS[2].endselection(s);
 	$(".activeunit").prop("disabled",false);
 	activeunit=squadron[0];
@@ -1124,8 +1125,25 @@ function modal_drop(event) {
     event.originalEvent.preventDefault();
     return false;
 } 
+var viewport_translate=function(dx,dy) {
+    VIEWPORT.m=MT(dx,dy).add(VIEWPORT.m);
+    $(".phasepanel").hide();
+    VIEWPORT.transform(VIEWPORT.m);
+}
+    var viewport_zoom=function(z) {
+	var w=$("#svgout").width();
+	var h=$("#svgout").height();
+	var offsetX=activeunit.m.x(0,0);
+	var offsetY=activeunit.m.y(0,0);
+	var vm=VIEWPORT.m.clone().invert();
+	var x=vm.x(offsetX,offsetY);
+	var y=vm.y(offsetX,offsetY);
 
-var dragmove=function(event) {
+	VIEWPORT.m.translate(x,y).scale(z).translate(-x,-y);
+	VIEWPORT.transform(VIEWPORT.m);
+	activeunit.show();
+    }
+	var dragmove=function(event) {
     var e = event; // old IE support
     var x=e.offsetX,y=e.offsetY;
     if (VIEWPORT.dragged) {
@@ -1335,10 +1353,5 @@ $(document).ready(function() {
 //mypath.transform(ship[0].m);
 
 /*
-      <section class="ctrl"><table>
-	  <tr><td></td><td onclick='alert("bong")'>&and;</td><td></td></tr>
-	  <tr><td>&lt</td><td>+-</td><td>&gt;</td></tr>
-	  <tr><td></td><td>&vee;</td><td></td></tr>
-	  </table>
-      </section>
+     
 */
