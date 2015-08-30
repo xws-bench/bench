@@ -98,14 +98,14 @@ h2 {
 color:#4682b4
 }
 
-nav span > ul {
+nav ul {
 list-style-type:none;
 margin:0;
 padding:0;
 display:inline;
 }
 
-nav span > ul{
+#menu-vertical ul{
 display:none;
 position:absolute;
 right:0;
@@ -116,18 +116,14 @@ margin: 0;
 visibility: hidden;
 z-index: 100;
 }
-nav span > ul li {
+#menu-vertical ul li {
 display:block;
 background:rgba(46,82,200,1);
 background:lightsteelblue;
 padding:5px;
 width:120px;
 }
-nav span > ul li ul {
-right:120px;
-}
-
-nav span:hover > ul {
+#menu-vertical:hover ul {
 display:block;
 visibility:visible;
 }
@@ -135,7 +131,7 @@ nav a {
 text-decoration:none;
 color:#fff;
 }
-nav ul li:hover,nav span > ul li:focus {
+#menu-vertical ul li:hover {
 background:steelblue;
 }
 .name select {
@@ -555,7 +551,7 @@ border-radius:100%;
 margin:0;
 padding:0;
 }
-.smallbutton,.bigbutton,.button,.largebutton,.permalink,.nextphase,.collapse {
+.smallbutton,.bigbutton,.button,.largebutton,.permalink,.nextphase,#menu-vertical {
 display:inline-block;
 margin:3px;
 text-align:center;
@@ -568,7 +564,7 @@ background:#b0c4de;
 cursor:pointer;
 border-radius:5px
 }
-.collapse {
+#menu-vertical {
 background:steelblue;
 }
 .bigbutton {
