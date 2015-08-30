@@ -14,7 +14,7 @@ font-size-adjust: 0.5
 }
 
 #main {
-height:calc(100% - 60px);
+height:calc(100% - 5ex);
 width:calc(100% - 340px);
 position:fixed;
 top:5ex;
@@ -50,10 +50,10 @@ opacity:0;
 pointer-events:none;
 }
 #team1 .tooltip {
-left:170px
+left:170px;
 }
 #team2 .tooltip {
-right:170px
+right:170px;
 }
 tr:hover .tooltip,.name:hover .tooltip { 
     transition: opacity .25s ease-in-out;
@@ -61,10 +61,6 @@ tr:hover .tooltip,.name:hover .tooltip {
     -webkit-transition: opacity .25s ease-in-out;       
     opacity : 1;
 }
-#leftpanel,#rightpanel {
-background:#fff
-}
-
 body {
 background:#000;
 width:100%;
@@ -90,8 +86,9 @@ margin:3px;
 padding:0;
 border:0;
 font-size:x-large;
-color:#fff;
+color:white;
 float:left;
+letter-spacing:1.5px;
 }
 
 h2 {
@@ -120,7 +117,6 @@ width:10em;
 }
 nav span ul li {
 display:inline-block;
-background:rgba(46,82,200,1);
 background:lightsteelblue;
 padding:5px;
 width:100%;
@@ -131,7 +127,7 @@ color:#fff;
 display:block;
 }
 nav span ul li:hover {
-background:steelblue;
+background:lightsteelblue;
 }
 .name select {
 background:steelblue;
@@ -374,7 +370,7 @@ right:186px
 float:left
 }
 
-#team1 .pts,#team2 .pts,#team1 .totalpts,#team2 .totalpts {
+#team1 .pts,#team1 .totalpts,#team2 .pts,#team2 .totalpts {
 color:#fff;
 position:absolute;
 background:rgba(255,0,0,0);
@@ -382,10 +378,6 @@ text-align:left;
 text-shadow:-1px -1px 0 #000;
 z-index:1;
 margin-top:0.5em;
-}
-
-.totalpts,.total {
-/*font-size:30px*/
 }
 #team1 .pts,#team1 .totalpts {
 left:185px
@@ -557,7 +549,7 @@ border-radius:100%;
 padding:8px;
 background:white;
 }
-.smallbutton,.bigbutton,.button,.largebutton,.permalink,.nextphase,#menu-vertical {
+.smallbutton,.bigbutton,.button,.langselect,.permalink,.nextphase,.menu-vertical {
 display:inline-block;
 margin:5px;
 text-align:center;
@@ -570,18 +562,18 @@ background:#b0c4de;
 cursor:pointer;
 border-radius:5px
 }
-#menu-vertical {
+.menu-vertical {
 background:steelblue;
 }
+.langselect {
+width:7em;
+height:2.5em;
+background:steelblue;
+}
+
 .bigbutton {
 width:74px
 }
-
-.smallbutton {
-width:25px;
-margin:0
-}
-
 .GREEN {
 color:#0F0
 }
@@ -920,14 +912,9 @@ background:rgba(255,255,255,0.7);
 border-radius:4px
 }
 
-.button2,.button,.largebutton {
+.button2,.button {
 color:#fff
 }
-
-.largebutton > b::first-letter,.largebutton::first-letter,.button::first-letter,.button2::first-letter {
-text-decoration:underline
-}
-
 .button2,.disabled {
 padding:3px;
 display:table-cell;
@@ -947,7 +934,7 @@ background:#822
 background:#a9a9a9
 }
 
-.bigbutton:disabled,.nextphase:disabled,.activeunit:disabled,.largebutton:disabled {
+.bigbutton:disabled,.nextphase:disabled,.activeunit:disabled {
 background:gray;
 color:#d3d3d3;
 cursor:default;
@@ -955,29 +942,27 @@ padding:0;
 border:1px;
 box-shadow:1px 1px 0 #000
 }
-
-.largebutton {
-width:150px
-}
-
 .button2 {
 width:74px
 }
 
 #leftpanel,#rightpanel {
+top:5ex; /*new */
+position:absolute;
 width: 170px;
-height:calc(100% - 60px);
-background-color:rgba(255,255,255,0);
+height:calc(100% - 5ex);
 color:#000;
+background:#000;
 border-width:0;
 margin:0;
 overflow:hidden;
+white-space:no-wrap;
 }
 #leftpanel {
-float:left;
+left:0;
 }
 #rightpanel {
-float:right;
+right:0;
 }
 .symbols {
 font-family:'symbols'
@@ -1057,7 +1042,9 @@ border:1px solid;
 opacity:.7
 }
 .ver {
-font-size:x-small
+font-size:x-small;
+color:white;
+letter-spacing:0px;
 }
 footer {
 position:fixed;
@@ -1134,23 +1121,29 @@ color:#08d
 }
 
 .arrow-right {
-border-color:transparent #888;
-border-style:solid;
-border-width:8px 0 8px 16px;
-height:0;
-width:0;
+width: 0;
+height: 0;
+border-style: solid;
+border-width: 0 85px 20px 85px;
+border-color: transparent transparent rgba(0,0,0,0.3) transparent;
 font-size:0;
-line-height:20px
+line-height:20px;
+position:absolute;
+top:5em;
+z-index:3;
 }
 
-.arrow-left {
-border-color:transparent #888;
-border-style:solid;
-border-width:8px 16px 8px 0;
-height:0;
-width:0;
+.arrow-down {
+width: 0;
+height: 0;
+border-style: solid;
+border-width: 20px 85px 0 85px;
+border-color: rgba(0,0,0,0.3) transparent transparent transparent;
 font-size:0;
-line-height:20px
+line-height:20px;
+position:absolute;
+bottom:0;
+z-index:3;
 }
 input.factionselect + label {
   padding: 4px;
