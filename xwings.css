@@ -17,7 +17,7 @@ font-size-adjust: 0.5
 height:calc(100% - 60px);
 width:calc(100% - 340px);
 position:absolute;
-top:4.4ex;
+top:5ex;
 left:170px;
 z-index:0;
 }
@@ -340,7 +340,7 @@ display:inline-block
 }
 #team1,#team2 {
 position:absolute;
-top:4.4ex;
+top:5ex;
 width:170px;
 z-index:2;
 }
@@ -554,7 +554,7 @@ padding:0;
 }
 .smallbutton,.bigbutton,.button,.largebutton,.permalink,.nextphase,#menu-vertical {
 display:inline-block;
-margin:3px;
+margin:8px;
 text-align:center;
 box-shadow:1px 1px 3px #000;
 padding:5px;
