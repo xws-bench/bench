@@ -36,7 +36,7 @@
     <nav>
       <div>
 	<span class="h2">Squadron Benchmark<span class="ver"></span>
-	<span><select id="language" style="font-size:x-small;width:7em;background:steelblue;color:white;"></select></span></span>
+	<span><select id="language" class="bigbutton"></select></span></span>
 	<span style="float:right;font-size:small">
 	  <span class="m-save permalink" onclick="permalink()"> &#128279;</span>
 	  <span class="m-reset permalink" onclick="resetlink()"> &#128279;</span>
@@ -129,7 +129,7 @@
 	  <div>
 	    <textarea id="jsonimport" rows="15"></textarea>
 	  </div>
-	  <a href="#" class="bigbutton m-import" onclick="TEAMS[currentteam].parseJSON(s,$('#jsonimport').val())" class="button2"></a>
+	  <a href="#" class="button m-import" onclick="TEAMS[currentteam].parseJSON(s,$('#jsonimport').val())" class="button2"></a>
 	  </div>
 	</div>
       </section>
