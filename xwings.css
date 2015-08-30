@@ -98,14 +98,14 @@ h2 {
 color:#4682b4
 }
 
-nav ul {
+nav span > ul {
 list-style-type:none;
 margin:0;
 padding:0;
 display:inline;
 }
 
-nav ul{
+nav span > ul{
 display:none;
 position:absolute;
 right:0;
@@ -116,21 +116,21 @@ margin: 0;
 visibility: hidden;
 z-index: 100;
 }
-nav ul li {
+nav span > ul li {
 display:block;
 background:rgba(46,82,200,1);
 background:lightsteelblue;
 padding:5px;
 width:120px;
 }
-nav ul li ul {
+nav span > ul li ul {
 right:120px;
 }
-/*
-.collapse:hover ul {
+
+nav span:hover > ul {
 display:block;
 visibility:visible;
-}*/
+}
 nav a {
 text-decoration:none;
 color:#fff;
