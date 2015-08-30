@@ -337,7 +337,7 @@ letter-spacing:4px
 display:inline-block
 }
 #team1,#team2 {
-position:absolute;
+position:fixed;
 top:5ex;
 width:170px;
 z-index:2;
