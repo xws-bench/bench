@@ -126,7 +126,7 @@ width:120px;
 .collapse ul li ul {
 right:120px;
 }
-.collapse:hover ul {
+.collapse:hover ul,.collapse:focus ul {
 display:block;
 visibility:visible;
 }
