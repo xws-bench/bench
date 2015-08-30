@@ -16,7 +16,7 @@ font-size-adjust: 0.5
 #main {
 height:calc(100% - 60px);
 width:calc(100% - 340px);
-position:absolute;
+position:fixed;
 top:5ex;
 left:170px;
 z-index:0;
