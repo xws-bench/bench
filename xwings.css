@@ -128,7 +128,8 @@ width:120px;
 nav span ul li ul {
 right:120px;
 }
-nav span:hover > ul,nav span ul li:hover ul {
+nav span:hover > ul,nav span ul li:hover ul,
+nav span:focus > ul,nav span ul li:focus ul {
 display:block;
 opacity:1;
 visibility:visible;
@@ -137,7 +138,7 @@ nav a {
 text-decoration:none;
 color:#fff;
 }
-nav span ul li:hover {
+nav span ul li:hover,nav span ul li:focus {
 background:steelblue;
 }
 .name select {
