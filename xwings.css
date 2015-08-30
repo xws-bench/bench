@@ -17,7 +17,7 @@ font-size-adjust: 0.5
 height:calc(100% - 60px);
 width:calc(100% - 340px);
 position:absolute;
-top:4.2ex;
+top:4.4ex;
 left:170px;
 z-index:0;
 }
@@ -82,7 +82,6 @@ position:fixed;
 top:0;
 left:0;
 width:100%;
-height:2em;
 z-index:10;
 }
 
@@ -128,8 +127,8 @@ width:120px;
 nav span ul li ul {
 right:120px;
 }
-nav span:hover > ul,nav span ul li:hover ul,
-nav span:focus > ul,nav span ul li:focus ul {
+nav span:hover > ul,nav span:hover ul li:hover ul,
+nav span:focus > ul,nav span:focus ul li:focus ul {
 display:block;
 opacity:1;
 visibility:visible;
@@ -346,7 +345,7 @@ display:inline-block
 }
 #team1,#team2 {
 position:absolute;
-top:4.2ex;
+top:4.4ex;
 width:170px;
 z-index:2;
 }
@@ -573,7 +572,6 @@ border-radius:5px
 }
 .collapse {
 background:steelblue;
-height:1.05em;
 }
 .bigbutton {
 width:74px
