@@ -252,7 +252,7 @@ Weapon.prototype = {
 	    this.unit.show();
 	}
     },
-    getdefensebonus: function(sh) {
+    getrangedefensebonus: function(sh) {
 	if (this.isprimary) {
 	    var r=this.getrange(sh);
 	    if (r==3) {
@@ -680,12 +680,13 @@ var UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    var m=this;
+	    var r=-1;
 	    var ea=sh.endattack;
 	    sh.endattack=function(c,h) {
 		ea.call(this,c,h);
-		if (this.weapons[this.activeweapon]==m) {
+		if (r<round&&this.weapons[this.activeweapon]==m) {
 		    this.log(m.name+": 2nd attack");
-		    this.endattack=ea;
+		    r=round;
 		    this.resolveattack(this.activeweapon,targetunit); 
 		}
 	    }
