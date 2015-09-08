@@ -530,11 +530,13 @@ function win() {
     if (TEAMS[1].checkdead()&&TEAMS[2].checkdead()) title="Draw !";
     $(".victory").html(title);
     var y1=0,y2=0;
+    var t1=TEAMS[1].history;
+    var t2=TEAMS[2].history;
     for (i=1; i<=round; i++) {
-	if (typeof TEAMS[1].history.rawdata[i]!="undefined") y1+=TEAMS[1].history.rawdata[i].hits;
-	if (typeof TEAMS[2].history.rawdata[i]!="undefined") y2+=TEAMS[2].history.rawdata[i].hits;
-	TEAMS[1].history.data[0].dataPoints.push({x:i,y:y1});
-	TEAMS[2].history.data[0].dataPoints.push({x:i,y:y2});
+	if (typeof t1.rawdata[i]!="undefined") { y1+=t1.rawdata[i].hits; s1=t1.rawdata[i].dead;}
+	if (typeof t2.rawdata[i]!="undefined") {y2+=t2.rawdata[i].hits;s2=t2.rawdata[i].dead;}
+	    t1.data[0].dataPoints.push({x:i,y:y1,indexLabelMaxWidth: "60",indexLabelWrap: "true", indexLabel:s1});
+	t2.data[0].dataPoints.push({x:i,y:y2,indexLabelMaxWidth: "60",indexLabelWrap: "true", indexLabel:s2});
     }
     var chart1 = new CanvasJS.Chart("t1",TEAMS[1].history);
     var chart2 = new CanvasJS.Chart("t2",TEAMS[2].history);
