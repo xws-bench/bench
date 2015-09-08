@@ -193,7 +193,7 @@ IAUnit.prototype= {
 		//console.log("ia/doattack "+this.name+"<select target");
 	    } else {
 		//console.log("ia/doattack:no target");
-		this.hasfired++;this.show(); this.deferred.resolve();
+		this.hasfired++; this.deferred.resolve();
 	    }
 	}   
     },
@@ -217,12 +217,12 @@ IAUnit.prototype= {
 	if (this.canusetarget(targetunit)) this.usetarget(); 
 	var doreroll=function(a,i) {
 	    var s=0;
-	    var n=a.n();
-	    if (a.type.indexOf("blank")>-1) s+=n;
-	    if (a.type.indexOf("focus")>-1) s+=10*n;
-	    if (a.type.indexOf("hit")>-1) s+=100*n;
-	    if (a.type.indexOf("critical")>-1) s+=1000*n;
-	    reroll(n,true,s,i);
+	    var nn=a.n();
+	    if (a.type.indexOf("blank")>-1) s+=nn;
+	    if (a.type.indexOf("focus")>-1) s+=10*nn;
+	    if (a.type.indexOf("hit")>-1) s+=100*nn;
+	    if (a.type.indexOf("critical")>-1) s+=1000*nn;
+	    reroll(nn,true,s,i);
 	}
 	// Do all possible rerolls 
 	for (var i=0; i<ATTACKREROLLA.length; i++) {
@@ -277,11 +277,11 @@ IAUnit.prototype= {
 	if (this.canuseevade()) this.useevade();
  	var doreroll=function(a,i) {
 	    var s=0;
-	    var n=a.n();
-	    if (a.type.indexOf("blank")>-1) s+=n;
-	    if (a.type.indexOf("focus")>-1) s+=10*n;
-	    if (a.type.indexOf("evade")>-1) s+=100*n;
-	    reroll(n,false,s,i);
+	    var nn=a.n();
+	    if (a.type.indexOf("blank")>-1) s+=nn;
+	    if (a.type.indexOf("focus")>-1) s+=10*nn;
+	    if (a.type.indexOf("evade")>-1) s+=100*nn;
+	    reroll(nn,false,s,i);
 	};
 	for (var i=0; i<DEFENSEREROLLD.length; i++) {
 	    var a=DEFENSEREROLLD[i];
@@ -304,9 +304,9 @@ IAUnit.prototype= {
 	$("#dtokens").append("<button>");
 	$("#dtokens > button").text("Fire!").click(function() {
 		$("#combatdial").hide();
-		this.actionr[incombat].resolve();
-		this.resolvedamage()
-		    }.bind(squadron[me]))
+		this.endnoaction(incombat);
+		this.resolvedamage();
+	    }.bind(squadron[me]))
 	//log("defense roll: f"+f+" e"+e+" b"+(dd-e-f));
     },
 };
