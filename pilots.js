@@ -1327,8 +1327,8 @@ var PILOTS = [
 	    ue.call(this);
 	    if (phase==COMBAT_PHASE&&this.canuseevade()&&this==activeunit&&r<=3&&r>=2) {
 		this.removeevadetoken();
-		$("atokens .xevadetoken").remove();
-		$("#attack").append("<b class='hitreddice'></b>");
+		$("#atokens .xevadetoken").remove();
+		$("#attack").append("<td class='hitreddice'></td>");
 		this.log("+1 <code class='hit'></code> for attacking at range 2-3");
 	    }
 	},   
@@ -1501,13 +1501,15 @@ var PILOTS = [
 	done:true,
         endattack: function(c,h) {
 	    Unit.prototype.endattack.call(this,c,h);
-	    if (this.canusefocus()&&h>0) {
+	    if (this.canusefocus()&&this.hitresolved>0) {
 		this.log("can turn "+h+" damage(s) into critical(s)");
 		this.donoaction([{name:this.name,org:this,type:"FOCUS",action:function(n) {
 		    var i,l=targetunit.criticals.length-1;
 		    this.removefocustoken();
-		    for (i=0; i<h; i++) 
-			targetunit.faceup(targetunit.criticals[l-i-c])
+		    for (i=0; i<this.hitresolved; i++) {
+			this.log(targetunit.criticals[l-i-this.criticalresolved].name);
+			targetunit.faceup(targetunit.criticals[l-i-this.criticalresolved])
+		    }
 		    targetunit.checkdead();
 		    targetunit.show();
 		    this.endnoaction(n,"");
@@ -1870,7 +1872,7 @@ var PILOTS = [
 		    var l=$(".focusreddice").length;
 		    $(".focusreddice").remove();
 		    for (i=0; i<l; i++) { 	
-			$("#attack").append("<b class='hitreddice'></b>");
+			$("#attack").append("<td class='hitreddice'></td>");
 		    }
 		    this.log("focus -> hit, removing all stress");
 		    $("#atokens .xstresstoken").remove();
@@ -2840,10 +2842,18 @@ var PILOTS = [
 	    this.gras=Weapon.prototype.getrangeattackbonus;
 	    Weapon.prototype.getrangeattackbonus=function(sh) {
 		if (this.unit.team!=unit.team&&unit.getrange(this.unit)==1) {
-		    if (this.unit.getrange(targetunit)==1) this.unit.log("no attack range bonus due to "+unit.name);
+		    unit.log("no attack range bonus for "+this.unit.name);
 		    return 0;
 		}
-		return unit.gras.call(this,sh);
+		return this.unit.gras.call(this,sh);
+	    };
+	    this.grds=Weapon.prototype.getrangedefensebonus;
+	    Weapon.prototype.getrangedefensebonus=function(sh) {
+		if (this.unit.team!=unit.team&&unit.getrange(this.unit)==1) {
+		    unit.log("no defense range bonus due to "+this.unit.name);
+		    return 0;
+		}
+		return this.unit.grds.call(this,sh);
 	    };
 	},
         points: 26,
@@ -2862,7 +2872,21 @@ var PILOTS = [
         upgrades: [
             "Elite",
             "Missile",
-        ]
+        ],
+	done:true,
+	endcombatphase: function() {
+	    this.doselection(function(n) {
+		var p=[this].concat(this.targeting);
+		this.resolveactionselection(p,function(k) {
+		    if (k>0&&this.canusetarget(p[k])) {
+			var c=p[k].criticals;
+			this.removetarget(p[k]);
+			if (c.length>0) p[k].faceup(c[rand(c.length)])
+		    }
+		    this.endnoaction(n,"TARGET");
+		}.bind(this));
+	    }.bind(this));
+	}
     },
     {
         name: "Bossk",
@@ -2949,7 +2973,7 @@ var PILOTS = [
 	    var def=this.getagility();
 	    var obstacledef=sh.getobstructiondef(this);
 	    if (obstacledef>0) this.log("+"+obstacledef+" defense for obstacle");
-	    return def+2*sh.weapons[i].getdefensebonus(this)+obstacledef;
+	    return def+2*sh.weapons[i].getrangedefensebonus(this)+obstacledef;
 	},
         points: 28,
     },
@@ -3014,6 +3038,36 @@ var PILOTS = [
                 "Bomb",
                 "Bomb",
             ],
+	    beginattack: function() {
+		this.donoaction([
+		    {org:this,name:this.name,type:"SHIELD",action:function(n) {
+			this.getattackstrength=function(i,sh){
+			    var a= this.weapons[i].getattack()-1;
+			    return this.weapons[i].getrangeattackbonus(sh)+(a>0)?a:0;
+			};
+			if (this.shield<this.ship.shield) this.shield++; 
+			this.endattack=function(c,h) {
+			    this.getattackstrength=Unit.prototype.getattackstrength;
+			    this.endattack=Unit.prototype.endattack;
+			    Unit.prototype.endattack.call(this,c,h);
+			};
+			this.actionr[n].resolve("SHIELD");
+		    }.bind(this)},
+		    {org:this,name:this.name,type:"HIT",action:function(n) {
+			this.log("action "+n);
+			this.getattackstrength=function(i,sh){
+			    return 1+Unit.prototype.getattackstrength.call(this,i,sh);
+			};
+			this.removeshield(1); 
+			this.endattack=function(c,h) {
+			    this.getattackstrength=Unit.prototype.getattackstrength;
+			    this.endattack=Unit.prototype.endattack;
+			    Unit.prototype.endattack.call(this,c,h);
+			};
+			this.log("calling noaction "+n);
+			this.actionr[n].resolve("HIT");
+		    }.bind(this)}],"choose to add shield/roll 1 fewer die or remove shield/roll 1 additional die");
+	    },
             points: 29,
         },
         {
