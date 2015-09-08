@@ -1637,7 +1637,7 @@ Unit.prototype = {
     canfire: function() {
         var r=this.gethitrangeallunits();
 	//this.log("hasfired? "+this.hasfired+" r1:"+r[1].length+" r2:"+r[2].length+" r3:"+r[3].length+" iscloaked?"+this.iscloaked+" obst?"+this.isfireobstructed());
-	var b= (this.hasfired==0)&&((r[1].length>0||r[2].length>0||r[3].length>0)&&!this.iscloaked&&!this.isfireobstructed());
+	var b= (this.hasfired==0)/*&&((r[1].length>0||r[2].length>0||r[3].length>0)*/&&!this.iscloaked&&!this.isfireobstructed();
 	//log("[canfire]"+this.name+" "+b+"="+this.hasfired+"& r=["+r[1].length+", "+r[2].length+", "+r[3].length+"] &"+this.iscloaked+" &"+this.ocollision.overlap)
         return b;
     },
@@ -2087,9 +2087,13 @@ Unit.prototype = {
 		var w=A[this.weapons[wn[i]].type.toUpperCase()];
 		str+="<div class='symbols "+w.color+"' onclick='activeunit.selecttargetforattack("+wn[i]+")'>"+w.key+"</div>"
 	    }
-	    // activeunit.hasfired++ ?
-	    str+="<button onclick='activeunit.hasfired++;activeunit.show();activeunit.deferred.resolve();'>Skip</button>"
-	    $("#attackdial").html("<div>"+str+"</div>").show();
+	    if (str!="") {
+		// activeunit.hasfired++ ?
+		str+="<button onclick='activeunit.hasfired++;activeunit.show();activeunit.deferred.resolve();'>Skip</button>";
+		$("#attackdial").html("<div>"+str+"</div>").show();
+	    } else {
+		activeunit.hasfired++; activeunit.deferred.resolve(); 
+	    }
 	}
     },
     candotarget: function() {
