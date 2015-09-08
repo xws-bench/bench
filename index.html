@@ -19,6 +19,7 @@
     <script src="team.js"></script>
     <script src="xwings.js"></script>
     <script src="buzz.min.js"></script>
+<script type="text/javascript" src="canvasjs.min.js"></script>
     <style type="text/css" id="localstrings"></style>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -108,12 +109,11 @@
 	</div>
     </section>
      <section id="modal" class="modalDialog">
-	<div>
-	  <a href="#close" title="Close" class="close">X</a>
-	  <h2 id="listtitle">List of all units</h2>
-
-	  <div id="listunits" style="font-size:small" class="table"></div>
-	</div>
+	<div draggable="true">
+	  <summary><span class="victory"></span><a href="#" title="Close" class="close">&#10062;</a>
+	  </summary>
+	  <div><div id="t1" style="height: 400px; width: 100%;"></div><div id="t2" style="height: 400px; width: 100%;"></div>
+	  </div>
       </section>
  
       <section id="import" class="modalDialog">
