@@ -1631,7 +1631,7 @@ var UPGRADES= [
 	    a=this.attack;
 	    if (this.unit.agility<=3) a+=this.unit.agility;
 	    else a+=3;
-	    this.unit.log("Proton Rockets: +"+(this.unit.agility>3?3:this.unit.agility)+" attack for agility");
+	    //this.unit.log("Proton Rockets: +"+(this.unit.agility>3?3:this.unit.agility)+" attack for agility");
 	    return a;
 	},
         range: [1,1],
