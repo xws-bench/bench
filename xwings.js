@@ -3,7 +3,7 @@ var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.6.2";
+var VERSION="v0.6.3";
 var LANG="en";
 var DECLOAK_PHASE=1;
 var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE1=0,SELECT_PHASE2=1;
@@ -120,18 +120,18 @@ function nextstep() {
 	//console.log("nextstep:"+activeunit.name);
 	switch(phase) {
 	case PLANNING_PHASE:
-	    enablenextphase(); 
-	    nextplanning();
+	    enablenextphase();
+// removed code
 	    break;
 	case ACTIVATION_PHASE:
 	    enablenextphase();
 	    //console.log("nextstep:nextactivation");
-	    if (subphase==DECLOAK_PHASE) nextdecloak();
-	    else nextactivation();
+	    //if (subphase==DECLOAK_PHASE) nextdecloak();
+	    //else nextactivation();
 	    break;
 	case COMBAT_PHASE:
 	    //console.log("nextstep:nextcombat");
-	    nextcombat();
+	    //nextcombat();
 	    break;
 	}
     }
@@ -277,99 +277,65 @@ function allunitlist() {
     $("#listunits").html(unitstostr()); 
     window.location="#modal";
 }
-
 function nextcombat() {
-    var i,sk=0,last=0;
-    var old=activeunit;
-    while (sk==0 && skillturn>=0) {
-	for (i=0; i<tabskill[skillturn].length; i++) {
-	    if (tabskill[skillturn][i].canfire()) { sk++; last=i; break;} 
-	};
-	if (sk==0) {
-	    var dead=false;
-	    skillturn--;
-	    for (i=0; i<tabskill[skillturn+1].length; i++) {
-		var u=tabskill[skillturn+1][i];
-		if (u.canbedestroyed(skillturn))
-		    if (u.checkdead()) dead=true;
-	    }
-	    if (dead&&(TEAMS[1].checkdead()||TEAMS[2].checkdead())) win();
-	    // Change PS. Check deads here. 
-	    while (skillturn>=0 && tabskill[skillturn].length==0) { skillturn--; }
-	} 
+    nextunit(function(t) { return t.canfire(); },
+	     function(list) { 
+		 var dead=false;
+		 skillturn--;
+		 for (i=0; i<list[skillturn+1].length; i++) {
+		     var u=list[skillturn+1][i];
+		     if (u.canbedestroyed(skillturn))
+			 if (u.checkdead()) dead=true;
+		 }
+		 if (dead&&(TEAMS[1].checkdead()||TEAMS[2].checkdead())) win();
+	     },
+	     function() {
+		 log("No more firing units, ready to end phase."); 
+		 for (var i=0; i<squadron.length; i++) squadron[i].endcombatphase();
+	     },
+	     function() {
+		 activeunit.beginattack();
+		 activeunit.doattack(false);
+	     });
+}
+function nextunit(cando, changeturn,changephase,activenext) {
+    var i,sk=false,last=0;
+    for (i=0; i<tabskill[skillturn].length; i++) {
+	if (cando(tabskill[skillturn][i])) { sk=true; last=i; break;} 
+    };
+    if (!sk) {
+	do changeturn(tabskill);
+	while (skillturn>=0 && skillturn<=12&& tabskill[skillturn].length==0);
     }
-    if (skillturn==-1) { 
-	log("No more firing units, ready to end phase."); 	
-	// Clean up phase
-	for (i=0; i<squadron.length; i++) squadron[i].endcombatphase();
-	return; 
-    }
-    sk=tabskill[skillturn].length;
-    //console.log("found "+sk+" firing units of skill "+skillturn);
+    if (skillturn==-1||skillturn==13) return changephase();
     active=last; 
     tabskill[skillturn][last].select();
-    //console.log("nextcombat:"+activeunit.name);
-    activeunit.beginattack();
-    activeunit.doattack(false);
+    activenext();
 }
 function nextactivation() {
-    var sk=0,last=0,i;
-    //log("activating "+skillturn);
-    if (skillturn>12) { return; }
-    // Counts how many remaining units with same skill
-    for (i=0; i<tabskill[skillturn].length; i++) {
-	if (tabskill[skillturn][i].maneuver!=-1) { sk++; last=i; } 
-    }
-    if (sk==0) { 
-	skillturn++;
-	while (skillturn<13 && tabskill[skillturn].length==0) { skillturn++; }
-	if (skillturn==13) { return; }
-	sk=tabskill[skillturn].length;
-	last=0;
-    }
-    active=last; 
-    tabskill[skillturn][last].select();
-    activeunit.beginactivation(); 
-    activeunit.doactivation();
+    nextunit(function(t) { return t.candomaneuver(); },
+	     function() { skillturn++; },
+	     function() { return enablenextphase(); },
+	     function() {     
+		 activeunit.beginactivation();
+		 //activeunit.actionbarrier();
+		 activeunit.doactivation();
+	     });
 }
 function nextdecloak() {
-    var sk=0,last=0,i;
-    if (skillturn>12) { 
-	subphase=ACTIVATION_PHASE; 
-	skillturn=0; 
-	return nextstep();
-    }
-    // Counts how many remaining units with same skill
-    while (sk==0) {
-	for (i=0; i<tabskill[skillturn].length; i++) {
-	    if (tabskill[skillturn][i].candecloak()) { sk++; last=i; } 
-	}
-	if (sk==0) { 
-	    skillturn++;
-	    while (skillturn<13 && tabskill[skillturn].length==0) { skillturn++; }
-	    if (skillturn==13) { 
-		subphase=ACTIVATION_PHASE; 
-		skillturn=0; 
-		return nextstep(); 
-	    }
-	    //sk=tabskill[skillturn].length;
-	    last=0;
-	}
-    }
-    active=last; 
-    tabskill[skillturn][last].select();
-    activeunit.dodecloak();
+    nextunit(function(t) { return t.candecloak(); },
+	     function() { skillturn++; },
+	     function() { return enablenextphase(); },
+	     function() { activeunit.dodecloak(); });
 }
 function nextplanning() {
     var current=active;
     for (var i=0; i<squadron.length; i++,active=(active+1)%squadron.length) {
 	if (squadron[active].maneuver==-1) break;
     }
-    //log("current active:"+squadron[current].name+" next:"+squadron[active].name+" "+activeunit.incombat+" "+waitingforaction.isexecuting);
-    if (squadron[active].maneuver>-1) active=current;
+    if (squadron[active].maneuver>-1) { active=current; enablenextphase(); }
     else {
 	squadron[active].select();
-	//log("do plan for "+activeunit.name);
 	activeunit.doplan();
     }
 }
@@ -495,10 +461,19 @@ function enablenextphase() {
 	if (ready&&$(".nextphase").prop("disabled")) log("All units have planned a maneuver, ready to end phase");
 	break;
     case ACTIVATION_PHASE:
-	for (i=0; i<squadron.length; i++)
-	    if (squadron[i].maneuver>-1&&!squadron[i].isdead) { ready=false; break; }
-	if (ready&&$(".nextphase").prop("disabled")) log("All units have been activated, ready to end phase");
+	if (subphase!=ACTIVATION_PHASE) {
+	    subphase=ACTIVATION_PHASE; 
+	    skillturn=0; 
+	    ready=false;
+	    for (i=0; i<squadron.length; i++) squadron[i].enddecloak().done(nextactivation);
+	    barrier(nextactivation);
+	} else {
+	    for (i=0; i<squadron.length; i++)
+		if (squadron[i].maneuver>-1&&!squadron[i].isdead) { ready=false; break; }
+	    if (ready&&$(".nextphase").prop("disabled")) log("All units have been activated, ready to end phase");
+	}
 	break;	
+
     }
     if (ready) $(".nextphase").prop("disabled",false);
     return ready;
@@ -633,10 +608,11 @@ function nextphase() {
 	$("#maneuverdial").hide();
 	break;
     case ACTIVATION_PHASE:
-	$("#actiondial").hide();
 	$("#activationdial").hide();
 	for (i=0; i<squadron.length; i++) {
-	    squadron[i].hasmoved=false; squadron[i].actiondone=false;
+	    squadron[i].hasmoved=false; 
+	    squadron[i].hasdecloaked=false;
+	    squadron[i].actiondone=false;
 	    squadron[i].endactivationphase();
 	}
 	var b=[];
@@ -711,7 +687,6 @@ function nextphase() {
 
 	jwerty.key('l', allunitlist);
 	jwerty.key('w', inhitrange);
-	jwerty.key('s', nextstep);
 	jwerty.key("x", function() { window.location="#";});
 	jwerty.key("escape", nextphase);
 	jwerty.key("c", center);
@@ -764,35 +739,37 @@ function nextphase() {
 	squadron[0].select();
 	for (i=0; i<squadron.length; i++) {
 	    squadron[i].evaluatepositions(false,false);
-	    squadron[i].beginplanningphase();
+	    squadron[i].beginplanningphase().progress(nextplanning);
 	}
-	activeunit.doplan();
+	nextplanning();
 	break;
     case ACTIVATION_PHASE:
 	log("<div>[turn "+round+"] Activation phase</div>");
 	$(".nextphase").prop("disabled",true);
 	$("#activationdial").show();
-	for (i=0; i<squadron.length; i++) {
-	    squadron[i].beginactivationphase();
-	}
+	for (i=0; i<squadron.length; i++) squadron[i].beginactivationphase().done(nextdecloak);
+	
 	filltabskill();
+	//subphase=ACTIVATION_PHASE;
 	subphase=DECLOAK_PHASE;
 	skillturn=0;
-	//console.log("nextphase:ACTI>nextstep");
-	nextstep();
-	//console.log("nextphase:ACTI<nextstep");
+	barrier(nextdecloak);
 	break;
     case COMBAT_PHASE:
 	log("<div>[turn "+round+"] Combat phase</div>");
 	$("#attackdial").show();
 	skillturn=12;
-	for (i=0; i<squadron.length; i++) squadron[i].begincombatphase();
-	//console.log("nextphase:COMBAT>nextstep");
-	nextstep();
-	//console.log("nextphase:COMBAT<nextstep");
+	for (i=0; i<squadron.length; i++) squadron[i].begincombatphase().done(nextcombat);
+	
+	barrier(nextcombat);
 	break;
     }
-    if (phase>SELECT_PHASE2) activeunit.show();
+}
+function barrier(f) {
+    var p=[];
+    for (var i=0; i<squadron.length; i++) 
+	p=p.concat(squadron[i].actionr);
+    $.when.apply(null,p).done(f);
 }
 function log(str) {
     $("#log").append("<div>"+str+"<div>");
@@ -1261,7 +1238,6 @@ $(document).ready(function() {
 	CRIT_translation=result2[0].criticals;
 	var css_translation=result2[0].css;
 	var str="";
-	log(css_translation);
 	for (var i in css_translation) {
 	    str+="."+i+"::before { content:'"+css_translation[i]+"';}\n";
 	}

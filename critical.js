@@ -1,7 +1,7 @@
 function Critical(sh,i) {
     this.lethal=false;
     $.extend(this,CRITICAL_DECK[i]);
-    this.no=i;
+    this.no=this.name+i;
     sh.criticals.push(this);
     this.isactive=false;
     this.unit=sh;
@@ -48,11 +48,11 @@ var CRITICAL_DECK=[
 	    }
 	    this.isactive=false;
 	},
-	action: function() {
+	action: function(n) {
 	    if (Math.random()<3/8) {
 		this.facedown();
 	    } else log(this.name+" not repaired for "+this.unit.name);
-	    this.unit.endaction();
+	    this.unit.endaction(n,"CRITICAL");
 	},
     },
     {
@@ -101,9 +101,9 @@ var CRITICAL_DECK=[
 		this.bcp.call(this);
 	    }.bind(this);
 	},
-	action: function() {
+	action: function(n) {
 	    this.facedown();
-	    this.unit.endaction();
+	    this.unit.endaction(n,"CRITICAL");
 	},
 	facedown: function() {
 	    if (this.isactive) {
@@ -138,12 +138,12 @@ var CRITICAL_DECK=[
 		this.isactive=false;
 	    }
 	},
-	action: function() {
+	action: function(n) {
 	    var r=Math.floor(Math.random()*8);
 	    var roll=FACE[ATTACKDICE[r]];
 	    if (roll=="critical"||roll=="hit") this.facedown();
 	    else log("Primary weapon for "+this.unit.name+" not functioning.");
-	    this.unit.endaction();
+	    this.unit.endaction(n,"CRITICAL");
 	}
     },
     {
@@ -153,8 +153,8 @@ var CRITICAL_DECK=[
 	faceup: function() {
 	    this.unit.log("Critical: "+this.name.replace(/\'/g,"&#39;"));
 	    this.isactive=true;
-	    this.gsal=this.unit.getshipactionlist;
-	    this.unit.getshipactionlist=function() { return [];};
+	    this.gsal=this.unit.getactionbarlist;
+	    this.unit.getactionbarlist=function() { return [];};
 	},
 	facedown: function() {
 	    if (this.isactive) {
@@ -163,12 +163,12 @@ var CRITICAL_DECK=[
 		this.isactive=false;
 	    }
 	},
-	action: function() {
+	action: function(n) {
 	    var r=Math.floor(Math.random()*8);
 	    var roll=FACE[ATTACKDICE[r]];
 	    if (roll=="hit") this.facedown();
 	    else log("Sensor array still damaged for "+this.unit.name);
-	    this.unit.endaction();
+	    this.unit.endaction(n,"CRITICAL");
 	}
     },
     { 
@@ -277,13 +277,13 @@ var CRITICAL_DECK=[
 		this.unit.skill=0;
 		filltabskill();
 		this.unit.showstats();
-		this.unit.endround=function() {
-		    this.er.call(this.unit);
+		/* this.unit.endround=function() {
+		   this.er.call(this.unit);
 		    this.unit.endround=this.er;
 		    this.unit.skill=this.skill;
 		    filltabskill();
 		    this.unit.showstats();
-		}.bind(this);
+		    }.bind(this);*/
 	    }.bind(this);
 	},
 	facedown: function() {

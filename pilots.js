@@ -52,20 +52,17 @@ var PILOTS = [
         unique: true,
         unit: "X-Wing",
 	removefocustoken: function() {
-	    waitingforaction.add(function() {
-		this.focus--;
-		this.show();
-		var p=[]; 
-		p=this.selectnearbyunits(2,function(a,b) { return (a.team==b.team&&a!=b);});
-		if (p.length>0) {
-		    this.log("<code class='xfocustoken'></code> -> other friendly ship");
-		    this.resolveactionselection(p,function(k) {
-			p[k].log("+1 <code class='xfocustoken'></code> from "+this.name);
-			p[k].addfocustoken();
-			nextstep();
-		    }.bind(this));
-		}
-	    }.bind(this));
+	    this.focus--;
+	    this.show();
+	    var p=[]; 
+	    p=this.selectnearbyunits(2,function(a,b) { return (a.team==b.team&&a!=b);});
+	    if (p.length>0) {
+		this.log("<code class='xfocustoken'></code> -> other friendly ship");
+		this.resolveactionselection_sync(p,function(k) {
+		    p[k].log("+1 <code class='xfocustoken'></code> from "+this.name);
+		    p[k].addfocustoken();
+		}.bind(this));
+	    } 
 	},
         skill: 6,
         points: 26,
@@ -167,18 +164,24 @@ var PILOTS = [
         name: "'Dutch' Vander",
 	done:true,
         addtarget: function(t) {
-	    waitingforaction.add(function() {
-		Unit.prototype.addtarget.call(this,t);
+	    var unit=this;
+	    Unit.prototype.addtarget.call(this,t);
+	    this.doselection(function(n) {
 		var p=this.selectnearbyunits(2,function(a,b) { return a.team==b.team&&a!=b; });
 		if (p.length>0) {
 		    p.push(this);
-		    log("<b>selects ship that may acquire target lock ("+this.name+" to cancel)</b>");
+		    log("<b>select ship that may acquire target lock ("+this.name+" to cancel)</b>");
 		    this.resolveactionselection(p,function(k) {
 			if (k<p.length-1) { 
-			    p[k].resolvetarget();  
-			}
+			    var lu=p[k].gettargetableunits(3);
+			    p[k].log("<b>select target to lock</b>");
+			    p[k].resolveactionselection(lu,function(kk) { 
+				if (kk>=0) this.addtarget(lu[kk]);
+				unit.endnoaction(n,"TARGET");
+			    }.bind(p[k]));
+ 			} else unit.endnoaction(n,"TARGET");	
 		    });
-		}
+		} else this.endnoaction(n,"TARGET");
 	    }.bind(this));
 	},
 	faction:"REBEL",
@@ -295,25 +298,11 @@ var PILOTS = [
         name: "'Night Beast'",
         faction:"EMPIRE",
 	done:true,
-        init: function () {
-	    var r=this.handledifficulty;
-	    this.handledifficulty=function(difficulty) {
-		r.call(this,difficulty);
-		if (difficulty=="GREEN") {
-		    this.log("green maneuver -> free focus action");
-		    this.type="FOCUS";
-		    this.ea=this.endaction;
-		    this.endaction=function() { nextstep(); this.endaction=this.ea; };
-		    waitingforaction.add(function() {
-			    this.addaction(this,function() { return true; },function() {
-				    this.addfocustoken();
-				    this.actionsdone.push("FOCUS");
-				    this.endaction();
-				}.bind(this));
-			}.bind(this));
-		    nextstep();
-		}
-	    }.bind(this);
+	handledifficulty: function(difficulty) {
+	    Unit.prototype.handledifficulty.call(this,difficulty);
+	    if (difficulty=="GREEN"&&this.candofocus()&&this.candoaction()) 
+		this.doaction([this.newaction(this.addfocus,"FOCUS")],
+			      "green maneuver -> free focus action");
 	},
         unique: true,
         unit: "TIE Fighter",
@@ -437,25 +426,22 @@ var PILOTS = [
 	    this.ac=Unit.prototype.applycritical;
 	    Unit.prototype.applycritical=function(n) {
 		if (activeunit==unit&&targetunit!=unit) {
-		    waitingforaction.add(function() {
-			for (var j=0; j<n; j++) {
-			    var s1=this.selectdamage(true);
-			    CRITICAL_DECK[s1].count--;
-			    var s2=this.selectdamage(true);
-			    CRITICAL_DECK[s2].count--;
-			    var s3=this.selectdamage(true);
-			    CRITICAL_DECK[s3].count--;
-			    sc=[s1,s2,s3];
-			    log("<b>"+unit.name+" selects one of 3 criticals</b>");
-			    unit.selectcritical(sc,function(m) { 
-				CRITICAL_DECK[m].count++;
-				if (this.faceup(new Critical(this,m))) this.removehull(1);
-				this.checkdead();
-				this.show();
-			    }.bind(this));
-			}
-			nextstep();
-		    }.bind(this));
+		    for (var j=0; j<n; j++) {
+			var s1=this.selectdamage(true);
+			CRITICAL_DECK[s1].count--;
+			var s2=this.selectdamage(true);
+			CRITICAL_DECK[s2].count--;
+			var s3=this.selectdamage(true);
+			CRITICAL_DECK[s3].count--;
+			sc=[s1,s2,s3];
+			log("<b>"+unit.name+" selects one of 3 criticals</b>");
+			unit.selectcritical(sc,function(m) { 
+			    CRITICAL_DECK[m].count++;
+			    if (this.faceup(new Critical(this,m))) this.removehull(1);
+			    this.checkdead();
+			    this.show();
+			}.bind(this));
+		    }
 		    this.show();
 		} else unit.ac.call(this,n);
 	    }
@@ -494,23 +480,17 @@ var PILOTS = [
 	done:true,
         unit: "TIE Advanced",
         skill: 9,
-	endaction: function() {
-	    if (this.actionr!=round) {
-		this.actionr=round;
-		if (this.candoaction()) {
-		    waitingforaction.add(function() {
-			this.log("2 actions / round");
-			this.freeaction(function() {
-			    this.endaction();
-			}.bind(this));
-		    }.bind(this));
-		}
-	    }
-	    Unit.prototype.endaction.call(this);
-	},
-	init: function() {
-	    this.actionr=0;
-	},
+	doendmaneuveraction: function() {
+	    if (this.candoaction()) {
+		var x=this.doaction(this.getactionlist(),"1st action")
+		    x.done(function() {
+		    if (this.candoaction()) {
+			this.doaction(this.getactionlist(),"2nd action");
+		    } else { this.action=-1; this.actiondone=true; this.deferred.resolve(); }
+		}.bind(this))
+	    } else { this.action=-1; this.actiondone=true; this.deferred.resolve(); }
+ 	},
+	secaction:-1,
         points: 29,
         upgrades: [
             "Elite",
@@ -569,30 +549,11 @@ var PILOTS = [
 	done:true,
         unit: "TIE Interceptor",
         skill: 7,
-	endattack: function(c,h) {
-	    if (this.candoaction()) {
-	    waitingforaction.add(function() {
-		this.log("free boost or roll action (select self to cancel)");
-		var m0=this.getpathmatrix(this.m.clone().rotate(90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(-90,0,0);
-		var m1=this.getpathmatrix(this.m.clone().rotate(-90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(90,0,0);
-		this.resolveactionmove(
-		    [m0.clone().translate(0,-20),
-		     m0,
-		     m0.clone().translate(0,20),
-		     m1.clone().translate(0,-20),
-		     m1,
-		     m1.clone().translate(0,20),
-		     this.m,
-		     this.getpathmatrix(this.m,"F1"),
-		     this.getpathmatrix(this.m,"BL1"),
-		     this.getpathmatrix(this.m,"BR1")],
-		    function(t) {
-			this.show();
-			this.endaction();
-		    }.bind(this),true,false);
-	    }.bind(this));
-	    }
-	    Unit.prototype.endattack.call(this,c,h);
+	cleanupattack: function() {
+	    this.doaction([this.newaction(this.resolveboost,"BOOST"),
+			   this.newaction(this.resolveroll,"ROLL")],
+			  "free boost or barrel roll action");
+	    Unit.prototype.cleanupattack.call(this);
 	},
         points: 25,
         upgrades: [
@@ -723,29 +684,16 @@ var PILOTS = [
 	    var unit=this;
 	    var p=this.selectnearbyunits(1,function(t,s) { return t.team==s.team&&t!=s; })
 	    if (p.length>0) {
-		log("<b>select a pilot for a free action given by "+this.name+"</b>");
-		waitingforaction.add(function() {
+		this.doselection(function(n) {
+		    this.log("<b>select a pilot for a free action</b>");
 		    this.resolveactionselection(p,function(k) {
-			activeunit=p[k];
-			p[k].log("free action");
-			$("#"+p[k].id).addClass("selected");
-			center(activeunit);
-			activeunit.show();
-			$("#"+unit.id).removeClass("selected");
-			unit.show();
-			$("#actiondial").show();
-			activeunit.freeaction(function() { 
-			    var u=activeunit;
-			    $("#"+unit.id).addClass("selected");
-			    center(unit);
-			    activeunit=unit;
-			    $("#"+u.id).removeClass("selected");
-			    u.show();
-			    u.endaction();
-			});
+			p[k].doaction(p[k].getactionbarlist()).done(function() {
+			    this.select();
+			    this.endnoaction(n,"");
+			}.bind(this));
 		    }.bind(this))
 		}.bind(this))
-	    } 
+	    }
 	    Unit.prototype.handledifficulty.call(this,d);
 	},
 	done:true,
@@ -1015,10 +963,10 @@ var PILOTS = [
         skill: 4,
 	begincombatphase: function() {
 	    if (!this.dead) {
-		log("<b>select a pilot for a PS of 12 ("+this.name+")</b>");
 		var p=this.selectnearbyunits(3,function(t,s) { return t.team==s.team&&t!=s; })
 		if (p.length>0) {
-		    waitingforaction.add(function() {
+		    this.doselection(function(n) {
+			this.log("<b>select a pilot for a PS of 12</b>");
 			this.resolveactionselection(p,function(k) {
 			    if (k>-1) {
 				p[k].oldskill=p[k].skill;
@@ -1033,11 +981,12 @@ var PILOTS = [
 				    this.showstats();
 				}.bind(p[k]);
 			    }
-			    nextstep();
+			    this.endnoaction(n,"");
 			}.bind(this));
 		    }.bind(this));
 		};
 	    }
+	    return Unit.prototype.begincombatphase.call(this);
 	},     
 	done:true,
         points: 19,
@@ -1056,22 +1005,23 @@ var PILOTS = [
         points: 21,
 	begincombatphase: function() {
 	    if (this.focus>0) {
-		waitingforaction.add(function() {
-		    var p=this.selectnearbyunits(3,function(t,s) { return s.team==t.team&&s!=t; });
-		    if (p.length>0) {
+		var p=this.selectnearbyunits(3,function(t,s) { return s.team==t.team&&s!=t; });
+		if (p.length>0) {
+		    this.doselection(function(n) {
 			p.push(this);
-			log("<b>assign one focus token to a friendly unit ("+this.name+" to cancel)</b>");
+			this.log("<b>assign one focus token to a friendly unit (self to cancel)</b>");
 			this.resolveactionselection(p,function(k) {
 			    if (this!=p[k]) {
 				this.removefocustoken();
 				p[k].addfocustoken();
 				p[k].log("+1 <code class='xcodetoken'></code> token");
 			    }
-			    nextstep();
+			    this.endnoaction();
 			}.bind(this));
-		    } else nextstep();
-		}.bind(this));
+		    }.bind(this));
+		}
 	    }
+	    return Unit.prototype.begincombatphase.call(this);
 	},
         upgrades: [
             "Elite",
@@ -1235,8 +1185,8 @@ var PILOTS = [
 		var p=this.selectnearbyunits(1,function(s,t) { return s.team==t.team&&s!=t; });
 		if (p.length>0&&this.targeting.length) {
 		    p.push(this);
-		    this.log("<b>move target lock to a friendly unit (self to cancel)</b>");
-		    waitingforaction.add(function() {
+		    this.doselection(function(n) {
+			this.log("<b>move target lock to a friendly unit (self to cancel)</b>");
 			this.resolveactionselection(p,function(k) {
 			    if (this!=p[k]) {
 				var t=this.targeting[0];
@@ -1244,11 +1194,12 @@ var PILOTS = [
 				this.removetarget(t);
 				p[k].log("targets "+t.name);
 			    }
-			    nextstep();
+			    this.endnoaction(n,"TARGET");
 			}.bind(this));
 		    }.bind(this));
 		}
 	    }
+	    return Unit.prototype.begincombatphase.call(this);
 	},       
 	done:true,
         unique: true,
@@ -1310,35 +1261,20 @@ var PILOTS = [
         unit: "TIE Interceptor",
         skill: 5,
         points: 23,
-	resolveroll: function() {
-	    var m0=this.getpathmatrix(this.m.clone().rotate(90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(-90,0,0);
-	    var m1=this.getpathmatrix(this.m.clone().rotate(-90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(90,0,0);
-	    var m2=this.getpathmatrix(this.m.clone().rotate(90,0,0),"BR1").translate(0,(this.islarge?20:0)).rotate(-90,0,0);
-	    var m3=this.getpathmatrix(this.m.clone().rotate(-90,0,0),"BR1").translate(0,(this.islarge?20:0)).rotate(90,0,0);
-	    var m4=this.getpathmatrix(this.m.clone().rotate(90,0,0),"BL1").translate(0,(this.islarge?20:0)).rotate(-90,0,0);
-	    var m5=this.getpathmatrix(this.m.clone().rotate(-90,0,0),"BL1").translate(0,(this.islarge?20:0)).rotate(90,0,0);
-	    this.resolveactionmove(
-		[m0.clone().translate(0,-20),
-		 m0,
-		 m0.clone().translate(0,20),
-		 m1.clone().translate(0,-20),
-		 m1,
-		 m1.clone().translate(0,20),
-		 m2.clone().translate(0,-20),
-		 m2,
-		 m2.clone().translate(0,20),
-		 m3.clone().translate(0,-20),
-		 m3,
-		 m3.clone().translate(0,20),
-		 m4.clone().translate(0,-20),
-		 m4,
-		 m4.clone().translate(0,20),
-		 m5.clone().translate(0,-20),
-		 m5,
-		 m5.clone().translate(0,20)],
+	resolveroll: function(n) {
+	    var p=this.getrollmatrix(this.m);
+	    for (var i=-20; i<=20; i+=20) {
+		var mm=this.m.clone().translate(0,i).rotate(90,0,0);
+		var mn=this.m.clone().translate(0,i).rotate(-90,0,0);
+		p=p.concat([this.getpathmatrix(mm,"BR1").rotate(-90,0,0),
+			    this.getpathmatrix(mn,"BR1").rotate(90,0,0),
+			    this.getpathmatrix(mm,"BL1").rotate(-90,0,0),
+			    this.getpathmatrix(mn,"BL1").rotate(90,0,0)]);
+	    }
+	    this.resolveactionmove(p,
 		function(t,k) {
 		    if (k>5) t.addstress();
-		    t.endaction();
+		    t.endaction(n,"ROLL");
 		},true);
 	    return true;
 	},
@@ -1486,20 +1422,18 @@ var PILOTS = [
 	faction:"REBEL",
 	done:true,
         endattack: function() {
+	    Unit.prototype.endattack.call(this);
 	    var p=this.selectnearbyunits(1,function(t,s) { return (t.team==s.team)&&(s!=t)&&(s.candoaction()); });
 	    if (p.length>0) {
 		var unit=this;
-		this.log("assign a free action to friendly unit");
-		waitingforaction.add(function() {
-		this.resolveactionselection(p,function(k) {
-		    activeunit=p[k];
-		    $("#"+p[k].id).addClass("selected");
-		    center(activeunit);
-		    activeunit.show();
-		    $("#"+unit.id).removeClass("selected");
-		    unit.show();
-		    p[k].freeaction(function() { $("#"+unit.id).addClass("selected"); $("#"+p[k].id).removeClass("selected"); activeunit=unit; unit.endaction(); });
-		});
+		this.doselection(function(n) {
+		    this.log("<b>assign a free action to friendly unit</b>");
+		    this.resolveactionselection(p,function(k) {
+			p[k].doaction(p[k].getactionlist()).done(function() { 
+			    this.select();
+			    this.endnoaction(n);
+			}.bind(this));
+		    }.bind(this));
 		}.bind(this));
 	    }
 	},
@@ -1566,24 +1500,19 @@ var PILOTS = [
         faction:"EMPIRE",
 	done:true,
         endattack: function(c,h) {
+	    Unit.prototype.endattack.call(this,c,h);
 	    if (this.canusefocus()&&h>0) {
 		this.log("can turn "+h+" damage(s) into critical(s)");
-		waitingforaction.add(function() {
-		    this.addaction({type:"FOCUS"},function() { 
-			return this.canusefocus(); }, function() {
-			    var i,l=targetunit.criticals.length-1;
-			    this.removefocustoken();
-			    for (i=0; i<h; i++) 
-				targetunit.faceup(targetunit.criticals[l-i-c])
-			    targetunit.checkdead();
-			    targetunit.show();
-			    Unit.prototype.endattack.call(this,c,h);
-			}.bind(this),function() {
-			    Unit.prototype.endattack.call(this,c,h);
-			}.bind(this));
-		}.bind(this));
-		nextstep();
-	    } else Unit.prototype.endattack.call(this,c,h);
+		this.donoaction([{name:this.name,org:this,type:"FOCUS",action:function(n) {
+		    var i,l=targetunit.criticals.length-1;
+		    this.removefocustoken();
+		    for (i=0; i<h; i++) 
+			targetunit.faceup(targetunit.criticals[l-i-c])
+		    targetunit.checkdead();
+		    targetunit.show();
+		    this.endnoaction(n,"");
+		}.bind(this)}]);
+	    }
 	},
         unique: true,
         unit: "TIE Defender",
@@ -1735,27 +1664,20 @@ var PILOTS = [
         name: "'Echo'",
         faction:"EMPIRE",
 	done:true,
-	resolvedecloak: function() {
+	getdecloakmatrix: function(m) {
 	    var i=0;
-	    var m0=this.getpathmatrix(this.m,"BL2");
-	    var m1=this.getpathmatrix(this.m,"BR2");
+	    var m0=this.getpathmatrix(m,"BL2");
+	    var m1=this.getpathmatrix(m,"BR2");
 	    var p=[m0,m1];
 	    for (i=-20; i<=20; i+=20) {
-		var m2=this.getpathmatrix(this.m.clone().translate(0,i).rotate(90,0,0),"BL2").rotate(-90,0,0);
-		var m3=this.getpathmatrix(this.m.clone().translate(0,i).rotate(-90,0,0),"BL2").rotate(90,0,0);
-		var m4=this.getpathmatrix(this.m.clone().translate(0,i).rotate(90,0,0),"BR2").rotate(-90,0,0);
-		var m5=this.getpathmatrix(this.m.clone().translate(0,i).rotate(-90,0,0),"BR2").rotate(90,0,0);
-		p=p.concat([m2,m3,m4,m5]);
+		var mm=m.clone().translate(0,i).rotate(90,0,0);
+		var mn=m.clone().translate(0,i).rotate(-90,0,0);
+		p=p.concat([this.getpathmatrix(mm,"BL2").rotate(-90,0,0),
+			    this.getpathmatrix(mm,"BR2").rotate(-90,0,0),
+			    this.getpathmatrix(mn,"BL2").rotate(90,0,0),
+			    this.getpathmatrix(mn,"BR2").rotate(90,0,0)]);
 	    }
-	    waitingforaction.add(function() {
-	    this.resolveactionmove(p,
-		function (t,k) {
-		    t.agility-=2; t.iscloaked=false;t.show(); 
-		    SOUNDS.decloak.play();
-		    nextstep();
-		},true);
-	    return true;
-	    }.bind(this));
+	    return p;
 	},          
         unique: true,
         unit: "TIE Phantom",
@@ -1884,34 +1806,22 @@ var PILOTS = [
        	faction:"REBEL",
 	done:true,
         freemove: function() {
-	    waitingforaction.add(function() {
-		this.log("free boost or roll action (select self to cancel)");
-		var m0=this.getpathmatrix(this.m.clone().rotate(90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(-90,0,0);
-		var m1=this.getpathmatrix(this.m.clone().rotate(-90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(90,0,0);
-		this.resolveactionmove(
-		    [m0.clone().translate(0,-20),
-		     m0,
-		     m0.clone().translate(0,20),
-		     m1.clone().translate(0,-20),
-		     m1,
-		     m1.clone().translate(0,20),
-		     this.m,
-		     this.getpathmatrix(this.m,"F1"),
-		     this.getpathmatrix(this.m,"BL1"),
-		     this.getpathmatrix(this.m,"BR1")],
-		    function(t) {
-			this.show();
-			this.endaction();
-		    }.bind(this) ,true);
-	    }.bind(this));
+	    return this.doaction([this.newaction(this.resolveboost,"BOOST"),
+				  this.newaction(this.resolveroll,"ROLL")],
+				 "free boost or barrel roll action");
 	},
 	addfocustoken: function() {
 	    if (this.candoaction()) this.freemove();
 	    Unit.prototype.addfocustoken.call(this);
 	},
-	removefocustoken: function() {
-	    if (this.candoaction()) this.freemove();
-	    Unit.prototype.removefocustoken.call(this);
+	usefocus: function(id) {
+	    this.log("usefocus");
+	    Unit.prototype.usefocus.call(this,id);
+	    this.show();
+	    if (this.candoaction()) {
+		this.log("freemove");
+		this.freemove();
+	    }
 	},
         unique: true,
         unit: "A-Wing",
@@ -2234,19 +2144,15 @@ var PILOTS = [
         name: "Guri",
         faction:"SCUM",
 	/* TODO : may only do the action */
-	init: function() {
-	    var bgp=this.begincombatphase;
-	    this.begincombatphase= function() {
-		bgp.call(this);
-		if (!this.dead) {
-		    var p=this.gettargetableunits(1);
-		    var i;
-		    if (p.length>0) {
-			this.log("+1 <code class='xfocustoken'></code>, ennemy at range 1");
-			this.addfocustoken();
-		    }
+	begincombatphase: function() {
+	    if (!this.dead) {
+		var p=this.gettargetableunits(1);
+		if (p.length>0) {
+		    this.log("+1 <code class='xfocustoken'></code>, ennemy at range 1");
+		    this.addfocustoken();
 		}
 	    }
+	    return Unit.prototype.begincombatphase.call(this);
 	},       
 	done:true,
         unique: true,
@@ -2317,7 +2223,7 @@ var PILOTS = [
 	    Unit.prototype.endbeingattacked.call(this,c,h);
 	    if (c+h==0) {
 		this.log("no hit, +1 <code class='xevadetoken'></code>");
-		this.addevade();
+		this.addevadetoken();
 	    }
 	},        
 	done:true,
@@ -2409,9 +2315,9 @@ var PILOTS = [
     {
         name: "IG-88C",
 	faction:"SCUM",
-        resolveboost: function() {
-	    Unit.prototype.resolveboost.call(this);
-	    this.addevade();
+        resolveboost: function(n) {
+	    Unit.prototype.resolveboost.call(this,n);
+	    this.doaction([this.newaction(this.addevade,"EVADE")],"free evade action");
 	},
         done:true,
         unique: true,
@@ -2498,11 +2404,10 @@ var PILOTS = [
         begincombatphase: function() {
 	    if (!this.dead) {
 		var p=this.selectnearbyunits(2,function(a,b) {return a.team==b.team&&a!=b });
-		/* TODO: should be an option */
 		if (p.length>0) {
-		    p.push(this)
-		    this.log("<b>select a focus/evade token to take (self to cancel)</b>");
-		    waitingforaction.add(function() {
+		    this.doselection(function(n) {
+			p.push(this)
+			this.log("<b>select a focus/evade token to take (self to cancel)</b>");
 			this.resolveactionselection(p,function(k) {
 			    if (this!=p[k]) { 
 				if (p[k].evade>0) { 
@@ -2513,11 +2418,13 @@ var PILOTS = [
 				    this.log("focus taken from "+p[k].name);
 				}
 			    }
-			    nextstep();
+			    this.endnoaction(n,"");
 			}.bind(this));
 		    }.bind(this));
 		}
 	    }
+	    return Unit.prototype.begincombatphase.call(this);
+	    
 	},    
         unit: "Z-95 Headhunter",
         skill: 5,
@@ -2623,23 +2530,7 @@ var PILOTS = [
         name: "Emon Azzameen",
 	done:true,
 	unique:true,
-	init:function() {
-	    var d=Bomb.prototype.drop;
-	    var unit=this;
-	    Bomb.prototype.drop=function(m) {
-		if (this.unit==unit) {
-		    this.log("select location to drop bomb");
-		    this.resolveactionmove(
-			[
-			    unit.getpathmatrix(unit.m.clone().rotate(180,0,0).translate(0,30),"F1"),
-			    unit.getpathmatrix(unit.m.clone().rotate(180,0,0).translate(30,0),"TL3"),
-			    unit.getpathmatrix(unit.m.clone().rotate(180,0,0).translate(-30,0),"TR3"),
-			    unit.getpathmatrix(unit.m.clone().rotate(180,0,0).translate(0,30),"F3")
-			],
-			function(k) { d.call(this,this.m); nextstep(); }.bind(this));
-		} else d.call(this,m);
-	    };
-	},
+	getbomblocation:function() {  return ["F1","TL3","TR3","F3"]; },
 	faction:"SCUM",
         unit: "Firespray-31",
         skill: 6,
@@ -2706,14 +2597,14 @@ var PILOTS = [
 	    var p=this.gettargetableunits(3);
 	    if (p.length>0) {
 		p.push(this);
-		waitingforaction.add(function() {
+		this.doselection(function(n) {
 		    this.log("<b>select new target to lock at the cost of 1 stress (self to cancel)</b>");
 		    this.resolveactionselection(p,function(k) { 
 			if (k<p.length-1&&k>-1&&this.targeting.indexOf(p[k])==-1) { 
 			    this.addtarget(p[k]);
 			    this.addstress();
 			}
-			nextstep();
+			this.endnoaction(n,"TARGET");
 		    }.bind(this));
 		}.bind(this));
 	    }
@@ -2792,9 +2683,9 @@ var PILOTS = [
 	    if (!this.dead) {
 		var p=this.selectnearbyunits(2,function(a,b) {return a.team!=b.team; });
 		if (p.length>0) {
-		    p.push(this)
-		    this.log("<b>select a focus/evade token to take (self to cancel)</b>");
-		    waitingforaction.add(function() {
+		    this.doselection(function(n) {
+			p.push(this)
+			this.log("<b>select a focus/evade token to take (self to cancel)</b>");
 			this.resolveactionselection(p,function(k) {
 			    if (this!=p[k]) { 
 				if (p[k].evade>0) { 
@@ -2805,11 +2696,13 @@ var PILOTS = [
 				    this.log("focus taken from "+p[k].name);
 				}
 			    }
-			    nextstep();
+			    this.endnoaction(n,"");
 			}.bind(this));
 		    }.bind(this));
 		}
 	    }
+	    return Unit.prototype.begincombatphase.call(this);
+
 	},    
 	done:true,
         skill: 5,
@@ -2827,9 +2720,9 @@ var PILOTS = [
 	done:true,
         endactivationphase: function() {
 	    if (!this.dead) {
-		waitingforaction.add(function() {
-		    var p=this.gettargetableunits(2);
-		    if (p.length>0) {
+		var p=this.gettargetableunits(2);
+		if (p.length>0) {
+		    this.doselection(function(n) {
 			this.log("<b>select a pilot to set its skill to 0.</b>");
 			this.resolveactionselection(p,function(k) {
 			    if (this!=p[k]) {
@@ -2844,13 +2737,12 @@ var PILOTS = [
 				    filltabskill();
 				    this.show();
 				    ecp.call(this);
-				    nextstep();
 				};
 			    }
-			    nextstep();
-		    }.bind(this))
+			    this.endnoaction(n,"");
+			}.bind(this));
+		    }.bind(this));
 		}
-	    }.bind(this));
 	    }
 	},  
 	faction:"SCUM",
@@ -2885,21 +2777,22 @@ var PILOTS = [
         skill: 5,
         points: 25,
 	begincombatphase: function() {
-	    waitingforaction.add(function() {
+	    this.doselection(function(n) {
 		var p=this.gettargetableunits(1);
 		var i;
 		if (p.length>0) { 
 		    p.push(this);
-		    this.log("<b>select target to lock</b>");
+		    this.log("<b>select target to lock (self to cancel)</b>");
 		    this.resolveactionselection(p,function(k) {
 			if (this!=p[k]) {
 			    this.addtarget(p[k]);
 			    this.log("target locks "+p[k].name);
 			}
-			nextstep();
+			this.endnoaction(n,"TARGET");
 		    }.bind(this));
-		}
+		} else this.endnoaction(n,"TARGET");
 	    }.bind(this));
+	    return Unit.prototype.begincombatphase.call(this);
 	},
         upgrades: [
             "Elite",
@@ -2924,16 +2817,11 @@ var PILOTS = [
 		    q.push(r);
 		    p.push(this.getpathmatrix(this.m,r));
 		}
-		}
+	    }
 	    this.log("<b>choose speed for maneuver</b>");
-	    waitingforaction.add(function() {
-		    this.resolveactionmove(p,
-					   function(t,k) {
-					       Unit.prototype.completemaneuver.call(t,dial,q[k],difficulty);
-					       nextstep();
-					   },false,true);
-		}.bind(this));
-	    nextstep();
+	    this.resolveactionmove(p,function(t,k) {
+		Unit.prototype.completemaneuver.call(t,dial,q[k],difficulty);
+	    },false,true);
 	},
         upgrades: [
             "Elite",
@@ -2974,6 +2862,281 @@ var PILOTS = [
         upgrades: [
             "Elite",
             "Missile",
-        ],
+        ]
     },
+    {
+        name: "Bossk",
+        faction: "SCUM",
+        unit: "YV-666",
+        unique: true,
+        skill: 7,
+        points: 35,
+        upgrades: [
+            "Elite",
+            "Cannon",
+            "Missile",
+            "Crew",
+            "Crew",
+            "Crew",
+            "Illicit"
+        ]
+    },
+    {
+        name: "Moralo Eval",
+        faction: "SCUM",
+        unit: "YV-666",
+        unique: true,
+        skill: 6,
+        points: 34,
+        upgrades: [
+            "Cannon",
+            "Missile",
+            "Crew",
+            "Crew",
+            "Crew",
+            "Illicit"
+        ]
+    },
+    {
+        name: "Latts Razzi",
+        faction: "SCUM",
+        unit: "YV-666",
+        unique: true,
+        skill: 5,
+        points: 33,
+        upgrades: [
+            "Cannon",
+            "Missile",
+            "Crew",
+            "Crew",
+            "Crew",
+            "Illicit"
+        ]
+    },
+    {
+        name: "Trandoshan Slaver",
+        faction: "SCUM",
+        unit: "YV-666",
+	done:true,
+        skill: 2,
+        points: 29,
+        upgrades: [
+            "Cannon",
+            "Missile",
+            "Crew",
+            "Crew",
+            "Crew",
+            "Illicit"
+        ]
+    },
+    {
+        name: "Talonbane Cobra",
+        unique: true,
+        faction: "SCUM",
+        unit: "Kihraxz Fighter",
+        skill: 9,
+        upgrades: [
+            "Elite",
+            "Missile",
+            "Illicit",
+        ],
+	done:true,
+	getattackbonus: function(sh) {
+	    var att=this.weapons[i].getattack();
+	    return att+2*this.weapons[i].getrangeattackbonus(sh);
+	},
+	getdefensestrength: function(i,sh) {
+	    var def=this.getagility();
+	    var obstacledef=sh.getobstructiondef(this);
+	    if (obstacledef>0) this.log("+"+obstacledef+" defense for obstacle");
+	    return def+2*sh.weapons[i].getdefensebonus(this)+obstacledef;
+	},
+        points: 28,
+    },
+    {
+        name: "Graz the Hunter",
+        unique: true,
+        faction: "SCUM",
+        unit: "Kihraxz Fighter",
+        skill: 6,
+            upgrades: [
+                "Missile",
+                "Illicit",
+            ],
+	getattackstrength: function(i,sh) {
+	    var a=0;
+	    if (this.isinfiringarc(sh)) {
+		a=1;
+		this.log("+1 attack die for attacking "+sh.name+" in firing arc");
+	    }
+	    return Unit.prototype.getattackstrength.call(this,i,sh)+a;
+	},
+	done:true,
+        points: 25
+    },
+    {
+        name: "Black Sun Ace",
+        faction: "SCUM",
+        unit: "Kihraxz Fighter",
+	done:true,
+            skill: 5,
+            upgrades: [
+                "Elite",
+                "Missile",
+                "Illicit",
+            ],
+            points: 23
+        },
+        {
+            name: "Cartel Marauder",
+	    done:true,
+            faction: "SCUM",
+            unit: "Kihraxz Fighter",
+            skill: 2,
+            upgrades: [
+                "Missile",
+                "Illicit",
+            ],
+            points: 20
+        },
+        {
+            name: "Miranda Doni",
+            unique: true,
+            faction: "REBEL",
+            unit: "K-Wing",
+            skill: 8,
+            upgrades: [
+                "Turret",
+                "Torpedo",
+                "Torpedo",
+                "Missile",
+                "Crew",
+                "Bomb",
+                "Bomb",
+            ],
+            points: 29,
+        },
+        {
+            name: "Esege Tuketu",
+            unique: true,
+            faction: "REBEL",
+            unit: "K-Wing",
+            skill: 6,
+            upgrades: [
+                "Turret",
+                "Torpedo",
+                "Torpedo",
+                "Missile",
+                "Crew",
+                "Bomb",
+                "Bomb",
+            ],
+            points: 28
+        },
+        {
+            name: "Guardian Squadron Pilot",
+            faction: "REBEL",
+	    done:true,
+            unit: "K-Wing",
+            skill: 4,
+            upgrades: [
+                "Turret",
+                "Torpedo",
+                "Torpedo",
+                "Missile",
+                "Crew",
+                "Bomb",
+                "Bomb",
+            ],
+            points: 25
+        },
+        {
+            name: "Warden Squadron Pilot",
+            faction: "REBEL",
+	    done:true,
+            unit: "K-Wing",
+            skill: 2,
+            upgrades: [
+                "Turret",
+                "Torpedo",
+                "Torpedo",
+                "Missile",
+                "Crew",
+                "Bomb",
+                "Bomb",
+            ],
+            points: 23
+        },
+        {
+            name: "'Redline'",
+            unique: true,
+            faction: "EMPIRE",
+            unit: "TIE Punisher",
+            skill: 7,
+            upgrades: [
+                "System",
+                "Torpedo",
+                "Torpedo",
+                "Missile",
+                "Missile",
+                "Bomb",
+                "Bomb",
+            ],
+            points: 27
+        },
+        {
+            name: "'Deathrain'",
+            unique: true,
+            id: 144,
+            faction: "EMPIRE",
+            unit: "TIE Punisher",
+            skill: 6,
+            upgrades: [
+                "System",
+                "Torpedo",
+                "Torpedo",
+                "Missile",
+                "Missile",
+                "Bomb",
+                "Bomb",
+            ],
+            points: 26
+        },
+        {
+            name: "Black Eight Squadron Pilot",
+            faction: "EMPIRE",
+	    done:true,
+            id: 145,
+            unit: "TIE Punisher",
+            skill: 4,
+            upgrades: [
+                "System",
+                "Torpedo",
+                "Torpedo",
+                "Missile",
+                "Missile",
+                "Bomb",
+                "Bomb",
+            ],
+            points: 23
+        },
+        {
+            name: "Cutlass Squadron Pilot",
+            faction: "EMPIRE",
+	    done:true,
+            id: 146,
+            unit: "TIE Punisher",
+            skill: 2,
+            upgrades: [
+                "System",
+                "Torpedo",
+                "Torpedo",
+                "Missile",
+                "Missile",
+                "Bomb",
+                "Bomb",
+            ],
+            points: 21
+        },
+
 ];
