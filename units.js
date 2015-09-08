@@ -1378,7 +1378,7 @@ Unit.prototype = {
 	$("#atokens > .xfocustoken").remove();
     },
     usefocus:function(id) {
-	this.log((phase==COMBAT_PHASE)+" "+phase);
+	//this.log((phase==COMBAT_PHASE)+" "+phase);
 	if (phase==COMBAT_PHASE) {
 	    if (this==activeunit) {
 		this.usefocusattack(id);
