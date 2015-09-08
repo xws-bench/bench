@@ -34,7 +34,7 @@ IAUnit.prototype= {
 			var s=this.getSectorString(3,mm);
 			for (j=0; j<p.length; j++) if (this.isPointInside(s,p[j])) n++;
 			if (n>0) {
-			    n=n+(COLOR.length-i);
+			    //n=n+(COLOR.length-i);
 			    if (d.difficulty=="RED") n=n/2;
 			    q.push({n:n,m:i});
 			}
@@ -172,7 +172,8 @@ IAUnit.prototype= {
     },
     doattack: function(forced) {
 	//this.log("attack?"+forced+" "+(skillturn==this.skill)+" "+this.canfire());
-	if (forced||(phase==COMBAT_PHASE&&skillturn==this.skill&&this.canfire())) {
+	this.select();
+	if ((phase==COMBAT_PHASE&&skillturn==this.skill&&this.canfire())) {
 	    var r=this.gethitrangeallunits();
 	    //this.log("ia/doattack");
 	    var wn=[];
@@ -187,11 +188,11 @@ IAUnit.prototype= {
 	    }
 	    if (wn.length>0) {
 		//this.log("ia/doattack >"+wn[0].name);
-		this.selecttargetforattack(wn[0]);
+      		this.selecttargetforattack(wn[0]);
 		//console.log("ia/doattack "+this.name+"<select target");
 	    } else {
 		//console.log("ia/doattack:no target");
-		this.hasfired++;this.show(); this.cleanupattack();
+		this.hasfired++;this.show(); this.deferred.resolve();
 	    }
 	}   
     },
