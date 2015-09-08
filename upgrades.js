@@ -2895,13 +2895,37 @@ var UPGRADES= [
 	    },
 	    islarge:false,
         },
-        {
-            name: "Twin Laser Turret",
-            type: "Turret",
-            points: 6,
-            attack: 3,
-            range: [2,3],
-        },
+    {
+	name: "Twin Laser Turret",
+	type: "Turret",
+	points: 6,
+	done:true,
+	attack: 3,
+	range: [2,3],
+	modifydamageassigned: function(ch,target) {
+	    if (ch>0) {
+		ch=1;
+		this.unit.log(this.name+": 1<code class='hit'></code> assigned to "+target.name);
+	    }
+	    return ch;
+	},	
+	init: function(sh) {
+	    var m=this;
+	    var tlt=-1;
+	    var ea=sh.endattack;
+	    sh.endattack=function(c,h) {
+		ea.call(this,c,h);
+		if (tlt<round) {
+		    tlt=round;
+		    this.log("active:"+this.weapons[this.activeweapon].name);
+		    if (this.weapons[this.activeweapon]==m) {
+			this.log(m.name+": 2nd attack");
+			this.resolveattack(this.activeweapon,targetunit); 
+		    }
+		}
+	    }
+	}
+    },
         {
             name: "Plasma Torpedoes",
             type: "Torpedo",
@@ -2909,30 +2933,43 @@ var UPGRADES= [
             attack: 4,
             range: [2,3]
         },
-        {
-            name: "Ion Bombs",
-            type: "Bomb",
-            points: 2,
-        },
+    {
+	name: "Ion Bombs",
+	type: "Bomb",
+	points: 2,
+	done:true,
+	img:"proton.png",
+	explode: function() {
+	    if (phase==ACTIVATION_PHASE&&!this.exploded) {
+		var r=this.getrangeallunits();
+		BOMBS.splice(BOMBS.indexOf(this),1);
+		Bomb.prototype.explode.call(this);
+		for (var i=0; i<r[1].length; i++) {
+		    squadron[r[1][i].unit].addiontoken();
+		    squadron[r[1][i].unit].addiontoken();
+		}
+	    }
+	}
+    },
         {
             name: "Conner Net",
             type: "Bomb",
             points: 4,
         },
-        {
-            name: "Bombardier",
-            type: "Crew",
-            points: 1,
-	    done:true,
-	    init:function(sh) {
-		var gbl=sh.getbomblocation;
-		sh.getbomblocation=function() {
-		    var d=gbl.call(this);
-		    if (d.indexOf("F1")>-1) return d.concat("F2");
-		    return d;
-		}
+    {
+	name: "Bombardier",
+	type: "Crew",
+	points: 1,
+	done:true,
+	init:function(sh) {
+	    var gbl=sh.getbomblocation;
+	    sh.getbomblocation=function() {
+		var d=gbl.call(this);
+		if (d.indexOf("F1")>-1) return d.concat("F2");
+		return d;
 	    }
-        },
+	}
+    },
         {
             name: "'Crack Shot'",
             type: "Elite",
@@ -2946,10 +2983,24 @@ var UPGRADES= [
             range: [2,2]
         },
    {
-            name: "Advanced SLAM",
+       name: "Advanced SLAM",
        type:"Mod",
-            points: 2,
-        },
+       done:true,
+       points: 2,
+       init: function(sh) {
+	   var da=sh.doaction;
+	   sh.doaction= function(la) {
+	       var dar=da.call(this,la)
+	       dar.then(function(r) {
+		       if (r=="SLAM"&&this.ocollision.overlap==-1
+			   &&this.ocollision.template==0
+			   &&!this.collision) {
+			   return da.call(this,this.getactionbarlist());
+		       } else return dar;
+		   }.bind(this));
+	   }
+       }
+   },
         {
             name: "Twin Ion Engine Mk. II",
 	    type:"Mod",
