@@ -23,17 +23,21 @@ IAUnit.prototype= {
 	// Find all possible moves, with no collision and with units in range 
 	    var COLOR=[GREEN,WHITE,YELLOW];
 	    this.evaluatepositions(true,true);
-	    for (c=0; c<COLOR.length&&q.length==0; c++) {
+	    for (c=0; c<COLOR.length; c++) {
 		//log("find positions with color "+c);
-		for (i=0; i<gd.length&&q.length==0; i++) {
+		for (i=0; i<gd.length; i++) {
 		    var d=gd[i];
 		    var mm=this.getpathmatrix(this.m.clone().scale(scale),gd[i].move);
 		    //log(this.name+":"+d.move+":"+(d.difficulty=="RED"));
-		    if (d.color==COLOR[c]&&(d.difficulty!="RED")) {
+		    if (d.color==COLOR[c]) {
 			var n=0;
 			var s=this.getSectorString(3,mm);
 			for (j=0; j<p.length; j++) if (this.isPointInside(s,p[j])) n++;
-			if (n>0) q.push({n:n,m:i});
+			if (n>0) {
+			    n=n+(COLOR.length-i);
+			    if (d.difficulty=="RED") n=n/2;
+			    q.push({n:n,m:i});
+			}
 		    }
 		}
 	    }
@@ -43,6 +47,7 @@ IAUnit.prototype= {
 	if (q.length==0) q=findpositions(gd,p,2);
 	if (q.length>0) {
 	    q.sort(function(a,b) { return b.n-a.n; });
+	    //for (i=0; i<q.length; i++) this.log(">"+q[i].n+" "+gd[q[i].m].move);
 	    d=q[0].m;
 	    //if (typeof gd[d] == "undefined") log("GD NON DEFINI POUR "+this.name+" "+gd.length+" "+d);	    
 	} else {
@@ -186,7 +191,7 @@ IAUnit.prototype= {
 		//console.log("ia/doattack "+this.name+"<select target");
 	    } else {
 		//console.log("ia/doattack:no target");
-		this.hasfired++;this.show(); this.deferred.resolve();
+		this.hasfired++;this.show(); this.cleanupattack();
 	    }
 	}   
     },
