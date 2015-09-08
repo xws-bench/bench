@@ -3,7 +3,7 @@ var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.6.3";
+var VERSION="v0.6.4";
 var LANG="en";
 var DECLOAK_PHASE=1;
 var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE1=0,SELECT_PHASE2=1;
@@ -84,58 +84,7 @@ Base64 = {
     }
 }
 
-function ActionQueue() {
-    this.queue=[];
-    this.isexecuting=false;
-}
-ActionQueue.prototype= {
-    add: function(f) {
-	/*if (!this.isexecuting&&!activeunit.incombat) {
-	    this.isexecuting=true;
-	    activeunit.show();
-	    f.call()
-	} else*/ this.queue.push(f);
-    },
-    next: function() {
-	if (this.queue.length>0) {
-	    var f;
-	    f=this.queue.shift();
-	    this.isexecuting=true;
-	    activeunit.show();
-	    f.call();
-	    return true;
-	} 
-	this.isexecuting=false;
-	return false;
-    },
-}
-waitingforaction=new ActionQueue();
 
-function nextstep() {
-    var i;
-    //console.log("nextstep:"+phase+" "+activeunit.name);
-    if (activeunit.incombat) return;
-    //console.log("nextstep:waitingforaction.next(begin):"+waitingforaction.queue.length);
-    if (!waitingforaction.next()&&waitingforaction.queue.length==0) {
-	//console.log("nextstep:"+activeunit.name);
-	switch(phase) {
-	case PLANNING_PHASE:
-	    enablenextphase();
-// removed code
-	    break;
-	case ACTIVATION_PHASE:
-	    enablenextphase();
-	    //console.log("nextstep:nextactivation");
-	    //if (subphase==DECLOAK_PHASE) nextdecloak();
-	    //else nextactivation();
-	    break;
-	case COMBAT_PHASE:
-	    //console.log("nextstep:nextcombat");
-	    //nextcombat();
-	    break;
-	}
-    }
-}
 function center() {
     var bbox=activeunit.g.getBBox();
     var xx=(bbox.x+bbox.width/2);
@@ -157,28 +106,6 @@ function center() {
     activeunit.show();
 }
 
-function prevselect() {
-    if(waitingforaction.isexecuting||activeunit.incombat) { return; }
-    if (phase==ACTIVATION_PHASE||phase==COMBAT_PHASE) {
-	if (skillturn==-1) return;
-	active=(active==0)?tabskill[skillturn].length-1:active-1;
-	tabskill[skillturn][active].select();
-    } else { 
-	active=(active==0)?squadron.length-1:active-1; 
-	squadron[active].select();
-    }
-}
-function nextselect() {
-    if(waitingforaction.isexecuting||activeunit.incombat) { return; }
-    if (phase==ACTIVATION_PHASE||phase==COMBAT_PHASE) {
-	if (skillturn==-1) return;
-	active=(active==tabskill[skillturn].length-1)?0:active+1;
-	tabskill[skillturn][active].select();
-    } else {
-	active=(active==squadron.length-1)?0:active+1;
-	squadron[active].select();
-    }
-}
 function hitrangetostr(r) {
     var str="";
     var i,j,k,h;
@@ -277,6 +204,20 @@ function allunitlist() {
     $("#listunits").html(unitstostr()); 
     window.location="#modal";
 }
+function nextunit(cando, changeturn,changephase,activenext) {
+    var i,sk=false,last=0;
+    for (i=0; i<tabskill[skillturn].length; i++) {
+	if (cando(tabskill[skillturn][i])) { sk=true; last=i; break;} 
+    };
+    if (!sk) {
+	do changeturn(tabskill);
+	while (skillturn>=0 && skillturn<=12&& tabskill[skillturn].length==0);
+    }
+    if (skillturn==-1||skillturn==13) return changephase();
+    active=last; 
+    tabskill[skillturn][last].select();
+    activenext();
+}
 function nextcombat() {
     nextunit(function(t) { return t.canfire(); },
 	     function(list) { 
@@ -297,20 +238,6 @@ function nextcombat() {
 		 activeunit.beginattack();
 		 activeunit.doattack(false);
 	     });
-}
-function nextunit(cando, changeturn,changephase,activenext) {
-    var i,sk=false,last=0;
-    for (i=0; i<tabskill[skillturn].length; i++) {
-	if (cando(tabskill[skillturn][i])) { sk=true; last=i; break;} 
-    };
-    if (!sk) {
-	do changeturn(tabskill);
-	while (skillturn>=0 && skillturn<=12&& tabskill[skillturn].length==0);
-    }
-    if (skillturn==-1||skillturn==13) return changephase();
-    active=last; 
-    tabskill[skillturn][last].select();
-    activenext();
 }
 function nextactivation() {
     nextunit(function(t) { return t.candomaneuver(); },
@@ -338,6 +265,10 @@ function nextplanning() {
 	squadron[active].select();
 	activeunit.doplan();
     }
+}
+function addattackdie(type,n) {
+    for (var i=0; i<n; i++) 
+	$("#attack").append("<td class="+type+"reddice'></td>");
 }
 function addroll(f,n,id) {
     var i,j=0;
@@ -517,8 +448,6 @@ var keybindings={
 	}}
     ],
     select:[
-	{k:'n', f:nextselect},
-	{k:'shift+n',f:prevselect}
     ]
 };
 

@@ -132,7 +132,9 @@ var A = {
     LASER:{key:"%",color:RED},
     TURRETLASER:{key:"$",color:RED},
     BILASER:{key:"%",color:RED},
-    NOTHING:{key:"&nbsp;",color:WHITE}
+    NOTHING:{key:"&nbsp;",color:WHITE},
+    HIT:{key:"d",color:WHITE},
+    SHIELD:{key:"v",color:YELLOW}
 };
 var AINDEX = ["ROLL","FOCUS","TARGET","EVADE","BOOST","STRESS","CLOAK","ISTARGETED","ASTRO","CANNON","CREW","MISSILE","TORPEDO","ELITE","TURRET","UPGRADE","CRITICAL","NOTHING"];
 
@@ -1296,14 +1298,14 @@ Unit.prototype = {
 	var c=Math.floor(ch/10);
 	var h=ch-c*10;;
 	this.hasdamaged=true;
+	this.hitresolved=0;
+	this.criticalresolved=0;
 	if (c+h>0) {
 	    if (c+h<targetunit.shield) targetunit.log("lost "+(c+h)+" <p class='cshield'></p>");
 	    else if (targetunit.shield>0) targetunit.log("lost all <p class='cshield'></p>")
 	    targetunit.ishit(this);
-	    this.hitresolved+=h;
-	    this.criticalresolved+=c;
-	    targetunit.resolvehit(h);
-	    targetunit.resolvecritical(c);
+	    this.hitresolved=targetunit.resolvehit(h);
+	    this.criticalresolved=targetunit.resolvecritical(c);
 	} 
 	targetunit.endbeingattacked(c,h);
 	this.weapons[this.activeweapon].endattack(c,h);
@@ -1597,7 +1599,7 @@ Unit.prototype = {
     endnoaction: function(n,type) {
 	this.show();
 	this.actionr[n].resolve(type);
-	//this.log("solving "+n+" "+(this.actionr.length-1))
+	this.log("solving "+n+" "+(this.actionr.length-1))
 	if (n==this.actionr.length-1) this.actionrlock.resolve();
     },
     endaction: function(n,type) {
@@ -1654,7 +1656,7 @@ Unit.prototype = {
 	var def=this.getagility();
 	var obstacledef=sh.getobstructiondef(this);
 	if (obstacledef>0) this.log("+"+obstacledef+" defense for obstacle");
-	return def+sh.weapons[i].getdefensebonus(this)+obstacledef;
+	return def+sh.weapons[i].getrangedefensebonus(this)+obstacledef;
     },
     getattackmodtokens: function(m,n) {
 	var str="";
@@ -2531,7 +2533,8 @@ Unit.prototype = {
 	r[round].hits+=n;
     },
     resolvehit: function(n) {
-	if (n==0) return;
+	var s=0;
+	if (n==0) return 0;
 	if (this.shield>n) this.removeshield(n);
 	else {
 	    var s=n-this.shield;
@@ -2539,9 +2542,11 @@ Unit.prototype = {
 	    if (s>0) this.applydamage(s);
 	}
 	this.showstats();
+	return s;
     },
     resolvecritical: function(n) {
-	if (n==0) return;
+	var s=0;
+	if (n==0) return 0;
 	if (this.shield>n) this.removeshield(n);
 	else {
 	    var s=n-this.shield;
@@ -2549,6 +2554,7 @@ Unit.prototype = {
 	    if (s>0) this.applycritical(s);
 	}
 	this.showstats();
+	return s;
     },
     removehull: function(n) {
 	record(this.id,"removehull("+(n)+")");
