@@ -1312,7 +1312,6 @@ Unit.prototype = {
 	this.cleanupattack();
     },
     cleanupattack: function() {
-	this.incombat=-1;
 	//this.hasfired=0;
 	//log("calling nextstep from cleanup");
 	//this.log("cleanupattack "+this.name+">nextstep()");
@@ -1345,7 +1344,6 @@ Unit.prototype = {
     },
     endbeingattacked: function(c,h) {
 	this.show();
-	this.activeweapon=-1;
     },
     showpossiblepositions:function() {
 	this.evaluatepositions(true,true);
@@ -1831,8 +1829,9 @@ Unit.prototype = {
 	$("#dtokens > button").text("Fire!")
 	    .click(function() {
 		$("#combatdial").hide();
-		this.endnoaction(incombat);
 		this.resolvedamage()
+		this.endnoaction(incombat);
+		this.incombat=-1;
 	    }.bind(squadron[me]));
 	var change=function() { 
 	    if ($(this).hasClass("focusgreendice")) {
