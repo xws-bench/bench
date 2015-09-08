@@ -188,6 +188,7 @@ IAUnit.prototype= {
 		}
 	    }
 	    if (wn.length>0) {
+		this.activeweapon=0;
 		//this.log("ia/doattack >"+wn[0].name);
       		this.selecttargetforattack(wn[0]);
 		//console.log("ia/doattack "+this.name+"<select target");
@@ -199,7 +200,7 @@ IAUnit.prototype= {
     },
     doattackroll: function(ar,da,defense,me,n) {
 	var i,j,str="";
-	$("#attackdial").empty();
+	$("#attackdial").empty().show();
 	$("#defense").empty();
 	$("#dtokens").empty();
 	//console.log("ia/doattackroll:"+this.name+" with "+da+" dices");
@@ -257,10 +258,11 @@ IAUnit.prototype= {
 	    if (a.req(ar,da)) addroll(a.f,ar,(i+j+this.ATTACKMODA.length));
 	}   
 	if (str!="") {
-	    $("#atokens").html(str);
+	    $("#atokens").html(str).show();
 	    $("#atokens").append("<button onclick='$(\"#atokens\").empty(); targetunit.dodefenseroll(targetunit.defenseroll("+defense+")"+","+defense+","+me+","+n+"'>Done</button>");
 	} else {
-	    $("#atokens").empty(); targetunit.dodefenseroll(targetunit.defenseroll(defense),defense,me,n);
+	    $("#atokens").empty(); 
+	    targetunit.dodefenseroll(targetunit.defenseroll(defense),defense,me,n);
 	}
     },
     dodefenseroll: function(dr,dd,me,n) {
@@ -304,9 +306,10 @@ IAUnit.prototype= {
 	$("#dtokens").append("<button>");
 	$("#dtokens > button").text("Fire!").click(function() {
 		$("#combatdial").hide();
-		this.endnoaction(incombat);
 		this.resolvedamage();
-	    }.bind(squadron[me]))
+		this.endnoaction(incombat);
+		this.incombat=-1;
+	    }.bind(squadron[me])).show();
 	//log("defense roll: f"+f+" e"+e+" b"+(dd-e-f));
     },
 };
