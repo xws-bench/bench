@@ -165,24 +165,25 @@ IAUnit.prototype= {
 		}
 		this.resolveaction(a,n);
 	    }
-	}.bind(this));
+	    }.bind(this),"doaction ia");
     },
     showattack: function() {
 	$("#attackdial").empty();
     },
     doattack: function(forced) {
 	//this.log("attack?"+forced+" "+(skillturn==this.skill)+" "+this.canfire());
-	this.select();
-	if ((phase==COMBAT_PHASE&&skillturn==this.skill&&this.canfire())) {
+	if (phase==COMBAT_PHASE&&skillturn==this.skill) {
 	    var r=this.gethitrangeallunits();
 	    //this.log("ia/doattack");
 	    var wn=[];
 	    var i,j,w;
-	    for (i=1; i<=3; i++) {
-		for (j=0; j<r[i].length; j++) {
-		    for (w=0; w<r[i][j].wp.length; w++) {
-			var wp=r[i][j].wp[w];
-			if (wn.indexOf(wp)==-1) wn.push(wp);
+	    if (this.canfire()) {
+		for (i=1; i<=3; i++) {
+		    for (j=0; j<r[i].length; j++) {
+			for (w=0; w<r[i][j].wp.length; w++) {
+			    var wp=r[i][j].wp[w];
+			    if (wn.indexOf(wp)==-1) wn.push(wp);
+			}
 		    }
 		}
 	    }
@@ -196,7 +197,7 @@ IAUnit.prototype= {
 	    }
 	}   
     },
-    doattackroll: function(ar,da,defense,me) {
+    doattackroll: function(ar,da,defense,me,n) {
 	var i,j,str="";
 	$("#attackdial").empty();
 	$("#defense").empty();
@@ -257,12 +258,12 @@ IAUnit.prototype= {
 	}   
 	if (str!="") {
 	    $("#atokens").html(str);
-	    $("#atokens").append("<button onclick='$(\"#atokens\").empty(); targetunit.dodefenseroll(targetunit.defenseroll("+defense+")"+","+defense+","+me+"'>Done</button>");
+	    $("#atokens").append("<button onclick='$(\"#atokens\").empty(); targetunit.dodefenseroll(targetunit.defenseroll("+defense+")"+","+defense+","+me+","+n+"'>Done</button>");
 	} else {
-	    $("#atokens").empty(); targetunit.dodefenseroll(targetunit.defenseroll(defense),defense,me);
+	    $("#atokens").empty(); targetunit.dodefenseroll(targetunit.defenseroll(defense),defense,me,n);
 	}
     },
-    dodefenseroll: function(dr,dd,me) {
+    dodefenseroll: function(dr,dd,me,n) {
 	var i,j;
 	var f=Math.floor(dr/10);
 	//console.log("ia/dodefenseroll:"+this.name);
@@ -300,7 +301,12 @@ IAUnit.prototype= {
 	    var a=this.DEFENSEMODD[j];
 	    if (a.req(dr,dd)) modrolld(a.f,dr,i+j);
 	}   
-	$("#dtokens").append("<button onclick='$(\"#combatdial\").hide();squadron["+me+"].resolvedamage()'>Fire!</button>");
+	$("#dtokens").append("<button>");
+	$("#dtokens > button").text("Fire!").click(function() {
+		$("#combatdial").hide();
+		this.actionr[incombat].resolve();
+		this.resolvedamage()
+		    }.bind(squadron[me]))
 	//log("defense roll: f"+f+" e"+e+" b"+(dd-e-f));
     },
 };
