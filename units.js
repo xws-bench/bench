@@ -2204,7 +2204,7 @@ Unit.prototype = {
 //?28;36;&56;#
     beginplanningphase: function() {
 	this.actionr = [$.Deferred().resolve()];
-	this.actionrlock=$.when();
+	this.actionrlock=$.Deferred().resolve();
 	return this.newlock();
     },
     beginactivationphase: function() {
