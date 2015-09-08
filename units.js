@@ -106,6 +106,7 @@ var P;
 // Table of actions
 var A = {
     ROLL:{key:"r",color:GREEN},
+    SLAM:{key:"L",color:BLUE},
     FOCUS:{key:"f",color:GREEN},
     TARGET:{key:"l",color:BLUE},
     EVADE:{key:"e",color:GREEN},
@@ -172,6 +173,7 @@ function Unit(team) {
     this.ship.select+="</select>";
     this.shipactionList=[];
     this.dial=[];
+    this.ordnance=false;
     this.dialselect="<div id='dial"+id+"' class='table'></div>";
     this.pts="<div class='pts' id='pts"+id+"'></div>";
     this.text="<div id='text"+id+"' class='details'></div>";
@@ -195,7 +197,7 @@ Unit.prototype = {
     tosquadron: function(s) {
 	var upgs=this.upg;
 	//log(this.name+" has touching");
-	this.incombat=false;
+	this.incombat=-1;
 	this.touching=[];
 	this.maneuver=-1;
 	this.action=-1;
@@ -205,6 +207,7 @@ Unit.prototype = {
 	this.actiondone=false;
 	this.reroll=0;
 	this.focus=0;
+	this.lastmaneuver=-1;
 	this.iscloaked=false;
 	this.target=0;
 	this.istargeted=[];
@@ -414,7 +417,7 @@ Unit.prototype = {
 	if ((this.ionized>0&&!this.islarge) || this.ionized>1) return [{move:"F1",difficulty:"WHITE"}];
 	return this.dial;
     },
-    doplan: function() { this.showdial(); },
+    doplan: function() { this.showdial(); return this.deferred; },
     showdial: function() {
 	var m=[],i,j,d;
 	var gd=this.getdial();
@@ -525,7 +528,7 @@ Unit.prototype = {
 	    if (typeof u.faction != "undefined" 
 		&& u.faction!=p.faction) continue;
 	    if (typeof u.ship != "undefined" 
-		&& u.ship!=p.unit) continue;
+		&& p.unit.search(u.ship)==-1) continue;
 	    if (typeof u.ishuge != "undefined") continue;
 	    if (typeof u.islarge != "undefined" 
 		&& this.islarge!=true) continue;
@@ -653,7 +656,9 @@ Unit.prototype = {
 	if (pts<0) pts=0;
 	$("#pts"+this.id+"_"+upgid).html(pts);
 	var u=UPGRADES[upgrade];
-	$("#upgradetext"+this.id+"_"+upgid).prepend("<div class='upgtxt details'>"+(u.attack?"<b class='statfire'>"+u.attack+"</b>["+u.range[0]+"-"+u.range[1]+"], ":"")+formatstring(UPGRADE_translation[u.name+(type=="Crew"?"(Crew)":"")].text)+"</div>");
+	var text=UPGRADE_translation[u.name+(type=="Crew"?"(Crew)":"")];
+	if (typeof text=="undefined"||typeof text.text=="undefined") text=""; else text=formatstring(text.text);
+	$("#upgradetext"+this.id+"_"+upgid).prepend("<div class='upgtxt details'>"+(u.attack?"<b class='statfire'>"+u.attack+"</b>["+u.range[0]+"-"+u.range[1]+"], ":"")+text+"</div>");
 
 	/* Add action */
 	var addedaction=UPGRADES[upgrade].addedaction;
@@ -935,13 +940,15 @@ Unit.prototype = {
 	return [p1,p2,p3,p4];
     },
     setmaneuver: function(i) {
-	if (this.getdial()[i].difficulty=="RED"&&this.stress>0) return;
+	this.lastmaneuver=this.maneuver;
+	//if (this.getdial()[i].difficulty=="RED"&&this.stress>0) return;
 	this.maneuver=i;
 	record(this.id,"this.maneuver="+i);
-	enablenextphase();
+	//enablenextphase();
 	this.showdial();
 	this.showmaneuver();
-	nextstep();
+	if (typeof this.deferred == "undefined") this.log("undefined deferred");
+	this.deferred.notify();
     },
     nextmaneuver: function() {
 	if (this.maneuver<0) { this.maneuver=0; }
@@ -981,13 +988,20 @@ Unit.prototype = {
 	this.show();
     },
     select: function() {
-	if (waitingforaction.isexecuting||activeunit.incombat) return;
-	var old=activeunit;
-	activeunit=this;
-	if (old!=this) old.unselect();
-	$("#"+this.id).addClass("selected");
-	this.show();
-        center(this);
+	/* TODO */
+	if (phase<ACTIVATION_PHASE
+	    ||(phase==ACTIVATION_PHASE)
+	    ||(phase==COMBAT_PHASE)) {
+	    //if (this!=activeunit) $("#activationdial").hide();
+	    //else $("#activationdial").show();
+	    var old=activeunit;
+	    activeunit=this;
+	    if (old!=this) old.unselect();
+	    $("#"+this.id).addClass("selected");
+	    this.show();
+	    center(this);
+	}
+	return this;
     },
     unselect: function() {
 	if (this==activeunit) return;
@@ -1097,11 +1111,33 @@ Unit.prototype = {
     isTurret: function(w) {
 	return (w.type=="Turretlaser");
     },
-    getshipactionlist: function() {
+    candoactivation:function() {
+	return this.maneuver!=-1;
+    },
+    newaction:function(a,str) {
+	return {action:a,org:this,type:str,name:str};
+    },
+    getactionbarlist: function() {
 	var i,al=[];
+	var ftrue=function() { return true; }
 	for (i=0; i<this.shipactionList.length; i++) {
 	    var a=this.shipactionList[i];
-	    if (this.actionsdone.indexOf(a)==-1) al.push(a);
+	    /* TODO actionsdone */
+	    if (this.actionsdone.indexOf(a)==-1) {
+		switch(a) {
+		    case "CLOAK": if (this.candocloak()) 
+			al.push(this.newaction(this.addcloak,"CLOAK")); break;
+		    case "FOCUS": if (this.candofocus()) 
+			al.push(this.newaction(this.addfocus,"FOCUS")); break;
+		    case "EVADE": if (this.candoevade()) 
+			al.push(this.newaction(this.addevade,"EVADE")); break;
+		    case "TARGET":if (this.candotarget()) 
+			al.push(this.newaction(this.resolvetarget,"TARGET"));break;
+		    case "BOOST":al.push(this.newaction(this.resolveboost,"BOOST"));break;
+		    case "ROLL":al.push(this.newaction(this.resolveroll,"ROLL"));break;
+		    case "SLAM":al.push(this.newaction(this.resolveslam,"SLAM"));
+		}
+	    }
 	}
 	return al;
     },
@@ -1109,7 +1145,9 @@ Unit.prototype = {
 	var i,al=[];
 	for (i=0; i<this.upgrades.length; i++) {
 	    var upg=this.upgrades[i];
-	    if (upg.isactive&&typeof upg.action=="function"&&upg.candoaction()) al.push(upg.type.toUpperCase());
+	    if ((this.actionsdone.indexOf(upg.name)==-1)
+		&&upg.isactive&&typeof upg.action=="function"&&upg.candoaction()) 
+		al.push({org:upg,action:upg.action,type:upg.type.toUpperCase(),name:upg.name});
 	}
 	return al;
     },
@@ -1117,36 +1155,37 @@ Unit.prototype = {
 	var i,al=[];
 	for (i=0; i<this.criticals.length; i++) {
 	    var crit=this.criticals[i];
-	    if (crit.isactive&&typeof crit.action=="function") al.push("CRITICAL");
+	    if ((this.actionsdone.indexOf(crit.name)==-1)
+		&&crit.isactive&&typeof crit.action=="function") {
+		crit.type="CRITICAL"; crit.org=crit;
+		al.push(crit);
+	    }
 	}
 	return al;
     },
-    updateactionlist: function() {
-	var i;
-	var sal=this.getshipactionlist();
+    getactionlist: function() {
+	var sal=this.getactionbarlist();
 	var ual=this.getupgactionlist();
 	var cal=this.getcritactionlist();
-	this.actionList=sal.concat(ual).concat(cal);
+	return sal.concat(ual).concat(cal);
     },
     addevadetoken: function() {
 	this.evade++;
 	this.show();
 	record(this.id,"TE");
     },
-    addevade: function() { 
+    addevade: function(n) { 
 	this.addevadetoken(); 
-	this.endaction();
-	return true;
+	this.endaction(n,"EVADE");
     },
     addfocustoken: function() {
 	this.focus++;
 	this.show();
 	record(this.id,"TF");
     },
-    addfocus: function() { 
+    addfocus: function(n) { 
 	this.addfocustoken(); 
-	this.endaction();
-	return true;
+	this.endaction(n,"FOCUS");
     },
     addstress: function() {
 	this.stress++;
@@ -1266,14 +1305,16 @@ Unit.prototype = {
 	this.cleanupattack();
     },
     cleanupattack: function() {
-	this.incombat=false;
+	this.incombat=-1;
+	//this.hasfired=0;
 	//log("calling nextstep from cleanup");
-	//console.log("cleanupattack "+this.name+">nextstep()");
-	nextstep();
+	//this.log("cleanupattack "+this.name+">nextstep()");
+	this.actionbarrier();
 	//console.log("cleanupattack "+this.name+"<nextstep()");
     },
     endround: function() {
 	this.focus=this.evade=0;
+	this.hasfired=0;
 	this.ocollision.overlap=-1;
 	this.ocollision.template=0;
 	this.collision=false;
@@ -1320,11 +1361,6 @@ Unit.prototype = {
 	    else gd[i].color=this.getmovecolor(mm,withcollisions,withobstacles);
 	}
     },
-    usecloak: function(id) {
-	if ((!waitingforaction.isexecuting)&&(phase==ACTIVATION_PHASE)&&!this.hasmoved&&!this.hasdecloaked) {
-	    this.resolvedecloak();
-	}
-    },
     usestress: function(id) {
     },
     usefocusattack: function(id) {
@@ -1338,6 +1374,7 @@ Unit.prototype = {
 	$("#atokens > .xfocustoken").remove();
     },
     usefocus:function(id) {
+	this.log((phase==COMBAT_PHASE)+" "+phase);
 	if (phase==COMBAT_PHASE) {
 	    if (this==activeunit) {
 		this.usefocusattack(id);
@@ -1386,9 +1423,7 @@ Unit.prototype = {
 	var ready=false;
 	var resolve=function(m,k,f) {
 	    for (i=0; i<this.pos.length; i++) this.pos[i].ol.remove();
-	    if (automove) {
-		this.m=m;
-	    }
+	    if (automove) this.m=m;
 	    f(this,k);
 	    this.show();
 	}.bind(this);
@@ -1411,6 +1446,15 @@ Unit.prototype = {
 	    }
 	} else resolve(this.m,-1,cleanup);
     },
+    resolveactionselection_sync: function(units,cleanup) {
+	this.doselection(function(n) {
+	    this.resolveactionselection(units,function (k) { 
+		cleanup(k); 
+		this.actionr[n].resolve();
+		this.show();
+	    }.bind(this));
+	}.bind(this));
+    },
     resolveactionselection: function(units,cleanup) {
 	var i;
 	this.pos=[];
@@ -1429,54 +1473,47 @@ Unit.prototype = {
 	    (function(k) { units[k].setclickhandler(function() { resolve(k);}); })(i);
 	}
     },
-    resolveboost: function() {
-	waitingforaction.add(function() {
-	this.resolveactionmove(
-	    [this.getpathmatrix(this.m,"F1"),
-	     this.getpathmatrix(this.m,"BL1"),
-	     this.getpathmatrix(this.m,"BR1")],
-	    function (t,k) { t.endaction(); },true);
-	}.bind(this));
-	this.endaction();
-	return true;
+    getboostmatrix:function(m) {
+	return [this.getpathmatrix(this.m,"F1"),
+		this.getpathmatrix(this.m,"BL1"),
+		this.getpathmatrix(this.m,"BR1")];
+    },
+    resolveboost: function(n) {
+	this.resolveactionmove(this.getboostmatrix(this.m),
+	    function (t,k) { t.endaction(n,"BOOST"); },true);
+    },
+    getdecloakmatrix: function(m) {
+	return [m.clone(),this.getpathmatrix(m.clone(),"F2")].concat(this.getrollmatrix(m.clone()));
     },
     resolvedecloak: function() {
-	var m0=this.getpathmatrix(this.m.clone().rotate(90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(-90,0,0);
-	var m1=this.getpathmatrix(this.m.clone().rotate(-90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(90,0,0);
-	var m2=this.getpathmatrix(this.m,"F2");
-	waitingforaction.add(function() {
-	this.resolveactionmove(
-	    [m0.clone().translate(0,-20),
-	     m0,
-	     m0.clone().translate(0,20),
-	     m2,
-	     m1.clone().translate(0,-20),
-	     m1,
-	     m1.clone().translate(0,20)],
-	    function (t,k) {
-		t.agility-=2; t.iscloaked=false;
-		SOUNDS.decloak.play();
-		nextstep();
-	    },true);
-	}.bind(this));
+	this.doselection(function(n) {
+	    this.resolveactionmove(this.getdecloakmatrix(this.m),
+				   function (t,k) {
+				       if (k>0) {
+					   t.agility-=2; t.iscloaked=false;
+					   SOUNDS.decloak.play();
+				       }
+				       this.hasdecloaked=true;
+				       this.endnoaction(n,"");
+				   }.bind(this),true);
+	}.bind(this))/*.done(function() {
+	    this.unlock();
+	}.bind(this))*/
 	return true;
     },
-    resolveroll: function() {
-	waitingforaction.add(function() {
-	    var m0=this.getpathmatrix(this.m.clone().rotate(90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(-90,0,0);
-	    var m1=this.getpathmatrix(this.m.clone().rotate(-90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(90,0,0);
-	    this.resolveactionmove(
-		[m0.clone().translate(0,-20),
-		 m0,
-		 m0.clone().translate(0,20),
-		 m1.clone().translate(0,-20),
-		 m1,
-		 m1.clone().translate(0,20)],
-		function(t,k) {	t.endaction();
-},true);
-	}.bind(this));
-	this.endaction();
-	return true;
+    getrollmatrix:function(m) {
+	var m0=this.getpathmatrix(this.m.clone().rotate(90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(-90,0,0);
+	var m1=this.getpathmatrix(this.m.clone().rotate(-90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(90,0,0);
+	return [m0.clone().translate(0,-20),
+		m0,
+		m0.clone().translate(0,20),
+		m1.clone().translate(0,-20),
+		m1,
+		m1.clone().translate(0,20)]
+    },
+    resolveroll: function(n) {
+	this.resolveactionmove(this.getrollmatrix(this.m),
+	    function(t,k) { t.endaction(n,"ROLL");},true);
     },
     addtarget: function(sh) {
 	var i;
@@ -1507,73 +1544,74 @@ Unit.prototype = {
 	}
 	return p;
     },
-    resolvetarget: function() {
-	var i; var p;
-	p=this.gettargetableunits(3);
-	if (p.length>0) {
-	    //log("ADD ACTION");
-	    //log("<b>["+this.name+"] select target to lock</b>");
-	    waitingforaction.add(function() {
-		this.resolveactionselection(p,function(k) { 
-		    if (k>=0) this.addtarget(p[k]);
-		    this.endaction();
-		}.bind(this));
-	    }.bind(this));
-	    this.endaction();
-	    return true;
-	}
-	return false; 
+    resolvetarget: function(n) {
+	var p=this.gettargetableunits(3);
+	this.log("<b>select target to lock</b>");
+	this.resolveactionselection(p,function(k) { 
+	    if (k>=0) this.addtarget(p[k]);
+	    this.endaction(n,"TARGET");
+	}.bind(this));
     },
-    resolvecloak: function() {
+    addcloak: function(n) {
 	this.iscloaked=true;
 	this.agility+=2;
 	SOUNDS.cloak.play();
-	this.endaction();
-	return true;
+	this.endaction(n,"CLOAK");
     },
-    endaction: function() {
-	this.actiondone=true; this.clearaction();
+    resolveslam: function(n) {
+	var gd=this.getdial();
+	var realdial=gd[this.lastmaneuver].move;
+	var speed=realdial.substr(-1);
+	var p=[];
+	var q=[];
+	for (var i=0; i<gd.length; i++) 
+	    if (gd[i].move.substr(-1)==speed) { 
+		p.push(this.getpathmatrix(this.m,gd[i].move));
+		q.push(i);
+	    }
+	this.log("<b>choose maneuver for SLAM</b>");
+	var em=this.endmaneuver;
+	var tfm=this.timeformaneuver;
+	this.timeformaneuver=function() { return true; }
+	this.endmaneuver=function() {
+	    this.endaction(n,"SLAM");
+	    this.endmaneuver=em;
+	    this.timeformaneuver=tfm;
+	};
+	this.resolveactionmove(p,function(t,k) {
+	    this.maneuver=q[k];
+	    this.doactivation();
+	}.bind(this),false,true);
+    },
+    enqueueaction: function(callback) {
+	this.actionr.push($.Deferred());
+	var n=this.actionr.length-1;
+	this.actionr[n-1].done(function() { callback(n) });
+	return this.actionr[n];
+    },
+    endnoaction: function(n,type) {
 	this.show();
-	//console.log("endaction "+this.name+">nextstep");
-	nextstep();
-	//console.log("endaction "+this.name+"<nextstep");
-	return true;
+	this.actionr[n].resolve(type);
+	if (n==this.actionr.length-1) this.actionrlock.resolve();
     },
-    resolveaction: function() {
-	var a;
+    endaction: function(n,type) {
+	this.actiondone=true; this.clearaction();
+	this.endnoaction(n,type);
+    },
+    resolveaction: function(a,n) {
 	$("#actiondial").empty();
-	if (this.action==-1) a="NOTHING";
+	if (a==null) { this.endaction(n,null); }
 	else {
-	    a = this.actionList[this.action];
-	    this.actionsdone.push(a);
+	    this.actionsdone.push(a.name);
+	    a.action.call(a.org,n);
 	}
-	if (a=="BOOST") { return this.resolveboost(); }
-	else if (a=="ROLL") {return this.resolveroll(); }
-	else if (a=="CLOAK") { return this.resolvecloak();}
-	else if (a=="FOCUS") { return this.addfocus(); }
-	else if (a=="EVADE")  { return this.addevade(); }
-	else if (a=="TARGET") { return this.resolvetarget(); }
+    },
+    resolvenoaction: function(a,n) {
+	$("#actiondial").empty();
+	if (a==null) { this.endnoaction(n,null); }
 	else {
-	    var i,n=this.getshipactionlist().length;
-	    for (i=0; i<this.upgrades.length; i++) {
-		var upg=this.upgrades[i];
-		if (typeof upg.action=="function"&&upg.isactive) {
-		    if (upg.type.toUpperCase()==a
-			&&this.action==n)  return upg.action(); 
-		    n++;
-		}
-	    }
-	    for (i=0; i<this.criticals.length; i++) {
-		var crit=this.criticals[i];
-		if (typeof crit.action=="function"&&crit.isactive) {
-		    if (this.action==n)  return crit.action(); 
-		    n++;
-		}
-	    }
-	    /* NOTHING */
+	    a.action.call(a.org,n);
 	}
-	this.endaction();
-	return true;
     },
     evaluatetohit: function(w,sh) {
 	var r=this.gethitrange(w,sh);
@@ -1594,6 +1632,7 @@ Unit.prototype = {
     },
     canfire: function() {
         var r=this.gethitrangeallunits();
+	//this.log("hasfired? "+this.hasfired+" r1:"+r[1].length+" r2:"+r[2].length+" r3:"+r[3].length+" iscloaked?"+this.iscloaked+" obst?"+this.isfireobstructed());
 	var b= (this.hasfired==0)&&((r[1].length>0||r[2].length>0||r[3].length>0)&&!this.iscloaked&&!this.isfireobstructed());
 	//log("[canfire]"+this.name+" "+b+"="+this.hasfired+"& r=["+r[1].length+", "+r[2].length+", "+r[3].length+"] &"+this.iscloaked+" &"+this.ocollision.overlap)
         return b;
@@ -1624,7 +1663,6 @@ Unit.prototype = {
 	for (i=0; i<ATTACKMODD.length; i++) {
 	    var a=ATTACKMODD[i];
 	    if (a.req(m,n)) {
-		//log("adding attackmodd");
 		str+="<td id='moda"+(i+ATTACKMODA.length)+"' class='"+a.str+"modtokend' onclick='modroll(ATTACKMODD["+i+"].f,"+n+","+(i+ATTACKMODA.length)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
 	    }
 	}   
@@ -1725,13 +1763,17 @@ Unit.prototype = {
 	//console.log("resolveattack:"+this.name+" "+attack+"/"+defense);
 	this.select();	
 	for (i=0; i<squadron.length; i++) if (squadron[i]==this) break;
-	this.doattackroll(this.attackroll(attack),attack,defense,i);
+	this.doselection(function(n) {
+	    incombat=n;
+	    this.doattackroll(this.attackroll(attack),attack,defense,i);
+	    this.show();
+	}.bind(this))
 	//this.show();
     },
     doattack: function(forced) {
 	this.showattack(forced);
     },
-    doattackroll: function(ar,da,defense,me) {
+    doattackroll: function(ar,da,defense,me,n) {
 	var i,j;
 	$("#attackdial").empty();
 	$("#dtokens").empty();
@@ -1745,7 +1787,11 @@ Unit.prototype = {
 	for (i=0; i<h; i++) $("#attack").prepend("<td class='hitreddice'></td>");
 	for (i=0; i<da-h-c-f; i++) $("#attack").prepend("<td class='blankreddice'></td>");
 	$("#atokens").html(this.getusabletokens(me,true)+this.getattackrerolltokens()+this.getattackmodtokens(ar,da));
-	$("#atokens").append("<button onclick='$(\"#atokens\").empty();targetunit.dodefenseroll(targetunit.defenseroll("+defense+")"+","+defense+","+me+")'>Done</button>");
+	$("#atokens").append("<button>");
+	$("#atokens > button").text("Done").click(function() {
+	    $("#atokens").empty();
+	    targetunit.dodefenseroll(targetunit.defenseroll(defense),defense,me,n);
+	});
 	var change=function() { 
 	    if ($(this).hasClass("focusreddice")) {
 		$(this).removeClass("focusreddice"); $(this).addClass("hitreddice");
@@ -1764,7 +1810,7 @@ Unit.prototype = {
 	//console.log("showattackroll:"+this.name);
 	//log("attack roll: f"+f+" c"+c+" h"+h+" b"+(da-h-c-f));
     },
-    dodefenseroll: function(dr,dd,me) {
+    dodefenseroll: function(dr,dd,me,n) {
 	var i,j;
 	var f=Math.floor(dr/10);
 	for (i=0; i<f; i++) $("#defense").prepend("<td class='focusgreendice'></td>");
@@ -1773,7 +1819,13 @@ Unit.prototype = {
 	for (i=0; i<dd-e-f; i++) $("#defense").prepend("<td class='blankgreendice'></td>");
 	for (j=0; j<squadron.length; j++) if (squadron[j]==this) break;
 	$("#dtokens").html(this.getusabletokens(j,true)+this.getdefensererolltokens()+this.getdefensemodtokens(dr,dd));
-	$("#dtokens").append("<button onclick='$(\"#combatdial\").hide();squadron["+me+"].resolvedamage()'>Fire!</button>");
+	$("#dtokens").append("<button>");
+	$("#dtokens > button").text("Fire!")
+	    .click(function() {
+		$("#combatdial").hide();
+		this.actionr[incombat].resolve();
+		this.resolvedamage()
+	    }.bind(squadron[me]));
 	var change=function() { 
 	    if ($(this).hasClass("focusgreendice")) {
 		$(this).removeClass("focusgreendice"); $(this).addClass("evadegreendice");
@@ -1820,6 +1872,7 @@ Unit.prototype = {
 	var path=P[realdial].path;
 	var m,oldm;
 	if (dial=="F0") {
+	    this.lastmaneuver=this.maneuver;
 	    this.maneuver=-1;
 	    this.hasmoved=true;
 	    this.handledifficulty(difficulty);
@@ -1882,6 +1935,7 @@ Unit.prototype = {
 		    record(this.id,"M"+realdial+":"+lenC);
 		}
 		this.handledifficulty(difficulty);
+		this.lastmaneuver=this.maneuver;
 		this.maneuver=-1;
 		path.remove();
 		if (this.ocollision.overlap>-1||this.ocollision.template>0) this.resolveocollision();
@@ -1893,6 +1947,7 @@ Unit.prototype = {
 	    this.hasmoved=true;
 	    this.log("cannot move");
 	    this.handledifficulty(difficulty);
+	    this.lastmaneuver=this.maneuver;
 	    this.maneuver=-1;
 	    this.show();
 	    path.remove();
@@ -1903,36 +1958,80 @@ Unit.prototype = {
     resolvemaneuver: function() {
 	$("#activationdial").empty();
 	// -1: No maneuver
-	if (this.maneuver<0||this.hasmoved) return;
+	if (this.maneuver<0) return;
 	var dial=this.getdial()[this.maneuver].move;
 	var difficulty=this.getdial()[this.maneuver].difficulty;
+	if (typeof this.forceddifficulty!="undefined") difficulty=this.forceddifficulty;
 	// Move = forward 0. No movement. 
 	this.completemaneuver(dial,dial,difficulty);
     },
     endmaneuver: function() {
 	this.ionized=0;
 	this.hasmoved=true;
-	if (this.checkdead()) { this.hull=0; this.shield=0; nextstep(); } 
-	else if (this.timeforaction()) {
-	    if (this.candoaction()) this.doaction(); else {
-		this.action=-1; this.actiondone=true;
-		//console.log("endmaneuver endaction"+this.name+">nextstep");
-		nextstep();
-		//console.log("endmaneuver endaction"+this.name+"<>nextstep");
-		nextstep();
-		//console.log("endmaneuver endaction"+this.name+"<nextstep");
-	    }
-	} else { 
-		//console.log("endmaneuver noaction"+this.name+">nextstep");
-		nextstep();
-		//console.log("endmaneuver noaction"+this.name+"<>nextstep");
-		nextstep();
-		//console.log("endmaneuver noaction"+this.name+"<nextstep");
-	}
-	this.show();
+	if (this.checkdead()) { this.hull=0; this.shield=0; } 
+	else this.doendmaneuveraction();
+	this.actionbarrier();
     },
-    doaction: function() {
-	this.showaction();
+    unlock:function(v) {
+	this.deferred.resolve(v);
+    },
+    newlock:function() {
+	this.deferred=$.Deferred();
+	return this.deferred.promise();
+    },
+    enddecloak: function() {
+	return this.newlock();
+    },
+    candomaneuver: function() {
+	return this.maneuver>-1;
+    },
+    doendmaneuveraction: function() {
+	if (this.candoaction()) this.doaction(this.getactionlist());
+	else { this.action=-1; this.actiondone=true; }
+    },
+    doselection: function(f) {
+	return this.enqueueaction(function(n) {
+	    f(n);
+	}.bind(this));  
+    },
+    doaction: function(list,str) {
+	return this.enqueueaction(function(n) {
+	    var i;
+	    $("#actiondial").empty();
+	    if (this.candoaction()) {
+		this.select();
+ 		if (typeof str!="undefined") this.log(str);
+		$("#actiondial").html($("<div>"));
+		for (i=0; i<list.length; i++) {
+		    if (this.actionsdone.indexOf(list[i].name)==-1) {
+			(function(k) {
+			    var e=$("<div>").addClass("symbols").text(A[k.type].key)
+				.click(function () { this.resolveaction(k,n) }.bind(this));
+			    $("#actiondial > div").append(e);
+			}.bind(this))(list[i]);
+		    }
+		}
+		var e=$("<button>").text("Skip").click(function() { this.resolveaction(null,n); }.bind(this));
+		$("#actiondial > div").append(e);
+	    } else this.endaction(n);
+	}.bind(this));  
+    },
+    donoaction: function(list,str) {
+	return this.enqueueaction(function(n) {
+	    var i;
+ 	    if (typeof str!="undefined") this.log(str);
+	    this.select();
+	    $("#actiondial").html($("<div>"));
+	    for (i=0; i<list.length; i++) {
+		(function(k) {
+		    var e=$("<div>").addClass("symbols").text(A[k.type].key)
+			.click(function () { this.resolvenoaction(k,n) }.bind(this));
+		    $("#actiondial > div").append(e);
+		}.bind(this))(list[i]);
+	    }
+	    var e=$("<button>").text("Skip").click(function() { this.resolvenoaction(null,n); }.bind(this));
+	    $("#actiondial > div").append(e);
+	}.bind(this));  
     },
     candoaction: function() {
 	//log("stress:"+this.stress+" collision:"+this.collision+" template"+this.ocollision.template+" overlap"+this.ocollision.overlap);
@@ -1940,7 +2039,7 @@ Unit.prototype = {
 	return  true;
     },
     candecloak: function() {
-	return (!this.hasmoved&&this.iscloaked&&phase==ACTIVATION_PHASE&&!this.hasdecloaked);
+	return (this.iscloaked&&phase==ACTIVATION_PHASE&&!this.hasdecloaked);
     },
     selecttargetforattack: function(wp) {
 	var grau=this.weapons[wp].getrangeallunits();
@@ -1959,9 +2058,8 @@ Unit.prototype = {
 	this.resolveactionselection(p,function(k) { 
 	    if (k>=0) {
 		this.declareattack(wp,p[k]); 
-		this.incombat=true;
 		this.resolveattack(wp,p[k]);
-	    }
+	    } 
 	}.bind(this));
 	return true;
     },
@@ -1970,7 +2068,7 @@ Unit.prototype = {
 	var wn=[];
 	var i,j,w;
 	$("#attackdial").hide();
-	if (forced==true || (phase==COMBAT_PHASE&&(!waitingforaction.isexecuting)&&skillturn==this.skill&&this.canfire())) {
+	if (forced==true || (phase==COMBAT_PHASE&&skillturn==this.skill&&this.canfire())) {
 	    var r=this.gethitrangeallunits();
 	    $("#attackdial").empty();
 	    for (i=1; i<=3; i++) {
@@ -1986,7 +2084,7 @@ Unit.prototype = {
 		str+="<div class='symbols "+w.color+"' onclick='activeunit.selecttargetforattack("+wn[i]+")'>"+w.key+"</div>"
 	    }
 	    // activeunit.hasfired++ ?
-	    str+="<button onclick='activeunit.hasfired++;activeunit.show();nextstep()'>Skip</button>"
+	    str+="<button onclick='activeunit.hasfired++;activeunit.show();activeunit.deferred.resolve();'>Skip</button>"
 	    $("#attackdial").html("<div>"+str+"</div>").show();
 	}
     },
@@ -2001,34 +2099,35 @@ Unit.prototype = {
 	return true;
     },
     candropbomb: function() {
-	return (this.lastdrop!=round&&!this.hasmoved&&this.skill==skillturn&&phase==ACTIVATION_PHASE);
+	return (this.lastdrop!=round&&this.skill==skillturn);
     },
     addactivationdial: function(pred,action,html,elt) {
 	this.activationdial.push({pred:pred,action:action,html:html,elt:elt});
     },
+    actionbarrier:function() {
+	var ad=$.when.apply(null,this.actionr);
+	if (ad.state()=="pending") {
+	    this.actionrlock=$.Deferred();
+	    this.actionrlock.done(function() { this.unlock(); }.bind(this));
+	} else {
+	    this.actionrlock=$.Deferred();
+	    this.actionrlock.resolve();
+	    this.unlock();
+	}
+    },
     dodecloak: function() {
-	this.type="CLOAK";
-	waitingforaction.add(function() {
-	    this.addaction(this,function() { 
-		return true; 
-	    },function() {
-		this.resolvedecloak(); 
-		this.hasdecloaked=true;
-	    }.bind(this),function() {
-		this.hasdecloaked=true;
-		nextstep();
-	    }.bind(this),true);
-	}.bind(this));
-	nextstep();
+	if (this.iscloaked) {
+	    this.resolvedecloak();
+	} else {
+	    this.hasdecloaked=true;
+	}
+	this.actionbarrier();
+    },
+    getbomblocation: function() {
+	return ["F1"];
     },
     updateactivationdial: function() {
 	this.activationdial=[];
-	/*
-	this.addactivationdial(function() { return this.candecloak(); }.bind(this),
-			       function() {this.usecloak(); }.bind(this),
-			       A["CLOAK"].key,
-			       $("<div>").attr({class:"symbols"}));
-	*/
 	if (this.candropbomb()) 
 	    for (var i=0; i<this.bombs.length; i++) {
 		var bomb=this.bombs[i];
@@ -2036,7 +2135,7 @@ Unit.prototype = {
 		    function() {
 			this.unit.lastdrop=round;
 			$(".bombs").remove(); 
-			this.drop(this.getbomblocation());
+			this.drop(this.unit.getbomblocation());
 			this.unit.showactivation();
 		    }.bind(bomb),
 		    A["BOMB"].key,
@@ -2046,41 +2145,16 @@ Unit.prototype = {
     },
     doactivation: function() { this.showactivation(); },
     showactivation: function() {
-	var ad=this.updateactivationdial();
 	$("#activationdial").html("<div></div>");
+	if (!this.timeformaneuver())  return;
+	var ad=this.updateactivationdial();
 	for (var i=0; i<ad.length; i++) {
 	    var adi=ad[i];
 	    if (adi.pred()) 
 		adi.elt.appendTo("#activationdial > div").click(adi.action).html(adi.html);
 	}
-	if (this.timeformaneuver()) 
-	    $("<button>").html("Move").click(function() {this.resolvemaneuver(); }.bind(this)).appendTo("#activationdial > div");
+	$("<button>").html("Move").click(function() {this.resolvemaneuver(); }.bind(this)).appendTo("#activationdial > div");
 
-    },
-    addaction: function(org,timeforaction,action,endaction,noaction) {
-	var sa=this.showaction
-	var tfa=this.timeforaction;
-	this.resolveoneaction=function() {
-	    action();
-	    if (typeof noaction=="undefined") this.actionsdone.push(org.type.toUpperCase());
-	    this.endoneaction();
-	};
-	this.endoneaction=function() {
-	    endaction();
-	    this.showaction=sa;
-	    this.timeforaction=tfa;
-	    this.show();
-	};
-	this.timeforaction=timeforaction;
-	this.showaction=function() {
-	    $("#actiondial").empty();
-	    for (me=0; me<squadron.length; me++) if (squadron[me]==this) break;
-	    var a = org.type.toUpperCase();
-	    var str="<div class='symbols' onclick='squadron["+me+"].resolveoneaction()'>"+A[a].key+"</div>";
-	    str+="<button onclick='squadron["+me+"].endoneaction()'>Skip</button>";
-	    $("#actiondial").html("<div>"+str+"</div>").show();
-	};
-	this.doaction();
     },
     log: function(str,a,b,c) {
 	if (typeof a!="undefined") str=str.replace(/%0/,a)
@@ -2088,51 +2162,16 @@ Unit.prototype = {
 	if (typeof c!="undefined") str=str.replace(/%2/,c)
 	log("<div><span style='color:"+this.color+"'>["+this.name+"]</span> "+str+"</div>");
     },
-    freeaction: function(endfree) {
-	this.tfa=this.timeforaction;
-	this.ea=this.clearaction;
-	this.timeforaction=function() { return true; }
-	this.clearaction=function() {
-	    this.clearaction=this.ea; 
-	    this.timeforaction=this.tfa;
-	    endfree();
-	    this.ea.call(this);
-	};
-	this.doaction();
-    },
     candocloak: function() {
 	return !this.iscloaked;
     },
     clearaction: function() { this.action=-1; },
-    showaction: function() {
-	var str="";
-	var name,me;
-	$("#actiondial").empty();
-	//this.log("showing actionlist");
-	//if (waitingforaction.queue.length>0) return;
-	this.updateactionlist();
-	for (me=0; me<squadron.length; me++) if (squadron[me]==this) break;
-	if (this.candoaction()) {
-	    var i;
-	    for (i=0; i<this.actionList.length; i++) {
-		var a = this.actionList[i];
-		if (a=="TARGET"&&!this.candotarget()) continue;
-		if (a=="FOCUS"&&!this.candofocus()) continue;
-		if (a=="EVADE"&&!this.candoevade()) continue;
-		if (a=="CLOAK"&&!this.candocloak()) continue;
-		str+="<div class='symbols' onclick='activeunit.action="+i+";squadron["+me+"].resolveaction()'>"+A[a].key+"</div>";
-	    }
-	}
-	if (str!="") {
-	    str+="<button onclick='activeunit.action=-1;squadron["+me+"].resolveaction()'>Skip</button>";
-	    $("#actiondial").html("<div>"+str+"</div>").show();
-	} else { this.clearaction(); /* this.resolveaction();*/ }
+    showaction:function() {
 	if (this.action<this.actionList.length && this.action>-1) {
 	    var a = this.actionList[this.action];
-	    var c=A[a].color;
+	    var c=A[a.type].color;
 	    this.actionicon.attr({fill:((this==activeunit)?c:halftone(c))});
 	} else this.actionicon.attr({text:""});
-	if (str!="") return true; else return false;
     },
     showinfo: function() {
 	var i=0,j;
@@ -2157,13 +2196,16 @@ Unit.prototype = {
         this.outline.attr({ stroke:((activeunit==this)?this.color:halftone(this.color)) }); 
     }, 
     endcombatphase:function() {
-	this.hasfired=0;
     },
 //?28;36;&56;#
     beginplanningphase: function() {
+	this.actionr = [$.Deferred().resolve()];
+	this.actionrlock=$.when();
+	return this.newlock();
     },
     beginactivationphase: function() {
 	this.showmaneuver();
+	return this.newlock();
     },
     timetoshowmaneuver: function() {
 	return this.maneuver>-1;
@@ -2174,7 +2216,7 @@ Unit.prototype = {
     showmaneuver: function() {
 	if (this.timetoshowmaneuver()) {
 	    var d = this.getmaneuver();
-	    var c  =C[d.difficulty];
+	    var c  =C[(typeof this.forceddifficulty!="undefined")?this.forceddifficulty:d.difficulty];
 	    if (!(activeunit==this)) c = halftone(c);
             this.dialspeed.attr({text:P[d.move].speed,fill:c});
             this.dialdirection.attr({text:P[d.move].key,fill:c});
@@ -2185,9 +2227,11 @@ Unit.prototype = {
     },
     endactivationphase: function() {
 	this.actionsdone=[];
-	this.hasdecloaked=false;
+	this.forceddifficulty=undefined;
     },
-    begincombatphase: function() {},
+    begincombatphase: function() {
+        return this.newlock();
+    },
     beginattack: function() {},
     toString: function() {
 	if (phase==SELECT_PHASE1||(phase==SELECT_PHASE2&&this.team==2)) return this.toString2();
@@ -2319,7 +2363,7 @@ Unit.prototype = {
     },
     timeforaction: function() {
 	//log("waiting ?"+waitingforaction.isexecuting+" active?"+(this==activeunit)+" moved?"+this.hasmoved+" actiondone?"+this.actiondone);
-	return (!waitingforaction.isexecuting&&this==activeunit&&this.hasmoved&&!this.actiondone&&phase==ACTIVATION_PHASE);
+	return (this==activeunit&&this.hasmoved&&!this.actiondone&&phase==ACTIVATION_PHASE);
     },
     timeformaneuver: function() {
 	return (this==activeunit&&this.maneuver>-1&&!this.hasmoved&&this.skill==skillturn&&subphase==ACTIVATION_PHASE);
@@ -2340,7 +2384,6 @@ Unit.prototype = {
 	this.showpanel();
 	this.showdial();
 	this.showmaneuver();
-	if (this.timeforaction()) this.showaction(); else $("#actiondial").empty();
 	if (phase==ACTIVATION_PHASE) this.showactivation();
 	this.showattack();
 	if (!this.dead) { 
@@ -2503,30 +2546,23 @@ Unit.prototype = {
 	}
     },
     selectcritical: function(crits,endselect) {
-	var sa=this.showaction
-	var tfa=this.timeforaction;
-	var cda=this.candoaction;
-	this.endoneaction=function() {
-	    this.showaction=sa;
-	    this.timeforaction=tfa;
-	    this.show();
-	};
-	this.candoaction=function() { return true; }
-	this.resolveoneaction=function(n) {
-	    endselect(n);
-	    this.endoneaction();
-	};
-	this.timeforaction=function() { return true; }
-	this.showaction=function() {
+	var resolve=function(c,n) {
+	    $("#actiondial").empty();
+	    endselect(c);
+	    this.endnoaction(n,"CRITICAL");
+	}.bind(this);
+	this.doselection(function(n) {
 	    var i,str="";
 	    $("#actiondial").empty();
-	    for (me=0; me<squadron.length; me++) if (squadron[me]==this) break;
-	    for (i=0; i<crits.length; i++) {
-		str+="<button onclick='squadron["+me+"].resolveoneaction("+crits[i]+")'>"+CRITICAL_DECK[crits[i]].name+"</button>";
+	    for (var i=0; i<crits.length; i++) {
+		(function(k) {
+		    var e=$("<button>").text(CRITICAL_DECK[crits[k]].name)
+			.click(function() { resolve(crits[k],n);}.bind(this));
+		    $("#actiondial").append(e);
+		}.bind(this))(i);
 	    }
-	    $("#actiondial").html("<div>"+str+"</div>").show();
-	}.bind(this);
-	this.showaction();
+	    $("#actiondial").show();
+	}.bind(this));
     },
     selectdamage: function(crit) {
 	var i,s=0,m,j;

@@ -937,6 +937,7 @@ background:#a9a9a9
 .bigbutton:disabled,.nextphase:disabled,.activeunit:disabled {
 background:gray;
 color:#d3d3d3;
+cursor:default;
 }
 .button2 {
 width:74px

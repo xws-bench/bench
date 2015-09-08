@@ -52,11 +52,8 @@ IAUnit.prototype= {
 	    //if (typeof gd[d] == "undefined") log("(q=vide) UNDEFINED GD FOR "+this.name+" "+gd.length+" "+possible);
 
 	}
-	log("Maneuver set for "+this.name);//+":"+d+"/"+q.length+" possible?"+possible+"->"+gd[d].move);
+	this.log("Maneuver set");//+":"+d+"/"+q.length+" possible?"+possible+"->"+gd[d].move);
 	return d;
-    },
-    freeaction: function(endfree) {
-	endfree(); // Does nothing when given a free action...
     },
     resolveactionselection: function(units,cleanup) {
 	cleanup(0);
@@ -85,22 +82,19 @@ IAUnit.prototype= {
 	$("#maneuverdial").empty();
 	if (phase==PLANNING_PHASE&&this.maneuver==-1) {
 	    IACOMPUTING++;
-	    if (IACOMPUTING==1) {
-		$("#npimg").empty();
-		$("#npimg").append("<img style='width:10px' src='img/waiting.gif'/>");
+	    if  (IACOMPUTING==1) {
+		$("#npimg").html("<img style='width:10px' src='img/waiting.gif'/>");
 	    }
-	    var process=setInterval(function() {
-		    var m=this.computemaneuver();	
-		    IACOMPUTING--;
-		    if (IACOMPUTING==0) {
-			$("#npimg").empty();
-			$("#npimg").append("&#9658;");
-		    }
-		    this.setmaneuver(m);
-		    clearInterval(process);
-		}.bind(this),2000);
+	    var p;
+	    p=setInterval(function() {
+		var m=this.computemaneuver(); 
+		IACOMPUTING--;
+		if (IACOMPUTING==0) $("#npimg").html("&#9658;");
+		this.setmaneuver(m);
+		clearInterval(p);
+	    }.bind(this),1);
 	}
-
+	return this.deferred;
     },
     showdial: function() { 	
 	$("#maneuverdial").empty();
@@ -141,33 +135,38 @@ IAUnit.prototype= {
 	    this.actionicon.attr({fill:((this==activeunit)?c:halftone(c))});
 	} else this.actionicon.attr({text:""});	
     },
-    doaction: function() {
-	this.updateactionlist();
-	if (this.candoaction()&&!waitingforaction.isexecuting&&skillturn==this.skill&&this.action==-1) {
-	    var focus=this.actionList.indexOf("FOCUS");
-	    var evade=this.actionList.indexOf("EVADE");
-	    var critical=this.actionList.indexOf("CRITICAL");
-	    var grlu=this.gethitrangeallunits();
-	    if (critical>0) { 
-		this.action=this.getshipactionlist().length+this.getupgactionlist().length;
-	    } else if (evade>-1&&grlu[1].length==0&&grlu[2].length==0&&grlu[3].length==0&&this.candoevade()) {
-		this.action=evade;
-	    }else if (focus>-1&&this.candofocus()) { 
-		this.action=focus;
-	    } else if (evade>-1&&this.candoevade()) { 
-		this.action=evade;
-	    } else this.action=-1;
-	    this.resolveaction();
+    doaction: function(list,str) {
+	var cmp=function(a,b) {
+	    if (a.type=="CRITICAL") return -1;
+	    if (b.type=="CRITICAL") return 1;
+	    if (a.type=="EVADE") return -1;
+	    if (b.type=="EVADE") return 1;
+	    if (a.type=="FOCUS") return -1;
+	    if (b.type=="FOCUS") return 1;
+	    return 0;
 	}
+	list.sort(cmp);
+	return this.enqueueaction(function(n) {
+	    if (this.candoaction()&&skillturn==this.skill&&this.action==-1) {
+		this.select();
+		if (typeof str!="undefined") this.log(str);
+		var grlu=this.gethitrangeallunits();
+		var a;
+		for (i=0; i<list.length; i++) {
+		    if (list[i].type=="CRITICAL") { a=list[i]; break; }
+		    else if (list[i].type=="EVADE"&&grlu[1].length==0&&grlu[2].length==0&&grlu[3].length==0&&this.candoevade()) { a=list[i]; break; }
+		    else if (list[i].type=="FOCUS"&&this.candofocus()) { a=list[i]; break; }
+		    else { a = null; break }
+		}
+		this.resolveaction(a,n);
+	    }
+	}.bind(this));
     },
     showattack: function() {
 	$("#attackdial").empty();
     },
-    addaction: function(org,timeforaction,action) {
-	if (timeforaction()) action();
-    },
     doattack: function(forced) {
-	if (forced||(phase==COMBAT_PHASE&&!waitingforaction.isexecuting&&skillturn==this.skill&&this.canfire())) {
+	if (forced||(phase==COMBAT_PHASE&&skillturn==this.skill&&this.canfire())) {
 	    var r=this.gethitrangeallunits();
 	    //console.log("ia/doattack:"+this.name);
 	    var wn=[];
@@ -186,7 +185,7 @@ IAUnit.prototype= {
 		//console.log("ia/doattack "+this.name+"<select target");
 	    } else {
 		//console.log("ia/doattack:no target");
-		this.hasfired++; nextstep();
+		this.hasfired++;this.show(); this.deferred.resolve();
 	    }
 	}   
     },
