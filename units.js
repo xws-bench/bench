@@ -1587,15 +1587,16 @@ Unit.prototype = {
 	    this.doactivation();
 	}.bind(this),false,true);
     },
-    enqueueaction: function(callback) {
+    enqueueaction: function(callback,str) {
 	this.actionr.push($.Deferred());
 	var n=this.actionr.length-1;
-	this.actionr[n-1].done(function() { callback(n) });
+	this.actionr[n-1].done(function() { callback(n) }.bind(this));
 	return this.actionr[n];
     },
     endnoaction: function(n,type) {
 	this.show();
 	this.actionr[n].resolve(type);
+	//this.log("solving "+n+" "+(this.actionr.length-1))
 	if (n==this.actionr.length-1) this.actionrlock.resolve();
     },
     endaction: function(n,type) {
@@ -1996,7 +1997,7 @@ Unit.prototype = {
     doselection: function(f) {
 	return this.enqueueaction(function(n) {
 	    f(n);
-	}.bind(this));  
+	    }.bind(this),"doselection");  
     },
     doaction: function(list,str) {
 	return this.enqueueaction(function(n) {
@@ -2018,7 +2019,7 @@ Unit.prototype = {
 		var e=$("<button>").text("Skip").click(function() { this.resolveaction(null,n); }.bind(this));
 		$("#actiondial > div").append(e);
 	    } else this.endaction(n);
-	}.bind(this));  
+	    }.bind(this),"doaction");  
     },
     donoaction: function(list,str) {
 	return this.enqueueaction(function(n) {
@@ -2035,7 +2036,7 @@ Unit.prototype = {
 	    }
 	    var e=$("<button>").text("Skip").click(function() { this.resolvenoaction(null,n); }.bind(this));
 	    $("#actiondial > div").append(e);
-	}.bind(this));  
+	    }.bind(this),"donoaction");  
     },
     candoaction: function() {
 	//log("stress:"+this.stress+" collision:"+this.collision+" template"+this.ocollision.template+" overlap"+this.ocollision.overlap);
@@ -2072,14 +2073,16 @@ Unit.prototype = {
 	var wn=[];
 	var i,j,w;
 	$("#attackdial").hide();
-	if (forced==true || (phase==COMBAT_PHASE&&skillturn==this.skill&&this.canfire())) {
-	    var r=this.gethitrangeallunits();
-	    $("#attackdial").empty();
-	    for (i=1; i<=3; i++) {
-		for (j=0; j<r[i].length; j++) {
-		    for (w=0; w<r[i][j].wp.length; w++) {
-			var wp=r[i][j].wp[w];
-			if (wn.indexOf(wp)==-1) wn.push(wp);
+	if (forced==true || (phase==COMBAT_PHASE&&skillturn==this.skill)) {
+	    if (this.canfire()) {
+		var r=this.gethitrangeallunits();
+		$("#attackdial").empty();
+		for (i=1; i<=3; i++) {
+		    for (j=0; j<r[i].length; j++) {
+			for (w=0; w<r[i][j].wp.length; w++) {
+			    var wp=r[i][j].wp[w];
+			    if (wn.indexOf(wp)==-1) wn.push(wp);
+			}
 		    }
 		}
 	    }
