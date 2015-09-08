@@ -1771,7 +1771,7 @@ Unit.prototype = {
 	this.doselection(function(n) {
 	    incombat=n;
 	    this.doattackroll(this.attackroll(attack),attack,defense,i);
-	    this.show();
+	    //this.show();
 	}.bind(this))
 	//this.show();
     },
@@ -1828,7 +1828,7 @@ Unit.prototype = {
 	$("#dtokens > button").text("Fire!")
 	    .click(function() {
 		$("#combatdial").hide();
-		this.actionr[incombat].resolve();
+		this.endnoaction(incombat);
 		this.resolvedamage()
 	    }.bind(squadron[me]));
 	var change=function() { 
@@ -2061,7 +2061,7 @@ Unit.prototype = {
 	    return false;
 	}
 	this.resolveactionselection(p,function(k) { 
-	    if (k>=0) {
+		if (k>=0) {
 		this.declareattack(wp,p[k]); 
 		this.resolveattack(wp,p[k]);
 	    } 
@@ -2085,17 +2085,16 @@ Unit.prototype = {
 			}
 		    }
 		}
-	    }
-	    for (i=0; i<wn.length; i++) {
-		var w=A[this.weapons[wn[i]].type.toUpperCase()];
-		str+="<div class='symbols "+w.color+"' onclick='activeunit.selecttargetforattack("+wn[i]+")'>"+w.key+"</div>"
-	    }
-	    if (str!="") {
+		for (i=0; i<wn.length; i++) {
+		    var w=A[this.weapons[wn[i]].type.toUpperCase()];
+		    str+="<div class='symbols "+w.color+"' onclick='activeunit.selecttargetforattack("+wn[i]+")'>"+w.key+"</div>"
+			}
 		// activeunit.hasfired++ ?
 		str+="<button onclick='activeunit.hasfired++;activeunit.show();activeunit.deferred.resolve();'>Skip</button>";
 		$("#attackdial").html("<div>"+str+"</div>").show();
-	    } else {
-		activeunit.hasfired++; activeunit.deferred.resolve(); 
+	    } else if (!this.hasfired) {
+		this.log("FALLBACK");
+		this.hasfired++; this.deferred.resolve(); 
 	    }
 	}
     },
