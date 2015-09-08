@@ -524,19 +524,22 @@ var keybindings={
 
 function win() {
     var title="";
-    var str=[]
+    var i;
     if (TEAMS[1].checkdead()&&!TEAMS[2].checkdead()) title="Team #2 wins !";
     if (TEAMS[2].checkdead()&&!TEAMS[1].checkdead()) title="Team #1 wins !";
     if (TEAMS[1].checkdead()&&TEAMS[2].checkdead()) title="Draw !";
-    $("#listtitle").html(title);
-    str[1]=""; str[2]="";
-    for (i=0; i<allunits.length;i++) {
-	var u=allunits[i];
-	str[u.team]+="<tr><td>"+u.name+"</td><td>"+Math.floor(100*u.hitresolved/round)/100+"</td><td>"+Math.floor(100*u.criticalresolved/round)/100+"</td></tr>"
+    $(".victory").html(title);
+    var y1=0,y2=0;
+    for (i=1; i<=round; i++) {
+	if (typeof TEAMS[1].history.rawdata[i]!="undefined") y1+=TEAMS[1].history.rawdata[i].hits;
+	if (typeof TEAMS[2].history.rawdata[i]!="undefined") y2+=TEAMS[2].history.rawdata[i].hits;
+	TEAMS[1].history.data[0].dataPoints.push({x:i,y:y1});
+	TEAMS[2].history.data[0].dataPoints.push({x:i,y:y2});
     }
-    str[1]="<table><tr><th>Name</th><th>Avg. Hits/round</th><th>Avg. Crit./round</th></tr>"+str[1]+"</table>";
-    str[2]="<table><tr><th>Name</th><th>Avg. Hits/round</th><th>Avg. Crit./round</th></tr>"+str[2]+"</table>";    
-    $("#listunits").html(str[1]+str[2]);
+    var chart1 = new CanvasJS.Chart("t1",TEAMS[1].history);
+    var chart2 = new CanvasJS.Chart("t2",TEAMS[2].history);
+    chart1.render();
+    chart2.render();
     window.location="#modal";
 }
 document.addEventListener("win",win,false);
