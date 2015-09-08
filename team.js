@@ -115,7 +115,7 @@ Team.prototype = {
 		      data: [{        
 		    indexLabelFontColor: "darkSlateGray",
 		    name: "views",
-		    type: "splineArea",
+		    type: "area",
 		    color: "rgba(200,10,10,0.8)",
 		    markerSize:8,
 		    dataPoints: []}]
