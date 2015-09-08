@@ -108,6 +108,18 @@ Team.prototype = {
 	for (i=0; i<this.units.length; i++) { 
 	    this.units[i].g.undrag();
 	}
+	this.history={title: {text: "Damage taken by "+this.name},
+		      axisX:{  interval: 1,title: "Turns"},
+		      axisY: {	title: "Cumulated damage"},
+		      rawdata:[],
+		      data: [{        
+		    indexLabelFontColor: "darkSlateGray",
+		    name: "views",
+		    type: "area",
+		    color: "rgba(200,10,10,0.8)",
+		    markerSize:8,
+		    dataPoints: []}]
+	};
     },
     endselection:function(s) {
 	var i;

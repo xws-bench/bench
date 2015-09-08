@@ -1241,6 +1241,9 @@ Unit.prototype = {
     checkdead: function() {
 	if (!this.dead&&(this.hull<=0||!this.isinzone(this.m))) {
 	    this.dies();
+	    var r=TEAMS[this.team].history.rawdata
+	    if (typeof r[round]=="undefined") r[round]={hits:0,dead:""}
+	    r[round].dead+=this.name+" ";
 	    return true;
 	}	
 	return false;
@@ -2524,6 +2527,9 @@ Unit.prototype = {
     removeshield: function(n) {
 	record(this.id,"removeshield("+n+")");
 	this.shield=this.shield-n;
+	var r=TEAMS[this.team].history.rawdata
+	if (typeof r[round]=="undefined") r[round]={hits:0,dead:""}
+	r[round].hits+=n;
     },
     resolvehit: function(n) {
 	if (n==0) return;
@@ -2548,6 +2554,9 @@ Unit.prototype = {
     removehull: function(n) {
 	record(this.id,"removehull("+(n)+")");
 	this.hull=this.hull-n;
+	var r=TEAMS[this.team].history.rawdata
+	if (typeof r[round]=="undefined") r[round]={hits:0,dead:""}
+	r[round].hits+=n;
 	this.log("lost "+n+" <p class='chull'></p>");
 	if (this.hull<=this.ship.hull/2) this.imgsmoke.attr({display:"block"});
 	if (this.hull==1) {
