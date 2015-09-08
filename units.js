@@ -2236,7 +2236,7 @@ Unit.prototype = {
     begincombatphase: function() {
         return this.newlock();
     },
-    beginattack: function() {},
+    beginattack: function() { },
     toString: function() {
 	if (phase==SELECT_PHASE1||(phase==SELECT_PHASE2&&this.team==2)) return this.toString2();
 	var i;
