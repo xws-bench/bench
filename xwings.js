@@ -533,6 +533,7 @@ function win() {
     var t1=TEAMS[1].history;
     var t2=TEAMS[2].history;
     for (i=1; i<=round; i++) {
+	var s1="",s2="";
 	if (typeof t1.rawdata[i]!="undefined") { y1+=t1.rawdata[i].hits; s1=t1.rawdata[i].dead;}
 	if (typeof t2.rawdata[i]!="undefined") {y2+=t2.rawdata[i].hits;s2=t2.rawdata[i].dead;}
 	    t1.data[0].dataPoints.push({x:i,y:y1,indexLabelMaxWidth: "60",indexLabelWrap: "true", indexLabel:s1});
