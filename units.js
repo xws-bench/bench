@@ -230,8 +230,9 @@ Unit.prototype = {
 	    }
 	}
 	this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
+	var img=this.ship.img[0];
+
 	if (!(this.islarge)) {
-	    var img=this.ship.img[0];
 	    if (typeof this.shipimg!="undefined") {
 		this.log("alternative image");
 		img=this.shipimg;
