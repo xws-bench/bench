@@ -10,7 +10,6 @@ background-color:white;
 footer,article,nav,footer,body {
 display:block;
 font-family:sans-serif;
-font-size-adjust: 0.5
 }
 
 #main {
@@ -986,7 +985,7 @@ border-right:solid 2px #eaeaea
 .REBEL,.EMPIRE,.SCUM {
 font-family:'symbols';
 margin:2px;
-border-radius:20px
+border-radius:100%; 
 }
 
 .REBEL,.statfire {
@@ -1006,15 +1005,33 @@ color:#AA3
 }
 
 .REBEL::after {
-content:"!"
+background-image:url(img/rebel.png);/*"!"*/
+background-size: 100%;
+background-repeat: no-repeat;
+width: 1em; 
+height: 1em;
+padding-left:1em;
+content:"";
 }
 
 .EMPIRE::after {
-content:"@"
+background-image:url(img/empire.png);/*"@"*/
+    background-size: 100%;
+    background-repeat: no-repeat;
+width: 1em; 
+height: 1em;
+padding-left:1em;
+    content:"";
 }
 
 .SCUM::after {
-content:"#"
+background-image:url(img/scum.png);/*"#"*/
+    background-size: 100%;
+    background-repeat: no-repeat;
+width: 1em; 
+height: 1em;
+padding-left:1em;
+    content:"";
 }
 .flame1 {
 content:url(png/flame1.png);
