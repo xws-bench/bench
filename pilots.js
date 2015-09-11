@@ -3356,6 +3356,7 @@ var PILOTS = [
 	   var p=this.selectnearbyunits(1,function(a,b) { return (a.team==b.team);});
 	   for (var i=0; i<p.length && i<this.stress; i++) 
 	       this.removestresstoken();
+	   return Unit.prototype.begincombatphase.call(this);
        },
 	  upgrades: ["Elite"
 		     ],
