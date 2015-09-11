@@ -2196,7 +2196,7 @@ var UPGRADES= [
 			}.bind(this))
 		    }.bind(this));
 		}
-		return bcp.all(this);
+		return bcp.call(this);
 	    }
 	},
         points: 2,

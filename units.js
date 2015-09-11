@@ -1600,7 +1600,7 @@ Unit.prototype = {
     endnoaction: function(n,type) {
 	this.show();
 	this.actionr[n].resolve(type);
-	this.log("solving "+n+" "+(this.actionr.length-1))
+	//this.log("solving "+n+" "+(this.actionr.length-1))
 	if (n==this.actionr.length-1) this.actionrlock.resolve();
     },
     endaction: function(n,type) {
