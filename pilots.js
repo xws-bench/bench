@@ -3359,7 +3359,7 @@ var PILOTS = [
        },
 	  upgrades: ["Elite"
 		     ],
-	  points: 18
+	  points: 19
       },
    {
 	  name: "'Omega Ace'",
@@ -3378,6 +3378,6 @@ var PILOTS = [
        },
 	  upgrades: ["Elite"
 		     ],
-	  points: 18
+	  points: 20
       }
 ];
