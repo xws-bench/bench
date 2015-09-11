@@ -188,7 +188,19 @@
         "Esege Tuketu":
         {"text": "When another friendly ship at Range 1-2 is attacking, it may treat your focus tokens as its own."},
         "Moralo Eval (Scum)":
-        {"text": "You can perform %CANNON% secondary attacks against ships inside your auxiliary firing arc."}
+        {"text": "You can perform %CANNON% secondary attacks against ships inside your auxiliary firing arc."},
+	"'Omega Ace'":
+	{"text":"When attacking, you may spend a focus token and a target lock you have on the defender to change all of your results to %CRIT% results."},
+	"'Epsilon Leader'":
+	{"text":"At the start of the Combat phase, remove 1 stress token from each friendly ship at Range 1."},
+	"'Zeta Leader'":
+	{"text":"When performing a barrel roll, you may use the %STRAIGHT% 2 template (instead of the %STRAIGHT% 1 template)."},
+	"'Red Ace'":
+	{"text":"The first time you remove a shield token from your ship each round, assign 1 evade token to your ship."},
+	"'Blue Ace'":
+	{"text":"When performing a boost action, you may use the %TURNLEFT% 1 or %TURNRIGHT% 1 template"},
+	"Poe Dameron":
+	{"text":"While attacking or defending, if you have a focus token, you may change 1 of your %FOCUS% results to a %HIT% or %EVADE% result."}
  },
  "upgrades": {
     "Ion Cannon Turret":{"text":
@@ -526,8 +538,8 @@
         "Lightning Reflexes":{
             "text":"After you execute a white or green maneuver on your dial, you may discard this card to rotate your ship 180&deg;.  Then receive 1 stress token <strong>after</strong> the 'Check Pilot Stress' step."},
         "Twin Laser Turret":{
-            "text":"<strong>Attack:</strong> Perform this attack <strong>twice</strong> (even against a ship outside your firing arc). Each time this attack hits, the defender suffers 1 damage.  Then cancel <strong>all</strong> dice results."},
-        "Plasma Torpedoes":{
+            "text":"<strong>Attack:</strong> Perform this attack <strong>twice</strong> (even against a ship outside your firing arc). Each time this attack hits, the defender suffers 1 damage.  Then cancel <strong>all</strong> dice results."},        
+"Plasma Torpedoes":{
             "text":"<strong>Attack (target lock):</strong> Spend your target lock and discard this card to perform this attack. If this attack hits, after dealing damage, remove 1 shield token from the defender."},
         "Ion Bombs":{
             "text":"When you reveal your maneuver dial, you may discard this card to <strong>drop</strong> 1 ion bomb token. This token <strong>detonates</strong> at the end of the Activation phase. <strong>Ion Bombs Token:</strong> When this bomb token detonates, each ship at Range 1 of the token receives 2 ion tokens.  Then discard this token."},
