@@ -9,13 +9,15 @@ var TIMEANIM=1000;
 var FACE=["focus","hit","critical","evade","blank"];
 var ATTACKDICE= [0,0,1,1,1,2,4,4];
 var DEFENSEDICE=[0,0,3,3,3,4,4,4];
-var MPOS={ F0:[0,2],F1:[1,2],F2:[2,2],F3:[3,2],F4:[4,2],F5:[5,2],	
-	   BL1:[1,1],BL2:[2,1],BL3:[3,1],
-	   TL1:[1,0],TL2:[2,0],TL3:[3,0],
-	   BR1:[1,3],BR2:[2,3],BR3:[3,3],
-	   TR1:[1,4],TR2:[2,4],TR3:[3,4],
-	   K1:[1,5],K2:[2,5],K3:[3,5],K4:[4,4],K5:[5,4],
-	   SL3:[3,0],SR3:[3,4]
+var MPOS={ F0:[0,3],F1:[1,3],F2:[2,3],F3:[3,3],F4:[4,3],F5:[5,3],	
+	   BL1:[1,2],BL2:[2,2],BL3:[3,2],
+	   TL1:[1,1],TL2:[2,1],TL3:[3,1],
+	   BR1:[1,4],BR2:[2,4],BR3:[3,4],
+	   TR1:[1,5],TR2:[2,5],TR3:[3,5],
+	   K1:[1,6],K2:[2,6],K3:[3,6],K4:[4,5],K5:[5,5],
+	   SL2:[2,0],SL3:[3,0],
+	   SR2:[2,6],SR3:[3,6],
+	   TRL3:[3,0],TRR3:[3,6]
 	 };
 
 var generics=[];
@@ -431,7 +433,7 @@ Unit.prototype = {
 	if (phase==PLANNING_PHASE||phase==SELECT_PHASE1||phase==SELECT_PHASE2) {
 	    for (i=0; i<=5; i++) {
 		m[i]=[];
-		for (j=0; j<=5; j++) m[i][j]="<div></div>";
+		for (j=0; j<=6; j++) m[i][j]="<div></div>";
 	    }
 	    var ship=$("#select"+this.id).val();
 	    for (i=0; i<gd.length; i++) {
@@ -451,7 +453,7 @@ Unit.prototype = {
 	    for (i=5; i>=0; i--) {
 		str+="<div>";
 		if (i>0&&i<5) str+="<div>"+i+"</div>"; else str+="<div>&nbsp;</div>";
-		for (j=0; j<=5; j++) str+=m[i][j];
+		for (j=0; j<=6; j++) str+=m[i][j];
 		str+="</div>\n";
 	    }
 	    if (phase==SELECT_PHASE1||phase==SELECT_PHASE2) $("#dial"+this.id).html(str);
@@ -1937,6 +1939,10 @@ Unit.prototype = {
 		    if (dial.match(/K\d|SR\d|SL\d/)) {
 			this.m.rotate(180,0,0);
 			record(this.id,"M"+realdial+":"+lenC+":R");
+		    } else if (dial.match(/TRL\d/)) {
+			this.m.rotate(-90,0,0);
+		    } else if (dial.match(/TRR\d/)) {
+			this.m.rotate(90,0,0);
 		    } else {
 			record(this.id,"M"+realdial+":"+lenC);
 		    }

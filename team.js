@@ -99,15 +99,6 @@ Team.prototype = {
 	}
 	this.units.sort(function(a,b) {return b.skill-a.skill;});
 	squadron.sort(function(a,b) {return b.skill-a.skill;});
-	return this.units;
-    },
-    endsetup: function() {
-	if (this.isia)
-	    for (i=0; i<this.units.length; i++) 
-		$.extend(this.units[i],IAUnit.prototype);
-	for (i=0; i<this.units.length; i++) { 
-	    this.units[i].g.undrag();
-	}
 	this.history={title: {text: "Damage taken by "+this.name},
 		      axisX:{  interval: 1,title: "Turns"},
 		      axisY: {	title: "Cumulated damage"},
@@ -120,6 +111,16 @@ Team.prototype = {
 		    markerSize:8,
 		    dataPoints: []}]
 	};
+	return this.units;
+    },
+    endsetup: function() {
+	if (this.isia)
+	    for (i=0; i<this.units.length; i++) 
+		$.extend(this.units[i],IAUnit.prototype);
+	for (i=0; i<this.units.length; i++) { 
+	    this.units[i].g.undrag();
+	}
+
     },
     endselection:function(s) {
 	var i;

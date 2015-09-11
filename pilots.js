@@ -3193,5 +3193,191 @@ var PILOTS = [
             ],
             points: 21
         },
-
+        {
+            name: "Poe Dameron",
+            faction: "REBEL",
+            unit: "T-70 X-Wing",
+	    unique:true,
+	    done:true,
+            skill: 8,
+            upgrades: [
+                "Elite",
+                "Torpedo",
+                "Astromech"
+            ],
+	    init: function() {
+		this.addattackmoda(this,function(m,n) { 
+			return this.focus>0;
+		    }.bind(this),function(m,n) {
+			var f=Math.floor(m/100)%10;		
+			if (f>0) {
+			    this.log("1 <code class='xfocustoken'></code> -> 1 <code class='hit'></code>");
+			    return m-99;
+			}
+			return m;
+		    }.bind(this),false,"focus");
+		this.adddefensemodd(this,function(m,n) { 
+			return this.focus>0;
+		    }.bind(this),function(m,n) {
+			var f=Math.floor(m/10)%10;		
+			if (f>0) {
+			    this.log("1 <code class='xfocustoken'></code> -> 1 <code class='xevadetoken'></code>");
+			    return m-9;
+			}
+			return m;
+		    }.bind(this),false,"focus");
+	    },
+            points: 31
+        },
+      {
+	  name: "'Blue Ace'",
+	  faction: "REBEL",
+	  done:true,
+	  unit: "T-70 X-Wing",
+	  skill: 5,
+	  unique:true,
+	  getboostmatrix:function(m) {
+	      return [this.getpathmatrix(this.m,"TR1"),
+		this.getpathmatrix(this.m,"TL1")]
+	      .concat(Unit.prototype.getboostmatrix.call(this,m));
+	  },
+	  upgrades: [
+		     "Torpedo",
+		     "Astromech"
+		     ],
+	  points: 27
+      },
+      {
+	  name: "'Red Ace'",
+	  faction: "REBEL",
+	  done:true,
+	  unit: "T-70 X-Wing",
+	  skill: 5,
+	  unique:true,
+	  init: function() { this.sr=-1; },
+	  removeshield:function(n) {
+	      if (this.sr<round) {
+		  this.log("+1 <code class='cshield'></code>");
+		  this.sr=round; this.addevadetoken();
+	      }
+	      Unit.prototype.removeshield.call(this,n);
+	  },
+	  upgrades: [
+		     "Torpedo",
+		     "Astromech"
+		     ],
+	  points: 29
+      },
+      {
+	  name: "Blue Squadron Novice",
+	  faction: "REBEL",
+	  done:true,
+	  unit: "T-70 X-Wing",
+	  skill: 2,
+	  upgrades: [
+		     "Torpedo",
+		     "Astromech"
+		     ],
+	  points: 24
+      },
+     {
+	  name: "Red Squadron Veteran",
+	  faction: "REBEL",
+	  done:true,
+	  unit: "T-70 X-Wing",
+	  skill: 4,
+	  upgrades: [
+		     "Torpedo",
+		     "Astromech"
+		     ],
+	  points: 26
+      },
+    {
+	  name: "Omega Squadron Pilot",
+	  faction: "EMPIRE",
+	  done:true,
+	  unit: "TIE/FO Fighter",
+	  skill: 4,
+	  upgrades: [
+		     "Elite"
+		     ],
+	  points: 17
+      },
+   {
+	  name: "Zeta Squadron Pilot",
+	  faction: "EMPIRE",
+	  done:true,
+	  unit: "TIE/FO Fighter",
+	  skill: 3,
+	  upgrades: [
+		     ],
+	  points: 16
+      },
+   {
+	  name: "Epsilon Squadron Pilot",
+	  faction: "EMPIRE",
+	  done:true,
+	  unit: "TIE/FO Fighter",
+	  skill: 1,
+	  upgrades: [
+		     ],
+	  points: 15
+      },
+   {
+	  name: "'Zeta Ace'",
+	  faction: "EMPIRE",
+	  done:true,
+	  unique:true,
+	  unit: "TIE/FO Fighter",
+	  skill: 5,
+	  getrollmatrix:function(m) {
+	var m0=this.getpathmatrix(this.m.clone().rotate(90,0,0),"F2").translate(0,(this.islarge?20:0)).rotate(-90,0,0);
+	var m1=this.getpathmatrix(this.m.clone().rotate(-90,0,0),"F2").translate(0,(this.islarge?20:0)).rotate(90,0,0);
+	return [m0.clone().translate(0,-20),
+		m0,
+		m0.clone().translate(0,20),
+		m1.clone().translate(0,-20),
+		m1,
+		m1.clone().translate(0,20)]
+	.concat(Unit.prototype.getrollmatrix.call(this,m));
+    },
+	  upgrades: ["Elite"
+		     ],
+	  points: 18
+      },
+   {
+	  name: "'Epsilon Leader'",
+	  faction: "EMPIRE",
+	  done:true,
+	  unique:true,
+	  unit: "TIE/FO Fighter",
+	  skill: 6,
+	  begincombatphase: function() {
+	   var p=this.selectnearbyunits(1,function(a,b) { return (a.team==b.team);});
+	   for (var i=0; i<p.length && i<this.stress; i++) 
+	       this.removestresstoken();
+       },
+	  upgrades: ["Elite"
+		     ],
+	  points: 18
+      },
+   {
+	  name: "'Omega Ace'",
+	  faction: "EMPIRE",
+	  done:true,
+	  unique:true,
+	  unit: "TIE/FO Fighter",
+	  skill: 7,
+	  init: function() {
+		this.addattackmoda(this,function(m,n) { 
+			return this.focus>0||this.targeting.indexOf(targetunit)>-1;
+		    }.bind(this),function(m,n) {
+			this.log("all results are <code class='critical'></code>");
+			return n*10;
+		    }.bind(this),false,"critical");
+       },
+	  upgrades: ["Elite"
+		     ],
+	  points: 18
+      }
 ];
