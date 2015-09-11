@@ -302,6 +302,12 @@ function Upgrade(sh,i) {
     //log("Installing upgrade "+this.name.replace(/\'/g,"&#39;")+" ["+this.type+"]");
     this.isactive=true;
     this.unit=sh;
+    var addedaction=this.addedaction;
+    if (typeof addedaction!="undefined") {
+	var added=addedaction.toUpperCase();
+	sh.shipactionList.push(added);
+	log("Added action:"+addedaction);
+    }
     if (typeof this.init != "undefined") this.init(sh);
 }
 function Upgradefromname(sh,name) {
@@ -816,6 +822,7 @@ var UPGRADES= [
 		this.getagility=ga;
 		w.getattack=gat;
 		this.endround=endround;
+		endround.call(this);
 	    }
 	    this.unit.showstats();
 	    this.unit.endaction(n,"ELITE");
@@ -2651,10 +2658,12 @@ var UPGRADES= [
         name: "Moldy Crow",
         type:"Title",
         init: function(sh) {
+	    var er=sh.endround;
 	    sh.endround=function() {
 		this.evade=0;
 		if (this.focus>0) this.log("Moldy Crow keeps focus tokens");
 		this.showinfo();
+		er.call(this);
 	    };
 	},
         unique: true,
