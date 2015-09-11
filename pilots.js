@@ -1004,7 +1004,7 @@ var PILOTS = [
         skill: 6,
         points: 21,
 	begincombatphase: function() {
-	    if (this.focus>0) {
+	    if (this.canusefocus()) {
 		var p=this.selectnearbyunits(3,function(t,s) { return s.team==t.team&&s!=t; });
 		if (p.length>0) {
 		    this.doselection(function(n) {
@@ -2085,7 +2085,7 @@ var PILOTS = [
 		var f=Math.floor(m/100)%10;
 		if (f>0) {
 		    this.log("1 <code class='xfocustoken'></code> -> 1 <code class='critical'></code>");
-		    return m+99;
+		    return m-90;
 		}
 		return m;
 	    }.bind(this),false,"hit");
@@ -3075,6 +3075,7 @@ var PILOTS = [
             unique: true,
             faction: "REBEL",
             unit: "K-Wing",
+	    
             skill: 6,
             upgrades: [
                 "Turret",
