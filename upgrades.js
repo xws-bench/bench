@@ -1606,7 +1606,7 @@ var UPGRADES= [
 		this.oldskill=this.skill;
 		this.log("Enhanced Scopes sets pilot skill set to 0"); 
 		this.skill=0;
-		bap.call(this);
+		return bap.call(this);
 	    };
 	    sh.endactivationphase=function() {
 		this.skill=this.oldskill;
