@@ -38,9 +38,11 @@
       <div>
 	<span class="h2"><span style='font-family:ships;font-size:larger;'>x</span>Squadron Benchmark<span class="ver"></span></span>
 	<span style="float:right;font-size:small">
-	  <span class="m-save permalink" onclick="permalink()"> &#128279;</span>
-	  <span class="m-reset permalink" onclick="resetlink()"> &#128279;</span>
+	  <button class="m-save permalink" onclick="permalink()"> &#128279;</button>
+	  <button class="m-reset permalink" onclick="resetlink()"> &#128279;</button>
 	  <span id="phase" style="font-size:small"></span>
+	  <button class="import m-import" onclick="importsquad()"></button>
+	  <button class="import m-export" onclick="exportsquad()"></button>
 	  <button class="nextphase" onclick="nextphase()"><span class='np'></span> <span id='npimg'>&#9658;</span></button>
 	  <span><select id="language" class="langselect"></select></span>
 	  <span class="menu-vertical" onmouseover="$('nav ul').css({display:'block',visibility:'visible'})" onmouseout="$('nav ul').css({display:'none',visibility:'hidden'})">Info
@@ -66,16 +68,16 @@
     
     <article id="main">
       <section class="phasepanel">
-	<div id="positiondial" class="table">
-	  <div>
-	    <div onclick="activeunit.turn(-45)" title="key: <T>" class="symbols">4</div>
-	    <div onclick="activeunit.turn(45)" title="key: <t>" class="symbols">6</div>
-	  </div>
-	  <div>
-	    <div onclick="activeunit.turn(-5)" title="key: <B>" class="symbols">7</div>
-	    <div onclick="activeunit.turn(5)" title="key: <b>" class="symbols">9</div>
-	  </div>
-	</div>
+	<table id="positiondial" class="table">
+	  <tr>
+	    <td onclick="activeunit.turn(-45)" title="key: <T>" class="symbols">4</td>
+	    <td onclick="activeunit.turn(45)" title="key: <t>" class="symbols">6</td>
+	  </tr>
+	  <tr>
+	    <td onclick="activeunit.turn(-5)" title="key: <B>" class="symbols">7</td>
+	    <td onclick="activeunit.turn(5)" title="key: <b>" class="symbols">9</td>
+	  </tr>
+	</table>
 	<div id="maneuverdial" class="table"></div>
 	<div id="activationdial" class="table"></div>
 	<div id="actiondial" class="table"></div>
@@ -117,7 +119,7 @@
       </section>
  
       <section id="import" class="modalDialog">
-	<div draggable="true">
+	<div>
 	  <summary><span class="m-import"></span><a href="#" title="Close" class="close">&#10062;</a>
 	  </summary>
 	  <div>
@@ -135,7 +137,7 @@
       </section>
 
       <section id="export" class="modalDialog">
-	<div draggable="true">
+	<div>
 	  <summary><span class="m-export"></span><a href="#" title="Close" class="close">&#10062;</a>
 	  </summary>
 	  <div>
