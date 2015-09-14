@@ -354,8 +354,8 @@ function reroll(n,forattack,type,id) {
 	//console.log("rerolling "+m+" dices");
 	$("#rerolla"+id).remove();
 	for (i=0; i<m; i++) {
-	    var r=Math.floor(Math.random()*8);
-	    $("#attack").prepend("<td noreroll='true' class='"+FACE[ATTACKDICE[r]]+"reddice'></td>");
+	    var r=activeunit.rollattackdie();
+	    $("#attack").prepend("<td noreroll='true' class='"+r+"reddice'></td>");
 	}
     } else { 
 	for (i=0; i<3; i++) {
@@ -376,8 +376,8 @@ function reroll(n,forattack,type,id) {
 	}
 	$("#rerolld"+id).remove();
 	for (i=0; i<m; i++) {
-	    var r=Math.floor(Math.random()*8);
-	    $("#defense").prepend("<td noreroll='true' class='"+FACE[DEFENSEDICE[r]]+"greendice'></td>");
+	    var r=activeunit.rolldefensedie();
+	    $("#defense").prepend("<td noreroll='true' class='"+r+"greendice'></td>");
 	}
     }
 }
@@ -475,6 +475,18 @@ function win() {
     window.location="#modal";
 }
 document.addEventListener("win",win,false);
+
+function importsquad() {
+    currentteam=(phase==SELECT_PHASE1)?1:2;
+    $("#jsonimport").val("");
+    window.location="#import";
+}
+function exportsquad() {
+    var team=(SELECT_PHASE1==phase)?1:2;
+    $("#jsonexport").val(JSON.stringify(TEAMS[team]));
+    $("#jugglerexport").val(TEAMS[team].toJuggler()); 
+    window.location="#export"
+}
 
 function bind(name,c,f) { $(document.body).bind('keydown.'+name,jwerty.event(c,f)); }
 function unbind(name) { $(document.body).unbind('keydown.'+name); } 
@@ -574,7 +586,8 @@ function nextphase() {
     }
     switch(phase) {
     case SELECT_PHASE1:
-	$(".permalink").hide()
+	$(".permalink").hide();
+	$(".import").show();
 	$(".activeunit").prop("disabled",true);
 	$("#rightpanel").hide();
 	break;
@@ -583,6 +596,7 @@ function nextphase() {
 	TEAMS[1].endselection(s);
 	break;
     case SETUP_PHASE:
+	$(".import").hide();
 	$("#team2").css("top",$("nav").height()+2);
 	$(".ctrl").css("display","block");
 	TEAMS[2].endselection(s);
@@ -1243,19 +1257,27 @@ $(document).ready(function() {
 	var mousewheel=function(t,event) {
 	    var min=$("nav").height()+2;
 	    var e = event.originalEvent; // old IE support
-	    var delta = Math.max(-100, Math.min(100, (e.wheelDelta || -e.detail)));
-	    var top=parseInt($("#team"+t.team).css("top"),10)+delta;
-	    if (top>min) top=min;
-	    var w=$("#team"+t.team).height();
-	    if (w>50 && top<min-w+50) top=min-w+50;
-	    $("#team"+t.team).css("top",(top+"px"));
+	    //var delta = Math.max(-100, Math.min(100, (e.wheelDelta || -e.detail)));
+	    var top=parseInt($("#team1").css("top"),10);//+delta;
+	    
 	};
 	//$(".modalDialog").draggable();
-	$(".modalDialog > div").on("dragstart",modal_dragstart); 
-	$(document.body).on('dragover',modal_dragover); 
-	$(document.body).on('drop',modal_drop); 
-	$("#team1").bind('mousewheel DOMMouseScroll', function(event) { mousewheel(this,event); }.bind(TEAMS[1]));
-	$("#team2").bind('mousewheel DOMMouseScroll', function(event) { mousewheel(this,event); }.bind(TEAMS[2]));
+	//$(".modalDialog > div").on("dragstart",modal_dragstart); 
+	//$(document.body).on('dragover',modal_dragover); 
+	//$(document.body).on('drop',modal_drop); 
+	var scrolloverflow=function(event) {
+	    var id=event.target.id;
+	    $("#"+id+" .outoverflow").each(function(index) { 
+		    if ($(this).css("top")!="auto") {
+			if (typeof $(this).attr("topsave")=="undefined")
+			    $(this).attr("topsave",$(this).css("top"));
+			var t=parseInt($(this).attr("topsave"),10)-parseInt($("#"+id).scrollTop(),10);
+			$(this).css("top",t+"px");
+		    }
+		});
+	}
+	$("aside").scroll(scrolloverflow);
+	//$("#team2").bind('mousewheel DOMMouseScroll', function(event) { mousewheel(this,event); }.bind(TEAMS[2]));
     });
 //    });
 });
