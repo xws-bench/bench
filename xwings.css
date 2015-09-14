@@ -40,7 +40,7 @@ width:100%;
 height:100%
 }
 .tooltip {  
-position:absolute;
+position:fixed;
 width:20em;
 color:white;
 font-weight:normal;
@@ -130,7 +130,13 @@ background:lightsteelblue;
 }
 .name select {
 background:steelblue;
-color:white;width:100%;text-align:center;
+color:white;
+width:100%;
+text-align:center;
+}
+.upgrade select {
+text-align:center;
+width: calc(100% - 4em) ; 
 }
 .modalDialog {
 position:absolute;
@@ -151,7 +157,7 @@ opacity:1;
 display:block
 }
 .generic {
-width:28ex;
+width:100%;
 }
 .info {
 width:10em;
@@ -323,17 +329,18 @@ font-family:'symbols'
 
 .stat,.stat2,.stat3 {
 line-height:8px;
-position:absolute;
+position:fixed;
 width:1.3ex;
-letter-spacing:4px
+letter-spacing:4px;
 }
 
 .statfire,.statskill,.PS,.statevade,.stathull,.statshield {
 display:inline-block
 }
 #team1,#team2 {
-position:fixed;
-top:5ex;
+/*position:fixed;
+top:5ex;*/
+direction:ltr;
 width:170px;
 z-index:2;
 }
@@ -371,12 +378,15 @@ float:left
 
 #team1 .pts,#team1 .totalpts,#team2 .pts,#team2 .totalpts {
 color:#fff;
-position:absolute;
+position:fixed; /*absolute;*/
 background:rgba(255,0,0,0);
 text-align:left;
 text-shadow:-1px -1px 0 #000;
 z-index:1;
 margin-top:0.5em;
+}
+.outoverflow {
+z-index:2;
 }
 #team1 .pts,#team1 .totalpts {
 left:185px
@@ -390,7 +400,8 @@ border:0;
 padding:0
 }
 .dial {
-position:absolute;
+/*position:absolute;*/
+position:fixed;
 color:#fff;
 padding:1.5em;
 max-width:10em;
@@ -398,7 +409,7 @@ width:10em
 z-index:1;
 }
 .upgtxt {
-position:absolute;
+position:fixed;
 color:#fff;
 padding-left:1em;
 max-width:350px;
@@ -406,11 +417,13 @@ width:350px;
 z-index:1;
 }
 #team2 .dial,#team2 .upgtxt {
-right:220px
+right:220px;
+position:fixed;
 }
 
 #team1 .dial,#team1 .upgtxt {
-left:190px
+left:190px;
+position:fixed;
 }
 .plus {
 color:#b0c4de;
@@ -429,7 +442,7 @@ border-width:1px
 }
 select {
 height:2em;
-width:15em;
+width:170px;
 padding-left:0;
 margin-left:0;
 text-align:center;
@@ -474,12 +487,16 @@ background:#888
 }
 
 .table,.team {
-display:table;
+display:block;/*table*/
 width:100%;
 padding:0;
 border:0
 }
-
+.table td {
+width: 1em;
+padding:0;
+margin:0;
+}
 .table .vertical,.tohit .details,.team .horizontal {
 display:none
 }
@@ -491,22 +508,22 @@ margin:0.1em;
 overflow:auto;
 height:50px
 }
-
+/*
 .upgrade select {
 width:120px;
 border:2px;
 margin:0
 }
-
+*/
 .table > div,.team > div,.team > p {
-display:table-row;
-width:200px;
+/*display:table-row;*/
+width:100%;
 padding:0;
 margin:0
 }
 
 .table > div > div,.phasepanel .table > div > button,.team > div > div {
-display:table-cell;
+/*display:table-cell;*/
 text-align:center;
 min-width:20px
 }
@@ -524,8 +541,8 @@ color:gray
 margin-left:0px;
 padding-left:0px;
 box-shadow:1px 1px 3px #000;
-border:0 0 5px 0;
-border:solid;
+/*border:0 0 5px 0;
+border:solid;*/
 color:#000;
 background:#fff
 }
@@ -548,7 +565,7 @@ border-radius:100%;
 padding:8px;
 background:white;
 }
-.smallbutton,.bigbutton,.button,.langselect,.permalink,.nextphase,.menu-vertical {
+.smallbutton,.bigbutton,.button,.langselect,.permalink,.import,.nextphase,.menu-vertical {
 display:inline-block;
 margin:5px;
 text-align:center;
@@ -862,14 +879,14 @@ height:2.5em
 }
 
 .upgrade {
-display:table-row
+/*display:table-row*/
 }
 
 .nextphase {
 background:red
 }
 
-.permalink {
+.permalink,.import {
 background:#b0c4de
 }
 
@@ -951,11 +968,13 @@ color:#000;
 background:#000;
 border-width:0;
 margin:0;
-overflow:hidden;
+overflow-x:hidden;
+overflow-y:auto;
 white-space:no-wrap;
 }
 #leftpanel {
 left:0;
+direction:rtl;
 }
 #rightpanel {
 right:0;
@@ -1162,12 +1181,11 @@ bottom:0;
 z-index:3;
 }
 input.factionselect + label {
-  padding: 4px;
-  margin:10px;
+  padding: 3px;
+  margin:5%;
   font-size: xx-large;
-  height: 40px;
   width: 30%;
-  line-height:50px;
+  line-height:2em;
   border-radius: 100%;
   display:inline;
   cursor: pointer;
