@@ -1276,7 +1276,7 @@ $(document).ready(function() {
 		    }
 		});
 	}
-	$("aside").scroll(scrolloverflow);
+	$("aside").on("scroll touchstart", scrolloverflow);
 	//$("#team2").bind('mousewheel DOMMouseScroll', function(event) { mousewheel(this,event); }.bind(TEAMS[2]));
     });
 //    });
