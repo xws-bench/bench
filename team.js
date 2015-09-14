@@ -51,7 +51,6 @@ Team.prototype = {
     addpoints: function() { 
 	var team=this.team
 	var f=["REBEL","SCUM","EMPIRE"];
-	$("#team"+team).append("<div><button onclick='currentteam="+team+";window.location=\"#import\"' class='bigbutton m-import'></button><button class='bigbutton m-export' onclick='$(\"#jsonexport\").val(JSON.stringify(TEAMS["+team+"]));$(\"#jugglerexport\").val(TEAMS["+team+"].toJuggler()); window.location=\"#export\"'></button></div>");
 	$("#team"+team).append("<div id='factionselect"+team+"'></div>");
 	for (i=0; i<3; i++) {
 	    $("#factionselect"+team).append("<input class='factionselect' id='"+f[i]+team+"' name='faction"+team+"' type='radio' onchange='TEAMS["+team+"].changefaction(\""+f[i]+"\")'>");
@@ -76,7 +75,7 @@ Team.prototype = {
 	$("#total"+team).remove();
 	$("#totallbl"+team).remove();
 	$("#team"+team).append("<div>"+(new Unit(team))+"</div>");
-	$("#team"+team).append("<div id='addunit"+team+"' onclick='TEAMS["+team+"].addunit("+team+")'><span class='plus addunit'>+</span><span class='addunit generic m-addunit'></span></div><div><div><div class='totalpts' id='total"+team+"'>0</div></div></div><div  id='totallbl"+team+"'></span><span class='plus'>=</span><span class='generic total m-totalpts'></span></div>");
+	$("#team"+team).append("<div id='addunit"+team+"' onclick='TEAMS["+team+"].addunit("+team+")'><span class='plus addunit'>+</span><span class='addunit generic m-addunit'></span></div><div><div><div class='totalpts outoverflow' id='total"+team+"'>0</div></div></div><div  id='totallbl"+team+"'></span><span class='plus'>=</span><span class='generic total m-totalpts'></span></div>");
 	this.updatepoints();
     },
     tosquadron:function(s) {
