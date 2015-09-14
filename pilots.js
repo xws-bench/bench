@@ -1044,8 +1044,7 @@ var PILOTS = [
 			(activeunit.team==unit.team)&&(activeunit!=unit)
 			&&(unit.getrange(activeunit)<=3);
 	    }.bind(this), function(m,n) {
-		var r=Math.floor(Math.random()*8);
-		var f=FACE[ATTACKDICE[r]];
+		var f=unit.rollattackdie();
 		unit.addstress();
 		unit.log("+1 attack die");
 		if (f=="focus") return m+100;
@@ -1740,8 +1739,7 @@ var PILOTS = [
 	done:true,
 	addstress:function() {
 	    // Automatic removal of stress
-	    var r=Math.floor(Math.random()*8);
-	    var roll=FACE[ATTACKDICE[r]];
+	    var roll=this.rollattackdie();
 	    this.log("remove 1 stress token, roll 1 attack dice")
 	    if (roll=="hit") { this.resolvehit(1); this.checkdead(); }
 	},

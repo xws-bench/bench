@@ -179,7 +179,7 @@ function Unit(team) {
     this.dial=[];
     this.ordnance=false;
     this.dialselect="<div id='dial"+id+"' class='table'></div>";
-    this.pts="<div class='pts' id='pts"+id+"'></div>";
+    this.pts="<div class='pts outoverflow' id='pts"+id+"'></div>";
     this.text="<div id='text"+id+"' class='details'></div>";
     this.pilotselect="";//"<select onchange='generics[\"u"+id+"\"].selectpilot()' id='name"+id+"'></select>";
     this.name="";
@@ -409,8 +409,8 @@ Unit.prototype = {
 	str+="<div><div>"+this.pts+"</div></div>";
 	var text=PILOT_translation[this.name+(this.faction=="SCUM"?" (Scum)":"")];
 	if (typeof text=="undefined"||typeof text.text=="undefined") text=""; else text=formatstring(text.text);
-	str+="<div><div id='text"+this.id+"' class='upgtxt details'>"+text+"</div><div class='name'>"+this.pilotselect+"</div></div>";
-	str+="<div><div class='dial'>"+this.dialselect+"</div></div>";
+	str+="<div><div id='text"+this.id+"' class='outoverflow upgtxt details'>"+text+"</div><div class='name'>"+this.pilotselect+"</div></div>";
+	str+="<div><div class='dial outoverflow'>"+this.dialselect+"</div></div>";
 	str+="<div><div>"+this.ship.select+"</div></div>";
 	str+="<div>"+this.stats+"</div>";
 	str+="<div style='height:4em'>"+this.actions+"</div>";
@@ -433,29 +433,30 @@ Unit.prototype = {
 	if (phase==PLANNING_PHASE||phase==SELECT_PHASE1||phase==SELECT_PHASE2) {
 	    for (i=0; i<=5; i++) {
 		m[i]=[];
-		for (j=0; j<=6; j++) m[i][j]="<div></div>";
+		for (j=0; j<=6; j++) m[i][j]="<td></td>";
 	    }
 	    var ship=$("#select"+this.id).val();
 	    for (i=0; i<gd.length; i++) {
 		d=gd[i];
 		var cx=MPOS[d.move][0],cy=MPOS[d.move][1];
-		if (d.difficulty=="RED"&&this.stress>0) m[cx][cy]="<div></div>";
+		if (d.difficulty=="RED"&&this.stress>0) m[cx][cy]="<td></td>";
 		else {
-		    m[cx][cy]="<div";
+		    m[cx][cy]="<td";
 		    if (phase==PLANNING_PHASE) 
 			m[cx][cy]+=" onclick='activeunit.setmaneuver("+i+")'";
 		    m[cx][cy]+=" class='symbols "+d.difficulty;
 		    if (this.maneuver==i) m[cx][cy]+=" selected";
-		    m[cx][cy]+="' >"+P[d.move].key+"</div>";
+		    m[cx][cy]+="' >"+P[d.move].key+"</td>";
 		}
 	    }
 	    var str="";
 	    for (i=5; i>=0; i--) {
-		str+="<div>";
-		if (i>0&&i<5) str+="<div>"+i+"</div>"; else str+="<div>&nbsp;</div>";
+		str+="<tr>";
+		if (i>0&&i<5) str+="<td>"+i+"</td>"; else str+="<td></td>";
 		for (j=0; j<=6; j++) str+=m[i][j];
-		str+="</div>\n";
+		str+="</tr>\n";
 	    }
+	    str="<table>"+str+"</table>";
 	    if (phase==SELECT_PHASE1||phase==SELECT_PHASE2) $("#dial"+this.id).html(str);
 	    else $("#maneuverdial").html(str);
 	}  
@@ -561,7 +562,7 @@ Unit.prototype = {
 	var str,head,bs=0;
 	if (typeof bonus!="undefined") bs=bonus;
 	head="<div id='upgradetext"+this.id+"_"+upgid+"' class='upgrade'>";
-	head+="<span class='pts' id='pts"+this.id+"_"+upgid+"'></span>";
+	head+="<span class='outoverflow pts' id='pts"+this.id+"_"+upgid+"'></span>";
 	head+="<a href='#' class='upgrades "+(type=="Cannon|Torpedo|Missile"?"CannonTorpedoMissile":type)+"'></a>"; /* type.replace(/|/g,'')*/
 	head+="<select id='upgrade"+this.id+"_"+upgid+"' onchange='generics[\"u"+this.id+"\"].selectupgrade(\""+type+"\","+upgid+","+bs+")'>";
 	head+="<option value='-1' selected>"+UI_translation.none+"</option>";
@@ -667,7 +668,7 @@ Unit.prototype = {
 	var u=UPGRADES[upgrade];
 	var text=UPGRADE_translation[u.name+(type=="Crew"?"(Crew)":"")];
 	if (typeof text=="undefined"||typeof text.text=="undefined") text=""; else text=formatstring(text.text);
-	$("#upgradetext"+this.id+"_"+upgid).prepend("<div class='upgtxt details'>"+(u.attack?"<b class='statfire'>"+u.attack+"</b>["+u.range[0]+"-"+u.range[1]+"], ":"")+text+"</div>");
+	$("#upgradetext"+this.id+"_"+upgid).prepend("<div class='outoverflow upgtxt details'>"+(u.attack?"<b class='statfire'>"+u.attack+"</b>["+u.range[0]+"-"+u.range[1]+"], ":"")+text+"</div>");
 
 	/* Add action */
 	var addedaction=UPGRADES[upgrade].addedaction;
@@ -746,6 +747,9 @@ Unit.prototype = {
 	}
 	return 0;
     },
+    rollattackdie: function() { return FACE[ATTACKDICE[this.rand(8)]]; },
+    rolldefensedie: function() { return FACE[DEFENSEDICE[this.rand(8)]]; },
+    rand: function(n) { return Math.floor(Math.random()*n); },
     getdefensetable: function(n) { return DEFENSE[n]; },
     defenseroll: function(n) {
 	var i,e,f;
@@ -2263,32 +2267,32 @@ Unit.prototype = {
 	if (i==-1) str="<div class='dead '>"; else str="<div>";
 	n+=this.upgrades.length*2;
 	if (this.hull+this.shield<=n) {
-	    str+="<div class='vertical stat'>";
+	    str+="<div class='vertical outoverflow stat'>";
 	    str+="<div class='hull'>"+repeat("u ",this.hull)+"</div>";
 	    str+="<div class='shield'>"+repeat("u ",this.shield)+"</div></div>";
 	} else {
 	    if (this.hull>n) {
-		str+="<div class='vertical stat'>";
+		str+="<div class='vertical outoverflow stat'>";
 		str+="<div class='hull'>"+repeat("u ",n)+"</div></div>";
 		if (this.hull<=n*2) {
-		    str+="<div class='vertical stat2'>";
+		    str+="<div class='vertical outoverflow stat2'>";
 		    str+="<div class='hull'>"+repeat("u ",this.hull-n)+"</div>";
 		    if (this.shield+this.hull<=n*2) 
 			str+="<div class='shield'>"+repeat("u ",this.shield)+"</div></div>";
 		    else { 
 			str+="<div class='shield'>"+repeat("u ",n*2-this.hull)+"</div></div>";
-			str+="<div class='vertical stat3'>";
+			str+="<div class='vertical outoverflow stat3'>";
 			str+="<div class='shield'>"+repeat("u ",this.shield-n*2+this.hull)+"</div></div>";
 		    }
 		} else {
-		    str+="<div class='vertical stat2'><div class='hull'>"+repeat("u ",n)+"</div></div>";
-		    str+="<div class='vertical stat3'><div class='hull'>"+repeat("u ",this.hull-n*2)+"</div>";
+		    str+="<div class='vertical outoverflow stat2'><div class='hull'>"+repeat("u ",n)+"</div></div>";
+		    str+="<div class='vertical outoverflow stat3'><div class='hull'>"+repeat("u ",this.hull-n*2)+"</div>";
 		    str+="<div class='shield'>"+repeat("u ",this.shield)+"</div></div>";
 		}
 	    } else { // No more than 8 shields ? 
-		str+="<div class='vertical stat'><div class='hull'>"+repeat("u ",this.hull)+"</div>";
+		str+="<div class='vertical outoverflow stat'><div class='hull'>"+repeat("u ",this.hull)+"</div>";
 		str+="<div class='shield'>"+repeat("u ",n-this.hull)+"</div></div>";
-		str+="<div class='vertical stat2'><div class='shield'>"+repeat("u ",this.shield-n+this.hull)+"</div></div>";
+		str+="<div class='vertical outoverflow stat2'><div class='shield'>"+repeat("u ",this.shield-n+this.hull)+"</div></div>";
 	    }    
 	}
 	str+="<div><div class='statskill'>"+this.skill+"</div>";
@@ -2524,8 +2528,7 @@ Unit.prototype = {
 	var n=this.ocollision.template;
 	if (this.ocollision.overlap>-1) n++;
 	for (i=0; i<n; i++) {
-	    var r=Math.floor(Math.random()*8);
-	    var roll=FACE[ATTACKDICE[r]];
+	    var roll=this.rollattackdie();
 	    if (roll=="hit") { this.resolvehit(1); this.checkdead(); }
 	    else if (roll=="critical") { this.resolvecritical(1);
 					 this.checkdead();
@@ -2598,7 +2601,7 @@ Unit.prototype = {
     selectdamage: function(crit) {
 	var i,s=0,m,j;
 	for (i=0; i<CRITICAL_DECK.length; i++) s+=CRITICAL_DECK[i].count;
-	var r=Math.floor(Math.random()*s);
+	var r=this.rand(s);
 	m=0;
 	for (i=0; i<CRITICAL_DECK.length; i++) {
 	    m+=CRITICAL_DECK[i].count;

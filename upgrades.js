@@ -475,8 +475,7 @@ var UPGRADES= [
 	},
 	action: function(n) {
 	    var c=-1,cl=-1;
-	    var r=Math.floor(Math.random()*8);
-	    var roll=FACE[DEFENSEDICE[r]];
+	    var roll=this.unit.rolldefensedie();
 	    if (roll=="evade" ||roll=="focus") {
 		for (i=0; i<this.criticals.length; i++) {
 		    var cr=this.criticals[i];
@@ -501,9 +500,8 @@ var UPGRADES= [
         init: function(sh) {
 	    var rtt=sh.removetarget;
 	    sh.removetarget=function(t) {
-		rtt.call(this,t);		    
-		var r=Math.floor(Math.random()*8);
-		var roll=FACE[DEFENSEDICE[r]];
+		rtt.call(this,t);		  
+		var roll=this.rolldefensedie();
 		if (roll=="evade") {
 		    this.addtarget(t);
 		    this.log("R5-K6 gives target lock on "+t.name);
@@ -714,8 +712,7 @@ var UPGRADES= [
 		    if (t.shipactionList.indexOf("BOOST")==-1) {
 			t.log("Daredevil: 2 rolls for damage");
 			for (var i=0; i<2; i++) {
-			    var r=Math.floor(Math.random()*8);
-			    var roll=FACE[ATTACKDICE[r]];
+			    var roll=t.rollattackdie();
 			    if (roll=="hit") { t.resolvehit(1); t.checkdead(); }
 			    else if (roll=="critical") { 
 				t.resolvecritical(1);
@@ -1167,7 +1164,7 @@ var UPGRADES= [
 			if (p[k].criticals[i].isactive==false) q.push(p[k].criticals[i]);
 		    log("found "+q.length+" damage cards");
 		    if (q.length>0) {
-			var r=Math.floor(Math.random()*q.length);
+			var r=p[k].rand(q.length);
 			p[k].log("Saboteur: turning faceup one damage card");
 			p[k].faceup(q[r]);
 			p[k].show();
@@ -1769,8 +1766,7 @@ var UPGRADES= [
 	action: function(n) {
 	    var str="";
 	    for (var i=0; i<2; i++) {
-		var r=Math.floor(Math.random()*8);
-		var roll=FACE[DEFENSEDICE[r]];
+		var roll=this.unit.rolldefensedie();
 		if (roll=="focus") { this.unit.addfocustoken(); str+=" +1 <code class='xfocustoken'></code>"; }
 		if (roll=="evade") { this.unit.addevadetoken(); str+=" +1 <code class='xevadetoken'></code>"; }
 	    } 
@@ -2458,8 +2454,7 @@ var UPGRADES= [
 	    var cb=sh.collidedby;
 	    sh.collidedby=function(t) {
 		if (upg.isactive) {
-		    var r=Math.floor(Math.random()*8);
-		    var roll=FACE[ATTACKDICE[r]];
+		    var roll=this.rollattackdie();
 		    if (roll=="hit"||roll=="critical") {
 			t.log(upg.name+": +1 <code class='hit'></code>") 
 			    t.resolvehit(1);
