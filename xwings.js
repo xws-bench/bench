@@ -1269,14 +1269,16 @@ $(document).ready(function() {
 	    var id=event.target.id;
 	    $("#"+id+" .outoverflow").each(function(index) { 
 		    if ($(this).css("top")!="auto") {
-			if (typeof $(this).attr("topsave")=="undefined")
+			//log(index+":"+);
+			/*			if (typeof $(this).attr("topsave")=="undefined")
 			    $(this).attr("topsave",$(this).css("top"));
-			var t=parseInt($(this).attr("topsave"),10)-parseInt($("#"+id).scrollTop(),10);
-			$(this).css("top",t+"px");
+			    var t=parseInt($(this).attr("topsave"),10)-parseInt($("#"+id).scrollTop(),10);*/
+			$(this).css("top",$(this).parent().offset().top+"px");
 		    }
-		});
+		    });
 	}
-	$("aside").on("scroll touchstart", scrolloverflow);
+	$("aside").on("scroll", scrolloverflow);
+	$("aside").on("gesturechange", function() {});
 	//$("#team2").bind('mousewheel DOMMouseScroll', function(event) { mousewheel(this,event); }.bind(TEAMS[2]));
     });
 //    });
