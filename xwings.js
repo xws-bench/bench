@@ -1278,7 +1278,7 @@ $(document).ready(function() {
 		    });
 	}
 	$("aside").on("scroll", scrolloverflow);
-	$("aside").on("gesturechange", function() { log("coucou");});
+	$("aside").on("touchmove", function() { log("coucou");});
 	//$("#team2").bind('mousewheel DOMMouseScroll', function(event) { mousewheel(this,event); }.bind(TEAMS[2]));
     });
 //    });
