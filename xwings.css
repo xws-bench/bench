@@ -229,6 +229,10 @@ text-align:justify
 td,th,table {
 vertical-align:middle;
 text-align:center
+border:0;
+padding:0;
+margin:0;
+font-size:1em;
 }
 
 .warn {
@@ -412,8 +416,9 @@ z-index:1;
 position:fixed;
 color:#fff;
 padding-left:1em;
-max-width:350px;
-width:350px;
+max-width:30em;
+width:30em;
+font-size:smaller;
 z-index:1;
 }
 #team2 .dial,#team2 .upgtxt {
@@ -490,12 +495,16 @@ background:#888
 display:block;/*table*/
 width:100%;
 padding:0;
-border:0
+border:0;
+border-collapse:collapse;
+border-spacing:0;
+empty-cells:hide;
 }
 .table td {
 width: 1em;
 padding:0;
 margin:0;
+font-size:1.5ex
 }
 .table .vertical,.tohit .details,.team .horizontal {
 display:none
