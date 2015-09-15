@@ -16,7 +16,7 @@ display:block;
 font-family:sans-serif;
 }
 
-#main {
+.main {
 height:calc(100% - 5ex);
 width:calc(100% - 340px);
 position:fixed;
@@ -24,7 +24,7 @@ top:5ex;
 left:170px;
 z-index:0;
 }
-#playmat {
+.playmat {
 padding:0;
 background:url(img/playmat7.jpg);
 background-repeat:no-repeat;
@@ -33,7 +33,7 @@ width:100%;
 height:100%;
 overflow:hidden
 }
-#playmat img {
+.playmat img {
 width:100%;
 height:100%;
 }
@@ -52,10 +52,10 @@ font-size:small;
 opacity:0;
 pointer-events:none;
 }
-#team1 .tooltip {
+.leftpanel section .tooltip {
 left:170px;
 }
-#team2 .tooltip {
+.rightpanel section .tooltip {
 right:170px;
 }
 tr:hover .tooltip,.name:hover .tooltip { 
@@ -96,6 +96,12 @@ letter-spacing:1.5px;
 
 h2 {
 color:#4682b4
+width:100%;
+position:absolute;
+top:0;left:0;
+margin:5px;
+font-size:larger;
+text-align:center;
 }
 
 nav ul {
@@ -193,14 +199,6 @@ position:absolute;
 left:150px;
 top:0
 }
-h2 {
-width:100%;
-position:absolute;
-top:0;left:0;
-margin:5px;
-font-size:larger;
-text-align:center;
-}
 .phasepanel {
 position:absolute;
 top:0;
@@ -252,7 +250,7 @@ text-align:justify
 
 td,th,table {
 vertical-align:middle;
-text-align:center
+text-align:center;
 border:0;
 padding:0;
 margin:0;
@@ -368,46 +366,46 @@ letter-spacing:4px;
 .statfire,.statskill,.PS,.statevade,.stathull,.statshield {
 display:inline-block
 }
-#team1,#team2 {
+.leftpanel section,.rightpanel section {
 /*position:fixed;
 top:5ex;*/
 direction:ltr;
 width:170px;
 z-index:2;
 }
-#team1 .statskill {
+.leftpanel section .statskill {
 float:right
 }
 
-#team1 .stat {
+.leftpanel section .stat {
 left:170px
 }
 
-#team1 .stat2 {
+.leftpanel section .stat2 {
 left:178px
 }
 
-#team1 .stat3 {
+.leftpanel section .stat3 {
 left:186px
 }
 
-#team2 .stat {
+.rightpanel section .stat {
 right:170px
 }
 
-#team2 .stat2 {
+.rightpanel section .stat2 {
 right:178px
 }
 
-#team2 .stat3 {
+.rightpanel section .stat3 {
 right:186px
 }
 
-#team2 .statskill {
+.rightpanel section .statskill {
 float:left
 }
 
-#team1 .pts,#team1 .totalpts,#team2 .pts,#team2 .totalpts {
+.leftpanel section .pts,.leftpanel section .totalpts,.rightpanel section .pts,.rightpanel section .totalpts {
 color:#fff;
 position:fixed; /*absolute;*/
 background:rgba(255,0,0,0);
@@ -419,10 +417,10 @@ margin-top:0.5em;
 .outoverflow {
 z-index:2;
 }
-#team1 .pts,#team1 .totalpts {
+.leftpanel section .pts,.leftpanel section .totalpts {
 left:185px
 }
-#team2 .pts,#team2 .totalpts {
+.rightpanel section .pts,.rightpanel section .totalpts {
 right:185px
 }
 td,tr,table {
@@ -437,7 +435,7 @@ color:#fff;
 padding-left:1.5em;
 padding-top:1em;
 max-width:10em;
-width:10em
+width:10em;
 z-index:1;
 }
 .upgtxt {
@@ -449,12 +447,12 @@ width:30em;
 font-size:smaller;
 z-index:1;
 }
-#team2 .dial,#team2 .upgtxt {
+.rightpanel section .dial,.rightpanel section .upgtxt {
 right:220px;
 position:fixed;
 }
 
-#team1 .dial,#team1 .upgtxt {
+.leftpanel section .dial,.leftpanel section .upgtxt {
 left:190px;
 position:fixed;
 }
@@ -577,8 +575,8 @@ background:#000;
 color:gray
 }
 .team > div {
-margin-left:0px;
-padding-left:0px;
+margin-left:0;
+padding-left:0;
 box-shadow:1px 1px 3px #000;
 /*border:0 0 5px 0;
 border:solid;*/
@@ -743,7 +741,7 @@ content:"*"
 .hit,.critical,.cshield,.chull {
 font-family:'symbols';
 text-align:center;
-width:14px;
+/*width:14px;*/
 line-height:14px;
 display:inline
 }
@@ -912,22 +910,6 @@ font-family:'symbols';
 content:"e"
 }
 
-#pilot-text {
-height:8em;
-text-align:justify;
-border:0;
-margin:4px;
-padding:0
-}
-
-#actionlist {
-height:2.5em
-}
-
-.upgrade {
-/*display:table-row*/
-}
-
 .nextphase {
 background:red
 }
@@ -1006,7 +988,7 @@ cursor:default;
 width:74px
 }
 
-#leftpanel,#rightpanel {
+.leftpanel,.rightpanel {
 top:5ex; /*new */
 position:absolute;
 width: 170px;
@@ -1019,11 +1001,11 @@ overflow-x:hidden;
 overflow-y:auto;
 white-space:no-wrap;
 }
-#leftpanel {
+.leftpanel {
 left:0;
 direction:rtl;
 }
-#rightpanel {
+.rightpanel {
 right:0;
 }
 .symbols {
@@ -1124,7 +1106,7 @@ opacity:.7
 .ver {
 font-size:x-small;
 color:white;
-letter-spacing:0px;
+letter-spacing:0;
 }
 footer {
 position:fixed;
@@ -1142,7 +1124,7 @@ background:rgba(50,50,50,0.5);
 cursor:move;
 height:1em;
 }
-#log {
+.log {
 text-align:left;
 overflow-y:scroll;
 font-size:small;
@@ -1291,11 +1273,3 @@ src:url(x-wingsymbols.ttf) format("truetype")
 font-family:'ships';
 src:url(xwing-miniatures-ships.ttf) format("truetype")
 }
-.flag {
-	width: 16px;
-	height: 11px;
-	background:url(flags.png) no-repeat
-}
-
-.flag.flag-en {background-position: -176px -44px}
-.flag.flag-fr {background-position: -144px -44px}
