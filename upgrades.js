@@ -42,7 +42,7 @@ Bomb.prototype = {
 	if (typeof text!="undefined"&&typeof text.name!="undefined") name=text.name;
 	b="<td class='tdstat'>"+name.replace(/\'/g,"&#39;")+ord+"</td>";
 	if (typeof text!="undefined"&&typeof text.text!="undefined") text=text.text; else text="";
-	d="<td class='tooltip'>"+formatstring(text)+"</td>";
+	d="<td class='tooltip outoverflow'>"+formatstring(text)+"</td>";
 	if (this.unit.team==1)  
 	    return "<tr "+c+">"+b+a+d+"</tr>"; 
 	else return "<tr "+c+">"+a+b+d+"</tr>";
@@ -181,10 +181,10 @@ Weapon.prototype = {
 	    if (i==r.length) c="class='nofire'"
 	}
 	for (var i=0; i<squadron.length; i++) if (squadron[i]==this.unit) break;
-	a="<td class='statfire'";
+	a="<td><button class='statfire'";
 	a+=" onclick='if (!squadron["+i+"].dead) squadron["+i+"].togglehitsector(\""+this.name.replace(/\'/g,"&#39;")+"\")'";
 	a+=">"+this.getattack()+"<span class='symbols'>"+A[this.type.toUpperCase()].key+"</span>"
-	a+="</td>";
+	a+="</button></td>";
 	var text=UPGRADE_translation[this.name];
 	var name=this.name;
 	var ord="";
@@ -197,11 +197,11 @@ Weapon.prototype = {
 	}
 	b+="["+this.range[0]+"-"+this.range[1]+"]</span></td>";
 	if (typeof text!="undefined"&&typeof text.text!="undefined") text=text.text; else text="";
-	d="<td class='tooltip'>"+formatstring(text)+"</td>";
+	d="<td class='tooltip outoverflow'>"+formatstring(text)+"</td>";
 
 	if (this.unit.team==1)  
-	    return "<tr "+c+">"+b+d+a+"</tr>"; 
-	else return "<tr "+c+">"+d+a+b+"</tr>";
+	    return "<tr "+c+">"+b+a+d+"</tr>"; 
+	else return "<tr "+c+">"+a+b+d+"</tr>";
     },
     getrequirements: function() {
 	return this.requires;
@@ -337,7 +337,7 @@ Upgrade.prototype = {
 	if (typeof text!="undefined"&&typeof text.name!="undefined") name=text.name;
 	b="<td class='tdstat'>"+name.replace(/\'/g,"&#39;")+"</td>";
 	if (typeof text!="undefined"&&typeof text.text!="undefined") text=text.text; else text="";
-	d="<td class='tooltip'>"+formatstring(text)+"</td>";
+	d="<td class='tooltip outoverflow'>"+formatstring(text)+"</td>";
 	if (this.unit.team==1)  
 	    return "<tr "+c+">"+b+a+d+"</tr>"; 
 	else return "<tr "+c+">"+a+b+d+"</tr>";
