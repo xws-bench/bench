@@ -68,7 +68,7 @@
     
     <article id="main">
       <section class="phasepanel">
-	<table id="positiondial" class="table">
+	<table id="positiondial">
 	  <tr>
 	    <td onclick="activeunit.turn(-45)" title="key: <T>" class="symbols">4</td>
 	    <td onclick="activeunit.turn(45)" title="key: <t>" class="symbols">6</td>
@@ -78,10 +78,10 @@
 	    <td onclick="activeunit.turn(5)" title="key: <b>" class="symbols">9</td>
 	  </tr>
 	</table>
-	<div id="maneuverdial" class="table"></div>
-	<div id="activationdial" class="table"></div>
-	<div id="actiondial" class="table"></div>
-	<div id="attackdial" class="table"></div>
+	<table id="maneuverdial"></table>
+	<div id="activationdial"></div>
+	<div id="actiondial"></div>
+	<div id="attackdial"></div>
 	<div id="combatdial">
 	  <table style='width:100%'>
 	    <tr style='width:100%' id="attack"></tr>
@@ -112,7 +112,7 @@
     </section>
      <section id="modal" class="modalDialog">
 	<div draggable="true">
-	  <summary><span class="victory"></span><a href="#" title="Close" class="close">&#10062;</a>
+	  <summary><span class="victory"></span><a href="#" title="Close" class="close">&#10060;</a>
 	  </summary>
 	  <div><div id="t1" style="height: 400px; width: 100%;"></div><div id="t2" style="height: 400px; width: 100%;"></div>
 	  </div>
@@ -120,7 +120,7 @@
  
       <section id="import" class="modalDialog">
 	<div>
-	  <summary><span class="m-import"></span><a href="#" title="Close" class="close">&#10062;</a>
+	  <summary><span class="m-import"></span><a href="#" title="Close" class="close">&#10060;</a>
 	  </summary>
 	  <div>
 	  <p>Copy and paste the squad list using one of the two formats. It will determine automatically which one you use.</p>
@@ -138,7 +138,7 @@
 
       <section id="export" class="modalDialog">
 	<div>
-	  <summary><span class="m-export"></span><a href="#" title="Close" class="close">&#10062;</a>
+	  <summary><span class="m-export"></span><a href="#" title="Close" class="close">&#10060;</a>
 	  </summary>
 	  <div>
 	    <p>JSON export</p>
@@ -151,7 +151,7 @@
 
       <section id="help" class="modalDialog">
 	<div class="help" draggable="true">
-	  <summary><span class="m-help"></span><a href="#" title="Close" class="close">&#10062;</a>
+	  <summary><span class="m-help"></span><a href="#" title="Close" class="close">&#10060;</a>
 	  </summary>
 	  <div>
 	    <h2>How to play</h2> 
@@ -251,7 +251,7 @@ A window opens showing the rolls for the attacker and its target.You can play an
 
       <section id="proba" class="modalDialog">
 	<div draggable="true">
-	  <summary><span class="m-proba"></span><a href="#" title="Close" class="close">&#10062;</a>
+	  <summary><span class="m-proba"></span><a href="#" title="Close" class="close">&#10060;</a>
 	  </summary>
 	  <div>
 	    <p>
@@ -284,7 +284,7 @@ A window opens showing the rolls for the attacker and its target.You can play an
       
       <section id="about" class="modalDialog">
 	<div draggable="true">
-	  <summary><span class="m-about"></span><a href="#" title="Close" class="close">&#10062;</a>
+	  <summary><span class="m-about"></span><a href="#" title="Close" class="close">&#10060;</a>
 	  </summary>
 	  <div>Squadron Benchmark is a web app for
  testing squadrons built for the X-Wing Miniatures game. You can design
@@ -314,7 +314,7 @@ The app is not really a game since the user plays both sides, there is no multi-
 
       <section id="credit" class="modalDialog">
 	<div draggable="true">
-	  <summary><span class="m-credits"></span><a href="#" title="Close" class="close">&#10062;</a>
+	  <summary><span class="m-credits"></span><a href="#" title="Close" class="close">&#10060;</a>
 	  </summary>
 	  <div>
 	  The app is (c) Denis Wings (deniswings@free.fr). The License of the code is an MIT license. <br/>
@@ -367,7 +367,7 @@ The app is not really a game since the user plays both sides, there is no multi-
 	</div></div>
       </section>
     <footer>
-      <a href="#" onclick="$('footer').css({display:'none',visibility:'hidden'})" title="Close" class="close">&#10062;</a>
+      <a href="#" onclick="$('footer').css({display:'none',visibility:'hidden'})" title="Close" class="close">&#10060;</a>
       <div class='title'>Console</div>
       <div id='log'></div>
     </footer>

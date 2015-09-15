@@ -178,7 +178,7 @@ function Unit(team) {
     this.shipactionList=[];
     this.dial=[];
     this.ordnance=false;
-    this.dialselect="<div id='dial"+id+"' class='table'></div>";
+    this.dialselect="<table class='dial outoverflow' id='dial"+id+"'></table>";
     this.pts="<div class='pts outoverflow' id='pts"+id+"'></div>";
     this.text="<div id='text"+id+"' class='details'></div>";
     this.pilotselect="";//"<select onchange='generics[\"u"+id+"\"].selectpilot()' id='name"+id+"'></select>";
@@ -410,7 +410,7 @@ Unit.prototype = {
 	var text=PILOT_translation[this.name+(this.faction=="SCUM"?" (Scum)":"")];
 	if (typeof text=="undefined"||typeof text.text=="undefined") text=""; else text=formatstring(text.text);
 	str+="<div><div id='text"+this.id+"' class='outoverflow upgtxt details'>"+text+"</div><div class='name'>"+this.pilotselect+"</div></div>";
-	str+="<div><div class='dial outoverflow'>"+this.dialselect+"</div></div>";
+	str+="<div>"+this.dialselect+"</div>";
 	str+="<div><div>"+this.ship.select+"</div></div>";
 	str+="<div>"+this.stats+"</div>";
 	str+="<div style='height:4em'>"+this.actions+"</div>";
@@ -444,7 +444,7 @@ Unit.prototype = {
 		    m[cx][cy]="<td";
 		    if (phase==PLANNING_PHASE) 
 			m[cx][cy]+=" onclick='activeunit.setmaneuver("+i+")'";
-		    m[cx][cy]+=" class='symbols "+d.difficulty;
+		    m[cx][cy]+=" class='symbols maneuver "+d.difficulty;
 		    if (this.maneuver==i) m[cx][cy]+=" selected";
 		    m[cx][cy]+="' >"+P[d.move].key+"</td>";
 		}
@@ -456,7 +456,6 @@ Unit.prototype = {
 		for (j=0; j<=6; j++) str+=m[i][j];
 		str+="</tr>\n";
 	    }
-	    str="<table>"+str+"</table>";
 	    if (phase==SELECT_PHASE1||phase==SELECT_PHASE2) $("#dial"+this.id).html(str);
 	    else $("#maneuverdial").html(str);
 	}  
@@ -483,13 +482,20 @@ Unit.prototype = {
 	var i;
 	var selected=-1;
 	var ship=$("#select"+this.id).val();
+	var ml=0;
+	var p=[];
 	for (i=0; i<PILOTS.length; i++) {
 	    if (PILOTS[i].unit==ship && PILOTS[i].faction==this.faction) {
 		var n=PILOTS[i].name;
 		if (typeof PILOT_translation[n]!="undefined"&& typeof PILOT_translation[n].name!="undefined") n=PILOT_translation[n].name;
-		$("#name"+this.id).append("<option"+(selected==-1?" selected":"")+" value=\""+PILOTS[i].name+"\">"+n+" ("+PILOTS[i].points+")</option>");
 		if (selected==-1&&PILOTS[i].unique!=true) selected=i;
+		p.push({n:n,name:PILOTS[i].name,c:PILOTS[i].points,s:(selected==i)});
+		if (ml<n.length) ml=n.length;
 	    }
+	}
+	for (i=0; i<p.length; i++) {
+	    var s="";
+	    $("#name"+this.id).append("<option"+(p[i].s?" selected":"")+" value=\""+p[i].name+"\">"+p[i].c+"-"+p[i].n+"</option>");
 	}
     },
     selectship:function(vship,vname) {
@@ -498,7 +504,14 @@ Unit.prototype = {
 	var selected=-1;
 	var ship=vship;
 	if (this.pilotselect=="") {
+	    var button=$("<span style='width:2em'>").html("&#10060;");
+	    button.click(function() {
+		    log("deleting "+this.name);
+		    $("#unit"+this.id).parent().remove();
+		    delete generics["u"+this.id]
+		}.bind(this));
 	    this.pilotselect="<select onchange='generics[\"u"+this.id+"\"].selectpilot()' id='name"+this.id+"'></select>";
+	    $("#unit"+this.id+" .name").append(button);
 	    $("#unit"+this.id+" .name").append(this.pilotselect);
 	}
 	if (typeof vship=="undefined") ship=$("#select"+this.id).val();
@@ -2305,7 +2318,7 @@ Unit.prototype = {
 	var name;
 	if (typeof text=="undefined"||typeof text.text=="undefined") t=""; else t=formatstring(text.text); 
 	if (typeof text=="undefined"||typeof text.name=="undefined") name=this.name; else name=text.name;
-	str+="<div class='name'><div class='tooltip'>"+t+"</div><div>"+name+"</div></div>";
+	str+="<div class='name'><div class='tooltip outoverflow'>"+t+"</div><div>"+name+"</div></div>";
 	text=SHIP_translation[this.ship.name];
 	if (typeof text=="undefined") text=this.ship.name;
 	str+="<div><div style='font-size:small'><code class='"+this.faction+"'></code>"+text+"</div></div>";
@@ -2318,7 +2331,7 @@ Unit.prototype = {
 	var b;
 	var strw="",stru="",strc="";
 	
-	a="<td class='statevade' onclick='if (!squadron["+i+"].dead) squadron["+i+"].togglerange();'>"+this.getagility()+"<span class='symbols'>^</span></td>";
+	a="<td><button class='statevade' onclick='if (!squadron["+i+"].dead) squadron["+i+"].togglerange();'>"+this.getagility()+"<span class='symbols'>^</span></button></td>";
 	b="<td></td>";
 	if (this.team==1) strw+="<tr>"+b+a+"</tr>"; else strw+="<tr>"+a+b+"</tr>";
 

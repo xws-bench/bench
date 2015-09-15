@@ -131,8 +131,8 @@ background:lightsteelblue;
 .name select {
 background:steelblue;
 color:white;
-width:100%;
-text-align:center;
+width:85%;
+text-align:left;
 }
 .upgrade select {
 text-align:center;
@@ -232,7 +232,7 @@ text-align:center
 border:0;
 padding:0;
 margin:0;
-font-size:1em;
+font-size:1.8ex;
 }
 
 .warn {
@@ -293,14 +293,17 @@ padding:.1em;
 margin:.1em;
 background:#333;
 border-radius:100%;
-width:1.5em;
+min-width:1.5em;
 text-align:center;
 }
 .team,.name {
 background:#fff;
 color:#000
 }
-
+button.statevade,button.statfire {
+width:2.2em;
+line-height:1.6em;
+}
 .name {
 font-weight:700
 }
@@ -407,7 +410,8 @@ padding:0
 /*position:absolute;*/
 position:fixed;
 color:#fff;
-padding:1.5em;
+padding-left:1.5em;
+padding-top:1em;
 max-width:10em;
 width:10em
 z-index:1;
@@ -465,14 +469,14 @@ font-weight:700
 .phasepanel .symbols {
 text-decoration:none;
 text-align:center;
-padding:1px;
-margin:1px;
+/*padding:1px;*/
+/*margin:1px;*/
 min-width:20px;
 border-color:#fff;
-border-radius:20px;
-background:rgba(0,0,0,0.4)
+border-radius:100%;
+background:rgba(0,0,0,0.4);
+display:table-cell;
 }
-
 .disabled,.disabled .selected {
 color:#aaa
 }
@@ -537,10 +541,14 @@ text-align:center;
 min-width:20px
 }
 
-.table .symbols {
+.phasepanel .symbols {
 border:1px;
-border-radius:10px;
+border-radius:100%;
 border-style:solid
+}
+tttable {
+table-layout:fixed;
+width:100%
 }
 .dead,.dead .name,.dead .name .selected,.dead .REBEL,.dead .statfire,.dead .statevade,.dead .upgrades,.dead .EMPIRE,.dead .SCUM,.dead .statskill,.team .selected .dead .name {
 background:#000;
@@ -600,9 +608,14 @@ background:steelblue;
 width:74px
 }
 .GREEN {
-color:#0F0
+color:#0F0;
 }
-
+.maneuver {
+border-radius:100%;
+border:1px solid;
+letter-spacing:6px;
+padding-left:6px;
+}
 .RED {
 color:red
 }
@@ -750,12 +763,12 @@ padding:0;
 /*float:left;*/
 display:inline-block;
 margin:4px;
-font-size:x-large;
+font-size:2.3ex;
 text-align:center;
 text-decoration:none;
 box-shadow:1px 1px 3px #000;
 background:#333;
-border-radius:8px;
+border-radius:100%;
 border-style:solid;
 border-width:0
 }
@@ -920,7 +933,7 @@ text-decoration:none;
 color:#fff;
 padding:4px;
 margin:2px;
-border-radius:8px;
+border-radius:100%;
 cursor:pointer
 }
 
@@ -1119,14 +1132,14 @@ cursor:move
 td {
 vertical-align:top;
 margin:0;
-border:0
+border:0;
+text-align:center;
 }
 
 tr {
 margin:0;
 border:0
 }
-
 .xwingship {
 font-family:'ships';
 padding:4px;
@@ -1158,7 +1171,7 @@ line-height:9px;
 text-decoration:none;
 box-shadow:1px 1px 3px #000;
 background:#333;
-border-radius:10px;
+border-radius:100%;
 border-style:solid;
 border-width:1px;
 color:#08d
