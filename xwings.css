@@ -105,7 +105,7 @@ padding:0;
 display:inline;
 }
 
-nav span ul{
+nav div ul{
 display:none;
 position:absolute;
 right:0;
@@ -118,7 +118,7 @@ visibility: hidden;
 z-index: 100;
 width:10em;
 }
-nav span ul li {
+nav div ul li {
 display:inline-block;
 background:lightsteelblue;
 padding:5px;
@@ -129,7 +129,7 @@ text-decoration:none;
 color:#fff;
 display:block;
 }
-nav span ul li:hover {
+nav div ul li:hover {
 background:lightsteelblue;
 }
 .name select,.namewidth {
@@ -193,7 +193,7 @@ position:absolute;
 left:150px;
 top:0
 }
-summary {
+h2 {
 width:100%;
 position:absolute;
 top:0;left:0;
@@ -285,7 +285,7 @@ background:#00d9ff
 */
 .close {
 position:absolute;
-right:1em;
+right:1ex;
 top:0;
 text-decoration:none;
 }
