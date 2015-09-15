@@ -99,6 +99,7 @@
       </section>
 
       <section id="playmat">
+      <h2 style='display:none'>Game area</h2>
 	<svg id="svgout"></svg>
       </section>
 
@@ -139,7 +140,7 @@
 	  <h2><span class="m-importexport"></span><a href="#" title="Close" class="close">&#10060;</a>
 	  </h2>
 	  <div>
-	    <h2 class="m-import"> </h2>
+	    <h2 class="m-import">&nbsp;</h2>
 	    <p>Copy and paste the squad list using one of the two formats. It will determine automatically which one you use.</p>
 	    <ul>
 	      <li>JSON format: The JSON format corresponds to <a href="https://github.com/elistevens/xws-spec">XWS</a>, used by other squad builders.</li>
@@ -149,7 +150,7 @@
 	      <textarea id="jsonimport" rows="4"></textarea>
 	    </div>
 	    <a href="#" class="button m-import" onclick="TEAMS[currentteam].parseJSON(s,$('#jsonimport').val())"></a>
-	    <h2 class="m-export"> </h2>
+	    <h2 class="m-export">&nbsp;</h2>
 	    <p>JSON export</p>
 	    <textarea id="jsonexport" rows="4"></textarea>
 	    <p>Text format</p>
