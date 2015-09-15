@@ -18,7 +18,7 @@ Critical.prototype= {
 	b="<td class='tdstat'>"+n+"</td>";
 	n="";
 	if (typeof CRIT_translation[this.name].text!="undefined") n=formatstring(CRIT_translation[this.name].text)
-	d="<td class='tooltip'>"+n+"</td>";
+	d="<td class='tooltip outoverflow'>"+n+"</td>";
 	if (this.unit.team==1)  
 	    return "<tr "+c+">"+b+a+d+"</tr>"; 
 	else return "<tr "+c+">"+a+b+d+"</tr>";

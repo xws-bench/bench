@@ -683,12 +683,13 @@ var PILOTS = [
 	handledifficulty: function(d) {
 	    var unit=this;
 	    var p=this.selectnearbyunits(1,function(t,s) { return t.team==s.team&&t!=s; })
-	    if (p.length>0) {
+	    if (p.length>0&&d=="GREEN") {
 		this.doselection(function(n) {
 		    this.log("<b>select a pilot for a free action</b>");
 		    this.resolveactionselection(p,function(k) {
 			p[k].doaction(p[k].getactionbarlist()).done(function() {
 			    this.select();
+			    p[k].log("was given a free action");
 			    this.endnoaction(n,"");
 			}.bind(this));
 		    }.bind(this))
