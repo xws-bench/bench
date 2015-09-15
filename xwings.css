@@ -604,7 +604,7 @@ border-radius:100%;
 padding:8px;
 background:white;
 }
-.smallbutton,.bigbutton,.button,.langselect,.permalink,.importexport,.nextphase,.menu-vertical {
+.smallbutton,.bigbutton,.button,.langselect,.permalink,.importexport,.nextphase,.menu {
 display:inline-block;
 margin:5px;
 text-align:center;
@@ -617,13 +617,15 @@ background:#b0c4de;
 cursor:pointer;
 border-radius:5px
 }
-.menu-vertical {
-background:steelblue;
-}
-.langselect {
-width:4em;
-height:2.5em;
-background:steelblue;
+.langselect,.menu {
+width:2em;
+height:2.35em;
+background:white;
+color:steelblue;
+padding:0;
+-moz-appearance:none;
+-webkit-appearance:none;
+appearance: none;
 }
 
 .bigbutton {
@@ -931,7 +933,8 @@ background:red
 }
 
 .permalink,.import {
-background:#b0c4de
+background:white;
+color:steelblue;
 }
 
 .animated {
