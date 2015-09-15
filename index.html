@@ -36,13 +36,12 @@
   <body>
     <nav>
       <div>
-	<span class="h2"><span style='font-family:ships;font-size:larger;'>x</span>Squadron Benchmark<span class="ver"></span></span>
+	<span class="h2"><span id="logo" style='font-family:ships;font-size:larger;'>x</span><span class="title">Squadron Benchmark</span><span class="ver"></span></span>
 	<span style="float:right;font-size:small">
 	  <button class="m-save permalink" onclick="permalink()"> &#128279;</button>
 	  <button class="m-reset permalink" onclick="resetlink()"> &#128279;</button>
 	  <span id="phase" style="font-size:small"></span>
-	  <button class="import m-import" onclick="importsquad()"></button>
-	  <button class="import m-export" onclick="exportsquad()"></button>
+	  <button class="importexport m-importexport" onclick="importexportsquad()"></button>
 	  <button class="nextphase" onclick="nextphase()"><span class='np'></span> <span id='npimg'>&#9658;</span></button>
 	  <span><select id="language" class="langselect"></select></span>
 	  <span class="menu-vertical" onmouseover="$('nav ul').css({display:'block',visibility:'visible'})" onmouseout="$('nav ul').css({display:'none',visibility:'hidden'})">Info
@@ -118,33 +117,26 @@
 	  </div>
       </section>
  
-      <section id="import" class="modalDialog">
+      <section id="importexport" class="modalDialog">
 	<div>
-	  <summary><span class="m-import"></span><a href="#" title="Close" class="close">&#10060;</a>
+	  <summary><span class="m-importexport"></span><a href="#" title="Close" class="close">&#10060;</a>
 	  </summary>
 	  <div>
-	  <p>Copy and paste the squad list using one of the two formats. It will determine automatically which one you use.</p>
-	  <ul>
-	    <li>JSON format: The JSON format corresponds to <a href="https://github.com/elistevens/xws-spec">XWS</a>, used by other squad builders.</li>
-	    <li>Plain text: This format describes units one per line, starting with the pilot's name and followed by the list of upgrades, separated by ' + '. See <a href="http://lists.starwarsclubhouse.com/tourneys">X-Wing Juggler lists</a> for an example. You can directly copy lists from X-Wing Juggler with this import.</li>
-	  </ul>
-	  <div>
-	    <textarea id="jsonimport" rows="15"></textarea>
-	  </div>
-	  <a href="#" class="button m-import" onclick="TEAMS[currentteam].parseJSON(s,$('#jsonimport').val())" class="button2"></a>
-	  </div>
-	</div>
-      </section>
-
-      <section id="export" class="modalDialog">
-	<div>
-	  <summary><span class="m-export"></span><a href="#" title="Close" class="close">&#10060;</a>
-	  </summary>
-	  <div>
+	    <h2 class="m-import"></h2>
+	    <p>Copy and paste the squad list using one of the two formats. It will determine automatically which one you use.</p>
+	    <ul>
+	      <li>JSON format: The JSON format corresponds to <a href="https://github.com/elistevens/xws-spec">XWS</a>, used by other squad builders.</li>
+	      <li>Plain text: This format describes units one per line, starting with the pilot's name and followed by the list of upgrades, separated by ' + '. See <a href="http://lists.starwarsclubhouse.com/tourneys">X-Wing Juggler lists</a> for an example. You can directly copy lists from X-Wing Juggler with this import.</li>
+	    </ul>
+	    <div>
+	      <textarea id="jsonimport" rows="4"></textarea>
+	    </div>
+	    <a href="#" class="button m-import" onclick="TEAMS[currentteam].parseJSON(s,$('#jsonimport').val())"></a>
+	    <h2 class="m-export"></h2>
 	    <p>JSON export</p>
-	    <textarea id="jsonexport" rows="10"></textarea>
+	    <textarea id="jsonexport" rows="4"></textarea>
 	    <p>Text format</p>
-	    <textarea id="jugglerexport" rows="10"></textarea>
+	    <textarea id="jugglerexport" rows="4"></textarea>
 	  </div>
 	</div>
       </section>

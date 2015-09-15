@@ -140,6 +140,33 @@ IAUnit.prototype= {
 	    this.actionicon.attr({fill:((this==activeunit)?c:halftone(c))});
 	} else this.actionicon.attr({text:""});	
     },
+    donoaction:function(list,str) {
+	var cmp=function(a,b) {
+	    if (a.type=="CRITICAL") return -1;
+	    if (b.type=="CRITICAL") return 1;
+	    if (a.type=="EVADE") return -1;
+	    if (b.type=="EVADE") return 1;
+	    if (a.type=="FOCUS") return -1;
+	    if (b.type=="FOCUS") return 1;
+	    return 0;
+	}
+	list.sort(cmp);
+	return this.enqueueaction(function(n) {
+		this.select();
+		if (typeof str!="undefined") this.log(str);
+		var grlu=this.gethitrangeallunits();
+		var a=null;
+		for (i=0; i<list.length; i++) {
+		    if (list[i].type=="CRITICAL") { a=list[i]; break; }
+		    else if (list[i].type=="EVADE") {
+			if (grlu[1].length==0&&grlu[2].length==0&&grlu[3].length==0&&this.candoevade()) { a=list[i]; break; }
+		    } else if (list[i].type=="FOCUS") {
+			if (this.candofocus()) { a=list[i]; break; }
+		    } else { a = list[i]; break }
+		}
+		this.resolvenoaction(a,n);
+	    }.bind(this),"donoaction ia");
+    },
     doaction: function(list,str) {
 	var cmp=function(a,b) {
 	    if (a.type=="CRITICAL") return -1;
@@ -152,18 +179,22 @@ IAUnit.prototype= {
 	}
 	list.sort(cmp);
 	return this.enqueueaction(function(n) {
-	    if (this.candoaction()&&skillturn==this.skill&&this.action==-1) {
+	    if (this.candoaction()) {
 		this.select();
 		if (typeof str!="undefined") this.log(str);
 		var grlu=this.gethitrangeallunits();
-		var a;
+		var a=null;
 		for (i=0; i<list.length; i++) {
 		    if (list[i].type=="CRITICAL") { a=list[i]; break; }
-		    else if (list[i].type=="EVADE"&&grlu[1].length==0&&grlu[2].length==0&&grlu[3].length==0&&this.candoevade()) { a=list[i]; break; }
-		    else if (list[i].type=="FOCUS"&&this.candofocus()) { a=list[i]; break; }
-		    else { a = null; break }
+		    else if (list[i].type=="EVADE") {
+			if (grlu[1].length==0&&grlu[2].length==0&&grlu[3].length==0&&this.candoevade()) { a=list[i]; break; }
+		    } else if (list[i].type=="FOCUS") {
+			if (this.candofocus()) { a=list[i]; break; }
+		    } else { a = list[i]; break }
 		}
 		this.resolveaction(a,n);
+	    } else {
+		this.endaction(n);
 	    }
 	    }.bind(this),"doaction ia");
     },

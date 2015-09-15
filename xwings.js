@@ -476,16 +476,13 @@ function win() {
 }
 document.addEventListener("win",win,false);
 
-function importsquad() {
+function importexportsquad() {
     currentteam=(phase==SELECT_PHASE1)?1:2;
+    var team=currentteam;
     $("#jsonimport").val("");
-    window.location="#import";
-}
-function exportsquad() {
-    var team=(SELECT_PHASE1==phase)?1:2;
+    window.location="#importexport";
     $("#jsonexport").val(JSON.stringify(TEAMS[team]));
     $("#jugglerexport").val(TEAMS[team].toJuggler()); 
-    window.location="#export"
 }
 
 function bind(name,c,f) { $(document.body).bind('keydown.'+name,jwerty.event(c,f)); }
@@ -584,10 +581,11 @@ function nextphase() {
 	if (i!=phase) unbind("phase"+i);
 	else bindall("phase"+i);
     }
+    $(".nextphase").prop("disabled",false);
     switch(phase) {
     case SELECT_PHASE1:
 	$(".permalink").hide();
-	$(".import").show();
+	$(".importexport").show();
 	$(".activeunit").prop("disabled",true);
 	$("#rightpanel").hide();
 	break;
@@ -596,7 +594,7 @@ function nextphase() {
 	TEAMS[1].endselection(s);
 	break;
     case SETUP_PHASE:
-	$(".import").hide();
+	$(".importexport").hide();
 	$("#team2").css("top",$("nav").height()+2);
 	$(".ctrl").css("display","block");
 	TEAMS[2].endselection(s);
@@ -1150,7 +1148,7 @@ $(document).ready(function() {
 	if (xhr.overrideMimeType)
 	    xhr.overrideMimeType("application/json");
     }});
-    var availlanguages={"en":"English","fr":"Fran&ccedil;ais"};
+    var availlanguages={"en":"EN","fr":"FR"};
     var language = localStorage['LANG'] || window.navigator.userLanguage || window.navigator.language;
     if (typeof availlanguages[language.substring(0,2)]!="undefined") LANG=language.substring(0,2);
     for (var i in availlanguages) {

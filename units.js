@@ -403,6 +403,10 @@ Unit.prototype = {
 	s+="%"+Base64.fromCoord([this.tx,this.ty,this.alpha]);
 	return s;
     },
+    remove: function() {
+	$("#unit"+this.id).parent().remove();
+	delete generics["u"+this.id]	
+    },
     toString2: function() {
 	var i;
 	var str="<div class='generic' id='unit"+this.id+"'>";
@@ -411,7 +415,10 @@ Unit.prototype = {
 	if (typeof text=="undefined"||typeof text.text=="undefined") text=""; else text=formatstring(text.text);
 	str+="<div><div id='text"+this.id+"' class='outoverflow upgtxt details'>"+text+"</div><div class='name'>"+this.pilotselect+"</div></div>";
 	str+="<div>"+this.dialselect+"</div>";
-	str+="<div><div>"+this.ship.select+"</div></div>";
+	str+="<div id='ship"+this.id+"' class='shipname'><span onclick='generics[\"u"+this.id+"\"].remove();'>&#10060;</span>"+this.ship.select+"</div>";
+	$("#ship"+this.id+" span").click(function() {
+		log("removing");
+		    }.bind(this));
 	str+="<div>"+this.stats+"</div>";
 	str+="<div style='height:4em'>"+this.actions+"</div>";
 	str+="<div id='upgrade"+this.id+"'></div>";
@@ -490,12 +497,21 @@ Unit.prototype = {
 		if (typeof PILOT_translation[n]!="undefined"&& typeof PILOT_translation[n].name!="undefined") n=PILOT_translation[n].name;
 		if (selected==-1&&PILOTS[i].unique!=true) selected=i;
 		p.push({n:n,name:PILOTS[i].name,c:PILOTS[i].points,s:(selected==i)});
-		if (ml<n.length) ml=n.length;
+		var e=$("<span>").html(n).appendTo("body");
+		if (ml<e.width()) ml=e.width();
+		e.remove();
 	    }
 	}
+	if (ml<200) ml=200;
 	for (i=0; i<p.length; i++) {
-	    var s="";
-	    $("#name"+this.id).append("<option"+(p[i].s?" selected":"")+" value=\""+p[i].name+"\">"+p[i].c+"-"+p[i].n+"</option>");
+	    var j;
+	    do {
+		var e=$("<span>").html(p[i].n).appendTo("body");
+		j=e.width();
+		p[i].n+="&nbsp;";
+		e.remove();
+	    } while (j<ml);
+	    $("#name"+this.id).append("<option"+(p[i].s?" selected":"")+" value=\""+p[i].name+"\">"+p[i].n+p[i].c+"</option>");
 	}
     },
     selectship:function(vship,vname) {
@@ -504,14 +520,7 @@ Unit.prototype = {
 	var selected=-1;
 	var ship=vship;
 	if (this.pilotselect=="") {
-	    var button=$("<span style='width:2em'>").html("&#10060;");
-	    button.click(function() {
-		    log("deleting "+this.name);
-		    $("#unit"+this.id).parent().remove();
-		    delete generics["u"+this.id]
-		}.bind(this));
 	    this.pilotselect="<select onchange='generics[\"u"+this.id+"\"].selectpilot()' id='name"+this.id+"'></select>";
-	    $("#unit"+this.id+" .name").append(button);
 	    $("#unit"+this.id+" .name").append(this.pilotselect);
 	}
 	if (typeof vship=="undefined") ship=$("#select"+this.id).val();
@@ -676,7 +685,7 @@ Unit.prototype = {
 	    }.bind({key:upgid,obj:this});
 	}
 	var pts=UPGRADES[upgrade].points+bonus;
-	if (pts<0) pts=0;
+	if (UPGRADES[upgrade].points>0&&pts<0) pts=0;
 	$("#pts"+this.id+"_"+upgid).html(pts);
 	var u=UPGRADES[upgrade];
 	var text=UPGRADE_translation[u.name+(type=="Crew"?"(Crew)":"")];
