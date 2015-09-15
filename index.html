@@ -44,15 +44,15 @@
 	  <button class="importexport m-importexport" onclick="importexportsquad()"></button>
 	  <button class="nextphase" onclick="nextphase()"><span class='np'></span> <span id='npimg'>&#9658;</span></button>
 	  <span><select id="language" class="langselect"></select></span>
-	  <span><select onchange="if ($(this).val()=='console') $('footer').css({display:'block',visibility:'visible'}); else window.location.href=$(this).val();$(this).val('--');" class="menu">
-	      <option value="#" selected>☰</option>
-	      <option value="#about" class="m-about"></option>
-	      <option value="#proba" class="m-proba"></option>
-	      <option value="console" class="m-console"></option>
-	      <option value="http://xws-benchmark.blogspot.fr" class="m-blog"></option>
-	      <option value="#help" class="m-help"></option>
-	      <option value="#credit" class="m-credits"></option>
-	      </select></span>
+	  <span class="menu" onmouseover="$('nav ul').css({display:'block',visibility:'visible'})" onmouseout="$('nav ul').css({display:'none',visibility:'hidden'})">
+	  ☰<ul>
+	    <li><a class="m-about" href="#about"></a></li>
+	    <li><a class="m-proba" href="#proba" id="showproba"></a></li>
+	    <li><a class="m-console" href="#" onclick=""></a></li>
+	    <li><a class="m-blog" href=""></a></li>
+	    <li><a class="m-help" href="#help"></a></li>
+	    <li><a class="m-credits" href="#credit"></a></li>
+	  </ul></span>
 	</span>
       </div>
     </nav>
