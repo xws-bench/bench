@@ -59,15 +59,21 @@
     </nav>
 
     <aside id="leftpanel">
-      <section id="team1" class="team"></section>
+      <section id="team1" class="team">
+	<h2 style='display:none'>List of units</h2>
+      </section>
     </aside>
 
     <aside id="rightpanel">
-      <section id="team2" class="team"></section>
+      <section id="team2" class="team">
+	<h2 style='display:none'>List of units</h2>
+      </section>
     </aside>
     
     <article id="main">
+      <h2 style='display:none'>Main panel</h2>
       <section class="phasepanel">
+	<h2 style='display:none'>Main panel</h2>
 	<table id="positiondial">
 	  <tr>
 	    <td onclick="activeunit.turn(-45)" title="key: <T>" class="symbols">4</td>
@@ -97,11 +103,14 @@
       </section>
 
       
-      <section class="info"></section>
+      <section class="info">
+	<h2 style='display:none'>Info panel</h2>
+      </section>
 
 
     </article>
     <section class="ctrl">
+      <h2 style='display:none'>Controller</h2>
       <div>
 	<button onclick="viewport_zoom(1.2)" style='display:inline-block'>+</button><button style='display:inline-block' onclick="viewport_zoom(0.9)">-</button>
 	<table style='display:inline-block'>
@@ -130,7 +139,7 @@
 	  <h2><span class="m-importexport"></span><a href="#" title="Close" class="close">&#10060;</a>
 	  </h2>
 	  <div>
-	    <h2 class="m-import"></h2>
+	    <h2 class="m-import"> </h2>
 	    <p>Copy and paste the squad list using one of the two formats. It will determine automatically which one you use.</p>
 	    <ul>
 	      <li>JSON format: The JSON format corresponds to <a href="https://github.com/elistevens/xws-spec">XWS</a>, used by other squad builders.</li>
@@ -140,7 +149,7 @@
 	      <textarea id="jsonimport" rows="4"></textarea>
 	    </div>
 	    <a href="#" class="button m-import" onclick="TEAMS[currentteam].parseJSON(s,$('#jsonimport').val())"></a>
-	    <h2 class="m-export"></h2>
+	    <h2 class="m-export"> </h2>
 	    <p>JSON export</p>
 	    <textarea id="jsonexport" rows="4"></textarea>
 	    <p>Text format</p>
@@ -326,7 +335,7 @@ The app is not really a game since the user plays both sides, there is no multi-
 	      <input type="hidden" name="cmd" value="_s-xclick">
 	      <input type="hidden" name="hosted_button_id" value="NYM7QUG8UKGE2">
 	      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!">
-	      <img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
+	      <img alt="" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1">
 	    </form>
 <br>	    The app will stay free to use for all, with no advertisement. 
 	    Feel free to provide feed back, report bugs or suggest improvements on the blog. All comments are welcome !
