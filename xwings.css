@@ -6,7 +6,11 @@ width:100%;
 height:100%;
 background-color:white;
 }
-
+@media screen and (max-width:800px) {
+    .title,.ver {
+	display:none;
+    }
+}
 footer,article,nav,footer,body {
 display:block;
 font-family:sans-serif;
@@ -128,15 +132,31 @@ display:block;
 nav span ul li:hover {
 background:lightsteelblue;
 }
-.name select {
-background:steelblue;
+.name select,.namewidth {
+width:calc(100% - 8px);
+background:black;
 color:white;
-width:85%;
-text-align:left;
+text-align:right;
+font-variant:small-caps;
+font-weight: bold;
+}
+.name {
+text-align:center;
 }
 .upgrade select {
 text-align:center;
 width: calc(100% - 4em) ; 
+}
+.shipname select {
+text-align:center;
+width:calc(100% - 3em) ;
+font-variant:small-caps;
+}
+.shipname span {
+width:1em;
+}
+.shipname {
+text-align:center;
 }
 .modalDialog {
 position:absolute;
@@ -147,6 +167,7 @@ left:0;
 background:rgba(0,0,0,0.5);
 z-index:999;
 opacity:0;
+font-size:smaller;
 -webkit-transition:opacity 400ms ease-in;
 -moz-transition:opacity 400ms ease-in;
 transition:opacity 400ms ease-in;
@@ -158,6 +179,9 @@ display:block
 }
 .generic {
 width:100%;
+}
+.head {
+padding:5px;
 }
 .info {
 width:10em;
@@ -213,7 +237,7 @@ width:90%
 height:50%;
 width:50%;
 }
-#import > div, #export > div,#help > div {
+#importexport > div,#help > div {
 height:60%;
 width:60%;
 }
@@ -521,13 +545,11 @@ margin:0.1em;
 overflow:auto;
 height:50px
 }
-/*
+
 .upgrade select {
-width:120px;
-border:2px;
+width:calc(100% - 3.5em);
 margin:0
 }
-*/
 .table > div,.team > div,.team > p {
 /*display:table-row;*/
 width:100%;
@@ -582,7 +604,7 @@ border-radius:100%;
 padding:8px;
 background:white;
 }
-.smallbutton,.bigbutton,.button,.langselect,.permalink,.import,.nextphase,.menu-vertical {
+.smallbutton,.bigbutton,.button,.langselect,.permalink,.importexport,.nextphase,.menu-vertical {
 display:inline-block;
 margin:5px;
 text-align:center;
@@ -599,7 +621,7 @@ border-radius:5px
 background:steelblue;
 }
 .langselect {
-width:7em;
+width:4em;
 height:2.5em;
 background:steelblue;
 }
@@ -613,8 +635,8 @@ color:#0F0;
 .maneuver {
 border-radius:100%;
 border:1px solid;
-letter-spacing:6px;
-padding-left:6px;
+letter-spacing:4px;
+padding-left:4px;
 }
 .RED {
 color:red
@@ -1262,7 +1284,6 @@ input.human:not(:checked) + label:after {
 font-family:'symbols';
 src:url(x-wingsymbols.ttf) format("truetype")
 }
-
 @font-face {
 font-family:'ships';
 src:url(xwing-miniatures-ships.ttf) format("truetype")
