@@ -102,21 +102,28 @@
 
     </article>
     <section class="ctrl">
-      <div><button onclick="viewport_zoom(1.2)" style='display:inline-block'>+</button><button style='display:inline-block' onclick="viewport_zoom(0.9)">-</button>
+      <div>
+	<button onclick="viewport_zoom(1.2)" style='display:inline-block'>+</button><button style='display:inline-block' onclick="viewport_zoom(0.9)">-</button>
 	<table style='display:inline-block'>
-	<tr><td></td><td onclick='viewport_translate(0,-10)'>&and;</td><td></td></tr>
-	<tr><td onclick='viewport_translate(-10,0)'>&lt;</td><td></td><td onclick='viewport_translate(10,0)'>&gt;</td></tr>
-	<tr><td></td><td onclick='viewport_translate(0,10)'>&vee;</td><td></td></tr>
-      </table>
-	</div>
+	  <tr><td></td><td onclick='viewport_translate(0,-10)'>&and;</td><td></td></tr>
+	  <tr><td onclick='viewport_translate(-10,0)'>&lt;</td><td></td><td onclick='viewport_translate(10,0)'>&gt;</td></tr>
+	  <tr><td></td><td onclick='viewport_translate(0,10)'>&vee;</td><td></td></tr>
+	</table>
+      </div>
     </section>
+
      <section id="modal" class="modalDialog">
 	<div>
-	  <h2><span class="victory"></span><a href="#" title="Close" class="close">&#10060;</a>
+	  <h2>
+	    <span class="victory"></span>
+	    <a href="#" title="Close" class="close">&#10060;</a>
 	  </h2>
-	  <div><div id="t1" style="height: 400px; width: 100%;"></div><div id="t2" style="height: 400px; width: 100%;"></div>
+	  <div>
+	    <div id="t1" style="height: 400px; width: 100%;"></div>
+	    <div id="t2" style="height: 400px; width: 100%;"></div>
 	  </div>
-      </section>
+	</div>
+     </section>
  
       <section id="importexport" class="modalDialog">
 	<div>
