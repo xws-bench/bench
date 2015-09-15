@@ -1148,7 +1148,7 @@ $(document).ready(function() {
 	if (xhr.overrideMimeType)
 	    xhr.overrideMimeType("application/json");
     }});
-    var availlanguages={"en":"EN","fr":"FR"};
+    var availlanguages={"en":"🇬🇧","fr":"🇫🇷"};
     var language = localStorage['LANG'] || window.navigator.userLanguage || window.navigator.language;
     if (typeof availlanguages[language.substring(0,2)]!="undefined") LANG=language.substring(0,2);
     for (var i in availlanguages) {
