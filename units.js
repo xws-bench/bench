@@ -394,7 +394,7 @@ Unit.prototype = {
     toASCII: function() {
 	var s="";
 	s+=Base64.fromNumber(this.pilotid);
-	
+	log("PILOT "+this.name+":"+this.pilotid);
 	for (var i=1; i<this.upgrades.length; i++) {
 	    for (var j=0; j<UPGRADES.length; j++) 
 		if (UPGRADES[j].name==this.upgrades[i].name) break;
