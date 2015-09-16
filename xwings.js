@@ -1201,8 +1201,14 @@ $(document).ready(function() {
 	s.attr({width:"100%",height:"100%",viewBox:"0 0 900 900"});
 	TEAMS[1].setfaction("REBEL");
 	TEAMS[2].setfaction("EMPIRE");
-	UPGRADES.sort(function(a,b) { if (a.name<b.name) return -1; if (a.name>b.name) return 1; return 0; });
-	PILOTS.sort(function(a,b) { return (a.points-b.points); });
+	UPGRADES.sort(function(a,b) { 
+		return a.name.localeCompare(b.name);
+	    });
+	PILOTS.sort(function(a,b) { 
+		int d=a.points-b.points;
+		if (d==0) return a.name.localeCompare(b.name);
+		else return d;
+	    });
 	var n=0,u=0,ut=0;
 	var str="";
 	for (i=0; i<PILOTS.length; i++) {
