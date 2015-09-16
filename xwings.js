@@ -1205,7 +1205,7 @@ $(document).ready(function() {
 		return a.name.localeCompare(b.name);
 	    });
 	PILOTS.sort(function(a,b) { 
-		int d=a.points-b.points;
+		var d=a.points-b.points;
 		if (d==0) return a.name.localeCompare(b.name);
 		else return d;
 	    });
