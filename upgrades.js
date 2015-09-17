@@ -778,19 +778,21 @@ var UPGRADES= [
 	    ptl.r=-1;
 	    var da=sh.doaction;
 	    var ea=sh.endaction;
-	    sh.doaction= function(la) {
-		var dar=da.call(this,la)
+	    sh.doaction= function(la,str) {
+		var dar=da.call(this,la,str);
+		var df=$.Deferred();
 		dar.then(function(r) {
-		    if (r!=null&&ptl.r!=round) {
-			ptl.r=round;
-			var dac=da.call(this,this.getactionbarlist());
+		    if (ptl.r<round) {
+			ptl.r=round;		
+			var dac=da.call(this,this.getactionbarlist(),ptl.name+": 1 free action");
 			dac.done(function(rr) { 
 			    if (rr!=null) this.addstress();
 			    else ptl.r=-1;
+			    df.resolve(rr);
 			}.bind(this));
-			return dac;
-		    } else return dar;
+		    }
 		}.bind(this));
+		return df;
 	    }
 	},
 	done:true,
