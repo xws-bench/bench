@@ -58,10 +58,13 @@ var PILOTS = [
 	    p=this.selectnearbyunits(2,function(a,b) { return (a.team==b.team&&a!=b);});
 	    if (p.length>0) {
 		this.log("<code class='xfocustoken'></code> -> other friendly ship");
-		this.resolveactionselection_sync(p,function(k) {
-		    p[k].log("+1 <code class='xfocustoken'></code> from "+this.name);
-		    p[k].addfocustoken();
-		}.bind(this));
+		this.doselection(function(n) {
+		    this.resolveactionselection(p,function (k) { 
+			p[k].log("+1 <code class='xfocustoken'></code> from "+this.name);
+			p[k].addfocustoken();
+			this.endnoaction(n,"FOCUS");
+		    }.bind(this));
+		}.bind(this),"Garven focus");
 	    } 
 	},
         skill: 6,
@@ -427,11 +430,11 @@ var PILOTS = [
 	    Unit.prototype.applycritical=function(n) {
 		if (activeunit==unit&&targetunit!=unit) {
 		    for (var j=0; j<n; j++) {
-			var s1=this.selectdamage(true);
+			var s1=this.selectdamage();
 			CRITICAL_DECK[s1].count--;
-			var s2=this.selectdamage(true);
+			var s2=this.selectdamage();
 			CRITICAL_DECK[s2].count--;
-			var s3=this.selectdamage(true);
+			var s3=this.selectdamage();
 			CRITICAL_DECK[s3].count--;
 			sc=[s1,s2,s3];
 			log("<b>"+unit.name+" selects one of 3 criticals</b>");
@@ -1401,12 +1404,9 @@ var PILOTS = [
         name: "Lieutenant Blount",
 	faction:"REBEL",
         done:true,
-	endattack: function(c,h) {
-	    if (c+h==0) {
-		this.log(targetunit.name+" is hit");
-		targetunit.ishit(this);
-	    }
-	    Unit.prototype.endattack.call(this,c,h);
+	hashit: function(t) {
+	    if (this.criticalresolved+this.hitresolved==0) this.log(t.name+" is hit");
+	    return true;
 	},
         unique: true,
         unit: "Z-95 Headhunter",
@@ -1965,9 +1965,9 @@ var PILOTS = [
         applycritical: function(n) {
 	    var j,s;
 	    for (j=0; j<n; j++) {
-		var s1=this.selectdamage(true);
+		var s1=this.selectdamage();
 		CRITICAL_DECK[s1].count--;
-		var s2=this.selectdamage(true);
+		var s2=this.selectdamage();
 		CRITICAL_DECK[s2].count--;
 		var sc=[s1,s2];
 		this.log("<b>select one out of 2 criticals</b>");
@@ -2261,13 +2261,13 @@ var PILOTS = [
         unit: "Aggressor",
         skill: 6,
         points: 36,
-	endattack: function(c,h) {
-	    Unit.prototype.endattack.call(this,c,h);
-	    if (targetunit.hull<=0&&(this.shield<this.ship.shield)) {
+	cleanupattack: function(c,h) {
+	    if (targetunit.dead&&(this.shield<this.ship.shield)) {
 		this.shield++;
 		this.showstats();
 		this.log("+1 <code class='cshield'></code> for a kill");
 	    }
+	    Unit.prototype.cleanupattack.call(this);
 	},
 	done:true,
         upgrades: [
@@ -2281,25 +2281,23 @@ var PILOTS = [
     },
     {
         name: "IG-88B",
-	faction:"SCUM",/*
-        init: function() {
-	    var i;
-	    for (i=0; i<sh.weapons.length; i++) if (sh.weapons[i].type=="Cannon") break;
-	    if (i==sh.weapons.length) return;
-	    sh.endattack=function(c,h) {
-		var i;
-		Unit.prototype.endattack.call(this,c,h);
-		for (i=0; i<this.weapons.length; i++) if (this.weapons[i].type=="Cannon") break;
-		
-		if (i<this.weapons.length&&this.hasfired<2) {
-		    log("[IG-88B] "+this.name+" attacks again with secondary weapon");
-		    //waitingforaction.add(function(){ 
-		    this.selecttargetforattack(i);//}.bind(this))
-		} 
-
-	    };
+	faction:"SCUM",
+	done:true,
+	endattack: function(c,h) {
+	    this.log("damage : "+c+h);
+	    Unit.prototype.endattack.call(this,c,h);
+	    if ((c+h==0)&&this.hasfired<2) {
+		for (var i=0; i<this.weapons.length; i++) {
+		    var w=this.weapons[i];
+		    this.log(i+":"+this.weapons[i].type+" ");
+		    if (w.type=="Cannon"&&w.isWeapon()&&w.getrangeallunits().length>0) {
+			this.log("no damage, 2nd attack with "+w.name);
+			this.selecttargetforattack(i); 
+			break;
+		    }
+		}
+	    }
 	},
-	done:true,*/
         unique: true,
         unit: "Aggressor",
         skill: 6,
@@ -2353,7 +2351,7 @@ var PILOTS = [
 		    [this.getpathmatrix(this.m,"SR3"),
 		     this.getpathmatrix(this.m,"TR3").rotate(180,0,0)],
 		    function(t,k) {
-			if (k==0) Unit.prototype.completemaneuver.call(this,dial,realpath,difficulty);
+			if (k==0) Unit.prototype.completemaneuver.call(this,dial,realdial,difficulty);
 			else Unit.prototype.completemaneuver.call(this,dial,"TR3",difficulty);
 		    }.bind(this),false,true);
 	    } else Unit.prototype.completemaneuver.call(this,dial,realdial,difficulty);
@@ -3050,7 +3048,7 @@ var PILOTS = [
 			    this.endattack=Unit.prototype.endattack;
 			    Unit.prototype.endattack.call(this,c,h);
 			};
-			this.actionr[n].resolve("SHIELD");
+			this.endnoaction(n,"SHIELD");
 		    }.bind(this)},
 		    {org:this,name:this.name,type:"HIT",action:function(n) {
 			this.log("action "+n);
@@ -3064,7 +3062,7 @@ var PILOTS = [
 			    Unit.prototype.endattack.call(this,c,h);
 			};
 			this.log("calling noaction "+n);
-			this.actionr[n].resolve("HIT");
+			this.endnoaction(n,"HIT");
 		    }.bind(this)}],"choose to add shield/roll 1 fewer die or remove shield/roll 1 additional die");
 	    },
             points: 29,
