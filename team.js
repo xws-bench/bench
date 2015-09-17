@@ -81,10 +81,10 @@ Team.prototype = {
     tosquadron:function(s) {
 	var i;
 	var team=this.team;
-	for (var i in generics) {
+	for (i in generics) {
 	    if (generics[i].team==this.team) {
 		u=generics[i];
-		/* Copy all functions for manual inheritance. Call init. */
+		/* Copy all functions for manual inheritance.  */
 		for (var i in PILOTS[u.pilotid]) {
 		    var p=PILOTS[u.pilotid];
 		    if (typeof p[i]=="function") u[i]=p[i];
@@ -93,6 +93,12 @@ Team.prototype = {
 		allunits.push(u);
 		squadron.push(u);
 		this.units.push(u);
+	    }
+	}	
+	for (i in squadron) {
+	    u=squadron[i];
+	    if (u.team==this.team) {
+		if (typeof u.init!="undefined") u.init();
 		if (this.isia) u=$.extend(u,IAUnit.prototype);
 	    }
 	}
@@ -250,6 +256,7 @@ Team.prototype = {
 	    for (j=1; j<updstr.length; j++) {
 		var n=Base64.toNumber(updstr[j]);
 		p.upg.push(n);
+		//log("upg:"+n+" "+UPGRADES[n].type+" "+UPGRADES[n].name);
 	        if (typeof UPGRADES[n].install!="undefined") UPGRADES[n].install(p);
 	    }
 	    if (coord.length>1) {
@@ -291,7 +298,7 @@ Team.prototype = {
 		    var upg=pilot.upgrades[upg_type[j]];
 		    if (typeof upg!="undefined") 
 			for (k=0; k<upg.length; k++) {
-			    var u=Upgradefromname(p,UPGRADE_dict[upg[k]]);		    
+			    var u=Upgradefromid(p,upg[k]);		    
 			    if (typeof u.install != "undefined") u.install(p);
 			}
 		}

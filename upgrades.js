@@ -203,6 +203,7 @@ Weapon.prototype = {
 	    return "<tr "+c+">"+b+a+d+"</tr>"; 
 	else return "<tr "+c+">"+a+b+d+"</tr>";
     },
+    hashit: function(t,c,h) {},
     getrequirements: function() {
 	return this.requires;
     },
@@ -310,20 +311,14 @@ function Upgrade(sh,i) {
     }
     if (typeof this.init != "undefined") this.init(sh);
 }
-function Upgradefromname(sh,name) {
-    var i;
-    for (i=0; i<UPGRADES.length; i++) {
-	if (UPGRADES[i].name==name) {
-	    var upg=UPGRADES[i];
-	    if (upg.type=="Bomb") return new Bomb(sh,upg);
-	    if (typeof upg.isWeapon != "undefined") 
-		if (upg.isWeapon()) return new Weapon(sh,upg);
-	        else return new Upgrade(sh,i);
-	    if (upg.type.match("Turretlaser|Bilaser|Laser|Torpedo|Cannon|Missile|Turret")||upg.isweapon==true) return new Weapon(sh,upg);
-	    return new Upgrade(sh,i);
-	}
-    }
-    log("Could not find upgrade "+name);
+function Upgradefromid(sh,i) {
+    var upg=UPGRADES[i];
+    if (upg.type=="Bomb") return new Bomb(sh,upg);
+    if (typeof upg.isWeapon != "undefined") 
+	if (upg.isWeapon()) return new Weapon(sh,upg);
+    else return new Upgrade(sh,i);
+    if (upg.type.match("Turretlaser|Bilaser|Laser|Torpedo|Cannon|Missile|Turret")||upg.isweapon==true) return new Weapon(sh,upg);
+    return new Upgrade(sh,i);
 }
 Upgrade.prototype = {
     toString: function() {
@@ -475,21 +470,22 @@ var UPGRADES= [
 	},
 	action: function(n) {
 	    var c=-1,cl=-1;
-	    var roll=this.unit.rolldefensedie();
-	    if (roll=="evade" ||roll=="focus") {
-		for (i=0; i<this.criticals.length; i++) {
-		    var cr=this.criticals[i];
-		    if (cr[i].isactive==false) {
-			c=i;
-			break;
+	    this.unit.defenseroll(1).done(function(roll) {
+		if (this.getfocusgreendice()+this.getevadegreendice()>0) {
+		    for (i=0; i<this.criticals.length; i++) {
+			var cr=this.criticals[i];
+			if (cr[i].isactive==false) {
+			    c=i;
+			    break;
+			}
+		    }
+		    if (c>-1) {
+			this.log("R5-D8: repairing 1 <code class='hit'></code>");
+			this.criticals.slice(c,1);
 		    }
 		}
-		if (c>-1) {
-		    this.log("R5-D8: repairing 1 <code class='hit'></code>");
-		    this.criticals.slice(c,1);
-		}
-	    }
-	    this.endaction(n,"ASTROMECH");
+		this.endaction(n,"ASTROMECH");
+	    }.bind(this));
 	},
         unique: true,
         type: "Astromech",
@@ -501,11 +497,12 @@ var UPGRADES= [
 	    var rtt=sh.removetarget;
 	    sh.removetarget=function(t) {
 		rtt.call(this,t);		  
-		var roll=this.rolldefensedie();
-		if (roll=="evade") {
-		    this.addtarget(t);
-		    this.log("R5-K6 gives target lock on "+t.name);
-		}
+		this.defenseroll(1).done(function(roll) {
+		    if (this.getevadegreendice(roll)>0) {
+			this.addtarget(t);
+			this.log("R5-K6 gives target lock on "+t.name);
+		    }
+		}.bind(this));
 	    }
 	},
 	done:true,
@@ -728,7 +725,22 @@ var UPGRADES= [
     },
     {
         name: "Elusiveness",
-        
+	done:true,
+        init:function(sh) {
+	    sh.addattackmodd(this,function(m,n) {
+		return this.stress==0&&targetunit==this;
+	    }.bind(sh),function(m,n) {
+		this.unit.addstress();
+		if (activeunit.getcritreddice(m)>0) {
+		    this.unit.log(this.name+": 1 <code class='critical'></code> rerolled");
+		    m=m-10+activeunit.attackroll(1);
+		} else if (activeunit.gethitreddice(m)>0) {
+		    this.unit.log(this.name+": 1 <code class='hit'></code> rerolled");
+		    m=m-1+activeunit.attackroll(1);
+		}
+		return m;
+	    }.bind(this),"critical");
+	},
         type: "Elite",
         points:2,
     },
@@ -1051,7 +1063,7 @@ var UPGRADES= [
 	    }
 	    sh.applycritical=function(n) {
 		if (n>0) {
-		    s=this.selectdamage(true);
+		    s=this.selectdamage();
 		    CRITICAL_DECK[s].count--;
 		    if (this.hull==1||CRITICAL_DECK[s].lethal) {
 			upg.isactive=false;
@@ -1177,7 +1189,23 @@ var UPGRADES= [
     },
     {
         name: "Intelligence Agent",
-        
+	done:true,
+        init: function(sh) {
+	    var bap=sh.beginactivationphase;
+	    sh.beginactivationphase=function() {
+		var p=this.selectnearbyunits(2,function(a,b) { return a.team!=b.team; });
+		if (p.length>0) {
+		    this.doselection(function(n) {
+			this.log("<b>select pilot to reveal maneuver</b>");
+			this.resolveactionselection(p,function(k) {
+			    p[k].showmaneuver();
+			    this.endnoaction(n,"CREW");
+			    }.bind(this));
+		    }.bind(this));
+		}
+		return bap.call(this);
+	    }
+	},
         type: "Crew",
         points: 1,
     },
@@ -1294,9 +1322,9 @@ var UPGRADES= [
 	faction:"EMPIRE",
 	done:true,
         init: function(sh) {
-	    var ih=sh.ishit;
+	    var ih=sh.resolveishit;
 	    sh.rebelcaptive=0;
-	    sh.ishit=function(t) {
+	    sh.resolveishit=function(t) {
 		if (this.rebelcaptive!=round) {//First attack this turn
 		    t.log("Rebel Captive gives +1 stress");
 		    t.addstress();
@@ -1557,7 +1585,28 @@ var UPGRADES= [
         unique: true,
         type: "Crew",
         points: 4,
-        
+	done:true,
+	init: function(sh) {
+	    var ep=sh.endphase;
+	    var x=this;
+	    sh.endphase = function() {
+		ep.call(this);
+		var p=[];
+		var c=this.criticals;
+		for (var i=0; i<c.length; i++) 
+		    if (!c[i].isactive) p.push(c[i]);
+		if (this.shield==0&&this.ship.shield>0) {
+		    this.log(x.name+" (Crew): +1 <code class='cshield'></code>");
+		    this.shield++; 
+		    this.show();
+		    if (p.length>0) {
+			var crit=p[this.rand(p.length)]
+			if (this.gethitreddice(this.attackroll(1))>0)
+			    this.faceup(crit);
+		   } 
+		}
+	    }
+	}        
     },
     {
         name: "C-3PO",
@@ -1565,7 +1614,34 @@ var UPGRADES= [
         faction:"REBEL",
         type: "Crew",
         points: 3,
-        
+	done:true,
+	init:function(sh) {
+	    var rdd=sh.defenseroll;
+	    sh.defenseroll=function(r) {
+		var lock=$.Deferred();
+		rdd.call(this,r).done(function(roll) {
+		    var resolve=function(k) {
+			if (k==this.getevadegreendice(roll)) {
+			    this.log("guessed correctly ! +1 <code class='xevadetoken'></code>");
+			    roll+=1;
+			}
+			$("#actiondial").empty();
+			lock.resolve(roll);
+		    }.bind(this);
+
+		    this.log("<b>guess the number of evades out of "+r+" dice</b>");
+		    $("#actiondial").empty();
+		    for (var i=0; i<r; i++) {
+			(function(k) {
+			    var e=$("<button>").html(k+" <code class='xevadetoken'></code>")
+				.click(function() { resolve(k);}.bind(this));
+			    $("#actiondial").append(e);
+			}.bind(this))(i);
+		    }
+		}.bind(this));
+		return lock.promise();
+	    }
+	},
     },
     {
         name: "R3-A2",
@@ -1663,6 +1739,26 @@ var UPGRADES= [
         unique: true,
         type: "Crew",
         points: 2,
+	done:true,
+	test:"?E,1D%10W5_b;k%10VhdJ;1M%10VHlq;&0%LayHI;&h1Sx4;h1Sx4;h1Sx4;h1Sx4;h1Sx4;h1Sx4#",
+	init: function(sh) {
+	    var u=sh;
+	    u.jan=-1;
+	    var aft=Unit.prototype.addfocustoken;
+	    Unit.prototype.addfocustoken=function() {
+		if (this.getrange(u)<=3&&this.faction==u.faction&&u.jan<round) {
+		    this.donoaction(
+			[{name:u.name,org:u,type:"FOCUS",action:function(n) { 
+			    aft.call(this); 
+			    this.endnoaction(n,"FOCUS"); }.bind(this)},
+			 {name:u.name,org:u,type:"EVADE",action:function(n) { 
+			     this.addevadetoken(); 
+			     u.jan=round; 
+			     this.endnoaction(n,"EVADE"); }.bind(this)}],
+			"select focus or evade token",true);
+		} else aft.call(this);
+	    }
+	},
     },
 
     {
@@ -1721,7 +1817,7 @@ var UPGRADES= [
         done:true,
         points: 2,
     },
-    { /* TODO: buggy */
+    { 
         name: "Leia Organa",
         faction:"REBEL",
         type: "Crew",
@@ -1764,14 +1860,17 @@ var UPGRADES= [
 	done:true,
 	candoaction: function() { return true; },
 	action: function(n) {
-	    var str="";
-	    for (var i=0; i<2; i++) {
-		var roll=this.unit.rolldefensedie();
-		if (roll=="focus") { this.unit.addfocustoken(); str+=" +1 <code class='xfocustoken'></code>"; }
-		if (roll=="evade") { this.unit.addevadetoken(); str+=" +1 <code class='xevadetoken'></code>"; }
-	    } 
-	    if (str=="") this.unit.log(this.name+": no effect"); else this.unit.log(this.name+": "+str);
-	    this.unit.endaction(n,"CREW");
+	    var str="";		
+	    this.unit.defenseroll(2).done(function(roll) {
+		var f=this.getfocusgreendice(roll);
+		var e=this.getevadegreendice(roll);
+		for (var i=0; i<f; i++) this.unit.addfocustoken(); 
+		if (f>0) str+=" +"+f+" <code class='xfocustoken'></code>"; 
+		for (var i=0; i<e; i++) this.unit.addevadetoken(); 
+		if (e>0) str+=" +"+e+" <code class='xevadetoken'></code>"; 
+		if (str=="") this.unit.log(this.name+": no effect"); else this.unit.log(this.name+": "+str);
+		this.unit.endaction(n,"CREW");
+	    }.bind(this));
 	},
         points: 3,
     },
@@ -2213,8 +2312,40 @@ var UPGRADES= [
         name: "Greedo",
         faction:"SCUM",
         unique: true,
+	done:true,
         type: "Crew",
-        
+	init: function (sh) {
+	    sh.greedoa=-1;
+	    sh.greedod=-1;
+	    var greedo=this;
+	    var hh=sh.hashit;
+	    var rhh=sh.resolveishit;
+            sh.hashit= function(t) {
+		var h=hh.call(this,t);
+		var d=this.hitresolved+this.criticalresolved-t.shield;
+		if (this.greedoa<round&&d>0) {
+		    if (this.hitresolved>t.shield) {
+			this.log(greedo.name+": first damage is faceup damage");
+			this.hitresolved--;
+			this.criticalresolved++;
+			this.greedoa=round;
+		    }
+		}
+		return h;
+	    }
+	    sh.resolveishit=function(t) {
+		rhh.call(this,t);
+		var d=t.criticalresolved+t.hitresolved-this.shield;
+		if (this.greedod<round&&d>0) {
+		    if (t.hitresolved>this.shield) {
+			this.log(greedo.name+": first damage is faceup damage");
+			t.hitresolved--;
+			t.criticalresolved++;
+			this.greedod=round;
+		    }
+		}
+	    }
+	},
         points: 1,
     },
     {
@@ -2408,8 +2539,8 @@ var UPGRADES= [
 	},
 	init: function(sh) {
 	    sh.log(this.name+": +1 agility")
-	    var ih=sh.ishit;
-	    sh.ishit=function(t) {
+	    var ih=sh.resolveishit;
+	    sh.resolveishit=function(t) {
 		var i;
 		for (i=0;i<this.upgrades.length; i++) 
 		    if (this.upgrades[i].name=="Stealth Device") break;
@@ -2788,7 +2919,30 @@ var UPGRADES= [
     {
         name: 'IG-2000',
         type:"Title",
-        
+	done:true,
+        install:function(sh) { sh.ig2000=true;	},
+	uninstall:function(sh) { sh.ig2000=false; },
+	init: function(sh) {
+	    sh.init=function() {
+		var i;
+		for (i=0; i<squadron.length; i++) {
+		    var u=squadron[i];
+		    if (u!=sh&&u.ig2000==true&&u.faction==sh.faction) {
+			if (u.name=="IG-88A") {
+			    sh.cleanupattack=u.cleanupattack;}
+			if (u.name=="IG-88B") { 
+			    sh.endattack=u.endattack;
+			}
+			if (u.name=="IG-88C") {
+			    sh.resolveboost=u.resolveboost;
+			}
+			if (u.name=="IG-88D") {
+			    sh.completemaneuver=u.completemaneuver;
+			}
+		    }
+		}
+	    }
+	},
         points: 0,
         ship: "Aggressor",
     },
@@ -2936,6 +3090,12 @@ var UPGRADES= [
             type: "Torpedo",
             points: 3,
             attack: 4,
+	    requires:"Target",
+	    done:true,
+	    hashit: function(t,c,h) {
+		t.log(this.name+": -1 <code class='cshield'></code>");
+		t.removeshield(1);
+	    },
             range: [2,3]
         },
     {
@@ -2984,8 +3144,22 @@ var UPGRADES= [
             name: "Advanced Homing Missiles",
             type: "Missile",
             points: 3,
+	    requires:"Target",
             attack: 3,
-            range: [2,2]
+            range: [2,2],
+	    done:true,
+	    init: function(sh) {
+		var hh=sh.hashit;
+		var ahm=this;
+		sh.hashit=function(t) {
+		    if (hh.call(this,t)) {
+			this.log(ahm.name+": deals one critical");
+			t.applycritical(1);
+			this.hitresolved=0;
+			this.criticalresolved=0;
+		    }
+		}
+	    }
         },
    {
        name: "Advanced SLAM",
