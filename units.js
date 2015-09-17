@@ -1630,7 +1630,6 @@ Unit.prototype = {
 	this.show();
 	//log("<< "+n+"/"+(actionr.length-1))
 	actionr[n].resolve(type);
-	//this.log("solving "+n+" "+(this.actionr.length-1))
 	//this.log("***"+actionrlock.state());
 	if (n==actionr.length-1) actionrlock.resolve();
     },
