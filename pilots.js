@@ -485,8 +485,9 @@ var PILOTS = [
         skill: 9,
 	doendmaneuveraction: function() {
 	    if (this.candoaction()) {
-		var x=this.doaction(this.getactionlist(),"1st action")
-		    x.done(function() {
+		var x=this.doaction(this.getactionlist(),"1st action");
+		//this.log("action:"+x);
+		x.done(function() {
 		    if (this.candoaction()) {
 			this.doaction(this.getactionlist(),"2nd action");
 		    } else { this.action=-1; this.actiondone=true; this.deferred.resolve(); }
