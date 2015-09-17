@@ -12,7 +12,8 @@ var BOMBS=[];
 var ROCKDATA="";
 var allunits=[];
 var PILOT_translation,SHIP_translation,CRIT_translation,UI_translation,UPGRADE_translation,PILOT_dict,UPGRADE_dict;
-
+var actionr=[];
+var actionrlock;
 Base64 = {
     _Rixits :
 //   0       8       16      24      32      40      48      56     63
@@ -83,8 +84,6 @@ Base64 = {
 	return y;
     }
 }
-
-
 function center() {
     var bbox=activeunit.g.getBBox();
     var xx=(bbox.x+bbox.width/2);
@@ -218,6 +217,9 @@ function nextunit(cando, changeturn,changephase,activenext) {
     tabskill[skillturn][last].select();
     activenext();
 }
+function endphase() {
+    for (var i=0; i<squadron.length; i++) squadron[i].endphase();
+}
 function nextcombat() {
     nextunit(function(t) { return t.canfire(); },
 	     function(list) { 
@@ -233,6 +235,7 @@ function nextcombat() {
 	     function() {
 		 log("No more firing units, ready to end phase."); 
 		 for (var i=0; i<squadron.length; i++) squadron[i].endcombatphase();
+		 barrier(endphase);
 	     },
 	     function() {
 		 activeunit.beginattack();
@@ -375,13 +378,17 @@ function reroll(n,forattack,type,id) {
 	    }
 	}
 	$("#rerolld"+id).remove();
-	for (i=0; i<m; i++) {
-	    var r=activeunit.rolldefensedie();
-	    $("#defense").prepend("<td noreroll='true' class='"+r+"greendice'></td>");
-	}
+	activeunit.defenseroll(m).done(function(r) {
+	    var i;
+	    for (i=0; i<activeunit.getevadegreendice(r); i++)
+		$("#defense").prepend("<td noreroll='true' class='evadegreendice'></td>");
+	    for (i=0; i<activeunit.getfocusgreendice(r); i++)
+		$("#defense").prepend("<td noreroll='true' class='focusgreendice'></td>");
+	    for (i=0; i<r-activeunit.getevadegreendice(r)-activeunit.getfocusgreendice(r); i++)
+		$("#defense").prepend("<td noreroll='true' class='blankgreendice'></td>");
+	});
     }
 }
-
 function enablenextphase() {
     var i;
     var ready=true;
@@ -679,6 +686,10 @@ function nextphase() {
 	break;
     case PLANNING_PHASE: 
 	active=0;
+	/* For actions of all ships */
+	actionr = [$.Deferred().resolve()];
+	/* For phase */
+	actionrlock=$.Deferred().resolve();
 	$(".permalink").hide();
 	log("<div>[turn "+round+"] Planning phase</div>");
 	$(".nextphase").prop("disabled",true);
@@ -713,10 +724,7 @@ function nextphase() {
     }
 }
 function barrier(f) {
-    var p=[];
-    for (var i=0; i<squadron.length; i++) 
-	p=p.concat(squadron[i].actionr);
-    $.when.apply(null,p).done(f);
+    $.when.apply(null,actionr).done(f);
 }
 function log(str) {
     $("#log").append("<div>"+str+"<div>");
@@ -1201,9 +1209,11 @@ $(document).ready(function() {
 	s.attr({width:"100%",height:"100%",viewBox:"0 0 900 900"});
 	TEAMS[1].setfaction("REBEL");
 	TEAMS[2].setfaction("EMPIRE");
-	UPGRADES.sort(function(a,b) { 
-		return a.name.localeCompare(b.name);
-	    });
+	UPGRADES.sort(function(a,b) {
+	    var u1=a.name+a.type;
+	    var u2=b.name+b.name;
+	    return u1.localeCompare(u2);
+	});
 	PILOTS.sort(function(a,b) { 
 		var d=a.points-b.points;
 		if (d==0) return a.name.localeCompare(b.name);

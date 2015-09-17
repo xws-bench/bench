@@ -282,9 +282,7 @@ background:#00d9ff
 }
 */
 .close {
-position:absolute;
-right:1ex;
-top:0;
+float:right;
 text-decoration:none;
 }
 .phasepanel {
@@ -762,7 +760,7 @@ border-style:solid;
 border-width:1px
 }
 
-.xevadetoken,.xfocustoken,.xcloaktoken,.xstresstoken,.xtargetedtoken,.xtargettoken,.xionizedtoken,.focusmodtokena,.focusmodtokend,.hitmodtokena,.hitmodtokend,.criticalmodtokena,.blankmodtokena,.blankmodtokend,.evademodtokend,.targetmodtokena {
+.xevadetoken,.xfocustoken,.xcloaktoken,.xstresstoken,.xtargetedtoken,.xtargettoken,.xionizedtoken,.focusmodtokena,.focusmodtokend,.hitmodtokena,.hitmodtokend,.criticalmodtokena,.blankmodtokena,.blankmodtokend,.evademodtokend,.criticalmodtokend,.targetmodtokena {
 font-family:'symbols';
 padding:4px;
 display:inline-block;
@@ -869,7 +867,7 @@ opacity:.9;
 color:#fff
 }
 
-.focusmodtokend,.blankmodtokend,.evademodtokend,.hitmodtokend {
+.focusmodtokend,.blankmodtokend,.evademodtokend,.hitmodtokend,.criticalmodtokend {
 background:#3f3;
 opacity:.9;
 color:#fff
@@ -895,7 +893,7 @@ font-family:'symbols';
 content:"d"
 }
 
-.criticalreddice::after,.critical::after,.Criticalupg::after,.criticalmodtokena::after {
+.criticalreddice::after,.critical::after,.Criticalupg::after,.criticalmodtokena::after,.criticalmodtokend::after {
 font-family:'symbols';
 content:"c"
 }
