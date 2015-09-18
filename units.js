@@ -62,10 +62,14 @@ var SOUND_FILES=[
     "ogg/Falcon-Fly3",
     "ogg/YWing-Fly2",
     "ogg/ISD-Fly",
-    "ogg/missile"
+    "ogg/missile",
+    "ogg/XWing-Fly2",
+    "ogg/DStar-Gun4",
+    "ogg/TIE-Fly6",
+    "ogg/Slave1-Fly2"
 ];
 var SOUNDS={};
-var SOUND_NAMES=["explode","xwing_fire","tie_fire","slave_fire","falcon_fire","xwing_fly","tie_fly","slave_fly","falcon_fly","yt2400_fly","ywing_fly","isd_fly","missile"];
+var SOUND_NAMES=["explode","xwing_fire","tie_fire","slave_fire","falcon_fire","xwing_fly","tie_fly","slave_fly","falcon_fly","yt2400_fly","ywing_fly","isd_fly","missile","xwing2_fly","dstar_gun","tie2_fly","slave2_fly"];
 
 function loadsound() {
     var i;
