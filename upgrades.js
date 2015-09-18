@@ -491,6 +491,20 @@ var UPGRADES= [
         type: "Astromech",
         points: 3,
     },
+    { name: "R5-X3",
+      unique:true,
+      type:"Astromech",
+      points:1
+    },
+    { name: "BB-8",
+      unique:true,
+      type:"Astromech",
+      points:2
+    },
+    {name:"Weapons Guidance",
+     points:2,
+     type:"Tech"
+    },
     {
         name: "R5-K6",
         init: function(sh) {
@@ -2540,16 +2554,14 @@ var UPGRADES= [
 	    sh.agility--;
 	},
 	init: function(sh) {
+	    var upg=this;
 	    sh.log(this.name+": +1 agility")
 	    var ih=sh.resolveishit;
 	    sh.resolveishit=function(t) {
-		var i;
-		for (i=0;i<this.upgrades.length; i++) 
-		    if (this.upgrades[i].name=="Stealth Device") break;
-		if (this.upgrades[i].isactive) { 
-		    this.upgrades[i].isactive=false; 
+		if (upg.isactive) { 
+		    upg.isactive=false; 
 		    this.agility--;
-		    this.log(this.upgrades[i].name+" is hit => equipment destroyed");
+		    this.log(upg.name+" is hit => equipment destroyed");
 		    this.show();
 		}
 		ih.call(this,t);
@@ -2752,9 +2764,9 @@ var UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    sh.adddefensemodd(this,function(m,n) {
-		    if (activeunit.gethitsector(this)>2) return true;
-		    return false;
-		}.bind(sh),function(m,n) {
+		if (activeunit.gethitsector(this)>2) return true;
+		return false;
+	    }.bind(sh),function(m,n) {
 		var b=n-Math.floor(m/10)%10-m%10;
 		if (b>0) {
 		    this.log("Autothrusters: 1 <code class='blankgreendice'></code> -> 1 %EVADE%");
@@ -2762,6 +2774,7 @@ var UPGRADES= [
 		}
 		return m;
 	    }.bind(sh),false,"blank");
+	    
 	}
     },
     {
