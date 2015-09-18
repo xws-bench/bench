@@ -399,7 +399,56 @@
       },
       "Kaa'To Leeachos (Scum)": {
         "text": "Au début de la phase de combat, vous pouvez enlever 1 marqueur de concentration ou d'évasion d'un autre vaisseau allié situé à portée 1-2 et vous l'assigner."
-      }
+      },
+          "Lieutenant Colzet":{"text":
+    "Au début de la phase de dénouement, vous pouvez utiliser une acquisition de cible que vous possédez sur un vaisseau ennemi pour retourner aléatoirement 1 carte de dégâts face cachée qui lui est assignée."},
+    "Zertik Strom":{"text":
+    "Les vaisseaux enemis situés à portée 1 ne peuvent pas ajouter leur bonus de portée quand ils attaquent."},
+    "Juno Eclipse":{"text":
+    "Quand vous révélez votre manœuvre, vous pouvez augmenter ou diminuer de 1 sa vitesse (jusqu'à un minimum de 1)"},   
+        "Bossk (Scum)":
+        {"text": "Quand vous effectuez une attaque qui touche, avant d'infliger les dégâts, vous pouvez annuler 1 de vos résultats %CRIT% pour ajouter 2 résultats %HIT%."},
+	"Trandoshan Slaver":{"name":"Esclavagiste trandosien"},
+	"Warden Squadron Pilot":{"name":"Pilote de l'escadron Warden"},
+	"Guardian Squadron Pilot":{"name":"Pilote de l'escadron Guadrian"},
+        "Talonbane Cobra (Scum)":
+        {"text": "When attacking or defending, double the effect of your range combat bonuses."},
+        "Miranda Doni":
+        {"text": "Une fois par tour quand vous attaquez, vous pouvez soit utiliser 1 bouclier pour lancer 1 dé d'attaque supplémentaire, soit lancer 1 dé d'attaque en moins pour récupérer 1 bouclier."},
+        "'Redline'":
+        {"text": "Vous pouvez maintenir 2 acquisitions de cible sur le même vaisseau. Quand vous verrouillez une cible, vous pouvez la verrouiller une seconde fois."},
+	"Black Eight Squadron Pilot":
+	{"name":"Pilote de l'escadron Noir Huit"},
+	"Cutlass Squadron Pilot":		     
+	{"name":"Pilote de l'escadron Cutlass"},
+        "'Deathrain'":  
+	{"text":"Quand vous larguez une bombe, vous pouvez utiliser les glissières avant de votre vaisseau. Après avoir largué une bombe, vous pouvez effectuer une action de tonneau gratuite."},
+        "Latts Razzi (Scum)":
+        {"text": "Quand un vaisseau allié déclare une attaque, vous pouvez utiliser une acquisition de cible que vous avez sur le défenseur pour réduire de 1 son agilité pour cette attaque."},
+        "Graz the Hunter (Scum)":
+        {"text": "When defending, if the attacker is inside your firing arc, roll 1 additional defense die."},
+        "Esege Tuketu":
+        {"text": "Quand un autre vaisseau allié situé à portée 1-2 attaque, il peut traiter vos marqueurs de contentration comme s'ils lui appartenaient."},
+        "Moralo Eval (Scum)":
+        {"text": "Vous pouvez effectuer des attaques d'arme secondaire %CANNON% contre des vaisseaux situés dans votre arc de tir auxiliaire."},
+	"'Omega Ace'":
+	{"name":"'As Omega'","text":"Quand vous attaquez, vous pouvez dépenser un marqueur de concentration et l'acquisition de cible sur le défenseur verrouillé pour changer tous vos résultats en résultats %CRIT%."},
+	"Omega Squadron Pilot":{"name":"Pilot de l'escadron Omega"},
+	"Zeta Squadron Pilot":{"name":"Pilot de l'escadron Zeta"},
+	"Epsilon Squadron Pilot":{"name":"Pilot de l'escadron Epsilon"},
+	
+	"'Epsilon Leader'":
+	{"text":"Au début de la phase de combat, retirez un marqueur de stress de chaque vaisseau ami à portée 1"},
+	"'Zeta Ace'":
+	{"name":"'As Zeta'","text":"Quand vous effectuez un tonneau, vous pouvez utiliser le gabarit (%STRAIGHT% 2) à la place du gabarit (%STRAIGHT% 1)."},
+	"Blue Squadron Novice":{"name":"Apprenti de l'escadron Bleu"},
+	"Red Squadron Veteran":{"name":"Vétéran de l'escadron Rouge"},
+	"'Red Ace'":
+	{"text":"The first time you remove a shield token from your ship each round, assign 1 evade token to your ship."},
+	"'Blue Ace'":
+	{"name":"'As Bleu'","text":"Lorsque vous effectuez une action accélération, vous pouvez utiliser le gabarit (%TURNLEFT% 1) ou (%TURNRIGHT% 1)."},
+	"Poe Dameron":
+	{"text":"Tant que vous défendez ou que vous attaquez, si vous avez un marqueur de concentration, vous pouvez changer un de vos résultats %FOCUS% pour un résultat %HIT% ou %EVADE%."}
     },
     "upgrades" : {
       "Determination": {
@@ -869,7 +918,7 @@
         "text": " Après avoir exécuté une manœuvre verte, vous pouvez verrouiller cible."
       },
       "Advanced Targeting Computer": {
-        "text": "Quand vous attaquez avec votre arme principale, si vous avez verrouillé le défenseur, vous pouvez ajouter un résultat %CRIT% result à votre lancer de dés. Si vous le faîtes, vous ne pouvez pas dépenser de marqueur d'acquisition de cible durant cette attaque."
+        "text": "Quand vous attaquez avec votre arme principale, si vous avez verrouillé le défenseur, vous pouvez ajouter un résultat %CRIT% result à votre jet. Dans ce cas, vous ne pouvez pas utiliser d'acquisitions de cible durant cette attaque."
       },
       "Shield Upgrade": {
         "name": "Boucliers améliorés",
@@ -993,8 +1042,64 @@
         "text": "Votre bandeau d'amélioration gagne deux icones d'amélioration %BOMB% supplémentaires."
       },
       "TIE/x1": {
-        "text": "Votre bandeau d'améliorations gagne l'icone d'amélioration %SYSTEM%. Si vous êtes équipé d'une amélioration %SYSTEM%, ses points d'escadron sont réduits de 4 (jusqu'à un minimum de 0)."
-      }
+        "text": "Votre bandeau d'améliorations gagne l'icone d'amélioration %SYSTEM%. Si vous vous équipez d'une amélioration %SYSTEM%, son coût en points d'escadron est réduit de 4 (jusqu'à un minimum de 0)."
+      },
+      "Weapons Guidance":{
+      "name":"Ciblage assisté",
+      "text":"Quand vous attaquez, vous pouvez utiliser un marqueur de contentration pour changer 1 de vos résultats vierge en résultat %HIT%."},
+    "Emperor Palpatine(Crew)":{
+    "name":"Empereur Palpatine",
+    "text":"Une fois par tour, vous pouvez échanger un résultat de dé d'un vaisseau allié contre n'importe quel autre résultat de dé. Ce résultat de dé ne peut pas être modifié à nouveau."},
+     "Extra Munitions":{
+            "name":"Munitions supplémentaires",
+            "text":"Quand vous vous équipez de cette carte, placez 1 marqueur d'artillerie sur chaque carte d'amélioration %TORPEDO%, %MISSILE%, et %BOMB% équipée. Quand il vous est demandé de défausser une carte d'amélioration, vous pouvez défausser 1 marqueur d'artillerie de cette carte à la place."},
+        "Cluster Mines":{
+	"name":"Mines groupées",
+"text":"<strong>Action :</strong> défaussez cette carte pour larguer 1 marqueur de mines groupées. Quand le socle ou le gabarit de manœuvre d'un vaisseau chevauche un marqueur de mines groupées, ce dernier explose."},
+        "Glitterstim":{
+            "text":"Au début de la phase de combat, vous pouvez défausser cette carte et recevoir 1 marqueur de stress. Dans ce cas, jusqu'à la fin du tour, quand vous attaquez ou défendez, vous pouvez changer tous vos résultats %FOCUS% en résultat %HIT% ou %EVADE%."},
+	    "R5-X3": {
+	    "text":"Avant de révéler votre manœuvre vous pouvez défausser cette carte pour ignorer tous les obstacles jusqu'à la fin du tour"},
+	    "BB-8":{
+	    "text":"Quand vous révélez une manœuvre verte, vous pouvez effectuer une action gratuite de tonneau."},
+	    "Wired":{"name":"Galvanisé","text":"Quand vous attaquez ou défendez, si vous êtes stressé, vous pouvez relancer 1 ou plus de vos résultats %FOCUS%."},	    
+        "Bossk(Crew)":{
+            "text":"Après avoir effectué une attaque qui ne touche pas, si vous n'êtes pas sous l'effet du stress, vous <strong>devez</strong> recevoir 1 marqueur de stress. Ensuite, assignez 1 marqueur de concentration à votre vaisseau et vérouillez le défenseur."},
+        "Lightning Reflexes":{
+            "text":"After you execute a white or green maneuver on your dial, you may discard this card to rotate your ship 180&deg;.  Then receive 1 stress token <strong>after</strong> the 'Check Pilot Stress' step."},
+        "Twin Laser Turret":{
+	"name":"Tourelle laser jumelée",
+            "text":"<strong>Attaque :</strong> Effectuez cette attaque <strong>2 fois</strong> même contre un vaisseau situé en dehors de votre arc de tir). Chaque fois que cette attaque touche, le défenseur subit 1 dégât. Ensuite, annulez le résultat de <strong>tous</strong> les dés."},        
+"Plasma Torpedoes":{
+	"name":"Torpilles à Plasma",
+            "text":"<strong>Attaque (acquisition de cible):</strong> utiliser votre acquisition de icble et défaussez cette carte pour effectuer cette attaque. Si cette attaque touche, après avoir infligé des dégâts, retirez 1 marqueur de boucliers au défenseur."},
+        "Ion Bombs":{
+	"name":"Bombes ioniques",
+            "text":"Quand vous révélez votre cadran de manœuvres, vous pouvez défausser cette carte pour larguer 1 marqueur de bombes ioniques. Ce marqueur explose à la fin de la phase d'activation. <strong>Marqueur de bombes ioniques :</strong> quand ce marqueur de bombe explose, chaque vaisseau situé à portée 1 reçoit 2 marqueurs ioniques. Ensuite défaussez ce marqueur."},
+        "Conner Net":{
+	"name":"Filet Conner",
+            "text":"<strong>Action :</strong> défaussez cette carte pour larguer 1 marqueur de filet Conner. Quand le socle ou le gabarit de manœuvre d'un vaisseau chevauche ce marqueur, ce dernier explose. <strong>Marqueur de filet Conner :</strong> quand ce marqueur de bombe explose, le vaisseau qiu l'a traversé ou chevauché subit 1 dégât, reçoit 2 marqueurs ioniques et saute l'étape 'Effectuer une action'. Ensuite, défaussez ce marqueur."},
+        "Bombardier(Crew)":{
+            "text":"Quand vous larguez une bombe, vous pouvez utiliser le gabarit (%STRAIGHT% 2) au lieu du gabarit (%STRAIGHT% 1)."},
+        "'Crack Shot'": {
+	"name":"Tireur hors pair",
+            "text": "Quand vous attaquez un vaisseau situé dans votre arc de tir, vous pouvez défausser cette carte pour annuler 1 des résultats %EVADE% du défenseur."},
+        "Advanced Homing Missiles":{
+	"name":"Missiles à tête chercheur avancés",
+			            "text":"<strong>Attaque (acquisition de cible):</strong> défaussez cette carte pour effectuer cette attaque. Si cette attaque touche, infligez 1 carte de dégâts face visible au défenseur. Ensuite annulez le résultat de <strong>tous</strong> les dés."},
+        "Advanced SLAM":
+            {"name":"MASL avancé",
+	    "text": "Après avoir effectué une action MASL, si vous n'avez pas chevauché un obstacle ou un autre vaisseau, vous pouvez effectuer une action gratuite."},
+        "Twin Ion Engine Mk. II":
+            {"name":"Moteurs ioniques jumelés Mk. II",
+	    "text": "Vous pouvez traiter toutes les manœuvres (%BANKLEFT% and %BANKRIGHT%) comme des manœuvres vertes."},
+        "Maneuvering Fins":
+            {"name":"Ailerons de manœuvre","text": "Quand vous révélez une manœuvre de virage (%TURNLEFT% ou %TURNRIGHT%), vous pouvez tourner votre cadran sur la manœuvre de virage d'aile (%BANKLEFT% ou %BANKRIGHT%) correspondante de même vitesse."},
+        "Ion Projector":
+            {"name":"Projecteur ionique",
+	    "text": "Après qu'un vaisseau ennemi a exécuté une manœuvre l'amenant à chevaucher votre vaisseau, lancez 1 dé d'attaque. Sur un résultat %HIT% ou %CRITICAL%, le vaisseau ennemi reçoit un marqueur ionique."},
+        "Hound's Tooth":
+            {"text":"Après avoir été détruit, mais avant d'être retiré de la zone de jeu, vous pouvez déployer le vaisseau Pilote de Nashtah Pup. Il ne peut pas attaquer à ce tour."}
     },
     "css":{
 	"m-about":"À propos",
