@@ -57,10 +57,10 @@ var PILOTS = [
 	    var p=[]; 
 	    p=this.selectnearbyunits(2,function(a,b) { return (a.team==b.team&&a!=b);});
 	    if (p.length>0) {
-		this.log("<code class='xfocustoken'></code> -> other friendly ship");
+		this.log("%FOCUS% -> other friendly ship");
 		this.doselection(function(n) {
 		    this.resolveactionselection(p,function (k) { 
-			p[k].log("+1 <code class='xfocustoken'></code> from "+this.name);
+			p[k].log("+1 %FOCUS% from "+this.name);
 			p[k].addfocustoken();
 			this.endnoaction(n,"FOCUS");
 		    }.bind(this));
@@ -133,7 +133,7 @@ var PILOTS = [
 		var f=Math.floor(m/10);
 		var e=m-f*10;
 		if (f>0) {
-		    this.log("1 <code class='xfocustoken'></code>-> 1 <code class='xevadetoken'></code>");
+		    this.log("1 %FOCUS%-> 1 %EVADE%");
 		    return m-9;
 		} 
 		return m;
@@ -284,7 +284,7 @@ var PILOTS = [
 		var c=Math.floor(m/10);
 		var h=(m-c*10)%100;
 		if (h>0) {
-		    this.log("1 <code class='hit'></code> -> 1 <code class='critical'></code>");
+		    this.log("1 %HIT% -> 1 %CRIT%");
 		    return m+9;
 		}
 		return m;
@@ -752,7 +752,7 @@ var PILOTS = [
 	    Unit.prototype.cancelcritical=function(c,e,sh) {
 		var ce=cc.call(this,c,e,sh);
 		if (c>ce&&sh!=this&&activeunit.name=="Kath Scarlet") {
-		    this.log("+1 stress for cancelling <code class='critical'></code> given by "+unit.name);
+		    this.log("+1 stress for cancelling %CRIT% given by "+unit.name);
 		    this.addstress();
 		}
 		return ce;
@@ -1019,7 +1019,7 @@ var PILOTS = [
 			    if (this!=p[k]) {
 				this.removefocustoken();
 				p[k].addfocustoken();
-				p[k].log("+1 <code class='xcodetoken'></code> token");
+				p[k].log("+1 %FOCUS% token");
 			    }
 			    this.endnoaction();
 			}.bind(this));
@@ -1333,7 +1333,7 @@ var PILOTS = [
 		this.removeevadetoken();
 		$("#atokens .xevadetoken").remove();
 		$("#attack").append("<td class='hitreddice'></td>");
-		this.log("+1 <code class='hit'></code> for attacking at range 2-3");
+		this.log("+1 %HIT% for attacking at range 2-3");
 	    }
 	},   
 	done:true,
@@ -1568,7 +1568,7 @@ var PILOTS = [
 		var c=Math.floor(m/10);
 		var h=(m-c*10)%100;
 		if (h>0) {
-		    unit.log("1 <code class='hit'></code>-> 1 <code class='critical'></code>");
+		    unit.log("1 %HIT%-> 1 %CRIT%");
 		    return m+9;
 		} 
 		return m;
@@ -1700,7 +1700,7 @@ var PILOTS = [
 	    var ch=targetunit.evadeattack(this);
 	    Unit.prototype.resolvedamage.call(this);
 	    if (ch.c+ch.h>0) {
-		this.log("+1 <code class='xfocustoken'></code>");
+		this.log("+1 %FOCUS%");
 		this.addfocustoken();
 	    }
 	},
@@ -2039,7 +2039,7 @@ var PILOTS = [
 	    for (i=0; i<this.touching.length; i++) {
 		var u=this.touching[i];
 		if (u.team!=this.team) {
-		    this.log("touching "+u.name+" -> 1 <code class='hit'></code>");
+		    this.log("touching "+u.name+" -> 1 %HIT%");
 		    u.resolvehit(1);
 		    u.checkdead();
 		}
@@ -2084,7 +2084,7 @@ var PILOTS = [
 	    }.bind(this),function(m,n) {
 		var f=Math.floor(m/100)%10;
 		if (f>0) {
-		    this.log("1 <code class='xfocustoken'></code> -> 1 <code class='critical'></code>");
+		    this.log("1 %FOCUS% -> 1 %CRIT%");
 		    return m-90;
 		}
 		return m;
@@ -2150,7 +2150,7 @@ var PILOTS = [
 	    if (!this.dead) {
 		var p=this.gettargetableunits(1);
 		if (p.length>0) {
-		    this.log("+1 <code class='xfocustoken'></code>, ennemy at range 1");
+		    this.log("+1 %FOCUS%, ennemy at range 1");
 		    this.addfocustoken();
 		}
 	    }
@@ -2224,7 +2224,7 @@ var PILOTS = [
         endbeingattacked: function(c,h) {
 	    Unit.prototype.endbeingattacked.call(this,c,h);
 	    if (c+h==0) {
-		this.log("no hit, +1 <code class='xevadetoken'></code>");
+		this.log("no hit, +1 %EVADE%");
 		this.addevadetoken();
 	    }
 	},        
@@ -2266,7 +2266,7 @@ var PILOTS = [
 	    if (targetunit.dead&&(this.shield<this.ship.shield)) {
 		this.shield++;
 		this.showstats();
-		this.log("+1 <code class='cshield'></code> for a kill");
+		this.log("+1 %SHIELD% for a kill");
 	    }
 	    Unit.prototype.cleanupattack.call(this);
 	},
@@ -2285,12 +2285,10 @@ var PILOTS = [
 	faction:"SCUM",
 	done:true,
 	endattack: function(c,h) {
-	    this.log("damage : "+c+h);
 	    Unit.prototype.endattack.call(this,c,h);
 	    if ((c+h==0)&&this.hasfired<2) {
 		for (var i=0; i<this.weapons.length; i++) {
 		    var w=this.weapons[i];
-		    this.log(i+":"+this.weapons[i].type+" ");
 		    if (w.type=="Cannon"&&w.isWeapon()&&w.getrangeallunits().length>0) {
 			this.log("no damage, 2nd attack with "+w.name);
 			this.selecttargetforattack(i); 
@@ -2660,7 +2658,7 @@ var PILOTS = [
 		if (this.getrange(unit)<=3 &&unit.team!=this.team&&unit.stress==0) {
 		    unit.addstress();
 		    this.resolvehit(1);
-		    unit.log("+1 stress for +1 <code class='hit'></code> to "+this.name);
+		    unit.log("+1 stress for +1 %HIT% to "+this.name);
 		    this.checkdead();
 		}
 	    }
@@ -3209,7 +3207,7 @@ var PILOTS = [
 		    }.bind(this),function(m,n) {
 			var f=Math.floor(m/100)%10;		
 			if (f>0) {
-			    this.log("1 <code class='xfocustoken'></code> -> 1 <code class='hit'></code>");
+			    this.log("1 %FOCUS% -> 1 %HIT%");
 			    return m-99;
 			}
 			return m;
@@ -3219,7 +3217,7 @@ var PILOTS = [
 		    }.bind(this),function(m,n) {
 			var f=Math.floor(m/10)%10;		
 			if (f>0) {
-			    this.log("1 <code class='xfocustoken'></code> -> 1 <code class='xevadetoken'></code>");
+			    this.log("1 %FOCUS% -> 1 %EVADE%");
 			    return m-9;
 			}
 			return m;
@@ -3255,7 +3253,7 @@ var PILOTS = [
 	  init: function() { this.sr=-1; },
 	  removeshield:function(n) {
 	      if (this.sr<round) {
-		  this.log("+1 <code class='cshield'></code>");
+		  this.log("+1 %SHIELD%");
 		  this.sr=round; this.addevadetoken();
 	      }
 	      Unit.prototype.removeshield.call(this,n);
@@ -3371,7 +3369,7 @@ var PILOTS = [
 		this.addattackmoda(this,function(m,n) { 
 			return this.focus>0||this.targeting.indexOf(targetunit)>-1;
 		    }.bind(this),function(m,n) {
-			this.log("all results are <code class='critical'></code>");
+			this.log("all results are %CRIT%");
 			return n*10;
 		    }.bind(this),false,"critical");
        },
