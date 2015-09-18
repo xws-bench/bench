@@ -364,7 +364,7 @@ var UPGRADES= [
 	modifydamageassigned: function(ch,target) {
 	    if (ch>0) {
 		ch=1;
-		this.unit.log(this.name+": 1<code class='hit'></code> + 1 ion token assigned to "+target.name);
+		this.unit.log(this.name+": 1%HIT% + 1 ion token assigned to "+target.name);
 		target.addiontoken();
 	    }
 	    return ch;
@@ -385,7 +385,7 @@ var UPGRADES= [
 	    }.bind(this),function(m,n) {
 		var f=Math.floor(m/100)%10;
 		if (f>0) {
-		    this.unit.log("Proton Torpedoes: 1 <code class='xfocustoken'></code> -> 1 <code class='critical'></code>");
+		    this.unit.log("Proton Torpedoes: 1 %FOCUS% -> 1 %CRIT%");
 		    return m-90;
 		}
 		return m;
@@ -480,7 +480,7 @@ var UPGRADES= [
 			}
 		    }
 		    if (c>-1) {
-			this.log("R5-D8: repairing 1 <code class='hit'></code>");
+			this.log("R5-D8: repairing 1 %HIT%");
 			this.criticals.slice(c,1);
 		    }
 		}
@@ -637,7 +637,7 @@ var UPGRADES= [
 		}.bind(this),function(m,n) {
 		    var f=Math.floor(m/100)%10;
 		    if (f>0&&this.mark==round) {		
-			this.unit.log("Marksmanship: "+f+" <code class='xfocustoken'></code> -> 1 <code class='critical'></code>"+(f>1?"+ "+(f-1)+"<code class='hit'></code>":""));
+			this.unit.log("Marksmanship: "+f+" %FOCUS% -> 1 %CRIT%"+(f>1?"+ "+(f-1)+"%HIT%":""));
 			return m-100*f+10+(f-1); 
 		    } 
 		    return m;
@@ -732,10 +732,10 @@ var UPGRADES= [
 	    }.bind(sh),function(m,n) {
 		this.unit.addstress();
 		if (activeunit.getcritreddice(m)>0) {
-		    this.unit.log(this.name+": 1 <code class='critical'></code> rerolled");
+		    this.unit.log(this.name+": 1 %CRIT% rerolled");
 		    m=m-10+activeunit.attackroll(1);
 		} else if (activeunit.gethitreddice(m)>0) {
-		    this.unit.log(this.name+": 1 <code class='hit'></code> rerolled");
+		    this.unit.log(this.name+": 1 %HIT% rerolled");
 		    m=m-1+activeunit.attackroll(1);
 		}
 		return m;
@@ -866,7 +866,7 @@ var UPGRADES= [
 	modifydamageassigned: function(ch,target) {
 	    if (ch>0) {
 		ch=1;
-		this.unit.log(this.name+": 1<code class='hit'></code> + 1 ion token assigned to "+target.name);
+		this.unit.log(this.name+": 1%HIT% + 1 ion token assigned to "+target.name);
 		target.addiontoken();
 	    }
 	    return ch;
@@ -883,7 +883,7 @@ var UPGRADES= [
 	modifydamagegiven: function(ch) {
 	    if (ch>10) {
 		var c=Math.floor(ch/10)%10;
-		this.unit.log(this.name+": "+c+"<code class='critical'></code>-> "+c+"<code class='hit'></code>");
+		this.unit.log(this.name+": "+c+"%CRIT%-> "+c+"%HIT%");
 		ch=ch-9*c;
 	    }
 	    return ch;
@@ -1058,7 +1058,7 @@ var UPGRADES= [
 		if (n>0&&this.hull==1) {
 		    upg.isactive=false;
 		    if (this.shield<this.ship.shield) this.shield++;
-		    this.log("Chewbacca: +1 <code class='cshield'></code>, -1 <code class='hit'></code>");
+		    this.log("Chewbacca: +1 %SHIELD%, -1 %HIT%");
 		    this.applydamage=ad;
 		    if (n>1) ad.call(this,n-1);
 		} else ad.call(this,n);
@@ -1070,7 +1070,7 @@ var UPGRADES= [
 		    if (this.hull==1||CRITICAL_DECK[s].lethal) {
 			upg.isactive=false;
 			if (this.shield<this.ship.shield) this.shield++;
-      			this.log("Chewbacca: +1 <code class='cshield'></code>, -1 <code class='critical'></code> "+CRITICAL_DECK[s].name);
+      			this.log("Chewbacca: +1 %SHIELD%, -1 %CRIT% "+CRITICAL_DECK[s].name);
 			this.applycritical=ac;
 		    } else {
 			if (this.faceup(new Critical(this,s))) this.removehull(1);
@@ -1284,7 +1284,7 @@ var UPGRADES= [
 	    }.bind(sh),function(m,n) {
 		var h=m%10;
 		if (h>0) {
-		    this.unit.log("Sensor Jammer: 1 <code class='hit'></code> -> 1 <code class='xfocustoken'></code>");
+		    this.unit.log("Sensor Jammer: 1 %HIT% -> 1 %FOCUS%");
 		    return m+99;
 		}
 		return m;
@@ -1413,7 +1413,7 @@ var UPGRADES= [
 	done:true,
 	modifydamageassigned: function(ch,t) {
 	    if (ch>0) {
-		this.unit.log(this.name+": 2<code class='hit'></code> + 1 ion token assigned by "+t.name);
+		this.unit.log(this.name+": 2%HIT% + 1 ion token assigned by "+t.name);
 		ch=2;
 		t.addiontoken(); t.addiontoken();
 	    }
@@ -1598,7 +1598,7 @@ var UPGRADES= [
 		for (var i=0; i<c.length; i++) 
 		    if (!c[i].isactive) p.push(c[i]);
 		if (this.shield==0&&this.ship.shield>0) {
-		    this.log(x.name+" (Crew): +1 <code class='cshield'></code>");
+		    this.log(x.name+" (Crew): +1 %SHIELD%");
 		    this.shield++; 
 		    this.show();
 		    if (p.length>0) {
@@ -1624,7 +1624,7 @@ var UPGRADES= [
 		rdd.call(this,r).done(function(roll) {
 		    var resolve=function(k) {
 			if (k==this.getevadegreendice(roll)) {
-			    this.log("guessed correctly ! +1 <code class='xevadetoken'></code>");
+			    this.log("guessed correctly ! +1 %EVADE%");
 			    roll+=1;
 			}
 			$("#actiondial").empty();
@@ -1635,7 +1635,7 @@ var UPGRADES= [
 		    $("#actiondial").empty();
 		    for (var i=0; i<r; i++) {
 			(function(k) {
-			    var e=$("<button>").html(k+" <code class='xevadetoken'></code>")
+			    var e=$("<button>").html(k+" %EVADE%")
 				.click(function() { resolve(k);}.bind(this));
 			    $("#actiondial").append(e);
 			}.bind(this))(i);
@@ -1791,7 +1791,7 @@ var UPGRADES= [
 	    sh.endcombatphase=function() {
 		if (this.canusefocus()&&this.shield<this.ship.shield) {
 		    this.shield++;
-		    this.log("R5-P9: 1 <code class='xfocustoken'></code> -> 1 <code class='cshield'></code>");
+		    this.log("R5-P9: 1 %FOCUS% -> 1 %SHIELD%");
 		    this.removefocustoken();
 		}
 		ecp.call(this);
@@ -1809,7 +1809,7 @@ var UPGRADES= [
 		return this.targeting.indexOf(targetunit)>-1;
 	    }.bind(sh), function(m,n) {
 		var f=Math.floor(m/100);
-		this.log("Han Solo: "+f+"<code class='xfocustoken'></code> -> "+f+"<code class='hit'></code>");
+		this.log("Han Solo: "+f+"%FOCUS% -> "+f+"%HIT%");
 		this.removetarget(targetunit);
 		return m-99*f;
 	    }.bind(sh),false,"target");
@@ -1867,9 +1867,9 @@ var UPGRADES= [
 		var f=this.getfocusgreendice(roll);
 		var e=this.getevadegreendice(roll);
 		for (var i=0; i<f; i++) this.unit.addfocustoken(); 
-		if (f>0) str+=" +"+f+" <code class='xfocustoken'></code>"; 
+		if (f>0) str+=" +"+f+" %FOCUS%"; 
 		for (var i=0; i<e; i++) this.unit.addevadetoken(); 
-		if (e>0) str+=" +"+e+" <code class='xevadetoken'></code>"; 
+		if (e>0) str+=" +"+e+" %EVADE%"; 
 		if (str=="") this.unit.log(this.name+": no effect"); else this.unit.log(this.name+": "+str);
 		this.unit.endaction(n,"CREW");
 	    }.bind(this));
@@ -2164,7 +2164,7 @@ var UPGRADES= [
 	    }.bind(sh),function(m,n) {
 		var f=Math.floor(m/100)%10;
 		if (f>0) {
-		    this.unit.log("Calculation: 1 <code class='xfocustoken'></code> -> 1 <code class='critical'></code>");
+		    this.unit.log("Calculation: 1 %FOCUS% -> 1 %CRIT%");
 		    return m-90;
 		}
 		return m;
@@ -2179,7 +2179,7 @@ var UPGRADES= [
 	    sh.addattackadd(this,function(m,n) {
 		return true;
 	    }.bind(this),function(m,n) {
-		this.unit.log("Accuracy Corrector replaces all dice by 2 <code class='hit'></code>");
+		this.unit.log("Accuracy Corrector replaces all dice by 2 %HIT%");
 		return {m:2,n:2};
 	    }.bind(this),"hit");
 	},                
@@ -2218,7 +2218,7 @@ var UPGRADES= [
 	modifydamageassigned: function(ch,t) {
 	    if (ch>0) {
 		ch=1;
-		t.log(this.name+": +1<code class='hit'></code> and +1 stress token");
+		t.log(this.name+": +1%HIT% and +1 stress token");
 		if (t.stress==0) t.addstress();
 	    }
 	    return ch;
@@ -2241,7 +2241,7 @@ var UPGRADES= [
 	    }.bind(this),function(m,n) {
 		var h=m%10;
 		if (h>0) {
-		    this.unit.log("'Mangler' Cannon: 1 <code class='hit'></code> -> 1 <code class='critical'></code>");
+		    this.unit.log("'Mangler' Cannon: 1 %HIT% -> 1 %CRIT%");
 		    return m+9;
 		}
 		return m;
@@ -2589,7 +2589,7 @@ var UPGRADES= [
 		if (upg.isactive) {
 		    var roll=this.rollattackdie();
 		    if (roll=="hit"||roll=="critical") {
-			t.log(upg.name+": +1 <code class='hit'></code>") 
+			t.log(upg.name+": +1 %HIT%") 
 			    t.resolvehit(1);
 			t.checkdead();
 		    }
@@ -2645,14 +2645,14 @@ var UPGRADES= [
 		rdc.call(this);
 		if (this.candoevade()) {
 		    this.doaction([this.newaction(this.addevade,"EVADE")],
-				  "Stygium P.A.: +1 <code class='xevadetoken'></code>");
+				  "Stygium P.A.: +1 %EVADE%");
 		}
 	    }.bind(sh);
 	    sh.addcloak=function(n) {
 		rc.call(this,n);
 		if (this.candoevade()) 
 		    this.doaction([this.newaction(this.addevade,"EVADE")],
-				  "Stygium P.A.: +1 <code class='xevadetoken'></code>");
+				  "Stygium P.A.: +1 %EVADE%");
 	    }.bind(sh)
 	},
         points: 2,
@@ -2757,7 +2757,7 @@ var UPGRADES= [
 		}.bind(sh),function(m,n) {
 		var b=n-Math.floor(m/10)%10-m%10;
 		if (b>0) {
-		    this.log("Autothrusters: 1 <code class='blank'></code> -> 1 <code class='xevadetoken'></code>");
+		    this.log("Autothrusters: 1 <code class='blankgreendice'></code> -> 1 %EVADE%");
 		    return m+1;
 		}
 		return m;
@@ -3043,7 +3043,7 @@ var UPGRADES= [
 		var u=this;
 		sh.handledifficulty=function(d) {
 		    hd.call(this,d);
-		    if (d=="WHITE"||d=="GREEN") {
+		    if (d=="WHITE"||d=="GREEN"&&u.isactive) {
 			this.donoaction([{type:"ELITE",name:u.name,org:u,action:function(n) {
 			    u.isactive=false;
 			    this.addstress(1);
@@ -3066,7 +3066,7 @@ var UPGRADES= [
 	modifydamageassigned: function(ch,target) {
 	    if (ch>0) {
 		ch=1;
-		this.unit.log(this.name+": 1<code class='hit'></code> assigned to "+target.name);
+		this.unit.log(this.name+": 1%HIT% assigned to "+target.name);
 	    }
 	    return ch;
 	},	
@@ -3095,7 +3095,7 @@ var UPGRADES= [
 	    requires:"Target",
 	    done:true,
 	    hashit: function(t,c,h) {
-		t.log(this.name+": -1 <code class='cshield'></code>");
+		t.log(this.name+": -1 %SHIELD%");
 		t.removeshield(1);
 	    },
             range: [2,3]

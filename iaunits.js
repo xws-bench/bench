@@ -290,10 +290,10 @@ IAUnit.prototype= {
 	}   
 	if (str!="") {
 	    $("#atokens").html(str).show();
-	    $("#atokens").append("<button onclick='$(\"#atokens\").empty(); targetunit.dodefenseroll(targetunit.defenseroll("+defense+")"+","+defense+","+me+","+n+"'>Done</button>");
+	    $("#atokens").append("<button onclick='$(\"#atokens\").empty(); targetunit.defenseroll("+defense+").done(function(roll) { targetunit.dodefenseroll(roll,"+defense+","+me+","+n+")})'>Done</button>");
 	} else {
 	    $("#atokens").empty(); 
-	    targetunit.dodefenseroll(targetunit.defenseroll(defense),defense,me,n);
+	    targetunit.defenseroll(defense).done(function(roll) {targetunit.dodefenseroll(roll,defense,me,n);});
 	}
     },
     dodefenseroll: function(dr,dd,me,n) {
