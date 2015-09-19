@@ -622,7 +622,7 @@ function nextphase() {
 	    var vm=VIEWPORT.m.clone().invert();
 	    var x=vm.x(offsetX,offsetY);
 	    var y=vm.y(offsetX,offsetY);
-
+	    log("zooming "+x+" "+y+" "+z);
 	    VIEWPORT.m.translate(x,y).scale(z).translate(-x,-y);
 	    VIEWPORT.transform(VIEWPORT.m);
 	    activeunit.show();
