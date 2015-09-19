@@ -1296,7 +1296,7 @@ $(document).ready(function() {
 	    viewport_translate(-ev.velocityX*50,-ev.velocityY*50);
 	});
 	mc.on("pinch",function(ev) {
-	    log(ev.center.x+" "+ev.center.y+" "+ev.scale);
+	    log("zoom:"+ev.center.x+" "+ev.center.y+" "+ev.scale);
 	    //zoom(ev.center.x,ev.center.y,ev.scale);
 	    var vm=VIEWPORT.m.clone().invert();
 	    var x=vm.x(ev.center.x,ev.center.y);
