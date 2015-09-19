@@ -635,9 +635,9 @@ function nextphase() {
 	    activeunit.show();
 	});
 
-	$("#svgout").mousedown(function(event) { dragstart(event);});
-	$("#svgout").mousemove(function(e) {dragmove(e);});
-	$("#svgout").mouseup(function(e) {dragstop(e);});
+	//$("#svgout").mousedown(function(event) { dragstart(event);});
+	//$("#svgout").mousemove(function(e) {dragmove(e);});
+	//$("#svgout").mouseup(function(e) {dragstop(e);});
 
 	jwerty.key('l', allunitlist);
 	jwerty.key('w', inhitrange);
@@ -1077,20 +1077,20 @@ var viewport_translate=function(dx,dy) {
 	activeunit.show();
     }
 	var dragmove=function(event) {
-    var e = event; // old IE support
-    var x=e.offsetX,y=e.offsetY;
-    if (VIEWPORT.dragged) {
-	var w=$("#svgout").width();
-	var h=$("#svgout").height();
-	var max=Math.max(900./w,900./h);
-	var ddx=(e.offsetX-VIEWPORT.x0)*max;
-	var ddy=(e.offsetY-VIEWPORT.y0)*max;
-	VIEWPORT.dragMatrix=MT(ddx,ddy).add(VIEWPORT.m);
-	VIEWPORT.dragged=true;
-	$(".phasepanel").hide();
-	VIEWPORT.transform(VIEWPORT.dragMatrix);
-    }
-}
+	    var e = event; // old IE support
+	    var x=e.offsetX,y=e.offsetY;
+	    if (VIEWPORT.dragged) {
+		var w=$("#svgout").width();
+		var h=$("#svgout").height();
+		var max=Math.max(900./w,900./h);
+		var ddx=(e.offsetX-VIEWPORT.x0)*max;
+		var ddy=(e.offsetY-VIEWPORT.y0)*max;
+		VIEWPORT.dragMatrix=MT(ddx,ddy).add(VIEWPORT.m);
+		VIEWPORT.dragged=true;
+		$(".phasepanel").hide();
+		VIEWPORT.transform(VIEWPORT.dragMatrix);
+	    }
+	}
 var dragstart=function(event) { 
     var e = event; // old IE support
     VIEWPORT.dragged=true;
@@ -1292,10 +1292,10 @@ $(document).ready(function() {
 	mc.on("panleft panright panup pandown",function(ev) {
 	    
 	    switch(ev.type) {
-	    case "panleft": viewport_translate(-1,0); break;
-	    case "panright": viewport_translate(1,0); break;
-	    case "panup": viewport_translate(0,-1); break;
-	    case "pandown": viewport_translate(0,1); break;
+	    case "panleft": viewport_translate(-8,0); break;
+	    case "panright": viewport_translate(8,0); break;
+	    case "panup": viewport_translate(0,-8); break;
+	    case "pandown": viewport_translate(0,8); break;
 	    }
 	});
 	$("aside").on("scroll touchmove touchstart mousewheel", scrolloverflow);
