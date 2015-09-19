@@ -1295,16 +1295,18 @@ $(document).ready(function() {
 	mc.on("panleft panright panup pandown",function(ev) {
 	    viewport_translate(-ev.velocityX*50,-ev.velocityY*50);
 	});
+	mc.zoom=1;
 	mc.on("pinch",function(ev) {
 	    log("zoo:"+ev.center.x+" "+ev.center.y+" "+ev.scale);
 	    //zoom(ev.center.x,ev.center.y,ev.scale);
 	    var vm=VIEWPORT.m.clone().invert();
 	    var x=vm.x(ev.center.x,ev.center.y);
 	    var y=vm.y(ev.center.x,ev.center.y);
-	    var z=ev.scale;
+	    mc.zoom=ev.scale/mc.zoom;
 	    VIEWPORT.m.translate(x,y).scale(z).translate(-x,-y);
 	    VIEWPORT.transform(VIEWPORT.m);
 	    activeunit.show();
+	    if (ev.final) mc.zoom=1;
 	});
 	$("aside").on("scroll touchmove touchstart mousewheel", scrolloverflow);
     });
