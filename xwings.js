@@ -1297,13 +1297,13 @@ $(document).ready(function() {
 	});
 	mc.zoom=1;
 	mc.on("pinch",function(ev) {
-	    log("zoo:"+ev.center.x+" "+ev.center.y+" "+ev.scale);
+	    log("zoom:"+mc.zoom+" "+ev.scale);
 	    //zoom(ev.center.x,ev.center.y,ev.scale);
 	    var vm=VIEWPORT.m.clone().invert();
 	    var x=vm.x(ev.center.x,ev.center.y);
 	    var y=vm.y(ev.center.x,ev.center.y);
 	    mc.zoom=ev.scale/mc.zoom;
-	    VIEWPORT.m.translate(x,y).scale(z).translate(-x,-y);
+	    VIEWPORT.m.translate(x,y).scale(mc.zoom).translate(-x,-y);
 	    VIEWPORT.transform(VIEWPORT.m);
 	    activeunit.show();
 	    if (ev.final) mc.zoom=1;
