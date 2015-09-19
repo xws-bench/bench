@@ -138,7 +138,7 @@ Rock.prototype = {
     dragstop: function(a) { 
 	for (var k=1; k<4; k++) 
 	    this.o[k].attr({display:"none"});
-	Unit.prototype.dragstop.call(this,a); 
+	Unit.prototype.dragstop.call(this,a);
     },
     show: function() {
 	this.g.transform(this.m);
