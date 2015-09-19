@@ -1302,8 +1302,8 @@ $(document).ready(function() {
 	    var vm=VIEWPORT.m.clone().invert();
 	    var x=vm.x(ev.center.x,ev.center.y);
 	    var y=vm.y(ev.center.x,ev.center.y);
-	    mc.zoom=ev.scale/mc.zoom;
-	    //VIEWPORT.m.translate(x,y).scale(mc.zoom).translate(-x,-y);
+	    VIEWPORT.m.translate(x,y).scale(ev.scale).scale(1/mc.zoom).translate(-x,-y);
+	    mc.zoom=ev.scale;
 	    VIEWPORT.transform(VIEWPORT.m);
 	    activeunit.show();
 	    if (ev.final) mc.zoom=1;
