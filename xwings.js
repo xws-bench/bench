@@ -1287,6 +1287,16 @@ $(document).ready(function() {
 		    }
 		    });
 	}
+	var mc= new Hammer(s);
+	mc.get('pan').set({direction:Hammer.DIRECTION_ALL});
+	mc.on("panleft panright panup pandown",function(ev) {
+	    switch(ev.type) {
+	    case "panleft": viewport_translate(-10,0); break;
+	    case "panright": viewport_translate(10,0); break;
+	    case "panup": viewport_translate(0,10); break;
+	    case "pandown": viewport_translate(0,-10); break;
+	    }
+	});
 	$("aside").on("scroll touchmove touchstart mousewheel", scrolloverflow);
     });
 //    });
