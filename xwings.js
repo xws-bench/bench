@@ -609,9 +609,7 @@ function nextphase() {
 	activeunit=squadron[0];
 	activeunit.select();
 	activeunit.show();
-
-	$("#svgout").bind('mousewheel DOMMouseScroll', function(event){
-	    var e = event.originalEvent; // old IE support
+	var zoom=function(centerx,centery,z) {
 	    var w=$("#svgout").width();
 	    var h=$("#svgout").height();
 	    var startX=0;
@@ -619,13 +617,8 @@ function nextphase() {
 	    if (h>w) startY=(h-w)/2;
 	    else startX=(w-h)/2;
 	    var max=Math.max(900./w,900./h);
-	    var offsetX=(e.clientX-$("#team1").width()-startX)*max;
-	    var offsetY=(e.clientY-$("nav").height()-startY)*max;
-	    var delta;
-	    if (typeof e.wheelDelta != "undefined") 
-		delta=e.wheelDelta / 360.;
-	    else delta = e.detail/ -9.;
-	    var z=Math.pow(1.1, delta);
+	    var offsetX=(centerx-startX)*max;
+	    var offsetY=(centery-startY)*max;
 	    var vm=VIEWPORT.m.clone().invert();
 	    var x=vm.x(offsetX,offsetY);
 	    var y=vm.y(offsetX,offsetY);
@@ -633,6 +626,15 @@ function nextphase() {
 	    VIEWPORT.m.translate(x,y).scale(z).translate(-x,-y);
 	    VIEWPORT.transform(VIEWPORT.m);
 	    activeunit.show();
+	}
+	$("#svgout").bind('mousewheel DOMMouseScroll', function(event){
+	    var e = event.originalEvent; // old IE support
+	    var delta;
+	    if (typeof e.wheelDelta != "undefined") 
+		delta=e.wheelDelta / 360.;
+	    else delta = e.detail/ -9.;
+	    var z=Math.pow(1.1, delta);
+	    zoom(e.clientX-$("#team1").width(),e.clientY-$("nav").height(),z);
 	});
 
 	$("#svgout").mousedown(function(event) { dragstart(event);});
@@ -1288,9 +1290,13 @@ $(document).ready(function() {
 		    });
 	}
 	var mc= new Hammer(document.getElementById('svgout'));
+	mc.get("pinch").set({enable:true});
 	mc.get('pan').set({direction:Hammer.DIRECTION_ALL});
 	mc.on("panleft panright panup pandown",function(ev) {
 	    viewport_translate(-ev.velocityX*50,-ev.velocityY*50);
+	});
+	mc.on("pinch",function(ev) {
+	    log(ev.center.x+" "+ev.center.y+" "+ev.scale);
 	});
 	$("aside").on("scroll touchmove touchstart mousewheel", scrolloverflow);
     });
