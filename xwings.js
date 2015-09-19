@@ -1290,11 +1290,7 @@ $(document).ready(function() {
 	var mc= new Hammer(document.getElementById('svgout'));
 	mc.get('pan').set({direction:Hammer.DIRECTION_ALL});
 	mc.on("panleft panright panup pandown",function(ev) {
-	    log(ev.velocityX+" "+ev.velocityY);
-	    if (ev.direction&DIRECTION_LEFT) viewport_translate(-8,0);
-	    if (ev.direction&DIRECTION_RIGHT) viewport_translate(8,0);
-	    if (ev.direction&DIRECTION_UP) viewport_translate(0,-8); 
-	    if (ev.direction&DIRECTION_DOWN) viewport_translate(0,8);
+	    viewport_translate(ev.velocityX*50,ev.velocityY*50);
 	});
 	$("aside").on("scroll touchmove touchstart mousewheel", scrolloverflow);
     });
