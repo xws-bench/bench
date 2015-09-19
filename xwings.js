@@ -1292,10 +1292,12 @@ $(document).ready(function() {
 	mc.get("pinch").set({enable:true});
 	mc.get('pan').set({direction:Hammer.DIRECTION_ALL});
 	mc.on("panleft panright panup pandown",function(ev) {
+	    if (activeunit.name.match(/Asteroid #\d/)) return;
 	    viewport_translate(-ev.velocityX*50,-ev.velocityY*50);
 	});
 	mc.zoom=1;
-	mc.on("pinch",function(ev) {e
+	mc.on("pinch",function(ev) {
+	    if (activeunit.name.match(/Asteroid #\d/)) return;
 	    //zoom(ev.center.x,ev.center.y,ev.scale);
 	    var vm=VIEWPORT.m.clone().invert();
 	    var x=vm.x(ev.center.x,ev.center.y);
