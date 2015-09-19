@@ -1310,9 +1310,9 @@ $(document).ready(function() {
 	    if (ev.final) mc.zoom=1;
 	});
 	$("aside").on("scroll touchmove touchstart mousewheel", scrolloverflow);
-	mc = new Hammer(document.getElementById('leftpanel'));
-	mc.get('pan').set({direction:Hammer.DIRECTION_VERTICAL});
-	mc.on("panup pandown",function(ev) {
+	md = new Hammer(document.getElementById('leftpanel'));
+	md.get('pan').set({direction:Hammer.DIRECTION_VERTICAL});
+	md.on("panup pandown",function(ev) {
 	    log(ev.type);
 	});
     });
