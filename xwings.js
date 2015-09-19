@@ -1078,6 +1078,7 @@ var viewport_translate=function(dx,dy) {
 	activeunit.show();
     }
 	var dragmove=function(event) {
+	    if (activeunit.dragged==true) return;
 	    var e = event; // old IE support
 	    var x=e.offsetX,y=e.offsetY;
 	    if (VIEWPORT.dragged) {
