@@ -1299,12 +1299,9 @@ $(document).ready(function() {
 	    log("zoo:"+ev.center.x+" "+ev.center.y+" "+ev.scale);
 	    //zoom(ev.center.x,ev.center.y,ev.scale);
 	    var vm=VIEWPORT.m.clone().invert();
-	    log("vm:"+vm);
 	    var x=vm.x(ev.center.x,ev.center.y);
-	    log("x="+x);
 	    var y=vm.y(ev.center.x,ev.center.y);
-	    log("y="+y);
-	    log("zooming "+x+" "+y+" "+z);
+	    var z=ev.scale;
 	    VIEWPORT.m.translate(x,y).scale(z).translate(-x,-y);
 	    VIEWPORT.transform(VIEWPORT.m);
 	    activeunit.show();
