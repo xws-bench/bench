@@ -276,17 +276,17 @@ IAUnit.prototype= {
 	    var a=ATTACKMODD[i];
 	    if (a.req(ar,da)) {
 		//log("adding attackmodd");
-		str+="<td id='moda"+(i+ATTACKMODA.length)+"' class='"+a.str+"modtokend' onclick='modroll(ATTACKMODD["+i+"].f,"+da+","+(i+ATTACKMODA.length)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
+		//str+="<td id='moda"+(i+ATTACKMODA.length)+"' class='"+a.str+"modtokend' onclick='modroll(ATTACKMODD["+i+"].f,"+da+","+(i+ATTACKMODA.length)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
 	    }
 	}   
-	i=ATTACKMODA.length+ATTACKMODD.length;
+	i=ATTACKMODA.length//+ATTACKMODD.length;
 	for (j=0; j<this.ATTACKMODA.length; j++) {
 	    var a=this.ATTACKMODA[j];
 	    if (a.req(ar,da)) modroll(a.f,da,(i+j));
 	}   
 	for (j=0; j<this.ATTACKADD.length; j++) {
 	    var a=this.ATTACKADD[j];
-	    if (a.req(ar,da)) addroll(a.f,ar,(i+j+this.ATTACKMODA.length));
+	    if (a.req(ar,da)) addroll(a.f,da,(i+j+this.ATTACKMODA.length));
 	}   
 	if (str!="") {
 	    $("#atokens").html(str).show();
@@ -328,11 +328,11 @@ IAUnit.prototype= {
 	}   
 	for (i=0; i<DEFENSEMODD.length; i++) {
 	    var a=DEFENSEMODD[i];
-	    if (a.req(dr,dd)) modrolld(a.f,dr,i);
+	    if (a.req(dr,dd)) modrolld(a.f,dd,i);
 	}   
 	for (j=0; j<this.DEFENSEMODD.length; j++) {
 	    var a=this.DEFENSEMODD[j];
-	    if (a.req(dr,dd)) modrolld(a.f,dr,i+j);
+	    if (a.req(dr,dd)) modrolld(a.f,dd,i+j);
 	}   
 	$("#dtokens").append("<button>");
 	$("#dtokens > button").text("Fire!").click(function() {
