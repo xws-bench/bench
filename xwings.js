@@ -1287,9 +1287,10 @@ $(document).ready(function() {
 		    }
 		    });
 	}
-	var mc= new Hammer(s);
+	var mc= new Hammer($("#svgout"));
 	mc.get('pan').set({direction:Hammer.DIRECTION_ALL});
 	mc.on("panleft panright panup pandown",function(ev) {
+	    
 	    switch(ev.type) {
 	    case "panleft": viewport_translate(-10,0); break;
 	    case "panright": viewport_translate(10,0); break;
