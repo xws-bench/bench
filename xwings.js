@@ -635,9 +635,9 @@ function nextphase() {
 	    activeunit.show();
 	});
 
-	//$("#svgout").mousedown(function(event) { dragstart(event);});
-	//$("#svgout").mousemove(function(e) {dragmove(e);});
-	//$("#svgout").mouseup(function(e) {dragstop(e);});
+	$("#svgout").mousedown(function(event) { dragstart(event);});
+	$("#svgout").mousemove(function(e) {dragmove(e);});
+	$("#svgout").mouseup(function(e) {dragstop(e);});
 
 	jwerty.key('l', allunitlist);
 	jwerty.key('w', inhitrange);
@@ -1290,13 +1290,11 @@ $(document).ready(function() {
 	var mc= new Hammer(document.getElementById('svgout'));
 	mc.get('pan').set({direction:Hammer.DIRECTION_ALL});
 	mc.on("panleft panright panup pandown",function(ev) {
-	    
-	    switch(ev.type) {
-	    case "panleft": viewport_translate(-8,0); break;
-	    case "panright": viewport_translate(8,0); break;
-	    case "panup": viewport_translate(0,-8); break;
-	    case "pandown": viewport_translate(0,8); break;
-	    }
+	    log(ev.velocityX+" "+ev.velocityY);
+	    if (ev.direction&DIRECTION_LEFT) viewport_translate(-8,0);
+	    if (ev.direction&DIRECTION_RIGHT) viewport_translate(8,0);
+	    if (ev.direction&DIRECTION_UP) viewport_translate(0,-8); 
+	    if (ev.direction&DIRECTION_DOWN) viewport_translate(0,8);
 	});
 	$("aside").on("scroll touchmove touchstart mousewheel", scrolloverflow);
     });
