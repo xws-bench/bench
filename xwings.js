@@ -1293,7 +1293,7 @@ $(document).ready(function() {
 	mc.get("pinch").set({enable:true});
 	mc.get('pan').set({direction:Hammer.DIRECTION_ALL});
 	mc.on("panleft panright panup pandown",function(ev) {
-	    log(ev.target);
+	    log(ev.target.id);
 	    if (activeunit.dragged==true) return;
 	    viewport_translate(-ev.velocityX*50,-ev.velocityY*50);
 	});
