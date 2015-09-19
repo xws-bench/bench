@@ -1296,7 +1296,7 @@ $(document).ready(function() {
 	    viewport_translate(-ev.velocityX*50,-ev.velocityY*50);
 	});
 	mc.on("pinch",function(ev) {
-	    //log(ev.center.x+" "+ev.center.y+" "+ev.scale);
+	    log(ev.center.x+" "+ev.center.y+" "+ev.scale);
 	    zoom(ev.center.x,ev.center.y,ev.scale);
 	});
 	$("aside").on("scroll touchmove touchstart mousewheel", scrolloverflow);
