@@ -1292,10 +1292,10 @@ $(document).ready(function() {
 	mc.on("panleft panright panup pandown",function(ev) {
 	    
 	    switch(ev.type) {
-	    case "panleft": viewport_translate(-10,0); break;
-	    case "panright": viewport_translate(10,0); break;
-	    case "panup": viewport_translate(0,10); break;
-	    case "pandown": viewport_translate(0,-10); break;
+	    case "panleft": viewport_translate(-1,0); break;
+	    case "panright": viewport_translate(1,0); break;
+	    case "panup": viewport_translate(0,-1); break;
+	    case "pandown": viewport_translate(0,1); break;
 	    }
 	});
 	$("aside").on("scroll touchmove touchstart mousewheel", scrolloverflow);
