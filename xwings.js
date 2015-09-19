@@ -1287,7 +1287,7 @@ $(document).ready(function() {
 		    }
 		    });
 	}
-	var mc= new Hammer($("#svgout"));
+	var mc= new Hammer(document.getElementById('svgout'));
 	mc.get('pan').set({direction:Hammer.DIRECTION_ALL});
 	mc.on("panleft panright panup pandown",function(ev) {
 	    
