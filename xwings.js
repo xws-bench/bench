@@ -1293,10 +1293,11 @@ $(document).ready(function() {
 	mc.get("pinch").set({enable:true});
 	mc.get('pan').set({direction:Hammer.DIRECTION_ALL});
 	mc.on("panleft panright panup pandown",function(ev) {
-	    viewport_translate(ev.deltaX,ev.deltaY);
+	    viewport_translate(-ev.velocityX*50,-ev.velocityY*50);
 	});
 	mc.zoom=1;
 	mc.on("pinch",function(ev) {
+	    log("zoom:"+mc.zoom+" "+ev.scale);
 	    //zoom(ev.center.x,ev.center.y,ev.scale);
 	    var vm=VIEWPORT.m.clone().invert();
 	    var x=vm.x(ev.center.x,ev.center.y);
