@@ -1293,7 +1293,7 @@ $(document).ready(function() {
 	mc.get("pinch").set({enable:true});
 	mc.get('pan').set({direction:Hammer.DIRECTION_ALL});
 	mc.on("panleft panright panup pandown",function(ev) {
-	    if (ev.target.id!="svgout") {log(ev.target.id); return;}
+	    if (ev.target.id!="svgout") {return;}
 	    if (activeunit.dragged==true) return;
 	    viewport_translate(-ev.velocityX*50,-ev.velocityY*50);
 	});
@@ -1301,7 +1301,7 @@ $(document).ready(function() {
 	mc.zoom=1;
 	mc.on("pinch",function(ev) {
 	    //log(ev.sourceEvent);
-	    if (ev.target.id!="svgout") {log(ev.target.id); return;}
+	    if (ev.target.id!="svgout") { return;}
 	    if (activeunit.dragged==true) return;
 	    //zoom(ev.center.x,ev.center.y,ev.scale);
 	    var vm=VIEWPORT.m.clone().invert();
