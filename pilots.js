@@ -3022,6 +3022,7 @@ var PILOTS = [
         {
             name: "Miranda Doni",
             unique: true,
+	    done:true,
             faction: "REBEL",
             unit: "K-Wing",
             skill: 8,
@@ -3050,7 +3051,7 @@ var PILOTS = [
 			this.endnoaction(n,"SHIELD");
 		    }.bind(this)},
 		    {org:this,name:this.name,type:"HIT",action:function(n) {
-			this.log("action "+n);
+			//this.log("action "+n);
 			this.getattackstrength=function(i,sh){
 			    return 1+Unit.prototype.getattackstrength.call(this,i,sh);
 			};
@@ -3060,7 +3061,7 @@ var PILOTS = [
 			    this.endattack=Unit.prototype.endattack;
 			    Unit.prototype.endattack.call(this,c,h);
 			};
-			this.log("calling noaction "+n);
+			//this.log("calling noaction "+n);
 			this.endnoaction(n,"HIT");
 		    }.bind(this)}],"choose to add shield/roll 1 fewer die or remove shield/roll 1 additional die");
 	    },
