@@ -1484,7 +1484,7 @@ Unit.prototype = {
 		var p=this.pos[i];
 		p.ol.hover(function() { this.pos[i].ol.attr({stroke:this.color,strokeWidth:4})}.bind(this),
 			   function() { this.pos[i].ol.attr({strokeWidth:0})}.bind(this));
-		    p.ol.on("click touchstart",function() { resolve(moves[this.pos[i].k],this.pos[i].k,cleanup); }.bind(this));
+		    p.ol.click(function() { resolve(moves[this.pos[i].k],this.pos[i].k,cleanup); }.bind(this));
 		    }.bind(this))(i);
 	    }
 	} else resolve(this.m,-1,cleanup);
