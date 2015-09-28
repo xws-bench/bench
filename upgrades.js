@@ -2,16 +2,38 @@
 */
 
 var UPGRADE_TYPES={
-Elite:"ept",Torpedo:"torpedo",Astromech:"amd",Turret:"turret",Missile:"missile",Crew:"crew",Cannon:"cannon",Bomb:"bomb",Title:"title",Mod:"mod",System:"system",Illicit:"illicit",Salvaged:"salvaged"
+    Elite:"ept",Torpedo:"torpedo",Astromech:"amd",Turret:"turret",Missile:"missile",Crew:"crew",Cannon:"cannon",Bomb:"bomb",Title:"title",Mod:"mod",System:"system",Illicit:"illicit",Salvaged:"salvaged",Tech:"tech"
 };
 function Laser(u,type,fire) {
-    return new Weapon(u,{
+    if (type=="Bilaser") 
+	return new Weapon(u,{
+	    type: type,
+	    name:"Laser",
+	    isactive:true,
+	    attack: fire,
+	    range: [1,3],
+	    isprimary: true,
+	    auxiliary: function(i,m) { return this.getPrimarySectorString(i,m.clone().rotate(180,0,0)); },
+	    subauxiliary: function(i,j,m) { return this.getPrimarySubSectorString(i,j,m.clone().rotate(180,0,0)); }
+	});
+    else if (type=="Laser180") {
+	return new Weapon(u,{
+	    type: type,
+	    name:"Laser",
+	    isactive:true,
+	    attack: fire,
+	    range: [1,3],
+	    isprimary: true,
+	    auxiliary: function(i,m) { return this.getHalfRangeString(i,m); },
+	    subauxiliary: function(i,j,m) { return this.getHalfSubRangeString(i,j,m); }
+	});	
+    } else return new Weapon(u,{
 	type: type,
 	name:"Laser",
 	isactive:true,
 	attack: fire,
 	range: [1,3],
-	isprimary: true
+	isprimary: true,
     });
 }
 function Bomb(sh,bdesc) {
@@ -56,8 +78,24 @@ Bomb.prototype = {
 	};
 	return range;
     },
+    getcollisions: function() {
+	var ob=this.getOutlineString();
+	var p=[];
+	for (i=0; i<squadron.length; i++) {
+	    var u=squadron[i];
+	    var so=u.getOutlineString(u.m);
+	    os=so.s;
+	    op=so.p;
+	    if (Snap.path.intersection(ob.s,os).length>0 
+		||this.unit.isPointInside(ob.s,op)
+		||this.unit.isPointInside(os,ob.p)) {
+		p.push(u); 
+	    }
+	}
+	return p;
+    },
     getrange: function(sh) { 
-	var ro=this.getOutlinePoints(this.m);
+	var ro=this.getOutlineString(this.m).p;
 	var rsh = sh.getOutlinePoints(sh.m);
 	var min=90001;
 	var i,j;
@@ -98,13 +136,20 @@ Bomb.prototype = {
 	}
     },
     drop: function(lm) {
-	this.unit.log("dropped "+this.name);
-	this.img=s.image("png/"+this.img,-10,-8,20,16);
-	if (this.ordnance) this.ordnance=false; else this.isactive=false;
-	this.outline=this.getOutline(new Snap.matrix())
-	    .attr({display:"block",stroke:halftone(this.unit.color),strokeWidth:2});
-	this.g=s.group(this.outline,this.img);
-	this.g.hover(
+	var dropped=this;
+	if (this.ordnance) { 
+	    this.ordnance=false; 
+	    dropped=$.extend({},this);
+	} else this.isactive=false;
+	dropped.img1=s.image("png/"+this.img,-this.width/2,-this.height/2,this.width,this.height);
+	dropped.outline=this.getOutline(new Snap.matrix())
+	    .attr({display:"block","class":"outline",stroke:halftone(GREY),strokeWidth:2,fill:"rgba(8,8,8,0.3)"});
+	if (this.repeatx) {
+	    dropped.img2=s.image("png/"+this.img,-this.width/2-this.repeatx,-this.height/2,this.width,this.height);
+	    dropped.img3=s.image("png/"+this.img,-this.width/2+this.repeatx,-this.height/2,this.width,this.height);
+	    dropped.g=s.group(dropped.outline,dropped.img1,dropped.img2,dropped.img3);
+	} else dropped.g=s.group(dropped.outline,dropped.img1);
+	dropped.g.hover(
 	    function () { 
 		var m=VIEWPORT.m.clone();
 		var w=$("#svgout").width();
@@ -122,39 +167,54 @@ Bomb.prototype = {
 		x+=p.left+startX;
 		var y=m.y(bbox.x,bbox.y-20)/max;
 		y+=p.top+startY;
+		this.outline.attr({stroke:GREY});
 		$(".info").css({left:x,top:y}).html(this.name).appendTo("body").show();
-	    }.bind(this),
-	    function() { $(".info").hide(); 
-		       }.bind(this));
+	    }.bind(dropped), function() { 
+		$(".info").hide(); 
+		this.outline.attr({stroke:halftone(GREY)});
+	    }.bind(dropped));
 	var p=[];
 	for (var i=0; i<lm.length; i++) 
-	    p.push(this.unit.getpathmatrix(this.unit.m.clone().rotate(180,0,0),lm[i]).translate(0,(this.islarge?20:0)))
-	this.resolveactionmove(p, function(k) { 
+	    p.push(this.unit.getpathmatrix(this.unit.m.clone().rotate(180,0,0),lm[i]).translate(0,(this.unit.islarge?-20:0)-this.size))
+	dropped.resolveactionmove(p, function(k) { 
 	    this.g.transform(this.m);
 	    this.g.appendTo(VIEWPORT);
-	    BOMBS.push($.extend({},this));	 
-	}.bind(this));
-    },
-    getOutlinePoints: function(m) {
-	var w=10;
-	var p1=transformPoint(m,{x:-w,y:-w});
-	var p2=transformPoint(m,{x:w,y:-w});
-	var p3=transformPoint(m,{x:w,y:w});
-	var p4=transformPoint(m,{x:-w,y:w});	
-	this.op=[p1,p2,p3,p4];
-	return this.op;
+	    BOMBS.push(this);
+	    if (this.stay) {
+		OBSTACLES.push(this);
+		var p=this.getcollisions();
+		if (p.length>0) this.unit.resolveactionselection(p,function(k) {
+		    this.detonate(p[k]);
+		}.bind(this));
+	    }
+	}.bind(dropped));
     },
     getOutline: function(m) {
-	var p=this.getOutlinePoints(m);
-	var pa=s.path("M "+p[0].x+" "+p[0].y+" L "+p[1].x+" "+p[1].y+" "+p[2].x+" "+p[2].y+" "+p[3].x+" "+p[3].y+" Z");
-	pa.appendTo(VIEWPORT);
-	return pa;
+	var path=s.path(this.getOutlineString(m).s);
+	path.appendTo(VIEWPORT);
+	return path;
+    },
+    getOutlineString: function(m) {
+	var w=15;
+	if (typeof m=="undefined") m=this.m;
+	var p1=transformPoint(m,{x:-w-1,y:-w});
+	var p2=transformPoint(m,{x:w+1,y:-w});
+	var p3=transformPoint(m,{x:w+1,y:w});
+	var p4=transformPoint(m,{x:-w-1,y:w});	
+	this.op=[p1,p2,p3,p4];
+	var p=this.op;
+	return {s:"M "+p[0].x+" "+p[0].y+" L "+p[1].x+" "+p[1].y+" "+p[2].x+" "+p[2].y+" "+p[3].x+" "+p[3].y+" Z",p:p}; 
     },
     explode: function() {
 	this.exploded=true;
 	this.unit.log(this.name+" explodes");
 	SOUNDS[this.snd].play();
 	this.g.remove();
+	BOMBS.splice(BOMBS.indexOf(this),1);
+    },
+    detonate: function() {
+	OBSTACLES.splice(OBSTACLES.indexOf(this),1);
+	Bomb.prototype.explode.call(this);
     }
 }
 function Weapon(sh,wdesc) {
@@ -171,6 +231,7 @@ function Weapon(sh,wdesc) {
 Weapon.prototype = {
     isBomb: function() { return false; },
     isWeapon: function() { return true; },
+    hasauxiliaryfiringarc: function() { return false; },
     toString: function() {
 	var a,b,d,str="";
 	var c="";
@@ -263,6 +324,14 @@ Weapon.prototype = {
 	}
 	return 0;
     },
+    getsector: function(sh) {
+	var m=this.unit.m;
+	var n=this.unit.getoutlinerange(m,sh).d;
+	if (this.unit.isinsector(m,n,sh,this.unit.getPrimarySubSectorString,this.unit.getPrimarySectorString)) return n;
+	if (typeof this.auxiliary=="undefined") return 4;
+	if (this.unit.isinsector(m,n,sh,this.subauxiliary,this.auxiliary)) return n;
+	return 4;
+    },
     getrange: function(sh) {
 	var i;
 	if (!this.canfire(sh)) return 0;
@@ -271,14 +340,8 @@ Weapon.prototype = {
 	    if (this.isinrange(r)) return r;
 	    else return 0;
 	}
-	var ghs=this.unit.gethitsector(sh);
+	var ghs=this.getsector(sh);
 	if (ghs>=this.range[0]&&ghs<=this.range[1]) return ghs;
-	if (this.type=="Bilaser") {
-	    var m=this.unit.m.clone();
-	    m.rotate(180,0,0);
-	    ghs=this.unit.gethitsector(sh,m);
-	    if (ghs>=this.range[0]&&ghs<=this.range[1]) return ghs;
-	}
 	return 0;
     },
     endattack: function(c,h) {
@@ -317,7 +380,7 @@ function Upgradefromid(sh,i) {
     if (typeof upg.isWeapon != "undefined") 
 	if (upg.isWeapon()) return new Weapon(sh,upg);
     else return new Upgrade(sh,i);
-    if (upg.type.match("Turretlaser|Bilaser|Laser|Torpedo|Cannon|Missile|Turret")||upg.isweapon==true) return new Weapon(sh,upg);
+    if (upg.type.match("Turretlaser|Bilaser|Laser180|Laser|Torpedo|Cannon|Missile|Turret")||upg.isweapon==true) return new Weapon(sh,upg);
     return new Upgrade(sh,i);
 }
 Upgrade.prototype = {
@@ -722,10 +785,10 @@ var UPGRADES= [
 		    t.addstress(); 
 		    if (t.shipactionList.indexOf("BOOST")==-1) {
 			t.log("Daredevil: 2 rolls for damage");
+			var roll=t.rollattackdie(2);
 			for (var i=0; i<2; i++) {
-			    var roll=t.rollattackdie();
-			    if (roll=="hit") { t.resolvehit(1); t.checkdead(); }
-			    else if (roll=="critical") { 
+			    if (roll[i]=="hit") { t.resolvehit(1); t.checkdead(); }
+			    else if (roll[i]=="critical") { 
 				t.resolvecritical(1);
 				t.checkdead();
 			    }
@@ -911,11 +974,13 @@ var UPGRADES= [
 	done:true,
 	img:"seismic.png",
 	snd:"explode",
+	width: 16,
+	height:8,
+	size:15,
         explode: function() {
 	    if (phase==ACTIVATION_PHASE&&!this.exploded) {
 		var r=this.getrangeallunits();
 		var i;
-		BOMBS.splice(BOMBS.indexOf(this),1);
 		Bomb.prototype.explode.call(this);
 		for (i=0; i<r[1].length; i++) {
 		    squadron[r[1][i].unit].resolvehit(1);
@@ -975,7 +1040,43 @@ var UPGRADES= [
     },
     {
         name: "Proximity Mines",
-        
+	img: "proximity.png",
+	snd:"explode",
+	width: 18,
+	height:18,
+	size:35,
+	done:true,
+	stay: true,
+        explode: function() {},
+	detonate:function(t) {
+	    if (!this.exploded) {
+		var roll=this.unit.rollattackdie(3);
+		for (var i=0; i<3; i++) {
+		    if (roll[i]=="hit") { t.resolvehit(1); t.checkdead(); }
+		    else if (roll[i]=="critical") { 
+			t.resolvecritical(1);
+			t.checkdead();
+		    }
+		}
+		Bomb.prototype.detonate.call(this);
+	    }
+	},
+        getOutlineString: function(m) {
+	    var N=30;
+	    var s="M ";
+	    this.op=[];
+	    if (typeof m=="undefined") m=this.m;
+	    for (var i=0; i<N; i++){ 
+		var p=transformPoint(m,{
+		    x:this.size*Math.sin(2*i*Math.PI/N),
+		    y:this.size*Math.cos(2*i*Math.PI/N)});
+		this.op.push(p);
+		s+=p.x+" "+p.y+" ";
+		if (i==0) s+="L ";
+	    }
+	    s+="Z";
+	    return {s:s,p:this.op};
+	},
         type: "Bomb",
         points: 3,
     },
@@ -1228,12 +1329,14 @@ var UPGRADES= [
     {
         name: "Proton Bombs",
         done:true,
+	width: 32,
+	height:30,
+	size:15,
 	snd:"explode",
 	img:"proton.png",
         explode: function() {
 	    if (phase==ACTIVATION_PHASE&&!this.exploded) {
 		var r=this.getrangeallunits();
-		BOMBS.splice(BOMBS.indexOf(this),1);
 		Bomb.prototype.explode.call(this);
 		for (var i=0; i<r[1].length; i++) {
 		    squadron[r[1][i].unit].applycritical(1);
@@ -1588,7 +1691,7 @@ var UPGRADES= [
 	    var tac = sh.endattack;
 	    sh.endattack=function(c,h) {
 		tac.call(this);
-		if (this.gethitsector(targetunit)==2) {
+		if (this.getsector(targetunit)==2) {
 		    targetunit.addstress();
 		    targetunit.log("Tactician: +1 stress");
 		}
@@ -2599,7 +2702,7 @@ var UPGRADES= [
 	    var cb=sh.collidedby;
 	    sh.collidedby=function(t) {
 		if (upg.isactive) {
-		    var roll=this.rollattackdie();
+		    var roll=this.rollattackdie(1)[0];
 		    if (roll=="hit"||roll=="critical") {
 			t.log(upg.name+": +1 %HIT%") 
 			    t.resolvehit(1);
@@ -3032,6 +3135,50 @@ var UPGRADES= [
         {
             name: "Cluster Mines",
             type: "Bomb",
+	    snd:"explode",
+	    img:"cluster.png",
+	    width: 15,
+	    height:10,
+	    repeatx:42,
+	    size:22,
+	    stay:true,
+	    done:true,
+            explode: function() {},
+	    detonate: function(t) {
+		if (!this.exploded) {
+		    var roll=this.unit.rollattackdie(2);
+		    for (var i=0; i<2; i++) {
+			if (roll[i]=="hit") { t.resolvehit(1); t.checkdead(); }
+			else if (roll[i]=="critical") { 
+			    t.resolvecritical(1);
+			    t.checkdead();
+			}
+		    }
+		    Bomb.prototype.detonate.call(this);
+		}
+	    },
+	    init: function(u) {
+		var p=s.path("M41.844,-21 C54.632,-21 65,-11.15 65,1 C65,13.15 54.632,23 41.844,23 C33.853,22.912 25.752,18.903 21.904,12.169 C17.975,18.963 10.014,22.806 1.964,23 C-7.439,22.934 -14.635,18.059 -18.94,10.466 C-22.908,18.116 -30.804,22.783 -39.845,23 C-52.633,23 -63,13.15 -63,1 C-63,-11.15 -52.633,-21 -39.845,-21 C-30.441,-20.935 -23.246,-16.06 -18.94,-8.466 C-14.972,-16.116 -7.076,-20.783 1.964,-21 C9.956,-20.913 18.055,-16.902 21.904,-10.17 C25.832,-16.964 33.795,-20.807 41.844,-21 z").attr({display:"none"});
+		var l=p.getTotalLength();
+		this.op0=[];
+		for (var i=0; i<60; i++) {
+		    this.op0[i]=p.getPointAtLength(i*l/60);
+		}
+	    },
+	    getOutlineString: function(m) {
+		var N=60;
+		var s="M ";
+		this.op=[];
+		if (typeof m=="undefined") m=this.m;
+		for (var i=0; i<N; i++){ 
+		    var p=transformPoint(m,this.op0[i]);
+		    this.op.push(p);
+		    s+=p.x+" "+p.y+" ";
+		    if (i==0) s+="L ";
+		}
+		s+="Z";
+		return {s:s,p:this.op};
+	    },
             points: 4,
         },
         {
@@ -3117,12 +3264,15 @@ var UPGRADES= [
 	name: "Ion Bombs",
 	type: "Bomb",
 	points: 2,
+	width: 14,
+	height:14,
+	size:15,
 	done:true,
-	img:"proton.png",
+	snd:"explode",
+	img:"ion.png",
 	explode: function() {
 	    if (phase==ACTIVATION_PHASE&&!this.exploded) {
 		var r=this.getrangeallunits();
-		BOMBS.splice(BOMBS.indexOf(this),1);
 		Bomb.prototype.explode.call(this);
 		for (var i=0; i<r[1].length; i++) {
 		    squadron[r[1][i].unit].addiontoken();
@@ -3134,7 +3284,56 @@ var UPGRADES= [
         {
             name: "Conner Net",
             type: "Bomb",
-            points: 4,
+	    snd:"explode",
+	    img:"conner-net3.png",
+	    width:40,
+	    height:60,
+	    size:40,
+	    done:true,
+	    init: function() {
+		var p=s.path("M-11.379,-0.26 C-11.241,-6.344 -16.969,-14.641 -19.247,-20.448 C-21.524,-26.255 -24.216,-38.147 -20.213,-39.46 C-16.21,-40.774 -8.619,-37.594 2.424,-37.663 C13.466,-37.732 22.162,-41.327 23.68,-39.322 C25.198,-37.317 26.716,-30.404 22.714,-21.278 C18.711,-12.152 14.156,-6.828 14.087,0.293 C14.018,7.414 19.47,15.364 22.3,22.555 C25.129,29.745 25.681,39.908 23.128,41.429 C20.574,42.95 13.673,41.29 4.218,41.29 C-5.237,41.29 -19.316,42.742 -20.903,41.29 C-22.49,39.839 -24.354,34.446 -20.213,23.108 C-16.072,11.769 -11.448,11.424 -11.379,1.606 C-11.322,-6.487 -11.514,5.685 -11.379,-0.26 z").attr({display:"none"});
+		var l=p.getTotalLength();
+		this.op0=[];
+		for (var i=0; i<60; i++) {
+		    this.op0[i]=p.getPointAtLength(i*l/60);
+		}
+	    },
+	    getOutlineString: function(m) {
+		var N=60;
+		var s="M ";
+		this.op=[];
+		if (typeof m=="undefined") m=this.m;
+		for (var i=0; i<N; i++){ 
+		    var p=transformPoint(m,this.op0[i]);
+		    this.op.push(p);
+		    s+=p.x+" "+p.y+" ";
+		    if (i==0) s+="L ";
+		}
+		s+="Z";
+		return {s:s,p:this.op};
+	    },
+	    stay:true,
+	    explode: function() {},
+	    detonate:function(t) {
+		if (!this.exploded) {
+		    var roll=this.unit.rollattackdie(1)[0];
+		    if (roll=="hit") { t.resolvehit(1); t.checkdead(); }
+		    else if (roll=="critical") { 
+			t.resolvecritical(1);
+			t.checkdead();
+		    }
+		    t.addiontoken();
+		    t.addiontoken();
+		    this.unit.log(this.name+": "+t.name+" skips action phase");
+		    var cdema=t.candoendmaneuveraction;
+		    t.candoendmaneuveraction=function() {
+			t.candoendmaneuveraction=cdema;
+			return false;
+		    }
+		    Bomb.prototype.detonate.call(this);
+		}
+	    },       
+	    points: 4,
         },
     {
 	name: "Bombardier",
@@ -3187,7 +3386,7 @@ var UPGRADES= [
 	       var dar=da.call(this,la)
 	       dar.then(function(r) {
 		       if (r=="SLAM"&&this.ocollision.overlap==-1
-			   &&this.ocollision.template==0
+			   &&this.ocollision.template.length==0
 			   &&!this.collision) {
 			   return da.call(this,this.getactionbarlist());
 		       } else return dar;
