@@ -587,8 +587,7 @@ var PILOTS = [
         unique: true,
 	done:true,
         candoaction:function() {
-	    if (this.collision>0||this.ocollision.template>0||this.ocollision.overlap>-1) return false;
-	    return  true;
+	    return (this.collision==0&&this.ocollision.template.length==0&&this.ocollision.overlap==-1);
 	},
         unit: "A-Wing",
         skill: 8,
@@ -708,10 +707,6 @@ var PILOTS = [
             "Crew",
             "Crew",
         ],
-        attack: 3,
-        agility: 1,
-        hull: 8,
-        shields: 5,
     },
     {
         name: "Han Solo",
@@ -1049,7 +1044,7 @@ var PILOTS = [
 			(activeunit.team==unit.team)&&(activeunit!=unit)
 			&&(unit.getrange(activeunit)<=3);
 	    }.bind(this), function(m,n) {
-		var f=unit.rollattackdie();
+		var f=unit.rollattackdie(1)[0];
 		unit.addstress();
 		unit.log("+1 attack die");
 		if (f=="focus") return m+100;
@@ -1741,7 +1736,7 @@ var PILOTS = [
 	done:true,
 	addstress:function() {
 	    // Automatic removal of stress
-	    var roll=this.rollattackdie();
+	    var roll=this.rollattackdie(1)[0];
 	    this.log("remove 1 stress token, roll 1 attack dice")
 	    if (roll=="hit") { this.resolvehit(1); this.checkdead(); }
 	},
@@ -2000,7 +1995,7 @@ var PILOTS = [
 	done:true,
 	getocollisions: function(mbegin,mend,path,len) { 
 	    //this.log("dash rendar getocollision");
-	    return {overlap:-1,template:0};
+	    return {overlap:-1,template:[]};
 	},
         points: 36,
         upgrades: [
@@ -2501,13 +2496,10 @@ var PILOTS = [
 	done:true,
         getattackstrength:  function(w,sh) {
 	    var a=Unit.prototype.getattackstrength.call(this,w,sh);
-	    var m=this.m.clone();
-	    this.m.rotate(180,0,0);
-	    if (this.isinfiringarc(sh)) { 
+	    if (this.isinfiringarc(sh)&&this.getprimarysector(sh)==4) { 
 		this.log("+1 attack roll against "+sh.name+" in auxiliary arc");
 		a=a+1;
 	    }
-	    this.m=m;
 	    return a;
 	},
         unique: true,
@@ -3200,7 +3192,8 @@ var PILOTS = [
             upgrades: [
                 "Elite",
                 "Torpedo",
-                "Astromech"
+                "Astromech",
+		"Tech"
             ],
 	    init: function() {
 		this.addattackmoda(this,function(m,n) { 
@@ -3239,8 +3232,9 @@ var PILOTS = [
 	      .concat(Unit.prototype.getboostmatrix.call(this,m));
 	  },
 	  upgrades: [
-		     "Torpedo",
-		     "Astromech"
+	      "Torpedo",
+	      "Astromech",
+	      "Tech"
 		     ],
 	  points: 27
       },
@@ -3259,7 +3253,7 @@ var PILOTS = [
 	      }
 	      Unit.prototype.removeshield.call(this,n);
 	  },
-	  upgrades: [
+	  upgrades: ["Tech",
 		     "Torpedo",
 		     "Astromech"
 		     ],
@@ -3271,7 +3265,7 @@ var PILOTS = [
 	  done:true,
 	  unit: "T-70 X-Wing",
 	  skill: 2,
-	  upgrades: [
+	  upgrades: ["Tech",
 		     "Torpedo",
 		     "Astromech"
 		     ],
@@ -3283,7 +3277,7 @@ var PILOTS = [
 	  done:true,
 	  unit: "T-70 X-Wing",
 	  skill: 4,
-	  upgrades: [
+	 upgrades: ["Tech",
 		     "Torpedo",
 		     "Astromech"
 		     ],
@@ -3295,9 +3289,9 @@ var PILOTS = [
 	  done:true,
 	  unit: "TIE/FO Fighter",
 	  skill: 4,
-	  upgrades: [
-		     "Elite"
-		     ],
+	upgrades: ["Tech",
+		   "Elite"
+		  ],
 	  points: 17
       },
    {
@@ -3306,8 +3300,8 @@ var PILOTS = [
 	  done:true,
 	  unit: "TIE/FO Fighter",
 	  skill: 3,
-	  upgrades: [
-		     ],
+       upgrades: ["Tech",
+		 ],
 	  points: 16
       },
    {
@@ -3316,8 +3310,8 @@ var PILOTS = [
 	  done:true,
 	  unit: "TIE/FO Fighter",
 	  skill: 1,
-	  upgrades: [
-		     ],
+       upgrades: ["Tech",
+		 ],
 	  points: 15
       },
    {
@@ -3338,7 +3332,7 @@ var PILOTS = [
 		m1.clone().translate(0,20)]
 	.concat(Unit.prototype.getrollmatrix.call(this,m));
     },
-	  upgrades: ["Elite"
+       upgrades: ["Elite","Tech"
 		     ],
 	  points: 18
       },
@@ -3355,7 +3349,7 @@ var PILOTS = [
 	       this.removestresstoken();
 	   return Unit.prototype.begincombatphase.call(this);
        },
-	  upgrades: ["Elite"
+       upgrades: ["Elite","Tech"
 		     ],
 	  points: 19
       },
@@ -3374,7 +3368,7 @@ var PILOTS = [
 			return n*10;
 		    }.bind(this),false,"critical");
        },
-	  upgrades: ["Elite"
+       upgrades: ["Elite","Tech"
 		     ],
 	  points: 20
       }

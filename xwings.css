@@ -15,7 +15,16 @@ footer,article,nav,footer,body {
 display:block;
 font-family:sans-serif;
 }
-
+.outline {
+    animation-name: mine;
+    animation-duration: 1s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+@keyframes mine {
+    from {transform: scale(0.8);stroke:#222;}
+    to {transform: scale(1);stroke:#666;}
+}
 .main {
 height:calc(100% - 5ex);
 width:calc(100% - 340px);
@@ -676,19 +685,18 @@ content:"m"
 .Title::after {
 content:"t"
 }
-
 .Elite::after {
 content:"E"
 }
-
+.Tech::after {
+content:"X"
+}
 .Torpedo::after {
 content:"P"
 }
-
 .Astromech::after {
 content:"A"
 }
-
 .Bomb::after {
 content:"B"
 }
@@ -778,7 +786,7 @@ border-style:solid;
 border-width:1px
 }
 
-.Criticalupg,.Elite,.Torpedo,.Astromech,.Turret,.Missile,.Crew,.Cannon,.Bomb,.Title,.Mod,.System,.Illicit,.Salvaged,.Laser,.Bilaser,.Turretlaser,.CannonTorpedoMissile {
+.Criticalupg,.Elite,.Tech,.Torpedo,.Astromech,.Turret,.Missile,.Crew,.Cannon,.Bomb,.Title,.Mod,.System,.Illicit,.Salvaged,.Laser,.Bilaser,.Turretlaser,.CannonTorpedoMissile {
 font-family:'symbols';
 padding:0;
 /*float:left;*/
@@ -1266,7 +1274,7 @@ input.human:not(:checked) + label:after {
 }
 @font-face {
 font-family:'symbols';
-src:url(x-wingsymbols.ttf) format("truetype")
+src:url(xwing-miniatures.ttf) format("truetype")
 }
 @font-face {
 font-family:'ships';

@@ -3,8 +3,8 @@
 
  */
 var s;
-var GREEN="#0F0",RED="#F00",WHITE="#FFF",BLUE="#0AF",YELLOW="#FF0";
-var HALFGREEN="#080",HALFRED="#800",HALFWHITE="#888",HALFBLUE="#058",HALFYELLOW="#880";
+var GREEN="#0F0",RED="#F00",WHITE="#FFF",BLUE="#0AF",YELLOW="#FF0",GREY="#888";
+var HALFGREEN="#080",HALFRED="#800",HALFWHITE="#888",HALFBLUE="#058",HALFYELLOW="#880",HALFGREY="#444";
 var TIMEANIM=1000;
 var FACE=["focus","hit","critical","evade","blank"];
 var ATTACKDICE= [0,0,1,1,1,2,4,4];
@@ -101,6 +101,7 @@ function halftone(c) {
     if (c==WHITE) return HALFWHITE;
     if (c==BLUE) return HALFBLUE;
     if (c==YELLOW) return HALFYELLOW;
+    if (c==GREY) return HALFGREY;
     return c;
 }
 
@@ -112,12 +113,12 @@ var P;
 // Table of actions
 var A = {
     ROLL:{key:"r",color:GREEN},
-    SLAM:{key:"L",color:BLUE},
+    SLAM:{key:"s",color:BLUE},
     FOCUS:{key:"f",color:GREEN},
     TARGET:{key:"l",color:BLUE},
     EVADE:{key:"e",color:GREEN},
     BOOST:{key:"b",color:GREEN},
-    STRESS:{key:"s",color:RED},
+    STRESS:{key:"?",color:RED},
     CLOAK:{key:"k",color:BLUE},
     ISTARGETED:{key:"l",color:RED},
     ASTROMECH:{key:"A",color:YELLOW},
@@ -138,9 +139,11 @@ var A = {
     LASER:{key:"%",color:RED},
     TURRETLASER:{key:"$",color:RED},
     BILASER:{key:"%",color:RED},
+    LASER180:{key:"%",color:RED},
     NOTHING:{key:"&nbsp;",color:WHITE},
     HIT:{key:"d",color:WHITE},
-    SHIELD:{key:"v",color:YELLOW}
+    SHIELD:{key:"v",color:YELLOW},
+    TECH:{key:"X",color:WHITE},
 };
 var AINDEX = ["ROLL","FOCUS","TARGET","EVADE","BOOST","STRESS","CLOAK","ISTARGETED","ASTRO","CANNON","CREW","MISSILE","TORPEDO","ELITE","TURRET","UPGRADE","CRITICAL","NOTHING"];
 
@@ -228,7 +231,7 @@ Unit.prototype = {
 	this.criticalresolved=0;
 	this.m=new Snap.Matrix(); 
 	this.collision=false;
-	this.ocollision={overlap:-1,template:0};
+	this.ocollision={overlap:-1,template:[]};
 	for (j in upgs) if (upgs[j]>-1) Upgradefromid(this,upgs[j])
 	this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
 	var img=this.ship.img[0];
@@ -768,7 +771,7 @@ Unit.prototype = {
 	}
 	return 0;
     },
-    rollattackdie: function() { return FACE[ATTACKDICE[this.rand(8)]]; },
+    rollattackdie: function(n) { var p=[]; for (var i=0; i<n; i++) p.push(FACE[ATTACKDICE[this.rand(8)]]); return p; },
     rolldefensedie: function(n) { var p=[]; for (var i=0; i<n; i++) p.push(FACE[DEFENSEDICE[this.rand(8)]]); return p; },
     rand: function(n) { return Math.floor(Math.random()*n); },
     getdefensetable: function(n) { return DEFENSE[n]; },
@@ -882,6 +885,7 @@ Unit.prototype = {
     },
     getRangeString: function(n,m) {
 	var w=(this.islarge)?40:20;
+	var circle=" A "+(100*n)+" "+(100*n)+" 0 0 1 ";
 	var p1=transformPoint(m,{x:-w,y:-100*n-w});
 	var p2=transformPoint(m,{x:w,y:-100*n-w});	
 	var p3=transformPoint(m,{x:100*n+1+w,y:-w});
@@ -890,35 +894,34 @@ Unit.prototype = {
 	var p6=transformPoint(m,{x:-w,y:100*n+1+w});
 	var p7=transformPoint(m,{x:-100*n-w-1,y:w});
 	var p8=transformPoint(m,{x:-100*n-w-1,y:-w});
-	var p9=transformPoint(m,{x:50*n+w,y:-100*n-1-w});
-	var p10=transformPoint(m,{x:100*n+1+w,y:-50*n-w});
-	var p11=transformPoint(m,{x:100*n+1+w,y:50*n+w});	
-	var p12=transformPoint(m,{x:50*n+w,y:100*n+1+w});
-	var p13=transformPoint(m,{x:-50*n-w,y:100*n+1+w});
-	var p14=transformPoint(m,{x:-100*n-1-w,y:50*n+w});
-	var p15=transformPoint(m,{x:-100*n-1-w,y:-50*n-w});
-	var p16=transformPoint(m,{x:-50*n-w,y:-100*n-1-w});
-	return ("M "+p1.x+" "+p1.y+" L "+p2.x+" "+p2.y+" C "+p9.x+" "+p9.y+" "+p10.x+" "+p10.y+" "+p3.x+" "+p3.y+" L "+p4.x+" "+p4.y+" C "+p11.x+" "+p11.y+" "+" "+p12.x+" "+p12.y+" "+p5.x+" "+p5.y+" L "+p6.x+" "+p6.y+" C "+p13.x+" "+p13.y+" "+p14.x+" "+p14.y+" "+p7.x+" "+p7.y+" L "+p8.x+" "+p8.y+" C "+p15.x+" "+p15.y+" "+p16.x+" "+p16.y+" "+p1.x+" "+p1.y);
+	return ("M "+p2.x+" "+p2.y+circle+p3.x+" "+p3.y+" L "+p4.x+" "+p4.y+circle+p5.x+" "+p5.y+" L "+p6.x+" "+p6.y+circle+p7.x+" "+p7.y+" L "+p8.x+" "+p8.y+circle+p1.x+" "+p1.y+" Z");
+    },
+    getHalfRangeString: function(n,m) {
+	var w=(this.islarge)?40:20;
+	var circle=" A "+(100*n)+" "+(100*n)+" 0 0 0 ";
+	var p3=transformPoint(m,{x:100*n+1+w,y:0});
+	var p4=transformPoint(m,{x:100*n+1+w,y:-w});
+	var p5=transformPoint(m,{x:w,y:-100*n-1-w});
+	var p6=transformPoint(m,{x:-w,y:-100*n-1-w});
+	var p7=transformPoint(m,{x:-100*n-w-1,y:-w});
+	var p8=transformPoint(m,{x:-100*n-w-1,y:0});
+	return ("M "+p3.x+" "+p3.y+" L "+p4.x+" "+p4.y+circle+p5.x+" "+p5.y+" L "+p6.x+" "+p6.y+circle+p7.x+" "+p7.y+" L "+p8.x+" "+p8.y+" "+p3.x+" "+p3.y);
     },
     getSubRangeString: function(n1,n2,m) {
 	var w=(this.islarge)?40:20;
+	var circle=" A "+(100*n1)+" "+(100*n1)+" 0 0 1 ";
 	var p1=transformPoint(m,{x:-w,y:-100*n1-w});
 	var p2=transformPoint(m,{x:w,y:-100*n1-w});	
+	var p9=transformPoint(m,{x:50*n1+w,y:-100*n1-w});
+	var p10=transformPoint(m,{x:100*n1+w,y:-50*n1-w});
 	var p3=transformPoint(m,{x:100*n1+w,y:-w});
 	var p4=transformPoint(m,{x:100*n1+w,y:w});
 	var p5=transformPoint(m,{x:w,y:100*n1+w});
 	var p6=transformPoint(m,{x:-w,y:100*n1+w});
 	var p7=transformPoint(m,{x:-100*n1-w,y:w});
 	var p8=transformPoint(m,{x:-100*n1-w,y:-w});
-	var p9=transformPoint(m,{x:50*n1+w,y:-100*n1-w});
-	var p10=transformPoint(m,{x:100*n1+w,y:-50*n1-w});
-	var p11=transformPoint(m,{x:100*n1+w,y:50*n1+w});	
-	var p12=transformPoint(m,{x:50*n1+w,y:100*n1+w});
-	var p13=transformPoint(m,{x:-50*n1-w,y:100*n1+w});
-	var p14=transformPoint(m,{x:-100*n1-w,y:50*n1+w});
-	var p15=transformPoint(m,{x:-100*n1-w,y:-50*n1-w});
-	var p16=transformPoint(m,{x:-50*n1-w,y:-100*n1-w});
-	var str="M "+p1.x+" "+p1.y+" L "+p2.x+" "+p2.y+" C "+p9.x+" "+p9.y+" "+p10.x+" "+p10.y+" "+p3.x+" "+p3.y+" L "+p4.x+" "+p4.y+" C "+p11.x+" "+p11.y+" "+" "+p12.x+" "+p12.y+" "+p5.x+" "+p5.y+" L "+p6.x+" "+p6.y+" C "+p13.x+" "+p13.y+" "+p14.x+" "+p14.y+" "+p7.x+" "+p7.y+" L "+p8.x+" "+p8.y+" C "+p15.x+" "+p15.y+" "+p16.x+" "+p16.y+" "+p1.x+" "+p1.y;
+	var str="M "+p1.x+" "+p1.y+" L "+p2.x+" "+p2.y+circle+p3.x+" "+p3.y+" L "+p4.x+" "+p4.y+circle+p5.x+" "+p5.y+" L "+p6.x+" "+p6.y+circle+p7.x+" "+p7.y+" L "+p8.x+" "+p8.y+circle+p1.x+" "+p1.y;
+	circle=" A "+(100*n2)+" "+(100*n2)+" 0 0 0 ";
 	p1=transformPoint(m,{x:-w,y:-100*n2-w});
 	p2=transformPoint(m,{x:w,y:-100*n2-w});	
 	p3=transformPoint(m,{x:100*n2+w,y:-w});
@@ -927,44 +930,44 @@ Unit.prototype = {
 	p6=transformPoint(m,{x:-w,y:100*n2+w});
 	p7=transformPoint(m,{x:-100*n2-w,y:w});
 	p8=transformPoint(m,{x:-100*n2-w,y:-w});
-        p9=transformPoint(m,{x:50*n2+w,y:-100*n2-w});
-	p10=transformPoint(m,{x:100*n2+w,y:-50*n2-w});
-	p11=transformPoint(m,{x:100*n2+w,y:50*n2+w});	
-	p12=transformPoint(m,{x:50*n2+w,y:100*n2+w});
-	p13=transformPoint(m,{x:-50*n2-w,y:100*n2+w});
-	p14=transformPoint(m,{x:-100*n2-w,y:50*n2+w});
-	p15=transformPoint(m,{x:-100*n2-w,y:-50*n2-w});
-	p16=transformPoint(m,{x:-50*n2-w,y:-100*n2-w});
-	str+=" L "+p1.x+" "+p1.y+" C "+p16.x+" "+p16.y+" "+ p15.x+" "+p15.y+" "+p8.x+" "+p8.y+" L "+p7.x+" "+p7.y+" C "+p14.x+" "+p14.y+" "+p13.x+" "+p13.y+" "+p6.x+" "+p6.y+" L "+p5.x+" "+p5.y+" C "+p12.x+" "+p12.y+" "+p11.x+" "+p11.y+" "+p4.x+" "+p4.y+" L "+p3.x+" "+p3.y+" C "+p10.x+" "+p10.y+" "+p9.x+" "+p9.y+" "+p2.x+" "+p2.y+" L "+p1.x+" "+p1.y;
+	str+=" L "+p1.x+" "+p1.y+circle+p8.x+" "+p8.y+" L "+p7.x+" "+p7.y+circle+p6.x+" "+p6.y+" L "+p5.x+" "+p5.y+circle+p4.x+" "+p4.y+" L "+p3.x+" "+p3.y+circle+p2.x+" "+p2.y+" L "+p1.x+" "+p1.y;
 	return str;
     },
-    getSectorString: function(n,m) {
+    getHalfSubRangeString: function(n1,n2,m) {
 	var w=(this.islarge)?40:20;
-	var p0=this.getSectorPoints(n,new Snap.matrix()); // get fresh points
-	var p=this.getSectorPoints(n,m);
-	var o=transformPoint(m,{x:0,y:0});
-	var p1=transformPoint(m,{x:p0[0].x+w/2*n,y:p0[0].y-w*n/2});
-	var p2=transformPoint(m,{x:(p0[0].x+3*p0[1].x)/4,y:p0[1].y});
-	var p3=transformPoint(m,{x:(3*p0[2].x+p0[3].x)/4,y:p0[2].y});
-	var p4=transformPoint(m,{x:(p0[3].x-w/2*n),y:(p0[3].y-w/2*n)});
-	return ("M "+o.x+" "+o.y+" L "+p[0].x+" "+p[0].y+" C "+p1.x+" "+p1.y+" "+p2.x+" "+p2.y+" "+p[1].x+" "+p[1].y+" L "+p[2].x+" "+p[2].y+" C "+p3.x+" "+p3.y+" "+p4.x+" "+p4.y+" "+p[3].x+" "+p[3].y+" Z");
+	var circle=" A "+(100*n1)+" "+(100*n1)+" 0 0 0 ";
+	var p3=transformPoint(m,{x:100*n1+w,y:0});
+	var p4=transformPoint(m,{x:100*n1+w,y:-w});
+	var p5=transformPoint(m,{x:w,y:-100*n1-w});
+	var p6=transformPoint(m,{x:-w,y:-100*n1-w});
+	var p7=transformPoint(m,{x:-100*n1-w,y:-w});
+	var p8=transformPoint(m,{x:-100*n1-w,y:0});
+	var str="M "+p3.x+" "+p3.y+" L "+p4.x+" "+p4.y+circle+p5.x+" "+p5.y+" L "+p6.x+" "+p6.y+circle+p7.x+" "+p7.y+" L "+p8.x+" "+p8.y;
+	var circle=" A "+(100*n2)+" "+(100*n2)+" 0 0 1 ";
+	p3=transformPoint(m,{x:100*n2+w,y:0});
+	p4=transformPoint(m,{x:100*n2+w,y:-w});
+	p5=transformPoint(m,{x:w,y:-100*n2-w});
+	p6=transformPoint(m,{x:-w,y:-100*n2-w});
+	p7=transformPoint(m,{x:-100*n2-w,y:-w});
+	p8=transformPoint(m,{x:-100*n2-w,y:0});
+	str+=" L "+p8.x+" "+p8.y+" L "+p7.x+" "+p7.y+circle+p6.x+" "+p6.y+" L "+p5.x+" "+p5.y+circle+p4.x+" "+p4.y+" L "+p3.x+" "+p3.y+" Z";
+	return str;
     },
-    getSubSectorString: function(n1,n2,m) {
+    getPrimarySectorString: function(n,m) {
 	var w=(this.islarge)?40:20;
-	var p0=this.getSectorPoints(n1,new Snap.matrix()); // get fresh points
+	var p=this.getSectorPoints(n,m);
+	var circle=" A "+(100*n)+" "+(100*n)+" 0 0 1 ";
+	var o=transformPoint(m,{x:0,y:0});
+	return "M "+o.x+" "+o.y+" L "+p[0].x+" "+p[0].y+circle+p[1].x+" "+p[1].y+" L "+p[2].x+" "+p[2].y+circle+p[3].x+" "+p[3].y+" Z";
+    },
+    getPrimarySubSectorString: function(n1,n2,m) {
+	var w=(this.islarge)?40:20;
+	var circle=" A "+(100*n1)+" "+(100*n1)+" 0 0 1 ";
 	var p=this.getSectorPoints(n1,m);
-	var p1=transformPoint(m,{x:p0[0].x+w/2*n1,y:p0[0].y-w*n1/2});
-	var p2=transformPoint(m,{x:(p0[0].x+3*p0[1].x)/4,y:p0[1].y});
-	var p3=transformPoint(m,{x:(3*p0[2].x+p0[3].x)/4,y:p0[2].y});
-	var p4=transformPoint(m,{x:(p0[3].x-w/2*n1),y:(p0[3].y-w/2*n1)});
-	var str="M "+p[0].x+" "+p[0].y+" C "+p1.x+" "+p1.y+" "+p2.x+" "+p2.y+" "+p[1].x+" "+p[1].y+" L "+p[2].x+" "+p[2].y+" C "+p3.x+" "+p3.y+" "+p4.x+" "+p4.y+" "+p[3].x+" "+p[3].y;
-	p0=this.getSectorPoints(n2,new Snap.matrix()); // get fresh points
+	var str="M "+p[0].x+" "+p[0].y+circle+p[1].x+" "+p[1].y+" L "+p[2].x+" "+p[2].y+circle+p[3].x+" "+p[3].y;
 	p=this.getSectorPoints(n2,m);
-	p1=transformPoint(m,{x:p0[0].x+w/2*n2,y:p0[0].y-w*n2/2});
-	p2=transformPoint(m,{x:(p0[0].x+3*p0[1].x)/4,y:p0[1].y});
-	p3=transformPoint(m,{x:(3*p0[2].x+p0[3].x)/4,y:p0[2].y});
-	p4=transformPoint(m,{x:(p0[3].x-w/2*n2),y:(p0[3].y-w/2*n2)});
-	str+="L "+p[3].x+" "+p[3].y+" C "+p4.x+" "+p4.y+" "+p3.x+" "+p3.y+" "+p[2].x+" "+p[2].y+" L "+p[1].x+" "+p[1].y+" C "+p2.x+" "+p2.y+" "+p1.x+" "+p1.y+" "+p[0].x+" "+p[0].y+" Z";
+	var circle=" A "+(100*n2)+" "+(100*n2)+" 0 0 0 ";
+	str+="L "+p[3].x+" "+p[3].y+circle+p[2].x+" "+p[2].y+" L "+p[1].x+" "+p[1].y+circle+p[0].x+" "+p[0].y+" Z";
 	return str;
 	
     },
@@ -1050,20 +1053,39 @@ Unit.prototype = {
 	this.showmaneuver();
 	//if (phase==SETUP_PHASE&&typeof this.g!="undefined") { this.g.undrag(); }
     },
+    getmcollisions: function(m) {
+	var k,i,j;
+	var pathpts=[],os=[],op=[];
+	var mine=[];
+	// Overlapping obstacle ? 
+	var so=this.getOutlineString(m);
+	os=so.s;
+	op=so.p;
+	for (k=6; k<OBSTACLES.length; k++){
+	    var ob=OBSTACLES[k].getOutlineString();
+	    if (Snap.path.intersection(ob.s,os).length>0 
+		||this.isPointInside(ob.s,op)
+		||this.isPointInside(os,ob.p)) {
+		mine.push(k); 
+		break;
+	    }
+	}
+	return mine;
+    },
     getocollisions: function(mbegin,mend,path,len) {
 	var k,i,j;
 	var pathpts=[],os=[],op=[];
-	var collision={overlap:-1,template:0};
+	var collision={overlap:-1,template:[],mine:[]};
 	// Overlapping obstacle ? 
 	var so=this.getOutlineString(mend);
-	os[i]=so.s;
-	op[i]=so.p;
+	os=so.s;
+	op=so.p;
 	for (k=0; k<OBSTACLES.length; k++){
 	    var ob=OBSTACLES[k].getOutlineString();
-	    if (Snap.path.intersection(ob.s,os[i]).length>0 
-		||this.isPointInside(ob.s,op[i])
-		||this.isPointInside(os[i],ob.p)) {
-		collision.overlap=k; 
+	    if (Snap.path.intersection(ob.s,os).length>0 
+		||this.isPointInside(ob.s,op)
+		||this.isPointInside(os,ob.p)) {
+		if (k<6) collision.overlap=k; else collision.mine.push(OBSTACLES[k]); 
 		break;
 	    }
 	}
@@ -1073,15 +1095,17 @@ Unit.prototype = {
 		var p=path.getPointAtLength(i);
 		pathpts.push({x:mbegin.x(p.x,p.y),y:mbegin.y(p.x,p.y)});
 	    }
-	    var percuted=[];
 	    for (j=0; j<pathpts.length; j++) {
 		for (k=0; k<OBSTACLES.length; k++) {
-		    if (k!=collision.overlap&&percuted.indexOf(k)==-1) { // Do not count overlapped obstacle twice
+		    if (k!=collision.overlap&&collision.template.indexOf(k)==-1&&collision.mine.indexOf(OBSTACLES[k])==-1) { // Do not count overlapped obstacle twice
 			var o2=OBSTACLES[k].getOutlineString().p;
 			for(i=0; i<o2.length; i++) {
 			    var dx=(o2[i].x-pathpts[j].x);
 			    var dy=(o2[i].y-pathpts[j].y);
-			    if (dx*dx+dy*dy<=100) {  percuted.push(k); collision.template++; break } 
+			    if (dx*dx+dy*dy<=100) { 
+				if (k<6) collision.template.push(k); 
+				else collision.mine.push(OBSTACLES[k]);
+				break } 
 			}
 		    }
 		}
@@ -1118,22 +1142,15 @@ Unit.prototype = {
 	path.remove();
 	return m;
     },
+    /* TODO: should prevent collision with obstacles if collision with
+     * unit shortens path */
     getmovecolor: function(m,withcollisions,withobstacles) {
 	var i,k;
 	if (!this.isinzone(m)) return RED;
 	var so=this.getOutlineString(m);
 	if (withobstacles) {
-	    //this.log("getmovecolor ");
 	    var c=this.getocollisions(this.m,m);
-	    if (c.overlap!=-1) return YELLOW;
-	    /*log("obstacles: "+OBSTACLES.length);*/
-/*	    for (k=0; k<OBSTACLES.length; k++) { 
-		var os=OBSTACLES[k].getOutlineString();
-		if (Snap.path.intersection(os.s,so.s).length>0 
-		    ||this.isPointInside(os.s,so.p)
-		    ||this.isPointInside(so.s,os.p)) 
-		    return YELLOW; 
-	    }*/
+	    if (c.overlap>-1) return YELLOW;
 	}
  	if (withcollisions) {
 	    for (k=0; k<squadron.length; k++) {
@@ -1360,7 +1377,8 @@ Unit.prototype = {
 	this.focus=this.evade=0;
 	this.hasfired=0;
 	this.ocollision.overlap=-1;
-	this.ocollision.template=0;
+	this.ocollision.template=[];
+	this.ocollision.mine=[];
 	this.collision=false;
 	this.touching=[];
 	this.showinfo();
@@ -1467,6 +1485,11 @@ Unit.prototype = {
 	var resolve=function(m,k,f) {
 	    for (i=0; i<this.pos.length; i++) this.pos[i].ol.remove();
 	    if (automove) this.m=m;
+	    var mine=this.getmcollisions(this.m);
+	    if (mine.length>0) 
+		for (i=0; i<mine.length; i++) {
+		    OBSTACLES[mine[i]].detonate(this)
+		}
 	    f(this,k);
 	    this.show();
 	}.bind(this);
@@ -1615,6 +1638,8 @@ Unit.prototype = {
 	    this.endmaneuver=em;
 	    this.timeformaneuver=tfm;
 	};
+	var cf=this.canfire;
+	this.canfire=function() { this.canfire=cf; return false; };
 	this.resolveactionmove(p,function(t,k) {
 	    this.maneuver=q[k];
 	    this.doactivation();
@@ -1956,7 +1981,7 @@ Unit.prototype = {
    
 	this.ocollision=this.getocollisions(oldm,m,path,lenC);
 	if (this.isfireobstructed()) { this.log("overlaps obstacle: no action, cannot attack"); }
-	if (this.ocollision.template>0) { this.log("template overlaps obstacle: no action"); }
+	if (this.ocollision.template.length>0) { this.log("template overlaps obstacle: no action"); }
 	if (lenC>0) this.m=m;
 	// Animate movement
 	if (lenC>0) {
@@ -1988,7 +2013,11 @@ Unit.prototype = {
 		this.lastmaneuver=this.maneuver;
 		this.maneuver=-1;
 		path.remove();
-		if (this.ocollision.overlap>-1||this.ocollision.template>0) this.resolveocollision();
+		if (this.ocollision.overlap>-1||this.ocollision.template.length>0) this.resolveocollision();
+		if (this.ocollision.mine.length>0) 
+		    for (i=0; i<this.ocollision.mine.length; i++) {
+			this.ocollision.mine[i].detonate(this)
+		    }
 		if (this.collision) this.resolvecollision();
 		this.endmaneuver();
 		this.show();
@@ -2036,8 +2065,9 @@ Unit.prototype = {
     candomaneuver: function() {
 	return this.maneuver>-1;
     },
+    candoendmaneuveraction: function() { return this.candoaction(); },
     doendmaneuveraction: function() {
-	if (this.candoaction()) this.doaction(this.getactionlist());
+	if (this.candoendmaneuveraction()) this.doaction(this.getactionlist());
 	else { this.action=-1; this.actiondone=true; }
     },
     doselection: function(f,org) {
@@ -2088,7 +2118,7 @@ Unit.prototype = {
     },
     candoaction: function() {
 	//log("stress:"+this.stress+" collision:"+this.collision+" template"+this.ocollision.template+" overlap"+this.ocollision.overlap);
-	if (this.stress>0||this.collision||this.ocollision.template>0||this.ocollision.overlap>-1) return false;
+	if (this.stress>0||this.collision||this.ocollision.template.length>0||this.ocollision.overlap>-1) return false;
 	return  true;
     },
     candecloak: function() {
@@ -2495,17 +2525,25 @@ Unit.prototype = {
 	    var i,k;
 	    if (r0==1) {
 		for (i=r0;i<=r1; i++) { 
-		    this.sectors.push(s.path(this.getSectorString(i,this.m)).attr({fill:this.color,stroke:this.color,opacity:0.3,pointerEvents:"none"}).appendTo(VIEWPORT));
+		    this.sectors.push(s.path(this.getPrimarySectorString(i,this.m)).attr({fill:this.color,stroke:this.color,opacity:0.3,pointerEvents:"none"}).appendTo(VIEWPORT));
 		}
-		if (this.weapons[k].type=="Bilaser") {
+		if (typeof this.weapons[k].auxiliary!="undefined") {
+		    var aux=this.weapons[k].auxiliary;
 		    for (i=r0;i<=r1; i++) { 
-			this.sectors.push(s.path(this.getSectorString(i,this.m.clone().rotate(180,0,0))).attr({fill:this.color,stroke:this.color,opacity:0.3,pointerEvents:"none"}).appendTo(VIEWPORT));
+			this.sectors.push(s.path(aux.call(this,i,this.m.clone())).attr({fill:this.color,stroke:this.color,opacity:0.3,pointerEvents:"none"}).appendTo(VIEWPORT));
 		    }
-		}
+		} 
 	    } else {
 		for (i=r0; i<=r1; i++) {
-		    this.sectors.push(s.path(this.getSubSectorString(r0-1,i,this.m)).attr({fill:this.color,stroke:this.color,opacity:0.3,pointerEvents:"none"}).appendTo(VIEWPORT));
+		    this.sectors.push(s.path(this.getPrimarySubSectorString(r0-1,i,this.m)).attr({fill:this.color,stroke:this.color,opacity:0.3,pointerEvents:"none"}).appendTo(VIEWPORT));
 		}
+		if (typeof this.weapons[k].subauxiliary!="undefined") {
+		    var aux=this.weapons[k].subauxiliary;
+		    for (i=r0;i<=r1; i++) { 
+			this.sectors.push(s.path(aux.call(this,r0-1,i,this.m.clone())).attr({fill:this.color,stroke:this.color,opacity:0.3,pointerEvents:"none"}).appendTo(VIEWPORT));
+		    }
+		}
+
 	    }
 	}
     },
@@ -2543,22 +2581,26 @@ Unit.prototype = {
 	    if (Snap.path.isPointInside(path,op[i].x,op[i].y)) return true;
 	return false;
     },
-    isinsector: function(m,n,sh) {
+    isinsector: function(m,n,sh,getSubSectorString,getSectorString,flag) {
 	var o1;
-	if (this.getoutlinerange(this.m,sh).d!=n) return false;
 	var o2=sh.getOutlineString(sh.m);
-	if (n>1) o1=this.getSubSectorString(n-1,n,m); else o1=this.getSectorString(n,m);
-	return (Snap.path.intersection(o2.s,o1).length>0
-	       	||this.isPointInside(o1,o2.p))
+	if (n>1) o1=getSubSectorString.call(this,n-1,n,m); else o1=getSectorString.call(this,n,m);
+	return (o1!=null&&(Snap.path.intersection(o2.s,o1).length>0
+	       		   ||this.isPointInside(o1,o2.p)))
     },
     isinfiringarc: function(sh) {
-	return this.gethitsector(sh)<=3;
+	return this.getsector(sh)<=3;
     },
-    gethitsector: function(sh,m) {
+    /* Primary and auxiliary */
+    getsector: function(sh,m) {
+	return this.weapons[0].getsector(sh);
+    },
+    /* Primary only */
+    getprimarysector: function(sh,m) {
 	var i;
 	if (typeof m=="undefined") m=this.m;
 	var n=this.getoutlinerange(m,sh).d
-	if (this.isinsector(m,n,sh)) return n;
+	if (this.isinsector(m,n,sh,this.getPrimarySubSectorString,this.getPrimarySectorString)) return n;
 	return 4;
     },
     isinoutline: function(o1,sh,m) {
@@ -2582,10 +2624,10 @@ Unit.prototype = {
     },
     resolveocollision: function() {
 	var i;
-	var n=this.ocollision.template;
+	var n=this.ocollision.template.length;
 	if (this.ocollision.overlap>-1) n++;
 	for (i=0; i<n; i++) {
-	    var roll=this.rollattackdie();
+	    var roll=this.rollattackdie(1)[0];
 	    if (roll=="hit") { this.resolvehit(1); this.checkdead(); }
 	    else if (roll=="critical") { this.resolvecritical(1);
 					 this.checkdead();
@@ -2737,8 +2779,8 @@ Unit.prototype = {
 	var dx=rsh[minj].x-ro[mini].x;
 	var dy=rsh[minj].y-ro[mini].y;
 	var a=-ro[mini].x*dy+ro[mini].y*dx; //(x-x0)*dy-(y-y0)*dx>0
-	
-	for (k=0; k<OBSTACLES.length; k++) {
+	if (OBSTACLES.length>0) 
+	for (k=0; k<6; k++) {
 	    var op=OBSTACLES[k].getOutlineString().p;
 	    var s=op[0].x*dy-op[0].y*dx+a;
 	    var v=s;
@@ -2751,7 +2793,7 @@ Unit.prototype = {
 	    }
 	    if (v*s<0) break;
 	}
-	if (k<OBSTACLES.length) obs=true;
+	if (k<6) obs=true;
 	if (min<=10000) {return {d:1,o:obs}; }
 	if (min<=40000) { return {d:2,o:obs}; }
 	return {d:3,o:obs};

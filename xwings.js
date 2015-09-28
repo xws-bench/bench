@@ -3,7 +3,7 @@ var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.6.4";
+var VERSION="v0.6.5";
 var LANG="en";
 var DECLOAK_PHASE=1;
 var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE1=0,SELECT_PHASE2=1;
@@ -19,20 +19,6 @@ Base64 = {
 //   0       8       16      24      32      40      48      56     63
 //   v       v       v       v       v       v       v       v      v
     "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_",
-    // You have the freedom, here, to choose the glyphs you want for 
-    // representing your base-64 numbers. The ASCII encoding guys usually
-    // choose a set of glyphs beginning with ABCD..., but, looking at
-    // your update #2, I deduce that you want glyphs beginning with 
-    // 0123..., which is a fine choice and aligns the first ten numbers
-    // in base 64 with the first ten numbers in decimal.
-
-    // This cannot handle negative numbers and only works on the 
-    //     integer part, discarding the fractional part.
-    // Doing better means deciding on whether you're just representing
-    // the subset of javascript numbers of twos-complement 32-bit integers 
-    // or going with base-64 representations for the bit pattern of the
-    // underlying IEEE floating-point number, or representing the mantissae
-    // and exponents separately, or some other possibility. For now, bail
     fromNumber : function(number) {
         if (isNaN(Number(number)) || number === null ||
             number === Number.POSITIVE_INFINITY)
@@ -45,32 +31,16 @@ Base64 = {
         var result = '';
         while (true) {
             rixit = residual % 64
-            // console.log("rixit : " + rixit);
-            // console.log("result before : " + result);
             result = this._Rixits.charAt(rixit) + result;
-            // console.log("result after : " + result);
-            // console.log("residual before : " + residual);
             residual = Math.floor(residual / 64);
-            // console.log("residual after : " + residual);
-
-            if (residual == 0)
-                break;
-            }
+            if (residual == 0) break;
+	}
         return result;
     },
-
     toNumber : function(rixits) {
         var result = 0;
-        // console.log("rixits : " + rixits);
-        // console.log("rixits.split('') : " + rixits.split(''));
         rixits = rixits.split('');
-        for (e in rixits) {
-            // console.log("_Rixits.indexOf(" + rixits[e] + ") : " + 
-                // this._Rixits.indexOf(rixits[e]));
-            // console.log("result before : " + result);
-            result = (result * 64) + this._Rixits.indexOf(rixits[e]);
-            // console.log("result after : " + result);
-        }
+        for (e in rixits) result = (result * 64) + this._Rixits.indexOf(rixits[e]);
         return result;
     },
     fromCoord: function(c) {	
@@ -132,9 +102,6 @@ function hitrangetostr(r) {
 		    str+="<div class='reddice'>"+activeunit.getattackstrength(w,sh)+"</div><div class='greendice'>"+sh.getdefensestrength(w,activeunit)+"</div>"
 		    str+="<div>"+p.tohit+"%</div><div><code class='symbols' style='border:0'>d</code>"+p.meanhit+"</div><div><code class='symbols'  style='border:0'>c</code>"+p.meancritical+"</div><div>"+kill+"% kill</div>"
 		    str+="</td>";
-		    //
-			//str+="<div><a href='#combatmodal' onclick=\"resolvecombat("+k+","+w+")\" class='bigbutton'>Fire!</a></div>";
-		    //else 
 		}   
 		str+="</tr>";
 	    }
@@ -356,9 +323,9 @@ function reroll(n,forattack,type,id) {
 	}
 	//console.log("rerolling "+m+" dices");
 	$("#rerolla"+id).remove();
+	var r=activeunit.rollattackdie(m);
 	for (i=0; i<m; i++) {
-	    var r=activeunit.rollattackdie();
-	    $("#attack").prepend("<td noreroll='true' class='"+r+"reddice'></td>");
+	    $("#attack").prepend("<td noreroll='true' class='"+r[i]+"reddice'></td>");
 	}
     } else { 
 	for (i=0; i<3; i++) {
@@ -1177,11 +1144,6 @@ $(document).ready(function() {
     $.when(
 	$.ajax("data/ships.json"),$.ajax("data/strings."+LANG+".json"),$.ajax("data/xws.json")
     ).done(function(result1,result2,result3) {
-/*    $.ajax({
-	dataType: "json",
-	url: "data/ships.json",
-	mimeType: "application/json",
-	success:*/ 
 	var process=setInterval(function() {
 	    ATTACK[dice]=attackproba(dice);
 	    DEFENSE[dice]=defenseproba(dice);
@@ -1208,6 +1170,7 @@ $(document).ready(function() {
 	PILOT_dict=result3[0].pilots;
 	var r=0,e=0,i;
 	squadron=[];
+
 	s.attr({width:"100%",height:"100%",viewBox:"0 0 900 900"});
 	TEAMS[1].setfaction("REBEL");
 	TEAMS[2].setfaction("EMPIRE");
