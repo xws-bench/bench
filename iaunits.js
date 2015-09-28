@@ -31,7 +31,7 @@ IAUnit.prototype= {
 		    //log(this.name+":"+d.move+":"+(d.difficulty=="RED"));
 		    if (d.color==COLOR[c]) {
 			var n=0;
-			var s=this.getSectorString(3,mm);
+			var s=this.getPrimarySectorString(3,mm);
 			for (j=0; j<p.length; j++) if (this.isPointInside(s,p[j])) n++;
 			if (n>0) {
 			    //n=n+(COLOR.length-i);
