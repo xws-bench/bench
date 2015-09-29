@@ -2750,7 +2750,7 @@ var PILOTS = [
 	      }
 	      Unit.prototype.removeshield.call(this,n);
 	  },
-	  upgrades: [TECH,TORPEDO,ASTROMECH],
+	  upgrades: [TORPEDO,ASTROMECH,TECH],
 	  points: 29
       },
       {
@@ -2759,7 +2759,7 @@ var PILOTS = [
 	  done:true,
 	  unit: "T-70 X-Wing",
 	  skill: 2,
-	  upgrades: [TECH,TORPEDO,ASTROMECH],
+	  upgrades: [TORPEDO,ASTROMECH,TECH],
 	  points: 24
       },
      {
@@ -2768,7 +2768,7 @@ var PILOTS = [
 	  done:true,
 	  unit: "T-70 X-Wing",
 	  skill: 4,
-	 upgrades: [TECH,TORPEDO,ASTROMECH],
+	 upgrades: [ELITE,TORPEDO,ASTROMECH,TECH],
 	  points: 26
       },
     {
