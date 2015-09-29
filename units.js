@@ -19,6 +19,8 @@ var MPOS={ F0:[0,3],F1:[1,3],F2:[2,3],F3:[3,3],F4:[4,3],F5:[5,3],
 	   SR2:[2,6],SR3:[3,6],
 	   TRL3:[3,0],TRR3:[3,6]
 	 };
+var REBEL="REBEL",EMPIRE="EMPIRE",SCUM="SCUM";
+var ILLICIT="Illicit",ELITE="Elite",TURRET="Turret",MISSILE="Missile",ASTROMECH="Astromech",TORPEDO="Torpedo",CANNON="Cannon",BOMB="Bomb",TECH="Tech",CREW="Crew",SYSTEM="System",SALVAGED="Salvaged",MOD="Mod",TITLE="Title";
 
 var generics=[];
 var gid=0;
@@ -231,7 +233,7 @@ Unit.prototype = {
 	this.criticalresolved=0;
 	this.m=new Snap.Matrix(); 
 	this.collision=false;
-	this.ocollision={overlap:-1,template:[]};
+	this.ocollision={overlap:-1,template:[],mine:[]};
 	for (j in upgs) if (upgs[j]>-1) Upgradefromid(this,upgs[j])
 	this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
 	var img=this.ship.img[0];
@@ -432,7 +434,9 @@ Unit.prototype = {
 	return this.agility;
     },
     getdial: function() {
-	if ((this.ionized>0&&!this.islarge) || this.ionized>1) return [{move:"F1",difficulty:"WHITE"}];
+	if ((this.ionized>0&&!this.islarge) || this.ionized>1) {
+	    return [{move:"F1",difficulty:"WHITE"}];
+	}
 	return this.dial;
     },
     doplan: function() { this.showdial(); return this.deferred; },
@@ -778,6 +782,7 @@ Unit.prototype = {
     gethitreddice: function(r) { return r%10; },
     getcritreddice: function(r) { return (Math.floor(r/10))%10; },
     getfocusreddice:function(r) { return (Math.floor(r/100))%10; },
+    getblankreddice:function(r,n) { return n-Math.floor(r/100)%10-Math.floor(r/10)%10-(r%10); }, 
     getevadegreendice:function(r) { return r%10; },
     getfocusgreendice:function(r) { return (Math.floor(r/10))%10; },
     defenseroll: function(n) {
@@ -984,10 +989,8 @@ Unit.prototype = {
     },
     setmaneuver: function(i) {
 	this.lastmaneuver=this.maneuver;
-	//if (this.getdial()[i].difficulty=="RED"&&this.stress>0) return;
 	this.maneuver=i;
 	record(this.id,"this.maneuver="+i);
-	//enablenextphase();
 	this.showdial();
 	this.showmaneuver();
 	if (typeof this.deferred == "undefined") this.log("undefined deferred");
@@ -1356,9 +1359,10 @@ Unit.prototype = {
 		targetunit.log("lost "+(this.criticalresolved+this.hitresolved)+" <p class='cshield'></p>");
 	    else if (targetunit.shield>0) targetunit.log("lost all <p class='cshield'></p>")
 	    targetunit.resolveishit(this);
+	    this.weapons[this.activeweapon].prehit(targetunit,c,h);
 	    this.hitresolved=targetunit.resolvehit(this.hitresolved);
 	    this.criticalresolved=targetunit.resolvecritical(this.criticalresolved);
-	    this.weapons[this.activeweapon].hashit(targetunit,c,h);
+	    this.weapons[this.activeweapon].posthit(targetunit,c,h);
 	} 
 	targetunit.endbeingattacked(c,h);
 	this.weapons[this.activeweapon].endattack(c,h);
@@ -1572,14 +1576,13 @@ Unit.prototype = {
 	this.resolveactionmove(this.getrollmatrix(this.m),
 	    function(t,k) { t.endaction(n,"ROLL");},true);
     },
-    boundtargets:function() {
+    boundtargets:function(sh) {
+	if (this.targeting.indexOf(sh)>-1) return true;
 	for (var i=0; i<this.targeting.length; i++) this.removetarget(this.targeting[i]);
+	return false;
     },
     addtarget: function(sh) {
-	var i;
-	for (i=0; i<this.targeting.length; i++) 
-	    if (this.targeting[i]==sh) return;
-	this.boundtargets();
+	if (this.boundtargets(sh)) return;
 	this.targeting.push(sh);
 	sh.istargeted.push(this);
 	sh.show();
@@ -1620,6 +1623,7 @@ Unit.prototype = {
     },
     resolveslam: function(n) {
 	var gd=this.getdial();
+	if (gd.length<=this.lastmaneuver) this.lastmaneuver=0;
 	var realdial=gd[this.lastmaneuver].move;
 	var speed=realdial.substr(-1);
 	var p=[];
@@ -2038,8 +2042,8 @@ Unit.prototype = {
 	$("#activationdial").empty();
 	// -1: No maneuver
 	if (this.maneuver<0) return;
-	var dial=this.getdial()[this.maneuver].move;
-	var difficulty=this.getdial()[this.maneuver].difficulty;
+	var dial=this.getmaneuver().move;
+	var difficulty=this.getmaneuver().difficulty;
 	if (typeof this.forceddifficulty!="undefined") difficulty=this.forceddifficulty;
 	// Move = forward 0. No movement. 
 	this.completemaneuver(dial,dial,difficulty);
@@ -2213,6 +2217,13 @@ Unit.prototype = {
     getbomblocation: function() {
 	return ["F1"];
     },
+    getbombposition: function(lm,size) {
+	var p=[];
+	for (var i=0; i<lm.length; i++) 
+	    p.push(this.getpathmatrix(this.m.clone().rotate(180,0,0),lm[i]).translate(0,(this.islarge?-20:0)-size))
+	return p;
+    },
+    bombdropped: function() {},
     updateactivationdial: function() {
 	this.activationdial=[];
 	if (this.candropbomb()) 
@@ -2251,7 +2262,7 @@ Unit.prototype = {
 	.replace(/%HIT%/g,"<code class='hit'></code>")
 	.replace(/%CRIT%/g,"<code class='critical'></code>")
 	.replace(/%EVADE%/g,"<code class='xevadetoken'></code>")
-	.replace(/%FOCUS%/g,"<code class='xfocustoken'>f</code>")
+	.replace(/%FOCUS%/g,"<code class='xfocustoken'></code>")
 	.replace(/%SHIELD%/g,"<code class='cshield'></code>")
 	.replace(/%BARRELROLL%/g,"<code class='symbols'>r</code>")
 	.replace(/%TURNLEFT%/g,"<code class='symbols'>4</code>")
@@ -2322,6 +2333,7 @@ Unit.prototype = {
 	return this.maneuver>-1;
     },
     getmaneuver: function() {
+	if (this.ionized>0) return this.getdial()[0];
 	return this.getdial()[this.maneuver];
     },
     showmaneuver: function() {
