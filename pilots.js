@@ -2657,7 +2657,7 @@ var PILOTS = [
 	    done:true,
 	    bombdropped: function() {
 		this.doaction([this.newaction(this.resolveroll,"ROLL")],
-				  this.name+": 1 free %ROLL%");
+				  this.name+": 1 free %BARRELROLL%");
 	    },
 	    getbombposition: function(lm,size) {
 		this.log("DEATHRAIN");
