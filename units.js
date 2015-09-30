@@ -870,6 +870,7 @@ Unit.prototype = {
     },
     getOutlinePoints: function(m) {
 	var w=(this.islarge)?40:20;
+	if (typeof m=="undefined") m=this.m;
 	var p1={x:m.x(-w,-w),y:m.y(-w,-w)};
 	var p2={x:m.x(w,-w),y:m.y(w,-w)};
 	var p3={x:m.x(w,w),y:m.y(w,w)};
