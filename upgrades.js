@@ -2924,7 +2924,7 @@ var UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    sh.adddefensemodd(this,function(m,n) {
-		if (activeunit.gethitsector(this)>2) return true;
+		if (activeunit.getsector(this)>2) return true;
 		return false;
 	    }.bind(sh),function(m,n) {
 		var b=n-Math.floor(m/10)%10-m%10;
