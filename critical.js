@@ -90,16 +90,16 @@ var CRITICAL_DECK=[
 	faceup: function() {
 	    this.unit.log("Critical: "+this.name.replace(/\'/g,"&#39;"));
 	    this.isactive=true;
-	    this.bcp=this.unit.begincombatphase;
+	    var bcp=this.unit.begincombatphase;
 	    this.unit.begincombatphase=function() {
 		var r=Math.floor(Math.random()*8);
 		var roll=FACE[ATTACKDICE[r]];
 		if (roll=="hit") {
-		    log("Console in fire for "+this.unit.name+": 1 <code class='hit'></code>");
-		    this.unit.resolvehit(1); this.unit.checkdead();
+		    log("Console in fire for "+this.name+": 1 <code class='hit'></code>");
+		    this.resolvehit(1); this.checkdead();
 		}
-		this.bcp.call(this);
-	    }.bind(this);
+		bcp.call(this);
+	    };
 	},
 	action: function(n) {
 	    this.facedown();
