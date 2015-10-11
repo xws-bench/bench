@@ -769,7 +769,7 @@ border-style:solid;
 border-width:1px
 }
 
-.xevadetoken,.xfocustoken,.xcloaktoken,.xstresstoken,.xtargetedtoken,.xtargettoken,.xionizedtoken,.focusmodtokena,.focusmodtokend,.hitmodtokena,.hitmodtokend,.criticalmodtokena,.blankmodtokena,.blankmodtokend,.evademodtokend,.criticalmodtokend,.targetmodtokena {
+.xevadetoken,.xfocustoken,.xcloaktoken,.xstresstoken,.xtargetedtoken,.xtargettoken,.xionizedtoken,.focusmodtokena,.stressmodtokena,.focusmodtokend,.hitmodtokena,.hitmodtokend,.criticalmodtokena,.blankmodtokena,.blankmodtokend,.evademodtokend,.criticalmodtokend,.targetmodtokena {
 font-family:'symbols';
 padding:4px;
 display:inline-block;
@@ -870,7 +870,7 @@ text-decoration:none;
 box-shadow:1px 1px 3px #000
 }
 
-.focusreddice,.hitreddice,.blankreddice,.criticalreddice,.reddice,.focusmodtokena,.targetmodtokena,.hitmodtokena,.criticalmodtokena,.blankmodtokena {
+.focusreddice,.hitreddice,.blankreddice,.criticalreddice,.reddice,.focusmodtokena,.targetmodtokena,.hitmodtokena,.criticalmodtokena,.blankmodtokena,.stressmodtokena {
 background:#f33;
 opacity:.9;
 color:#fff
@@ -901,7 +901,10 @@ content:"f"
 font-family:'symbols';
 content:"d"
 }
-
+.stressmodtokena::after {
+font-family:'symbols';
+content:"?"
+}
 .criticalreddice::after,.critical::after,.Criticalupg::after,.criticalmodtokena::after,.criticalmodtokend::after {
 font-family:'symbols';
 content:"c"

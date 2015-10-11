@@ -8,7 +8,7 @@
     "Biggs Darklighter":{"text":
     "Other friendly ships at Range 1 cannot be targeted by attacks if the attacker could target you instead."},
     "Luke Skywalker":{"text":
-    "When defending, you may change 1 of your %FOCUS% results to a <code class='symbols'>e</code> result."},
+    "When defending, you may change 1 of your %FOCUS% results to a %EVADE% result."},
     "'Dutch' Vander":{"text":
     "After acquiring a target lock, choose another friendly ship at Range 1-2.  The chosen ship may immediately acquire a target lock."},
     "Horton Salm":{"text":
@@ -25,6 +25,7 @@
     "When attacking at Range 1, roll 1 additional attack die."},
     "'Howlrunner'":{"text":
     "When another friendly ship at Range 1 is attacking with its primary weapon, it may reroll 1 attack die."},
+    "'Scourge'":{"text":"When attacking a defender that has 1 or more Damage cards, roll 1 additional attack die."},
     "Maarek Stele":{"text":
     "When your attack deals a faceup Damage card to the defender, instead draw 3 Damage cards, choose 1 to deal, and discard the others."},
     "Darth Vader":{"text":
@@ -48,7 +49,7 @@
     "Kath Scarlet":{"text":
     "When attacking, the defender receives 1 stress token if he cancels at least 1 %CRIT% result."},
     "Boba Fett":{"text":
-    "When you reveal a bank maneuver (<code class='symbols'>7</code> or <code class='symbols'>9</code>), you may rotate your dial to the other bank maneuver of the same speed."},
+    "When you reveal a bank maneuver (%BANKLEFT% or %BANKRIGHT%), you may rotate your dial to the other bank maneuver of the same speed."},
     "Krassis Trelix":{"text":
     "When attacking with a secondary weapon, you may reroll 1 attack die."},
     "Ten Numb":{"text":
@@ -74,7 +75,7 @@
     "Lieutenant Lorrir":{"text":
     "When performing a barrel roll action, you may receive 1 stress token to use the (%BANKLEFT% 1) or (%BANKRIGHT% 1) template instead of the (%STRAIGHT% 1) template."},
     "Tetran Cowall":{"text":
-    "When you reveal a <code class='symbols'>2</code> maneuver, you may treat the speed of that maneuver as 1, 3, or 5."},
+    "When you reveal a %UTURN% maneuver, you may treat the speed of that maneuver as 1, 3, or 5."},
     "Kir Kanos":{"text":
     "When attacking at Range 2-3, you may spend 1 evade token to add 1 %HIT% result to your roll."},
     "Carnor Jax":{"text":
@@ -92,7 +93,7 @@
     "Corran Horn":{"text":
     "At the start of the End phase, you may perform one attack.  You cannot attack during the next round."},
     "'Echo'":{"text":
-    "When you decloak, you must use the (<code class='symbols'>7</code>2) or (<code class='symbols'>9</code>2) template instead of the (<code class='symbols'>8</code>2) template."},
+    "When you decloak, you must use the (%BANKLEFT%2) or (%BANKRIGHT%2) template instead of the (%STRAIGHT%2) template."},
     "'Whisper'":{"text":
     "After you perform an attack that hits, you may assign 1 focus to your ship."},
     "Wes Janson":{"text":
@@ -110,11 +111,9 @@
     "Keyan Farlander":{"text":
     "When attacking, you may remove 1 stress token to change all of your %FOCUS% results to %HIT%results."},
     "Nera Dantels":{"text":
-    "You can perform <code class='symbols'>P</code> secondary weapon attacks against enemy ships outside your firing arc."},
+    "You can perform %TORPEDO% secondary weapon attacks against enemy ships outside your firing arc."},
     "CR90 Corvette (Fore)":{"text":
     "When attacking with your primary weapon, you may spend 1 energy to roll 1 additional attack die."},
- "CR90 Corvette (Crippled Aft)":{"text":
-      "You cannot choose or execute (<code class='symbols'>5</code> 4), (<code class='symbols'>7</code> 2), or (<code class='symbols'>9</code> 2) maneuvers."},
     "Dash Rendar":{"text":
     "You may ignore obstacles during the Activation phase and when performing actions."},
     "'Leebo'":{"text":
@@ -138,11 +137,11 @@
     "IG-88A (Scum)":{"text":
     "After you perform an attack that destroys the defender, you may recover 1 shield."},
     "IG-88B (Scum)":{"text":
-    "Once per round, after you perform an attack that does not hit, you may perform an attack with an equipped <code class='symbols'>C</code> secondary weapon."},
+    "Once per round, after you perform an attack that does not hit, you may perform an attack with an equipped %CANNON% secondary weapon."},
     "IG-88C (Scum)":{"text":
     "After you perform a boost action, you may perform a free evade action."},
     "IG-88D (Scum)":{"text":
-    "You may execute the (<code class='symbols'>1</code>3) or (<code class='symbols'>3</code>3) maneuver using the corresponding (<code class='symbols'>4</code>3) or (<code class='symbols'>6</code>3) template."},
+    "You may execute the (%SLOOPLEFT%3) or (%SLOOPRIGHT%3) maneuver using the corresponding (%TURNLEFT%3) or (%TURNRIGHT%3) template."},
     "Boba Fett (Scum)":{"text":
     "When attacking or defending, you may reroll 1 of your dice for each enemy ship at Range 1."},
     "Kath Scarlet (Scum)":{"text":
@@ -189,6 +188,8 @@
         {"text": "When another friendly ship at Range 1-2 is attacking, it may treat your focus tokens as its own."},
         "Moralo Eval (Scum)":
         {"text": "You can perform %CANNON% secondary attacks against ships inside your auxiliary firing arc."},
+	"'Omega Leader'":
+	{"text":"Enemy ships that you have locked cannot modify any dice when attacking you or defending against your attacks."},
 	"'Omega Ace'":
 	{"text":"When attacking, you may spend a focus token and a target lock you have on the defender to change all of your results to %CRIT% results."},
 	"'Epsilon Leader'":
@@ -214,9 +215,9 @@
     "R2-F2":{"text":
     "%ACTION% Increase your agility value by 1 until the end of this game round."},
     "R5-D8":{"text":
-    "%ACTION% Roll 1 defense die. On a <code class='symbols'>e</code> or <code class='symbols'>f</code> result, discard 1 of your facedown Damage cards."},
+    "%ACTION% Roll 1 defense die. On a %EVADE% or %FOCUS% result, discard 1 of your facedown Damage cards."},
     "R5-K6":{"text":
-    "After spending your target lock, roll 1 defense die. On a <code class='symbols'>e</code> result, immediately acquire a target lock on that same ship.  You cannot spend this target lock during this attack."},
+    "After spending your target lock, roll 1 defense die. On a %EVADE% result, immediately acquire a target lock on that same ship.  You cannot spend this target lock during this attack."},
     "R5 Astromech":{"text":
     "During the End phase, you may choose 1 of your faceup Damage cards with the Ship trait and flip it facedown."},
     "Determination":{"text":
@@ -226,15 +227,15 @@
     "Squad Leader":{"text":
     "%ACTION% Choose 1 ship at Range 1-2 that has a lower pilot skill than you. The chosen ship may immediately perform 1 free action."},
     "Expert Handling":{"text":
-    "%ACTION% Perform a free barrel roll action.  If you do not have the <code class='symbols'>r</code> action icon, receive 1 stress token. You may then remove 1 enemy target lock from your ship."},
+    "%ACTION% Perform a free barrel roll action.  If you do not have the %BARRELROLL% action icon, receive 1 stress token. You may then remove 1 enemy target lock from your ship."},
     "Marksmanship":{"text":
-    "%ACTION% When attacking this round, you may change 1 of your <code class='symbols'>f</code> results to a <code class='critical'></code> result and all of your other <code class='symbols'>f</code> results to <code class='hit'></code> results."},
+    "%ACTION% When attacking this round, you may change 1 of your %FOCUS% results to a %CRIT% result and all of your other %FOCUS% results to %HIT% results."},
     "Concussion Missiles":{"text":
-    "<strong>Attack (target lock):</strong>  Spend your target lock and discard this card to perform this attack. You may change 1 of your blank results to a <code class='hit'></code> result."},
+    "<strong>Attack (target lock):</strong>  Spend your target lock and discard this card to perform this attack. You may change 1 of your blank results to a %HIT% result."},
     "Cluster Missiles":{"text":
     "<strong>Attack (target lock):</strong> Spend your target lock and discard this card to perform this attack twice."},
     "Daredevil":{"text":
-    "%ACTION% Execute a white (<code class='symbols'>4</code> 1) or (<code class='symbols'>6</code> 1) maneuver.  Then, receive 1 stress token. Then, if you do not have the <code class='symbols'>b</code> action icon, roll 2 attack dice.  Suffer any damage (<code class='hit'></code>) and any critical damage (<code class='critical'></code>) rolled."},
+    "%ACTION% Execute a white (%TURNLEFT% 1) or (%TURNRIGHT% 1) maneuver.  Then, receive 1 stress token. Then, if you do not have the %BOOST% action icon, roll 2 attack dice.  Suffer any damage (%HIT%) and any critical damage (%CRIT%) rolled."},
     "Elusiveness":{"text":
     "When defending, you may receive 1 stress token to choose 1 attack die.  The attacker must reroll that die. If you have at least 1 stress token, you cannot use this ability."},
     "Homing Missiles":{"text":
@@ -250,31 +251,31 @@
     "Ion Cannon":{"text":
     "<strong>Attack:</strong> Attack 1 ship. If this attack hits, the defender suffers 1 damage and receives 1 ion token.  Then cancel all dice results."},
     "Heavy Laser Cannon":{"text":
-    "<strong>Attack:</strong> Attack 1 ship. Immediately after rolling your attack dice, you must change all of your <code class='critical'></code> results to <code class='hit'></code> results."},
+    "<strong>Attack:</strong> Attack 1 ship. Immediately after rolling your attack dice, you must change all of your %CRIT% results to %HIT% results."},
     "Seismic Charges":{"text":
     "When you reveal your maneuver dial, you may discard this card to drop 1 seismic charge token. This token detonates at the end of the Activation phase. <strong>Seismic Charge Token:</strong> When this bomb token detonates, each ship at Range 1 of the token suffers 1 damage.  Then discard this token."},
     "Mercenary Copilot(Crew)":{"text":
-    "When attacking at Range 3, you may change 1 of your <code class='hit'></code> results to a <code class='critical'></code> result."},
+    "When attacking at Range 3, you may change 1 of your %HIT% results to a %CRIT% result."},
     "Assault Missiles":{"text":
     "<strong>Attack (target lock):</strong> Spend your target lock and discard this card to perform this attack. If this attack hits, each other ship at Range 1 of the defender suffers 1 damage."},
     "Veteran Instincts":{"text":
     "Increase your pilot skill value by 2."},
     "Proximity Mines":{"text":
-    "%ACTION% Discard this card to <strong>drop</strong> 1 proximity mine token. When a ship's base or maneuver template overlaps this token, this token <strong>detonates</strong>. <strong>Proximity Mine Token:</strong> When this bomb token detonates, the ship that moved through or overlapped this token rolls 3 attack dice and suffers all damage (<code class='hit'></code>) and critical damage (<code class='critical'></code>) rolled.  Then discard this token."},
+    "%ACTION% Discard this card to <strong>drop</strong> 1 proximity mine token. When a ship's base or maneuver template overlaps this token, this token <strong>detonates</strong>. <strong>Proximity Mine Token:</strong> When this bomb token detonates, the ship that moved through or overlapped this token rolls 3 attack dice and suffers all damage (%HIT%) and critical damage (%CRIT%) rolled.  Then discard this token."},
     "Weapons Engineer(Crew)":{"text":
     "You may maintain 2 target locks (only 1 per enemy ship). When you acquire a target lock, you may lock onto 2 different ships."},
     "Draw Their Fire":{"text":
-    "When a friendly ship at Range 1 is hit by an attack, you may suffer 1 of the uncanceled <code class='critical'></code> results instead of the target ship."},
+    "When a friendly ship at Range 1 is hit by an attack, you may suffer 1 of the uncanceled %CRIT% results instead of the target ship."},
     "Luke Skywalker(Crew)":{"text":
-    "After you perform an attack that does not hit, you may immediately perform a primary weapon attack.  You may change 1 <code class='symbols'>f</code> result to a <code class='hit'></code> result.  You cannot perform another attack this round."},
+    "After you perform an attack that does not hit, you may immediately perform a primary weapon attack.  You may change 1 %FOCUS% result to a %HIT% result.  You cannot perform another attack this round."},
     "Nien Nunb(Crew)":{"text":
-    "You may treat all <code class='symbols'>8</code> maneuvers as green maneuvers."},
+    "You may treat all %STRAIGHT% maneuvers as green maneuvers."},
     "Chewbacca(Crew)":{"text":
     "When you are dealt a Damage card, you may immediately discard that card and recover 1 shield. Then, discard this Upgrade card."},
     "Advanced Proton Torpedoes":{"text":
-    "<strong>Attack (target lock):</strong> Spend your target lock and discard this card to perform this attack. You may change up to 3 of your blank results to <code class='symbols'>f</code> results."},
+    "<strong>Attack (target lock):</strong> Spend your target lock and discard this card to perform this attack. You may change up to 3 of your blank results to %FOCUS% results."},
     "Autoblaster":{"text":
-    "<strong>Attack:</strong> Attack 1 ship. Your <code class='hit'></code> results cannot be canceled by defense dice. The defender may cancel <code class='critical'></code> results before <code class='hit'></code> results."},
+    "<strong>Attack:</strong> Attack 1 ship. Your %HIT% results cannot be canceled by defense dice. The defender may cancel %CRIT% results before %HIT% results."},
     "Fire-Control System":{"text":
     "After you perform an attack, you may acquire a target lock on the defender."},
     "Blaster Turret":{"text":
@@ -282,7 +283,8 @@
     "Recon Specialist(Crew)":{"text":
     "When you perform a focus action, assign 1 additional focus token to your ship."},
     "Saboteur(Crew)":{"text":
-    "%ACTION% Choose 1 enemy ship at Range 1 and roll 1 attack die.  On a <code class='hit'></code> or <code class='critical'></code> result, choose 1 random facedown Damage card assigned to that ship, flip it faceup, and resolve it."},
+    "%ACTION% Choose 1 enemy ship at Range 1 and roll 1 attack die.  On a %HIT% or %CRIT% result, choose 1 random facedown Damage card assigned to that ship, flip it faceup, and resolve it."},
+    "Agent Kallus":{"text":"At the start of the first round, choose 1 enemy small or large ship. When attacking or defending against that ship, you may change 1 of your Focus results to a Hit or Evade result."},
     "Intelligence Agent(Crew)":{"text":
     "At the start of the Activation phase, choose 1 enemy ship at Range 1-2.  You may look at that ship's chosen maneuver."},
     "Proton Bombs":{"text":
@@ -292,17 +294,18 @@
     "Advanced Sensors":{"text":
     "Immediately before you reveal your maneuver, you may perform 1 free action. If you use this ability, you must skip your 'Perform Action' step during this round."},
     "Sensor Jammer":{"text":
-    "When defending, you may change 1 of the attacker's <code class='hit'></code> results into a <code class='symbols'>f</code> result. The attacker cannot reroll the die with the changed result."},
+    "When defending, you may change 1 of the attacker's %HIT% results into a %FOCUS% result. The attacker cannot reroll the die with the changed result."},
     "Darth Vader(Crew)":{"text":
     "After you perform an attack against an enemy ship, you may suffer 2 damage to cause that ship to suffer 1 critical damage."},
     "Rebel Captive(Crew)":{"text":
     "Once per round, the first ship that declares you as the target of an attack immediately receives 1 stress token."},
     "Flight Instructor(Crew)":{"text":
-    "When defending, you may reroll 1 of your <code class='symbols'>f</code> results.  If the attacker's pilot skill value is '2' or lower, you may reroll 1 of your blank results instead."},
+    "When defending, you may reroll 1 of your %FOCUS% results.  If the attacker's pilot skill value is '2' or lower, you may reroll 1 of your blank results instead."},
     "Navigator(Crew)":{"text":
     "When you reveal a maneuver, you may rotate your dial to another maneuver with the same bearing. You cannot rotate to a red maneuver if you have any stress tokens."},
     "Opportunist":{"text":
     "When attacking, if the defender does not have any focus or evade tokens, you may receive 1 stress token to roll 1 additional attack die. You cannot use this ability if you have any stress tokens."},
+    "Comm Relay":{"text":"You cannot have more than 1 evade token. During the End phase, do not remove an unused evade token from your ship."},
     "Comms Booster":{"text":
     "<strong>Energy:</strong> Spend 1 energy to remove all stress tokens from a friendly ship at Range 1-3.  Then assign 1 focus token to that ship."},
     "Slicer Tools":{"text":
@@ -328,11 +331,11 @@
     "Tactician(Crew)":{"text":
     "After you perform an attack against a ship inside your firing arc at Range 2, that ship receives 1 stress token."},
     "R2-D2(Crew)":{"text":
-    "At the end of the End phase, if you have no shields, you may recover 1 shield and roll 1 attack die.  On a <code class='hit'></code> result, randomly flip 1 of your facedown Damage cards faceup and resolve it."},
+    "At the end of the End phase, if you have no shields, you may recover 1 shield and roll 1 attack die.  On a %HIT% result, randomly flip 1 of your facedown Damage cards faceup and resolve it."},
     "C-3PO(Crew)":{"text":
-    "Once per round, before you roll 1 or more defense dice, you may guess aloud a number of <code class='symbols'>e</code> results.  If you roll that many <code class='symbols'>e</code> results (before modifying dice), add 1 <code class='symbols'>e</code> result."},
+    "Once per round, before you roll 1 or more defense dice, you may guess aloud a number of %EVADE% results.  If you roll that many %EVADE% results (before modifying dice), add 1 %EVADE% result."},
     "Single Turbolasers":{"text":
-    "<strong>Attack (Energy):</strong> Spend 2 energy from this card to perform this attack.  The defender doubles his agility value against this attack.  You may change 1 of your <code class='symbols'>f</code> results to a <code class='hit'></code> result."},
+    "<strong>Attack (Energy):</strong> Spend 2 energy from this card to perform this attack.  The defender doubles his agility value against this attack.  You may change 1 of your %FOCUS% results to a %HIT% result."},
     "Quad Laser Cannons":{"text":
     "<strong>Attack (Energy):</strong> Spend 1 energy from this card to perform this attack.  If this attack does not hit, you may immediately spend 1 energy from this card to perform this attack again."},
     "Tibanna Gas Supplies":{"text":
@@ -340,11 +343,11 @@
     "Ionization Reactor":{"text":
     "<strong>Energy:</strong> Spend 5 energy from this card and discard this card to cause each other ship at Range 1 to suffer 1 damage and receive 1 ion token."},
     "Engine Booster":{"text":
-    "Immediately before you reveal your maneuver dial, you may spend 1 energy to execute a white (<code class='symbols'>5</code> 1) maneuver.  You cannot use this ability if you would overlap another ship."},
+    "Immediately before you reveal your maneuver dial, you may spend 1 energy to execute a white (%STOP% 1) maneuver.  You cannot use this ability if you would overlap another ship."},
     "R3-A2":{"text":
     "When you declare the target of your attack, if the defender is inside your firing arc, you may receive 1 stress token to cause the defender to receive 1 stress token."},
     "R2-D6":{"text":
-    "Your upgrade bar gains the <code class='symbols'>E</code> upgrade icon. You cannot equip this upgrade if you already have a <code class='symbols'>E</code> upgrade icon or if your pilot skill value is '2' or lower."},
+    "Your upgrade bar gains the %EVADE% upgrade icon. You cannot equip this upgrade if you already have a %EVADE% upgrade icon or if your pilot skill value is '2' or lower."},
     "Enhanced Scopes":{"text":
     "During the Activation phase, treat your pilot skill value as 0."},
     "Chardaan Refit":{"text":
@@ -358,7 +361,7 @@
     "Toryn Farr(Crew)":{"text":
     "%ACTION% Spend any amount of energy to choose that many enemy ships at Range 1-2.  Remove all focus, evade, and blue target lock tokens from those ships."},
     "R4-D6":{"text":
-    "When you are hit by an attack and there are at least 3 uncanceled <code class='hit'></code> results, you may choose to cancel those results until there are 2 remaining.  For each result canceled this way, receive 1 stress token."},
+    "When you are hit by an attack and there are at least 3 uncanceled %HIT% results, you may choose to cancel those results until there are 2 remaining.  For each result canceled this way, receive 1 stress token."},
     "R5-P9":{"text":
     "At the end of the Combat phase, you may spend 1 of your focus tokens to recover 1 shield (up to your shield value)."},
     "WED-15 Repair Droid(Crew)":{"text":
@@ -366,7 +369,7 @@
     "Carlist Rieekan(Crew)":{"text":
     "At the start of the Activation phase, you may discard this card to treat each friendly ship's pilot skill value as 12 until the end of the phase."},
     "Jan Dodonna(Crew)":{"text":
-    "When another friendly ship at Range 1 is attacking, it may change 1 of its <code class='hit'></code> results to a <code class='critical'></code>."},
+    "When another friendly ship at Range 1 is attacking, it may change 1 of its %HIT% results to a %CRIT%."},
     "Expanded Cargo Hold":{"text":
     "Once per round, when you would be dealt a faceup Damage card, you may draw that card from either the fore or aft Damage deck."},
     "Backup Shield Generator":{"text":
@@ -376,7 +379,7 @@
     "Frequency Jammer":{"text":
     "When you perform a jam action, choose 1 enemy ship that does not have a stress token and is at Range 1 of the jammed ship.  The chosen ship receives 1 stress token."},
     "Han Solo(Crew)":{"text":
-    "When attacking, if you have a target lock on the defender, you may spend that target lock to change all of your <code class='symbols'>f</code> results to <code class='hit'></code> results."},
+    "When attacking, if you have a target lock on the defender, you may spend that target lock to change all of your %FOCUS% results to %HIT% results."},
     "Leia Organa(Crew)":{"text":
     "At the start of the Activation phase, you may discard this card to allow all friendly ships that reveal a red maneuver to treat that maneuver as a white maneuver until the end of the phase."},
     "Targeting Coordinator(Crew)":{"text":
@@ -384,13 +387,13 @@
     "Raymus Antilles(Crew)":{"text":
     "At the start of the Activation phase, choose 1 enemy ship at Range 1-3.  You may look at that ship's chosen maneuver.  If the maneuver is white, assign that ship 1 stress token."},
     "Gunnery Team":{"text":
-    "Once per round, when attacking with a secondary weapon, you may spend 1 energy to change 1 of your blank results to a <code class='hit'></code> result."},
+    "Once per round, when attacking with a secondary weapon, you may spend 1 energy to change 1 of your blank results to a %HIT% result."},
     "Sensor Team":{"text":
     "When acquiring a target lock, you may lock onto an enemy ship at Range 1-5 instead of 1-3."},
     "Engineering Team":{"text":
-    "During the Activation phase, when you reveal a <code class='symbols'>5</code> maneuver, gain 1 additional energy during the 'Gain Energy' step."},
+    "During the Activation phase, when you reveal a %STOP% maneuver, gain 1 additional energy during the 'Gain Energy' step."},
     "Lando Calrissian(Crew)":{"text":
-    "%ACTION% Roll 2 defense dice.  For each <code class='symbols'>f</code> result, assign 1 focus token to your ship.  For each <code class='symbols'>e</code> result, assign 1 evade token to your ship."},
+    "%ACTION% Roll 2 defense dice.  For each %FOCUS% result, assign 1 focus token to your ship.  For each %EVADE% result, assign 1 evade token to your ship."},
     "Mara Jade(Crew)":{"text":
     "At the end of the Combat phase, each enemy ship at Range 1 that does not have a stress token receives 1 stress token."},
     "Fleet Officer(Crew)":{"text":
@@ -416,15 +419,15 @@
     "Bodyguard":{"text":
     "At the start of the Combat phase, you may spend a focus token to choose a friendly ship at Range 1 with higher pilot skill than you. Increase its agility value by 1 until the end of the round."},
     "Calculation":{"text":
-    "When attacking, you may spend a focus token to change 1 of your <code class='symbols'>f</code> results to a <code class='critical'></code> result."},
+    "When attacking, you may spend a focus token to change 1 of your %FOCUS% results to a %CRIT% result."},
     "Accuracy Corrector":{"text":
-    "When attacking, you may cancel all of your dice results. Then, you may add 2 <code class='hit'></code> results. Your dice cannot be modified again during this attack."},
+    "When attacking, you may cancel all of your dice results. Then, you may add 2 %HIT% results. Your dice cannot be modified again during this attack."},
     "Inertial Dampeners":{"text":
-    "When you reveal your maneuver, you may discard this card to instead perform a white [0<code class='symbols'>5</code>] maneuver. Then receive 1 stress token."},
+    "When you reveal your maneuver, you may discard this card to instead perform a white [0 %STOP%] maneuver. Then receive 1 stress token."},
     "Flechette Cannon":{"text":
     "<strong>Attack:</strong> Attack 1 ship. If this attack hits, the defender suffers 1 damage and, if the defender is not stressed, it also receives 1 stress token.  Then cancel <strong>all</strong> dice results."},
     "'Mangler' Cannon":{"text":
-    "<strong>Attack:</strong> Attack 1 ship. When attacking, you may change 1 of your <code class='hit'></code> results to a <code class='critical'></code> result."},
+    "<strong>Attack:</strong> Attack 1 ship. When attacking, you may change 1 of your %HIT% results to a %CRIT% result."},
     "Dead Man's Switch":{"text":
     "When you are destroyed, each ship at Range 1 suffers 1 damage."},
     "Feedback Array":{"text":
@@ -436,7 +439,7 @@
     "Salvaged Astromech":{"text":
     "When you are dealt a Damage card with the <strong>Ship</strong> trait, you may immediately discard that card (before resolving its effect). Then, discard this Upgrade card."},
     "Bomb Loadout":{"text":
-    "Your upgrade bar gains the <code class='symbols'>B</code> icon."},
+    "Your upgrade bar gains the %BOOST% icon."},
     "'Genius'":{"text":
     "If you are equipped with a bomb that can be dropped before you reveal your maneuver, you may drop the bomb <strong>after</strong> you execute your maneuver instead."},
     "Unhinged Astromech":{"text":
@@ -444,7 +447,7 @@
     "R4-B11":{"text":
     "When attacking, if you have a target lock on the defender, you may spend the target lock to choose any or all defense dice. The defender must reroll the chosen dice."},
     "Autoblaster Turret":{"text":
-    "<strong>Attack:</strong> Attack 1 ship (even a ship outside your firing arc). Your <code class='hit'></code> results cannot be canceled by defense dice. The defender may cancel <code class='critical'></code> results before <code class='hit'></code> results."},
+    "<strong>Attack:</strong> Attack 1 ship (even a ship outside your firing arc). Your %HIT% results cannot be canceled by defense dice. The defender may cancel %CRIT% results before %HIT% results."},
     "R4 Agromech":{"text":
     "When attacking, after you spend a focus token, you may acquire a target lock on the defender."},
     "K4 Security Droid(Crew)":{"text":
@@ -452,7 +455,7 @@
     "Outlaw Tech(Crew)":{"text":
     "After you execute a red maneuver, you may assign 1 focus token to your ship."},
     "Advanced Targeting Computer":{"text":
-    "When attacking with your primary weapon, if you have a target lock on the defender, you may add 1 <code class='critical'></code> result to your roll.  If you do, you cannot spend target locks during this attack."},
+    "When attacking with your primary weapon, if you have a target lock on the defender, you may add 1 %CRIT% result to your roll.  If you do, you cannot spend target locks during this attack."},
     "Ion Cannon Battery":{"text":
     "<strong>Attack (energy):</strong> Spend 2 energy from this card to perform this attack.  If this attack hits, the defender suffers 1 critical damage and receives 1 ion token.  Then cancel <strong>all</strong> dice results."},
     "Stealth Device":{"text":
@@ -460,23 +463,25 @@
     "Shield Upgrade":{"text":
     "Increase your shield value by 1."},
     "Engine Upgrade":{"text":
-    "Your action bar gains the <code class='symbols'>b</code> action icon."},
+    "Your action bar gains the %BOOST% action icon."},
     "Anti-Pursuit Lasers":{"text":
-    "After an enemy ship executes a maneuver that causes it to overlap your ship, roll 1 attack die.  On a <code class='hit'></code> or <code class='critical'></code> result, the enemy ship suffers 1 damage."},
+    "After an enemy ship executes a maneuver that causes it to overlap your ship, roll 1 attack die.  On a %HIT% or %CRIT% result, the enemy ship suffers 1 damage."},
     "Targeting Computer":{"text":
-    "Your action bar gains the <code class='symbols'>l</code> action icon."},
+    "Your action bar gains the %TARGETLOCK% action icon."},
     "Hull Upgrade":{"text":
     "Increase your hull value by 1."},
     "Munitions Failsafe":{"text":
     "When attacking with a secondary weapon that instructs you to discard it to perform the attack, do not discard it unless the attack hits."},
     "Stygium Particle Accelerator":{"text":
     "When you either decloak or perform a cloak action, you may perform a free evade action."},
+    "Cloaking Device":{"text":
+    "Action: Perform a free cloak action. At the end of each round, if you are cloaked, roll 1 attack die. On a Focus result, discard this card, then decloak or discard your cloak token."},
     "Advanced Cloaking Device":{"text":
     "After you perform an attack, you may perform a free cloak action."},
     "Combat Retrofit":{"text":
     "Increase your hull value by 2 and your shield value by 1."},
     "B-Wing/E2":{"text":
-    "Your upgrade bar gains the <code class='symbols'>W</code> upgrade icon."},
+    "Your upgrade bar gains the %CREW% upgrade icon."},
     "Countermeasures":{"text":
     "At the start of the Combat phase, you may discard this card to increase your agility value by 1 until the end of the round.  Then you may remove 1 enemy target lock from your ship."},
     "Experimental Interface":{"text":
@@ -484,11 +489,11 @@
     "Tactical Jammer":{"text":
     "Your ship can obstruct enemy attacks."},
     "Autothrusters":{"text":
-    "When defending, if you are beyond Range 2 or outside the attacker's firing arc, you may change 1 of your blank results to a <code class='symbols'>e</code> result. You can equip this card only if you have the <code class='symbols'>b</code> action icon."},
+    "When defending, if you are beyond Range 2 or outside the attacker's firing arc, you may change 1 of your blank results to a %EVADE% result. You can equip this card only if you have the %BOOST% action icon."},
     "Slave I":{"text":
-    "Your upgrade bar gains the <code class='symbols'>P</code> upgrade icon."},
+    "Your upgrade bar gains the %TORPEDO% upgrade icon."},
     "Millennium Falcon":{"text":
-    "Your action bar gains the <code class='symbols'>e</code> action icon."},
+    "Your action bar gains the %EVADE% action icon."},
     "Moldy Crow":{"text":
     "During the End phase, do not remove unused focus tokens from your ship."},
     "ST-321":{"text":
@@ -498,11 +503,11 @@
     "Dodonna's Pride":{"text":
     "When you perform a coordinate action, you may choose 2 friendly ships (instead of 1).  Those ships may each perform 1 free action."},
     "A-Wing Test Pilot":{"text":
-    "Your upgrade bar gains 1 <code class='symbols'>E</code> upgrade icon. You cannot equip 2 of the same <code class='symbols'>E</code> Upgrade cards.  You cannot equip this if your pilot skill value is 1 or lower."},
+    "Your upgrade bar gains 1 %EVADE% upgrade icon. You cannot equip 2 of the same %EVADE% Upgrade cards.  You cannot equip this if your pilot skill value is 1 or lower."},
     "Tantive IV":{"text":
-    "Your fore section upgrade bar gains 1 additional <code class='symbols'>E</code> and 1 additional %TEAM% upgrade icon."},
+    "Your fore section upgrade bar gains 1 additional %EVADE% and 1 additional %TEAM% upgrade icon."},
     "Bright Hope":{"text":
-    "A reinforce action assigned to your fore section adds 2 <code class='symbols'>e</code> results (instead of 1)."},
+    "A reinforce action assigned to your fore section adds 2 %EVADE% results (instead of 1)."},
     "Quantum Storm":{"text":
     "At the start of the End phase, if you have 1 or fewer energy tokens, gain 1 energy token."},
     "Dutyfree":{"text":
@@ -510,21 +515,21 @@
     "Jaina's Light":{"text":
     "When defending, once per attack, if you are dealt a faceup Damage card, you may discard it and draw another faceup Damage card."},
     "Outrider":{"text":
-    "While you have a <code class='symbols'>C</code> Upgrade card equipped, you <strong>cannot</strong> perform primary weapon attacks and you may perform <code class='symbols'>C</code> secondary weapon attacks against ships outside your firing arc."},
+    "While you have a %CANNON% Upgrade card equipped, you <strong>cannot</strong> perform primary weapon attacks and you may perform %CANNON% secondary weapon attacks against ships outside your firing arc."},
     "Dauntless":{"text":
     "After you execute a maneuver that causes you to overlap another ship, you may perform 1 free action.  Then receive 1 stress token."},
     "Virago":{"text":
-    "Your upgrade bar gains the <code class='symbols'>S</code> and <code class='symbols'>I</code> upgrade icons. You cannot equip this card if your pilot skill value is '3' or lower."},
+    "Your upgrade bar gains the %SYSTEM% and %ILLICIT% upgrade icons. You cannot equip this card if your pilot skill value is '3' or lower."},
     "'Heavy Scyk' Interceptor":{"text":
-    "Your upgrade bar gains the <code class='symbols'>C</code>, <code class='symbols'>P</code> or <code class='symbols'>M</code> upgrade icon."},
+    "Your upgrade bar gains the %CANNON%, %TORPEDO% or %MISSILE% upgrade icon."},
     "IG-2000":{"text":
     "You have the pilot ability of each other friendly ship with the <em>IG-2000</em> Upgrade card (in addition to your own pilot ability)."},
     "BTL-A4 Y-Wing":{"text":
-    "You cannot attack ships outside your firing arc. After you perform a primary weapon attack, you may immediately perform an attack with a <code class='symbols'>U</code> secondary weapon."},
+    "You cannot attack ships outside your firing arc. After you perform a primary weapon attack, you may immediately perform an attack with a %TURRET% secondary weapon."},
     "Andrasta":{"text":
-    "Your upgrade bar gains two additional <code class='symbols'>B</code> upgrade icons."},
+    "Your upgrade bar gains two additional %BOOST% upgrade icons."},
     "TIE/x1":{"text":
-    "Your upgrade bar gains the <code class='symbols'>S</code> upgrade icon. If you equip a <code class='symbols'>S</code> upgrade, its squad point cost is reduced by 4 (to a minimum of 0)."},
+    "Your upgrade bar gains the %SYSTEM% upgrade icon. If you equip a %SYSTEM% upgrade, its squad point cost is reduced by 4 (to a minimum of 0)."},
     "Emperor Palpatine(Crew)":{"text":
     "Once per round, you may change a friendly ship's die result. That die result cannot be modified again."},
      "Extra Munitions":{
@@ -548,7 +553,11 @@
 },
 "BB-8":{
 	"text":"When you reveal a green maneuver, you may perform a free barrel roll action."},
+	"Tractor Beam":{"text":"Attack: Attack 1 ship. If this attack hits, the defender receives 1 tractor beam token. Then cancel all dice results."},
+	"Juke":{"text":"When attacking, if you have an evade token, you may change 1 of the defender's Evade results to a Focus result."},
+	"Cool Hand": {"text":"When you receive a stress token, you may discard this card to assign 1 focus or evade token to your ship."},
 	"Wired":{"text":"When attacking or defending, if you are stressed, you may reroll 1 or more of your %FOCUS% results."},
+	"XX-23 S-Thread Tracers":{"text":"<strong>Attack (Focus):</strong> Discard this card to perform this attack. If this attack hits, each friendly ship at Range 1-2 of you may acquire a target lock on the defender. Then cancel all dice results."},
         "Ion Bombs":{
             "text":"When you reveal your maneuver dial, you may discard this card to <strong>drop</strong> 1 ion bomb token. This token <strong>detonates</strong> at the end of the Activation phase. <strong>Ion Bombs Token:</strong> When this bomb token detonates, each ship at Range 1 of the token receives 2 ion tokens.  Then discard this token."},
         "Conner Net":{
@@ -565,8 +574,9 @@
             {"text": "You may treat all bank maneuvers (%BANKLEFT% and %BANKRIGHT%) as green maneuvers."},
         "Maneuvering Fins":
             {"text": "When you reveal a turn maneuver (%TURNLEFT% or %TURNRIGHT%), you may rotate your dial to the corresponding bank maneuver (%BANKLEFT% or %BANKRIGHT%) of the same speed."},
-        "Ion Projector":
+        "Ion Projector":   
             {"text": "After an enemy ship executes a maneuver that causes it to overlap your ship, roll 1 attack die.  On a %HIT% or %CRIT% result, the enemy ship receives 1 ion token."},
+	    "Integrated Astromech":{"text":"When you are dealt a Damage card, you may discard 1 of your Astromech Upgrade cards to discard that Damage card (without resolving its effect)."},  
         "Hound's Tooth":
             {"text": "After you are destroyed, before you are removed from the play area, you may <strong>deploy</strong> the <em>Nashtah Pup</em> ship. It cannot attack this round."}
 

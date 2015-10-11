@@ -31,7 +31,7 @@ var PILOTS = [
 	    Unit.prototype.getagility=function() {
 		var a=ds.call(this);
 		if (activeunit==unit&&a>0&&this==targetunit) {
-		    this.log("defense reduced from "+a+" to "+(a-1)+" by "+unit.name);
+		    this.log("-1 defense by "+unit.name);
 		    return a-1; 
 		}
 		else return a;
@@ -55,7 +55,7 @@ var PILOTS = [
 		this.log("%FOCUS% -> other friendly ship");
 		this.doselection(function(n) {
 		    this.resolveactionselection(p,function (k) { 
-			p[k].log("+1 %FOCUS% from "+this.name);
+			p[k].log("+1 %FOCUS%");
 			p[k].addfocustoken();
 			this.endnoaction(n,"FOCUS");
 		    }.bind(this));
@@ -189,8 +189,7 @@ var PILOTS = [
 			return true;
 		    }
 		    return false;
-		}.bind(this),
-		false
+		}.bind(this)
 	    )
 	},
         upgrades: [TURRET,TORPEDO,TORPEDO,ASTROMECH],
@@ -368,7 +367,7 @@ var PILOTS = [
         unit: "TIE Fighter",
         skill: 8,
 	init: function() {
-	    this.addattackrerolla(
+	    this.addglobalattackrerolla(
 		this,
 		["blank","focus"],
 		function() { return 1; },
@@ -381,8 +380,7 @@ var PILOTS = [
 			return true;
 		    }
 		    return false;
-		}.bind(this),
-		true
+		}.bind(this)
 	    )
 	},
         points: 18,
@@ -531,7 +529,7 @@ var PILOTS = [
 	done:true,
         addstress: function () {
 	    this.stress++;
-	    this.log("stress token -> free focus token");
+	    this.log("+1 %STRESS% -> +1 %FOCUS%");
 	    this.addfocustoken();
 	},
         unit: "TIE Interceptor",
@@ -658,8 +656,7 @@ var PILOTS = [
 		function() { return 9; },
 		function(w,defender) {
 		    return true;
-		}.bind(this),
-		false
+		}.bind(this)
 	    )
 	},
         upgrades: [ELITE,MISSILE,CREW,CREW],
@@ -677,7 +674,7 @@ var PILOTS = [
 	    Unit.prototype.cancelcritical=function(c,e,sh) {
 		var ce=cc.call(this,c,e,sh);
 		if (c>ce&&sh!=this&&activeunit.name=="Kath Scarlet") {
-		    this.log("+1 stress for cancelling %CRIT% given by "+unit.name);
+		    this.log("+1 %STRESS for cancelling %CRIT% given by "+unit.name);
 		    this.addstress();
 		}
 		return ce;
@@ -732,12 +729,11 @@ var PILOTS = [
 		function() { return 1; },
 		function(w,defender) {
 		    if (!w.isprimary) {
-			this.log("+1 reroll for secondary weapon");
+			this.log("+1 reroll for "+w.name);
 			return true;
 		    }
 		    return false;
-		}.bind(this),
-		false
+		}.bind(this)
 	    )
 	},
         skill: 5,
@@ -792,8 +788,7 @@ var PILOTS = [
 			return true;
 		    }
 		    return false;
-		}.bind(this),
-		false
+		}.bind(this)
 	    );
 	    this.adddefensererolld(
 		this,
@@ -805,8 +800,7 @@ var PILOTS = [
 			return true;
 		    }
 		    return false;
-		}.bind(this),
-		false
+		}.bind(this)
 	    );
 	},
         upgrades: [ELITE,SYSTEM,CANNON,TORPEDO,TORPEDO],
@@ -894,7 +888,7 @@ var PILOTS = [
 			    if (this!=p[k]) {
 				this.removefocustoken();
 				p[k].addfocustoken();
-				p[k].log("+1 %FOCUS% token");
+				p[k].log("+1 %FOCUS%");
 			    }
 			    this.endnoaction();
 			}.bind(this));
@@ -969,8 +963,7 @@ var PILOTS = [
 			return true;
 		    }
 		    return false;
-		}.bind(this),
-		true
+		}.bind(this)
 	    )
 	},
         unique: true,
@@ -1060,7 +1053,7 @@ var PILOTS = [
 	    var unit=this;
 	    Unit.prototype.addstress=function() {
 		if (this!=unit&&this.getrange(unit)<=2&&unit.stress<=2) {
-		    this.log("transferred stress to "+unit.name); 
+		    this.log("transferred %STRESS% to "+unit.name); 
 		    unit.addstress();
 		    unit.showinfo();
 		} else this.stress++;
@@ -1142,16 +1135,16 @@ var PILOTS = [
     {
         name: "Kir Kanos",
         faction:EMPIRE,
-        useevade:  function() {
-	    var ue=Unit.prototype.useevade;
-	    var r=this.getrange(targetunit);
-	    ue.call(this);
-	    if (phase==COMBAT_PHASE&&this.canuseevade()&&this==activeunit&&r<=3&&r>=2) {
+        init:  function() {
+	    /* TO TEST */
+	    this.addattackadd(this,function(m,n) {
+		var r=this.getrange(targetunit);
+		return (r<=3&&r>=2&&this.canusefocus());
+	    }.bind(this),function(m,n) {
 		this.removeevadetoken();
-		$("#atokens .xevadetoken").remove();
-		$("#attack").append("<td class='hitreddice'></td>");
 		this.log("+1 %HIT% for attacking at range 2-3");
-	    }
+		return m+1;
+	    }.bind(this),"evade");
 	},   
 	done:true,
         unique: true,
@@ -1281,7 +1274,7 @@ var PILOTS = [
 	    var r=ar.call(this,n);
 	    if (targetunit.istargeted.length>0&&this.target==0) {
 		this.addtarget(targetunit);
-		this.log("target locks "+targetunit.name);	
+		this.log("+1 %TARGET% on "+targetunit.name);	
 	    }
 	    return r;
 	},
@@ -1467,11 +1460,16 @@ var PILOTS = [
         name: "Wes Janson",
 	done:true,
 	endattack:function(c,h) {
-	    if (targetunit.targeting.length+targetunit.focus+targetunit.evade>0)
-		this.log("remove token from "+targetunit.name);
-	    if (targetunit.targeting.length>0) targetunit.removetarget(targetunit.targeting[0]);
-	    else if (targetunit.focus>0) targetunit.removefocustoken();
-	    else if (targetunit.evade>0) targetunit.removeevadetoken();
+	    if (targetunit.targeting.length>0) {
+		targetunit.log("-1 %TARGET% [%0]",this.name);
+		targetunit.removetarget(targetunit.targeting[0]);
+	    } else if (targetunit.focus>0) {
+		targetunit.log("-1 %FOCUS% [%0]",this.name);
+		targetunit.removefocustoken();
+	    } else if (targetunit.evade>0) {
+		targetunit.log("-1 %EVADE% [%0]",this.name);
+		targetunit.removeevadetoken();
+	    }
 	    Unit.prototype.endattack.call(this,c,h);
 	},
 	faction:REBEL,
@@ -1487,7 +1485,7 @@ var PILOTS = [
 	addstress:function() {
 	    // Automatic removal of stress
 	    var roll=this.rollattackdie(1)[0];
-	    this.log("remove 1 stress token, roll 1 attack dice")
+	    this.log("-1 %STRESS%, roll 1 attack dice")
 	    if (roll=="hit") { this.resolvehit(1); this.checkdead(); }
 	},
 	faction:REBEL,
@@ -1503,7 +1501,7 @@ var PILOTS = [
 	done:true,
         removetarget: function(t) {
 	    if (this.stress) { 	    
-		this.log("using target -> removes a stress token");
+		this.log("-1 %TARGET% -> -1 %STRESS%");
 		this.removestresstoken();
 	    }
 	    Unit.prototype.removetarget.call(this,t);
@@ -1511,7 +1509,7 @@ var PILOTS = [
         addtarget: function(t) {
 	    if (this.stress) { 
 		this.removestresstoken();
-		this.log("targeting -> removes a stress token");
+		this.log("+1 %TARGET% -> -1 %STRESS%");
 	    }
 	    Unit.prototype.addtarget.call(this,t);
 	},
@@ -1525,8 +1523,8 @@ var PILOTS = [
         name: "Tarn Mison",
 	done:true,
         isattackedby: function(w,a) {
-	    if (this.target==0||this.skill<a.skill) { // Priority to define
-		this.log("free target token on "+a.name);
+	    if (this.target==0||this.skill<a.skill) { // TODO:Priority to define
+		this.log("+1 %TARGET% on "+a.name);
 		this.addtarget(a);
 	    }
 	},
@@ -1545,18 +1543,16 @@ var PILOTS = [
         freemove: function() {
 	    return this.doaction([this.newaction(this.resolveboost,"BOOST"),
 				  this.newaction(this.resolveroll,"ROLL")],
-				 "free boost or barrel roll action");
+				 "free %BOOST% or %BARRELROLL% action");
 	},
 	addfocustoken: function() {
 	    if (this.candoaction()) this.freemove();
 	    Unit.prototype.addfocustoken.call(this);
 	},
-	usefocus: function(id) {
-	    this.log("usefocus");
-	    Unit.prototype.usefocus.call(this,id);
+	removefocustoken: function(id) {
+	    Unit.prototype.removefocustoken.call(this,id);
 	    this.show();
 	    if (this.candoaction()) {
-		this.log("freemove");
 		this.freemove();
 	    }
 	},
@@ -1594,20 +1590,17 @@ var PILOTS = [
 	done:true,
 	init: function() {
 	    this.shipimg="b-wing-1.png";
-	},
-        usestress: function() {
-	    if (phase==COMBAT_PHASE&&this.hasfired>0&&this==activeunit) {
-		if (this==activeunit&&this.stress>0) {
+	    this.addattackmoda(this,function(m,n) {
+		return (this.stress>0&&Math.floor(m/100%10>0)); 
+	    }.bind(this),function(m,n) {
+		var f=Math.floor(m/100)%10;
+		if (f>0) {
 		    this.removestresstoken();
-		    var l=$(".focusreddice").length;
-		    $(".focusreddice").remove();
-		    for (i=0; i<l; i++) { 	
-			$("#attack").append("<td class='hitreddice'></td>");
-		    }
-		    this.log("focus -> hit, removing all stress");
-		    $("#atokens .xstresstoken").remove();
-		} 
-	    }
+		    this.log("%0 %FOCUS% -> %0 %HIT%, -1 %STRESS%",f);
+		    return m-100*f+f;
+		}
+		return m;
+	    }.bind(this),false,"stress",true);
 	},
         unique: true,
         unit: "B-Wing",
@@ -1654,7 +1647,7 @@ var PILOTS = [
 	    this.getattackstrength=function(w,sh) {
 		var a=g.call(this,w,sh);
 		if (sh.stress>0&&this.weapons[w].isprimary) { 
-		    this.log("+1 attack roll against "+sh.name);
+		    this.log("+1 attack roll");
 		    return a+1;
 		}
 		return a;
@@ -1704,7 +1697,6 @@ var PILOTS = [
         skill: 7,
 	done:true,
 	getocollisions: function(mbegin,mend,path,len) { 
-	    //this.log("dash rendar getocollision");
 	    return {overlap:-1,template:[],mine:[]};
 	},
         points: 36,
@@ -1733,7 +1725,7 @@ var PILOTS = [
 	    for (i=0; i<this.touching.length; i++) {
 		var u=this.touching[i];
 		if (u.team!=this.team) {
-		    this.log("touching "+u.name+" -> 1 %HIT%");
+		    u.log("+1 %HIT% [%0]",this.name);
 		    u.resolvehit(1);
 		    u.checkdead();
 		}
@@ -1857,7 +1849,7 @@ var PILOTS = [
         faction:SCUM,
 	done:true,
         init: function() {
-	    this.adddefensererolld(
+	    this.addglobaldefensererolld(
 		this,
 		["blank","focus"],
 		function() { return 1 },
@@ -1869,8 +1861,7 @@ var PILOTS = [
 			return true;
 		    }
 		    return false;
-		}.bind(this),
-		true
+		}.bind(this)
 	    )
 	},
         unit: "M3-A Interceptor",
@@ -2091,14 +2082,12 @@ var PILOTS = [
 	    this.addattackrerolla(this,
 				  ["blank","focus"],
 				  nrerolls, 
-				  function(w,defender) { return true; },
-				  false
+				  function(w,defender) { return true; }
 				 );
 	    this.adddefensererolld(this,
 				   ["blank","focus"], 
 				   nrerolls, 
-				   function(w,defender) { return true; },
-				   false
+				   function(w,defender) { return true; }
 				  );
 	},
 	done:true,
@@ -2602,7 +2591,20 @@ var PILOTS = [
             unit: "K-Wing",
             skill: 6,
             upgrades: [TURRET,TORPEDO,TORPEDO,MISSILE,CREW,BOMB,BOMB],
-            points: 28
+            points: 28,
+	    done:true,
+	    init: function() {
+		var self=this;
+		var cuf=Unit.prototype.canusefocus;
+		var rft=Unit.prototype.removefocustoken;
+		Unit.prototype.canusefocus=function() {
+		    return (cuf.call(this)||(this.incombat>-1&&this!=self&&this.getrange(self)<=2&&self.canusefocus()));
+		}
+		Unit.prototype.removefocustoken=function() {
+		    if (this.focus>0) rft.call(this);
+		    else if (this.incombat>-1&&this!=self&&this.getrange(self)<=2&&self.canusefocus()) rft.call(self);
+		}
+	    }
         },
         {
             name: "Guardian Squadron Pilot",
@@ -2657,10 +2659,9 @@ var PILOTS = [
 	    done:true,
 	    bombdropped: function() {
 		this.doaction([this.newaction(this.resolveroll,"ROLL")],
-				  this.name+": 1 free %BARRELROLL%");
+				  this.name+": free %BARRELROLL%");
 	    },
 	    getbombposition: function(lm,size) {
-		this.log("DEATHRAIN");
 		var p=Unit.prototype.getbombposition.call(this,lm,size);
 		for (var i=0; i<lm.length; i++)
 		    p.push(this.getpathmatrix(this.m,lm[i]).translate(0,-size))
@@ -2846,6 +2847,8 @@ var PILOTS = [
 		this.addattackmoda(this,function(m,n) { 
 			return this.focus>0||this.targeting.indexOf(targetunit)>-1;
 		    }.bind(this),function(m,n) {
+			this.removefocustoken();
+			this.removetarget(targetunit);
 			this.log("all results are %CRIT%");
 			return n*10;
 		    }.bind(this),false,"critical");
@@ -2861,6 +2864,38 @@ var PILOTS = [
        unit: "TIE/FO Fighter",
        skill: 8,
        upgrades: [ELITE,TECH],
-       points: 21
+       points: 21,
+       done:true,
+       canblockattackmod:function(u) {
+	   return (u.istargeted.indexOf(this)>-1&&u.team!=this.team&&
+		   this==targetunit&&u==activeunit);
+       },
+       canblockdefensemod:function(u) {
+	   return (u.istargeted.indexOf(this)>-1&&u.team!=this.team&&
+		   u==targetunit&&this==activeunit);
+       },
+       init: function() {
+	   var gart=Unit.prototype.getattackrerolltokens;
+	   var gdrt=Unit.prototype.getdefensererolltokens;
+	   var gamt=Unit.prototype.getattackmodtokens;
+	   var gdmt=Unit.prototype.getdefensemodtokens;
+	   var unit=this;
+	   Unit.prototype.getattackrerolltokens=function() {
+	       if (unit.canblockattackmod(this)) return "";
+	       return gart.call(this);
+	   };
+	   Unit.prototype.getdefensererolltokens=function() {
+	       if (unit.canblockdefensemod(this)) return "";
+	       return gdrt.call(this);
+	   };
+	   Unit.prototype.getattackmodtokens=function(m,n) {
+	       if (unit.canblockattackmod(this)) return "";
+	       return gamt.call(this,m,n);
+	   }
+	   Unit.prototype.getdefensemodtokens=function(m,n) {
+	       if (unit.canblockdefensemod(this)) return "";
+	       return gdmt.call(this,m,n);
+	   }
+       }
    }
 ];

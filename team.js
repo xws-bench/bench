@@ -189,7 +189,7 @@ Team.prototype = {
 	s.pilots=sq;
 	s.points=$("#total"+this.team).val();
 	s.vendor={xwsbenchmark:{builder:"X-Wings Squadron Benchmark",builder_url:"http://xws-bench.github.io/bench/"}};
-	s.version="0.2.0";
+	s.version="0.3.0";
 	return s;
     },
     toJuggler:function() {
