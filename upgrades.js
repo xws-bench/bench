@@ -576,10 +576,12 @@ var UPGRADES= [
       points:2,
       init: function(sh) {
 	  var self=this;
+	  self.ad=-1;
 	  sh.wrap_after("updateactivationdial",this,function(ad) {
-	      this.addactivationdial(function() { 
-		  return self.isactive&&self.unit.hasmoved&&self.unit.maneuver>-1&&(self.unit.getmaneuver().difficulty=="GREEN"); 
+	      self.unit.addactivationdial(function() { 
+		  return self.ad!=round&&self.isactive&&!self.unit.hasmoved&&self.unit.maneuver>-1&&(self.unit.getmaneuver().difficulty=="GREEN"); 
 	      },function() {
+		  self.ad=round;
 		  self.unit.doaction([self.unit.newaction(self.unit.resolveroll,"ROLL")],self.name+" free roll for green maneuver.");
 	      }, A[ASTROMECH.toUpperCase()].key, $("<div>").attr({class:"symbols"}));
 	      return ad;
