@@ -3314,7 +3314,7 @@ var UPGRADES= [
 	modifydamageassigned: function(ch,target) {
 	    if (ch>0) {
 		ch=1;
-		target("+1 %HIT% [%0]",this.name);
+		target.log("+1 %HIT% [%0]",this.name);
 	    }
 	    return ch;
 	},	
