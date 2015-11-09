@@ -5,46 +5,76 @@ function IAUnit() {
 IAUnit.prototype= {
     computemaneuver: function() {
 	var i,j,k,d=0;
-	var q=[],p=[],possible=-1;
+	var q=[],possible=-1;
 	var gd=this.getdial();
+	var enemies=[];
 	//log("computing all enemy positions");
 	// Find all possible future positions of enemies
+	var k=0;
 	for (i=0; i<squadron.length; i++) {
 	    var u=squadron[i];
+	    var mind=-1;
 	    if (u.team!=this.team) {
+		enemies[k]=u;
 		var sgd=u.getdial();
+		d=-1;
 		for (j=0; j<sgd.length; j++)
-		    if (sgd[j].color==GREEN)
-			p.push(u.getOutlinePoints(sgd[j].m));
-	    } else if (u.skill<this.skill) p.push(u.getOutlinePoints(u.m));
+		    if (sgd[j].difficulty=="GREEN"&&sgd[j].move.match(/F\d/)) {
+			mind=j;
+			break;
+		    }
+		if (mind==-1) 
+		    for (j=0; j<sgd.length; j++)
+			if (sgd[j].difficulty=="WHITE"&&sgd[j].move.match(/F\d/)) {
+			    mind=j;
+			    break;
+			}
+		enemies[k].oldm=enemies[k].m;
+		enemies[k].m=u.getpathmatrix(u.m,sgd[mind].move);
+		k++;
+	    }
 	}
-	var findpositions=function(gd,p,scale) {
+	var findpositions=function(gd) {
 	    var q=[],c,j,i;
 	// Find all possible moves, with no collision and with units in range 
 	    var COLOR=[GREEN,WHITE,YELLOW];
 	    this.evaluatepositions(true,true);
-	    for (c=0; c<COLOR.length; c++) {
-		//log("find positions with color "+c);
-		for (i=0; i<gd.length; i++) {
-		    var d=gd[i];
-		    var mm=this.getpathmatrix(this.m.clone().scale(scale),gd[i].move);
-		    //log(this.name+":"+d.move+":"+(d.difficulty=="RED"));
-		    if (d.color==COLOR[c]) {
-			var n=0;
-			var s=this.getSectorString(3,mm);
-			for (j=0; j<p.length; j++) if (this.isPointInside(s,p[j])) n++;
-			if (n>0) {
-			    //n=n+(COLOR.length-i);
-			    if (d.difficulty=="RED") n=n/2;
-			    q.push({n:n,m:i});
-			}
-		    }
+	    //log("find positions with color "+c);
+	    for (i=0; i<gd.length; i++) {
+		var d=gd[i];
+		if (d.color==RED) continue;
+		var mm=this.getpathmatrix(this.m,gd[i].move);
+		//log(this.name+":"+d.move+":"+(d.difficulty=="RED"));
+		var n=60-30*COLOR.indexOf(d.color);
+		
+		var maxenemy=0;
+		var inrange=0;
+		var oldm=this.m;
+		this.m=mm;
+		var s="";
+		for (j=0; j<enemies.length; j++) {
+		    var x=enemies[j].weapons[0].getrange(this);
+		    if (x>0) { maxenemy+=4-x; s+=" "+enemies[j].name+":"+x; }
+		    var y=this.weapons[0].getrange(enemies[j]);
+		    if (y>0) inrange=Math.min(inrange,y);
 		}
+		
+		this.m=oldm;
+		n+=inrange-maxenemy/enemies.length;
+		var dist=0;
+		for (j=0; j<enemies.length; j++)
+		    dist-=this.getdist(mm,enemies[j])/90000;
+		n+=dist;
+		//this.log(d.move+": "+n+"= +"+(inrange)+"-"+s+" "+(dist*2));
+
+		if (d.difficulty=="RED") n=n-3;
+		q.push({n:n,m:i});
 	    }
 	    return q;
 	}.bind(this);
-	q=findpositions(gd,p,1);
-	if (q.length==0) q=findpositions(gd,p,2);
+	q=findpositions(gd);
+	// Restore position
+	for (k=0; k<enemies.length; k++) enemies[k].m=enemies[k].oldm;
 	if (q.length>0) {
 	    q.sort(function(a,b) { return b.n-a.n; });
 	    //for (i=0; i<q.length; i++) this.log(">"+q[i].n+" "+gd[q[i].m].move);
@@ -95,6 +125,7 @@ IAUnit.prototype= {
 		var m=this.computemaneuver(); 
 		IACOMPUTING--;
 		if (IACOMPUTING==0) $("#npimg").html("&#9658;");
+		this.newm=this.getpathmatrix(this.m,this.getdial()[m].move);
 		this.setmaneuver(m);
 		clearInterval(p);
 	    }.bind(this),1);
@@ -203,7 +234,7 @@ IAUnit.prototype= {
     },
     doattack: function(forced) {
 	//this.log("attack?"+forced+" "+(skillturn==this.skill)+" "+this.canfire());
-	if (phase==COMBAT_PHASE&&skillturn==this.skill) {
+	if (forced==true||(phase==COMBAT_PHASE&&skillturn==this.skill)) {
 	    var r=this.gethitrangeallunits();
 	    //this.log("ia/doattack");
 	    var wn=[];
@@ -234,19 +265,7 @@ IAUnit.prototype= {
 	$("#attackdial").empty().show();
 	$("#defense").empty();
 	$("#dtokens").empty();
-	//console.log("ia/doattackroll:"+this.name+" with "+da+" dices");
-	for (i=0; i<DICES.length; i++) $("."+DICES[i]+"dice").remove();
-	var f=Math.floor(ar/100);
-	for (i=0; i<f; i++) $("#attack").prepend("<td class='focusreddice'></td>");
-	var c=Math.floor(ar/10)%10;
-	for (i=0; i<c; i++) $("#attack").prepend("<td class='criticalreddice'></td>");
-	var h=ar%10;
-	for (i=0; i<h; i++) $("#attack").prepend("<td class='hitreddice'></td>");
-	//console.log("ia/doattackroll:"+this.name+" with "+(da-h-c-f)+"("+da+"-"+(h+c+f)+") blank dices")
-	for (i=0; i<da-h-c-f; i++) $("#attack").prepend("<td class='blankreddice'></td>");
-	// Add modifiers
-	if (this.canusefocus()) this.usefocus();
-	if (this.canusetarget(targetunit)) this.usetarget(); 
+	displayattackroll(ar,da);
 	var doreroll=function(a,i) {
 	    var s=0;
 	    var nn=a.n();
@@ -267,6 +286,7 @@ IAUnit.prototype= {
 	    if (a.req(this.weapons[this.activeweapon],targetunit)) 
 		doreroll(a,i+ATTACKREROLLA.length);
 	}   
+
 	// Do all possible modifications
 	for (i=0; i<ATTACKMODA.length; i++) {
 	    var a=ATTACKMODA[i];
@@ -275,11 +295,12 @@ IAUnit.prototype= {
 	for (i=0; i<ATTACKMODD.length; i++) {
 	    var a=ATTACKMODD[i];
 	    if (a.req(ar,da)) {
+		//modroll(ATTACKMODD[i].f,da,i+ATTACKMODA.length);
 		//log("adding attackmodd");
 		//str+="<td id='moda"+(i+ATTACKMODA.length)+"' class='"+a.str+"modtokend' onclick='modroll(ATTACKMODD["+i+"].f,"+da+","+(i+ATTACKMODA.length)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
 	    }
 	}   
-	i=ATTACKMODA.length//+ATTACKMODD.length;
+	i=ATTACKMODA.length;//+ATTACKMODD.length;
 	for (j=0; j<this.ATTACKMODA.length; j++) {
 	    var a=this.ATTACKMODA[j];
 	    if (a.req(ar,da)) modroll(a.f,da,(i+j));
@@ -288,9 +309,13 @@ IAUnit.prototype= {
 	    var a=this.ATTACKADD[j];
 	    if (a.req(ar,da)) addroll(a.f,da,(i+j+this.ATTACKMODA.length));
 	}   
+	if (this.stress>0) this.usestress(this.id);
+	if (this.canusetarget()) this.usetarget();
+	if (this.canusefocus()) this.usefocus(this.id);
+
 	if (str!="") {
 	    $("#atokens").html(str).show();
-	    $("#atokens").append("<button onclick='$(\"#atokens\").empty(); targetunit.defenseroll("+defense+").done(function(roll) { targetunit.dodefenseroll(roll,"+defense+","+me+","+n+")})'>Done</button>");
+	    $("#atokens").append("<button class='m-done' onclick='$(\"#atokens\").empty(); targetunit.defenseroll("+defense+").done(function(roll) { targetunit.dodefenseroll(roll,"+defense+","+me+","+n+")})'></button>");
 	} else {
 	    $("#atokens").empty(); 
 	    targetunit.defenseroll(defense).done(function(roll) {targetunit.dodefenseroll(roll,defense,me,n);});
@@ -298,16 +323,9 @@ IAUnit.prototype= {
     },
     dodefenseroll: function(dr,dd,me,n) {
 	var i,j;
-	var f=Math.floor(dr/10);
-	//console.log("ia/dodefenseroll:"+this.name);
-	for (i=0; i<f; i++) $("#defense").prepend("<td class='focusgreendice'></td>");
-	var e=dr%10;
-	for (i=0; i<e; i++) $("#defense").prepend("<td class='evadegreendice'></td>");
-	for (i=0; i<dd-e-f; i++) $("#defense").prepend("<td class='blankgreendice'></td>");
+	displaydefenseroll(dr,dd);
 	for (j=0; j<squadron.length; j++) if (squadron[j]==this) break;
 	// Add modifiers
-	if (this.canusefocus()) this.usefocus();
-	if (this.canuseevade()) this.useevade();
  	var doreroll=function(a,i) {
 	    var s=0;
 	    var nn=a.n();
@@ -334,8 +352,10 @@ IAUnit.prototype= {
 	    var a=this.DEFENSEMODD[j];
 	    if (a.req(dr,dd)) modrolld(a.f,dd,i+j);
 	}   
+	if (this.stress>0) this.usestress(this.id);
+	if (this.canuseevade()) this.useevade();
 	$("#dtokens").append("<button>");
-	$("#dtokens > button").text("Fire!").click(function() {
+	$("#dtokens > button").addClass("m-fire").click(function() {
 		$("#combatdial").hide();
 		this.resolvedamage();
 		this.endnoaction(incombat);
