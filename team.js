@@ -1,5 +1,4 @@
 var factions=["REBEL","EMPIRE"];
-var currentteam=1;
 var allunits=[];
 function winevent() {
     return new CustomEvent(
@@ -21,11 +20,9 @@ function Team(team) {
 }
 Team.prototype = {
     setfaction: function(faction) {
-	$("#team"+this.team).empty();
+	$(".listunits .generic").remove();
 	this.faction=faction;
-	this.addpoints();
-	this.addunit();
-	$("#"+faction+this.team).prop("checked",true);
+	$("#"+faction+"select").prop("checked",true);
 	this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;	
     },
     changefaction: function(faction) {
@@ -48,18 +45,8 @@ Team.prototype = {
     toggleplayer: function(name) {
 	this.isia=!this.isia;
     },
-    addpoints: function() { 
-	var team=this.team
-	var f=["REBEL","SCUM","EMPIRE"];
-	$("#team"+team).append("<div id='factionselect"+team+"'></div>");
-	for (i=0; i<3; i++) {
-	    $("#factionselect"+team).append("<input class='factionselect' id='"+f[i]+team+"' name='faction"+team+"' type='radio' onchange='TEAMS["+team+"].changefaction(\""+f[i]+"\")'>");
-	    $("#factionselect"+team).append("<label for='"+f[i]+team+"' class='"+f[i]+"'>");
-	}
-	$("#team"+team).append("<input class='generic' id='teamname"+this.team+"' type='text' placeholder='"+UI_translation.squadron+" #"+team+"'>");
-    },
     updatepoints: function() {
-	var score1=$("#team"+this.team+" .pts").map(function() {
+	var score1=$(".listunits .pts").map(function() {
 	    return parseInt($(this).text());}).get();
 	var i,s=0;
 	for (i=0; i<score1.length; i++) {
@@ -67,15 +54,10 @@ Team.prototype = {
 		s+=score1[i];
 	    }
 	}
-	$("#total"+this.team).html(s);
+	$("#totalpts").html(s);
     },
     addunit:function() {
-	var team=this.team
-	$("#addunit"+team).remove();
-	$("#total"+team).remove();
-	$("#totallbl"+team).remove();
-	$("#team"+team).append("<div>"+(new Unit(team))+"</div>");
-	$("#team"+team).append("<div id='addunit"+team+"' onclick='TEAMS["+team+"].addunit("+team+")'><span class='plus addunit'>+</span><span class='addunit generic m-addunit'></span></div><div><div><div class='totalpts outoverflow' id='total"+team+"'>0</div></div></div><div  id='totallbl"+team+"'></span><span class='plus'>=</span><span class='generic total m-totalpts'></span></div>");
+	$(".listunits").append(""+(new Unit(this.team)));
 	this.updatepoints();
     },
     tosquadron:function(s) {
@@ -104,9 +86,9 @@ Team.prototype = {
 	}
 	this.units.sort(function(a,b) {return b.skill-a.skill;});
 	squadron.sort(function(a,b) {return b.skill-a.skill;});
-	this.history={title: {text: "Damage taken by "+this.name},
-		      axisX:{  interval: 1,title: "Turns"},
-		      axisY: {	title: "Cumulated damage"},
+	this.history={title: {text: UI_translation["Damage taken per turn"]},
+		      axisX:{  interval: 1,title: UI_translation["Turns"]},
+		      axisY: {	title: UI_translation["Cumulated damage"]},
 		      rawdata:[],
 		      data: [{        
 		    indexLabelFontColor: "darkSlateGray",
@@ -130,16 +112,9 @@ Team.prototype = {
     endselection:function(s) {
 	var i;
 	var team=this.team;
-	this.name=$("#teamname"+this.team).val();
-	if (this.name=="") this.name="Squad #"+team;
-
 	$("#team"+team).empty();
 	$("#importexport"+team).remove();
 	sq=this.tosquadron(s);
-	$("#team"+team).append("<div class='playerselect'></div>");
-	$("#team"+team+" .playerselect").append("<input id='human"+team+"' class='human' type='checkbox' onchange='TEAMS["+team+"].toggleplayer()'>"); 
-	$("#team"+team+" .playerselect").append("<label for='human"+team+"' data-off='&#9668; "+UI_translation["human"]+" &#9658;' data-on='&#9668; "+UI_translation["computer"]+" &#9658;'></label>");
-
 	for (i=0; i<sq.length; i++) {
 	    if (team==1) {
 		if (sq[i].tx<=0||sq[i].ty<=0) {
@@ -176,17 +151,23 @@ Team.prototype = {
 	var f={REBEL:"rebels",SCUM:"scum",EMPIRE:"empire"};
 	s.description="";
 	s.faction=f[this.faction];
-	s.name=$("#teamname"+this.team).val();
+	s.name=this.name;
 	var sq=[];
+	var pts=0;
 	for (var i in generics) {
 	    if (generics[i].team==this.team) {
-		sq.push(generics[i].toJSON());
+		var jp=generics[i].toJSON();
+		pts+=jp.points;
+		sq.push(jp);
 	    }
 	}
 	s.pilots=sq;
-	s.points=$("#total"+this.team).val();
+	s.points=pts;
+	// update also the number of points
+	this.points=pts;
 	s.vendor={xwsbenchmark:{builder:"X-Wings Squadron Benchmark",builder_url:"http://xws-bench.github.io/bench/"}};
-	s.version="0.2.0";
+	s.version="0.3.0";
+	log("->JSON"+JSON.stringify(s));
 	return s;
     },
     toJuggler:function() {
@@ -199,7 +180,7 @@ Team.prototype = {
 	}
 	return s;
     },
-    parseJuggler : function(svg,str) {
+    parseJuggler : function(str) {
 	var f,i,j,k;
 	var pid;
 	var getf=function(f) {
@@ -224,24 +205,25 @@ Team.prototype = {
 
 	for (i=0; i<pilots.length; i++) {
 	    var pstr=pilots[i].split(/\s+\+\s+/);
-	    //log("Searching pilot "+pstr[0]);
-	    for (j=0;j<PILOTS.length; j++) if (PILOTS[j].name.replace(/\'/g,"")==pstr[0]&&PILOTS[j].faction==this.faction) { pid=j; break; } 
+	    for (j=0;j<PILOTS.length; j++) 
+		if (PILOTS[j].name.replace(/\'/g,"")==pstr[0]&&PILOTS[j].faction==this.faction) { pid=j; break; } 
 	    var p=new Unit(this.team);
 	    p.upg=[];
+	    log("PILOTS unit "+PILOTS[pid].unit+" "+PILOTS[pid].name);
 	    p.selectship(PILOTS[pid].unit,PILOTS[pid].name);
 	    for (j=1; j<pstr.length; j++) {
-		//log("Searching upg "+pstr[j]);
-		for (k=0; k<UPGRADES.length; k++) if (UPGRADES[k].name.replace(/\'/g,"")==pstr[j]) {
-			p.upg.push(k);
-			if (typeof UPGRADES[k].install!="undefined") UPGRADES[k].install(p);
+		for (k=0; k<UPGRADES.length; k++) 
+		    if (UPGRADES[k].name.replace(/\'/g,"")==pstr[j]) {
+			p.upg[j-1]=k;
+			if (typeof UPGRADES[k].install!= "undefined") UPGRADES[k].install(p);
 			break;
 		    }
 	    }
 	}
-	nextphase();
+	//nextphase();
 	
     },
-    parseASCII: function(svg,str) {
+    parseASCII: function(str) {
 	var pilots=str.split(";");
 	for (i in generics) if (generics[i].team==this.team) delete generics[i];
 	for (i=0; i<pilots.length-1; i++) {
@@ -255,8 +237,7 @@ Team.prototype = {
 	    p.selectship(PILOTS[pid].unit,PILOTS[pid].name);
 	    for (j=1; j<updstr.length; j++) {
 		var n=Base64.toNumber(updstr[j]);
-		p.upg.push(n);
-		//log("upg:"+n+" "+UPGRADES[n].type+" "+UPGRADES[n].name);
+		p.upg[j-1]=n;
 	        if (typeof UPGRADES[n].install!="undefined") UPGRADES[n].install(p);
 	    }
 	    if (coord.length>1) {
@@ -266,27 +247,27 @@ Team.prototype = {
 		p.alpha=c[2];
 	    }
 	}
-	nextphase();
+	//nextphase();
     },
-    parseJSON:function(svg,str) {
+    parseJSON:function(str) {
 	var s;
 	try {
 	    s=$.parseJSON(str);
 	} catch(err) {
-	    return this.parseJuggler(svg,str);
+	    return this.parseJuggler(str);
 	}
-	var upg_type=["ept","turret","torpedo","mod","title","amd","missile","crew","cannon","bomb","system","illicit","salvaged"];
 	var i,j,k;
-	var FACTIONS={"rebels":"REBEL","empire":"EMPIRE","scum":"SCUM"};
+	this.name=s.name;
+	this.points=s.points;
 	this.faction=FACTIONS[s.faction];
 	this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
-
 	for (i in generics) if (generics[i].team==this.team) delete generics[i];
 	for (i=0; i<s.pilots.length; i++) {
 	    var pilot=s.pilots[i];
 	    var p;
 	    pilot.team=this.team;
 	    p=new Unit(this.team);
+	    if (pilot.ship=="") pilot.ship="tiefofighter";
 	    p.selectship(PILOT_dict[pilot.ship],PILOT_dict[pilot.name]);
 	    /* Copy all functions for manual inheritance. Call init. */
 	    for (k in PILOTS[this.pilotid]) {
@@ -294,16 +275,21 @@ Team.prototype = {
 		if (typeof u[k]=="function") p[k]=u[k];
 	    }
 	    if (typeof pilot.upgrades!="undefined")  {
-		for (j=0; j<upg_type.length; j++) { 
-		    var upg=pilot.upgrades[upg_type[j]];
-		    if (typeof upg!="undefined") 
-			for (k=0; k<upg.length; k++) {
-			    var u=Upgradefromid(p,upg[k]);		    
-			    if (typeof u.install != "undefined") u.install(p);
-			}
+		var nupg=0;
+		for (j in pilot.upgrades) { 
+		    var upg=pilot.upgrades[j];
+		    for (k=0; k<upg.length; k++) {
+			nupg++;
+			for (var z=0; z<UPGRADES.length; z++) 
+			    if (UPGRADES[z].name==UPGRADE_dict[upg[k]]) {
+				p.upg[nupg]=z;
+				if (typeof UPGRADES[z].install != "undefined") UPGRADES[z].install(p);
+				break;
+			    }
+		    }
 		}
 	    }
 	}
-	nextphase();
+	//nextphase();
     }
 }
