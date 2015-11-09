@@ -1,12 +1,12 @@
-var phase=0;
+var phase=1;
 var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.6.4";
+var VERSION="v0.6.99";
 var LANG="en";
 var DECLOAK_PHASE=1;
-var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE1=0,SELECT_PHASE2=1;
+var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6;
 var DICES=["focusred","hitred","criticalred","blankred","focusgreen","evadegreen","blankgreen"];
 var BOMBS=[];
 var ROCKDATA="";
@@ -14,25 +14,23 @@ var allunits=[];
 var PILOT_translation,SHIP_translation,CRIT_translation,UI_translation,UPGRADE_translation,PILOT_dict,UPGRADE_dict;
 var actionr=[];
 var actionrlock;
+var HISTORY=[];
+var REPLAY=[];
+var replayid=0;
+var dice=1;
+var ATTACK=[]
+var DEFENSE=[]
+var FACTIONS={"rebels":"REBEL","empire":"EMPIRE","scum":"SCUM"};
+var SQUADLIST;
+var TEAMS=[new Team(0),new Team(1),new Team(2)];
+var currentteam=TEAMS[0];
+var VIEWPORT;
+
 Base64 = {
     _Rixits :
 //   0       8       16      24      32      40      48      56     63
 //   v       v       v       v       v       v       v       v      v
     "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_",
-    // You have the freedom, here, to choose the glyphs you want for 
-    // representing your base-64 numbers. The ASCII encoding guys usually
-    // choose a set of glyphs beginning with ABCD..., but, looking at
-    // your update #2, I deduce that you want glyphs beginning with 
-    // 0123..., which is a fine choice and aligns the first ten numbers
-    // in base 64 with the first ten numbers in decimal.
-
-    // This cannot handle negative numbers and only works on the 
-    //     integer part, discarding the fractional part.
-    // Doing better means deciding on whether you're just representing
-    // the subset of javascript numbers of twos-complement 32-bit integers 
-    // or going with base-64 representations for the bit pattern of the
-    // underlying IEEE floating-point number, or representing the mantissae
-    // and exponents separately, or some other possibility. For now, bail
     fromNumber : function(number) {
         if (isNaN(Number(number)) || number === null ||
             number === Number.POSITIVE_INFINITY)
@@ -45,32 +43,16 @@ Base64 = {
         var result = '';
         while (true) {
             rixit = residual % 64
-            // console.log("rixit : " + rixit);
-            // console.log("result before : " + result);
             result = this._Rixits.charAt(rixit) + result;
-            // console.log("result after : " + result);
-            // console.log("residual before : " + residual);
             residual = Math.floor(residual / 64);
-            // console.log("residual after : " + residual);
-
-            if (residual == 0)
-                break;
-            }
+            if (residual == 0) break;
+	}
         return result;
     },
-
     toNumber : function(rixits) {
         var result = 0;
-        // console.log("rixits : " + rixits);
-        // console.log("rixits.split('') : " + rixits.split(''));
         rixits = rixits.split('');
-        for (e in rixits) {
-            // console.log("_Rixits.indexOf(" + rixits[e] + ") : " + 
-                // this._Rixits.indexOf(rixits[e]));
-            // console.log("result before : " + result);
-            result = (result * 64) + this._Rixits.indexOf(rixits[e]);
-            // console.log("result after : " + result);
-        }
+        for (e in rixits) result = (result * 64) + this._Rixits.indexOf(rixits[e]);
         return result;
     },
     fromCoord: function(c) {	
@@ -132,9 +114,6 @@ function hitrangetostr(r) {
 		    str+="<div class='reddice'>"+activeunit.getattackstrength(w,sh)+"</div><div class='greendice'>"+sh.getdefensestrength(w,activeunit)+"</div>"
 		    str+="<div>"+p.tohit+"%</div><div><code class='symbols' style='border:0'>d</code>"+p.meanhit+"</div><div><code class='symbols'  style='border:0'>c</code>"+p.meancritical+"</div><div>"+kill+"% kill</div>"
 		    str+="</td>";
-		    //
-			//str+="<div><a href='#combatmodal' onclick=\"resolvecombat("+k+","+w+")\" class='bigbutton'>Fire!</a></div>";
-		    //else 
 		}   
 		str+="</tr>";
 	    }
@@ -159,7 +138,7 @@ function inhitrange() {
 }
 function formatstring(s) {
     return s.replace(/%HIT%/g,"<code class='hit'></code>")
-	.replace(/%ACTION%/g,"<strong>Action:</strong>")
+	.replace(/%ACTION%/g,"<b>Action:</b>")
 	.replace(/%CRIT%/g,"<code class='critical'></code>")
 	.replace(/%EVADE%/g,"<code class='symbols'>e</code>")
 	.replace(/%FOCUS%/g,"<code class='symbols'>f</code>")
@@ -171,7 +150,6 @@ function formatstring(s) {
         .replace(/%ELITE%/g,"<code class='symbols'>E</code>")
  	.replace(/%BOMB%/g,"<code class='symbols'>B</code>")
 	.replace(/%STRAIGHT%/g,"<code class='symbols'>8</code>")
-	.replace(/%CREW%/g,"<code class='symbols'>C</code>")
         .replace(/%STOP%/g,"<code class='symbols'>5</code>")
         .replace(/%TARGETLOCK%/g,"<code class='symbols'>l</code>")
         .replace(/%TORPEDO%/g,"<code class='symbols'>P</code>")
@@ -184,7 +162,8 @@ function formatstring(s) {
         .replace(/%BANKRIGHT%/g,"<code class='symbols'>9</code>")
         .replace(/%UTURN%/g,"<code class='symbols'>2</code>")
         .replace(/%SLOOPLEFT%/g,"<code class='symbols'>1</code>")
-        .replace(/%SLOOPRIGHT%/g,"<code class='symbols'>3</code>");
+        .replace(/%SLOOPRIGHT%/g,"<code class='symbols'>3</code>")
+	.replace(/%CREW%/g,"<code class='symbols'>W</code>");
 }
 function unitstostr() {
     var s;
@@ -194,8 +173,8 @@ function unitstostr() {
 	var sh=squadron[i];
 	sobj[sh.team]+=sh;
     }
-    s="<div id='squad1'><div>Stats</div><div>Names</div><div>Ship</div><div>Points</div><div>Description</div></div>"+sobj[1]
-	+"<div id='squad2'><div>Stats</div><div>Names</div><div>Ship</div><div>Points</div><div>Description</div></div>"+ sobj[2];
+    s="<div id='squad1n'><div>Stats</div><div>Names</div><div>Ship</div><div>Points</div><div>Description</div></div>"+sobj[1]
+	+"<div id='squad2n'><div>Stats</div><div>Names</div><div>Ship</div><div>Points</div><div>Description</div></div>"+ sobj[2];
     return s;
 }
 function allunitlist() {
@@ -233,9 +212,10 @@ function nextcombat() {
 		 if (dead&&(TEAMS[1].checkdead()||TEAMS[2].checkdead())) win();
 	     },
 	     function() {
-		 log("No more firing units, ready to end phase."); 
+		 log(UI_translation["No more firing units, ready to end phase."]); 
 		 for (var i=0; i<squadron.length; i++) squadron[i].endcombatphase();
 		 barrier(endphase);
+		 enablenextphase();
 	     },
 	     function() {
 		 activeunit.beginattack();
@@ -259,69 +239,87 @@ function nextdecloak() {
 	     function() { activeunit.dodecloak(); });
 }
 function nextplanning() {
+    nextunit(function(t) { return (t.maneuver==-1); },
+	     function() { skillturn++; },
+	     function() { return enablenextphase(); },
+	     function() {
+		 activeunit.select();
+		 activeunit.doplan();
+	     });
+/*
     var current=active;
     for (var i=0; i<squadron.length; i++,active=(active+1)%squadron.length) {
 	if (squadron[active].maneuver==-1) break;
     }
     if (squadron[active].maneuver>-1) { active=current; enablenextphase(); }
     else {
+	log("PLANNING "+squadron[active].name);
 	squadron[active].select();
 	activeunit.doplan();
     }
+*/
 }
 function addattackdie(type,n) {
     for (var i=0; i<n; i++) 
 	$("#attack").append("<td class="+type+"reddice'></td>");
 }
-function addroll(f,n,id) {
+function adddefensedie(type,n) {
+    for (var i=0; i<n; i++) 
+	$("#defense").append("<td class="+type+"greendice'></td>");
+}
+
+function displayattackroll(m,n) {
     var i,j=0;
+    $("#attack").empty();
+    for (i=0; i<Math.floor(m/100)%10; i++,j++)
+	$("#attack").append("<td class='focusreddice'></td>");
+    for (i=0; i<(Math.floor(m/10))%10; i++,j++)
+	$("#attack").append("<td class='criticalreddice'></td>");
+    for (i=0; i<m%10; i++,j++)
+	$("#attack").append("<td class='hitreddice'></td>");
+    for (i=j; i<n; i++)
+	$("#attack").append("<td class='blankreddice'></td>");
+    var change=function() { 
+	if ($(this).hasClass("focusreddice")) {
+	    $(this).removeClass("focusreddice"); $(this).addClass("hitreddice");
+	}  else if ($(this).hasClass("blankreddice")) {
+	    $(this).removeClass("blankreddice"); $(this).addClass("focusreddice");
+	} else if ($(this).hasClass("hitreddice")) {
+	    $(this).removeClass("hitreddice"); $(this).addClass("criticalreddice");
+	} else if ($(this).hasClass("criticalreddice")) {
+	    $(this).removeClass("criticalreddice"); $(this).addClass("blankreddice");
+	}
+    }
+    $(".focusreddice").click(change);
+    $(".hitreddice").click(change);
+    $(".blankreddice").click(change);
+    $(".criticalreddice").click(change);
+}
+function addroll(f,n,id) {
     var foc=$(".focusreddice").length;
     var h=$(".hitreddice").length;
     var c=$(".criticalreddice").length;
     var t=f(100*foc+10*c+h,n);
-    n=t.n;
-    //console.log("addroll with "+n+" rolls:"+m);
-    var r=n*10; 
-    $("#attack").empty();
-    for (i=0; i<Math.floor(r/100)%10; i++,j++)
-	$("#attack").append("<td class='focusreddice'></td>");
-    for (i=0; i<(Math.floor(r/10))%10; i++,j++)
-	$("#attack").append("<td class='criticalreddice'></td>");
-    for (i=0; i<r%10; i++,j++)
-	$("#attack").append("<td class='hitreddice'></td>");
-    for (i=j; i<n; i++)
-	$("#attack").append("<td class='blankreddice'></td>");
+    displayattackroll(t.m,t.n);
     $("#moda"+id).remove();
 }
+function addrolld(f,n,id) {
+    var foc=$(".focusgreendice").length;
+    var e=$(".evadegreendice").length;
+    var t=f(10*foc+e,n);
+    displaydefenseroll(t.m,t.n);
+    $("#modd"+id).remove();
+}
 function modroll(f,n,id) {
-    var i,j=0;
     var foc=$(".focusreddice").length;
     var h=$(".hitreddice").length;
     var c=$(".criticalreddice").length;
     var r=f(100*foc+10*c+h,n);
-    $("#attack").empty();
-    //console.log("modifying with "+(100*foc+10*c+h)+"->"+r+" value dice/"+n);
-    for (i=0; i<Math.floor(r/100)%10; i++,j++)
-	$("#attack").append("<td class='focusreddice'></td>");
-    for (i=0; i<(Math.floor(r/10))%10; i++,j++)
-	$("#attack").append("<td class='criticalreddice'></td>");
-    for (i=0; i<r%10; i++,j++)
-	$("#attack").append("<td class='hitreddice'></td>");
-    //console.log("modifying with "+(n-j)+" blank dices");
-    for (i=j; i<n; i++)
-	$("#attack").append("<td class='blankreddice'></td>");
+    displayattackroll(r,n);
     $("#moda"+id).remove();
 }
-function modrolld(f,n,id) {
+function displaydefenseroll(r,n) {
     var i,j=0;
-    var foc=$(".focusgreendice").length;
-    var e=$(".evadegreendice").length;
-    //log("mod roll before "+foc+" "+e+" "+(n-foc-e));
-    var r=f(10*foc+e,n);
-    var a=Math.floor(r/10);
-    var b=r%10;
-    var c=n-a-b;
-    //log("mod roll after "+a+" "+b+" "+c);
     $("#defense").empty();
     for (i=0; i<Math.floor(r/10); i++,j++)
 	$("#defense").append("<td class='focusgreendice'></td>");
@@ -329,6 +327,24 @@ function modrolld(f,n,id) {
 	$("#defense").append("<td class='evadegreendice'></td>");
     for (i=j; i<n; i++)
 	$("#defense").append("<td class='blankgreendice'></td>");
+    var change=function() { 
+	if ($(this).hasClass("focusgreendice")) {
+	    $(this).removeClass("focusgreendice"); $(this).addClass("evadegreendice");
+	} else if ($(this).hasClass("blankgreendice")) {
+	    $(this).removeClass("blankgreendice"); $(this).addClass("focusgreendice");
+	} else if ($(this).hasClass("evadegreendice")) {
+	    $(this).removeClass("evadegreendice"); $(this).addClass("blankgreendice");
+	}
+    }	//log("defense roll: f"+f+" e"+e+" b"+(dd-e-f));
+    $(".focusgreendice").click(change);
+    $(".evadegreendice").click(change);
+    $(".blankgreendice").click(change);
+}
+function modrolld(f,n,id) {
+    var foc=$(".focusgreendice").length;
+    var e=$(".evadegreendice").length;
+    var r=f(10*foc+e,n);
+    displaydefenseroll(r,n);
     $("#modd"+id).remove();
 }
 function reroll(n,forattack,type,id) {
@@ -356,9 +372,9 @@ function reroll(n,forattack,type,id) {
 	}
 	//console.log("rerolling "+m+" dices");
 	$("#rerolla"+id).remove();
+	var r=activeunit.rollattackdie(m);
 	for (i=0; i<m; i++) {
-	    var r=activeunit.rollattackdie();
-	    $("#attack").prepend("<td noreroll='true' class='"+r+"reddice'></td>");
+	    $("#attack").prepend("<td noreroll='true' class='"+r[i]+"reddice'></td>");
 	}
     } else { 
 	for (i=0; i<3; i++) {
@@ -389,14 +405,32 @@ function reroll(n,forattack,type,id) {
 	});
     }
 }
+function next_replay() {
+    var p=[];
+    if (REPLAY.length>0) p=REPLAY[replayid].split("_");
+    return p;
+}
+
 function enablenextphase() {
     var i;
     var ready=true;
+
     switch(phase) {
+    case SELECT_PHASE:
+	var n=$("#squadlist tr.selected").length
+	ready=(n==2);
+	if (ready) ; //log("2 units selected for combat");
+	else {   
+	    $(".nextphase").prop("disabled",true);
+	    //log("select 2 units for combat ("+n+" selected)");
+	}
+	break;
     case PLANNING_PHASE:
 	for (i=0; i<squadron.length; i++)
 	    if (squadron[i].maneuver<0&&!squadron[i].isdead) { ready=false; break; }
-	if (ready&&$(".nextphase").prop("disabled")) log("All units have planned a maneuver, ready to end phase");
+	if (ready&&$(".nextphase").prop("disabled")) {
+	    log(UI_translation["All units have planned a maneuver, ready to end phase"]);
+	}
 	break;
     case ACTIVATION_PHASE:
 	if (subphase!=ACTIVATION_PHASE) {
@@ -408,12 +442,20 @@ function enablenextphase() {
 	} else {
 	    for (i=0; i<squadron.length; i++)
 		if (squadron[i].maneuver>-1&&!squadron[i].isdead) { ready=false; break; }
-	    if (ready&&$(".nextphase").prop("disabled")) log("All units have been activated, ready to end phase");
+	    if (ready&&$(".nextphase").prop("disabled")) log(UI_translation["All units have been activated, ready to end phase"]);
 	}
 	break;	
 
     }
     if (ready) $(".nextphase").prop("disabled",false);
+    // Replay
+    /*var p=next_replay();
+    if (REPLAY.length>0&&next_replay()[0]=="nextphase") {
+	log("<div style='color:white;background:blue'>##"+p[0]+":"+p[1]+"</div>");
+	replayid++;
+	if (phase>=PLANNING_PHASE) return nextphase();
+    } else log("<div style='color:white;background:green'>##"+p[0]+":"+p[1]+"</div>");
+    */
     return ready;
 }
 
@@ -483,15 +525,146 @@ function win() {
 }
 document.addEventListener("win",win,false);
 
-function importexportsquad() {
-    currentteam=(phase==SELECT_PHASE1)?1:2;
-    var team=currentteam;
-    $("#jsonimport").val("");
-    window.location="#importexport";
-    $("#jsonexport").val(JSON.stringify(TEAMS[team]));
-    $("#jugglerexport").val(TEAMS[team].toJuggler()); 
+function createsquad() {
+    $(".activeunit").prop("disabled",true);
+    $("#selectphase").hide();
+    phase=CREATION_PHASE;
+    $(".nextphase").prop("disabled",false);
+    currentteam.changefaction("REBEL");
+    $("#factionselect selected").val("REBEL");
+    $("#creation").show();
+}
+function addunit() {
+    currentteam.addunit(0);
+}
+function displaysquad(n) {
+    var s=$("#squad"+n).val();
+    TEAMS[n].parseJSON(localStorage[s]);
+    $("#display"+n).html(TEAMS[n].toJuggler());
+    $("#displayxws"+n).html(JSON.stringify(TEAMS[n]));
+    $("#faction"+n).attr("class",TEAMS[n].faction);
 }
 
+function makeGrid(points1,points2){    
+    var dataLength = points1.length;
+    var allData = points1.concat(points2);
+    var maxValue = Math.max.apply(null, allData);
+    var minValue = Math.min.apply(null, allData);
+    if (maxValue > $('#svgLine').height()){ 
+      $('#svgLine').height(maxValue+10);
+    }
+    
+    // Creates the vertical lines in the graph
+    for (var i=0; i<dataLength; i++) {
+      var x = i*100;
+      var xLine = s.line(x, minValue-10, x, maxValue+10).attr({
+        stroke: "#ccc",
+        strokeWidth: 0.25
+      });
+    }
+    
+    // Creates the horizontal lines in the graph
+    var w = dataLength*100;
+    var delimiter = 5;
+    var values = (maxValue+10)-(minValue-10);
+    var offset = ((maxValue+10)%delimiter);
+    for (var i=values; i > 0; i--){
+      if ((i-offset) % delimiter === 0){ // Change where lines appear by changing the delimiter (10 for every 10 units, 50 for 50, etc.)
+        var yLine = s.line(0, i, w, i).attr({
+          stroke: '#ccc',
+          strokeWidth: 0.25
+        });
+      }
+    }
+  
+  }
+  
+  function convertToPath(points){
+    var path = '';
+    
+    for (var i=0; i<points.length; i++){
+      var x = i*100;
+      var y = -points[i]+$('#svgLine').height(); // Convert points to how we like to view graphs
+      if (i===0){
+        path += 'M'+x+','+y+' R';
+      }
+      else if (i===points.length-1){
+        path += x+','+y;
+      }
+      else {
+        path += x+','+y+',';
+      }
+    }
+    return path;
+  }
+ 
+  function makePath(data, color){
+    var pathString = convertToPath(data);
+    var graphHeight = $('#svgLine').height();
+    var fillString = pathString+' V'+graphHeight+' H0 Z';
+    
+    function getDefaultPath(isFill){
+      var defaultPathString = 'M0,'+graphHeight+' H';
+      
+      
+      for (var i=0; i<data.length; i++) {
+        if (i!==0){ 
+          defaultPathString += i*100+' ';
+        }
+      }
+      
+      if(isFill){
+        defaultPathString += 'V'+graphHeight+' H0 Z';
+      }
+      return defaultPathString;
+    }
+    
+    var path = s.path(getDefaultPath()).attr({
+      stroke: color,
+      strokeWidth: 2,
+      fill: 'transparent'
+    });
+  
+    var fill = s.path(getDefaultPath(true)).attr({
+      fill: color,
+      fillOpacity: 0.25    
+    });
+  
+    path.animate({ path: pathString },500);
+    fill.animate({ path: fillString },500);
+    
+  }
+function endselection() {
+    $("#creation").hide();
+    $("#selectphase").show();
+    currentteam.name="SQUAD."+currentteam.toASCII();
+    localStorage[currentteam.name]=JSON.stringify(currentteam);
+    SQUADLIST.row.add(["<span class='close'>&#xd7;</span>","<span class='player human'></span>","<span class='"+currentteam.faction+"'></span>",""+currentteam.points,"<pre>"+currentteam.toJuggler()+"</pre>",id]).draw(false);
+    refreshsquadlist();
+}
+function refreshsquadlist() {
+    $("#squadlist td").off("click");
+    $("#squadlist td:first-child").click(function() { 
+	var row = SQUADLIST.row($(this).parents("tr"));
+	var data = row.data()[5];
+	delete localStorage[data];
+	row.remove().draw(); });
+    $('#squadlist td:nth-child(n+2)').click(function () {
+        $(this).parents("tr").toggleClass('selected');
+	enablenextphase();
+    } );
+    enablenextphase();
+}
+function importsquad() {
+    currentteam.parseJSON($("#importtext").val());
+    currentteam.name="SQUAD."+currentteam.toASCII();
+    localStorage[currentteam.name]=JSON.stringify(currentteam);
+    SQUADLIST.row.add(["<span class='close'>&#xd7;</span>","<span class='player human'></span>","<span class='"+currentteam.faction+"'></span>",""+currentteam.points,"<pre>"+currentteam.toJuggler()+"</pre>",id]).draw(false);
+    window.location="#";
+    refreshsquadlist();
+}
+function startcombat() {
+}
 function bind(name,c,f) { $(document.body).bind('keydown.'+name,jwerty.event(c,f)); }
 function unbind(name) { $(document.body).unbind('keydown.'+name); } 
 function bindall(name) {
@@ -512,38 +685,29 @@ var ZONE=[];
 
 function nextphase() {
     var i;
+    if (REPLAY.length==0) record("nextphase",phase);
     // End of phases
     //if (!enablenextphase()) return;
     window.location="#";
     switch(phase) {
-    case SELECT_PHASE1:
+    case SELECT_PHASE:	
+	$("#game").show();
+	$("#selectphase").hide();
+	$("#creation").hide();
 	$("#rightpanel").show();
-	ZONE[3]=s.rect(0,0,900,900).attr({
-		strokeWidth: 6,
-		stroke:halftone(WHITE),
-		strokeDasharray:"20,10,5,5,5,10",
-		fillOpacity: 0,
-		id:'ZONE',
-		pointerEvents:"none"
-	    });
-	ZONE[3].appendTo(VIEWPORT);
-	ZONE[1]=s.rect(0,0,100,900).attr({
-		fill: TEAMS[1].color,
-		strokeWidth: 2,
-		opacity: 0.3,
-		pointerEvents:"none"
-	    });
-	ZONE[1].appendTo(VIEWPORT);
+	$("#leftpanel").show();
+	$('#squadlist tr.selected').each(function(index) {
+	    if (index<2) {
+		TEAMS[index+1].parseJSON(localStorage[SQUADLIST.row($(this)).data()[5]]);
+		if ($(this).find(".human").length>0) TEAMS[index+1].isia=false;
+		else TEAMS[index+1].isia=true;
+	    }
+	} );
 	break;
-    case SELECT_PHASE2:
-	ZONE[2]=s.rect(800,0,100,900).attr({
-		fill: TEAMS[2].color,
-		strokeWidth: 2,
-		opacity: 0.3,
-		pointerEvents:"none"
-	    });
-	ZONE[2].appendTo(VIEWPORT);
-	break;
+    case CREATION_PHASE:
+	endselection();
+	phase=SELECT_PHASE;
+	return;
     case SETUP_PHASE: 
 	ZONE[1].remove();
 	ZONE[2].remove();
@@ -554,6 +718,13 @@ function nextphase() {
 	$(".unit").css("cursor","pointer");
 	$("#positiondial").hide();
 	for (i=0; i<OBSTACLES.length; i++) OBSTACLES[i].g.undrag();
+	HISTORY=[];
+	if (REPLAY.length>0) {
+	    replayid=0;
+	    for (var i=0; i<this.squadron.length; i++) 
+		$.extend(this.squadron[i],ReplayUnit.prototype);
+
+	}
 	break;
     case PLANNING_PHASE:
 	$("#maneuverdial").hide();
@@ -582,29 +753,56 @@ function nextphase() {
     if (phase<3) $("#phase").html(UI_translation["phase"+phase]);
     else $("#phase").html(UI_translation["turn #"]+round+" "+UI_translation["phase"+phase]);
     $("#combatdial").hide();
-    if (phase>SELECT_PHASE2) for (i=0; i<squadron.length; i++) {squadron[i].unselect();}
+    if (phase>SELECT_PHASE) for (i=0; i<squadron.length; i++) {squadron[i].unselect();}
     // Init new phase
-    for (i=SELECT_PHASE1; i<=COMBAT_PHASE; i++) {
+    for (i=SELECT_PHASE; i<=COMBAT_PHASE; i++) {
 	if (i!=phase) unbind("phase"+i);
 	else bindall("phase"+i);
     }
     $(".nextphase").prop("disabled",false);
     switch(phase) {
-    case SELECT_PHASE1:
+    case SELECT_PHASE:
 	$(".permalink").hide();
-	$(".importexport").show();
 	$(".activeunit").prop("disabled",true);
 	$("#rightpanel").hide();
-	break;
-    case SELECT_PHASE2:
-	$("#team1").css("top",$("nav").height()+2);
-	TEAMS[1].endselection(s);
+	$("#leftpanel").hide();
+	$("#game").hide();
+	$("#selectphase").show();
+	$("#creation").hide();
+	currentteam.setfaction("REBEL");
+	$(".nextphase").prop("disabled",true);
+	//window.location="#creation";
 	break;
     case SETUP_PHASE:
-	$(".importexport").hide();
 	$("#team2").css("top",$("nav").height()+2);
+	$("#team1").css("top",$("nav").height()+2);
 	$(".ctrl").css("display","block");
+	ZONE[3]=s.rect(0,0,900,900).attr({
+		strokeWidth: 6,
+		stroke:halftone(WHITE),
+		strokeDasharray:"20,10,5,5,5,10",
+		fillOpacity: 0,
+		id:'ZONE',
+		pointerEvents:"none"
+	    });
+	ZONE[3].appendTo(VIEWPORT);
+	ZONE[1]=s.rect(0,0,100,900).attr({
+		fill: TEAMS[1].color,
+		strokeWidth: 2,
+		opacity: 0.3,
+		pointerEvents:"none"
+	    });
+	ZONE[1].appendTo(VIEWPORT);
+	ZONE[2]=s.rect(800,0,100,900).attr({
+		fill: TEAMS[2].color,
+		strokeWidth: 2,
+		opacity: 0.3,
+		pointerEvents:"none"
+	    });
+	ZONE[2].appendTo(VIEWPORT);
+	TEAMS[1].endselection(s);
 	TEAMS[2].endselection(s);
+
 	$(".activeunit").prop("disabled",false);
 	activeunit=squadron[0];
 	activeunit.select();
@@ -679,7 +877,7 @@ function nextphase() {
 	});
 	loadrock(s,ROCKDATA);
 	if (OBSTACLES.length>0) showrock();
-	log("<div>[turn "+round+"] Setup phase</div>");
+	log("<div>["+UI_translation["turn #"]+round+"]"+UI_translation["phase"+phase]+"</div>");
 	$(".unit").css("cursor","move");
 	$("#positiondial").show();
 	bindall("select");
@@ -691,19 +889,22 @@ function nextphase() {
 	actionr = [$.Deferred().resolve()];
 	/* For phase */
 	actionrlock=$.Deferred().resolve();
-	$(".permalink").hide();
-	log("<div>[turn "+round+"] Planning phase</div>");
+	//$(".permalink").hide();
+	log("<div>["+UI_translation["turn #"]+round+"]"+UI_translation["phase"+phase]+"</div>");
 	$(".nextphase").prop("disabled",true);
 	$("#maneuverdial").show();
 	squadron[0].select();
+	skillturn=0;
+	filltabskill();
 	for (i=0; i<squadron.length; i++) {
-	    squadron[i].evaluatepositions(false,false);
+	    //squadron[i].evaluatepositions(false,false);
+	    squadron[i].newm=squadron[i].m;
 	    squadron[i].beginplanningphase().progress(nextplanning);
 	}
 	nextplanning();
 	break;
     case ACTIVATION_PHASE:
-	log("<div>[turn "+round+"] Activation phase</div>");
+	log("<div>["+UI_translation["turn #"]+round+"]"+UI_translation["phase"+phase]+"</div>");
 	$(".nextphase").prop("disabled",true);
 	$("#activationdial").show();
 	for (i=0; i<squadron.length; i++) squadron[i].beginactivationphase().done(nextdecloak);
@@ -715,7 +916,7 @@ function nextphase() {
 	barrier(nextdecloak);
 	break;
     case COMBAT_PHASE:
-	log("<div>[turn "+round+"] Combat phase</div>");
+	log("<div>["+UI_translation["turn #"]+round+"]"+UI_translation["phase"+phase]+"</div>");
 	$("#attackdial").show();
 	skillturn=12;
 	for (i=0; i<squadron.length; i++) squadron[i].begincombatphase().done(nextcombat);
@@ -732,15 +933,21 @@ function log(str) {
     $("#log").scrollTop(10000);
 }
 function permalink() {
-   var s="?"+TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock();
+    var s="?"+TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock()+"&"+history_toASCII();
     document.location.search = s;
 }
 function resetlink() {
     document.location.search="";
 }
-function record(id,str) {
-    //$("#log").append("<div style='color:red'>allunits["+id+"]."+str+"<div>");
-    //$("footer").scrollTop(10000);
+function record(id,val,str) {
+    //HISTORY.push({s:str,v:val,id:id});
+    //log("<div style='background-color:red;color:white'>"+id+"."+str+":"+val+"<div>");
+}
+function history_toASCII() {
+    var str="";
+    for (var i=0; i<HISTORY.length; i++) 
+	str+=HISTORY[i].s+"_"+HISTORY[i].id+";"
+    return str;
 }
 function select(name) {
     var i;
@@ -944,8 +1151,6 @@ function tohitproba(tokensA,tokensD,at,dt,attack,defense) {
 		fa=Math.floor(n/100);
 		ca=Math.floor((n-100*fa)/10);
 		ha=n-100*fa-10*ca;
-		//log("n"+n+" f"+f+" c"+c+" h"+h);
-		//log("fa"+fa+" ca"+ca+" ha"+ha);
 		for (ff=0; ff<=defense; ff++) {
 		    for (ef=0; ef<=defense-ff; ef++) {
 			var fd;
@@ -963,7 +1168,6 @@ function tohitproba(tokensA,tokensD,at,dt,attack,defense) {
 			if (hit>evade) { i = hit-evade; evade=0; } 
 			else { evade=evade-hit; }
 			if (ca>evade) { i+= 10*(ca-evade); }
-			//log("i "+i+" "+a+"*"+d);
 			p[i]+=a*d;
 		    }
 		}
@@ -1034,12 +1238,6 @@ function fillprobatable() {
 }
 
 
-var dice=1;
-var ATTACK=[]
-var DEFENSE=[]
-
-var TEAMS=[0,new Team(1),new Team(2)];
-var VIEWPORT;
 function modal_dragstart(event) {
     var style = window.getComputedStyle(event.originalEvent.target, null);
     event.originalEvent.dataTransfer.setData("text/plain",
@@ -1177,11 +1375,6 @@ $(document).ready(function() {
     $.when(
 	$.ajax("data/ships.json"),$.ajax("data/strings."+LANG+".json"),$.ajax("data/xws.json")
     ).done(function(result1,result2,result3) {
-/*    $.ajax({
-	dataType: "json",
-	url: "data/ships.json",
-	mimeType: "application/json",
-	success:*/ 
 	var process=setInterval(function() {
 	    ATTACK[dice]=attackproba(dice);
 	    DEFENSE[dice]=defenseproba(dice);
@@ -1200,14 +1393,20 @@ $(document).ready(function() {
 	var css_translation=result2[0].css;
 	var str="";
 	for (var i in css_translation) {
-	    str+="."+i+"::before { content:'"+css_translation[i]+"';}\n";
+	    log("css:"+i);
+	    str+="."+i+"::after { content:\""+css_translation[i]+"\";}\n";
 	}
 	$("#localstrings").html(str);
-	
+	var factions=["rebel","empire","scum"];
+	for (var i in factions) {
+	    var f=UI_translation[factions[i]];
+	    $(".factionselect").append("<option value='"+factions[i].toUpperCase()+"'>"+f+"</option>");
+	}
 	UPGRADE_dict=result3[0].upgrades;
 	PILOT_dict=result3[0].pilots;
 	var r=0,e=0,i;
 	squadron=[];
+
 	s.attr({width:"100%",height:"100%",viewBox:"0 0 900 900"});
 	TEAMS[1].setfaction("REBEL");
 	TEAMS[2].setfaction("EMPIRE");
@@ -1230,23 +1429,8 @@ $(document).ready(function() {
 		str+=PILOTS[i].name; 
 	    }
 	}
-	    /*
-	    setRSSFeed('#menu');	
-	    
-	    $('#menu').change(function() {
-		    setRSSFeed(this);
-		});
-	    
-	    function setRSSFeed(obj) {
-		var feedurl = $('option:selected', obj).val();
-		
-		if (feedurl) {
-			$('#test').rssfeed(feedurl);
-		}
-	    }
-	    */
 	log(n+"/"+PILOTS.length+" pilots with full effect");
-	log("Pilots NOT implemented"+str);
+	if (str!="") log("Pilots NOT implemented"+str);
 	n=0;
 	str="";
 	for (i=0; i<UPGRADES.length; i++) {
@@ -1256,17 +1440,9 @@ $(document).ready(function() {
 	$(".ver").html(VERSION);
 	log(n+"/"+UPGRADES.length+" upgrades implemented");
 	log("Upgrades NOT implemented"+str);
-	phase=-1;
 	$("#showproba").prop("disabled",true);
-	var args= window.location.search.substr(1).split('&');
-	nextphase();
-	if (args.length>1) {
-	    log("Loading permalink...");
-	    ROCKDATA=args[2];
-	    TEAMS[1].parseASCII(s,args[0]);
-	    TEAMS[2].parseASCII(s,args[1]);
-	    //if (args.length>2) 
-	}
+
+
 	var d=new Date();
 	for (i=0; i<d.getMinutes(); i++) Math.random();
 	loadsound();
@@ -1277,10 +1453,6 @@ $(document).ready(function() {
 	    var top=parseInt($("#team1").css("top"),10);//+delta;
 	    
 	};
-	//$(".modalDialog").draggable();
-	//$(".modalDialog > div").on("dragstart",modal_dragstart); 
-	//$(document.body).on('dragover',modal_dragover); 
-	//$(document.body).on('drop',modal_drop); 
 	var scrolloverflow=function(event) {
 	    var id=event.target.id;
 	    $("#"+id+" .outoverflow").each(function(index) { 
@@ -1300,10 +1472,8 @@ $(document).ready(function() {
 	
 	mc.zoom=1;
 	mc.on("pinch",function(ev) {
-	    //log(ev.sourceEvent);
 	    if (ev.target.id!="svgout") { return;}
 	    if (activeunit.dragged==true) return;
-	    //zoom(ev.center.x,ev.center.y,ev.scale);
 	    var vm=VIEWPORT.m.clone().invert();
 	    var x=vm.x(ev.center.x,ev.center.y);
 	    var y=vm.y(ev.center.x,ev.center.y);
@@ -1314,23 +1484,73 @@ $(document).ready(function() {
 	    if (ev.final) mc.zoom=1;
 	});
 	$("aside").on("scroll touchmove touchstart mousewheel", scrolloverflow);
+
+	var args= window.location.search.substr(1).split('&');
+	if (args.length>1) {
+	    log("Loading permalink...");
+	    ROCKDATA=args[2];
+	    phase=CREATION_PHASE;
+	    TEAMS[1].parseASCII(args[0]);
+	    TEAMS[2].parseASCII(args[1]);
+	    if (args.length>3) REPLAY=args[3].split(";");
+	    phase=SELECT_PHASE;
+	    return nextphase();
+	} else {
+	    phase=0;
+	    nextphase();
+	    var newt;
+	    newt="<thead><tr><th></th><th></th><th><span class='m-faction'></span></th><th><span class='m-points'></span></th><th><span class='m-units'></span></th><th></th></tr></thead>";
+	    for (i in localStorage) {
+		if (typeof localStorage[i]=="string"&&i.match(/SQUAD.*/)) {
+		    //delete localStorage[i];
+		    TEAMS[0].parseJSON(localStorage[i]);
+		    newt+="<tr>"
+		    newt+="<td><span class='close'>&#xd7;</span></td>";
+		    newt+="<td><span class='player human'></span></td>";
+		    newt+="<td><span class='"+TEAMS[0].faction+"'></span></td>";
+		    newt+="<td>"+TEAMS[0].points+"</td>";
+		    newt+="<td><pre>"+TEAMS[0].toJuggler()+"</pre></td>";			
+		    newt+="<td>"+i+"</td></tr>";		
+	    }
+	    }
+	    $("#squadlist").html(newt);
+	    SQUADLIST=$("#squadlist").DataTable({ 
+		"language": {
+		    "search":UI_translation["Search"],
+		    "lengthMenu": UI_translation["Display _MENU_ records per page"],
+		    "zeroRecords": UI_translation["Nothing found - sorry"],
+		    "info": UI_translation["Showing page _PAGE_ of _PAGES_"],
+		    "infoEmpty": UI_translation["No records available"],
+		    "infoFiltered": UI_translation["(filtered from _MAX_ total records)"]
+		},
+		"columnDefs": [
+		    {
+			"targets": [ 5 ],
+			"visible": false,
+			"searchable": false
+		    }],       
+		"scrollY":        "20em",
+		"scrollCollapse": true,
+		"ordering":true,
+		"info":true,
+		"paging":         false});
+	    $("#squadlist td:first-child").click(function() { 
+		var row = SQUADLIST.row($(this).parents("tr"));
+		var data = row.data()[5];
+		delete localStorage[data];
+		row.remove().draw(); });
+	    $("#squadlist td:nth-child(2)").click(function() { 
+		$(this).children().toggleClass('human'); });
+	    $('#squadlist td:nth-child(n+3)').click(function () {
+		$(this).parents("tr").toggleClass('selected');
+		enablenextphase();
+	    } );
+	    
+	}
 	/*md = new Hammer(document.getElementById('leftpanel'));
-	md.get('pan').set({direction:Hammer.DIRECTION_VERTICAL});
-	md.on("panup pandown",function(ev) {
-	    log(ev.type);
-	});*/
+	  md.get('pan').set({direction:Hammer.DIRECTION_VERTICAL});
+	  md.on("panup pandown",function(ev) {
+	  log(ev.type);
+	  });*/
     });
-//    });
 });
-
-//var mypath;
-//mypath=P[12].path.attr({
-//    id: "squiggle",
-//    fill: "none",
-//    strokeWidth: "20",
-//    stroke: "#fff"});
-//mypath.transform(ship[0].m);
-
-/*
-     
-*/
