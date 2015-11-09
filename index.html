@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html manifest="xwing.appcache">
   <head>
     <link href="img/favicon.ico" rel="icon" type="image/x-icon"/>
     <title>Squad Benchmark: combat trainer and squad builder for X-Wing Miniatures game</title>
@@ -8,12 +8,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <script src="snap.svg-min-0.4.1.js"></script>
     <script src="jwerty.js"></script>
-    <script src="jquery-1.11.2.js"></script>
+    <link rel="stylesheet" href="jquery.dataTables.min.css">
+    <script src="jquery-1.11.3.min.js"></script>
+    <script src="jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="xwings.css">
     <script src="obstacles.js"></script>
     <script src="critical.js"></script>
     <script src="units.js"></script>
     <script src="iaunits.js"></script>
+    <script src="replayunits.js"></script>
     <script src="pilots.js"></script>
     <script src="upgrades.js"></script>
     <script src="team.js"></script>
@@ -38,17 +41,16 @@
       <div>
 	<span class="h2"><span id="logo" style='font-family:ships;font-size:larger;'>x</span><span class="title">Squadron Benchmark</span><span class="ver"></span></span>
 	<div style="float:right;font-size:small">
-	  <button class="m-save permalink" onclick="permalink()"> &#128279;</button>
-	  <button class="m-reset permalink" onclick="resetlink()"> &#128279;</button>
+	  <button class="m-reset permalink" onclick="resetlink()">&#x25c0; </button>
+	  <button class="m-save permalink" onclick="permalink()">&#128279; </button>
 	  <span id="phase" style="font-size:small"></span>
-	  <button class="importexport m-importexport" onclick="importexportsquad()"></button>
 	  <button class="nextphase" onclick="nextphase()"><span class='np'></span> <span id='npimg'>&#9658;</span></button>
 	  <select id="language" class="langselect"></select>
 	  <div class="menu" onmouseover="$('nav ul').css({display:'block',visibility:'visible'})" onmouseout="$('nav ul').css({display:'none',visibility:'hidden'})">
 	  ☰<ul>
 	    <li><a class="m-about" href="#about"></a></li>
 	    <li><a class="m-proba" href="#proba" id="showproba"></a></li>
-	    <li><a class="m-console" href="#" onclick=""></a></li>
+	    <li><a class="m-console" href="#" onclick="$('footer').css({display:'block',visibility:'visible'})"></a></li>
 	    <li><a class="m-blog" href="http://xws-benchmark.blogspot.fr/"></a></li>
 	    <li><a class="m-help" href="#help"></a></li>
 	    <li><a class="m-donate" href="#donate"></a></li>
@@ -70,7 +72,7 @@
       </section>
     </aside>
     
-    <article class="main">
+    <article id="game" class="main">
       <h2 style='display:none'>Main panel</h2>
       <section class="phasepanel">
 	<h2 style='display:none'>Main panel</h2>
@@ -103,13 +105,12 @@
 	<svg id="svgout"></svg>
       </section>
 
-      
       <section class="info">
 	<h2 style='display:none'>Info panel</h2>
       </section>
 
-
     </article>
+
      <section id="modal" class="modalDialog">
 	<div>
 	  <h2>
@@ -123,169 +124,95 @@
 	</div>
      </section>
  
-      <section id="importexport" class="modalDialog">
+     <article id="creation" class="mainarticle">
+	 <table class="headunits">
+	   <tr>
+	     <td></td>
+	     <td>
+	   <select class="factionselect" onchange="currentteam.changefaction($(this).val())">
+	   </select>
+	   <span id="totalpts">0</span>
+	   <span class="total m-totalpts"></span>
+	   <button onclick="addunit()" class="m-add"><span style='font-family:ships;font-size:large;line-height:0.8em'>x</span> </button>
+	   <button onclick="exportsquad()" class="m-export">&#x1f4cb; </button>
+	     </td>
+	   </tr>
+	 </table>
+	 <div class="team">
+	   <table class="listunits">
+ 	   </table>
+	 </div>
+     </article>
+ 
+     <article id="selectphase" class="mainarticle">
+       <table class="headunits">
+	 <tr>
+	   <td>
+	     <button onclick="createsquad()" class="m-create"><span class='symbols' style='font-size:1em'>o</span> </button>
+	     <button onclick="$('#importtext').val('');window.location='#import'" class="m-import">&#x1f4cb; </button>
+	     </td>
+	   </tr>
+       </table>
+       <br>
+       <div class="m-selectinstructions"></div>
+       <table id="squadlist" style="color:black;font-size:x-small" class="compact stripe hover order-column row-border" width="10em" cellspacing='0'>
+       </table>
+       <br>
+     </article>
+
+     <section id="import" class="modalDialog">
 	<div>
-	  <h2><span class="m-importexport"></span><a href="#" title="Close" class="close">&#10060;</a>
+	  <h2><span class="m-import"></span><a href="#" title="Close" class="close">&#xd7;</a>
 	  </h2>
 	  <div>
-	    <h3 class="m-import">&nbsp;</h3>
-	    <p>Copy and paste the squad list using one of the two formats. It will determine automatically which one you use.</p>
-	    <ul>
-	      <li>JSON format: The JSON format corresponds to <a href="https://github.com/elistevens/xws-spec">XWS</a>, used by other squad builders.</li>
-	      <li>Plain text: This format describes units one per line, starting with the pilot's name and followed by the list of upgrades, separated by ' + '. See <a href="http://lists.starwarsclubhouse.com/tourneys">X-Wing Juggler lists</a> for an example. You can directly copy lists from X-Wing Juggler with this import.</li>
-	    </ul>
-	    <div>
-	      <textarea id="jsonimport" rows="4"></textarea>
-	    </div>
-	    <a href="#" class="button m-import" onclick="TEAMS[currentteam].parseJSON(s,$('#jsonimport').val())"></a>
-	    <h3 class="m-export">&nbsp;</h3>
-	    You can export your squadrons by copying the following lines, in JSON or in text format, into other tools or a text editor.
-	    <p>JSON export</p>
-	    <textarea id="jsonexport" rows="4"></textarea>
-	    <p>Text format</p>
-	    <textarea id="jugglerexport" rows="4"></textarea>
+	  <table>
+	    <tr><td><span class="m-importinstructions"></span></td></tr>
+	    <tr><td><textarea id="importtext"></textarea>
+</td></tr>
+	    <tr><td><button onclick="importsquad()" class="m-import importexport"></button></td></tr>
+	  </table>
 	  </div>
 	</div>
+     </section>
+
+  <section id="proba" class="modalDialog">
+        <div>
+          <h2><span class="m-proba"></span><a href="#" title="Close" class="close">&#10060;</a>
+          </h2>
+          <div>
+            <p>
+            This table gives the % of chance to hit for an attacker. In rows, the number of dice for the attacker, and in column the number of dice of the defender. You can set the tokens or rerolls for both units. Each cell gives the % of chance for the attacker to hit the defender, the mean number of hits (<code class="hit"></code>) and criticals (<code class="critical"></code>) given. 
+            </p>
+              <table>
+                <tr><td>Attacker</td><td>Defender</td></tr>
+                <tr>
+                  <td><input type="checkbox" onclick="fillprobatable()" id="focusA" value="focus">
+                    <label for="focusA" class="xfocustoken"></label>
+                    <input type="checkbox" onclick="fillprobatable()" id="targetA" value="target">
+                    <label for="targetA" class="xtargettoken"></label>
+                    <input type="number" min=0 max=5 step=1 style="width:2em" onchange="fillprobatable()" id="rerollA" value="0">rerolls
+                  </td>
+                  <td><input type="checkbox" onclick="fillprobatable()" id="focusD" value="focus">
+                    <label for="focusD" class="xfocustoken"></label>
+                    <input type="checkbox" onclick="fillprobatable()" id="evadeD" value="evade">
+                    <label for="evadeD" class="xevadetoken"></label>
+                    <input type="checkbox" onclick="fillprobatable()" id="cloakD" value="0">
+                    <label for="cloakD" class="xcloaktoken"></label>
+                    <input type="number" min=0 max=5 step=1 style="width:2em" onchange="fillprobatable()"  id="rerollD" value="0">rerolls
+                  </td>
+                </tr>
+              </table>
+            <table id="probatable">  
+            </table>
+          </div>
+        </div>
       </section>
 
-      <section id="help" class="modalDialog">
-	<div class="help" draggable="true">
-	  <h2><span class="m-help"></span><a href="#" title="Close" class="close">&#10060;</a>
-	  </h2>
-	  <div>
-	    <h2>How to play</h2> 
-	  <p>In Squadron benchmark, you first have to build 2
-	  squadrons, or import them in JSON format, before the
-	  combat. You can also export your squads in the same
-	  format. You can decide which side you are going to play
-	  (human player) and which side is for the simple IA (computer
-	  player). Both sides can be played by IA or by you. </p>
-Dans Squadron Benchmark, vous devez d'abord constituer 2 escadrons. Vous pouvez les construire avec l'application, ou vous les importez d'un autre outil au format JSON ou écrire une liste directement.  
-	  <p>The game area is decomposed into several zones. The top
-	    menu presents actions available at all time. The left
-	    toolbar describes the selected unit and the current game
-	    phase controls. The center area is where the game takes
-	    place. It has a size corresponding to a 90cmx90cm area (normal size area) at the scale of the ships. You can select a unit by clicking on it on the
-	    center area or on its left/right description.</p>
-
-	 	    <h2>Squad building</h2> In this phase, only the left then
-	    right panels are activated. You first select the kind of
-	    ship, then the pilot and its upgrades. All pilots upto
-	    wave 6 are available, but the EPIC format is not handled
-	    (no huge ships).
-	    The controls to create a squad should be straightforward. When the first squad is built, press the red button 'Next Phase' to build the second one.
-		    You can also Import/Export your squad using XWS format or plain text.
-
-	    When both squads are built, press again the red button to
-	    start the combat ! 
-	  
-	  <h2>Combat</h2> The left/right panels display the
-	  characteristics of selected unit: Name of the pilot, type of
-	  ship, in the top corner:pilot skill. For each weapon, you
-	  can click on its power to toggle its range. Weapons are in
-	  bright red when a target is in range, dark red
-	  otherwise. When you click on the pilot agility, it toggles
-	  range display.  Shields and hulls are vertical dots, in blue
-	  and yellow resp.
-	  
-	  In the game area, the unit is represented with an
-	  image <img alt="" style='float:left;margin:10px;border:0;padding:0' src='img/unit-example.jpg'>. The type of the ship
-	  is represented with its firing arc. There are 4
-	  lines of dots, and as many dots of a given color as the value to represent. The colors correspond to the following:
-	    <b>Orange:</b> Skill of the pilot,
-	    <b>Red:</b> Strength of the attack with the primary weapon,
-	    <b>Green:</b> Agility of the ship,
-	    <b>Blue and yellow:</b> Blue dots represent shields, yellow
-	    are hull points. The total of the two values correspond to
-	    the number of hits necessary to destroy the ship.
-
-	  <h3>Combat Phases</h3> Each phase enable you to do some
-	  actions. When done, press
-	  the <span style='float:none'
-	  class='nextphase'>Next phase</span> button.
-
-	    <p><b>1- Setup phase:</b> You can drag units around and use
-	      the buttons in the left panel to turn them (including obstacles). This is
-	      not checked, but your units should not overlap obstacles
-	      or other units. You can save your setup by clicking on save, this create a permalink. Next time you reload, you will go to this screen again, bypassing the creation process. You can also copy/paste the link to show your setup in a forum :)
-	      Finally, you can select for each squad whether it's controlled by you or an IA. 
-	    </p>
-
-	    <p><b>2- Planning phase:</b> Select any unit and pick one
-	      maneuver available in the dial. Some maneuver may be
-	      automatically disabled, for instance red maneuvers when
-	      stressed. When all units have been assigned a maneuver,
-	      you can move to the next phase. You cannot pick maneuver for IA played units.</p>
-
-	    <p><b>3- Activation phase:</b> The first unit selected is
-	      one of the unit with the lowest pilot skill. You can still select
-	      manually any unit, but it is not possible to activate it
-	      if it is not its turn. Activation is done by pressing
-	      the 'Move' button. Units are then
-	      moved according to the template of the selected maneuver
-	      (the template is not displayed). Collisions with
-	      obstacles and other units are automatically handled. You
-	      can then select one of the available action (or none),
-	      pressing the corresponding button. If there was a collision while performing the
-	      maneuver, no action is possible for this unit. If the
-	      action requires to select a new position (roll) or a
-	      target unit, possible positions are highlighted. Select
-	      one to complete the action. 
-
-	    <p><b>4- Combat phase:</b> Units are automatically activated
-	      by decreasing pilot skill. You
-	      can still select any unit manually but it cannot fire if
-	      it is not its turn. If there is no unit in range or if
-	      the selected unit overlaps an obstacle, this unit cannot
-	      fire. To fire a unit, press the corresponding weapon icon near the unit and then the target unit (among those highlighted). 
-A window opens showing the rolls for the attacker and its target.You can play any modifying roll/reroll or use tokens by clicking on them. When done, press 'ok'. </p>
-	 
-	  <p>The cleanup phase is here automatically done (removing
-	  unused tokens). After the combat phase, a new round starting
-	  with planning begins. When all units of a team are destroyed, the game stops. 
-	  To start a new game, just reload the page !</p>
-	</div></div>
-      </section>
-	
-
-      <section id="proba" class="modalDialog">
-	<div>
-	  <h2><span class="m-proba"></span><a href="#" title="Close" class="close">&#10060;</a>
-	  </h2>
-	  <div>
-	    <p>
-	    This table gives the % of chance to hit for an attacker. In rows, the number of dice for the attacker, and in column the number of dice of the defender. You can set the tokens or rerolls for both units. Each cell gives the % of chance for the attacker to hit the defender, the mean number of hits (<code class="hit"></code>) and criticals (<code class="critical"></code>) given. 
-	    </p>
-	      <table>
-		<tr><td>Attacker</td><td>Defender</td></tr>
-		<tr>
-		  <td><input type="checkbox" onclick="fillprobatable()" id="focusA" value="focus">
-		    <label for="focusA" class="xfocustoken"></label>
-		    <input type="checkbox" onclick="fillprobatable()" id="targetA" value="target">
-		    <label for="targetA" class="xtargettoken"></label>
-		    <input type="number" min=0 max=5 step=1 style="width:2em" onchange="fillprobatable()" id="rerollA" value="0">rerolls
-		  </td>
-		  <td><input type="checkbox" onclick="fillprobatable()" id="focusD" value="focus">
-		    <label for="focusD" class="xfocustoken"></label>
-		    <input type="checkbox" onclick="fillprobatable()" id="evadeD" value="evade">
-		    <label for="evadeD" class="xevadetoken"></label>
-		    <input type="checkbox" onclick="fillprobatable()" id="cloakD" value="0">
-		    <label for="cloakD" class="xcloaktoken"></label>
-		    <input type="number" min=0 max=5 step=1 style="width:2em" onchange="fillprobatable()"  id="rerollD" value="0">rerolls
-		  </td>
-		</tr>
-	      </table>
-	    <table id="probatable">  
-	    </table>
-	  </div>
-	</div>
-      </section>
-      
-      <section id="about" class="modalDialog">
-	<div draggable="true">
-	  <h2><span class="m-about"></span><a href="#" title="Close" class="close">&#10060;</a>
-	  </h2>
-	  <div>
+   <section id="about" class="modalDialog">
+        <div draggable="true">
+          <h2><span class="m-about"></span><a href="#" title="Close" class="close">&#10060;</a>
+          </h2>
+          <div>
 
 Squadron Benchmark is a web app for
  testing squadrons built for the X-Wing Miniatures game. You can design
@@ -310,34 +237,35 @@ The app is not really a game since the user plays both sides, there is no multi-
  The app is (c) Denis Wings 2015 (deniswings@free.fr). MIT license. <br>
 </div>
 
-	</div>
+        </div>
       </section>
 
-      <section id="donate" class="modalDialog">
-	<div>
-	  <h2><span class="m-donate"></span><a href="#" title="Close" class="close">&#10060;</a>
-	  </h2>
-	  <div style="padding:10px;width:calc(100% - 20px)">
+    <section id="donate" class="modalDialog">
+        <div>
+          <h2><span class="m-donate"></span><a href="#" title="Close" class="close">&#10060;</a>
+          </h2>
+          <div style="padding:10px;width:calc(100% - 20px)">
 <br>
-	    If you like this web app and find it useful, if you want to encourage further developments, feel free to donate ! 
+            If you like this web app and find it useful, if you want to encourage further developments, feel free to donate ! 
 <br>
-	    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-	      <input type="hidden" name="cmd" value="_s-xclick">
-	      <input type="hidden" name="hosted_button_id" value="NYM7QUG8UKGE2">
-	      <input type="image" src="img/btn_donateCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!">
-	    </form>
-<br>	    The app will stay free to use for all, with no advertisement. 
-	    Feel free to provide feed back, report bugs or suggest improvements on the blog. All comments are welcome !
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+              <input type="hidden" name="cmd" value="_s-xclick">
+              <input type="hidden" name="hosted_button_id" value="NYM7QUG8UKGE2">
+              <input type="image" src="img/btn_donateCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            </form>
+<br>        The app will stay free to use for all, with no advertisement. 
+            Feel free to provide feed back, report bugs or suggest improvements on the blog. All comments are welcome !
 <br>Thank you for your support !
 <br>
 --Denis Wings
-	  </div>
-	</div>
+          </div>
+        </div>
       </section>
+
 
       <section id="credit" class="modalDialog">
 	<div>
-	  <h2><span class="m-credits"></span><a href="#" title="Close" class="close">&#10060;</a>
+	  <h2><span class="m-credit"></span><a href="#" title="Close" class="close">&#xd7;</a>
 	  </h2>
 	  <div>
 	  The app is (c) Denis Wings (deniswings@free.fr). The License of the code is an MIT license. <br/>
@@ -390,7 +318,7 @@ The app is not really a game since the user plays both sides, there is no multi-
 	</div></div>
       </section>
     <footer>
-      <a href="#" onclick="$('footer').css({display:'none',visibility:'hidden'})" title="Close" class="close">&#10060;</a>
+      <a href="#" onclick="$('footer').css({display:'none',visibility:'hidden'})" title="Close" class="close">&#xd7;</a>
       <div class='title'>Console</div>
       <div class="log" id='log'></div>
     </footer>

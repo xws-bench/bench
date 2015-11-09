@@ -15,7 +15,16 @@ footer,article,nav,footer,body {
 display:block;
 font-family:sans-serif;
 }
-
+.outline {
+    animation-name: mine;
+    animation-duration: 1s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+@keyframes mine {
+    from {transform: scale(0.8);stroke:#222;}
+    to {transform: scale(1);stroke:#666;}
+}
 .main {
 height:calc(100% - 5ex);
 width:calc(100% - 340px);
@@ -23,6 +32,12 @@ position:fixed;
 top:5ex;
 left:170px;
 z-index:0;
+}
+.mainarticle {
+position:fixed;
+top:5ex;
+z-index:0;
+background:black;
 }
 .playmat {
 padding:0;
@@ -95,7 +110,7 @@ letter-spacing:1.5px;
 }
 
 h2 {
-color:#4682b4
+color:#4682b4;
 width:100%;
 position:absolute;
 top:0;left:0;
@@ -139,8 +154,13 @@ display:block;
 nav div ul li:hover {
 background:lightsteelblue;
 }
+.generic {
+border-spacing:0;
+border-collapse:collapse;
+padding:0;
+}
 .name select,.namewidth {
-width:calc(100% - 8px);
+width:calc(100% - 3em);
 background:black;
 color:white;
 text-align:right;
@@ -152,11 +172,11 @@ text-align:center;
 }
 .upgrade select {
 text-align:center;
-width: calc(100% - 4em) ; 
+/*width: calc(100% - 6em) ; */
 }
 .shipname select {
 text-align:center;
-width:calc(100% - 3em) ;
+width: 15em ;
 font-variant:small-caps;
 }
 .shipname span {
@@ -174,7 +194,7 @@ left:0;
 background:rgba(0,0,0,0.5);
 z-index:999;
 opacity:0;
-font-size:smaller;
+/*font-size:smaller;*/
 -webkit-transition:opacity 400ms ease-in;
 -moz-transition:opacity 400ms ease-in;
 transition:opacity 400ms ease-in;
@@ -232,13 +252,41 @@ border-radius:0 0 10px 10px;
 margin-left:5%;
 width:90%
 }
+.modalDialog td {
+    text-align:center;
+}
 #modal > div,#credit > div,#about > div {
 height:50%;
 width:50%;
 }
-#importexport > div,#help > div {
-height:60%;
+#import > div,#help > div {
+height:16em;
 width:60%;
+}
+.player::after {
+content:"";
+width:2em;
+height:2em;
+display:block;
+background:url(img/computer.png);
+background-repeat:no-repeat;
+background-size:100% 100%;
+}
+.human::after {
+content:"";
+display:block;
+width:2em;
+height:2em;
+background:url(img/user.png);
+background-repeat:no-repeat;
+background-size:100% 100%;
+}
+#creation > div {
+height:calc( 100% - 5em );
+width:100%;
+background:url(img/playmat12.jpg);
+background-repeat:no-repeat;
+background-size:100% 100%;
 }
 #proba > div,#combatmodal > div,#donate > div {
 width:400px;
@@ -255,7 +303,7 @@ text-align:center;
 border:0;
 padding:0;
 margin:0;
-font-size:1.8ex;
+/*font-size:1.8ex;*/
 }
 
 .warn {
@@ -283,7 +331,9 @@ background:#00d9ff
 }
 */
 .close {
-float:right;
+margin-right:.5ex;
+    color:red;
+    float:right;
 text-decoration:none;
 }
 .phasepanel {
@@ -307,7 +357,14 @@ line-height:20px;
 padding:2px;
 margin:1px
 }
-
+.remover {
+color:red;
+font-weight: 700;
+cursor:pointer;
+}
+.stats {
+text-align:center;
+}
 .statfire,.statevade,.PS,.statshield,.stathull,.statskill {
 line-height:1.5em;
 padding:.1em;
@@ -318,20 +375,25 @@ min-width:1.5em;
 text-align:center;
 }
 .team,.name {
-background:#fff;
-color:#000
+/*background:#fff;*/
+color:#000;
+overflow-y:auto;
 }
 button.statevade,button.statfire {
 width:2.2em;
 line-height:1.6em;
 }
 .name {
-font-weight:700
+font-weight:700;
 }
-
+.shipselection {
+width:12em;
+height:1em;
+}
 .total,.addunit {
-color:#b0c4de;
-font-weight:700
+color:black;
+font-weight:700;
+padding-right:5%;
 }
 
 .statskill,.PS {
@@ -387,23 +449,28 @@ left:178px
 .leftpanel section .stat3 {
 left:186px
 }
-
 .rightpanel section .stat {
 right:170px
 }
-
 .rightpanel section .stat2 {
 right:178px
 }
-
 .rightpanel section .stat3 {
 right:186px
 }
-
 .rightpanel section .statskill {
 float:left
 }
-
+.totalpts {
+color:black;
+}
+.actions,.pts {
+color:white;
+text-align:center;
+}
+.actions span {
+margin-left:4px;
+}
 .leftpanel section .pts,.leftpanel section .totalpts,.rightpanel section .pts,.rightpanel section .totalpts {
 color:#fff;
 position:fixed; /*absolute;*/
@@ -428,23 +495,25 @@ border:0;
 padding:0
 }
 .dial {
-/*position:absolute;*/
-position:fixed;
 color:#fff;
-padding-left:1.5em;
-padding-top:1em;
 max-width:10em;
 width:10em;
 z-index:1;
+/*background:black;*/
+border-radius:8px;
+font-size: small;
+}
+.dial tr td,.dial tr td:first-child {
+background:black;
 }
 .upgtxt {
-position:fixed;
+/*position:fixed;*/
 color:#fff;
 padding-left:1em;
-max-width:30em;
-width:30em;
-font-size:smaller;
-z-index:1;
+/*max-width:30em;
+width:30em;*/
+/*font-size:smaller;
+z-index:1;*/
 }
 .rightpanel section .dial,.rightpanel section .upgtxt {
 right:220px;
@@ -456,7 +525,7 @@ left:190px;
 position:fixed;
 }
 .plus {
-color:#b0c4de;
+color:white;
 font-size:large;
 font-weight:700;
 padding:5px;
@@ -501,12 +570,49 @@ display:table-cell;
 .disabled,.disabled .selected {
 color:#aaa
 }
-
-.team .selected {
+.generic > tr:first-child > td {
+border-top: 1px solid white;
+padding-top:5px;
+}
+.listunits {
+border-collapse:collapse;
+overflow-y:scroll;
+}
+.headunits {
+background:lightsteelblue;
+vertical-align:middle;
+width:100%;
+font-variant:small-caps;
+border-spacing:0;
+border-collapse:collapse;
+}
+.headunits td:first-child {
+width:.8em;
+}
+.headunits select {
+width:15em;
+margin-right:2em;
+font-variant:small-caps;
+}
+.team .selected,.team .selected .details {
 background:orange;
 color:#fff
 }
-
+.headunits button {
+background:white;
+color:black;
+display:inline-block;
+margin:2px;
+text-align:center;
+box-shadow:1px 1px 3px #000;
+padding:2px;
+border:0;
+border-radius:5px
+}
+.headunits button:hover {
+background:black;
+color:white;
+}
 .team .selected .name {
 background:#ff8c00;
 color:#fff
@@ -536,13 +642,17 @@ display:none
 }
 
 .details {
+color:white;
 font-size:small;
 text-align:justify;
 margin:0.1em;
 overflow:auto;
-height:50px
+/*height:50px*/
 }
-
+.team .details {
+color:black;
+font-size:small;
+}
 .upgrade select {
 width:calc(100% - 3.5em);
 margin:0
@@ -636,6 +746,7 @@ border-radius:100%;
 border:1px solid;
 letter-spacing:4px;
 padding-left:4px;
+background:grey;
 }
 .RED {
 color:red
@@ -676,19 +787,18 @@ content:"m"
 .Title::after {
 content:"t"
 }
-
 .Elite::after {
 content:"E"
 }
-
+.Tech::after {
+content:"X"
+}
 .Torpedo::after {
 content:"P"
 }
-
 .Astromech::after {
 content:"A"
 }
-
 .Bomb::after {
 content:"B"
 }
@@ -761,7 +871,7 @@ border-style:solid;
 border-width:1px
 }
 
-.xevadetoken,.xfocustoken,.xcloaktoken,.xstresstoken,.xtargetedtoken,.xtargettoken,.xionizedtoken,.focusmodtokena,.focusmodtokend,.hitmodtokena,.hitmodtokend,.criticalmodtokena,.blankmodtokena,.blankmodtokend,.evademodtokend,.criticalmodtokend,.targetmodtokena {
+.xevadetoken,.xfocustoken,.xcloaktoken,.xstresstoken,.xtargetedtoken,.xtargettoken,.xionizedtoken,.focusmodtokena,.stressmodtokena,.focusmodtokend,.hitmodtokena,.hitmodtokend,.criticalmodtokena,.blankmodtokena,.blankmodtokend,.evademodtokend,.criticalmodtokend,.targetmodtokena {
 font-family:'symbols';
 padding:4px;
 display:inline-block;
@@ -778,12 +888,12 @@ border-style:solid;
 border-width:1px
 }
 
-.Criticalupg,.Elite,.Torpedo,.Astromech,.Turret,.Missile,.Crew,.Cannon,.Bomb,.Title,.Mod,.System,.Illicit,.Salvaged,.Laser,.Bilaser,.Turretlaser,.CannonTorpedoMissile {
+.Criticalupg,.Elite,.Tech,.Torpedo,.Astromech,.Turret,.Missile,.Crew,.Cannon,.Bomb,.Title,.Mod,.System,.Illicit,.Salvaged,.Laser,.Bilaser,.Turretlaser,.CannonTorpedoMissile {
 font-family:'symbols';
 padding:0;
 /*float:left;*/
 display:inline-block;
-margin:4px;
+margin-right:4px;
 font-size:2.3ex;
 text-align:center;
 text-decoration:none;
@@ -791,7 +901,8 @@ box-shadow:1px 1px 3px #000;
 background:#333;
 border-radius:100%;
 border-style:solid;
-border-width:0
+border-width:0;
+vertical-align:top;
 }
 .CannonTorpedoMissile {
 font-size:small
@@ -840,7 +951,7 @@ content:"l"
 }
 
 .stresstoken::after,.xstresstoken::after {
-content:"s"
+content:"?"
 }
 
 .xionizedtoken::after {
@@ -862,7 +973,7 @@ text-decoration:none;
 box-shadow:1px 1px 3px #000
 }
 
-.focusreddice,.hitreddice,.blankreddice,.criticalreddice,.reddice,.focusmodtokena,.targetmodtokena,.hitmodtokena,.criticalmodtokena,.blankmodtokena {
+.focusreddice,.hitreddice,.blankreddice,.criticalreddice,.reddice,.focusmodtokena,.targetmodtokena,.hitmodtokena,.criticalmodtokena,.blankmodtokena,.stressmodtokena {
 background:#f33;
 opacity:.9;
 color:#fff
@@ -893,7 +1004,10 @@ content:"f"
 font-family:'symbols';
 content:"d"
 }
-
+.stressmodtokena::after {
+font-family:'symbols';
+content:"?"
+}
 .criticalreddice::after,.critical::after,.Criticalupg::after,.criticalmodtokena::after,.criticalmodtokend::after {
 font-family:'symbols';
 content:"c"
@@ -1010,7 +1124,7 @@ right:0;
 .symbols {
 font-family:'symbols'
 }
-
+/*
 .factionselect code {
 background:#eee;
 cursor:pointer;
@@ -1028,7 +1142,7 @@ border-left:solid 2px #777;
 border-bottom:solid 2px #eaeaea;
 border-right:solid 2px #eaeaea
 }
-
+*/
 .REBEL,.EMPIRE,.SCUM {
 font-family:'symbols';
 margin:2px;
@@ -1039,7 +1153,7 @@ border-radius:100%;
 color:red
 }
 
-.statfire,.statevade {
+.statfire,.statevade,.player {
 cursor:pointer;
 }
 
@@ -1134,14 +1248,28 @@ height:5em;
 .unit {
 cursor:move
 }
-
+.headunits input {
+border-radius:10px;
+}
 td {
 vertical-align:top;
 margin:0;
 border:0;
-text-align:center;
+text-align:left;
+/*width:50%;*/
 }
-
+#team1 .details td {
+text-align:right;
+}
+#team2 .details td {
+text-align:left;
+}
+.upgrade td:nth-child(2) {
+width:20%;
+}
+.upgrade td:nth-child(3) {
+width:80%;
+}
 tr {
 margin:0;
 border:0
@@ -1208,65 +1336,73 @@ position:absolute;
 bottom:0;
 z-index:3;
 }
-input.factionselect + label {
-  padding: 3px;
-  margin:5%;
-  font-size: xx-large;
-  width: 30%;
-  line-height:2em;
-  border-radius: 100%;
-  display:inline;
-  cursor: pointer;
+.content {
+display:none;
 }
-input.factionselect:checked + label {
-    border:1px solid;
-    box-shadow: 5px 5px 5px #888888;
+.active {
+display:inline;
 }
-input.human + label {
-  padding:0;
-  width: 170px;
-  height: 20px;
-  border:1px outset;
+.tab {
+    padding:6px 4px;
+    text-decoration:none;
+    border-radius:0 0 5px 5px;
+	background:#DDD;
+    font-size:x-small;
+	color:#222;
+	opacity:0.5;
 }
-.human,.factionselect {
-  position: absolute;
-  margin-left: -9999px;
-  visibility: hidden;
+.tab.active,
+.tab:hover {
+    background:#F9F9F9;
+    color:#777;
+    opacity:1;
 }
-.human + label {
-  display: block;
-  width:100%;
-  position: relative;
-  cursor: pointer;
-  outline: none;
-  font-size:large;
-  height:28px;
+.squads {
+width:100%;
 }
-input.human + label:after {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  color: #fff;
-  text-align: center;
-  font-size:large;
-  border:0 0 0 4px solid;
+.squads tr td:first-child {
+    text-align:right;
+    width:50%;
 }
-input.human:checked + label:after {
-  background-color:#4682b4;
-  color: #ffffff;
-  content: attr(data-on);
+.squads tr td:nth-child(2) {
+    text-align:left;
+    width:50%;
 }
-input.human:not(:checked) + label:after {
-  color:#4682b4;
-  background-color: #ffffff;
-  content: attr(data-off);
+#selectphase {
+color:white;
+background:url(img/playmat9.jpg);
+background-repeat:no-repeat;
+background-size:100% 100%;
+}
+.squads textarea,.modalDialog textarea {
+    color:white;
+    background:black;
+}
+.squads textarea {
+    width:80%;
+    height:12em;
+}
+.dataTables_filter label,.dataTables_info {
+color:grey;
+}
+table.dataTable td {
+vertical-align:middle;
+}
+table.dataTable td:first-child {
+cursor:pointer;
+}
+.dataTables_wrapper {
+width:95%;
+margin-left:2.5%;
+opacity:0.75;
+}
+.modalDialog textarea {
+height:12em;
+width:80%;
 }
 @font-face {
 font-family:'symbols';
-src:url(x-wingsymbols.ttf) format("truetype")
+src:url(xwing-miniatures.ttf) format("truetype")
 }
 @font-face {
 font-family:'ships';

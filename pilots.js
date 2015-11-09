@@ -1,4 +1,3 @@
-var REBEL="Rebel Alliance",EMPIRE="Galactic Empire",SCUM="Scum and Villainy";
 
 function Pilot(name) {
     var i;
@@ -23,7 +22,7 @@ var PILOTS = [
         name: "Wedge Antilles",    
 	done:true,
         unique: true,
-	faction:"REBEL",
+	faction:REBEL,
         unit: "X-Wing",
         skill: 9,
 	init: function() {
@@ -32,23 +31,19 @@ var PILOTS = [
 	    Unit.prototype.getagility=function() {
 		var a=ds.call(this);
 		if (activeunit==unit&&a>0&&this==targetunit) {
-		    this.log("defense reduced from "+a+" to "+(a-1)+" by "+unit.name);
+		    //this.log("-1 defense [%0]",unit.name);
 		    return a-1; 
 		}
 		else return a;
 	    };
 	},
         points: 29,
-        upgrades: [
-            "Elite",
-            "Torpedo",
-            "Astromech",
-        ],
+        upgrades: [ELITE,TORPEDO,ASTROMECH],
     },
     {
         name: "Garven Dreis",
 	done:true,
-	faction:"REBEL",
+	faction:REBEL,
         unique: true,
         unit: "X-Wing",
 	removefocustoken: function() {
@@ -57,10 +52,10 @@ var PILOTS = [
 	    var p=[]; 
 	    p=this.selectnearbyunits(2,function(a,b) { return (a.team==b.team&&a!=b);});
 	    if (p.length>0) {
-		this.log("%FOCUS% -> other friendly ship");
+		this.log("select unit for free %FOCUS%");
 		this.doselection(function(n) {
 		    this.resolveactionselection(p,function (k) { 
-			p[k].log("+1 %FOCUS% from "+this.name);
+			p[k].log("+1 %FOCUS%");
 			p[k].addfocustoken();
 			this.endnoaction(n,"FOCUS");
 		    }.bind(this));
@@ -69,34 +64,25 @@ var PILOTS = [
 	},
         skill: 6,
         points: 26,
-        upgrades: [
-            "Torpedo",
-            "Astromech",
-        ],
+        upgrades: [TORPEDO,ASTROMECH],
     },
     {
         name: "Red Squadron Pilot",
 	done:true,
         unit: "X-Wing",
-	faction:"REBEL",
+	faction:REBEL,
         skill: 4,
         points: 23,
-        upgrades: [
-            "Torpedo",
-            "Astromech",
-        ],
+        upgrades: [TORPEDO,ASTROMECH],
     },
     {
         name: "Rookie Pilot",
 	done:true,
         unit: "X-Wing",
-	faction:"REBEL",
+	faction:REBEL,
         skill: 2,
         points: 21,
-        upgrades: [
-            "Torpedo",
-            "Astromech",
-        ],
+        upgrades: [TORPEDO,ASTROMECH],
     },
     {
         name: "Biggs Darklighter",
@@ -114,18 +100,15 @@ var PILOTS = [
 	},
         unique: true,
         unit: "X-Wing",
-	faction:"REBEL",
+	faction:REBEL,
         skill: 5,
         points: 25,
-        upgrades: [
-            "Torpedo",
-            "Astromech",
-        ],
+        upgrades: [TORPEDO,ASTROMECH],
     },
     {
         name: "Luke Skywalker",
 	done:true,
-	faction:"REBEL",
+	faction:REBEL,
 	init: function() {
 	    this.adddefensemodd(this,function(m,n) {
 		return true;
@@ -133,7 +116,7 @@ var PILOTS = [
 		var f=Math.floor(m/10);
 		var e=m-f*10;
 		if (f>0) {
-		    this.log("1 %FOCUS%-> 1 %EVADE%");
+		    this.log("1 %FOCUS% -> 1 %EVADE%");
 		    return m-9;
 		} 
 		return m;
@@ -143,25 +126,16 @@ var PILOTS = [
         unit: "X-Wing",
         skill: 8,
         points: 28,
-        upgrades: [
-            "Elite",
-            "Torpedo",
-            "Astromech",
-        ],
+        upgrades: [ELITE,TORPEDO,ASTROMECH],
     },
     {
         name: "Gray Squadron Pilot",
 	done:true,
-	faction:"REBEL",
+	faction:REBEL,
         unit: "Y-Wing",
         skill: 4,
         points: 20,
-        upgrades: [
-            "Turret",
-            "Torpedo",
-            "Torpedo",
-            "Astromech",
-        ],
+        upgrades: [TURRET,TORPEDO,TORPEDO,ASTROMECH],
     },
     {
         name: "'Dutch' Vander",
@@ -173,11 +147,11 @@ var PILOTS = [
 		var p=this.selectnearbyunits(2,function(a,b) { return a.team==b.team&&a!=b; });
 		if (p.length>0) {
 		    p.push(this);
-		    log("<b>select ship that may acquire target lock ("+this.name+" to cancel)</b>");
+		    this.log("select unit for free %TARGET% (or self to cancel)");
 		    this.resolveactionselection(p,function(k) {
 			if (k<p.length-1) { 
 			    var lu=p[k].gettargetableunits(3);
-			    p[k].log("<b>select target to lock</b>");
+			    p[k].log("select target to lock");
 			    p[k].resolveactionselection(lu,function(kk) { 
 				if (kk>=0) this.addtarget(lu[kk]);
 				unit.endnoaction(n,"TARGET");
@@ -187,22 +161,17 @@ var PILOTS = [
 		} else this.endnoaction(n,"TARGET");
 	    }.bind(this));
 	},
-	faction:"REBEL",
+	faction:REBEL,
         unique: true,
         unit: "Y-Wing",
         skill: 6,
         points: 23,
-        upgrades: [
-            "Turret",
-            "Torpedo",
-            "Torpedo",
-            "Astromech",
-        ],
+        upgrades: [TURRET,TORPEDO,TORPEDO,ASTROMECH],
     },
     {
         name: "Horton Salm",
 	done:true,
-	faction:"REBEL",
+	faction:REBEL,
         unique: true,
         unit: "Y-Wing",
         skill: 8,
@@ -220,36 +189,25 @@ var PILOTS = [
 			return true;
 		    }
 		    return false;
-		}.bind(this),
-		false
+		}.bind(this)
 	    )
 	},
-        upgrades: [
-            "Turret",
-            "Torpedo",
-            "Torpedo",
-            "Astromech",
-        ],
+        upgrades: [TURRET,TORPEDO,TORPEDO,ASTROMECH],
     },
     {
         name: "Gold Squadron Pilot",
 	done:true,
         unit: "Y-Wing",
-	faction:"REBEL",
+	faction:REBEL,
         skill: 2,
         points: 18,
-        upgrades: [
-            "Turret",
-            "Torpedo",
-            "Torpedo",
-            "Astromech",
-        ],
+        upgrades: [TURRET,TORPEDO,TORPEDO,ASTROMECH],
     },
     {
         name: "Academy Pilot",
 	done:true,
         unit: "TIE Fighter",
-        faction:"EMPIRE",
+        faction:EMPIRE,
         skill: 1,
         points: 12,
         upgrades: [],
@@ -258,7 +216,7 @@ var PILOTS = [
         name: "Obsidian Squadron Pilot",
 	done:true,
         unit: "TIE Fighter",
-        faction:"EMPIRE",
+        faction:EMPIRE,
         skill: 3,
         points: 13,
         upgrades: [],
@@ -267,16 +225,33 @@ var PILOTS = [
         name: "Black Squadron Pilot",
 	done:true,
         unit: "TIE Fighter",
-        faction:"EMPIRE",
+        faction:EMPIRE,
         skill: 4,
         points: 14,
-        upgrades: [
-            "Elite",
-        ],
+        upgrades: [ELITE],
+    },
+    {
+        name: "'Scourge'",
+	unique:true,
+	beta:true,
+	done:true,
+        unit: "TIE Fighter",
+        faction:EMPIRE,
+        skill: 7,
+        points: 17,
+	getattackstrength: function(i,sh) {
+	    var gas=Unit.prototype.getattackstrength.call(this,i,sh);
+	    if (sh.criticals.length>0) {
+		this.log("+1 attack die for attacking damaged unit");
+		return gas+1;
+	    }
+	    return gas;
+	},
+        upgrades: [ELITE],
     },
     {
         name: "'Winged Gundark'",
-        faction:"EMPIRE",
+        faction:EMPIRE,
         init:  function() {
 	    this.addattackmoda(this,function(m,n) { 
 		return (this.getrange(targetunit)==1);
@@ -299,7 +274,7 @@ var PILOTS = [
     },
     {
         name: "'Night Beast'",
-        faction:"EMPIRE",
+        faction:EMPIRE,
 	done:true,
 	handledifficulty: function(difficulty) {
 	    Unit.prototype.handledifficulty.call(this,difficulty);
@@ -317,14 +292,14 @@ var PILOTS = [
         name: "'Backstabber'",
         unique: true,
 	done:true,
-        faction:"EMPIRE",
+        faction:EMPIRE,
 	init: function() {
 	    var gas=this.getattackstrength;
 	    this.getattackstrength=function(w,sh) {
 		var a=gas.call(this,w,sh);
 		if (!sh.isinfiringarc(this)) {
 		    a=a+1;
-		    this.log("+1 attack against "+sh.name);
+		    this.log("+1 attack against %0",sh.name);
 		}
 		return a;
 	    };
@@ -337,7 +312,7 @@ var PILOTS = [
     {
         name: "'Dark Curse'",
 	done:true,
-        faction:"EMPIRE",
+        faction:EMPIRE,
         unique: true,
 	init: function() {
 	    var gart=Unit.prototype.getattackrerolltokens;
@@ -365,14 +340,14 @@ var PILOTS = [
     },
     {
         name: "'Mauler Mithel'",
-        faction:"EMPIRE",
+        faction:EMPIRE,
 	done:true,
         init:  function() {
 	    var g=this.getattackstrength;
 	    this.getattackstrength=function(w,sh) {
 		var a=g.call(this,w,sh);
 		if (this.gethitrange(w,sh)==1) { 
-		    this.log("+1 attack against "+sh.name);
+		    this.log("+1 attack against %0",sh.name);
 		    return a+1;
 		}
 		return a;
@@ -382,15 +357,13 @@ var PILOTS = [
         unit: "TIE Fighter",
         skill: 7,
         points: 17,
-        upgrades: [
-            "Elite",
-        ],
+        upgrades: [ELITE],
     },
     {
         name: "'Howlrunner'",
         unique: true,
 	done:true,
-        faction:"EMPIRE",
+        faction:EMPIRE,
         unit: "TIE Fighter",
         skill: 8,
 	init: function() {
@@ -403,7 +376,7 @@ var PILOTS = [
 		    if (!this.dead&&attacker!=this
 			&&attacker.getrange(this)==1
 			&&attacker.team==this.team&&w.isprimary) {
-			attacker.log("+1 reroll given by "+this.name);
+			attacker.log("+%1 reroll(s) [%0]",this.name,1);
 			return true;
 		    }
 		    return false;
@@ -412,15 +385,13 @@ var PILOTS = [
 	    )
 	},
         points: 18,
-        upgrades: [
-            "Elite",
-        ],
+        upgrades: [ELITE],
     },
     {
         name: "Maarek Stele",
         unique: true,
 	done:true,
-        faction:"EMPIRE",
+        faction:EMPIRE,
 	unit: "TIE Advanced",
         skill: 7,
         points: 27,
@@ -437,7 +408,7 @@ var PILOTS = [
 			var s3=this.selectdamage();
 			CRITICAL_DECK[s3].count--;
 			sc=[s1,s2,s3];
-			log("<b>"+unit.name+" selects one of 3 criticals</b>");
+			unit.log("select one critical");
 			unit.selectcritical(sc,function(m) { 
 			    CRITICAL_DECK[m].count++;
 			    if (this.faceup(new Critical(this,m))) this.removehull(1);
@@ -449,36 +420,29 @@ var PILOTS = [
 		} else unit.ac.call(this,n);
 	    }
 	},
-        upgrades: [
-            "Elite",
-            "Missile",
-        ],
+        upgrades: [ELITE,MISSILE],
     },
     {
         name: "Tempest Squadron Pilot",
-        faction:"EMPIRE",
+        faction:EMPIRE,
 	done:true,
         unit: "TIE Advanced",
         skill: 2,
         points: 21,
-        upgrades: [
-            "Missile",
-        ],
+        upgrades: [MISSILE],
     },
     {
         name: "Storm Squadron Pilot",
-        faction:"EMPIRE",
+        faction:EMPIRE,
 	done:true,
         unit: "TIE Advanced",
         skill: 4,
         points: 23,
-        upgrades: [
-            "Missile",
-        ],
+        upgrades: [MISSILE],
     },
     {
         name: "Darth Vader",
-        faction:"EMPIRE",
+        faction:EMPIRE,
         unique: true,
 	done:true,
         unit: "TIE Advanced",
@@ -496,14 +460,11 @@ var PILOTS = [
  	},
 	secaction:-1,
         points: 29,
-        upgrades: [
-            "Elite",
-            "Missile",
-        ],
+        upgrades: [ELITE,MISSILE],
     },
     {
         name: "Alpha Squadron Pilot",
-        faction:"EMPIRE",
+        faction:EMPIRE,
 	done:true,
         unit: "TIE Interceptor",
         skill: 1,
@@ -512,7 +473,7 @@ var PILOTS = [
     },
     {
         name: "Avenger Squadron Pilot",
-        faction:"EMPIRE",
+        faction:EMPIRE,
 	done:true,
         unit: "TIE Interceptor",
         skill: 3,
@@ -521,7 +482,7 @@ var PILOTS = [
     },
     {
         name: "Saber Squadron Pilot",
-        faction:"EMPIRE",
+        faction:EMPIRE,
 	done:true,
         unit: "TIE Interceptor",
         skill: 4,
@@ -530,7 +491,7 @@ var PILOTS = [
     },
     {
         name: "'Fel\'s Wrath'",
-        faction:"EMPIRE",
+        faction:EMPIRE,
         unique: true,
         unit: "TIE Interceptor",
 	skill: 5,
@@ -548,7 +509,7 @@ var PILOTS = [
     },
     {
         name: "Turr Phennir",
-        faction:"EMPIRE",
+        faction:EMPIRE,
         unique: true,
 	done:true,
         unit: "TIE Interceptor",
@@ -560,47 +521,39 @@ var PILOTS = [
 	    Unit.prototype.cleanupattack.call(this);
 	},
         points: 25,
-        upgrades: [
-            "Elite",
-        ],
+        upgrades: [ELITE],
     },
     {
         name: "Soontir Fel",
-        faction:"EMPIRE",
+        faction:EMPIRE,
         unique: true,
 	done:true,
         addstress: function () {
 	    this.stress++;
-	    this.log("stress token -> free focus token");
+	    this.log("+1 %STRESS% -> +1 %FOCUS%");
 	    this.addfocustoken();
 	},
         unit: "TIE Interceptor",
         skill: 9,
         points: 27,
-        upgrades: [
-            "Elite",
-        ],
+        upgrades: [ELITE],
     },
     {
         name: "Tycho Celchu",
-	faction:"REBEL",
+	faction:REBEL,
         unique: true,
 	done:true,
         candoaction:function() {
-	    if (this.collision>0||this.ocollision.template>0||this.ocollision.overlap>-1) return false;
-	    return  true;
+	    return (this.collision==0&&this.ocollision.template.length==0&&this.ocollision.overlap==-1);
 	},
         unit: "A-Wing",
         skill: 8,
         points: 26,
-        upgrades: [
-            "Elite",
-            "Missile",
-        ],
+        upgrades: [ELITE,MISSILE],
     },
     {
         name: "Arvel Crynyd",
-	faction:"REBEL",
+	faction:REBEL,
         unique: true,
 	done:true,
         unit: "A-Wing",
@@ -609,36 +562,29 @@ var PILOTS = [
 	},
         skill: 6,
         points: 23,
-        upgrades: [
-            "Missile",
-        ],
+        upgrades: [MISSILE],
     },
     {
         name: "Green Squadron Pilot",
-	faction:"REBEL",
+	faction:REBEL,
 	done:true,
         unit: "A-Wing",
         skill: 3,
         points: 19,
-        upgrades: [
-            "Elite",
-            "Missile",
-        ],
+        upgrades: [ELITE,MISSILE],
     },
     {
         name: "Prototype Pilot",
-	faction:"REBEL",
+	faction:REBEL,
 	done:true,
         unit: "A-Wing",
         skill: 1,
         points: 17,
-        upgrades: [
-            "Missile",
-        ],
+        upgrades: [MISSILE],
     },
     {
         name: "Outer Rim Smuggler",
-	faction:"REBEL",
+	faction:REBEL,
         unit: "YT-1300",
 	done:true,
 	install: function() {
@@ -653,33 +599,25 @@ var PILOTS = [
 	},
         skill: 1,
         points: 27,
-        upgrades: [
-            "Crew",
-            "Crew",
-        ],
+        upgrades: [CREW,CREW],
     },
     {
         name: "Chewbacca",
         unique: true,
 	done:true,
-	faction:"REBEL",
+	faction:REBEL,
         unit: "YT-1300",
         skill: 5,
         points: 42,
 	faceup: function(c) {
-	    this.log("ignores critical "+c.name);
+	    this.log("ignore critical %0",c.name);
 	    return true;
 	},
-        upgrades: [
-            "Elite",
-            "Missile",
-            "Crew",
-            "Crew",
-        ]
+        upgrades: [ELITE,MISSILE,CREW,CREW]
     },
     {
         name: "Lando Calrissian",
-	faction:"REBEL",
+	faction:REBEL,
         unique: true,
         unit: "YT-1300",
         skill: 7,
@@ -689,11 +627,11 @@ var PILOTS = [
 	    var p=this.selectnearbyunits(1,function(t,s) { return t.team==s.team&&t!=s; })
 	    if (p.length>0&&d=="GREEN") {
 		this.doselection(function(n) {
-		    this.log("<b>select a pilot for a free action</b>");
+		    this.log("select unit for a free action");
 		    this.resolveactionselection(p,function(k) {
 			p[k].doaction(p[k].getactionbarlist()).done(function() {
 			    this.select();
-			    p[k].log("was given a free action");
+			    p[k].log("+1 action [%0]",unit);
 			    this.endnoaction(n,"");
 			}.bind(this));
 		    }.bind(this))
@@ -702,22 +640,13 @@ var PILOTS = [
 	    Unit.prototype.handledifficulty.call(this,d);
 	},
 	done:true,
-        upgrades: [
-            "Elite",
-            "Missile",
-            "Crew",
-            "Crew",
-        ],
-        attack: 3,
-        agility: 1,
-        hull: 8,
-        shields: 5,
+        upgrades: [ELITE,MISSILE,CREW,CREW],
     },
     {
         name: "Han Solo",
         unique: true,
 	done:true,
-	faction:"REBEL",
+	faction:REBEL,
         unit: "YT-1300",
         skill: 9,
         points: 46,
@@ -728,21 +657,15 @@ var PILOTS = [
 		function() { return 9; },
 		function(w,defender) {
 		    return true;
-		}.bind(this),
-		false
+		}.bind(this)
 	    )
 	},
-        upgrades: [
-            "Elite",
-            "Missile",
-            "Crew",
-            "Crew",
-        ],
+        upgrades: [ELITE,MISSILE,CREW,CREW],
     },
     {
         name: "Kath Scarlet",
         unique: true,
-        faction:"EMPIRE",
+        faction:EMPIRE,
         unit: "Firespray-31",
         skill: 7,
 	done:true,
@@ -752,29 +675,23 @@ var PILOTS = [
 	    Unit.prototype.cancelcritical=function(c,e,sh) {
 		var ce=cc.call(this,c,e,sh);
 		if (c>ce&&sh!=this&&activeunit.name=="Kath Scarlet") {
-		    this.log("+1 stress for cancelling %CRIT% given by "+unit.name);
+		    this.log("+1 %STRESS for cancelling %CRIT%");
 		    this.addstress();
 		}
 		return ce;
 	    }
 	},
         points: 38,
-        upgrades: [
-            "Elite",
-            "Cannon",
-            "Bomb",
-            "Crew",
-            "Missile",
-        ],
+        upgrades: [ELITE,CANNON,BOMB,CREW,MISSILE],
     },
     {
         name: "Boba Fett",
         unique: true,
 	done:true,
-        faction:"EMPIRE",
+        faction:EMPIRE,
         completemaneuver: function(dial,realdial,difficulty) {
 	    if (dial.match("BL3|BL2|BL1")) {
-		this.log("change bank turn speed");
+		this.log("select %BANKLEFT% speed");
 		var newdial=dial.replace(/L/,"R");
 		this.resolveactionmove(
 		    [this.getpathmatrix(this.m,realdial),
@@ -784,7 +701,7 @@ var PILOTS = [
 			else Unit.prototype.completemaneuver.call(this,newdial,newdial,difficulty);
 		    }.bind(this),false,true);
 	    } else if (dial.match("BR3|BR2|BR1")) {
-		this.log("change bank turn speed");
+		this.log("select %BANKRIGHT% speed");
 		var newdial=dial.replace(/R/,"L");
 		this.resolveactionmove(
 		    [this.getpathmatrix(this.m,dial),
@@ -798,19 +715,13 @@ var PILOTS = [
         unit: "Firespray-31",
         skill: 8,
         points: 39,
-        upgrades: [
-            "Elite",
-            "Cannon",
-            "Bomb",
-            "Crew",
-            "Missile",
-        ],
+        upgrades: [ELITE,CANNON,BOMB,CREW,MISSILE],
     },
     {
         name: "Krassis Trelix",
         unique: true,
 	done:true,
-        faction:"EMPIRE",
+        faction:EMPIRE,
         unit: "Firespray-31",
 	init: function() {
 	    this.addattackrerolla(
@@ -819,40 +730,29 @@ var PILOTS = [
 		function() { return 1; },
 		function(w,defender) {
 		    if (!w.isprimary) {
-			this.log("+1 reroll for secondary weapon");
+			w.log("+%1 reroll(s) [%0]",this.name,1);
 			return true;
 		    }
 		    return false;
-		}.bind(this),
-		false
+		}.bind(this)
 	    )
 	},
         skill: 5,
         points: 36,
-        upgrades: [
-            "Cannon",
-            "Bomb",
-            "Crew",
-            "Missile",
-        ],
+        upgrades: [CANNON,BOMB,CREW,MISSILE],
     },
     {
         name: "Bounty Hunter",
         unit: "Firespray-31",
         skill: 3,
 	done:true,
-        faction:"EMPIRE",
+        faction:EMPIRE,
         points: 33,
-        upgrades: [
-            "Cannon",
-            "Bomb",
-            "Crew",
-            "Missile",
-        ],
+        upgrades: [CANNON,BOMB,CREW,MISSILE],
     },
     {
         name: "Ten Numb",
-	faction:"REBEL",
+	faction:REBEL,
         unique: true,
 	done:true,
         unit: "B-Wing",
@@ -867,19 +767,13 @@ var PILOTS = [
 	    }
 	},
         points: 31,
-        upgrades: [
-            "Elite",
-            "System",
-            "Cannon",
-            "Torpedo",
-            "Torpedo",
-        ],
+        upgrades: [ELITE,SYSTEM,CANNON,TORPEDO,TORPEDO],
     },
     {
         name: "Ibtisam",
         unique: true,
 	done:true,
-	faction:"REBEL",
+	faction:REBEL,
         unit: "B-Wing",
         skill: 6,
         points: 28,
@@ -891,12 +785,11 @@ var PILOTS = [
 		function() { return 1; },
 		function(w,defender) {
 		    if (this.stress>0) {
-			this.log("+1 attack reroll (stressed)");
+			this.log("+%0 reroll",1);
 			return true;
 		    }
 		    return false;
-		}.bind(this),
-		false
+		}.bind(this)
 	    );
 	    this.adddefensererolld(
 		this,
@@ -904,66 +797,46 @@ var PILOTS = [
 		function() { return 1; },
 		function(w,attacker) {
 		    if (this.stress>0) {
-			this.log("+1 defense reroll (stressed)");
+			this.log("+%0 reroll",1);
 			return true;
 		    }
 		    return false;
-		}.bind(this),
-		false
+		}.bind(this)
 	    );
 	},
-        upgrades: [
-            "Elite",
-            "System",
-            "Cannon",
-            "Torpedo",
-            "Torpedo",
-        ],
+        upgrades: [ELITE,SYSTEM,CANNON,TORPEDO,TORPEDO],
     },
     {
         name: "Dagger Squadron Pilot",
         unit: "B-Wing",
 	done:true,
-	faction:"REBEL",
+	faction:REBEL,
         skill: 4,
         points: 24,
-        upgrades: [
-            "System",
-            "Cannon",
-            "Torpedo",
-            "Torpedo",
-        ],
+        upgrades: [SYSTEM,CANNON,TORPEDO,TORPEDO],
     },
     {
         name: "Blue Squadron Pilot",
         unit: "B-Wing",
 	done:true,
-	faction:"REBEL",
+	faction:REBEL,
         skill: 2,
         points: 22,
-        upgrades: [
-            "System",
-            "Cannon",
-            "Torpedo",
-            "Torpedo",
-        ],
+        upgrades: [SYSTEM,CANNON,TORPEDO,TORPEDO],
     },
     {
         name: "Rebel Operative",
         unit: "HWK-290",
 	done:true,
-	faction:"REBEL",
+	faction:REBEL,
         skill: 2,
         points: 16,
-        upgrades: [
-            "Turret",
-            "Crew",
-        ],
+        upgrades: [TURRET,CREW],
     },
     {
         name: "Roark Garnet",
         unique: true,
-	faction:"REBEL",
+	faction:REBEL,
         unit: "HWK-290",
         skill: 4,
 	begincombatphase: function() {
@@ -971,14 +844,14 @@ var PILOTS = [
 		var p=this.selectnearbyunits(3,function(t,s) { return t.team==s.team&&t!=s; })
 		if (p.length>0) {
 		    this.doselection(function(n) {
-			this.log("<b>select a pilot for a PS of 12</b>");
+			this.log("select unit for 12 PS");
 			this.resolveactionselection(p,function(k) {
 			    if (k>-1) {
 				p[k].oldskill=p[k].skill;
 				p[k].skill=12;
 				filltabskill();
 				p[k].showstats();
-				this.log("pilot skill of 12");
+				this.log("has PS of 12");
 				p[k].endcombatphase=function() {
 				    this.skill=this.oldskill;
 				    filltabskill();
@@ -995,14 +868,11 @@ var PILOTS = [
 	},     
 	done:true,
         points: 19,
-        upgrades: [
-            "Turret",
-            "Crew",
-        ],
+        upgrades: [TURRET,CREW],
     },
     {
         name: "Kyle Katarn",
-	faction:"REBEL",
+	faction:REBEL,
         unique: true,
 	done:true,
         unit: "HWK-290",
@@ -1014,29 +884,25 @@ var PILOTS = [
 		if (p.length>0) {
 		    this.doselection(function(n) {
 			p.push(this);
-			this.log("<b>assign one focus token to a friendly unit (self to cancel)</b>");
+			this.log("select unit for free %FOCUS% (or self to cancel)");
 			this.resolveactionselection(p,function(k) {
 			    if (this!=p[k]) {
 				this.removefocustoken();
 				p[k].addfocustoken();
-				p[k].log("+1 %FOCUS% token");
+				p[k].log("+1 %FOCUS%");
 			    }
-			    this.endnoaction();
+			    this.endnoaction(n,"FOCUS");
 			}.bind(this));
 		    }.bind(this));
 		}
 	    }
 	    return Unit.prototype.begincombatphase.call(this);
 	},
-        upgrades: [
-            "Elite",
-            "Turret",
-            "Crew",
-        ],
+        upgrades: [ELITE,TURRET,CREW],
     },
     {
         name: "Jan Ors",
-	faction:"REBEL",
+	faction:REBEL,
         unique: true,
 	done:true,
         unit: "HWK-290",
@@ -1049,7 +915,7 @@ var PILOTS = [
 			(activeunit.team==unit.team)&&(activeunit!=unit)
 			&&(unit.getrange(activeunit)<=3);
 	    }.bind(this), function(m,n) {
-		var f=unit.rollattackdie();
+		var f=unit.rollattackdie(1)[0];
 		unit.addstress();
 		unit.log("+1 attack die");
 		if (f=="focus") return m+100;
@@ -1059,45 +925,29 @@ var PILOTS = [
 	    }.bind(this),true,"hit");
 	},
         points: 25,
-        upgrades: [
-            "Elite",
-            "Turret",
-            "Crew",
-        ],
+        upgrades: [ELITE,TURRET,CREW],
     },
     {
         name: "Scimitar Squadron Pilot",
         done:true,
         unit: "TIE Bomber",
         skill: 2,
-        faction:"EMPIRE",
+        faction:EMPIRE,
         points: 16,
-        upgrades: [
-            "Torpedo",
-            "Torpedo",
-            "Missile",
-            "Missile",
-            "Bomb",
-        ],
+        upgrades: [TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB],
     },
     {
         name: "Gamma Squadron Pilot",
 	done:true,
         unit: "TIE Bomber",
-        faction:"EMPIRE",
+        faction:EMPIRE,
         skill: 4,
         points: 18,
-        upgrades: [
-            "Torpedo",
-            "Torpedo",
-            "Missile",
-            "Missile",
-            "Bomb",
-        ],
+        upgrades: [TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB],
     },
     {
         name: "Captain Jonus",
-        faction:"EMPIRE",
+        faction:EMPIRE,
 	done:true,
         init: function() {
 	    this.addattackrerolla(
@@ -1110,31 +960,23 @@ var PILOTS = [
 			&&attacker.getrange(this)==1
 			&&attacker.team==this.team
 			&&w.isprimary!=true) {
-			attacker.log("+2 rerolls given by "+this.name);
+			attacker.log("+2 rerolls [%0]",this.name);
 			return true;
 		    }
 		    return false;
-		}.bind(this),
-		true
+		}.bind(this)
 	    )
 	},
         unique: true,
         unit: "TIE Bomber",
         skill: 6,
         points: 22,
-        upgrades: [
-            "Elite",
-            "Torpedo",
-            "Torpedo",
-            "Missile",
-            "Missile",
-            "Bomb",
-        ],
+        upgrades: [ELITE,TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB],
     },
     {
         name: "Major Rhymer",
 	done:true,
-        faction:"EMPIRE",
+        faction:EMPIRE,
         init: function() {
 	    for (var i=0; i<this.weapons.length; i++) {
 		var r0=this.weapons[i].range[0];
@@ -1148,18 +990,11 @@ var PILOTS = [
         unit: "TIE Bomber",
         skill: 7,
         points: 26,
-        upgrades: [
-            "Elite",
-            "Torpedo",
-            "Torpedo",
-            "Missile",
-            "Missile",
-            "Bomb",
-        ],
+        upgrades: [ELITE,TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB],
     },
     {
         name: "Captain Kagi",
-        faction:"EMPIRE",
+        faction:EMPIRE,
         unique: true,
 	done:true,
 	init: function() {
@@ -1174,29 +1009,24 @@ var PILOTS = [
         unit: "Lambda-Class Shuttle",
         skill: 8,
         points: 27,
-        upgrades: [
-            "System",
-            "Cannon",
-            "Crew",
-            "Crew",
-        ],
+        upgrades: [SYSTEM,CANNON,CREW,CREW],
     },
     {
         name: "Colonel Jendon",
-        faction:"EMPIRE",
+        faction:EMPIRE,
         begincombatphase: function() {
 	    if (!this.dead) {
 		var p=this.selectnearbyunits(1,function(s,t) { return s.team==t.team&&s!=t; });
 		if (p.length>0&&this.targeting.length) {
 		    p.push(this);
 		    this.doselection(function(n) {
-			this.log("<b>move target lock to a friendly unit (self to cancel)</b>");
+			this.log("select unit to move %TARGET% (or self to cancel)");
 			this.resolveactionselection(p,function(k) {
 			    if (this!=p[k]) {
 				var t=this.targeting[0];
 				p[k].addtarget(t);
 				this.removetarget(t);
-				p[k].log("targets "+t.name);
+				p[k].log("+%1 %TARGET% / %0",t.name,1);
 			    }
 			    this.endnoaction(n,"TARGET");
 			}.bind(this));
@@ -1210,16 +1040,11 @@ var PILOTS = [
         unit: "Lambda-Class Shuttle",
         skill: 6,
         points: 26,
-        upgrades: [
-            "System",
-            "Cannon",
-            "Crew",
-            "Crew",
-        ],
+        upgrades: [SYSTEM,CANNON,CREW,CREW],
     },
     {
         name: "Captain Yorr",
-        faction:"EMPIRE",
+        faction:EMPIRE,
         unique: true,
 	done:true,
         unit: "Lambda-Class Shuttle",
@@ -1229,37 +1054,28 @@ var PILOTS = [
 	    var unit=this;
 	    Unit.prototype.addstress=function() {
 		if (this!=unit&&this.getrange(unit)<=2&&unit.stress<=2) {
-		    this.log("transferred stress to "+unit.name); 
+		    this.log("-1 %STRESS% [%0]",unit.name);
+		    unit.log("+1 %STRESS%");
 		    unit.addstress();
 		    unit.showinfo();
 		} else this.stress++;
 	    };
 	},
         points: 24,
-        upgrades: [
-            "System",
-            "Cannon",
-            "Crew",
-            "Crew",
-        ],
+        upgrades: [SYSTEM,CANNON,CREW,CREW],
     },
     {
         name: "Omicron Group Pilot",
-        faction:"EMPIRE",
+        faction:EMPIRE,
         done:true,
         unit: "Lambda-Class Shuttle",
         skill: 2,
         points: 21,
-        upgrades: [
-            "System",
-            "Cannon",
-            "Crew",
-            "Crew",
-        ],
+        upgrades: [SYSTEM,CANNON,CREW,CREW],
     },
     {
         name: "Lieutenant Lorrir",
-        faction:"EMPIRE",
+        faction:EMPIRE,
         unique: true,
 	done:true,
         unit: "TIE Interceptor",
@@ -1286,23 +1102,21 @@ var PILOTS = [
     },
     {
         name: "Royal Guard Pilot",
-        faction:"EMPIRE",
+        faction:EMPIRE,
         done:true,
         unit: "TIE Interceptor",
         skill: 6,
         points: 22,
-        upgrades: [
-            "Elite",
-        ],
+        upgrades: [ELITE],
     },
     {
         name: "Tetran Cowall",
-        faction:"EMPIRE",
+        faction:EMPIRE,
         unique: true,
 	done:true,
         completemaneuver: function(dial,realdial,difficulty) {
 	    if (dial.match("K5|K3")) {
-		this.log("select one K-turn");
+		this.log("select %UTURN% speed");
 		this.resolveactionmove(
 		    [this.getpathmatrix(this.m,"K1"),
 		     this.getpathmatrix(this.m,"K3"),
@@ -1318,23 +1132,21 @@ var PILOTS = [
         unit: "TIE Interceptor",
         skill: 7,
         points: 24,
-        upgrades: [
-            "Elite",
-        ],
+        upgrades: [ELITE],
     },
     {
         name: "Kir Kanos",
-        faction:"EMPIRE",
-        useevade:  function() {
-	    var ue=Unit.prototype.useevade;
-	    var r=this.getrange(targetunit);
-	    ue.call(this);
-	    if (phase==COMBAT_PHASE&&this.canuseevade()&&this==activeunit&&r<=3&&r>=2) {
+        faction:EMPIRE,
+        init:  function() {
+	    /* TO TEST */
+	    this.addattackadd(this,function(m,n) {
+		var r=this.getrange(targetunit);
+		return (r<=3&&r>=2&&this.canusefocus());
+	    }.bind(this),function(m,n) {
 		this.removeevadetoken();
-		$("#atokens .xevadetoken").remove();
-		$("#attack").append("<td class='hitreddice'></td>");
 		this.log("+1 %HIT% for attacking at range 2-3");
-	    }
+		return m+1;
+	    }.bind(this),"evade");
 	},   
 	done:true,
         unique: true,
@@ -1345,7 +1157,7 @@ var PILOTS = [
     },
     {
         name: "Carnor Jax",
-        faction:"EMPIRE",
+        faction:EMPIRE,
         init: function() {
 	    var cuf=Unit.prototype.canusefocus;
 	    var cue=Unit.prototype.canuseevade;
@@ -1375,52 +1187,43 @@ var PILOTS = [
         unit: "TIE Interceptor",
         skill: 8,
         points: 26,
-        upgrades: [
-            "Elite",
-        ],
+        upgrades: [ELITE],
     },
     {
         name: "Bandit Squadron Pilot",
-	faction:"REBEL",
+	faction:REBEL,
         done:true,
         unit: "Z-95 Headhunter",
         skill: 2,
         points: 12,
-        upgrades: [
-            "Missile",
-        ],
+        upgrades: [MISSILE],
     },
     {
         name: "Tala Squadron Pilot",
-	faction:"REBEL",
+	faction:REBEL,
         done:true,
         unit: "Z-95 Headhunter",
         skill: 4,
         points: 13,
-        upgrades: [
-            "Missile",
-        ],
+        upgrades: [MISSILE],
     },
     {
         name: "Lieutenant Blount",
-	faction:"REBEL",
+	faction:REBEL,
         done:true,
 	hashit: function(t) {
-	    if (this.criticalresolved+this.hitresolved==0) this.log(t.name+" is hit");
+	    if (this.criticalresolved+this.hitresolved==0) this.log("%0 is hit",targetunit.name);
 	    return true;
 	},
         unique: true,
         unit: "Z-95 Headhunter",
         skill: 6,
         points: 17,
-        upgrades: [
-            "Elite",
-            "Missile",
-        ],
+        upgrades: [ELITE,MISSILE],
     },
     {
         name: "Airen Cracken",
-	faction:"REBEL",
+	faction:REBEL,
 	done:true,
         endattack: function() {
 	    Unit.prototype.endattack.call(this);
@@ -1428,12 +1231,17 @@ var PILOTS = [
 	    if (p.length>0) {
 		var unit=this;
 		this.doselection(function(n) {
-		    this.log("<b>assign a free action to friendly unit</b>");
+		    this.log("select unit for a free action");
 		    this.resolveactionselection(p,function(k) {
-			p[k].doaction(p[k].getactionlist()).done(function() { 
-			    this.select();
-			    this.endnoaction(n);
-			}.bind(this));
+			var al=p[k].getactionlist();
+			log("selected "+p[k].name+" "+al.length);
+			if (al.length>0) {
+			    p[k].doaction(al).done(function() { 
+				log("endaction");
+				this.select();
+			    }.bind(this));
+			    this.endnoaction(n,"");
+			} else { log("no action");this.select(); this.endnoaction(n,""); }
 		    }.bind(this));
 		}.bind(this));
 	    }
@@ -1442,47 +1250,38 @@ var PILOTS = [
         unit: "Z-95 Headhunter",
         skill: 8,
         points: 19,
-        upgrades: [
-            "Elite",
-            "Missile",
-        ],
+        upgrades: [ELITE,MISSILE],
     },
     {
         name: "Delta Squadron Pilot",
-        faction:"EMPIRE",
+        faction:EMPIRE,
         done:true,
         
         unit: "TIE Defender",
         skill: 1,
         points: 30,
-        upgrades: [
-            "Cannon",
-            "Missile",
-        ],
+        upgrades: [CANNON,MISSILE],
     },
     {
         name: "Onyx Squadron Pilot",
         done:true,
-        faction:"EMPIRE",
+        faction:EMPIRE,
         
         unit: "TIE Defender",
         skill: 3,
         points: 32,
-        upgrades: [
-            "Cannon",
-            "Missile",
-        ],
+        upgrades: [CANNON,MISSILE],
     },
     {
         name: "Colonel Vessery",
         done:true,
-        faction:"EMPIRE",
+        faction:EMPIRE,
         attackroll:function(n) {
 	    var ar=Unit.prototype.attackroll;
 	    var r=ar.call(this,n);
 	    if (targetunit.istargeted.length>0&&this.target==0) {
 		this.addtarget(targetunit);
-		this.log("target locks "+targetunit.name);	
+		this.log("+%1 %TARGET% / %0",targetunit.name,1);	
 	    }
 	    return r;
 	},
@@ -1490,20 +1289,16 @@ var PILOTS = [
         unit: "TIE Defender",
         skill: 6,
         points: 35,
-        upgrades: [
-            "Elite",
-            "Cannon",
-            "Missile",
-        ],
+        upgrades: [ELITE,CANNON,MISSILE],
     },
     {
         name: "Rexler Brath",
-        faction:"EMPIRE",
+        faction:EMPIRE,
 	done:true,
         endattack: function(c,h) {
 	    Unit.prototype.endattack.call(this,c,h);
 	    if (this.canusefocus()&&this.hitresolved>0) {
-		this.log("can turn "+h+" damage(s) into critical(s)");
+		this.log("-1 %FOCUS%, %0 damage -> %0 critical(s)",h);
 		this.donoaction([{name:this.name,org:this,type:"FOCUS",action:function(n) {
 		    var i,l=targetunit.criticals.length-1;
 		    this.removefocustoken();
@@ -1521,44 +1316,31 @@ var PILOTS = [
         unit: "TIE Defender",
         skill: 8,
         points: 37,
-        upgrades: [
-            "Elite",
-            "Cannon",
-            "Missile",
-        ],
+        upgrades: [ELITE,CANNON,MISSILE],
     },
     {
         name: "Knave Squadron Pilot",
-        
-	faction:"REBEL",
+	faction:REBEL,
         done:true,
         unit: "E-Wing",
         skill: 1,
         points: 27,
-        upgrades: [
-            "System",
-            "Torpedo",
-            "Astromech",
-        ],
+        upgrades: [SYSTEM,TORPEDO,ASTROMECH],
     },
     {
         name: "Blackmoon Squadron Pilot",
         
-	faction:"REBEL",
+	faction:REBEL,
         done:true,
         unit: "E-Wing",
         skill: 3,
         points: 29,
-        upgrades: [
-            "System",
-            "Torpedo",
-            "Astromech",
-        ],
+        upgrades: [SYSTEM,TORPEDO,ASTROMECH],
     },
     {
         name: "Etahn A'baht",
 	done:true,
-	faction:"REBEL",
+	faction:REBEL,
         init:  function() {
 	    var unit=this;
 	    this.addattackmoda(this, function(m,n) {
@@ -1568,7 +1350,7 @@ var PILOTS = [
 		var c=Math.floor(m/10);
 		var h=(m-c*10)%100;
 		if (h>0) {
-		    unit.log("1 %HIT%-> 1 %CRIT%");
+		    unit.log("1 %HIT% -> 1 %CRIT%");
 		    return m+9;
 		} 
 		return m;
@@ -1580,92 +1362,67 @@ var PILOTS = [
         unit: "E-Wing",
         skill: 5,
         points: 32,
-        upgrades: [
-            "Elite",
-            "System",
-            "Torpedo",
-            "Astromech",
-        ],
+        upgrades: [ELITE,SYSTEM,TORPEDO,ASTROMECH],
     },
     {
         name: "Corran Horn",
-	faction:"REBEL",
+	faction:REBEL,
 	done:true,
 	init: function() {
-	    this.hasdoubledfired=-1;
-	    this.endc=0;
+	    this.doublefire=-2;
+	    this.lasttry=-1;
 	},
 	canfire: function() {
-	    var r=this.gethitrangeallunits();
-	    var b= ((this.endc==0&&this.hasfired==0)||(this.hasfired==1&&this.endc==1))&&(this.hasdoubledfired<round-1)&&((r[1].length>0||r[2].length>0||r[3].length>0)&&!this.iscloaked&&!this.isfireobstructed());
-	    //log("[canfire]"+this.name+" "+b+"="+this.hasfired+"& r=["+r[1].length+", "+r[2].length+", "+r[3].length+"] &"+this.iscloaked+" &"+this.ocollision.overlap)
-	    return b;
+	    return ((this.hasfired==0)||((this.hasfired==1)&&(this.lasttry==round)))&&!this.iscloaked&&!this.isfireobstructed()&&(this.doublefire<round-1);
 	},
-        endcombatphase: function() {
-	    this.endc++;
-	    //this.log("fired:"+this.hasfired+" hasdamaged"+this.hasdamaged+" doubledfired:"+this.hasdoubledfired+"/"+(round-1)+" canfire?"+this.canfire());
-	    if (this.canfire()) {
-		//Unit.prototype.endcombatphase.call(this);
-		var old=activeunit;
-		activeunit=this;
-		if (old!=this) {
-		    this.select();
-		    old.unselect();
-		}
-		this.log("new attack possible (no attack next turn)");
-		this.hasdamaged=false;
-		this.doattack(true);
-	    } else {
-		if (this.hasfired==2&&this.hasdamaged) {
-		    this.hasdoubledfired=round;
-		    this.log("no attack next turn");
-		} else this.log("can attack next turn");
-		this.endc=0;
-		this.hasdamaged=false;
-		this.hasfired=0;
+	cleanupattack: function() {
+	    if (this.hasfired==2) {
+		if (this.hasdamaged) {
+		    this.doublefire=round;
+		    this.log("no attack next round");
+		} 
 		Unit.prototype.endcombatphase.call(this);
 	    }
+	    Unit.prototype.cleanupattack.call(this);
+	},
+        endcombatphase: function() {
+	    this.lasttry=round;
+	    if (this.canfire()) {
+		this.log("new attack possible (no attack next turn)");
+		this.hasdamaged=false;
+		this.select();
+		this.doattack(true);
+	    } 
 	},
         unique: true,
         unit: "E-Wing",
         skill: 8,
         points: 35,
-        upgrades: [
-            "Elite",
-            "System",
-            "Torpedo",
-            "Astromech",
-        ],
+        upgrades: [ELITE,SYSTEM,TORPEDO,ASTROMECH],
     },
     {
         name: "Sigma Squadron Pilot",
-        faction:"EMPIRE",
+        faction:EMPIRE,
         done:true,
         
         unit: "TIE Phantom",
         skill: 3,
         points: 25,
-        upgrades: [
-            "System",
-            "Crew",
-        ],
+        upgrades: [SYSTEM,CREW],
     },
     {
         name: "Shadow Squadron Pilot",
         done:true,
-        faction:"EMPIRE",
+        faction:EMPIRE,
         
         unit: "TIE Phantom",
         skill: 5,
         points: 27,
-        upgrades: [
-            "System",
-            "Crew",
-        ],
+        upgrades: [SYSTEM,CREW],
     },
     {
         name: "'Echo'",
-        faction:"EMPIRE",
+        faction:EMPIRE,
 	done:true,
 	getdecloakmatrix: function(m) {
 	    var i=0;
@@ -1686,15 +1443,11 @@ var PILOTS = [
         unit: "TIE Phantom",
         skill: 6,
         points: 30,
-        upgrades: [
-            "Elite",
-            "System",
-            "Crew",
-        ],
+        upgrades: [ELITE,SYSTEM,CREW],
     },
     {
         name: "'Whisper'",
-        faction:"EMPIRE",
+        faction:EMPIRE,
 	done:true,
 	resolvedamage:function() {
 	    var ch=targetunit.evadeattack(this);
@@ -1708,61 +1461,54 @@ var PILOTS = [
         unit: "TIE Phantom",
         skill: 7,
         points: 32,
-        upgrades: [
-            "Elite",
-            "System",
-            "Crew",
-        ],
+        upgrades: [ELITE,SYSTEM,CREW],
     },
     {
         name: "Wes Janson",
 	done:true,
 	endattack:function(c,h) {
-	    if (targetunit.targeting.length+targetunit.focus+targetunit.evade>0)
-		this.log("remove token from "+targetunit.name);
-	    if (targetunit.targeting.length>0) targetunit.removetarget(targetunit.targeting[0]);
-	    else if (targetunit.focus>0) targetunit.removefocustoken();
-	    else if (targetunit.evade>0) targetunit.removeevadetoken();
+	    if (targetunit.targeting.length>0) {
+		targetunit.log("-1 %TARGET% [%0]",this.name);
+		targetunit.removetarget(targetunit.targeting[0]);
+	    } else if (targetunit.focus>0) {
+		targetunit.log("-1 %FOCUS% [%0]",this.name);
+		targetunit.removefocustoken();
+	    } else if (targetunit.evade>0) {
+		targetunit.log("-1 %EVADE% [%0]",this.name);
+		targetunit.removeevadetoken();
+	    }
 	    Unit.prototype.endattack.call(this,c,h);
 	},
-	faction:"REBEL",
+	faction:REBEL,
         unique: true,
         unit: "X-Wing",
         skill: 8,
         points: 29,
-        upgrades: [
-            "Elite",
-            "Torpedo",
-            "Astromech",
-        ],
+        upgrades: [ELITE,TORPEDO,ASTROMECH],
     },
     {
         name: "Jek Porkins",
 	done:true,
 	addstress:function() {
 	    // Automatic removal of stress
-	    var roll=this.rollattackdie();
-	    this.log("remove 1 stress token, roll 1 attack dice")
+	    var roll=this.rollattackdie(1)[0];
+	    this.log("-1 %STRESS%, roll 1 attack dice")
 	    if (roll=="hit") { this.resolvehit(1); this.checkdead(); }
 	},
-	faction:"REBEL",
+	faction:REBEL,
         unique: true,
         unit: "X-Wing",
         skill: 7,
         points: 26,
-        upgrades: [
-            "Elite",
-            "Torpedo",
-            "Astromech",
-        ],
+        upgrades: [ELITE,TORPEDO,ASTROMECH],
     },
     {
         name: "'Hobbie' Klivian",
-	faction:"REBEL",
+	faction:REBEL,
 	done:true,
         removetarget: function(t) {
 	    if (this.stress) { 	    
-		this.log("using target -> removes a stress token");
+		this.log("-1 %TARGET% -> -1 %STRESS%");
 		this.removestresstoken();
 	    }
 	    Unit.prototype.removetarget.call(this,t);
@@ -1770,7 +1516,7 @@ var PILOTS = [
         addtarget: function(t) {
 	    if (this.stress) { 
 		this.removestresstoken();
-		this.log("targeting -> removes a stress token");
+		this.log("+1 %TARGET% -> -1 %STRESS%");
 	    }
 	    Unit.prototype.addtarget.call(this,t);
 	},
@@ -1778,50 +1524,42 @@ var PILOTS = [
         unit: "X-Wing",
         skill: 5,
         points: 25,
-        upgrades: [
-            "Torpedo",
-            "Astromech",
-        ],
+        upgrades: [TORPEDO,ASTROMECH],
     },
     {
         name: "Tarn Mison",
 	done:true,
         isattackedby: function(w,a) {
-	    if (this.target==0||this.skill<a.skill) { // Priority to define
-		this.log("free target token on "+a.name);
+	    if (this.target==0||this.skill<a.skill) { // TODO:Priority to define
+		this.log("+%1 %TARGET% / %0",a.name,1);
 		this.addtarget(a);
 	    }
 	},
-	faction:"REBEL",
+	faction:REBEL,
         
         unique: true,
         unit: "X-Wing",
         skill: 3,
         points: 23,
-        upgrades: [
-            "Torpedo",
-            "Astromech",
-        ],
+        upgrades: [TORPEDO,ASTROMECH],
     },
     {
         name: "Jake Farrell",
-       	faction:"REBEL",
+       	faction:REBEL,
 	done:true,
         freemove: function() {
 	    return this.doaction([this.newaction(this.resolveboost,"BOOST"),
 				  this.newaction(this.resolveroll,"ROLL")],
-				 "free boost or barrel roll action");
+				 "free %BOOST% or %BARRELROLL% action");
 	},
 	addfocustoken: function() {
 	    if (this.candoaction()) this.freemove();
 	    Unit.prototype.addfocustoken.call(this);
 	},
-	usefocus: function(id) {
-	    this.log("usefocus");
-	    Unit.prototype.usefocus.call(this,id);
+	removefocustoken: function(id) {
+	    Unit.prototype.removefocustoken.call(this,id);
 	    this.show();
 	    if (this.candoaction()) {
-		this.log("freemove");
 		this.freemove();
 	    }
 	},
@@ -1829,10 +1567,7 @@ var PILOTS = [
         unit: "A-Wing",
         skill: 7,
         points: 24,
-        upgrades: [
-            "Elite",
-            "Missile",
-        ],
+        upgrades: [ELITE,MISSILE],
     },
     {
         name: "Gemmer Sojan",
@@ -1849,58 +1584,47 @@ var PILOTS = [
 	    }
 	    return d;
 	},
-	faction:"REBEL",
+	faction:REBEL,
         unique: true,
         unit: "A-Wing",
         skill: 5,
         points: 22,
-        upgrades: [
-            "Missile",
-        ],
+        upgrades: [MISSILE],
     },
     {
         name: "Keyan Farlander",
-	faction:"REBEL",
+	faction:REBEL,
 	done:true,
 	init: function() {
 	    this.shipimg="b-wing-1.png";
-	},
-        usestress: function() {
-	    if (phase==COMBAT_PHASE&&this.hasfired>0&&this==activeunit) {
-		if (this==activeunit&&this.stress>0) {
+	    this.addattackmoda(this,function(m,n) {
+		return (this.stress>0&&Math.floor(m/100%10>0)); 
+	    }.bind(this),function(m,n) {
+		var f=Math.floor(m/100)%10;
+		if (f>0) {
 		    this.removestresstoken();
-		    var l=$(".focusreddice").length;
-		    $(".focusreddice").remove();
-		    for (i=0; i<l; i++) { 	
-			$("#attack").append("<td class='hitreddice'></td>");
-		    }
-		    this.log("focus -> hit, removing all stress");
-		    $("#atokens .xstresstoken").remove();
-		} 
-	    }
+		    this.log("%0 %FOCUS% -> %0 %HIT%, -1 %STRESS%",f);
+		    return m-100*f+f;
+		}
+		return m;
+	    }.bind(this),false,"stress",true);
 	},
         unique: true,
         unit: "B-Wing",
         skill: 7,
         points: 29,
-        upgrades: [
-            "Elite",
-            "System",
-            "Cannon",
-            "Torpedo",
-            "Torpedo",
-        ],
+        upgrades: [ELITE,SYSTEM,CANNON,TORPEDO,TORPEDO],
     },
     {
         name: "Nera Dantels",
-	faction:"REBEL",
+	faction:REBEL,
 	done:true,
 	init: function() {
 	    this.shipimg="b-wing-1.png";
 	},
         isTurret: function(w) {
 	    if (w.type=="Torpedo") {
-		this.log("can fire torpedos at 360 degrees");
+		this.log("can fire %TORPEDO% at 360 degrees");
 		return true;
 	    }
 	    return false;
@@ -1909,28 +1633,18 @@ var PILOTS = [
         unit: "B-Wing",
         skill: 5,
         points: 26,
-        upgrades: [
-            "Elite",
-            "System",
-            "Cannon",
-            "Torpedo",
-            "Torpedo",
-        ],
+        upgrades: [ELITE,SYSTEM,CANNON,TORPEDO,TORPEDO],
     },
 
     {
         name: "Wild Space Fringer",
         done:true,
-	faction:"REBEL",
+	faction:REBEL,
         
         unit: "YT-2400",
         skill: 2,
         points: 30,
-        upgrades: [
-            "Cannon",
-            "Missile",
-            "Crew",
-        ],
+        upgrades: [CANNON,MISSILE,CREW],
     },
     {
         name: "Eaden Vrill",
@@ -1940,28 +1654,24 @@ var PILOTS = [
 	    this.getattackstrength=function(w,sh) {
 		var a=g.call(this,w,sh);
 		if (sh.stress>0&&this.weapons[w].isprimary) { 
-		    this.log("+1 attack roll against "+sh.name);
+		    this.log("+1 attack die");
 		    return a+1;
 		}
 		return a;
 	    }.bind(this);
 	},
         
-	faction:"REBEL",
+	faction:REBEL,
         
         unit: "YT-2400",
         unique: true,
         skill: 3,
         points: 32,
-        upgrades: [
-            "Cannon",
-            "Missile",
-            "Crew",
-        ],
+        upgrades: [CANNON,MISSILE,CREW],
     },
     {
         name: "'Leebo'",
-	faction:"REBEL",
+	faction:REBEL,
 	done:true,
         applycritical: function(n) {
 	    var j,s;
@@ -1971,7 +1681,7 @@ var PILOTS = [
 		var s2=this.selectdamage();
 		CRITICAL_DECK[s2].count--;
 		var sc=[s1,s2];
-		this.log("<b>select one out of 2 criticals</b>");
+		this.log("select one critical");
 		this.selectcritical(sc,function(m) { 
 		    CRITICAL_DECK[m].count++;
 		    if (this.faceup(new Critical(this,m))) this.removehull(1);
@@ -1984,51 +1694,34 @@ var PILOTS = [
         unique: true,
         skill: 5,
         points: 34,
-        upgrades: [
-            "Elite",
-            "Cannon",
-            "Missile",
-            "Crew",
-        ],
+        upgrades: [ELITE,CANNON,MISSILE,CREW],
     },
     {
         name: "Dash Rendar",
-	faction:"REBEL",
+	faction:REBEL,
         unit: "YT-2400",
         unique: true,
         skill: 7,
 	done:true,
 	getocollisions: function(mbegin,mend,path,len) { 
-	    //this.log("dash rendar getocollision");
-	    return {overlap:-1,template:0};
+	    return {overlap:-1,template:[],mine:[]};
 	},
         points: 36,
-        upgrades: [
-            "Elite",
-            "Cannon",
-            "Missile",
-            "Crew",
-        ],
+        upgrades: [ELITE,CANNON,MISSILE,CREW],
     },
     {
         name: "Patrol Leader",
         
-        faction:"EMPIRE",
+        faction:EMPIRE,
 	done:true,
         unit: "VT-49 Decimator",
         skill: 3,
         points: 40,
-        upgrades: [
-            "Torpedo",
-            "Crew",
-            "Crew",
-            "Crew",
-            "Bomb",
-        ],
+        upgrades: [TORPEDO,CREW,CREW,CREW,BOMB],
     },
     {
         name: "Captain Oicunn",
-        faction:"EMPIRE",
+        faction:EMPIRE,
         unit: "VT-49 Decimator",
         skill: 4,
         points: 42,
@@ -2039,25 +1732,18 @@ var PILOTS = [
 	    for (i=0; i<this.touching.length; i++) {
 		var u=this.touching[i];
 		if (u.team!=this.team) {
-		    this.log("touching "+u.name+" -> 1 %HIT%");
+		    u.log("+1 %HIT% [%0]",this.name);
 		    u.resolvehit(1);
 		    u.checkdead();
 		}
 	    }
 	    Unit.prototype.resolvecollision.call(this);
 	},
-        upgrades: [
-            "Elite",
-            "Torpedo",
-            "Crew",
-            "Crew",
-            "Crew",
-            "Bomb",
-        ],
+        upgrades: [ELITE,TORPEDO,CREW,CREW,CREW,BOMB],
     },
     {
         name: "Commander Kenkirk",
-        faction:"EMPIRE",
+        faction:EMPIRE,
         getagility: function() {
 	    if (this.shield==0&&this.hull<this.ship.hull) return this.agility+1;
 	    return this.agility;
@@ -2067,14 +1753,7 @@ var PILOTS = [
         skill: 6,
         points: 44,
         unique: true,
-        upgrades: [
-            "Elite",
-            "Torpedo",
-            "Crew",
-            "Crew",
-            "Crew",
-            "Bomb",
-        ],
+        upgrades: [ELITE,TORPEDO,CREW,CREW,CREW,BOMB],
     },
     {
         name: "Rear Admiral Chiraneau",
@@ -2091,24 +1770,17 @@ var PILOTS = [
 	    }.bind(this),false,"hit");
 	},        
 
-        faction:"EMPIRE",
+        faction:EMPIRE,
         unit: "VT-49 Decimator",
         skill: 8,
         points: 46,
 	done:true,
         unique: true,
-        upgrades: [
-            "Elite",
-            "Torpedo",
-            "Crew",
-            "Crew",
-            "Crew",
-            "Bomb",
-        ],
+        upgrades: [ELITE,TORPEDO,CREW,CREW,CREW,BOMB],
     },
     {
         name: "Prince Xizor",
-        faction:"SCUM",
+        faction:SCUM,
         modifydamageassigned: function(ch,attacker) {
 	    var i;
 	    var p=[];
@@ -2122,12 +1794,14 @@ var PILOTS = [
 		    return 0; });
 		if (ch>=10) {
 		    p[0].resolvecritical(1);
-		    this.log("1 critical transferred to "+p[0].name);
+		    this.log("-1 %CRIT%");
+		    p[0].log("+1 %CRIT% [%0]",this.name);
 		    return ch-10;
 		} 
 		p[0].resolvehit(1);
 		p[0].checkdead();
-		this.log("1 hit transferred to "+p[0].name);
+		this.log("-1 %HIT%");
+		p[0].log("+%1 %HIT% [%0]",this.name,1);
 		return ch-1;
 	    }
 	    return ch;
@@ -2137,14 +1811,11 @@ var PILOTS = [
         unit: "StarViper",
         skill: 7,
         points: 31,
-        upgrades: [
-            "Elite",
-            "Torpedo",
-        ],
+        upgrades: [ELITE,TORPEDO],
     },
     {
         name: "Guri",
-        faction:"SCUM",
+        faction:SCUM,
 	/* TODO : may only do the action */
 	begincombatphase: function() {
 	    if (!this.dead) {
@@ -2161,40 +1832,33 @@ var PILOTS = [
         unit: "StarViper",
         skill: 5,
         points: 30,
-        upgrades: [
-            "Elite",
-            "Torpedo",
-        ],
+        upgrades: [ELITE,TORPEDO],
     },
     {
         name: "Black Sun Vigo",
-        faction:"SCUM",
+        faction:SCUM,
         done:true,
         unit: "StarViper",
         skill: 3,
         points: 27,
-        upgrades: [
-            "Torpedo",
-        ],
+        upgrades: [TORPEDO],
     },
     {
         name: "Black Sun Enforcer",
-        faction:"SCUM",
+        faction:SCUM,
         done:true,
         
         unit: "StarViper",
         skill: 1,
         points: 25,
-        upgrades: [
-            "Torpedo",
-        ],
+        upgrades: [TORPEDO],
     },
     {
         name: "Serissu",
-        faction:"SCUM",
+        faction:SCUM,
 	done:true,
         init: function() {
-	    this.adddefensererolld(
+	    this.addglobaldefensererolld(
 		this,
 		["blank","focus"],
 		function() { return 1 },
@@ -2202,25 +1866,22 @@ var PILOTS = [
 		    // Serissu dead ? 
 		    if (this.dead) return false;
 		    if (defender!=this&&defender.getrange(this)==1&&defender.team==this.team) {
-			defender.log("+1 reroll from "+this.name);
+			defender.log("+%1 reroll(s) [%0]",this.name,1);
 			return true;
 		    }
 		    return false;
-		}.bind(this),
-		true
+		}.bind(this)
 	    )
 	},
         unit: "M3-A Interceptor",
         skill: 8,
         points: 20,
         unique: true,
-        upgrades: [
-            "Elite",
-        ],
+        upgrades: [ELITE],
     },
     {
         name: "Laetin A'shera",
-        faction:"SCUM",
+        faction:SCUM,
         endbeingattacked: function(c,h) {
 	    Unit.prototype.endbeingattacked.call(this,c,h);
 	    if (c+h==0) {
@@ -2237,18 +1898,16 @@ var PILOTS = [
     },
     {
         name: "Tansarii Point Veteran",
-        faction:"SCUM",
+        faction:SCUM,
         done:true,
         unit: "M3-A Interceptor",
         skill: 5,
         points: 17,
-        upgrades: [
-            "Elite",
-        ],
+        upgrades: [ELITE],
     },
     {
         name: "Cartel Spacer",
-        faction:"SCUM",
+        faction:SCUM,
         done:true,
         unit: "M3-A Interceptor",
         skill: 2,
@@ -2257,7 +1916,7 @@ var PILOTS = [
     },
     {
         name: "IG-88A",
-	faction:"SCUM",
+	faction:SCUM,
         unique: true,
         unit: "Aggressor",
         skill: 6,
@@ -2271,48 +1930,33 @@ var PILOTS = [
 	    Unit.prototype.cleanupattack.call(this);
 	},
 	done:true,
-        upgrades: [
-            "Elite",
-            "System",
-            "Cannon",
-            "Cannon",
-            "Bomb",
-            "Illicit",
-        ],
+        upgrades: [ELITE,SYSTEM,CANNON,CANNON,BOMB,ILLICIT],
     },
     {
         name: "IG-88B",
-	faction:"SCUM",
+	faction:SCUM,
 	done:true,
 	endattack: function(c,h) {
-	    Unit.prototype.endattack.call(this,c,h);
 	    if ((c+h==0)&&this.hasfired<2) {
 		for (var i=0; i<this.weapons.length; i++) {
 		    var w=this.weapons[i];
 		    if (w.type=="Cannon"&&w.isWeapon()&&w.getrangeallunits().length>0) {
-			this.log("no damage, 2nd attack with "+w.name);
+			this.log("2nd attack with %0",w.name);
 			this.selecttargetforattack(i); 
 			break;
 		    }
 		}
-	    }
+	    } else Unit.prototype.endattack.call(this,c,h);
 	},
         unique: true,
         unit: "Aggressor",
         skill: 6,
         points: 36,
-        upgrades: [
-            "Elite",
-            "System",
-            "Cannon",
-            "Cannon",
-            "Bomb",
-            "Illicit",
-        ],
+        upgrades: [ELITE,SYSTEM,CANNON,CANNON,BOMB,ILLICIT],
     },
     {
         name: "IG-88C",
-	faction:"SCUM",
+	faction:SCUM,
         resolveboost: function(n) {
 	    Unit.prototype.resolveboost.call(this,n);
 	    this.doaction([this.newaction(this.addevade,"EVADE")],"free evade action");
@@ -2322,21 +1966,14 @@ var PILOTS = [
         unit: "Aggressor",
         skill: 6,
         points: 36,
-        upgrades: [
-            "Elite",
-            "System",
-            "Cannon",
-            "Cannon",
-            "Bomb",
-            "Illicit",
-        ],
+        upgrades: [ELITE,SYSTEM,CANNON,CANNON,BOMB,ILLICIT],
     },
     {
         name: "IG-88D",
-	faction:"SCUM",  
+	faction:SCUM,  
         completemaneuver: function(dial,realdial,difficulty) {
 	    if (dial=="SL3") {
-		this.log("pick a Sengor turn");
+		this.log("select %SLOOPLEFT% or %TURNLEFT% maneuver");
 		this.resolveactionmove(
 		    [this.getpathmatrix(this.m,"SL3"),
 		     this.getpathmatrix(this.m,"TL3").rotate(180,0,0)],
@@ -2345,7 +1982,7 @@ var PILOTS = [
 			else Unit.prototype.completemaneuver.call(this,dial,"TL3",difficulty);
 		    }.bind(this),false,true);
 	    } else if (dial=="SR3") {
-		this.log("pick a Sengor turn");
+		this.log("select %SLOOPRIGHT% or %TURNRIGHT% maneuver");
 		this.resolveactionmove(
 		    [this.getpathmatrix(this.m,"SR3"),
 		     this.getpathmatrix(this.m,"TR3").rotate(180,0,0)],
@@ -2360,27 +1997,20 @@ var PILOTS = [
         unit: "Aggressor",
         skill: 6,
         points: 36,
-        upgrades: [
-            "Elite",
-            "System",
-            "Cannon",
-            "Cannon",
-            "Bomb",
-            "Illicit",
-        ],
+        upgrades: [ELITE,SYSTEM,CANNON,CANNON,BOMB,ILLICIT],
     },
     {
         name: "N'Dru Suhlak",
         unique: true,
 	done:true,
-	faction:"SCUM",
+	faction:SCUM,
         init:  function() {
 	    var g=this.getattackstrength;
 	    this.getattackstrength=function(w,sh) {
 		var a=g.call(this,w,sh);
 		var p=this.selectnearbyunits(2,function(a,b) {return a.team==b.team&&a!=b });
 		if (p.length==0) {
-		    this.log("+1 attacking "+sh.name+" at range >=3 of friendly ships");
+		    this.log("+1 attack against %0, at range >=3 of friendly ships",sh.name);
 		    return a+1;
 		} return a;
 	    }.bind(this);
@@ -2388,16 +2018,12 @@ var PILOTS = [
         unit: "Z-95 Headhunter",
         skill: 7,
         points: 17,
-        upgrades: [
-            "Elite",
-            "Missile",
-            "Illicit",
-        ],
+        upgrades: [ELITE,MISSILE,ILLICIT],
     },
     {
         name: "Kaa'To Leeachos",
         unique: true,
-	faction:"SCUM",
+	faction:SCUM,
 	done:true,
         begincombatphase: function() {
 	    if (!this.dead) {
@@ -2405,15 +2031,17 @@ var PILOTS = [
 		if (p.length>0) {
 		    this.doselection(function(n) {
 			p.push(this)
-			this.log("<b>select a focus/evade token to take (self to cancel)</b>");
+			this.log("select %FOCUS%/%EVADE% to take (or self to cancel)");
 			this.resolveactionselection(p,function(k) {
 			    if (this!=p[k]) { 
 				if (p[k].evade>0) { 
 				    p[k].removeevadetoken(); this.addevadetoken(); 
-				    this.log("evade taken from "+p[k].name);
+				    p[k].log("-1 %EVADE% [%0]",this.name);
+				    this.log("+1 %EVADE%");
 				} else if (p[k].focus>0) { 
 				    p[k].removefocustoken(); this.addfocustoken(); 
-				    this.log("focus taken from "+p[k].name);
+				    p[k].log("-1 %FOCUS% [%0]",this.name);
+				    this.log("+1 %FOCUS%");
 				}
 			    }
 			    this.endnoaction(n,"");
@@ -2427,39 +2055,29 @@ var PILOTS = [
         unit: "Z-95 Headhunter",
         skill: 5,
         points: 15,
-        upgrades: [
-            "Elite",
-            "Missile",
-            "Illicit",
-        ],
+        upgrades: [ELITE,MISSILE,ILLICIT],
     },
     {
         name: "Black Sun Soldier",
-        faction:"SCUM",
+        faction:SCUM,
         done:true,
         unit: "Z-95 Headhunter",
         skill: 3,
         points: 13,
-        upgrades: [
-            "Missile",
-            "Illicit",
-        ],
+        upgrades: [MISSILE,ILLICIT],
     },
     {
         name: "Binayre Pirate",
-	faction:"SCUM",
+	faction:SCUM,
         done:true,        
         unit: "Z-95 Headhunter",
         skill: 1,
         points: 12,
-        upgrades: [
-            "Missile",
-            "Illicit",
-        ],
+        upgrades: [MISSILE,ILLICIT],
     },
     {
         name: "Boba Fett",
-	faction:"SCUM",
+	faction:SCUM,
         unit: "Firespray-31",
         skill: 8,
         points: 39,
@@ -2475,87 +2093,55 @@ var PILOTS = [
 	    this.addattackrerolla(this,
 				  ["blank","focus"],
 				  nrerolls, 
-				  function(w,defender) { return true; },
-				  false
+				  function(w,defender) { return true; }
 				 );
 	    this.adddefensererolld(this,
 				   ["blank","focus"], 
 				   nrerolls, 
-				   function(w,defender) { return true; },
-				   false
+				   function(w,defender) { return true; }
 				  );
 	},
 	done:true,
         unique: true,
-        upgrades: [
-            "Elite",
-            "Cannon",
-            "Bomb",
-            "Crew",
-            "Missile",
-            "Illicit",
-        ],
+        upgrades: [ELITE,CANNON,BOMB,CREW,MISSILE,ILLICIT],
     },
     {
         name: "Kath Scarlet",
 	done:true,
         getattackstrength:  function(w,sh) {
 	    var a=Unit.prototype.getattackstrength.call(this,w,sh);
-	    var m=this.m.clone();
-	    this.m.rotate(180,0,0);
-	    if (this.isinfiringarc(sh)) { 
-		this.log("+1 attack roll against "+sh.name+" in auxiliary arc");
+	    if (this.isinfiringarc(sh)&&this.getprimarysector(sh)==4) { 
+		this.log("+1 attack die against %0 in auxiliary arc",sh.name);
 		a=a+1;
 	    }
-	    this.m=m;
 	    return a;
 	},
         unique: true,
-	faction:"SCUM",      
+	faction:SCUM,      
         unit: "Firespray-31",
         skill: 7,
         points: 38,
-        upgrades: [
-            "Elite",
-            "Cannon",
-            "Bomb",
-            "Crew",
-            "Missile",
-            "Illicit",
-        ],
+        upgrades: [ELITE,CANNON,BOMB,CREW,MISSILE,ILLICIT],
     },
     {
         name: "Emon Azzameen",
 	done:true,
 	unique:true,
 	getbomblocation:function() {  return ["F1","TL3","TR3","F3"]; },
-	faction:"SCUM",
+	faction:SCUM,
         unit: "Firespray-31",
         skill: 6,
         points: 36,
-        upgrades: [
-            "Cannon",
-            "Bomb",
-            "Crew",
-            "Missile",
-            "Illicit",
-        ],
+        upgrades: [CANNON,BOMB,CREW,MISSILE,ILLICIT],
     },
     {
         name: "Mandalorian Mercenary",
-	faction:"SCUM",       
+	faction:SCUM,       
         done:true,
         unit: "Firespray-31",
         skill: 5,
         points: 35,
-        upgrades: [
-            "Elite",
-            "Cannon",
-            "Bomb",
-            "Crew",
-            "Missile",
-            "Illicit",
-        ],
+        upgrades: [ELITE,CANNON,BOMB,CREW,MISSILE,ILLICIT],
     },
     {
         name: "Kavil",
@@ -2566,28 +2152,22 @@ var PILOTS = [
 	    this.getattackstrength=function(w,sh) {
 		var a=g.call(this,w,sh);
 		if (!this.isinfiringarc(sh)) { 
-		    this.log("+1 attack roll against "+sh.name+" outside firing arc");
+		    this.log("+1 attack die against %0 outside firing arc",sh.name);
 		    return a+1;
 		}
 		return a;
 	    }.bind(this);
 	},       
-	faction:"SCUM",     
+	faction:SCUM,     
         unit: "Y-Wing",
         skill: 7,
         points: 24,
-        upgrades: [
-            "Elite",
-            "Turret",
-            "Torpedo",
-            "Torpedo",
-            "Salvaged",
-        ],
+        upgrades: [ELITE,TURRET,TORPEDO,TORPEDO,SALVAGED],
     },
     {
         name: "Drea Renthal",
         unique: true,
-	faction:"SCUM",
+	faction:SCUM,
         unit: "Y-Wing",
         skill: 5,
 	done:true,
@@ -2596,7 +2176,7 @@ var PILOTS = [
 	    if (p.length>0) {
 		p.push(this);
 		this.doselection(function(n) {
-		    this.log("<b>select new target to lock at the cost of 1 stress (self to cancel)</b>");
+		    this.log("select unit to target, +1 %STRESS% (or self to cancel)");
 		    this.resolveactionselection(p,function(k) { 
 			if (k<p.length-1&&k>-1&&this.targeting.indexOf(p[k])==-1) { 
 			    this.addtarget(p[k]);
@@ -2609,45 +2189,30 @@ var PILOTS = [
 	    Unit.prototype.removetarget.call(this,t);
 	},
         points: 22,
-        upgrades: [
-            "Turret",
-            "Torpedo",
-            "Torpedo",
-            "Salvaged",
-        ],
+        upgrades: [TURRET,TORPEDO,TORPEDO,SALVAGED],
     },
     {
         name: "Hired Gun",
-	faction:"SCUM",
+	faction:SCUM,
 	done:true,
         unit: "Y-Wing",
         skill: 4,
         points: 20,
-        upgrades: [
-            "Turret",
-            "Torpedo",
-            "Torpedo",
-            "Salvaged",
-        ],
+        upgrades: [TURRET,TORPEDO,TORPEDO,SALVAGED],
     },
     {
         name: "Syndicate Thug",
-	faction:"SCUM",
+	faction:SCUM,
 	done:true,
         unit: "Y-Wing",
         skill: 2,
         points: 18,
-        upgrades: [
-            "Turret",
-            "Torpedo",
-            "Torpedo",
-            "Salvaged",
-        ],
+        upgrades: [TURRET,TORPEDO,TORPEDO,SALVAGED],
     },
     {
         name: "Dace Bonearm",
         unique: true,
-	faction:"SCUM",
+	faction:SCUM,
         unit: "HWK-290",
 	done:true,
 	init: function() {
@@ -2658,24 +2223,20 @@ var PILOTS = [
 		if (this.getrange(unit)<=3 &&unit.team!=this.team&&unit.stress==0) {
 		    unit.addstress();
 		    this.resolvehit(1);
-		    unit.log("+1 stress for +1 %HIT% to "+this.name);
+		    unit.log("+1 %STRESS%");
+		    this.log("+%1 %HIT [%0]",unit.name,1);
 		    this.checkdead();
 		}
 	    }
 },
         skill: 7,
         points: 23,
-        upgrades: [
-            "Elite",
-            "Turret",
-            "Crew",
-            "Illicit",
-        ],
+        upgrades: [ELITE,TURRET,CREW,ILLICIT],
     },
     {
         name: "Palob Godalhi",
         unique: true,
-	faction:"SCUM",
+	faction:SCUM,
         unit: "HWK-290",
         begincombatphase: function() {
 	    if (!this.dead) {
@@ -2683,15 +2244,17 @@ var PILOTS = [
 		if (p.length>0) {
 		    this.doselection(function(n) {
 			p.push(this)
-			this.log("<b>select a focus/evade token to take (self to cancel)</b>");
+			this.log("select %FOCUS%/%EVADE% to take (or self to cancel)");
 			this.resolveactionselection(p,function(k) {
 			    if (this!=p[k]) { 
 				if (p[k].evade>0) { 
 				    p[k].removeevadetoken(); this.addevadetoken(); 
-				    this.log("evade taken from "+p[k].name);
+				    p[k].log("-1 %EVADE% [%0]",this.name);
+				    this.log("+1 %EVADE%");
 				} else if (p[k].focus>0) { 
 				    p[k].removefocustoken(); this.addfocustoken(); 
-				    this.log("focus taken from "+p[k].name);
+				    p[k].log("-1 %FOCUS% [%0]",this.name);
+				    this.log("+1 %FOCUS%");
 				}
 			    }
 			    this.endnoaction(n,"");
@@ -2705,12 +2268,7 @@ var PILOTS = [
 	done:true,
         skill: 5,
         points: 20,
-        upgrades: [
-            "Elite",
-            "Turret",
-            "Crew",
-            "Illicit",
-        ],
+        upgrades: [ELITE,TURRET,CREW,ILLICIT],
     },
     {
         name: "Torkil Mux",
@@ -2721,7 +2279,7 @@ var PILOTS = [
 		var p=this.gettargetableunits(2);
 		if (p.length>0) {
 		    this.doselection(function(n) {
-			this.log("<b>select a pilot to set its skill to 0.</b>");
+			this.log("select unit for a 0 PS");
 			this.resolveactionselection(p,function(k) {
 			    if (this!=p[k]) {
 				var ecp=p[k].ecp;
@@ -2743,32 +2301,24 @@ var PILOTS = [
 		}
 	    }
 	},  
-	faction:"SCUM",
+	faction:SCUM,
         unit: "HWK-290",
         skill: 3,
         points: 19,
-        upgrades: [
-            "Turret",
-            "Crew",
-            "Illicit",
-        ],
+        upgrades: [TURRET,CREW,ILLICIT],
     },
     {
         name: "Spice Runner",
-	faction:"SCUM",
+	faction:SCUM,
 	done:true,
         unit: "HWK-290",
         skill: 1,
         points: 16,
-        upgrades: [
-            "Turret",
-            "Crew",
-            "Illicit",
-        ],
+        upgrades: [TURRET,CREW,ILLICIT],
     },
     {
         name: "Commander Alozen",
-        faction:"EMPIRE",
+        faction:EMPIRE,
         unit: "TIE Advanced",
         unique: true,
 	done:true,
@@ -2780,11 +2330,11 @@ var PILOTS = [
 		var i;
 		if (p.length>0) { 
 		    p.push(this);
-		    this.log("<b>select target to lock (self to cancel)</b>");
+		    this.log("select unit to lock (or self to cancel)");
 		    this.resolveactionselection(p,function(k) {
 			if (this!=p[k]) {
 			    this.addtarget(p[k]);
-			    this.log("target locks "+p[k].name);
+			    this.log("+%1 %TARGET% / %0",p[k].name,1);
 			}
 			this.endnoaction(n,"TARGET");
 		    }.bind(this));
@@ -2792,16 +2342,13 @@ var PILOTS = [
 	    }.bind(this));
 	    return Unit.prototype.begincombatphase.call(this);
 	},
-        upgrades: [
-            "Elite",
-            "Missile",
-        ],
+        upgrades: [ELITE,MISSILE],
     },
     {
         name: "Juno Eclipse",
         unique: true,
 	done:true,
-        faction:"EMPIRE",
+        faction:EMPIRE,
 	unit: "TIE Advanced",
         skill: 8,
         points: 28,
@@ -2816,21 +2363,18 @@ var PILOTS = [
 		    p.push(this.getpathmatrix(this.m,r));
 		}
 	    }
-	    this.log("<b>choose speed for maneuver</b>");
+	    this.log("select maneuver speed");
 	    this.resolveactionmove(p,function(t,k) {
 		Unit.prototype.completemaneuver.call(t,dial,q[k],difficulty);
 	    },false,true);
 	},
-        upgrades: [
-            "Elite",
-            "Missile",
-        ],
+        upgrades: [ELITE,MISSILE],
     },
     {
         name: "Zertik Strom",
         unique: true,
 	done:true,
-        faction:"EMPIRE",
+        faction:EMPIRE,
 	unit: "TIE Advanced",
         skill: 6,
 	init: function() {
@@ -2838,7 +2382,7 @@ var PILOTS = [
 	    this.gras=Weapon.prototype.getrangeattackbonus;
 	    Weapon.prototype.getrangeattackbonus=function(sh) {
 		if (this.unit.team!=unit.team&&unit.getrange(this.unit)==1) {
-		    unit.log("no attack range bonus for "+this.unit.name);
+		    this.unit.log("0 attack range bonus [%0]",unit.name);
 		    return 0;
 		}
 		return this.unit.gras.call(this,sh);
@@ -2846,29 +2390,23 @@ var PILOTS = [
 	    this.grds=Weapon.prototype.getrangedefensebonus;
 	    Weapon.prototype.getrangedefensebonus=function(sh) {
 		if (this.unit.team!=unit.team&&unit.getrange(this.unit)==1) {
-		    unit.log("no defense range bonus due to "+this.unit.name);
+		    this.unit.log("0 defense range bonus [%0]",unit.name);
 		    return 0;
 		}
 		return this.unit.grds.call(this,sh);
 	    };
 	},
         points: 26,
-        upgrades: [
-            "Elite",
-            "Missile",
-        ],
+        upgrades: [ELITE,MISSILE],
     },
     {
         name: "Lieutenant Colzet",
         unique: true,
-        faction:"EMPIRE",
+        faction:EMPIRE,
 	unit: "TIE Advanced",
         skill: 3,
         points: 23,
-        upgrades: [
-            "Elite",
-            "Missile",
-        ],
+        upgrades: [ELITE,MISSILE],
 	done:true,
 	endcombatphase: function() {
 	    this.doselection(function(n) {
@@ -2886,80 +2424,91 @@ var PILOTS = [
     },
     {
         name: "Bossk",
-        faction: "SCUM",
+        faction: SCUM,
         unit: "YV-666",
         unique: true,
         skill: 7,
         points: 35,
-        upgrades: [
-            "Elite",
-            "Cannon",
-            "Missile",
-            "Crew",
-            "Crew",
-            "Crew",
-            "Illicit"
-        ]
+	done:true,
+	hashit: function(t) {
+	    var h=Unit.prototype.hashit.call(this,t);
+	    var p=this.criticalresolved+this.hitresolved;
+	    if (h&&this.criticalresolved>0) {
+		if (p<=t.shield||(t.hull<=2&&p>t.shield)) { 
+		    this.criticalresolved--;
+		    this.hitresolved+=2;
+		    this.log("1 %CRIT% -> 2 %HIT%");
+		} else this.log(t.name+" shields are down, more than 2 hulls: keeping critical");
+	    }
+	},
+        upgrades: [ELITE,CANNON,MISSILE,CREW,CREW,CREW,ILLICIT]
     },
     {
         name: "Moralo Eval",
-        faction: "SCUM",
+        faction: SCUM,
         unit: "YV-666",
         unique: true,
         skill: 6,
         points: 34,
-        upgrades: [
-            "Cannon",
-            "Missile",
-            "Crew",
-            "Crew",
-            "Crew",
-            "Illicit"
-        ]
+	done:true,
+	init: function() {
+	    for (var i=0; i<this.weapons.length; i++) {
+		if (this.weapons[i].type=="Cannon") {
+		    this.log("can fire %0 in auxiliary firing arc",this.weapons[i].name);
+		    this.weapons[i].auxiliary=this.weapons[0].auxiliary;
+		    this.weapons[i].subauxiliary=this.weapons[0].subauxiliary;
+		}
+	    }
+	},
+        upgrades: [CANNON,MISSILE,CREW,CREW,CREW,ILLICIT]
     },
     {
         name: "Latts Razzi",
-        faction: "SCUM",
+        faction: SCUM,
         unit: "YV-666",
         unique: true,
         skill: 5,
         points: 33,
-        upgrades: [
-            "Cannon",
-            "Missile",
-            "Crew",
-            "Crew",
-            "Crew",
-            "Illicit"
-        ]
+	done:true,
+	init: function() {
+	    var self=this;
+	    var da=Unit.prototype.declareattack;
+	    Unit.prototype.declareattack=function(wp,t) {
+		da.call(this,wp,t);
+		if (self.team==this.team&&self.canusetarget(t))
+		    self.donoaction([this.newaction(function(n) {
+			this.removetarget(t);
+			var eba=t.endbeingattacked
+			var gds=t.getdefensestrength;
+			t.endbeingattacked=function(c,h) {
+			    this.endbeingattacked=eba;
+			    this.getdefensestrength=gds;
+			}.bind(t);
+			t.getdefensestrength=function(i,sh) {
+			    return gds.call(t,i,sh)-1;
+			}.bind(t);
+			this.endnoaction(n,"TARGET");
+		    }.bind(self),"TARGET")],self.name+": -1 agility for "+t.name,true);
+	    }
+	},
+        upgrades: [CANNON,MISSILE,CREW,CREW,CREW,ILLICIT]
     },
     {
         name: "Trandoshan Slaver",
-        faction: "SCUM",
+        faction: SCUM,
         unit: "YV-666",
 	done:true,
         skill: 2,
         points: 29,
-        upgrades: [
-            "Cannon",
-            "Missile",
-            "Crew",
-            "Crew",
-            "Crew",
-            "Illicit"
-        ]
+        upgrades: [CANNON,MISSILE,CREW,CREW,CREW,ILLICIT]
     },
     {
         name: "Talonbane Cobra",
         unique: true,
-        faction: "SCUM",
+        faction: SCUM,
         unit: "Kihraxz Fighter",
         skill: 9,
-        upgrades: [
-            "Elite",
-            "Missile",
-            "Illicit",
-        ],
+        upgrades: [ELITE,MISSILE,ILLICIT],
 	done:true,
 	getattackbonus: function(sh) {
 	    var att=this.weapons[i].getattack();
@@ -2968,7 +2517,7 @@ var PILOTS = [
 	getdefensestrength: function(i,sh) {
 	    var def=this.getagility();
 	    var obstacledef=sh.getobstructiondef(this);
-	    if (obstacledef>0) this.log("+"+obstacledef+" defense for obstacle");
+	    if (obstacledef>0) this.log("+%0 defense for obstacle",obstacledef);
 	    return def+2*sh.weapons[i].getrangedefensebonus(this)+obstacledef;
 	},
         points: 28,
@@ -2976,18 +2525,15 @@ var PILOTS = [
     {
         name: "Graz the Hunter",
         unique: true,
-        faction: "SCUM",
+        faction: SCUM,
         unit: "Kihraxz Fighter",
         skill: 6,
-            upgrades: [
-                "Missile",
-                "Illicit",
-            ],
+            upgrades: [MISSILE,ILLICIT],
 	getattackstrength: function(i,sh) {
 	    var a=0;
-	    if (this.isinfiringarc(sh)) {
+	    if (this.weapons[i].getsector(sh)<=3) {
 		a=1;
-		this.log("+1 attack die for attacking "+sh.name+" in firing arc");
+		this.log("+1 attack die for attacking in firing arc");
 	    }
 	    return Unit.prototype.getattackstrength.call(this,i,sh)+a;
 	},
@@ -2996,45 +2542,30 @@ var PILOTS = [
     },
     {
         name: "Black Sun Ace",
-        faction: "SCUM",
+        faction: SCUM,
         unit: "Kihraxz Fighter",
 	done:true,
             skill: 5,
-            upgrades: [
-                "Elite",
-                "Missile",
-                "Illicit",
-            ],
+            upgrades: [ELITE,MISSILE,ILLICIT],
             points: 23
         },
         {
             name: "Cartel Marauder",
 	    done:true,
-            faction: "SCUM",
+            faction: SCUM,
             unit: "Kihraxz Fighter",
             skill: 2,
-            upgrades: [
-                "Missile",
-                "Illicit",
-            ],
+            upgrades: [MISSILE,ILLICIT],
             points: 20
         },
         {
             name: "Miranda Doni",
             unique: true,
 	    done:true,
-            faction: "REBEL",
+            faction: REBEL,
             unit: "K-Wing",
             skill: 8,
-            upgrades: [
-                "Turret",
-                "Torpedo",
-                "Torpedo",
-                "Missile",
-                "Crew",
-                "Bomb",
-                "Bomb",
-            ],
+            upgrades: [TURRET,TORPEDO,TORPEDO,MISSILE,CREW,BOMB,BOMB],
 	    beginattack: function() {
 		this.donoaction([
 		    {org:this,name:this.name,type:"SHIELD",action:function(n) {
@@ -3070,138 +2601,115 @@ var PILOTS = [
         {
             name: "Esege Tuketu",
             unique: true,
-            faction: "REBEL",
+            faction: REBEL,
             unit: "K-Wing",
-	    
             skill: 6,
-            upgrades: [
-                "Turret",
-                "Torpedo",
-                "Torpedo",
-                "Missile",
-                "Crew",
-                "Bomb",
-                "Bomb",
-            ],
-            points: 28
+            upgrades: [TURRET,TORPEDO,TORPEDO,MISSILE,CREW,BOMB,BOMB],
+            points: 28,
+	    done:true,
+	    init: function() {
+		var self=this;
+		var cuf=Unit.prototype.canusefocus;
+		var rft=Unit.prototype.removefocustoken;
+		Unit.prototype.canusefocus=function() {
+		    return (cuf.call(this)||(this.incombat>-1&&this!=self&&this.getrange(self)<=2&&self.canusefocus()));
+		}
+		Unit.prototype.removefocustoken=function() {
+		    if (this.focus>0) rft.call(this);
+		    else if (this.incombat>-1&&this!=self&&this.getrange(self)<=2&&self.canusefocus()) rft.call(self);
+		}
+	    }
         },
         {
             name: "Guardian Squadron Pilot",
-            faction: "REBEL",
+            faction: REBEL,
 	    done:true,
             unit: "K-Wing",
             skill: 4,
-            upgrades: [
-                "Turret",
-                "Torpedo",
-                "Torpedo",
-                "Missile",
-                "Crew",
-                "Bomb",
-                "Bomb",
-            ],
+            upgrades: [TURRET,TORPEDO,TORPEDO,MISSILE,CREW,BOMB,BOMB],
             points: 25
         },
         {
             name: "Warden Squadron Pilot",
-            faction: "REBEL",
+            faction: REBEL,
 	    done:true,
             unit: "K-Wing",
             skill: 2,
-            upgrades: [
-                "Turret",
-                "Torpedo",
-                "Torpedo",
-                "Missile",
-                "Crew",
-                "Bomb",
-                "Bomb",
-            ],
+            upgrades: [TURRET,TORPEDO,TORPEDO,MISSILE,CREW,BOMB,BOMB],
             points: 23
         },
         {
             name: "'Redline'",
             unique: true,
-            faction: "EMPIRE",
+            faction: EMPIRE,
             unit: "TIE Punisher",
             skill: 7,
-            upgrades: [
-                "System",
-                "Torpedo",
-                "Torpedo",
-                "Missile",
-                "Missile",
-                "Bomb",
-                "Bomb",
-            ],
+	    done:true,
+	    /* TODO: A bit too automatic */
+	    boundtargets: function(sh) {
+		if (this.targeting.indexOf(sh)>-1) return true;
+		for (var i=0; i<this.targeting.length-1; i++) this.removetarget(this.targeting[i]);
+		return false;
+	    },
+	    addtarget: function(sh) {
+		if (this.boundtargets()) return;
+		this.log("+%1 %TARGET% / %0",sh.name,2);
+		this.targeting.push(sh);
+		this.targeting.push(sh);
+		sh.istargeted.push(this);
+		sh.istargeted.push(this);
+		sh.show();
+		this.show();
+	    },
+            upgrades: [SYSTEM,TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB,BOMB],
             points: 27
         },
         {
             name: "'Deathrain'",
             unique: true,
-            id: 144,
-            faction: "EMPIRE",
+            faction: EMPIRE,
             unit: "TIE Punisher",
             skill: 6,
-            upgrades: [
-                "System",
-                "Torpedo",
-                "Torpedo",
-                "Missile",
-                "Missile",
-                "Bomb",
-                "Bomb",
-            ],
+	    done:true,
+	    bombdropped: function() {
+		this.doaction([this.newaction(this.resolveroll,"ROLL")],
+				  this.name+": free %BARRELROLL%");
+	    },
+	    getbombposition: function(lm,size) {
+		var p=Unit.prototype.getbombposition.call(this,lm,size);
+		for (var i=0; i<lm.length; i++)
+		    p.push(this.getpathmatrix(this.m,lm[i]).translate(0,-size))
+		return p;
+	    },
+            upgrades: [SYSTEM,TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB,BOMB],
             points: 26
         },
         {
             name: "Black Eight Squadron Pilot",
-            faction: "EMPIRE",
+            faction: EMPIRE,
 	    done:true,
-            id: 145,
             unit: "TIE Punisher",
             skill: 4,
-            upgrades: [
-                "System",
-                "Torpedo",
-                "Torpedo",
-                "Missile",
-                "Missile",
-                "Bomb",
-                "Bomb",
-            ],
+            upgrades: [SYSTEM,TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB,BOMB],
             points: 23
         },
         {
             name: "Cutlass Squadron Pilot",
-            faction: "EMPIRE",
+            faction: EMPIRE,
 	    done:true,
-            id: 146,
             unit: "TIE Punisher",
             skill: 2,
-            upgrades: [
-                "System",
-                "Torpedo",
-                "Torpedo",
-                "Missile",
-                "Missile",
-                "Bomb",
-                "Bomb",
-            ],
+            upgrades: [SYSTEM,TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB,BOMB],
             points: 21
         },
         {
             name: "Poe Dameron",
-            faction: "REBEL",
+            faction: REBEL,
             unit: "T-70 X-Wing",
 	    unique:true,
 	    done:true,
             skill: 8,
-            upgrades: [
-                "Elite",
-                "Torpedo",
-                "Astromech"
-            ],
+            upgrades: [ELITE,TORPEDO,ASTROMECH,TECH],
 	    init: function() {
 		this.addattackmoda(this,function(m,n) { 
 			return this.focus>0;
@@ -3228,7 +2736,7 @@ var PILOTS = [
         },
       {
 	  name: "'Blue Ace'",
-	  faction: "REBEL",
+	  faction: REBEL,
 	  done:true,
 	  unit: "T-70 X-Wing",
 	  skill: 5,
@@ -3238,16 +2746,14 @@ var PILOTS = [
 		this.getpathmatrix(this.m,"TL1")]
 	      .concat(Unit.prototype.getboostmatrix.call(this,m));
 	  },
-	  upgrades: [
-		     "Torpedo",
-		     "Astromech"
-		     ],
+	  upgrades: [TORPEDO,ASTROMECH,TECH],
 	  points: 27
       },
       {
 	  name: "'Red Ace'",
-	  faction: "REBEL",
+	  faction: REBEL,
 	  done:true,
+	  beta:true,
 	  unit: "T-70 X-Wing",
 	  skill: 5,
 	  unique:true,
@@ -3259,70 +2765,57 @@ var PILOTS = [
 	      }
 	      Unit.prototype.removeshield.call(this,n);
 	  },
-	  upgrades: [
-		     "Torpedo",
-		     "Astromech"
-		     ],
+	  upgrades: [TORPEDO,ASTROMECH,TECH],
 	  points: 29
       },
       {
 	  name: "Blue Squadron Novice",
-	  faction: "REBEL",
+	  faction: REBEL,
 	  done:true,
 	  unit: "T-70 X-Wing",
 	  skill: 2,
-	  upgrades: [
-		     "Torpedo",
-		     "Astromech"
-		     ],
+	  upgrades: [TORPEDO,ASTROMECH,TECH],
 	  points: 24
       },
      {
 	  name: "Red Squadron Veteran",
-	  faction: "REBEL",
+	  faction: REBEL,
 	  done:true,
 	  unit: "T-70 X-Wing",
 	  skill: 4,
-	  upgrades: [
-		     "Torpedo",
-		     "Astromech"
-		     ],
+	 upgrades: [ELITE,TORPEDO,ASTROMECH,TECH],
 	  points: 26
       },
     {
 	  name: "Omega Squadron Pilot",
-	  faction: "EMPIRE",
+	  faction: EMPIRE,
 	  done:true,
 	  unit: "TIE/FO Fighter",
 	  skill: 4,
-	  upgrades: [
-		     "Elite"
-		     ],
+	upgrades: [TECH,ELITE],
 	  points: 17
       },
    {
 	  name: "Zeta Squadron Pilot",
-	  faction: "EMPIRE",
+	  faction: EMPIRE,
 	  done:true,
 	  unit: "TIE/FO Fighter",
 	  skill: 3,
-	  upgrades: [
-		     ],
+       upgrades: [TECH],
 	  points: 16
       },
    {
 	  name: "Epsilon Squadron Pilot",
-	  faction: "EMPIRE",
+	  faction: EMPIRE,
 	  done:true,
 	  unit: "TIE/FO Fighter",
 	  skill: 1,
-	  upgrades: [
-		     ],
+       upgrades: [TECH],
 	  points: 15
       },
    {
 	  name: "'Zeta Ace'",
-	  faction: "EMPIRE",
+	  faction: EMPIRE,
 	  done:true,
 	  unique:true,
 	  unit: "TIE/FO Fighter",
@@ -3338,13 +2831,12 @@ var PILOTS = [
 		m1.clone().translate(0,20)]
 	.concat(Unit.prototype.getrollmatrix.call(this,m));
     },
-	  upgrades: ["Elite"
-		     ],
+       upgrades: [ELITE,TECH],
 	  points: 18
       },
    {
 	  name: "'Epsilon Leader'",
-	  faction: "EMPIRE",
+	  faction: EMPIRE,
 	  done:true,
 	  unique:true,
 	  unit: "TIE/FO Fighter",
@@ -3355,13 +2847,12 @@ var PILOTS = [
 	       this.removestresstoken();
 	   return Unit.prototype.begincombatphase.call(this);
        },
-	  upgrades: ["Elite"
-		     ],
+       upgrades: [ELITE,TECH],
 	  points: 19
       },
    {
 	  name: "'Omega Ace'",
-	  faction: "EMPIRE",
+	  faction: EMPIRE,
 	  done:true,
 	  unique:true,
 	  unit: "TIE/FO Fighter",
@@ -3370,12 +2861,55 @@ var PILOTS = [
 		this.addattackmoda(this,function(m,n) { 
 			return this.focus>0||this.targeting.indexOf(targetunit)>-1;
 		    }.bind(this),function(m,n) {
+			this.removefocustoken();
+			this.removetarget(targetunit);
 			this.log("all results are %CRIT%");
 			return n*10;
 		    }.bind(this),false,"critical");
        },
-	  upgrades: ["Elite"
-		     ],
+       upgrades: [ELITE,TECH],
 	  points: 20
-      }
+      },
+   {
+       name: "'Omega Leader'",
+       faction: EMPIRE,
+       beta:true,
+       unique:true,
+       unit: "TIE/FO Fighter",
+       skill: 8,
+       upgrades: [ELITE,TECH],
+       points: 21,
+       done:true,
+       canblockattackmod:function(u) {
+	   return (u.istargeted.indexOf(this)>-1&&u.team!=this.team&&
+		   this==targetunit&&u==activeunit);
+       },
+       canblockdefensemod:function(u) {
+	   return (u.istargeted.indexOf(this)>-1&&u.team!=this.team&&
+		   u==targetunit&&this==activeunit);
+       },
+       init: function() {
+	   var gart=Unit.prototype.getattackrerolltokens;
+	   var gdrt=Unit.prototype.getdefensererolltokens;
+	   var gamt=Unit.prototype.getattackmodtokens;
+	   var gdmt=Unit.prototype.getdefensemodtokens;
+	   var unit=this;
+	   Unit.prototype.getattackrerolltokens=function() {
+	       if (unit.canblockattackmod(this)) return "";
+	       return gart.call(this);
+	   };
+	   Unit.prototype.getdefensererolltokens=function() {
+	       if (unit.canblockdefensemod(this)) return "";
+	       return gdrt.call(this);
+	   };
+	   Unit.prototype.getattackmodtokens=function(m,n) {
+	       if (unit.canblockattackmod(this)) return "";
+	       return gamt.call(this,m,n);
+	   }
+	   Unit.prototype.getdefensemodtokens=function(m,n) {
+	       if (unit.canblockdefensemod(this)) return "";
+	       return gdmt.call(this,m,n);
+	   }
+       }
+   }
 ];
