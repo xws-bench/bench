@@ -507,7 +507,7 @@ var UPGRADES= [
 		return a+1;
 	    }).unwrapper("endround");
 	    this.unit.showstats();
-	    this.unit.endaction(n,"ASTROMECH");
+	    this.unit.endaction(n,ASTROMECH);
 	    return true;
 	},
         unique: true,
@@ -539,7 +539,7 @@ var UPGRADES= [
 			this.criticals.slice(c,1);
 		    }
 		}
-		this.endaction(n,"ASTROMECH");
+		this.endaction(n,ASTROMECH);
 	    }.bind(this));
 	},
         unique: true,
@@ -790,7 +790,7 @@ var UPGRADES= [
 	candoaction: function() { return true; },
 	action: function(n) {
 	    this.mark=round;
-	    this.unit.endaction(n,"ELITE");
+	    this.unit.endaction(n,ELITE);
 	},
         done:true,
         type: ELITE,
@@ -848,7 +848,7 @@ var UPGRADES= [
 		[this.unit.getpathmatrix(this.unit.m,"TL1"),
 		 this.unit.getpathmatrix(this.unit.m,"TR1")],
 		function(t,k) { 
-		    if (k==-1) return t.endaction(n,"ELITE");
+		    if (k==-1) return t.endaction(n,ELITE);
 		    t.addstress(); 
 		    if (t.shipactionList.indexOf("BOOST")==-1) {
 			t.log("2 rolls for damage [%0]",self.name);
@@ -861,7 +861,7 @@ var UPGRADES= [
 			    }
 			}
 		    }
-		    t.endaction(n,"ELITE");
+		    t.endaction(n,ELITE);
 		},true,true);
 	},
         type: ELITE,
@@ -968,7 +968,7 @@ var UPGRADES= [
 		w.getattack=gat;
 	    })
 	    this.unit.showstats();
-	    this.unit.endaction(n,"ELITE");
+	    this.unit.endaction(n,ELITE);
 	},
 	done:true,
         type: ELITE,
@@ -1151,6 +1151,7 @@ var UPGRADES= [
 			    if (k==0) { ea.call(this,1); }
 			    else { ea.call(sh,1);}
 			    this.endnoaction(n,"CREW");
+
 			}.bind(this));
 		    }.bind(this));
 		    ea.call(this,c-1);
@@ -1351,7 +1352,7 @@ var UPGRADES= [
 		    } else p[k].log("no damage card [%0]",self.name);
 		    this.endaction(n,"CREW");
 		}.bind(this));
-	    } else this.endaction(n,"CREW");
+	    } else this.endaction(n,CREW);
 	},
         points: 2,
     },
@@ -1597,7 +1598,7 @@ var UPGRADES= [
 			this.log("select unit [%0]",self.name);
 		    	this.resolveactionselection(p,function(k) {
 			    p[k].removestresstoken();
-			    this.endnoaction(n,"ELITE");
+			    this.endnoaction(n,ELITE);
 			}.bind(this));
 		    }.bind(this));
 		} 
@@ -1632,7 +1633,7 @@ var UPGRADES= [
 				    p[k].showstats();
 				});
 			    }
-			    this.endnoaction(n,"ELITE");
+			    this.endnoaction(n,ELITE);
 			}.bind(this));
 		    }.bind(this));
 		}
@@ -1711,9 +1712,9 @@ var UPGRADES= [
 			if (p[k]!=this) { 
 			    if (p[k].isinfiringarc(this)) this.addtarget(p[k]);
 			    this.resolveboost(n);
-			} else this.endaction(n,"ASTROMECH");
+			} else this.endaction(n,ASTROMECH);
 		    });
-		} else this.unit.endaction(n,"ASTROMECH");
+		} else this.unit.endaction(n,ASTROMECH);
 	},
 	done:true,
         unique: true,
@@ -2054,7 +2055,7 @@ var UPGRADES= [
 		if (p.length==2) {
 		    p[0].addfocustoken(); p[1].addfocustoken();
 		    this.unit.addstress();
-		    this.unit.endaction(n,"CREW");
+		    this.unit.endaction(n,CREW);
 		} else {
 		    this.unit.log("select 2 units [%0]",self.name);
 		    this.unit.resolveactionselection(p,function(k) {
@@ -2064,12 +2065,12 @@ var UPGRADES= [
 			    this.resolveactionselection(p,function(l) {
 				p[l].addfocustoken();
 				this.addstress();
-				this.endaction(n,"CREW");
+				this.endaction(n,CREW);
 			    }.bind(this));
-			else this.endaction(n,"CREW");
+			else this.endaction(n,CREW);
 		    }.bind(this.unit))
 		}
-	    } else this.unit.endaction(n,"CREW");
+	    } else this.unit.endaction(n,CREW);
 	},
         points: 3,
     },
@@ -2280,7 +2281,7 @@ var UPGRADES= [
 				p[k].wrap_after("getagility",self,function(a) { return a+1; }).unwrapper("endcombatphase"); 
 				this.removefocustoken();
 			    }
-			    this.endnoaction(n,"ELITE");
+			    this.endnoaction(n,ELITE);
 			}.bind(this));
 		    }.bind(sh));
 		}
@@ -2427,7 +2428,7 @@ var UPGRADES= [
 				this.checkdead();
 				this.hasfired=true;this.hasdamaged=true;
 			    }
-			    this.endnoaction(n,"ILLICIT");
+			    this.endnoaction(n,ILLICIT);
 			}.bind(this))
 		    }.bind(this));
 		}
@@ -2610,7 +2611,7 @@ var UPGRADES= [
 				    this.addtarget(p[k]);
 				    this.log("+1 %TARGET% / %1 [%0]",self.name,p[k].name);
 				}
-				this.endnoaction(n,"CREW");
+				this.endnoaction(n,CREW);
 			    }.bind(this));
 			}.bind(this));
 		    }  else {
@@ -2816,9 +2817,9 @@ var UPGRADES= [
 			    this.log("select a lock to remove [%0]",mod.name);
 			    this.resolveactionselection(this.istargeted,function(k) { 
 				this.istargeted[k].removetarget(this);
-				this.endnoaction(n,"MOD");
+				this.endnoaction(n,MOD);
 			    }.bind(this));
-			} else this.endnoaction(n,"MOD");
+			} else this.endnoaction(n,MOD);
 		    }.bind(this),type:mod.type.toUpperCase(),name:mod.name}],"");
 		}
 	    });
@@ -3296,7 +3297,7 @@ var UPGRADES= [
 			    this.addstress(1);
 			    this.m=this.m.rotate(180,0,0);
 			    this.show();
-			    this.endnoaction(n,"ELITE");
+			    this.endnoaction(n,ELITE);
 			}.bind(this)}]);
 		    };
 		});
@@ -3487,9 +3488,7 @@ var UPGRADES= [
 	    ship: "TIE",
 	    done:true,
             install: function(sh) {
-		var i;
-		sh.getdial=function() {
-		    var m=Unit.prototype.getdial.call(this);
+		sh.wrap_after("getdial",this,function(m) {
 		    var n=[];
 		    for (var i=0; i<m.length; i++) {
 			var move=m[i].move;
@@ -3498,7 +3497,7 @@ var UPGRADES= [
 			n.push({move:move,difficulty:d});
 		    }
 		    return n;
-		}.bind(sh);
+		})
 	    },
 	    uninstall:function(sh) {
 		sh.getdial=Unit.prototype.getdial;

@@ -77,6 +77,9 @@ Team.prototype = {
 		this.units.push(u);
 	    }
 	}	
+	// knockout
+	//ko.applyBindings({squad:ko.observableArray(squadron)});
+
 	for (i in squadron) {
 	    u=squadron[i];
 	    if (u.team==this.team) {
@@ -112,9 +115,16 @@ Team.prototype = {
     endselection:function(s) {
 	var i;
 	var team=this.team;
+	this.name=$("#teamname"+this.team).val();
+	if (this.name=="") this.name="Squad #"+team;
+	
 	$("#team"+team).empty();
 	$("#importexport"+team).remove();
 	sq=this.tosquadron(s);
+	$("#team"+team).append("<div class='playerselect'></div>");
+	$("#team"+team+" .playerselect").append("<input id='human"+team+"' class='human' type='checkbox' onchange='TEAMS["+team+"].toggleplayer()'>"); 
+	$("#team"+team+" .playerselect").append("<label for='human"+team+"' data-off='&#9668; "+UI_translation["human"]+" &#9658;' data-on='&#9668; "+UI_translation["computer"]+" &#9658;'></label>");
+	
 	for (i=0; i<sq.length; i++) {
 	    if (team==1) {
 		if (sq[i].tx<=0||sq[i].ty<=0) {
@@ -167,7 +177,6 @@ Team.prototype = {
 	this.points=pts;
 	s.vendor={xwsbenchmark:{builder:"X-Wings Squadron Benchmark",builder_url:"http://xws-bench.github.io/bench/"}};
 	s.version="0.3.0";
-	log("->JSON"+JSON.stringify(s));
 	return s;
     },
     toJuggler:function() {

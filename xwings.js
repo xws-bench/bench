@@ -709,6 +709,7 @@ function nextphase() {
 	phase=SELECT_PHASE;
 	return;
     case SETUP_PHASE: 
+	$("#leftpanel").show();
 	ZONE[1].remove();
 	ZONE[2].remove();
 	TEAMS[1].endsetup();
@@ -1441,8 +1442,6 @@ $(document).ready(function() {
 	log(n+"/"+UPGRADES.length+" upgrades implemented");
 	log("Upgrades NOT implemented"+str);
 	$("#showproba").prop("disabled",true);
-
-
 	var d=new Date();
 	for (i=0; i<d.getMinutes(); i++) Math.random();
 	loadsound();

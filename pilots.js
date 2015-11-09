@@ -367,7 +367,7 @@ var PILOTS = [
         unit: "TIE Fighter",
         skill: 8,
 	init: function() {
-	    this.addattackrerolla(
+	    this.addglobalattackrerolla(
 		this,
 		["blank","focus"],
 		function() { return 1; },
@@ -380,8 +380,7 @@ var PILOTS = [
 			return true;
 		    }
 		    return false;
-		}.bind(this),
-		true
+		}.bind(this)
 	    )
 	},
         points: 18,
