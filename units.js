@@ -352,8 +352,6 @@ Unit.prototype = {
 	this.g.drag(this.dragmove.bind(this),
 		    this.dragstart.bind(this),
 		    this.dragstop.bind(this));
-<<<<<<< HEAD
-
     },
     wrap_after: function (name,org,after) {
 	var self=this;
@@ -399,59 +397,10 @@ Unit.prototype = {
 	var self=this;
 	var save=self[name];
 	var f=function () {
-=======
-	this.addstdmod();
-    },
-    wrap_after: function (name,org,after) {
-        var self=this;
-        var save=self[name];
-        var f=function () {
-            var args = Array.prototype.slice.call(arguments),
-            result;
-            result = save.apply( this, args);
-            result=after.apply( this, args.concat([result]));
-            return result;
-        }
-        f.save=save;
-        f.org=org;
-        f.unwrapper=function(name2) {
-            var uw=self.wrap_before(name2,self,function(a) {
-                f.unwrap();
-                uw.unwrap();
-                return a;
-            });
-        }
-        f.unwrap=function(o) { self[name]=f.save; }
-        this[name]=f;
-        return f;
-    },
-   wrap_before_once: function(name,org,before) {
-        var self=this;
-        var save=self[name];
-        var f=function () {
-            var args = Array.prototype.slice.call(arguments),
-            result;
-            f.unwrap();
-            before.apply( this, args);
-            result = save.apply( this, args);
-            return result;
-        }
-        f.save=save;
-        f.org=org;
-        f.unwrap=function() { self[name]=f.save; }
-        this[name]=f;
-        return f;
-    },
-    wrap_before: function(name,org,before) {
-        var self=this;
-        var save=self[name];
-        var f=function () {
->>>>>>> b2326110a659170eb35d3dda5c37e98cb39ae62e
             var args = Array.prototype.slice.call(arguments),
             result;
             before.apply( this, args);
             result = save.apply( this, args);
-<<<<<<< HEAD
 	    return result;
 	}
 	f.save=save;
@@ -465,21 +414,6 @@ Unit.prototype = {
 	f.unwrap=function(o) { self[name]=f.save; }
 	this[name]=f;
 	return f;
-=======
-            return result;
-        }
-        f.save=save;
-        f.org=org;
-        f.unwrapper=function(name2) {
-            var uw=self.wrap_before(name2,self,function() {
-                f.unwrap();
-                uw.unwrap();
-            });
-        }
-        f.unwrap=function(o) { self[name]=f.save; }
-        this[name]=f;
-        return f;
->>>>>>> b2326110a659170eb35d3dda5c37e98cb39ae62e
     },
     defaultremoveupg: function(upgid,init) {
 	var id=this.upg[upgid];
@@ -918,19 +852,8 @@ Unit.prototype = {
 	return 0;
     },
     rollattackdie: function(n) { var p=[]; for (var i=0; i<n; i++) p.push(FACE[ATTACKDICE[this.rand(8)]]); return p; },
-<<<<<<< HEAD
     rolldefensedie: function(n) { var p=[]; for (var i=0; i<n; i++) p.push(FACE[DEFENSEDICE[this.rand(8)]]); return p; },
     rand: function(n) { return Math.floor(Math.random()*n); },
-=======
-    rolldefensedie: function(n) { 
-	var p=[]; 
-	for (var i=0; i<n; i++) 
-	    p.push(FACE[DEFENSEDICE[this.rand(8)]]); 
-	return p; },
-    rand: function(n) { var r=Math.floor(Math.random()*n);
-			record("rand",r);
-			return r; },
->>>>>>> b2326110a659170eb35d3dda5c37e98cb39ae62e
     getdefensetable: function(n) { return DEFENSE[n]; },
     gethitreddice: function(r) { return r%10; },
     getcritreddice: function(r) { return (Math.floor(r/10))%10; },
@@ -1152,10 +1075,7 @@ Unit.prototype = {
     setmaneuver: function(i) {
 	this.lastmaneuver=this.maneuver;
 	this.maneuver=i;
-<<<<<<< HEAD
 	record(this.id,i,"setmaneuver");
-=======
->>>>>>> b2326110a659170eb35d3dda5c37e98cb39ae62e
 	this.showdial();
 	this.showmaneuver();
 	if (typeof this.deferred == "undefined") this.log("undefined deferred");
@@ -1624,7 +1544,6 @@ Unit.prototype = {
 	this.show();
 	if (this.targeting.length==0) $("#atokens > .xtargettoken").remove();
     },
-<<<<<<< HEAD
     usetarget:function() {
 	if (phase==COMBAT_PHASE&&activeunit==this&&this.targeting.indexOf(targetunit)>-1) {
 	    this.removetarget(targetunit);
@@ -1641,8 +1560,6 @@ Unit.prototype = {
 	    $("#defense").prepend("<td class='evadegreen'></td>");
 	}
     },
-=======
->>>>>>> b2326110a659170eb35d3dda5c37e98cb39ae62e
     removeevadetoken: function() { this.evade--; this.show();},
     removefocustoken: function() { this.focus--; this.show();},
     resolveactionmove: function(moves,cleanup,automove,possible) {
@@ -2147,16 +2064,11 @@ Unit.prototype = {
 			this.m.rotate(-90,0,0);
 		    } else if (dial.match(/TRR\d/)) {
 			this.m.rotate(90,0,0);
-<<<<<<< HEAD
 		    } else {
 		    }
 		} 
 		else { 
 		}
-=======
-		    } 
-		} 
->>>>>>> b2326110a659170eb35d3dda5c37e98cb39ae62e
 		this.handledifficulty(difficulty);
 		this.lastmaneuver=this.maneuver;
 		this.maneuver=-1;
@@ -2235,20 +2147,12 @@ Unit.prototype = {
 		    if (this.actionsdone.indexOf(list[i].name)==-1) {
 			(function(k,h) {
 			    var e=$("<div>").addClass("symbols").text(A[k.type].key)
-<<<<<<< HEAD
 				.click(function () { record(this.id,h,"doaction"); this.resolveaction(k,n) }.bind(this));
-=======
-				.click(function () { record("action",h); this.resolveaction(k,n) }.bind(this));
->>>>>>> b2326110a659170eb35d3dda5c37e98cb39ae62e
 			    $("#actiondial > div").append(e);
 			}.bind(this))(list[i],i);
 		    }
 		}
-<<<<<<< HEAD
 		var e=$("<button>").addClass("m-skip").click(function() { record(this.id,-1,"doaction"); this.resolveaction(null,n); }.bind(this));
-=======
-		var e=$("<button>").text("Skip").click(function() { record("action",-1); this.resolveaction(null,n); }.bind(this));
->>>>>>> b2326110a659170eb35d3dda5c37e98cb39ae62e
 		$("#actiondial > div").append(e);
 	    } else this.endaction(n);
 	    }.bind(this),list[0].name);  
@@ -2262,20 +2166,12 @@ Unit.prototype = {
 	    for (i=0; i<list.length; i++) {
 		(function(k,h) {
 		    var e=$("<div>").addClass("symbols").text(A[k.type].key)
-<<<<<<< HEAD
 			.click(function () { record(this.id,h,"donoaction"); this.resolvenoaction(k,n) }.bind(this));
-=======
-			.click(function () { record("noaction",k); this.resolvenoaction(k,n) }.bind(this));
->>>>>>> b2326110a659170eb35d3dda5c37e98cb39ae62e
 		    $("#actiondial > div").append(e);
 		}.bind(this))(list[i],i);
 	    }
 	    if (noskip==true) {
-<<<<<<< HEAD
 		var e=$("<button>").text("Skip").click(function() { record(this.id,-1,"donoaction"); this.resolvenoaction(null,n); }.bind(this));
-=======
-		var e=$("<button>").text("Skip").click(function() { record("noaction",-1); this.resolvenoaction(null,n); }.bind(this));
->>>>>>> b2326110a659170eb35d3dda5c37e98cb39ae62e
 		$("#actiondial > div").append(e);
 	    }
 	}.bind(this),list[0].name);  
@@ -2414,11 +2310,7 @@ Unit.prototype = {
 		    adi.action();
 		}).html(adi.html);
 	}
-<<<<<<< HEAD
 	$("<button>").addClass("m-move").click(function() {this.resolvemaneuver(); }.bind(this)).appendTo("#activationdial > div");
-=======
-	$("<button>").html("Move").click(function() {record("activationdial",-1); this.resolvemaneuver(); }.bind(this)).appendTo("#activationdial > div");
->>>>>>> b2326110a659170eb35d3dda5c37e98cb39ae62e
 
     },
     log: function(str,a,b,c) {
@@ -2827,19 +2719,11 @@ Unit.prototype = {
     },
     isinfiringarc: function(sh) {
 	return this.getsector(sh)<=3;
-<<<<<<< HEAD
     },
     /* Primary and auxiliary */
     getsector: function(sh,m) {
 	return this.weapons[0].getsector(sh);
     },
-=======
-    },
-    /* Primary and auxiliary */
-    getsector: function(sh,m) {
-	return this.weapons[0].getsector(sh);
-    },
->>>>>>> b2326110a659170eb35d3dda5c37e98cb39ae62e
     /* Primary only */
     getprimarysector: function(sh,m) {
 	var i;
