@@ -1529,6 +1529,9 @@ $(document).ready(function() {
 			"targets": [ 5 ],
 			"visible": false,
 			"searchable": false
+		    },
+		    {   "targets":[4],
+			"width":"80%"
 		    }],       
 		"scrollY":        "20em",
 		"scrollCollapse": true,
