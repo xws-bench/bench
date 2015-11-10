@@ -649,8 +649,10 @@ function refreshsquadlist() {
 	var data = row.data()[5];
 	delete localStorage[data];
 	row.remove().draw(); });
-    $('#squadlist td:nth-child(n+2)').click(function () {
-        $(this).parents("tr").toggleClass('selected');
+    $("#squadlist td:nth-child(2)").click(function() { 
+	$(this).children().toggleClass('human'); });
+    $('#squadlist td:nth-child(n+3)').click(function () {
+	$(this).parents("tr").toggleClass('selected');
 	enablenextphase();
     } );
     enablenextphase();
@@ -726,6 +728,7 @@ function nextphase() {
 		$.extend(this.squadron[i],ReplayUnit.prototype);
 
 	}
+	$(".permalink").hide();
 	break;
     case PLANNING_PHASE:
 	$("#maneuverdial").hide();

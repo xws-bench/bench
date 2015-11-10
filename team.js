@@ -121,10 +121,6 @@ Team.prototype = {
 	$("#team"+team).empty();
 	$("#importexport"+team).remove();
 	sq=this.tosquadron(s);
-	$("#team"+team).append("<div class='playerselect'></div>");
-	$("#team"+team+" .playerselect").append("<input id='human"+team+"' class='human' type='checkbox' onchange='TEAMS["+team+"].toggleplayer()'>"); 
-	$("#team"+team+" .playerselect").append("<label for='human"+team+"' data-off='&#9668; "+UI_translation["human"]+" &#9658;' data-on='&#9668; "+UI_translation["computer"]+" &#9658;'></label>");
-	
 	for (i=0; i<sq.length; i++) {
 	    if (team==1) {
 		if (sq[i].tx<=0||sq[i].ty<=0) {
