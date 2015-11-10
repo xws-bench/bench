@@ -1531,7 +1531,7 @@ $(document).ready(function() {
 			"searchable": false
 		    },
 		    {   "targets":[4],
-			"width":"80%"
+			"width":"90%"
 		    }],       
 		"scrollY":        "20em",
 		"scrollCollapse": true,
