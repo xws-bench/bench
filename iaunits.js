@@ -309,10 +309,6 @@ IAUnit.prototype= {
 	    var a=this.ATTACKADD[j];
 	    if (a.req(ar,da)) addroll(a.f,da,(i+j+this.ATTACKMODA.length));
 	}   
-	if (this.stress>0) this.usestress(this.id);
-	if (this.canusetarget()) this.usetarget();
-	if (this.canusefocus()) this.usefocus(this.id);
-
 	if (str!="") {
 	    $("#atokens").html(str).show();
 	    $("#atokens").append("<button class='m-done' onclick='$(\"#atokens\").empty(); targetunit.defenseroll("+defense+").done(function(roll) { targetunit.dodefenseroll(roll,"+defense+","+me+","+n+")})'></button>");
@@ -352,8 +348,6 @@ IAUnit.prototype= {
 	    var a=this.DEFENSEMODD[j];
 	    if (a.req(dr,dd)) modrolld(a.f,dd,i+j);
 	}   
-	if (this.stress>0) this.usestress(this.id);
-	if (this.canuseevade()) this.useevade();
 	$("#dtokens").append("<button>");
 	$("#dtokens > button").addClass("m-fire").click(function() {
 		$("#combatdial").hide();
