@@ -352,6 +352,7 @@ Unit.prototype = {
 	this.g.drag(this.dragmove.bind(this),
 		    this.dragstart.bind(this),
 		    this.dragstop.bind(this));
+	this.addstdmod();
     },
     wrap_after: function (name,org,after) {
 	var self=this;
