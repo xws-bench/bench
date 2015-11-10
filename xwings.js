@@ -1551,6 +1551,7 @@ $(document).ready(function() {
 	    } );
 	    
 	}
+
 	/*md = new Hammer(document.getElementById('leftpanel'));
 	  md.get('pan').set({direction:Hammer.DIRECTION_VERTICAL});
 	  md.on("panup pandown",function(ev) {
