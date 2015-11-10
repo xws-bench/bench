@@ -1394,7 +1394,6 @@ $(document).ready(function() {
 	var css_translation=result2[0].css;
 	var str="";
 	for (var i in css_translation) {
-	    log("css:"+i);
 	    str+="."+i+"::after { content:\""+css_translation[i]+"\";}\n";
 	}
 	$("#localstrings").html(str);
