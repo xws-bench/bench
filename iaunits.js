@@ -60,7 +60,7 @@ IAUnit.prototype= {
 		}
 		
 		this.m=oldm;
-		n+=inrange-maxenemy/enemies.length;
+		n+=inrange*4-2*maxenemy/enemies.length;
 		var dist=0;
 		for (j=0; j<enemies.length; j++)
 		    dist-=this.getdist(mm,enemies[j])/90000;
