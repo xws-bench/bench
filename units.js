@@ -1834,7 +1834,7 @@ Unit.prototype = {
 	for (j=0; j<this.ATTACKADD.length; j++) {
 	    var a=this.ATTACKADD[j];
 	    if (a.req(m,n)) {
-		str+="<td id='moda"+(j+i)+"' class='"+a.str+"modtokena' onclick='record("+this.id+","+j+"\"attackadd_"+n+"\"); addroll(squadron["+me+"].ATTACKADD["+j+"].f,"+n+","+(i+j)+")' title='add roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
+		str+="<td id='moda"+(j+i)+"' class='"+a.str+"modtokena' onclick='addroll(squadron["+me+"].ATTACKADD["+j+"].f,"+n+","+(i+j)+")' title='add roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
 	    }
 	}   
 	return str;
