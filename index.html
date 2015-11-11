@@ -51,7 +51,6 @@
 	    <li><a class="m-proba" href="#proba" id="showproba"></a></li>
 	    <li><a class="m-console" href="#" onclick="$('footer').css({display:'block',visibility:'visible'})"></a></li>
 	    <li><a class="m-blog" href="http://xws-benchmark.blogspot.fr/"></a></li>
-	    <li><a class="m-help" href="#help"></a></li>
 	    <li><a class="m-donate" href="#donate"></a></li>
 	    <li><a class="m-credits" href="#credit"></a></li>
 	  </ul></div>
@@ -133,11 +132,10 @@
 	   <span id="totalpts">0</span>
 	   <span class="total m-totalpts"></span>
 	   <button onclick="addunit()" class="m-add"><span style='font-family:ships;font-size:large;line-height:0.8em'>x</span> </button>
-	   <button onclick="exportsquad()" class="m-export">&#x1f4cb; </button>
-	     </td>
+	   	     </td>
 	   </tr>
 	 </table>
-	 <div>
+	 <div class="unitlist">
 	   <table class="listunits">
  	   </table>
 	 </div>
@@ -222,12 +220,11 @@ Squadron Benchmark is a web app for
  against squads you can find in competition, try new ships or
  pilots...  The app offers the following features:
 <ul>
-<li>Import/Export your squads using JSON format</li>
+<li>Import your squads using JSON format</li>
 <li>Move units and perform their actions as in the real game. All ship maneuver dials and of all actions in their bars are handled.</li>
 <li>Detection of collisions with other ships and asteroids, automatic handling of stress, action and combat effects, rolling hit dice for possible damage automatically.</li>
 <li>Automatic handling of a number of card effects (pilots, upgrades, ...). Biggs for instance is the unique possible target when in range of a ennemy. Howlrunner effect is automatically taken into account. A console provides feed back on what happens and which effect is triggered.</li>
 <li>Combat is as simple as selected a target, and using tokens. Dices are rolled, damages and criticals are delivered automatically, shields are used, ...</li> 
-<li>Assess the probabilities to hit, to kill, the mean number of hits and criticals a unit can deliver, at any time and taking into account range, tokens, card effects.</li>
 <li>A simple AI ! It can move the units around and tries to fire at your units. It is simple to outmaneuver it but still, be careful not to be too confident :-) </li>
 </ul>
 

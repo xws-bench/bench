@@ -1846,7 +1846,6 @@ var PILOTS = [
         name: "Black Sun Enforcer",
         faction:SCUM,
         done:true,
-        
         unit: "StarViper",
         skill: 1,
         points: 25,
@@ -2281,7 +2280,7 @@ var PILOTS = [
 			this.log("select unit for a 0 PS");
 			this.resolveactionselection(p,function(k) {
 			    if (this!=p[k]) {
-				var ecp=p[k].ecp;
+				var ecp=p[k].endcombatphase;
 				p[k].oldskill=p[k].skill;
 				p[k].skill=0;
 				filltabskill();
@@ -2378,22 +2377,22 @@ var PILOTS = [
         skill: 6,
 	init: function() {
 	    var unit=this;
-	    this.gras=Weapon.prototype.getrangeattackbonus;
-	    Weapon.prototype.getrangeattackbonus=function(sh) {
+	    Weapon.prototype.wrap_after("getrangeattackbonus",this,function(sh,g) {
+		this.unit.log("GETRANGEATTACK"+g);
 		if (this.unit.team!=unit.team&&unit.getrange(this.unit)==1) {
 		    this.unit.log("0 attack range bonus [%0]",unit.name);
 		    return 0;
 		}
-		return this.unit.gras.call(this,sh);
-	    };
-	    this.grds=Weapon.prototype.getrangedefensebonus;
-	    Weapon.prototype.getrangedefensebonus=function(sh) {
+		return g;
+	    });
+	    Weapon.prototype.wrap_after("getrangedefensebonus",this,function(sh,g) {
+		this.unit.log("GETDEFENSEATTACK"+g);
 		if (this.unit.team!=unit.team&&unit.getrange(this.unit)==1) {
 		    this.unit.log("0 defense range bonus [%0]",unit.name);
 		    return 0;
 		}
-		return this.unit.grds.call(this,sh);
-	    };
+		return g;
+	    });
 	},
         points: 26,
         upgrades: [ELITE,MISSILE],

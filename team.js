@@ -200,9 +200,8 @@ Team.prototype = {
 	    var pstr=pilots[i].split(/\s+\+\s+/);
 	    var lf=0;
 	    for (j=0;j<PILOTS.length; j++) if (PILOTS[j].name.replace(/\'/g,"")==pstr[0]) {
-		    lf=lf|getf(PILOTS[j].faction);
-		    log("Found "+PILOTS[j].name+" "+PILOTS[j].faction)
-		}
+		lf=lf|getf(PILOTS[j].faction);
+	    }
 	    f=f&lf;
 	}
 	if ((f&1)==1) this.faction="REBEL"; else if ((f&2)==2) this.faction="SCUM"; else this.faction="EMPIRE";
@@ -214,7 +213,8 @@ Team.prototype = {
 		if (PILOTS[j].name.replace(/\'/g,"")==pstr[0]&&PILOTS[j].faction==this.faction) { pid=j; break; } 
 	    var p=new Unit(this.team);
 	    p.upg=[];
-	    log("PILOTS unit "+PILOTS[pid].unit+" "+PILOTS[pid].name);
+	    if (typeof PILOTS[pid]=="undefined") log("PILOT undefined: |"+pstr[0]+"| "+this.faction);
+	    //log("PILOTS unit "+PILOTS[pid].unit+" "+PILOTS[pid].name);
 	    p.selectship(PILOTS[pid].unit,PILOTS[pid].name);
 	    for (j=1; j<pstr.length; j++) {
 		for (k=0; k<UPGRADES.length; k++) 
