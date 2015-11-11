@@ -165,23 +165,6 @@ function formatstring(s) {
         .replace(/%SLOOPRIGHT%/g,"<code class='symbols'>3</code>")
 	.replace(/%CREW%/g,"<code class='symbols'>W</code>");
 }
-function unitstostr() {
-    var s;
-    var i,j;
-    var sobj=["","",""];
-    for (i=0; i<squadron.length; i++) {
-	var sh=squadron[i];
-	sobj[sh.team]+=sh;
-    }
-    s="<div id='squad1n'><div>Stats</div><div>Names</div><div>Ship</div><div>Points</div><div>Description</div></div>"+sobj[1]
-	+"<div id='squad2n'><div>Stats</div><div>Names</div><div>Ship</div><div>Points</div><div>Description</div></div>"+ sobj[2];
-    return s;
-}
-function allunitlist() {
-    $("#listtitle").html("List of units");
-    $("#listunits").html(unitstostr()); 
-    window.location="#modal";
-}
 function nextunit(cando, changeturn,changephase,activenext) {
     var i,sk=false,last=0;
     for (i=0; i<tabskill[skillturn].length; i++) {
@@ -190,7 +173,7 @@ function nextunit(cando, changeturn,changephase,activenext) {
     if (!sk) {
 	do changeturn(tabskill);
 	while (skillturn>=0 && skillturn<=12&& tabskill[skillturn].length==0);
-    }
+    } 
     if (skillturn==-1||skillturn==13) return changephase();
     active=last; 
     tabskill[skillturn][last].select();
@@ -639,7 +622,7 @@ function endselection() {
     $("#selectphase").show();
     currentteam.name="SQUAD."+currentteam.toASCII();
     localStorage[currentteam.name]=JSON.stringify(currentteam);
-    SQUADLIST.row.add(["<span class='close'>&#xd7;</span>","<span class='player human'></span>","<span class='"+currentteam.faction+"'></span>",""+currentteam.points,"<pre>"+currentteam.toJuggler()+"</pre>",id]).draw(false);
+    SQUADLIST.row.add(["<span class='close'>&#xd7;</span>","<span class='player human'></span>","<span class='"+currentteam.faction+"'></span>",""+currentteam.points,"<pre>"+currentteam.toJuggler()+"</pre>",currentteam.name]).draw(false);
     refreshsquadlist();
 }
 function refreshsquadlist() {
@@ -665,6 +648,9 @@ function importsquad() {
     window.location="#";
     refreshsquadlist();
 }
+function exportsquad() {
+
+}
 function startcombat() {
 }
 function bind(name,c,f) { $(document.body).bind('keydown.'+name,jwerty.event(c,f)); }
@@ -687,7 +673,7 @@ var ZONE=[];
 
 function nextphase() {
     var i;
-    if (REPLAY.length==0) record("nextphase",phase);
+    if (REPLAY.length==0) record("nextphase",phase,phase);
     // End of phases
     //if (!enablenextphase()) return;
     window.location="#";
@@ -722,12 +708,13 @@ function nextphase() {
 	$("#positiondial").hide();
 	for (i=0; i<OBSTACLES.length; i++) OBSTACLES[i].g.undrag();
 	HISTORY=[];
+	/*
 	if (REPLAY.length>0) {
 	    replayid=0;
 	    for (var i=0; i<this.squadron.length; i++) 
 		$.extend(this.squadron[i],ReplayUnit.prototype);
 
-	}
+	}*/
 	$(".permalink").hide();
 	break;
     case PLANNING_PHASE:
@@ -842,7 +829,6 @@ function nextphase() {
 	$("#svgout").mousemove(function(e) {dragmove(e);});
 	$("#svgout").mouseup(function(e) {dragstop(e);});
 
-	jwerty.key('l', allunitlist);
 	jwerty.key('w', inhitrange);
 	jwerty.key("x", function() { window.location="#";});
 	jwerty.key("escape", nextphase);
@@ -1377,8 +1363,8 @@ $(document).ready(function() {
 	    }}); 
     });
     $.when(
-	$.ajax("data/ships.json"),$.ajax("data/strings."+LANG+".json"),$.ajax("data/xws.json")
-    ).done(function(result1,result2,result3) {
+	$.ajax("data/ships.json"),$.ajax("data/strings."+LANG+".json"),$.ajax("data/xws.json"),$.ajax("data/full.json")
+    ).done(function(result1,result2,result3,result4) {
 	var process=setInterval(function() {
 	    ATTACK[dice]=attackproba(dice);
 	    DEFENSE[dice]=defenseproba(dice);
@@ -1394,6 +1380,7 @@ $(document).ready(function() {
 	UPGRADE_translation=result2[0].upgrades;
 	UI_translation=result2[0].ui;
 	CRIT_translation=result2[0].criticals;
+	var rankinglist=result4[0];
 	var css_translation=result2[0].css;
 	var str="";
 	for (var i in css_translation) {
@@ -1499,22 +1486,8 @@ $(document).ready(function() {
 	} else {
 	    phase=0;
 	    nextphase();
-	    var newt;
-	    newt="<thead><tr><th></th><th></th><th><span class='m-faction'></span></th><th><span class='m-points'></span></th><th><span class='m-units'></span></th><th></th></tr></thead>";
-	    for (i in localStorage) {
-		if (typeof localStorage[i]=="string"&&i.match(/SQUAD.*/)) {
-		    //delete localStorage[i];
-		    TEAMS[0].parseJSON(localStorage[i]);
-		    newt+="<tr>"
-		    newt+="<td><span class='close'>&#xd7;</span></td>";
-		    newt+="<td><span class='player human'></span></td>";
-		    newt+="<td><span class='"+TEAMS[0].faction+"'></span></td>";
-		    newt+="<td>"+TEAMS[0].points+"</td>";
-		    newt+="<td><pre>"+TEAMS[0].toJuggler()+"</pre></td>";			
-		    newt+="<td>"+i+"</td></tr>";		
-	    }
-	    }
-	    $("#squadlist").html(newt);
+
+	    $("#squadlist").html("<thead><tr><th></th><th><span class='m-player'></span></th><th><span class='m-faction'></span></th><th><span class='m-points'></span></th><th><span class='m-units'></span></th><th></th></tr></thead>");
 	    SQUADLIST=$("#squadlist").DataTable({ 
 		"language": {
 		    "search":UI_translation["Search"],
@@ -1538,28 +1511,33 @@ $(document).ready(function() {
 		"ordering":true,
 		"info":true,
 		"paging":         false});
-	    $("#squadlist td:first-child").click(function() { 
-		var row = SQUADLIST.row($(this).parents("tr"));
-		var data = row.data()[5];
-		delete localStorage[data];
-		row.remove().draw(); });
-	    $("#squadlist td:nth-child(2)").click(function() { 
-		$(this).children().toggleClass('human'); });
-	    $('#squadlist td:nth-child(n+3)').click(function () {
-		$(this).parents("tr").toggleClass('selected');
-		enablenextphase();
-	    } );
+	    for (i in localStorage) {
+		if (typeof localStorage[i]=="string"&&i.match(/SQUAD.*/)) {
+		    //delete localStorage[i];
+		    currentteam.parseJSON(localStorage[i]);
+		    SQUADLIST.row.add(["<span class='close'>&#xd7;</span>","<span class='player human'></span>","<span class='"+currentteam.faction+"'></span>",""+currentteam.points,"<pre>"+currentteam.toJuggler()+"</pre>",i]).draw(false);
+		}
+	    }
+	    //refreshsquadlist();
+
+	    var proc=setInterval(function() {
+		for (var i=0; i<rankinglist.length; i++) {
+		    var str="";
+		    for (var j=0; j<rankinglist[i].length; j++) 
+			str+=rankinglist[i][j]+"\n";
+		    currentteam.parseJuggler(str);
+		    currentteam.name="SQUAD."+currentteam.toASCII();
+		    if (typeof localStorage[currentteam.name]=="undefined") {
+			localStorage[currentteam.name]=JSON.stringify(currentteam);
+			SQUADLIST.row.add(["<span class='close'>&#xd7;</span>","<span class='player human'></span>","<span class='"+currentteam.faction+"'></span>",""+currentteam.points,"<pre>"+currentteam.toJuggler()+"</pre>",i]).draw(false);
+		    }			 
+		}
+		refreshsquadlist();
+		clearInterval(proc);
+	    },1000);
 	    
 	}
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').then(function(registration) {
-    // Registration was successful
-    console.log('ServiceWorker registration successful with scope: ',    registration.scope);
-  }).catch(function(err) {
-    // registration failed :(
-    console.log('ServiceWorker registration failed: ', err);
-  });
-}
+
 	/*md = new Hammer(document.getElementById('leftpanel'));
 	  md.get('pan').set({direction:Hammer.DIRECTION_VERTICAL});
 	  md.on("panup pandown",function(ev) {
