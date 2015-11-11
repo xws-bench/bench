@@ -1813,7 +1813,7 @@ var UPGRADES= [
 		    $("#actiondial").empty();
 		    for (var i=0; i<r; i++) {
 			(function(k) {
-			    var e=$("<button>").html(k+" %EVADE%")
+			    var e=$("<button>").html(k+" <code class='xevadetoken'></code>")
 				.click(function() { resolve(k);}.bind(this));
 			    $("#actiondial").append(e);
 			}.bind(this))(i);

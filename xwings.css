@@ -374,6 +374,9 @@ border-radius:100%;
 min-width:1.5em;
 text-align:center;
 }
+.m-prebuilt {
+font-size:smaller;
+}
 .team,.name {
 /*background:#fff;*/
 color:#000;
@@ -876,7 +879,7 @@ border-style:solid;
 border-width:1px
 }
 
-.xevadetoken,.xfocustoken,.xcloaktoken,.xstresstoken,.xtargetedtoken,.xtargettoken,.xionizedtoken,.focusmodtokena,.stressmodtokena,.focusmodtokend,.hitmodtokena,.hitmodtokend,.criticalmodtokena,.blankmodtokena,.blankmodtokend,.evademodtokend,.criticalmodtokend,.targetmodtokena {
+.xevadetoken,.xfocustoken,.xcloaktoken,.xstresstoken,.xtargetedtoken,.xtargettoken,.xionizedtoken,.focusmodtokena,.evademodtokena,.stressmodtokena,.focusmodtokend,.hitmodtokena,.hitmodtokend,.criticalmodtokena,.blankmodtokena,.blankmodtokend,.evademodtokend,.criticalmodtokend,.targetmodtokena {
 font-family:'symbols';
 padding:4px;
 display:inline-block;
@@ -978,7 +981,7 @@ text-decoration:none;
 box-shadow:1px 1px 3px #000
 }
 
-.focusreddice,.hitreddice,.blankreddice,.criticalreddice,.reddice,.focusmodtokena,.targetmodtokena,.hitmodtokena,.criticalmodtokena,.blankmodtokena,.stressmodtokena {
+.focusreddice,.hitreddice,.blankreddice,.criticalreddice,.reddice,.evademodtokena,.focusmodtokena,.targetmodtokena,.hitmodtokena,.criticalmodtokena,.blankmodtokena,.stressmodtokena {
 background:#f33;
 opacity:.9;
 color:#fff
@@ -1023,7 +1026,7 @@ font-family:'symbols';
 content:"\00a0"
 }
 
-.evadegreendice::after,.evadegreen::after,.evademodtokend::after {
+.evadegreendice::after,.evadegreen::after,.evademodtokend::after,.evademodtokena::after {
 font-family:'symbols';
 content:"e"
 }
