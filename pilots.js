@@ -1429,7 +1429,7 @@ var PILOTS = [
 	    var i=0;
 	    var m0=this.getpathmatrix(m,"BL2");
 	    var m1=this.getpathmatrix(m,"BR2");
-	    var p=[m0,m1];
+	    var p=[this.m,m0,m1];
 	    for (i=-20; i<=20; i+=20) {
 		var mm=m.clone().translate(0,i).rotate(90,0,0);
 		var mn=m.clone().translate(0,i).rotate(-90,0,0);
