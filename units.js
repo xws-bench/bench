@@ -1627,7 +1627,16 @@ Unit.prototype = {
 	    function (t,k) { t.endaction(n,"BOOST"); },true);
     },
     getdecloakmatrix: function(m) {
-	return [m.clone(),this.getpathmatrix(m.clone(),"F2")].concat(this.getrollmatrix(m.clone()));
+	var m0=this.getpathmatrix(this.m.clone().rotate(90,0,0),"F2").translate(0,(this.islarge?20:0)).rotate(-90,0,0);
+	var m1=this.getpathmatrix(this.m.clone().rotate(-90,0,0),"F2").translate(0,(this.islarge?20:0)).rotate(90,0,0);
+	return [m0.clone().translate(0,-20),
+		m0,
+		m0.clone().translate(0,20),
+		m1.clone().translate(0,-20),
+		m1,
+		m1.clone().translate(0,20),
+		m.clone(),
+		this.getpathmatrix(m.clone(),"F2")];
     },
     resolvedecloak: function() {
 	this.doselection(function(n) {
