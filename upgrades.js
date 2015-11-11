@@ -356,7 +356,30 @@ Weapon.prototype = {
 	    if ((this.unit!=sh)&&(this.getrange(sh)>0)) r.push(sh);
 	}
 	return r;
-    }
+    },
+    wrap_after: function (name,org,after) {
+	var self=this;
+	var save=self[name];
+	var f=function () {
+            var args = Array.prototype.slice.call(arguments),
+            result;
+            result = save.apply( this, args);
+            result=after.apply( this, args.concat(result));
+	    return result;
+	}
+	f.save=save;
+	f.org=org;
+	f.unwrapper=function(name2) {
+	    var uw=self.wrap_before(name2,self,function(a) {
+		f.unwrap();
+		uw.unwrap();
+		return a;
+	    });
+	}
+	f.unwrap=function(o) { self[name]=f.save; }
+	this[name]=f;
+	return f;
+    },
 };
 function Upgrade(sh,i) {
     $.extend(this,UPGRADES[i]);
@@ -979,6 +1002,7 @@ var UPGRADES= [
 	done:true,
         init: function(sh) {
 	    var self=this;
+	    var ea=sh.endattack;
 	    sh.endattack=function(c,h) {
 		if ((c+h==0)&&this.hasfired<2) {
 		    this.log("2nd attack with %0 [%1]",sh.weapons[0].name,self.name);
@@ -1320,7 +1344,6 @@ var UPGRADES= [
         init: function(sh) {
 	    sh.wrap_before("addfocus",this,function(n) {
 		sh.addfocustoken();
-		return af.call(this,n);
 	    });
 	},
 	done:true,
@@ -2817,9 +2840,9 @@ var UPGRADES= [
 			    this.log("select a lock to remove [%0]",mod.name);
 			    this.resolveactionselection(this.istargeted,function(k) { 
 				this.istargeted[k].removetarget(this);
-				this.endnoaction(n,MOD);
+				this.endnoaction(n,"MOD");
 			    }.bind(this));
-			} else this.endnoaction(n,MOD);
+			} else this.endnoaction(n,"MOD");
 		    }.bind(this),type:mod.type.toUpperCase(),name:mod.name}],"");
 		}
 	    });

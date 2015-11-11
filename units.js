@@ -532,7 +532,7 @@ Unit.prototype = {
 		else {
 		    m[cx][cy]="<td";
 		    if (phase==PLANNING_PHASE) 
-			m[cx][cy]+=" onclick='record(\"dial\","+i+"); activeunit.setmaneuver("+i+")'";
+			m[cx][cy]+=" onclick='activeunit.setmaneuver("+i+")'";
 		    m[cx][cy]+=" class='symbols maneuver "+d.difficulty;
 		    if (this.maneuver==i) m[cx][cy]+=" selected";
 		    m[cx][cy]+="' >"+P[d.move].key+"</td>";
@@ -727,6 +727,7 @@ Unit.prototype = {
 		if (other) {
 		    this.removepilot(true);
 		    this.getpilotlist();
+		    log("UNIQUE selectpilot");
 		    this.selectpilot();
 		} else delete UNIQUE[this.team][name];
 	    }.bind(this);
@@ -839,7 +840,7 @@ Unit.prototype = {
 	var P=this.getattacktable(n);
 	var ptot=0;
 	var r=Math.random();
-	record("attackroll",r);
+	record(this.id,r,"attackroll");
 	if (n==0) return 0;
 	for (f=0; f<=n; f++) {
 	    for (h=0; h<=n-f; h++) {
@@ -868,7 +869,7 @@ Unit.prototype = {
 	var P=this.getdefensetable(n);
 	var ptot=0;
 	var r=Math.random();
-	record("defenseroll",r);
+	record(this.id,r,"defenseroll");
 	if (n==0) return lock.resolve(0).promise();
 	if (typeof P=="undefined") {
 	    //console.log("P undefined for n="+n);
@@ -1129,7 +1130,6 @@ Unit.prototype = {
 	    var old=activeunit;
 	    activeunit=this;
 	    if (old!=this) old.unselect();
-	    record("select",this.id);
 	    $("#"+this.id).addClass("selected");
 	    record(this.id,0,"select");
 	    this.show();
@@ -1587,14 +1587,13 @@ Unit.prototype = {
 	}
 	if (this.pos.length>0) {
 	    if (this.pos.length==1) {
-		record("resolveactionmove",this.pos[0].k);
 		resolve(moves[this.pos[0].k],this.pos[0].k,cleanup);
 	    } else for (i=0; i<this.pos.length; i++) {
 		(function(i) {
 		var p=this.pos[i];
 		p.ol.hover(function() { this.pos[i].ol.attr({stroke:this.color,strokeWidth:4})}.bind(this),
 			   function() { this.pos[i].ol.attr({strokeWidth:0})}.bind(this));
-		    p.ol.click(function() { record("resolveactionmove",this.pos[i].k);resolve(moves[this.pos[i].k],this.pos[i].k,cleanup); }.bind(this));
+		    p.ol.click(function() { resolve(moves[this.pos[i].k],this.pos[i].k,cleanup); }.bind(this));
 		    }.bind(this))(i);
 	    }
 	} else resolve(this.m,-1,cleanup);
@@ -1604,12 +1603,11 @@ Unit.prototype = {
 	this.pos=[];
 	var ready=false;
 	var resolve=function(k) {
-	    if (k>0) record(this.id,k,"resolveactionselection");
+	    record(this.id,k,"resolveactionselection");
 	    for (i=0; i<units.length; i++) {
 		units[i].outline.attr({fill:"rgba(8,8,8,0.5)"});
 		units[i].setdefaultclickhandler();
 	    }
-	    record("resolveactionselection",k);
 	    cleanup(k);
 	}.bind(this);
 	if (units.length==0) resolve(-1);
@@ -1813,14 +1811,14 @@ Unit.prototype = {
 	for (i=0; i<ATTACKMODA.length; i++) {
 	    var a=ATTACKMODA[i];
 	    if (a.req(m,n)) {
-		str+="<td id='moda"+i+"' class='"+a.str+"modtokena' onclick='record(\"attackmod\","+i+"); modroll(ATTACKMODA["+i+"].f,"+n+","+i+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
+		str+="<td id='moda"+i+"' class='"+a.str+"modtokena' onclick='record("+this.id+","+i+",\"attackmodag_"+n+"\"); modroll(ATTACKMODA["+i+"].f,"+n+","+i+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
 	    }
 	}   
 	j=ATTACKMODA.length
 	for (i=0; i<ATTACKMODD.length; i++) {
 	    var a=ATTACKMODD[i];
 	    if (a.req(m,n)) {
-		str+="<td id='moda"+(i+ATTACKMODA.length)+"' class='"+a.str+"modtokend' onclick='record(\"attackmod\","+(j+i)+"); modroll(ATTACKMODD["+i+"].f,"+n+","+(i+ATTACKMODA.length)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
+		str+="<td id='moda"+(i+ATTACKMODA.length)+"' class='"+a.str+"modtokend' onclick='record("+this.id+","+i+",\"attackmodd_"+n+"\"); modroll(ATTACKMODD["+i+"].f,"+n+","+(i+ATTACKMODA.length)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
 	    }
 	}   
 	i=ATTACKMODA.length+ATTACKMODD.length;
@@ -1829,14 +1827,14 @@ Unit.prototype = {
 	    if (a.req(m,n)) {
 		var cl=a.str+"modtokend"
 		if (typeof a.token!="undefined") cl="x"+a.str+"token";
-		str+="<td id='moda"+(i+j)+"' class='x"+a.str+"token' onclick='record(\"attackmod\","+(i+j)+"); modroll(squadron["+me+"].ATTACKMODA["+j+"].f,"+n+","+(i+j)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
+		str+="<td id='moda"+(i+j)+"' class='x"+a.str+"token' onclick='record("+this.id+","+j+",\"attackmoda_"+n+"\"); modroll(squadron["+me+"].ATTACKMODA["+j+"].f,"+n+","+(i+j)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
 	    }
 	}   
 	i=ATTACKMODA.length+ATTACKMODD.length+this.ATTACKMODA.length
 	for (j=0; j<this.ATTACKADD.length; j++) {
 	    var a=this.ATTACKADD[j];
 	    if (a.req(m,n)) {
-		str+="<td id='moda"+(j+i)+"' class='"+a.str+"modtokena' onclick='record(\"attackadd\","+j+"); addroll(squadron["+me+"].ATTACKADD["+j+"].f,"+n+","+(i+j)+")' title='add roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
+		str+="<td id='moda"+(j+i)+"' class='"+a.str+"modtokena' onclick='record("+this.id+","+j+"\"attackadd_"+n+"\"); addroll(squadron["+me+"].ATTACKADD["+j+"].f,"+n+","+(i+j)+")' title='add roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
 	    }
 	}   
 	return str;
@@ -1848,7 +1846,7 @@ Unit.prototype = {
 	for (i=0; i<DEFENSEMODD.length; i++) {
 	    var a=DEFENSEMODD[i];
 	    if (a.req(m,n)) {
-		str+="<td id='modd"+i+"' class='"+a.str+"modtokend' onclick='record(\"defensemodd\","+i+"); modrolld(DEFENSEMODD["+i+"].f,"+n+","+i+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
+		str+="<td id='modd"+i+"' class='"+a.str+"modtokend' onclick='record("+this.id+","+i+",\"defensemoddg_"+n+"\"); modrolld(DEFENSEMODD["+i+"].f,"+n+","+i+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
 	    }
 	}   
 	for (j=0; j<this.DEFENSEMODD.length; j++) {
@@ -1856,7 +1854,7 @@ Unit.prototype = {
 	    if (a.req(m,n)) {
 		var cl=a.str+"modtokend"
 		if (typeof a.token!="undefined") cl="x"+a.str+"token"; 
-		str+="<td id='modd"+(i+j)+"' class='"+cl+"' onclick='record(\"defensemodd\","+j+"); modrolld(squadron["+me+"].DEFENSEMODD["+j+"].f,"+n+","+(i+j)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
+		str+="<td id='modd"+(i+j)+"' class='"+cl+"' onclick='record("+this.id+","+j+",\"defensemodd_"+n+"\"); modrolld(squadron["+me+"].DEFENSEMODD["+j+"].f,"+n+","+(i+j)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
 	    }
 	}   
 	i=DEFENSEMODD.length+this.DEFENSEMODD.length
@@ -1865,7 +1863,7 @@ Unit.prototype = {
 	    if (a.req(m,n)) {
 		var cl=a.str+"modtokend";
 		if (typeof a.token!="undefined") cl="x"+a.str+"token";
-		str+="<td id='modd"+(j+i)+"' class='"+cl+"' onclick='record(\"defenseadd\","+j+"); addrolld(squadron["+me+"].DEFENSEADD["+j+"].f,"+n+","+(i+j)+")' title='add result ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
+		str+="<td id='modd"+(j+i)+"' class='"+cl+"' onclick='record("+this.id+","+j+",\"defenseadd_"+n+"\"); addrolld(squadron["+me+"].DEFENSEADD["+j+"].f,"+n+","+(i+j)+")' title='add result ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
 	    }
 	}   
 	return str;
@@ -1879,7 +1877,7 @@ Unit.prototype = {
 	    if (a.type.indexOf("focus")>-1) s+=10*n;
 	    if (a.type.indexOf("hit")>-1) s+=100*n;
 	    if (a.type.indexOf("critical")>-1) s+=1000*n;
-	    return "<td id='rerolla"+i+"' class='tokens' onclick='record(\"attackreroll\","+i+"); reroll("+n+",true,"+s+","+i+")' title='"+n+" rerolls ["+a.org.name.replace(/\'/g,"&#39;")+"]'>R"+n+"</td>";
+	    return "<td id='rerolla"+i+"' class='tokens' onclick='reroll("+n+",true,"+s+","+i+")' title='"+n+" rerolls ["+a.org.name.replace(/\'/g,"&#39;")+"]'>R"+n+"</td>";
 	};
 	for (var i=0; i<ATTACKREROLLA.length; i++) {
 	    var a=ATTACKREROLLA[i];
@@ -2153,7 +2151,7 @@ Unit.prototype = {
 			}.bind(this))(list[i],i);
 		    }
 		}
-		var e=$("<button>").addClass("m-skip").click(function() { record(this.id,-1,"doaction"); this.resolveaction(null,n); }.bind(this));
+		var e=$("<button>").addClass("m-skip").click(function() { record(this.id,-1,"skipaction"); this.resolveaction(null,n); }.bind(this));
 		$("#actiondial > div").append(e);
 	    } else this.endaction(n);
 	    }.bind(this),list[0].name);  
@@ -2172,7 +2170,7 @@ Unit.prototype = {
 		}.bind(this))(list[i],i);
 	    }
 	    if (noskip==true) {
-		var e=$("<button>").text("Skip").click(function() { record(this.id,-1,"donoaction"); this.resolvenoaction(null,n); }.bind(this));
+		var e=$("<button>").text("Skip").click(function() { record(this.id,-1,"skipnoaction"); this.resolvenoaction(null,n); }.bind(this));
 		$("#actiondial > div").append(e);
 	    }
 	}.bind(this),list[0].name);  
@@ -2226,10 +2224,10 @@ Unit.prototype = {
 		}
 		for (i=0; i<wn.length; i++) {
 		    var w=A[this.weapons[wn[i]].type.toUpperCase()];
-		    str+="<div class='symbols "+w.color+"' onclick='record(\"selecttargetforattack\","+i+"); activeunit.selecttargetforattack("+wn[i]+")'>"+w.key+"</div>"
+		    str+="<div class='symbols "+w.color+"' onclick='record("+this.id+","+i+",\"selecttargetforattack\"); activeunit.selecttargetforattack("+wn[i]+")'>"+w.key+"</div>"
 			}
 		// activeunit.hasfired++ ?
-		str+="<button onclick='record(\"selecttargetforattack\",-1); activeunit.hasfired++;activeunit.show();activeunit.deferred.resolve();'>Skip</button>";
+		str+="<button onclick='record("+this.id+",-1,\"skiptargetforattack\"); activeunit.hasfired++;activeunit.show();activeunit.deferred.resolve();'>Skip</button>";
 		$("#attackdial").html("<div>"+str+"</div>").show();
 	    } else if (!this.hasfired) {
 		this.hasfired++; this.deferred.resolve(); 
@@ -2307,11 +2305,11 @@ Unit.prototype = {
 	    var adi=ad[i];
 	    if (adi.pred()) 
 		adi.elt.appendTo("#activationdial > div").click(function() { 
-		    record("activationdial",i); 
+		    record(0,0,(function(i){return function() {this.updateactivationdial()[i].action();}})(i)) 
 		    adi.action();
 		}).html(adi.html);
 	}
-	$("<button>").addClass("m-move").click(function() {this.resolvemaneuver(); }.bind(this)).appendTo("#activationdial > div");
+	$("<button>").addClass("m-move").click(function() { record(0,0,function(){this.resolvemaneuver();}); this.resolvemaneuver(); }.bind(this)).appendTo("#activationdial > div");
 
     },
     log: function(str,a,b,c) {
@@ -2819,7 +2817,7 @@ Unit.prototype = {
 	    for (var i=0; i<crits.length; i++) {
 		(function(k) {
 		    var e=$("<button>").text(CRITICAL_DECK[crits[k]].name)
-			.click(function() { record("selectcritical",k);resolve(crits[k],n);}.bind(this));
+			.click(function() { record(this.id,k,"selectcritical");resolve(crits[k],n);}.bind(this));
 		    $("#actiondial").append(e);
 		}.bind(this))(i);
 	    }

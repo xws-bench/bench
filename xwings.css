@@ -379,6 +379,9 @@ text-align:center;
 color:#000;
 overflow-y:auto;
 }
+.unitlist {
+overflow-y:auto;
+}
 button.statevade,button.statfire {
 width:2.2em;
 line-height:1.6em;
@@ -608,7 +611,8 @@ text-align:center;
 box-shadow:1px 1px 3px #000;
 padding:2px;
 border:0;
-border-radius:5px
+border-radius:5px;
+height:2em;
 }
 .headunits button:hover {
 background:black;
@@ -680,7 +684,7 @@ tttable {
 table-layout:fixed;
 width:100%
 }
-.dead,.dead .name,.dead .name .selected,.dead .REBEL,.dead .statfire,.dead .statevade,.dead .upgrades,.dead .EMPIRE,.dead .SCUM,.dead .statskill,.team .selected .dead .name {
+.dead,.dead .tdstat,.dead .name,.dead .name .selected,.dead .REBEL,.dead .statfire,.dead .statevade,.dead .upgrades,.dead .EMPIRE,.dead .SCUM,.dead .statskill,.team .selected .dead .name {
 background:#000;
 color:gray
 }
