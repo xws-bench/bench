@@ -1450,13 +1450,13 @@ var PILOTS = [
         name: "'Whisper'",
         faction:EMPIRE,
 	done:true,
-	resolvedamage:function() {
-	    var ch=targetunit.evadeattack(this);
-	    Unit.prototype.resolvedamage.call(this);
-	    if (ch.c+ch.h>0) {
+	hashit:function(t) {
+	    var hh=Unit.prototype.hashit.call(t);
+	    if (hh) {
 		this.log("+1 %FOCUS%");
 		this.addfocustoken();
 	    }
+	    return hh;
 	},
         unique: true,
         unit: "TIE Phantom",
