@@ -1140,11 +1140,12 @@ var PILOTS = [
 	    /* TO TEST */
 	    this.addattackadd(this,function(m,n) {
 		var r=this.getrange(targetunit);
-		return (r<=3&&r>=2&&this.canusefocus());
+		this.log("Kir Kanos "+r+" "+this.canuseevade());
+		return (r<=3&&r>=2&&this.canuseevade());
 	    }.bind(this),function(m,n) {
 		this.removeevadetoken();
 		this.log("+1 %HIT% for attacking at range 2-3");
-		return m+1;
+		return {m:m+1,n:n+1};
 	    }.bind(this),"evade");
 	},   
 	done:true,
@@ -1620,10 +1621,10 @@ var PILOTS = [
 	done:true,
 	init: function() {
 	    this.shipimg="b-wing-1.png";
+	    this.log("can fire %TORPEDO% at 360 degrees");
 	},
         isTurret: function(w) {
 	    if (w.type=="Torpedo") {
-		this.log("can fire %TORPEDO% at 360 degrees");
 		return true;
 	    }
 	    return false;
@@ -2841,7 +2842,7 @@ var PILOTS = [
 	  skill: 6,
 	  begincombatphase: function() {
 	   var p=this.selectnearbyunits(1,function(a,b) { return (a.team==b.team);});
-	   for (var i=0; i<p.length && i<this.stress; i++) 
+	   for (var i=0; i<p.length; i++) 
 	       this.removestresstoken();
 	   return Unit.prototype.begincombatphase.call(this);
        },
