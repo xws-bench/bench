@@ -1234,14 +1234,15 @@ var PILOTS = [
 		    this.log("select unit for a free action");
 		    this.resolveactionselection(p,function(k) {
 			var al=p[k].getactionlist();
-			log("selected "+p[k].name+" "+al.length);
+			//log("selected "+p[k].name+" "+al.length);
 			if (al.length>0) {
 			    p[k].doaction(al).done(function() { 
-				log("endaction");
+				//log("endaction");
 				this.select();
 			    }.bind(this));
 			    this.endnoaction(n,"");
-			} else { log("no action");this.select(); this.endnoaction(n,""); }
+			} else { //log("no action");
+			    this.select(); this.endnoaction(n,""); }
 		    }.bind(this));
 		}.bind(this));
 	    }
