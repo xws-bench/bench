@@ -1736,7 +1736,7 @@ var UPGRADES= [
 			    if (p[k].isinfiringarc(this)) this.addtarget(p[k]);
 			    this.resolveboost(n);
 			} else this.endaction(n,ASTROMECH);
-		    });
+		    }.bind(this.unit));
 		} else this.unit.endaction(n,ASTROMECH);
 	},
 	done:true,
