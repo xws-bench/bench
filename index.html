@@ -1,28 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="img/favicon.ico" rel="icon" type="image/x-icon"/>
+    <link href="favicon.ico" rel="icon" type="image/x-icon"/>
     <title>Squad Benchmark: combat trainer and squad builder for X-Wing Miniatures game</title>
     <meta name="description" content="Web app for X-Wing Miniatures game">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="xwings.css">
-    <link rel="stylesheet" href="jquery.dataTables.min.css">
-    <script src="snap.svg-min-0.4.1.js"></script>
-    <script src="jwerty.js"></script>
-    <script src="jquery-1.11.3.min.js"></script>
-    <script src="jquery.dataTables.min.js"></script>
-    <script src="obstacles.js"></script>
-    <script src="critical.js"></script>
-    <script src="units.js"></script>
-    <script src="iaunits.js"></script>
-    <script src="pilots.js"></script>
-    <script src="upgrades.js"></script>
-    <script src="team.js"></script>
-    <script src="xwings.js"></script>
-    <script src="buzz.min.js"></script>
-    <script src="hammer.min.js"></script>
-    <script src="canvasjs.min.js"></script>
+    <link rel="stylesheet" href="css/xwings.css">
+    <link rel="stylesheet" href="css/jquery.dataTables.min.css">
+    <script src="js/snap.svg-min-0.4.1.js"></script>
+    <script src="js/jwerty.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/bench.js"></script>
+    <script src="js/buzz.min.js"></script>
+    <script src="js/hammer.min.js"></script>
+    <script src="js/canvasjs.min.js"></script>
     <style type="text/css" id="localstrings"></style>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -142,17 +135,41 @@
      </article>
  
      <article id="selectphase" class="mainarticle">
-       <table class="headunits">
+       <h3 class="m-selectinstructions"></h3>
+       <div>
+       <table class="squadselected">
 	 <tr>
 	   <td>
-	     <button onclick="createsquad()" class="m-create"><span class='symbols' style='font-size:1em'>o</span> </button>
-	     <button onclick="$('#importtext').val('');window.location='#import'" class="m-import">&#x1f4cb; </button>
-	     </td>
-	   </tr>
+	     <span class="playerselector">
+	       <input type="radio" name="player1" value="human" id="p11"/>
+	       <label class="player computer" for="p11"><img src="css/user.png"/></label>
+	     </span><span class="playerselector">
+	       <input checked type="radio" name="player1" value="computer" id="p12"/>
+	       <label class="human player" for="p12"><img src="css/computer.png"/></label>
+	     </span>
+	     <button onclick="currentteam=TEAMS[1];createsquad()" class="m-create"><span class='symbols' style='font-size:1em'>o</span></button>	 
+	     <button onclick="currentteam=TEAMS[1];$('#importtext').val('');window.location='#import'" class="m-import"></button>
+	     <button onclick="setselectedunit(1)" class="m-selection"></button>
+	   </td>
+	   <td class="squadbg"><textarea id="squad1" cols="40" rows="9"></textarea><div class='m-squad1'></div></td>
+	   <td></td>
+	   <td>
+	     <span class="playerselector">
+	       <input type="radio" name="player2" value="human" id="p21"/>
+	       <label class="player computer" for="p21"><img src="css/user.png"/></label>
+	     </span><span class="playerselector">
+	       <input checked type="radio" name="player2" value="computer" id="p22"/>
+	       <label class="human player" for="p22"><img src="css/computer.png"/></label>
+	     </span>
+	     <button onclick="currentteam=TEAMS[2];createsquad()" class="m-create"><span class='symbols' style='font-size:1em'>o</span></button>	 
+	     <button onclick="currentteam=TEAMS[2];$('#importtext').val('');window.location='#import'" class="m-import"></button>
+	     <button onclick="setselectedunit(2)" class="m-selection"></button>
+	   </td>
+	   <td class="squadbg"><textarea id="squad2" cols="40" rows="9"></textarea><div class='m-squad2'></div></td>
+	 </tr>
        </table>
-       <br>
-       <div class="m-selectinstructions"></div>
-       <div class="m-prebuilt"></div>
+       </div>
+       <h3 class="m-manage"></h3>
        <table id="squadlist" style="color:black;font-size:x-small" class="compact stripe hover order-column row-border">
        </table>
        <br>
@@ -248,7 +265,7 @@ The app is not really a game since the user plays both sides, there is no multi-
             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
               <input type="hidden" name="cmd" value="_s-xclick">
               <input type="hidden" name="hosted_button_id" value="NYM7QUG8UKGE2">
-              <input type="image" src="img/btn_donateCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!">
+              <input type="image" src="png/btn_donateCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!">
             </form>
 <br>        The app will stay free to use for all, with no advertisement. 
             Feel free to provide feed back, report bugs or suggest improvements on the blog. All comments are welcome !

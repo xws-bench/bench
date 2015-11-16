@@ -8,7 +8,8 @@
     "Lambda-Class Shuttle":"Navette de classe Lambda",
     "VT-49 Decimator":"Décimateur VT-49",
     "Z-95 Headhunter":"Chasseur de têtes Z-95",
-    "M3-A Interceptor":"Intercepteur M3-A"
+    "M3-A Interceptor":"Intercepteur M3-A",
+	"Kihraxz Fighter":"Chasseur Kihraxz"
     },
     "pilots": {
 	"Academy Pilot": {
@@ -412,7 +413,7 @@
 	"Warden Squadron Pilot (Scum)":{"name":"Pilote de l'escadron Warden"},
 	"Guardian Squadron Pilot (Scum)":{"name":"Pilote de l'escadron Guadrian"},
         "Talonbane Cobra (Scum)":
-        {"text": "When attacking or defending, double the effect of your range combat bonuses."},
+        {"text": "Quand vous attaquez ou défendez, doublez l'effet de vos bonus de portée."},
         "Miranda Doni":
         {"text": "Une fois par tour quand vous attaquez, vous pouvez soit utiliser 1 bouclier pour lancer 1 dé d'attaque supplémentaire, soit lancer 1 dé d'attaque en moins pour récupérer 1 bouclier."},
         "'Redline'":
@@ -425,8 +426,11 @@
 	{"text":"Quand vous larguez une bombe, vous pouvez utiliser les glissières avant de votre vaisseau. Après avoir largué une bombe, vous pouvez effectuer une action de tonneau gratuite."},
         "Latts Razzi (Scum)":
         {"text": "Quand un vaisseau allié déclare une attaque, vous pouvez utiliser une acquisition de cible que vous avez sur le défenseur pour réduire de 1 son agilité pour cette attaque."},
+	"Black Sun Ace (Scum)":{"name":"As du Soleil Noir"},
+	"Cartel Marauder (Scum)":{"name":"Maraudeur du Cartel"},
         "Graz the Hunter (Scum)":
-        {"text": "When defending, if the attacker is inside your firing arc, roll 1 additional defense die."},
+        {"text": "Quand vous défendez, si l'attaquant se situe dans votre arc de tir, lancez 1 dé de défense supplémentaire.",
+	"name":"Graz Le Chasseur"},
         "Esege Tuketu":
         {"text": "Quand un autre vaisseau allié situé à portée 1-2 attaque, il peut traiter vos marqueurs de contentration comme s'ils lui appartenaient."},
         "Moralo Eval (Scum)":
@@ -1066,7 +1070,8 @@
         "Bossk(Crew)":{
             "text":"Après avoir effectué une attaque qui ne touche pas, si vous n'êtes pas sous l'effet du stress, vous <strong>devez</strong> recevoir 1 marqueur de stress. Ensuite, assignez 1 marqueur de concentration à votre vaisseau et vérouillez le défenseur."},
         "Lightning Reflexes":{
-            "text":"After you execute a white or green maneuver on your dial, you may discard this card to rotate your ship 180&deg;.  Then receive 1 stress token <strong>after</strong> the 'Check Pilot Stress' step."},
+	    "name":"Réflexes Eclair",
+            "text":"Après avoir exécuté une manœuvre blanche ou verte de votre cadran, vous pouvez défausser cette carte pour faire pivoter votre vaisseau de 180º. Ensuite, recevez 1 marqueur de stress après l'étape 'Contrôler le stress du pilot'."},
         "Twin Laser Turret":{
 	"name":"Tourelle laser jumelée",
             "text":"<strong>Attaque :</strong> Effectuez cette attaque <strong>2 fois</strong> même contre un vaisseau situé en dehors de votre arc de tir). Chaque fois que cette attaque touche, le défenseur subit 1 dégât. Ensuite, annulez le résultat de <strong>tous</strong> les dés."},        
@@ -1110,9 +1115,7 @@
 	"m-save":"Sauvegarde",
 	"m-reset":"Retour",
 	"np":"Suivant",
-	"m-importexport":"Importer/Exporter",
-	"m-import":"Importer",
-	"m-export":"Exporter",
+	"m-import":"Import",
 	"m-add":"Ajouter",
 	"m-totalpts":"Points",
 	"m-console":"Afficher console",
@@ -1122,13 +1125,17 @@
 	"m-points":"Points",
 	"m-units":"Unités",
 	"m-move":"Déplace",
+	"m-selection":"Sélection",
+	"m-squad1":"Liste nº1",
+	"m-squad2":"Liste nº2",
 	"m-player":"Joueur",
 	"m-skip":"Passe",
 	"m-done":"Ok",
 	"m-fire":"Feu!",
-	"m-create":"Nouvel escadron",
+	"m-create":"Nouveau",
 	"m-setup":"Mise en place",
-	"m-selectinstructions":"Créer ou importer un escadron à partir du menu pour remplir la liste. Pour lancer un combat, selectionner 2 escadrons dans la liste.",
+	"m-selectinstructions":"Créer, sélectionner ou importer 2 escadrons pour le combat.",
+	"m-manage":"Gérer vos listes ou sélectionner les pour le combat.",
 	"m-importinstructions":"Copier/coller le descriptif d'un escadron, soit au format XWS3.0 soit au format texte comme utilisé par Xwing Juggler.",
 	"m-prebuilt":"La liste est préremplie avec des escadrons. Il y a au moins un escadron pour chaque pilote unique des Waves I à VII."
     },
@@ -1139,6 +1146,9 @@
 	"selects":"Choisir un escadron",
 	"selectu":"Choisir une unité",
 	"none":"aucun",
+	"type":"Tout type",
+	"Prebuilt":"Preconstruits",
+	"My builds":"Mes Listes",
 	"squadron":"Escadron",
 	"phase1":"Construction et préparation d'escadrons",
 	"phase2":"Mise en place",
