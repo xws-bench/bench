@@ -1132,6 +1132,7 @@ font-family:'symbols'
 font-family:'symbols';
 margin:2px;
 border-radius:100%; 
+font-size:2em;
 }
 
 .REBEL,.statfire {
@@ -1431,10 +1432,19 @@ width:95%;
 margin-left:2.5%;
 opacity:0.75;
 }
+.prebuilt::after {
+background: url(prebuilt.png);
+background-size: 100%;
+background-repeat: no-repeat;
+width: 1em; 
+height: 1em;
+padding-left:1em;
+content:" ";
+}
 .squadselected button {
     padding:8px;
     width:100%;
-    font-size:small;
+    font-size:x-small;
     margin:0;
     border-collapse:collapse;
 }
