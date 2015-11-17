@@ -149,9 +149,8 @@
 	     </span>
 	     <button onclick="currentteam=TEAMS[1];createsquad()" class="m-create"><span class='symbols' style='font-size:1em'>o</span></button>	 
 	     <button onclick="currentteam=TEAMS[1];$('#importtext').val('');window.location='#import'" class="m-import"></button>
-	     <button onclick="setselectedunit(1)" class="m-selection"></button>
 	   </td>
-	   <td class="squadbg"><textarea id="squad1" cols="40" rows="9"></textarea><div class='m-squad1'></div></td>
+	   <td class="squadbg"><textarea id="squad1" cols="40" rows="8"></textarea><div class='m-squad1'></div></td>
 	   <td></td>
 	   <td>
 	     <span class="playerselector">
@@ -163,13 +162,13 @@
 	     </span>
 	     <button onclick="currentteam=TEAMS[2];createsquad()" class="m-create"><span class='symbols' style='font-size:1em'>o</span></button>	 
 	     <button onclick="currentteam=TEAMS[2];$('#importtext').val('');window.location='#import'" class="m-import"></button>
-	     <button onclick="setselectedunit(2)" class="m-selection"></button>
 	   </td>
-	   <td class="squadbg"><textarea id="squad2" cols="40" rows="9"></textarea><div class='m-squad2'></div></td>
+	   <td class="squadbg"><textarea id="squad2" cols="40" rows="8"></textarea><div class='m-squad2'></div></td>
 	 </tr>
        </table>
        </div>
        <h3 class="m-manage"></h3>
+       <div><span class="m-filter"></span><select id="uselector"></select></div>
        <table id="squadlist" style="color:black;font-size:x-small" class="compact stripe hover order-column row-border">
        </table>
        <br>
