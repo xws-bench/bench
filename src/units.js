@@ -470,10 +470,10 @@ Unit.prototype = {
     toASCII: function() {
 	var s="";
 	s+=Base64.fromNumber(this.pilotid);
-	for (var i=1; i<this.upgrades.length; i++) {
-	    var u=this.upgrades[i];
-	    if (typeof u.id!="undefined") {
-		s+=","+Base64.fromNumber(u.id);
+	for (var i=0; i<this.upg.length; i++) {
+	    var u=this.upg[i];
+	    if (u>-1) { 
+		s+=","+Base64.fromNumber(u);
 	    }
 	}
 	s+="%"+Base64.fromCoord([this.tx,this.ty,this.alpha]);
