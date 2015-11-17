@@ -12236,7 +12236,9 @@ $(document).ready(function() {
 		if (typeof localStorage[i]=="string"&&i.match(/SQUAD.*/)) {
 		    //delete localStorage[i];
 		    var l=$.parseJSON(localStorage[i]);
-		    addrow(0,i,l.pts,l.faction,l.jug);
+		    if (typeof l.jug=="undefined"||typeof l.pts=="undefined")
+			delete localStorage[i]
+		    else addrow(0,i,l.pts,l.faction,l.jug);
 		}
 	    }
 	    refreshsquadlist();
