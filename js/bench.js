@@ -1001,10 +1001,10 @@ Unit.prototype = {
     toASCII: function() {
 	var s="";
 	s+=Base64.fromNumber(this.pilotid);
-	for (var i=1; i<this.upgrades.length; i++) {
-	    var u=this.upgrades[i];
-	    if (typeof u.id!="undefined") {
-		s+=","+Base64.fromNumber(u.id);
+	for (var i=0; i<this.upg.length; i++) {
+	    var u=this.upg[i];
+	    if (u>-1) { 
+		s+=","+Base64.fromNumber(u);
 	    }
 	}
 	s+="%"+Base64.fromCoord([this.tx,this.ty,this.alpha]);
@@ -11194,16 +11194,12 @@ function createsquad() {
 function addunit() {
     currentteam.addunit(0);
 }
-function setselectedunit(n) {
-    SQUADLIST.$('tr.selected').each(function(index) {
-	    if (index<1) {
-		currentteam=TEAMS[n];
-		currentteam.parseJSON(localStorage[SQUADLIST.row($(this)).data()[4]]);
-		addrow();
-		//if ($(this).find(".human").length>0) TEAMS[index+1].isia=false;
-		//else TEAMS[index+1].isia=true;
-	    }
-    });
+function setselectedunit(n,td) {
+    var jug=td.parent().first().contents().text()
+    currentteam=TEAMS[n];
+    currentteam.parseJuggler(jug);
+    currentteam.name=currentteam.toASCII();
+    addrow(n,currentteam.name,0,currentteam.faction,jug);
 }
 function displaysquad(n) {
     var s=$("#squad"+n).val();
@@ -11212,16 +11208,13 @@ function displaysquad(n) {
     $("#displayxws"+n).html(JSON.stringify(TEAMS[n]));
     $("#faction"+n).attr("class",TEAMS[n].faction);
 }
-function addrow() {
-    var j=currentteam.toJuggler();
-    if (currentteam==TEAMS[1]) {$("#squad1").html(j);$("#squad1").attr({"data-name":currentteam.name});}
-    if (currentteam==TEAMS[2]) {$("#squad2").html(j); $("#squad2").attr("data-name",currentteam.name);}
+function addrow(team,name,pts,faction,jug) {
+    if (team==1) {$("#squad1").html(jug);$("#squad1").attr("data-name",name);}
+    if (team==2) {$("#squad2").html(jug); $("#squad2").attr("data-name",name);}
     enablenextphase();
-    var n=UI_translation[currentteam.faction.toLowerCase()];
-    if (currentteam.name.match(/PREBUILT.*/)) n+="<br>"+UI_translation["Prebuilt"];
-    else n+="<br>"+UI_translation["My builds"];
-    if (typeof localStorage[currentteam.name]!="undefined")
-	SQUADLIST.row.add(["<span class='close'>&#xd7;</span>",n,""+currentteam.points,"<pre>"+currentteam.toJuggler()+"</pre>",currentteam.name]).draw(false);
+    var n=faction.toUpperCase();
+    if (typeof localStorage[name]!="undefined")
+	SQUADLIST.row.add(["",n,""+pts,jug,name]).draw(false);
 }
 function makeGrid(points1,points2){    
     var dataLength = points1.length;
@@ -11313,39 +11306,35 @@ function makeGrid(points1,points2){
     
   }
 function endselection() {
+    var team;
     $("#creation").hide();
     $("#selectphase").show();
     currentteam.name="SQUAD."+currentteam.toASCII();
-    localStorage[currentteam.name]=JSON.stringify(currentteam);
-    addrow();
+    currentteam.toJSON();// Just for points
+    var jug=currentteam.toJuggler();
+    localStorage[currentteam.name]=JSON.stringify({"pts":currentteam.points,"faction":currentteam.faction,"jug":jug});
+    if (currentteam==TEAMS[1]) team=1; else if (currentteam==TEAMS[2]) team=2;
+    addrow(team,currentteam.name,currentteam.points,currentteam.faction,jug);
     refreshsquadlist();
 }
 function refreshsquadlist() {
-
-    $("#squadlist td").off("click");
-    $('#squadlist tbody').on( 'click', 'tr:nth-child(n+1)', function () {
-        if ( $(this).hasClass('selected') ) {
-            $(this).removeClass('selected');
-        }
-        else {
-	    SQUADLIST.$('tr.selected').removeClass('selected');
-            $(this).addClass('selected');
-        }
-    } );
     $("#squadlist td:first-child").click(function() { 
 	var row = SQUADLIST.row($(this).parents("tr"));
 	var data = row.data()[4];
 	delete localStorage[data];
-	row.remove().draw(); });
-    enablenextphase();
+	row.remove().draw(false); });
 }
 function importsquad() {
     currentteam.parseJSON($("#importtext").val());
     currentteam.name="SQUAD."+currentteam.toASCII();
-    localStorage[currentteam.name]=JSON.stringify(currentteam);
-    addrow();
-    window.location="#";
+    var team;
+    if (currentteam==TEAMS[1]) team=1; else if (currentteam==TEAMS[2]) team=2;
+    var jug=currentteam.toJuggler();
+    currentteam.toJSON(); // just for points
+    localStorage[currentteam.name]=JSON.stringify({"pts":currentteam.points,"faction":currentteam.faction,"jug":jug});
+    addrow(team,currentteam.name,currentteam.points,currentteam.faction,jug);
     refreshsquadlist();
+    window.location="#";
 }
 function exportsquad() {
 
@@ -12059,8 +12048,8 @@ $(document).ready(function() {
 	    }}); 
     });
     $.when(
-	$.ajax("data/ships.json"),$.ajax("data/strings."+LANG+".json"),$.ajax("data/xws.json"),$.ajax("data/full.json")
-    ).done(function(result1,result2,result3,result4) {
+	$.ajax("data/ships.json"),$.ajax("data/strings."+LANG+".json"),$.ajax("data/xws.json")
+    ).done(function(result1,result2,result3) {
 	var process=setInterval(function() {
 	    ATTACK[dice]=attackproba(dice);
 	    DEFENSE[dice]=defenseproba(dice);
@@ -12076,7 +12065,6 @@ $(document).ready(function() {
 	UPGRADE_translation=result2[0].upgrades;
 	UI_translation=result2[0].ui;
 	CRIT_translation=result2[0].criticals;
-	var rankinglist=result4[0];
 	var css_translation=result2[0].css;
 	var str="";
 	for (var i in css_translation) {
@@ -12188,33 +12176,20 @@ $(document).ready(function() {
 	    nextphase();
 
 	    $("#squadlist").html("<thead><tr><th></th><th>"+UI_translation["type"]+"</th><th><span class='m-points'></span></th><th><span class='m-units'></span></th><th></th></tr></thead>");
+	    var stype="";
+	    $.fn.dataTable.ext.search.push(
+		function( settings, data, dataIndex ) {
+		    return data[1].search(stype)>-1;
+		}
+	    );
+	    $("#uselector").append("<option value=''>"+UI_translation["type"]+"</option>");
+	    $("#uselector").append( '<option value="EMPIRE">'+UI_translation["empire"]+'</option>' )
+	    $("#uselector").append( '<option value="SCUM">'+UI_translation["scum"]+'</option>' )
+	    $("#uselector").append( '<option value="REBEL">'+UI_translation["rebel"]+'</option>' )
+	    $("#uselector").append('<option value="USER">'+UI_translation["My builds"]+'</option>');
+	    $("#uselector").append('<option value="PREBUILT">'+UI_translation["Prebuilt"]+'</option>');
 
 	    SQUADLIST=$("#squadlist").DataTable({
-		initComplete: function () {
-		    this.api().columns([1]).every( function () {
-			var column = this;
-			var head=$(column.header()).html();
-			var select = $('<select><option value="">'+head+'</option></select>')
-			    .appendTo( $(column.header()).empty() )
-			    .on( 'change', function () {
-				var val = $.fn.dataTable.util.escapeRegex(
-				    $(this).val()
-				);
-				column
-				    .search( val ? val : '', true, false )
-				    .draw();
-			    } );
-			
-			if (head==UI_translation["type"]) {
-			    select.append( '<option value="'+UI_translation["empire"]+'">'+UI_translation["empire"]+'</option>' )
-			    select.append( '<option value="'+UI_translation["scum"]+'">'+UI_translation["scum"]+'</option>' )
-			    select.append( '<option value="'+UI_translation["rebel"]+'">'+UI_translation["rebel"]+'</option>' )
-			    select.append('<option value="'+UI_translation["My builds"]+'">'+UI_translation["My builds"]+'</option>');
-			    select.append('<option value="'+UI_translation["Prebuilt"]+'">'+UI_translation["Prebuilt"]+'</option>');
-			}
-		    } );
-						
-		},
 		"language": {
 		    "search":UI_translation["Search"],
 		    "lengthMenu": UI_translation["Display _MENU_ records per page"],
@@ -12224,14 +12199,33 @@ $(document).ready(function() {
 		    "infoFiltered": UI_translation["(filtered from _MAX_ total records)"]
 		},
 		"columnDefs": [
+		    { "targets": [0],
+		      "render":function() {
+			  return "<span class='close'>&#xd7;</span>";
+		      },
+		      "sortable":false
+		    },
+		    { "targets":[1],
+		      "sortable":false,
+		      "render":function(data,type,row) {
+			  if (row[4].search("SQUAD")>-1)
+			      return "<span style='display:none'>"+data+" USER</span><span class='"+data+"'></span>";
+			  return "<span style='display:none'>"+data+" PREBUILT</span><span class='"+data+"'></span><span class='prebuilt'></span>";
+			  
+		      }
+		    },
 		    {
 			"targets": [ 4 ],
 			"visible": false,
 			"searchable": false
 		    },
 		    {   "targets":[3],
-			"width":"90%"
-		    }],       
+			"width":"90%",
+			"render": function ( data, type, row ) {
+			    return "<pre>"+data+"</pre><button class='m-squad1' onclick='setselectedunit(1,$(this))' ></button><button class='m-squad2' onclick='setselectedunit(2,$(this))'></button></div>";
+			}
+		    }],    
+		"ajax": "data/full4b.json",
 		"scrollY":        "20em",
 		"scrollCollapse": true,
 		"ordering":true,
@@ -12239,30 +12233,46 @@ $(document).ready(function() {
 		"paging":         false});
 
 	    for (i in localStorage) {
-		if (typeof localStorage[i]=="string"&&i.match(/(PREBUILT|SQUAD).*/)) {
+		if (typeof localStorage[i]=="string"&&i.match(/SQUAD.*/)) {
 		    //delete localStorage[i];
-		    currentteam.parseJSON(localStorage[i]);
-		    currentteam.name=i;
-		    addrow()
+		    var l=$.parseJSON(localStorage[i]);
+		    addrow(0,i,l.pts,l.faction,l.jug);
 		}
 	    }
-	    //refreshsquadlist();
-	    var proc=setInterval(function() {
-		for (var i=0; i<rankinglist.length; i++) {
-		    var str="";
-		    for (var j=0; j<rankinglist[i].length; j++) 
-			str+=rankinglist[i][j]+"\n";
-		    currentteam.parseJuggler(str);
-		    currentteam.name="PREBUILT."+currentteam.toASCII();
-		    if (typeof localStorage[currentteam.name]=="undefined") {
-			localStorage[currentteam.name]=JSON.stringify(currentteam);
-			addrow();
-		    }			 
-		}
+	    refreshsquadlist();
+
+	    $("#uselector").change(function() { 	    
+		stype=$("#uselector").val(); 
+		SQUADLIST.draw(); 
 		refreshsquadlist();
-		clearInterval(proc);
-	    },1000);
-	    
+	    });
+
+	    /*$.when($.ajax("data/full.json")).done(function(result4) {
+		var rankinglist=result4;
+		log("{\n\"data\": [\n");
+		for (i=0;i<rankinglist.length; i++) {
+		    var str="";
+		    var str2="";
+		    for (var j=0; j<rankinglist[i].length; j++) { 
+			str+=rankinglist[i][j]+"\n";
+			str2+=rankinglist[i][j]+"\\n";
+		    }
+		    currentteam.parseJuggler(str);
+		    currentteam.toJSON();
+		    log("[\"\",\""+currentteam.faction+" Prebuilt\","+currentteam.points+",\""+str2+"\",\""+currentteam.toASCII()+"\"],")
+		}
+		log("]}\n");
+		/*
+		for (i in rankinglist) {
+		    if (typeof localStorage[i]=="undefined") {
+			localStorage[i]=JSON.stringify(rankinglist[i]);
+			var str="";
+			for (var j=0; j<rankinglist[i].jug.length; j++) str+=rankinglist[i].jug[j]+"\n"
+			addrow(0,i,rankinglist[i].pts,rankinglist[i].faction,str);
+		    }
+		}			 
+		refreshsquadlist();
+	    })*/
 	}
 
 	/*md = new Hammer(document.getElementById('leftpanel'));
