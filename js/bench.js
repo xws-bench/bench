@@ -5711,7 +5711,7 @@ var PILOTS = [
         faction:SCUM,
 	done:true,
         init: function() {
-	    this.addglobaldefensererolld(
+	    this.addglobaldefensereroll(
 		this,
 		["blank","focus"],
 		function() { return 1 },
@@ -7324,8 +7324,7 @@ var UPGRADES= [
 			    c=i;
 			    break;
 			}
-		    }
-		    if (c>-1) {
+		    }		    if (c>-1) {
 			this.log("-1 %HIT% [%0]",self.name);
 			this.criticals.slice(c,1);
 		    }
@@ -7344,7 +7343,7 @@ var UPGRADES= [
       done:true,
       init: function(sh) {
 	  var self=this;
-	  sh.wrap_after("updateactivationdial",this,function(ad) {
+	  sh.wrap_after("updateactivationdial",this,function() {
 	      this.addactivationdial(function() { 
 		    return self.isactive;
 	      },function() {
@@ -7355,7 +7354,7 @@ var UPGRADES= [
 		  }).unwrapper("endround");
 		  this.show();
 	      }.bind(this), A[ASTROMECH.toUpperCase()].key, $("<div>").attr({class:"symbols"}));
-	      return ad
+	      return sh.activationdial;
 	  });
       }
     },
@@ -7366,15 +7365,15 @@ var UPGRADES= [
       points:2,
       init: function(sh) {
 	  var self=this;
-	  self.ad=-1;
-	  sh.wrap_after("updateactivationdial",this,function(ad) {
+	  self.bb=-1;
+	  sh.wrap_after("updateactivationdial",this,function() {
 	      self.unit.addactivationdial(function() { 
-		  return self.ad!=round&&self.isactive&&!self.unit.hasmoved&&self.unit.maneuver>-1&&(self.unit.getmaneuver().difficulty=="GREEN"); 
+		  return self.bb!=round&&self.isactive&&!self.unit.hasmoved&&self.unit.maneuver>-1&&(self.unit.getmaneuver().difficulty=="GREEN"); 
 	      },function() {
-		  self.ad=round;
+		  self.bb=round;
 		  self.unit.doaction([self.unit.newaction(self.unit.resolveroll,"ROLL")],self.name+" free roll for green maneuver.");
 	      }, A[ASTROMECH.toUpperCase()].key, $("<div>").attr({class:"symbols"}));
-	      return ad;
+	      return sh.activationdial;
 	  }.bind(this))
       }
     },
@@ -8194,8 +8193,7 @@ var UPGRADES= [
 	done:true,
         init: function(sh) {
 	    var upg=this;
-
-	    sh.wrap_after("updateactivationdial",this,function(ad) {
+	    sh.wrap_after("updateactivationdial",this,function() {
 		this.addactivationdial(function() { 
 		    return !upg.unit.hasmoved&&upg.isactive&&upg.unit.maneuver>-1&&(upg.unit.getmaneuver().difficulty=="RED"); 
 		},function() {
@@ -8208,7 +8206,7 @@ var UPGRADES= [
 		    upg.unit.dialdirection.attr({text:P[d.move].key,fill:c});
 		    upg.unit.completemaneuver(d.move,d.move,"WHITE");
 		}, A[ELITE.toUpperCase()].key, $("<div>").attr({class:"symbols"}));
-		return ad;
+		return sh.activationdial;
 	    })
 	},        
         type: ELITE,
@@ -9121,7 +9119,7 @@ var UPGRADES= [
 	done:true,
         init: function(sh) {
 	    var upg=this;
-	    sh.wrap_after("updateactivationdial",this,function(ad) {
+	    sh.wrap_after("updateactivationdial",this,function() {
 		this.addactivationdial(function() { 
 		    return !upg.unit.hasmoved&&upg.isactive; 
 		},function() {
@@ -9129,7 +9127,7 @@ var UPGRADES= [
 		    upg.unit.addstress();
 		    upg.unit.completemaneuver("F0","F0","WHITE");
 		}, A[ILLICIT.toUpperCase()].key,$("<div>").attr({class:"symbols"}));
-		return ad;
+		return sh.activationdial;
 	    });
 	},
         type: ILLICIT,
@@ -10700,7 +10698,16 @@ var SQUADLIST;
 var TEAMS=[new Team(0),new Team(1),new Team(2)];
 var currentteam=TEAMS[0];
 var VIEWPORT;
-
+/*
+    <script src="src/obstacles.js"></script>
+    <script src="src/critical.js"></script>
+    <script src="src/units.js"></script>
+    <script src="src/iaunits.js"></script>
+    <script src="src/pilots.js"></script>
+    <script src="src/upgrades.js"></script>
+    <script src="src/team.js"></script>
+    <script src="src/xwings.js"></script>
+*/
 Base64 = {
     _Rixits :
 //   0       8       16      24      32      40      48      56     63
