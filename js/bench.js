@@ -742,7 +742,6 @@ Unit.prototype = {
     tosquadron: function(s) {
 	var upgs=this.upg;
 	//log(this.name+" has touching");
-	this.incombat=-1;
 	this.touching=[];
 	this.maneuver=-1;
 	this.action=-1;
@@ -2456,8 +2455,6 @@ Unit.prototype = {
     resolveattack: function(w,targetunit) {
 	var i;
 	var r=this.gethitrange(w,targetunit);
-	var attack=this.getattackstrength(w,targetunit);
-	var defense=targetunit.getdefensestrength(w,this);
 	this.hasfired++;
 	this.hasdamaged=false;
 	$("#combatdial").show();
@@ -2471,12 +2468,16 @@ Unit.prototype = {
 	//console.log("resolveattack:"+this.name+" "+attack+"/"+defense);
 	this.select();	
 	for (i=0; i<squadron.length; i++) if (squadron[i]==this) break;
+	this.preattackroll(w,targetunit);
 	this.doselection(function(n) {
-	    incombat=n;
-	    this.doattackroll(this.attackroll(attack),attack,defense,i);
+	    var attack=this.getattackstrength(w,targetunit);
+	    var defense=targetunit.getdefensestrength(w,this);
+	    this.doattackroll(this.attackroll(attack),attack,defense,i,n);
 	    //this.show();
 	}.bind(this),this.name+" attack")
 	//this.show();
+    },
+    preattackroll:function(w,targetunit) {
     },
     doattack: function(forced) {
 	this.showattack(forced);
@@ -2508,9 +2509,8 @@ Unit.prototype = {
 	    .click(function() {
 		record("dodefenseroll",1);
 		$("#combatdial").hide();
-		this.resolvedamage()
-		this.endnoaction(incombat,"incombat");
-		this.incombat=-1;
+		this.resolvedamage();
+		this.endnoaction(n,"incombat");
 	    }.bind(squadron[me]));
 	//console.log("showdefenseroll:"+this.name);
     },
@@ -3842,12 +3842,12 @@ IAUnit.prototype= {
 	    if (a.req(dr,dd)) modrolld(a.f,dd,i+j);
 	}   
 	$("#dtokens").append("<button>");
+
 	$("#dtokens > button").addClass("m-fire").click(function() {
-		$("#combatdial").hide();
-		this.resolvedamage();
-		this.endnoaction(incombat);
-		this.incombat=-1;
-	    }.bind(squadron[me])).show();
+	    $("#combatdial").hide();
+	    this.resolvedamage();
+	    this.endnoaction(n,"incombat");
+	}.bind(squadron[me])).show();
 	//log("defense roll: f"+f+" e"+e+" b"+(dd-e-f));
     },
 };
@@ -6419,35 +6419,37 @@ var PILOTS = [
             unit: "K-Wing",
             skill: 8,
             upgrades: [TURRET,TORPEDO,TORPEDO,MISSILE,CREW,BOMB,BOMB],
-	    beginattack: function() {
-		this.donoaction([
-		    {org:this,name:this.name,type:"SHIELD",action:function(n) {
-			this.getattackstrength=function(i,sh){
-			    var a= this.weapons[i].getattack()-1;
-			    return this.weapons[i].getrangeattackbonus(sh)+(a>0)?a:0;
-			};
-			if (this.shield<this.ship.shield) this.shield++; 
-			this.endattack=function(c,h) {
-			    this.getattackstrength=Unit.prototype.getattackstrength;
-			    this.endattack=Unit.prototype.endattack;
-			    Unit.prototype.endattack.call(this,c,h);
-			};
-			this.endnoaction(n,"SHIELD");
-		    }.bind(this)},
-		    {org:this,name:this.name,type:"HIT",action:function(n) {
-			//this.log("action "+n);
-			this.getattackstrength=function(i,sh){
-			    return 1+Unit.prototype.getattackstrength.call(this,i,sh);
-			};
-			this.removeshield(1); 
-			this.endattack=function(c,h) {
-			    this.getattackstrength=Unit.prototype.getattackstrength;
-			    this.endattack=Unit.prototype.endattack;
-			    Unit.prototype.endattack.call(this,c,h);
-			};
-			//this.log("calling noaction "+n);
-			this.endnoaction(n,"HIT");
-		    }.bind(this)}],"choose to add shield/roll 1 fewer die or remove shield/roll 1 additional die");
+	    mirandaturn:-1,
+	    preattackroll: function(w,t) {
+		if (this.mirandaturn!=round) {
+		    this.donoaction([
+			{org:this,name:this.name,type:"SHIELD",action:function(n) {
+			    this.mirandaturn=round;
+			    this.log("+1 attack die");
+			    this.getattackstrength=function(i,sh){
+				var a= this.weapons[i].getattack()-1;
+				return this.weapons[i].getrangeattackbonus(sh)+(a>0)?a:0;
+			    };
+			    if (this.shield<this.ship.shield) this.shield++; 
+			    this.wrap_before_once("hashit",this,function(c,h) {
+				this.getattackstrength=Unit.prototype.getattackstrength;
+			    });
+			    this.endnoaction(n,"SHIELD");
+			}.bind(this)},
+			{org:this,name:this.name,type:"HIT",action:function(n) {
+			    this.log("-1 %SHIELD%");
+			    this.mirandaturn=round;
+			    this.getattackstrength=function(i,sh){
+				return 1+Unit.prototype.getattackstrength.call(this,i,sh);
+			    };
+			    this.removeshield(1); 
+			    this.wrap_before_once("hashit",this,function(c,h) {
+				this.getattackstrength=Unit.prototype.getattackstrength;
+			    });
+			    //this.log("calling noaction "+n);
+			    this.endnoaction(n,"HIT");
+			}.bind(this)}],"select to add shield/roll 1 fewer die or remove shield/roll 1 additional die",true);
+		}
 	    },
             points: 29,
         },
@@ -10110,14 +10112,13 @@ var UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    var tlt=-1;
-	    var ea=sh.endattack;
-	    sh.endattack=function(c,h) {
+	    sh.wrap_after("cleanupattack",this,function() {
 		if (tlt<round&&this.weapons[this.activeweapon]==self) {
 		    this.log("2nd attack with %0 [%1]",self.name,self.name);
 		    tlt=round;
 		    this.resolveattack(this.activeweapon,targetunit); 
-		} else ea.call(this,c,h);
-	    }
+		}
+	    }.bind(sh));
 	}
     },
         {
