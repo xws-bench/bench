@@ -10591,10 +10591,11 @@ Team.prototype = {
 	    p.selectship(PILOTS[pid].unit,PILOTS[pid].name);
 	    for (j=1; j<pstr.length; j++) {
 		for (k=0; k<UPGRADES.length; k++) 
-		    if (UPGRADES[k].name.replace(/\'/g,"")==pstr[j]) {
-			p.upg[j-1]=k;
-			if (typeof UPGRADES[k].install!= "undefined") UPGRADES[k].install(p);
-			break;
+		    if (UPGRADES[k].name.replace(/\'/g,"")==pstr[j]
+			&&(PILOTS[p.pilotid].upgrades.indexOf(UPGRADES[k].type)>-1)) {
+			    p.upg[j-1]=k;
+			    if (typeof UPGRADES[k].install!= "undefined") UPGRADES[k].install(p);
+			    break;
 		    }
 	    }
 	}
