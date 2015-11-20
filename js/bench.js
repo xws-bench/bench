@@ -891,7 +891,7 @@ Unit.prototype = {
             var args = Array.prototype.slice.call(arguments),
             result;
             result = save.apply( this, args);
-            result=after.apply( this, args.concat(result));
+            result=after.apply( this, args.concat([result]));
 	    return result;
 	}
 	f.save=save;
@@ -1765,12 +1765,12 @@ Unit.prototype = {
     },
     /* TODO: should prevent collision with obstacles if collision with
      * unit shortens path */
-    getmovecolor: function(m,withcollisions,withobstacles) {
+    getmovecolor: function(m,withcollisions,withobstacles,path,len) {
 	var i,k;
 	if (!this.isinzone(m)) return RED;
 	var so=this.getOutlineString(m);
 	if (withobstacles) {
-	    var c=this.getocollisions(this.m,m);
+	    var c=this.getocollisions(this.m,m,path,len);
 	    if (c.overlap>-1) return YELLOW;
 	}
  	if (withcollisions) {
@@ -1780,13 +1780,14 @@ Unit.prototype = {
 		if (u==this) continue;
 		if (typeof u.newm!="undefined") {
 		    um=u.newm;
-		    //this.log("taking "+u.name+" move into account");
 		}
 		var su=u.getOutlineString(um);
 		if (Snap.path.intersection(su.s,so.s).length>0
 		    ||((this.islarge&&!u.islarge&&this.isPointInside(so.s,su.p)))
 		    ||((!this.islarge&&u.islarge)&&this.isPointInside(su.s,so.p))) 
+		{
 		    return WHITE;
+		    }
 	    }
 	}
 	return GREEN;
@@ -2050,17 +2051,19 @@ Unit.prototype = {
 	    if (gd[i].difficulty=="RED"&&this.stress>0) gd[i].color=RED; 
 	    else {
 		var c=RED;
-		gd[i].color=this.getmovecolor(mm,false,withobstacles);
-		if (gd[i].color!=RED) {
+		gd[i].color=this.getmovecolor(mm,withcollisions,withobstacles);
+		if (gd[i].color!="RED") {
 		    for (j=0; j<gd.length; j++) {
 			var mmm=this.getpathmatrix(mm,gd[j].move);
-			if (cmax(c,gd[i].color)==gd[i].color) break;
-			if (gd[j].difficulty=="RED"&&((this.stress>0&&gd[i].difficulty!="GREEN")||gd[i].difficulty=="RED")) continue;
-			var cc=this.getmovecolor(mmm,withcollisions,withobstacles);
-			c=cmin(c,cc);
+			if (gd[j].move=="F0"||(gd[j].difficulty=="RED"&&
+			    ((this.stress>0&&gd[i].difficulty!="GREEN")
+			 ||gd[i].difficulty=="RED"))) continue;
+			//this.log("&nbsp;"+gd[j].move+":"+this.getmovecolor(mmm,false,false));
+			c=cmin(c,this.getmovecolor(mmm,false,false));
+			//if (c!=RED) break;
 		    }
+		    if (gd[i].move!="F0") gd[i].color=cmax(c,gd[i].color);
 		}
-		gd[i].color=cmax(c,gd[i].color);
 	    }
 	}
     },
@@ -2106,9 +2109,11 @@ Unit.prototype = {
 		for (i=0; i<mine.length; i++) {
 		    OBSTACLES[mine[i]].detonate(this)
 		}
+	    if (automove) this.movelog({"move":m.toTransformString()});
 	    f(this,k);
 	    this.show();
 	}.bind(this);
+	if (typeof possible=="undefined") possible=false;
 	for (i=0; i<moves.length; i++) {
 	    if (possible||this.getmovecolor(moves[i],true,true)==GREEN) {
 		p=this.getOutline(moves[i]).attr({display:"block"}).appendTo(VIEWPORT);
@@ -2278,7 +2283,7 @@ Unit.prototype = {
 	actionr.push($.Deferred());
 	var n=actionr.length-1;
 	if (typeof org=="undefined") org="undefined";
-	//log(">> "+n+":"+org);
+	//log("enqueueaction "+n+":"+org.name);
 	actionr[n-1].done(function() { 
 	    //log("|| "+n+" execute"); 
 	    callback(n) }.bind(this));
@@ -2286,11 +2291,12 @@ Unit.prototype = {
     },
     endnoaction: function(n,type) {
 	this.show();
+	//this.log("***"+actionr+" "+n);
 	actionr[n].resolve(type);
-	//this.log("***"+actionrlock.state());
 	if (n==actionr.length-1) actionrlock.resolve();
     },
     endaction: function(n,type) {
+	//this.log("endaction "+n+" "+type);
 	this.actiondone=true; this.clearaction();
 	this.endnoaction(n,type);
     },
@@ -2584,6 +2590,7 @@ Unit.prototype = {
 	this.ocollision=this.getocollisions(oldm,m,path,lenC);
 	if (this.isfireobstructed()) { this.log("overlaps obstacle: no action, cannot attack"); }
 	if (this.ocollision.template.length>0) { this.log("template overlaps obstacle: no action"); }
+	if (lenC>0) this.movelog({"len":lenC,"p":$(path.outerSVG()).attr("d")});;
 	if (lenC>0) this.m=m;
 	// Animate movement
 	if (lenC>0) {
@@ -2598,10 +2605,13 @@ Unit.prototype = {
 		if (!this.collision) { 
 		    // Special handling of K turns: half turn at end of movement. Straight line if collision.
 		    if (dial.match(/K\d|SR\d|SL\d/)) {
+			this.movelog({"move":"r180 0 0"});
 			this.m.rotate(180,0,0);
 		    } else if (dial.match(/TRL\d/)) {
+			this.movelog({"move":"r-90 0 0"});
 			this.m.rotate(-90,0,0);
 		    } else if (dial.match(/TRR\d/)) {
+			this.movelog({"move":"r90 0 0"});
 			this.m.rotate(90,0,0);
 		    } else {
 		    }
@@ -2824,13 +2834,8 @@ Unit.prototype = {
 	if (this.candropbomb()) 
 	    for (var i=0; i<this.bombs.length; i++) {
 		var bomb=this.bombs[i];
-		this.addactivationdial(function() {return this.isactive; }.bind(bomb),
-		    function() {
-			this.unit.lastdrop=round;
-			$(".bombs").remove(); 
-			this.drop(this.unit.getbomblocation());
-			this.unit.showactivation();
-		    }.bind(bomb),
+		this.addactivationdial(bomb.canbedropped,
+				       bomb.actiondrop,
 		    A["BOMB"].key,
 		    $("<div>").attr({class:"symbols"}));
 	    }
@@ -2851,6 +2856,9 @@ Unit.prototype = {
 	}
 	$("<button>").addClass("m-move").click(function() { record(0,0,function(){this.resolvemaneuver();}); this.resolvemaneuver(); }.bind(this)).appendTo("#activationdial > div");
 
+    },
+    movelog: function(obj) {
+	//ANIM.push(obj)
     },
     log: function(str,a,b,c) {
 	var translate=function(a) {
@@ -6820,6 +6828,14 @@ function Bomb(sh,bdesc) {
 Bomb.prototype = {
     isWeapon: function() { return false; },
     isBomb: function() { return true; },
+    canbedropped: function() { return this.isactive&&!this.unit.hasmoved; },
+    actiondrop: function(n) {
+	this.unit.lastdrop=round;
+	$(".bombs").remove(); 
+	this.drop(this.unit.getbomblocation());
+	this.unit.showactivation();
+	this.unit.endaction(n);
+    },
     toString: function() {
 	var a,b,d,str="";
 	var c="";
@@ -6834,7 +6850,7 @@ Bomb.prototype = {
 	if (typeof text!="undefined"&&typeof text.name!="undefined") name=text.name;
 	b="<td class='tdstat'><span>"+name.replace(/\'/g,"&#39;")+ord+"</span></td>";
 	if (typeof text!="undefined"&&typeof text.text!="undefined") text=text.text; else text="";
-	d="<td class='tooltip'><span>"+formatstring(text)+"</span></td>";
+	d="<td class='tooltip outoverflow'><span>"+formatstring(text)+"</span></td>";
 	if (this.unit.team==1)  
 	    return "<tr "+c+">"+b+a+d+"</tr>"; 
 	else return "<tr "+c+">"+a+b+d+"</tr>";
@@ -7253,21 +7269,20 @@ var UPGRADES= [
         install: function(sh) {
 	    var i;
 	    var self=this;
-	    sh.getdial=function() {
-		var m=Unit.prototype.getdial.call(this);
+	    sh.wrap_after("getdial",this,function(m) {
 		var n=[];
 		for (var i=0; i<m.length; i++) {
 		    var s=P[m[i].move].speed;
 		    var d=m[i].difficulty;
 		    if (s==1||s==2) d="GREEN";
-		    n.push({ move:m[i].move,difficulty:d});
+		    n[i]={ move:m[i].move,difficulty:d};
 		}
 		sh.log("1, 2 speed maneuvers are green [%0]",self.name);
 		return n;
-	    }.bind(sh);
+	    });
 	},
 	uninstall:function(sh) {
-	    sh.getdial=Unit.prototype.getdial;
+	    sh.getdial.unwrap();
 	    sh.log("uninstalling effect [%0]",this.name);
 	},
         type: ASTROMECH,
@@ -7299,8 +7314,8 @@ var UPGRADES= [
 	    self.wrap_after("getagility",this,function(a) {
 		return a+1;
 	    }).unwrapper("endround");
-	    this.unit.showstats();
-	    this.unit.endaction(n,ASTROMECH);
+	    self.showstats();
+	    self.endaction(n,ASTROMECH);
 	    return true;
 	},
         unique: true,
@@ -7332,7 +7347,7 @@ var UPGRADES= [
 		    }
 		}
 		this.endaction(n,ASTROMECH);
-	    }.bind(this));
+	    }.bind(this.unit));
 	},
         unique: true,
         type: ASTROMECH,
@@ -7893,6 +7908,9 @@ var UPGRADES= [
 	size:35,
 	done:true,
 	stay: true,
+	candoaction: function() { return this.isactive; },
+	action: function(n) { this.actiondrop(n); },
+	canbedropped:function() { return false; },
         explode: function() {},
 	detonate:function(t) {
 	    if (!this.exploded) {
@@ -7985,20 +8003,19 @@ var UPGRADES= [
 	done:true,
         install: function(sh) {
 	    var i;
-	    sh.getdial=function() {
-		var m=Unit.prototype.getdial.call(this);
+	    sh.wrap_after("getdial",this,function(m) {
 		var n=[];
 		for (var i=0; i<m.length; i++) {
 		    var move=m[i].move;
 		    var d=m[i].difficulty;
 		    if (move.match(/F[1-5]/)) d="GREEN";
-		    n.push({move:move,difficulty:d});
+		    n[i]={move:move,difficulty:d};
 		}
 		return n;
-	    }.bind(sh);
+	    });
 	},
 	uninstall:function(sh) {
-	    sh.getdial=Unit.prototype.getdial;
+	    sh.getdial.unwrap();
 	},
         unique: true,
         type: CREW,
@@ -8144,7 +8161,7 @@ var UPGRADES= [
 		    } else p[k].log("no damage card [%0]",self.name);
 		    this.endaction(n,"CREW");
 		}.bind(this));
-	    } else this.endaction(n,CREW);
+	    } else this.endaction(n,"CREW");
 	},
         points: 2,
     },
@@ -8503,9 +8520,9 @@ var UPGRADES= [
 			if (p[k]!=this) { 
 			    if (p[k].isinfiringarc(this)) this.addtarget(p[k]);
 			    this.resolveboost(n);
-			} else this.endaction(n,ASTROMECH);
+			} else this.endaction(n,"ASTROMECH");
 		    }.bind(this.unit));
-		} else this.unit.endaction(n,ASTROMECH);
+		} else this.unit.endaction(n,"ASTROMECH");
 	},
 	done:true,
         unique: true,
@@ -9324,21 +9341,20 @@ var UPGRADES= [
 	done:true,
         install: function(sh) {
 	    var i;
-	    sh.getdial=function() {
-		var m=Unit.prototype.getdial.call(this);
+	    sh.wrap_after("getdial",this,function(m) {
 		var n=[];
 		for (var i=0; i<m.length; i++) {
 		    var d=m[i].difficulty;
 		    var move=m[i].move;
 		    if (move.match(/[A-Z]+3/)) 
 			d="GREEN";
-		    n.push({move:move,difficulty:d});
+		    n[i]={move:move,difficulty:d};
 		}
 		return n;
-	    }.bind(sh);
+	    });
 	},
 	uninstall:function(sh) {
-	    sh.getdial=Unit.prototype.getdial;
+	    sh.getdial.unwrap();
 	},
         points: 1,
     },
@@ -9400,7 +9416,7 @@ var UPGRADES= [
 			    this.resolveactionselection(p,function(k) {
 				if (this!=p[k]) {
 				    this.addtarget(p[k]);
-				    this.log("+1 %TARGET% / %1 [%0]",self.name,p[k].name);
+				    this.log("+1 %TARGETLOCK% / %1 [%0]",self.name,p[k].name);
 				}
 				this.endnoaction(n,CREW);
 			    }.bind(this));
@@ -9923,6 +9939,9 @@ var UPGRADES= [
 	    size:22,
 	    stay:true,
 	    done:true,
+	    candoaction: function() { return this.isactive; },
+	    action: function(n) {   this.actiondrop(n);  },
+	    canbedropped: function() { return false; },
             explode: function() {},
 	    detonate: function(t) {
 		if (!this.exploded) {
@@ -9965,6 +9984,44 @@ var UPGRADES= [
             name: "Glitterstim",
             type: ILLICIT,
             points: 2,
+	    activated: false,
+	    done:true,
+	    init: function(sh) {
+		var self=this;
+		var par = sh.preattackroll;
+		sh.wrap_after("preattackroll",this,function(w,t) {
+		    if (self.isactive) {
+			this.donoaction([
+			    {org:self,name:self.name,type:"ILLICIT",action:function(n) {
+				this.addstress();
+				self.isactive=false;
+				self.activated=round;
+				this.preattackroll.unwrap();
+				this.endnoaction(n,"ILLICIT");
+			    }.bind(this)}],"",true);
+		    }
+		});
+		sh.addattackmoda(this,function(m,n) {
+		    return self.activated==round;
+		},function(m,n) {
+		    var f=this.unit.getfocusreddice(m);
+		    if (f>0) {
+			this.unit.log("%FOCUS% -> %HIT% [%0]",self.name);
+			return m-99*f;
+		    }
+		    return m;
+		}.bind(this),false,"illicit");
+		sh.adddefensemodd(this,function(m,n) {
+		    return self.activated==round;
+		},function(m,n) {
+		    var f=this.unit.getfocusgreendice(m);
+		    if (f>0) {
+			this.unit.log("%FOCUS% -> %EVADE% [%0]",self.name);
+			return m-9*f;
+		    }
+		    return m;
+		}.bind(this),false,"illicit");
+	    }
         },
     {
         name: "Cloaking Device",
@@ -10187,6 +10244,9 @@ var UPGRADES= [
 		return {s:s,p:this.op};
 	    },
 	    stay:true,
+	    candoaction: function() { return this.isactive; },
+	    action: function(n) {   this.actiondrop(n);  },
+	    canbedropped: function() { return false; },
 	    explode: function() {},
 	    detonate:function(t) {
 		if (!this.exploded) {
@@ -10280,17 +10340,19 @@ var UPGRADES= [
             install: function(sh) {
 		sh.wrap_after("getdial",this,function(m) {
 		    var n=[];
+		    log(m+" "+m.name);
+		    for (i in m) log(i);
 		    for (var i=0; i<m.length; i++) {
 			var move=m[i].move;
 			var d=m[i].difficulty;
 			if (move.match(/BL\d|BR\d/)) d="GREEN";
-			n.push({move:move,difficulty:d});
+			n[i]={move:move,difficulty:d};
 		    }
 		    return n;
 		})
 	    },
 	    uninstall:function(sh) {
-		sh.getdial=Unit.prototype.getdial;
+		sh.getdial.unwrap();
 	    }
 	},
         {
@@ -11169,6 +11231,8 @@ var keybindings={
 function win() {
     var title="";
     var i;
+    /*for (i=0; i<allunits.length; i++) 
+	log("\""+allunits[i].name+"\":"+JSON.stringify(allunits[i].anim));*/
     if (TEAMS[1].checkdead()&&!TEAMS[2].checkdead()) title="Team #2 wins !";
     if (TEAMS[2].checkdead()&&!TEAMS[1].checkdead()) title="Team #1 wins !";
     if (TEAMS[1].checkdead()&&TEAMS[2].checkdead()) title="Draw !";
@@ -11994,6 +12058,7 @@ var   dragstop= function(e) {
     }
     VIEWPORT.dragged=false;
 }
+
 
 $(document).ready(function() {
     s= Snap("#svgout")
