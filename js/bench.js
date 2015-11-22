@@ -8377,13 +8377,13 @@ var UPGRADES= [
         init: function(sh) {
 	    var self=this;
 	    sh.rebelcaptive=0;
-	    sh.wrap_before("resolveishit",this,function(t) {
+	    sh.wrap_before("isattackedby",this,function(w,t) {
 		if (this.rebelcaptive!=round) {//First attack this turn
-		    t.log("+1 %STRESS% [%0]",self.name);
-		    t.addstress();
+		    this.unit.log("+1 %STRESS% [%0]",self.name);
+		    this.unit.addstress();
 		    this.rebelcaptive=round;
 		}
-	    });
+	    }.bind(this));
 	},
         unique: true,
         type: CREW,
