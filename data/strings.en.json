@@ -561,7 +561,7 @@
         "Ion Bombs":{
             "text":"When you reveal your maneuver dial, you may discard this card to <strong>drop</strong> 1 ion bomb token. This token <strong>detonates</strong> at the end of the Activation phase. <strong>Ion Bombs Token:</strong> When this bomb token detonates, each ship at Range 1 of the token receives 2 ion tokens.  Then discard this token."},
         "Conner Net":{
-            "text":"<strong>Action:</strong> Discard this card to <strong>drop</strong> 1 Conner Net token. When a ship's base or maneuver template overlaps this token, this token <strong>detonates</strong>. <strong>Conner Net Token:</strong> When this bomb token detonates, the ship that moved through or overlapped this token suffers 1 damage, receives 2 ion tokens, and skips its 'Perform Action' step.  Then discard this token."},
+            "text":"<strong>Action:</strong> Discard this card to <strong>drop</strong> 1 Conner Net token. When a ship's base or maneuver template overlaps this token, this token <strong>detonates</strong>. <strong>Conner Net Token:</strong> When this bomb token detonates, the ship that moved through or overlapped this token suffers 1 damage, receives 2 ion tokens, and skips its Perform Action step.  Then discard this token."},
         "Bombardier(Crew)":{
             "text":"When dropping a bomb, you may use the (%STRAIGHT% 2) template instead of the (%STRAIGHT% 1) template."},
         "'Crack Shot'": {
@@ -627,6 +627,10 @@
 	}
     },
     "css":{
+	"m-1win":"Squad #1 wins!",
+	"m-2win":"Squad #2 wins!",
+	"m-draw":"Draw!",
+	"m-nocasualty":"No enemy unit destroyed",
 	"m-about":"About",
 	"m-help":"Help",
 	"m-credits":"Credits",
