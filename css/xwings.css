@@ -15,6 +15,10 @@ footer,article,nav,footer,body {
 display:block;
 font-family:sans-serif;
 }
+div.m-squad1,div.m-squad2 {
+pointer-events:none;
+}
+
 .outline {
     animation-name: mine;
     animation-duration: 1s;
@@ -121,6 +125,7 @@ width:100%;
 }
 h3 {
 text-align:center;
+margin:10px;
 }
 nav ul, .squadmanage ul {
 list-style-type:none;
@@ -128,7 +133,6 @@ margin:0;
 padding:0;
 display:inline;
 }
-
 nav div ul{
 display:none;
 position:absolute;
@@ -158,6 +162,16 @@ padding:5px;
 }
 nav div ul li:hover {
 background:lightsteelblue;
+}
+#uselector span {
+    font-size:small;
+    margin:10px;
+    text-decoration: underline;
+    cursor:pointer;
+}
+#uselector {
+text-align:center;
+width:100%;
 }
 .generic {
 border-spacing:0;
@@ -715,7 +729,7 @@ border-radius:100%;
 padding:8px;
 background:white;
 }
-.smallbutton,.bigbutton,.button,.langselect,.permalink,.importexport,.nextphase,.menu {
+.smallbutton,.bigbutton,.button,.permalink,.nextphase,.menu {
 display:inline-block;
 margin:5px;
 text-align:center;
@@ -727,16 +741,6 @@ text-decoration:none;
 background:#b0c4de;
 cursor:pointer;
 border-radius:5px
-}
-.langselect {
-width:2em;
-height:2.35em;
-background:white;
-color:steelblue;
-padding:0;
--moz-appearance:none;
--webkit-appearance:none;
-appearance: none;
 }
 
 .bigbutton {
@@ -1202,7 +1206,7 @@ display:table-cell
 border:1px solid;
 opacity:.7
 }
-.ver {
+.ver,.langselect {
 font-size:x-small;
 color:white;
 letter-spacing:0;
@@ -1359,6 +1363,7 @@ color:white;
 background:url(playmat9.jpg);
 background-repeat:no-repeat;
 background-size:100% 100%;
+overflow-y:auto;
 }
 .squads textarea,.modalDialog textarea {
     color:white;
