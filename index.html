@@ -12,9 +12,18 @@
     <script src="js/jwerty.min.js"></script>
     <script src="js/jquery-1.11.3.min.js"></script>
     <script src="js/jquery.dataTables.min.js"></script>
+    <script src="js/jquery.a-tools-1.4.1.js"></script>
+    <script src="js/jquery.asuggest.js"></script>
     <script src="js/buzz.min.js"></script>
     <script src="js/hammer.min.js"></script>
-    <script src="js/bench.js"></script>
+    <script src="src/obstacles.js"></script>
+    <script src="src/critical.js"></script>
+    <script src="src/units.js"></script>
+    <script src="src/iaunits.js"></script>
+    <script src="src/pilots.js"></script>
+    <script src="src/upgrades.js"></script>
+    <script src="src/team.js"></script>
+    <script src="src/xwings.js"></script>
     <style type="text/css" id="localstrings"></style>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -30,13 +39,16 @@
   <body>
     <nav>
       <div>
-	<span class="h2"><span id="logo" style='font-family:ships;font-size:larger;'>x</span><span class="title">Squadron Benchmark</span><span class="ver"></span></span>
+	<span class="h2"><span id="logo" style='font-family:ships;font-size:larger;'>x</span><span class="title">Squadron Benchmark</span>
+	  <span class="ver"></span>
+	  <img onclick="changelanguage('en')" class="langselect" src="css/uk-on.png">
+	  <img onclick="changelanguage('fr')" class="langselect" src="css/fr-on.png">
+	</span>
 	<div style="float:right;font-size:small">
 	  <button class="m-reset permalink" onclick="resetlink()">&#x25c0; </button>
 	  <button class="m-save permalink" onclick="permalink()">&#128279; </button>
 	  <span id="phase" style="font-size:small"></span>
 	  <button class="nextphase" onclick="nextphase()"><span class='np'></span> <span id='npimg'>&#9658;</span></button>
-	  <select id="language" class="langselect"></select>
 	  <div class="menu" onmouseover="$('nav ul').css({display:'block',visibility:'visible'})" onmouseout="$('nav ul').css({display:'none',visibility:'hidden'})">
 	  ☰<ul>
 	    <li><a class="m-about" href="#about"></a></li>
@@ -146,9 +158,9 @@
 	       <label class="human player" for="p12"><img src="css/computer.png"/></label>
 	     </span>
 	     <button onclick="currentteam=TEAMS[1];createsquad()" class="m-create"><span class='symbols' style='font-size:1em'>o</span></button>	 
-	     <button onclick="currentteam=TEAMS[1];$('#importtext').val('');window.location='#import'" class="m-import"></button>
+	     <button onclick="currentteam=TEAMS[1];importsquad(1)" class="m-import"></button>
 	   </td>
-	   <td class="squadbg"><textarea id="squad1" cols="40" rows="8"></textarea><div class='m-squad1'></div></td>
+	   <td class="squadbg"><div class='m-squad1'></div><textarea id="squad1" cols="40" rows="8"></textarea></td>
 	   <td></td>
 	   <td>
 	     <span class="playerselector">
@@ -159,33 +171,19 @@
 	       <label class="human player" for="p22"><img src="css/computer.png"/></label>
 	     </span>
 	     <button onclick="currentteam=TEAMS[2];createsquad()" class="m-create"><span class='symbols' style='font-size:1em'>o</span></button>	 
-	     <button onclick="currentteam=TEAMS[2];$('#importtext').val('');window.location='#import'" class="m-import"></button>
+	     <button onclick="currentteam=TEAMS[2];importsquad(2)" class="m-import"></button>
 	   </td>
-	   <td class="squadbg"><textarea id="squad2" cols="40" rows="8"></textarea><div class='m-squad2'></div></td>
+	   <td class="squadbg"><div class='m-squad2'></div><textarea id="squad2" cols="40" rows="8"></textarea></td>
 	 </tr>
        </table>
        </div>
        <h3 class="m-manage"></h3>
-       <div><span class="m-filter"></span><select id="uselector"></select></div>
+       <div  id="uselector">
+       </div>
        <table id="squadlist" style="color:black;font-size:x-small" class="compact stripe hover order-column row-border">
        </table>
        <br>
      </article>
-
-     <section id="import" class="modalDialog">
-	<div>
-	  <h2><span class="m-import"></span><a href="#" title="Close" class="close">&#xd7;</a>
-	  </h2>
-	  <div>
-	  <table>
-	    <tr><td><span class="m-importinstructions"></span></td></tr>
-	    <tr><td><textarea id="importtext"></textarea>
-</td></tr>
-	    <tr><td><button onclick="importsquad()" class="m-import importexport"></button></td></tr>
-	  </table>
-	  </div>
-	</div>
-     </section>
 
   <section id="proba" class="modalDialog">
         <div>
