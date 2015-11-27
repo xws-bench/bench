@@ -1474,12 +1474,11 @@ Unit.prototype = {
 	    this.tx+=this.dx; this.ty+=this.dy;
 	}
 	this.dragged=false;
-	/*PANZOOM.enablePan(); PANZOOM.enableZoom(); */
     },
     isinzone: function(m) {
 	var o1=this.getOutlinePoints(m);
 	for (var i=0; i<4; i++) 
-	    if (o1[i].x<0||o1[i].x>900||o1[i].y<0||o1[i].y>900) return false;
+	    if (!this.isPointInside(PLAYZONE,o1)) return false;
 	return true;
     },
     getOutlinePoints: function(m) {
@@ -6318,7 +6317,6 @@ var PILOTS = [
 	init: function() {
 	    var unit=this;
 	    Weapon.prototype.wrap_after("getrangeattackbonus",this,function(sh,g) {
-		this.unit.log("GETRANGEATTACK"+g);
 		if (this.unit.team!=unit.team&&unit.getrange(this.unit)==1) {
 		    this.unit.log("0 attack range bonus [%0]",unit.name);
 		    return 0;
@@ -6326,7 +6324,6 @@ var PILOTS = [
 		return g;
 	    });
 	    Weapon.prototype.wrap_after("getrangedefensebonus",this,function(sh,g) {
-		this.unit.log("GETDEFENSEATTACK"+g);
 		if (this.unit.team!=unit.team&&unit.getrange(this.unit)==1) {
 		    this.unit.log("0 defense range bonus [%0]",unit.name);
 		    return 0;
@@ -10888,6 +10885,8 @@ var TEAMS=[new Team(0),new Team(1),new Team(2)];
 var currentteam=TEAMS[0];
 var VIEWPORT;
 var ANIM=[];
+var PLAYZONE = "M 0 0 L 900 0 900 900 0 900 Z";
+
 //var sl;
 
 /*
@@ -11669,7 +11668,8 @@ function nextphase() {
 	$("#team2").css("top",$("nav").height()+2);
 	$("#team1").css("top",$("nav").height()+2);
 	$(".ctrl").css("display","block");
-	ZONE[3]=s.rect(0,0,900,900).attr({
+	PLAYZONE = "M 0 0 L 900 0 900 900 0 900 Z";
+	ZONE[0]=s.path(PLAYZONE).attr({
 		strokeWidth: 6,
 		stroke:halftone(WHITE),
 		strokeDasharray:"20,10,5,5,5,10",
@@ -11677,7 +11677,7 @@ function nextphase() {
 		id:'ZONE',
 		pointerEvents:"none"
 	    });
-	ZONE[3].appendTo(VIEWPORT);
+	ZONE[0].appendTo(VIEWPORT);
 	ZONE[1]=s.rect(0,0,100,900).attr({
 		fill: TEAMS[1].color,
 		strokeWidth: 2,
