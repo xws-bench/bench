@@ -973,22 +973,22 @@ Unit.prototype = {
 		}
 	    }
 	}
-	console.log("setting points for "+this.name+":"+s.points);
 	this.points=s.points;
 	s.upgrades=upgpt;
 	return s;
     },
-    toJuggler: function() {
+    toJuggler: function(translated) {
 	var s="";
 	s=PILOT_translation[this.name+(this.faction=="SCUM"?" (Scum)":"")];
-	if (typeof s=="undefined"||typeof s.name=="undefined") 
-	s=this.name.replace(/\'/g,""); else s=s.name.replace(/\'/g,"");
+	if (translated!=true||typeof s=="undefined"||typeof s.name=="undefined") 
+	    s=this.name.replace(/\'/g,""); 
+	else s=s.name.replace(/\'/g,"");
 	for (var i=0; i<this.upg.length; i++) {
 	    var upg=this.upg[i];
 	    if (upg>-1) {
 		var v=UPGRADES[upg].name+(UPGRADES[upg].type=="Crew"?"(Crew)":"");
-		if (typeof UPGRADE_translation[v]!="undefined"&&typeof UPGRADE_translation[v].name!="undefined")
-		    s += " + "+UPGRADE_translation[v].name.replace(/\(Crew\)/g,"").replace(/\'/g,"");
+		if (translated==true&&typeof UPGRADE_translation[v]!="undefined"&&typeof UPGRADE_translation[v].name!="undefined")
+		  s += " + "+UPGRADE_translation[v].name.replace(/\(Crew\)/g,"").replace(/\'/g,"");
 		else s += " + "+v.replace(/\(Crew\)/g,"").replace(/\'/g,"");
 		
 	    }
@@ -1650,6 +1650,7 @@ Unit.prototype = {
     },
     select: function() {
 	/* TODO */
+	if (this.dead) return activeunit;
 	if (phase<ACTIVATION_PHASE
 	    ||(phase==ACTIVATION_PHASE)
 	    ||(phase==COMBAT_PHASE)) {
@@ -1663,7 +1664,7 @@ Unit.prototype = {
 	    this.show();
 	    center(this);
 	}
-	return this;
+	return activeunit;
     },
     unselect: function() {
 	if (this==activeunit) return;
@@ -2031,7 +2032,8 @@ Unit.prototype = {
 	//o=this.getOutline(mm).attr({opacity:0.4,fill:halftone(GREEN),display:"block",class:"possible"}).appendTo(VIEWPORT);
 	for (i=0; i<gd.length; i++) 
 	{
-	    var mm=gd[i].m;
+	    var mm=this.getpathmatrix(this.m,gd[i].move)
+	    //var mm=gd[i].m;
 	    o[i]=this.getOutline(mm).attr({title:gd[i].move,opacity:0.4,fill:halftone(gd[i].color),display:"block",class:'possible'}).appendTo(VIEWPORT);
 	    (function(i) {o[i].hover(function() { o[i].attr({stroke:gd[i].color,strokeWidth:4})}.bind(this),
 				     function() { o[i].attr({strokeWidth:0})}.bind(this)); }.bind(this))(i);
@@ -3610,7 +3612,7 @@ IAUnit.prototype= {
 	for (k=0; k<enemies.length; k++) enemies[k].m=enemies[k].oldm;
 	if (q.length>0) {
 	    q.sort(function(a,b) { return b.n-a.n; });
-	    //for (i=0; i<q.length; i++) this.log(">"+q[i].n+" "+gd[q[i].m].move);
+	    for (i=0; i<q.length; i++) this.log(">"+q[i].n+" "+gd[q[i].m].move);
 	    d=q[0].m;
 	    //if (typeof gd[d] == "undefined") log("GD NON DEFINI POUR "+this.name+" "+gd.length+" "+d);	    
 	} else {
@@ -3647,6 +3649,7 @@ IAUnit.prototype= {
 		var e=this.evaluateposition();
 		if (score<e) { score=e; scorei=i; }
 	    }
+	this.log(ready+" "+scorei);
 	if (ready&&scorei>-1) { this.m=moves[scorei]; cleanup(this,scorei); }
 	else { this.m=old; cleanup(this,-1); }
     },
@@ -3684,6 +3687,16 @@ IAUnit.prototype= {
 		return;
 	    };
 	}
+    },
+    resolvedecloak: function() {
+	this.resolveactionmove(this.getdecloakmatrix(this.m),
+			       function(t,k) {
+				   if (k>0) {
+				       t.agility-=2; t.iscloaked=false;
+				       SOUNDS.decloak.play();
+				   }
+				   this.hasdecloaked=true;
+			       }.bind(this),true);
     },
     showactivation: function() {
 	$("#activationdial").empty();
@@ -3787,7 +3800,7 @@ IAUnit.prototype= {
 			if (this.candofocus()) { a=list[i]; break; }
 		    } else { a = list[i]; break }
 		}
-		//if (a!=null) this.log("action chosen: "+a.type);
+		if (a!=null) this.log("action chosen: "+a.type);
 		this.resolveaction(a,n);
 	    } else {
 		this.endaction(n);
@@ -7349,16 +7362,17 @@ var UPGRADES= [
         install: function(sh) {
 	    var i;
 	    var self=this;
-	    sh.wrap_after("getdial",this,function(m) {
-		var n=[];
-		for (var i=0; i<m.length; i++) {
-		    var s=P[m[i].move].speed;
-		    var d=m[i].difficulty;
-		    if (s==1||s==2) d="GREEN";
-		    n[i]={ move:m[i].move,difficulty:d};
+	    var save=[];
+	    sh.wrap_before("getdial",this,function() {
+		if (save.length==0) 
+		    for (var i=0; i<this.dial.length; i++) {
+			var s=P[save[i].move].speed;
+			var d=save[i].difficulty;
+			if (s==1||s==2) d="GREEN";
+			save[i]={move:this.dial[i].move,difficulty:d};
 		}
 		sh.log("1, 2 speed maneuvers are green [%0]",self.name);
-		return n;
+		return save;
 	    });
 	},
 	uninstall:function(sh) {
@@ -8082,15 +8096,16 @@ var UPGRADES= [
 	done:true,
         install: function(sh) {
 	    var i;
-	    sh.wrap_after("getdial",this,function(m) {
-		var n=[];
-		for (var i=0; i<m.length; i++) {
-		    var move=m[i].move;
-		    var d=m[i].difficulty;
-		    if (move.match(/F[1-5]/)) d="GREEN";
-		    n[i]={move:move,difficulty:d};
-		}
-		return n;
+	    var save=[];
+	    sh.wrap_before("getdial",this,function() {
+		if (save.length==0) 
+		    for (var i=0; i<this.dial.length; i++) {
+			var move=this.dial[i].move;
+			var d=this.dial[i].difficulty;
+			if (move.match(/F[1-5]/)) d="GREEN";
+			save[i]={move:move,difficulty:d};
+		    }
+		return save;
 	    });
 	},
 	uninstall:function(sh) {
@@ -8357,6 +8372,7 @@ var UPGRADES= [
 	    sh.wrap_before("cleanupattack",this,function() {
 		if (this.hasfired) 
 		    this.donoaction([{org:self,type:CREW,name:self.name,action:function(n) {
+			self.unit.log("+%1 %HIT% [%0]",self.name,2);
 			targetunit.log("+1 %CRIT% [%0]",self.name); 
 			this.resolvehit(2);
 			SOUNDS.explode.play();
@@ -8364,7 +8380,7 @@ var UPGRADES= [
 			this.checkdead();
 			targetunit.checkdead();
 			this.endnoaction(n,"CREW");
-		    }.bind(this)}],"+%1 %HIT% [%0]",self.name,2);
+		    }.bind(this)}],"");
 	    });
 	},
         type: CREW,
@@ -9420,16 +9436,15 @@ var UPGRADES= [
 	done:true,
         install: function(sh) {
 	    var i;
-	    sh.wrap_after("getdial",this,function(m) {
-		var n=[];
-		for (var i=0; i<m.length; i++) {
-		    var d=m[i].difficulty;
-		    var move=m[i].move;
-		    if (move.match(/[A-Z]+3/)) 
-			d="GREEN";
-		    n[i]={move:move,difficulty:d};
+	    var save=[];
+	    sh.wrap_before("getdial",this,function() {
+		for (var i=0; i<this.dial.length; i++) {
+		    var d=this.dial[i].difficulty;
+		    var move=this.dial[i].move;
+		    if (move.match(/[A-Z]+3/)) d="GREEN";
+		    save[i]={move:move,difficulty:d};
 		}
-		return n;
+		return save;
 	    });
 	},
 	uninstall:function(sh) {
@@ -9876,15 +9891,23 @@ var UPGRADES= [
 	done:true,
         init: function(sh) {
 	    var self=this;
-	    sh.wrap_after("endmaneuver",this,function() {
+	    var hd=sh.handledifficulty;
+	    sh.handledifficulty=function(difficulty) {
 		if (this.collision) {
 		    this.log("+1 free action [%0]",self.name);
-		    this.collision=false;
-		    this.doaction(this.getactionlist()).done(function() {
-			this.collision=true;
+		    this.wrap_after("candoaction",self,function(cda) {
+			// no collision test
+			if (this.stress>0||this.ocollision.template.length>0||this.ocollision.overlap>-1) return false;
+			return  true;
+
+		    });
+		    this.doaction(this.getactionlist(),"").done(function() {
+			this.stress++;
+			this.candoaction.unwrap();
+			hd.call(this,difficulty);
 		    }.bind(this));
 		}
-	    })
+	    }
 	},
         unique: true,
         points: 2,
@@ -10417,17 +10440,16 @@ var UPGRADES= [
 	    ship: "TIE",
 	    done:true,
             install: function(sh) {
-		sh.wrap_after("getdial",this,function(m) {
-		    var n=[];
-		    log(m+" "+m.name);
-		    for (i in m) log(i);
-		    for (var i=0; i<m.length; i++) {
-			var move=m[i].move;
-			var d=m[i].difficulty;
-			if (move.match(/BL\d|BR\d/)) d="GREEN";
-			n[i]={move:move,difficulty:d};
-		    }
-		    return n;
+		var save=[];
+		sh.wrap_before("getdial",this,function(m) {
+		    if (save.length==0) 
+			for (var i=0; i<this.dial.length; i++) {
+			    var move=this.dial[i].move;
+			    var d=this.dial[i].difficulty;
+			    if (move.match(/BL\d|BR\d/)) d="GREEN";
+			    save[i]={move:move,difficulty:d};
+			}
+		    return save;
 		})
 	    },
 	    uninstall:function(sh) {
@@ -10689,17 +10711,17 @@ Team.prototype = {
 	s.version="0.3.0";
 	return s;
     },
-    toJuggler:function() {
+    toJuggler:function(translated) {
 	var s="";
 	var f={REBEL:"rebels",SCUM:"scum",EMPIRE:"empire"};
 	for (var i in generics) {
 	    if (generics[i].team==this.team) {
-		s=s+generics[i].toJuggler()+"\n";
+		s=s+generics[i].toJuggler(translated)+"\n";
 	    }
 	}
 	return s;
     },
-    parseJuggler : function(str) {
+    parseJuggler : function(str,translated) {
 	var f,i,j,k;
 	var pid;
 	var getf=function(f) {
@@ -10713,8 +10735,12 @@ Team.prototype = {
 	for (i=0; i<pilots.length; i++) {
 	    var pstr=pilots[i].split(/\s+\+\s+/);
 	    var lf=0;
-	    for (j=0;j<PILOTS.length; j++) if (PILOTS[j].name.replace(/\'/g,"")==pstr[0]) {
-		lf=lf|getf(PILOTS[j].faction);
+	    for (j=0;j<PILOTS.length; j++) {
+		var v=PILOTS[j].name;
+		if ((translated==true&&typeof PILOT_translation[v]!="undefined"&&typeof PILOT_translation[v].name!="undefined"
+		    &&PILOT_translation[v].name.replace(/\'/g,"")==pstr[0])
+		    ||(v.replace(/\'/g,"")==pstr[0]))
+		    lf=lf|getf(PILOTS[j].faction);
 	    }
 	    f=f&lf;
 	}
@@ -10723,17 +10749,29 @@ Team.prototype = {
 
 	for (i=0; i<pilots.length; i++) {
 	    var pstr=pilots[i].split(/\s+\+\s+/);
-	    for (j=0;j<PILOTS.length; j++) 
-		if (PILOTS[j].name.replace(/\'/g,"")==pstr[0]&&PILOTS[j].faction==this.faction) { pid=j; break; } 
+	    for (j=0;j<PILOTS.length; j++) {
+		var v=PILOTS[j].name;
+		if (PILOTS[j].faction==this.faction
+		    &&(translated==true&&typeof PILOT_translation[v]!="undefined"&&typeof PILOT_translation[v].name!="undefined"
+		       &&PILOT_translation[v].name.replace(/\'/g,"")==pstr[0])
+		    ||(v.replace(/\'/g,"")==pstr[0])) { pid=j; break; } 
+	    }
 	    var p=new Unit(this.team);
 	    p.upg=[];
-	    if (typeof PILOTS[pid]=="undefined") log("PILOT undefined: "+pstr[0]+" "+this.faction);
+	    if (typeof PILOTS[pid]=="undefined") {
+		log("PILOT undefined: "+pstr[0]+" "+this.faction);
+		return; 
+	    }
 	    //log("PILOTS unit "+PILOTS[pid].unit+" "+PILOTS[pid].name);
 	    p.selectship(PILOTS[pid].unit,PILOTS[pid].name);
 	    var authupg=[MOD,TITLE].concat(PILOTS[p.pilotid].upgrades);
 	    for (j=1; j<pstr.length; j++) {
-		for (k=0; k<UPGRADES.length; k++) 
-		    if (UPGRADES[k].name.replace(/\'/g,"")==pstr[j])
+		for (k=0; k<UPGRADES.length; k++) {
+		    var v=UPGRADES[k].name+(UPGRADES[k].type=="Crew"?"(Crew)":"");
+		    if ((translated==true&&typeof UPGRADE_translation[v]!="undefined"
+			 &&typeof UPGRADE_translation[v].name!="undefined"
+			 &&UPGRADE_translation[v].name.replace(/\'/g,"").replace(/\(Crew\)/g,"")==pstr[j])
+			||(UPGRADES[k].name.replace(/\'/g,"")==pstr[j]))
 			if (authupg.indexOf(UPGRADES[k].type)>-1) {
 			    p.upg[j-1]=k;
 			    if (typeof UPGRADES[k].upgrades!="undefined") 
@@ -10745,6 +10783,7 @@ Team.prototype = {
 			    break;
 			} else log("UPGRADE not listed: "+UPGRADES[k].type);
 		if (k==UPGRADES.length) log("UPGRADE undefined: "+pstr[j]);
+		}
 	    }
 	}
 	//nextphase();
@@ -10776,13 +10815,13 @@ Team.prototype = {
 	}
 	//nextphase();
     },
-    parseJSON:function(str) {
+    parseJSON:function(str,translated) {
 	var s;
 	var f={"rebels":"REBEL","scum":"SCUM","empire":"EMPIRE"};
 	try {
 	    s=$.parseJSON(str);
 	} catch(err) {
-	    return this.parseJuggler(str);
+	    return this.parseJuggler(str,translated);
 	}
 	var i,j,k;
 	this.name=s.name;
@@ -10826,7 +10865,7 @@ var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.7.1";
+var VERSION="v0.7.2";
 var LANG="en";
 var DECLOAK_PHASE=1;
 var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6;
@@ -11378,25 +11417,25 @@ function addunit() {
 function setselectedunit(n,td) {
     var jug=td.parent().first().contents().text()
     currentteam=TEAMS[n];
-    currentteam.parseJuggler(jug);
+    currentteam.parseJuggler(jug,true);
     currentteam.name=currentteam.toASCII();
     currentteam.toJSON(); // Just for score
     addrow(n,currentteam.name,0,currentteam.faction,jug);
 }
 function displaysquad(n) {
     var s=$("#squad"+n).val();
-    TEAMS[n].parseJSON(localStorage[s]);
+    TEAMS[n].parseJSON(localStorage[s],false);
     $("#display"+n).html(TEAMS[n].toJuggler());
     $("#displayxws"+n).html(JSON.stringify(TEAMS[n]));
     $("#faction"+n).attr("class",TEAMS[n].faction);
 }
 function addrow(team,name,pts,faction,jug) {
-    if (team==1) {$("#squad1").html(jug);$("#squad1").attr("data-name",name);}
-    if (team==2) {$("#squad2").html(jug); $("#squad2").attr("data-name",name);}
+    if (team==1) {$("#squad1").val(jug); $("#squad1").attr("data-name",name);}
+    if (team==2) {$("#squad2").val(jug); $("#squad2").attr("data-name",name);}
     enablenextphase();
     var n=faction.toUpperCase();
     if (typeof localStorage[name]!="undefined")
-	SQUADLIST.row.add(["",n,""+pts,jug,name]).draw(false);
+	SQUADLIST.row.add(["",n,""+pts,jug,name,"",""]).draw(false);
 }
 function makeGrid(points1,points2){    
     var dataLength = points1.length;
@@ -11493,10 +11532,10 @@ function endselection() {
     $("#selectphase").show();
     currentteam.name="SQUAD."+currentteam.toASCII();
     currentteam.toJSON();// Just for points
-    var jug=currentteam.toJuggler();
+    var jug=currentteam.toJuggler(false);
     localStorage[currentteam.name]=JSON.stringify({"pts":currentteam.points,"faction":currentteam.faction,"jug":jug});
     if (currentteam==TEAMS[1]) team=1; else if (currentteam==TEAMS[2]) team=2;
-    addrow(team,currentteam.name,currentteam.points,currentteam.faction,jug);
+    addrow(team,currentteam.name,currentteam.points,currentteam.faction,currentteam.toJuggler(true));
     refreshsquadlist();
 }
 function refreshsquadlist() {
@@ -11506,20 +11545,15 @@ function refreshsquadlist() {
 	delete localStorage[data];
 	row.remove().draw(false); });
 }
-function importsquad() {
-    currentteam.parseJSON($("#importtext").val());
+function importsquad(t) {
+    currentteam.parseJSON($("#squad"+t).val(),true);
     currentteam.name="SQUAD."+currentteam.toASCII();
-    var team;
-    if (currentteam==TEAMS[1]) team=1; else if (currentteam==TEAMS[2]) team=2;
-    var jug=currentteam.toJuggler();
+    var jug=currentteam.toJuggler(true);
     currentteam.toJSON(); // just for points
-    localStorage[currentteam.name]=JSON.stringify({"pts":currentteam.points,"faction":currentteam.faction,"jug":jug});
-    addrow(team,currentteam.name,currentteam.points,currentteam.faction,jug);
+    log(currentteam.toJuggler(false));
+    localStorage[currentteam.name]=JSON.stringify({"pts":currentteam.points,"faction":currentteam.faction,"jug":currentteam.toJuggler(false)});
+    addrow(t,currentteam.name,currentteam.points,currentteam.faction,jug);
     refreshsquadlist();
-    window.location="#";
-}
-function exportsquad() {
-
 }
 function startcombat() {
 }
@@ -11701,7 +11735,6 @@ function nextphase() {
 	jwerty.key("escape", nextphase);
 	jwerty.key("c", center);
 	/* By-passes */
-	jwerty.key("0", function() { console.log("active:"+activeunit.name+" pending actions:"+waitingforaction.isexecuting+" can fire:"+activeunit.canfire()+" has damaged:"+activeunit.damage+" m:"+activeunit.maneuver+" a:"+activeunit.action+" skillturn"+skillturn+" faction"+activeunit.faction); });
 	jwerty.key("9", function() { 
 		console.log("active:"+activeunit.name+" in hit range:"+activeunit.weapons[0].name);
 		var w=activeunit.weapons[0];
@@ -11791,7 +11824,7 @@ function log(str) {
     $("#log").scrollTop(10000);
 }
 function permalink() {
-    var s="?"+TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock()+"&"+history_toASCII();
+    var s="?"+TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock()+"&"+JSON.stringify(ANIM);
     document.location.search = s;
 }
 function resetlink() {
@@ -12168,7 +12201,11 @@ var   dragstop= function(e) {
     }
     VIEWPORT.dragged=false;
 }
-
+var changelanguage= function(l) {
+    localStorage['LANG']=l;
+    log("reloading "+l);
+    location.reload();
+}
 
 $(document).ready(function() {
     s= Snap("#svgout")
@@ -12216,21 +12253,9 @@ $(document).ready(function() {
 	    xhr.overrideMimeType("application/json");
     }});
     var availlanguages={"en":"🇬🇧","fr":"🇫🇷"};
-    var language = localStorage['LANG'] || window.navigator.userLanguage || window.navigator.language;
-    if (typeof availlanguages[language.substring(0,2)]!="undefined") LANG=language.substring(0,2);
-    for (var i in availlanguages) {
-	$("#language").append("<option value='"+i+"'"+(i==LANG?"selected":"")+">"+availlanguages[i]+"</option>");
-    }
-    $("#language").change(function() { 
-	LANG=$(this).val();
-	log("change for language "+LANG);
-	$.ajax("data/strings."+LANG+".json",{
-	    success:function(data) {
-		localStorage['LANG']=LANG;
-		log("reloading "+LANG);
-		location.reload();
-	    }}); 
-    });
+    LANG = localStorage['LANG'] || window.navigator.userLanguage || window.navigator.language;
+    
+    log("language = "+LANG);
     $.when(
 	$.ajax("data/ships.json"),$.ajax("data/strings."+LANG+".json"),$.ajax("data/xws.json")
     ).done(function(result1,result2,result3) {
@@ -12351,27 +12376,28 @@ $(document).ready(function() {
 	    ROCKDATA=args[2];
 	    phase=CREATION_PHASE;
 	    TEAMS[1].parseASCII(args[0]);
+	    TEAMS[1].toJSON(); // Just for points
 	    TEAMS[2].parseASCII(args[1]);
-	    if (args.length>3) REPLAY=args[3].split(";");
+	    TEAMS[2].toJSON(); // Just for points
+	    if (args.length>3) ANIM=$.parseJSON(args[3]);
 	    phase=SELECT_PHASE;
 	    return nextphase();
 	} else {
 	    phase=0;
 	    nextphase();
 
-	    $("#squadlist").html("<thead><tr><th></th><th>"+UI_translation["type"]+"</th><th><span class='m-points'></span></th><th><span class='m-units'></span></th><th></th></tr></thead>");
+	    $("#squadlist").html("<thead><tr><th></th><th>"+UI_translation["type"]+"</th><th><span class='m-points'></span></th><th><span class='m-units'></span></th><th></th><th></th></tr></thead>");
 	    var stype="";
 	    $.fn.dataTable.ext.search.push(
 		function( settings, data, dataIndex ) {
 		    return data[1].search(stype)>-1;
 		}
 	    );
-	    $("#uselector").append("<option value=''>"+UI_translation["type"]+"</option>");
-	    $("#uselector").append( '<option value="EMPIRE">'+UI_translation["empire"]+'</option>' )
-	    $("#uselector").append( '<option value="SCUM">'+UI_translation["scum"]+'</option>' )
-	    $("#uselector").append( '<option value="REBEL">'+UI_translation["rebel"]+'</option>' )
-	    $("#uselector").append('<option value="USER">'+UI_translation["My builds"]+'</option>');
-	    $("#uselector").append('<option value="PREBUILT">'+UI_translation["Prebuilt"]+'</option>');
+	    $("#uselector").html($("<span>").html(UI_translation["empire"]).click(function() { stype="EMPIRE";SQUADLIST.draw();refreshsquadlist(); }));
+	    $("#uselector").append($("<span>").html(UI_translation["scum"]).click(function() { stype="SCUM";SQUADLIST.draw();refreshsquadlist(); }));
+	    $("#uselector").append($("<span>").html(UI_translation["rebel"]).click(function() { stype="REBEL";SQUADLIST.draw();refreshsquadlist(); }));
+	    $("#uselector").append($("<span>").html(UI_translation["My builds"]).click(function() { stype="USER";SQUADLIST.draw();refreshsquadlist(); }));
+	    $("#uselector").append($("<span>").html(UI_translation["Prebuilt"]).click(function() { stype="PREBUILT";SQUADLIST.draw();refreshsquadlist(); }));
 
 	    SQUADLIST=$("#squadlist").DataTable({
 		"language": {
@@ -12399,20 +12425,25 @@ $(document).ready(function() {
 		      }
 		    },
 		    {
+			"targets":[5],
+			/*
+			"render":function(data, type, row) {
+			    return "<button data='"+row[3]+"' class='m-squad1' onclick=\'setselectedunit(1,$(this).data)\'></button><button class='m-squad2' onclick='setselectedunit(2,$(this).data)'></button>";
+			}*/
+		    },
+		    {
 			"targets": [ 4 ],
 			"visible": false,
 			"searchable": false
 		    },
 		    {   "targets":[3],
-			"width":"90%",
 			"render": function ( data, type, row ) {
-			    /*if (row[4].search("SQUAD")==-1) {
-				TEAMS[0].parseJuggler(data);
-				TEAMS[0].toJSON();
-				
-				log("[\"\",\""+row[1]+"\","+TEAMS[0].points+",\""+data.replace(/\n/g,"\\n")+"\",\"\"],")
-			    }*/
-			    return "<pre>"+data+"</pre><button class='m-squad1' onclick='setselectedunit(1,$(this))' ></button><button class='m-squad2' onclick='setselectedunit(2,$(this))'></button></div>";
+			    if (LANG!="en") 
+				if (row[4].search("SQUAD")==-1) {
+				    TEAMS[0].parseJuggler(data,true);
+				    data=TEAMS[0].toJuggler(true);
+				}
+			    return "<pre>"+data+"</pre><button class='m-squad1' onclick='setselectedunit(1,$(this))'></button><button class='m-squad2' onclick='setselectedunit(2,$(this))'></button>";
 			}
 		    }],    
 		"ajax": "data/full4b.json",
@@ -12428,18 +12459,27 @@ $(document).ready(function() {
 		    var l=$.parseJSON(localStorage[i]);
 		    if (typeof l.jug=="undefined"||typeof l.pts=="undefined")
 			delete localStorage[i]
+		    else if (LANG!="en") { TEAMS[0].parseJuggler(l.jug,true); addrow(0,i,l.pts,l.faction,TEAMS[0].toJuggler(true)); }
 		    else addrow(0,i,l.pts,l.faction,l.jug);
 		}
 	    }
 	    refreshsquadlist();
-
-	    $("#uselector").change(function() { 	    
-		stype=$("#uselector").val(); 
-		SQUADLIST.draw(); 
-		refreshsquadlist();
-	    });
 	}
-
+	var pilots=[];
+	for (i in PILOT_translation) {
+	    var n=i;
+	    if (typeof PILOT_translation[i].name!="undefined") n=PILOT_translation[i].name;
+	    pilots.push(n.replace(/\'/g,"").replace(/\(Scum\)/g,""));
+	}
+	var upgrades=[];
+	for (i in UPGRADE_translation) {
+	    var n=i;
+	    if (typeof UPGRADE_translation[n].name!="undefined") n=UPGRADE_translation[i].name;
+	    upgrades.push(n.replace(/\'/g,"").replace(/\(Crew\)/g,""));
+	}
+	$(".squadbg > textarea").asuggest(pilots, { 'delimiters': '\n', 'cycleOnTab': true });
+	$(".squadbg > textarea").asuggest(upgrades, { 'delimiters': '+ ', 'cycleOnTab':true});
+	$(".squadbg > textarea").click(function() {log("coucou"); });
 	/*md = new Hammer(document.getElementById('leftpanel'));
 	  md.get('pan').set({direction:Hammer.DIRECTION_VERTICAL});
 	  md.on("panup pandown",function(ev) {
