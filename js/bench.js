@@ -1476,9 +1476,10 @@ Unit.prototype = {
 	this.dragged=false;
     },
     isinzone: function(m) {
-	var o1=this.getOutlinePoints(m);
-	for (var i=0; i<4; i++) 
-	    if (!this.isPointInside(PLAYZONE,o1)) return false;
+	var op=this.getOutlinePoints(m);
+	var i;
+	for (i=0; i<4; i++) 
+	    if (!Snap.path.isPointInside(PLAYZONE,op[i].x,op[i].y)) return false;
 	return true;
     },
     getOutlinePoints: function(m) {
@@ -7363,8 +7364,8 @@ var UPGRADES= [
 	    sh.wrap_before("getdial",this,function() {
 		if (save.length==0) 
 		    for (var i=0; i<this.dial.length; i++) {
-			var s=P[save[i].move].speed;
-			var d=save[i].difficulty;
+			var s=P[this.dial[i].move].speed;
+			var d=this.dial[i].difficulty;
 			if (s==1||s==2) d="GREEN";
 			save[i]={move:this.dial[i].move,difficulty:d};
 		}
@@ -9435,11 +9436,13 @@ var UPGRADES= [
 	    var i;
 	    var save=[];
 	    sh.wrap_before("getdial",this,function() {
-		for (var i=0; i<this.dial.length; i++) {
-		    var d=this.dial[i].difficulty;
-		    var move=this.dial[i].move;
-		    if (move.match(/[A-Z]+3/)) d="GREEN";
-		    save[i]={move:move,difficulty:d};
+		if (save.length==0) {
+		    for (var i=0; i<this.dial.length; i++) {
+			var d=this.dial[i].difficulty;
+			var move=this.dial[i].move;
+			if (move.match(/[A-Z]+3/)) d="GREEN";
+			save[i]={move:move,difficulty:d};
+		    }
 		}
 		return save;
 	    });
@@ -10886,6 +10889,7 @@ var currentteam=TEAMS[0];
 var VIEWPORT;
 var ANIM=[];
 var PLAYZONE = "M 0 0 L 900 0 900 900 0 900 Z";
+//var PLAYZONE = "M 0 0 L 1300 0 1300 400 1800 400 1800 200 2400 200 2400 360 1960 360 1960 560 1100 560 1100 160 0 160 Z";
 
 //var sl;
 
@@ -11668,9 +11672,10 @@ function nextphase() {
 	$("#team2").css("top",$("nav").height()+2);
 	$("#team1").css("top",$("nav").height()+2);
 	$(".ctrl").css("display","block");
-	PLAYZONE = "M 0 0 L 900 0 900 900 0 900 Z";
+	//var PATTERN = s.image("png/deathstar.png",0,0,512,512).pattern(0,0,512,512);
 	ZONE[0]=s.path(PLAYZONE).attr({
 		strokeWidth: 6,
+	    //fill:PATTERN,
 		stroke:halftone(WHITE),
 		strokeDasharray:"20,10,5,5,5,10",
 		fillOpacity: 0,
