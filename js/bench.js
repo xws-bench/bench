@@ -1478,9 +1478,10 @@ Unit.prototype = {
     isinzone: function(m) {
 	var op=this.getOutlinePoints(m);
 	var i;
+	this.log("isinzone called");
 	for (i=0; i<4; i++)
-	    if (op[i].x<0||op[i].x>900||op[i].y<0||op[i].y>900) return false;
-	//    if (!Snap.path.isPointInside(PLAYZONE,op[i].x,op[i].y)) return false;
+	    //if (op[i].x<0||op[i].x>900||op[i].y<0||op[i].y>900) return false;
+	    if (!Snap.path.isPointInside(PLAYZONE,op[i].x,op[i].y)) return false;
 	return true;
     },
     getOutlinePoints: function(m) {
@@ -2025,20 +2026,35 @@ Unit.prototype = {
     endbeingattacked: function(c,h) {
 	this.show();
     },
-    showpossiblepositions:function() {
-	this.evaluatemoves(true,true);
-	var gd=this.getdial();
+    showpositions:function(gd) {
+	var i;
 	var o=[];
-	//var mm = this.getmeanmove(); //gd[i].m;
-	//o=this.getOutline(mm).attr({opacity:0.4,fill:halftone(GREEN),display:"block",class:"possible"}).appendTo(VIEWPORT);
 	for (i=0; i<gd.length; i++) 
 	{
-	    var mm=this.getpathmatrix(this.m,gd[i].move)
-	    //var mm=gd[i].m;
+	    var mm=gd[i].m;
 	    o[i]=this.getOutline(mm).attr({title:gd[i].move,opacity:0.4,fill:halftone(gd[i].color),display:"block",class:'possible'}).appendTo(VIEWPORT);
 	    (function(i) {o[i].hover(function() { o[i].attr({stroke:gd[i].color,strokeWidth:4})}.bind(this),
 				     function() { o[i].attr({strokeWidth:0})}.bind(this)); }.bind(this))(i);
-	}
+	}	
+    },
+    showmeanposition: function() {
+	var gd=this.getdial();
+	var o;
+	this.evaluatemoves(true,true);
+	this.showpositions([{color:GREEN,move:"mean",m:this.meanm}]);
+    },
+    shownextpositions: function() {
+	var gd=this.getdial();
+	var o;
+	this.evaluatemoves(true,true);
+	var n=[];
+	for (i=0; i<gd.length; i++) n[i]=gd[i].next;
+	this.showpositions(n);
+    },
+    showpossiblepositions:function() {
+	this.evaluatemoves(true,true);
+	var gd=this.getdial();
+	this.showpositions(gd);
     },
     evaluateposition: function() {
 	var enemies=0;
@@ -2047,6 +2063,7 @@ Unit.prototype = {
 	var i,j;
 	var dist=0;
 	NOLOG=true;
+	
 	for (j=0; j<squadron.length; j++) {
 	    var u=squadron[j];
 	    if (u.team!=this.team) {
@@ -2064,62 +2081,59 @@ Unit.prototype = {
 		}
 		dist+=this.getdist(this.m,u)/90000;
 		u.m=old;
+		
 	    }
 	}
 	NOLOG=false;
 	return attack - attackenemy - dist ;
     },
-    getmeanmove: function() {
-	var mx=0,my=0,ma=0;
-	var sgd=this.getdial();
-	var g=0;
-	var id=new Snap.Matrix();
-	this.evaluatemoves(true,true);
-	for (var j=0; j<sgd.length; j++) {
-	    if (sgd[j].color==GREEN&&!sgd[j].move.match(/K\d|SR\d|SL\d|TRL\d|TRR\d/)) {
-		var gpm=this.getpathmatrix(id,sgd[j].move).split();
-		g++;
-		mx+=gpm.dx; my+=gpm.dy; ma+=gpm.rotate;
-	    }
-	}
-	if (g==0) g=1;
-	mx=mx/g; my=my/g; ma=ma/g;
-	return  this.m.clone().translate(mx,my).rotate(ma,0,0);	
-    },
     evaluatemoves: function(withcollisions,withobstacles) {
 	var gd=this.getdial();
+	var mx=0,my=0,ma=0;
+	var g=0;
 	var i;
 	var cmax=function(a,b) {
 	    if (a==RED||(a==YELLOW&&(b==GREEN||b==WHITE))||(a==WHITE&&b==GREEN))
 		return a;
-	    else return b;
+	    return b;
 	}
 	var cmin=function(a,b) {
 	    if (cmax(a,b)==a) return b;
-	    else return a;
+	    return a;
 	}
 	NOLOG=true;
 	for (i=0; i<gd.length; i++) {
+	    var next=[];
 	    var mm = this.getpathmatrix(this.m,gd[i].move);
 	    gd[i].m=mm;
 	    if (gd[i].difficulty=="RED"&&this.stress>0) gd[i].color=RED; 
 	    else {
 		var c=RED;
 		gd[i].color=this.getmovecolor(mm,withcollisions,withobstacles);
-		if (gd[i].color!="RED") {
+		if (gd[i].color!=RED&&withcollisions&&withobstacles) {
 		    for (j=0; j<gd.length; j++) {
-			var mmm=this.getpathmatrix(mm,gd[j].move);
 			if (gd[j].move=="F0"||(gd[j].difficulty=="RED"&&
 			    ((this.stress>0&&gd[i].difficulty!="GREEN")
 			 ||gd[i].difficulty=="RED"))) continue;
+			var mmm=this.getpathmatrix(mm,gd[j].move);
 			c=cmin(c,this.getmovecolor(mmm,false,false));
 		    }
 		    if (gd[i].move!="F0") gd[i].color=cmax(c,gd[i].color);
 		}
 	    }
+	    if ((gd[i].color==GREEN)&&!gd[i].move.match(/K\d|SR\d|SL\d|TRL\d|TRR\d/)) {
+		var gpm=mm.split();
+		g++;
+		mx+=gpm.dx; my+=gpm.dy; ma+=(gpm.rotate+360)%360;
+	    }
 	}
+	if (g==0) g=1;
+	mx=mx/g; my=my/g; ma=ma/g;
+	this.meanm= (new Snap.Matrix()).translate(mx,my).rotate(ma,0,0);
+	this.meanmround=round;
 	NOLOG=false;
     },
+    
     usestress: function(id) {
     },
     removetarget: function(t) {
@@ -3574,14 +3588,14 @@ IAUnit.prototype= {
 	var q=[],possible=-1;
 	var gd=this.getdial();
 	var enemies=[];
+	this.evaluatemoves(false,false);
 	//log("computing all enemy positions");
 	// Find all possible future positions of enemies
 	var k=0;
 	for (i=0; i<squadron.length; i++) {
 	    var u=squadron[i];
-	    if (u.team!=this.team&&u.meanmround!=round) {
-		u.meanm=u.getmeanmove();
-		u.meanmround=round;
+	    if (u.team!=this.team) {
+		if (u.meanmround!=round) u.evaluatemoves(false,false);
 		u.oldm=u.m;
 		u.m=u.meanm;
 		enemies.push(u);
@@ -3591,7 +3605,6 @@ IAUnit.prototype= {
 	    var q=[],c,j,i;
 	// Find all possible moves, with no collision and with units in range 
 	    var COLOR=[GREEN,WHITE,YELLOW];
-	    this.evaluatemoves(true,true);
 	    //log("find positions with color "+c);
 	    for (i=0; i<gd.length; i++) {
 		var d=gd[i];
@@ -3613,7 +3626,7 @@ IAUnit.prototype= {
 	for (k=0; k<enemies.length; k++) enemies[k].m=enemies[k].oldm;
 	if (q.length>0) {
 	    q.sort(function(a,b) { return b.n-a.n; });
-	    //for (i=0; i<q.length; i++) this.log(">"+q[i].n+" "+gd[q[i].m].move);
+	    for (i=0; i<q.length; i++) this.log(">"+q[i].n+" "+gd[q[i].m].move);
 	    d=q[0].m;
 	    //if (typeof gd[d] == "undefined") log("GD NON DEFINI POUR "+this.name+" "+gd.length+" "+d);	    
 	} else {
@@ -11750,6 +11763,14 @@ function nextphase() {
 	    });
 	jwerty.key("p",function() {
 	    activeunit.showpossiblepositions();
+	    //activeunit.evaluateposition();
+	});
+	jwerty.key("m",function() {
+	    activeunit.showmeanposition();
+	    //activeunit.evaluateposition();
+	});
+	jwerty.key("shift+m",function() {
+	    activeunit.shownextpositions();
 	    //activeunit.evaluateposition();
 	});
 	jwerty.key("shift+p",function() {
