@@ -4667,7 +4667,7 @@ var PILOTS = [
 		function() { return 1; },
 		function(w,defender) {
 		    if (!w.isprimary) {
-			w.log("+%1 reroll(s) [%0]",this.name,1);
+			this.log("+%1 reroll(s) [%0]",this.name,1);
 			return true;
 		    }
 		    return false;
