@@ -3626,7 +3626,7 @@ IAUnit.prototype= {
 	for (k=0; k<enemies.length; k++) enemies[k].m=enemies[k].oldm;
 	if (q.length>0) {
 	    q.sort(function(a,b) { return b.n-a.n; });
-	    for (i=0; i<q.length; i++) this.log(">"+q[i].n+" "+gd[q[i].m].move);
+	    //for (i=0; i<q.length; i++) this.log(">"+q[i].n+" "+gd[q[i].m].move);
 	    d=q[0].m;
 	    //if (typeof gd[d] == "undefined") log("GD NON DEFINI POUR "+this.name+" "+gd.length+" "+d);	    
 	} else {
