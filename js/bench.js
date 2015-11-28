@@ -12484,7 +12484,6 @@ $(document).ready(function() {
 	}
 	$(".squadbg > textarea").asuggest(pilots, { 'delimiters': '\n', 'cycleOnTab': true });
 	$(".squadbg > textarea").asuggest(upgrades, { 'delimiters': '+ ', 'cycleOnTab':true});
-	$(".squadbg > textarea").click(function() {log("coucou"); });
 	/*md = new Hammer(document.getElementById('leftpanel'));
 	  md.get('pan').set({direction:Hammer.DIRECTION_VERTICAL});
 	  md.on("panup pandown",function(ev) {
