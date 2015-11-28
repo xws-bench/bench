@@ -1478,8 +1478,9 @@ Unit.prototype = {
     isinzone: function(m) {
 	var op=this.getOutlinePoints(m);
 	var i;
-	for (i=0; i<4; i++) 
-	    if (!Snap.path.isPointInside(PLAYZONE,op[i].x,op[i].y)) return false;
+	for (i=0; i<4; i++)
+	    if (op[i].x<0||op[i].x>900||op[i].y<0||op[i].y>900) return false;
+	//    if (!Snap.path.isPointInside(PLAYZONE,op[i].x,op[i].y)) return false;
 	return true;
     },
     getOutlinePoints: function(m) {
