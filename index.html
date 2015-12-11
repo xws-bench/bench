@@ -16,7 +16,14 @@
     <script src="js/jquery.asuggest.js"></script>
     <script src="js/buzz.min.js"></script>
     <script src="js/hammer.min.js"></script>
-    <script src="js/bench.js"></script>
+    <script src="src/obstacles.js"></script>
+    <script src="src/critical.js"></script>
+    <script src="src/units.js"></script>
+    <script src="src/iaunits.js"></script>
+    <script src="src/pilots.js"></script>
+    <script src="src/upgrades.js"></script>
+    <script src="src/team.js"></script>
+    <script src="src/xwings.js"></script>
     <style type="text/css" id="localstrings"></style>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -139,7 +146,9 @@
  
      <article id="selectphase" class="mainarticle">
        <h3 class="m-selectinstructions"></h3>
-       <div>
+       <table id="setuplist" class="setupselector">
+	 <tr><td><select onchange="changesetup()"></select></td><td><span></span></td><td><img src="png/classic.png"></td></tr>
+       </table><div>
        <table class="squadselected">
 	 <tr>
 	   <td>
@@ -171,8 +180,7 @@
        </table>
        </div>
        <h3 class="m-manage"></h3>
-       <div  id="uselector">
-       </div>
+       <div id="uselector" class="selector"></div>
        <table id="squadlist" style="color:black;font-size:x-small" class="compact stripe hover order-column row-border">
        </table>
        <br>
