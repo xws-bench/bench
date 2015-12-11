@@ -511,8 +511,16 @@ var CRITICAL_DECK=[
     }
 ];
 /*
-  factorized code and a bug in cache allowed moves
+  Juno
+  Chiraneau
+  Jake
+  K4 Droid
+  french translation
 
+  remaining:
+  Genius
+  Biggs
+  Advanced targeting system 
  */
 var s;
 var GREEN="#0F0",RED="#F00",WHITE="#FFF",BLUE="#0AF",YELLOW="#FF0",GREY="#888";
@@ -2446,9 +2454,9 @@ Unit.prototype = {
 	for (j=0; j<this.ATTACKMODA.length; j++) {
 	    var a=this.ATTACKMODA[j];
 	    if (a.req(m,n)) {
-		var cl=a.str+"modtokend"
+		var cl=a.str+"modtokena"
 		if (typeof a.token!="undefined") cl="x"+a.str+"token";
-		str+="<td id='moda"+(i+j)+"' class='x"+a.str+"token' onclick='record("+this.id+","+j+",\"attackmoda_"+n+"\"); modroll(squadron["+me+"].ATTACKMODA["+j+"].f,"+n+","+(i+j)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
+		str+="<td id='moda"+(i+j)+"' class='"+cl+"' onclick='record("+this.id+","+j+",\"attackmoda_"+n+"\"); modroll(squadron["+me+"].ATTACKMODA["+j+"].f,"+n+","+(i+j)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
 	    }
 	}   
 	i=ATTACKMODA.length+ATTACKMODD.length+this.ATTACKMODA.length
@@ -2807,7 +2815,7 @@ Unit.prototype = {
 		}.bind(this))(list[i],i);
 	    }
 	    if (noskip==true) {
-		var e=$("<button>").text("Skip").click(function() { record(this.id,-1,"skipnoaction"); this.resolvenoaction(null,n); }.bind(this));
+		var e=$("<button>").addClass("m-skip").click(function() { record(this.id,-1,"skipnoaction"); this.resolvenoaction(null,n); }.bind(this));
 		$("#actiondial > div").append(e);
 	    }
 	}.bind(this),list[0].name);  
@@ -2869,7 +2877,7 @@ Unit.prototype = {
 		    str+="<div class='symbols "+w.color+"' onclick='record("+this.id+","+i+",\"selecttargetforattack\"); activeunit.selecttargetforattack("+wn[i]+")'>"+w.key+"</div>"
 			}
 		// activeunit.hasfired++ ?
-		str+="<button onclick='record("+this.id+",-1,\"skiptargetforattack\"); activeunit.hasfired++;activeunit.show();activeunit.deferred.resolve();'>Skip</button>";
+		str+="<button class='m-skip' onclick='record("+this.id+",-1,\"skiptargetforattack\"); activeunit.hasfired++;activeunit.show();activeunit.deferred.resolve();'></button>";
 		$("#attackdial").html("<div>"+str+"</div>").show();
 	    } else if (!this.hasfired) {
 		this.hasfired++; this.deferred.resolve(); 
@@ -2894,16 +2902,12 @@ Unit.prototype = {
     },
     actionbarrier:function() {
 	var i=0;
-	//this.log("actionbarrier"+actionr.length);
 	actionrlock=$.Deferred();
-	//this.log("lock set");
 	for (i=0; i<actionr.length; i++) 
 	    if (actionr[i].state()=="pending") break;
 	if (i<actionr.length) {
-	    //this.log("pending");
-	    actionrlock.done(function() { /*this.log("resolve lock");*/ this.unlock() }.bind(this));
+	    actionrlock.done(function() { this.unlock() }.bind(this));
 	} else {
-	    //this.log("resolve lock");
 	    actionrlock.resolve();
 	    this.unlock();
 	}
@@ -2931,8 +2935,8 @@ Unit.prototype = {
 	if (this.candropbomb()) 
 	    for (var i=0; i<this.bombs.length; i++) {
 		var bomb=this.bombs[i];
-		this.addactivationdial(bomb.canbedropped,
-				       bomb.actiondrop,
+		this.addactivationdial(function() {return bomb.canbedropped()},
+				       function() {return bomb.actiondrop()},
 		    A["BOMB"].key,
 		    $("<div>").attr({class:"symbols"}));
 	    }
@@ -2945,11 +2949,12 @@ Unit.prototype = {
 	var ad=this.updateactivationdial();
 	for (var i=0; i<ad.length; i++) {
 	    var adi=ad[i];
-	    if (adi.pred()) 
+	    if (adi.pred()) { 
 		adi.elt.appendTo("#activationdial > div").click(function() { 
-		    record(0,0,(function(i){return function() {this.updateactivationdial()[i].action();}})(i)) 
+		    //record(0,0,(function(i){return function() {this.updateactivationdial()[i].action();}})(i)) 
 		    adi.action();
 		}).html(adi.html);
+	    }
 	}
 	$("<button>").addClass("m-move").click(function() { this.resolvemaneuver(); }.bind(this)).appendTo("#activationdial > div");
 
@@ -5592,13 +5597,6 @@ var PILOTS = [
 	    if (this.candoaction()) this.freemove();
 	    Unit.prototype.addfocustoken.call(this);
 	},
-	removefocustoken: function(id) {
-	    Unit.prototype.removefocustoken.call(this,id);
-	    this.show();
-	    if (this.candoaction()) {
-		this.freemove();
-	    }
-	},
         unique: true,
         unit: "A-Wing",
         skill: 7,
@@ -7461,14 +7459,15 @@ var UPGRADES= [
 	    var self=this;
 	    var save=[];
 	    sh.wrap_before("getdial",this,function() {
-		if (save.length==0) 
+		if (save.length==0) { 
 		    for (var i=0; i<this.dial.length; i++) {
 			var s=P[this.dial[i].move].speed;
 			var d=this.dial[i].difficulty;
 			if (s==1||s==2) d="GREEN";
 			save[i]={move:this.dial[i].move,difficulty:d};
+		    }
+		    sh.log("1, 2 speed maneuvers are green [%0]",self.name);
 		}
-		sh.log("1, 2 speed maneuvers are green [%0]",self.name);
 		return save;
 	    });
 	},
@@ -8468,7 +8467,7 @@ var UPGRADES= [
 	    var self=this;
 	    sh.wrap_before("cleanupattack",this,function() {
 		if (this.hasfired) 
-		    this.donoaction([{org:self,type:CREW,name:self.name,action:function(n) {
+		    this.donoaction([{org:self,type:"CREW",name:self.name,action:function(n) {
 			self.unit.log("+%1 %HIT% [%0]",self.name,2);
 			targetunit.log("+1 %CRIT% [%0]",self.name); 
 			this.resolvehit(2);
@@ -9652,9 +9651,11 @@ var UPGRADES= [
 	    sh.addattackadd(this,function(m,n) { 
 		return this.targeting.indexOf(targetunit)>-1; 
 	    }.bind(sh),function(m,n) {
-		this.log("+1 %CRIT% [%0]",self.name);
-		$("#atokens > .xtargettoken").remove();
-		return {m:m+10,n:n+1};
+		if (this.targeting.indexOf(targetunit)>-1) {
+		    this.log("+1 %CRIT% [%0]",self.name);
+		    $("#atokens > .xtargettoken").remove();
+		    return {m:m+10,n:n+1};
+		} else return {m:m,n:n};
 	    }.bind(sh),"critical")
 	},
         ship: "TIE Advanced",
