@@ -1148,7 +1148,9 @@ Unit.prototype = {
 	this.hull=u.hull;
 	this.shield=u.shield;
 	this.ship.name=ship;
-	this.dial=u.dial.slice(0);
+	for (i=0; i<u.dial.length; i++) {
+	    this.dial[i]={move:u.dial[i].move, difficulty:u.dial[i].difficulty};
+	}
 	this.shipactionList=u.actionList.slice(0);
 	this.weapons=[];
 	this.upgrades=[];
@@ -1204,14 +1206,6 @@ Unit.prototype = {
 	    head+=str+"</select></td><td class='details'></td></tr>";
 	    $("#upgrade"+this.id).append(head);
 	} else $("#upgrade"+this.id).append("<tr id='upgradetext"+this.id+"_"+upgid+"'><td></td><td></td><td></td></tr>");
-    },
-    showstats: function() {
-	$("#stats"+this.id).html(
-	    "<div class='PS'>"+this.skill+"</div>"
-		+"<div class='statfire'>"+this.weapons[0].attack+"</div>"
-		+"<div class='statevade'>"+this.getagility()+"</div>"
-		+"<div class='statshield'>"+this.shield+"</div>"
-		+"<div class='stathull'>"+this.hull+"</div>");
     },
     showactions:function() {
 	var str="";
@@ -1398,7 +1392,7 @@ Unit.prototype = {
 	var ptot=0;
 	var r=Math.random();
 	record(this.id,r,"defenseroll");
-	if (n==0) return lock.resolve(0).promise();
+	if (n==0) return lock.resolve({dice:n,roll:0}).promise();
 	if (typeof P=="undefined") {
 	    console.log("P undefined for n="+n);
 	}
@@ -1406,10 +1400,10 @@ Unit.prototype = {
 	    for (e=0; e<=n-f; e++) {
 		i=f*10+e;
 		ptot+=P[i];
-		if (ptot>r) return lock.resolve(10*f+e).promise();
+		if (ptot>r) return lock.resolve({dice:n,roll:10*f+e}).promise();
 	    }
 	}
-	return lock.resolve(0).promise();
+	return lock.resolve({dice:n,roll:0}).promise();
     },
     // org:origin, type: list of die type to reroll, n:number of
     // rerolls (function), req: prerequisite check
@@ -1477,11 +1471,14 @@ Unit.prototype = {
     },
     isinzone: function(m) {
 	var op=this.getOutlinePoints(m);
+	var zone;
 	var i;
-	this.log("isinzone called");
+	if (typeof SETUP.playzone1!="undefined"&&this.team==1) 
+	    zone=SETUP.playzone1;
+	else zone=SETUP.playzone;
 	for (i=0; i<4; i++)
 	    //if (op[i].x<0||op[i].x>900||op[i].y<0||op[i].y>900) return false;
-	    if (!Snap.path.isPointInside(PLAYZONE,op[i].x,op[i].y)) return false;
+	    if (!Snap.path.isPointInside(zone,op[i].x,op[i].y)) return false;
 	return true;
     },
     getOutlinePoints: function(m) {
@@ -1711,7 +1708,7 @@ Unit.prototype = {
 		break;
 	    }
 	}
-	if (typeof path!=undefined) {
+	if (typeof path!="undefined") {
 	    // Template overlaps ? 
 	    for (i=0; i<=len; i++) {
 		var p=path.getPointAtLength(i);
@@ -1894,10 +1891,18 @@ Unit.prototype = {
 		squadron.splice(i,1); break;
 	    }
 	}
+	/* Remove targets of dead unit */
 	for (i=0; i<this.targeting.length; i++) {
 	    var t=this.targeting[i];
 	    n=t.istargeted.indexOf(this);
 	    if (n>-1) t.istargeted.splice(n,1);
+	    t.show();
+	}
+	/* Remove locks on dead unit */
+	for (i=0; i<this.istargeted.length; i++) {
+	    var t=this.istargeted[i];
+	    n=t.targeting.indexOf(this);
+	    if (n>-1) t.targeting.splice(n,1);
 	    t.show();
 	}
 	this.targeting=[];
@@ -1993,11 +1998,8 @@ Unit.prototype = {
 	this.cleanupattack();
     },
     cleanupattack: function() {
-	//this.hasfired=0;
-	//log("calling nextstep from cleanup");
-	//this.log("cleanupattack "+this.name+">nextstep()");
+	//this.log("cleanupattack");
 	this.actionbarrier();
-	//console.log("cleanupattack "+this.name+"<nextstep()");
     },
     endround: function() {
 	this.focus=this.evade=0;
@@ -2060,6 +2062,7 @@ Unit.prototype = {
 	var enemies=0;
 	var attackenemy=0;
 	var attack=0;
+	var n=0;
 	var i,j;
 	var dist=0;
 	NOLOG=true;
@@ -2081,13 +2084,17 @@ Unit.prototype = {
 		}
 		dist+=this.getdist(this.m,u)/90000;
 		u.m=old;
+		n++;
 		
 	    }
 	}
 	NOLOG=false;
-	return attack - attackenemy - dist ;
+	//this.log("  >"+attack+" "+attackenemy+" "+(dist/n));
+	return attack - attackenemy - (dist/n) ;
     },
     evaluatemoves: function(withcollisions,withobstacles) {
+	this.meanmround=round;
+	//this.log("evaluatemoves "+withcollisions+" "+withobstacles);
 	var gd=this.getdial();
 	var mx=0,my=0,ma=0;
 	var g=0;
@@ -2120,7 +2127,9 @@ Unit.prototype = {
 		    }
 		    if (gd[i].move!="F0") gd[i].color=cmax(c,gd[i].color);
 		}
+		//this.log(">"+gd[i].move+" "+gd[i].color);
 	    }
+	    
 	    if ((gd[i].color==GREEN)&&!gd[i].move.match(/K\d|SR\d|SL\d|TRL\d|TRR\d/)) {
 		var gpm=mm.split();
 		g++;
@@ -2130,7 +2139,6 @@ Unit.prototype = {
 	if (g==0) g=1;
 	mx=mx/g; my=my/g; ma=ma/g;
 	this.meanm= (new Snap.Matrix()).translate(mx,my).rotate(ma,0,0);
-	this.meanmround=round;
 	NOLOG=false;
     },
     
@@ -2226,7 +2234,7 @@ Unit.prototype = {
     },
     resolveboost: function(n) {
 	this.resolveactionmove(this.getboostmatrix(this.m),
-	    function (t,k) { t.endaction(n,"BOOST"); },true);
+	    function (t,k) { t.endaction(n,"BOOST"); },true,false);
     },
     getdecloakmatrix: function(m) {
 	var m0=this.getpathmatrix(this.m.clone().rotate(90,0,0),"F2").translate(0,(this.islarge?20:0)).rotate(-90,0,0);
@@ -2241,6 +2249,7 @@ Unit.prototype = {
 		this.getpathmatrix(m.clone(),"F2")];
     },
     resolvedecloak: function() {
+	//this.log("do selection resolvedecloak");
 	this.doselection(function(n) {
 	    this.resolveactionmove(this.getdecloakmatrix(this.m),
 				   function (t,k) {
@@ -2250,7 +2259,7 @@ Unit.prototype = {
 				       }
 				       this.hasdecloaked=true;
 				       this.endnoaction(n,"");
-				   }.bind(this),true);
+				   }.bind(this),true,false);
 	}.bind(this))/*.done(function() {
 	    this.unlock();
 	}.bind(this))*/
@@ -2268,7 +2277,7 @@ Unit.prototype = {
     },
     resolveroll: function(n) {
 	this.resolveactionmove(this.getrollmatrix(this.m),
-	    function(t,k) { t.endaction(n,"ROLL");},true);
+	    function(t,k) { t.endaction(n,"ROLL");},true,false);
     },
     boundtargets:function(sh) {
 	if (this.targeting.indexOf(sh)>-1) return true;
@@ -2303,7 +2312,7 @@ Unit.prototype = {
     },
     resolvetarget: function(n) {
 	var p=this.gettargetableunits(3);
-	this.log("select target to lock");
+	//this.log("select target to lock");
 	this.resolveactionselection(p,function(k) { 
 	    if (k>=0) this.addtarget(p[k]);
 	    this.endaction(n,"TARGET");
@@ -2358,7 +2367,7 @@ Unit.prototype = {
     },
     endnoaction: function(n,type) {
 	this.show();
-	//this.log("***"+actionr+" "+n);
+	//this.log("*** "+n+" "+(actionr.length-1));
 	actionr[n].resolve(type);
 	if (n==actionr.length-1) actionrlock.resolve();
     },
@@ -2542,6 +2551,7 @@ Unit.prototype = {
 	this.select();	
 	for (i=0; i<squadron.length; i++) if (squadron[i]==this) break;
 	this.preattackroll(w,targetunit);
+	//this.log("do selection resolveattack");
 	this.doselection(function(n) {
 	    var attack=this.getattackstrength(w,targetunit);
 	    var defense=targetunit.getdefensestrength(w,this);
@@ -2567,8 +2577,8 @@ Unit.prototype = {
 	$("#atokens > button").addClass("m-done").click(function() {
 	    $("#atokens").empty();
 	    record("doattackroll",-1);
-	    targetunit.defenseroll(defense).done(function(roll) {
-		targetunit.dodefenseroll(roll,defense,me,n);
+	    targetunit.defenseroll(defense).done(function(r) {
+		targetunit.dodefenseroll(r.roll,r.dice,me,n);
 	    });
 	});
     },
@@ -2618,12 +2628,14 @@ Unit.prototype = {
 	var path=P[realdial].path;
 	var m,oldm;
 	if (dial=="F0") {
-	    this.lastmaneuver=this.maneuver;
-	    this.maneuver=-1;
+	    //this.log("performing F0");
 	    this.hasmoved=true;
 	    this.handledifficulty(difficulty);
+	    this.lastmaneuver=this.maneuver;
+	    this.maneuver=-1;
 	    this.show();
 	    this.endmaneuver();
+	    this.touching=[];
 	    return;
 	}
 	var lenC = path.getTotalLength();
@@ -2725,10 +2737,10 @@ Unit.prototype = {
 	this.hasmoved=true;
 	if (this.checkdead()) { this.hull=0; this.shield=0; } 
 	else this.doendmaneuveraction();
+	//this.log("endmaneuver");
 	this.actionbarrier();
     },
     unlock:function(v) {
-	//this.log("state:"+this.deferred.state());
 	this.deferred.resolve(v);
     },
     newlock:function() {
@@ -2743,16 +2755,22 @@ Unit.prototype = {
     },
     candoendmaneuveraction: function() { return this.candoaction(); },
     doendmaneuveraction: function() {
-	if (this.candoendmaneuveraction()) this.doaction(this.getactionlist());
+	if (this.candoendmaneuveraction()) {
+	    //this.log("do action endmaneuver");
+	    this.doaction(this.getactionlist());
+	}
 	else { this.action=-1; this.actiondone=true; }
     },
     doselection: function(f,org) {
 	return this.enqueueaction(function(n) {
 	    f(n);
-	    }.bind(this),org);  
+	}.bind(this),org);  
     },
     doaction: function(list,str) {
-	if (list.length==0) return; 
+	//this.log("do action "+list.length);
+	if (list.length==0) return this.enqueueaction(function(n) {
+	    this.endnoaction(n);
+	}.bind(this)); 
 	return this.enqueueaction(function(n) {
 	    var i;
 	    $("#actiondial").empty();
@@ -2782,7 +2800,7 @@ Unit.prototype = {
 	    $("#actiondial").html($("<div>"));
 	    for (i=0; i<list.length; i++) {
 		(function(k,h) {
-		    log("type : "+k.type);
+		    //log("type : "+k.type);
 		    var e=$("<div>").addClass("symbols").text(A[k.type].key)
 			.click(function () { record(this.id,h,"donoaction"); this.resolvenoaction(k,n) }.bind(this));
 		    $("#actiondial > div").append(e);
@@ -2875,12 +2893,17 @@ Unit.prototype = {
 	this.activationdial.push({pred:pred,action:action,html:html,elt:elt});
     },
     actionbarrier:function() {
-	var ad=$.when.apply(null,actionr);
-	if (ad.state()=="pending") {
-	    actionrlock=$.Deferred();
-	    actionrlock.done(function() { this.unlock() }.bind(this));
+	var i=0;
+	//this.log("actionbarrier"+actionr.length);
+	actionrlock=$.Deferred();
+	//this.log("lock set");
+	for (i=0; i<actionr.length; i++) 
+	    if (actionr[i].state()=="pending") break;
+	if (i<actionr.length) {
+	    //this.log("pending");
+	    actionrlock.done(function() { /*this.log("resolve lock");*/ this.unlock() }.bind(this));
 	} else {
-	    actionrlock=$.Deferred();
+	    //this.log("resolve lock");
 	    actionrlock.resolve();
 	    this.unlock();
 	}
@@ -2928,7 +2951,7 @@ Unit.prototype = {
 		    adi.action();
 		}).html(adi.html);
 	}
-	$("<button>").addClass("m-move").click(function() { record(0,0,function(){this.resolvemaneuver();}); this.resolvemaneuver(); }.bind(this)).appendTo("#activationdial > div");
+	$("<button>").addClass("m-move").click(function() { this.resolvemaneuver(); }.bind(this)).appendTo("#activationdial > div");
 
     },
     movelog: function(obj) {
@@ -2978,7 +3001,7 @@ Unit.prototype = {
 	.replace(/%STRAIGHT%/g,"<code class='symbols'>8</code>")
 	.replace(/%CREW%/g,"<code class='symbols'>C</code>")
         .replace(/%STOP%/g,"<code class='symbols'>5</code>")
-        .replace(/%TARGETLOCK%/g,"<code class='symbols'>l</code>")
+        .replace(/%TARGET%/g,"<code class='symbols'>l</code>")
         .replace(/%TORPEDO%/g,"<code class='symbols'>P</code>")
  	.replace(/%CANNON%/g,"<code class='symbols'>C</code>")
 	.replace(/%SYSTEM%/g,"<code class='symbols'>S</code>")
@@ -3204,6 +3227,11 @@ Unit.prototype = {
 		    +"<div class='statshield'>"+this.shield+"</div>"
 		    +"<div class='stathull'>"+this.hull+"</div>");
 	} else {
+	    if (typeof this.skillbar=="undefined") {
+		console.trace();
+		this.log("undefined skillbar?");
+		return;
+	    }
 	    this.skillbar.attr({text:repeat('u',this.skill)});
 	    this.firebar.attr({text:repeat('u',this.weapons[0].getattack())});
 	    this.evadebar.attr({text:repeat('u',this.getagility())});
@@ -3238,6 +3266,12 @@ Unit.prototype = {
     show: function() {
 	var i;
 	if (typeof this.g=="undefined") return;
+	if (typeof this.skillbar=="undefined") {
+	    this.log("show:skillbar undefined");
+	    for (i=0; i<squadron.length; i++) {
+		squadron[i].log("im here");
+	    }
+	}
 	this.g.transform(this.m);
 	this.g.appendTo(VIEWPORT); // Put to front
 	this.geffect.transform(this.m);
@@ -3404,7 +3438,12 @@ Unit.prototype = {
 	    var s=n-this.shield;
 	    this.removeshield(this.shield);
 	    if (s>0) this.applydamage(s);
+	}	    
+	if (typeof this.skillbar=="undefined") {
+	    this.log("hit: undefined skillbar?");
+	    return;
 	}
+
 	this.showstats();
 	return s;
     },
@@ -3417,6 +3456,11 @@ Unit.prototype = {
 	    this.removeshield(this.shield)
 	    if (s>0) this.applycritical(s);
 	}
+	if (typeof this.skillbar=="undefined") {
+	    this.log("critical: undefined skillbar?");
+	    return;
+	}
+
 	this.showstats();
 	return s;
     },
@@ -3588,7 +3632,7 @@ IAUnit.prototype= {
 	var q=[],possible=-1;
 	var gd=this.getdial();
 	var enemies=[];
-	this.evaluatemoves(false,false);
+	this.evaluatemoves(true,true);
 	//log("computing all enemy positions");
 	// Find all possible future positions of enemies
 	var k=0;
@@ -3610,13 +3654,15 @@ IAUnit.prototype= {
 		var d=gd[i];
 		if (d.color==RED) continue;
 		var mm=this.getpathmatrix(this.m,gd[i].move);
-		//log(this.name+":"+d.move+":"+(d.difficulty=="RED"));
 		var n=12-4*COLOR.indexOf(d.color);
+		var n0=n;
 		var oldm=this.m;
 		this.m=mm;
 		n+=this.evaluateposition();
+		if (d.difficulty=="RED") n=n-1.5;
+		//this.log(d.move+" "+d.difficulty+" "+n);
 		this.m=oldm;
-		if (d.difficulty=="RED") n=n-1;
+		//this.log(d.move+":"+n+"/"+n0+" "+d.color);
 		q.push({n:n,m:i});
 	    }
 	    return q;
@@ -3653,18 +3699,28 @@ IAUnit.prototype= {
     resolveactionmove: function(moves,cleanup,automove,possible) {
 	var i;
 	var ready=false;
-	var score=0;
+	var score=-1000;
 	var scorei=-1;
 	var old=this.m;
-	for (i=0; i<moves.length; i++) 
-	    if (possible||this.getmovecolor(moves[i],true,true)==GREEN) {
+	for (i=0; i<moves.length; i++) {
+	    var c=this.getmovecolor(moves[i],true,true);
+	    if (c==GREEN) {
 		ready=true;
 		this.m=moves[i];
 		var e=this.evaluateposition();
 		if (score<e) { score=e; scorei=i; }
 	    }
-	//this.log(ready+" "+scorei);
-	if (ready&&scorei>-1) { this.m=moves[scorei]; cleanup(this,scorei); }
+	}
+	this.m=old;
+	if (ready&&scorei>-1) { 
+	    if (automove) this.m=moves[scorei]; 
+	    var mine=this.getmcollisions(this.m);
+	    if (mine.length>0) 
+		for (i=0; i<mine.length; i++) {
+		    OBSTACLES[mine[i]].detonate(this)
+		}
+	    cleanup(this,scorei); 
+	}
 	else { this.m=old; cleanup(this,-1); }
     },
     timetoshowmaneuver: function() {
@@ -3713,7 +3769,7 @@ IAUnit.prototype= {
 			       }.bind(this),true);
     },
     showactivation: function() {
-	$("#activationdial").empty();
+	//$("#activationdial").empty();
 	/*
 	if (phase>PLANNING_PHASE) {
 	    if (this.maneuver==-1||this.hasmoved) {
@@ -3732,7 +3788,10 @@ IAUnit.prototype= {
     },
     doactivation: function() {
 	var ad=this.updateactivationdial();
-	if (this.timeformaneuver()) this.resolvemaneuver();
+	if (this.timeformaneuver()) {
+	    //this.log("resolvemaneuver");
+	    this.resolvemaneuver();
+	} //else this.log("no resolvemaneuver");
     },
     showaction: function() {
 	$("#actiondial").empty();
@@ -3797,7 +3856,11 @@ IAUnit.prototype= {
 	    this.setpriority(list[i]);
 	}
 	list.sort(cmp);
-	
+
+	//this.log("inside doaction "+list.length);
+	if (list.length==0) return this.enqueueaction(function(n) {
+	    this.endnoaction(n);
+	}.bind(this));
 	return this.enqueueaction(function(n) {
 	    if (this.candoaction()) {
 		this.select();
@@ -3805,6 +3868,7 @@ IAUnit.prototype= {
 		var grlu=this.gethitrangeallunits();
 		var a=null;
 		for (i=0; i<list.length; i++) {
+		    //this.log("action possible:"+list[i].type);
 		    if (list[i].type=="CRITICAL") { a=list[i]; break; }
 		    else if (list[i].type=="CLOAK"&&this.candocloak()) {
 			a=list[i]; break;
@@ -3814,12 +3878,14 @@ IAUnit.prototype= {
 			if (this.candofocus()) { a=list[i]; break; }
 		    } else { a = list[i]; break }
 		}
+		if (a==null) this.log("no possible action");
 		//if (a!=null) this.log("action chosen: "+a.type);
+		//else this.log("null action chosen");
 		this.resolveaction(a,n);
 	    } else {
 		this.endaction(n);
 	    }
-	    }.bind(this),"doaction ia");
+	}.bind(this),"doaction ia");
     },
     showattack: function() {
 	$("#attackdial").empty();
@@ -3832,6 +3898,7 @@ IAUnit.prototype= {
 	    var power=0,p,t=null;
 	    var i,j,w;
 	    if (this.canfire()) {
+		NOLOG=true;
 		for (j=0; j<squadron.length; j++) {
 		    var u=squadron[j];
 		    if (u.team!=this.team) {
@@ -3844,6 +3911,7 @@ IAUnit.prototype= {
 			}
 		    }
 		}
+		NOLOG=false;
 		//this.log("ia/doattack >"+wn[0].name);
       		if (t!=null) return this.selecttargetforattack(this.activeweapon,t);
 		//console.log("ia/doattack "+this.name+"<select target");
@@ -3906,7 +3974,7 @@ IAUnit.prototype= {
 	    $("#atokens").append("<button class='m-done' onclick='$(\"#atokens\").empty(); targetunit.defenseroll("+defense+").done(function(roll) { targetunit.dodefenseroll(roll,"+defense+","+me+","+n+")})'></button>");
 	} else {
 	    $("#atokens").empty(); 
-	    targetunit.defenseroll(defense).done(function(roll) {targetunit.dodefenseroll(roll,defense,me,n);});
+	    targetunit.defenseroll(defense).done(function(roll) {targetunit.dodefenseroll(roll.roll,roll.dice,me,n);});
 	}
     },
     dodefenseroll: function(dr,dd,me,n) {
@@ -4035,6 +4103,22 @@ var PILOTS = [
         skill: 2,
         points: 21,
         upgrades: [TORPEDO,ASTROMECH],
+    },
+    { name:"Turbolaser",
+      done:true,
+      unit:"Turbolaser",
+      faction:EMPIRE,
+      skill:0,
+      points:5,
+      upgrades:[],
+    },
+    { name:"Thermal Exhaust Port",
+      done:true,
+      unit:"Exhaust Port",
+      faction:EMPIRE,
+      skill:0,
+      points:100,
+      upgrades:[],
     },
     {
         name: "Biggs Darklighter",
@@ -4578,13 +4662,12 @@ var PILOTS = [
 	    var p=this.selectnearbyunits(1,function(t,s) { return t.team==s.team&&t!=s; })
 	    if (p.length>0&&d=="GREEN") {
 		this.doselection(function(n) {
-		    this.log("select unit for a free action");
+		    this.log("select unit for a free action"+p.length);
 		    this.resolveactionselection(p,function(k) {
-			p[k].doaction(p[k].getactionbarlist()).done(function() {
-			    this.select();
-			    p[k].log("+1 action [%0]",unit);
-			    this.endnoaction(n,"");
-			}.bind(this));
+			p[k].log("unit chosen for free action");
+			p[k].log("actions "+p[k].getactionbarlist().length);
+			p[k].doaction(p[k].getactionbarlist());
+			this.endnoaction(n,"");
 		    }.bind(this))
 		}.bind(this))
 	    }
@@ -4642,7 +4725,7 @@ var PILOTS = [
         faction:EMPIRE,
         completemaneuver: function(dial,realdial,difficulty) {
 	    if (dial.match("BL3|BL2|BL1")) {
-		this.log("select %BANKLEFT% speed");
+		this.log("select %BANKLEFT% or %BANKRIGHT% turn");
 		var newdial=dial.replace(/L/,"R");
 		this.resolveactionmove(
 		    [this.getpathmatrix(this.m,realdial),
@@ -4652,7 +4735,7 @@ var PILOTS = [
 			else Unit.prototype.completemaneuver.call(this,newdial,newdial,difficulty);
 		    }.bind(this),false,true);
 	    } else if (dial.match("BR3|BR2|BR1")) {
-		this.log("select %BANKRIGHT% speed");
+		this.log("select %BANKLEFT% or %BANKRIGHT% turn");
 		var newdial=dial.replace(/R/,"L");
 		this.resolveactionmove(
 		    [this.getpathmatrix(this.m,dial),
@@ -4901,7 +4984,7 @@ var PILOTS = [
         faction:EMPIRE,
 	done:true,
         init: function() {
-	    this.addattackrerolla(
+	    this.addglobalattackrerolla(
 		this,
 		["blank","focus"],
 		function() { return 2; },
@@ -6312,11 +6395,13 @@ var PILOTS = [
 		var r=realdial.replace(/\d/,(speed+i)+"");
 		if (typeof P[r]!="undefined") {
 		    q.push(r);
+		    this.log("pushing "+r);
 		    p.push(this.getpathmatrix(this.m,r));
 		}
 	    }
-	    this.log("select maneuver speed");
+	    this.log("select maneuver speed"+p.length);
 	    this.resolveactionmove(p,function(t,k) {
+		if (k<0) k=0;
 		Unit.prototype.completemaneuver.call(t,dial,q[k],difficulty);
 	    },false,true);
 	},
@@ -8693,17 +8778,20 @@ var UPGRADES= [
 		var lock=$.Deferred();
 		rdd.call(this,r).done(function(roll) {
 		    var resolve=function(k) {
-			if (k==this.getevadegreendice(roll)) {
+			this.log("roll "+roll.roll+"/"+k+" ("+roll.dice+" dice)");
+			if (k==this.getevadegreendice(roll.roll)) {
 			    this.log("guessed correctly ! +1 %EVADE% [%0]",self.name);
-			    roll+=1;
+			    roll.roll+=1;
+			    roll.dice+=1;
 			}
+			this.log("roll "+roll.roll+"("+roll.dice+" dice)");
 			$("#actiondial").empty();
 			lock.resolve(roll);
 		    }.bind(this);
 
 		    this.log("guess the number of evades out of %0 dice [%1]",r,self.name);
 		    $("#actiondial").empty();
-		    for (var i=0; i<r; i++) {
+		    for (var i=0; i<roll.dice; i++) {
 			(function(k) {
 			    var e=$("<button>").html(k+" <code class='xevadetoken'></code>")
 				.click(function() { resolve(k);}.bind(this));
@@ -8823,7 +8911,7 @@ var UPGRADES= [
 			     this.addevadetoken(); 
 			     u.jan=round; 
 			     this.endnoaction(n,"EVADE"); }.bind(this)}],
-			"select focus or evade token",true);
+			"select %FOCUS% or %EVADE% token",true);
 		} else aft.call(this);
 	    }
 	},
@@ -9524,7 +9612,7 @@ var UPGRADES= [
 			    this.resolveactionselection(p,function(k) {
 				if (this!=p[k]) {
 				    this.addtarget(p[k]);
-				    this.log("+1 %TARGETLOCK% / %1 [%0]",self.name,p[k].name);
+				    this.log("+1 %TARGET% / %1 [%0]",self.name,p[k].name);
 				}
 				this.endnoaction(n,CREW);
 			    }.bind(this));
@@ -10751,8 +10839,9 @@ Team.prototype = {
 	    var lf=0;
 	    for (j=0;j<PILOTS.length; j++) {
 		var v=PILOTS[j].name;
-		if ((translated==true&&typeof PILOT_translation[v]!="undefined"&&typeof PILOT_translation[v].name!="undefined"
-		    &&PILOT_translation[v].name.replace(/\'/g,"")==pstr[0])
+		var vn=v+(PILOTS[j].faction==SCUM?" (Scum)":"");
+		if ((translated==true&&typeof PILOT_translation[vn]!="undefined"&&typeof PILOT_translation[vn].name!="undefined"
+		    &&PILOT_translation[vn].name.replace(/\'/g,"")==pstr[0])
 		    ||(v.replace(/\'/g,"")==pstr[0]))
 		    lf=lf|getf(PILOTS[j].faction);
 	    }
@@ -10765,9 +10854,10 @@ Team.prototype = {
 	    var pstr=pilots[i].split(/\s+\+\s+/);
 	    for (j=0;j<PILOTS.length; j++) {
 		var v=PILOTS[j].name;
+		var vn=v+(PILOTS[j].faction==SCUM?" (Scum)":"");
 		if (PILOTS[j].faction==this.faction
-		    &&(translated==true&&typeof PILOT_translation[v]!="undefined"&&typeof PILOT_translation[v].name!="undefined"
-		       &&PILOT_translation[v].name.replace(/\'/g,"")==pstr[0])
+		    &&(translated==true&&typeof PILOT_translation[vn]!="undefined"&&typeof PILOT_translation[vn].name!="undefined"
+		       &&PILOT_translation[vn].name.replace(/\'/g,"")==pstr[0])
 		    ||(v.replace(/\'/g,"")==pstr[0])) { pid=j; break; } 
 	    }
 	    var p=new Unit(this.team);
@@ -10879,7 +10969,7 @@ var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.7.2";
+var VERSION="v0.7.3";
 var LANG="en";
 var DECLOAK_PHASE=1;
 var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6;
@@ -10902,12 +10992,15 @@ var TEAMS=[new Team(0),new Team(1),new Team(2)];
 var currentteam=TEAMS[0];
 var VIEWPORT;
 var ANIM=[];
-var PLAYZONE = "M 0 0 L 900 0 900 900 0 900 Z";
-//var PLAYZONE = "M 0 0 L 1300 0 1300 400 1800 400 1800 200 2400 200 2400 360 1960 360 1960 560 1100 560 1100 160 0 160 Z";
-
+var SETUPS={};
+var SETUP;
 //var sl;
 
 /*
+       <table id="setuplist" style="color:black;font-size:x-small" class="compact stripe hover order-column row-border">
+       </table>
+
+
     <script src="src/obstacles.js"></script>
     <script src="src/critical.js"></script>
     <script src="src/units.js"></script>
@@ -11042,7 +11135,7 @@ function formatstring(s) {
  	.replace(/%BOMB%/g,"<code class='symbols'>B</code>")
 	.replace(/%STRAIGHT%/g,"<code class='symbols'>8</code>")
         .replace(/%STOP%/g,"<code class='symbols'>5</code>")
-        .replace(/%TARGETLOCK%/g,"<code class='symbols'>l</code>")
+        .replace(/%TARGET%/g,"<code class='symbols'>l</code>")
         .replace(/%TORPEDO%/g,"<code class='symbols'>P</code>")
  	.replace(/%CANNON%/g,"<code class='symbols'>C</code>")
 	.replace(/%SYSTEM%/g,"<code class='symbols'>S</code>")
@@ -11103,7 +11196,6 @@ function nextactivation() {
 	     function() { return enablenextphase(); },
 	     function() {     
 		 activeunit.beginactivation();
-		 //activeunit.actionbarrier();
 		 activeunit.doactivation();
 	     });
 }
@@ -11198,7 +11290,7 @@ function displaydefenseroll(r,n) {
 	} else if ($(this).hasClass("evadegreendice")) {
 	    $(this).removeClass("evadegreendice"); $(this).addClass("blankgreendice");
 	}
-    }	//log("defense roll: f"+f+" e"+e+" b"+(dd-e-f));
+    }
     $(".focusgreendice").click(change);
     $(".evadegreendice").click(change);
     $(".blankgreendice").click(change);
@@ -11432,7 +11524,7 @@ function addunit() {
     currentteam.addunit(0);
 }
 function setselectedunit(n,td) {
-    var jug=td.parent().first().contents().text()
+    var jug=td.parent().first().contents().text().slice(0,-2);
     currentteam=TEAMS[n];
     currentteam.parseJuggler(jug,true);
     currentteam.name=currentteam.toASCII();
@@ -11567,7 +11659,7 @@ function importsquad(t) {
     currentteam.name="SQUAD."+currentteam.toASCII();
     var jug=currentteam.toJuggler(true);
     currentteam.toJSON(); // just for points
-    log(currentteam.toJuggler(false));
+    //log(currentteam.toJuggler(false));
     localStorage[currentteam.name]=JSON.stringify({"pts":currentteam.points,"faction":currentteam.faction,"jug":currentteam.toJuggler(false)});
     addrow(t,currentteam.name,currentteam.points,currentteam.faction,jug);
     refreshsquadlist();
@@ -11686,31 +11778,46 @@ function nextphase() {
 	$("#team2").css("top",$("nav").height()+2);
 	$("#team1").css("top",$("nav").height()+2);
 	$(".ctrl").css("display","block");
-	//var PATTERN = s.image("png/deathstar.png",0,0,512,512).pattern(0,0,512,512);
-	ZONE[0]=s.path(PLAYZONE).attr({
+
+	ZONE[0]=s.path(SETUP.playzone).attr({
 		strokeWidth: 6,
-	    //fill:PATTERN,
 		stroke:halftone(WHITE),
 		strokeDasharray:"20,10,5,5,5,10",
-		fillOpacity: 0,
 		id:'ZONE',
 		pointerEvents:"none"
 	    });
+	if (SETUP.background!="") $(".playmat").css("background","url("+SETUP.background+")");
+	if (SETUP.pattern=="") ZONE[0].attr("fillOpacity",0);
+	else {
+	    var pattern = s.image(SETUP.pattern,0,0,360,360).pattern(0,0,360,360);
+	    ZONE[0].attr("fill",pattern);
+	}
 	ZONE[0].appendTo(VIEWPORT);
-	ZONE[1]=s.rect(0,0,100,900).attr({
+	ZONE[1]=s.path(SETUP.zone1).attr({
 		fill: TEAMS[1].color,
 		strokeWidth: 2,
 		opacity: 0.3,
 		pointerEvents:"none"
 	    });
 	ZONE[1].appendTo(VIEWPORT);
-	ZONE[2]=s.rect(800,0,100,900).attr({
+	ZONE[2]=s.path(SETUP.zone2).attr({
 		fill: TEAMS[2].color,
 		strokeWidth: 2,
 		opacity: 0.3,
 		pointerEvents:"none"
 	    });
 	ZONE[2].appendTo(VIEWPORT);
+	if (typeof SETUP.playzone1!="undefined"){ 
+	    ZONE[3]=s.path(SETUP.playzone1).attr({
+		strokeWidth: 6,
+		stroke:halftone(WHITE),
+		strokeDasharray:"20,10,5,5,5,10",
+		id:'ZONE',
+		fillOpacity:0,
+		pointerEvents:"none"
+	    });
+	    ZONE[3].appendTo(VIEWPORT);
+	}
 	TEAMS[1].endselection(s);
 	TEAMS[2].endselection(s);
 
@@ -11793,7 +11900,7 @@ function nextphase() {
 	    else if (activeunit.shield<activeunit.ship.shield) activeunit.shield++; 
 	    activeunit.show();
 	});
-	loadrock(s,ROCKDATA);
+	if (SETUP.asteroids>0) loadrock(s,ROCKDATA);
 	if (OBSTACLES.length>0) showrock();
 	log("<div>["+UI_translation["turn #"]+round+"]"+UI_translation["phase"+phase]+"</div>");
 	$(".unit").css("cursor","move");
@@ -12233,7 +12340,11 @@ var changelanguage= function(l) {
     log("reloading "+l);
     location.reload();
 }
-
+var changesetup=function() {
+    SETUP = SETUPS[$("#setuplist select").val()];
+    $("#setuplist span").html(SETUP.description);
+    $("#setuplist img").attr("src",SETUP.img);
+}
 $(document).ready(function() {
     s= Snap("#svgout")
     VIEWPORT = s.g().attr({id:"viewport"});
@@ -12284,8 +12395,8 @@ $(document).ready(function() {
     
     log("language = "+LANG);
     $.when(
-	$.ajax("data/ships.json"),$.ajax("data/strings."+LANG+".json"),$.ajax("data/xws.json")
-    ).done(function(result1,result2,result3) {
+	$.ajax("data/ships.json"),$.ajax("data/strings."+LANG+".json"),$.ajax("data/xws.json"),$.ajax("data/setups.json")
+    ).done(function(result1,result2,result3,result4) {
 	var process=setInterval(function() {
 	    ATTACK[dice]=attackproba(dice);
 	    DEFENSE[dice]=defenseproba(dice);
@@ -12314,6 +12425,10 @@ $(document).ready(function() {
 	}
 	UPGRADE_dict=result3[0].upgrades;
 	PILOT_dict=result3[0].pilots;
+	for (i in result4[0].data) {
+	    var st=result4[0].data[i];
+	    SETUPS[i]=st;
+	}
 	var r=0,e=0,i;
 	squadron=[];
 
@@ -12356,7 +12471,7 @@ $(document).ready(function() {
 	log("Upgrades NOT implemented"+str);
 	$("#showproba").prop("disabled",true);
 	var d=new Date();
-	for (i=0; i<d.getMinutes(); i++) Math.random();
+	//for (i=0; i<d.getMinutes(); i++) Math.random();
 	loadsound();
 	var mousewheel=function(t,event) {
 	    var min=$("nav").height()+2;
@@ -12412,6 +12527,12 @@ $(document).ready(function() {
 	} else {
 	    phase=0;
 	    nextphase();
+	    
+	    for (i in SETUPS) {
+		$("#setuplist select").append("<option>"+i+"</option>");
+	    }
+	    SETUP = SETUPS["Classic Map"];
+	    changesetup();
 
 	    $("#squadlist").html("<thead><tr><th></th><th>"+UI_translation["type"]+"</th><th><span class='m-points'></span></th><th><span class='m-units'></span></th><th></th><th></th></tr></thead>");
 	    var stype="";
@@ -12452,25 +12573,18 @@ $(document).ready(function() {
 		      }
 		    },
 		    {
-			"targets":[5],
-			/*
-			"render":function(data, type, row) {
-			    return "<button data='"+row[3]+"' class='m-squad1' onclick=\'setselectedunit(1,$(this).data)\'></button><button class='m-squad2' onclick='setselectedunit(2,$(this).data)'></button>";
-			}*/
-		    },
-		    {
 			"targets": [ 4 ],
 			"visible": false,
 			"searchable": false
 		    },
 		    {   "targets":[3],
 			"render": function ( data, type, row ) {
-			    if (LANG!="en") 
+			    if (LANG!="en"&&phase==SELECT_PHASE) 
 				if (row[4].search("SQUAD")==-1) {
 				    TEAMS[0].parseJuggler(data,true);
 				    data=TEAMS[0].toJuggler(true);
 				}
-			    return "<pre>"+data+"</pre><button class='m-squad1' onclick='setselectedunit(1,$(this))'></button><button class='m-squad2' onclick='setselectedunit(2,$(this))'></button>";
+			    return "<pre>"+data+"</pre><button class='m-squad1' onclick='setselectedunit(1,$(this))'>&#x27a1;</button><button class='m-squad2' onclick='setselectedunit(2,$(this))'>&#x27a1;</button>";
 			}
 		    }],    
 		"ajax": "data/full4b.json",
