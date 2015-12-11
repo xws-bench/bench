@@ -12342,7 +12342,9 @@ var changelanguage= function(l) {
 }
 var changesetup=function() {
     SETUP = SETUPS[$("#setuplist select").val()];
-    $("#setuplist span").html(SETUP.description);
+    var desc=UI_translation[SETUP.description];
+    if (typeof desc=="undefined") desc=SETUP.description;
+    $("#setuplist span").html(desc);
     $("#setuplist img").attr("src",SETUP.img);
 }
 $(document).ready(function() {
@@ -12529,7 +12531,9 @@ $(document).ready(function() {
 	    nextphase();
 	    
 	    for (i in SETUPS) {
-		$("#setuplist select").append("<option>"+i+"</option>");
+		var j=i;
+		if (typeof UI_translation[i]!="undefined") j=UI_translation[i];
+		$("#setuplist select").append("<option value='"+i+"'>"+j+"</option>");
 	    }
 	    SETUP = SETUPS["Classic Map"];
 	    changesetup();

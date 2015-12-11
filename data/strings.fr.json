@@ -9,9 +9,12 @@
     "VT-49 Decimator":"Décimateur VT-49",
     "Z-95 Headhunter":"Chasseur de têtes Z-95",
     "M3-A Interceptor":"Intercepteur M3-A",
-	"Kihraxz Fighter":"Chasseur Kihraxz"
+	"Kihraxz Fighter":"Chasseur Kihraxz",
+	"Exhaust Port":"Bouche d'aération"
     },
     "pilots": {
+	"Turbolaser":{"name":"Turbolaser","text":"Une tourelle de canon laser fixe."},
+	"Thermal Exhaust Port":{"name":"Bouche d'aération","text":"La bouche d'aération de l'Etoile Noire. A jouer sur la carte de l'Etoile Noire."},
 	"Academy Pilot": {
 	    "name":"Pilote de l'académie"
 	},
@@ -1164,6 +1167,14 @@
 	"turn #":"Tour n<sup>o</sup>",
 	"human":"Joueur",
 	"computer":"Ordinateur",
+	"Classic Map":"Carte classique",
+	"Epic Map":"Carte Equipe",
+	"Deathstar Map":"Carte de l'Etoile Noire",
+	"Defender Map":"Carte Défenseur",
+"The standard gameplay zone.":"La zone de jeu standard.",
+"Twice the size of the standard gameplay zone, for large battles.":"Une zone de jeu 2 fois plus grande, pour de grandes batailles.",
+"Team #1 has to destroy the Death Star while Team #2 chases Team #1 in the trench. Stay on target! You need to select a Thermal Exhaust unit and position it at the right most position in the trench.":"La liste 1 doit détruire l'Etoile Noire pendant que l'équipe 2 la poursuit dans la tranchée. Il faut jouer avec une unité Bouche d'aération et la positionner tout à droite de la tranchée.",
+"Team #1 has to stay in a small area, while Team #2 moves in a standard zone.":"La liste 1 doit rester dans la petite zone centrale, alors que l'équipe 2 a toute la zone de jeu.",
 "Damage taken per turn":"Dommages / tour",
 "Turns":"Tours",
 "Cumulated damage":"Dommages cumulés",
