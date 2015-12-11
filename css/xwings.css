@@ -18,7 +18,6 @@ font-family:sans-serif;
 div.m-squad1,div.m-squad2 {
 pointer-events:none;
 }
-
 .outline {
     animation-name: mine;
     animation-duration: 1s;
@@ -163,15 +162,31 @@ padding:5px;
 nav div ul li:hover {
 background:lightsteelblue;
 }
-#uselector span {
-    font-size:small;
+.selector span {
     margin:10px;
     text-decoration: underline;
     cursor:pointer;
 }
-#uselector {
+.selector {
+font-size:small;
 text-align:center;
 width:100%;
+}
+.setupselector {
+font-size:small;
+text-align:left;
+vertical-align:middle;
+margin-left:2.5%;
+opacity:0.75;
+width:95%;
+}
+.setupselector img {
+height:40px;
+text-align:right;
+}
+.setupselector span {
+margin:10px;
+width:25%;
 }
 .generic {
 border-spacing:0;

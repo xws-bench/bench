@@ -1,4 +1,32 @@
 {
+    "Turbolaser": {
+	"firesnd":"tie_fire",
+	"flysnd":"xwing_fly",
+	"faction":["EMPIRE"],
+	"img":["turbolaser.png"],
+	"scale":0.7,
+	"weapon_type":"Laser",
+	"fire":2,
+	"evade":0,
+	"hull":2,
+	"shield":0,
+	"dial":[{"move":"F0","difficulty":"WHITE"}],
+	"actionList":[]
+    },
+    "Exhaust Port": {
+	"firesnd":"tie_fire",
+	"flysnd":"xwing_fly",
+	"faction":["EMPIRE"],
+	"img":["exhaust.png"],
+	"scale":1,
+	"weapon_type":"Laser",
+	"fire":0,
+	"evade":0,
+	"hull":2,
+	"shield":0,
+	"dial":[{"move":"F0","difficulty":"WHITE"}],
+	"actionList":[]	
+    },
     "X-Wing": {
 	"firesnd":"xwing_fire",
 	"flysnd":"xwing_fly",
