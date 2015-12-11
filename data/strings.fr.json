@@ -352,11 +352,11 @@
         "text": "Vous pouvez exécuter la manœuvre (%SLOOPLEFT% 3) ou (%SLOOPRIGHT% 3) en utilisant le gabarit (%TURNLEFT% 3) ou (%TURNRIGHT% 3) correspondant."
       },
       "Boba Fett (Scum)": {
-        "name": "Boba Fett (Racailles)",
+        "name": "Boba Fett",
         "text": "Quand vous attaquez ou défendez, vous pouvez relancer 1 de vos dés pour chaque vaisseau ennemi à portée 1."
       },
       "Kath Scarlet (Scum)": {
-        "name": "Kath Scarlet (Racailles)",
+        "name": "Kath Scarlet",
         "text": "Quand vous attaquez un vaisseau dans votre arc de tir auxiliaire, lancez 1 dé d'attaque supplémentaire."
       },
       "Emon Azzameen (Scum)": {
@@ -947,7 +947,7 @@
       },
       "Targeting Computer": {
         "name": "Ordinateur de visée",
-        "text": "Votre barre d'action gagne l'icone d'action %TARGETLOCK%."
+        "text": "Votre barre d'action gagne l'icone d'action %TARGET%."
       },
       "Hull Upgrade": {
         "name": "Coque améliorée",
@@ -1219,7 +1219,7 @@
 "+1 defense for range 3":"+1 défense pour portée 3",
 "+1 free action [%0]":"+1 action gratuire [%0]",
 "+1 ion token [%0]":"+1 marqueur ion [%0]",
-"+2 rerolls [%0]":"+2 relances",
+"+2 rerolls [%0]":"+2 relances [%0]",
 "-1 %FOCUS%, %0 damage -> %0 critical(s)":"-1 %FOCUS%, %0 dommage",
 "-1 %STRESS%, roll 1 attack dice":"-1 %STRESS%, lancer 1 dé d'attaque",
 "-1 agility [%0]":"-1 agilité [%0]",
@@ -1254,6 +1254,7 @@
 "overlaps obstacle: no action, cannot attack":"intersecte un obstacle : pas d'action, pas de tir",
 "template overlaps obstacle: no action":"le guide intersecte un obstacle : pas d'action",
 "cannot move":"ne peut pas bouger",
+"no possible action":"pas d'action possible",
 "no target for %0":"pas de cible pour %0",
 "decloaked [%0]":"camouflage arrêté [%Ø]",
 "discard %0 to remove critical %1 [%2]":"défausser %0 pour défausser le critique %1 [%2]",
@@ -1282,7 +1283,9 @@
 "reroll any blank result":"relance tous les résultats blancs",
 "select %BANKLEFT% speed":"choisir une vitesse pour %BANKLEFT% ",
 "select %BANKRIGHT% speed":"choisir une vitesse pour %BANKRIGHT%",
+"select %BANKLEFT% or %BANKRIGHT% turn":"choisir un virage %BANKLEFT% ou %BANKRIGHT%",
 "select %FOCUS%/%EVADE% to take (or self to cancel)":"choisir un %FOCUS%/%EVADE%  (ou l'unité pour annuler)",
+"select %FOCUS% or %EVADE% token":"choisir un token %FOCUS% ou %EVADE%",
 "select %SLOOPLEFT% or %TURNLEFT% maneuver":"choisir %SLOOPLEFT% ou %TURNLEFT%",
 "select %SLOOPRIGHT% or %TURNRIGHT% maneuver":"%choisir %SLOOPRIGHT% ou %TURNRIGHT%",
 "select %UTURN% speed":"choisir une vitesse pour %UTURN%",
