@@ -6562,13 +6562,13 @@ var PILOTS = [
         unit: "Kihraxz Fighter",
         skill: 6,
             upgrades: [MISSILE,ILLICIT],
-	getattackstrength: function(i,sh) {
+	getdefensestrength: function(i,sh) {
 	    var a=0;
 	    if (this.weapons[i].getsector(sh)<=3) {
 		a=1;
-		this.log("+1 attack die for attacking in firing arc");
+		this.log("+1 defense die for defending in firing arc");
 	    }
-	    return Unit.prototype.getattackstrength.call(this,i,sh)+a;
+	    return Unit.prototype.getdefensestrength.call(this,i,sh)+a;
 	},
 	done:true,
         points: 25
@@ -10454,6 +10454,7 @@ var UPGRADES= [
 	    canbedropped: function() { return false; },
 	    explode: function() {},
 	    detonate:function(t) {
+		t.log("makes detonation");
 		if (!this.exploded) {
 		    var roll=this.unit.rollattackdie(1)[0];
 		    if (roll=="hit") { t.resolvehit(1); t.checkdead(); }
