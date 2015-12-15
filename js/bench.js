@@ -12212,11 +12212,11 @@ function log(str) {
 function permalink(t) {
     var s="?"+TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock(); //+"&"+JSON.stringify(ANIM);
     var h=t.attr("href");
-    if (h=="@") document.location.search=s; 
-    else {
+    document.location.search=s; 
+    /*else {
 	h=h.replace("@",encodeURIComponent(s));
 	window.open(h, '_blank');
-    }
+    }*/
 }
 function resetlink() {
     document.location.search="";
