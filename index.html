@@ -36,21 +36,31 @@
 	  <span class="ver"></span>
 	  <img onclick="changelanguage('en')" class="langselect" src="css/uk-on.png">
 	  <img onclick="changelanguage('fr')" class="langselect" src="css/fr-on.png">
+	  <span class="share-buttons">
+	    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fxws-bench.github.io%2Fbench%2F&t=Squadron%20Benchmark" title="Share on Facebook" target="_blank"><img src="css/Facebook.png">
+</a>
+	    <a href="https://twitter.com/intent/tweet?source=http%3A%2F%2Fxws-bench.github.io%2Fbench%2F&text=Squadron%20Benchmark:%20http%3A%2F%2Fxws-bench.github.io%2Fbench%2F" target="_blank" title="Tweet"><img src="css/Twitter.png"></a>
+	    <a href="https://plus.google.com/share?url=http%3A%2F%2Fxws-bench.github.io%2Fbench%2F" target="_blank" title="Share on Google+"><img src="css/Google+.png"></a>
+	    <a href="http://www.reddit.com/submit?url=http%3A%2F%2Fxws-bench.github.io%2Fbench%2F&title=Squadron%20Benchmark" target="_blank" title="Submit to Reddit"><img src="css/Reddit.png"></a>
+	  </span>
 	</span>
-	<div style="float:right;font-size:small">
+	<div class="buttonbar">
 	  <button class="m-reset permalink" onclick="resetlink()">&#x25c0; </button>
-	  <button class="m-save permalink" onclick="permalink()">&#128279; </button>
+	  <span class="share-buttons">
+
+	    <a href="@" onclick="permalink($(this))" title="Save to permalink"><img src="css/copy.png"></a>
+	  </span>
 	  <span id="phase" style="font-size:small"></span>
 	  <button class="nextphase" onclick="nextphase()"><span class='np'></span> <span id='npimg'>&#9658;</span></button>
-	  <div class="menu" onmouseover="$('nav ul').css({display:'block',visibility:'visible'})" onmouseout="$('nav ul').css({display:'none',visibility:'hidden'})">
-	  ☰<ul>
-	    <li><a class="m-about" href="#about"></a></li>
-	    <li><a class="m-proba" href="#proba" id="showproba"></a></li>
-	    <li><a class="m-console" href="#" onclick="$('footer').css({display:'block',visibility:'visible'})"></a></li>
-	    <li><a class="m-blog" href="http://xws-benchmark.blogspot.fr/"></a></li>
-	    <li><a class="m-donate" href="#donate"></a></li>
-	    <li><a class="m-credits" href="#credit"></a></li>
-	  </ul></div>
+	  <span class="menu" onmouseover="$('nav ul').css({display:'block',visibility:'visible'})" onmouseout="$('nav ul').css({display:'none',visibility:'hidden'})"><img src="css/menu.png">
+	    <ul>
+	      <li><a class="m-about" href="#about"></a></li>
+	      <li><a class="m-proba" href="#proba" id="showproba"></a></li>
+	      <li><a class="m-console" href="#" onclick="$('footer').css({display:'block',visibility:'visible'})"></a></li>
+	      <li><a class="m-blog" href="http://xws-benchmark.blogspot.fr/"></a></li>
+	      <li><a class="m-donate" href="#donate"></a></li>
+	      <li><a class="m-credits" href="#credit"></a></li>
+	  </ul></span>
 	</div>
       </div>
     </nav>

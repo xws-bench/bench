@@ -589,10 +589,11 @@ var SOUND_FILES=[
     "ogg/XWing-Fly2",
     "ogg/DStar-Gun4",
     "ogg/TIE-Fly6",
-    "ogg/Slave1-Fly2"
+    "ogg/Slave1-Fly2",
+    "ogg/ghost"
 ];
 var SOUNDS={};
-var SOUND_NAMES=["explode","xwing_fire","tie_fire","slave_fire","falcon_fire","xwing_fly","tie_fly","slave_fly","falcon_fly","yt2400_fly","ywing_fly","isd_fly","missile","xwing2_fly","dstar_gun","tie2_fly","slave2_fly"];
+var SOUND_NAMES=["explode","xwing_fire","tie_fire","slave_fire","falcon_fire","xwing_fly","tie_fly","slave_fly","falcon_fly","yt2400_fly","ywing_fly","isd_fly","missile","xwing2_fly","dstar_gun","tie2_fly","slave2_fly","ghost"];
 function loadsound() {
     var i;
     var sound;
@@ -2997,7 +2998,7 @@ Unit.prototype = {
 	.replace(/%FOCUS%/g,"<code class='xfocustoken'></code>")
 	.replace(/%SHIELD%/g,"<code class='cshield'></code>")
 	.replace(/%HULL%/g,"<code class='chull'></code>")
-	.replace(/%BARRELROLL%/g,"<code class='symbols'>r</code>")
+	.replace(/%ROLL%/g,"<code class='symbols'>r</code>")
 	.replace(/%TURNLEFT%/g,"<code class='symbols'>4</code>")
 	.replace(/%TURNRIGHT%/g,"<code class='symbols'>6</code>")
 	.replace(/%BOOST%/g,"<code class='symbols'>b</code>")
@@ -4557,7 +4558,7 @@ var PILOTS = [
 	cleanupattack: function() {
 	    this.doaction([this.newaction(this.resolveboost,"BOOST"),
 			   this.newaction(this.resolveroll,"ROLL")],
-			  "free boost or barrel roll action");
+			  "free %BOOST% or %ROLL% action");
 	    Unit.prototype.cleanupattack.call(this);
 	},
         points: 25,
@@ -5037,13 +5038,11 @@ var PILOTS = [
         unique: true,
 	done:true,
 	init: function() {
-	    var rt=Unit.prototype.gettargetableunits;
-	    Unit.prototype.gettargetableunits=function(n) {
-		var p=rt.call(this,n);
+	    Unit.prototype.wrap_after("gettargetableunits",this,function(n,p) {
 		for (var i=0; i<p.length; i++) 
 		    if (p[i].name=="Captain Kagi") return [p[i]];
 		return p;
-	    };
+	    });
 	},
         unit: "Lambda-Class Shuttle",
         skill: 8,
@@ -5089,16 +5088,17 @@ var PILOTS = [
         unit: "Lambda-Class Shuttle",
         skill: 4,
 	init: function() {
-	    var as=Unit.prototype.addstress;
 	    var unit=this;
-	    Unit.prototype.addstress=function() {
+	    Unit.prototype.wrap_after("addstress",this,function() {
 		if (this!=unit&&this.getrange(unit)<=2&&unit.stress<=2) {
 		    this.log("-1 %STRESS% [%0]",unit.name);
 		    unit.log("+1 %STRESS%");
+		    this.stress--;
+		    this.showinfo();
 		    unit.addstress();
 		    unit.showinfo();
-		} else this.stress++;
-	    };
+		}
+	    });
 	},
         points: 24,
         upgrades: [SYSTEM,CANNON,CREW,CREW],
@@ -5350,7 +5350,7 @@ var PILOTS = [
 		    targetunit.checkdead();
 		    targetunit.show();
 		    this.endnoaction(n,"");
-		}.bind(this)}]);
+		}.bind(this)}],"",true);
 	    }
 	},
         unique: true,
@@ -5591,7 +5591,7 @@ var PILOTS = [
         freemove: function() {
 	    return this.doaction([this.newaction(this.resolveboost,"BOOST"),
 				  this.newaction(this.resolveroll,"ROLL")],
-				 "free %BOOST% or %BARRELROLL% action");
+				 "free %BOOST% or %ROLL% action");
 	},
 	addfocustoken: function() {
 	    if (this.candoaction()) this.freemove();
@@ -6715,7 +6715,7 @@ var PILOTS = [
 	    done:true,
 	    bombdropped: function() {
 		this.doaction([this.newaction(this.resolveroll,"ROLL")],
-				  this.name+": free %BARRELROLL%");
+				  "free %ROLL% action");
 	    },
 	    getbombposition: function(lm,size) {
 		var p=Unit.prototype.getbombposition.call(this,lm,size);
@@ -6953,7 +6953,202 @@ var PILOTS = [
 	       return gdmt.call(this,m,n);
 	   }
        }
-   }
+   },
+    {
+	name:"Hera Syndulla",
+	unique:true,
+	faction:REBEL,
+	unit:"VCX-100",
+	skill:7,
+	points:40,
+	done:true,
+        completemaneuver: function(dial,realdial,difficulty) {
+	    var gd=this.getdial();
+	    var p=[this.getpathmatrix(this.m,realdial)];
+	    var q=[realdial];
+	    for (i=0; i<gd.length; i++) 
+		if (gd[i].difficulty==difficulty&&gd[i].move!=dial) {
+		    p.push(this.getpathmatrix(this.m,gd[i].move));
+		    q.push(gd[i].move);
+		}
+	    this.log("select maneuver of the same difficulty");
+	    this.resolveactionmove(
+		p,
+		function(t,k) {
+		    Unit.prototype.completemaneuver.call(this,q[k],q[k],difficulty);
+		}.bind(this),false,true);
+	},
+	upgrades:[SYSTEM,CANNON,TORPEDO,TORPEDO,CREW,CREW]
+    },
+    {
+	name:"'Chopper'",
+	unique:true,
+	faction:REBEL,
+	unit:"VCX-100",
+	skill:4,
+	points:37,
+	done:true,
+	begincombatphase: function() {
+	    for (var i=0; i<this.touching.length; i++) {
+		if (this.touching[i].team!=this.team) {
+		    this.touching[i].addstress();
+		    this.touching[i].log("+1 %STRESS% [%0]",this.name);
+		}
+	    }
+	    return Unit.prototype.begincombatphase.call(this);
+	},
+	upgrades:[SYSTEM,CANNON,TORPEDO,TORPEDO,CREW,CREW]
+    },
+    {
+	name:"Ezra Bridger",
+	faction:REBEL,
+	unique:true,
+	done:true,
+	unit:"Attack Shuttle",
+	skill:4,
+	points:20,
+	init: function() {
+	    this.adddefensemodd(this,function(m,n) {
+		return this.stress>0;
+	    }.bind(this), function(m,n) {
+		var f=Math.floor(m/10);
+		if (f>2) f=2;
+		if (f>0) {
+		    this.log("%0 %FOCUS% -> %0 %EVADE%",f);
+		    return m-9*f;
+		} 
+		return m;
+	    }.bind(this),false,"focus");
+	},        
+	upgrades:[ELITE,CANNON,CREW]
+    },
+    {
+	name:"Hera Syndulla (A.S.)",
+	faction:REBEL,
+	unique:true,
+	done:true,
+	unit:"Attack Shuttle",
+	skill:7,
+	points:22,
+        completemaneuver: function(dial,realdial,difficulty) {
+	    var gd=this.getdial();
+	    var p=[this.getpathmatrix(this.m,realdial)];
+	    var q=[realdial];
+	    for (var i=0; i<gd.length; i++) 
+		if (gd[i].difficulty==difficulty&&gd[i].move!=dial) {
+		    p.push(this.getpathmatrix(this.m,gd[i].move));
+		    q.push(gd[i].move);
+		}
+	    this.log("select move of the same difficulty");
+	    this.resolveactionmove(
+		p,
+		function(t,k) {
+		    Unit.prototype.completemaneuver.call(this,q[k],q[k],difficulty);
+		}.bind(this),false,true);
+	},
+	upgrades:[ELITE,CANNON,CREW]
+    },
+    {
+	name:"Sabine Wren",
+	faction:REBEL,
+	unique:true,
+	done:true,
+	unit:"Attack Shuttle",
+	skill:5,
+	points:21,
+	beginactivation: function() {
+	    if (this.candoaction()) 
+		this.doaction([this.newaction(this.resolveboost,"BOOST"),
+			       this.newaction(this.resolveroll,"ROLL")],
+			      "free %BOOST% or %ROLL% action");
+	},
+	upgrades:[ELITE,CANNON,CREW]
+    },
+    {
+	name:"'Zeb' Orrelios",
+	faction:REBEL,
+	unique:true,
+	unit:"Attack Shuttle",
+	skill:3,
+	points:18,
+	upgrades:[CANNON,CREW]
+    },
+    {
+	name:"Kanan Jarrus",
+	faction:REBEL,
+	unique:true,
+	unit:"VCX-100",
+	skill:4,
+	points:38,
+	upgrades:[SYSTEM,CANNON,TORPEDO,TORPEDO,CREW,CREW]
+    },
+    {
+	name:"'Wampa'",
+	faction:EMPIRE,
+	unique:true,
+	unit:"TIE Fighter",
+	skill:4,
+	points:14,
+	done:true,
+	init: function() {
+	    this.addattackadd(this,function(m,n) { 
+		return true; 
+	    },function(m,n) {
+		this.log("cancel all dice, +1 damage card");
+		targetunit.applydamage(1);
+		return {m:0,n:0};
+	    }.bind(this),"critical");
+	},
+	upgrades:[]
+    },
+    { 
+	name:"'Youngster'",
+	faction:EMPIRE,
+	unique:true,
+	unit:"TIE Fighter",
+	skill:6,
+	points:15,
+	done:true,
+	init: function() {
+	    var elite=null;
+	    var self=this;
+	    for (i=0; i<this.upgrades.length; i++) {
+		if (this.upgrades[i].type==ELITE&&(typeof this.upgrades[i].action=="function")) 
+		    elite=this.upgrades[i];
+	    }
+	    if (elite==null) return;
+	    this.log("share %0 upgrade",elite.name);
+	    Unit.prototype.wrap_after("getupgactionlist",self,function(l) {
+		if (this.team==self.team&&self!=this
+		    &&this.getrange(self)<=3
+		    &&this.ship.name.match(/.*TIE.*Fighter.*/)) {
+		    this.log("elite action from %0 available",self.name);
+		    return l.concat({org:self,action:elite.action,type:elite.type.toUpperCase(),name:elite.name});
+		}
+		return l;
+	    });
+	},
+	upgrades:[ELITE]
+    },
+    {
+	name:"'Chaser'",
+	faction:EMPIRE,
+	unique:true,
+	done:true,
+	unit:"TIE Fighter",
+	skill:3,
+	points:14,
+	init: function() {
+	    var self=this;
+	    Unit.prototype.wrap_after("removefocustoken",this,function() {
+		if (this.team==self.team&&this!=self&&this.getrange(self)<=1) {
+		    self.log("+1 %FOCUS%");
+		    self.addfocustoken();
+		}
+	    });
+	},
+	upgrades:[]
+    }
 ];
 /* 31/06/15: XW FAQ with Garven Dreis 
 */
@@ -8476,7 +8671,7 @@ var UPGRADES= [
 			this.checkdead();
 			targetunit.checkdead();
 			this.endnoaction(n,"CREW");
-		    }.bind(this)}],"");
+		    }.bind(this)}],"",true);
 	    });
 	},
         type: CREW,
@@ -8815,7 +9010,7 @@ var UPGRADES= [
 			target.log("+1 %STRESS% [%0]",self.name);
 			target.addstress();
 			this.endnoaction(n,"ASTROMECH");
-		    }.bind(this)}],"choose to add stress to "+target.name,true);
+		    }.bind(this)}],"",true);
 		}
 	    })
 	},
@@ -8991,7 +9186,7 @@ var UPGRADES= [
 		    }
 		    this.beginactivationphase.unwrap();
 		    this.endnoaction(n,"MOD");
-		}.bind(this)}]);
+		}.bind(this)}],"",true);
 	    })
 	},
         points: 4,
@@ -9824,7 +10019,7 @@ var UPGRADES= [
 				this.endnoaction(n,"MOD");
 			    }.bind(this));
 			} else this.endnoaction(n,"MOD");
-		    }.bind(this),type:mod.type.toUpperCase(),name:mod.name}],"");
+		    }.bind(this),type:mod.type.toUpperCase(),name:mod.name}],"",true);
 		}
 	    });
 	},
@@ -10351,7 +10546,7 @@ var UPGRADES= [
 			    this.m=this.m.rotate(180,0,0);
 			    this.show();
 			    this.endnoaction(n,ELITE);
-			}.bind(this)}]);
+			}.bind(this)}],"",true);
 		    };
 		});
 	    },
@@ -10636,6 +10831,50 @@ var UPGRADES= [
 		this.showinfo();
 	    };
 	},
+    },
+    {
+	name: "Dorsal Turret",
+	type: TURRET,
+	points: 3,
+	attack: 2,
+	range: [1,2],
+    },
+    { name:"'Chopper'",
+      type:CREW,
+      points:0,
+      faction:REBEL,
+      unique:true
+    },
+    { name:"Hera Syndulla",
+      type:CREW,
+      points:1,
+      faction:REBEL,
+      unique:true
+    },
+    { name:"'Zeb' Orrelios",
+      type:CREW,
+      points:1,
+      faction:REBEL,
+      unique:true
+    },
+    { name:"Ezra Bridger",
+      type:CREW,
+      points:3,
+      faction:REBEL,
+      unique:true
+    },
+    { name:"Kanan Jarrus",
+      type:CREW,
+      points:3,
+      faction:REBEL,
+      unique:true
+    },
+    { name:"Sabine Wren",
+      type:CREW,
+      points:2,
+      upgrades:[BOMB],
+      faction:REBEL,
+      unique:true
     }
 ];
 var factions=["REBEL","EMPIRE"];
@@ -11002,6 +11241,12 @@ var SETUP;
        <table id="setuplist" style="color:black;font-size:x-small" class="compact stripe hover order-column row-border">
        </table>
 
+	    <span href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fxws-bench.github.io%2Fbench%2F@&t=My%20combat%20setup%20for%20Squadron%20Benchmark" title="Share on Facebook" onclick="permalink($(this))"><img src="css/Facebook.png">
+</span>
+	    <span href="https://twitter.com/intent/tweet?source=http%3A%2F%2Fxws-bench.github.io%2Fbench%2F&text=Combat%20Setup%20for%20Squadron%20Benchmark:%20http%3A%2F%2Fxws-bench.github.io%2Fbench%2F@"  onclick="permalink($(this))" title="Tweet"><img src="css/Twitter.png"></span>
+	    <span href="https://plus.google.com/share?url=http%3A%2F%2Fxws-bench.github.io%2Fbench%2F@" onclick="permalink($(this))" title="Share on Google+"><img src="css/Google+.png"></span>
+	    <span href="http://www.reddit.com/submit?url=http%3A%2F%2Fxws-bench.github.io%2Fbench%2F@&title=Combat%20Setup%20for%20Squadron%20Benchmark" onclick="permalink($(this))" title="Submit to Reddit"><img src="css/Reddit.png"></span>
+
 
     <script src="src/obstacles.js"></script>
     <script src="src/critical.js"></script>
@@ -11128,11 +11373,10 @@ function formatstring(s) {
 	.replace(/%CRIT%/g,"<code class='critical'></code>")
 	.replace(/%EVADE%/g,"<code class='symbols'>e</code>")
 	.replace(/%FOCUS%/g,"<code class='symbols'>f</code>")
-	.replace(/%BARRELROLL%/g,"<code class='symbols'>r</code>")
+	.replace(/%ROLL%/g,"<code class='symbols'>r</code>")
 	.replace(/%TURNLEFT%/g,"<code class='symbols'>4</code>")
 	.replace(/%TURNRIGHT%/g,"<code class='symbols'>6</code>")
 	.replace(/%BOOST%/g,"<code class='symbols'>b</code>")
-	.replace(/%BARRELROLL%/g,"<code class='symbols'>r</code>")
         .replace(/%ELITE%/g,"<code class='symbols'>E</code>")
  	.replace(/%BOMB%/g,"<code class='symbols'>B</code>")
 	.replace(/%STRAIGHT%/g,"<code class='symbols'>8</code>")
@@ -11693,7 +11937,8 @@ function nextphase() {
     //if (!enablenextphase()) return;
     window.location="#";
     switch(phase) {
-    case SELECT_PHASE:	
+    case SELECT_PHASE:
+	$(".h2 .share-buttons").hide();
 	$("#game").show();
 	$("#selectphase").hide();
 	$("#creation").hide();
@@ -11705,10 +11950,12 @@ function nextphase() {
 	    TEAMS[2].isia=false; else TEAMS[2].isia=true;
  	break;
     case CREATION_PHASE:
+	$(".h2 .share-buttons").hide();
 	endselection();
 	phase=SELECT_PHASE;
 	return;
     case SETUP_PHASE: 
+	$(".buttonbar .share-buttons").hide();
 	$("#leftpanel").show();
 	ZONE[1].remove();
 	ZONE[2].remove();
@@ -11765,6 +12012,8 @@ function nextphase() {
     $(".nextphase").prop("disabled",false);
     switch(phase) {
     case SELECT_PHASE:
+	$(".buttonbar .share-buttons").hide();
+	$(".h2 .share-buttons").show();
 	$(".permalink").hide();
 	$(".activeunit").prop("disabled",true);
 	$("#rightpanel").hide();
@@ -11777,6 +12026,7 @@ function nextphase() {
 	//window.location="#creation";
 	break;
     case SETUP_PHASE:
+	$(".buttonbar .share-buttons").show();
 	$("#team2").css("top",$("nav").height()+2);
 	$("#team1").css("top",$("nav").height()+2);
 	$(".ctrl").css("display","block");
@@ -11959,9 +12209,14 @@ function log(str) {
     $("#log").append("<div>"+str+"<div>");
     $("#log").scrollTop(10000);
 }
-function permalink() {
-    var s="?"+TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock()+"&"+JSON.stringify(ANIM);
-    document.location.search = s;
+function permalink(t) {
+    var s="?"+TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock(); //+"&"+JSON.stringify(ANIM);
+    var h=t.attr("href");
+    if (h=="@") document.location.search=s; 
+    else {
+	h=h.replace("@",encodeURIComponent(s));
+	window.open(h, '_blank');
+    }
 }
 function resetlink() {
     document.location.search="";
@@ -12525,7 +12780,8 @@ $(document).ready(function() {
 	    TEAMS[1].toJSON(); // Just for points
 	    TEAMS[2].parseASCII(args[1]);
 	    TEAMS[2].toJSON(); // Just for points
-	    if (args.length>3) ANIM=$.parseJSON(args[3]);
+	    SETUP=SETUPS["Classic Map"];
+	    //if (args.length>3) ANIM=$.parseJSON(args[3]);
 	    phase=SELECT_PHASE;
 	    return nextphase();
 	} else {
