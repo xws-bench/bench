@@ -1273,6 +1273,8 @@
 "extending weapon ranges":"extension des portées des armes",
 "first damage is a faceup damage [%0]":"le premier dommage est une carte visible [%0]",
 "free %BOOST% and ion token [%0]":"%BOOST% gratuit et marqueur de ionisation [%0]",
+"free %BOOST% or %ROLL% action":"action %BOOST% ou %ROLL% gratuite",
+"free %ROLL% action":"action %ROLL% gratuite",
 "guess the number of evades out of %0 dice [%1]":"deviner le nombre d'évasion sur %0 dés [%1]",
 "guessed correctly ! +1 %EVADE% [%0]":"bien deviné ! +1 %EVADE% [%0]",
 "has PS of 12":"compétence de pilotage de 12",
@@ -1309,6 +1311,7 @@
 "select maneuver of speed %0 [%1]":"choisir une manœuvre de vitesse %0 [%1]",
 "select maneuver speed":"choisir une vitesse de manœuvre",
 "select one critical":"choisir un critique",
+"select maneuver of the same difficulty":"choisir une manœuvre de même difficulté",
 "select target to lock [%0]":"choisir une cible [%0]",
 "select target to lock":"choisir une cible",
 "select unit (or self to cancel) [%0]":"choisir une unité (ou l'unité pour annuler) [%0]",
@@ -1326,7 +1329,10 @@
 "turn faceup one damage card [%0]":"mettre face visible une carte de dommage [%0]",
 "uninstalling effect [%0]":"désinstallation [%0]",
 "Critical: %0":"Critique : %0",
-"has exploded!":"a explosé !"
+"has exploded!":"a explosé !",
+"elite action from %0 available":"action elite de %0 disponible",
+"share %0 upgrade":"partage de %0",
+"cancel all dice, +1 damage card":"annule tous les dés, +1 dommage"
     },
     "criticals":{
 	"Structural Damage":{

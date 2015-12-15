@@ -744,7 +744,7 @@ border-radius:100%;
 padding:8px;
 background:white;
 }
-.smallbutton,.bigbutton,.button,.permalink,.nextphase,.menu {
+.smallbutton,.bigbutton,.button,.permalink,.nextphase {
 display:inline-block;
 margin:5px;
 text-align:center;
@@ -1488,6 +1488,35 @@ content:" ";
 .modalDialog textarea {
 height:12em;
 width:80%;
+}
+.h2 span.share-buttons{
+  padding: 0;
+  margin:0;
+  border:0;
+  position:absolute;
+  right:10px;
+  top:3.2ex;
+}
+.buttonbar {
+float:right;font-size:small
+}
+span.share-buttons a {
+  display: inline;
+  padding:0;
+  margin:0;
+  border:0;
+}
+.h2 span.share-buttons img {
+  height:1.5ex;
+  width:1.5ex;
+}
+.menu img {
+    height:2ex;
+    width:2ex;
+    padding:10px;
+}
+.share-buttons img,.menu img {
+    vertical-align:middle;
 }
 @font-face {
 font-family:'symbols';
