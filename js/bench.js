@@ -887,13 +887,17 @@ Unit.prototype = {
 	f.save=save;
 	f.org=org;
 	f.unwrapper=function(name2) {
-	    var uw=self.wrap_before(name2,self,function(a) {
-		f.unwrap();
-		uw.unwrap();
+	    var uw=self.wrap_before(name2,org,function(a) {
+		f.unwrap(org);
+		uw.unwrap(org);
 		return a;
 	    });
 	}
-	f.unwrap=function(o) { self[name]=f.save; }
+	f.unwrap=function(o) { 
+	    if (f.org==o||typeof f.save.unwrap!="function") self[name]=f.save;
+	    else f.save=f.save.unwrap(o); 
+	    return f.save;
+	}
 	this[name]=f;
 	return f;
     },
@@ -903,14 +907,14 @@ Unit.prototype = {
 	var f=function () {
             var args = Array.prototype.slice.call(arguments),
             result;
-	    f.unwrap();
+	    f.unwrap(org);
             before.apply( this, args);
             result = save.apply( this, args);
 	    return result;
 	}
 	f.save=save;
 	f.org=org;
-	f.unwrap=function() { self[name]=f.save; }
+	f.unwrap=function(o) { self[name]=f.save; }
 	this[name]=f;
 	return f;
     },
@@ -928,11 +932,15 @@ Unit.prototype = {
 	f.org=org;
 	f.unwrapper=function(name2) {
 	    var uw=self.wrap_before(name2,self,function() {
-		f.unwrap();
-		uw.unwrap();
+		f.unwrap(org);
+		uw.unwrap(org);
 	    });
 	}
-	f.unwrap=function(o) { self[name]=f.save; }
+	f.unwrap=function(o) {
+	    if (f.org==o||typeof f.save.unwrap!="function") self[name]=f.save;
+	    else f.save=f.save.unwrap(o); 
+	    return f.save;
+	}
 	this[name]=f;
 	return f;
     },
@@ -2011,6 +2019,8 @@ Unit.prototype = {
 	this.actionbarrier();
     },
     endround: function() {
+	for (var i=0; i<this.upgrades.length; i++) 
+	    this.upgrades[i].endround();
 	this.focus=this.evade=0;
 	this.hasfired=0;
 	this.ocollision.overlap=-1;
@@ -2314,10 +2324,17 @@ Unit.prototype = {
     selectnearbyunits: function(n,f) {
 	var p=[];
 	for (var i=0; i<squadron.length; i++) {
-	    //log(this.name+":"+squadron[i].name+" "+f(this,squadron[i])+" "+(this.getrange(squadron[i])<=n));
 	    if (f(this,squadron[i])&&(this.getrange(squadron[i])<=n)) p.push(squadron[i]);
 	}
 	return p;
+    },
+    selectnearbyally: function(n) {
+	return this.selectnearbyunits(n,function(s,t) { 
+	    return s.team==t.team&&s!=t; });
+    },
+    selectnearbyenemy: function(n) {
+	return this.selectnearbyunits(n,function(s,t) { 
+	    return s.team!=t.team; });
     },
     resolvetarget: function(n) {
 	var p=this.gettargetableunits(3);
@@ -2762,12 +2779,13 @@ Unit.prototype = {
     candomaneuver: function() {
 	return this.maneuver>-1;
     },
-    candoendmaneuveraction: function() { return this.candoaction(); },
+    candoendmaneuveraction: function() { 
+	return this.candoaction()
+	    &&!this.collision
+	    &&this.ocollision.template.length==0
+	    &&this.ocollision.overlap==-1; },
     doendmaneuveraction: function() {
-	if (this.candoendmaneuveraction()) {
-	    //this.log("do action endmaneuver");
-	    this.doaction(this.getactionlist());
-	}
+	if (this.candoendmaneuveraction()) this.doaction(this.getactionlist());
 	else { this.action=-1; this.actiondone=true; }
     },
     doselection: function(f,org) {
@@ -2822,9 +2840,7 @@ Unit.prototype = {
 	}.bind(this),list[0].name);  
     },
     candoaction: function() {
-	//log("stress:"+this.stress+" collision:"+this.collision+" template"+this.ocollision.template+" overlap"+this.ocollision.overlap);
-	if (this.stress>0||this.collision||this.ocollision.template.length>0||this.ocollision.overlap>-1) return false;
-	return  true;
+	return this.stress==0;
     },
     candecloak: function() {
 	return (this.iscloaked&&phase==ACTIVATION_PHASE&&!this.hasdecloaked);
@@ -2835,14 +2851,7 @@ Unit.prototype = {
 	    this.resolveattack(wp,target);
 	    return true;
 	} 
-	var grau=this.weapons[wp].getrangeallunits();
-	var i;
-	var p=[];
-	    //console.log("selecttargetforattack:"+this.name+":")
-	for (i=0; i<grau.length; i++) {
-	    //console.log("    "+grau[i].name+":"+this.getrange(grau[i])+" teams:"+grau[i].team+" "+this.team);
-	    if (grau[i].team!=this.team) p.push(grau[i]);
-	}
+	var p=this.weapons[wp].getrangeallenemies();
 	if (p.length==0) {
 	    this.log("no target for %0",this.weapons[wp].name);
 	    this.cleanupattack();
@@ -2965,7 +2974,6 @@ Unit.prototype = {
 	ANIM.push(obj)
     },
     computepoints: function() {
-
     },
     log: function(str,a,b,c) {
 	if (NOLOG) return;
@@ -3899,21 +3907,17 @@ IAUnit.prototype= {
     doattack: function(forced) {
 	//this.log("attack?"+forced+" "+(skillturn==this.skill)+" "+this.canfire());
 	if (forced==true||(phase==COMBAT_PHASE&&skillturn==this.skill)) {
-	    var r=this.gethitrangeallunits();
-	    //this.log("ia/doattack");
-	    var power=0,p,t=null;
-	    var i,j,w;
+	    var power=0,t=null;
+	    var i,w;
 	    if (this.canfire()) {
 		NOLOG=true;
-		for (j=0; j<squadron.length; j++) {
-		    var u=squadron[j];
-		    if (u.team!=this.team) {
-			for (i=0; i<this.weapons.length; i++) {
-			    var x=this.weapons[i].getrange(u);
-			    if (x>0&&x<4) {
-				var p=this.getattackstrength(i,u);
-				if (p>power) { t = u; power=p; this.activeweapon=i; }
-			    }
+		for (w=0; w<this.weapons.length; w++) {
+		    var el=this.weapons[w].getrangeallenemies();
+		    for (i=0;i<el.length; i++) {
+			var p=this.getattackstrength(w,el[i]);
+			if (p>power) { 
+			    this.log("power "+power+" "+el[i]);
+			    t=el[i]; power=p; this.activeweapon=w; 
 			}
 		    }
 		}
@@ -4051,17 +4055,14 @@ var PILOTS = [
 	faction:REBEL,
         unit: "X-Wing",
         skill: 9,
-	init: function() {
-	    var unit=this;
-	    var ds=Unit.prototype.getagility;
-	    Unit.prototype.getagility=function() {
-		var a=ds.call(this);
-		if (activeunit==unit&&a>0&&this==targetunit) {
-		    //this.log("-1 defense [%0]",unit.name);
-		    return a-1; 
-		}
-		else return a;
-	    };
+	declareattack: function(w,target) {	    
+	    Unit.prototype.declareattack.call(this,w,target);
+	    target.log("-1 defense [%0]",this.name);
+	    target.wrap_after("getagility",this,function(a) {
+		if (a>0) return a-1; 
+		return a;
+	    }).unwrapper("endbeingattacked");
+	    target.showstats();
 	},
         points: 29,
         upgrades: [ELITE,TORPEDO,ASTROMECH],
@@ -4073,19 +4074,16 @@ var PILOTS = [
         unique: true,
         unit: "X-Wing",
 	removefocustoken: function() {
-	    this.focus--;
-	    this.show();
-	    var p=[]; 
-	    p=this.selectnearbyunits(2,function(a,b) { return (a.team==b.team&&a!=b);});
+	    Unit.prototype.removefocustoken.call(this);
+	    var p=this.selectnearbyally(2);
 	    if (p.length>0) {
-		this.log("select unit for free %FOCUS%");
 		this.doselection(function(n) {
 		    this.resolveactionselection(p,function (k) { 
 			p[k].log("+1 %FOCUS%");
 			p[k].addfocustoken();
 			this.endnoaction(n,"FOCUS");
 		    }.bind(this));
-		}.bind(this),"Garven focus");
+		}.bind(this),"select unit for free %FOCUS%");
 	    } 
 	},
         skill: 6,
@@ -4131,14 +4129,10 @@ var PILOTS = [
 	done:true,
         init: function() {
 	    var biggs=this;
-	    var gr=Weapon.prototype.getrangeallunits;
-	    Weapon.prototype.getrangeallunits=function() {
-		var r=gr.call(this);
-		if (this.unit.team!=biggs.team&&r.indexOf(biggs)>-1) {
-		    return [biggs];
-		}
+	    Weapon.prototype.wrap_after("getrangeallenemies",this,function(r) {
+		if (r.indexOf(biggs)>-1) r=[biggs];
 		return r;
-	    }
+	    });
 	},
         unique: true,
         unit: "X-Wing",
@@ -4186,7 +4180,7 @@ var PILOTS = [
 	    var unit=this;
 	    Unit.prototype.addtarget.call(this,t);
 	    this.doselection(function(n) {
-		var p=this.selectnearbyunits(2,function(a,b) { return a.team==b.team&&a!=b; });
+		var p=this.selectnearbyally(2);
 		if (p.length>0) {
 		    p.push(this);
 		    this.log("select unit for free %TARGET% (or self to cancel)");
@@ -4665,7 +4659,7 @@ var PILOTS = [
         points: 44,
 	handledifficulty: function(d) {
 	    var unit=this;
-	    var p=this.selectnearbyunits(1,function(t,s) { return t.team==s.team&&t!=s; })
+	    var p=this.selectnearbyally(1);
 	    if (p.length>0&&d=="GREEN") {
 		this.doselection(function(n) {
 		    this.log("select unit for a free action"+p.length);
@@ -4881,7 +4875,7 @@ var PILOTS = [
         skill: 4,
 	begincombatphase: function() {
 	    if (!this.dead) {
-		var p=this.selectnearbyunits(3,function(t,s) { return t.team==s.team&&t!=s; })
+		var p=this.selectnearbyally(3);
 		if (p.length>0) {
 		    this.doselection(function(n) {
 			this.log("select unit for 12 PS");
@@ -4920,7 +4914,7 @@ var PILOTS = [
         points: 21,
 	begincombatphase: function() {
 	    if (this.canusefocus()) {
-		var p=this.selectnearbyunits(3,function(t,s) { return s.team==t.team&&s!=t; });
+		var p=this.selectnearbyally(3);
 		if (p.length>0) {
 		    this.doselection(function(n) {
 			p.push(this);
@@ -5054,7 +5048,7 @@ var PILOTS = [
         faction:EMPIRE,
         begincombatphase: function() {
 	    if (!this.dead) {
-		var p=this.selectnearbyunits(1,function(s,t) { return s.team==t.team&&s!=t; });
+		var p=this.selectnearbyally(1);
 		if (p.length>0&&this.targeting.length) {
 		    p.push(this);
 		    this.doselection(function(n) {
@@ -5819,7 +5813,7 @@ var PILOTS = [
 	    var i;
 	    var p=[];
 	    if (ch==0) return 0;
-	    var p=this.selectnearbyunits(1,function(t,s) { return t.team==s.team&&t!=s; })
+	    var p=this.selectnearbyally(1);
 	    if (p.length>0) {
 		p.sort(function(a,b) { 
 		    hpa=a.hull+a.shield; hpb=b.hull+b.shield;
@@ -6041,7 +6035,7 @@ var PILOTS = [
 	    var g=this.getattackstrength;
 	    this.getattackstrength=function(w,sh) {
 		var a=g.call(this,w,sh);
-		var p=this.selectnearbyunits(2,function(a,b) {return a.team==b.team&&a!=b });
+		var p=this.selectnearbyally(2);
 		if (p.length==0) {
 		    this.log("+1 attack against %0, at range >=3 of friendly ships",sh.name);
 		    return a+1;
@@ -6060,7 +6054,7 @@ var PILOTS = [
 	done:true,
         begincombatphase: function() {
 	    if (!this.dead) {
-		var p=this.selectnearbyunits(2,function(a,b) {return a.team==b.team&&a!=b });
+		var p=this.selectnearbyally(2);
 		if (p.length>0) {
 		    this.doselection(function(n) {
 			p.push(this)
@@ -6273,7 +6267,7 @@ var PILOTS = [
         unit: "HWK-290",
         begincombatphase: function() {
 	    if (!this.dead) {
-		var p=this.selectnearbyunits(2,function(a,b) {return a.team!=b.team; });
+		var p=this.selectnearbyunits(2);
 		if (p.length>0) {
 		    this.doselection(function(n) {
 			p.push(this)
@@ -6978,7 +6972,7 @@ var PILOTS = [
 		    Unit.prototype.completemaneuver.call(this,q[k],q[k],difficulty);
 		}.bind(this),false,true);
 	},
-	upgrades:[SYSTEM,CANNON,TORPEDO,TORPEDO,CREW,CREW]
+	upgrades:[SYSTEM,TURRET,TORPEDO,TORPEDO,CREW,CREW]
     },
     {
 	name:"'Chopper'",
@@ -6997,7 +6991,7 @@ var PILOTS = [
 	    }
 	    return Unit.prototype.begincombatphase.call(this);
 	},
-	upgrades:[SYSTEM,CANNON,TORPEDO,TORPEDO,CREW,CREW]
+	upgrades:[SYSTEM,TURRET,TORPEDO,TORPEDO,CREW,CREW]
     },
     {
 	name:"Ezra Bridger",
@@ -7020,7 +7014,7 @@ var PILOTS = [
 		return m;
 	    }.bind(this),false,"focus");
 	},        
-	upgrades:[ELITE,CANNON,CREW]
+	upgrades:[ELITE,TURRET,CREW]
     },
     {
 	name:"Hera Syndulla (A.S.)",
@@ -7046,7 +7040,7 @@ var PILOTS = [
 		    Unit.prototype.completemaneuver.call(this,q[k],q[k],difficulty);
 		}.bind(this),false,true);
 	},
-	upgrades:[ELITE,CANNON,CREW]
+	upgrades:[ELITE,TURRET,CREW]
     },
     {
 	name:"Sabine Wren",
@@ -7062,7 +7056,7 @@ var PILOTS = [
 			       this.newaction(this.resolveroll,"ROLL")],
 			      "free %BOOST% or %ROLL% action");
 	},
-	upgrades:[ELITE,CANNON,CREW]
+	upgrades:[ELITE,TURRET,CREW]
     },
     {
 	name:"'Zeb' Orrelios",
@@ -7071,7 +7065,7 @@ var PILOTS = [
 	unit:"Attack Shuttle",
 	skill:3,
 	points:18,
-	upgrades:[CANNON,CREW]
+	upgrades:[TURRET,CREW]
     },
     {
 	name:"Kanan Jarrus",
@@ -7080,7 +7074,7 @@ var PILOTS = [
 	unit:"VCX-100",
 	skill:4,
 	points:38,
-	upgrades:[SYSTEM,CANNON,TORPEDO,TORPEDO,CREW,CREW]
+	upgrades:[SYSTEM,TURRET,TORPEDO,TORPEDO,CREW,CREW]
     },
     {
 	name:"'Wampa'",
@@ -7373,7 +7367,8 @@ Bomb.prototype = {
     detonate: function() {
 	OBSTACLES.splice(OBSTACLES.indexOf(this),1);
 	Bomb.prototype.explode.call(this);
-    }
+    },
+    endround: function() {}
 }
 function Weapon(sh,wdesc) {
     this.isprimary=false;
@@ -7513,7 +7508,9 @@ Weapon.prototype = {
 	var r=[];
 	for (i=0; i<squadron.length; i++) {
 	    var sh=squadron[i];
-	    if ((this.team!=sh.team)&&(this.getrange(sh)>0)) r.push(sh);
+	    if ((this.unit.team!=sh.team)
+		&&(this.getrange(sh)>0)
+		&&r.indexOf(sh)==-1) r.push(sh);
 	}
 	return r;
     },
@@ -7526,29 +7523,9 @@ Weapon.prototype = {
 	}
 	return r;
     },
-    wrap_after: function (name,org,after) {
-	var self=this;
-	var save=self[name];
-	var f=function () {
-            var args = Array.prototype.slice.call(arguments),
-            result;
-            result = save.apply( this, args);
-            result=after.apply( this, args.concat(result));
-	    return result;
-	}
-	f.save=save;
-	f.org=org;
-	f.unwrapper=function(name2) {
-	    var uw=self.wrap_before(name2,self,function(a) {
-		f.unwrap();
-		uw.unwrap();
-		return a;
-	    });
-	}
-	f.unwrap=function(o) { self[name]=f.save; }
-	this[name]=f;
-	return f;
-    },
+    wrap_before: Unit.prototype.wrap_before,
+    wrap_after: Unit.prototype.wrap_after,
+    endround:function() {}
 };
 function Upgrade(sh,i) {
     $.extend(this,UPGRADES[i]);
@@ -7590,7 +7567,8 @@ Upgrade.prototype = {
 	else return "<tr "+c+">"+a+b+d+"</tr>";
     },
     isWeapon: function() { return false; },
-    isBomb: function() { return false; }
+    isBomb: function() { return false; },
+    endround: function() {}
 }
 
 var rebelonly=function(p) {
@@ -7632,13 +7610,12 @@ var UPGRADES= [
 	done:true,
         attack: 4,
 	init: function(sh) {
-	    var self=this;
 	    sh.addattackmoda(this,function(m,n) {
 		return (sh.weapons[sh.activeweapon]==this);
 	    }.bind(this),function(m,n) {
 		var f=this.unit.getfocusreddice(m);
 		if (f>0) {
-		    this.unit.log("1 %FOCUS% -> 1 %CRIT% [%0]",self.name);
+		    this.unit.log("1 %FOCUS% -> 1 %CRIT% [%0]",this.name);
 		    return m-90;
 		}
 		return m;
@@ -7653,6 +7630,7 @@ var UPGRADES= [
 	    var i;
 	    var self=this;
 	    var save=[];
+	    sh.log("installing R2 Astromech");
 	    sh.wrap_before("getdial",this,function() {
 		if (save.length==0) { 
 		    for (var i=0; i<this.dial.length; i++) {
@@ -7667,7 +7645,7 @@ var UPGRADES= [
 	    });
 	},
 	uninstall:function(sh) {
-	    sh.getdial.unwrap();
+	    sh.getdial.unwrap(this);
 	    sh.log("uninstalling effect [%0]",this.name);
 	},
         type: ASTROMECH,
@@ -8045,12 +8023,10 @@ var UPGRADES= [
 			t.log("2 rolls for damage [%0]",self.name);
 			var roll=t.rollattackdie(2);
 			for (var i=0; i<2; i++) {
-			    if (roll[i]=="hit") { t.resolvehit(1); t.checkdead(); }
-			    else if (roll[i]=="critical") { 
-				t.resolvecritical(1);
-				t.checkdead();
-			    }
+			    if (roll[i]=="hit") t.resolvehit(1); 
+			    else if (roll[i]=="critical") t.resolvecritical(1);
 			}
+			t.checkdead();
 		    }
 		    t.endaction(n,ELITE);
 		},true,true);
@@ -8089,12 +8065,8 @@ var UPGRADES= [
 	done:true,
 	declareattack: function(target) {
 	    Weapon.prototype.declareattack.call(this,target);
-	    targetunit.wrap("canuseevade",function() { return false; });
+	    targetunit.wrap_after("canuseevade",this,function() { return false; }).unwrapper("endbeingattacked");
 	    targetunit.log("cannot use evade tokens [%0]",this.name);
-	},
-	endattack: function(c,h) {
-	    Weapon.prototype.endattack.call(this,c,h);
-	    targetunit.canuseevade.unwrap();
 	},
         points: 5,
     },
@@ -8146,18 +8118,14 @@ var UPGRADES= [
 	action: function(n) {
 	    var w=this.unit.weapons[0];
 	    var gat=w.getattack;
+	    var self=this;
 	    this.unit.log("-1 agility, +1 primary attack until end of turn [%0]",this.name);
 	    this.unit.wrap_after("getagility",this,function(a) {
-		var a=a-1;
-		if (a>=0) return a; else return 0;
-	    });
-	    w.getattack=function() {
-		return gat.call(w)+1;
-	    };
-	    this.unit.wrap_before_once("endround",this,function() {
-		this.getagility.unwrap();
-		w.getattack=gat;
-	    })
+		if (a>0) return a-1; else return 0;
+	    }).unwrapper("endround");
+	    w.wrap_after("getattack",this,function(a) {
+		return a+1;
+	    }).unwrapper("endround");
 	    this.unit.showstats();
 	    this.unit.endaction(n,ELITE);
 	},
@@ -8170,13 +8138,14 @@ var UPGRADES= [
 	done:true,
         init: function(sh) {
 	    var self=this;
-	    var ea=sh.endattack;
-	    sh.endattack=function(c,h) {
-		if ((c+h==0)&&this.hasfired<2) {
-		    this.log("2nd attack with %0 [%1]",sh.weapons[0].name,self.name);
+	    var gunner=-1;
+	    sh.wrap_before("endattack",this,function(c,h) {
+		if (c+h==0&&gunner<round) {
+		    gunner=round;
+		    this.log("+1 attack with primary weapon [%0]",self.name);
 		    this.selecttargetforattack(0); 
-		} else ea.call(this);
-	    };
+		}
+	    });
 	},
         type: CREW,
         points: 5,
@@ -8366,14 +8335,16 @@ var UPGRADES= [
         init: function(sh) {
 	    var ea=sh.endattack;
 	    var self=this;
-	    sh.endattack=function(c,h) {
-		if ((c+h==0)&&this.hasfired<2) {
+	    var luke=-1;
+	    sh.wrap_before("endattack",this,function(c,h) {
+		if ((c+h==0)&&luke<round) {
+		    luke=round;
 		    this.log("+1 attack with primary weapon [%0]",self.name);
 		    this.selecttargetforattack(0);
-		} else ea.call(this);
-	    };
+		}
+	    });
 	    sh.addattackmoda(this,function(m,n) {
-		return (this.hasfired==2);
+		return luke==round;
 	    }.bind(sh),function(m,n) {
 		if (m>100) return m-99; else return m;
 	    },false,"focus");
@@ -8400,7 +8371,7 @@ var UPGRADES= [
 	    });
 	},
 	uninstall:function(sh) {
-	    sh.getdial.unwrap();
+	    sh.getdial.unwrap(this);
 	},
         unique: true,
         type: CREW,
@@ -8526,12 +8497,12 @@ var UPGRADES= [
         type: CREW,
 	done:true,
 	candoaction:function() { 
-	    var a=this.unit.selectnearbyunits(1,function(a,b) { return a.team!=b.team; });
+	    var a=this.unit.selectnearbyenemy(1);
 	    return a.length>0;
 	}, 
 	action: function(n) {
 	    var self=this;
-	    var p=this.unit.selectnearbyunits(1,function(a,b) { return a.team!=b.team; });
+	    var p=this.unit.selectnearbyenemy(1);
 	    if (p.length>0) {		
 		this.unit.log("select unit [%0]",this.name);
 		this.unit.resolveactionselection(p,function(k) {
@@ -8556,7 +8527,7 @@ var UPGRADES= [
         init: function(sh) {
 	    var self=this;
 	    sh.wrap_before("beginactivationphase",this,function() {
-		var p=this.selectnearbyunits(2,function(a,b) { return a.team!=b.team; });
+		var p=this.selectnearbyenemy(2);
 		if (p.length>0) {
 		    this.doselection(function(n) {
 			this.log("select unit [%0]",self.name);
@@ -8686,8 +8657,8 @@ var UPGRADES= [
 	    sh.rebelcaptive=0;
 	    sh.wrap_before("isattackedby",this,function(w,t) {
 		if (this.rebelcaptive!=round) {//First attack this turn
-		    this.unit.log("+1 %STRESS% [%0]",self.name);
-		    this.unit.addstress();
+		    t.log("+1 %STRESS% [%0]",self.name);
+		    t.addstress();
 		    this.rebelcaptive=round;
 		}
 	    }.bind(this));
@@ -8806,7 +8777,7 @@ var UPGRADES= [
         init: function(sh) {
 	    var self=this;
 	    sh.wrap_before("begincombatphase",this,function() {
-		var p=this.selectnearbyunits(2,function(a,b) { return a.team==b.team&&a!=b; });
+		var p=this.selectnearbyally(2);
 		if (p.length>0) {
 		    p.push(this);
 		    this.doselection(function(n) {
@@ -8898,11 +8869,11 @@ var UPGRADES= [
 	candoaction: function() { return true; },	    
 	action: function(n) {
 	    var self=this;
-	    var p=this.unit.selectnearbyunits(2,function(a,b) { return a.team!=b.team; });
+	    var p=this.unit.selectnearbyenemy(2);
 	    if (p.length>0) {
 		p.push(this.unit);
 		this.unit.log("select unit (or self to cancel) [%0]",self.name);
-		    this.unit.resolveactionselection(p,function(k) {
+		this.unit.resolveactionselection(p,function(k) {
 			if (p[k]!=this) { 
 			    if (p[k].isinfiringarc(this)) this.addtarget(p[k]);
 			    this.resolveboost(n);
@@ -9184,7 +9155,7 @@ var UPGRADES= [
 			    u.showmaneuver();
 			}
 		    }
-		    this.beginactivationphase.unwrap();
+		    this.beginactivationphase.unwrap(mod);
 		    this.endnoaction(n,"MOD");
 		}.bind(this)}],"",true);
 	    })
@@ -9247,7 +9218,7 @@ var UPGRADES= [
         candoaction: function() { return true;	},
 	action: function(n) {
 	    var self=this;
-	    var p=this.unit.selectnearbyunits(2,function(s,t) { return (s.team==t.team)&&s!=t; });
+	    var p=this.unit.selectnearbyally(2);
 	    if (p.length>0) {
 		if (p.length==2) {
 		    p[0].addfocustoken(); p[1].addfocustoken();
@@ -9323,7 +9294,7 @@ var UPGRADES= [
 		["blank"],
 		function() { return 1;},
 		function(w,defender) {
-		    var p=this.unit.selectnearbyunits(2,function(s,t) { return s.team==t.team&&s!=t; });
+		    var p=this.unit.selectnearbyally(2);
 		    if (p.length==0) {
 			this.unit.log("+1 blank reroll [%0]",self.name);
 		    }
@@ -9610,7 +9581,7 @@ var UPGRADES= [
         init: function(sh) {
 	    var self=this;
 	    sh.wrap_before("begincombatphase",this,function() {
-		var p=this.selectnearbyunits(1,function(s,t) { return s.team!=t.team; });
+		var p=this.selectnearbyenemy(1);
 		if (p.length>0) {
 		    p.push(this);
 		    this.doselection(function(n) {
@@ -9744,7 +9715,7 @@ var UPGRADES= [
 	    });
 	},
 	uninstall:function(sh) {
-	    sh.getdial.unwrap();
+	    sh.getdial.unwrap(this);
 	},
         points: 1,
     },
@@ -10189,23 +10160,13 @@ var UPGRADES= [
 	done:true,
         init: function(sh) {
 	    var self=this;
-	    var hd=sh.handledifficulty;
-	    sh.handledifficulty=function(difficulty) {
-		if (this.collision) {
+	    sh.wrap_after("doendmaneuveraction",this,function() {
+		if (this.candoaction()&&this.collision) {
 		    this.log("+1 free action [%0]",self.name);
-		    this.wrap_after("candoaction",self,function(cda) {
-			// no collision test
-			if (this.stress>0||this.ocollision.template.length>0||this.ocollision.overlap>-1) return false;
-			return  true;
-
-		    });
-		    this.doaction(this.getactionlist(),"").done(function() {
-			this.stress++;
-			this.candoaction.unwrap();
-			hd.call(this,difficulty);
-		    }.bind(this));
+		    this.doaction(this.getactionlist());
+		    this.addstress();
 		}
-	    }
+	    });
 	},
         unique: true,
         points: 2,
@@ -10396,7 +10357,7 @@ var UPGRADES= [
 				this.addstress();
 				self.isactive=false;
 				self.activated=round;
-				this.preattackroll.unwrap();
+				this.preattackroll.unwrap(self);
 				this.endnoaction(n,"ILLICIT");
 			    }.bind(this)}],"",true);
 		    }
@@ -10752,7 +10713,7 @@ var UPGRADES= [
 		})
 	    },
 	    uninstall:function(sh) {
-		sh.getdial.unwrap();
+		sh.getdial.unwrap(this);
 	    }
 	},
         {
@@ -10875,6 +10836,28 @@ var UPGRADES= [
       upgrades:[BOMB],
       faction:REBEL,
       unique:true
+    },
+    {
+	name:"Ghost",
+	type:TITLE,
+	points:0,
+	unique:true,
+	ship:"VCX-100"
+    },
+    {name:"Phantom",
+     type:TITLE,
+     points:0,
+     unique:true,
+     ship:"Attack Shuttle"
+    },
+    {name:"Reinforced Deflectors",
+     points:3,
+     type:SYSTEM,
+     islarge:true
+    },
+    {name:"Targeting Astromech",
+     points:2,
+     type:ASTROMECH
     }
 ];
 var factions=["REBEL","EMPIRE"];
@@ -10895,6 +10878,7 @@ function Team(team) {
     this.team=team;
     this.isdead=false;
     this.isia=false;
+    this.initiative=false;
     this.units=[];
 }
 Team.prototype = {
@@ -11926,6 +11910,12 @@ function filltabskill() {
     tabskill=[];
     for (i=0; i<=12; i++) tabskill[i]=[];
     for (i=0; i<squadron.length; i++) tabskill[squadron[i].skill].push(squadron[i]);
+    for (i in tabskill) tabskill[i].sort(function(a,b) {
+	var xa=0,xb=0;
+	if (TEAMS[a.team].initiative==true) xa=1; 
+	if (TEAMS[b.team].initiative==true) xb=1;
+	return xb-xa;
+    });
 }
 
 var ZONE=[];
@@ -11974,7 +11964,7 @@ function nextphase() {
 		$.extend(this.squadron[i],ReplayUnit.prototype);
 
 	}*/
-	$(".permalink").hide();
+	//$(".permalink").hide();
 	break;
     case PLANNING_PHASE:
 	$("#maneuverdial").hide();
@@ -12014,7 +12004,7 @@ function nextphase() {
     case SELECT_PHASE:
 	$(".buttonbar .share-buttons").hide();
 	$(".h2 .share-buttons").show();
-	$(".permalink").hide();
+	//$(".permalink").hide();
 	$(".activeunit").prop("disabled",true);
 	$("#rightpanel").hide();
 	$("#leftpanel").hide();
@@ -12072,7 +12062,13 @@ function nextphase() {
 	}
 	TEAMS[1].endselection(s);
 	TEAMS[2].endselection(s);
-
+	if (TEAMS[1].points>TEAMS[2].points) TEAMS[2].initiative=true;
+	else {
+	    if (TEAMS[2].faction=="EMPIRE") TEAMS[2].initiative=true;
+	    else TEAMS[1].initiative=true;
+	}
+	if (TEAMS[1].initiative==true) log("TEAM #1 has initiative");
+	else log("TEAM #2 has initiative");
 	$(".activeunit").prop("disabled",false);
 	activeunit=squadron[0];
 	activeunit.select();
@@ -12210,7 +12206,7 @@ function log(str) {
     $("#log").scrollTop(10000);
 }
 function permalink(t) {
-    var s="?"+TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock(); //+"&"+JSON.stringify(ANIM);
+    var s="?"+TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock()+"&"+JSON.stringify(ANIM);
     var h=t.attr("href");
     document.location.search=s; 
     /*else {
@@ -12651,8 +12647,6 @@ $(document).ready(function() {
     }});
     var availlanguages={"en":"🇬🇧","fr":"🇫🇷"};
     LANG = localStorage['LANG'] || window.navigator.userLanguage || window.navigator.language;
-    
-    log("language = "+LANG);
     $.when(
 	$.ajax("data/ships.json"),$.ajax("data/strings."+LANG+".json"),$.ajax("data/xws.json"),$.ajax("data/setups.json")
     ).done(function(result1,result2,result3,result4) {
@@ -12781,7 +12775,7 @@ $(document).ready(function() {
 	    TEAMS[2].parseASCII(args[1]);
 	    TEAMS[2].toJSON(); // Just for points
 	    SETUP=SETUPS["Classic Map"];
-	    //if (args.length>3) ANIM=$.parseJSON(args[3]);
+	    if (args.length>3) ANIM=$.parseJSON(args[3]);
 	    phase=SELECT_PHASE;
 	    return nextphase();
 	} else {

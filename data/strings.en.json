@@ -598,7 +598,12 @@
      "'Zeb' Orrelios(Crew)":{"text":"Enemy ships inside your firing arc that you are touching are not considered to be touching you when either you or they activate during the Combat phase."},
      "Ezra Bridger(Crew)":{"text":"When attacking, if you are stressed, you may change 1 of your %FOCUS% results to a %CRIT% result."},
      "Kanan Jarrus(Crew)":{"text":"Once per round, after a friendly ship at Range 1-2 executes a white maneuver, you may remove 1 stress token from that ship."},
-     "Sabine Wren(Crew)":{"text":"Your upgrade bar gains the %BOMB% upgrade icon. Once per round, before a friendly bomb token is removed, choose 1 enemy ship at Range 1 of that token. That ship suffers 1 damage."}
+     "Sabine Wren(Crew)":{"text":"Your upgrade bar gains the %BOMB% upgrade icon. Once per round, before a friendly bomb token is removed, choose 1 enemy ship at Range 1 of that token. That ship suffers 1 damage."},
+     "Ghost":{"text":"Equip the Phantom title card to a friendly Attack Shuttle and dock it to this ship. After you execute a maneuver, you may deploy it from your rear guides."},
+     "Phantom":{"text":"While you are docked, the Ghost can perform primary weapon attacks from its special firing arc and, at the end of the Combat phase, it may perform an additional attack with an equipped %TURRET%. If it performs this attack, it cannot attack again this round."},
+     "Reinforced Deflectors":{"text":"After you suffer 3 or more damage from an attack, recover 1 shield (up to your shield value)."},
+     "Dorsal Turret":{"text":"<strong>Attack:</strong> Attack 1 ship (even a ship outside your firing arc). If the target of this attack is at Range 1, roll 1 additional attack die."},
+     "Targeting Astromech":{"text":"After you execute a red maneuver, you may acquire a target lock."}
  },
 
     "criticals":{
