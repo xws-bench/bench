@@ -481,7 +481,7 @@
     "Anti-Pursuit Lasers":{"text":
     "After an enemy ship executes a maneuver that causes it to overlap your ship, roll 1 attack die.  On a %HIT% or %CRIT% result, the enemy ship suffers 1 damage."},
     "Targeting Computer":{"text":
-    "Your action bar gains the %TARGETLOCK% action icon."},
+    "Your action bar gains the %TARGET% action icon."},
     "Hull Upgrade":{"text":
     "Increase your hull value by 1."},
     "Munitions Failsafe":{"text":
@@ -517,7 +517,7 @@
     "Dodonna's Pride":{"text":
     "When you perform a coordinate action, you may choose 2 friendly ships (instead of 1).  Those ships may each perform 1 free action."},
     "A-Wing Test Pilot":{"text":
-    "Your upgrade bar gains 1 %EVADE% upgrade icon. You cannot equip 2 of the same %EVADE% Upgrade cards.  You cannot equip this if your pilot skill value is 1 or lower."},
+    "Your upgrade bar gains 1 %ELITE% upgrade icon. You cannot equip 2 of the same %ELITE% Upgrade cards.  You cannot equip this if your pilot skill value is 1 or lower."},
     "Tantive IV":{"text":
     "Your fore section upgrade bar gains 1 additional %EVADE% and 1 additional %TEAM% upgrade icon."},
     "Bright Hope":{"text":
@@ -603,7 +603,10 @@
      "Phantom":{"text":"While you are docked, the Ghost can perform primary weapon attacks from its special firing arc and, at the end of the Combat phase, it may perform an additional attack with an equipped %TURRET%. If it performs this attack, it cannot attack again this round."},
      "Reinforced Deflectors":{"text":"After you suffer 3 or more damage from an attack, recover 1 shield (up to your shield value)."},
      "Dorsal Turret":{"text":"<strong>Attack:</strong> Attack 1 ship (even a ship outside your firing arc). If the target of this attack is at Range 1, roll 1 additional attack die."},
-     "Targeting Astromech":{"text":"After you execute a red maneuver, you may acquire a target lock."}
+     "Targeting Astromech":{"text":"After you execute a red maneuver, you may acquire a target lock."},
+     "TIE/D":{"text":"Once per round, after you perform an attack with a %CANNON% secondary weapon that costs 3 or fewer squad points, you may perform a primary weapon attack."},
+     "TIE/x7":{"text":"Your upgrade bar loses the %CANNON% and %MISSILE% upgrade icons. After executing a 3-, 4- or 5-speed maneuver, you may assign 1 evade token to your ship."},
+     "TIE Shuttle":{"text":"Your upgrade bar loses all %TORPEDO%, %MISSILE%, and %BOMB% icons and gains 2 %CREW% upgrade icons. You cannot equip a %CREW% upgrade icon that costs more than 4 squad points."}
  },
 
     "criticals":{
