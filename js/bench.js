@@ -6666,7 +6666,7 @@ var PILOTS = [
 			this.wrap_before("removefocustoken",self,function() {
 			    if (this.getrange(self)<=2) {
 				this.focus++; // compensate
-				self.log("-1 %FOCUS% [%0]",this);
+				self.log("-1 %FOCUS% [%0]",this.name);
 				self.removefocustoken();
 			    }
 			}).unwrapper("endattack");
@@ -7166,7 +7166,7 @@ var PILOTS = [
 	faction:EMPIRE,
 	done:true,
 	unit:"TIE Bomber",
-	skill:2,
+	skill:5,
 	points:19,
 	upgrades:[ELITE,TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB]
     }
@@ -8014,7 +8014,7 @@ var UPGRADES= [
 	    var r=-1;
 	    var ea=sh.endattack;
 	    sh.endattack=function(c,h) {
-		if (r<round&&this.weapons[this.activeweapon]==m) {
+		if (r<round&&this.usedweapon>-1&&this.weapons[this.usedweapon]==m) {
 		    this.log("2nd attack with %0 [%1]",m.name,m.name);
 		    r=round;
 		    this.resolveattack(this.activeweapon,targetunit); 
