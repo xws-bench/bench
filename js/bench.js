@@ -9313,6 +9313,18 @@ var UPGRADES= [
 		    return p.length==0; 
 		}.bind(this)
 	    )
+	    sh.adddefensererolld(
+		this,
+		["blank"],
+		function() { return 1;},
+		function(w,defender) {
+		    var p=this.unit.selectnearbyally(2);
+		    if (p.length==0) {
+			this.unit.log("+1 blank reroll [%0]",self.name);
+		    }
+		    return p.length==0; 
+		}.bind(this)
+	    )
 	},
         unique: true,
         type: ELITE,
