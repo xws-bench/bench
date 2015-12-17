@@ -717,7 +717,7 @@ function Unit(team) {
     this.upgrades=[];
     this.removeupg=[];
     this.criticals=[];
-    for (i=0; i<10; i++) this.removeupg[i]=Unit.prototype.defaultremoveupg;
+    for (i=0; i<=10; i++) this.removeupg[i]=Unit.prototype.defaultremoveupg;
     this.stats="<td class='stats' id='stats"+id+"'></td>";
     this.actions="<td class='actions' id='actions"+id+"'></td>";
     this.DEFENSEREROLLD=[];
@@ -732,6 +732,8 @@ Unit.prototype = {
     tosquadron: function(s) {
 	var upgs=this.upg;
 	//log(this.name+" has touching");
+	this.usedweapon=-1;
+	this.activeweapon=-1;
 	this.touching=[];
 	this.maneuver=-1;
 	this.action=-1;
@@ -743,7 +745,6 @@ Unit.prototype = {
 	this.focus=0;
 	this.lastmaneuver=-1;
 	this.iscloaked=false;
-	this.target=0;
 	this.istargeted=[];
 	this.targeting=[];
 	this.stress=0;
@@ -755,7 +756,9 @@ Unit.prototype = {
 	this.m=new Snap.Matrix(); 
 	this.collision=false;
 	this.ocollision={overlap:-1,template:[],mine:[]};
-	for (j in upgs) if (upgs[j]>-1) Upgradefromid(this,upgs[j])
+	var uu=[];
+	for (j in upgs) if (upgs[j]>-1) uu.push(Upgradefromid(this,upgs[j]));
+	for (j=0;j<uu.length; j++) if (typeof uu[j].init=="function") uu[j].init(this);
 	this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
 	var img=this.ship.img[0];
 
@@ -874,7 +877,7 @@ Unit.prototype = {
 		    this.dragstop.bind(this));
 	this.addstdmod();
     },
-    wrap_after: function (name,org,after) {
+    wrap_after: function (name,org,after,unwrap) {
 	var self=this;
 	var save=self[name];
 	var f=function () {
@@ -894,11 +897,21 @@ Unit.prototype = {
 	    });
 	}
 	f.unwrap=function(o) { 
-	    if (f.org==o||typeof f.save.unwrap!="function") self[name]=f.save;
-	    else f.save=f.save.unwrap(o); 
+	    if (f.org==o||typeof f.save.unwrap!="function") {
+		self[name]=f.save;
+		if (typeof unwrap=="function") unwrap.call(self);
+		if (name=="getskill") {
+		    filltabskill();
+		}
+		self.show();
+	    } else f.save=f.save.unwrap(o);
+	    self.show();
 	    return f.save;
 	}
 	this[name]=f;
+	if (name=="getskill") {
+	    filltabskill();
+	}
 	return f;
     },
     wrap_before_once: function(name,org,before) {
@@ -918,7 +931,7 @@ Unit.prototype = {
 	this[name]=f;
 	return f;
     },
-    wrap_before: function(name,org,before) {
+    wrap_before: function(name,org,before,unwrap) {
 	var self=this;
 	var save=self[name];
 	var f=function () {
@@ -931,14 +944,17 @@ Unit.prototype = {
 	f.save=save;
 	f.org=org;
 	f.unwrapper=function(name2) {
-	    var uw=self.wrap_before(name2,self,function() {
+	    var uw=self.wrap_before(name2,org,function() {
 		f.unwrap(org);
 		uw.unwrap(org);
 	    });
 	}
 	f.unwrap=function(o) {
-	    if (f.org==o||typeof f.save.unwrap!="function") self[name]=f.save;
-	    else f.save=f.save.unwrap(o); 
+	    if (f.org==o||typeof f.save.unwrap!="function") {
+		self[name]=f.save;
+		if (typeof unwrap=="function") unwrap.call(self);
+		self.show();
+	    } else f.save=f.save.unwrap(o);
 	    return f.save;
 	}
 	this[name]=f;
@@ -1053,6 +1069,9 @@ Unit.prototype = {
     },
     getagility: function() {
 	return this.agility;
+    },
+    getskill: function() {
+	return this.skill;
     },
     getdial: function() {
 	if ((this.ionized>0&&!this.islarge) || this.ionized>1) {
@@ -1195,7 +1214,7 @@ Unit.prototype = {
 	    if (typeof u.islarge != "undefined" 
 		&& this.islarge!=true) continue;
 	    if (typeof u.skillmin != "undefined" 
-		&& this.skill<u.skillmin) continue;
+		&& this.getskill()<u.skillmin) continue;
 	    if (typeof u.noupgrades != "undefined" 
 		&& p.upgrades.indexOf(u.noupgrades)>-1) continue;
 	    if (typeof u.actionrequired != "undefined"
@@ -1345,6 +1364,29 @@ Unit.prototype = {
 		this.defaultremoveupg.call(this,upgid,reset);
 	    }.bind(this);
 	}
+	var lost=UPGRADES[upgrade].lostupgrades;
+	if (typeof lost!="undefined") {
+	    var i,j;
+	    var rupg=[];
+	    for (i=0; i<lost.length; i++) 
+		for (j=0; j<10; j++) 
+		    if (upgid!=j&&$("#upgradetext"+this.id+"_"+j+" ."+lost[i]).length>0) {
+			rupg.push(j);
+		    }
+	    for (i=0; i<rupg.length; i++) {
+		$("#upgrade"+this.id+"_"+rupg[i]).val(-1).change();
+		$("#upgrade"+this.id+"_"+rupg[i]).prop("disabled",true);
+	    }
+	    var save=this.removeupg[upgid];
+	    if (typeof save=="undefined") save=this.defaultremoveupg;
+	    this.removeupg[upgid]=function(upgid,reset) {
+		for (j=0; j<rupg.length; j++) {
+		    $("#upgrade"+this.id+"_"+rupg[j]).prop("disabled",false);
+		}
+		save.call(this,upgid,reset);
+		this.removeupg[upgid]=this.defaultremoveupg;
+	    }.bind(this);
+	}
 
 	var upgaddons=UPGRADES[upgrade].upgrades;
 	/* Adds more upgrade types */
@@ -1352,6 +1394,8 @@ Unit.prototype = {
 	    for (var j=0; j<upgaddons.length; j++)
 		this.addupgradetype(upgaddons[j],this.upgradesno+j,UPGRADES[upgrade].pointsupg);
 	    $("#upgrade"+this.id+"_"+upgid).prop("start",this.upgradesno);
+	    var saveadd=this.removeupg[upgid];
+	    if (typeof saveadd=="undefined") saveadd=this.defaultremoveupg;
 	    this.removeupg[upgid]=function(upgid,reset) {
 		var upgrade=this.upg[upgid];
 		var upgaddons=UPGRADES[upgrade].upgrades;
@@ -1361,7 +1405,7 @@ Unit.prototype = {
 		    this.removeupg[j].call(this,j,true);
 		}
 		this.upgradesno-=upgaddons.length;
-		this.defaultremoveupg(upgid,reset);
+		saveadd.call(this,upgid,reset);
 		this.removeupg[upgid]=this.defaultremoveupg;
 	    }.bind(this);
 	    this.upgradesno+=upgaddons.length;
@@ -1762,7 +1806,7 @@ Unit.prototype = {
     getcollidingunits: function(m) {
 	var i;
 	var c=[];
-	for (i=0; i<squadron.length; i++) {
+	for (i in squadron) {
 	    var sh=squadron[i];
 	    if (sh!=this)
 		if (this.iscollidingunit(m,sh)) c.push(sh);
@@ -1791,7 +1835,7 @@ Unit.prototype = {
 	    if (c.overlap>-1||c.mine.length>0||c.template.length>0) return YELLOW;
 	}
  	if (withcollisions) {
-	    for (k=0; k<squadron.length; k++) {
+	    for (k in squadron) {
 		var u=squadron[k];
 		var um=u.m;
 		if (u==this) continue;
@@ -1903,11 +1947,13 @@ Unit.prototype = {
 	$("#"+this.id).attr("onclick","");
 	$("#"+this.id).addClass("dead");
 	$("#"+this.id).html(""+this)
-	for (i=0; i<squadron.length; i++) {
+	i=squadron.indexOf(this);
+	for (i in squadron) {
 	    if (squadron[i]==this) {
-		squadron.splice(i,1); break;
+		delete squadron[i]; break;
 	    }
 	}
+	filltabskill();
 	/* Remove targets of dead unit */
 	for (i=0; i<this.targeting.length; i++) {
 	    var t=this.targeting[i];
@@ -1930,12 +1976,12 @@ Unit.prototype = {
 	this.geffect.attr({display:"none"});
 	this.log("has exploded!");
 	this.show();
-	squadron[0].select();
+	//squadron[0].select();
 	if (TEAMS[this.team].checkdead()) win();	
 	SOUNDS.explode.play();
     },
     canbedestroyed: function() {
-	if (skillturn!=this.skill) return true;
+	if (skillturn!=this.getskill()) return true;
 	return false;
     },
     checkdead: function() {
@@ -2010,6 +2056,7 @@ Unit.prototype = {
 	} 
 	targetunit.endbeingattacked(c,h);
 	this.weapons[this.activeweapon].endattack(c,h);
+	this.usedweapon=this.activeweapon;
 	this.endattack(c,h);
 	if (targetunit.canbedestroyed(skillturn)) targetunit.checkdead();
 	this.cleanupattack();
@@ -2086,7 +2133,7 @@ Unit.prototype = {
 	var dist=0;
 	NOLOG=true;
 	
-	for (j=0; j<squadron.length; j++) {
+	for (j in squadron) {
 	    var u=squadron[j];
 	    if (u.team!=this.team) {
 		var a=0;
@@ -2313,7 +2360,7 @@ Unit.prototype = {
     gettargetableunits: function(n) {
 	var p=[];
 	var i;
-	for (i=0; i<squadron.length; i++) {
+	for (i in squadron) {
 	    if (squadron[i].team!=this.team
 		&&this.getrange(squadron[i])<=n) {
 		    p.push(squadron[i]);
@@ -2323,7 +2370,7 @@ Unit.prototype = {
     },
     selectnearbyunits: function(n,f) {
 	var p=[];
-	for (var i=0; i<squadron.length; i++) {
+	for (var i in squadron) {
 	    if (f(this,squadron[i])&&(this.getrange(squadron[i])<=n)) p.push(squadron[i]);
 	}
 	return p;
@@ -2454,7 +2501,7 @@ Unit.prototype = {
     getattackmodtokens: function(m,n) {
 	var str="";
 	var i,j;
-	for (me=0; me<squadron.length; me++) if (squadron[me]==this) break;
+	for (me in squadron) if (squadron[me]==this) break;
 	for (i=0; i<ATTACKMODA.length; i++) {
 	    var a=ATTACKMODA[i];
 	    if (a.req(m,n)) {
@@ -2489,7 +2536,7 @@ Unit.prototype = {
     getdefensemodtokens: function(m,n) {
 	var str="";
 	var i,j;
-	for (me=0; me<squadron.length; me++) if (squadron[me]==this) break;
+	for (me in squadron) if (squadron[me]==this) break;
 	for (i=0; i<DEFENSEMODD.length; i++) {
 	    var a=DEFENSEMODD[i];
 	    if (a.req(m,n)) {
@@ -2575,7 +2622,7 @@ Unit.prototype = {
 		   "class":"animated"}).appendTo(VIEWPORT);
 	//console.log("resolveattack:"+this.name+" "+attack+"/"+defense);
 	this.select();	
-	for (i=0; i<squadron.length; i++) if (squadron[i]==this) break;
+	for (i in squadron) if (squadron[i]==this) break;
 	this.preattackroll(w,targetunit);
 	//this.log("do selection resolveattack");
 	this.doselection(function(n) {
@@ -2592,16 +2639,9 @@ Unit.prototype = {
 	this.showattack(forced);
     },
     doattackroll: function(ar,da,defense,me,n) {
-	var i,j;
-	$("#attackdial").empty();
-	$("#dtokens").empty();
-	$("#defense").empty();
-	for (i=0; i<DICES.length; i++) $("."+DICES[i]+"dice").remove();
 	displayattackroll(ar,da);
-	$("#atokens").html(this.getattackrerolltokens()+this.getattackmodtokens(ar,da));
-	$("#atokens").append("<button>");
-	$("#atokens > button").addClass("m-done").click(function() {
-	    $("#atokens").empty();
+	this.ar=ar; this.da=da;
+	displayattacktokens(this,function() {
 	    record("doattackroll",-1);
 	    targetunit.defenseroll(defense).done(function(r) {
 		targetunit.dodefenseroll(r.roll,r.dice,me,n);
@@ -2610,18 +2650,13 @@ Unit.prototype = {
     },
     dodefenseroll: function(dr,dd,me,n) {
 	var i,j;
+	this.dr=dr; this.dd=dd;
 	displaydefenseroll(dr,dd);
-	for (j=0; j<squadron.length; j++) if (squadron[j]==this) break;
-	$("#dtokens").html(this.getdefensererolltokens()+this.getdefensemodtokens(dr,dd));
-	$("#dtokens").append("<button>");
-	$("#dtokens > button").addClass("m-fire")
-	    .click(function() {
-		record("dodefenseroll",1);
-		$("#combatdial").hide();
-		this.resolvedamage();
-		this.endnoaction(n,"incombat");
-	    }.bind(squadron[me]));
-	//console.log("showdefenseroll:"+this.name);
+	displaydefensetokens(this,function() {
+	    record("dodefenseroll",1);
+	    this.resolvedamage();
+	    this.endnoaction(n,"incombat");
+	}.bind(squadron[me]));
     },
     getmatrixwithmove: function(mm,path, len) {
 	var lenC = path.getTotalLength();
@@ -2851,7 +2886,7 @@ Unit.prototype = {
 	    this.resolveattack(wp,target);
 	    return true;
 	} 
-	var p=this.weapons[wp].getrangeallenemies();
+	var p=this.weapons[wp].getenemiesinrange();
 	if (p.length==0) {
 	    this.log("no target for %0",this.weapons[wp].name);
 	    this.cleanupattack();
@@ -2870,18 +2905,11 @@ Unit.prototype = {
 	var wn=[];
 	var i,j,w;
 	$("#attackdial").hide();
-	if (forced==true || (phase==COMBAT_PHASE&&skillturn==this.skill)) {
+	if (forced==true || (phase==COMBAT_PHASE&&skillturn==this.getskill())) {
 	    if (this.canfire()) {
-		var r=this.gethitrangeallunits();
+		var r=this.getenemiesinrange();
 		$("#attackdial").empty();
-		for (i=1; i<=3; i++) {
-		    for (j=0; j<r[i].length; j++) {
-			for (w=0; w<r[i][j].wp.length; w++) {
-			    var wp=r[i][j].wp[w];
-			    if (wn.indexOf(wp)==-1) wn.push(wp);
-			}
-		    }
-		}
+		for (w=0; w<this.weapons.length; w++) if (r[w].length>0) wn.push(w);
 		for (i=0; i<wn.length; i++) {
 		    var w=A[this.weapons[wn[i]].type.toUpperCase()];
 		    str+="<div class='symbols "+w.color+"' onclick='record("+this.id+","+i+",\"selecttargetforattack\"); activeunit.selecttargetforattack("+wn[i]+")'>"+w.key+"</div>"
@@ -2905,7 +2933,7 @@ Unit.prototype = {
 	return true;
     },
     candropbomb: function() {
-	return (this.lastdrop!=round&&this.skill==skillturn);
+	return (this.lastdrop!=round&&this.getskill()==skillturn);
     },
     addactivationdial: function(pred,action,html,elt) {
 	this.activationdial.push({pred:pred,action:action,html:html,elt:elt});
@@ -3103,8 +3131,7 @@ Unit.prototype = {
 	if (phase==SELECT_PHASE||phase==CREATION_PHASE) return this.toString2();
 	var i;
 	var n=8;
-	for (i=0; i<squadron.length; i++) if (this==squadron[i]) break;
-	if (i==squadron.length) i=-1;;
+	i = squadron.indexOf(this);
 	if (i==-1) str="<div class='dead '>"; else str="<div>";
 	n+=this.upgrades.length*2;
 	if (this.hull+this.shield<=n) {
@@ -3136,7 +3163,7 @@ Unit.prototype = {
 		str+="<div class='vertical outoverflow stat2'><div class='shield'>"+repeat("u ",this.shield-n+this.hull)+"</div></div>";
 	    }    
 	}
-	str+="<div><div class='statskill'>"+this.skill+"</div>";
+	str+="<div><div class='statskill'>"+this.getskill()+"</div>";
 	var text=PILOT_translation[this.name+(this.faction=="SCUM"?" (Scum)":"")];
 	var t=text;
 	var name;
@@ -3235,7 +3262,7 @@ Unit.prototype = {
     showstats: function() {
 	if (phase==SELECT_PHASE||phase==CREATION_PHASE) {
 	    $("#stats"+this.id).html(
-		"<div class='PS'>"+this.skill+"</div>"
+		"<div class='PS'>"+this.getskill()+"</div>"
 		    +"<div class='statfire'>"+this.weapons[0].getattack()+"</div>"
 		    +"<div class='statevade'>"+this.getagility()+"</div>"
 		    +"<div class='statshield'>"+this.shield+"</div>"
@@ -3246,7 +3273,7 @@ Unit.prototype = {
 		this.log("undefined skillbar?");
 		return;
 	    }
-	    this.skillbar.attr({text:repeat('u',this.skill)});
+	    this.skillbar.attr({text:repeat('u',this.getskill())});
 	    this.firebar.attr({text:repeat('u',this.weapons[0].getattack())});
 	    this.evadebar.attr({text:repeat('u',this.getagility())});
 	    this.hullbar.attr({text:repeat('u',this.hull)});
@@ -3275,14 +3302,14 @@ Unit.prototype = {
 	return (this==activeunit&&this.hasmoved&&!this.actiondone&&phase==ACTIVATION_PHASE);
     },
     timeformaneuver: function() {
-	return (this==activeunit&&this.maneuver>-1&&!this.hasmoved&&this.skill==skillturn&&subphase==ACTIVATION_PHASE);
+	return (this==activeunit&&this.maneuver>-1&&!this.hasmoved&&this.getskill()==skillturn&&subphase==ACTIVATION_PHASE);
     },
     show: function() {
 	var i;
 	if (typeof this.g=="undefined") return;
 	if (typeof this.skillbar=="undefined") {
 	    this.log("show:skillbar undefined");
-	    for (i=0; i<squadron.length; i++) {
+	    for (i in squadron) {
 		squadron[i].log("im here");
 	    }
 	}
@@ -3548,24 +3575,13 @@ Unit.prototype = {
 	var gr=this.weapons[w].getrange(sh);
 	return gr;
     },
-    gethitrangeallunits: function() {
+    getenemiesinrange: function() {
 	var str='';
 	var k,i;
-	var range=[[],[],[],[],[]];
-	for(i=0; i<squadron.length; i++) {
-	    var sh=squadron[i];
-	    if (sh!=this) 
-		for (k=0; k<this.weapons.length; k++){
-		    var r=this.gethitrange(k,sh);
-		    //log("ghrau "+sh.name+" in range "+r+" with "+this.weapons[k].name);
-		    if (r>0) {
-			for (j=0; j<range[r].length; j++) if (range[r][j].unit==i) break;
-			//log("["+this.name+"] can fire "+sh.name+"/"+this.weapons[k].name);
-			if (j<range[r].length) range[r][j].wp.push(k);
-			else range[r].push({unit:i,wp:[k]});
-		    }
-		}
-	};
+	var range=[];
+	for(i=0; i<this.weapons.length; i++) {
+	    range[i]=this.weapons[i].getenemiesinrange();
+	}
 	return range;
     },
     getrange: function(sh) {
@@ -3626,7 +3642,7 @@ Unit.prototype = {
 
     getrangeallunits: function() {
 	var range=[[],[],[],[],[]],i;
-	for (i=0; i<squadron.length; i++) {
+	for (i in squadron) {
 	    var sh=squadron[i];
 	    if (sh!=this) {
 		var k=this.getrange(sh);
@@ -3650,7 +3666,7 @@ IAUnit.prototype= {
 	//log("computing all enemy positions");
 	// Find all possible future positions of enemies
 	var k=0;
-	for (i=0; i<squadron.length; i++) {
+	for (i in squadron) {
 	    var u=squadron[i];
 	    if (u.team!=this.team) {
 		if (u.meanmround!=round) u.evaluatemoves(false,false);
@@ -3829,12 +3845,15 @@ IAUnit.prototype= {
 	return this.enqueueaction(function(n) {
 		this.select();
 		if (typeof str!="undefined") this.log(str);
-		var grlu=this.gethitrangeallunits();
 		var a=null;
 		for (i=0; i<list.length; i++) {
 		    if (list[i].type=="CRITICAL") { a=list[i]; break; }
-		    else if (list[i].type=="EVADE") {
-			if (grlu[1].length==0&&grlu[2].length==0&&grlu[3].length==0&&this.candoevade()) { a=list[i]; break; }
+		    else if (list[i].type=="EVADE"&&this.candoevade()) {
+			var noone=true;
+			var grlu=this.getenemiesinrange();
+			for (i=0; i<grlu.length; i++) 
+			    if (grlu[i].length>0) { noone=false; break; }
+			if (noone) { a=list[i]; break; }
 		    } else if (list[i].type=="FOCUS") {
 			if (this.candofocus()) { a=list[i]; break; }
 		    } else { a = list[i]; break }
@@ -3879,15 +3898,18 @@ IAUnit.prototype= {
 	    if (this.candoaction()) {
 		this.select();
 		if (typeof str!="undefined") this.log(str);
-		var grlu=this.gethitrangeallunits();
 		var a=null;
 		for (i=0; i<list.length; i++) {
 		    //this.log("action possible:"+list[i].type);
 		    if (list[i].type=="CRITICAL") { a=list[i]; break; }
 		    else if (list[i].type=="CLOAK"&&this.candocloak()) {
 			a=list[i]; break;
-		    } else if (list[i].type=="EVADE") {
-			if (grlu[1].length==0&&grlu[2].length==0&&grlu[3].length==0&&this.candoevade()) { a=list[i]; break; }
+		    } else if (list[i].type=="EVADE"&&this.candoevade()) {
+			var noone=true;
+			var grlu=this.getenemiesinrange();
+			for (i=0; i<grlu.length; i++) 
+			    if (grlu[i].length>0) { noone=false; break; }
+			if (noone) { a=list[i]; break; }
 		    } else if (list[i].type=="FOCUS") {
 			if (this.candofocus()) { a=list[i]; break; }
 		    } else { a = list[i]; break }
@@ -3911,8 +3933,9 @@ IAUnit.prototype= {
 	    var i,w;
 	    if (this.canfire()) {
 		NOLOG=true;
+		var r=this.getenemiesinrange();
 		for (w=0; w<this.weapons.length; w++) {
-		    var el=this.weapons[w].getrangeallenemies();
+		    var el=r[w];
 		    for (i=0;i<el.length; i++) {
 			var p=this.getattackstrength(w,el[i]);
 			if (p>power) { 
@@ -3990,7 +4013,7 @@ IAUnit.prototype= {
     dodefenseroll: function(dr,dd,me,n) {
 	var i,j;
 	displaydefenseroll(dr,dd);
-	for (j=0; j<squadron.length; j++) if (squadron[j]==this) break;
+	for (j in squadron) if (squadron[j]==this) break;
 	// Add modifiers
  	var doreroll=function(a,i) {
 	    var s=0;
@@ -4129,8 +4152,18 @@ var PILOTS = [
 	done:true,
         init: function() {
 	    var biggs=this;
-	    Weapon.prototype.wrap_after("getrangeallenemies",this,function(r) {
+	    Weapon.prototype.wrap_after("getenemiesinrange",this,function(r) {
 		if (r.indexOf(biggs)>-1) r=[biggs];
+		return r;
+	    });
+	    Unit.prototype.wrap_after("getenemiesinrange",this,function(r) {
+		var found=false;
+		var p=[],i;
+		for (i=0; i<this.weapons.length; i++) {
+		    if (r[i].indexOf(biggs)>-1) { p[i]=r[i]; found=true; }
+		    else p[i]=[];
+		}
+		if (found) return p;
 		return r;
 	    });
 	},
@@ -4874,29 +4907,21 @@ var PILOTS = [
         unit: "HWK-290",
         skill: 4,
 	begincombatphase: function() {
-	    if (!this.dead) {
-		var p=this.selectnearbyally(3);
-		if (p.length>0) {
-		    this.doselection(function(n) {
-			this.log("select unit for 12 PS");
-			this.resolveactionselection(p,function(k) {
-			    if (k>-1) {
-				p[k].oldskill=p[k].skill;
-				p[k].skill=12;
-				filltabskill();
-				p[k].showstats();
-				this.log("has PS of 12");
-				p[k].endcombatphase=function() {
-				    this.skill=this.oldskill;
-				    filltabskill();
-				    this.hasfired=0;
-				    this.showstats();
-				}.bind(p[k]);
-			    }
-			    this.endnoaction(n,"");
-			}.bind(this));
-		    }.bind(this));
-		};
+	    var self=this;
+	    var p=this.selectnearbyally(3);
+	    if (p.length>0) {
+		this.doselection(function(n) {
+		    this.log("select unit for 12 PS");
+		    this.resolveactionselection(p,function(k) {
+			if (k>-1) {
+			    p[k].log("has PS of 12");
+			    p[k].wrap_after("getagility",self,function(s) {
+				return 12;
+			    }).unwrapper("endcombatphase");
+			}
+			this.endnoaction(n,"");
+		    });
+		}.bind(this));
 	    }
 	    return Unit.prototype.begincombatphase.call(this);
 	},     
@@ -5314,7 +5339,7 @@ var PILOTS = [
         attackroll:function(n) {
 	    var ar=Unit.prototype.attackroll;
 	    var r=ar.call(this,n);
-	    if (targetunit.istargeted.length>0&&this.target==0) {
+	    if (targetunit.istargeted.length>0&&this.targeting.length==0) {
 		this.addtarget(targetunit);
 		this.log("+%1 %TARGET% / %0",targetunit.name,1);	
 	    }
@@ -5565,7 +5590,7 @@ var PILOTS = [
         name: "Tarn Mison",
 	done:true,
         isattackedby: function(w,a) {
-	    if (this.target==0||this.skill<a.skill) { // TODO:Priority to define
+	    if (this.targeting.length==0||this.getskill()<a.getskill()) { // TODO:Priority to define
 		this.log("+%1 %TARGET% / %0",a.name,1);
 		this.addtarget(a);
 	    }
@@ -5847,7 +5872,7 @@ var PILOTS = [
 	/* TODO : may only do the action */
 	begincombatphase: function() {
 	    if (!this.dead) {
-		var p=this.gettargetableunits(1);
+		var p=this.selectnearbyenemy(1);
 		if (p.length>0) {
 		    this.log("+1 %FOCUS%, ennemy at range 1");
 		    this.addfocustoken();
@@ -6302,30 +6327,18 @@ var PILOTS = [
         unique: true,
 	done:true,
         endactivationphase: function() {
-	    if (!this.dead) {
-		var p=this.gettargetableunits(2);
-		if (p.length>0) {
-		    this.doselection(function(n) {
-			this.log("select unit for a 0 PS");
-			this.resolveactionselection(p,function(k) {
-			    if (this!=p[k]) {
-				var ecp=p[k].endcombatphase;
-				p[k].oldskill=p[k].skill;
-				p[k].skill=0;
-				filltabskill();
-				p[k].show();
-				p[k].log("PS set to 0 for this combat");
-				p[k].endcombatphase=function() {
-				    this.skill=this.oldskill;
-				    filltabskill();
-				    this.show();
-				    ecp.call(this);
-				};
-			    }
-			    this.endnoaction(n,"");
-			}.bind(this));
+	    var self=this;
+	    var p=this.selectnearbyenemy(2);
+	    if (p.length>0) {
+		this.doselection(function(n) {
+		    this.log("select unit for a 0 PS");
+		    this.resolveactionselection(p,function(k) {
+			p[k].wrap_after("getskill",self,function(s) {
+			    return 0;
+			}).unwrapper("endcombatphase");
+			this.endnoaction(n,"");
 		    }.bind(this));
-		}
+		}.bind(this));
 	    }
 	},  
 	faction:SCUM,
@@ -6645,15 +6658,20 @@ var PILOTS = [
 	    done:true,
 	    init: function() {
 		var self=this;
-		var cuf=Unit.prototype.canusefocus;
-		var rft=Unit.prototype.removefocustoken;
-		Unit.prototype.canusefocus=function() {
-		    return (cuf.call(this)||(this.incombat>-1&&this!=self&&this.getrange(self)<=2&&self.canusefocus()));
-		}
-		Unit.prototype.removefocustoken=function() {
-		    if (this.focus>0) rft.call(this);
-		    else if (this.incombat>-1&&this!=self&&this.getrange(self)<=2&&self.canusefocus()) rft.call(self);
-		}
+		Unit.prototype.wrap_before("beginattack",this,function() {
+		    if (this!=self&&this.team==self.team) {
+			this.wrap_after("canusefocus",self,function(b) {
+			    return b||(self.canusefocus()&&this.getrange(self)<=2);
+			}).unwrapper("endattack");
+			this.wrap_before("removefocustoken",self,function() {
+			    if (this.getrange(self)<=2) {
+				this.focus++; // compensate
+				self.log("-1 %FOCUS% [%0]",this);
+				self.removefocustoken();
+			    }
+			}).unwrapper("endattack");
+		    }
+		})
 	    }
         },
         {
@@ -7142,6 +7160,15 @@ var PILOTS = [
 	    });
 	},
 	upgrades:[]
+    },
+    {
+	name:"Gamma Squadron Veteran",
+	faction:EMPIRE,
+	done:true,
+	unit:"TIE Bomber",
+	skill:2,
+	points:19,
+	upgrades:[ELITE,TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB]
     }
 ];
 /* 31/06/15: XW FAQ with Garven Dreis 
@@ -7191,7 +7218,7 @@ function Bomb(sh,bdesc) {
     this.unit=sh;
     sh.bombs.push(this);
     this.exploded=false;
-    if (this.init != undefined) this.init(sh);
+    //if (this.init != undefined) this.init(sh);
 }
 Bomb.prototype = {
     isWeapon: function() { return false; },
@@ -7225,7 +7252,7 @@ Bomb.prototype = {
     },
     getrangeallunits: function () { 
 	var range=[[],[],[],[],[]],i;
-	for (i=0; i<squadron.length; i++) {
+	for (i in squadron) {
 	    var sh=squadron[i];
 	    var k=this.getrange(sh);
 	    if (k>0) range[k].push({unit:i});
@@ -7235,7 +7262,7 @@ Bomb.prototype = {
     getcollisions: function() {
 	var ob=this.getOutlineString();
 	var p=[];
-	for (i=0; i<squadron.length; i++) {
+	for (i in squadron) {
 	    var u=squadron[i];
 	    var so=u.getOutlineString(u.m);
 	    os=so.s;
@@ -7379,7 +7406,7 @@ function Weapon(sh,wdesc) {
     if (this.type.match("Missile|Torpedo")) this.ordnance=sh.ordnance;
     this.unit=sh;
     sh.weapons.push(this);
-    if (this.init != undefined) this.init(sh);
+    //if (this.init != undefined) this.init(sh);
 }
 Weapon.prototype = {
     isBomb: function() { return false; },
@@ -7394,7 +7421,7 @@ Weapon.prototype = {
 	    for (i=0; i<r.length; i++) if (r[i].team!=this.unit.team) break;
 	    if (i==r.length) c="class='nofire'"
 	}
-	for (var i=0; i<squadron.length; i++) if (squadron[i]==this.unit) break;
+	for (var i in squadron) if (squadron[i]==this.unit) break;
 	a="<td><button class='statfire'";
 	a+=" onclick='if (!squadron["+i+"].dead) squadron["+i+"].togglehitsector(\""+this.name.replace(/\'/g,"&#39;")+"\")'";
 	a+=">"+this.getattack()+"<span class='symbols'>"+A[this.type.toUpperCase()].key+"</span>"
@@ -7434,7 +7461,7 @@ Weapon.prototype = {
     modifydamagegiven: function(ch) { return ch; },
     modifydamageassigned: function(ch,t) { return ch; },
     canfire: function(sh) {
-	if (!this.isactive) return false;
+	if (!this.isactive||this.unit.team==sh.team) return false;
 	if (this.unit.checkcollision(sh)) return false;
 	if (typeof this.getrequirements()!="undefined") {
 	    var s="Target";
@@ -7503,21 +7530,19 @@ Weapon.prototype = {
 	    if (this.ordnance) this.ordnance=false; else this.isactive=false;
 	}
     },
-    getrangeallenemies: function() {
+    getenemiesinrange: function() {
 	var i;
 	var r=[];
-	for (i=0; i<squadron.length; i++) {
+	for (i in squadron) {
 	    var sh=squadron[i];
-	    if ((this.unit.team!=sh.team)
-		&&(this.getrange(sh)>0)
-		&&r.indexOf(sh)==-1) r.push(sh);
+	    if (this.unit.team!=sh.team&&this.getrange(sh)>0) r.push(sh);
 	}
 	return r;
     },
     getrangeallunits: function() {
 	var i;
 	var r=[];
-	for (i=0; i<squadron.length; i++) {
+	for (i in squadron) {
 	    var sh=squadron[i];
 	    if ((this.unit!=sh)&&(this.getrange(sh)>0)) r.push(sh);
 	}
@@ -7537,7 +7562,7 @@ function Upgrade(sh,i) {
 	var added=addedaction.toUpperCase();
 	sh.shipactionList.push(added);
     }
-    if (typeof this.init != "undefined") this.init(sh);
+    //if (typeof this.init != "undefined") this.init(sh);
 }
 function Upgradefromid(sh,i) {
     var upg=UPGRADES[i];
@@ -7876,27 +7901,19 @@ var UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    sh.wrap_before("begincombatphase",this,function() {
-		var p=sh.selectnearbyunits(1,function(a,b) { return a.team==b.team&&a!=b&&a.skill>b.skill; });
+		var p=sh.selectnearbyunits(1,function(a,b) { return a.team==b.team&&a!=b&&a.getskill()>b.getskill(); });
 		if (p.length>0) {
 		    this.doselection(function(n) {
 			this.log("select unit [%0]",self.name);
 			this.resolveactionselection(p,function(k) {
-			    var u=p[k];
-			    u.log("PS set to %1 [%0]",self.name,this.skill);
-			    this.u=u;
-			    this.oldskill=u.skill;
-			    u.skill=this.skill;
-			    filltabskill();
-			    u.show();
-			    this.wrap_before_once("endcombatphase",this,function() {
-				this.u.skill=this.oldskill;
-				filltabskill();
-				this.u.show();
-			    });
+			    p[k].log("PS set to %1 [%0]",self.name,this.getskill());
+			    p[k].wrap_after("getskill",self,function(s) {
+				return sh.getskill();
+			    }).unwrap("endcombatphase");
 			    this.endnoaction(n,"ELITE");
 			}.bind(this));
 		    }.bind(this));
-		} 
+		}
 	    });
 	}
     },
@@ -7907,12 +7924,12 @@ var UPGRADES= [
         type: ELITE,
         points: 2,
 	candoaction: function() {  
-	    var p=this.unit.selectnearbyunits(2,function(t,s) { return t.team==s.team&&s!=t&&s.skill<t.skill&&s.candoaction();});
+	    var p=this.unit.selectnearbyunits(2,function(t,s) { return t.team==s.team&&s!=t&&s.getskill()<t.getskill()&&s.candoaction();});
 	    return (p.length>0);
 	},
 	action: function(n) {
 	    var unit=this.unit;
-	    var p=this.unit.selectnearbyunits(2,function(t,s) { return t.team==s.team&&s!=t&&s.skill<t.skill&&s.candoaction();});
+	    var p=this.unit.selectnearbyunits(2,function(t,s) { return t.team==s.team&&s!=t&&s.getskill()<t.getskill()&&s.candoaction();});
 	    this.unit.resolveactionselection(p,function(k) {
 		p[k].select();
 		p[k].doaction(p[k].getactionlist()).done(function() {
@@ -8244,10 +8261,12 @@ var UPGRADES= [
         name: "Veteran Instincts",
 	done:true,
         install: function(sh) {
-	    sh.skill+=2;
+	    sh.wrap_after("getskill",this,function(s) {
+		return s+2;
+	    });
 	},
 	uninstall: function(sh) {
-	    sh.skill-=2;
+	    sh.getskill.unwrap();
 	},
         type: ELITE,
         points: 1,
@@ -8674,9 +8693,9 @@ var UPGRADES= [
 	    sh.adddefensererolld(
 		this,
 		["focus"],
-		function() { if (activeunit.skill<=2) return 2; return 1; },
+		function() { if (activeunit.getskill()<=2) return 2; return 1; },
 		function(w,attacker) {
-		    this.unit.log("+%1 %FOCUS% reroll(s) [%0]",self.name,(activeunit.skill<=2?2:1));
+		    this.unit.log("+%1 %FOCUS% reroll(s) [%0]",self.name,(activeunit.getskill()<=2?2:1));
 		    return true;
 		}.bind(this)
 	    )
@@ -8783,23 +8802,18 @@ var UPGRADES= [
 		    this.doselection(function(n) {
 			this.log("select unit (or self to cancel) [%0]",self.name);
 			this.resolveactionselection(p,function(k) {
-			    if (p[k]!=this) {
-				var s=this.skill;
-				this.skill=p[k].skill;
-				p[k].skill=s;
-				filltabskill();
-				p[k].showstats();
-				this.showstats();
-				this.wrap_before_once("endcombatphase",self,function() {
-				    var s=this.skill;
-				    this.skill=p[k].skill;
-				    p[k].skill=s;
-				    this.showstats();
-				    p[k].showstats();
-				});
+			    if (p[k]!=sh) {
+				var s1=p[k].getskill();
+				var s2=sh.getskill();
+				sh.wrap_after("getskill",self,function(s) {
+				    return s1;
+				}).unwrapper("endcombatphase");
+				p[k].wrap_after("getskill",self,function(s) {
+				    return s2;
+				}).unwrapper("endcombatphase");
 			    }
-			    this.endnoaction(n,ELITE);
-			}.bind(this));
+			    sh.endnoaction(n,ELITE);
+			});
 		    }.bind(this));
 		}
 	    });
@@ -8836,9 +8850,9 @@ var UPGRADES= [
 	    sh.addattackrerolla(
 		this,
 		["blank","focus"],
-		function() { if (targetunit.skill<=2) return 2; return 1; },
+		function() { if (targetunit.getskill()<=2) return 2; return 1; },
 		function(w,defender) {
-		    this.log("+%1 reroll(s) [%0]",self.name,(targetunit.skill<=2?2:1));
+		    this.log("+%1 reroll(s) [%0]",self.name,(targetunit.getskill()<=2?2:1));
 		    return true;
 		}.bind(sh)
 	    )
@@ -9005,12 +9019,10 @@ var UPGRADES= [
         init: function(sh) {
 	    var self=this;
 	    sh.wrap_before("beginactivationphase",this,function() {
-		this.oldskill=this.skill;
 		this.log("PS set to %1 [%0]",self.name,0); 
-		this.skill=0;
-	    });
-	    sh.wrap_before("endactivationphase",this,function() {
-		this.skill=this.oldskill;
+		this.wrap_after("getskill",self,function(s) {
+		    return 0;
+		}).unwrapper("endactivationphase");
 	    });
 	},
         type: SYSTEM,
@@ -9147,7 +9159,7 @@ var UPGRADES= [
 	    sh.wrap_before("beginactivationphase",this,function() {
 		this.donoaction([{type:MOD,org:mod,name:mod.name,action:function(n) {
 		    mod.isactive=false;
-		    for (var i=0; i<squadron.length; i++) {
+		    for (var i in squadron) {
 			var u=squadron[i];
 			u.oldmaneuver=u.maneuver;
 			if (u.team==this.team&&u.getmaneuver().difficulty=="RED") {
@@ -9439,7 +9451,7 @@ var UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    sh.wrap_before("begincombatphase",this,function() {
-		var p=this.selectnearbyunits(1,function(a,b) { return a.team==b.team&&a!=b&&a.skill<b.skill; });
+		var p=this.selectnearbyunits(1,function(a,b) { return a.team==b.team&&a!=b&&a.getskill()<b.getskill(); });
 		p.push(this);
 		if (p.length>1&&this.canusefocus()) {
 		    this.doselection(function(n) {
@@ -9750,11 +9762,14 @@ var UPGRADES= [
 	done:true,
         init: function(sh) {
 	    var self=this;
-	    sh.wrap_before("removefocustoken",this,function(id) {
-		if (this.target==0&&this.incombat==true) {
-		    this.log("+1 %TARGET% / %1 [%0]",self.name,targetunit.name);
-		    this.addtarget(targetunit);
-		}
+	    sh.wrap_before("declareattack",this,function(w,target) {
+		this.wrap_before("removefocustoken",self,function() {
+		    if (this.targeting.length==0) {
+			this.log("+1 %TARGET% / %1 [%0]",self.name,targetunit.name);
+			this.addtarget(targetunit);
+			displayattacktokens(this);
+		    }
+		}).unwrapper("endattack");
 	    });
 	},
         type: SALVAGED,
@@ -10087,7 +10102,7 @@ var UPGRADES= [
 	    sh.wrap_after("candotarget",this,function() {return true;});
 	    sh.resolvetarget=function(n) {
 		var i; var p=[];
-		for (i=0; i<squadron.length; i++) 
+		for (i in squadron) 
 		    if (squadron[i].team!=this.team) p.push(squadron[i]);
 		if (p.length>0) {
 		    this.log("target any unit in area [%0]",self.name);
@@ -10200,7 +10215,7 @@ var UPGRADES= [
 	init: function(sh) {
 	    sh.init=function() {
 		var i;
-		for (i=0; i<squadron.length; i++) {
+		for (i in squadron) {
 		    var u=squadron[i];
 		    if (u!=sh&&u.ig2000==true&&u.faction==sh.faction) {
 			if (u.name=="IG-88A") {
@@ -10226,25 +10241,27 @@ var UPGRADES= [
         type:TITLE,
 	done:true,
         init: function(sh) {
-	    var i;
+	    var turret=-1,i;
 	    var self=this;
-	    for (i=0; i<sh.weapons.length; i++) if (sh.weapons[i].type==TURRET) break;
-	    if (i==sh.weapons.length) return;
-	    sh.weapons[i].isTurret=function() { return false; };
+	    for (i=0; i<sh.weapons.length; i++) {
+		if (sh.weapons[i].type==TURRET) {
+		    turret=i;
+		    break;
+		}
+	    }
+	    if (turret==-1) return;
+	    sh.weapons[turret].isTurret=function() { return false; };
 	    sh.isTurret=function(w) {
-		if (w==sh.weapons[i]) return false;
+		if (w==sh.weapons[turret]) return false;
 		return Unit.prototype.isTurret(w);
 	    };
-	    var ea=sh.endattack;
-	    sh.endattack=function(c,h) {
-		var i;
-		for (i=0; i<this.weapons.length; i++) if (this.weapons[i].type==TURRET) break;
-		
-		if (i<this.weapons.length&&this.weapons[this.activeweapon].isprimary) {
-		    this.log("2nd attack with %0 [%1]",this.weapons[i].name,self.name);
-		    this.selecttargetforattack(i);
-		}else ea.call(this,c,h);
-	    };
+	    var btl=-1;
+	    sh.wrap_before("endattack",this,function(c,h) {
+		if (btl<round&&turret>-1&&this.weapons[this.activeweapon].isprimary) {
+		    this.log("+1 attack with %0 [%1]",this.weapons[turret].name,self.name);
+		    this.selecttargetforattack(turret);
+		}
+	    });
 	},
         points: 0,
         ship: "Y-Wing",
@@ -10448,7 +10465,7 @@ var UPGRADES= [
 	  sh.adddefensererolld(
 	      this,
 	      ["focus"],
-	      function() { if (activeunit.skill<=2) return 2; return 1; },
+	      function() { if (activeunit.getskill()<=2) return 2; return 1; },
 	      function(w,attacker) {
 		  if (this.stress>0&&this.canusefocus()) {
 		      this.log("+%1 %FOCUS% reroll(s) [%0]",self.name,this.focus);
@@ -10531,10 +10548,11 @@ var UPGRADES= [
 	    var self=this;
 	    var tlt=-1;
 	    sh.wrap_after("cleanupattack",this,function() {
-		if (tlt<round&&this.weapons[this.activeweapon]==self) {
+		if (tlt<round&&this.usedweapon>-1
+		    &&this.weapons[this.usedweapon]==self) {
 		    this.log("2nd attack with %0 [%1]",self.name,self.name);
 		    tlt=round;
-		    this.resolveattack(this.activeweapon,targetunit); 
+		    this.selecttargetforattack(this.activeweapon,targetunit); 
 		}
 	    }.bind(sh));
 	}
@@ -10858,7 +10876,26 @@ var UPGRADES= [
     {name:"Targeting Astromech",
      points:2,
      type:ASTROMECH
+    },
+    {name:"TIE/x7",
+     points:-2,
+     type:TITLE,
+     lostupgrades:[CANNON,MISSILE],
+     ship:"TIE Defender"
+    },
+    {name:"TIE/D",
+     points:0,
+     type:TITLE,
+     ship:"TIE Defender"
+    },
+    {name:"TIE Shuttle",
+     points:0,
+     type:TITLE,
+     ship:"TIE Bomber",
+     lostupgrades:[TORPEDO,MISSILE,BOMB],
+     upgrades:[CREW,CREW]
     }
+     
 ];
 var factions=["REBEL","EMPIRE"];
 var allunits=[];
@@ -10950,8 +10987,8 @@ Team.prototype = {
 		if (this.isia) u=$.extend(u,IAUnit.prototype);
 	    }
 	}
-	this.units.sort(function(a,b) {return b.skill-a.skill;});
-	squadron.sort(function(a,b) {return b.skill-a.skill;});
+	this.units.sort(function(a,b) {return b.getskill()-a.getskill();});
+	squadron.sort(function(a,b) {return b.getskill()-a.getskill();});
 	this.history={title: {text: UI_translation["Damage taken per turn"]},
 		      axisX:{  interval: 1,title: UI_translation["Turns"]},
 		      axisY: {	title: UI_translation["Cumulated damage"]},
@@ -11241,6 +11278,15 @@ var SETUP;
     <script src="src/team.js"></script>
     <script src="src/xwings.js"></script>
 */
+jQuery.fn.extend({
+    union: function(array1, array2) {
+        var hash = {}, union = [];
+        $.each($.merge($.merge([], array1), array2), function (index, value) { hash[value] = value; });
+        $.each(hash, function (key, value) { union.push(key); } );
+        return union;
+    }
+});
+
 Base64 = {
     _Rixits :
 //   0       8       16      24      32      40      48      56     63
@@ -11306,7 +11352,7 @@ function hitrangetostr(r) {
     var str="";
     var i,j,k,h;
     var wn=[];
-    for (h=0; h<squadron.length; h++) if (squadron[h]==activeunit) break;
+    for (h in squadron) if (squadron[h]==activeunit) break;
     for (i=1; i<=3; i++) {
 	if (r[i].length>0) {
 	    for (j=0; j<r[i].length; j++) {
@@ -11325,7 +11371,7 @@ function hitrangetostr(r) {
 		    // Add type to possible weapons
 		    if (wn.indexOf(wp.type)==-1) wn.push(wp.type);
 		    str+="<td class='probacell' style='background:hsl("+(1.2*(100-p.tohit))+",100%,80%)'";
-		    if (phase==COMBAT_PHASE && skillturn==activeunit.skill&&activeunit.canfire()) str+=" onclick='activeunit.incombat=true; activeunit.declareattack("+w+",squadron["+k+"]); activeunit.resolveattack("+w+",squadron["+k+"])'>"; else str+=">";
+		    if (phase==COMBAT_PHASE && skillturn==activeunit.getskill()&&activeunit.canfire()) str+=" onclick='activeunit.incombat=true; activeunit.declareattack("+w+",squadron["+k+"]); activeunit.resolveattack("+w+",squadron["+k+"])'>"; else str+=">";
 		    str+="<div class='reddice'>"+activeunit.getattackstrength(w,sh)+"</div><div class='greendice'>"+sh.getdefensestrength(w,activeunit)+"</div>"
 		    str+="<div>"+p.tohit+"%</div><div><code class='symbols' style='border:0'>d</code>"+p.meanhit+"</div><div><code class='symbols'  style='border:0'>c</code>"+p.meancritical+"</div><div>"+kill+"% kill</div>"
 		    str+="</td>";
@@ -11395,7 +11441,7 @@ function nextunit(cando, changeturn,changephase,activenext) {
     activenext();
 }
 function endphase() {
-    for (var i=0; i<squadron.length; i++) squadron[i].endphase();
+    for (var i in squadron) squadron[i].endphase();
 }
 function nextcombat() {
     nextunit(function(t) { return t.canfire(); },
@@ -11411,7 +11457,7 @@ function nextcombat() {
 	     },
 	     function() {
 		 log(UI_translation["No more firing units, ready to end phase."]); 
-		 for (var i=0; i<squadron.length; i++) squadron[i].endcombatphase();
+		 for (var i in squadron) squadron[i].endcombatphase();
 		 barrier(endphase);
 		 enablenextphase();
 	     },
@@ -11455,6 +11501,10 @@ function adddefensedie(type,n) {
 
 function displayattackroll(m,n) {
     var i,j=0;
+    $("#attackdial").empty();
+    $("#dtokens").empty();
+    $("#defense").empty();
+    for (i=0; i<DICES.length; i++) $("."+DICES[i]+"dice").remove();
     $("#attack").empty();
     for (i=0; i<Math.floor(m/100)%10; i++,j++)
 	$("#attack").append("<td class='focusreddice'></td>");
@@ -11479,6 +11529,22 @@ function displayattackroll(m,n) {
     $(".hitreddice").click(change);
     $(".blankreddice").click(change);
     $(".criticalreddice").click(change);
+}
+function displayattacktokens(u,f) {
+    if (typeof f!="function") f=u.lastaf;
+    u.lastaf=f;
+    $("#atokens").html(u.getattackrerolltokens()+u.getattackmodtokens(u.ar,u.da));
+    $("#atokens").append($("<button>").addClass("m-done").click(function() {
+	$("#atokens").empty();
+	f();}));
+}
+function displaydefensetokens(u,f) {
+    if (typeof f!="function") f=u.lastdf;
+    u.lastdf=f;
+    $("#dtokens").html(u.getdefensererolltokens()+u.getdefensemodtokens(u.dr,u.dd));
+    $("#dtokens").append($("<button>").addClass("m-fire").click(function() {
+	$("#combatdial").hide();
+	f();}));
 }
 function addroll(f,n,id) {
     var foc=$(".focusreddice").length;
@@ -11610,7 +11676,7 @@ function enablenextphase() {
 	}
 	break;
     case PLANNING_PHASE:
-	for (i=0; i<squadron.length; i++)
+	for (i in squadron)
 	    if (squadron[i].maneuver<0&&!squadron[i].isdead) { ready=false; break; }
 	if (ready&&$(".nextphase").prop("disabled")) {
 	    log(UI_translation["All units have planned a maneuver, ready to end phase"]);
@@ -11621,10 +11687,10 @@ function enablenextphase() {
 	    subphase=ACTIVATION_PHASE; 
 	    skillturn=0; 
 	    ready=false;
-	    for (i=0; i<squadron.length; i++) squadron[i].enddecloak().done(nextactivation);
+	    for (i in squadron) squadron[i].enddecloak().done(nextactivation);
 	    barrier(nextactivation);
 	} else {
-	    for (i=0; i<squadron.length; i++)
+	    for (i in squadron)
 		if (squadron[i].maneuver>-1&&!squadron[i].isdead) { ready=false; break; }
 	    if (ready&&$(".nextphase").prop("disabled")) log(UI_translation["All units have been activated, ready to end phase"]);
 	}
@@ -11661,21 +11727,21 @@ var keybindings={
 	{k:"a", f:function() { 
 	    if (!activeunit.actiondone
 		&&activeunit.hasmoved
-		&&activeunit.skill==skillturn)   {
+		&&activeunit.getskill()==skillturn)   {
 		activeunit.nextaction(); 
 	    }
 	}},
 	{k:"shift+a", f:function() { 
 	    if (!activeunit.actiondone
 		&&activeunit.hasmoved
-		&&activeunit.skill==skillturn)  {
+		&&activeunit.getskill()==skillturn)  {
 		activeunit.prevaction(); 
 	    }
 	}},
 	{k:"enter",f:function() {
 	    if (phase==ACTIVATION_PHASE&&!activeunit.actiondone
 		&&activeunit.hasmoved
-		&&activeunit.skill==skillturn) {
+		&&activeunit.getskill()==skillturn) {
 		resolveaction();
 	    }
 	}}
@@ -11909,7 +11975,7 @@ function bindall(name) {
 function filltabskill() {
     tabskill=[];
     for (i=0; i<=12; i++) tabskill[i]=[];
-    for (i=0; i<squadron.length; i++) tabskill[squadron[i].skill].push(squadron[i]);
+    for (i in squadron) tabskill[squadron[i].getskill()].push(squadron[i]);
     for (i in tabskill) tabskill[i].sort(function(a,b) {
 	var xa=0,xb=0;
 	if (TEAMS[a.team].initiative==true) xa=1; 
@@ -11971,7 +12037,7 @@ function nextphase() {
 	break;
     case ACTIVATION_PHASE:
 	$("#activationdial").hide();
-	for (i=0; i<squadron.length; i++) {
+	for (i in squadron) {
 	    squadron[i].hasmoved=false; 
 	    squadron[i].hasdecloaked=false;
 	    squadron[i].actiondone=false;
@@ -11984,7 +12050,7 @@ function nextphase() {
     case COMBAT_PHASE:
 	$("#attackdial").hide();
 	$("#listunits").html("");
-	for (i=0; i<squadron.length; i++) squadron[i].endround();
+	for (i in squadron) squadron[i].endround();
 	round++;
 	break;
     }
@@ -11993,7 +12059,7 @@ function nextphase() {
     if (phase<3) $("#phase").html(UI_translation["phase"+phase]);
     else $("#phase").html(UI_translation["turn #"]+round+" "+UI_translation["phase"+phase]);
     $("#combatdial").hide();
-    if (phase>SELECT_PHASE) for (i=0; i<squadron.length; i++) {squadron[i].unselect();}
+    if (phase>SELECT_PHASE) for (i in squadron) {squadron[i].unselect();}
     // Init new phase
     for (i=SELECT_PHASE; i<=COMBAT_PHASE; i++) {
 	if (i!=phase) unbind("phase"+i);
@@ -12112,7 +12178,7 @@ function nextphase() {
 	jwerty.key("9", function() { 
 		console.log("active:"+activeunit.name+" in hit range:"+activeunit.weapons[0].name);
 		var w=activeunit.weapons[0];
-		for (var i=0; i<squadron.length; i++) {
+		for (var i in squadron) {
 		    console.log("      "+squadron[i].name+":"+w.getrange(squadron[i]));
 		}
 	    });
@@ -12169,7 +12235,7 @@ function nextphase() {
 	squadron[0].select();
 	skillturn=0;
 	filltabskill();
-	for (i=0; i<squadron.length; i++) {
+	for (i in squadron) {
 	    //squadron[i].evaluatepositions(false,false);
 	    squadron[i].newm=squadron[i].m;
 	    squadron[i].beginplanningphase().progress(nextplanning);
@@ -12180,7 +12246,7 @@ function nextphase() {
 	log("<div>["+UI_translation["turn #"]+round+"]"+UI_translation["phase"+phase]+"</div>");
 	$(".nextphase").prop("disabled",true);
 	$("#activationdial").show();
-	for (i=0; i<squadron.length; i++) squadron[i].beginactivationphase().done(nextdecloak);
+	for (i in squadron) squadron[i].beginactivationphase().done(nextdecloak);
 	
 	filltabskill();
 	//subphase=ACTIVATION_PHASE;
@@ -12192,7 +12258,7 @@ function nextphase() {
 	log("<div>["+UI_translation["turn #"]+round+"]"+UI_translation["phase"+phase]+"</div>");
 	$("#attackdial").show();
 	skillturn=12;
-	for (i=0; i<squadron.length; i++) squadron[i].begincombatphase().done(nextcombat);
+	for (i in squadron) squadron[i].begincombatphase().done(nextcombat);
 	
 	barrier(nextcombat);
 	break;
@@ -12229,7 +12295,7 @@ function history_toASCII() {
 }
 function select(name) {
     var i;
-    for (i=0; i<squadron.length; i++) {
+    for (i in squadron) {
 	if (squadron[i].id==name) break;
     }
     squadron[i].select();
