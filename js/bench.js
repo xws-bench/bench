@@ -186,7 +186,7 @@ var CRITICAL_DECK=[
 	},
 	facedown:function() {
 	    if (this.isactive) {
-		this.unit.getagility.unwrap();
+		this.unit.getagility.unwrap(this);
 		//this.unit.criticals.splice(this,1);
 		log(this.name+" repaired, +1 agility for "+this.unit.name);
 		this.unit.showstats();
@@ -219,7 +219,7 @@ var CRITICAL_DECK=[
 	    });
 	},
 	facedown: function() {
-	    if (this.isactive) this.unit.getdial.unwrap();
+	    if (this.isactive) this.unit.getdial.unwrap(this);
 	    this.isactive=false;
 	}
     },
@@ -246,7 +246,7 @@ var CRITICAL_DECK=[
 	facedown: function() {
 	    if (this.isactive) {
 		log("Console no longer in fire for "+this.unit.name);		
-		this.unit.begincombatphase.unwrap();
+		this.unit.begincombatphase.unwrap(this);
 	    }
 	    this.isactive=false;
 	}
@@ -342,11 +342,12 @@ var CRITICAL_DECK=[
 	lethal:true,
 	faceup: function() {
 	    this.unit.log("Critical: %0",this.name);
-	    this.isactive=false;
+	    //this.isactive=false;
 	    this.unit.removehull(1);
 	},
 	facedown: function() {
 	    this.isactive=false;
+	    this.unit.hull++;
 	}
     },
     {
@@ -1428,9 +1429,9 @@ Unit.prototype = {
 	for (f=0; f<=n; f++) {
 	    for (h=0; h<=n-f; h++) {
 		for (c=0; c<=n-f-h; c++) {
-		    i=f*100+h+10*c;
+		    i=f*FCH_FOCUS+h+FCH_CRIT*c;
 		    ptot+=P[i];
-		    if (ptot>r) return 100*f+c*10+h; 
+		    if (ptot>r) return FCH_FOCUS*f+c*FCH_CRIT+h; 
 		}
 	    }
 	}
@@ -1440,12 +1441,6 @@ Unit.prototype = {
     rolldefensedie: function(n) { var p=[]; for (var i=0; i<n; i++) p.push(FACE[DEFENSEDICE[this.rand(8)]]); return p; },
     rand: function(n) { return Math.floor(Math.random()*n); },
     getdefensetable: function(n) { return DEFENSE[n]; },
-    gethitreddice: function(r) { return r%10; },
-    getcritreddice: function(r) { return (Math.floor(r/10))%10; },
-    getfocusreddice:function(r) { return (Math.floor(r/100))%10; },
-    getblankreddice:function(r,n) { return n-Math.floor(r/100)%10-Math.floor(r/10)%10-(r%10); }, 
-    getevadegreendice:function(r) { return r%10; },
-    getfocusgreendice:function(r) { return (Math.floor(r/10))%10; },
     defenseroll: function(n) {
 	var i,e,f;
 	var lock=$.Deferred();
@@ -1459,9 +1454,9 @@ Unit.prototype = {
 	}
 	for (f=0; f<=n; f++) {
 	    for (e=0; e<=n-f; e++) {
-		i=f*10+e;
+		i=f*FE_FOCUS+e*FE_EVADE;
 		ptot+=P[i];
-		if (ptot>r) return lock.resolve({dice:n,roll:10*f+e}).promise();
+		if (ptot>r) return lock.resolve({dice:n,roll:FE_FOCUS*f+e*FE_EVADE}).promise();
 	    }
 	}
 	return lock.resolve({dice:n,roll:0}).promise();
@@ -2006,9 +2001,9 @@ Unit.prototype = {
 	var c=$(".criticalreddice").length;
 	var e=$(".evadegreendice").length;
 	var ee=$(".evadegreen").length;
-	var ch=sh.weapons[sh.activeweapon].modifydamagegiven(10*c+h);
-	c=Math.floor(ch/10);
-	h=ch-c*10;
+	var ch=sh.weapons[sh.activeweapon].modifydamagegiven(FCH_CRIT*c+FCH_HIT*h);
+	c=FCH_crit(ch);
+	h=FCH_hit(ch);
 	var he=h;
 	h=this.cancelhit(h,e,sh);
 	e=e-(he-h);
@@ -2017,7 +2012,7 @@ Unit.prototype = {
 	ee=ee-(he-h);
 	c=this.cancelcritical(c,e,sh);
 	if (c>=ee) c=c-ee; else c=0; // evade tokens
-	return 10*c+h;
+	return FCH_CRIT*c+h*FCH_HIT;
     },
     declareattack:function(w,target) {
 	//console.log("declareattack:"+this.name)
@@ -2039,8 +2034,8 @@ Unit.prototype = {
 	var ch=targetunit.evadeattack(this);
 	ch=this.weapons[this.activeweapon].modifydamageassigned(ch,targetunit);
 	ch=targetunit.modifydamageassigned(ch,this);
-	var c=Math.floor(ch/10);
-	var h=ch-c*10;;
+	var c=FCH_crit(ch);
+	var h=FCH_hit(ch);
 	this.hasdamaged=true;
 	this.hitresolved=h;
 	this.criticalresolved=c;
@@ -3208,24 +3203,24 @@ Unit.prototype = {
 	}.bind(this),function(m,n) { 
 	    this.removetarget(targetunit);
 	    var f;
-	    if (!this.canusefocus()) f=Math.floor(m/100)%10; else f=0;
-	    var b=n-Math.floor(m/100)%10-Math.floor(m/10)%10-m%10;
+	    if (!this.canusefocus()) f=FCH_focus(m); else f=0;
+	    var b=FCH_blank(m,n);
 	    var r=this.rollattackdie(b+f);
-	    m=m-f*100;
+	    m=m-f*FCH_FOCUS;
 	    for (i=0; i<r.length; i++) {
-		if (r[i]=="hit") m+=1;
-		if (r[i]=="critical") m+=10;
-		if (r[i]=="focus") m+=100;
+		if (r[i]=="hit") m+=FCH_HIT;
+		if (r[i]=="critical") m+=FCH_CRIT;
+		if (r[i]=="focus") m+=FCH_FOCUS;
 	    }
 	    return m;
 	}.bind(this),false,"target",true);
 	/* Focus for attack */
-	this.addattackmoda(this,function(m,n) { 
+	this.addattackmoda(this,function(m,n) {
 	    return this.canusefocus(); 
 	}.bind(this),function(m,n) {
 	    this.removefocustoken();
-	    var f=Math.floor(m/100)%10;
-	    if (f>0) return m-f*100+f
+	    var f=FCH_focus(m)
+	    if (f>0) return m-f*FCH_FOCUS+FCH_HIT*f;
 	    return m;
 	}.bind(this),false,"focus",true);
 	/* Focus for defense */
@@ -3233,8 +3228,8 @@ Unit.prototype = {
 	    return this.canusefocus(); 
 	}.bind(this),function(m,n) {
 	    this.removefocustoken();
-	    var f=Math.floor(m/10)%10;
-	    if (f>0)  return m-10*f+f;
+	    var f=FE_focus(m);
+	    if (f>0)  return m-FE_FOCUS*f+FE_EVADE*f;
 	    return m;    
 	}.bind(this),false,"focus",true);
 	/* Evade */
@@ -3242,7 +3237,7 @@ Unit.prototype = {
 	    return this.canuseevade(); 
 	}.bind(this),function(m,n) { 
 	    this.removeevadetoken(); 
-	    return {m:m+1,n:n+1} 
+	    return {m:m+FE_EVADE,n:n+1} 
 	}.bind(this),"evade",true);
     },
     getusabletokens: function() {
@@ -3307,12 +3302,7 @@ Unit.prototype = {
     show: function() {
 	var i;
 	if (typeof this.g=="undefined") return;
-	if (typeof this.skillbar=="undefined") {
-	    this.log("show:skillbar undefined");
-	    for (i in squadron) {
-		squadron[i].log("im here");
-	    }
-	}
+
 	this.g.transform(this.m);
 	this.g.appendTo(VIEWPORT); // Put to front
 	this.geffect.transform(this.m);
@@ -3480,10 +3470,6 @@ Unit.prototype = {
 	    this.removeshield(this.shield);
 	    if (s>0) this.applydamage(s);
 	}	    
-	if (typeof this.skillbar=="undefined") {
-	    this.log("hit: undefined skillbar?");
-	    return;
-	}
 
 	this.showstats();
 	return s;
@@ -3497,10 +3483,7 @@ Unit.prototype = {
 	    this.removeshield(this.shield)
 	    if (s>0) this.applycritical(s);
 	}
-	if (typeof this.skillbar=="undefined") {
-	    this.log("critical: undefined skillbar?");
-	    return;
-	}
+
 
 	this.showstats();
 	return s;
@@ -4182,11 +4165,11 @@ var PILOTS = [
 	    this.adddefensemodd(this,function(m,n) {
 		return true;
 	    }, function(m,n) {
-		var f=Math.floor(m/10);
-		var e=m-f*10;
+		var f=FE_focus(m);
+		var e=FE_evade(m);
 		if (f>0) {
 		    this.log("1 %FOCUS% -> 1 %EVADE%");
-		    return m-9;
+		    return m-FE_FOCUS+FE_EVADE;
 		} 
 		return m;
 	    }.bind(this),false,"focus");
@@ -4325,11 +4308,11 @@ var PILOTS = [
 	    this.addattackmoda(this,function(m,n) { 
 		return (this.getrange(targetunit)==1);
 	    }.bind(this),function(m,n) {
-		var c=Math.floor(m/10);
-		var h=(m-c*10)%100;
+		var c=FCH_crit(m);
+		var h=FCH_hit(m);
 		if (h>0) {
 		    this.log("1 %HIT% -> 1 %CRIT%");
-		    return m+9;
+		    return m-FCH_HIT+FCH_CRIT;
 		}
 		return m;
 	    }.bind(this),false,"hit");
@@ -4695,10 +4678,8 @@ var PILOTS = [
 	    var p=this.selectnearbyally(1);
 	    if (p.length>0&&d=="GREEN") {
 		this.doselection(function(n) {
-		    this.log("select unit for a free action"+p.length);
 		    this.resolveactionselection(p,function(k) {
 			p[k].log("unit chosen for free action");
-			p[k].log("actions "+p[k].getactionbarlist().length);
 			p[k].doaction(p[k].getactionbarlist());
 			this.endnoaction(n,"");
 		    }.bind(this))
@@ -4977,9 +4958,9 @@ var PILOTS = [
 		var f=unit.rollattackdie(1)[0];
 		unit.addstress();
 		unit.log("+1 attack die");
-		if (f=="focus") return m+100;
-		if (f=="hit") return m+1;
-		if (f=="critical") return m+10;
+		if (f=="focus") return m+FCH_FOCUS;
+		if (f=="hit") return m+FCH_HIT;
+		if (f=="critical") return m+FCH_CRIT;
 		return m;
 	    }.bind(this),true,"hit");
 	},
@@ -5204,7 +5185,7 @@ var PILOTS = [
 	    }.bind(this),function(m,n) {
 		this.removeevadetoken();
 		this.log("+1 %HIT% for attacking at range 2-3");
-		return {m:m+1,n:n+1};
+		return {m:m+FCH_HIT,n:n+1};
 	    }.bind(this),"evade");
 	},   
 	done:true,
@@ -5407,11 +5388,11 @@ var PILOTS = [
 		return (targetunit.team!=unit.team)
 		    &&unit.isinfiringarc(targetunit);
 	    }.bind(this), function(m,n) {
-		var c=Math.floor(m/10);
-		var h=(m-c*10)%100;
+		var c=FCH_crit(m);
+		var h=FCH_hit(m);
 		if (h>0) {
 		    unit.log("1 %HIT% -> 1 %CRIT%");
-		    return m+9;
+		    return m+FCH_CRIT-FCH_HIT;
 		} 
 		return m;
 	    }.bind(this),true,"hit");
@@ -5651,13 +5632,13 @@ var PILOTS = [
 	init: function() {
 	    this.shipimg="b-wing-1.png";
 	    this.addattackmoda(this,function(m,n) {
-		return (this.stress>0&&Math.floor(m/100%10>0)); 
+		return this.stress>0; 
 	    }.bind(this),function(m,n) {
-		var f=Math.floor(m/100)%10;
+		var f=FCH_focus(m);
 		if (f>0) {
 		    this.removestresstoken();
 		    this.log("%0 %FOCUS% -> %0 %HIT%, -1 %STRESS%",f);
-		    return m-100*f+f;
+		    return m-FCH_FOCUS*f+FCH_HIT*f;
 		}
 		return m;
 	    }.bind(this),false,"stress",true);
@@ -5814,10 +5795,10 @@ var PILOTS = [
 	    this.addattackmoda(this,function(m,n) {
 		return  (this.getrange(targetunit)<=2);
 	    }.bind(this),function(m,n) {
-		var f=Math.floor(m/100)%10;
+		var f=FCH_focus(m);
 		if (f>0) {
 		    this.log("1 %FOCUS% -> 1 %CRIT%");
-		    return m-90;
+		    return m-FCH_FOCUS+FCH_CRIT;
 		}
 		return m;
 	    }.bind(this),false,"hit");
@@ -6612,36 +6593,28 @@ var PILOTS = [
 		    var a1={org:this,name:this.name,type:"SHIELD",action:function(n) {
 			this.mirandaturn=round;
 			this.log("-1 attack die");
-			this.getattackstrength=function(i,sh){
+			this.wrap_after("getattackstrength",this,function(i,sh){
 			    var a= this.weapons[i].getattack()-1;
-				return this.weapons[i].getrangeattackbonus(sh)+(a>0)?a:0;
-			};
+			    return this.weapons[i].getrangeattackbonus(sh)+(a>0)?a:0;
+			}).unwrapper("attackroll");
 			if (this.shield<this.ship.shield) {
 			    this.shield++; 
 			    this.log("+1 %SHIELD%");
 			}
-			this.wrap_before_once("hashit",this,function(c,h) {
-			    this.getattackstrength=Unit.prototype.getattackstrength;
-			});
 			this.endnoaction(n,"SHIELD");
 		    }.bind(this)};
 		    var a2={org:this,name:this.name,type:"HIT",action:function(n) {
 			this.log("-1 %SHIELD%");
 			this.log("+1 attack die");
 			this.mirandaturn=round;
-			this.getattackstrength=function(i,sh){
+			this.wrap_after("getattackstrength",this,function(i,sh){
 			    return 1+Unit.prototype.getattackstrength.call(this,i,sh);
-			};
+			}).unwrapper("attackroll");
 			this.removeshield(1); 
-			this.wrap_before_once("hashit",this,function(c,h) {
-			    this.getattackstrength=Unit.prototype.getattackstrength;
-			});
-			//this.log("calling noaction "+n);
 			this.endnoaction(n,"HIT");
 		    }.bind(this)};
 		    var list=[a2];
-		    if (this.shield<this.ship.shield) list.push(a1);
-		    
+		    if (this.shield<this.ship.shield) list.push(a1);		    
 		    this.donoaction(list,"select to add shield/roll 1 fewer die or remove shield/roll 1 additional die",true);
 		}
 	    },
@@ -6768,20 +6741,20 @@ var PILOTS = [
 		this.addattackmoda(this,function(m,n) { 
 			return this.focus>0;
 		    }.bind(this),function(m,n) {
-			var f=Math.floor(m/100)%10;		
+			var f=FCH_focus(m);
 			if (f>0) {
 			    this.log("1 %FOCUS% -> 1 %HIT%");
-			    return m-99;
+			    return m-FCH_FOCUS+FCH_HIT;
 			}
 			return m;
 		    }.bind(this),false,"focus");
 		this.adddefensemodd(this,function(m,n) { 
 			return this.focus>0;
 		    }.bind(this),function(m,n) {
-			var f=Math.floor(m/10)%10;		
+			var f=FE_focus(m);
 			if (f>0) {
 			    this.log("1 %FOCUS% -> 1 %EVADE%");
-			    return m-9;
+			    return m-FE_FOCUS+FE_EVADE;
 			}
 			return m;
 		    }.bind(this),false,"focus");
@@ -6913,12 +6886,12 @@ var PILOTS = [
 	  skill: 7,
 	  init: function() {
 		this.addattackmoda(this,function(m,n) { 
-			return this.focus>0||this.targeting.indexOf(targetunit)>-1;
+			return this.canusefocus()&&this.targeting.indexOf(targetunit)>-1;
 		    }.bind(this),function(m,n) {
 			this.removefocustoken();
 			this.removetarget(targetunit);
 			this.log("all results are %CRIT%");
-			return n*10;
+			return n*FCH_CRIT;
 		    }.bind(this),false,"critical");
        },
        upgrades: [ELITE,TECH],
@@ -7023,11 +6996,11 @@ var PILOTS = [
 	    this.adddefensemodd(this,function(m,n) {
 		return this.stress>0;
 	    }.bind(this), function(m,n) {
-		var f=Math.floor(m/10);
+		var f=FE_focus(m);
 		if (f>2) f=2;
 		if (f>0) {
 		    this.log("%0 %FOCUS% -> %0 %EVADE%",f);
-		    return m-9*f;
+		    return m-f*FE_FOCUS+f*FE_EVADE;
 		} 
 		return m;
 	    }.bind(this),false,"focus");
@@ -7638,10 +7611,10 @@ var UPGRADES= [
 	    sh.addattackmoda(this,function(m,n) {
 		return (sh.weapons[sh.activeweapon]==this);
 	    }.bind(this),function(m,n) {
-		var f=this.unit.getfocusreddice(m);
+		var f=FCH_focus(m);
 		if (f>0) {
 		    this.unit.log("1 %FOCUS% -> 1 %CRIT% [%0]",this.name);
-		    return m-90;
+		    return m-FCH_FOCUS+FCH_CRIT;
 		}
 		return m;
 	    }.bind(this),false,"focus");
@@ -7719,19 +7692,16 @@ var UPGRADES= [
 	    return false;
 	},
 	action: function(n) {
-	    var c=-1,cl=-1;
 	    var self=this;
 	    this.unit.defenseroll(1).done(function(roll) {
-		if (this.getfocusgreendice(roll)+this.getevadegreendice(roll)>0) {
-		    for (i=0; i<this.criticals.length; i++) {
-			var cr=this.criticals[i];
-			if (cr[i].isactive==false) {
-			    c=i;
-			    break;
-			}
-		    }		    if (c>-1) {
+		if (FE_evade(roll.roll)+FE_focus(roll.roll)>0) {
+		    for (var i=0; i<this.criticals.length; i++)
+			if (this.criticals[i].isactive==false) break;
+		    if (i<this.criticals.length) {
 			this.log("-1 %HIT% [%0]",self.name);
-			this.criticals.slice(c,1);
+			this.criticals.slice(i,1);
+			this.hull++;
+			this.show();
 		    }
 		}
 		this.endaction(n,ASTROMECH);
@@ -7822,13 +7792,14 @@ var UPGRADES= [
      init: function(sh) {
 	 var self=this;
 	 sh.addattackmoda(this,function(m,n) { 
-	     return true; 
-	 }, function(m,n) {
-	     var b=this.getblankreddice(m);
-	     if (b>0&&this.canusefocus()&&self.isactive) {		
+	     return self.isactive&&this.canusefocus(); 
+	 }.bind(sh), function(m,n) {
+	     var b=FCH_blank(m);
+	     this.removefocustoken();
+	     displayattacktokens(this);
+	     if (b>0) {		
 		 this.log("1 blank -> 1 %HIT% [%0]",self.name);
-		 this.removefocustoken();
-		 return m+1; 
+		 return m+FCH_HIT; 
 	     } 
 	     return m;
 	 }.bind(sh),false,"focus");
@@ -7840,7 +7811,7 @@ var UPGRADES= [
 	    var self=this;
 	    sh.wrap_after("removetarget",this,function(t) {
 		this.defenseroll(1).done(function(roll) {
-		    if (this.getevadegreendice(roll)>0) {
+		    if (FE_evade(roll.roll)>0) {
 			this.addtarget(t);
 			this.log("+1 %TARGET% / %1 [%0]",self.name,t.name);
 		    }
@@ -7859,11 +7830,11 @@ var UPGRADES= [
 	    var self=this;
 	    sh.wrap_before("endround",this,function() {
 		var c=-1,cl=-1;
-		for (i=0; i<this.criticals.length; i++) {
+		for (var i=0; i<this.criticals.length; i++) {
 		    var cr=this.criticals[i];
-		    if (cr[i].isactive&&cr[i].type=="ship") {
+		    if (cr.isactive&&cr.type=="ship") {
 			c=i;
-			if (cr[i].lethal) { cl=i; break; }
+			if (cr.lethal) { cl=i; break; }
 		    }
 		}
 		if (cl>-1) {
@@ -7965,10 +7936,10 @@ var UPGRADES= [
 	    sh.addattackmoda(this,function(m,n) {
 		    return (this.mark==round);
 		}.bind(this),function(m,n) {
-		    var f=this.getfocusreddice(m);
+		    var f=FCH_focus(m);
 		    if (f>0&&this.mark==round) {	
-			if (f>1) this.unit.log("%0 %FOCUS% -> 1 %CRIT%, %1 %HIT% [%2]",f,f-1,self.name); else this.unit.log("%0 %FOCUS% -> 1 %CRIT% [%1]",f,self.name);
-			return m-100*f+10+(f-1); 
+			if (f>1) this.unit.log("%0 %FOCUS% -> 1 %CRIT%, %1 %HIT% [%2]",f,f-1,self.name); else this.unit.log("1 %FOCUS% -> 1 %CRIT% [%1]",f,self.name);
+			return m-FCH_FOCUS*f+FCH_CRIT+(f-1)*FCH_HIT; 
 		    } 
 		    return m;
 		}.bind(this),false,"focus");
@@ -7995,8 +7966,8 @@ var UPGRADES= [
 	    sh.addattackmoda(this,function(m,n) {
 		return sh.weapons[sh.activeweapon]==this;
 	    }.bind(this), function(m,n) {
-		var b=this.getblankreddice(m,n);
-		if (b>0) return m+1; else return m;
+		var b=FCH_blank(m,n);
+		if (b>0) return m+FCH_HIT; else return m;
 	    }.bind(this),false,"blank");
 	},
         range: [2,3],
@@ -8059,12 +8030,12 @@ var UPGRADES= [
 		return this.stress==0&&targetunit==this;
 	    }.bind(sh),function(m,n) {
 		this.unit.addstress();
-		if (activeunit.getcritreddice(m)>0) {
+		if (FCH_crit(m)>0) {
 		    this.unit.log("1 %CRIT% rerolled [%0]",this.name);
-		    m=m-10+activeunit.attackroll(1);
-		} else if (activeunit.gethitreddice(m)>0) {
+		    m=m-FCH_CRIT+activeunit.attackroll(1);
+		} else if (FCH_hit(m)>0) {
 		    this.unit.log("1 %HIT% rerolled [%0]",this.name);
-		    m=m-1+activeunit.attackroll(1);
+		    m=m-FCH_HIT+activeunit.attackroll(1);
 		}
 		return m;
 	    }.bind(this),"critical");
@@ -8098,7 +8069,7 @@ var UPGRADES= [
 		var dar=da.call(this,la,str);
 		var df=$.Deferred();
 		dar.then(function(r) {
-		    if (ptl.r<round) {
+		    if (ptl.r<round&&this.candoaction()) {
 			ptl.r=round;		
 			var dac=da.call(this,this.getactionbarlist(),ptl.name+": 1 free action");
 			dac.done(function(rr) { 
@@ -8190,10 +8161,10 @@ var UPGRADES= [
 	firesnd:"slave_fire",
 	done:true,
 	modifydamagegiven: function(ch) {
-	    if (ch>10) {
-		var c=this.unit.getcritreddice(ch);
+	    if (FCH_crit(ch)>0) {
+		var c=FCH_crit(ch);
 		this.unit.log("%0 %CRIT%-> %0 %HIT% [%1]",c,this.name);
-		ch=ch-10*c+c;
+		ch=ch-FCH_CRIT*c+c*FCH_HIT;
 	    }
 	    return ch;
 	},
@@ -8226,11 +8197,15 @@ var UPGRADES= [
     {
         name: "Mercenary Copilot",
         init: function(sh) {
+	    var self=this;
 	    sh.addattackmoda(this,function(m,n) {
 		if (this.getrange(targetunit)==3) return true;
 		return false;
 	    }.bind(sh),function(m,n) {
-		if (this.gethitreddice(m)>0) return m+1+10; else return m;
+		if (FCH_hit(m)>0) {
+		    this.log("1 %HIT% -> 1 %CRIT% [%0]",self.name);
+		    return m-FCH_HIT+FCH_CRIT; 
+		} else return m;
 	    }.bind(sh),false,"hit");
 	},
 	done:true,
@@ -8376,7 +8351,6 @@ var UPGRADES= [
 	faction:REBEL,
 	done:true,
         install: function(sh) {
-	    var i;
 	    var save=[];
 	    sh.wrap_before("getdial",this,function() {
 		if (save.length==0) 
@@ -8447,10 +8421,11 @@ var UPGRADES= [
 	    sh.addattackmoda(this,function(m,n) {
 		return (sh.weapons[sh.activeweapon]==this);
 	    }.bind(this),function(m,n) {
-		var r=m%10+(Math.floor(m/10)%10)+(Math.floor(m/100)%10);
-		if (n-r>0) {
-		    this.unit.log("%0 blanks -> %0 %FOCUS% [%1]",n-r,self.name);
-		    if (n-r<3) m+=(n-r)*100; else m+=300;
+		var b=FCH_blank(m,n);
+		if (b>3) b=3;
+		if (b>0) {
+		    this.unit.log("%0 blanks -> %0 %FOCUS% [%1]",b,this.name);
+		    m+=b*FCH_FOCUS;
 		}
 		return m;
 	    }.bind(this),false,"blank");
@@ -8503,7 +8478,9 @@ var UPGRADES= [
     {
         name: "Recon Specialist",
         init: function(sh) {
+	    var self=this;
 	    sh.wrap_before("addfocus",this,function(n) {
+		sh.log("+1 %FOCUS% [%0]",self.name);
 		sh.addfocustoken();
 	    });
 	},
@@ -8631,10 +8608,10 @@ var UPGRADES= [
 	    sh.addattackmodd(this,function(m,n) {
 		return (targetunit==this);
 	    }.bind(sh),function(m,n) {
-		var h=this.gethitreddice(m);
+		var h=FCH_hit(m);
 		if (h>0) {
 		    this.unit.log("1 %HIT% -> 1 %FOCUS% [%0]",self.name);
-		    return m+99;
+		    return m-FCH_HIT+FCH_FOCUS;
 		}
 		return m;
 	    }.bind(this),"hit");
@@ -8953,17 +8930,15 @@ var UPGRADES= [
 	init:function(sh) {
 	    var rdd=sh.defenseroll;
 	    var self=this;
-	    sh.defenseroll=function(r) {
+	    sh.wrap_after("defenseroll",this,function(r,promise) {
 		var lock=$.Deferred();
-		rdd.call(this,r).done(function(roll) {
+		promise.done(function(roll) {
 		    var resolve=function(k) {
-			this.log("roll "+roll.roll+"/"+k+" ("+roll.dice+" dice)");
-			if (k==this.getevadegreendice(roll.roll)) {
+			if (k==FE_evade(roll.roll)) {
 			    this.log("guessed correctly ! +1 %EVADE% [%0]",self.name);
-			    roll.roll+=1;
+			    roll.roll+=FE_EVADE;
 			    roll.dice+=1;
 			}
-			this.log("roll "+roll.roll+"("+roll.dice+" dice)");
 			$("#actiondial").empty();
 			lock.resolve(roll);
 		    }.bind(this);
@@ -8979,7 +8954,7 @@ var UPGRADES= [
 		    }
 		}.bind(this));
 		return lock.promise();
-	    }
+	    });
 	},
     },
     {
@@ -9075,22 +9050,22 @@ var UPGRADES= [
 	done:true,
 	test:"?E,1D%10W5_b;k%10VhdJ;1M%10VHlq;&0%LayHI;&h1Sx4;h1Sx4;h1Sx4;h1Sx4;h1Sx4;h1Sx4#",
 	init: function(sh) {
-	    var u=sh;
-	    u.jan=-1;
-	    var aft=Unit.prototype.addfocustoken;
-	    Unit.prototype.addfocustoken=function() {
-		if (this.getrange(u)<=3&&this.faction==u.faction&&u.jan<round) {
+	    var jan=-1;
+	    var self=this;
+	    Unit.prototype.wrap_after("addfocustoken",this,function() {
+		if (this.getrange(sh)<=3&&this.team==sh.team&&jan<round) {
+		    jan=round;
+		    this.log("select %FOCUS% or %EVADE% token [%0]",self.name)
 		    this.donoaction(
 			[{name:u.name,org:u,type:"FOCUS",action:function(n) { 
-			    aft.call(this); 
 			    this.endnoaction(n,"FOCUS"); }.bind(this)},
 			 {name:u.name,org:u,type:"EVADE",action:function(n) { 
+			     this.focus--;
 			     this.addevadetoken(); 
-			     u.jan=round; 
 			     this.endnoaction(n,"EVADE"); }.bind(this)}],
-			"select %FOCUS% or %EVADE% token",true);
-		} else aft.call(this);
-	    }
+			"",true);
+		}
+	    })
 	},
     },
 
@@ -9136,10 +9111,10 @@ var UPGRADES= [
 	    sh.addattackmoda(this,function(m,n) { 
 		return this.targeting.indexOf(targetunit)>-1;
 	    }.bind(sh), function(m,n) {
-		var f=this.getfocusreddice(m);
+		var f=FCH_focus(m);
 		this.log("%0 %FOCUS% -> %0 %HIT% [%1]",f,self.name);
 		this.removetarget(targetunit);
-		return m-100*f+f;
+		return m-FCH_FOCUS*f+FCH_HIT*f;
 	    }.bind(sh),false,"target");
 	},
         type: CREW,
@@ -9189,17 +9164,18 @@ var UPGRADES= [
 	done:true,
 	candoaction: function() { return true; },
 	action: function(n) {
-	    var str="";		
+	    var self=this;
+	    var str="";
 	    this.unit.defenseroll(2).done(function(roll) {
-		var f=this.getfocusgreendice(roll);
-		var e=this.getevadegreendice(roll);
-		for (var i=0; i<f; i++) this.unit.addfocustoken(); 
+		var f=FE_focus(roll.roll);
+		var e=FE_evade(roll.roll);
+		for (var i=0; i<f; i++) this.addfocustoken(); 
 		if (f>0) str+=" +"+f+" %FOCUS%"; 
-		for (var i=0; i<e; i++) this.unit.addevadetoken(); 
+		for (var i=0; i<e; i++) this.addevadetoken(); 
 		if (e>0) str+=" +"+e+" %EVADE%"; 
-		if (str=="") this.unit.log("no effect [%0]",this.name); else this.unit.log(str+" [%0]",this.name);
-		this.unit.endaction(n,"CREW");
-	    }.bind(this));
+		if (str=="") this.log("no effect [%0]",self.name); else this.log(str+" [%0]",self.name);
+		this.endaction(n,"CREW");
+	    }.bind(this.unit));
 	},
         points: 3,
     },
@@ -9491,10 +9467,12 @@ var UPGRADES= [
 	    sh.addattackmoda(this,function(m,n) {
 		return this.canusefocus();
 	    }.bind(sh),function(m,n) {
-		var f=this.getfocusreddice(m);
+		var f=FCH_focus(m);
+		this.removefocustoken();
+		displayattacktokens(this);
 		if (f>0) {
 		    this.log("1 %FOCUS% -> 1 %CRIT% [%0]",self.name);
-		    return m-100+10;
+		    return m-FCH_FOCUS+FCH_CRIT;
 		}
 		return m;
 	    }.bind(sh),false,"focus");
@@ -9688,7 +9666,7 @@ var UPGRADES= [
 		var i,cr=[];
 		if ((c.lethal||this.hull==1)&&c.type=="ship") {
 		    upg.isactive=false;
-		    sh.faceup=fu;
+		    this.faceup=fu;
 		    this.log("remove critical %0 [%1]",c.name,self.name);
 		    this.criticals.slice(this.criticals.indexOf(c),1);
 		    return false;
@@ -10061,10 +10039,10 @@ var UPGRADES= [
 		if (activeunit.getsector(this)>2) return true;
 		return false;
 	    }.bind(sh),function(m,n) {
-		var b=n-Math.floor(m/10)%10-m%10;
+		var b=FE_blank(m,n);
 		if (b>0) {
 		    this.log("1 blank -> 1 %EVADE% [%0]",self.name);
-		    return m+1;
+		    return m+FE_EVADE;
 		}
 		return m;
 	    }.bind(sh),false,"blank");
@@ -10394,20 +10372,20 @@ var UPGRADES= [
 		sh.addattackmoda(this,function(m,n) {
 		    return self.activated==round;
 		},function(m,n) {
-		    var f=this.unit.getfocusreddice(m);
+		    var f=FCH_focus(m);
 		    if (f>0) {
 			this.unit.log("%FOCUS% -> %HIT% [%0]",self.name);
-			return m-99*f;
+			return m-FCH_FOCUS*f+f*FCH_HIT;
 		    }
 		    return m;
 		}.bind(this),false,"illicit");
 		sh.adddefensemodd(this,function(m,n) {
 		    return self.activated==round;
 		},function(m,n) {
-		    var f=this.unit.getfocusgreendice(m);
+		    var f=FE_focus(m);
 		    if (f>0) {
 			this.unit.log("%FOCUS% -> %EVADE% [%0]",self.name);
-			return m-9*f;
+			return m-FE_FOCUS*f+FE_EVADE*f;
 		    }
 		    return m;
 		}.bind(this),false,"illicit");
@@ -11290,14 +11268,6 @@ var SETUP;
     <script src="src/team.js"></script>
     <script src="src/xwings.js"></script>
 */
-jQuery.fn.extend({
-    union: function(array1, array2) {
-        var hash = {}, union = [];
-        $.each($.merge($.merge([], array1), array2), function (index, value) { hash[value] = value; });
-        $.each(hash, function (key, value) { union.push(key); } );
-        return union;
-    }
-});
 
 Base64 = {
     _Rixits :
@@ -11558,6 +11528,33 @@ function displaydefensetokens(u,f) {
 	$("#combatdial").hide();
 	f();}));
 }
+function FE_focus(r) {
+    return Math.floor(r/10)%10;
+}
+function FE_evade(r) {
+    return r%10;
+}
+function FE_blank(r,n) {
+    return n-FE_evade(r)-FE_focus(r);
+}
+function FCH_hit(r) {
+    return r%10;
+}
+function FCH_focus(r) {
+    return Math.floor(r/100)%10;
+}
+function FCH_crit(r) {
+    return Math.floor(r/10)%10;
+}
+function FCH_blank(r,n) {
+    return n-FCH_crit(r)-FCH_focus(r) - FCH_hit(r);
+}
+var FE_EVADE=1;
+var FE_FOCUS=10;
+var FCH_HIT=1;
+var FCH_FOCUS=100;
+var FCH_CRIT=10;
+
 function addroll(f,n,id) {
     var foc=$(".focusreddice").length;
     var h=$(".hitreddice").length;
@@ -11659,11 +11656,11 @@ function reroll(n,forattack,type,id) {
 	$("#rerolld"+id).remove();
 	activeunit.defenseroll(m).done(function(r) {
 	    var i;
-	    for (i=0; i<activeunit.getevadegreendice(r); i++)
+	    for (i=0; i<FE_evade(r.roll); i++)
 		$("#defense").prepend("<td noreroll='true' class='evadegreendice'></td>");
-	    for (i=0; i<activeunit.getfocusgreendice(r); i++)
+	    for (i=0; i<FE_focus(r.roll); i++)
 		$("#defense").prepend("<td noreroll='true' class='focusgreendice'></td>");
-	    for (i=0; i<r-activeunit.getevadegreendice(r)-activeunit.getfocusgreendice(r); i++)
+	    for (i=0; i<FE_blank(r.roll,r.dice); i++)
 		$("#defense").prepend("<td noreroll='true' class='blankgreendice'></td>");
 	});
     }
@@ -12220,7 +12217,8 @@ function nextphase() {
 	jwerty.key("shift+4", function() { if (activeunit.stress>0) activeunit.stress--;activeunit.show();});
 	jwerty.key("shift+5", function() { if (activeunit.ionized>0) activeunit.ionized--;activeunit.show();});
 	jwerty.key("f",function() { activeunit.doattack(true);});
-	jwerty.key("d",function() { activeunit.resolvecritical(1);});
+	jwerty.key("d",function() { activeunit.resolvehit(1);});
+	jwerty.key("c",function() { activeunit.resolvecritical(1);});
 	jwerty.key("shift+d",function() { 
 	    if (activeunit.hull<activeunit.ship.hull) activeunit.hull++; 
 	    else if (activeunit.shield<activeunit.ship.shield) activeunit.shield++; 
@@ -12244,7 +12242,6 @@ function nextphase() {
 	log("<div>["+UI_translation["turn #"]+round+"]"+UI_translation["phase"+phase]+"</div>");
 	$(".nextphase").prop("disabled",true);
 	$("#maneuverdial").show();
-	squadron[0].select();
 	skillturn=0;
 	filltabskill();
 	for (i in squadron) {
