@@ -1990,29 +1990,22 @@ Unit.prototype = {
 	return false;
     },
     // TODO: should be only for defense dice, not evades
-    cancelhit:function(h,e,sh){
-	if (h>e) return h-e; else return 0;
+    cancelhit:function(r,sh){
+	var h=FCH_hit(r.ch);
+	if (h>=r.e) return {ch:r.ch-r.e*FCH_HIT,e:0}; 
+	else return {ch:r.ch-h*FCH_HIT, e:r.e-h};
     }, 
-    cancelcritical:function(c,e,sh) {
-	if (c>e) return c-e; else return 0;
+    cancelcritical:function(r,sh) {
+	var c=FCH_crit(r.ch);
+	if (c>=r.e) return {ch:r.ch-r.e*FCH_CRIT,e:0}; 
+	else return {ch:r.ch-c*FCH_CRIT, e:r.e-c};
     },
     evadeattack: function(sh) {
-	var h=$(".hitreddice").length;
-	var c=$(".criticalreddice").length;
-	var e=$(".evadegreendice").length;
-	var ee=$(".evadegreen").length;
-	var ch=sh.weapons[sh.activeweapon].modifydamagegiven(FCH_CRIT*c+FCH_HIT*h);
-	c=FCH_crit(ch);
-	h=FCH_hit(ch);
-	var he=h;
-	h=this.cancelhit(h,e,sh);
-	e=e-(he-h);
-	he=h;
-	if (h>=ee) h=h-ee; else h=0; // evade tokens
-	ee=ee-(he-h);
-	c=this.cancelcritical(c,e,sh);
-	if (c>=ee) c=c-ee; else c=0; // evade tokens
-	return FCH_CRIT*c+h*FCH_HIT;
+	var e=getdefenseresult();
+	var ch=sh.weapons[sh.activeweapon].modifydamagegiven(getattackresult());
+	var r=this.cancelhit({ch:ch,e:e},sh);
+	r=this.cancelcritical(r,sh);
+	return r.ch;
     },
     declareattack:function(w,target) {
 	//console.log("declareattack:"+this.name)
@@ -2887,11 +2880,14 @@ Unit.prototype = {
 	    this.cleanupattack();
 	    return false;
 	}
-	this.resolveactionselection(p,function(k) { 
-	    if (k>=0) {
-		this.declareattack(wp,p[k]); 
-		this.resolveattack(wp,p[k]);
-	    } 
+	this.doselection(function(n) {
+	    this.resolveactionselection(p,function(k) { 
+		if (k>=0) {
+		    this.declareattack(wp,p[k]); 
+		    this.resolveattack(wp,p[k]);
+		} 
+		this.endnoaction(n,"HIT");
+	    }.bind(this));
 	}.bind(this));
 	return true;
     },
@@ -4717,17 +4713,16 @@ var PILOTS = [
         unit: "Firespray-31",
         skill: 7,
 	done:true,
-	init: function() {
-	    var unit=this;
-	    var cc=Unit.prototype.cancelcritical;
-	    Unit.prototype.cancelcritical=function(c,e,sh) {
-		var ce=cc.call(this,c,e,sh);
-		if (c>ce&&sh!=this&&activeunit.name=="Kath Scarlet") {
-		    this.log("+1 %STRESS for cancelling %CRIT%");
+	declareattack: function(w,target) {
+	    var self=this;
+	    target.wrap_after("cancelcritical",self,function(r,org,r2) {
+		if (FCH_crit(r.ch)>FCH_crit(r2.ch)) {
+		    this.log("+1 %STRESS% for cancelling %CRIT% [%0]",self.name);
 		    this.addstress();
 		}
-		return ce;
-	    }
+		return r2;
+	    }).unwrapper("endbeingattacked");
+	    Unit.prototype.declareattack.call(this,w,target);
 	},
         points: 38,
         upgrades: [ELITE,CANNON,BOMB,CREW,MISSILE],
@@ -4806,13 +4801,20 @@ var PILOTS = [
         unit: "B-Wing",
         skill: 8,
 	init: function() {
+	    var self=this;
 	    this.shipimg="b-wing-1.png";
-	    var cc=Unit.prototype.cancelcritical;
-	    Unit.prototype.cancelcritical=function(c,h,sh) {
-		var ce=cc.call(this,c,h,sh);
-		if (activeunit.name=="Ten Numb"&&c>1 && ce==0) return 1;
-		return ce;
-	    }
+	},
+	declareattack: function(w,target) {
+	    target.wrap_after("cancelcritical",self,function(r,org,r2) {
+		if (FCH_crit(r.ch)>0) {
+		    if (FCH_crit(r2.ch)==0) {
+			target.log("cannot cancel 1 %CRIT% [%0]",this.name)
+			return {ch:r2.ch+FCH_CRIT,e:r2.e+1};
+		    }
+		    return r;
+		}
+	    }.bind(this)).unwrapper("endbeingattacked");
+	    Unit.prototype.declareattack.call(this,w,target);
 	},
         points: 31,
         upgrades: [ELITE,SYSTEM,CANNON,TORPEDO,TORPEDO],
@@ -6613,8 +6615,9 @@ var PILOTS = [
 			this.removeshield(1); 
 			this.endnoaction(n,"HIT");
 		    }.bind(this)};
-		    var list=[a2];
-		    if (this.shield<this.ship.shield) list.push(a1);		    
+		    var list=[];
+		    if (this.shield>0) list.push(a2);
+		    if (this.shield<this.ship.shield) list.push(a1);
 		    this.donoaction(list,"select to add shield/roll 1 fewer die or remove shield/roll 1 additional die",true);
 		}
 	    },
@@ -7056,6 +7059,14 @@ var PILOTS = [
 	unit:"Attack Shuttle",
 	skill:3,
 	points:18,
+	done:true,
+	cancelhit:function(r,t) {
+	    // first, cancel criticals
+	    this.log("cancel %CRIT% first");
+	    r=this.cancelcritical(r,t);
+	    r=Unit.prototype.cancelhit(r,t);
+	    return r;
+	},
 	upgrades:[TURRET,CREW]
     },
     {
@@ -7980,17 +7991,23 @@ var UPGRADES= [
         points: 4,
         attack: 3,
 	done:true,
+	fired:-1,
+	endattack: function() {
+	    if (this.fired==round) {
+		if (this.ordnance) {
+		    this.ordnance=false; 
+		} else this.isactive=false;
+	    }
+	},
 	init: function(sh) {
 	    var m=this;
-	    var r=-1;
-	    var ea=sh.endattack;
-	    sh.endattack=function(c,h) {
-		if (r<round&&this.usedweapon>-1&&this.weapons[this.usedweapon]==m) {
+	    sh.wrap_after("endattack",this,function(c,h) {
+		if (m.fired<round&&m.isactive&&this.usedweapon>-1&&this.weapons[this.usedweapon]==m) {
 		    this.log("2nd attack with %0 [%1]",m.name,m.name);
-		    r=round;
+		    m.fired=round;
 		    this.resolveattack(this.activeweapon,targetunit); 
-		} else ea.call(this);
-	    };
+		}
+	    }.bind(sh));
 	},
         range: [1,2],
     },
@@ -8438,16 +8455,13 @@ var UPGRADES= [
 	done:true,
 	firesnd:"slave_fire",
         attack: 3,
-	init: function(sh) {
+	declareattack: function(target) {
 	    var self=this;
-	    var ch=Unit.prototype.cancelhit;
-	    Unit.prototype.cancelhit=function(h,e,u) {
-		if (u.weapons[u.activeweapon]==this) {
-		    this.log("Hits cannot be cancelled by defense dice [%0]",self.name);
-		    return h;
-		}
-		return ch.call(this,h,e,u);
-	    };
+	    target.wrap_after("cancelhit",self,function(r,org,r2) {
+		self.unit.log("%HIT% cannot be cancelled [%0]",self.name);
+		return r;
+	    }).unwrapper("endattack");
+	    Weapon.prototype.declareattack.call(this,target);
 	},
         range: [1,1],
         points: 5,
@@ -8845,6 +8859,7 @@ var UPGRADES= [
 	done:true,
 	endattack: function(c,h) {
 	    if (targetunit.hull<=4) targetunit.addstress();
+	    Weapon.prototype.endattack.call(this);
 	},
         points: 2,
         attack: 3,
@@ -9072,13 +9087,17 @@ var UPGRADES= [
     {
         name: "R4-D6",
         init: function(sh) {
-	    sh.wrap_after("cancelhit",this,function(h,e,org,hh) {
-		if (hh>=3) {
-		    var d=hh-2;
+	    var self=this;
+	    sh.wrap_after("cancelhit",this,function(r,org,r2) {
+		var h=FCH_hit(r2.ch);
+		if (h>=3) {
+		    sh.log("cancelling %0 hits [%1]",h-2,self)
+		    var d=h-2;
+		    var ch=r2.ch-d*FCH_HIT;
 		    for (var i=0; i<d; i++) sh.addstress();
-		    return d;
+		    return {ch:ch,e:r2.e};
 		}
-		return hh;
+		return r2;
 	    })
 	},
 	done:true,
@@ -9734,16 +9753,13 @@ var UPGRADES= [
 	done:true,
         points: 2,
         attack: 2,
-	init: function(sh) {
+	declareattack: function(target) {
 	    var self=this;
-	    var ch=Unit.prototype.cancelhit;
-	    Unit.prototype.cancelhit=function(h,e,u) {
-		if (u.weapons[u.activeweapon]==self) {
-		    this.log("%HIT% cannot be cancelled by defense dice [%0]",self.name);
-		    return h;
-		}
-		return ch.call(this,h,e,u);
-	    };
+	    target.wrap_after("cancelhit",self,function(r,org,r2) {
+		self.unit.log("%HIT% cannot be cancelled [%0]",self.name);
+		return r;
+	    }).unwrapper("endattack");
+	    Weapon.prototype.declareattack.call(this,target);
 	},
         range: [1,1],
     },
@@ -9885,7 +9901,7 @@ var UPGRADES= [
 	init: function(sh) {
 	    var upg=this;
 	    sh.wrap_before("collidedby",this,function(t) {
-		if (upg.isactive) {
+		if (upg.isactive&&t.team!=this.team) {
 		    var roll=this.rollattackdie(1)[0];
 		    if (roll=="hit"||roll=="critical") {
 			t.log("+%1 %HIT% [%0]",upg.name,1) 
@@ -10542,7 +10558,7 @@ var UPGRADES= [
 		    &&this.weapons[this.usedweapon]==self) {
 		    this.log("2nd attack with %0 [%1]",self.name,self.name);
 		    tlt=round;
-		    this.selecttargetforattack(this.activeweapon,targetunit); 
+		    this.resolveattack(this.activeweapon,targetunit); 
 		}
 	    }.bind(sh));
 	}
@@ -11471,6 +11487,14 @@ function nextplanning() {
 		 activeunit.select();
 		 activeunit.doplan();
 	     });
+}
+function getattackresult() {
+    var h=$(".hitreddice").length;
+    var c=$(".criticalreddice").length;
+    return FCH_CRIT*c+FCH_HIT*h;
+}
+function getdefenseresult() {
+    return $(".evadegreendice").length+$(".evadegreen").length;
 }
 function addattackdie(type,n) {
     for (var i=0; i<n; i++) 
@@ -12938,10 +12962,11 @@ $(document).ready(function() {
 	    refreshsquadlist();
 	}
 	var pilots=[];
-	for (i in PILOT_translation) {
+	for (i=0; i<PILOTS.length; i++) {
 	    var n=i;
-	    if (typeof PILOT_translation[i].name!="undefined") n=PILOT_translation[i].name;
-	    pilots.push(n.replace(/\'/g,"").replace(/\(Scum\)/g,""));
+	    var name=PILOTS[i].name;
+	    if (typeof PILOT_translation[name]!="undefined"&&typeof PILOT_translation[name].name!="undefined") name=PILOT_translation[name].name;
+	    pilots.push(name.replace(/\'/g,"").replace(/\(Scum\)/g,""));
 	}
 	var upgrades=[];
 	for (i in UPGRADE_translation) {
@@ -12949,7 +12974,7 @@ $(document).ready(function() {
 	    if (typeof UPGRADE_translation[n].name!="undefined") n=UPGRADE_translation[i].name;
 	    upgrades.push(n.replace(/\'/g,"").replace(/\(Crew\)/g,""));
 	}
-	$(".squadbg > textarea").asuggest(pilots, { 'delimiters': '\n', 'cycleOnTab': true });
+	$(".squadbg > textarea").asuggest(pilots, { 'delimiters': '^\n', 'cycleOnTab': true });
 	$(".squadbg > textarea").asuggest(upgrades, { 'delimiters': '+ ', 'cycleOnTab':true});
 	/*md = new Hammer(document.getElementById('leftpanel'));
 	  md.get('pan').set({direction:Hammer.DIRECTION_VERTICAL});
