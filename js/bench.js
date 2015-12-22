@@ -12745,6 +12745,7 @@ $(document).ready(function() {
     }});
     var availlanguages={"en":"🇬🇧","fr":"🇫🇷"};
     LANG = localStorage['LANG'] || window.navigator.userLanguage || window.navigator.language;
+    LANG=LANG.substring(0,2);
     $.when(
 	$.ajax("data/ships.json"),$.ajax("data/strings."+LANG+".json"),$.ajax("data/xws.json"),$.ajax("data/setups.json")
     ).done(function(result1,result2,result3,result4) {
