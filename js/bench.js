@@ -2663,7 +2663,7 @@ Unit.prototype = {
 	return m
     },
     removestresstoken: function() {
-	this.stress--;
+	if (this.stress>0) this.stress--;
 	this.show();
     },
     handledifficulty: function(difficulty) {
@@ -3094,7 +3094,9 @@ Unit.prototype = {
 	return this.maneuver>-1;
     },
     getmaneuver: function() {
-	if (this.ionized>0) return this.getdial()[0];
+	if (this.ionized>0) {
+	    return {move:"F1",difficulty:"WHITE"};
+	}
 	return this.getdial()[this.maneuver];
     },
     showmaneuver: function() {
@@ -6874,7 +6876,7 @@ var PILOTS = [
 	  begincombatphase: function() {
 	   var p=this.selectnearbyunits(1,function(a,b) { return (a.team==b.team);});
 	   for (var i=0; i<p.length; i++) 
-	       this.removestresstoken();
+	       p[i].removestresstoken();
 	   return Unit.prototype.begincombatphase.call(this);
        },
        upgrades: [ELITE,TECH],
@@ -8944,8 +8946,11 @@ var UPGRADES= [
 	init:function(sh) {
 	    var rdd=sh.defenseroll;
 	    var self=this;
+	    var c3po=-1;
 	    sh.wrap_after("defenseroll",this,function(r,promise) {
+		if (c3po==round) return promise;
 		var lock=$.Deferred();
+		c3po=round;
 		promise.done(function(roll) {
 		    var resolve=function(k) {
 			if (k==FE_evade(roll.roll)) {
@@ -8959,7 +8964,7 @@ var UPGRADES= [
 
 		    this.log("guess the number of evades out of %0 dice [%1]",r,self.name);
 		    $("#actiondial").empty();
-		    for (var i=0; i<roll.dice; i++) {
+		    for (var i=0; i<=roll.dice; i++) {
 			(function(k) {
 			    var e=$("<button>").html(k+" <code class='xevadetoken'></code>")
 				.click(function() { resolve(k);}.bind(this));
@@ -10685,10 +10690,10 @@ var UPGRADES= [
             range: [2,2],
 	    done:true,
 	    init: function(sh) {
-		var ahm=this;
+		var self=this;
 		sh.wrap_after("hashit",this,function(t,hh) {
-		    if (hh&&ahm==activeunit.activeweapon) {
-			this.log("+1 %CRIT% [%0]",ahm.name);
+		    if (hh&&self==this.weapons[this.activeweapon]) {
+			this.log("+1 %CRIT% [%0]",self.name);
 			t.applycritical(1);
 			this.hitresolved=0;
 			this.criticalresolved=0;
