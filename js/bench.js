@@ -7639,14 +7639,13 @@ var UPGRADES= [
 	    var i;
 	    var self=this;
 	    var save=[];
-	    sh.log("installing R2 Astromech");
-	    sh.wrap_before("getdial",this,function() {
+	    sh.wrap_after("getdial",this,function(gd) {
 		if (save.length==0) { 
-		    for (var i=0; i<this.dial.length; i++) {
-			var s=P[this.dial[i].move].speed;
-			var d=this.dial[i].difficulty;
-			if (s==1||s==2) d="GREEN";
-			save[i]={move:this.dial[i].move,difficulty:d};
+		    for (i=0; i<gd.length; i++) {
+			var s=P[gd[i].move].speed;
+			var d=gd[i].difficulty;
+			if (s==1||s==2) d="GREEN"; 
+			save[i]={move:gd[i].move,difficulty:d};
 		    }
 		    sh.log("1, 2 speed maneuvers are green [%0]",self.name);
 		}
@@ -8369,11 +8368,11 @@ var UPGRADES= [
 	done:true,
         install: function(sh) {
 	    var save=[];
-	    sh.wrap_before("getdial",this,function() {
+	    sh.wrap_after("getdial",this,function(gd) {
 		if (save.length==0) 
-		    for (var i=0; i<this.dial.length; i++) {
-			var move=this.dial[i].move;
-			var d=this.dial[i].difficulty;
+		    for (var i=0; i<gd.length; i++) {
+			var move=gd[i].move;
+			var d=gd[i].difficulty;
 			if (move.match(/F[1-5]/)) d="GREEN";
 			save[i]={move:move,difficulty:d};
 		    }
@@ -9723,11 +9722,11 @@ var UPGRADES= [
         install: function(sh) {
 	    var i;
 	    var save=[];
-	    sh.wrap_before("getdial",this,function() {
+	    sh.wrap_after("getdial",this,function(gd) {
 		if (save.length==0) {
-		    for (var i=0; i<this.dial.length; i++) {
-			var d=this.dial[i].difficulty;
-			var move=this.dial[i].move;
+		    for (var i=0; i<gd.length; i++) {
+			var d=gd[i].difficulty;
+			var move=gd[i].move;
 			if (move.match(/[A-Z]+3/)) d="GREEN";
 			save[i]={move:move,difficulty:d};
 		    }
@@ -10725,11 +10724,11 @@ var UPGRADES= [
 	    done:true,
             install: function(sh) {
 		var save=[];
-		sh.wrap_before("getdial",this,function(m) {
+		sh.wrap_after("getdial",this,function(gd) {
 		    if (save.length==0) 
-			for (var i=0; i<this.dial.length; i++) {
-			    var move=this.dial[i].move;
-			    var d=this.dial[i].difficulty;
+			for (var i=0; i<gd.length; i++) {
+			    var move=gd[i].move;
+			    var d=gd[i].difficulty;
 			    if (move.match(/BL\d|BR\d/)) d="GREEN";
 			    save[i]={move:move,difficulty:d};
 			}
