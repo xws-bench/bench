@@ -36,20 +36,10 @@
 	  <span class="ver"></span>
 	  <img onclick="changelanguage('en')" class="langselect" src="css/uk-on.png">
 	  <img onclick="changelanguage('fr')" class="langselect" src="css/fr-on.png">
-	  <span class="share-buttons">
-	    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fxws-bench.github.io%2Fbench%2F&t=Squadron%20Benchmark" title="Share on Facebook" target="_blank"><img src="css/Facebook.png">
-</a>
-	    <a href="https://twitter.com/intent/tweet?source=http%3A%2F%2Fxws-bench.github.io%2Fbench%2F&text=Squadron%20Benchmark:%20http%3A%2F%2Fxws-bench.github.io%2Fbench%2F" target="_blank" title="Tweet"><img src="css/Twitter.png"></a>
-	    <a href="https://plus.google.com/share?url=http%3A%2F%2Fxws-bench.github.io%2Fbench%2F" target="_blank" title="Share on Google+"><img src="css/Google+.png"></a>
-	    <a href="http://www.reddit.com/submit?url=http%3A%2F%2Fxws-bench.github.io%2Fbench%2F&title=Squadron%20Benchmark" target="_blank" title="Submit to Reddit"><img src="css/Reddit.png"></a>
-	  </span>
+
 	</span>
 	<div class="buttonbar">
 	  <button class="m-reset permalink" onclick="resetlink()">&#x25c0; </button>
-	  <span class="share-buttons">
-
-	    <span href="@" onclick="permalink($(this))" title="Save to permalink"><img src="css/copy.png"></span>
-	  </span>
 	  <span id="phase" style="font-size:small"></span>
 	  <button class="nextphase" onclick="nextphase()"><span class='np'></span> <span id='npimg'>&#9658;</span></button>
 	  <span class="menu" onmouseover="$('nav ul').css({display:'block',visibility:'visible'})" onmouseout="$('nav ul').css({display:'none',visibility:'hidden'})"><img src="css/menu.png">
@@ -129,22 +119,21 @@
      </section>
  
      <article id="creation" class="mainarticle">
-	 <table class="headunits">
-	   <tr>
-	     <td></td>
-	     <td>
-	   <select class="factionselect" onchange="currentteam.changefaction($(this).val())">
-	   </select>
-	   <span id="totalpts">0</span>
-	   <span class="total m-totalpts"></span>
-	   <button onclick="addunit()" class="m-add"><span style='font-family:ships;font-size:large;line-height:0.8em'>x</span> </button>
-	   	     </td>
-	   </tr>
-	 </table>
-	 <div class="unitlist">
-	   <table class="listunits">
- 	   </table>
+       <div>
+	 <h3 class="m-pilotselect"></h3>
+	 <div class="selector">
+	   <span class="REBEL m-rebel" onclick="currentteam.changefaction('REBEL')"></span>
+	   <span class="SCUM m-scum" onclick="currentteam.changefaction('SCUM')"></span>
+	   <span class="EMPIRE m-empire" onclick="currentteam.changefaction('EMPIRE')"></span>
 	 </div>
+	 <div class="unitlist">
+	   <ul id="caroussel" class="caroussel"></ul>
+	 </div>
+	 <h3 class="inunitlist"><span class="m-name"></span> - <span id="totalpts">0</span>&nbsp;<span class="total m-totalpts"></span></h3>
+	 <div class="unitlist">
+	   <ul id="listunits" class="caroussel"></ul>
+	 </div>
+       </div>
      </article>
  
      <article id="selectphase" class="mainarticle">
@@ -183,7 +172,13 @@
        </table>
        </div>
        <h3 class="m-manage"></h3>
-       <div id="uselector" class="selector"></div>
+       <div id="uselector" class="selector">
+	 <span class="m-rebel" onclick="stype='REBEL';SQUADLIST.draw();refreshsquadlist();"></span>
+	 <span class="m-scum" onclick="stype='SCUM';SQUADLIST.draw();refreshsquadlist();"></span>
+	 <span class="m-empire" onclick="stype='EMPIRE';SQUADLIST.draw();refreshsquadlist();"></span>
+	 <span class="Prebuilt" onclick="stype='PREBUILT';SQUADLIST.draw();refreshsquadlist();"></span>
+	 <span class="Mybuilds" onclick="stype='USER';SQUADLIST.draw();refreshsquadlist();"></span>
+       </div>
        <table id="squadlist" style="color:black;font-size:x-small" class="compact stripe hover order-column row-border">
        </table>
        <br>

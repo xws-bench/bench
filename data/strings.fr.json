@@ -484,7 +484,7 @@
       },
       "Elusiveness": {
         "name": "Insaisissable",
-        "text": "Quand vous défendez, vous pouvez recevoir un marqueur de stress pour choisir 1 dé d'attaque. Si vous avez au moins un marqueur de stress, vous ne pouvez pas utiliser cette capacité."
+        "text": "Quand vous défendez, vous pouvez recevoir un marqueur de stress pour choisir 1 dé d'attaque. L'attaquant doit relancer ce dé. Si vous avez au moins un marqueur de stress, vous ne pouvez pas utiliser cette capacité."
       },
       "Push the Limit": {
         "name": "Repousser les limites",
@@ -1141,23 +1141,26 @@
 	"m-done":"Ok",
 	"m-fire":"Feu!",
 	"m-create":"Nouveau",
+	"m-pilotselect":"Liste des pilotes",
 	"m-setup":"Mise en place",
 	"m-filter":"Filtrer les listes préconstruites ou par faction",
 	"m-selectinstructions":"Préparer le combat",
 	"m-manage":"Gérer vos escadrons",
 	"m-importinstructions":"Créer un nouvel escadron, ou taper une liste au format XWS3.0 ou au format texte.",
-	"m-prebuilt":"La liste est préremplie avec des escadrons. Il y a au moins un escadron pour chaque pilote unique des Waves I à VII."
+	"m-prebuilt":"La liste est préremplie avec des escadrons. Il y a au moins un escadron pour chaque pilote unique des Waves I à VII.",
+	"m-empire":"Empire Galactique",
+	"m-rebel":"Rebelles",
+	"m-scum":"Racailles",
+	"Prebuilt":"Preconstruits",
+	"Mybuilds":"Mes Listes",
+	"m-notimplemented":"Pas encore implémenté.",
+	"m-none":"aucun"
     },
     "ui":{
-	"empire":"Empire Galactique",
-	"rebel":"Rebelles",
-	"scum":"Racailles",
 	"selects":"Choisir un escadron",
 	"selectu":"Choisir une unité",
 	"none":"aucun",
 	"type":"Type",
-	"Prebuilt":"Preconstruits",
-	"My builds":"Mes Listes",
 	"squadron":"Escadron",
 	"phase1":"Construction et préparation d'escadrons",
 	"phase2":"Mise en place",
@@ -1332,7 +1335,9 @@
 "has exploded!":"a explosé !",
 "elite action from %0 available":"action elite de %0 disponible",
 "share %0 upgrade":"partage de %0",
-"cancel all dice, +1 damage card":"annule tous les dés, +1 dommage"
+"cancel all dice, +1 damage card":"annule tous les dés, +1 dommage",
+"%0 repaired":"%0 réparé",
+"%0 not repaired":"%0 pas réparé"
     },
     "criticals":{
 	"Structural Damage":{
