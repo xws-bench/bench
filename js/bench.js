@@ -708,6 +708,10 @@ function Unit(team,pilotid) {
     this.DEFENSEMODD=[];
     this.DEFENSEADD=[];
     this.tx=this.ty=this.alpha=0.;
+    if (typeof PILOTS[pilotid]=="undefined") {
+	console.log("pilot does not exists "+pilotid);
+	return;
+    }
     var u=unitlist[PILOTS[pilotid].unit];
     this.ship={
 	firesnd:u.firesnd,
