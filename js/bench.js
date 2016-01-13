@@ -13248,7 +13248,6 @@ $(document).ready(function() {
 			"render": function ( data, type, row ) {
 			    if (LANG!="en"&&phase==SELECT_PHASE) 
 				if (row[4].search("SQUAD")==-1) {
-				    console.log("parsing "+row[4]);
 				    TEAMS[0].parseJuggler(data,true);
 				    data=TEAMS[0].toJuggler(true);
 				}
