@@ -37,6 +37,7 @@
 	"fire": 4,
 	"evade": 0,
 	"hull": 10,
+	"islarge":true,
 	"shield": 6,
 	"dial": [
 	    {"move":"TL1","difficulty":"RED"},
@@ -383,7 +384,6 @@
 	"img":["tie.png"],
 	"faction":["EMPIRE"],
 	"weapon_type":"Laser",
-	"islarge":"false",
 	"code":"F",
 	"fire": 2,
 	"evade": 3,
@@ -922,7 +922,6 @@
 	"img":["tie-fo.png"],
 	"faction":["EMPIRE"],
 	"weapon_type":"Laser",
-	"islarge":"false",
 	"code":"F",
 	"fire": 2,
 	"evade": 3,
@@ -948,5 +947,68 @@
 	    {"move":"F5","difficulty":"WHITE"}
 	],
 	"actionList":[ "FOCUS","EVADE","ROLL","TARGET"]
-    }   
+    },
+    "TIE Adv. Prototype":{
+	"firesnd":"tie_fire",
+	"flysnd":"tie_fly",
+	"img":["tie-advanced-prototype.png"],
+	"faction":["EMPIRE"],
+	"scale":1.2,
+	"weapon_type":"Laser",
+	"fire": 2,
+	"evade": 3,
+	"hull": 2,
+	"shield": 2,
+	"dial": [
+	    {"move":"TL1","difficulty":"GREEN"},
+	    {"move":"BL1","difficulty":"GREEN"},
+	    {"move":"BR1","difficulty":"GREEN"},
+	    {"move":"TR1","difficulty":"GREEN"},
+	    {"move":"TL2","difficulty":"WHITE"},
+	    {"move":"BL2","difficulty":"WHITE"},
+	    {"move":"F2","difficulty":"GREEN"},
+	    {"move":"BR2","difficulty":"WHITE"},
+	    {"move":"TR2","difficulty":"WHITE"},
+	    {"move":"TL3","difficulty":"WHITE"},
+	    {"move":"BL3","difficulty":"WHITE"},
+	    {"move":"F3","difficulty":"GREEN"},
+	    {"move":"BR3","difficulty":"WHITE"},
+	    {"move":"TR3","difficulty":"WHITE"},
+	    {"move":"F4","difficulty":"WHITE"},
+	    {"move":"K4","difficulty":"RED"},
+	    {"move":"F5","difficulty":"WHITE"}
+	],
+	"actionList":[ "FOCUS","ROLL","TARGET","BOOST"]
+    },
+    "G-1A Starfighter":{
+	"firesnd":"slave_fire",
+	"flysnd":"slave_fly",
+	"img":["g1a.png"],
+	"faction":["SCUM"],
+	"scale":2.0,
+	"weapon_type":"Laser",
+	"fire": 3,
+	"evade": 1,
+	"hull": 4,
+	"shield": 4,
+	"dial": [
+	    {"move":"TL1","difficulty":"RED"},
+	    {"move":"BL1","difficulty":"GREEN"},
+	    {"move":"F1","difficulty":"GREEN"},
+	    {"move":"BR1","difficulty":"GREEN"},
+	    {"move":"TR1","difficulty":"RED"},
+	    {"move":"TL2","difficulty":"WHITE"},
+	    {"move":"BL2","difficulty":"WHITE"},
+	    {"move":"F2","difficulty":"GREEN"},
+	    {"move":"BR2","difficulty":"WHITE"},
+	    {"move":"TR2","difficulty":"WHITE"},
+	    {"move":"BL3","difficulty":"RED"},
+	    {"move":"F3","difficulty":"GREEN"},
+	    {"move":"BR3","difficulty":"RED"},
+	    {"move":"K3","difficulty":"RED"},	    
+	    {"move":"F4","difficulty":"WHITE"},
+	    {"move":"K4","difficulty":"RED"}
+	],
+	"actionList":[ "FOCUS","EVADE","TARGET"]
+    }
 }
