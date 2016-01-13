@@ -98,30 +98,18 @@
     "When you decloak, you must use the (%BANKLEFT%2) or (%BANKRIGHT%2) template instead of the (%STRAIGHT%2) template."},
     "'Whisper'":{"text":
     "After you perform an attack that hits, you may assign 1 focus to your ship."},
-    "Wes Janson":{"text":
-    "After you perform an attack, you may remove 1 focus, evade, or blue target lock token from the defender."},
-    "Jek Porkins":{"text":
-    "When you receive a stress token, you may remove it and roll 1 attack die.  On a %HIT% result, deal 1 facedown Damage card to this ship."},
-    "'Hobbie' Klivian":{"text":
-    "When you acquire or spend a target lock, you may remove 1 stress token from your ship."},
-    "Tarn Mison":{"text":
-    "When an enemy ship declares you as the target of an attack, you may acquire a target lock on that ship."},
-    "Jake Farrell":{"text":
-    "After you perform a focus action or are assigned a focus token, you may perform a free boost or barrel roll action."},
-    "Gemmer Sojan":{"text":
-    "While you are at Range 1 of at least 1 enemy ship, increase your agility value by 1."},
-    "Keyan Farlander":{"text":
-    "When attacking, you may remove 1 stress token to change all of your %FOCUS% results to %HIT%results."},
-    "Nera Dantels":{"text":
-    "You can perform %TORPEDO% secondary weapon attacks against enemy ships outside your firing arc."},
-    "CR90 Corvette (Fore)":{"text":
-    "When attacking with your primary weapon, you may spend 1 energy to roll 1 additional attack die."},
-    "Dash Rendar":{"text":
-    "You may ignore obstacles during the Activation phase and when performing actions."},
-    "'Leebo'":{"text":
-    "When you are dealt a faceup Damage card, draw 1 additional Damage card, choose 1 to resolve, and discard the other."},
-    "Eaden Vrill":{"text":
-    "When performing a primary weapon attack against a stressed ship, roll 1 additional attack die."},
+    "Wes Janson":{"text":"After you perform an attack, you may remove 1 focus, evade, or blue target lock token from the defender."},
+    "Jek Porkins":{"text":"When you receive a stress token, you may remove it and roll 1 attack die.  On a %HIT% result, deal 1 facedown Damage card to this ship."},
+    "'Hobbie' Klivian":{"text":"When you acquire or spend a target lock, you may remove 1 stress token from your ship."},
+    "Tarn Mison":{"text":"When an enemy ship declares you as the target of an attack, you may acquire a target lock on that ship."},
+    "Jake Farrell":{"text":"After you perform a focus action or are assigned a focus token, you may perform a free boost or barrel roll action."},
+    "Gemmer Sojan":{"text":"While you are at Range 1 of at least 1 enemy ship, increase your agility value by 1."},
+    "Keyan Farlander":{"text":"When attacking, you may remove 1 stress token to change all of your %FOCUS% results to %HIT%results."},
+    "Nera Dantels":{"text":"You can perform %TORPEDO% secondary weapon attacks against enemy ships outside your firing arc."},
+    "CR90 Corvette (Fore)":{"text":"When attacking with your primary weapon, you may spend 1 energy to roll 1 additional attack die."},
+    "Dash Rendar":{"text":"You may ignore obstacles during the Activation phase and when performing actions."},
+    "'Leebo'":{"text":"When you are dealt a faceup Damage card, draw 1 additional Damage card, choose 1 to resolve, and discard the other."},
+    "Eaden Vrill":{"text":"When performing a primary weapon attack against a stressed ship, roll 1 additional attack die."},
     "Rear Admiral Chiraneau":{"text":
     "When attacking at Range 1-2, you may change 1 of your %FOCUS% results to a %CRIT% result."},
     "Commander Kenkirk":{"text":
@@ -206,8 +194,6 @@
 	{"text":"While attacking or defending, if you have a focus token, you may change 1 of your %FOCUS% results to a %HIT% or %EVADE% result."},
 	"Hera Syndulla":
 	{"text":"When you reveal a green or red maneuver, you may rotate your dial to another maneuver of the same difficulty."},
-	"Hera Syndulla (A.S.)":
-	{"text":"When you reveal a green or red maneuver, you may rotate your dial to another maneuver of the same difficulty."},
 	"'Chopper'":{"text":"At the start of the Combat phase, each enemy ship you are touching receives 1 stress token."},
 	"Ezra Bridger":{"text":"When defending, if you are stressed, you may change up to 2 of your %FOCUS% results to %EVADE% results."},
 	"Sabine Wren":{"text":"Immediately before you reveal your maneuver, you may perform a free boost or barrel roll action."},
@@ -215,7 +201,12 @@
 	"Kanan Jarrus":{"text":"When an enemy ship at Range 1-2 is attacking, you may spend a focus token. If you do, the attacker rolls 1 fewer attack die."},
 	"'Chaser'":{"text":"When another friendly ship at Range 1 spends a focus token, assign a focus token to your ship."},
 	"'Youngster'":{"text":"Friendly TIE fighters at Range 1-3 may perform the action on your equipped %ELITE% Upgrade card."},
-	"'Wampa'":{"text":"When attacking, you may cancel all dice results. If you cancel a %CRIT% result, deal 1 facedown Damage card to the defender."}
+	"'Wampa'":{"text":"When attacking, you may cancel all dice results. If you cancel a %CRIT% result, deal 1 facedown Damage card to the defender."},
+	"Ello Asty":{"text":"When you are not stressed, you may treat your %TALONLEFT% and %TALONRIGHT% maneuvers as white maneuvers."},
+	"Valen Rudor":{"text":"After defending, you may perform a free action."},
+	"The Inquisitor":{"text":"When attacking with your primary weapon at Range 2-3, treat the range of the attack as Range 1."},
+	"Zuckuss (Scum)":{"text":"When attacking, you may roll 1 additional attack die. If you do, the defender rolls 1 additional defense die."},
+	"4-LOM (Scum)":{"text":"At the start of the End phase, you may assign 1 of your stress tokens to another ship at Range 1."}
  },
  "upgrades": {
     "Ion Cannon Turret":{"text":
@@ -455,7 +446,7 @@
     "Bomb Loadout":{"text":
     "Your upgrade bar gains the %BOMB% icon."},
     "'Genius'":{"text":
-    "If you are equipped with a bomb that can be dropped before you reveal your maneuver, you may drop the bomb <strong>after</strong> you execute your maneuver instead."},
+    "If you are equipped with a bomb that can be dropped when you reveal your maneuver, you may drop the bomb after you execute your maneuver instead."},
     "Unhinged Astromech":{"text":
     "You may treat all 3-speed maneuvers as green maneuvers."},
     "R4-B11":{"text":
@@ -606,7 +597,14 @@
      "Targeting Astromech":{"text":"After you execute a red maneuver, you may acquire a target lock."},
      "TIE/D":{"text":"Once per round, after you perform an attack with a %CANNON% secondary weapon that costs 3 or fewer squad points, you may perform a primary weapon attack."},
      "TIE/x7":{"text":"Your upgrade bar loses the %CANNON% and %MISSILE% upgrade icons. After executing a 3-, 4- or 5-speed maneuver, you may assign 1 evade token to your ship."},
-     "TIE Shuttle":{"text":"Your upgrade bar loses all %TORPEDO%, %MISSILE%, and %BOMB% icons and gains 2 %CREW% upgrade icons. You cannot equip a %CREW% upgrade icon that costs more than 4 squad points."}
+     "TIE Shuttle":{"text":"Your upgrade bar loses all %TORPEDO%, %MISSILE%, and %BOMB% icons and gains 2 %CREW% upgrade icons. You cannot equip a %CREW% upgrade icon that costs more than 4 squad points."},
+     "Guidance Chips":{"text":"Once per round, when attacking with a %TORPEDO% or %MISSILE% secondary weapon, you may change 1 die result to a %HIT% result (or a %CRIT% result if your primary weapon value is '3' or higher)."},
+     "TIE/v1":{"text":"After you acquire a target lock, you may perform a free evade action."},
+     "Mist Hunter":{"text":"Your action bar gains the %ROLL% action icon. You must equip 1 tractor beam upgrade card (paying its squad point cost as normal)."},
+     "Zuckuss(Crew)":{"text":"When attacking, you may receive any number of stress tokens to choose an equal number of defense dice. The defender must reroll those dice."},
+     "4-LOM(Crew)":{"text":"When attacking, during the 'Modify Attack Dice' step, you may receive 1 ion token to choose 1 of the defender's focus or evade tokens. That token cannot be spent during this attack."},
+     "Adaptability(+1)":{"text":"Increase your pilot skill value by 1."},
+     "Adaptability(-1)":{"text":"Decrease your pilot skill value by 1."}
  },
 
     "criticals":{
@@ -686,23 +684,26 @@
 	"m-move":"Move",
 	"m-fire":"Fire!",
 	"m-skip":"Skip",
+	"m-pilotselect":"Pilot selection",
 	"m-player":"Player",
 	"m-manage":"Manage your squads",
 	"m-filter":"Filter prebuilt squad lists or according to their faction",
 	"m-selectinstructions":"Prepare for combat",
 	"m-importinstructions":"Create new squad or type a squad list, in the XWS3.0 format or in plain text.",
-	"m-prebuilt":"The list is filled with prebuilt squads. There is at least one squad for each unique pilot of Wave I-VII."
+	"m-prebuilt":"The list is filled with prebuilt squads. There is at least one squad for each unique pilot of Wave I-VII.",
+	"m-empire":"Galactic Empire",
+	"m-rebel":"Rebels",
+	"m-scum":"Scum and Villainy",
+	"Prebuilt":"Prebuilt",
+	"Mybuilds":"My builds",
+	"m-notimplemented":"Not implemented yet.",
+	"m-none":"none"
     },
     "ui":{
-	"empire":"Galactic Empire",
-	"rebel":"Rebels",
-	"scum":"Scum and Villainy",
 	"selects":"Select a squad",
 	"selectu":"Select unit",
 	"none":"none",
 	"type":"Types",
-	"Prebuilt":"Prebuilt",
-	"My builds":"My builds",
 	"squadron":"Squadron",
 	"phase0":"Build squad #1",
 	"phase1":"Build and select squads",
