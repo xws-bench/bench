@@ -439,6 +439,7 @@ color:#000;
 overflow-y:auto;
 }
 .unitlist {
+overflow-x:hidden;
 overflow-y:hidden;
 white-space:nowrap;
 }
@@ -905,7 +906,9 @@ text-align:center;
 line-height:14px;
 display:inline
 }
-
+#listunits .close {
+font-size:x-large;
+} 
 .evadetoken,.focustoken,.cloaktoken,.stresstoken,.targettoken {
 font-family:'symbols';
 padding:6px;
@@ -1575,31 +1578,34 @@ ul.caroussel li {
   border-radius:10px;
   box-shadow: inset 1px 1px 0 rgba(255,255,255,.4), 0 0 30px rgba(0,0,0,0.2);
   width:180px;
-  margin-right: -100px;
+  margin-right: -30px;
   margin-top:20px;
   margin-left:0;
   margin-bottom:0;
   opacity: .5;
   z-index: 50;
-  -moz-transform: rotateY(45deg);
-  -webkit-transform: rotateY(45deg);
-  transform: rotateY(45deg);
   -moz-transition: all .45s;
   -webkit-transition: all .45s;
   transition: all .45s;
+}
+ul#caroussel li {
+  -moz-transform: rotateY(45deg);
+  -webkit-transform: rotateY(45deg);
+  transform: rotateY(45deg);
+  margin-right: -100px;
 }
 ul#listunits {
 height:26em;
 }
 .inunitlist {
 padding:0;
-margin:0;
+margin:2px;
 }
 ul#listunits li {
 height:29em;
 margin-top:40px;
 }
-ul.caroussel li.highlighted {
+ul#caroussel li.highlighted {
   -moz-transform: rotateY( 0deg );
   -webkit-transform: rotateY( 0deg ) ;
   transform: rotateY( 0deg );
@@ -1620,7 +1626,7 @@ ul.caroussel table.upgs {
 padding-left:4px;
 vertical-align:top;
 }
-ul.caroussel .highlighted ~ li {
+ul#caroussel .highlighted ~ li {
   -moz-transform: rotateY(-45deg);
   -webkit-transform: rotateY(-45deg);
   transform: rotateY(-45deg);
@@ -1630,28 +1636,35 @@ ul.caroussel li:hover,
 ul.caroussel li:first-child:hover,
 ul.caroussel li.highlighted ~ li:hover { z-index: 60!important; }
 
-ul.caroussel li:hover,ul.caroussel li.highlighted {
+ul#caroussel li:hover,ul#caroussel li.highlighted {
   -moz-transform: rotateY(0deg) translateZ(50px) scale(1.12);
   -webkit-transform: rotateY(0deg) translateZ(50px) scale(1.12);
   transform: rotateY(0deg) translateZ(50px) scale(1.12);
+}
+ul.caroussel li:hover,ul.caroussel li.highlighted {
+  -moz-transform: translateZ(50px) scale(1.12);
+  -webkit-transform: translateZ(50px) scale(1.12);
+  transform: translateZ(50px) scale(1.12);
+}
+ul.caroussel li:hover,ul.caroussel li.highlighted {
   opacity: 1;
   z-index:60!important;
   background:black;
 }
 
-ul.caroussel li:hover ~ li {
+ul#caroussel li:hover ~ li {
   -moz-transform: rotateY(-45deg);
   -webkit-transform: rotateY(-45deg);
   transform: rotateY(-45deg);
 }
 
-ul.caroussel:hover li:not(:hover) {
+ul#caroussel:hover li:not(:hover) {
   -moz-transform: rotateY(45deg) ;
   -webkit-transform: rotateY(45deg) ;
   transform: rotateY(45deg);
 }
 
-ul.caroussel:hover li:hover ~ li {
+ul#caroussel:hover li:hover ~ li {
   -moz-transform: rotateY(-45deg) ;
   -webkit-transform: rotateY(-45deg);
   transform: rotateY(-45deg);
