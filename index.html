@@ -14,6 +14,7 @@
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/jquery.a-tools-1.4.1.js"></script>
     <script src="js/jquery.asuggest.js"></script>
+    <script src="js/lz-string.min.js"></script>
     <script src="js/buzz.min.js"></script>
     <script src="js/hammer.min.js"></script>
     <script src="js/bench.min.js"></script>
@@ -39,9 +40,11 @@
 
 	</span>
 	<div class="buttonbar">
-	  <button class="m-reset permalink" onclick="resetlink()">&#x25c0; </button>
+	  <button class="m-reset permalink" onclick="resetlink()">&#10096; </button>
+	  <span class="share-buttons"></span>
+
 	  <span id="phase" style="font-size:small"></span>
-	  <button class="nextphase" onclick="nextphase()"><span class='np'></span> <span id='npimg'>&#9658;</span></button>
+	  <button class="nextphase" onclick="nextphase()"><span class='np'></span> <span id='npimg'>&#10097;</span></button>
 	  <span class="menu" onmouseover="$('nav ul').css({display:'block',visibility:'visible'})" onmouseout="$('nav ul').css({display:'none',visibility:'hidden'})"><img src="css/menu.png">
 	    <ul>
 	      <li><a class="m-about" href="#about"></a></li>
@@ -113,7 +116,21 @@
 	    <a href="#" title="Close" class="close">&#10060;</a>
 	  </h2>
 	  <div>
+	    <button class="permalink m-replay" onclick="window.location.reload(true)">&#8634; </button>
 	    <table class="victory-table"></table>
+	    <div class="replays">Share combat: 
+	      <a href="#" class="victory-link"><code></code></a>
+	      <span class="share-button">
+		<a class="tweet" href="#" target="_blank"><img width="30px" src="css/Twitter.svg"></a>
+		<a class="facebook" href="#" target="_blank"><img width="30px" src="css/Facebook.svg"></a>
+		<a class="googlep" href="#" target="_blank"><img width="30px" src="css/Googlep.svg"></a>
+		<a class="email" href="#" title="Share by Email"><img width="30px" src="css/Email.svg">
+</a>
+		<a class="reddit" href="#" title="Share by Reddit"><img width="30px" src="css/Reddit.svg">
+</a>
+	      </span>
+	    </div>
+	    <button class="m-reset permalink" onclick="resetlink()">&#10096; </button>
 	  </div>
 	</div>
      </section>
@@ -170,10 +187,10 @@
        </div>
        <h3 class="m-manage"></h3>
        <div id="uselector" class="selector">
-	 <span class="m-rebel" onclick="stype='REBEL';SQUADLIST.draw();"></span>
-	 <span class="m-scum" onclick="stype='SCUM';SQUADLIST.draw();"></span>
-	 <span class="m-empire" onclick="stype='EMPIRE';SQUADLIST.draw();"></span>
-	 <span class="Prebuilt" onclick="stype='PREBUILT';SQUADLIST.draw();"></span>
+	 <span class="REBEL m-rebel" onclick="stype='REBEL';SQUADLIST.draw();"></span>
+	 <span class="SCUM m-scum" onclick="stype='SCUM';SQUADLIST.draw();"></span>
+	 <span class="EMPIRE m-empire" onclick="stype='EMPIRE';SQUADLIST.draw();"></span>
+	 <span class="PREBUILT Prebuilt" onclick="stype='PREBUILT';SQUADLIST.draw();"></span>
 	 <span class="Mybuilds" onclick="stype='USER';SQUADLIST.draw();"></span>
        </div>
        <table id="squadlist" style="color:black;font-size:x-small" class="compact stripe hover order-column row-border">

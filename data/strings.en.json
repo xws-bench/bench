@@ -352,7 +352,7 @@
     "R3-A2":{"text":
     "When you declare the target of your attack, if the defender is inside your firing arc, you may receive 1 stress token to cause the defender to receive 1 stress token."},
     "R2-D6":{"text":
-    "Your upgrade bar gains the %EVADE% upgrade icon. You cannot equip this upgrade if you already have a %EVADE% upgrade icon or if your pilot skill value is '2' or lower."},
+    "Your upgrade bar gains the %ELITE% upgrade icon."},
     "Enhanced Scopes":{"text":
     "During the Activation phase, treat your pilot skill value as 0."},
     "Chardaan Refit":{"text":
@@ -652,6 +652,8 @@
 	}
     },
     "css":{
+	"m-replay":"Replay",
+	"m-reload":"Reload",
 	"m-1win":"Squad #1 wins!",
 	"m-2win":"Squad #2 wins!",
 	"m-draw":"Draw!",
@@ -662,7 +664,8 @@
 	"m-blog":"Blog",
 	"m-proba":"Probabilities",
 	"m-save":"Save",
-	"m-reset":"Back",
+	"m-reset":"Restart",
+	"m-share":"Share",
 	"np":"Next",
 	"m-import":"Import",
 	"m-export":"Export",
