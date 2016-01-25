@@ -11,6 +11,42 @@ background-color:white;
 	display:none;
     }
 }
+@media (min-width:300px) {
+    button.m-replay {
+	visibility:hidden;
+	display:none;
+    }
+}
+@media screen and (max-width:300px) {
+    nav, footer {
+	position:fixed;
+	top:0;
+	opacity:0;
+	background:rgba(0,0,0,1);
+    } 
+    .modalDialog {
+	visibility:hidden
+    }
+    button.m-replay {
+	visibility:visible;
+	display:block;
+    }
+    button.nextphase {
+	position:fixed;
+	top;0;
+	left;0;
+	opacity:1;
+    }
+    .leftpanel,.rightpanel {
+	display:none;
+	visibility:hidden;
+    }
+    .main,#selectphase,.playmat {
+	top:0;
+	left:0;
+	position:fixed;
+    }
+}
 footer,article,nav,footer,body {
 display:block;
 font-family:sans-serif;
@@ -46,7 +82,7 @@ overflow-x:hidden;
 }
 .playmat {
 padding:0;
-background:url(playmat7c.jpg);
+background:url(playmat7.jpg);
 background-repeat:no-repeat;
 background-size:100% 100%;
 width:100%;
@@ -202,7 +238,6 @@ text-align:left;
 vertical-align:middle;
 margin-left:2.5%;
 opacity:0.75;
-width:95%;
 }
 .setupselector img {
 height:40px;
@@ -359,41 +394,26 @@ margin:0;
 .warn {
 color:red
 }
-/*
-.close {
-background:#606061;
-color:#FFF;
-line-height:25px;
-position:absolute;
-right:-12px;
-text-align:center;
-top:-10px;
-z-index:1;
-width:24px;
-text-decoration:none;
-font-weight:700;
-border-radius:12px;
-box-shadow:1px 1px 3px #000
-}
-
-.close:hover {
-background:#00d9ff
-}
-*/
-.close {
+.close,.duplicate {
 margin-right:.5ex;
 color:red;
 position:absolute;
-top:0;
 right:0;
 text-decoration:none;
 cursor:pointer;
+}
+.duplicate {
+top:2em;
+}
+.close {
+top:0;
 }
 .closemiddle {
 margin-right:.5ex;
 color:red;
 text-decoration:none;
 cursor:pointer;
+width:1ex;
 }
 .phasepanel {
 display:none
@@ -437,6 +457,7 @@ text-align:center;
 /*background:#fff;*/
 color:#000;
 overflow-y:auto;
+overflow-x:hidden;
 }
 .unitlist {
 overflow-x:hidden;
@@ -483,7 +504,7 @@ letter-spacing:4px;
 }
 
 .statfire,.statskill,.PS,.statevade,.stathull,.statshield {
-display:inline-block
+/*display:inline-block*/
 }
 .leftpanel section,.rightpanel section {
 /*position:fixed;
@@ -1126,7 +1147,6 @@ border-radius:4px
 
 .button2,.button {
 color:black;
-background:white;
 margin:1px;
 border:0;
 padding:1px;
@@ -1162,9 +1182,13 @@ color:#d3d3d3;
 cursor:default;
 }
 .button2 {
-width:74px
+width:74px;
+background-color:white;
 }
-
+#squadlist table {
+empty-cells:hide;
+width:100%;
+}
 .leftpanel,.rightpanel {
 top:5ex; /*new */
 position:absolute;
@@ -1194,6 +1218,16 @@ color:red
 .statfire,.statevade,.player {
 cursor:pointer;
 }
+.PREBUILT::before {
+background-image:url(prebuilt.png);/*"!"*/
+background-size: 100%;
+background-repeat: no-repeat;
+width: 1em; 
+height: 1em;
+padding-left:1em;
+content:"";
+}
+
 .REBEL::before {
 background-image:url(rebel.png);/*"!"*/
 background-size: 100%;
