@@ -1111,6 +1111,8 @@
             {"text":"Après avoir été détruit, mais avant d'être retiré de la zone de jeu, vous pouvez déployer le vaisseau Pilote de Nashtah Pup. Il ne peut pas attaquer à ce tour."}
     },
     "css":{
+	"m-replay":"Recommence",
+	"m-reload":"Recharge",
 	"m-1win":"La liste nº1 gagne !",
 	"m-2win":"La liste nº2 gagne !",
 	"m-draw":"Match nul !",
@@ -1121,7 +1123,8 @@
 	"m-blog":"Blog",
 	"m-proba":"Probabilités",
 	"m-save":"Sauvegarde",
-	"m-reset":"Retour",
+	"m-reset":"Recommencer",
+	"m-share":"Partager",
 	"np":"Suivant",
 	"m-import":"Import",
 	"m-add":"Ajouter",
@@ -1231,7 +1234,7 @@
 "+1 blank reroll [%0]":"+1 relance dé blanc [%0]",
 "+1 defense due to ennemy at range 1":"+1 défense pour ennemi à portée 1",
 "+1 defense for range 3":"+1 défense pour portée 3",
-"+1 free action [%0]":"+1 action gratuire [%0]",
+"+1 free action [%0]":"+1 action gratuite [%0]",
 "+1 ion token [%0]":"+1 marqueur ion [%0]",
 "+2 rerolls [%0]":"+2 relances [%0]",
 "-1 %FOCUS%, %0 damage -> %0 critical(s)":"-1 %FOCUS%, %0 dommage",
