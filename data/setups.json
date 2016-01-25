@@ -1,5 +1,6 @@
 {"data":{
     "Classic Map": {
+	"name":"Classic",
 	"type":"90cmx90cm",
 	"description":"The standard gameplay zone.",
  	"playzone":"M 0 0 L 900 0 900 900 0 900 Z",
@@ -11,6 +12,7 @@
 	"asteroids":6
     },
     "Epic Map": {
+	"name":"Epic",
 	"type":"180cmx90cm",
 	"img":"png/epic.png",
 	"description":"Twice the size of the standard gameplay zone, for large battles.",
@@ -22,6 +24,7 @@
 	"asteroids":6
     },
     "Deathstar Map":{
+	"name":"Deathstar",
 	"type":"A trench.",
 	"img":"png/trench.png",
 	"description":"Team #1 has to destroy the Death Star while Team #2 chases Team #1 in the trench. Stay on target! You need to select a Thermal Exhaust unit and position it at the right most position in the trench.",
@@ -33,6 +36,7 @@
 	"asteroids":0
     },
     "Defender Map":{
+	"name":"Defender",
 	"type":"90cmx90cm",
 	"img":"png/defender.png",
 	"description":"Team #1 has to stay in a small area, while Team #2 moves in a standard zone.",
