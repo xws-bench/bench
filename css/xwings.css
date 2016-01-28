@@ -11,13 +11,13 @@ background-color:white;
 	display:none;
     }
 }
-@media (min-width:300px) {
+@media screen and (min-width:400px) {
     button.m-replay {
 	visibility:hidden;
 	display:none;
     }
 }
-@media screen and (max-width:300px) {
+@media screen and (max-width:400px) {
     nav, footer {
 	position:fixed;
 	top:0;
@@ -369,6 +369,14 @@ opacity:0.15;
 height:calc( 100% - 5ex );
 width:100%;
 background:url(playmat12.jpg);
+background-repeat:no-repeat;
+background-size:100% 100%;
+overflow-y:auto;
+}
+#experience > div {
+height:calc( 100% - 5ex );
+width:100%;
+background:url(playmat8.jpg);
 background-repeat:no-repeat;
 background-size:100% 100%;
 overflow-y:auto;
@@ -789,7 +797,13 @@ border-radius:50%;
 padding:8px;
 background:white;
 }
-.smallbutton,.bigbutton,.button,.permalink,.nextphase {
+.clicks {
+background:red;
+color:white;
+border-radius:1em;
+padding:2px;
+}
+.smallbutton,.bigbutton,.button,.permalink,.nextphase,.mainbutton {
 display:inline-block;
 margin:5px;
 text-align:center;
@@ -802,7 +816,11 @@ background:#b0c4de;
 cursor:pointer;
 border-radius:5px
 }
-
+#replay {
+background:white;
+opacity:0.8;
+margin:2em;
+}
 .bigbutton {
 width:74px
 }
