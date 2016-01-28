@@ -661,7 +661,7 @@ padding-top:5px;
 }
 .listunits {
 border-collapse:collapse;
-overflow-y:scroll;
+overflow-y:auto;
 }
 .headunits {
 background:lightsteelblue;
@@ -1783,7 +1783,7 @@ cursor:pointer;
 height:9em;
 display:block;
 overflow-x:hidden;
-overflow-y:scroll;
+overflow-y:auto;
 width:100%;
 }
 .upg span {
