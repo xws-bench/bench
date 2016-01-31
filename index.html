@@ -15,9 +15,10 @@
     <script src="js/jquery.a-tools-1.4.1.js"></script>
     <script src="js/jquery.asuggest.js"></script>
     <script src="js/lz-string.min.js"></script>
+    <script src="js/tabletop.js"></script>
     <script src="js/buzz.min.js"></script>
     <script src="js/hammer.min.js"></script>
-  <script src="js/bench.min.js"></script>
+    <script src="js/bench.min.js"></script>
     <style type="text/css" id="localstrings"></style>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -153,7 +154,14 @@
      <article id="experience" class="mainarticle">
        <div>
        <h3 class="m-experience">Combat Experience</h3>
-       <iframe id="replay" src="" width="400px" height="400px"></iframe>
+       <table style="width:100%">
+	 <tr>
+	   <td><iframe id="replay" src="" width="400px" height="400px"></iframe></td>
+	   <td style="width:calc(100% - 400px);">
+	     <table id="squadbattle" style="color:black;font-size:x-small" class="compact stripe hover order-column row-border"></table>
+	   </td>
+	 </tr>
+       </table>
        <table id="combatlist" style="color:black;font-size:x-small" class="compact stripe hover order-column row-border">
        </table>
        </div>
