@@ -5,11 +5,14 @@ var PY=[250,250,400,400,550,550];
 var id=0;
 function loadrock(s,str) {
     var i;
-    var coord=[],o;
+    var coord=[],o,ob;
     PATTERN = s.image(ROCKIMG,0,0,200,200).pattern(0,0,200,200);
     if (str !="") {
 	o=str.split(";");
-	for (i=0; i<6; i++) coord[i]=Base64.toCoord(o[i]);
+	for (i=0; i<6; i++) {
+	    ob=o[i].split(",");
+	    coord[i]=[parseInt(ob[0],10),parseInt(ob[1],10),parseInt(ob[2],10)];
+	}
     } else for (i=0; i<6; i++) coord[i]=[0,0,0];
     for (i=1; i<=6; i++) {
 	(function(i) {
@@ -18,11 +21,12 @@ function loadrock(s,str) {
 	});
 	})(i)
     }
+
 }
 function saverock() {
-    var i;
+    if (OBSTACLES.length==0) return "";
     var str=OBSTACLES[0].toASCII();
-    for (i=1; i<6; i++) 
+    for (var i=1; i<6; i++) 
 	str+=";"+OBSTACLES[i].toASCII();
     return str;
 }
@@ -68,8 +72,7 @@ function Rock(fragment,coord) {
 
 Rock.prototype = {
     toASCII: function() {
-	var s=Base64.fromCoord([this.tx,this.ty,this.alpha]);;
-	return s;
+	return Math.floor(this.tx)+","+Math.floor(this.ty)+","+Math.floor(this.alpha);
     },
     getrangeallunits: function () { return Unit.prototype.getrangeallunits.call(this);},
     getrange: function(sh) { return Unit.prototype.getrange.call(this,sh); },
