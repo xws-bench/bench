@@ -20,8 +20,9 @@ var dice=1;
 var ATTACK=[]
 var DEFENSE=[]
 var FACTIONS={"rebel":"REBEL","empire":"EMPIRE","scum":"SCUM"};
-var SQUADLIST;
+var SQUADLIST,SQUADBATTLE;
 var COMBATLIST;
+var combatpilots=[];
 var TEAMS=[new Team(0),new Team(1),new Team(2)];
 var currentteam=TEAMS[0];
 var VIEWPORT;
@@ -29,7 +30,6 @@ var ANIM="";
 var SETUPS={};
 var SETUP;
 var SHOWDIAL=[];
-var GOOGLEKEY="1bMXH83-wfq5b7IgfkNWl5hVpzntpti5S6NA2O6NJrm0";
 //var sl;
 var increment=1;
 var theta=0;
@@ -513,8 +513,12 @@ function win() {
     else if (d<0) title="m-2win";
     $(".victory").attr("class",title);
     var titl = (TEAMS[1].isia?"Computer":"Human")+":"+score1+" "+(TEAMS[2].isia?"Computer":"Human")+":"+score2;
-    var note=TEAMS[1].toJuggler(false).replace(/\n/g,";").replace(/ + /g,",");
-    note+="VS"+TEAMS[2].toJuggler(false).replace(/\n/g,";").replace(/ + /g,",");
+    var note=TEAMS[1].toJuggler(false);
+    note+="VS"+TEAMS[2].toJuggler(false);
+    note=note.replace(/\n/g,".");
+    note=note.replace(/ \+ /g,"*");
+    note=note.replace(/ /g,"_");
+    console.log("note:"+encodeURI(note));
     var link="https://api-ssl.bitly.com/v3/user/link_save?access_token=ceb626e1d1831b8830f707af14556fc4e4e1cb4c&longUrl="+encodeURI("http://xws-bench.github.io/bench/index.html?"+permalink(false))+"&title="+encodeURI(titl)+"&note="+encodeURI(note);
     $.when($.ajax(link)).done(function(result1) {
 	var url=result1.data.link_save.link;
@@ -583,8 +587,8 @@ function switchdialimg(b) {
 }
 function displaycombats() {
     if (phase !=XP_PHASE) return;
-    
-    $("#combatlist").html("<thead><tr><th></th><th class='m-views'></th><th><span class='m-squad1'></span></th><th><span class='m-squad2'><span></th><th></th></tr></thead>");
+    var d=new Date();
+    $("#combatlist").html("<thead><tr><th></th><th><span class='m-squad1'></span></th><th><span class='m-squad2'><span></th></tr></thead>");
 
     COMBATLIST=$("#combatlist").DataTable({
 	"language": {
@@ -599,17 +603,17 @@ function displaycombats() {
 	"columnDefs": [
 	    { "targets": [0],
 	      "render":function() {
-		  return "<span class='button2' onclick='viewcombat($(this))'>View</span>";
+		  return "<span class='button2' onclick='viewsquadtypecombat($(this))'>View</span>";
 	      },
 	      "sortable":false
 	    },
 	    {   "targets":[2,3],
 		"render": function ( data, type, row ) {
-		    return "<pre>"+data+"</pre>";
+		    return data;
 		}
 	    }, 
 	    {
-		"targets": [ 4 ],
+		"targets": [ 1 ],
 		"visible": false,
 		"searchable": false
 	    },
@@ -622,11 +626,98 @@ function displaycombats() {
     $("#replay").attr("src","");
     //$("td:eq(2)).addClass("clicks")
 
-    $.ajaxSetup({beforeSend: function(xhr){
-	if (xhr.overrideMimeType)
-	    xhr.overrideMimeType("application/jsonp");
-    }});
 
+    $("#squadbattle").html("<thead><tr><th></th><th></th><th class='m-views'></th><th class='m-score'></th><th><span class='m-squad1'></span></th><th><span class='m-squad2'><span></th></tr></thead>");
+
+    SQUADBATTLE=$("#squadbattle").DataTable({
+	"language": {
+	    "search":UI_translation["Search"],
+	    "lengthMenu": UI_translation["Display _MENU_ records per page"],
+	    "zeroRecords": UI_translation["Nothing found - sorry"],
+	    "info": UI_translation["Showing page _PAGE_ of _PAGES_"],
+	    "infoEmpty": UI_translation["No records available"],
+	    "infoFiltered": UI_translation["(filtered from _MAX_ total records)"]
+	},
+	"autoWidth": false,
+	"columnDefs": [
+	    { "targets": [0],
+	      "render":function() {
+		  return "<div class='button2' onclick='viewcombat($(this),false)'>View</div>"+
+		      "<div class='button2' onclick='viewcombat($(this),true)'>Full screen</div>";
+	      },
+	      "sortable":false
+	    },
+	    { "targets":[2],
+	      "render": function(data, type,row) {
+		  var link=row[1];
+		  var id=link.replace(/^.*\//,"");
+		  var clicks="https://api-ssl.bitly.com/v3/link/clicks?access_token=ceb626e1d1831b8830f707af14556fc4e4e1cb4c&link="+encodeURI(link);
+		  $.when($.ajax(clicks)).done(function(result1) {
+		      $("#clicks"+id).html(result1.data.link_clicks);
+		  });
+		  return "<span class='clicks' id='clicks"+id+"'></span>";
+	      },
+	    },
+	    {   "targets":[4,5],
+		"render": function ( data, type, row ) {
+		    return data;
+		},
+		"width":"40%",
+	    }, 
+	    {
+		"targets": [ 1 ],
+		"visible": false,
+		"searchable": false
+	    },
+
+	],    
+	"deferRender": true,
+	"ordering":true,
+	"info":true,
+	"paging":true});
+
+   $.ajaxSetup({beforeSend: function(xhr){
+	if (xhr.overrideMimeType)
+	    xhr.overrideMimeType("text/plain");
+    }}); 
+    $.ajax("https://api.github.com/search/issues?q=repo:xws-bench/battles+created:>2016-01-01",{success:function(data) {
+	var json=$.parseJSON(data);
+	for (var i in json.items) {
+	    var t=json.items[i].title.split(" ");
+	    var ts1=t[0].split(":");
+	    var type1=ts1[0];
+	    var score1=ts1[1];
+	    var ts2=t[1].split(":");
+	    var type2=ts2[0];
+	    var score2=ts2[1];
+	    
+	    var b=json.items[i].body.split("http://");
+	    var tinyurl="http://"+b[1].split("<br>")[0];
+	    var tt=b[0].split("VS");
+	    var team1=tt[0].split("\.");
+	    var team2=tt[1].split("\.");
+	    var s1="",s2="",t1="",t2="";
+	    for (var j=0; j<team1.length-1; j++) {
+		s1+=team1[j].replace(/\*.*/g,"").replace(/_/g," ")+", ";
+		t1+=team1[j].replace(/\*/g," + ").replace(/_/g," ")+"<br>";
+	    }
+	    for (var j=0; j<team2.length-1; j++) {
+		s2+=team2[j].replace(/\*.*/g,"").replace(/_/g," ")+", ";
+		t2+=team2[j].replace(/\*/g," + ").replace(/_/g," ")+"<br>";
+	    }
+	    s1=s1.replace(/, $/,"");
+	    s2=s2.replace(/, $/,"");
+	    if (typeof combatpilots[s1+"|"+s2]=="undefined") {
+		combatpilots[s1+"|"+s2]=[];
+	    }
+	    combatpilots[s1+"|"+s2].push({t1:t1,type1:type1,score1:score1,t2:t2,score2:score2,type2:type2,url:tinyurl});
+	}
+	for (var i in combatpilots) {
+	    var teams=i.split("|");
+	    addrowcombat(combatpilots[i][0].url,teams[0],teams[1]);
+	}
+    }});
+/*
     var tinyurl="https://docs.google.com/a/google.com/spreadsheets/d/1bMXH83-wfq5b7IgfkNWl5hVpzntpti5S6NA2O6NJrm0/gviz/tq?tq=select%20E&callback=callback"
     $.when($.ajax(tinyurl,{
 	crossDomain:true,
@@ -658,7 +749,7 @@ function displaycombats() {
 	    }
 	}
     });
-    
+    */
     /*var tinyurl="http://cors.io/?u="+encodeURI("");
     $.when($.ajax(tinyurl)).done(function(r) {
 	var j=$.parseJSON(r.substr(47,r.length-49));
@@ -670,6 +761,7 @@ function displaycombats() {
 		addrowcombat(c[2].v,t[0],t[1]);
 	}
     });*/
+
    $.ajaxSetup({beforeSend: function(xhr){
 	if (xhr.overrideMimeType)
 	    xhr.overrideMimeType("application/json");
@@ -951,10 +1043,10 @@ function addrow(team,name,pts,faction,jug) {
 	SQUADLIST.row.add(["",n,""+pts,jug,name,"",""]).draw(false);
 }
 function addrowcombat(link,team1,team2) {
-    var clicks="https://api-ssl.bitly.com/v3/link/clicks?access_token=ceb626e1d1831b8830f707af14556fc4e4e1cb4c&link="+encodeURI(link);
-    $.when($.ajax(clicks)).done(function(result1) {
-	COMBATLIST.row.add(["",result1.data.link_clicks,team1,team2,link]).draw(false);
-    });
+    //var clicks="https://api-ssl.bitly.com/v3/link/clicks?access_token=ceb626e1d1831b8830f707af14556fc4e4e1cb4c&link="+encodeURI(link);
+    //$.when($.ajax(clicks)).done(function(result1) {
+    COMBATLIST.row.add(["",link,team1,team2]).draw(false);
+    //});
 }
 function makeGrid(points1,points2){    
     var dataLength = points1.length;
@@ -1063,10 +1155,23 @@ function removerow(t) {
     delete localStorage[data];
     row.remove().draw(false);
 }
-function viewcombat(t) {
+function viewsquadtypecombat(t) {
     var row=COMBATLIST.row(t.parents("tr"));
-    var data = row.data()[4];
-    $("#replay").attr("src",data);
+    var team1=row.data()[2];
+    var team2=row.data()[3];
+    SQUADBATTLE.clear();
+    for (var i in combatpilots[team1+"|"+team2]) {
+	var cp=combatpilots[team1+"|"+team2][i];
+
+	SQUADBATTLE.row.add(["",cp.url,0,cp.score1+"-"+cp.score2,"<b>"+cp.type1+"</b><br>"+cp.t1,"<b>"+cp.type2+"</b><br>"+cp.t2]).draw(false);
+    }; 
+    var table = $('#squadbattle').DataTable();
+    table.columns.adjust().draw();   
+}
+function viewcombat(t,fullscreen) {
+    var row=SQUADBATTLE.row(t.parents("tr"));
+    if (!fullscreen) $("#replay").attr("src",row.data()[1]);
+    else window.location=row.data()[1];
 }
 function checkrow(n,t) {
    var row=SQUADLIST.row(t.parents("tr"));
@@ -1124,7 +1229,7 @@ function nextphase() {
 	phase=SELECT_PHASE;
 	return;
     case XP_PHASE:
-	phase=0;
+	phase=SELECT_PHASE;
 	return;
     case SETUP_PHASE: 
 	$(".buttonbar .share-buttons").hide();
@@ -1824,20 +1929,16 @@ $(document).ready(function() {
     var availlanguages={"en":"🇬🇧","fr":"🇫🇷"};
     LANG = localStorage['LANG'] || window.navigator.userLanguage || window.navigator.language;
     LANG=LANG.substring(0,2);
-    
-
-/*    $.ajaxSetup({beforeSend: function(xhr){
+    $.ajaxSetup({beforeSend: function(xhr){
 	if (xhr.overrideMimeType)
 	    xhr.overrideMimeType("application/json");
     }});
-*/
-//"https://docs.google.com/a/google.com/spreadsheets/d/"+
- /*   Tabletop.init( { key: GOOGLEKEY+"/gviz/tq?tq=select%20B%2C%20C%2C%20D",
-                     callback: function(data, tabletop) { console.log(data) },
-                     simpleSheet: true } );
- */   $.when(
-	$.ajax("data/ships.json"),$.ajax("data/strings."+LANG+".json"),$.ajax("data/xws.json"),$.ajax("data/setups.json")
-    ).done(function(result1,result2,result3,result4,result5) {
+    $.when(
+	$.ajax("data/ships.json"),
+	$.ajax("data/strings."+LANG+".json"),
+	$.ajax("data/xws.json"),
+	$.ajax("data/setups.json")
+    ).done(function(result1,result2,result3,result4) {
 	var process=setInterval(function() {
 	    ATTACK[dice]=attackproba(dice);
 	    DEFENSE[dice]=defenseproba(dice);
@@ -2022,7 +2123,7 @@ $(document).ready(function() {
 		}
 	    );
 
-	jwerty.key("v",experience);
+	    jwerty.key("v",experience);
 
 	    SQUADLIST=$("#squadlist").DataTable({
 		"language": {

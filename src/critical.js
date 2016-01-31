@@ -24,7 +24,6 @@ Critical.prototype= {
 	else return "<tr "+c+">"+a+b+d+"</tr>";
     },
 }
-// TODO: a facedown for all effects
 var CRITICAL_DECK=[
     {
 	type:"ship",
@@ -33,17 +32,14 @@ var CRITICAL_DECK=[
 	faceup: function() {
 	    this.unit.log("Critical: %0",this.name);
 	    this.isactive=true;
-	    this.ga=this.unit.getagility;
-	    this.unit.getagility=function() {
-		    var a=this.ga.call(this.unit);
-		    if (a>0) return a-1; else return a;
-	    }.bind(this);
+	    this.unit.wrap_after("getagility",this,function(a) {
+		if (a>0) return a-1; else return a;
+	    });
 	},
 	facedown:function() {
 	    if (this.isactive) {
-		this.unit.getagility=this.ga;
-		//this.unit.criticals.splice(this,1);
-		log(this.name+" repaired, +1 agility for "+this.unit.name);
+		this.unit.getagility.unwrap(this);
+		this.unit.log("%0 repaired",this.name);
 		this.unit.showstats();
 	    }
 	    this.isactive=false;
@@ -52,7 +48,7 @@ var CRITICAL_DECK=[
 	    var roll=this.unit.rollattackdie(1)[0];
 	    if (roll=="hit") {
 		this.facedown();
-	    } else log(this.name+" not repaired for "+this.unit.name);
+	    } else this.unit.log("%0 not repaired ",this.name);
 	    this.unit.endaction(n,"CRITICAL");
 	},
     },
@@ -63,23 +59,19 @@ var CRITICAL_DECK=[
 	faceup: function() {
 	    this.unit.log("Critical: %0",this.name);
 	    this.isactive=true;
-	    this.gd=this.unit.getdial;
-	    this.unit.getdial=function() {
-		var i;
-		var b=[];
-		var a=this.gd.call(this.unit);
-		for (i=0; i<a.length; i++) {
-		    b[i]={move:a[i].move,difficulty:a[i].difficulty};
-		    if (a[i].move=="TL1"||a[i].move=="TL2"
-		    ||a[i].move=="TL3"||a[i].move=="TR1"
-		    ||a[i].move=="TR2"||a[i].move=="TR3")
-			b[i].difficulty="RED";
+	    var save=[];
+	    this.unit.wrap_after("getdial",this,function(a) {
+		if (save.length==0) {
+		    for (var i=0; i<a.length; i++) {
+			save[i]={move:a[i].move,difficulty:a[i].difficulty};
+			if (a[i].move.match("TL\d|TR\d")) save[i].difficulty="RED";
+		    }
 		}
-		return b;
-	    }.bind(this);
+		return save;
+	    });
 	},
 	facedown: function() {
-	    if (this.isactive) this.unit.getdial=this.gd;
+	    if (this.isactive) this.unit.getdial.unwrap(this);
 	    this.isactive=false;
 	}
     },
@@ -91,15 +83,13 @@ var CRITICAL_DECK=[
 	faceup: function() {
 	    this.unit.log("Critical: %0",this.name);
 	    this.isactive=true;
-	    var bcp=this.unit.begincombatphase;
-	    this.unit.begincombatphase=function() {
+	    this.unit.wrap_before("begincombatphase",this,function() {
 		var roll=this.rollattackdie(1)[0];
 		if (roll=="hit") {
-		    log("Console in fire for "+this.name+": 1 <code class='hit'></code>");
+		    this.log("+1 %HIT% [%0]",this.name);
 		    this.resolvehit(1); this.checkdead();
 		}
-		bcp.call(this);
-	    };
+	    });
 	},
 	action: function(n) {
 	    this.facedown();
@@ -108,7 +98,7 @@ var CRITICAL_DECK=[
 	facedown: function() {
 	    if (this.isactive) {
 		log("Console no longer in fire for "+this.unit.name);		
-		this.unit.begincombatphase=this.bcp;
+		this.unit.begincombatphase.unwrap(this);
 	    }
 	    this.isactive=false;
 	}
@@ -120,21 +110,17 @@ var CRITICAL_DECK=[
 	faceup:function() {
 	    this.unit.log("Critical: %0",this.name);
 	    this.isactive=true;
-	    var i;
-	    for (i=0; i<this.unit.weapons.length;i++) 
+	    for (var i=0; i<this.unit.weapons.length;i++) 
 		if (this.unit.weapons[i].isprimary) break;
-	    this.i=i;
 	    this.w=this.unit.weapons[i];
-	    this.ga=this.w.getattack;
-	    this.w.getattack=function() {
-		var a=this.ga.call(this.w);
+	    this.w.wrap_after("getattack",this,function(a) {
 		if (a>0) return a-1; else return a;
-	    }.bind(this);
+	    });
 	},
 	facedown: function() {
 	    if (this.isactive) {
-		this.unit.weapons[this.i].getattack=this.ga;
-		log("Primary weapon for "+this.unit.name+" functioning again.");
+		this.w.getattack.unwrap(this);
+		this.unit.log("%0 repaired",this.w.name);
 		this.isactive=false;
 	    }
 	},
@@ -152,20 +138,19 @@ var CRITICAL_DECK=[
 	faceup: function() {
 	    this.unit.log("Critical: %0",this.name);
 	    this.isactive=true;
-	    this.gsal=this.unit.getactionbarlist;
-	    this.unit.getactionbarlist=function() { return [];};
+	    this.unit.wrap_after("getactionbarlist",this,function() { return [];});
 	},
 	facedown: function() {
 	    if (this.isactive) {
-		this.unit.getshipactionlist=this.gsal;
-		log("Sensor array for "+this.unit.name+" functioning again.");
+		this.unit.getactionbarlist.unwrap(this);
+		this.unit.log("%0 repaired",this.name);
 		this.isactive=false;
 	    }
 	},
 	action: function(n) {
 	    var roll=this.unit.rollattackdie(1)[0];
 	    if (roll=="hit") this.facedown();
-	    else log("Sensor array still damaged for "+this.unit.name);
+	    else this.unit.log("%0 not repaired",this.name);
 	    this.unit.endaction(n,"CRITICAL");
 	}
     },
@@ -204,11 +189,12 @@ var CRITICAL_DECK=[
 	lethal:true,
 	faceup: function() {
 	    this.unit.log("Critical: %0",this.name);
-	    this.isactive=false;
+	    //this.isactive=false;
 	    this.unit.removehull(1);
 	},
 	facedown: function() {
 	    this.isactive=false;
+	    this.unit.hull++;
 	}
     },
     {
@@ -227,7 +213,7 @@ var CRITICAL_DECK=[
 	    var w=this.unit.rand(m.length);
 	    this.wp=m[w];
 	    this.wp.isactive=false;
-	    log(this.wp.name+" not functioning anymore for "+this.unit.name);
+	    this.unit.log(this.wp.name+" not functioning anymore");
 	    this.unit.show();
 	},
 	facedown: function() { this.isactive=false;
@@ -239,23 +225,23 @@ var CRITICAL_DECK=[
 	type:"ship",
 	lethal:true,
 	faceup: function() {
+	    var self=this;
 	    this.unit.log("Critical: %0",this.name);
 	    this.isactive=true;
 	    this.hd=this.unit.handledifficulty;
-	    this.unit.handledifficulty=function(d) {
-		this.hd.call(this.unit,d);
-		var roll=this.unit.rollattackdie(1)[0];
+	    this.unit.wrap_after("handledifficulty",this,function(d) {
+		var roll=this.rollattackdie(1)[0];
 		if (roll=="hit"&&d=="RED") {
-		    log(this.name+" causes 1 <code class='hit'></code> for "+this.unit.name);
-		    this.unit.removehull(1);
+		    this.log("+1 %HIT% [%0]",self.name);
+		    this.removehull(1);
 		}
-	    }.bind(this);
+	    });
 	},
 	facedown: function() {
 	    if (this.isactive) {
-		this.unit.handledifficulty=this.hd;
+		this.unit.handledifficulty.unwrap(this);
 		this.isactive=false;
-		log(this.name+" repaired for "+this.unit.name);
+		this.unit.log("%0 repaired",this.name);
 	    }
 	}
     },
@@ -264,28 +250,20 @@ var CRITICAL_DECK=[
 	count:2,
 	type:"pilot",
 	faceup: function() {
+	    var self=this;
 	    this.unit.log("Critical: %0",this.name);
 	    this.isactive=true;
-	    this.er=this.unit.endround;
 	    this.skill=this.unit.skill;
-	    this.unit.endround=function() {
-		this.er.call(this.unit);
-		this.unit.skill=0;
+	    this.unit.wrap_before("endround",this,function() {
+		this.skill=0;
 		filltabskill();
-		this.unit.showstats();
-		/* this.unit.endround=function() {
-		   this.er.call(this.unit);
-		    this.unit.endround=this.er;
-		    this.unit.skill=this.skill;
-		    filltabskill();
-		    this.unit.showstats();
-		    }.bind(this);*/
-	    }.bind(this);
+		this.showstats();
+		this.endround.unwrap(self);
+	    }.bind(this.unit));
 	},
 	facedown: function() {
 	    if (this.isactive) {
 		this.isactive=false;
-		this.unit.endround=this.er;
 		this.unit.skill=this.skill;
 		filltabskill();
 		this.unit.showstats();
@@ -297,17 +275,15 @@ var CRITICAL_DECK=[
 	count:2,
 	type:"pilot",
 	faceup: function() {
+	    var self=this;
 	    this.unit.log("Critical: %0",this.name);
 	    this.isactive=true;
-	    this.gas=this.unit.getattackstrength;
-	    this.cua=this.unit.cleanupattack;
-	    this.unit.getattackstrength=function(w,t) { return 0; }
-	    this.unit.cleanupattack=function() {
-		this.cua.call(this.unit);
-		this.unit.cleanupattack=this.cua;
-		this.unit.getattackstrength=this.gas;
-		this.isactive=false;
-	    }.bind(this);
+	    this.unit.wrap_after("getattackstrength",this,function(w,t,a) { return 0; });
+	    this.unit.wrap_before("cleanupattack",this,function() {
+		this.getattackstrength.unwrap(self);
+		this.cleanupattack.unwrap(self);
+		self.isactive=false;
+	    });
 	},
 	facedown: function() {
 	    this.isactive=false;
@@ -324,7 +300,7 @@ var CRITICAL_DECK=[
 	    this.isactive=true;
 	    for (i=0; i<this.unit.upgrades.length; i++) {
 		var upg=this.unit.upgrades[i];
-		if (upg.type=="Elite") upg.isactive=false;
+		if (upg.type=="Elite") upg.desactivate(this.unit);
 	    }
 	    this.old={}
 	    for (i in this.unit) {
@@ -345,7 +321,10 @@ var CRITICAL_DECK=[
 		}
 		for (i=0; i<this.unit.upgrades.length; i++) {
 		    var upg=this.unit.upgrades[i];
-		    if (upg.type=="Elite") upg.isactive=true;
+		    if (upg.type=="Elite") {
+			upg.isactive=true;
+			if (typeof upg.init!="undefined") upg.init(this.unit);
+		    }
 		}
 		this.unit.show();
 	    }
@@ -358,26 +337,23 @@ var CRITICAL_DECK=[
 	type:"pilot",
 	lethal:true,
 	faceup: function() {
+	    var self=this;
 	    this.unit.log("Critical: %0",this.name);
 	    this.isactive=true;
-	    this.rc=this.unit.resolvecollision;
-	    this.roc=this.unit.resolveocollision;
-	    this.unit.resolvecollision=function() {
-		this.unit.removehull(1);
-		log("Stunned pilot: 1 <code class='hit'></code>");
-		this.rc.call(this);
-	    }.bind(this);
-	    this.unit.resolveocollision=function() {
-		this.unit.removehull(1);
-		log("Stunned pilot: 1 <code class='hit'></code>");
-		this.roc.call(this);
-	    }.bind(this);
+	    this.unit.wrap_before("resolvecollision",this,function() {
+		this.removehull(1);
+		this.log("+1 %HIT% [%0]",self.name);
+	    });
+	    this.unit.wrap_before("resolveocollision",this,function() {
+		this.removehull(1);
+		this.log("+1 %HIT% [%0]",self.name);
+	    });
 	},
 	facedown: function() {
 	    if (this.isactive) {
-		this.unit.resolvecollision=this.rc;
-		this.unit.resolveocollision=this.roc;
-		log(this.unit.name+" not longer stunned");
+		this.unit.unwrap("resolvecollision",this);
+		this.unit.unwrap("resolveocollision",this);
+		this.unit.log("no longer stunned");
 	    }
 	}
     }
