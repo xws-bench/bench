@@ -5,11 +5,14 @@ var PY=[250,250,400,400,550,550];
 var id=0;
 function loadrock(s,str) {
     var i;
-    var coord=[],o;
+    var coord=[],o,ob;
     PATTERN = s.image(ROCKIMG,0,0,200,200).pattern(0,0,200,200);
     if (str !="") {
 	o=str.split(";");
-	for (i=0; i<6; i++) coord[i]=Base64.toCoord(o[i]);
+	for (i=0; i<6; i++) {
+	    ob=o[i].split(",");
+	    coord[i]=[parseInt(ob[0],10),parseInt(ob[1],10),parseInt(ob[2],10)];
+	}
     } else for (i=0; i<6; i++) coord[i]=[0,0,0];
     for (i=1; i<=6; i++) {
 	(function(i) {
@@ -18,11 +21,12 @@ function loadrock(s,str) {
 	});
 	})(i)
     }
+
 }
 function saverock() {
-    var i;
+    if (OBSTACLES.length==0) return "";
     var str=OBSTACLES[0].toASCII();
-    for (i=1; i<6; i++) 
+    for (var i=1; i<6; i++) 
 	str+=";"+OBSTACLES[i].toASCII();
     return str;
 }
@@ -68,8 +72,7 @@ function Rock(fragment,coord) {
 
 Rock.prototype = {
     toASCII: function() {
-	var s=Base64.fromCoord([this.tx,this.ty,this.alpha]);;
-	return s;
+	return Math.floor(this.tx)+","+Math.floor(this.ty)+","+Math.floor(this.alpha);
     },
     getrangeallunits: function () { return Unit.prototype.getrangeallunits.call(this);},
     getrange: function(sh) { return Unit.prototype.getrange.call(this,sh); },
@@ -186,7 +189,7 @@ var CRITICAL_DECK=[
 	facedown:function() {
 	    if (this.isactive) {
 		this.unit.getagility.unwrap(this);
-		this.log("%0 repaired",this.name);
+		this.unit.log("%0 repaired",this.name);
 		this.unit.showstats();
 	    }
 	    this.isactive=false;
@@ -195,7 +198,7 @@ var CRITICAL_DECK=[
 	    var roll=this.unit.rollattackdie(1)[0];
 	    if (roll=="hit") {
 		this.facedown();
-	    } else this.log("%0 not repaired ",this.name);
+	    } else this.unit.log("%0 not repaired ",this.name);
 	    this.unit.endaction(n,"CRITICAL");
 	},
     },
@@ -236,7 +239,7 @@ var CRITICAL_DECK=[
 		    this.log("+1 %HIT% [%0]",this.name);
 		    this.resolvehit(1); this.checkdead();
 		}
-	    }.bind(this.unit));
+	    });
 	},
 	action: function(n) {
 	    this.facedown();
@@ -267,7 +270,7 @@ var CRITICAL_DECK=[
 	facedown: function() {
 	    if (this.isactive) {
 		this.w.getattack.unwrap(this);
-		this.log("%0 repaired",this.w.name);
+		this.unit.log("%0 repaired",this.w.name);
 		this.isactive=false;
 	    }
 	},
@@ -289,15 +292,15 @@ var CRITICAL_DECK=[
 	},
 	facedown: function() {
 	    if (this.isactive) {
-		this.unit.getshipactionlist.unwrap(this);
-		log("%0 repaired",this.name);
+		this.unit.getactionbarlist.unwrap(this);
+		this.unit.log("%0 repaired",this.name);
 		this.isactive=false;
 	    }
 	},
 	action: function(n) {
 	    var roll=this.unit.rollattackdie(1)[0];
 	    if (roll=="hit") this.facedown();
-	    else log("Sensor array still damaged for "+this.unit.name);
+	    else this.unit.log("%0 not repaired",this.name);
 	    this.unit.endaction(n,"CRITICAL");
 	}
     },
@@ -360,7 +363,7 @@ var CRITICAL_DECK=[
 	    var w=this.unit.rand(m.length);
 	    this.wp=m[w];
 	    this.wp.isactive=false;
-	    log(this.wp.name+" not functioning anymore for "+this.unit.name);
+	    this.unit.log(this.wp.name+" not functioning anymore");
 	    this.unit.show();
 	},
 	facedown: function() { this.isactive=false;
@@ -388,7 +391,7 @@ var CRITICAL_DECK=[
 	    if (this.isactive) {
 		this.unit.handledifficulty.unwrap(this);
 		this.isactive=false;
-		this.log("%0 repaired",this.name);
+		this.unit.log("%0 repaired",this.name);
 	    }
 	}
     },
@@ -397,13 +400,15 @@ var CRITICAL_DECK=[
 	count:2,
 	type:"pilot",
 	faceup: function() {
+	    var self=this;
 	    this.unit.log("Critical: %0",this.name);
 	    this.isactive=true;
 	    this.skill=this.unit.skill;
-	    this.unit.wrap_before_once("endround",this,function() {
+	    this.unit.wrap_before("endround",this,function() {
 		this.skill=0;
 		filltabskill();
 		this.showstats();
+		this.endround.unwrap(self);
 	    }.bind(this.unit));
 	},
 	facedown: function() {
@@ -445,7 +450,7 @@ var CRITICAL_DECK=[
 	    this.isactive=true;
 	    for (i=0; i<this.unit.upgrades.length; i++) {
 		var upg=this.unit.upgrades[i];
-		if (upg.type=="Elite") upg.isactive=false;
+		if (upg.type=="Elite") upg.desactivate(this.unit);
 	    }
 	    this.old={}
 	    for (i in this.unit) {
@@ -466,7 +471,10 @@ var CRITICAL_DECK=[
 		}
 		for (i=0; i<this.unit.upgrades.length; i++) {
 		    var upg=this.unit.upgrades[i];
-		    if (upg.type=="Elite") upg.isactive=true;
+		    if (upg.type=="Elite") {
+			upg.isactive=true;
+			if (typeof upg.init!="undefined") upg.init(this.unit);
+		    }
 		}
 		this.unit.show();
 	    }
@@ -495,12 +503,14 @@ var CRITICAL_DECK=[
 	    if (this.isactive) {
 		this.unit.unwrap("resolvecollision",this);
 		this.unit.unwrap("resolveocollision",this);
-		this.log("no longer stunned");
+		this.unit.log("no longer stunned");
 	    }
 	}
     }
 ];
 /*
+  4-LOM 
+
   Juno
   Chiraneau
   Jake
@@ -520,6 +530,8 @@ Alozen
   R2 astromech and ionized -> green maneuver
   drop bomb ok, ok for one bomb per turn
   Genius
+
+
  */
 var s;
 var GREEN="#0F0",RED="#F00",WHITE="#FFF",BLUE="#0AF",YELLOW="#FF0",GREY="#888";
@@ -549,6 +561,7 @@ var ATTACKMODA=[];
 var ATTACKMODD=[];
 var DEFENSEMODD=[];
 var DEFENSEADD=[];
+var FACEUP=1,FACEDOWN=2,DISCARD=0;
 var xws_lookup=function(s) {
     for (var i in PILOT_dict) {
 	if (PILOT_dict[i]==s) return i;
@@ -686,6 +699,7 @@ function Unit(team,pilotid) {
     this.dead=false;
     this.ship={};
     this.id=gid;
+    this.wrapping=[];
     var id=this.id;
     generics["u"+gid]=this;
     gid++;
@@ -714,6 +728,8 @@ function Unit(team,pilotid) {
     }
     var u=unitlist[PILOTS[pilotid].unit];
     this.ship={
+	shield:u.shield,
+	hull:u.hull,
 	firesnd:u.firesnd,
 	flysnd:u.flysnd,
 	name:PILOTS[pilotid].unit,
@@ -915,12 +931,14 @@ Unit.prototype = {
 	var f=function () {
             var args = Array.prototype.slice.call(arguments),
             result;
-            result = save.apply( this, args);
+            result=save.apply( this, args);
             result=after.apply( this, args.concat([result]));
 	    return result;
 	}
 	f.save=save;
 	f.org=org;
+	if (typeof org.wrapping=="undefined") org.wrapping=[];
+	org.wrapping.push(name);
 	f.unwrapper=function(name2) {
 	    var uw=self.wrap_before(name2,org,function(a) {
 		f.unwrap(org);
@@ -928,39 +946,24 @@ Unit.prototype = {
 		return a;
 	    });
 	}
+	if (typeof save.vanilla!="undefined") f.vanilla=save.vanilla;
+	else f.vanilla=save;
 	f.unwrap=function(o) { 
-	    if (f.org==o||typeof f.save.unwrap!="function") {
+	    if (f.org==o) { //||typeof f.save.unwrap!="function") {
 		self[name]=f.save;
-		if (typeof unwrap=="function") unwrap.call(self);
+		//if (typeof unwrap=="function") unwrap.call(self);
 		if (name=="getskill") {
 		    filltabskill();
 		}
 		self.show();
-	    } else f.save=f.save.unwrap(o);
+	    } else if (typeof f.save.unwrap=="function") f.save=f.save.unwrap(o);
 	    self.show();
-	    return f.save;
+	    return self[name];
 	}
 	this[name]=f;
 	if (name=="getskill") {
 	    filltabskill();
 	}
-	return f;
-    },
-    wrap_before_once: function(name,org,before) {
-	var self=this;
-	var save=self[name];
-	var f=function () {
-            var args = Array.prototype.slice.call(arguments),
-            result;
-	    f.unwrap(org);
-            before.apply( this, args);
-            result = save.apply( this, args);
-	    return result;
-	}
-	f.save=save;
-	f.org=org;
-	f.unwrap=function(o) { self[name]=f.save; }
-	this[name]=f;
 	return f;
     },
     wrap_before: function(name,org,before,unwrap) {
@@ -975,6 +978,11 @@ Unit.prototype = {
 	}
 	f.save=save;
 	f.org=org;
+	if (typeof save=="undefined") log("org:"+org.name+" "+name);
+	if (typeof org.wrapping=="undefined") org.wrapping=[];
+	org.wrapping.push(name);
+	if (typeof save.vanilla!="undefined") f.vanilla=save.vanilla;
+	else f.vanilla=save;
 	f.unwrapper=function(name2) {
 	    var uw=self.wrap_before(name2,org,function() {
 		f.unwrap(org);
@@ -1046,15 +1054,12 @@ Unit.prototype = {
 	return s;
     },
     toASCII: function() {
-	var s="";
-	s+=Base64.fromNumber(this.pilotid);
+	var s=this.pilotid;
 	for (var i=0; i<this.upg.length; i++) {
 	    var u=this.upg[i];
-	    if (u>-1) { 
-		s+=","+Base64.fromNumber(u);
-	    }
+	    if (u>-1) s+=","+u;
 	}
-	s+="%"+Base64.fromCoord([this.tx,this.ty,this.alpha]);
+	s+=":"+Math.floor(this.tx)+","+Math.floor(this.ty)+","+Math.floor(this.alpha);
 	return s;
     },
     toString2: function() {
@@ -1065,8 +1070,12 @@ Unit.prototype = {
 	var text=SHIP_translation[this.ship.name];
 	if (typeof text=="undefined") text=this.ship.name;
 	if (phase!=CREATION_PHASE) return;
-	str+="<img class='headimg' src='png/"+faction+"/"+PILOTS[this.pilotid].dict+".png'>";
-	str+="<table><tr><td class='statskill'>"+this.getskill()+"</td><td class='shipname'>"+getpilottranslation(this.name,faction)+"</td><td>(<span class='pts'>"+this.points+"</span>)</td><td><code class='close' data="+this.id+" title='Remove'>&#xd7;</code></td></tr></table>";
+	var imgname=PILOTS[this.pilotid].dict;
+	if (PILOTS[this.pilotid].ambiguous==true) imgname+="-"+unitlist[this.ship.name].dict;
+	str+="<img class='headimg' src='png/"+faction+"/"+imgname+".png'>";
+	str+="<table><tr><td class='statskill'>"+this.getskill()+"</td><td class='shipname'>"+getpilottranslation(this.name,faction)+"</td><td>(<span class='pts'>"+this.points+"</span>)</td><td><div class='close' data="+this.id+" title='Remove'>&#xd7;</div>";
+	//"<div class='duplicate' data="+this.id+" title='Duplicate'><img src='css/duplicate.svg' width='20px'></div>
+	str+="</td></tr></table>";
 	str+="<table><tr>";
 	// shipimg
 	str+="<td onclick='switchdialimg(true)' class='shipimg' rowspan='4' style='background-image:url(png/"+this.shipimg+")'>";
@@ -1100,7 +1109,7 @@ Unit.prototype = {
     getupgradeaddstring:function() {
 	var str="";
 	for (var j=0; j<this.upgradetype.length; j++)
-	    if (this.upg[j]==-1) str+="<span num="+j+">+<code class='upgrades "+this.upgradetype[j]+"'></code></span>";
+	    if (this.upg[j]==-1) str+="<button num="+j+" class='upgrades "+this.upgradetype[j]+"'>+</button>";
 	return str;
     },
     showskill: function() {
@@ -1217,6 +1226,11 @@ Unit.prototype = {
 	}
 	return p;
     },
+    turn: function(n) {
+	this.alpha+=n;
+	this.m.rotate(n,0,0); 
+	this.show();
+    },
     getactionstring: function() {
 	var str="";
 	for (var i=0; i<this.shipactionList.length; i++) {
@@ -1242,7 +1256,7 @@ Unit.prototype = {
 		for (c=0; c<=n-f-h; c++) {
 		    i=f*FCH_FOCUS+h+FCH_CRIT*c;
 		    ptot+=P[i];
-		    if (ptot>r) return FCH_FOCUS*f+c*FCH_CRIT+h; 
+		    if (ptot>r) return FCH_FOCUS*f+c*FCH_CRIT+h;
 		}
 	    }
 	}
@@ -1685,6 +1699,7 @@ Unit.prototype = {
     },
     addevadetoken: function() {
 	this.evade++;
+	this.movelog("E");
 	this.show();
     },
     addevade: function(n) { 
@@ -1693,6 +1708,7 @@ Unit.prototype = {
     },
     addfocustoken: function() {
 	this.focus++;
+	this.movelog("FO");
 	this.show();
     },
     addfocus: function(n) { 
@@ -1701,18 +1717,22 @@ Unit.prototype = {
     },
     addstress: function() {
 	this.stress++;
+	this.movelog("ST");
 	this.show();
     },
     addiontoken: function() {
 	this.ionized++;
+	this.movelog("I");
 	this.show();
     },
     removeiontoken: function() {
 	this.ionized--;
+	this.movelog("i");
 	this.show();
    },
     dies: function() {
 	var i;
+	this.movelog("d-0");
 	$("#"+this.id).attr("onclick","");
 	$("#"+this.id).addClass("dead");
 	$("#"+this.id).html(""+this)
@@ -1738,16 +1758,23 @@ Unit.prototype = {
 	    t.show();
 	}
 	this.targeting=[];
-
-	this.dead=true;
-	this.m=MT(-60,-60);
 	this.g.attr({display:"none"});
-	this.geffect.attr({display:"none"});
-	this.log("has exploded!");
+	this.imgsmoke.attr("display","none");
+	this.imgflame.attr("display","none");
+	if (this.islarge) this.imgexplosion= s.image("png/explosion3.gif",-80,-80,160,160);
+	else this.imgexplosion= s.image("png/explosion3.gif#"+Math.random(),-40,-40,80,80);
+	this.geffect.add(this.imgexplosion);
 	this.show();
-	//squadron[0].select();
-	if (TEAMS[this.team].checkdead()) win();	
+	this.dead=true;
 	SOUNDS.explode.play();
+	this.log("has exploded!");
+	setTimeout(function(){ 
+	    this.m=MT(-60,-60);
+	    this.geffect.attr({display:"none"});
+	    this.show();
+	    if (TEAMS[this.team].checkdead()) win();	
+	    //squadron[0].select();
+	}.bind(this), 1000); // 29 images * 4 1/100th s
     },
     canbedestroyed: function() {
 	if (skillturn!=this.getskill()) return true;
@@ -1801,6 +1828,11 @@ Unit.prototype = {
 	var ch=targetunit.evadeattack(this);
 	ch=this.weapons[this.activeweapon].modifydamageassigned(ch,targetunit);
 	ch=targetunit.modifydamageassigned(ch,this);
+	TEAMS[this.team].allred+=getattackdice();
+	TEAMS[targetunit.team].allgreen+=getdefensedice();
+	TEAMS[this.team].allhits+=FCH_hit(ch);
+	TEAMS[this.team].allcrits+=FCH_crit(ch);
+	TEAMS[targetunit.team].allevade+=FE_evade(getdefenseresult());
 	var c=FCH_crit(ch);
 	var h=FCH_hit(ch);
 	this.hasdamaged=true;
@@ -1845,6 +1877,7 @@ Unit.prototype = {
 	var p=s.path("M "+start.x+" "+start.y+" L "+(bb.x+bb.w/2)+" "+(bb.y+bb.h/2)).appendTo(VIEWPORT).attr({stroke:this.color,strokeWidth:2});
 	var process=setInterval(function() { p.remove(); clearInterval(process);
 	},200);
+	this.movelog("f-"+targetunit.id+"-"+this.activeweapon);
 	if (typeof this.weapons[this.activeweapon].firesnd!="undefined") 
 	    SOUNDS[this.weapons[this.activeweapon].firesnd].play();
 	else SOUNDS[this.ship.firesnd].play();		
@@ -1936,7 +1969,7 @@ Unit.prototype = {
 	    if (cmax(a,b)==a) return b;
 	    return a;
 	}
-	NOLOG=true;
+	NOLOG=false;
 	for (i=0; i<gd.length; i++) {
 	    var next=[];
 	    var mm = this.getpathmatrix(this.m,gd[i].move);
@@ -1958,10 +1991,11 @@ Unit.prototype = {
 		//this.log(">"+gd[i].move+" "+gd[i].color);
 	    }
 	    
-	    if ((gd[i].color==GREEN)&&!gd[i].move.match(/K\d|SR\d|SL\d|TRL\d|TRR\d/)) {
+	    if ((gd[i].color==GREEN||gd[i].color==WHITE)&&!gd[i].move.match(/K\d|SR\d|SL\d|TRL\d|TRR\d/)) {
 		var gpm=mm.split();
 		g++;
-		mx+=gpm.dx; my+=gpm.dy; ma+=(gpm.rotate+360)%360;
+		//this.log("rotate "+gpm.rotate+" "+gd[i].move+" >"+ma);
+		mx+=gpm.dx; my+=gpm.dy; ma+=(gpm.rotate+360+180)%360-180;
 	    }
 	}
 	if (g==0) g=1;
@@ -1977,6 +2011,7 @@ Unit.prototype = {
 	n=t.istargeted.indexOf(this);
 	if (n>-1) t.istargeted.splice(n,1);
 	this.targeting.splice(t);
+	this.movelog("t-"+t.id);
 	t.show();
 	this.show();
 	if (this.targeting.length==0) $("#atokens > .xtargettoken").remove();
@@ -1997,14 +2032,13 @@ Unit.prototype = {
 	    $("#defense").prepend("<td class='evadegreen'></td>");
 	}
     },
-    removeevadetoken: function() { this.evade--; this.show();},
-    removefocustoken: function() { this.focus--; this.show();},
+    removeevadetoken: function() { this.evade--; this.movelog("e"); this.show();},
+    removefocustoken: function() { this.focus--; this.movelog("fo"); this.show();},
     resolveactionmove: function(moves,cleanup,automove,possible) {
 	var i;
 	this.pos=[];
 	var ready=false;
 	var resolve=function(m,k,f) {
-	    record(this.id,k,"resolveactionmove");
 	    for (i=0; i<this.pos.length; i++) this.pos[i].ol.remove();
 	    if (automove) this.m=m;
 	    var mine=this.getmcollisions(this.m);
@@ -2012,7 +2046,10 @@ Unit.prototype = {
 		for (i=0; i<mine.length; i++) {
 		    OBSTACLES[mine[i]].detonate(this)
 		}
-	    if (automove) this.movelog({"move":m.toTransformString()});
+	    if (automove) {
+		var gpm=m.split();
+		this.movelog("am-"+Math.floor(300+gpm.dx)+"-"+Math.floor(300+gpm.dy)+"-"+Math.floor((360+Math.floor(gpm.rotate))%360));
+	    }
 	    f(this,k);
 	    this.show();
 	}.bind(this);
@@ -2076,15 +2113,18 @@ Unit.prototype = {
 		m1.clone().translate(0,20),
 		this.getpathmatrix(m.clone(),"F2")];
     },
+    removecloaktoken: function() {
+	this.agility-=2; 
+	this.iscloaked=false;
+	this.movelog("ct");
+	SOUNDS.decloak.play();
+    },
     resolvedecloak: function() {
 	//this.log("do selection resolvedecloak");
 	this.doselection(function(n) {
 	    this.resolveactionmove(this.getdecloakmatrix(this.m),
 				   function (t,k) {
-				       if (k>0) {
-					   t.agility-=2; t.iscloaked=false;
-					   SOUNDS.decloak.play();
-				       }
+				       if (k>0) this.removecloaktoken();
 				       this.hasdecloaked=true;
 				       this.endnoaction(n,"");
 				   }.bind(this),true,false);
@@ -2116,6 +2156,7 @@ Unit.prototype = {
 	if (this.boundtargets(sh)) return;
 	this.targeting.push(sh);
 	sh.istargeted.push(this);
+	this.movelog("T-"+sh.id);
 	sh.show();
 	this.show();
     },
@@ -2156,6 +2197,7 @@ Unit.prototype = {
     addcloaktoken: function() {
 	this.iscloaked=true;
 	this.agility+=2;
+	this.movelog("CT");
 	SOUNDS.cloak.play();
     },
     addcloak: function(n) {
@@ -2386,7 +2428,6 @@ Unit.prototype = {
 	this.select();	
 	for (i in squadron) if (squadron[i]==this) break;
 	this.preattackroll(w,targetunit);
-	//this.log("do selection resolveattack");
 	this.doselection(function(n) {
 	    var attack=this.getattackstrength(w,targetunit);
 	    var defense=targetunit.getdefensestrength(w,this);
@@ -2415,7 +2456,7 @@ Unit.prototype = {
 	this.dr=dr; this.dd=dd;
 	displaydefenseroll(dr,dd);
 	displaydefensetokens(this,function() {
-	    record("dodefenseroll",1);
+	    this.log("firing "+targetunit.name);
 	    this.resolvedamage();
 	    this.endnoaction(n,"incombat");
 	}.bind(squadron[me]));
@@ -2438,6 +2479,7 @@ Unit.prototype = {
     },
     removestresstoken: function() {
 	if (this.stress>0) this.stress--;
+	this.movelog("st");
 	this.show();
     },
     handledifficulty: function(difficulty) {
@@ -2492,8 +2534,8 @@ Unit.prototype = {
 	this.ocollision=this.getocollisions(oldm,m,path,lenC);
 	if (this.isfireobstructed()) { this.log("overlaps obstacle: no action, cannot attack"); }
 	if (this.ocollision.template.length>0) { this.log("template overlaps obstacle: no action"); }
-	if (lenC>0) this.movelog({"len":lenC,"path":$(path.outerSVG()).attr("d")});;
 	if (lenC>0) this.m=m;
+	var turn=0;
 	// Animate movement
 	if (lenC>0) {
 	    this.hasmoved=true;
@@ -2507,19 +2549,20 @@ Unit.prototype = {
 		if (!this.collision) { 
 		    // Special handling of K turns: half turn at end of movement. Straight line if collision.
 		    if (dial.match(/K\d|SR\d|SL\d/)||halfturn==true) {
-			this.movelog({"move":"r180 0 0"});
 			this.m.rotate(180,0,0);
+			turn=180;
 		    } else if (dial.match(/TRL\d/)) {
-			this.movelog({"move":"r-90 0 0"});
 			this.m.rotate(-90,0,0);
+			turn=-90;
 		    } else if (dial.match(/TRR\d/)) {
-			this.movelog({"move":"r90 0 0"});
 			this.m.rotate(90,0,0);
+			turn=90;
 		    } else {
 		    }
 		} 
 		else { 
 		}
+		this.movelog("m-"+dial+"-"+(360+turn)%360+"-"+Math.floor(lenC));
 		this.handledifficulty(difficulty);
 		this.lastmaneuver=this.maneuver;
 		this.maneuver=-1;
@@ -2744,8 +2787,9 @@ Unit.prototype = {
     },
     getbombposition: function(lm,size) {
 	var p=[];
-	for (var i=0; i<lm.length; i++) 
-	    p.push(this.getpathmatrix(this.m.clone().rotate(180,0,0),lm[i]).translate(0,(this.islarge?-20:0)-size))
+	for (var i=0; i<lm.length; i++) {
+	    p.push(this.getpathmatrix(this.m.clone().rotate(180,0,0),lm[i]).translate(0,(this.islarge?40:20)-size))
+	}
 	return p;
     },
     bombdropped: function() {},
@@ -2790,9 +2834,8 @@ Unit.prototype = {
 	$("<button>").addClass("m-move").click(function() { this.resolvemaneuver(); }.bind(this)).appendTo("#activationdial > div");
 
     },
-    movelog: function(obj) {
-	obj.id=this.id;
-	ANIM.push(obj)
+    movelog: function(s) {
+	ANIM+="_"+this.id+"-"+s
     },
     computepoints: function() {
     },
@@ -3260,6 +3303,7 @@ Unit.prototype = {
     },
     removeshield: function(n) {
 	this.shield=this.shield-n;
+	this.movelog("s-"+n);
 	if (this.shield<0) this.shield=0;
 	var r=TEAMS[this.team].history.rawdata
 	if (typeof r[round]=="undefined") r[round]={hits:0,dead:""}
@@ -3292,6 +3336,7 @@ Unit.prototype = {
     },
     removehull: function(n) {
 	this.hull=this.hull-n;
+	this.movelog("h-"+n);
 	var r=TEAMS[this.team].history.rawdata
 	if (typeof r[round]=="undefined") r[round]={hits:0,dead:""}
 	r[round].hits+=n;
@@ -3337,24 +3382,38 @@ Unit.prototype = {
 	for (j=0; j<n; j++) {
 	    s=this.selectdamage();
 	    CRITICAL_DECK[s].count--;
-	    new Critical(this,s);
+	    var cr=new Critical(this,s);
+	    this.deal(cr,FACEDOWN).then(function(c) {
+		switch(c.face) {
+		case FACEUP: c.crit.faceup(); this.movelog("c-"+s);
+		case FACEDOWN: this.removehull(1); break;
+		case DISCARD: this.criticals.slice(this.criticals.indexOf(cr),1);
+		}
+		this.show();
+	    }.bind(this));
 	}
-	this.removehull(n);
-	this.show();
     },
     applycritical: function(n) {
 	var s,j;
 	for (j=0; j<n; j++) {
 	    s=this.selectdamage();
 	    CRITICAL_DECK[s].count--;
-	    if(this.faceup(new Critical(this,s))) this.removehull(1);
+	    var cr=new Critical(this,s);
+	    this.deal(cr,FACEUP).then(function(c) {
+		switch(c.face) {
+		case FACEUP: c.crit.faceup(); this.movelog("c-"+s);
+		case FACEDOWN: this.removehull(1); break;
+		case DISCARD: this.criticals.slice(this.criticals.indexOf(cr),1);
+		}
+		this.show();
+	    }.bind(this));
 	}
-	this.show();
     },
-    faceup: function(crit) {
-	crit.faceup();
-	return true;
+    deal: function(crit,face) {
+	var dd=$.Deferred();
+	return dd.resolve({crit:crit,face:face}).promise();
     },
+
     gethitrange: function(w,sh) {
 	if (sh.team==this.team) return 0;
 	var gr=this.weapons[w].getrange(sh);
@@ -3528,7 +3587,11 @@ IAUnit.prototype= {
 	}
 	this.m=old;
 	if (ready&&scorei>-1) { 
-	    if (automove) this.m=moves[scorei]; 
+	    if (automove) {
+	    	this.m=moves[scorei]; 
+		var gpm=this.m.split();
+		this.movelog("am-"+Math.floor(300+gpm.dx)+"-"+Math.floor(300+gpm.dy)+"-"+Math.floor((360+Math.floor(gpm.rotate))%360));
+	    }
 	    var mine=this.getmcollisions(this.m);
 	    if (mine.length>0) 
 		for (i=0; i<mine.length; i++) {
@@ -3555,7 +3618,7 @@ IAUnit.prototype= {
 	    p=setInterval(function() {
 		var m=this.computemaneuver(); 
 		IACOMPUTING--;
-		if (IACOMPUTING==0) $("#npimg").html("&#9658;");
+		if (IACOMPUTING==0) $("#npimg").html("&#10097;");
 		this.newm=this.getpathmatrix(this.m,this.getdial()[m].move);
 		this.setmaneuver(m);
 		clearInterval(p);
@@ -3734,7 +3797,7 @@ IAUnit.prototype= {
       		if (t!=null) return this.selecttargetforattack(this.activeweapon,t);
 		//console.log("ia/doattack "+this.name+"<select target");
 	    }
-		//console.log("ia/doattack:no target");
+	    //console.log("ia/doattack:no target");
 	    this.hasfired++; this.deferred.resolve();
 	}
     },
@@ -3826,16 +3889,52 @@ IAUnit.prototype= {
 	    var a=this.DEFENSEMODD[j];
 	    if (a.req(dr,dd)) modrolld(a.f,dd,i+j);
 	}   
-	$("#dtokens").append("<button>");
-
-	$("#dtokens > button").addClass("m-fire").click(function() {
+	$("#dtokens").append($("<button>").addClass("m-fire").click(function() {
 	    $("#combatdial").hide();
 	    this.resolvedamage();
 	    this.endnoaction(n,"incombat");
-	}.bind(squadron[me])).show();
+	}.bind(squadron[me]))).show();
 	//log("defense roll: f"+f+" e"+e+" b"+(dd-e-f));
     },
 };
+var maarek_fct = function() {
+    var unit=this;
+    var newdeal=function(c,f,p) {
+	var pp=$.Deferred();
+	p.then(function(cf) {
+	    var crit=cf.crit;
+	    if (cf.face==FACEUP&&activeunit==unit&&targetunit==this) {
+		var s1=this.selectdamage();
+		CRITICAL_DECK[s1].count--;
+		var s2=this.selectdamage();
+		CRITICAL_DECK[s2].count--;
+		var s3=this.selectdamage();
+		CRITICAL_DECK[s3].count--;
+		sc=[s1,s2,s3];
+		unit.log("select one critical");
+		unit.selectcritical(sc,function(m) { 
+		    pp.resolve({crit:new Critical(this,m),face:FACEUP})
+		}.bind(this));
+	    } else pp.resolve(cf);
+	}.bind(this));
+	return pp.promise();
+    };
+    Unit.prototype.wrap_after("deal",this,newdeal);
+};
+var hera_fct=function() {
+    var m=this.getmaneuver();
+    var p={};
+    var gd=this.getdial();
+    p[m.move]=m;
+    if ((m.difficulty=="RED"||m.difficulty=="GREEN")&&this.ionized==false) {
+	for (var i=0; i<gd.length; i++) 
+	    if (gd[i].difficulty==m.difficulty
+		&&typeof p[gd[i].move]=="undefined") {
+		p[gd[i].move]=gd[i];
+	    }
+	    }
+    return p;
+}
 var PILOTS = [
     {
         name: "Wedge Antilles",    
@@ -3844,14 +3943,15 @@ var PILOTS = [
 	faction:REBEL,
         unit: "X-Wing",
         skill: 9,
-	declareattack: function(w,target) {	    
-	    Unit.prototype.declareattack.call(this,w,target);
-	    target.log("-1 defense [%0]",this.name);
-	    target.wrap_after("getagility",this,function(a) {
-		if (a>0) return a-1; 
-		return a;
-	    }).unwrapper("endbeingattacked");
-	    target.showstats();
+	init: function() {
+	    this.wrap_after("declareattack",this,function(w,target) {
+		target.log("-1 defense [%0]",this.name);
+		target.wrap_after("getagility",this,function(a) {
+		    if (a>0) return a-1; 
+		    return a;
+		}).unwrapper("endbeingattacked");
+		target.showstats();
+	    });
 	},
         points: 29,
         upgrades: [ELITE,TORPEDO,ASTROMECH],
@@ -3862,18 +3962,19 @@ var PILOTS = [
 	faction:REBEL,
         unique: true,
         unit: "X-Wing",
-	removefocustoken: function() {
-	    Unit.prototype.removefocustoken.call(this);
-	    var p=this.selectnearbyally(2);
-	    if (p.length>0) {
-		this.doselection(function(n) {
-		    this.resolveactionselection(p,function (k) { 
-			p[k].log("+1 %FOCUS%");
-			p[k].addfocustoken();
-			this.endnoaction(n,"FOCUS");
-		    }.bind(this));
-		}.bind(this),"select unit for free %FOCUS%");
-	    } 
+	init: function() {
+	    this.wrap_after("removefocustoken",this,function() {
+		var p=this.selectnearbyally(2);
+		if (p.length>0) {
+		    this.doselection(function(n) {
+			this.resolveactionselection(p,function (k) { 
+			    p[k].log("+1 %FOCUS%");
+			    p[k].addfocustoken();
+			    this.endnoaction(n,"FOCUS");
+			}.bind(this));
+		    }.bind(this),"select unit for free %FOCUS%");
+		} 
+	    });
 	},
         skill: 6,
         points: 26,
@@ -3975,26 +4076,27 @@ var PILOTS = [
     {
         name: "'Dutch' Vander",
 	done:true,
-        addtarget: function(t) {
-	    var unit=this;
-	    Unit.prototype.addtarget.call(this,t);
-	    this.doselection(function(n) {
-		var p=this.selectnearbyally(2);
-		if (p.length>0) {
-		    p.push(this);
-		    this.log("select unit for free %TARGET% (or self to cancel)");
-		    this.resolveactionselection(p,function(k) {
-			if (k<p.length-1) { 
-			    var lu=p[k].gettargetableunits(3);
-			    p[k].log("select target to lock");
-			    p[k].resolveactionselection(lu,function(kk) { 
-				if (kk>=0) this.addtarget(lu[kk]);
-				unit.endnoaction(n,"TARGET");
-			    }.bind(p[k]));
- 			} else unit.endnoaction(n,"TARGET");	
-		    });
-		} else this.endnoaction(n,"TARGET");
-	    }.bind(this));
+	init: function() {
+            this.wrap_after("addtarget",this,function(t) {
+		var unit=this;
+		this.doselection(function(n) {
+		    var p=this.selectnearbyally(2);
+		    if (p.length>0) {
+			p.push(this);
+			this.log("select unit for free %TARGET% (or self to cancel)");
+			this.resolveactionselection(p,function(k) {
+			    if (k<p.length-1) { 
+				var lu=p[k].gettargetableunits(3);
+				p[k].log("select target to lock");
+				p[k].resolveactionselection(lu,function(kk) { 
+				    if (kk>=0) this.addtarget(lu[kk]);
+				    unit.endnoaction(n,"TARGET");
+				}.bind(p[k]));
+ 			    } else unit.endnoaction(n,"TARGET");	
+			});
+		    } else this.endnoaction(n,"TARGET");
+		}.bind(this));
+	    });
 	},
 	faction:REBEL,
         unique: true,
@@ -4074,13 +4176,14 @@ var PILOTS = [
         faction:EMPIRE,
         skill: 7,
         points: 17,
-	getattackstrength: function(i,sh) {
-	    var gas=Unit.prototype.getattackstrength.call(this,i,sh);
-	    if (sh.criticals.length>0) {
-		this.log("+1 attack die for attacking damaged unit");
-		return gas+1;
-	    }
-	    return gas;
+	init: function() {
+	    this.wrap_after("getattackstrength",this,function(i,sh,gas) {
+		if (sh.criticals.length>0) {
+		    this.log("+1 attack die for attacking damaged unit");
+		    return gas+1;
+		}
+		return gas;
+	    })
 	},
         upgrades: [ELITE],
     },
@@ -4111,11 +4214,12 @@ var PILOTS = [
         name: "'Night Beast'",
         faction:EMPIRE,
 	done:true,
-	handledifficulty: function(difficulty) {
-	    Unit.prototype.handledifficulty.call(this,difficulty);
-	    if (difficulty=="GREEN"&&this.candofocus()&&this.candoaction()) 
-		this.doaction([this.newaction(this.addfocus,"FOCUS")],
-			      "green maneuver -> free focus action");
+	init: function() {
+	    this.wrap_after("handledifficulty",this,function(difficulty) {
+		if (difficulty=="GREEN"&&this.candofocus()&&this.candoaction()) 
+		    this.doaction([this.newaction(this.addfocus,"FOCUS")],
+				  "green maneuver -> free focus action");
+	    })
 	},
         unique: true,
         unit: "TIE Fighter",
@@ -4129,15 +4233,13 @@ var PILOTS = [
 	done:true,
         faction:EMPIRE,
 	init: function() {
-	    var gas=this.getattackstrength;
-	    this.getattackstrength=function(w,sh) {
-		var a=gas.call(this,w,sh);
+	    this.wrap_after("getattackstrength",this,function(w,sh,a) {
 		if (!sh.isinfiringarc(this)) {
 		    a=a+1;
 		    this.log("+1 attack against %0",sh.name);
 		}
 		return a;
-	    };
+	    });
 	},
         unit: "TIE Fighter",
         skill: 6,
@@ -4150,23 +4252,20 @@ var PILOTS = [
         faction:EMPIRE,
         unique: true,
 	init: function() {
-	    var gart=Unit.prototype.getattackrerolltokens;
-	    var cuf=Unit.prototype.canusefocus;
-	    var cut=Unit.prototype.canusetarget;
 	    var unit=this;
-	    Unit.prototype.getattackrerolltokens=function() {
+	    Unit.prototype.wrap_after("getattackrerolltokens",this,function(a) {
 		if (targetunit==unit&&this.team!=unit.team) return "";
-		return gart.call(this);
-	    };
-	    Unit.prototype.canusefocus=function() {
+		return a;
+	    });
+	    Unit.prototype.wrap_after("canusefocus",this,function(b) {
 		// Am I attacking darkcurse?
 		if (targetunit==unit&&this.team!=unit.team) return false;
-		return cuf.call(this);
-	    };
-	    Unit.prototype.canusetarget=function() {
+		return b;
+	    });
+	    Unit.prototype.wrap_after("canusetarget",this,function(b) {
 		if (targetunit==unit&&this.team!=unit.team) return false;
-		return cut.call(this);
-	    };
+		return b;
+	    });
 	},
         unit: "TIE Fighter",
         skill: 6,
@@ -4225,70 +4324,24 @@ var PILOTS = [
         name: "Maarek Stele",
         unique: true,
 	done:true,
+	ambiguous:true,
         faction:EMPIRE,
 	unit: "TIE Advanced",
         skill: 7,
         points: 27,
-	init: function() {
-	    var unit=this;
-	    this.ac=Unit.prototype.applycritical;
-	    Unit.prototype.applycritical=function(n) {
-		if (activeunit==unit&&targetunit!=unit) {
-		    for (var j=0; j<n; j++) {
-			var s1=this.selectdamage();
-			CRITICAL_DECK[s1].count--;
-			var s2=this.selectdamage();
-			CRITICAL_DECK[s2].count--;
-			var s3=this.selectdamage();
-			CRITICAL_DECK[s3].count--;
-			sc=[s1,s2,s3];
-			unit.log("select one critical");
-			unit.selectcritical(sc,function(m) { 
-			    CRITICAL_DECK[m].count++;
-			    if (this.faceup(new Critical(this,m))) this.removehull(1);
-			    this.checkdead();
-			    this.show();
-			}.bind(this));
-		    }
-		    this.show();
-		} else unit.ac.call(this,n);
-	    }
-	},
+	init: maarek_fct,
         upgrades: [ELITE,MISSILE],
     },
     {
         name: "Maarek Stele",
         unique: true,
 	done:true,
+	ambiguous:true,
         faction:EMPIRE,
 	unit: "TIE Defender",
         skill: 7,
         points: 36,
-	init: function() {
-	    var unit=this;
-	    this.ac=Unit.prototype.applycritical;
-	    Unit.prototype.applycritical=function(n) {
-		if (activeunit==unit&&targetunit!=unit) {
-		    for (var j=0; j<n; j++) {
-			var s1=this.selectdamage();
-			CRITICAL_DECK[s1].count--;
-			var s2=this.selectdamage();
-			CRITICAL_DECK[s2].count--;
-			var s3=this.selectdamage();
-			CRITICAL_DECK[s3].count--;
-			sc=[s1,s2,s3];
-			unit.log("select one critical");
-			unit.selectcritical(sc,function(m) { 
-			    CRITICAL_DECK[m].count++;
-			    if (this.faceup(new Critical(this,m))) this.removehull(1);
-			    this.checkdead();
-			    this.show();
-			}.bind(this));
-		    }
-		    this.show();
-		} else unit.ac.call(this,n);
-	    }
-	},
+	init: maarek_fct,
         upgrades: [ELITE,CANNON,MISSILE],
     },
     {
@@ -4478,9 +4531,10 @@ var PILOTS = [
         unit: "YT-1300",
         skill: 5,
         points: 42,
-	faceup: function(c) {
-	    this.log("ignore critical %0",c.name);
-	    return true;
+	deal: function(c,f) {
+	    var p=$.Deferred();
+	    if (f==FACEUP) return p.resolve({crit:c,face:DISCARD}).promise();
+	    else return p.resolve({crit:c,face:f}).promise();
 	},
         upgrades: [ELITE,MISSILE,CREW,CREW]
     },
@@ -4497,7 +4551,7 @@ var PILOTS = [
 	    if (p.length>0&&d=="GREEN") {
 		this.doselection(function(n) {
 		    this.resolveactionselection(p,function(k) {
-			p[k].log("unit chosen for free action");
+			p[k].log("+1 action [%0]",this.name);
 			p[k].doaction(p[k].getactionbarlist());
 			this.endnoaction(n,"");
 		    }.bind(this))
@@ -4623,7 +4677,7 @@ var PILOTS = [
 			target.log("cannot cancel 1 %CRIT% [%0]",this.name)
 			return {ch:r2.ch+FCH_CRIT,e:r2.e+1};
 		    }
-		    return r;
+		    return r2;
 		}
 	    }.bind(this)).unwrapper("endbeingattacked");
 	    Unit.prototype.declareattack.call(this,w,target);
@@ -4710,12 +4764,12 @@ var PILOTS = [
 		    this.resolveactionselection(p,function(k) {
 			if (k>-1) {
 			    p[k].log("has PS of 12");
-			    p[k].wrap_after("getagility",self,function(s) {
+			    p[k].wrap_after("getskill",self,function(s) {
 				return 12;
 			    }).unwrapper("endcombatphase");
 			}
 			this.endnoaction(n,"");
-		    });
+		    }.bind(this));
 		}.bind(this));
 	    }
 	    return Unit.prototype.begincombatphase.call(this);
@@ -4907,7 +4961,7 @@ var PILOTS = [
 		if (this!=unit&&this.getrange(unit)<=2&&unit.stress<=2) {
 		    this.log("-1 %STRESS% [%0]",unit.name);
 		    unit.log("+1 %STRESS%");
-		    this.stress--;
+		    this.removestressstoken();
 		    this.showinfo();
 		    unit.addstress();
 		    unit.showinfo();
@@ -5140,14 +5194,14 @@ var PILOTS = [
         name: "Colonel Vessery",
         done:true,
         faction:EMPIRE,
-        attackroll:function(n) {
-	    var ar=Unit.prototype.attackroll;
-	    var r=ar.call(this,n);
-	    if (targetunit.istargeted.length>0&&this.targeting.length==0) {
-		this.addtarget(targetunit);
-		this.log("+%1 %TARGET% / %0",targetunit.name,1);	
-	    }
-	    return r;
+	init: function() {
+	    this.wrap_after("attackroll",this,function(n,r) {
+		if (targetunit.istargeted.length>0&&this.targeting.length==0) {
+		    this.addtarget(targetunit);
+		    this.log("+%1 %TARGET% / %0",targetunit.name,1);	
+		}
+		return r;
+	    });
 	},
         unique: true,
         unit: "TIE Defender",
@@ -5168,7 +5222,7 @@ var PILOTS = [
 		    this.removefocustoken();
 		    for (i=0; i<this.hitresolved; i++) {
 			this.log(targetunit.criticals[l-i-this.criticalresolved].name);
-			targetunit.faceup(targetunit.criticals[l-i-this.criticalresolved])
+			targetunit.criticals[l-i-this.criticalresolved].faceup();
 		    }
 		    targetunit.checkdead();
 		    targetunit.show();
@@ -5313,13 +5367,14 @@ var PILOTS = [
         name: "'Whisper'",
         faction:EMPIRE,
 	done:true,
-	hashit:function(t) {
-	    var hh=Unit.prototype.hashit.call(t);
-	    if (hh) {
-		this.log("+1 %FOCUS%");
-		this.addfocustoken();
-	    }
-	    return hh;
+	init: function() {
+	    this.wrap_after("hashit",this,function(t,h) {
+		if (h) {
+		    this.log("+1 %FOCUS%");
+		    this.addfocustoken();
+		}
+		return h;
+	    });
 	},
         unique: true,
         unit: "TIE Phantom",
@@ -5330,18 +5385,19 @@ var PILOTS = [
     {
         name: "Wes Janson",
 	done:true,
-	endattack:function(c,h) {
-	    if (targetunit.targeting.length>0) {
-		targetunit.log("-1 %TARGET% [%0]",this.name);
-		targetunit.removetarget(targetunit.targeting[0]);
-	    } else if (targetunit.focus>0) {
-		targetunit.log("-1 %FOCUS% [%0]",this.name);
-		targetunit.removefocustoken();
-	    } else if (targetunit.evade>0) {
-		targetunit.log("-1 %EVADE% [%0]",this.name);
-		targetunit.removeevadetoken();
-	    }
-	    Unit.prototype.endattack.call(this,c,h);
+	init: function() {
+	    this.wrap_before("endattack",this,function(c,h) {
+		if (targetunit.targeting.length>0) {
+		    targetunit.log("-1 %TARGET% [%0]",this.name);
+		    targetunit.removetarget(targetunit.targeting[0]);
+		} else if (targetunit.focus>0) {
+		    targetunit.log("-1 %FOCUS% [%0]",this.name);
+		    targetunit.removefocustoken();
+		} else if (targetunit.evade>0) {
+		    targetunit.log("-1 %EVADE% [%0]",this.name);
+		    targetunit.removeevadetoken();
+		}
+	    });
 	},
 	faction:REBEL,
         unique: true,
@@ -5370,19 +5426,19 @@ var PILOTS = [
         name: "'Hobbie' Klivian",
 	faction:REBEL,
 	done:true,
-        removetarget: function(t) {
-	    if (this.stress) { 	    
-		this.log("-1 %TARGET% -> -1 %STRESS%");
-		this.removestresstoken();
-	    }
-	    Unit.prototype.removetarget.call(this,t);
-	},
-        addtarget: function(t) {
-	    if (this.stress) { 
-		this.removestresstoken();
-		this.log("+1 %TARGET% -> -1 %STRESS%");
-	    }
-	    Unit.prototype.addtarget.call(this,t);
+	init: function() {
+	    this.wrap_before("removetarget",this,function(t) {
+		if (this.stress) { 	    
+		    this.log("-1 %TARGET% -> -1 %STRESS%");
+		    this.removestresstoken();
+		}
+	    });
+            this.wrap_before("addtarget",this,function(t) {
+		if (this.stress) { 
+		    this.removestresstoken();
+		    this.log("+1 %TARGET% -> -1 %STRESS%");
+		}
+	    });
 	},
         unique: true,
         unit: "X-Wing",
@@ -5530,22 +5586,25 @@ var PILOTS = [
         name: "'Leebo'",
 	faction:REBEL,
 	done:true,
-        applycritical: function(n) {
-	    var j,s;
-	    for (j=0; j<n; j++) {
-		var s1=this.selectdamage();
-		CRITICAL_DECK[s1].count--;
-		var s2=this.selectdamage();
-		CRITICAL_DECK[s2].count--;
-		var sc=[s1,s2];
-		this.log("select one critical");
-		this.selectcritical(sc,function(m) { 
-		    CRITICAL_DECK[m].count++;
-		    if (this.faceup(new Critical(this,m))) this.removehull(1);
-		    this.checkdead();
+	init: function() {
+	    var newdeal=function(c,f,p) {
+		var pp=$.Deferred();
+		p.then(function(cf) {
+		    if (cf.face==FACEUP) {
+			var s1=this.selectdamage();
+			CRITICAL_DECK[s1].count--;
+			var s2=this.selectdamage();
+			CRITICAL_DECK[s2].count--;
+			var sc=[s1,s2];
+			this.log("select one critical");
+			this.selectcritical(sc,function(m) {
+			    pp.resolve({crit:new Critical(this,m),face:FACEUP});
+			}.bind(this));
+		    } else pp.resolve(cf);
 		}.bind(this));
-	    }
-	    this.show();
+		return pp.promise();
+	    };
+	    this.wrap_after("deal",this,newdeal);
    	},
         unit: "YT-2400",
         unique: true,
@@ -5602,7 +5661,7 @@ var PILOTS = [
         name: "Commander Kenkirk",
         faction:EMPIRE,
         getagility: function() {
-	    if (this.shield==0&&this.hull<this.ship.hull) return this.agility+1;
+	    if (this.criticals.length>0) return this.agility+1;
 	    return this.agility;
 	},
 	done:true,
@@ -5930,7 +5989,7 @@ var PILOTS = [
 	init: function() {
 	    var nrerolls=function() {
 		var n=0;
-		for (var i=0; i<squadron.length; i++) {
+		for (var i in squadron) {
 		    var s=squadron[i];
 		    if (this.getrange(s)==1&&this.team!=s.team) n++;
 		}
@@ -6063,18 +6122,16 @@ var PILOTS = [
 	done:true,
 	init: function() {
 	    var unit=this;
-	    var ai=Unit.prototype.addiontoken;
-	    Unit.prototype.addiontoken=function() {
-		ai.call(this);
+	    Unit.prototype.wrap_after("addiontoken",this,function() {
 		if (this.getrange(unit)<=3 &&unit.team!=this.team&&unit.stress==0) {
 		    unit.addstress();
 		    this.resolvehit(1);
-		    unit.log("+1 %STRESS%");
+		    unit.log("+1 %cSTRESS%");
 		    this.log("+%1 %HIT [%0]",unit.name,1);
 		    this.checkdead();
 		}
-	    }
-},
+	    });
+	},
         skill: 7,
         points: 23,
         upgrades: [ELITE,TURRET,CREW,ILLICIT],
@@ -6245,7 +6302,7 @@ var PILOTS = [
 		    if (k>0&&this.canusetarget(p[k])) {
 			var c=p[k].criticals;
 			this.removetarget(p[k]);
-			if (c.length>0) p[k].faceup(c[rand(c.length)])
+			if (c.length>0) c[rand(c.length)].faceup();
 		    }
 		    this.endnoaction(n,"TARGET");
 		}.bind(this));
@@ -6260,16 +6317,18 @@ var PILOTS = [
         skill: 7,
         points: 35,
 	done:true,
-	hashit: function(t) {
-	    var h=Unit.prototype.hashit.call(this,t);
-	    var p=this.criticalresolved+this.hitresolved;
-	    if (h&&this.criticalresolved>0) {
-		if (p<=t.shield||(t.hull<=2&&p>t.shield)) { 
-		    this.criticalresolved--;
-		    this.hitresolved+=2;
-		    this.log("1 %CRIT% -> 2 %HIT%");
-		} else this.log(t.name+" shields are down, more than 2 hulls: keeping critical");
-	    }
+	init: function() {
+	    this.wrap_after("hashit",this,function(t,b) {
+		var p=this.criticalresolved+this.hitresolved;
+		if (b&&this.criticalresolved>0) {
+		    if (p<=t.shield||(t.hull<=2&&p>t.shield)) { 
+			this.criticalresolved--;
+			this.hitresolved+=2;
+			this.log("1 %CRIT% -> 2 %HIT%");
+		    } else this.log("%0 %SHIELD% are down, more than 2 %HULL%: keeping critical",t.name);
+		}
+		return b;
+	    })
 	},
         upgrades: [ELITE,CANNON,MISSILE,CREW,CREW,CREW,ILLICIT]
     },
@@ -6596,7 +6655,6 @@ var PILOTS = [
 	  unique:true,
 	  getdial:function() {
 	      var save=[];
-	      this.log("returning getdial ello "+this.stress);
 	      var gd=Unit.prototype.getdial.call(this);
 	      for (var i=0; i<gd.length; i++) {
 		  var move=gd[i].move;
@@ -6695,21 +6753,21 @@ var PILOTS = [
 	  points: 18
       },
    {
-	  name: "'Epsilon Leader'",
-	  faction: EMPIRE,
-	  done:true,
-	  unique:true,
-	  unit: "TIE/FO Fighter",
-	  skill: 6,
-	  begincombatphase: function() {
+       name: "'Epsilon Leader'",
+       faction: EMPIRE,
+       done:true,
+       unique:true,
+       unit: "TIE/FO Fighter",
+       skill: 6,
+       begincombatphase: function() {
 	   var p=this.selectnearbyally(1);
-	   for (var i=0; i<p.length; i++) 
-	       p[i].removestresstoken();
+	   p.push(this);
+	   for (var i=0; i<p.length; i++) p[i].removestresstoken();
 	   return Unit.prototype.begincombatphase.call(this);
        },
        upgrades: [ELITE,TECH],
-	  points: 19
-      },
+       points: 19
+   },
    {
 	  name: "'Omega Ace'",
 	  faction: EMPIRE,
@@ -6781,20 +6839,7 @@ var PILOTS = [
 	ambiguous:true,
 	points:40,
 	done:true,
-        getmaneuverlist: function() {
-	    var m=this.getmaneuver();
-	    var p={};
-	    var gd=this.getdial();
-	    p[m.move]=m;
-	    if ((m.difficulty=="RED"||m.difficulty=="GREEN")&&this.ionized==false) {
-		for (var i=0; i<gd.length; i++) 
-		    if (gd[i].difficulty==m.difficulty
-			&&typeof p[gd[i].move]=="undefined") {
-			p[gd[i].move]=gd[i];
-		    }
-	    }
-	    return p;
-	},
+        getmaneuverlist: hera_fct,
 	upgrades:[SYSTEM,TURRET,TORPEDO,TORPEDO,CREW,CREW]
     },
     {
@@ -6848,20 +6893,7 @@ var PILOTS = [
 	skill:7,
 	ambiguous:true,
 	points:22,
-        getmaneuverlist: function() {
-	    var m=this.getmaneuver();
-	    var p={};
-	    var gd=this.getdial();
-	    p[m.move]=m;
-	    if ((m.difficulty=="RED"||m.difficulty=="GREEN")&&this.ionized==false) {
-		for (var i=0; i<gd.length; i++) 
-		    if (gd[i].difficulty==m.difficulty
-			&&typeof p[gd[i].move]=="undefined") {
-			p[gd[i].move]=gd[i];
-		    }
-	    }
-	    return p;
-	},
+        getmaneuverlist: hera_fct,
 	upgrades:[ELITE,TURRET,CREW]
     },
     {
@@ -6918,8 +6950,11 @@ var PILOTS = [
 	    this.addattackadd(this,function(m,n) { 
 		return true; 
 	    },function(m,n) {
-		this.log("cancel all dice, +1 damage card");
-		targetunit.applydamage(1);
+		this.log("cancel all dice");
+		if (FCH_crit(m)>0) {
+		    targetunit.log("+1 damage card [%0]",this.name);
+		    targetunit.applydamage(1);
+		}
 		return {m:0,n:0};
 	    }.bind(this),"critical");
 	},
@@ -6994,7 +7029,7 @@ var PILOTS = [
 	    if (i==0) {
 		var att=this.weapons[i].getattack();
 		if (this.weapons[i].getrange(sh)>1) {
-		    this.log("+1 attack die with primary weapon [%0]",this);
+		    this.log("+1 attack die with primary weapon [%0]",this.name);
 		    return att+1;
 		}
 	    } 
@@ -7009,6 +7044,15 @@ var PILOTS = [
 	unit:"TIE Adv. Prototype",
 	skill:6,
 	points:22,
+	done:true,
+	init: function() {
+	    this.wrap_after("endbeingattacked",this,function(c,h) {
+		if (this.candoaction()) {
+		    this.log("+1 free action [%0]",this.name);
+		    this.doaction(this.getactionlist());
+		}
+	    });
+	},
 	upgrades:[ELITE,MISSILE]
     },
    {
@@ -7033,9 +7077,29 @@ var PILOTS = [
        name:"4-LOM",
        faction:SCUM,
        unique:true,
+       done:true,
        unit:"G-1A Starfighter",
        skill:6,
        points:26,
+       init: function() {
+	   this.wrap_before("endphase",this,function() {
+	       var p=this.selectnearbyunits(1,function() {return true;});
+	       if (this.stress>0&&p.length>1) {
+		   this.log("select unit (or self to cancel) [%0]",this.name);
+		   this.doselection(function(n) {
+		       this.resolveactionselection(p,function(k) {
+			   if (p[k]!=this) {
+			       p[k].addstress();
+			       this.removestresstoken();
+			       p[k].log("+1 %STRESS% [%0]",this.name);
+			       this.log("-1 %STRESS%");
+			   }
+			   this.endnoaction(n,"HIT");
+		       }.bind(this));
+		   }.bind(this));
+	       }
+	   });
+       },
        upgrades:[ELITE,CREW,SYSTEM,ILLICIT]
     }
 ];
@@ -7092,6 +7156,11 @@ Bomb.prototype = {
     isWeapon: function() { return false; },
     isBomb: function() { return true; },
     canbedropped: function() { return this.isactive&&!this.unit.hasmoved; },
+    desactivate:function(sh) { 
+	for (var i in sh.wrapping) 
+	    if (typeof sh[i].unwrap=="function") sh[i].unwrap(this);
+	this.isactive=false; 
+    },
     actiondrop: function(n) {
 	this.unit.lastdrop=round;
 	$(".bombs").remove(); 
@@ -7190,7 +7259,7 @@ Bomb.prototype = {
 	if (this.ordnance) { 
 	    this.ordnance=false; 
 	    dropped=$.extend({},this);
-	} else this.isactive=false;
+	} else this.desactivate(this.unit);
 	dropped.img1=s.image("png/"+this.img,-this.width/2,-this.height/2,this.width,this.height);
 	dropped.outline=this.getOutline(new Snap.matrix())
 	    .attr({display:"block","class":"outline",stroke:halftone(GREY),strokeWidth:2,fill:"rgba(8,8,8,0.3)"});
@@ -7266,7 +7335,8 @@ Bomb.prototype = {
 	OBSTACLES.splice(OBSTACLES.indexOf(this),1);
 	Bomb.prototype.explode.call(this);
     },
-    endround: function() {}
+    endround: function() {},
+    show: function() {}
 }
 function Weapon(sh,wdesc) {
     this.isprimary=false;
@@ -7283,6 +7353,14 @@ Weapon.prototype = {
     isBomb: function() { return false; },
     isWeapon: function() { return true; },
     hasauxiliaryfiringarc: function() { return false; },
+    desactivate:function(sh) {
+	log("sh unwrapping "+sh.name+" "+sh.wrapping);
+	if (typeof sh.wrapping!="undefined") {
+	    for (var i in sh.wrapping) 
+		if (typeof sh[i].unwrap=="function") sh[i].unwrap(this);
+	}
+	this.isactive=false; 
+    },
     toString: function() {
 	var a,b,d,str="";
 	var c="";
@@ -7399,7 +7477,7 @@ Weapon.prototype = {
     },
     endattack: function(c,h) {
 	if (this.type.match("Torpedo|Missile")) {
-	    if (this.ordnance) this.ordnance=false; else this.isactive=false;
+	    if (this.ordnance) this.ordnance=false; else this.desactivate(this.unit);
 	}
     },
     getenemiesinrange: function() {
@@ -7422,7 +7500,8 @@ Weapon.prototype = {
     },
     wrap_before: Unit.prototype.wrap_before,
     wrap_after: Unit.prototype.wrap_after,
-    endround:function() {}
+    endround:function() {},
+    show: function() {}
 };
 function Upgrade(sh,i) {
     $.extend(this,UPGRADES[i]);
@@ -7467,6 +7546,12 @@ Upgrade.prototype = {
     isWeapon: function() { return false; },
     isBomb: function() { return false; },
     endround: function() {},
+    desactivate:function(sh) { 
+	for (var i in sh.wrapping)
+	    if (typeof sh[i].unwrap=="function") sh[i].unwrap(this);
+	this.isactive=false; 
+    },
+    show: function() {},
     install: function(sh) {
 	if (typeof this.addedaction!="undefined") {
 	    var aa=this.addedaction.toUpperCase();
@@ -7647,9 +7732,10 @@ var UPGRADES= [
     {
         name: "R2-F2",
         done:true,
-	candoaction: function() { return true; },
+	candoaction: function() { return this.isactive; },
 	action: function(n) {
 	    var self=this.unit;
+	    if (!this.isactive) return true;
 	    this.unit.log("+1 agility until end of round [%0]",self.name);
 	    self.wrap_after("getagility",this,function(a) {
 		return a+1;
@@ -7666,22 +7752,24 @@ var UPGRADES= [
         name: "R5-D8",
 	done:true,
         candoaction: function() {
+	    if (!this.isactive) return false;
 	    for (var i=0; i<this.unit.criticals.length; i++) 
 		if (this.unit.criticals[i].isactive==false) return true;
 	    return false;
 	},
 	action: function(n) {
 	    var self=this;
+	    if (!this.isactive) return true;
 	    this.unit.defenseroll(1).done(function(roll) {
 		if (FE_evade(roll.roll)+FE_focus(roll.roll)>0) {
 		    for (var i=0; i<this.criticals.length; i++)
-			if (this.criticals[i].isactive==false) break;
-		    if (i<this.criticals.length) {
-			this.log("-1 %HIT% [%0]",self.name);
-			this.criticals.slice(i,1);
-			this.hull++;
-			this.show();
-		    }
+			if (this.criticals[i].isactive==false) {
+			    this.log("-1 %HIT% [%0]",self.name);
+			    this.criticals.slice(i,1);
+			    this.hull++;
+			    this.show();
+			    break;
+			}
 		}
 		this.endaction(n,ASTROMECH);
 	    }.bind(this.unit));
@@ -7702,7 +7790,7 @@ var UPGRADES= [
 		    return self.isactive;
 	      },function() {
 		  this.log("ignore obstacles [%0]",self.name);
-		  self.isactive=false;
+		  self.desactivate(this);
 		  this.wrap_after("getocollisions",self,function(mbegin,mend,path,len) { 
 		      return {overlap:-1,template:[],mine:[]};
 		  }).unwrapper("endround");
@@ -7710,7 +7798,7 @@ var UPGRADES= [
 	      }.bind(this), A[ASTROMECH.toUpperCase()].key, $("<div>").attr({class:"symbols"}));
 	      return sh.activationdial;
 	  });
-      }
+      },
     },
     { name: "BB-8",
       unique:true,
@@ -7729,40 +7817,35 @@ var UPGRADES= [
 	      }, A[ASTROMECH.toUpperCase()].key, $("<div>").attr({class:"symbols"}));
 	      return sh.activationdial;
 	  }.bind(this))
-      }
+      },
     },
     {name:"Integrated Astromech",
      points:0,
      type:MOD,
      ship:"X-Wing",
-     done:false,
+     done:true,
      init: function(sh) {
-	 var upg=this;
-	 var ac=sh.applycritical;
-	 var ad=sh.applydamage;
-	 sh.applydamage=function(n) {
-	     if (n>0&&this.hull==1) {
-		 upg.isactive=false;
-		 this.applydamage=ad;
-		 this.log("-1 damage [%0]",upg.name);
-		 if (n>1) ad.call(this,n-1);
-	     } else ad.call(this,n);
-	 }
-	 sh.applycritical=function(n) {
-	     if (n>0) {
-		 s=this.selectdamage();
-		 CRITICAL_DECK[s].count--;
-		 if (this.hull==1||CRITICAL_DECK[s].lethal) {
-		     upg.isactive=false;
-      		     this.log("-1 damage [%0]",upg.name);
-		     this.applycritical=ac;
-		 } else {
-		     if (this.faceup(new Critical(this,s))) this.removehull(1);
-		 }
-		 if (n>1) ac.call(this,n-1);
+	 var self=this;
+	 var newdeal=function(c,f,p) {
+	     var k=-1;
+	     for (var i in this.upgrades) {
+		 var u=this.upgrades[i];
+		 if (u.type==ASTROMECH&&u.isactive==true) { k=i; break; }
 	     }
-	 }
-     }
+	     if (k==-1) return p;
+	     var pp=$.Deferred();
+	     p.then(function(cf) {
+		 if (this.shield+this.hull==1||(cf.face==FACEUP&&cf.crit.lethal&&this.shield+this.hull<=2)) {
+		     this.upgrades[k].desactivate(this);
+		     this.log("%0 is inactive, damage discarded [%1]",this.upgrades[k].name,self.name);
+		     self.desactivate(this);
+		     pp.resolve({crit:cf.crit,face:DISCARD});
+		 } else pp.resolve(cf);
+	     }.bind(this));
+	     return pp.promise();
+	 };
+	 sh.wrap_after("deal",this,newdeal);
+     },
     },
     {name:"Weapons Guidance",
      points:2,
@@ -7833,12 +7916,18 @@ var UPGRADES= [
 	done:true,
         init: function(sh) {
 	    var self=this;
-	    sh.wrap_after("faceup",this,function(c,fu) {
-		if (c.type!="pilot") return fu;
-		this.log("discarding critical %1 [%0]",self.name,c.name);
-		this.criticals.slice(this.criticals.indexOf(c),1);
-		return false;
-	    });
+	    var newdeal=function(c,f,p) {
+		if (c.type!="pilot") return p;
+		var pp=$.Deferred();
+		p.then(function(cf) {
+		    if (cf.face==FACEUP) {
+			this.log("discarding critical %1 [%0]",self.name,cf.crit.name);
+			pp.resolve({crit:cf.crit,face:DISCARD});
+		    } else pp.resolve(cf);
+		}.bind(this));
+		return pp.promise();
+	    };
+	    sh.wrap_after("deal",this,newdeal);
 	},
         type: ELITE,
         points: 1,
@@ -7865,7 +7954,7 @@ var UPGRADES= [
 		    }.bind(this));
 		}
 	    });
-	}
+	},
     },
     {
         name: "Squad Leader",
@@ -7875,7 +7964,7 @@ var UPGRADES= [
         points: 2,
 	candoaction: function() {  
 	    var p=this.unit.selectnearbyunits(2,function(t,s) { return t.team==s.team&&s!=t&&s.getskill()<t.getskill()&&s.candoaction();});
-	    return (p.length>0);
+	    return (this.isactive)&&(p.length>0);
 	},
 	action: function(n) {
 	    var unit=this.unit;
@@ -7891,7 +7980,7 @@ var UPGRADES= [
     },
     {
         name: "Expert Handling",
-	candoaction: function() { return this.unit.actionsdone.indexOf("ROLL")==-1; },
+	candoaction: function() { return this.isactive&&this.unit.actionsdone.indexOf("ROLL")==-1; },
 	action: function(n) {
 	    if (this.unit.shipactionList.indexOf("ROLL")==-1) this.unit.addstress();
 	    if (this.unit.istargeted.length>0) {
@@ -7913,7 +8002,7 @@ var UPGRADES= [
 	    this.mark=-1;
 	    var self=this;
 	    sh.addattackmoda(this,function(m,n) {
-		    return (this.mark==round);
+		    return (this.mark==round)&&this.isactive;
 		}.bind(this),function(m,n) {
 		    var f=FCH_focus(m);
 		    if (f>0&&this.mark==round) {	
@@ -7923,7 +8012,7 @@ var UPGRADES= [
 		    return m;
 		}.bind(this),false,"focus");
 	},
-	candoaction: function() { return true; },
+	candoaction: function() { return this.isactive; },
 	action: function(n) {
 	    this.mark=round;
 	    this.unit.endaction(n,ELITE);
@@ -7943,7 +8032,7 @@ var UPGRADES= [
 	init: function(sh) {
 	    var missile=this;
 	    sh.addattackmoda(this,function(m,n) {
-		return sh.weapons[sh.activeweapon]==this;
+		return sh.weapons[sh.activeweapon]==this&&missile.isactive;
 	    }.bind(this), function(m,n) {
 		var b=FCH_blank(m,n);
 		if (b>0) return m+FCH_HIT; else return m;
@@ -7964,7 +8053,7 @@ var UPGRADES= [
 	    if (this.fired==round) {
 		if (this.ordnance) {
 		    this.ordnance=false; 
-		} else this.isactive=false;
+		} else this.desactivate(this.unit);
 	    }
 	},
 	init: function(sh) {
@@ -7982,7 +8071,7 @@ var UPGRADES= [
     {
         name: "Daredevil",
 	done:true,
-        candoaction: function() { return true; },
+        candoaction: function() { return this.isactive; },
 	action: function(n) {
 	    var self=this;
 	    this.unit.log("select maneuver [%0]",this.name);
@@ -8011,8 +8100,9 @@ var UPGRADES= [
         name: "Elusiveness",
 	done:true,
         init:function(sh) {
+	    var self=this;
 	    sh.addattackmodd(this,function(m,n) {
-		return this.stress==0&&targetunit==this;
+		return this.stress==0&&targetunit==this&&self.isactive;
 	    }.bind(sh),function(m,n) {
 		this.unit.addstress();
 		if (FCH_crit(m)>0) {
@@ -8048,15 +8138,14 @@ var UPGRADES= [
 	init: function(sh) {
 	    var ptl=this;
 	    ptl.r=-1;
-	    var da=sh.doaction;
-	    var ea=sh.endaction;
+	    ptl.da=sh.doaction;
 	    sh.doaction= function(la,str) {
-		var dar=da.call(this,la,str);
+		var dar=ptl.da.call(this,la,str);
 		var df=$.Deferred();
 		dar.then(function(r) {
 		    if (ptl.r<round&&this.candoaction()) {
 			ptl.r=round;		
-			var dac=da.call(this,this.getactionbarlist(),ptl.name+": 1 free action");
+			var dac=ptl.da.call(this,this.getactionbarlist(),"+1 free action");
 			dac.done(function(rr) { 
 			    if (rr!=null) this.addstress();
 			    else ptl.r=-1;
@@ -8067,6 +8156,10 @@ var UPGRADES= [
 		return df;
 	    }
 	},
+	desactivate: function(sh) {
+	    sh.doaction=this.da;
+	    Upgrades.prototype.desactivate.call(this,sh);
+	},
 	done:true,
         type: ELITE,
         points: 3,
@@ -8074,12 +8167,14 @@ var UPGRADES= [
     {
         name: "Deadeye",
         init: function(sh) {
-	    var gr=Weapon.prototype.getrequirements;
-	    Weapon.prototype.getrequirements=function() {
-		var g=gr.call(this);
+	    Weapon.prototype.wrap_after("getrequirements",this,function(g) {
 		if (this.unit==sh&&g=="Target") return "Target|Focus";
 		return g;
-	    }
+	    });
+	},
+	desactivate:function(sh) {
+	    Weapon.prototype.getrequirements.unwrap(this);
+	    Upgrades.prototype.desactivate.call(this,sh);
 	},
 	done:true,
         type: ELITE,
@@ -8087,7 +8182,7 @@ var UPGRADES= [
     },
     {
         name: "Expose",
-        candoaction: function() { return true; },
+        candoaction: function() { return this.isactive; },
 	action: function(n) {
 	    var w=this.unit.weapons[0];
 	    var gat=w.getattack;
@@ -8184,7 +8279,7 @@ var UPGRADES= [
         init: function(sh) {
 	    var self=this;
 	    sh.addattackmoda(this,function(m,n) {
-		if (this.getrange(targetunit)==3) return true;
+		if (self.isactive&&(this.getrange(targetunit)==3)) return true;
 		return false;
 	    }.bind(sh),function(m,n) {
 		if (FCH_hit(m)>0) {
@@ -8227,7 +8322,7 @@ var UPGRADES= [
 	    sh.showskill();
 	},
 	uninstall: function(sh) {
-	    sh.getskill.unwrap();
+	    sh.getskill.unwrap(this);
 	    sh.showskill();
 
 	},
@@ -8288,23 +8383,27 @@ var UPGRADES= [
         name: "Draw Their Fire",
         init: function(sh) {
 	    var self=this;
-	    var ea=Unit.prototype.resolvecritical;
+	    this.ea=Unit.prototype.resolvecritical;
 	    Unit.prototype.resolvecritical=function(c) {
 		if (c>0&&this.team==sh.team&&sh!=this&&this.getrange(sh)==1){
 		    this.log("select unit [%0]",self.name);
 		    this.doselection(function(n) {
 			this.resolveactionselection([this,sh],function(k) {
-			    if (k==0) { ea.call(this,1); }
-			    else { ea.call(sh,1);}
-			    this.endnoaction(n,"CREW");
+			    if (k==0) { this.ea.call(this,1); }
+			    else { this.ea.call(sh,1);}
+			    this.endnoaction(n,"ELITE");
 
 			}.bind(this));
 		    }.bind(this));
-		    ea.call(this,c-1);
-		} else ea.call(this,c);
+		    this.ea.call(this,c-1);
+		} else this.ea.call(this,c);
 		return c;
 	    }
 	}, 
+	desactivate:function(sh) {
+	    Unit.prototype.resolvecritical=this.ea;
+	    Upgrades.prototype.desactivate.call(this,sh);
+	},
 	done:true,
         type: ELITE,
         points: 1,
@@ -8315,7 +8414,6 @@ var UPGRADES= [
         unique: true,
 	done:true,
         init: function(sh) {
-	    var ea=sh.endattack;
 	    var self=this;
 	    var luke=-1;
 	    sh.wrap_before("endattack",this,function(c,h) {
@@ -8326,7 +8424,7 @@ var UPGRADES= [
 		}
 	    });
 	    sh.addattackmoda(this,function(m,n) {
-		return luke==round;
+		return luke==round&&self.isactive;
 	    }.bind(sh),function(m,n) {
 		if (m>100) return m-99; else return m;
 	    },false,"focus");
@@ -8365,34 +8463,20 @@ var UPGRADES= [
 	done:true,
         type: CREW,
 	init: function(sh) {
-	    var upg=this;
-	    var ac=sh.applycritical;
-	    var ad=sh.applydamage;
-	    sh.applydamage=function(n) {
-		if (n>0&&this.hull==1) {
-		    upg.isactive=false;
-		    if (this.shield<this.ship.shield) this.shield++;
-		    this.log("+1 %SHIELD%, -1 %HIT% [%0]",upg.name);
-		    this.applydamage=ad;
-		    if (n>1) ad.call(this,n-1);
-		} else ad.call(this,n);
-	    }
-	    sh.applycritical=function(n) {
-		if (n>0) {
-		    s=this.selectdamage();
-		    CRITICAL_DECK[s].count--;
-		    if (this.hull==1||CRITICAL_DECK[s].lethal) {
-			upg.isactive=false;
+	    var self=this;
+	    var newdeal=function(c,f,p) {
+		var pp=$.Deferred();
+		p.then(function(cf) {
+		    if (this.hull+this.shield==1||(cf.face==FACEUP&&cf.crit.lethal&&this.hull+this.shield<=2)) {
 			if (this.shield<this.ship.shield) this.shield++;
-      			this.log("+1 %SHIELD%, -1 %CRIT% %0 [%1]",CRITICAL_DECK[s].name,upg.name);
-			this.applycritical=ac;
-		    } else {
-			if (this.faceup(new Critical(this,s))) this.removehull(1);
-		    }
-		    if (n>1) ac.call(this,n-1);
-		    //this.show();
-		}
-	    }
+			this.log("+1 %SHIELD%, 1 damage discarded [%0]",self.name);
+			self.desactivate(this);
+			pp.resolve({crit:cf.crit,face:DISCARD});
+		    } else pp.resolve(cf);
+		}.bind(this));
+		return pp.promise();
+	    };
+	    sh.wrap_after("deal",this,newdeal);
 	},
         points: 4,
     },
@@ -8479,10 +8563,11 @@ var UPGRADES= [
 	done:true,
 	candoaction:function() { 
 	    var a=this.unit.selectnearbyenemy(1);
-	    return a.length>0;
+	    return this.isactive&&a.length>0;
 	}, 
 	action: function(n) {
 	    var self=this;
+	    if (!this.isactive) return;
 	    var p=this.unit.selectnearbyenemy(1);
 	    if (p.length>0) {		
 		this.unit.log("select unit [%0]",this.name);
@@ -8493,7 +8578,7 @@ var UPGRADES= [
 		    if (q.length>0) {
 			var r=p[k].rand(q.length);
 			p[k].log("turn faceup one damage card [%0]",self.name);
-			p[k].faceup(q[r]);
+			q[r].faceup();
 			p[k].show();
 		    } else p[k].log("no damage card [%0]",self.name);
 		    this.endaction(n,"CREW");
@@ -8559,7 +8644,7 @@ var UPGRADES= [
 			&&(this.getmaneuver().difficulty=="RED"); 
 		}.bind(this),function() {
 		    this.log("red into white maneuver [%0]",upg.name);
-		    upg.isactive=false;
+		    upg.desactivate(this);
 		    this.wrap_after("getmaneuver",upg,function(d) {
 			d.difficulty="WHITE";
 			return d;
@@ -8576,9 +8661,6 @@ var UPGRADES= [
         name: "Advanced Sensors",
 	done:true,
         init: function(sh) {
-	    var ba=sh.beginactivation;
-	    var dema=sh.doendmaneuveraction;
-	    var upg=this;
 	    sh.wrap_before("beginactivation",this,function() {
 		if (this.candoaction()) 
 		    this.doaction(this.getactionlist()).done(function(r) {
@@ -8595,7 +8677,7 @@ var UPGRADES= [
         init: function(sh) {
 	    var self=this;
 	    sh.addattackmodd(this,function(m,n) {
-		return (targetunit==this);
+		return (targetunit==this&&self.isactive);
 	    }.bind(sh),function(m,n) {
 		var h=FCH_hit(m);
 		if (h>0) {
@@ -8661,8 +8743,9 @@ var UPGRADES= [
 		["focus"],
 		function() { if (activeunit.getskill()<=2) return 2; return 1; },
 		function(w,attacker) {
-		    this.unit.log("+%1 %FOCUS% reroll(s) [%0]",self.name,(activeunit.getskill()<=2?2:1));
-		    return true;
+		    if (this.isactive) 
+			this.unit.log("+%1 %FOCUS% reroll(s) [%0]",self.name,(activeunit.getskill()<=2?2:1));
+		    return this.isactive;
 		}.bind(this)
 	    )
 	},
@@ -8786,17 +8869,15 @@ var UPGRADES= [
 	done:true,
         init: function(sh) {
 	    var self=this;
-	    var gds=Unit.prototype.getdefensestrength; 
-	    Unit.prototype.getdefensestrength=function(i,t) {
-		var d=gds.call(this,i,t);
-		if (t==sh) {
+	    sh.wrap_before("resolveattack",this,function(w,targetunit) {
+		targetunit.wrap_after("getdefensestrength",self,function(i,t,d) {
 		    if(!this.isinfiringarc(t)&&t.isinfiringarc(this)&&d>0) {
 			this.log("-1 defense [%0]",self.name);
 			return d-1;
-		    } 
-		}
-		return d;
-	    }
+		    }
+		    return d;
+		}).unwrapper("dodefenseroll");
+	    });
 	},
         type: ELITE,
         points: 3,
@@ -8812,7 +8893,7 @@ var UPGRADES= [
 		function() { if (targetunit.getskill()<=2) return 2; return 1; },
 		function(w,defender) {
 		    this.log("+%1 reroll(s) [%0]",self.name,(targetunit.getskill()<=2?2:1));
-		    return true;
+		    return self.isactive;
 		}.bind(sh)
 	    )
 	},
@@ -8840,9 +8921,10 @@ var UPGRADES= [
     },
     {
         name: "R7-T1",
-	candoaction: function() { return true; },	    
+	candoaction: function() { return this.isactive; },	    
 	action: function(n) {
 	    var self=this;
+	    if (!this.isactive) return;
 	    var p=this.unit.selectnearbyenemy(2);
 	    if (p.length>0) {
 		p.push(this.unit);
@@ -8874,7 +8956,7 @@ var UPGRADES= [
 		    targetunit.log("+1 %STRESS% [%0]",self.name);
 		}
 	    });
-	}
+	},
     },
     {
         name: "R2-D2",
@@ -8892,16 +8974,18 @@ var UPGRADES= [
 		    if (!c[i].isactive) p.push(c[i]);
 		if (this.shield==0&&this.ship.shield>0) {
 		    this.log("+1 %SHIELD% [%0]",x.name);
-		    this.shield++; 
+		    this.shield++;
 		    this.show();
 		    if (p.length>0) {
 			var crit=p[this.rand(p.length)]
-			if (this.attackroll(1)%10>0)
-			    this.faceup(crit);
+			if (FCH_hit(this.attackroll(1))>0) {
+			    this.log("+1 %CRIT% [%0]",this.name);
+			    crit.faceup();
+			}
 		   } 
 		}
 	    });
-	}        
+	},
     },
     {
         name: "C-3PO",
@@ -8911,7 +8995,6 @@ var UPGRADES= [
         points: 3,
 	done:true,
 	init:function(sh) {
-	    var rdd=sh.defenseroll;
 	    var self=this;
 	    var c3po=-1;
 	    sh.wrap_after("defenseroll",this,function(r,promise) {
@@ -9024,7 +9107,7 @@ var UPGRADES= [
 	    sh.wrap_after("removestresstoken",this,function() {
 		this.addfocustoken();
 	    });
-	}
+	},
         
     },
     {
@@ -9034,7 +9117,6 @@ var UPGRADES= [
         type: CREW,
         points: 2,
 	done:true,
-	test:"?E,1D%10W5_b;k%10VhdJ;1M%10VHlq;&0%LayHI;&h1Sx4;h1Sx4;h1Sx4;h1Sx4;h1Sx4;h1Sx4#",
 	init: function(sh) {
 	    var jan=-1;
 	    var self=this;
@@ -9052,6 +9134,10 @@ var UPGRADES= [
 			"",true);
 		}
 	    })
+	},
+	desactivate:function(sh) {
+	    Unit.prototype.addfocustoken.unwrap(this);
+	    Upgrades.prototype.desactivate.call(this,sh);
 	},
     },
 
@@ -9099,7 +9185,7 @@ var UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    sh.addattackmoda(this,function(m,n) { 
-		return this.targeting.indexOf(targetunit)>-1;
+		return self.isactive&&this.targeting.indexOf(targetunit)>-1;
 	    }.bind(sh), function(m,n) {
 		var f=FCH_focus(m);
 		this.log("%0 %FOCUS% -> %0 %HIT% [%1]",f,self.name);
@@ -9123,7 +9209,7 @@ var UPGRADES= [
 	    var self=sh;
 	    sh.wrap_before("beginactivationphase",this,function() {
 		this.donoaction([{type:"CREW",org:mod,name:mod.name,action:function(n) {
-		    mod.isactive=false;
+		    mod.desactivate(this);
 		    for (var i in squadron) {
 			if (squadron[i].team==self.team) 
 			    squadron[i].wrap_after("getmaneuver",mod,function(m) {
@@ -9132,11 +9218,11 @@ var UPGRADES= [
 				return m;
 			    }).unwrapper("endactivationphase");
 		    }
-		    this.beginactivationphase.unwrap(mod);
 		    this.endnoaction(n,"CREW");
 		}.bind(this)}],"",true);
 	    })
 	},
+
         points: 4,
     },
     {
@@ -9152,10 +9238,11 @@ var UPGRADES= [
         type: CREW,
         unique: true,
 	done:true,
-	candoaction: function() { return true; },
+	candoaction: function() { return this.isactive; },
 	action: function(n) {
 	    var self=this;
 	    var str="";
+	    if (!this.isactive) return;
 	    this.unit.defenseroll(2).done(function(roll) {
 		var f=FE_focus(roll.roll);
 		var e=FE_evade(roll.roll);
@@ -9193,9 +9280,10 @@ var UPGRADES= [
         faction:EMPIRE,
         type: CREW,
 	done:true,
-        candoaction: function() { return true;	},
+        candoaction: function() { return this.isactive;	},
 	action: function(n) {
 	    var self=this;
+	    if (!this.isactive) return;
 	    var p=this.unit.selectnearbyally(2);
 	    if (p.length>0) {
 		if (p.length==2) {
@@ -9240,7 +9328,7 @@ var UPGRADES= [
 		}
 		return p;
 	    });
-	}
+	},
     },
     {
         name: "Dash Rendar",
@@ -9248,8 +9336,8 @@ var UPGRADES= [
         unique: true,
 	done:true,
 	init: function(sh) {
-	    sh.isfireobstructed=function() { return false; }
-	    sh.getobstructiondef=function() { return 0; }
+	    sh.wrap_after("isfireobstructed",this,function() { return false; });
+	    sh.wrap_after("getobstructiondef",this,function() { return 0; });
 	},
         type: CREW,
         points: 2,
@@ -9266,10 +9354,10 @@ var UPGRADES= [
 		function() { return 1;},
 		function(w,defender) {
 		    var p=this.unit.selectnearbyally(2);
-		    if (p.length==0) {
+		    if (p.length==0&&self.isactive) {
 			this.unit.log("+1 blank reroll [%0]",self.name);
 		    }
-		    return p.length==0; 
+		    return p.length==0&&self.isactive; 
 		}.bind(this)
 	    )
 	    sh.adddefensererolld(
@@ -9278,10 +9366,10 @@ var UPGRADES= [
 		function() { return 1;},
 		function(w,defender) {
 		    var p=this.unit.selectnearbyally(2);
-		    if (p.length==0) {
+		    if (p.length==0&&self.isactive) {
 			this.unit.log("+1 blank reroll [%0]",self.name);
 		    }
-		    return p.length==0; 
+		    return p.length==0&&self.isactive; 
 		}.bind(this)
 	    )
 	},
@@ -9293,8 +9381,9 @@ var UPGRADES= [
         name: "'Leebo'",
         faction:REBEL,
         unique: true,
-	candoaction: function() { return true; },
+	candoaction: function() { return this.isactive; },
 	action: function(n) {
+	    if (!this.isactive) return;
 	    this.unit.log("free %BOOST% and ion token [%0]",this.name);
 	    this.unit.addiontoken();
 	    this.unit.resolveboost(n);
@@ -9326,7 +9415,7 @@ var UPGRADES= [
 		    }.bind(this));
 		}
 	    });
-	}
+	},
     },
     {
         name: "Intimidation",
@@ -9334,16 +9423,18 @@ var UPGRADES= [
         init: function(sh) {
 	    var unit=this.unit;
 	    var self=this;
-	    var ga=Unit.prototype.getagility;
-	    Unit.prototype.getagility=function() {
-		var a=ga.call(this);
+	    Unit.prototype.wrap_after("getagility",this,function(a) {
 		if (this.team!=unit.team&&a>0&&(typeof this.touching!="undefined")) 
 		    if (this.touching.indexOf(unit)>-1) {
 			this.log("-1 agility [%0]",self.name);
 			return a-1;
 		    }
 		return a;
-	    }
+	    });
+	},
+	desactivate:function(sh) {
+	    Unit.prototype.getagility.unwrap(this);
+	    Upgrades.prototype.desactivate.call(this,sh);
 	},
         type: ELITE,
         points: 2,
@@ -9356,7 +9447,7 @@ var UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    sh.wrap_before("begincombatphase",this,function() {
-		if (this.shield==0&&this.hull<this.ship.hull&&this.candoevade()) {
+		if (this.criticals.length>0&&this.candoevade()) {
 		    this.addevadetoken();
 		    this.log("+1 %EVADE% [%0]",self.name);
 		}
@@ -9375,28 +9466,27 @@ var UPGRADES= [
         type: CREW,
         points: 2,
 	init: function(sh) {
-	    var fu=sh.faceup;
 	    var crew=this;
-	    sh.faceup=function(c) {
-		var i,cr=[];
-		if (c.lethal||this.hull==1) {
-		    for (i=0; i<this.upgrades.length; i++) {
-			var upg=this.upgrades[i];
-			if (upg.type==CREW&&upg!=crew) cr.push(upg);
-		    }
-		    cr.push(crew);
-		    for (i=0; i<cr.length; i++) {
-			if (cr[i].isactive) {
-			    cr[i].isactive=false;
-			    this.log("discard %0 to remove critical %1 [%2]",cr[i].name,c.name,crew.name);
-			    this.criticals.slice(this.criticals.indexOf(c),1);
-			    return false;
+	    var newdeal=function(c,f,p) {
+		var pp=$.Deferred();
+		p.then(function(cf) {
+		    var i,cr=[];
+		    if ((cf.crit.lethal&&this.hull+this.shield<=2&&cf.face==FACEUP)||this.hull+this.shield==1) {
+			for (i=0; i<this.upgrades.length; i++) {
+			    var upg=this.upgrades[i];
+			    if (upg.type==CREW&&upg!=crew&&upg.isactive) cr.push(upg);
 			}
-		    }
-		}
-		return fu.call(this,c);
+			cr.push(crew);
+			cr[0].desactivate(this);
+			this.log("discard %0 to remove critical %1 [%2]",cr[0].name,c.name,crew.name);
+			pp.resolve({crit:cf.crit,face:FACEDOWN});
+			return false;
+		    } else pp.resolve(cf);
+		}.bind(this));
+		return pp.promise();
 	    }
-	}
+	    sh.wrap_after("deal",this,newdeal);
+	},
     },
     {
         name: "Ion Torpedoes",
@@ -9453,7 +9543,7 @@ var UPGRADES= [
         init: function(sh) {
 	    var self=this;
 	    sh.addattackmoda(this,function(m,n) {
-		return this.canusefocus();
+		return this.canusefocus()&&self.isactive;
 	    }.bind(sh),function(m,n) {
 		var f=FCH_focus(m);
 		this.removefocustoken();
@@ -9473,7 +9563,7 @@ var UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    sh.addattackadd(this,function(m,n) { 
-		return true; 
+		return self.isactive; 
 	    },function(m,n) {
 		this.log("replace all dice by 2 %HIT% [%0]",self.name);
 		return {m:2,n:2};
@@ -9492,7 +9582,7 @@ var UPGRADES= [
 		this.addactivationdial(function() { 
 		    return !this.hasmoved&&upg.isactive&&this.ionized==0; 
 		}.bind(this),function() {
-		    upg.isactive=false;
+		    upg.desactivate(this);
 		    this.addstress();
 		    this.wrap_after("getmaneuver",upg,function(m) {
 			return {move:"F0",difficulty:"WHITE"};
@@ -9538,7 +9628,7 @@ var UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    sh.addattackmoda(this,function(m,n) {
-		if (sh.weapons[sh.activeweapon]==this) return true;
+		if (sh.weapons[sh.activeweapon]==this) return self.isactive;
 		return false;
 	    }.bind(this),function(m,n) {
 		var h=m%10;
@@ -9618,28 +9708,29 @@ var UPGRADES= [
 	init: function (sh) {
 	    sh.greedoa=-1;
 	    sh.greedod=-1;
-	    var greedo=this;
-            sh.wrap_after("hashit",this,function(t,h) {
-		var d=this.hitresolved+this.criticalresolved-t.shield;
-		if (this.greedoa<round&&d>0) {
-		    if (this.hitresolved>t.shield) {
-			this.log("first damage is a faceup damage [%0]",self.name);
-			this.hitresolved--;
-			this.criticalresolved++;
-			this.greedoa=round;
+	    var self=this;
+	    var newdeal=function(c,f) {
+		this.log("first damage is a faceup damage [%0]",self.name);
+		return {crit:cf.crit,face:FACEUP};
+	    };
+            sh.wrap_before("hashit",this,function(t) {
+		if (this.greedoa<round) {
+		    this.greedoa=round;
+		    var adeal=t.deal;
+		    t.deal=function(c,f) {
+			this.deal=adeal;
+			return adeal.call(this,c,FACEUP);
 		    }
 		}
-		return h;
 	    });
-	    sh.wrap_after("resolveishit",this,function(t) {
-		var d=t.criticalresolved+t.hitresolved-this.shield;
-		if (this.greedod<round&&d>0) {
-		    if (t.hitresolved>this.shield) {
-			this.log("first damage is a faceup damage [%0]",self.name);
-			t.hitresolved--;
-			t.criticalresolved++;
-			this.greedod=round;
-		    }
+	    sh.wrap_before("evadeattack",this,function(t) {
+		if (this.greedod<round) {
+		    this.greedod=round;
+		    var tdeal=this.deal;
+		    this.deal=function(c,f) { 
+			this.deal=tdeal; 
+			return tdeal.call(this,c,FACEUP); 
+		    };
 		}
 	    });
 	},
@@ -9651,20 +9742,20 @@ var UPGRADES= [
 	done:true,
         points: 2,
 	init: function(sh) {
-	    var fu=sh.faceup;
-	    var upg=this;
-	    sh.faceup=function(c) {
-		var i,cr=[];
-		if ((c.lethal||this.hull==1)&&c.type=="ship") {
-		    upg.isactive=false;
-		    this.faceup=fu;
-		    this.log("remove critical %0 [%1]",c.name,self.name);
-		    this.criticals.slice(this.criticals.indexOf(c),1);
-		    return false;
-		}
-		return fu.call(this,c);
-	    }
-	}
+	    var self=this;
+	    var newdeal=function(c,f,p) {
+		var pp=$.Deferred();
+		p.then(function(cf) {
+		    if (cf.crit.type=="ship"&&cf.face==FACEUP) {
+			self.desactivate(this);
+			this.log("remove critical %0 [%1]",cf.crit.name,self.name);
+			pp.resolve({crit:cf.crit,face:DISCARD});
+		    } else pp.resolve(cf);
+		}.bind(this));
+		return pp.promise();
+	    };
+	    sh.wrap_after("deal",this,newdeal);
+	},
     },
     {
         name: "Bomb Loadout",
@@ -9681,11 +9772,12 @@ var UPGRADES= [
         unique: true,
 	done:true,
 	init: function(sh) {
+	    var self=this;
 	    for (var i=0; i<sh.bombs.length; i++) {
 		var b=sh.bombs[i];
 		if (typeof b.action=="undefined") {
 		    b.action=function(n) { this.actiondrop(n); };
-		    b.candoaction=function() { return  this.unit.lastdrop!=round&&this.isactive; };
+		    b.candoaction=function() { return  this.unit.lastdrop!=round&&this.isactive&&self.isactive; };
 		}
 	    }
 	},
@@ -9697,7 +9789,6 @@ var UPGRADES= [
         type: SALVAGED,
 	done:true,
         install: function(sh) {
-	    var i;
 	    var save=[];
 	    sh.wrap_after("getdial",this,function(gd) {
 		if (save.length==0) {
@@ -9812,7 +9903,7 @@ var UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    sh.addattackadd(this,function(m,n) { 
-		return this.targeting.indexOf(targetunit)>-1; 
+		return this.targeting.indexOf(targetunit)>-1&&self.isactive==true; 
 	    }.bind(sh),function(m,n) {
 		if (this.targeting.indexOf(targetunit)>-1) {
 		    this.log("+1 %CRIT% [%0]",self.name);
@@ -9838,13 +9929,9 @@ var UPGRADES= [
 	    var upg=this;
 	    sh.log("+1 agility [%0]",upg.name)
 	    sh.wrap_before("resolveishit",this,function(t) {
-		if (upg.isactive) { 
-		    upg.isactive=false; 
-		    this.getagility.unwrap(upg);
-		    this.log("%0 is hit => destroyed",upg.name);
-		    this.show();
-		    this.resolveishit.unwrap(upg);
-		}
+		upg.desactivate(this); 
+		this.log("%0 is hit => destroyed",upg.name);
+		this.show();
 	    })
 	},
         points: 3,
@@ -9970,7 +10057,6 @@ var UPGRADES= [
 	uninstall: function(sh) {
 	    sh.shipimg="b-wing-2.png";
 	},
-
     },
     {
         name: "Countermeasures",
@@ -9980,21 +10066,19 @@ var UPGRADES= [
 	init: function(sh) {
 	    var mod=this;
 	    sh.wrap_before("begincombatphase",this,function() {
-		if (mod.isactive) {
-		    this.donoaction([{action:function(n) {
-			mod.isactive=false;
-			this.wrap_after("getagility",mod,function(a) {
-			    return a+1;
-			}).unwrapper("endround");
-			if (this.istargeted.length>0) {
-			    this.log("select a lock to remove [%0]",mod.name);
-			    this.resolveactionselection(this.istargeted,function(k) { 
-				this.istargeted[k].removetarget(this);
-				this.endnoaction(n,"MOD");
-			    }.bind(this));
-			} else this.endnoaction(n,"MOD");
-		    }.bind(this),type:mod.type.toUpperCase(),name:mod.name}],"",true);
-		}
+		this.donoaction([{action:function(n) {
+		    mod.desactivate(this);
+		    this.wrap_after("getagility",mod,function(a) {
+			return a+1;
+		    }).unwrapper("endround");
+		    if (this.istargeted.length>0) {
+			this.log("select a lock to remove [%0]",mod.name);
+			this.resolveactionselection(this.istargeted,function(k) { 
+			    this.istargeted[k].removetarget(this);
+			    this.endnoaction(n,"MOD");
+			}.bind(this));
+		    } else this.endnoaction(n,"MOD");
+		}.bind(this),type:mod.type.toUpperCase(),name:mod.name}],"",true);
 	    });
 	},
         points: 3,
@@ -10034,7 +10118,7 @@ var UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    sh.adddefensemodd(this,function(m,n) {
-		if (activeunit.getsector(this)>2) return true;
+		if (activeunit.getsector(this)>2) return self.isactive;
 		return false;
 	    }.bind(sh),function(m,n) {
 		var b=FE_blank(m,n);
@@ -10146,7 +10230,7 @@ var UPGRADES= [
 	    var i;
 	    for (i=0; i<sh.weapons.length; i++) {
 		if (sh.weapons[i].type==CANNON) {
-		    sh.weapons[0].isactive=false;
+		    sh.weapons[0].desactivate(sh);
 		    sh.log("primary weapon inactive [%0]",this.name);
 		    sh.weapons[i].isTurret= function() { return true; };
 		    sh.log("%0 can fire in 360 degrees [%0]",sh.weapons[i].name,this.name);
@@ -10355,21 +10439,19 @@ var UPGRADES= [
 	    done:true,
 	    init: function(sh) {
 		var self=this;
-		var par = sh.preattackroll;
 		sh.wrap_after("preattackroll",this,function(w,t) {
 		    if (self.isactive) {
 			this.donoaction([
 			    {org:self,name:self.name,type:"ILLICIT",action:function(n) {
 				this.addstress();
-				self.isactive=false;
+				self.desactivate(this);
 				self.activated=round;
-				this.preattackroll.unwrap(self);
 				this.endnoaction(n,"ILLICIT");
 			    }.bind(this)}],"",true);
 		    }
 		});
 		sh.addattackmoda(this,function(m,n) {
-		    return self.activated==round;
+		    return self.activated==round&&self.isactive;
 		},function(m,n) {
 		    var f=FCH_focus(m);
 		    if (f>0) {
@@ -10388,7 +10470,7 @@ var UPGRADES= [
 		    }
 		    return m;
 		}.bind(this),false,"illicit");
-	    }
+	    },
         },
     {
         name: "Cloaking Device",
@@ -10408,14 +10490,14 @@ var UPGRADES= [
 		var roll=this.rollattackdie(1)[0];
 		if (roll=="focus"&&this.iscloaked) {
 		    this.log("decloaked [%0]",self.name);
-		    self.isactive=false;
+		    self.desactivate(this);
 		    this.wrap_after("getdecloakmatrix",self,function(m,l) {
 			return l.concat(m);
 		    });
 		    this.resolvedecloak();
 		}
 	    });
-	}
+	},
     },
     
     {
@@ -10447,7 +10529,7 @@ var UPGRADES= [
 	      function(w,defender) {
 		  if (this.stress>0&&this.canusefocus()) {
 		      this.log("+%1 %FOCUS% reroll(s) [%0]",self.name,this.focus);
-		      return true;
+		      return self.isactive;
 		  } else return false;
 		}.bind(sh)
 	  );
@@ -10458,7 +10540,7 @@ var UPGRADES= [
 	      function(w,attacker) {
 		  if (this.stress>0&&this.canusefocus()) {
 		      this.log("+%1 %FOCUS% reroll(s) [%0]",self.name,this.focus);
-		      return true;
+		      return self.isactive;
 		  } else return false;
 	      }.bind(this)
 	  )
@@ -10471,27 +10553,26 @@ var UPGRADES= [
       points:1,
       done:true,
       init: function(sh) {
-	  var as=sh.addstress;
 	  var self=this;
 	  sh.wrap_after("addstress",this,function() {
 	      /* No stress action ? as.call(this);*/
 	      this.stress++;
 	      this.donoaction([{type:FOCUS,name:self.name,org:self,
 				action:function(n) {
-				    self.isactive=false;
+				    self.desactivate(this);
 				    this.addfocustoken();
 				    this.endnoaction(n,"ELITE");
 				}.bind(this)},
 			       {type:EVADE,name:self.name,org:self,
 				action:function(n) {
-				    self.isactive=false;
+				    self.desactivate(this);
 				    this.addevadetoken();
 				    this.endnoaction(n,"ELITE");
 				}.bind(this)}],
 			      "Add %EVADE% or %FOCUS% instead of %STRESS% token",
 			      true);
 	  });
-      }
+      },
     },
     { name:"Juke",
       type: ELITE,
@@ -10508,7 +10589,7 @@ var UPGRADES= [
 		sh.wrap_after("handledifficulty",this,function(d) {
 		    if (d=="WHITE"||d=="GREEN"&&u.isactive) {
 			this.donoaction([{type:ELITE,name:u.name,org:u,action:function(n) {
-			    u.isactive=false;
+			    u.desactivate(this);
 			    this.addstress(1);
 			    this.m=this.m.rotate(180,0,0);
 			    this.show();
@@ -10648,7 +10729,7 @@ var UPGRADES= [
 		if (d.indexOf("F1")>-1) return d.concat("F2");
 		return d;
 	    })
-	}
+	},
     },
     {name:"Agent Kallus",
      type:CREW,
@@ -10816,6 +10897,19 @@ var UPGRADES= [
     { name:"'Chopper'",
       type:CREW,
       points:0,
+      done:true,
+      init: function() {
+	  this.wrap_after("begincombatphase",this,function(lock) {
+	      for (var i=0; i<this.touching.length; i++) {
+		  var u=this.touching[i];
+		  if (u.faction!=this.faction) {
+		      u.log("+1 %STRESS% [%0]",this.name);
+		      u.addstress();
+		  }
+	      }
+	      return lock;
+	  });
+      },
       faction:REBEL,
       unique:true
     },
@@ -10845,8 +10939,9 @@ var UPGRADES= [
       unique:true,
       done:true,
       init: function(sh) {
+	  var self=this;
 	  sh.addattackmoda(this,function(m,n) {
-	      return (sh.stress>0);
+	      return self.isactive&&(sh.stress>0);
 	  }.bind(this),function(m,n) {
 	      var f=FCH_focus(m);
 	      if (f>0) {
@@ -10855,7 +10950,7 @@ var UPGRADES= [
 	      }
 	      return m;
 	  }.bind(this),false,"focus");
-      }
+      },
     },
     { name:"Kanan Jarrus",
       type:CREW,
@@ -10904,9 +10999,9 @@ var UPGRADES= [
 		     this.log("+1 %SHIELD% [%0]",self.name);
 		     this.shield++;
 		 }
-		 this.removeshield.unwrap();
-		 this.removehull.unwrap();
-		 this.endbeingattacked.unwrap();
+		 this.removeshield.unwrap(self);
+		 this.removehull.unwrap(self);
+		 this.endbeingattacked.unwrap(self);
 	     });
 	 });
      }
@@ -10942,6 +11037,14 @@ var UPGRADES= [
     {name:"TIE/v1",
      ship:"TIE Adv. Prototype",
      points:1,
+     done:true,
+     init: function(sh) {
+	 var self=this;
+	 sh.wrap_after("addtarget",this,function(t) {
+	     if (self.isactive&&this.candoaction()&&this.candoevade()) 
+		 this.doaction([this.newaction(this.addevade,"EVADE")]);
+	 });
+     },
      type:TITLE
     },
     {name:"Zuckuss",
@@ -10976,7 +11079,7 @@ var UPGRADES= [
 	    sh.showskill();
 	},
 	uninstall: function(sh) {
-	    sh.getskill.unwrap();
+	    sh.getskill.unwrap(this);
 	    sh.showskill();
 	},
     },
@@ -10992,7 +11095,7 @@ var UPGRADES= [
 	    sh.showskill();
 	},
 	uninstall: function(sh) {
-	    sh.getskill.unwrap();
+	    sh.getskill.unwrap(this);
 	    sh.showskill();
 	},
     }
@@ -11011,12 +11114,12 @@ function winevent() {
 }
 
 function Team(team) {
-    if (typeof isia=="undefined") isia=false;
     this.team=team;
     this.isdead=false;
     this.isia=false;
     this.initiative=false;
     this.units=[];
+    this.allhits=this.allcrits=this.allevade=this.allred=this.allgreen=0;
 }
 Team.prototype = {
     setfaction: function(faction) {
@@ -11078,12 +11181,20 @@ Team.prototype = {
 	}	
 	// knockout
 	//ko.applyBindings({squad:ko.observableArray(squadron)});
-
+	var gid=0;
+	for (i in squadron) {
+	    u=squadron[i];
+	    if (u.team==1) u.id=gid++;
+	}
+	for (i in squadron) {
+	    u=squadron[i];
+	    if (u.team==2) u.id=gid++;
+	}
 	for (i in squadron) {
 	    u=squadron[i];
 	    if (u.team==this.team) {
 		if (typeof u.init!="undefined") u.init();
-		if (this.isia) u=$.extend(u,IAUnit.prototype);
+		if (this.isia==true) u=$.extend(u,IAUnit.prototype);
 	    }
 	}
 	this.units.sort(function(a,b) {return b.getskill()-a.getskill();});
@@ -11205,8 +11316,9 @@ Team.prototype = {
 		if (translated==true&&typeof PILOT_translation[vn]!="undefined"&&typeof PILOT_translation[vn].name!="undefined")
 		    va=PILOT_translation[vn].name;
 		if (PILOTS[j].ambiguous==true) va+="("+PILOTS[j].unit+")";
-		if (va.replace(/\'/g,"")==pstr[0])
+		if (va.replace(/\'/g,"")==pstr[0]) {
 		    lf=lf|getf(PILOTS[j].faction);
+		}
 	    }
 	    f=f&lf;
 	}
@@ -11226,6 +11338,7 @@ Team.prototype = {
 		    if (va.replace(/\'/g,"")==pstr[0]) { pid=j; break; }
 		} 
 	    }
+	    if (typeof pid=="undefined") console.log("pid undefined: >"+pstr[0]+"<"+this.faction);
 	    var p=new Unit(this.team,pid);
 	    p.upg=[];
 	    var authupg=[MOD,TITLE].concat(PILOTS[p.pilotid].upgrades);
@@ -11255,25 +11368,25 @@ Team.prototype = {
     },
     parseASCII: function(str) {
 	var pilots=str.split(";");
-	for (i in generics) if (generics[i].team==this.team) delete generics[i];
-	for (i=0; i<pilots.length-1; i++) {
-	    var coord=pilots[i].split("%");
+	for (var i in generics) if (generics[i].team==this.team) delete generics[i];
+	for (var i=0; i<pilots.length-1; i++) {
+	    var coord=pilots[i].split(":");
 	    var updstr=coord[0].split(",");
-	    var pid=Base64.toNumber(updstr[0]);
+	    var pid=parseInt(updstr[0],10);
 	    this.faction=PILOTS[pid].faction;
 	    this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
 	    var p=new Unit(this.team,pid);
 	    p.upg=[];
-	    for (j=1; j<updstr.length; j++) {
-		var n=Base64.toNumber(updstr[j]);
+	    for (var j=1; j<updstr.length; j++) {
+		var n=parseInt(updstr[j],10);
 		p.upg[j-1]=n;
 	        if (typeof UPGRADES[n].install!="undefined") UPGRADES[n].install(p);
 	    }
 	    if (coord.length>1) {
-		var c=Base64.toCoord(coord[1]);
-		p.tx=c[0];
-		p.ty=c[1];
-		p.alpha=c[2];
+		var c=coord[1].split(",");
+		p.tx=parseInt(c[0],10);
+		p.ty=parseInt(c[1],10);
+		p.alpha=parseInt(c[2],10);
 	    }
 	}
 	//nextphase();
@@ -11330,10 +11443,10 @@ var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.7.4";
+var VERSION="v0.8.1";
 var LANG="en";
 var DECLOAK_PHASE=1;
-var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6;
+var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6,XP_PHASE=7;
 var DICES=["focusred","hitred","criticalred","blankred","focusgreen","evadegreen","blankgreen"];
 var BOMBS=[];
 var ROCKDATA="";
@@ -11342,17 +11455,18 @@ var PILOT_translation,SHIP_translation,CRIT_translation,UI_translation,UPGRADE_t
 var actionr=[];
 var actionrlock;
 var HISTORY=[];
-var REPLAY=[];
 var replayid=0;
 var dice=1;
 var ATTACK=[]
 var DEFENSE=[]
 var FACTIONS={"rebel":"REBEL","empire":"EMPIRE","scum":"SCUM"};
-var SQUADLIST;
+var SQUADLIST,SQUADBATTLE;
+var COMBATLIST;
+var combatpilots=[];
 var TEAMS=[new Team(0),new Team(1),new Team(2)];
 var currentteam=TEAMS[0];
 var VIEWPORT;
-var ANIM=[];
+var ANIM="";
 var SETUPS={};
 var SETUP;
 var SHOWDIAL=[];
@@ -11361,17 +11475,9 @@ var increment=1;
 var theta=0;
 var UNIQUE=[];
 var stype="";
-
-
+var REPLAY="";
+var PERMALINK="";
 /*
-       <table id="setuplist" style="color:black;font-size:x-small" class="compact stripe hover order-column row-border">
-       </table>
-
-	    <span href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fxws-bench.github.io%2Fbench%2F@&t=My%20combat%20setup%20for%20Squadron%20Benchmark" title="Share on Facebook" onclick="permalink($(this))"><img src="css/Facebook.png">
-</span>
-	    <span href="https://twitter.com/intent/tweet?source=http%3A%2F%2Fxws-bench.github.io%2Fbench%2F&text=Combat%20Setup%20for%20Squadron%20Benchmark:%20http%3A%2F%2Fxws-bench.github.io%2Fbench%2F@"  onclick="permalink($(this))" title="Tweet"><img src="css/Twitter.png"></span>
-	    <span href="https://plus.google.com/share?url=http%3A%2F%2Fxws-bench.github.io%2Fbench%2F@" onclick="permalink($(this))" title="Share on Google+"><img src="css/Google+.png"></span>
-	    <span href="http://www.reddit.com/submit?url=http%3A%2F%2Fxws-bench.github.io%2Fbench%2F@&title=Combat%20Setup%20for%20Squadron%20Benchmark" onclick="permalink($(this))" title="Submit to Reddit"><img src="css/Reddit.png"></span>
 
 
     <script src="src/obstacles.js"></script>
@@ -11383,56 +11489,10 @@ var stype="";
     <script src="src/team.js"></script>
     <script src="src/xwings.js"></script>
 
-	  <span class="share-buttons">
-	    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fxws-bench.github.io%2Fbench%2F&t=Squadron%20Benchmark" title="Share on Facebook" target="_blank"><img src="css/Facebook.png">
-</a>
-	    <a href="https://twitter.com/intent/tweet?source=http%3A%2F%2Fxws-bench.github.io%2Fbench%2F&text=Squadron%20Benchmark:%20http%3A%2F%2Fxws-bench.github.io%2Fbench%2F" target="_blank" title="Tweet"><img src="css/Twitter.png"></a>
-	    <a href="https://plus.google.com/share?url=http%3A%2F%2Fxws-bench.github.io%2Fbench%2F" target="_blank" title="Share on Google+"><img src="css/Google+.png"></a>
-	    <a href="http://www.reddit.com/submit?url=http%3A%2F%2Fxws-bench.github.io%2Fbench%2F&title=Squadron%20Benchmark" target="_blank" title="Submit to Reddit"><img src="css/Reddit.png"></a>
-	  </span>
 
 */
+window.callback = function () { alert("called callback");return true; };
 
-Base64 = {
-    _Rixits :
-//   0       8       16      24      32      40      48      56     63
-//   v       v       v       v       v       v       v       v      v
-    "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_",
-    fromNumber : function(number) {
-        if (isNaN(Number(number)) || number === null ||
-            number === Number.POSITIVE_INFINITY)
-            throw "The input is not valid";
-        if (number < 0)
-            throw "Can't represent negative numbers now";
-
-        var rixit; // like 'digit', only in some non-decimal radix 
-        var residual = Math.floor(number);
-        var result = '';
-        while (true) {
-            rixit = residual % 64
-            result = this._Rixits.charAt(rixit) + result;
-            residual = Math.floor(residual / 64);
-            if (residual == 0) break;
-	}
-        return result;
-    },
-    toNumber : function(rixits) {
-        var result = 0;
-        rixits = rixits.split('');
-        for (e in rixits) result = (result * 64) + this._Rixits.indexOf(rixits[e]);
-        return result;
-    },
-    fromCoord: function(c) {	
-	return Base64.fromNumber((Math.floor(c[0]+900)+(2000*Math.floor(c[1]+900))+(4000000*Math.floor(180+c[2]))));
-    },
-    toCoord: function(c) {
-	var x=Base64.toNumber(c);
-	var y=[x%2000-900,
-	       Math.floor(x/2000)%2000-900,
-	       Math.floor(x/4000000)-180];
-	return y;
-    }
-}
 function center() {
     var bbox=activeunit.g.getBBox();
     var xx=(bbox.x+bbox.width/2);
@@ -11609,7 +11669,12 @@ function adddefensedie(type,n) {
     for (var i=0; i<n; i++) 
 	$("#defense").append("<td class="+type+"greendice'></td>");
 }
-
+function getattackdice() {
+    return $(".focusreddice").length+$(".criticalreddice").length+$(".hitreddice").length+$(".blankreddice").length;
+}
+function getdefensedice() {
+    return $(".focusgreendice").length+$(".blankgreendice").length+$("evadegreendice").length; 
+}
 function displayattackroll(m,n) {
     var i,j=0;
     $("#attackdial").empty();
@@ -11655,7 +11720,7 @@ function displaydefensetokens(u,f) {
     $("#dtokens").html(u.getdefensererolltokens()+u.getdefensemodtokens(u.dr,u.dd));
     $("#dtokens").append($("<button>").addClass("m-fire").click(function() {
 	$("#combatdial").hide();
-	f();}));
+	f();}.bind(u)));
 }
 function FE_focus(r) {
     return Math.floor(r/10)%10;
@@ -11850,7 +11915,6 @@ function enablenextphase() {
 function win() {
     var title="m-draw";
     var i;
-    //log("ANIM:"+JSON.stringify(ANIM));
     var s1="",s2="";
     var defaults="<tr><td class='m-nocasualty'></td><td>0</td></tr>";
     var score1=0,score2=0;
@@ -11871,14 +11935,42 @@ function win() {
     var d=score1 - score2;
     score1 = d + 100;
     score2 = 100 - d;
+//    var meanhit=Math.floor(1000*TEAMS[1].allhits/TEAMS[1].allred)/1000;
+//    var meancrit=Math.floor(1000*TEAMS[1].allcrits/TEAMS[1].allred)/1000;
+//    var str="<td rowspan='2' class='probacell' >";
+//    str+="<div style='font-size:smaller'>Average <span class='hit'></span>/die:"+meanhit+" (norm:0.375)</div><div>Average <span class='critical'></span>/die:"+meancrit+" (norm:0.125)</div></td>";
+
     $(".victory-table").empty();
     $(".victory-table").append("<tr><th class='m-squad1'></th><th>"+score1+"</th></tr>");
     $(".victory-table").append(s1);
+//    meanhit=Math.floor(1000*TEAMS[2].allhits/TEAMS[2].allred)/1000;
+//    meancrit=Math.floor(1000*TEAMS[2].allcrits/TEAMS[2].allred)/1000;
+//    var str="<td rowspan='2' class='probacell' >";
+//    str+="<div style='font-size:smaller'>Average <span class='hit'></span>/die:"+meanhit+" (norm:0.375)</div><div>Average <span class='critical'></span>:"+meancrit+" (norm: 0.125)</div>/die</td>";
     $(".victory-table").append("<tr><th class='m-squad2'></th><th>"+score2+"</th></tr>");
     $(".victory-table").append(s2);
     if (d>0) title="m-1win";
     else if (d<0) title="m-2win";
     $(".victory").attr("class",title);
+    var titl = (TEAMS[1].isia?"Computer":"Human")+":"+score1+" "+(TEAMS[2].isia?"Computer":"Human")+":"+score2;
+    var note=TEAMS[1].toJuggler(false);
+    note+="VS"+TEAMS[2].toJuggler(false);
+    note=note.replace(/\n/g,".");
+    note=note.replace(/ \+ /g,"*");
+    note=note.replace(/ /g,"_");
+    console.log("note:"+encodeURI(note));
+    var link="https://api-ssl.bitly.com/v3/user/link_save?access_token=ceb626e1d1831b8830f707af14556fc4e4e1cb4c&longUrl="+encodeURI("http://xws-bench.github.io/bench/index.html?"+permalink(false))+"&title="+encodeURI(titl)+"&note="+encodeURI(note);
+    $.when($.ajax(link)).done(function(result1) {
+	var url=result1.data.link_save.link;
+	$(".victory-link").attr("href",url);
+	$(".victory-link code").text(url);
+	$(".tweet").attr("href","https://twitter.com/intent/tweet?url="+encodeURI(url)+"&text=A%20Squad%20Benchmark%20combat");
+
+	$(".facebook").attr("href","https://www.facebook.com/sharer/sharer.php?u="+encodeURI(url));
+	$(".googlep").attr("href","https://plus.google.com/share?url="+encodeURI(url));
+	$(".email").attr("href","mailto:?body="+url);
+	$(".reddit").attr("href","https://www.reddit.com/submit?url=" + url);
+    });
     /*var y1=0,y2=0;
     var t1=TEAMS[1].history;
     var t2=TEAMS[2].history;
@@ -11904,6 +11996,15 @@ function win() {
 }
 document.addEventListener("win",win,false);
 
+function experience() {
+    phase=XP_PHASE;
+    $(".mainbutton").hide();
+    $("#selectphase").hide();
+    $(".nextphase").prop("disabled",false);
+    $("#experience").show();
+    displaycombats();
+}
+
 function createsquad() {
     $(".activeunit").prop("disabled",true);
     $("#selectphase").hide();
@@ -11913,7 +12014,6 @@ function createsquad() {
     $(".factionselect selected").val("REBEL");
     $("#creation").show();
     displayfactionunits();
-
     //$("#coverflow").coverflow();
 }
 function switchdialimg(b) {
@@ -11924,6 +12024,188 @@ function switchdialimg(b) {
 	$(".shipdial").css("display","none");
 	$(".shipimg").css("display","table-cell");
     }
+}
+function displaycombats() {
+    if (phase !=XP_PHASE) return;
+    var d=new Date();
+    $("#combatlist").html("<thead><tr><th></th><th><span class='m-squad1'></span></th><th><span class='m-squad2'><span></th></tr></thead>");
+
+    COMBATLIST=$("#combatlist").DataTable({
+	"language": {
+	    "search":UI_translation["Search"],
+	    "lengthMenu": UI_translation["Display _MENU_ records per page"],
+	    "zeroRecords": UI_translation["Nothing found - sorry"],
+	    "info": UI_translation["Showing page _PAGE_ of _PAGES_"],
+	    "infoEmpty": UI_translation["No records available"],
+	    "infoFiltered": UI_translation["(filtered from _MAX_ total records)"]
+	},
+	"autoWidth": false,
+	"columnDefs": [
+	    { "targets": [0],
+	      "render":function() {
+		  return "<span class='button2' onclick='viewsquadtypecombat($(this))'>View</span>";
+	      },
+	      "sortable":false
+	    },
+	    {   "targets":[2,3],
+		"render": function ( data, type, row ) {
+		    return data;
+		}
+	    }, 
+	    {
+		"targets": [ 1 ],
+		"visible": false,
+		"searchable": false
+	    },
+
+	],    
+	"deferRender": true,
+	"ordering":true,
+	"info":true,
+	"paging":true});
+    $("#replay").attr("src","");
+    //$("td:eq(2)).addClass("clicks")
+
+
+    $("#squadbattle").html("<thead><tr><th></th><th></th><th class='m-views'></th><th class='m-score'></th><th><span class='m-squad1'></span></th><th><span class='m-squad2'><span></th></tr></thead>");
+
+    SQUADBATTLE=$("#squadbattle").DataTable({
+	"language": {
+	    "search":UI_translation["Search"],
+	    "lengthMenu": UI_translation["Display _MENU_ records per page"],
+	    "zeroRecords": UI_translation["Nothing found - sorry"],
+	    "info": UI_translation["Showing page _PAGE_ of _PAGES_"],
+	    "infoEmpty": UI_translation["No records available"],
+	    "infoFiltered": UI_translation["(filtered from _MAX_ total records)"]
+	},
+	"autoWidth": false,
+	"columnDefs": [
+	    { "targets": [0],
+	      "render":function() {
+		  return "<div class='button2' onclick='viewcombat($(this),false)'>View</div>"+
+		      "<div class='button2' onclick='viewcombat($(this),true)'>Full screen</div>";
+	      },
+	      "sortable":false
+	    },
+	    { "targets":[2],
+	      "render": function(data, type,row) {
+		  var link=row[1];
+		  var id=link.replace(/^.*\//,"");
+		  var clicks="https://api-ssl.bitly.com/v3/link/clicks?access_token=ceb626e1d1831b8830f707af14556fc4e4e1cb4c&link="+encodeURI(link);
+		  $.when($.ajax(clicks)).done(function(result1) {
+		      $("#clicks"+id).html(result1.data.link_clicks);
+		  });
+		  return "<span class='clicks' id='clicks"+id+"'></span>";
+	      },
+	    },
+	    {   "targets":[4,5],
+		"render": function ( data, type, row ) {
+		    return data;
+		},
+		"width":"40%",
+	    }, 
+	    {
+		"targets": [ 1 ],
+		"visible": false,
+		"searchable": false
+	    },
+
+	],    
+	"deferRender": true,
+	"ordering":true,
+	"info":true,
+	"paging":true});
+
+   $.ajaxSetup({beforeSend: function(xhr){
+	if (xhr.overrideMimeType)
+	    xhr.overrideMimeType("text/plain");
+    }}); 
+    $.ajax("https://api.github.com/search/issues?q=repo:xws-bench/battles+created:>2016-01-01",{success:function(data) {
+	var json=$.parseJSON(data);
+	for (var i in json.items) {
+	    var t=json.items[i].title.split(" ");
+	    var ts1=t[0].split(":");
+	    var type1=ts1[0];
+	    var score1=ts1[1];
+	    var ts2=t[1].split(":");
+	    var type2=ts2[0];
+	    var score2=ts2[1];
+	    
+	    var b=json.items[i].body.split("http://");
+	    var tinyurl="http://"+b[1].split("<br>")[0];
+	    var tt=b[0].split("VS");
+	    var team1=tt[0].split("\.");
+	    var team2=tt[1].split("\.");
+	    var s1="",s2="",t1="",t2="";
+	    for (var j=0; j<team1.length-1; j++) {
+		s1+=team1[j].replace(/\*.*/g,"").replace(/_/g," ")+", ";
+		t1+=team1[j].replace(/\*/g," + ").replace(/_/g," ")+"<br>";
+	    }
+	    for (var j=0; j<team2.length-1; j++) {
+		s2+=team2[j].replace(/\*.*/g,"").replace(/_/g," ")+", ";
+		t2+=team2[j].replace(/\*/g," + ").replace(/_/g," ")+"<br>";
+	    }
+	    s1=s1.replace(/, $/,"");
+	    s2=s2.replace(/, $/,"");
+	    if (typeof combatpilots[s1+"|"+s2]=="undefined") {
+		combatpilots[s1+"|"+s2]=[];
+	    }
+	    combatpilots[s1+"|"+s2].push({t1:t1,type1:type1,score1:score1,t2:t2,score2:score2,type2:type2,url:tinyurl});
+	}
+	for (var i in combatpilots) {
+	    var teams=i.split("|");
+	    addrowcombat(combatpilots[i][0].url,teams[0],teams[1]);
+	}
+    }});
+/*
+    var tinyurl="https://docs.google.com/a/google.com/spreadsheets/d/1bMXH83-wfq5b7IgfkNWl5hVpzntpti5S6NA2O6NJrm0/gviz/tq?tq=select%20E&callback=callback"
+    $.when($.ajax(tinyurl,{
+	crossDomain:true,
+	jsonp:"callback",
+	datatype:"jsonp",
+	xhrFields: {
+	    withCredentials: true
+	},
+        success: function(data) {
+	    log("success "+data);
+        },
+        error: function(xhr, sts, err) {
+            alert('Erreur !!');
+        }
+    })).done(function(r) {
+	var a=r.split("?");
+	for (var i in a) {
+	    var long = a[i].split("\"")[0];
+	    var arg=LZString.decompressFromEncodedURIComponent(long);
+	    var args=[];
+	    if (arg!=null) {
+		args= arg.split('&');
+		TEAMS[0].parseASCII(args[0]);
+		var note=TEAMS[0].toJuggler(false).replace(/\n/g,";");
+		TEAMS[0].parseASCII(args[1]);
+		note+=" VS "+TEAMS[0].toJuggler(false).replace(/\n/g,";");
+		title=(args[3]=="true"?"Computer":"Human")+" VS "+(args[4]=="true"?"Computer":"Human");
+		log(title);
+	    }
+	}
+    });
+    */
+    /*var tinyurl="http://cors.io/?u="+encodeURI("");
+    $.when($.ajax(tinyurl)).done(function(r) {
+	var j=$.parseJSON(r.substr(47,r.length-49));
+	for (var i in j.table.rows) {
+	    var c=j.table.rows[i].c;
+	    var hm=c[0].v.split(" VS ");
+	    var t=c[1].v.replace(/;/g,"<br/>").split(" VS ");
+	    if (typeof t[1]!="undefined")
+		addrowcombat(c[2].v,t[0],t[1]);
+	}
+    });*/
+
+   $.ajaxSetup({beforeSend: function(xhr){
+	if (xhr.overrideMimeType)
+	    xhr.overrideMimeType("application/json");
+    }}); 
 }
 function displayfactionunits() {
     var count=0;
@@ -12006,7 +12288,7 @@ function displayfactionunits() {
 		if (text!="") 
 		    text+=(p[i][j].done==true?"":"<div><strong class='m-notimplemented'></strong></div>");
 		str+="<tr data="+p[i][j].pilotid+"><td><button pilotid="+p[i][j].pilotid+" onclick='addunit("+p[i][j].pilotid+")'>+</button></td><td>"+getpilottranslation(name,faction)+"</td><td>"+p[i][j].points+"</td>";
-		str+="<td style='font-size:smaller' class='statskill'>"+p[i][j].skill+"</td>";
+		str+="<td class='statskill'>"+p[i][j].skill+"</td>";
 		str+="<td>";
 		if (p[i][j].upgrades.indexOf(ELITE)>-1)
 		    str+="<code class='"+ELITE+" upgrades'></code>";
@@ -12067,11 +12349,11 @@ function removelimited(u,data) {
 function addupgradeaddhandler(u) {
     $("#unit"+u.id+" .upgrades").click(function(e) {
 	var org=e.currentTarget.getAttribute("class").split(" ")[1];
-	var num=e.currentTarget.parentElement.getAttribute("num");
+	var num=e.currentTarget./*parentElement.*/getAttribute("num");
 	var p=this.getupgradelist(org);
 	$("#unit"+this.id+" .upglist").empty();
 	$("#unit"+this.id+" .upglist").append("<tr><td><button>+</button></td><td class='m-none'></td><td></td><td></td></tr>");
-	$("#unit"+this.id+" .upglist button").click(function() {
+	$("#unit"+this.id+" .upglist ").click(function() {
 	    $("#unit"+this.id+" .upglist").empty();
 	}.bind(this));
 	if (typeof this.upgbonus[org]=="undefined") this.upgbonus[org]=0;
@@ -12109,6 +12391,18 @@ function addunit(n) {
 			 function() { });
     if (u.unique==true) addunique(u.name);
     $("#unit"+u.id+" .close").click(function() {
+	var data=$(this).attr("data");
+	var u=generics["u"+data];
+	$("#unit"+data+" .upg span[data]").each(function() {
+	    var d=$(this).attr("data");
+	    if (UPGRADES[d].unique==true) removeunique(UPGRADES[d].name);
+	});
+	if (PILOTS[u.pilotid].unique==true) removeunique(u.name);
+	$("#unit"+data).remove();
+	delete generics["u"+data];
+	currentteam.updatepoints();
+    });
+    $("#unit"+u.id+" .duplicate").click(function() {
 	var data=$(this).attr("data");
 	var u=generics["u"+data];
 	$("#unit"+data+" .upg span[data]").each(function() {
@@ -12171,10 +12465,14 @@ function removeupgrade(self,num,data) {
 function setselectedunit(n,td) {
     var jug=td; 
     currentteam=TEAMS[n];
-    currentteam.parseJuggler(jug,true);
+    try {
+	currentteam.parseJuggler(jug,true);
+    } catch(e) {
+	currentteam.parseJuggler(jug,false);
+    }
     currentteam.name=currentteam.toASCII();
     currentteam.toJSON(); // Just for score
-    addrow(n,currentteam.name,0,currentteam.faction,jug);
+    addrow(n,currentteam.name,0,currentteam.faction,currentteam.toJuggler(true));
 }
 function addrow(team,name,pts,faction,jug) {
     if (team==1) {$("#squad1").val(jug); $("#squad1").attr("data-name",name);}
@@ -12183,6 +12481,12 @@ function addrow(team,name,pts,faction,jug) {
     var n=faction.toUpperCase();
     if (typeof localStorage[name]!="undefined")
 	SQUADLIST.row.add(["",n,""+pts,jug,name,"",""]).draw(false);
+}
+function addrowcombat(link,team1,team2) {
+    //var clicks="https://api-ssl.bitly.com/v3/link/clicks?access_token=ceb626e1d1831b8830f707af14556fc4e4e1cb4c&link="+encodeURI(link);
+    //$.when($.ajax(clicks)).done(function(result1) {
+    COMBATLIST.row.add(["",link,team1,team2]).draw(false);
+    //});
 }
 function makeGrid(points1,points2){    
     var dataLength = points1.length;
@@ -12276,6 +12580,7 @@ function makeGrid(points1,points2){
 function endselection() {
     var team;
     $("#creation").hide();
+    $("#experience").hide();
     $("#selectphase").show();
     currentteam.name="SQUAD."+currentteam.toASCII();
     currentteam.toJSON();// Just for points
@@ -12290,17 +12595,34 @@ function removerow(t) {
     delete localStorage[data];
     row.remove().draw(false);
 }
+function viewsquadtypecombat(t) {
+    var row=COMBATLIST.row(t.parents("tr"));
+    var team1=row.data()[2];
+    var team2=row.data()[3];
+    SQUADBATTLE.clear();
+    for (var i in combatpilots[team1+"|"+team2]) {
+	var cp=combatpilots[team1+"|"+team2][i];
+
+	SQUADBATTLE.row.add(["",cp.url,0,cp.score1+"-"+cp.score2,"<b>"+cp.type1+"</b><br>"+cp.t1,"<b>"+cp.type2+"</b><br>"+cp.t2]).draw(false);
+    }; 
+    var table = $('#squadbattle').DataTable();
+    table.columns.adjust().draw();   
+}
+function viewcombat(t,fullscreen) {
+    var row=SQUADBATTLE.row(t.parents("tr"));
+    if (!fullscreen) $("#replay").attr("src",row.data()[1]);
+    else window.location=row.data()[1];
+}
 function checkrow(n,t) {
    var row=SQUADLIST.row(t.parents("tr"));
     var data = row.data()[3];
     setselectedunit(n,data);
 }
 function importsquad(t) {
-    currentteam.parseJSON($("#squad"+t).val(),true);
+    currentteam.parseJuggler($("#squad"+t).val(),true);
     currentteam.name="SQUAD."+currentteam.toASCII();
     var jug=currentteam.toJuggler(true);
     currentteam.toJSON(); // just for points
-    //log(currentteam.toJuggler(false));
     localStorage[currentteam.name]=JSON.stringify({"pts":currentteam.points,"faction":currentteam.faction,"jug":currentteam.toJuggler(false)});
     addrow(t,currentteam.name,currentteam.points,currentteam.faction,jug);
 }
@@ -12319,19 +12641,22 @@ function filltabskill() {
 }
 
 var ZONE=[];
-
+function movelog(s) {
+    ANIM+="_-"+s;
+}
 function nextphase() {
     var i;
-    if (REPLAY.length==0) record("nextphase",phase,phase);
+    movelog("P-"+round+"-"+(phase+1));
     // End of phases
     //if (!enablenextphase()) return;
     window.location="#";
     switch(phase) {
     case SELECT_PHASE:
-	$(".h2 .share-buttons").hide();
+	$(".mainbutton").hide();
 	$("#game").show();
 	$("#selectphase").hide();
 	$("#creation").hide();
+	$("#experience").hide();
 	$("#rightpanel").show();
 	$("#leftpanel").show();
 	if ($("input[name='player1']:checked").val()=="human") 
@@ -12340,8 +12665,10 @@ function nextphase() {
 	    TEAMS[2].isia=false; else TEAMS[2].isia=true;
  	break;
     case CREATION_PHASE:
-	$(".h2 .share-buttons").hide();
 	endselection();
+	phase=SELECT_PHASE;
+	return;
+    case XP_PHASE:
 	phase=SELECT_PHASE;
 	return;
     case SETUP_PHASE: 
@@ -12351,6 +12678,7 @@ function nextphase() {
 	ZONE[2].remove();
 	TEAMS[1].endsetup();
 	TEAMS[2].endsetup();
+	PERMALINK=permalink(true);
 	$(".playerselect").remove();
 	$(".nextphase").prop("disabled",true);
 	$(".unit").css("cursor","pointer");
@@ -12399,15 +12727,17 @@ function nextphase() {
     $(".nextphase").prop("disabled",false);
     switch(phase) {
     case SELECT_PHASE:
+	$(".mainbutton").show();
 	$(".buttonbar .share-buttons").hide();
 	$(".h2 .share-buttons").show();
-	//$(".permalink").hide();
+	$(".permalink").hide();
 	$(".activeunit").prop("disabled",true);
 	$("#rightpanel").hide();
 	$("#leftpanel").hide();
 	$("#game").hide();
 	$("#selectphase").show();
 	$("#creation").hide();
+	$("#experience").hide();
 	currentteam.setfaction("REBEL");
 	$(".nextphase").prop("disabled",true);
 	//window.location="#creation";
@@ -12425,7 +12755,7 @@ function nextphase() {
 		id:'ZONE',
 		pointerEvents:"none"
 	    });
-	if (SETUP.background!="") $(".playmat").css("background","url("+SETUP.background+")");
+	if (SETUP.background!="") $(".playmat").css({background:"url("+SETUP.background+") no-repeat",backgroundSize:"100% 100%"});
 	if (SETUP.pattern=="") ZONE[0].attr("fillOpacity",0);
 	else {
 	    var pattern = s.image(SETUP.pattern,0,0,360,360).pattern(0,0,360,360);
@@ -12500,8 +12830,6 @@ function nextphase() {
 	$("#svgout").mousedown(function(event) { dragstart(event);});
 	$("#svgout").mousemove(function(e) {dragmove(e);});
 	$("#svgout").mouseup(function(e) {dragstop(e);});
-
-	jwerty.key("x", function() { window.location="#";});
 	jwerty.key("escape", nextphase);
 	jwerty.key("c", center);
 	/* By-passes */
@@ -12540,12 +12868,14 @@ function nextphase() {
 	    else if (activeunit.shield<activeunit.ship.shield) activeunit.shield++; 
 	    activeunit.show();
 	});
-	if (SETUP.asteroids>0) loadrock(s,ROCKDATA);
-	if (OBSTACLES.length>0) showrock();
+	if (SETUP.asteroids>0) {
+	    loadrock(s,ROCKDATA);
+	}
 	log("<div>["+UI_translation["turn #"]+round+"]"+UI_translation["phase"+phase]+"</div>");
 	$(".unit").css("cursor","move");
 	$("#positiondial").show();
-	$(".permalink").show()
+	$(".permalink").show();
+	startreplayall();
 	break;
     case PLANNING_PHASE: 
 	active=0;
@@ -12595,21 +12925,21 @@ function log(str) {
     $("#log").append("<div>"+str+"<div>");
     $("#log").scrollTop(10000);
 }
-function permalink(t) {
-    var s="?"+TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock();//+"&"+JSON.stringify(ANIM);
-    //var h=t.attr("href");
-    document.location.search=s; 
-    /*else {
-	h=h.replace("@",encodeURIComponent(s));
-	window.open(h, '_blank');
-    }*/
+function permalink(reset) {
+    var r="";
+    if (!reset) { if (REPLAY!="") r=REPLAY; else r=ANIM; } 
+    return LZString.compressToEncodedURIComponent(TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock()+"&"+TEAMS[1].isia+"&"+TEAMS[2].isia+"&"+SETUP.name+"&"+r);
 }
 function resetlink() {
     switch (phase) {
     case SETUP_PHASE:
     case SELECT_PHASE: 
+    case XP_PHASE:
     case CREATION_PHASE: phase=0; document.location.search=""; nextphase(); break; 
-    default: permalink();
+    default: 
+	document.location.search="?"+PERMALINK;
+	//document.location.assign(document.location.href);
+	//document.location.reload(true);
     }
 }
 function record(id,val,str) {
@@ -13036,15 +13366,18 @@ $(document).ready(function() {
 	  K5:{path:s.path("M 0 0 L 0 -240").attr({display:"none"}), speed: 5, key: "2" }
 	};
     // Load unit data
+    var availlanguages={"en":"🇬🇧","fr":"🇫🇷"};
+    LANG = localStorage['LANG'] || window.navigator.userLanguage || window.navigator.language;
+    LANG=LANG.substring(0,2);
     $.ajaxSetup({beforeSend: function(xhr){
 	if (xhr.overrideMimeType)
 	    xhr.overrideMimeType("application/json");
     }});
-    var availlanguages={"en":"🇬🇧","fr":"🇫🇷"};
-    LANG = localStorage['LANG'] || window.navigator.userLanguage || window.navigator.language;
-    LANG=LANG.substring(0,2);
     $.when(
-	$.ajax("data/ships.json"),$.ajax("data/strings."+LANG+".json"),$.ajax("data/xws.json"),$.ajax("data/setups.json")
+	$.ajax("data/ships.json"),
+	$.ajax("data/strings."+LANG+".json"),
+	$.ajax("data/xws.json"),
+	$.ajax("data/setups.json")
     ).done(function(result1,result2,result3,result4) {
 	var process=setInterval(function() {
 	    ATTACK[dice]=attackproba(dice);
@@ -13072,10 +13405,12 @@ $(document).ready(function() {
 	UPGRADE_dict=result3[0].upgrades;
 	PILOT_dict=result3[0].pilots;
 
-	for (var i=0; i<PILOTS.length; i++) 
-	    for (var j in PILOT_dict) 
+	for (var j in PILOT_dict) {
+	    for (var i=0; i<PILOTS.length; i++) 
 		if (PILOTS[i].name==PILOT_dict[j]) PILOTS[i].dict=j;
-	
+	    for (var i in unitlist) 
+		if (i==PILOT_dict[j]) unitlist[i].dict=j;
+	}
 	/*Sanity check */
 	/*
 	for (var i=0; i<PILOTS.length; i++) {
@@ -13186,7 +13521,9 @@ $(document).ready(function() {
 	});
 	$("aside").on("scroll touchmove touchstart mousewheel", scrolloverflow);
 
-	var args= window.location.search.substr(1).split('&');
+	var arg=LZString.decompressFromEncodedURIComponent(decodeURI(window.location.search.substr(1)));
+	var args=[];
+	if (arg!=null) args= arg.split('&');
 	if (args.length>1) {
 	    log("Loading permalink...");
 	    ROCKDATA=args[2];
@@ -13195,9 +13532,17 @@ $(document).ready(function() {
 	    TEAMS[1].toJSON(); // Just for points
 	    TEAMS[2].parseASCII(args[1]);
 	    TEAMS[2].toJSON(); // Just for points
-	    SETUP=SETUPS["Classic Map"];
-	    if (args.length>3) ANIM=$.parseJSON(args[3]);
+	    TEAMS[1].isia=false;
+	    TEAMS[2].isia=false;
+	    if (args[3]=="true") { $("#p12").prop("checked",true); TEAMS[1].isia=true; }
+	    else $("#p11").prop("checked",true);
+	    if (args[4]=="true") { $("#p22").prop("checked",true); TEAMS[2].isia=true; }
+	    else $("#p21").prop("checked",true);
+	    SETUP=SETUPS[args[5]+" Map"];
 	    phase=SELECT_PHASE;
+
+	    if (args.length>6&args[6]!="") { REPLAY=args[6]; }
+	    PERMALINK=LZString.compressToEncodedURIComponent(TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock()+"&"+TEAMS[1].isia+"&"+TEAMS[2].isia+"&"+args[5]);
 	    return nextphase();
 	} else {
 	    phase=0;
@@ -13218,6 +13563,8 @@ $(document).ready(function() {
 		}
 	    );
 
+	    jwerty.key("v",experience);
+
 	    SQUADLIST=$("#squadlist").DataTable({
 		"language": {
 		    "search":UI_translation["Search"],
@@ -13230,7 +13577,7 @@ $(document).ready(function() {
 		"columnDefs": [
 		    { "targets": [0],
 		      "render":function() {
-			  return "<div class='closemiddle' onclick='removerow($(this))'>&#xd7;</div><div><button class='m-squad1 button2' onclick='checkrow(1,$(this))'>&#x27a1;</button></div><div><button class='m-squad2 button2' onclick='checkrow(2,$(this))'>&#x27a1;</button></div>";
+			  return "<table><tr><td class='closemiddle' onclick='removerow($(this))'>&#xd7;</td><td class='m-squad1 button2' onclick='checkrow(1,$(this))'>&#10133;</td></tr><tr><td></td><td class='m-squad2 button2' onclick='checkrow(2,$(this))'>&#10133;</td></tr></table>";
 		      },
 		      "sortable":false
 		    },
@@ -13252,7 +13599,7 @@ $(document).ready(function() {
 			"render": function ( data, type, row ) {
 			    if (LANG!="en"&&phase==SELECT_PHASE) 
 				if (row[4].search("SQUAD")==-1) {
-				    TEAMS[0].parseJuggler(data,true);
+				    TEAMS[0].parseJuggler(data,false);
 				    data=TEAMS[0].toJuggler(true);
 				}
 			    return "<pre>"+data+"</pre>";
@@ -13271,8 +13618,10 @@ $(document).ready(function() {
 		    var l=$.parseJSON(localStorage[i]);
 		    if (typeof l.jug=="undefined"||typeof l.pts=="undefined")
 			delete localStorage[i]
-		    else if (LANG!="en") { TEAMS[0].parseJuggler(l.jug,true); addrow(0,i,l.pts,l.faction,TEAMS[0].toJuggler(true)); }
-		    else addrow(0,i,l.pts,l.faction,l.jug);
+		    else if (LANG!="en") { 
+			TEAMS[0].parseJuggler(l.jug,false); 
+			addrow(0,i,l.pts,l.faction,TEAMS[0].toJuggler(true)); 
+		    } else addrow(0,i,l.pts,l.faction,l.jug);
 		}
 	    }
 	}
@@ -13292,10 +13641,144 @@ $(document).ready(function() {
 	}
 	$(".squadbg > textarea").asuggest(pilots, { 'delimiters': '^\n', 'cycleOnTab': true });
 	$(".squadbg > textarea").asuggest(upgrades, { 'delimiters': '+ ', 'cycleOnTab':true});
-	/*md = new Hammer(document.getElementById('leftpanel'));
-	  md.get('pan').set({direction:Hammer.DIRECTION_VERTICAL});
-	  md.on("panup pandown",function(ev) {
-	  log(ev.type);
-	  });*/
     });
 });
+var cmd=[];
+var startreplayall=function() {
+    cmd=REPLAY.split("_");
+    cmd.splice(0,1);
+    if (cmd.length==0) return;
+    ZONE[1].remove();
+    ZONE[2].remove();
+    $(".nextphase").prop("disabled",true);
+    $(".unit").css("cursor","pointer");
+    for (i=0; i<OBSTACLES.length; i++) OBSTACLES[i].g.undrag();
+    actionrlock=$.Deferred();
+    actionrlock.progress(replayall);
+    $("#positiondial").hide();
+    replayall();
+}
+var replayall=function() {
+    var c=cmd[0].split("-");
+    cmd.splice(0,1);
+    var u=null;
+    if (c[0].length>0) {
+	var id=parseInt(c[0],10);
+	for (var j in squadron) if (squadron[j].id==id) break; 
+	if (squadron[j].id==id) u=squadron[j];
+	else {
+	    log("cannot find id "+id);
+	    for (var j in squadron) log("squadron["+j+"]="+squadron[j].name);
+	}
+    } 
+    //if (u!=null) log("cmd : "+u.name+" "+c[1]);
+    var FTABLE={"fo":"removefocustoken",
+		"FO":"addfocustoken",
+		"e":"removeevadetoken",
+		"E":"addevadetoken",
+		"ct":"removecloaktoken",
+		"CT":"addcloaktoken",
+		"i":"removeiontoken",
+		"I":"addiontoken",
+		"ST":"addstress",
+		"st":"removestresstoken",
+		"d":"dies"
+	   };
+    if (typeof FTABLE[c[1]]=="string") {
+	var f=Unit.prototype[FTABLE[c[1]]];
+	if (typeof f=="undefined") log("ftable "+c[1]+" "+FTABLE[c[1]]);
+	if (typeof f.vanilla=="function") f.vanilla.call(u,t);
+	else f.call(u);
+	actionrlock.notify();
+	return;
+    }
+    switch(c[1]) {
+    case "P": 
+	var p=phase;
+	round=parseInt(c[2],10);
+	phase=parseInt(c[3],10);
+	if (p>phase) {
+	    for (var i in squadron) {
+		var u=squadron[i];
+		u.focus=u.evade=0;
+		u.showinfo();
+	    }
+	}
+	$("#phase").html(UI_translation["turn #"]+round+" "+UI_translation["phase"+phase]);
+	actionrlock.notify();
+	break;
+    case "t": 
+	for (var j in squadron) 
+	    if (squadron[j].id==parseInt(c[2],10)) break;
+	if (squadron[j].id!=parseInt(c[2],10)) log("cannot find target "+c[2]);
+	var t=squadron[j];
+	if (typeof Unit.prototype.removetarget.vanilla=="function") 
+	    Unit.prototype.removetarget.vanilla.call(u,t);
+	else Unit.prototype.removetarget.call(u,t);
+	actionrlock.notify();
+	break;
+    case "T":
+	for (var j in squadron) 
+	    if (squadron[j].id==parseInt(c[2],10)) break;
+	if (squadron[j].id!=parseInt(c[2],10)) log("cannot find target "+c[2]);
+	var t=squadron[j];
+	if (typeof Unit.prototype.addtarget.vanilla=="function") 
+	    Unit.prototype.addtarget.vanilla.call(u,t);
+	else Unit.prototype.addtarget.call(u,t);
+	actionrlock.notify();
+	break;
+    case "s": Unit.prototype.removeshield.call(u,parseInt(c[2],10)); 
+	u.show();
+	actionrlock.notify();
+	break;
+    case "h": Unit.prototype.removehull.call(u,parseInt(c[2],10));
+	u.show();
+	actionrlock.notify();
+	break;
+    case "d": u.dies(); 	
+	actionrlock.notify();
+	break;
+    case "f": 		   
+	u.select();
+	for (var j in squadron) 
+	    if (squadron[j].id==parseInt(c[2],10)) break;
+	if (squadron[j].id!=parseInt(c[2],10)) log("cannot find target unit "+c[2]);
+	targetunit=squadron[j];
+	u.activeweapon=parseInt(c[3],10);
+	u.playfiresnd();
+	u.log("fires on "+targetunit.name+" with "+u.weapons[u.activeweapon].name);
+	setTimeout(function() { actionrlock.notify(); }, 1000);
+	break;
+    case "am": 
+	u.select();
+	u.m=(new Snap.Matrix()).translate(c[2]-300,c[3]-300).rotate(c[4],0,0);
+	u.g.transform(u.m);
+	u.geffect.transform(u.m);
+	actionrlock.notify();
+	break;
+    case "c":
+	(new Critical(u,parseInt(c[2],10))).faceup();
+	actionrlock.notify();
+	break;
+    case "m":
+	u.select();
+	var d=c[2];
+	var l=parseInt(c[4],10);
+	var oldm=u.m;
+	var path=P[d].path;
+	SOUNDS[u.ship.flysnd].play();
+	Snap.animate(0,l,function(value) {
+	    var m=this.getmatrixwithmove(oldm,path,value);
+	    this.g.transform(m);
+	    this.geffect.transform(m);
+	}.bind(u), TIMEANIM*l/200,mina.linear, function() {
+	    this.m=this.getmatrixwithmove(oldm,path,l);
+	    this.m.rotate(parseFloat(c[3]),0,0);
+	    this.g.transform(this.m);
+	    this.geffect.transform(this.m);
+	    actionrlock.notify();
+	}.bind(u));
+	break;
+    default: log("undefined cmd "+c[1]);
+    }
+}
