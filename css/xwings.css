@@ -1194,7 +1194,7 @@ background:#822
 background:#a9a9a9
 }
 
-.bigbutton:disabled,.nextphase:disabled,.activeunit:disabled {
+.bigbutton:disabled,.nextphase:disabled,.mainbutton:disabled,.activeunit:disabled {
 background:gray;
 color:#d3d3d3;
 cursor:default;
