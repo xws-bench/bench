@@ -805,17 +805,38 @@ padding:2px;
 }
 .smallbutton,.bigbutton,.button,.permalink,.nextphase,.mainbutton {
 display:inline-block;
-margin:5px;
 text-align:center;
 box-shadow:1px 1px 3px #000;
-padding:6px;
 color:#fff;
 border:0;
 text-decoration:none;
-background:#b0c4de;
+background:lightsteelblue;
 cursor:pointer;
 border-radius:5px
 }
+.bigbutton,.button,.permalink,.nextphase,.mainbutton {
+padding:6px;
+margin:5px;
+}
+.smallbutton {
+display:table-cell;
+padding:2px;
+margin:2px;
+color:black;
+background:#FFEBCD;
+}
+.squadselected select,.squadselected button {
+width:100%;
+}
+.mainbutton:not(:disabled):hover {
+background:white;
+color:lightsteelblue;
+}
+.smallbutton:not(:disabled):hover {
+background:#000;
+color:#ffebcd;
+}
+
 #replay {
 background:white;
 opacity:0.8;
@@ -1162,19 +1183,6 @@ color:#535353;
 background:rgba(255,255,255,0.7);
 border-radius:4px
 }
-
-.button2,.button {
-color:black;
-margin:1px;
-border:0;
-padding:1px;
-font-size:smaller;
-display:table-cell;
-text-align:center;
-text-decoration:none;
-border-radius:4px;
-cursor:pointer;
-}
 .disabled {
 padding:3px;
 display:table-cell;
@@ -1198,10 +1206,6 @@ background:#a9a9a9
 background:gray;
 color:#d3d3d3;
 cursor:default;
-}
-.button2 {
-width:74px;
-background-color:white;
 }
 #squadlist table {
 empty-cells:hide;
@@ -1538,16 +1542,16 @@ padding-left:1em;
 content:" ";
 }
 .squadselected button {
-    padding:8px;
-    width:100%;
+/*    padding:8px;
+    width:100%;*/
     font-size:x-small;
-    margin:0;
     border-collapse:collapse;
 }
+/*
 .squadselected button:hover {
     color:white;
     background:steelblue;
-}
+}*/
 .squadselected td:first-child,.squadselected td:nth-child(4) {
     width:4em;
 }
