@@ -51,6 +51,7 @@ var ATTACKMODA=[];
 var ATTACKMODD=[];
 var DEFENSEMODD=[];
 var DEFENSEADD=[];
+var ATTACKADD=[];
 var FACEUP=1,FACEDOWN=2,DISCARD=0;
 var xws_lookup=function(s) {
     for (var i in PILOT_dict) {
@@ -599,7 +600,8 @@ Unit.prototype = {
     getupgradeaddstring:function() {
 	var str="";
 	for (var j=0; j<this.upgradetype.length; j++)
-	    if (this.upg[j]==-1) str+="<button num="+j+" class='upgrades "+this.upgradetype[j]+"'>+</button>";
+	    if (this.upg[j]==-1)
+		str+="<button num="+j+" class='upgrades "+(this.upgradetype[j]).replace(/\|/g,"")+"'>+</button>";
 	return str;
     },
     showskill: function() {
@@ -789,6 +791,9 @@ Unit.prototype = {
     },
     addglobaldefensereroll:function(org,t,n,require) {
 	DEFENSEREROLLD.push({org:org,type:t,n:n,req:require});
+    },
+    addglobalattackadd: function(org,require,f,str) {
+	ATTACKADD.push({org:org,req:require,f:f,str:str});
     },
     addattackmoda: function(org,require,f,global,str,token) {
 	if (global) ATTACKMODA.push({org:org,req:require,f:f,str:str,token:token});
@@ -1799,14 +1804,14 @@ Unit.prototype = {
 	for (i=0; i<ATTACKMODA.length; i++) {
 	    var a=ATTACKMODA[i];
 	    if (a.req(m,n)) {
-		str+="<td id='moda"+i+"' class='"+a.str+"modtokena' onclick='record("+this.id+","+i+",\"attackmodag_"+n+"\"); modroll(ATTACKMODA["+i+"].f,"+n+","+i+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
+		str+="<td id='moda"+i+"' class='"+a.str+"modtokena' onclick='modroll(ATTACKMODA["+i+"].f,"+i+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
 	    }
 	}   
 	j=ATTACKMODA.length
 	for (i=0; i<ATTACKMODD.length; i++) {
 	    var a=ATTACKMODD[i];
 	    if (a.req(m,n)) {
-		str+="<td id='moda"+(i+ATTACKMODA.length)+"' class='"+a.str+"modtokend' onclick='record("+this.id+","+i+",\"attackmodd_"+n+"\"); modroll(ATTACKMODD["+i+"].f,"+n+","+(i+ATTACKMODA.length)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
+		str+="<td id='moda"+(i+ATTACKMODA.length)+"' class='"+a.str+"modtokend' onclick='modroll(ATTACKMODD["+i+"].f,"+(i+ATTACKMODA.length)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
 	    }
 	}   
 	i=ATTACKMODA.length+ATTACKMODD.length;
@@ -1815,10 +1820,17 @@ Unit.prototype = {
 	    if (a.req(m,n)) {
 		var cl=a.str+"modtokena"
 		if (typeof a.token!="undefined") cl="x"+a.str+"token";
-		str+="<td id='moda"+(i+j)+"' class='"+cl+"' onclick='record("+this.id+","+j+",\"attackmoda_"+n+"\"); modroll(squadron["+me+"].ATTACKMODA["+j+"].f,"+n+","+(i+j)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
+		str+="<td id='moda"+(i+j)+"' class='"+cl+"' onclick='modroll(squadron["+me+"].ATTACKMODA["+j+"].f,"+(i+j)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
 	    }
 	}   
-	i=ATTACKMODA.length+ATTACKMODD.length+this.ATTACKMODA.length
+	i=ATTACKMODA.length+ATTACKMODD.length+this.ATTACKMODA.length;
+	for (j=0; j<ATTACKADD.length; j++) {
+	    var a=ATTACKADD[j];
+	    if (a.req(m,n)) {
+		str+="<td id='moda"+(j+i)+"' class='"+a.str+"modtokena' onclick='addroll(ATTACKADD["+j+"].f,"+n+","+(i+j)+")' title='add roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
+	    }
+	}   
+	i=ATTACKMODA.length+ATTACKMODD.length+this.ATTACKMODA.length+ATTACKADD.length;
 	for (j=0; j<this.ATTACKADD.length; j++) {
 	    var a=this.ATTACKADD[j];
 	    if (a.req(m,n)) {
@@ -1834,7 +1846,7 @@ Unit.prototype = {
 	for (i=0; i<DEFENSEMODD.length; i++) {
 	    var a=DEFENSEMODD[i];
 	    if (a.req(m,n)) {
-		str+="<td id='modd"+i+"' class='"+a.str+"modtokend' onclick='record("+this.id+","+i+",\"defensemoddg_"+n+"\"); modrolld(DEFENSEMODD["+i+"].f,"+n+","+i+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
+		str+="<td id='modd"+i+"' class='"+a.str+"modtokend' onclick='record("+this.id+","+i+",\"defensemoddg_"+n+"\"); modrolld(DEFENSEMODD["+i+"].f,"+i+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
 	    }
 	}   
 	for (j=0; j<this.DEFENSEMODD.length; j++) {
@@ -1842,7 +1854,7 @@ Unit.prototype = {
 	    if (a.req(m,n)) {
 		var cl=a.str+"modtokend"
 		if (typeof a.token!="undefined") cl="x"+a.str+"token"; 
-		str+="<td id='modd"+(i+j)+"' class='"+cl+"' onclick='record("+this.id+","+j+",\"defensemodd_"+n+"\"); modrolld(squadron["+me+"].DEFENSEMODD["+j+"].f,"+n+","+(i+j)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
+		str+="<td id='modd"+(i+j)+"' class='"+cl+"' onclick='record("+this.id+","+j+",\"defensemodd_"+n+"\"); modrolld(squadron["+me+"].DEFENSEMODD["+j+"].f,"+(i+j)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
 	    }
 	}   
 	i=DEFENSEMODD.length+this.DEFENSEMODD.length
@@ -1906,7 +1918,7 @@ Unit.prototype = {
 	var r=this.gethitrange(w,targetunit);
 	this.hasfired++;
 	this.hasdamaged=false;
-	$("#combatdial").show();
+	displaycombatdial();
 	var bb=targetunit.g.getBBox();
 	var start=transformPoint(this.m,{x:0,y:-(this.islarge?40:20)});
 	this.fireline=s.path("M "+start.x+" "+start.y+" L "+(bb.x+bb.w/2)+" "+(bb.y+bb.h/2))
@@ -2286,23 +2298,32 @@ Unit.prototype = {
     updateactivationdial: function() {
 	var self=this;
 	this.activationdial=[];
+	if (this.candropbomb()&&this.ionized!=0) {
+	    this.log("ionized, cannot drop bombs");
+	}
 	if (this.candropbomb()&&this.ionized==0) {
 	    switch(this.bombs.length) {
-	    case 3: if (this.bombs[2].canbedropped()) this.addactivationdial(function() { return self.bombs[2].canbedropped(); },
-					   function() { self.doselection(function(n) {
-					       self.bombs[2].actiondrop(n);
-					   })}, A["BOMB"].key,
-					   $("<div>").attr({class:"symbols",title:self.bombs[2].name}));
-	    case 2:if (this.bombs[1].canbedropped()) this.addactivationdial(function() { return self.bombs[1].canbedropped(); },
-					   function() { self.doselection(function(n) {
-					       self.bombs[1].actiondrop(n);
-					   })}, A["BOMB"].key,
-					   $("<div>").attr({class:"symbols",title:self.bombs[1].name}));
-	    case 1:if (this.bombs[0].canbedropped()) this.addactivationdial(function() { return self.bombs[0].canbedropped(); },
-					   function() { self.doselection(function(n) {
-					       self.bombs[0].actiondrop(n);
-					   })}, A["BOMB"].key,
-					   $("<div>").attr({class:"symbols",title:self.bombs[0].name}));
+	    case 3: if (this.bombs[2].canbedropped()) 
+		this.addactivationdial(
+		    function() { return self.bombs[2].canbedropped(); },
+		    function() { self.doselection(function(n) {
+			self.bombs[2].actiondrop(n);
+		    })}, A["BOMB"].key,
+		    $("<div>").attr({class:"symbols",title:self.bombs[2].name}));
+	    case 2:if (this.bombs[1].canbedropped()) 
+		this.addactivationdial(
+		    function() { return self.bombs[1].canbedropped(); },
+		    function() { self.doselection(function(n) {
+			self.bombs[1].actiondrop(n);
+		    })}, A["BOMB"].key,
+		    $("<div>").attr({class:"symbols",title:self.bombs[1].name}));
+	    case 1:if (this.bombs[0].canbedropped()) 
+		this.addactivationdial(
+		    function() { return self.bombs[0].canbedropped(); },
+		    function() { self.doselection(function(n) {
+			self.bombs[0].actiondrop(n);
+		    })}, A["BOMB"].key,
+		    $("<div>").attr({class:"symbols",title:self.bombs[0].name}));
 	    }
 	}
 	return this.activationdial;
@@ -2313,13 +2334,14 @@ Unit.prototype = {
 	if (!this.timeformaneuver())  return;
 	var ad=this.updateactivationdial();
 	for (var i=0; i<ad.length; i++) {
-	    var adi=ad[i];
-	    if (adi.pred()) { 
-		adi.elt.appendTo("#activationdial > div").click(function() { 
-		    //record(0,0,(function(i){return function() {this.updateactivationdial()[i].action();}})(i)) 
-		    adi.action();
-		}).html(adi.html);
-	    }
+	    (function(k) {
+		var adi=ad[k];
+		if (adi.pred()) { 
+		    adi.elt.appendTo("#activationdial > div").click(function() { 
+			adi.action();
+		    }).html(adi.html);
+		}
+	    })(i);
 	}
 	$("<button>").addClass("m-move").click(function() { this.resolvemaneuver(); }.bind(this)).appendTo("#activationdial > div");
 

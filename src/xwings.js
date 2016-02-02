@@ -235,11 +235,14 @@ function getattackdice() {
 function getdefensedice() {
     return $(".focusgreendice").length+$(".blankgreendice").length+$("evadegreendice").length; 
 }
-function displayattackroll(m,n) {
-    var i,j=0;
+function displaycombatdial() {
     $("#attackdial").empty();
     $("#dtokens").empty();
     $("#defense").empty();
+    $("#combatdial").show();
+}
+function displayattackroll(m,n) {
+    var i,j=0;
     for (i=0; i<DICES.length; i++) $("."+DICES[i]+"dice").remove();
     $("#attack").empty();
     for (i=0; i<Math.floor(m/100)%10; i++,j++)
@@ -324,7 +327,8 @@ function addrolld(f,n,id) {
     displaydefenseroll(t.m,t.n);
     $("#modd"+id).remove();
 }
-function modroll(f,n,id) {
+function modroll(f,id) {
+    var n=getattackdice();
     var foc=$(".focusreddice").length;
     var h=$(".hitreddice").length;
     var c=$(".criticalreddice").length;
@@ -354,7 +358,8 @@ function displaydefenseroll(r,n) {
     $(".evadegreendice").click(change);
     $(".blankgreendice").click(change);
 }
-function modrolld(f,n,id) {
+function modrolld(f,id) {
+    var n=getdefensedice();
     var foc=$(".focusgreendice").length;
     var e=$(".evadegreendice").length;
     var r=f(10*foc+e,n);
@@ -518,7 +523,7 @@ function win() {
     note=note.replace(/\n/g,".");
     note=note.replace(/ \+ /g,"*");
     note=note.replace(/ /g,"_");
-    console.log("note:"+encodeURI(note));
+    //console.log("note:"+encodeURI(note));
     var link="https://api-ssl.bitly.com/v3/user/link_save?access_token=ceb626e1d1831b8830f707af14556fc4e4e1cb4c&longUrl="+encodeURI("http://xws-bench.github.io/bench/index.html?"+permalink(false))+"&title="+encodeURI(titl)+"&note="+encodeURI(note);
     $.when($.ajax(link)).done(function(result1) {
 	var url=result1.data.link_save.link;
@@ -587,8 +592,7 @@ function switchdialimg(b) {
 }
 function displaycombats() {
     if (phase !=XP_PHASE) return;
-    var d=new Date();
-    $("#combatlist").html("<thead><tr><th></th><th><span class='m-squad1'></span></th><th><span class='m-squad2'><span></th></tr></thead>");
+    $("#combatlist").html("<thead><tr><th></th><th></th><th><span class='m-ncombats'></span></th><th><span class='m-squad1'></span></th><th><span class='m-squad2'><span></th></tr></thead>");
 
     COMBATLIST=$("#combatlist").DataTable({
 	"language": {
@@ -603,15 +607,10 @@ function displaycombats() {
 	"columnDefs": [
 	    { "targets": [0],
 	      "render":function() {
-		  return "<span class='button2' onclick='viewsquadtypecombat($(this))'>View</span>";
+		  return "<button onclick='viewsquadtypecombat($(this))'>View</button>";
 	      },
 	      "sortable":false
 	    },
-	    {   "targets":[2,3],
-		"render": function ( data, type, row ) {
-		    return data;
-		}
-	    }, 
 	    {
 		"targets": [ 1 ],
 		"visible": false,
@@ -624,10 +623,8 @@ function displaycombats() {
 	"info":true,
 	"paging":true});
     $("#replay").attr("src","");
-    //$("td:eq(2)).addClass("clicks")
 
-
-    $("#squadbattle").html("<thead><tr><th></th><th></th><th class='m-views'></th><th class='m-score'></th><th><span class='m-squad1'></span></th><th><span class='m-squad2'><span></th></tr></thead>");
+    $("#squadbattle").html("<thead><tr><th></th><th></th><th><span class='m-views'></span></th><th><span class='m-score'></span></th><th><span class='m-squad1'></span></th><th><span class='m-squad2'></span></th></tr></thead>");
 
     SQUADBATTLE=$("#squadbattle").DataTable({
 	"language": {
@@ -642,12 +639,12 @@ function displaycombats() {
 	"columnDefs": [
 	    { "targets": [0],
 	      "render":function() {
-		  return "<div class='button2' onclick='viewcombat($(this),false)'>View</div>"+
-		      "<div class='button2' onclick='viewcombat($(this),true)'>Full screen</div>";
+		  return "<button onclick='viewcombat($(this),false)'>View</button><button onclick='viewcombat($(this),true)'>Full screen</button>";
 	      },
 	      "sortable":false
 	    },
 	    { "targets":[2],
+	      "sortable":true,
 	      "render": function(data, type,row) {
 		  var link=row[1];
 		  var id=link.replace(/^.*\//,"");
@@ -659,10 +656,7 @@ function displaycombats() {
 	      },
 	    },
 	    {   "targets":[4,5],
-		"render": function ( data, type, row ) {
-		    return data;
-		},
-		"width":"40%",
+		"width":"40%"
 	    }, 
 	    {
 		"targets": [ 1 ],
@@ -670,17 +664,19 @@ function displaycombats() {
 		"searchable": false
 	    },
 
-	],    
+	],  
+	"scrollY": "300px",
+        "scrollCollapse": true,
 	"deferRender": true,
-	"ordering":true,
-	"info":true,
-	"paging":true});
+	"info":false,
+	"paging":false});
 
    $.ajaxSetup({beforeSend: function(xhr){
 	if (xhr.overrideMimeType)
 	    xhr.overrideMimeType("text/plain");
-    }}); 
-    $.ajax("https://api.github.com/search/issues?q=repo:xws-bench/battles+created:>2016-01-01",{success:function(data) {
+    }});
+    var d=new Date();
+    $.ajax("https://api.github.com/search/issues?q=repo:xws-bench/battles&per_page=300",{success:function(data) {
 	var json=$.parseJSON(data);
 	for (var i in json.items) {
 	    var t=json.items[i].title.split(" ");
@@ -714,53 +710,9 @@ function displaycombats() {
 	}
 	for (var i in combatpilots) {
 	    var teams=i.split("|");
-	    addrowcombat(combatpilots[i][0].url,teams[0],teams[1]);
+	    addrowcombat(combatpilots[i][0].url,teams[0],teams[1],combatpilots[i].length);
 	}
     }});
-/*
-    var tinyurl="https://docs.google.com/a/google.com/spreadsheets/d/1bMXH83-wfq5b7IgfkNWl5hVpzntpti5S6NA2O6NJrm0/gviz/tq?tq=select%20E&callback=callback"
-    $.when($.ajax(tinyurl,{
-	crossDomain:true,
-	jsonp:"callback",
-	datatype:"jsonp",
-	xhrFields: {
-	    withCredentials: true
-	},
-        success: function(data) {
-	    log("success "+data);
-        },
-        error: function(xhr, sts, err) {
-            alert('Erreur !!');
-        }
-    })).done(function(r) {
-	var a=r.split("?");
-	for (var i in a) {
-	    var long = a[i].split("\"")[0];
-	    var arg=LZString.decompressFromEncodedURIComponent(long);
-	    var args=[];
-	    if (arg!=null) {
-		args= arg.split('&');
-		TEAMS[0].parseASCII(args[0]);
-		var note=TEAMS[0].toJuggler(false).replace(/\n/g,";");
-		TEAMS[0].parseASCII(args[1]);
-		note+=" VS "+TEAMS[0].toJuggler(false).replace(/\n/g,";");
-		title=(args[3]=="true"?"Computer":"Human")+" VS "+(args[4]=="true"?"Computer":"Human");
-		log(title);
-	    }
-	}
-    });
-    */
-    /*var tinyurl="http://cors.io/?u="+encodeURI("");
-    $.when($.ajax(tinyurl)).done(function(r) {
-	var j=$.parseJSON(r.substr(47,r.length-49));
-	for (var i in j.table.rows) {
-	    var c=j.table.rows[i].c;
-	    var hm=c[0].v.split(" VS ");
-	    var t=c[1].v.replace(/;/g,"<br/>").split(" VS ");
-	    if (typeof t[1]!="undefined")
-		addrowcombat(c[2].v,t[0],t[1]);
-	}
-    });*/
 
    $.ajaxSetup({beforeSend: function(xhr){
 	if (xhr.overrideMimeType)
@@ -937,7 +889,6 @@ function addupgradeaddhandler(u) {
 	$("#unit"+this.id+" .upglist button").click(function(e) {
 	    var data=e.currentTarget.getAttribute("data");
 	    var num=e.currentTarget.getAttribute("num");
-
 	    addupgrade(this,data,num);
 	}.bind(this));
     }.bind(u));
@@ -1040,12 +991,12 @@ function addrow(team,name,pts,faction,jug) {
     enablenextphase();
     var n=faction.toUpperCase();
     if (typeof localStorage[name]!="undefined")
-	SQUADLIST.row.add(["",n,""+pts,jug,name,"",""]).draw(false);
+	SQUADLIST.row.add(["",n,""+pts,jug,name,""]).draw(false);
 }
-function addrowcombat(link,team1,team2) {
+function addrowcombat(link,team1,team2,n) {
     //var clicks="https://api-ssl.bitly.com/v3/link/clicks?access_token=ceb626e1d1831b8830f707af14556fc4e4e1cb4c&link="+encodeURI(link);
     //$.when($.ajax(clicks)).done(function(result1) {
-    COMBATLIST.row.add(["",link,team1,team2]).draw(false);
+    COMBATLIST.row.add(["",link,n,team1,team2]).draw(false);
     //});
 }
 function makeGrid(points1,points2){    
@@ -1157,8 +1108,8 @@ function removerow(t) {
 }
 function viewsquadtypecombat(t) {
     var row=COMBATLIST.row(t.parents("tr"));
-    var team1=row.data()[2];
-    var team2=row.data()[3];
+    var team1=row.data()[3];
+    var team2=row.data()[4];
     SQUADBATTLE.clear();
     for (var i in combatpilots[team1+"|"+team2]) {
 	var cp=combatpilots[team1+"|"+team2][i];
@@ -1192,10 +1143,11 @@ function filltabskill() {
     tabskill=[];
     for (i=0; i<=12; i++) tabskill[i]=[];
     for (i in squadron) tabskill[squadron[i].getskill()].push(squadron[i]);
-    for (i in tabskill) tabskill[i].sort(function(a,b) {
+    for (i=0; i<=12; i++) tabskill[i].sort(function(a,b) {
 	var xa=0,xb=0;
 	if (TEAMS[a.team].initiative==true) xa=1; 
 	if (TEAMS[b.team].initiative==true) xb=1;
+	if (xb-xa==0) return (b.id-a.id);
 	return xb-xa;
     });
 }
@@ -1307,7 +1259,6 @@ function nextphase() {
 	$("#team2").css("top",$("nav").height()+2);
 	$("#team1").css("top",$("nav").height()+2);
 	$(".ctrl").css("display","block");
-
 	ZONE[0]=s.path(SETUP.playzone).attr({
 		strokeWidth: 6,
 		stroke:halftone(WHITE),
@@ -1494,7 +1445,7 @@ function resetlink() {
     switch (phase) {
     case SETUP_PHASE:
     case SELECT_PHASE: 
-    case XP_PHASE:
+    case XP_PHASE: document.location.reload(true); break;
     case CREATION_PHASE: phase=0; document.location.search=""; nextphase(); break; 
     default: 
 	document.location.search="?"+PERMALINK;
@@ -2055,6 +2006,7 @@ $(document).ready(function() {
 	    theta += increment * -1;
             $("#carousel").css("transform","rotateY(" + theta + "deg)");
 	});
+	jwerty.key("r",function() { log(saverock()); })
 
 
 	var mc= new Hammer(document.getElementById('svgout'));
@@ -2124,7 +2076,6 @@ $(document).ready(function() {
 	    );
 
 	    jwerty.key("v",experience);
-
 	    SQUADLIST=$("#squadlist").DataTable({
 		"language": {
 		    "search":UI_translation["Search"],
@@ -2134,10 +2085,17 @@ $(document).ready(function() {
 		    "infoEmpty": UI_translation["No records available"],
 		    "infoFiltered": UI_translation["(filtered from _MAX_ total records)"]
 		},
+		"autoWidth": true,
 		"columnDefs": [
 		    { "targets": [0],
 		      "render":function() {
-			  return "<table><tr><td class='closemiddle' onclick='removerow($(this))'>&#xd7;</td><td class='m-squad1 button2' onclick='checkrow(1,$(this))'>&#10133;</td></tr><tr><td></td><td class='m-squad2 button2' onclick='checkrow(2,$(this))'>&#10133;</td></tr></table>";
+			  return "<span class='closemiddle' onclick='removerow($(this))'>&#xd7;</span>"
+		      },
+		      "sortable":false
+		    },
+		    { "targets":[5],
+		      "render":function() {
+			  return "<button class='m-squad1' onclick='checkrow(1,$(this))'></button><button class='m-squad2' onclick='checkrow(2,$(this))'></button>";
 		      },
 		      "sortable":false
 		    },
@@ -2162,7 +2120,7 @@ $(document).ready(function() {
 				    TEAMS[0].parseJuggler(data,false);
 				    data=TEAMS[0].toJuggler(true);
 				}
-			    return "<pre>"+data+"</pre>";
+			    return data.replace(/\n/g,"<br>");
 			}
 		    }],    
 		"ajax": "data/full4b.json",
@@ -2205,6 +2163,7 @@ $(document).ready(function() {
 });
 var cmd=[];
 var startreplayall=function() {
+    if (REPLAY.length==0) return; 
     cmd=REPLAY.split("_");
     cmd.splice(0,1);
     if (cmd.length==0) return;
@@ -2212,23 +2171,25 @@ var startreplayall=function() {
     ZONE[2].remove();
     $(".nextphase").prop("disabled",true);
     $(".unit").css("cursor","pointer");
-    for (i=0; i<OBSTACLES.length; i++) OBSTACLES[i].g.undrag();
     actionrlock=$.Deferred();
     actionrlock.progress(replayall);
     $("#positiondial").hide();
+    for (var j in squadron) console.log("squadron["+j+"]:"+squadron[j].name);
     replayall();
 }
 var replayall=function() {
     var c=cmd[0].split("-");
+    console.log(cmd[0]);
     cmd.splice(0,1);
     var u=null;
+    var j;
     if (c[0].length>0) {
 	var id=parseInt(c[0],10);
-	for (var j in squadron) if (squadron[j].id==id) break; 
+	for (j in squadron) if (squadron[j].id==id) break; 
 	if (squadron[j].id==id) u=squadron[j];
 	else {
-	    log("cannot find id "+id);
-	    for (var j in squadron) log("squadron["+j+"]="+squadron[j].name);
+	    console.log("cannot find id "+id);
+	    for (j in squadron) log("squadron["+j+"]="+squadron[j].name);
 	}
     } 
     //if (u!=null) log("cmd : "+u.name+" "+c[1]);
@@ -2268,9 +2229,9 @@ var replayall=function() {
 	actionrlock.notify();
 	break;
     case "t": 
-	for (var j in squadron) 
+	for (j in squadron) 
 	    if (squadron[j].id==parseInt(c[2],10)) break;
-	if (squadron[j].id!=parseInt(c[2],10)) log("cannot find target "+c[2]);
+	if (squadron[j].id!=parseInt(c[2],10)) console.log("cannot find target "+c[2]);
 	var t=squadron[j];
 	if (typeof Unit.prototype.removetarget.vanilla=="function") 
 	    Unit.prototype.removetarget.vanilla.call(u,t);
@@ -2278,9 +2239,9 @@ var replayall=function() {
 	actionrlock.notify();
 	break;
     case "T":
-	for (var j in squadron) 
+	for (j in squadron) 
 	    if (squadron[j].id==parseInt(c[2],10)) break;
-	if (squadron[j].id!=parseInt(c[2],10)) log("cannot find target "+c[2]);
+	if (squadron[j].id!=parseInt(c[2],10)) console.log("cannot find target "+c[2]);
 	var t=squadron[j];
 	if (typeof Unit.prototype.addtarget.vanilla=="function") 
 	    Unit.prototype.addtarget.vanilla.call(u,t);
@@ -2300,9 +2261,9 @@ var replayall=function() {
 	break;
     case "f": 		   
 	u.select();
-	for (var j in squadron) 
+	for (j in squadron) 
 	    if (squadron[j].id==parseInt(c[2],10)) break;
-	if (squadron[j].id!=parseInt(c[2],10)) log("cannot find target unit "+c[2]);
+	if (squadron[j].id!=parseInt(c[2],10)) console.log("cannot find target unit "+c[2]);
 	targetunit=squadron[j];
 	u.activeweapon=parseInt(c[3],10);
 	u.playfiresnd();

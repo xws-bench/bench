@@ -1,15 +1,5 @@
 var factions=["REBEL","EMPIRE"];
 var allunits=[];
-function winevent() {
-    return new CustomEvent(
-	"win", {
-	    detail: {
-		time: new Date(),
-	    },
-	    bubbles: true,
-	    cancelable: true
-	});
-}
 
 function Team(team) {
     this.team=team;
@@ -61,15 +51,19 @@ Team.prototype = {
 	this.updatepoints();
     },
     tosquadron:function(s) {
-	var i;
 	var team=this.team;
-	for (i in generics) {
-	    if (generics[i].team==this.team) {
-		u=generics[i];
+	var sortable = [];
+	for (var i in generics) sortable.push([i, generics[i]]);
+	sortable.sort(function(a, b) {return a[0] > b[0]});
+	//for (var i=0; i<sortable.length; i++) 
+	//    log("sortable["+i+"]="+sortable[i][1].name+" "+sortable[i][1].team);
+	for (var i=0; i<sortable.length; i++) {
+	    if (sortable[i][1].team==this.team) {
+		u=sortable[i][1];
 		/* Copy all functions for manual inheritance.  */
-		for (var i in PILOTS[u.pilotid]) {
+		for (var j in PILOTS[u.pilotid]) {
 		    var p=PILOTS[u.pilotid];
-		    if (typeof p[i]=="function") u[i]=p[i];
+		    if (typeof p[j]=="function") u[j]=p[j];
 		}
 		u.tosquadron(s);
 		allunits.push(u);
@@ -153,13 +147,17 @@ Team.prototype = {
     },
     toASCII: function() {
 	var s="";
-	for (var i in generics) {
-	    if (generics[i].team==this.team) {
-		s+=generics[i].toASCII()+";";
+	var sortable = [];
+	for (var i in generics) sortable.push([i, generics[i]])
+	sortable.sort(function(a, b) {return a[0] > b[0]})
+	for (var i=0; i<sortable.length; i++) {
+	    if (sortable[i][1].team==this.team) {
+		s+=sortable[i][1].toASCII()+";";
 	    }
 	}
 	return s;
     },
+   
     toJSON:function() {
 	var s={};
 	var f={REBEL:"rebels",SCUM:"scum",EMPIRE:"empire"};
@@ -168,9 +166,12 @@ Team.prototype = {
 	s.name=this.name;
 	var sq=[];
 	var pts=0;
-	for (var i in generics) {
-	    if (generics[i].team==this.team) {
-		var jp=generics[i].toJSON();
+	var sortable = [];
+	for (var i in generics) sortable.push([i, generics[i]])
+	sortable.sort(function(a, b) {return a[0] > b[0]})
+	for (var i=0; i<sortable.length; i++) {
+	    if (sortable[i][1].team==this.team) {
+		var jp=sortable[i][1].toJSON();
 		pts+=jp.points;
 		sq.push(jp);
 	    }
@@ -186,9 +187,12 @@ Team.prototype = {
     toJuggler:function(translated) {
 	var s="";
 	var f={REBEL:"rebels",SCUM:"scum",EMPIRE:"empire"};
-	for (var i in generics) {
-	    if (generics[i].team==this.team) {
-		s=s+generics[i].toJuggler(translated)+"\n";
+	var sortable = [];
+	for (var i in generics) sortable.push([i, generics[i]])
+	sortable.sort(function(a, b) {return a[0] > b[0]})
+	for (var i=0; i<sortable.length; i++) {
+	    if (sortable[i][1].team==this.team) {
+		s=s+sortable[i][1].toJuggler(translated)+"\n";
 	    }
 	}
 	return s;
@@ -203,7 +207,10 @@ Team.prototype = {
 	};
 	var f=7;
 	var pilots=str.trim().split("\n");
-	for (i in generics) if (generics[i].team==this.team) delete generics[i];
+	var del=[];
+	for (i in generics) { 
+	    if (generics[i].team==this.team) delete generics[i];
+	}
 	for (i=0; i<pilots.length; i++) {
 	    var pstr=pilots[i].split(/\s+\+\s+/);
 	    var lf=0;
