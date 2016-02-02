@@ -121,18 +121,29 @@ var PILOTS = [
         init: function() {
 	    var biggs=this;
 	    Weapon.prototype.wrap_after("getenemiesinrange",this,function(r) {
-		if (r.indexOf(biggs)>-1) r=[biggs];
+		if (r.indexOf(biggs)>-1) {
+		    var p=[];
+		    for (var i=0; i<r.length; i++) {
+			var u=r[i];
+			if (u==biggs||u.getrange(biggs)>1) p.push(u);
+		    }
+		    r=p;
+		}
 		return r;
 	    });
 	    Unit.prototype.wrap_after("getenemiesinrange",this,function(r) {
 		var found=false;
-		var p=[],i;
-		for (i=0; i<this.weapons.length; i++) {
-		    if (r[i].indexOf(biggs)>-1) { p[i]=r[i]; found=true; }
-		    else p[i]=[];
+		var p=[];
+		for (var i=0; i<this.weapons.length; i++) {
+		    p[i]=[];
+		    if (r[i].indexOf(biggs)>-1) {
+			for (var j=0; j<r[i].length; j++) {
+			    var u=r[i][j];
+			    if (u==biggs||u.getrange(biggs)>1) p[i].push(u);
+			}
+		    } else p[i]=r[i];
 		}
-		if (found) return p;
-		return r;
+		return p;
 	    });
 	},
         unique: true,
@@ -917,21 +928,20 @@ var PILOTS = [
         unit: "HWK-290",
         skill: 8,
 	init: function() {
-	    // TODO : add a type of modifier: add a die/dices
-	    var unit=this;
-	    this.addattackmoda(this, function(m,n) {
-		return (unit.stress==0)&&
-			(activeunit.team==unit.team)&&(activeunit!=unit)
-			&&(unit.getrange(activeunit)<=3);
-	    }.bind(this), function(m,n) {
-		var f=unit.rollattackdie(1)[0];
-		unit.addstress();
-		unit.log("+1 attack die");
-		if (f=="focus") return m+FCH_FOCUS;
-		if (f=="hit") return m+FCH_HIT;
-		if (f=="critical") return m+FCH_CRIT;
-		return m;
-	    }.bind(this),true,"hit");
+	    var self=this;
+	    this.addglobalattackadd(this, function(m,n) {
+		return (self.stress==0)&&
+			(activeunit.team==self.team)&&(activeunit!=self)
+			&&(self.getrange(activeunit)<=3);
+	    }, function(m,n) {
+		var f=self.rollattackdie(1)[0];
+		self.addstress();
+		activeunit.log("+1 attack die [%0]",self.name);
+		if (f=="focus") return {m:m+FCH_FOCUS,n:n+1};
+		if (f=="hit") return {m:m+FCH_HIT,n:n+1};
+		if (f=="critical") return {m:m+FCH_CRIT,n:n+1};
+		return {m:m,n:n+1};
+	    },"hit");
 	},
         points: 25,
         upgrades: [ELITE,TURRET,CREW],
@@ -1615,8 +1625,8 @@ var PILOTS = [
 		return this.stress>0; 
 	    }.bind(this),function(m,n) {
 		var f=FCH_focus(m);
+		this.removestresstoken();
 		if (f>0) {
-		    this.removestresstoken();
 		    this.log("%0 %FOCUS% -> %0 %HIT%, -1 %STRESS%",f);
 		    return m-FCH_FOCUS*f+FCH_HIT*f;
 		}
@@ -2642,21 +2652,21 @@ var PILOTS = [
             unit: "TIE Punisher",
             skill: 7,
 	    done:true,
+	    init: function() {
+		this.wrap_after("addtarget",this,function(sh) {
+		    this.log("+%1 %TARGET% / %0",sh.name,2);
+		    this.targeting.push(sh);
+		    sh.istargeted.push(this);
+		    this.movelog("T-"+sh.id);
+		    sh.show();
+		    this.show();
+		});
+	    },
 	    /* TODO: A bit too automatic */
 	    boundtargets: function(sh) {
 		if (this.targeting.indexOf(sh)>-1) return true;
 		for (var i=0; i<this.targeting.length-1; i++) this.removetarget(this.targeting[i]);
 		return false;
-	    },
-	    addtarget: function(sh) {
-		if (this.boundtargets()) return;
-		this.log("+%1 %TARGET% / %0",sh.name,2);
-		this.targeting.push(sh);
-		this.targeting.push(sh);
-		sh.istargeted.push(this);
-		sh.istargeted.push(this);
-		sh.show();
-		this.show();
 	    },
             upgrades: [SYSTEM,TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB,BOMB],
             points: 27
@@ -2866,7 +2876,7 @@ var PILOTS = [
 	   for (var i=0; i<p.length; i++) p[i].removestresstoken();
 	   return Unit.prototype.begincombatphase.call(this);
        },
-       upgrades: [ELITE,TECH],
+       upgrades: [TECH],
        points: 19
    },
    {
@@ -3073,17 +3083,20 @@ var PILOTS = [
 	    var elite=null;
 	    var self=this;
 	    for (i=0; i<this.upgrades.length; i++) {
-		if (this.upgrades[i].type==ELITE&&(typeof this.upgrades[i].action=="function")) 
-		    elite=this.upgrades[i];
+		if (this.upgrades[i].type==ELITE&&(typeof this.upgrades[i].action=="function")){ 
+		    elite=$.extend({}, this.upgrades[i]);
+		    elite.clone=true;
+		    elite.isactive=true;
+		}
 	    }
 	    if (elite==null) return;
 	    this.log("share %0 upgrade",elite.name);
 	    Unit.prototype.wrap_after("getupgactionlist",self,function(l) {
-		if (this.team==self.team&&self!=this
-		    &&this.getrange(self)<=3
-		    &&this.ship.name.match(/.*TIE.*Fighter.*/)) {
+		var p=this.selectnearbyally(3);
+		if (this.ship.name.match(/.*TIE.*Fighter.*/)&&p.indexOf(self)>-1&&elite.candoaction()&&elite.isactive) {
 		    this.log("elite action from %0 available",self.name);
-		    return l.concat({org:self,action:elite.action,type:elite.type.toUpperCase(),name:elite.name});
+		    elite.unit=this;
+		    l.push({org:elite,action:elite.action,type:elite.type.toUpperCase(),name:elite.name});
 		}
 		return l;
 	    });
