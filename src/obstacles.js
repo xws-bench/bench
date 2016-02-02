@@ -14,12 +14,8 @@ function loadrock(s,str) {
 	    coord[i]=[parseInt(ob[0],10),parseInt(ob[1],10),parseInt(ob[2],10)];
 	}
     } else for (i=0; i<6; i++) coord[i]=[0,0,0];
-    for (i=1; i<=6; i++) {
-	(function(i) {
-	Snap.load("data/rock"+i+".svg", function(fragment) {
-	    OBSTACLES.push(new Rock(fragment,coord[i-1]));
-	});
-	})(i)
+    for (i=0; i<6; i++) {
+	OBSTACLES[i]=new Rock(i,coord[i]);
     }
 
 }
@@ -34,40 +30,43 @@ function getid() {
     return id++;
 }
 
-function Rock(fragment,coord) {    
+function Rock(frag,coord) {    
     var k;
     var i=getid();
-    this.g=fragment.select("path");
-    this.g.attr({
-	fill: PATTERN,
-	strokeWidth: 0,
-	stroke: "#F00",
-    });
     this.o=[];
     this.name="Asteroid #"+i;
     this.arraypts=[];
-    for (k=0; k<this.g.getTotalLength(); k+=5) 
-	this.arraypts.push(this.g.getPointAtLength(k));
     this.dragged=false;
     this.tx=coord[0];
     this.ty=coord[1];
     this.alpha=coord[2];
     this.m=(new Snap.Matrix()).translate(coord[0]+PX[i],coord[1]+PY[i]).rotate(coord[2],0,0).scale(0.5,0.5);
-    this.g.drag(this.dragmove.bind(this), 
-		this.dragstart.bind(this),
-		this.dragstop.bind(this));
-    this.path="";
-    this.g.hover(function() {this.g.attr({strokeWidth:4});}.bind(this),
-		 function()  {this.g.attr({strokeWidth:0});}.bind(this));
-    this.g.addClass("unit");
-    var b=this.g.getBBox();
-    this.o=[];
-    for (k=1; k<4; k++) {
-	this.o[k]=s.ellipse(b.x+b.width/2,b.y+b.height/2,200*k+b.width/2,200*k+b.height/2).attr({pointerEvents:"none",display:"none",fill:WHITE,opacity:0.3,strokeWidth:2});
-    }
-    this.g.transform('t '+(-b.width/2)+" "+(-b.height/2));
-    this.getOutlineString();
-    this.show();
+    Snap.load("data/rock"+(frag+1)+".svg",function(fragment) {
+	this.g=fragment.select("path");
+	this.g.attr({
+	    fill: PATTERN,
+	    strokeWidth: 0,
+	    stroke: "#F00",
+	});
+	for (k=0; k<this.g.getTotalLength(); k+=5) 
+	    this.arraypts.push(this.g.getPointAtLength(k));
+	if (REPLAY.length==0) 
+	    this.g.drag(this.dragmove.bind(this), 
+			this.dragstart.bind(this),
+			this.dragstop.bind(this));
+	this.path="";
+	this.g.hover(function() {this.g.attr({strokeWidth:4});}.bind(this),
+		     function()  {this.g.attr({strokeWidth:0});}.bind(this));
+	this.g.addClass("unit");
+	var b=this.g.getBBox();
+	this.o=[];
+	for (k=1; k<4; k++) {
+	    this.o[k]=s.ellipse(b.x+b.width/2,b.y+b.height/2,200*k+b.width/2,200*k+b.height/2).attr({pointerEvents:"none",display:"none",fill:WHITE,opacity:0.3,strokeWidth:2});
+	}
+	this.g.transform('t '+(-b.width/2)+" "+(-b.height/2));
+	this.getOutlineString();
+	this.show();
+    }.bind(this));
 }
 
 Rock.prototype = {

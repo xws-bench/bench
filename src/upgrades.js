@@ -59,9 +59,8 @@ Bomb.prototype = {
     actiondrop: function(n) {
 	this.unit.lastdrop=round;
 	$(".bombs").remove(); 
-	this.drop(this.unit.getbomblocation());
+	this.drop(this.unit.getbomblocation(),n);
 	this.unit.showactivation();
-	this.unit.endaction(n);
     },
     toString: function() {
 	var a,b,d,str="";
@@ -149,7 +148,7 @@ Bomb.prototype = {
 	    )(i);
 	}
     },
-    drop: function(lm) {
+    drop: function(lm,n) {
 	var dropped=this;
 	if (this.ordnance) { 
 	    this.ordnance=false; 
@@ -201,6 +200,7 @@ Bomb.prototype = {
 		}.bind(this));
 	    }
 	    this.unit.bombdropped(this);
+	    this.unit.endaction(n);
 	}.bind(dropped));
     },
     getOutline: function(m) {
@@ -310,10 +310,10 @@ Weapon.prototype = {
 	if (this.unit.checkcollision(sh)) return false;
 	if (typeof this.getrequirements()!="undefined") {
 	    var s="Target";
-	    if (s.match(this.getrequirements())&&this.unit.canusetarget(sh))
+	    if (s.match(this.getrequirements())&&(this.consumes==false||this.unit.canusetarget(sh)))
 		return true;
 	    s="Focus";
-	    if (s.match(this.getrequirements())&&this.unit.canusefocus(sh)) return true;
+	    if (s.match(this.getrequirements())&&(this.consumes==false||this.unit.canusefocus(sh))) return true;
 	    return false;
 	}
 	return true;
@@ -333,9 +333,9 @@ Weapon.prototype = {
 	if (typeof this.getrequirements()!="undefined") {
 	    var s="Target";
 	    var u="Focus";
-	    if (s.match(this.getrequirements())&&this.unit.canusetarget(sh)) 
+	    if (s.match(this.getrequirements())&&this.consumes==true&&this.unit.canusetarget(sh))
 		this.unit.removetarget(sh);
-	    else if (u.match(this.getrequirements())&&this.unit.canusefocus(sh)) 
+	    else if (u.match(this.getrequirements())&&this.consumes==true&&this.unit.canusefocus(sh)) 
 		this.unit.removefocustoken();
 	    this.unit.show();
 	}
@@ -562,6 +562,7 @@ var UPGRADES= [
     {
         name: "Proton Torpedoes",
 	requires: "Target",
+	consumes:true,
         type: TORPEDO,
 	firesnd:"missile",
         points: 4,
@@ -691,7 +692,7 @@ var UPGRADES= [
 		  }).unwrapper("endround");
 		  this.show();
 	      }.bind(this), A[ASTROMECH.toUpperCase()].key, $("<div>").attr({class:"symbols"}));
-	      return sh.activationdial;
+	      return this.activationdial;
 	  });
       },
     },
@@ -703,15 +704,20 @@ var UPGRADES= [
       init: function(sh) {
 	  var self=this;
 	  self.bb=-1;
-	  sh.wrap_after("updateactivationdial",this,function() {
-	      self.unit.addactivationdial(function() { 
-		  return self.bb!=round&&self.isactive&&!self.unit.hasmoved&&self.unit.maneuver>-1&&(self.unit.getmaneuver().difficulty=="GREEN"); 
-	      },function() {
-		  self.bb=round;
-		  self.unit.doaction([self.unit.newaction(self.unit.resolveroll,"ROLL")],self.name+" free roll for green maneuver.");
-	      }, A[ASTROMECH.toUpperCase()].key, $("<div>").attr({class:"symbols"}));
-	      return sh.activationdial;
-	  }.bind(this))
+	  sh.wrap_after("updateactivationdial",this,function(ad) {
+	      if (self.isactive&&self.bb!=round) 
+		  this.addactivationdial(
+		      function() { 
+			  return !this.hasmoved&&this.maneuver>-1&&(this.getmaneuver().difficulty=="GREEN"); 
+		      }.bind(this),
+		      function() {
+			  self.bb=round;
+			  this.doaction([this.newaction(this.resolveroll,"ROLL")],self.name+" free roll for green maneuver.");
+		      }.bind(this), 
+		      A[ASTROMECH.toUpperCase()].key, 
+		      $("<div>").attr({class:"symbols",title:self.name}));
+	      return this.activationdial;
+	  })
       },
     },
     {name:"Integrated Astromech",
@@ -919,6 +925,7 @@ var UPGRADES= [
     {
         name: "Concussion Missiles",
 	requires:"Target",
+	consumes:true,
         type: MISSILE,
 	firesnd:"missile",
         points: 4,
@@ -940,6 +947,7 @@ var UPGRADES= [
         type: MISSILE,
 	firesnd:"missile",
 	requires:"Target",
+	consumes:true,
         points: 4,
         attack: 3,
 	done:true,
@@ -1016,6 +1024,7 @@ var UPGRADES= [
     {
         name: "Homing Missiles",
 	requires:"Target",
+	consumes:false,
         type: MISSILE,
 	firesnd:"missile",
         attack: 4,
@@ -1191,6 +1200,7 @@ var UPGRADES= [
         name: "Assault Missiles",
         type: MISSILE,
 	requires:"Target",
+	consumes:true,
 	firesnd:"missile",
 	done:true,
 	modifydamageassigned: function(ch,t) {
@@ -1378,6 +1388,7 @@ var UPGRADES= [
     {
         name: "Advanced Proton Torpedoes",
 	requires:"Target",
+	consumes:true,
         type: TORPEDO,
 	firesnd:"missile",
         attack: 5,
@@ -1435,6 +1446,7 @@ var UPGRADES= [
 	done:true,
 	firesnd:"falcon_fire",
 	requires:"Focus",
+	consumes:true,
         points: 4,
         attack: 3,
         range: [1,2],
@@ -1692,6 +1704,7 @@ var UPGRADES= [
     {
         name: "Ion Pulse Missiles",
 	requires:"Target",
+	consumes:false,
         type: MISSILE,
 	firesnd:"missile",
 	done:true,
@@ -1798,6 +1811,7 @@ var UPGRADES= [
     {
         name: "Flechette Torpedoes",
 	requires:"Target",
+	consumes:true,
         type: TORPEDO,
 	firesnd:"missile",
 	done:true,
@@ -1980,6 +1994,7 @@ var UPGRADES= [
         type: MISSILE,
 	firesnd:"missile",
 	requires:"Focus",
+	consumes:false,
         points: 3,
         attack: 2,
 	done:true,
@@ -2386,6 +2401,7 @@ var UPGRADES= [
     {
         name: "Ion Torpedoes",
 	requires:"Target",
+	consumes:true,
         type: TORPEDO,
 	firesnd:"missile",
 	done:true,
@@ -2484,8 +2500,8 @@ var UPGRADES= [
 		    }).unwrapper("endactivationphase");
 		    this.show();
 		}.bind(this), A[ILLICIT.toUpperCase()].key,$("<div>").attr({class:"symbols"}));
-		return sh.activationdial;
-	    }.bind(sh));
+		return this.activationdial;
+	    });
 	},
         type: ILLICIT,
         points: 1,
@@ -2685,12 +2701,16 @@ var UPGRADES= [
 	done:true,
         install: function(sh) {
 	    var save=[];
+	    var self=this;
 	    sh.wrap_after("getdial",this,function(gd) {
 		if (save.length==0) {
 		    for (var i=0; i<gd.length; i++) {
 			var d=gd[i].difficulty;
 			var move=gd[i].move;
-			if (move.match(/[A-Z]+3/)) d="GREEN";
+			if (move.match(/[A-Z]+3/)) {
+			    this.log("%0 is green [%1]",move,self.name);
+			    d="GREEN";
+			}
 			save[i]={move:move,difficulty:d};
 		    }
 		}
@@ -2836,10 +2856,10 @@ var UPGRADES= [
 	type:MOD,    
 	done:true,
 	install: function(sh) {
-	    sh.shield++;
+	    sh.shield++; sh.ship.shield++;
 	},
 	uninstall:function(sh) {
-	    sh.shield--;
+	    sh.shield--; sh.ship.shield--;
 	},
         points: 4,
     },
@@ -2882,10 +2902,10 @@ var UPGRADES= [
 	type:MOD,
 	done:true,
         install: function(sh) {
-	    sh.hull++;
+	    sh.hull++; sh.ship.hull++;
 	},     
 	uninstall:function(sh) {
-	    sh.hull--;
+	    sh.hull--; sh.ship.hull--;
 	},
         points: 3,
     },
@@ -3334,7 +3354,7 @@ var UPGRADES= [
 	    done:true,
 	    init: function(sh) {
 		var self=this;
-		sh.wrap_after("preattackroll",this,function(w,t) {
+		sh.wrap_after("begincombatphase",this,function(lock) {
 		    if (self.isactive) {
 			this.donoaction([
 			    {org:self,name:self.name,type:"ILLICIT",action:function(n) {
@@ -3344,6 +3364,7 @@ var UPGRADES= [
 				this.endnoaction(n,"ILLICIT");
 			    }.bind(this)}],"",true);
 		    }
+		    return lock;
 		});
 		sh.addattackmoda(this,function(m,n) {
 		    return self.activated==round&&self.isactive;
@@ -3528,6 +3549,7 @@ var UPGRADES= [
             points: 3,
             attack: 4,
 	    requires:"Target",
+	    consumes:true,
 	    done:true,
 	    posthit: function(t,c,h) {
 		if (t.shield>0) t.log("-1 %SHIELD% [%0]",self.name);
@@ -3641,6 +3663,7 @@ var UPGRADES= [
             type: MISSILE,
             points: 3,
 	    requires:"Target",
+	    consumes:false,
             attack: 3,
             range: [2,2],
 	    done:true,
@@ -3735,6 +3758,7 @@ var UPGRADES= [
 	attack:3,
 	done:true,
 	requires:"Focus",
+	consumes:false,
 	prehit:function(t,c,h) {
 	    var p=this.unit.selectnearbyally(2);
 	    var s="";
