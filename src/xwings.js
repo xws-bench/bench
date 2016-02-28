@@ -3,7 +3,7 @@ var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.8.1";
+var VERSION="v0.8.2";
 var LANG="en";
 var DECLOAK_PHASE=1;
 var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6,XP_PHASE=7;
@@ -19,6 +19,7 @@ var replayid=0;
 var dice=1;
 var ATTACK=[]
 var DEFENSE=[]
+var SEARCHINGSQUAD;
 var FACTIONS={"rebel":"REBEL","empire":"EMPIRE","scum":"SCUM"};
 var SQUADLIST,SQUADBATTLE;
 var COMBATLIST;
@@ -38,7 +39,9 @@ var stype="";
 var REPLAY="";
 var PERMALINK="";
 /*
-
+News:
+Pilots implemented, .Zuckuss, Maranno, Contracted Scout, Tel Trevura, Dengar
+Upgrades implemented, .'Zeb' Orrelios, .4-LOM, Agent Kallus, Guidance Chips, .Hound's Tooth, Juke, .Kanan Jarrus, .R4-B11, R7 Astromech, .Sabine Wren, Tactical Jammer, Targeting Astromech, Targeting Coordinator, TIE/D, TIE/x7, Weapons Engineer, Punishing one, Attani Mindlink, Rage, 'Gonk'
 
     <script src="src/obstacles.js"></script>
     <script src="src/critical.js"></script>
@@ -49,10 +52,13 @@ var PERMALINK="";
     <script src="src/team.js"></script>
     <script src="src/xwings.js"></script>
 
+		 <button onclick='$("#replay")[0].contentWindow.stopreplay();'>Stop</button>
 
 */
 window.callback = function () { alert("called callback");return true; };
-
+window.onerror = function(message, source, lineno, colno, error) {
+    log("<b>ERROR: "+error+"</b>");
+ };
 function center() {
     var bbox=activeunit.g.getBBox();
     var xx=(bbox.x+bbox.width/2);
@@ -73,51 +79,80 @@ function center() {
     VIEWPORT.transform(VIEWPORT.m);
     activeunit.show();
 }
-
-function hitrangetostr(r) {
-    var str="";
-    var i,j,k,h;
-    var wn=[];
-    for (h in squadron) if (squadron[h]==activeunit) break;
-    for (i=1; i<=3; i++) {
-	if (r[i].length>0) {
-	    for (j=0; j<r[i].length; j++) {
-		var k=r[i][j].unit;
-		var sh=squadron[k];
-		str+="<tr>";
-		str+="<td class='tohit'>"+i+"</td>";
-		str+="<td>"+sh.name+"</td>";		
-		for (w=0; w<r[i][j].wp.length; w++) {
-		    var wp=activeunit.weapons[w];
-		    var p=activeunit.evaluatetohit(w,sh);
-		    if (p==undefined) break;
-		    var kill=p.tokill[sh.hull+sh.shield];
-		    if (typeof kill=="undefined") kill=0; else 
-			kill=Math.floor(kill*10000)/100;
-		    // Add type to possible weapons
-		    if (wn.indexOf(wp.type)==-1) wn.push(wp.type);
-		    str+="<td class='probacell' style='background:hsl("+(1.2*(100-p.tohit))+",100%,80%)'";
-		    if (phase==COMBAT_PHASE && skillturn==activeunit.getskill()&&activeunit.canfire()) str+=" onclick='activeunit.incombat=true; activeunit.declareattack("+w+",squadron["+k+"]); activeunit.resolveattack("+w+",squadron["+k+"])'>"; else str+=">";
-		    str+="<div class='reddice'>"+activeunit.getattackstrength(w,sh)+"</div><div class='greendice'>"+sh.getdefensestrength(w,activeunit)+"</div>"
-		    str+="<div>"+p.tohit+"%</div><div><code class='symbols' style='border:0'>d</code>"+p.meanhit+"</div><div><code class='symbols'  style='border:0'>c</code>"+p.meancritical+"</div><div>"+kill+"% kill</div>"
-		    str+="</td>";
-		}   
-		str+="</tr>";
+var AIstats = function(error,options, response) {
+    console.log(error,options,response);
+    var scoreh=0;
+    var scorec=0;
+    var n=0;
+    if (typeof response.rows!="undefined") {
+    	for (var i=1; i<response.rows.length; i++) {
+	    var t=response.rows[i].cellsArray[0].split(" ");
+	    var ts1=t[0].split(":");
+	    var type1=ts1[0];
+	    var score1=ts1[1];
+	    var ts2=t[1].split(":");
+	    var type2=ts2[0];
+	    var score2=ts2[1];
+	    if (type2!=type1) {
+		if (type2=="Human") scoreh+=parseInt(score2,10);
+		else scorec+=parseInt(score2,10);
+		if (type1=="Human") scoreh+=parseInt(score1,10);
+		else scorec+=parseInt(score1,10);
+		n++;
 	    }
 	}
+	if (n>0) log("mean score:"+(Math.floor(scorec/n))+"-"+(Math.floor(scoreh/n)));
     }
-    if (str=="") { str="No unit in range of "+activeunit.name; 
-		   activeunit.istargeting=false; }
-    else {
-	var s="";
-	s="<table><tr><th>Range</th><th>Name</th>";
-	for (i=0; i<wn.length; i++) {
-	    s+="<th style='width:2em;border:0'><div class='"+wn[i]+"' style='width:100px;border:0;background:white;color:black'></div></th>"
-	}
-	str=s+"</tr>"+str+"</table>"
-    }
-    return str;
 }
+var myCallback = function (error, options, response) {
+    if (typeof response.rows!="undefined") {
+	var t=SEARCHINGSQUAD,t1="",s1="";
+	var tt=t.split("\.");
+	for (var i=0; i<tt.length; i++) {
+	    t1+=tt[i].replace(/\*/g," + ").replace(/_/g," ")+"<br>";
+	    s1+=tt[i].replace(/\*/g," + ").replace(/_/g," ")+"\n";
+	}
+	for (var i=1; i<response.rows.length; i++) {
+	    myTemplate(i,response.rows[i].cellsArray,null,null);
+	}
+	stype="";
+	if (LANG!="en") {
+	    TEAMS[0].parseJuggler(s1,false);
+	    t1=TEAMS[0].toJuggler(true).replace(/\n/g,"<br>");
+	}
+	$("#battlingsquad").html(t1);
+	SQUADBATTLE.columns.adjust().draw();
+    }
+};
+
+var myTemplate = function(num,cells,cellarrays,labels) {
+    var s="";
+    var t=cells[0].split(" ");
+    var ts1=t[0].split(":");
+    var type1=ts1[0];
+    var score1=ts1[1];
+    var ts2=t[1].split(":");
+    var type2=ts2[0];
+    var score2=ts2[1];
+    var squad=cells[1];
+    var tt=squad.split("VS");
+    var team1=tt[0].split("\.");
+    var team2=tt[1].split("\.");
+    var t1="",s1="";
+    if (tt[0]==SEARCHINGSQUAD) { var sc=score2,ts=type2; team1=team2; score2=score1; type2=type1; score1=sc; type1=ts; }
+    for (var j=0; j<team1.length-1; j++) {
+	s1+=team1[j].replace(/\*/g," + ").replace(/_/g," ")+"\n";
+	t1+=team1[j].replace(/\*/g," + ").replace(/_/g," ")+"<br>";
+    }
+    if (LANG!="en") {
+	TEAMS[0].parseJuggler(s1,false);
+	t1=TEAMS[0].toJuggler(true).replace(/\n/g,"<br>");
+    }
+    if (type2=="Human") score2="<b>"+score2+"</b>";
+    if (type1=="Human") score1="<b>"+score1+"</b>";
+    SQUADBATTLE.row.add([score2+"-"+score1,"<span onclick='$(\"#replay\").attr(\"src\",\""+cells[2]+"\")'>"+t1+"</span>"]).draw(false);
+}
+
 function formatstring(s) {
     return s.replace(/%HIT%/g,"<code class='hit'></code>")
 	.replace(/%ACTION%/g,"<b>Action:</b>")
@@ -146,19 +181,27 @@ function formatstring(s) {
         .replace(/%SLOOPRIGHT%/g,"<code class='symbols'>3</code>")
         .replace(/%TALONLEFT%/g,"<code class='symbols'>;</code>")
         .replace(/%TALONRIGHT%/g,"<code class='symbols'>:</code>")
+        .replace(/%ASTROMECH%/g,"<code class='symbols'>A</code>")
 	.replace(/%CREW%/g,"<code class='symbols'>W</code>");
 }
 function nextunit(cando, changeturn,changephase,activenext) {
     var i,sk=false,last=0;
     if (skillturn<0||skillturn>12) return changephase();
     for (i=0; i<tabskill[skillturn].length; i++) {
-	if (cando(tabskill[skillturn][i])) { sk=true; last=i; break;} 
+	var u=tabskill[skillturn][i];
+	if (cando(u)&&u.isdocked!=true) { sk=true; last=i; break;} 
     };
     if (!sk) {
-	do changeturn(tabskill);
-	while (skillturn>=0 && skillturn<=12&& tabskill[skillturn].length==0);
+	do {
+	    changeturn(tabskill);
+	    last=0;
+	    if (skillturn>=0 && skillturn<=12) {
+		while (last<tabskill[skillturn].length&&tabskill[skillturn][last].isdocked==true) last++;
+		if (last==tabskill[skillturn].length) last=-1;
+	    }
+	} while (skillturn>=0 && skillturn<=12 && last==-1);
     } 
-    if (skillturn<0||skillturn>12) return changephase();
+    if (skillturn<0||skillturn>12||last==-1) return changephase();
     active=last; 
     tabskill[skillturn][last].select();
     activenext();
@@ -171,7 +214,7 @@ function nextcombat() {
 	     function(list) { 
 		 var dead=false;
 		 if (skillturn>=0) skillturn--;
-		 for (i=0; i<list[skillturn+1].length; i++) {
+		 for (var i=0; i<list[skillturn+1].length; i++) {
 		     var u=list[skillturn+1][i];
 		     if (u.canbedestroyed(skillturn))
 			 if (u.checkdead()) dead=true;
@@ -233,7 +276,7 @@ function getattackdice() {
     return $(".focusreddice").length+$(".criticalreddice").length+$(".hitreddice").length+$(".blankreddice").length;
 }
 function getdefensedice() {
-    return $(".focusgreendice").length+$(".blankgreendice").length+$("evadegreendice").length; 
+    return $(".focusgreendice").length+$(".blankgreendice").length+$(".evadegreendice").length; 
 }
 function displaycombatdial() {
     $("#attackdial").empty();
@@ -270,17 +313,42 @@ function displayattackroll(m,n) {
     $(".criticalreddice").click(change);
 }
 function displayattacktokens(u,f) {
+    $("#atokens").empty();
+    var dm=targetunit.getresultmodifiers(u.ar,u.ad,DEFENSE_M,ATTACK_M);
+    if (dm.length>0) {
+	$("#atokens").append(dm);
+	$("#atokens").append($("<button>").addClass("m-done").click(function() {
+	    displayattacktokens2(u,f);
+	}))
+    } else displayattacktokens2(u,f);
+}
+function displayattacktokens2(u,f) {
     if (typeof f!="function") f=u.lastaf;
     u.lastaf=f;
-    $("#atokens").html(u.getattackrerolltokens()+u.getattackmodtokens(u.ar,u.da));
-    $("#atokens").append($("<button>").addClass("m-done").click(function() {
-	$("#atokens").empty();
-	f();}));
+    $("#atokens").empty();
+    var am=u.getresultmodifiers(u.ar,u.da,ATTACK_M,ATTACK_M);
+    if (am.length>0) {
+	$("#atokens").append(am);
+	$("#atokens").append($("<button>").addClass("m-done").click(function() {
+	    $("#atokens").empty();
+	    f();}.bind(u)));
+    } else f();
 }
 function displaydefensetokens(u,f) {
+    $("#dtokens").empty();
+    var dm=activeunit.getresultmodifiers(u.ar,u.ad,ATTACK_M,DEFENSE_M);
+    if (dm.length>0) {
+	$("#dtokens").append(dm);
+	$("#dtokens").append($("<button>").addClass("m-done").click(function() {
+	    displaydefensetokens2(u,f);
+	}))
+    } else displaydefensetokens2(u,f);
+}
+function displaydefensetokens2(u,f) {
     if (typeof f!="function") f=u.lastdf;
     u.lastdf=f;
-    $("#dtokens").html(u.getdefensererolltokens()+u.getdefensemodtokens(u.dr,u.dd));
+    $("#dtokens").empty();
+    $("#dtokens").append(u.getresultmodifiers(u.dr,u.dd,DEFENSE_M,DEFENSE_M));
     $("#dtokens").append($("<button>").addClass("m-fire").click(function() {
 	$("#combatdial").hide();
 	f();}.bind(u)));
@@ -312,29 +380,41 @@ var FCH_HIT=1;
 var FCH_FOCUS=100;
 var FCH_CRIT=10;
 
-function addroll(f,n,id) {
+function addroll(f,id,to) {
+    if (to==DEFENSE_M) return addrolld(f,id);
+    var n=getattackdice();
     var foc=$(".focusreddice").length;
     var h=$(".hitreddice").length;
     var c=$(".criticalreddice").length;
     var t=f(100*foc+10*c+h,n);
     displayattackroll(t.m,t.n);
-    $("#moda"+id).remove();
+    $("#atokens #mod"+id).remove();
 }
-function addrolld(f,n,id) {
+function addrolld(f,id) {
+    var n=getdefensedice();
     var foc=$(".focusgreendice").length;
     var e=$(".evadegreendice").length;
     var t=f(10*foc+e,n);
     displaydefenseroll(t.m,t.n);
-    $("#modd"+id).remove();
+    $("#dtokens #mod"+id).remove();
 }
-function modroll(f,id) {
+function modroll(f,id,to) {
+    if (to==DEFENSE_M) return modrolld(f,id);
     var n=getattackdice();
     var foc=$(".focusreddice").length;
     var h=$(".hitreddice").length;
     var c=$(".criticalreddice").length;
     var r=f(100*foc+10*c+h,n);
     displayattackroll(r,n);
-    $("#moda"+id).remove();
+    $("#atokens #mod"+id).remove();
+}
+function modrolld(f,id) {
+    var n=getdefensedice();
+    var foc=$(".focusgreendice").length;
+    var e=$(".evadegreendice").length;
+    var r=f(10*foc+e,n);
+    displaydefenseroll(r,n);
+    $("#dtokens #mod"+id).remove();
 }
 function displaydefenseroll(r,n) {
     var i,j=0;
@@ -358,61 +438,55 @@ function displaydefenseroll(r,n) {
     $(".evadegreendice").click(change);
     $(".blankgreendice").click(change);
 }
-function modrolld(f,id) {
-    var n=getdefensedice();
-    var foc=$(".focusgreendice").length;
-    var e=$(".evadegreendice").length;
-    var r=f(10*foc+e,n);
-    displaydefenseroll(r,n);
-    $("#modd"+id).remove();
-}
-function reroll(n,forattack,type,id) {
-    var i;
-    var l;
-    var m=0;
+
+function reroll(n,forattack,a,id) {
+    var i,l,m=0;
     var attackroll=["blank","focus","hit","critical"];
     var defenseroll=["blank","focus","evade"];
+    if (typeof a.f=="function") a.f();
     if (forattack) {
 	for (i=0; i<4; i++) {
-	    var t=type;
-	    type=Math.floor(type/10);
 	    // Do not reroll focus
 	    if (activeunit.canusefocus()&&activeunit.candofocus()&&i==1) continue;
-	    if (t%10>=1) {
+	    if (a.dice.indexOf(attackroll[i])>-1) {
 		l=$("."+attackroll[i]+"reddice:not([noreroll])");
 		if (l.length<n) {
 		    l.remove();
-		    m+=l.length;n-=l.length;
+		    m+=l.length;
+		    n-=l.length;
 		} else {
 		    $("."+attackroll[i]+"reddice:lt("+n+"):not([noreroll])").remove();
-		    m+=n;n=0;
+		    m+=n;
+		    n=0;
+		    break;
 		}
 	    }
 	}
 	//console.log("rerolling "+m+" dices");
-	$("#rerolla"+id).remove();
+	$("#atokens #reroll"+id).remove();
 	var r=activeunit.rollattackdie(m);
 	for (i=0; i<m; i++) {
 	    $("#attack").prepend("<td noreroll='true' class='"+r[i]+"reddice'></td>");
 	}
     } else { 
 	for (i=0; i<3; i++) {
-	    var t=type;
-	    type=Math.floor(type/10);
 	    // Do not reroll focus
 	    if (targetunit.canusefocus()&&targetunit.candofocus()&&i==1) continue;
-	    if (t%10>=1) {
+	    if (a.dice.indexOf(defenseroll[i])>-1) {
 		l=$("."+defenseroll[i]+"greendice:not([noreroll])");
 		if (l.length<n) {
 		    l.remove();
-		    m+=l.length;n-=l.length;
+		    m+=l.length;
+		    n-=l.length;
 		} else {
 		    $("."+attackroll[i]+"greendice:lt("+n+"):not([noreroll])").remove();
-		    m+=n;n=0;
+		    m+=n;
+		    n=0;
+		    break;
 		}
 	    }
 	}
-	$("#rerolld"+id).remove();
+	$("#dtokens #reroll"+id).remove();
 	activeunit.defenseroll(m).done(function(r) {
 	    var i;
 	    for (i=0; i<FE_evade(r.roll); i++)
@@ -445,7 +519,7 @@ function enablenextphase() {
 	break;
     case PLANNING_PHASE:
 	for (i in squadron)
-	    if (squadron[i].maneuver<0&&!squadron[i].isdead) { ready=false; break; }
+	    if (squadron[i].maneuver<0&&!squadron[i].isdocked) { ready=false; break; }
 	if (ready&&$(".nextphase").prop("disabled")) {
 	    log(UI_translation["All units have planned a maneuver, ready to end phase"]);
 	}
@@ -459,7 +533,7 @@ function enablenextphase() {
 	    barrier(nextactivation);
 	} else {
 	    for (i in squadron)
-		if (squadron[i].maneuver>-1&&!squadron[i].isdead) { ready=false; break; }
+		if (squadron[i].maneuver>-1&&!squadron[i].isdocked) { ready=false; break; }
 	    if (ready&&$(".nextphase").prop("disabled")) log(UI_translation["All units have been activated, ready to end phase"]);
 	}
 	break;	
@@ -561,13 +635,15 @@ function win() {
 }
 document.addEventListener("win",win,false);
 
-function experience() {
-    phase=XP_PHASE;
-    $(".mainbutton").hide();
-    $("#selectphase").hide();
-    $(".nextphase").prop("disabled",false);
-    $("#experience").show();
-    displaycombats();
+function battlelog(t) {
+    var row=SQUADLIST.row(t.parents("tr"));
+    var data = row.data()[3];
+    if (LANG!="en") {
+	TEAMS[0].parseJuggler(data,true);
+	data=TEAMS[0].toJuggler(false);
+    }
+    displaycombats(data);
+    window.location="#battlelog";
 }
 
 function createsquad() {
@@ -590,134 +666,44 @@ function switchdialimg(b) {
 	$(".shipimg").css("display","table-cell");
     }
 }
-function displaycombats() {
-    if (phase !=XP_PHASE) return;
-    $("#combatlist").html("<thead><tr><th></th><th></th><th><span class='m-ncombats'></span></th><th><span class='m-squad1'></span></th><th><span class='m-squad2'><span></th></tr></thead>");
-
-    COMBATLIST=$("#combatlist").DataTable({
-	"language": {
-	    "search":UI_translation["Search"],
-	    "lengthMenu": UI_translation["Display _MENU_ records per page"],
-	    "zeroRecords": UI_translation["Nothing found - sorry"],
-	    "info": UI_translation["Showing page _PAGE_ of _PAGES_"],
-	    "infoEmpty": UI_translation["No records available"],
-	    "infoFiltered": UI_translation["(filtered from _MAX_ total records)"]
-	},
-	"autoWidth": false,
-	"columnDefs": [
-	    { "targets": [0],
-	      "render":function() {
-		  return "<button onclick='viewsquadtypecombat($(this))'>View</button>";
-	      },
-	      "sortable":false
-	    },
-	    {
-		"targets": [ 1 ],
-		"visible": false,
-		"searchable": false
-	    },
-
-	],    
-	"deferRender": true,
-	"ordering":true,
-	"info":true,
-	"paging":true});
+var mySpreadsheets=[
+    "https://docs.google.com/spreadsheets/d/1Xofg3BpKQhttm2EllgSXi-AjDrcdZPgOKkdTXJLovPE/edit#gid=0",
+    "https://docs.google.com/spreadsheets/d/1NseMuMal1BMWexfWGGoN5egLDALk1eaxQ8ke-x4zCbQ/edit?#gid=0",
+    "https://docs.google.com/spreadsheets/d/1X0qrjgF2JpsQMpzF-uwuzkinxWvup2Z2LS6pApydVPM/edit?#gid=0",
+    "https://docs.google.com/spreadsheets/d/128D4m1GBOQw3vCXe5hY75XQXvyjSsOCBX79oyJ213OA/edit?#gid=0",
+];
+function displayAIperformance() {
+    for (var i=0; i<mySpreadsheets.length; i++) {
+	$('#squadbattlediv').sheetrock({
+	    url: mySpreadsheets[i],
+	    query:"select B",
+	    callback:AIstats,
+	    rowTemplate:function () { return "";},
+	    labels:["Score"]
+	});
+    }   
+}
+function displaycombats(t) {
+    t=t.replace(/\n/g,".");
+    t=t.replace(/ \+ /g,"*");
+    //t=t.replace(/-/g,"\\-");
+    t=t.replace(/ /g,"_");
     $("#replay").attr("src","");
 
-    $("#squadbattle").html("<thead><tr><th></th><th></th><th><span class='m-views'></span></th><th><span class='m-score'></span></th><th><span class='m-squad1'></span></th><th><span class='m-squad2'></span></th></tr></thead>");
+    //console.log("asking for "+t);
+    if (t.slice(-1)!=".") t=t+".";
+    SEARCHINGSQUAD=t;
 
-    SQUADBATTLE=$("#squadbattle").DataTable({
-	"language": {
-	    "search":UI_translation["Search"],
-	    "lengthMenu": UI_translation["Display _MENU_ records per page"],
-	    "zeroRecords": UI_translation["Nothing found - sorry"],
-	    "info": UI_translation["Showing page _PAGE_ of _PAGES_"],
-	    "infoEmpty": UI_translation["No records available"],
-	    "infoFiltered": UI_translation["(filtered from _MAX_ total records)"]
-	},
-	"autoWidth": false,
-	"columnDefs": [
-	    { "targets": [0],
-	      "render":function() {
-		  return "<button onclick='viewcombat($(this),false)'>View</button><button onclick='viewcombat($(this),true)'>Full screen</button>";
-	      },
-	      "sortable":false
-	    },
-	    { "targets":[2],
-	      "sortable":true,
-	      "render": function(data, type,row) {
-		  var link=row[1];
-		  var id=link.replace(/^.*\//,"");
-		  var clicks="https://api-ssl.bitly.com/v3/link/clicks?access_token=ceb626e1d1831b8830f707af14556fc4e4e1cb4c&link="+encodeURI(link);
-		  $.when($.ajax(clicks)).done(function(result1) {
-		      $("#clicks"+id).html(result1.data.link_clicks);
-		  });
-		  return "<span class='clicks' id='clicks"+id+"'></span>";
-	      },
-	    },
-	    {   "targets":[4,5],
-		"width":"40%"
-	    }, 
-	    {
-		"targets": [ 1 ],
-		"visible": false,
-		"searchable": false
-	    },
-
-	],  
-	"scrollY": "300px",
-        "scrollCollapse": true,
-	"deferRender": true,
-	"info":false,
-	"paging":false});
-
-   $.ajaxSetup({beforeSend: function(xhr){
-	if (xhr.overrideMimeType)
-	    xhr.overrideMimeType("text/plain");
-    }});
-    var d=new Date();
-    $.ajax("https://api.github.com/search/issues?q=repo:xws-bench/battles&per_page=300",{success:function(data) {
-	var json=$.parseJSON(data);
-	for (var i in json.items) {
-	    var t=json.items[i].title.split(" ");
-	    var ts1=t[0].split(":");
-	    var type1=ts1[0];
-	    var score1=ts1[1];
-	    var ts2=t[1].split(":");
-	    var type2=ts2[0];
-	    var score2=ts2[1];
-	    
-	    var b=json.items[i].body.split("http://");
-	    var tinyurl="http://"+b[1].split("<br>")[0];
-	    var tt=b[0].split("VS");
-	    var team1=tt[0].split("\.");
-	    var team2=tt[1].split("\.");
-	    var s1="",s2="",t1="",t2="";
-	    for (var j=0; j<team1.length-1; j++) {
-		s1+=team1[j].replace(/\*.*/g,"").replace(/_/g," ")+", ";
-		t1+=team1[j].replace(/\*/g," + ").replace(/_/g," ")+"<br>";
-	    }
-	    for (var j=0; j<team2.length-1; j++) {
-		s2+=team2[j].replace(/\*.*/g,"").replace(/_/g," ")+", ";
-		t2+=team2[j].replace(/\*/g," + ").replace(/_/g," ")+"<br>";
-	    }
-	    s1=s1.replace(/, $/,"");
-	    s2=s2.replace(/, $/,"");
-	    if (typeof combatpilots[s1+"|"+s2]=="undefined") {
-		combatpilots[s1+"|"+s2]=[];
-	    }
-	    combatpilots[s1+"|"+s2].push({t1:t1,type1:type1,score1:score1,t2:t2,score2:score2,type2:type2,url:tinyurl});
-	}
-	for (var i in combatpilots) {
-	    var teams=i.split("|");
-	    addrowcombat(combatpilots[i][0].url,teams[0],teams[1],combatpilots[i].length);
-	}
-    }});
-
-   $.ajaxSetup({beforeSend: function(xhr){
-	if (xhr.overrideMimeType)
-	    xhr.overrideMimeType("application/json");
-    }}); 
+    SQUADBATTLE.clear();
+    for (var i=0; i<mySpreadsheets.length; i++) {
+	$('#squadbattlediv').sheetrock({
+	    url: mySpreadsheets[i],
+	    query:"select B,C,D where C contains '"+t+"'",
+	    callback:myCallback,
+	    rowTemplate:function () { return "";},
+	    labels:["Score","Squadlist","URL"]
+	});
+    }   
 }
 function displayfactionunits() {
     var count=0;
@@ -864,7 +850,7 @@ function addupgradeaddhandler(u) {
 	var num=e.currentTarget./*parentElement.*/getAttribute("num");
 	var p=this.getupgradelist(org);
 	$("#unit"+this.id+" .upglist").empty();
-	$("#unit"+this.id+" .upglist").append("<tr><td><button>+</button></td><td class='m-none'></td><td></td><td></td></tr>");
+	$("#unit"+this.id+" .upglist").append("<tr><td><button>+</button></td><td><span class='m-none'></span></td><td></td><td></td></tr>");
 	$("#unit"+this.id+" .upglist ").click(function() {
 	    $("#unit"+this.id+" .upglist").empty();
 	}.bind(this));
@@ -916,17 +902,16 @@ function addunit(n) {
     $("#unit"+u.id+" .duplicate").click(function() {
 	var data=$(this).attr("data");
 	var u=generics["u"+data];
+	var self=addunit(u.pilotid);
 	$("#unit"+data+" .upg span[data]").each(function() {
 	    var d=$(this).attr("data");
-	    if (UPGRADES[d].unique==true) removeunique(UPGRADES[d].name);
+	    var num=$(this).attr("num");
+	    if (UPGRADES[d].unique!=true) addupgrade(self,d,num);
 	});
-	if (PILOTS[u.pilotid].unique==true) removeunique(u.name);
-	$("#unit"+data).remove();
-	delete generics["u"+data];
-	currentteam.updatepoints();
     });
     currentteam.updatepoints();
     addupgradeaddhandler(u);
+    return u;
 }
 function addupgrade(self,data,num) {
     $("#unit"+self.id+" .upglist").empty();
@@ -938,8 +923,11 @@ function addupgrade(self,data,num) {
     var v=text+(UPGRADES[data].type==CREW?"(Crew)":"");
     if (typeof UPGRADE_translation[v]!="undefined"&&typeof UPGRADE_translation[v].name!="undefined") text=UPGRADE_translation[v].name.replace(/\(Crew\)/g,"").replace(/\'/g,"");
     else text=text.replace(/\'/g,"");
-
-    $("#unit"+self.id+" .upg").append("<span data="+data+" num="+num+"><code class='upgrades "+UPGRADES[data].type+"'></code>"+text+" (<span class='pts'>"+(UPGRADES[data].points+self.upgbonus[UPGRADES[data].type])+"</span>)</span>");
+    var org=UPGRADES[data];
+    if (typeof self.upgbonus[org.type]=="undefined") self.upgbonus[org.type]=0;
+    var pts=org.points+self.upgbonus[org.type];
+    if (pts<0) pts=0;
+    $("#unit"+self.id+" .upg").append("<span data="+data+" num="+num+"><code class='upgrades "+UPGRADES[data].type+"'></code>"+text+" (<span class='pts'>"+pts+"</span>)</span>");
     self.upg[num]=data;
     if (typeof UPGRADES[data].install!="undefined") UPGRADES[data].install(self);
     Upgrade.prototype.install.call(UPGRADES[data],self);
@@ -991,14 +979,14 @@ function addrow(team,name,pts,faction,jug) {
     enablenextphase();
     var n=faction.toUpperCase();
     if (typeof localStorage[name]!="undefined")
-	SQUADLIST.row.add(["",n,""+pts,jug,name,""]).draw(false);
+	SQUADLIST.row.add(["",n,""+pts,jug,name,"",""]).draw(false);
 }
-function addrowcombat(link,team1,team2,n) {
+//function addrowcombat(link,team1,team2,n) {
     //var clicks="https://api-ssl.bitly.com/v3/link/clicks?access_token=ceb626e1d1831b8830f707af14556fc4e4e1cb4c&link="+encodeURI(link);
     //$.when($.ajax(clicks)).done(function(result1) {
-    COMBATLIST.row.add(["",link,n,team1,team2]).draw(false);
+//    COMBATLIST.row.add(["",link,n,team1,team2]).draw(false);
     //});
-}
+//}
 function makeGrid(points1,points2){    
     var dataLength = points1.length;
     var allData = points1.concat(points2);
@@ -1091,7 +1079,6 @@ function makeGrid(points1,points2){
 function endselection() {
     var team;
     $("#creation").hide();
-    $("#experience").hide();
     $("#selectphase").show();
     currentteam.name="SQUAD."+currentteam.toASCII();
     currentteam.toJSON();// Just for points
@@ -1106,24 +1093,7 @@ function removerow(t) {
     delete localStorage[data];
     row.remove().draw(false);
 }
-function viewsquadtypecombat(t) {
-    var row=COMBATLIST.row(t.parents("tr"));
-    var team1=row.data()[3];
-    var team2=row.data()[4];
-    SQUADBATTLE.clear();
-    for (var i in combatpilots[team1+"|"+team2]) {
-	var cp=combatpilots[team1+"|"+team2][i];
 
-	SQUADBATTLE.row.add(["",cp.url,0,cp.score1+"-"+cp.score2,"<b>"+cp.type1+"</b><br>"+cp.t1,"<b>"+cp.type2+"</b><br>"+cp.t2]).draw(false);
-    }; 
-    var table = $('#squadbattle').DataTable();
-    table.columns.adjust().draw();   
-}
-function viewcombat(t,fullscreen) {
-    var row=SQUADBATTLE.row(t.parents("tr"));
-    if (!fullscreen) $("#replay").attr("src",row.data()[1]);
-    else window.location=row.data()[1];
-}
 function checkrow(n,t) {
    var row=SQUADLIST.row(t.parents("tr"));
     var data = row.data()[3];
@@ -1140,6 +1110,7 @@ function importsquad(t) {
 function startcombat() {
 }
 function filltabskill() {
+    var i;
     tabskill=[];
     for (i=0; i<=12; i++) tabskill[i]=[];
     for (i in squadron) tabskill[squadron[i].getskill()].push(squadron[i]);
@@ -1168,12 +1139,11 @@ function nextphase() {
 	$("#game").show();
 	$("#selectphase").hide();
 	$("#creation").hide();
-	$("#experience").hide();
 	$("#rightpanel").show();
 	$("#leftpanel").show();
-	if ($("input[name='player1']:checked").val()=="human") 
+	if ($("#player1 option:checked").val()=="human") 
 	    TEAMS[1].isia=false; else TEAMS[1].isia=true;
-	if ($("input[name='player2']:checked").val()=="human") 
+	if ($("#player2 option:checked").val()=="human") 
 	    TEAMS[2].isia=false; else TEAMS[2].isia=true;
  	break;
     case CREATION_PHASE:
@@ -1229,8 +1199,8 @@ function nextphase() {
 	break;
     }
     phase=(phase==COMBAT_PHASE)?PLANNING_PHASE:phase+1;
- 
-    if (phase<3) $("#phase").html(UI_translation["phase"+phase]);
+    if (phase==1) $("#phase").empty();
+    else if (phase<3) $("#phase").html(UI_translation["phase"+phase]);
     else $("#phase").html(UI_translation["turn #"]+round+" "+UI_translation["phase"+phase]);
     $("#combatdial").hide();
     if (phase>SELECT_PHASE) for (i in squadron) {squadron[i].unselect();}
@@ -1249,7 +1219,6 @@ function nextphase() {
 	$("#game").hide();
 	$("#selectphase").show();
 	$("#creation").hide();
-	$("#experience").hide();
 	currentteam.setfaction("REBEL");
 	$(".nextphase").prop("disabled",true);
 	//window.location="#creation";
@@ -1371,7 +1340,11 @@ function nextphase() {
 	jwerty.key("shift+3", function() { if (activeunit.iscloaked) {activeunit.iscloaked=false;activeunit.agility-=2;activeunit.show();}});
 	jwerty.key("shift+4", function() { if (activeunit.stress>0) activeunit.stress--;activeunit.show();});
 	jwerty.key("shift+5", function() { if (activeunit.ionized>0) activeunit.ionized--;activeunit.show();});
-	jwerty.key("f",function() { activeunit.doattack(true);});
+	jwerty.key("f",function() { 
+	    var s=""; 
+	    for(i in activeunit.actionsdone) s+=activeunit.actionsdone[i]+" ";
+	    activeunit.log("actions done:"+s);
+	});
 	jwerty.key("d",function() { activeunit.resolvehit(1);});
 	jwerty.key("c",function() { activeunit.resolvecritical(1);});
 	jwerty.key("shift+d",function() { 
@@ -1394,14 +1367,12 @@ function nextphase() {
 	actionr = [$.Deferred().resolve()];
 	/* For phase */
 	actionrlock=$.Deferred().resolve();
-	//$(".permalink").hide();
 	log("<div>["+UI_translation["turn #"]+round+"]"+UI_translation["phase"+phase]+"</div>");
 	$(".nextphase").prop("disabled",true);
 	$("#maneuverdial").show();
 	skillturn=0;
 	filltabskill();
 	for (i in squadron) {
-	    //squadron[i].evaluatepositions(false,false);
 	    squadron[i].newm=squadron[i].m;
 	    squadron[i].beginplanningphase().progress(nextplanning);
 	}
@@ -1414,7 +1385,6 @@ function nextphase() {
 	for (i in squadron) squadron[i].beginactivationphase().done(nextdecloak);
 	
 	filltabskill();
-	//subphase=ACTIVATION_PHASE;
 	subphase=DECLOAK_PHASE;
 	skillturn=0;
 	barrier(nextdecloak);
@@ -1424,7 +1394,6 @@ function nextphase() {
 	$("#attackdial").show();
 	skillturn=12;
 	for (i in squadron) squadron[i].begincombatphase().done(nextcombat);
-	
 	barrier(nextcombat);
 	break;
     }
@@ -1463,10 +1432,10 @@ function history_toASCII() {
 	str+=HISTORY[i].s+"_"+HISTORY[i].id+";"
     return str;
 }
-function select(name) {
+function select(id) {
     var i;
     for (i in squadron) {
-	if (squadron[i].id==name) break;
+	if (squadron[i].id==id) break;
     }
     squadron[i].select();
     $("#"+u.id).attr({color:"black",background:"white"});
@@ -2002,11 +1971,6 @@ $(document).ready(function() {
 		    });
 	}
 
-	jwerty.key("a",function() {
-	    theta += increment * -1;
-            $("#carousel").css("transform","rotateY(" + theta + "deg)");
-	});
-	jwerty.key("r",function() { log(saverock()); })
 
 
 	var mc= new Hammer(document.getElementById('svgout'));
@@ -2033,6 +1997,48 @@ $(document).ready(function() {
 	});
 	$("aside").on("scroll touchmove touchstart mousewheel", scrolloverflow);
 
+    $("#squadbattle").html("<thead><tr><th><span class='m-score'></span></th><th><span class='m-opponent'></span></th></tr></thead>");
+    SQUADBATTLE=$("#squadbattle").DataTable({
+	"language": {
+	    "search":UI_translation["Search"],
+	    "lengthMenu": UI_translation["Display _MENU_ records per page"],
+	    "zeroRecords": UI_translation["Nothing found - sorry"],
+	    "info": UI_translation["Showing page _PAGE_ of _PAGES_"],
+	    "infoEmpty": UI_translation["No records available"],
+	    "infoFiltered": UI_translation["(filtered from _MAX_ total records)"]
+	},
+	"autoWidth": true,
+	"scrollY": "20em",
+	"scrollX":true,
+	"scrollCollapse": true,
+	"ordering":true,
+	"processing":true,
+	"info":true,
+	"paging":         true});
+
+	$('#squadbattle tbody').on( 'click', 'tr', function () {
+            if ( $(this).hasClass('selected') ) {
+		$(this).removeClass('selected');
+            }
+            else {
+		SQUADBATTLE.$('tr.selected').removeClass('selected');
+		$(this).addClass('selected');
+            }
+	} );
+	$("#player1").html("<option selected value='human'>"+UI_translation["human"]+"</option>");
+	$("#player1").append("<option value='computer'>"+UI_translation["computer"]+"</option>");
+	$("#player2").html("<option selected value='human'>"+UI_translation["human"]+"</option>");
+	$("#player2").append("<option value='computer'>"+UI_translation["computer"]+"</option>");
+	//jwerty.key("shift+i", displayAIperformance);
+	//jwerty.key("shift+i", TogetherJS);
+/*
+TogetherJSConfig_on_ready = function () {
+    TogetherJS.running=true;
+      $("#togetherjs-dock").removeClass("togetherjs-dock-right");
+      $("#togetherjs-dock").addClass("togetherjs-dock-top").css({top:"-15px",background:"rgba(0,0,0,0)",border:"0px",width:"20em"}).css("box-shadow","none");
+
+};*/ //,3000);
+
 	var arg=LZString.decompressFromEncodedURIComponent(decodeURI(window.location.search.substr(1)));
 	var args=[];
 	if (arg!=null) args= arg.split('&');
@@ -2046,13 +2052,12 @@ $(document).ready(function() {
 	    TEAMS[2].toJSON(); // Just for points
 	    TEAMS[1].isia=false;
 	    TEAMS[2].isia=false;
-	    if (args[3]=="true") { $("#p12").prop("checked",true); TEAMS[1].isia=true; }
-	    else $("#p11").prop("checked",true);
-	    if (args[4]=="true") { $("#p22").prop("checked",true); TEAMS[2].isia=true; }
-	    else $("#p21").prop("checked",true);
+	    if (args[3]=="true") { $("#player1 option[value='computer']").prop("selected",true); TEAMS[1].isia=true;}
+	    else $("#player1 option[value='human']").prop("selected",true);
+	    if (args[4]=="true") { $("#player2 option[value='computer']").prop("selected",true); TEAMS[2].isia=true; }
+	    else $("#player2 option[value='human']").prop("selected",true);
 	    SETUP=SETUPS[args[5]+" Map"];
 	    phase=SELECT_PHASE;
-
 	    if (args.length>6&args[6]!="") { REPLAY=args[6]; }
 	    PERMALINK=LZString.compressToEncodedURIComponent(TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock()+"&"+TEAMS[1].isia+"&"+TEAMS[2].isia+"&"+args[5]);
 	    return nextphase();
@@ -2068,14 +2073,13 @@ $(document).ready(function() {
 	    SETUP = SETUPS["Classic Map"];
 	    changesetup();
 
-	    $("#squadlist").html("<thead><tr><th></th><th>"+UI_translation["type"]+"</th><th><span class='m-points'></span></th><th><span class='m-units'></span></th><th></th><th></th></tr></thead>");
+	    $("#squadlist").html("<thead><tr><th></th><th>"+UI_translation["type"]+"</th><th><span class='m-points'></span></th><th><span class='m-units'></span></th><th></th><th></th><th></th></tr></thead>");
 	    $.fn.dataTable.ext.search.push(
 		function( settings, data, dataIndex ) {
 		    return data[1].search(stype)>-1;
 		}
 	    );
 
-	    jwerty.key("v",experience);
 	    SQUADLIST=$("#squadlist").DataTable({
 		"language": {
 		    "search":UI_translation["Search"],
@@ -2089,13 +2093,20 @@ $(document).ready(function() {
 		"columnDefs": [
 		    { "targets": [0],
 		      "render":function() {
-			  return "<span class='closemiddle' onclick='removerow($(this))'>&#xd7;</span>"
+			  return "<span class='closemiddle' onclick='removerow($(this))'>&times;</span> "
+		      },
+		      "sortable":false
+		    },
+		    { "targets":[6],
+		      "width":"2em",
+		      "render":function() {
+			  return "<span class='squadmiddle' onclick='checkrow(1,$(this))'>1</span>&nbsp;<span class='squadmiddle right' onclick='checkrow(2,$(this))'>2</span>";
 		      },
 		      "sortable":false
 		    },
 		    { "targets":[5],
 		      "render":function() {
-			  return "<button class='m-squad1' onclick='checkrow(1,$(this))'></button><button class='m-squad2' onclick='checkrow(2,$(this))'></button>";
+			  return "<img class='logmiddle' src='css/book.svg' onclick='battlelog($(this));'>";
 		      },
 		      "sortable":false
 		    },
@@ -2126,9 +2137,10 @@ $(document).ready(function() {
 		"ajax": "data/full4b.json",
 		"scrollY":        "20em",
 		"scrollCollapse": true,
+		"deferRender": true,
 		"ordering":true,
 		"info":true,
-		"paging":         false});
+		"paging":         true});
 
 	    for (i in localStorage) {
 		if (typeof localStorage[i]=="string"&&i.match(/SQUAD.*/)) {
@@ -2142,6 +2154,7 @@ $(document).ready(function() {
 		    } else addrow(0,i,l.pts,l.faction,l.jug);
 		}
 	    }
+
 	}
 	var pilots=[];
 	for (i=0; i<PILOTS.length; i++) {
@@ -2177,6 +2190,14 @@ var startreplayall=function() {
     for (var j in squadron) console.log("squadron["+j+"]:"+squadron[j].name);
     replayall();
 }
+var stopreplay=function() {
+    actionrlock=$.Deferred();
+}
+var restartreplay=function() {
+    actionrlock=$.Deferred();
+    actionrlock.progress(replayall);
+    replayall();
+}
 var replayall=function() {
     var c=cmd[0].split("-");
     console.log(cmd[0]);
@@ -2201,6 +2222,8 @@ var replayall=function() {
 		"CT":"addcloaktoken",
 		"i":"removeiontoken",
 		"I":"addiontoken",
+		"i":"removetractorbeamtoken",
+		"I":"addtractorbeamtoken",
 		"ST":"addstress",
 		"st":"removestresstoken",
 		"d":"dies"
@@ -2252,7 +2275,15 @@ var replayall=function() {
 	u.show();
 	actionrlock.notify();
 	break;
+    case "S": Unit.prototype.addshield.call(u,parseInt(c[2],10));
+	u.show();
+	actionrlock.notify();
+	break;
     case "h": Unit.prototype.removehull.call(u,parseInt(c[2],10));
+	u.show();
+	actionrlock.notify();
+	break;
+    case "H": Unit.prototype.addhull.call(u,parseInt(c[2],10));
 	u.show();
 	actionrlock.notify();
 	break;
@@ -2267,7 +2298,7 @@ var replayall=function() {
 	targetunit=squadron[j];
 	u.activeweapon=parseInt(c[3],10);
 	u.playfiresnd();
-	u.log("fires on "+targetunit.name+" with "+u.weapons[u.activeweapon].name);
+	//u.log("fires on "+targetunit.name+" with "+u.weapons[u.activeweapon].name);
 	setTimeout(function() { actionrlock.notify(); }, 1000);
 	break;
     case "am": 
