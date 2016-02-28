@@ -291,6 +291,7 @@ Team.prototype = {
 	    var coord=pilots[i].split(":");
 	    var updstr=coord[0].split(",");
 	    var pid=parseInt(updstr[0],10);
+	    log(this.team+" "+pid);
 	    this.faction=PILOTS[pid].faction;
 	    this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
 	    var p=new Unit(this.team,pid);

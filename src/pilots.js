@@ -38,6 +38,16 @@ var hera_fct=function() {
 }
 var PILOTS = [
     {
+	name:"Contracted Scout",
+	faction:SCUM,
+	id:0,
+	done:true,
+	unit:"JumpMaster 5000",
+	skill:3,
+	points:25,
+	upgrades:[ELITE,TORPEDO,TORPEDO,CREW,SALVAGED,ILLICIT]
+    },
+    {
         name: "Wedge Antilles",    
 	done:true,
         unique: true,
@@ -54,6 +64,7 @@ var PILOTS = [
 		target.showstats();
 	    });
 	},
+	pilotid:1,
         points: 29,
         upgrades: [ELITE,TORPEDO,ASTROMECH],
     },
@@ -71,6 +82,7 @@ var PILOTS = [
 		}.bind(this),["select unit for free %FOCUS%"],false);
 	    });
 	},
+	pilotid:2,
         skill: 6,
         points: 26,
         upgrades: [TORPEDO,ASTROMECH],
@@ -82,6 +94,7 @@ var PILOTS = [
 	faction:REBEL,
         skill: 4,
         points: 23,
+	pilotid:3,
         upgrades: [TORPEDO,ASTROMECH],
     },
     {
@@ -91,6 +104,7 @@ var PILOTS = [
 	faction:REBEL,
         skill: 2,
         points: 21,
+	pilotid:4,
         upgrades: [TORPEDO,ASTROMECH],
     },
     { name:"Turbolaser",
@@ -99,6 +113,7 @@ var PILOTS = [
       faction:EMPIRE,
       skill:0,
       points:5,
+      pilotid:5,
       upgrades:[],
     },
     { name:"Thermal Exhaust Port",
@@ -107,11 +122,13 @@ var PILOTS = [
       faction:EMPIRE,
       skill:0,
       points:100,
+      pilotid:6,
       upgrades:[],
     },
     {
         name: "Biggs Darklighter",
 	done:true,
+	pilotid:7,
         init: function() {
 	    var biggs=this;
 	    Weapon.prototype.wrap_after("getenemiesinrange",this,function(r) {
@@ -150,6 +167,7 @@ var PILOTS = [
     {
         name: "Luke Skywalker",
 	done:true,
+	pilotid:8,
 	faction:REBEL,
 	init: function() {
 	    this.adddicemodifier(DEFENSE_M,MOD_M,DEFENSE_M,this,{
@@ -179,12 +197,14 @@ var PILOTS = [
 	faction:REBEL,
         unit: "Y-Wing",
         skill: 4,
+	pilotid:9,
         points: 20,
         upgrades: [TURRET,TORPEDO,TORPEDO,ASTROMECH],
     },
     {
         name: "'Dutch' Vander",
 	done:true,
+	pilotid:10,
 	init: function() {
             this.wrap_after("addtarget",this,function(t) {
 		this.selectunit(this.selectnearbyally(2),function(p,k) {
@@ -204,6 +224,7 @@ var PILOTS = [
     {
         name: "Horton Salm",
 	done:true,
+	pilotid:11,
 	faction:REBEL,
         unique: true,
         unit: "Y-Wing",
@@ -229,6 +250,7 @@ var PILOTS = [
     {
         name: "Gold Squadron Pilot",
 	done:true,
+	pilotid:12,
         unit: "Y-Wing",
 	faction:REBEL,
         skill: 2,
@@ -238,6 +260,7 @@ var PILOTS = [
     {
         name: "Academy Pilot",
 	done:true,
+	pilotid:13,
         unit: "TIE Fighter",
         faction:EMPIRE,
         skill: 1,
@@ -247,6 +270,7 @@ var PILOTS = [
     {
         name: "Obsidian Squadron Pilot",
 	done:true,
+	pilotid:14,
         unit: "TIE Fighter",
         faction:EMPIRE,
         skill: 3,
@@ -256,6 +280,7 @@ var PILOTS = [
     {
         name: "Black Squadron Pilot",
 	done:true,
+	pilotid:15,
         unit: "TIE Fighter",
         faction:EMPIRE,
         skill: 4,
@@ -267,6 +292,7 @@ var PILOTS = [
 	unique:true,
 	beta:true,
 	done:true,
+	pilotid:16,
         unit: "TIE Fighter",
         faction:EMPIRE,
         skill: 7,
@@ -285,6 +311,7 @@ var PILOTS = [
     {
         name: "'Winged Gundark'",
         faction:EMPIRE,
+	pilotid:17,
         init:  function() {
 	    this.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
 		req:function(m,n) { 
@@ -310,6 +337,7 @@ var PILOTS = [
         name: "'Night Beast'",
         faction:EMPIRE,
 	done:true,
+	pilotid:18,
 	init: function() {
 	    this.wrap_after("handledifficulty",this,function(difficulty) {
 		if (difficulty=="GREEN"&&this.candofocus()&&this.candoaction()) 
@@ -327,6 +355,7 @@ var PILOTS = [
         name: "'Backstabber'",
         unique: true,
 	done:true,
+	pilotid:19,
         faction:EMPIRE,
 	init: function() {
 	    this.wrap_after("getattackstrength",this,function(w,sh,a) {
@@ -345,6 +374,7 @@ var PILOTS = [
     {
         name: "'Dark Curse'",
 	done:true,
+	pilotid:20,
         faction:EMPIRE,
         unique: true,
 	init: function() {
@@ -369,6 +399,7 @@ var PILOTS = [
         name: "'Mauler Mithel'",
         faction:EMPIRE,
 	done:true,
+	pilotid:21,
         init:  function() {
 	    this.wrap_after("getattackstrength",this,function(w,sh,a) {
 		if (this.gethitrange(w,sh)==1) { 
@@ -388,6 +419,7 @@ var PILOTS = [
         name: "'Howlrunner'",
         unique: true,
 	done:true,
+	pilotid:22,
         faction:EMPIRE,
         unit: "TIE Fighter",
         skill: 8,
@@ -414,6 +446,7 @@ var PILOTS = [
         name: "Maarek Stele",
         unique: true,
 	done:true,
+	pilotid:23,
 	ambiguous:true,
         faction:EMPIRE,
 	unit: "TIE Advanced",
@@ -426,6 +459,7 @@ var PILOTS = [
         name: "Maarek Stele",
         unique: true,
 	done:true,
+	pilotid:24,
 	ambiguous:true,
         faction:EMPIRE,
 	unit: "TIE Defender",
@@ -438,6 +472,7 @@ var PILOTS = [
         name: "Tempest Squadron Pilot",
         faction:EMPIRE,
 	done:true,
+	pilotid:25,
         unit: "TIE Advanced",
         skill: 2,
         points: 21,
@@ -447,6 +482,7 @@ var PILOTS = [
         name: "Storm Squadron Pilot",
         faction:EMPIRE,
 	done:true,
+	pilotid:26,
         unit: "TIE Advanced",
         skill: 4,
         points: 23,
@@ -457,6 +493,7 @@ var PILOTS = [
         faction:EMPIRE,
         unique: true,
 	done:true,
+	pilotid:27,
         unit: "TIE Advanced",
         skill: 9,
 	doendmaneuveraction: function() {
@@ -478,6 +515,7 @@ var PILOTS = [
         name: "Alpha Squadron Pilot",
         faction:EMPIRE,
 	done:true,
+	pilotid:28,
         unit: "TIE Interceptor",
         skill: 1,
         points: 18,
@@ -487,6 +525,7 @@ var PILOTS = [
         name: "Avenger Squadron Pilot",
         faction:EMPIRE,
 	done:true,
+	pilotid:29,
         unit: "TIE Interceptor",
         skill: 3,
         points: 20,
@@ -496,6 +535,7 @@ var PILOTS = [
         name: "Saber Squadron Pilot",
         faction:EMPIRE,
 	done:true,
+	pilotid:30,
         unit: "TIE Interceptor",
         skill: 4,
         points: 21,
@@ -507,6 +547,7 @@ var PILOTS = [
         unique: true,
         unit: "TIE Interceptor",
 	skill: 5,
+	pilotid:31,
 	done:true,
 	init: function() {
 	    this.wrap_after("endcombatphase",this,function() {
@@ -526,6 +567,7 @@ var PILOTS = [
         faction:EMPIRE,
         unique: true,
 	done:true,
+	pilotid:32,
         unit: "TIE Interceptor",
         skill: 7,
 	init: function() {
@@ -546,6 +588,7 @@ var PILOTS = [
         faction:EMPIRE,
         unique: true,
 	done:true,
+	pilotid:33,
 	init: function() {
 	    this.wrap_after("addstress",this,function () {
 		this.log("+1 %STRESS% -> +1 %FOCUS%");
@@ -561,6 +604,7 @@ var PILOTS = [
         name: "Tycho Celchu",
 	faction:REBEL,
         unique: true,
+	pilotid:34,
 	done:true,
 	init: function() {
 	    this.wrap_after("candoaction",this,function() {
@@ -575,6 +619,7 @@ var PILOTS = [
     {
         name: "Arvel Crynyd",
 	faction:REBEL,
+	pilotid:35,
         unique: true,
 	done:true,
         unit: "A-Wing",
@@ -593,6 +638,7 @@ var PILOTS = [
 	done:true,
         unit: "A-Wing",
         skill: 3,
+	pilotid:36,
         points: 19,
         upgrades: [ELITE,MISSILE],
     },
@@ -600,6 +646,7 @@ var PILOTS = [
         name: "Prototype Pilot",
 	faction:REBEL,
 	done:true,
+	pilotid:37,
         unit: "A-Wing",
         skill: 1,
         points: 17,
@@ -610,6 +657,7 @@ var PILOTS = [
 	faction:REBEL,
         unit: "YT-1300",
 	done:true,
+	pilotid:38,
 	install: function() {
 	    this.hull=6;
 	    this.shield=4;
@@ -631,6 +679,7 @@ var PILOTS = [
 	faction:REBEL,
         unit: "YT-1300",
         skill: 5,
+	pilotid:39,
         points: 42,
 	deal: function(c,f) {
 	    var p=$.Deferred();
@@ -647,6 +696,7 @@ var PILOTS = [
         unique: true,
         unit: "YT-1300",
         skill: 7,
+	pilotid:40,
         points: 44,
 	init: function() {
 	    this.wrap_after("handledifficulty",this,function(d) {
@@ -668,6 +718,7 @@ var PILOTS = [
 	faction:REBEL,
         unit: "YT-1300",
         skill: 9,
+	pilotid:41,
         points: 46,
 	init: function() {
 	    this.adddicemodifier(ATTACK_M,REROLL_M,ATTACK_M,this,{
@@ -684,6 +735,7 @@ var PILOTS = [
         faction:EMPIRE,
         unit: "Firespray-31",
         skill: 7,
+	pilotid:42,
 	done:true,
 	init: function() {
 	    this.wrap_after("declareattack",this,function(w,target) {
@@ -704,6 +756,7 @@ var PILOTS = [
         name: "Boba Fett",
         unique: true,
 	done:true,
+	pilotid:43,
         faction:EMPIRE,
 	init: function() {
 	    this.wrap_after("getmaneuverlist",this,function(p) {
@@ -728,6 +781,7 @@ var PILOTS = [
         name: "Krassis Trelix",
         unique: true,
 	done:true,
+	pilotid:44,
         faction:EMPIRE,
         unit: "Firespray-31",
 	init: function() {
@@ -751,6 +805,7 @@ var PILOTS = [
         name: "Bounty Hunter",
         unit: "Firespray-31",
         skill: 3,
+	pilotid:45,
 	done:true,
         faction:EMPIRE,
         points: 33,
@@ -761,6 +816,7 @@ var PILOTS = [
 	faction:REBEL,
         unique: true,
 	done:true,
+	pilotid:46,
         unit: "B-Wing",
         skill: 8,
 	init: function() {
@@ -788,6 +844,7 @@ var PILOTS = [
 	faction:REBEL,
         unit: "B-Wing",
         skill: 6,
+	pilotid:47,
         points: 28,
 	init: function() {
 	    this.shipimg="b-wing-1.png";
@@ -811,6 +868,7 @@ var PILOTS = [
         name: "Dagger Squadron Pilot",
         unit: "B-Wing",
 	done:true,
+	pilotid:48,
 	faction:REBEL,
         skill: 4,
         points: 24,
@@ -822,6 +880,7 @@ var PILOTS = [
 	done:true,
 	faction:REBEL,
         skill: 2,
+	pilotid:49,
         points: 22,
         upgrades: [SYSTEM,CANNON,TORPEDO,TORPEDO],
     },
@@ -831,6 +890,7 @@ var PILOTS = [
 	done:true,
 	faction:REBEL,
         skill: 2,
+	pilotid:50,
         points: 16,
         upgrades: [TURRET,CREW],
     },
@@ -840,6 +900,7 @@ var PILOTS = [
 	faction:REBEL,
         unit: "HWK-290",
         skill: 4,
+	pilotid:51,
 	init: function() {
 	    this.wrap_after("begincombatphase",this,function(l) {
 		var self=this;
@@ -863,6 +924,7 @@ var PILOTS = [
 	done:true,
         unit: "HWK-290",
         skill: 6,
+	pilotid:52,
         points: 21,
 	init: function() {
 	    var self=this;
@@ -884,6 +946,7 @@ var PILOTS = [
 	faction:REBEL,
         unique: true,
 	done:true,
+	pilotid:53,
         unit: "HWK-290",
         skill: 8,
 	init: function() {
@@ -913,6 +976,7 @@ var PILOTS = [
         done:true,
         unit: "TIE Bomber",
         skill: 2,
+	pilotid:54,
         faction:EMPIRE,
         points: 16,
         upgrades: [TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB],
@@ -920,6 +984,7 @@ var PILOTS = [
     {
         name: "Gamma Squadron Pilot",
 	done:true,
+	pilotid:55,
         unit: "TIE Bomber",
         faction:EMPIRE,
         skill: 4,
@@ -930,6 +995,7 @@ var PILOTS = [
         name: "Captain Jonus",
         faction:EMPIRE,
 	done:true,
+	pilotid:56,
         init: function() {
 	    Unit.prototype.adddicemodifier(ATTACK_M,REROLL_M,ATTACK_M,this,{
 		dice:["blank","focus"],
@@ -955,6 +1021,7 @@ var PILOTS = [
     {
         name: "Major Rhymer",
 	done:true,
+	pilotid:57,
         faction:EMPIRE,
         init: function() {
 	    for (var i=0; i<this.weapons.length; i++) {
@@ -980,6 +1047,7 @@ var PILOTS = [
         faction:EMPIRE,
         unique: true,
 	done:true,
+	pilotid:58,
 	init: function() {
 	    var self=this;
 	    Unit.prototype.wrap_after("gettargetableunits",this,function(n,p) {
@@ -995,6 +1063,7 @@ var PILOTS = [
     {
         name: "Colonel Jendon",
         faction:EMPIRE,
+	pilotid:59,
 	init: function() {
 	    var self=this;
 	    this.wrap_after("begincombatphase",this,function(l) {
@@ -1019,6 +1088,7 @@ var PILOTS = [
     {
         name: "Captain Yorr",
         faction:EMPIRE,
+	pilotid:60,
         unique: true,
 	done:true,
         unit: "Lambda-Class Shuttle",
@@ -1045,6 +1115,7 @@ var PILOTS = [
         done:true,
         unit: "Lambda-Class Shuttle",
         skill: 2,
+	pilotid:61,
         points: 21,
         upgrades: [SYSTEM,CANNON,CREW,CREW],
     },
@@ -1053,6 +1124,7 @@ var PILOTS = [
         faction:EMPIRE,
         unique: true,
 	done:true,
+	pilotid:62,
         unit: "TIE Interceptor",
         skill: 5,
         points: 23,
@@ -1080,6 +1152,7 @@ var PILOTS = [
         name: "Royal Guard Pilot",
         faction:EMPIRE,
         done:true,
+	pilotid:63,
         unit: "TIE Interceptor",
         skill: 6,
         points: 22,
@@ -1090,6 +1163,7 @@ var PILOTS = [
         faction:EMPIRE,
         unique: true,
 	done:true,
+	pilotid:64,
 	init: function() {
 	    this.wrap_after("getmaneuverlist",this,function(p) {
 		var found=false;
@@ -1114,6 +1188,7 @@ var PILOTS = [
     {
         name: "Kir Kanos",
         faction:EMPIRE,
+	pilotid:65,
         init:  function() {
 	    this.adddicemodifier(ATTACK_M,ADD_M,ATTACK_M,this,{
 		req:function(m,n) {
@@ -1136,6 +1211,7 @@ var PILOTS = [
     {
         name: "Carnor Jax",
         faction:EMPIRE,
+	pilotid:66,
         init: function() {
 	    var unit=this;
 	    Unit.prototype.wrap_after("canusefocus",this,function(b) {
@@ -1166,6 +1242,7 @@ var PILOTS = [
     {
         name: "Bandit Squadron Pilot",
 	faction:REBEL,
+	pilotid:67,
         done:true,
         unit: "Z-95 Headhunter",
         skill: 2,
@@ -1175,6 +1252,7 @@ var PILOTS = [
     {
         name: "Tala Squadron Pilot",
 	faction:REBEL,
+	pilotid:68,
         done:true,
         unit: "Z-95 Headhunter",
         skill: 4,
@@ -1184,6 +1262,7 @@ var PILOTS = [
     {
         name: "Lieutenant Blount",
 	faction:REBEL,
+	pilotid:69,
         done:true,
 	init: function() {
 	    this.wrap_after("hashit",this,function(t,b) {
@@ -1201,6 +1280,7 @@ var PILOTS = [
     {
         name: "Airen Cracken",
 	faction:REBEL,
+	pilotid:70,
 	done:true,
 	init: function() {
 	    this.wrap_after("endattack",this,function() {
@@ -1234,8 +1314,8 @@ var PILOTS = [
     {
         name: "Delta Squadron Pilot",
         faction:EMPIRE,
+	pilotid:71,
         done:true,
-        
         unit: "TIE Defender",
         skill: 1,
         points: 30,
@@ -1245,6 +1325,7 @@ var PILOTS = [
         name: "Glaive Squadron Pilot",
         faction:EMPIRE,
         done:true,
+	pilotid:72,
         unit: "TIE Defender",
         skill: 6,
         points: 34,
@@ -1254,7 +1335,7 @@ var PILOTS = [
         name: "Onyx Squadron Pilot",
         done:true,
         faction:EMPIRE,
-        
+        pilotid:73,
         unit: "TIE Defender",
         skill: 3,
         points: 32,
@@ -1263,6 +1344,7 @@ var PILOTS = [
     {
         name: "Colonel Vessery",
         done:true,
+	pilotid:74,
         faction:EMPIRE,
 	init: function() {
 	    this.wrap_after("attackroll",this,function(n,r) {
@@ -1283,6 +1365,7 @@ var PILOTS = [
         name: "Rexler Brath",
         faction:EMPIRE,
 	done:true,
+	pilotid:75,
 	init: function() {
 	    this.wrap_after("endattack",this,function(c,h) {
 		if (this.canusefocus()&&this.hitresolved>0) {
@@ -1311,6 +1394,7 @@ var PILOTS = [
         name: "Knave Squadron Pilot",
 	faction:REBEL,
         done:true,
+	pilotid:76,
         unit: "E-Wing",
         skill: 1,
         points: 27,
@@ -1318,7 +1402,7 @@ var PILOTS = [
     },
     {
         name: "Blackmoon Squadron Pilot",
-        
+        pilotid:77,
 	faction:REBEL,
         done:true,
         unit: "E-Wing",
@@ -1329,6 +1413,7 @@ var PILOTS = [
     {
         name: "Etahn A'baht",
 	done:true,
+	pilotid:78,
 	faction:REBEL,
         init:  function() {
 	    Unit.prototype.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
@@ -1354,6 +1439,7 @@ var PILOTS = [
         name: "Corran Horn",
 	faction:REBEL,
 	done:true,
+	pilotid:79,
 	init: function() {
 	    this.doublefire=-2;
 	    this.lasttry=-1;
@@ -1389,6 +1475,7 @@ var PILOTS = [
     {
         name: "Sigma Squadron Pilot",
         faction:EMPIRE,
+	pilotid:80,
         done:true,
         
         unit: "TIE Phantom",
@@ -1400,7 +1487,7 @@ var PILOTS = [
         name: "Shadow Squadron Pilot",
         done:true,
         faction:EMPIRE,
-        
+        pilotid:81,
         unit: "TIE Phantom",
         skill: 5,
         points: 27,
@@ -1410,6 +1497,7 @@ var PILOTS = [
         name: "'Echo'",
         faction:EMPIRE,
 	done:true,
+	pilotid:82,
 	getdecloakmatrix: function(m) {
 	    var i=0;
 	    var m0=this.getpathmatrix(m,"BL2");
@@ -1435,6 +1523,7 @@ var PILOTS = [
         name: "'Whisper'",
         faction:EMPIRE,
 	done:true,
+	pilotid:83,
 	init: function() {
 	    this.wrap_after("hashit",this,function(t,h) {
 		if (h) {
@@ -1453,6 +1542,7 @@ var PILOTS = [
     {
         name: "Wes Janson",
 	done:true,
+	pilotid:84,
 	init: function() {
 	    this.wrap_before("endattack",this,function(c,h) {
 		if (targetunit.targeting.length>0) {
@@ -1477,6 +1567,7 @@ var PILOTS = [
     {
         name: "Jek Porkins",
 	done:true,
+	pilotid:85,
 	init: function() {
 	    this.wrap_after("addstress",this,function() {
 		// Automatic removal of stress
@@ -1497,6 +1588,7 @@ var PILOTS = [
         name: "'Hobbie' Klivian",
 	faction:REBEL,
 	done:true,
+	pilotid:86,
 	init: function() {
 	    this.wrap_before("removetarget",this,function(t) {
 		if (this.stress) { 	    
@@ -1520,6 +1612,7 @@ var PILOTS = [
     {
         name: "Tarn Mison",
 	done:true,
+	pilotid:87,
 	init:function() {
             this.wrap_after("isattackedby",this,function(w,a) {
 		if (this.targeting.length==0||this.getskill()<a.getskill()) { // TODO:Priority to define
@@ -1539,6 +1632,7 @@ var PILOTS = [
         name: "Jake Farrell",
        	faction:REBEL,
 	done:true,
+	pilotid:88,
         freemove: function() {
 	    var p=[];
 	    if (this.candoboost()) 
@@ -1561,6 +1655,7 @@ var PILOTS = [
     {
         name: "Gemmer Sojan",
 	done:true,
+	pilotid:89,
 	init: function() {
             this.wrap_after("getagility",this,function(a) {
 		var r=this.selectnearbyenemy(1);
@@ -1581,6 +1676,7 @@ var PILOTS = [
         name: "Keyan Farlander",
 	faction:REBEL,
 	done:true,
+	pilotid:90,
 	init: function() {
 	    this.shipimg="b-wing-1.png";
 	    this.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
@@ -1607,6 +1703,7 @@ var PILOTS = [
         name: "Nera Dantels",
 	faction:REBEL,
 	done:true,
+	pilotid:91,
 	init: function() {
 	    this.shipimg="b-wing-1.png";
 	    this.log("can fire %TORPEDO% at 360 degrees");
@@ -1625,6 +1722,7 @@ var PILOTS = [
     {
         name: "Wild Space Fringer",
         done:true,
+	pilotid:92,
 	faction:REBEL,
         unit: "YT-2400",
         skill: 2,
@@ -1634,6 +1732,7 @@ var PILOTS = [
     {
         name: "Eaden Vrill",
 	done:true,
+	pilotid:93,
         init:  function() {
 	    this.wrap_after("getattackstrength",this,function(w,sh,a) {
 		if (sh.stress>0&&this.weapons[w].isprimary) { 
@@ -1642,10 +1741,8 @@ var PILOTS = [
 		}
 		return a;
 	    });
-	},
-        
-	faction:REBEL,
-        
+	},       
+	faction:REBEL,       
         unit: "YT-2400",
         unique: true,
         skill: 3,
@@ -1656,6 +1753,7 @@ var PILOTS = [
         name: "'Leebo'",
 	faction:REBEL,
 	done:true,
+	pilotid:94,
 	init: function() {
 	    var newdeal=function(c,f,p) {
 		var pp=$.Deferred();
@@ -1685,6 +1783,7 @@ var PILOTS = [
     {
         name: "Dash Rendar",
 	faction:REBEL,
+	pilotid:95,
         unit: "YT-2400",
         unique: true,
         skill: 7,
@@ -1701,6 +1800,7 @@ var PILOTS = [
         name: "Patrol Leader",
         faction:EMPIRE,
 	done:true,
+	pilotid:96,
         unit: "VT-49 Decimator",
         skill: 3,
         points: 40,
@@ -1712,6 +1812,7 @@ var PILOTS = [
         unit: "VT-49 Decimator",
         skill: 4,
         points: 42,
+	pilotid:97,
         unique: true,
 	done:true,
 	init: function() {
@@ -1731,6 +1832,7 @@ var PILOTS = [
     {
         name: "Commander Kenkirk",
         faction:EMPIRE,
+	pilotid:98,
 	init: function() {
 	    this.wrap_after("getagility",this,function(a) {
 		if (this.criticals.length>0) return a+1;
@@ -1746,6 +1848,7 @@ var PILOTS = [
     },
     {
         name: "Rear Admiral Chiraneau",
+	pilotid:99,
         init:  function() {
 	    this.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
 		req:function(m,n) {
@@ -1772,6 +1875,7 @@ var PILOTS = [
     {
         name: "Prince Xizor",
         faction:SCUM,
+	pilotid:100,
         modifydamageassigned: function(ch,attacker) {
 	    var i;
 	    var p=[];
@@ -1807,6 +1911,7 @@ var PILOTS = [
     {
         name: "Guri",
         faction:SCUM,
+	pilotid:101,
 	/* TODO : may only do the action */
 	init: function() {
 	    this.wrap_after("begincombatphase",this,function(l) {
@@ -1829,6 +1934,7 @@ var PILOTS = [
         name: "Black Sun Vigo",
         faction:SCUM,
         done:true,
+	pilotid:102,
         unit: "StarViper",
         skill: 3,
         points: 27,
@@ -1837,6 +1943,7 @@ var PILOTS = [
     {
         name: "Black Sun Enforcer",
         faction:SCUM,
+	pilotid:103,
         done:true,
         unit: "StarViper",
         skill: 1,
@@ -1846,6 +1953,7 @@ var PILOTS = [
     {
         name: "Serissu",
         faction:SCUM,
+	pilotid:104,
 	done:true,
         init: function() {
 	    Unit.prototype.adddicemodifier(DEFENSE_M,REROLL_M,DEFENSE_M,this,{
@@ -1870,6 +1978,7 @@ var PILOTS = [
     {
         name: "Laetin A'shera",
         faction:SCUM,
+	pilotid:105,
 	init: function() {
             this.wrap_after("endbeingattacked",this,function(c,h) {
 		if (c+h==0) {
@@ -1888,6 +1997,7 @@ var PILOTS = [
     {
         name: "Tansarii Point Veteran",
         faction:SCUM,
+	pilotid:106,
         done:true,
         unit: "M3-A Interceptor",
         skill: 5,
@@ -1897,6 +2007,7 @@ var PILOTS = [
     {
         name: "Cartel Spacer",
         faction:SCUM,
+	pilotid:107,
         done:true,
         unit: "M3-A Interceptor",
         skill: 2,
@@ -1906,6 +2017,7 @@ var PILOTS = [
     {
         name: "IG-88A",
 	faction:SCUM,
+	pilotid:108,
         unique: true,
         unit: "Aggressor",
         skill: 6,
@@ -1925,6 +2037,7 @@ var PILOTS = [
     {
         name: "IG-88B",
 	faction:SCUM,
+	pilotid:109,
 	done:true,
 	endattack: function(c,h) {
 	    if ((c+h==0)&&this.hasfired<2) {
@@ -1947,6 +2060,7 @@ var PILOTS = [
     {
         name: "IG-88C",
 	faction:SCUM,
+	pilotid:110,
 	init: function() {
             this.wrap_after("resolveboost",this,function(n) {
 		this.doaction([this.newaction(this.addevade,"EVADE")],"free evade action");
@@ -1961,7 +2075,8 @@ var PILOTS = [
     },
     {
         name: "IG-88D",
-	faction:SCUM,  
+	faction:SCUM, 
+	pilotid:111,
         getmaneuverlist: function() {
 	    var gm=this.getmaneuver();
 	    var dial=gm.move;
@@ -1984,6 +2099,7 @@ var PILOTS = [
         name: "N'Dru Suhlak",
         unique: true,
 	done:true,
+	pilotid:112,
 	faction:SCUM,
         init:  function() {
 	    var g=this.getattackstrength;
@@ -2004,6 +2120,7 @@ var PILOTS = [
     {
         name: "Kaa'To Leeachos",
         unique: true,
+	pilotid:113,
 	faction:SCUM,
 	done:true,
 	init: function() {
@@ -2031,6 +2148,7 @@ var PILOTS = [
     {
         name: "Black Sun Soldier",
         faction:SCUM,
+	pilotid:114,
         done:true,
         unit: "Z-95 Headhunter",
         skill: 3,
@@ -2040,6 +2158,7 @@ var PILOTS = [
     {
         name: "Binayre Pirate",
 	faction:SCUM,
+	pilotid:115,
         done:true,        
         unit: "Z-95 Headhunter",
         skill: 1,
@@ -2049,6 +2168,7 @@ var PILOTS = [
     {
         name: "Boba Fett",
 	faction:SCUM,
+	pilotid:116,
         unit: "Firespray-31",
         skill: 8,
         points: 39,
@@ -2076,6 +2196,7 @@ var PILOTS = [
     {
         name: "Kath Scarlet",
 	done:true,
+	pilotid:117,
 	init: function() {
 	    this.wrap_after("getattackstrength",this,function(w,sh,a) {
 		if (this.isinfiringarc(sh)&&this.getprimarysector(sh)==4) { 
@@ -2096,6 +2217,7 @@ var PILOTS = [
         name: "Emon Azzameen",
 	done:true,
 	unique:true,
+	pilotid:118,
 	getbomblocation:function() {  return ["F1","TL3","TR3","F3"]; },
 	faction:SCUM,
         unit: "Firespray-31",
@@ -2105,7 +2227,8 @@ var PILOTS = [
     },
     {
         name: "Mandalorian Mercenary",
-	faction:SCUM,       
+	faction:SCUM,  
+	pilotid:119,
         done:true,
         unit: "Firespray-31",
         skill: 5,
@@ -2116,6 +2239,7 @@ var PILOTS = [
         name: "Kavil",
         unique: true,
 	done:true,
+	pilotid:120,
         init:  function() {
 	    this.wrap_after("getattackstrength",this,function(w,sh,a) {
 		if (!this.isinfiringarc(sh)) { 
@@ -2134,6 +2258,7 @@ var PILOTS = [
     {
         name: "Drea Renthal",
         unique: true,
+	pilotid:121,
 	faction:SCUM,
         unit: "Y-Wing",
         skill: 5,
@@ -2154,6 +2279,7 @@ var PILOTS = [
     {
         name: "Hired Gun",
 	faction:SCUM,
+	pilotid:122,
 	done:true,
         unit: "Y-Wing",
         skill: 4,
@@ -2163,6 +2289,7 @@ var PILOTS = [
     {
         name: "Syndicate Thug",
 	faction:SCUM,
+	pilotid:123,
 	done:true,
         unit: "Y-Wing",
         skill: 2,
@@ -2172,6 +2299,7 @@ var PILOTS = [
     {
         name: "Dace Bonearm",
         unique: true,
+	pilotid:124,
 	faction:SCUM,
         unit: "HWK-290",
 	done:true,
@@ -2194,6 +2322,7 @@ var PILOTS = [
     {
         name: "Palob Godalhi",
         unique: true,
+	pilotid:125,
 	faction:SCUM,
         unit: "HWK-290",
 	init: function() {
@@ -2220,6 +2349,7 @@ var PILOTS = [
     {
         name: "Torkil Mux",
         unique: true,
+	pilotid:126,
 	done:true,
 	init: function() {
             this.wrap_after("endactivationphase",this,function() {
@@ -2239,6 +2369,7 @@ var PILOTS = [
     {
         name: "Spice Runner",
 	faction:SCUM,
+	pilotid:127,
 	done:true,
         unit: "HWK-290",
         skill: 1,
@@ -2248,6 +2379,7 @@ var PILOTS = [
     {
         name: "Commander Alozen",
         faction:EMPIRE,
+	pilotid:128,
         unit: "TIE Advanced",
         unique: true,
 	done:true,
@@ -2267,6 +2399,7 @@ var PILOTS = [
     {
         name: "Juno Eclipse",
         unique: true,
+	pilotid:129,
 	done:true,
         faction:EMPIRE,
 	unit: "TIE Advanced",
@@ -2290,6 +2423,7 @@ var PILOTS = [
     {
         name: "Zertik Strom",
         unique: true,
+	pilotid:130,
 	done:true,
         faction:EMPIRE,
 	unit: "TIE Advanced",
@@ -2317,6 +2451,7 @@ var PILOTS = [
     {
         name: "Lieutenant Colzet",
         unique: true,
+	pilotid:131,
         faction:EMPIRE,
 	unit: "TIE Advanced",
         skill: 3,
@@ -2338,6 +2473,7 @@ var PILOTS = [
     {
         name: "Bossk",
         faction: SCUM,
+	pilotid:132,
         unit: "YV-666",
         unique: true,
         skill: 7,
@@ -2361,6 +2497,7 @@ var PILOTS = [
     {
         name: "Moralo Eval",
         faction: SCUM,
+	pilotid:133,
         unit: "YV-666",
         unique: true,
         skill: 6,
@@ -2380,6 +2517,7 @@ var PILOTS = [
     {
         name: "Latts Razzi",
         faction: SCUM,
+	pilotid:134,
         unit: "YV-666",
         unique: true,
         skill: 5,
@@ -2403,6 +2541,7 @@ var PILOTS = [
     {
         name: "Trandoshan Slaver",
         faction: SCUM,
+	pilotid:135,
         unit: "YV-666",
 	done:true,
         skill: 2,
@@ -2413,6 +2552,7 @@ var PILOTS = [
         name: "Talonbane Cobra",
         unique: true,
         faction: SCUM,
+	pilotid:136,
         unit: "Kihraxz Fighter",
         skill: 9,
         upgrades: [ELITE,MISSILE,ILLICIT],
@@ -2430,6 +2570,7 @@ var PILOTS = [
     {
         name: "Graz the Hunter",
         unique: true,
+	pilotid:137,
         faction: SCUM,
         unit: "Kihraxz Fighter",
         skill: 6,
@@ -2449,6 +2590,7 @@ var PILOTS = [
     {
         name: "Black Sun Ace",
         faction: SCUM,
+	pilotid:138,
         unit: "Kihraxz Fighter",
 	done:true,
             skill: 5,
@@ -2458,6 +2600,7 @@ var PILOTS = [
         {
             name: "Cartel Marauder",
 	    done:true,
+	    pilotid:139,
             faction: SCUM,
             unit: "Kihraxz Fighter",
             skill: 2,
@@ -2467,6 +2610,7 @@ var PILOTS = [
         {
             name: "Miranda Doni",
             unique: true,
+	    pilotid:140,
 	    done:true,
             faction: REBEL,
             unit: "K-Wing",
@@ -2510,6 +2654,7 @@ var PILOTS = [
         {
             name: "Esege Tuketu",
             unique: true,
+	    pilotid:141,
             faction: REBEL,
             unit: "K-Wing",
             skill: 6,
@@ -2537,6 +2682,7 @@ var PILOTS = [
         {
             name: "Guardian Squadron Pilot",
             faction: REBEL,
+	    pilotid:142,
 	    done:true,
             unit: "K-Wing",
             skill: 4,
@@ -2546,6 +2692,7 @@ var PILOTS = [
         {
             name: "Warden Squadron Pilot",
             faction: REBEL,
+	    pilotid:143,
 	    done:true,
             unit: "K-Wing",
             skill: 2,
@@ -2555,6 +2702,7 @@ var PILOTS = [
         {
             name: "'Redline'",
             unique: true,
+	    pilotid:144,
             faction: EMPIRE,
             unit: "TIE Punisher",
             skill: 7,
@@ -2581,6 +2729,7 @@ var PILOTS = [
         {
             name: "'Deathrain'",
             unique: true,
+	    pilotid:145,
             faction: EMPIRE,
             unit: "TIE Punisher",
             skill: 6,
@@ -2604,6 +2753,7 @@ var PILOTS = [
         {
             name: "Black Eight Squadron Pilot",
             faction: EMPIRE,
+	    pilotid:146,
 	    done:true,
             unit: "TIE Punisher",
             skill: 4,
@@ -2614,6 +2764,7 @@ var PILOTS = [
             name: "Cutlass Squadron Pilot",
             faction: EMPIRE,
 	    done:true,
+	    pilotid:147,
             unit: "TIE Punisher",
             skill: 2,
             upgrades: [SYSTEM,TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB,BOMB],
@@ -2622,6 +2773,7 @@ var PILOTS = [
         {
             name: "Poe Dameron",
             faction: REBEL,
+	    pilotid:148,
             unit: "T-70 X-Wing",
 	    unique:true,
 	    done:true,
@@ -2659,6 +2811,7 @@ var PILOTS = [
 	  name: "'Blue Ace'",
 	  faction: REBEL,
 	  done:true,
+	  pilotid:149,
 	  unit: "T-70 X-Wing",
 	  skill: 5,
 	  unique:true,
@@ -2674,6 +2827,7 @@ var PILOTS = [
 	  name: "Ello Asty",
 	  faction: REBEL,
 	  done:true,
+	  pilotid:150,
 	  beta:true,
 	  unit: "T-70 X-Wing",
 	  skill: 7,
@@ -2696,6 +2850,7 @@ var PILOTS = [
 	  name: "'Red Ace'",
 	  faction: REBEL,
 	  done:true,
+	  pilotid:151,
 	  beta:true,
 	  unit: "T-70 X-Wing",
 	  skill: 5,
@@ -2717,12 +2872,14 @@ var PILOTS = [
 	  done:true,
 	  unit: "T-70 X-Wing",
 	  skill: 2,
+	  pilotid:152,
 	  upgrades: [TORPEDO,ASTROMECH,TECH],
 	  points: 24
       },
      {
 	  name: "Red Squadron Veteran",
 	  faction: REBEL,
+	 pilotid:153,
 	  done:true,
 	  unit: "T-70 X-Wing",
 	  skill: 4,
@@ -2733,6 +2890,7 @@ var PILOTS = [
 	  name: "Omega Squadron Pilot",
 	  faction: EMPIRE,
 	  done:true,
+	pilotid:154,
 	  unit: "TIE/FO Fighter",
 	  skill: 4,
 	upgrades: [TECH,ELITE],
@@ -2742,6 +2900,7 @@ var PILOTS = [
 	  name: "Zeta Squadron Pilot",
 	  faction: EMPIRE,
 	  done:true,
+       pilotid:155,
 	  unit: "TIE/FO Fighter",
 	  skill: 3,
        upgrades: [TECH],
@@ -2751,6 +2910,7 @@ var PILOTS = [
 	  name: "Epsilon Squadron Pilot",
 	  faction: EMPIRE,
 	  done:true,
+       pilotid:156,
 	  unit: "TIE/FO Fighter",
 	  skill: 1,
        upgrades: [TECH],
@@ -2760,6 +2920,7 @@ var PILOTS = [
 	  name: "'Zeta Ace'",
 	  faction: EMPIRE,
 	  done:true,
+       pilotid:157,
 	  unique:true,
 	  unit: "TIE/FO Fighter",
 	  skill: 5,
@@ -2781,6 +2942,7 @@ var PILOTS = [
        name: "'Epsilon Leader'",
        faction: EMPIRE,
        done:true,
+       pilotid:158,
        unique:true,
        unit: "TIE/FO Fighter",
        skill: 6,
@@ -2799,6 +2961,7 @@ var PILOTS = [
        name:"'Epsilon Ace'",
        faction:EMPIRE,
        done:true,
+       pilotid:159,
        unique:true,
        unit:"TIE/FO Fighter",
        skill:4,
@@ -2815,6 +2978,7 @@ var PILOTS = [
 	  name: "'Omega Ace'",
 	  faction: EMPIRE,
 	  done:true,
+       pilotid:160,
 	  unique:true,
 	  unit: "TIE/FO Fighter",
 	  skill: 7,
@@ -2837,6 +3001,7 @@ var PILOTS = [
        name: "'Omega Leader'",
        faction: EMPIRE,
        beta:true,
+       pilotid:161,
        unique:true,
        unit: "TIE/FO Fighter",
        skill: 8,
@@ -2871,6 +3036,7 @@ var PILOTS = [
 	faction:REBEL,
 	unit:"VCX-100",
 	skill:7,
+	pilotid:162,
 	ambiguous:true,
 	points:40,
 	done:true,
@@ -2880,6 +3046,7 @@ var PILOTS = [
     {
 	name:"'Chopper'",
 	unique:true,
+	pilotid:163,
 	faction:REBEL,
 	unit:"VCX-100",
 	skill:4,
@@ -2903,6 +3070,7 @@ var PILOTS = [
 	faction:REBEL,
 	unique:true,
 	done:true,
+	pilotid:164,
 	unit:"Attack Shuttle",
 	skill:4,
 	points:20,
@@ -2928,6 +3096,7 @@ var PILOTS = [
 	faction:REBEL,
 	unique:true,
 	done:true,
+	pilotid:165,
 	unit:"Attack Shuttle",
 	skill:7,
 	ambiguous:true,
@@ -2940,6 +3109,7 @@ var PILOTS = [
 	faction:REBEL,
 	unique:true,
 	done:true,
+	pilotid:166,
 	unit:"Attack Shuttle",
 	skill:5,
 	points:21,
@@ -2961,6 +3131,7 @@ var PILOTS = [
 	unique:true,
 	unit:"Attack Shuttle",
 	skill:3,
+	pilotid:167,
 	points:18,
 	done:true,
 	cancelhit:function(r,t) {
@@ -2976,6 +3147,7 @@ var PILOTS = [
 	name:"Kanan Jarrus",
 	faction:REBEL,
 	unique:true,
+	pilotid:168,
 	unit:"VCX-100",
 	skill:4,
 	points:38,
@@ -2985,6 +3157,7 @@ var PILOTS = [
 	name:"'Wampa'",
 	faction:EMPIRE,
 	unique:true,
+	pilotid:169,
 	unit:"TIE Fighter",
 	skill:4,
 	points:14,
@@ -3009,6 +3182,7 @@ var PILOTS = [
 	name:"'Youngster'",
 	faction:EMPIRE,
 	unique:true,
+	pilotid:170,
 	unit:"TIE Fighter",
 	skill:6,
 	points:15,
@@ -3041,6 +3215,7 @@ var PILOTS = [
 	name:"'Chaser'",
 	faction:EMPIRE,
 	unique:true,
+	pilotid:171,
 	done:true,
 	unit:"TIE Fighter",
 	skill:3,
@@ -3059,6 +3234,7 @@ var PILOTS = [
     {
 	name:"Gamma Squadron Veteran",
 	faction:EMPIRE,
+	pilotid:172,
 	done:true,
 	unit:"TIE Bomber",
 	skill:5,
@@ -3068,6 +3244,7 @@ var PILOTS = [
     {
 	name:"The Inquisitor",
 	faction:EMPIRE,
+	pilotid:173,
 	unit:"TIE Adv. Prototype",
 	skill:8,
 	unique:true,
@@ -3090,6 +3267,7 @@ var PILOTS = [
 	name:"Valen Rudor",
 	faction:EMPIRE,
 	unique:true,
+	pilotid:174,
 	unit:"TIE Adv. Prototype",
 	skill:6,
 	points:22,
@@ -3107,6 +3285,7 @@ var PILOTS = [
    {
        name:"Sienar Test Pilot",
        faction:EMPIRE,
+       pilotid:175,
        done:true,
        unit:"TIE Adv. Prototype",
        skill:2,
@@ -3116,6 +3295,7 @@ var PILOTS = [
    {
        name:"Zuckuss",
        faction:SCUM,
+       pilotid:176,
        unique:true,
        unit:"G-1A Starfighter",
        skill:7,
@@ -3139,6 +3319,7 @@ var PILOTS = [
    {
        name:"4-LOM",
        faction:SCUM,
+       pilotid:177,
        unique:true,
        done:true,
        unit:"G-1A Starfighter",
@@ -3162,6 +3343,7 @@ var PILOTS = [
         name: "Nashtah Pup Pilot",
 	faction:SCUM,
         done:true,
+	pilotid:178,
 	unique:true,
         unit: "Z-95 Headhunter",
         skill: 2,
@@ -3172,6 +3354,7 @@ var PILOTS = [
 	name:"Dengar",
 	faction:SCUM,
 	unique:true,
+	pilotid:179,
 	unit:"JumpMaster 5000",
 	skill:9,
 	points:33,
@@ -3193,6 +3376,7 @@ var PILOTS = [
 	name:"Tel Trevura",
 	faction:SCUM,
 	unique:true,
+	pilotid:180,
 	unit:"JumpMaster 5000",
 	skill:7,
 	points:30,
@@ -3215,6 +3399,7 @@ var PILOTS = [
     {
 	name:"Manaroo",
 	faction:SCUM,
+	pilotid:181,
 	unit:"JumpMaster 5000",
 	skill:4,
 	unique:true,
@@ -3246,13 +3431,5 @@ var PILOTS = [
 	},
 	upgrades:[ELITE,TORPEDO,TORPEDO,CREW,SALVAGED,ILLICIT]
     },
-    {
-	name:"Contracted Scout",
-	faction:SCUM,
-	done:true,
-	unit:"JumpMaster 5000",
-	skill:3,
-	points:25,
-	upgrades:[ELITE,TORPEDO,TORPEDO,CREW,SALVAGED,ILLICIT]
-    }
+
 ];
