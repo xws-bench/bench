@@ -455,7 +455,31 @@
 	"'Blue Ace'":
 	{"name":"'As Bleu'","text":"Lorsque vous effectuez une action accélération, vous pouvez utiliser le gabarit (%TURNLEFT% 1) ou (%TURNRIGHT% 1)."},
 	"Poe Dameron":
-	{"text":"Tant que vous défendez ou que vous attaquez, si vous avez un marqueur de concentration, vous pouvez changer un de vos résultats %FOCUS% pour un résultat %HIT% ou %EVADE%."}
+	{"text":"Tant que vous défendez ou que vous attaquez, si vous avez un marqueur de concentration, vous pouvez changer un de vos résultats %FOCUS% pour un résultat %HIT% ou %EVADE%."},
+	"Ello Asty":{"text":"Tant que vous n'êtes pas stressé, vous pouvez considérer vos manœuvres %TALONLEFT% et %TALONRIGHT% comme des manœuvres blanches."},
+	"'Red Ace'":{"text":"A chaque tour, la première fois que vous retirez un marqueur bouclier de votre vaisseau, assignez-lui 1 marqueur d'évasion.",
+		     "name":"'As Rouge'"},
+	"Red Squadron Veteran":{"name":"Vétéran de l'escadron Rouge"},
+	"Blue Squadron Novice":{"name":"Apprenti de l'escadron Bleu"},
+	"'Omega Leader'":{"text":"Les vaisseaux ennemis que vous avez verrouillés ne peuvent modifier leurs dés quand ils vous attaquent ou se défendent contre vos attaques."},
+	"'Zeta Leader'":{"text":"Quand vous attaquez, si vous n'êtes pas stressé, vous pouvez recevoir 1 marqueur de stress pour jeter un dé d'attaque supplémentaire."},
+	"'Epsilon Ace'":{"text":"Tant que vous n'avez pas de carte de dégâts, considérez votre valeur de pilotage comme égale à 12.",
+			 "name":"'As Epsilon'"},
+	"Omega Squadron Pilot":{"name":"Pilote de l'escadron Omega"},
+	"Zeta Squadron Pilot":{"name":"Pilote de l'escadron Zeta"},
+	"Epsilon Squadron Pilot":{"name":"Pilote de l'escadron Epsilon"},
+	"'Scourge'":{"text":"Quand vous attaquez un défenseur qui a au moins 1 carte de dégâts, lancez 1 dé d'attaque supplémentaire."},
+	"'Youngster'":{"text":"Les chasseurs TIE alliés situés à portée 1-3 peuvent effectuer l'action de la carte d'amélioration %ELITE% dont vous êtes équipé."},
+	"'Wampa'":{"text":"Quand vous attaquez, vous pouvez annuler le résultat de tous les dés. Si vous annulez au moins un résultat %CRIT%, assignez 1 carte de dégâts face cachée au défenseur."},
+	"'Chaser'":{"text":"Quand un autre vaisseau allié situé à portée 1 dépense un marqueur de concentration, assignez un marqueur de concentration à votre vaisseau."},
+
+	"Valen Rudor":{"text":"After defending, you may perform a free action."},
+	"The Inquisitor":{"text":"When attacking with your primary weapon at Range 2-3, treat the range of the attack as Range 1."},
+	"Zuckuss (Scum)":{"text":"When attacking, you may roll 1 additional attack die. If you do, the defender rolls 1 additional defense die."},
+	"4-LOM (Scum)":{"text":"At the start of the End phase, you may assign 1 of your stress tokens to another ship at Range 1."},
+	"Tel Trevura (Scum)":{"text":"The first time you would be destroyed, instead cancel any remaining damage, discard all Damage cards, and deal 4 facedown Damage cards to this ship."},
+	"Manaroo (Scum)":{"text":"At the start of the Combat phase, you may assign all focus, evade and target lock tokens assigned to you to another friendly ship."},
+	"Dengar (Scum)":{"text":"Once per round after defending, if the attacker is inside your firing arc, you may perform an attack against that ship."}
     },
     "upgrades" : {
       "Determination": {
@@ -1108,13 +1132,20 @@
             {"name":"Projecteur ionique",
 	    "text": "Après qu'un vaisseau ennemi a exécuté une manœuvre l'amenant à chevaucher votre vaisseau, lancez 1 dé d'attaque. Sur un résultat %HIT% ou %CRITICAL%, le vaisseau ennemi reçoit un marqueur ionique."},
         "Hound's Tooth":
-            {"text":"Après avoir été détruit, mais avant d'être retiré de la zone de jeu, vous pouvez déployer le vaisseau Pilote de Nashtah Pup. Il ne peut pas attaquer à ce tour."}
+            {"text":"Après avoir été détruit, mais avant d'être retiré de la zone de jeu, vous pouvez déployer le vaisseau Pilote de Nashtah Pup. Il ne peut pas attaquer à ce tour."},
+	"Juke":{"text":"Quand vous attaquez, si vous avez un marqueur d'évasion, vous pouvez échanger 1 des résultats %EVADE% du défenseur pour un résultat %FOCUS%.","name":"Feinte"},
+	"Comm Relay":{"text":"Vous ne pouvez pas avoir plus de 1 marqueur d'évasion. Pendant la phase de dénouement, ne retirez pas de votre vaisseau un marqueur d'évasion inutilisé.","name":"Relais de Comm"},
+	"Cool Hand":{"name":"Main Sûres","text":"Quand vous recevez un marqueur de stress, vous pouvez défausser cette carte pour assigner un marqueur de concentration ou d'évasion à votre vaisseau."},
+	"Targeting Astromech":{"name":"Astromech de ciblage","text":"Après que vous avez exécuté une manœuvre rouge, vous pouvez verrouiller une cible."},
+	"Guidance Chips":{"name":"Ciblage assisté","text":"Quand vous attaquez, vous pouvez utiliser un marqueur de concentration pour changer 1 de vos résultats vierge en résultat %HIT%."},
+	"Integrated Astromech":{"name":"Astromech intégré","text":"Quand vous recevez une carte de dégâts, vous pouvez défausser 1 de vos cartes d'amélioration %ASTROMECH% pour défausser cette carte de dégâts (sans en résoudre les effets)."}
     },
     "css":{
 	"m-ncombats":"Combats",
-	"m-xpinstructions":"Selectionner d'abord les pilotes du combat, puis un combat particulier",
+	"m-battlingsquad":"Escadron au combat",
 	"m-squadpilots":"Choisissez les pilotes",
 	"m-experience":"Livre de Combats",
+	"m-battlexp":"Les scores en gras sont ceux de joueurs humains, en normal ceux de l'IA.",
 	"m-score":"Score",
 	"m-saved":"Livre tactique",
 	"m-views":"Vues",
@@ -1129,6 +1160,7 @@
 	"m-credits":"Crédits",
 	"m-blog":"Blog",
 	"m-proba":"Probabilités",
+	"m-opponent":"Opposant",
 	"m-save":"Sauvegarde",
 	"m-reset":"Recommencer",
 	"m-share":"Partager",
@@ -1140,7 +1172,7 @@
 	"m-donate":"Faire un don",
 	"m-name":"Mon escadron",
 	"m-faction":"Faction",
-	"m-points":"Points",
+	"m-points":"Pts",
 	"m-units":"Unités",
 	"m-move":"Déplace",
 	"m-selection":"Sélection",
@@ -1155,7 +1187,7 @@
 	"m-setup":"Mise en place",
 	"m-filter":"Filtrer les listes préconstruites ou par faction",
 	"m-selectinstructions":"Préparer le combat",
-	"m-manage":"Gérer vos escadrons",
+	"m-manage":"Gérer les escadrons",
 	"m-importinstructions":"Créer un nouvel escadron, ou taper une liste au format XWS3.0 ou au format texte.",
 	"m-prebuilt":"La liste est préremplie avec des escadrons. Il y a au moins un escadron pour chaque pilote unique des Waves I à VII.",
 	"m-empire":"Empire Galactique",

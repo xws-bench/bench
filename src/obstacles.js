@@ -1,4 +1,4 @@
-var ROCKIMG="png/asteroid.jpg";
+var ROCKIMG="png/asteroid.png";
 var OBSTACLES=[];
 var PX=[300,500,300,500,300,500];
 var PY=[250,250,400,400,550,550];

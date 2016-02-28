@@ -11,14 +11,24 @@
     <script src="js/snap.svg-min-0.4.1.js"></script>
     <script src="js/jwerty.min.js"></script>
     <script src="js/jquery-1.11.3.min.js"></script>
+<script>
+TogetherJSConfig_findRoom = "squadronbenchmark_users"
+</script>
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/jquery.a-tools-1.4.1.js"></script>
     <script src="js/jquery.asuggest.js"></script>
     <script src="js/lz-string.min.js"></script>
-    <script src="js/tabletop.js"></script>
-    <script src="js/buzz.min.js"></script>
+    <script src="js/howler.min.js"></script>
     <script src="js/hammer.min.js"></script>
-    <script src="js/bench.min.js"></script>
+    <script src="js/sheetrock.min.js"></script>
+    <script src="src/obstacles.js"></script>
+    <script src="src/critical.js"></script>
+    <script src="src/units.js"></script>
+    <script src="src/iaunits.js"></script>
+    <script src="src/pilots.js"></script>
+    <script src="src/upgrades.js"></script>
+    <script src="src/team.js"></script>
+    <script src="src/xwings.js"></script>
     <style type="text/css" id="localstrings"></style>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -34,18 +44,16 @@
   <body>
     <nav>
       <div>
-	<span class="h2"><span id="logo" style='font-family:ships;font-size:larger;'>x</span><span class="title">Squadron Benchmark</span>
+	<span class="h2"><span class="xwing"></span><span class="title">Squadron Benchmark</span>
 	  <span class="ver"></span>
 	  <img onclick="changelanguage('en')" class="langselect" src="css/uk-on.png">
 	  <img onclick="changelanguage('fr')" class="langselect" src="css/fr-on.png">
 
 	</span>
 	<div class="buttonbar">
-	  <button onclick="currentteam=TEAMS[0];createsquad()" class="mainbutton m-create"><span class='symbols' style='font-size:1em'>o</span></button>
-	  <button onclick="experience();" class="mainbutton m-experience">&#x1f4d6; </button>
+	  <button onclick="currentteam=TEAMS[0];createsquad()" class="mainbutton m-create"></button>
 	  <button class="m-reset permalink" onclick="resetlink()">&#10096; </button>
-
-	  <span id="phase" style="font-size:small"></span>
+	  <span id="phase"></span>
 	  <button class="nextphase" onclick="nextphase()"><span class='np'></span> <span id='npimg'>&#10097;</span></button>
 	  <span class="menu" onmouseover="$('nav ul').css({display:'block',visibility:'visible'})" onmouseout="$('nav ul').css({display:'none',visibility:'hidden'})"><img src="css/menu.png">
 	    <ul>
@@ -152,25 +160,9 @@
        </div>
      </article>
 
-     <article id="experience" class="mainarticle">
-       <div>
-       <h3 class="m-experience"></h3>
-       <div class="m-xpinstructions"></div>
-       <table style="width:100%">
-	 <tr>
-	   <td><iframe id="replay" src="" width="400px" height="400px"></iframe></td>
-	   <td style="width:calc(100% - 400px);">
-	     <table id="squadbattle" style="color:black;font-size:x-small" class="compact stripe hover order-column row-border"></table>
-	   </td>
-	 </tr>
-       </table>
-       <h3 class="m-squadpilots"></h3>
-       <table id="combatlist" style="color:black;font-size:x-small" class="compact stripe hover order-column row-border">
-       </table>
-       </div>
-     </article>
- 
+
      <article id="selectphase" class="mainarticle">
+
        <h3 class="m-selectinstructions"></h3>
        <table id="setuplist" class="setupselector">
 	 <tr><td><select onchange="changesetup()"></select></td><td><span></span></td><td><img src="png/classic.png"></td></tr>
@@ -178,30 +170,21 @@
        <table class="squadselected">
 	 <tr>
 	   <td>
-	     <span class="playerselector">
-	       <input type="radio" name="player1" value="human" id="p11"/>
-	       <label class="player computer" for="p11"><img src="css/user.png"/></label>
-	     </span><span class="playerselector">
-	       <input checked type="radio" name="player1" value="computer" id="p12"/>
-	       <label class="human player" for="p12"><img src="css/computer.png"/></label>
-	     </span>
-	     <button onclick="currentteam=TEAMS[1];createsquad()" class="m-create"><span class='symbols' style='font-size:1em'>o</span></button>	 
+	     <span class="m-squad1"></span>
+	     <select id="player1"></select>
+	     <button onclick="currentteam=TEAMS[1];createsquad()" class="m-create"></button>	 
 	     <button onclick="currentteam=TEAMS[1];importsquad(1)" class="m-import"></button>
 	   </td>
-	   <td class="squadbg"><div class='m-squad1'></div><textarea id="squad1" cols="40" rows="8"></textarea></td>
-	   <td></td>
 	   <td>
-	     <span class="playerselector">
-	       <input type="radio" name="player2" value="human" id="p21"/>
-	       <label class="player computer" for="p21"><img src="css/user.png"/></label>
-	     </span><span class="playerselector">
-	       <input checked type="radio" name="player2" value="computer" id="p22"/>
-	       <label class="human player" for="p22"><img src="css/computer.png"/></label>
-	     </span>
-	     <button onclick="currentteam=TEAMS[2];createsquad()" class="m-create"><span class='symbols' style='font-size:1em'>o</span></button>	 
+	     <span class="m-squad2"></span>
+	     <select id="player2"></select>
+	     <button onclick="currentteam=TEAMS[2];createsquad()" class="m-create"></button>	 
 	     <button onclick="currentteam=TEAMS[2];importsquad(2)" class="m-import"></button>
 	   </td>
-	   <td class="squadbg"><div class='m-squad2'></div><textarea id="squad2" cols="40" rows="8"></textarea></td>
+	 </tr>
+	 <tr>
+	   <td class="squadbg"><div>1</div><textarea id="squad1" cols="40" rows="8"></textarea></td>
+	   <td class="squadbg"><div class="right">2</div><textarea id="squad2" cols="40" rows="8"></textarea></td>
 	 </tr>
        </table>
        </div>
@@ -213,14 +196,44 @@
 	 <span class="PREBUILT Prebuilt" onclick="stype='PREBUILT';SQUADLIST.draw();"></span>
 	 <span class="Mybuilds" onclick="stype='USER';SQUADLIST.draw();"></span>
        </div>
-       <table id="squadlist" style="color:black;font-size:x-small" class="compact stripe hover order-column row-border">
+       <table id="squadlist" class="compact stripe hover order-column row-border">
        </table>
        <br>
      </article>
 
+
+     <section id="battlelog" class="modalDialog">
+       <div>
+	 <h2><span class="m-experience"></span><a href="#" title="Close" class="close">&times;</a></h2>
+	 <div>
+	   <table class="battlingtable">
+	     <tr><th class="m-battlingsquad"></th>
+	       <td id="battlingsquad"></td>
+	     </tr>
+	   </table>
+	   <div class="m-battlexp"></div>
+	 <table style="width:100%">
+	   <tr>
+	     <td>
+	       <iframe id="replay" src=""></iframe>
+	       <div>
+		 <button class="mainbutton" onclick='location.replace($("#replay").attr("src"))'><img src="css/fullscreen.svg" width="15px" height="15px"/></button>
+		 </div>
+	     </td>
+	     <td style="width:calc(100% - 400px);">
+	       <div id="squadbattlediv"></div>
+	       <table id="squadbattle" style="color:black" class="compact stripe hover order-column row-border"></table>
+	     </td>
+	   </tr>
+	 </table>
+	 </div>
+       </div>
+     </section>
+ 
+
   <section id="proba" class="modalDialog">
         <div>
-          <h2><span class="m-proba"></span><a href="#" title="Close" class="close">&#10060;</a>
+          <h2><span class="m-proba"></span><a href="#" title="Close" class="close">&times;</a>
           </h2>
           <div>
             <p>

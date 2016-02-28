@@ -97,7 +97,12 @@ IAUnit.prototype= {
 	    var mine=this.getmcollisions(this.m);
 	    if (mine.length>0) 
 		for (i=0; i<mine.length; i++) {
-		    OBSTACLES[mine[i]].detonate(this)
+		    if (typeof OBSTACLES[mine[i]].detonate=="function") 
+			OBSTACLES[mine[i]].detonate(this)
+		    else {
+			this.log("colliding with obstacle");
+			this.resolveocollision(1,0);
+		    }
 		}
 	    cleanup(this,scorei); 
 	}
@@ -132,8 +137,7 @@ IAUnit.prototype= {
 	$("#maneuverdial").empty();
 	if (phase>=PLANNING_PHASE) {
 	    if (this.maneuver==-1||this.hasmoved) {
-		this.dialspeed.attr({text:""});
-		this.dialdirection.attr({text:""});
+		this.clearmaneuver();
 		return;
 	    };
 	}
@@ -149,22 +153,6 @@ IAUnit.prototype= {
 			       }.bind(this),true);
     },
     showactivation: function() {
-	//$("#activationdial").empty();
-	/*
-	if (phase>PLANNING_PHASE) {
-	    if (this.maneuver==-1||this.hasmoved) {
-		this.dialspeed.attr({text:""});
-		this.dialdirection.attr({text:""});
-		return;
-	    };
-	    d = this.getdial()[this.maneuver];
-	    var c  =C[d.difficulty];
-	    if (!(activeunit==this)) {
-		c = halftone(c);
-	    }
-            this.dialspeed.attr({text:P[d.move].speed,fill:c});
-            this.dialdirection.attr({text:P[d.move].key,fill:c});
-	}*/
     },
     doactivation: function() {
 	var ad=this.updateactivationdial();
@@ -288,7 +276,7 @@ IAUnit.prototype= {
 		    var el=r[w];
 		    for (i=0;i<el.length; i++) {
 			var p=this.getattackstrength(w,el[i]);
-			if (p>power) { 
+			if (p>power&&!el[i].isdocked) { 
 			    //this.log("power "+power+" "+el[i]);
 			    t=el[i]; power=p; this.activeweapon=w; 
 			}
@@ -303,99 +291,22 @@ IAUnit.prototype= {
 	    this.hasfired++; this.deferred.resolve();
 	}
     },
-    doattackroll: function(ar,da,defense,me,n) {
-	var i,j,str="";
-	$("#attackdial").empty().show();
-	$("#defense").empty();
-	$("#dtokens").empty();
-	displayattackroll(ar,da);
-	var doreroll=function(a,i) {
-	    var s=0;
-	    var nn=a.n();
-	    if (a.type.indexOf("blank")>-1) s+=nn;
-	    if (a.type.indexOf("focus")>-1) s+=10*nn;
-	    if (a.type.indexOf("hit")>-1) s+=100*nn;
-	    if (a.type.indexOf("critical")>-1) s+=1000*nn;
-	    reroll(nn,true,s,i);
-	}
-	// Do all possible rerolls 
-	for (var i=0; i<ATTACKREROLLA.length; i++) {
-	    var a=ATTACKREROLLA[i];
-	    if (a.req(this,this.weapons[this.activeweapon],targetunit)) 
-		doreroll(a,i);
-	}   
-	for (var i=0; i<this.ATTACKREROLLA.length; i++) {
-	    var a=this.ATTACKREROLLA[i];
-	    if (a.req(this.weapons[this.activeweapon],targetunit)) 
-		doreroll(a,i+ATTACKREROLLA.length);
-	}   
-
-	// Do all possible modifications
-	for (i=0; i<ATTACKMODA.length; i++) {
-	    var a=ATTACKMODA[i];
-	    if (a.req(ar,da)) modroll(a.f,da,i);
-	}   
-	for (i=0; i<ATTACKMODD.length; i++) {
-	    var a=ATTACKMODD[i];
-	    if (a.req(ar,da)) {
-		//modroll(ATTACKMODD[i].f,da,i+ATTACKMODA.length);
-		//log("adding attackmodd");
-		//str+="<td id='moda"+(i+ATTACKMODA.length)+"' class='"+a.str+"modtokend' onclick='modroll(ATTACKMODD["+i+"].f,"+da+","+(i+ATTACKMODA.length)+")' title='modify roll ["+a.org.name.replace(/\'/g,"&#39;")+"]'></td>";
+    getresultmodifiers: function(m,n,from,to) {
+	var mods=this.getdicemodifiers(); 
+	var lm=[];
+	for (var i=0; i<mods.length; i++) {
+	    var d=mods[i];
+	    if (d.from==from&&d.to==to) {
+		if (d.type==MOD_M&&d.req(m,n)) {
+		    modroll(d.f,i,to);
+		} if (d.type==ADD_M&&d.req(m,n)) {
+		    addroll(d.f,i,to); 
+		} if (d.type==REROLL_M&&d.req(activeunit,activeunit.weapons[activeunit.activeweapon],targetunit)) {
+		    if (typeof d.f=="function") d.f();
+		    reroll(n,(to==ATTACK_M),d,i);
+		}
 	    }
-	}   
-	i=ATTACKMODA.length;//+ATTACKMODD.length;
-	for (j=0; j<this.ATTACKMODA.length; j++) {
-	    var a=this.ATTACKMODA[j];
-	    if (a.req(ar,da)) modroll(a.f,da,(i+j));
-	}   
-	for (j=0; j<this.ATTACKADD.length; j++) {
-	    var a=this.ATTACKADD[j];
-	    if (a.req(ar,da)) addroll(a.f,da,(i+j+this.ATTACKMODA.length));
-	}   
-	if (str!="") {
-	    $("#atokens").html(str).show();
-	    $("#atokens").append("<button class='m-done' onclick='$(\"#atokens\").empty(); targetunit.defenseroll("+defense+").done(function(roll) { targetunit.dodefenseroll(roll,"+defense+","+me+","+n+")})'></button>");
-	} else {
-	    $("#atokens").empty(); 
-	    targetunit.defenseroll(defense).done(function(roll) {targetunit.dodefenseroll(roll.roll,roll.dice,me,n);});
 	}
-    },
-    dodefenseroll: function(dr,dd,me,n) {
-	var i,j;
-	displaydefenseroll(dr,dd);
-	for (j in squadron) if (squadron[j]==this) break;
-	// Add modifiers
- 	var doreroll=function(a,i) {
-	    var s=0;
-	    var nn=a.n();
-	    if (a.type.indexOf("blank")>-1) s+=nn;
-	    if (a.type.indexOf("focus")>-1) s+=10*nn;
-	    if (a.type.indexOf("evade")>-1) s+=100*nn;
-	    reroll(nn,false,s,i);
-	};
-	for (var i=0; i<DEFENSEREROLLD.length; i++) {
-	    var a=DEFENSEREROLLD[i];
-	    if (a.req(activeunit,activeunit.weapons[activeunit.activeweapon],this)) 
-		doreroll(a,i);
-	}   
-	for (var i=0; i<targetunit.DEFENSEREROLLD.length; i++) {
-	    var a=targetunit.DEFENSEREROLLD[i];
-	    if (a.req(activeunit.weapons[activeunit.activeweapon],this)) 
-		doreroll(a,i+DEFENSEREROLLD.length);
-	}   
-	for (i=0; i<DEFENSEMODD.length; i++) {
-	    var a=DEFENSEMODD[i];
-	    if (a.req(dr,dd)) modrolld(a.f,dd,i);
-	}   
-	for (j=0; j<this.DEFENSEMODD.length; j++) {
-	    var a=this.DEFENSEMODD[j];
-	    if (a.req(dr,dd)) modrolld(a.f,dd,i+j);
-	}   
-	$("#dtokens").append($("<button>").addClass("m-fire").click(function() {
-	    $("#combatdial").hide();
-	    this.resolvedamage();
-	    this.endnoaction(n,"incombat");
-	}.bind(squadron[me]))).show();
-	//log("defense roll: f"+f+" e"+e+" b"+(dd-e-f));
-    },
+	return lm;	
+    }
 };

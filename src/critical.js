@@ -64,7 +64,7 @@ var CRITICAL_DECK=[
 		if (save.length==0) {
 		    for (var i=0; i<a.length; i++) {
 			save[i]={move:a[i].move,difficulty:a[i].difficulty};
-			if (a[i].move.match("TL\d|TR\d")) save[i].difficulty="RED";
+			if (a[i].move.match(/TL\d|TR\d/)) save[i].difficulty="RED";
 		    }
 		}
 		return save;
@@ -253,18 +253,18 @@ var CRITICAL_DECK=[
 	    var self=this;
 	    this.unit.log("Critical: %0",this.name);
 	    this.isactive=true;
-	    this.skill=this.unit.skill;
 	    this.unit.wrap_before("endround",this,function() {
-		this.skill=0;
+		this.wrap_after("getagility",self,function() {
+		    return 0;
+		});
 		filltabskill();
 		this.showstats();
-		this.endround.unwrap(self);
 	    }.bind(this.unit));
 	},
 	facedown: function() {
 	    if (this.isactive) {
 		this.isactive=false;
-		this.unit.skill=this.skill;
+		this.unit.getskill.unwrap(this);
 		filltabskill();
 		this.unit.showstats();
 	    }
@@ -278,12 +278,7 @@ var CRITICAL_DECK=[
 	    var self=this;
 	    this.unit.log("Critical: %0",this.name);
 	    this.isactive=true;
-	    this.unit.wrap_after("getattackstrength",this,function(w,t,a) { return 0; });
-	    this.unit.wrap_before("cleanupattack",this,function() {
-		this.getattackstrength.unwrap(self);
-		this.cleanupattack.unwrap(self);
-		self.isactive=false;
-	    });
+	    this.unit.wrap_after("getattackstrength",this,function(w,t,a) { this.getattackstrength.unwrap(self); self.isactive=false; return 0; }.bind(this));
 	},
 	facedown: function() {
 	    this.isactive=false;
@@ -300,28 +295,18 @@ var CRITICAL_DECK=[
 	    this.isactive=true;
 	    for (i=0; i<this.unit.upgrades.length; i++) {
 		var upg=this.unit.upgrades[i];
-		if (upg.type=="Elite") upg.desactivate(this.unit);
+		if (upg.type==ELITE) upg.desactivate();
 	    }
-	    this.old={}
-	    for (i in this.unit) {
-		if (typeof this.unit[i]=="function") {
-		    this.old[i]=this.unit[i];
-		    delete this.unit[i];
-		}
-	    }
-	    // Do not loose IA control on the unit !
-	    if (TEAMS[this.unit.team].isia) $.extend(this.unit,IAUnit.prototype);
+	    this.unit.desactivate();
 	    this.unit.show();
 	},
 	facedown: function() {
 	    if (this.isactive) {
 		var i;
-		for (i in this.old) {
-		    if (typeof this.old[i]=="function") this.unit[i]=this.old[i];
-		}
+		if (typeof this.unit.init!="undefined") this.unit.init();
 		for (i=0; i<this.unit.upgrades.length; i++) {
 		    var upg=this.unit.upgrades[i];
-		    if (upg.type=="Elite") {
+		    if (upg.type==ELITE) {
 			upg.isactive=true;
 			if (typeof upg.init!="undefined") upg.init(this.unit);
 		    }
