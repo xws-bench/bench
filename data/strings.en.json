@@ -206,7 +206,10 @@
 	"Valen Rudor":{"text":"After defending, you may perform a free action."},
 	"The Inquisitor":{"text":"When attacking with your primary weapon at Range 2-3, treat the range of the attack as Range 1."},
 	"Zuckuss (Scum)":{"text":"When attacking, you may roll 1 additional attack die. If you do, the defender rolls 1 additional defense die."},
-	"4-LOM (Scum)":{"text":"At the start of the End phase, you may assign 1 of your stress tokens to another ship at Range 1."}
+	"4-LOM (Scum)":{"text":"At the start of the End phase, you may assign 1 of your stress tokens to another ship at Range 1."},
+	"Tel Trevura (Scum)":{"text":"The first time you would be destroyed, instead cancel any remaining damage, discard all Damage cards, and deal 4 facedown Damage cards to this ship."},
+	"Manaroo (Scum)":{"text":"At the start of the Combat phase, you may assign all focus, evade and target lock tokens assigned to you to another friendly ship."},
+	"Dengar (Scum)":{"text":"Once per round after defending, if the attacker is inside your firing arc, you may perform an attack against that ship."}
  },
  "upgrades": {
     "Ion Cannon Turret":{"text":
@@ -491,8 +494,7 @@
     "At the start of the Combat phase, you may discard this card to increase your agility value by 1 until the end of the round.  Then you may remove 1 enemy target lock from your ship."},
     "Experimental Interface":{"text":
     "Once per round, after you perform an action, you may perform 1 free action from an equipped Upgrade card with the '%ACTION%' header.  Then receive 1 stress token."},
-    "Tactical Jammer":{"text":
-    "Your ship can obstruct enemy attacks."},
+    "Tactical Jammer":{"text":"Your ship can obstruct enemy attacks."},
     "Autothrusters":{"text":
     "When defending, if you are beyond Range 2 or outside the attacker's firing arc, you may change 1 of your blank results to a %EVADE% result. You can equip this card only if you have the %BOOST% action icon."},
     "Slave I":{"text":
@@ -581,7 +583,7 @@
             {"text": "When you reveal a turn maneuver (%TURNLEFT% or %TURNRIGHT%), you may rotate your dial to the corresponding bank maneuver (%BANKLEFT% or %BANKRIGHT%) of the same speed."},
         "Ion Projector":   
             {"text": "After an enemy ship executes a maneuver that causes it to overlap your ship, roll 1 attack die.  On a %HIT% or %CRIT% result, the enemy ship receives 1 ion token."},
-	    "Integrated Astromech":{"text":"When you are dealt a Damage card, you may discard 1 of your Astromech Upgrade cards to discard that Damage card (without resolving its effect)."},  
+	    "Integrated Astromech":{"text":"When you are dealt a Damage card, you may discard 1 of your %ASTROMECH% Upgrade cards to discard that Damage card (without resolving its effect)."},  
         "Hound's Tooth":
             {"text": "After you are destroyed, before you are removed from the play area, you may <strong>deploy</strong> the <em>Nashtah Pup</em> ship. It cannot attack this round."},
      "Hera Syndulla(Crew)":{"text":"You can reveal and execute red maneuvers even while you are stressed."},
@@ -604,7 +606,14 @@
      "Zuckuss(Crew)":{"text":"When attacking, you may receive any number of stress tokens to choose an equal number of defense dice. The defender must reroll those dice."},
      "4-LOM(Crew)":{"text":"When attacking, during the 'Modify Attack Dice' step, you may receive 1 ion token to choose 1 of the defender's focus or evade tokens. That token cannot be spent during this attack."},
      "Adaptability(+1)":{"text":"Increase your pilot skill value by 1."},
-     "Adaptability(-1)":{"text":"Decrease your pilot skill value by 1."}
+     "Adaptability(-1)":{"text":"Decrease your pilot skill value by 1."},
+     "Rage":{"text":"%ACTION% Assign 1 focus token to your ship and receive 2 stress tokens. Until the end of the round, when attacking, you may reroll up to 3 attack dice."},
+     "Attanni Mindlink":{"text":"Each time you are assigned a focus or stress token, each other friendly ship with Attanni Mindlink must also be assigned the same type of token if it does not already have one."},
+     "R5-P8":{"text":"Once per round, after defending, you may roll 1 attack die. On a %HIT% result, the attacker suffers 1 damage. On a %CRIT% result, you and the attacker each suffer 1 damage."},
+     "Boba Fett(Crew)":{"text":"After performing an attack, if the defender was dealt a faceup Damage card, you may discard this card to choose and discard 1 of the defenders Upgrade cards."},
+     "'Gonk'(Crew)":{"text":"%ACTION% Place 1 shield token on this card. %ACTION% Remove 1 shield token from this card to recover 1 shield (up to your shield value)."},
+     "Dengar(Crew)":{"text":"When attacking, you may reroll 1 attack die. If the defender is a unique pilot, you may instead reroll up to 2 attack dice."},
+     "Punishing One":{"text":"Increase your primary weapon value by 1."}
  },
 
     "criticals":{
@@ -653,10 +662,12 @@
     },
     "css":{
 	"m-ncombats":"Combats",
-	"m-xpinstructions":"First select pilots for the combat, then select one of the battle replays",
+	"m-battlingsquad":"Battling squad",
 	"m-squadpilots":"Select pilots",
 	"m-experience":"Battle Log",
+	"m-battlexp":"Scores in bold are of human player, in normal, of AI player.",
 	"m-score":"Score",
+	"m-opponent":"Opponent",
 	"m-saved":"Book of Tactics",
 	"m-views":"Views",
 	"m-replay":"Replay",
@@ -689,14 +700,14 @@
 	"m-plain":"Text",
 	"m-xws":"XWS3.0",
 	"m-faction":"Faction",
-	"m-points":"Points",
+	"m-points":"Pts",
 	"m-units":"Units",
 	"m-move":"Move",
 	"m-fire":"Fire!",
 	"m-skip":"Skip",
 	"m-pilotselect":"Pilot selection",
 	"m-player":"Player",
-	"m-manage":"Manage your squads",
+	"m-manage":"Manage squads",
 	"m-filter":"Filter prebuilt squad lists or according to their faction",
 	"m-selectinstructions":"Prepare for combat",
 	"m-importinstructions":"Create new squad or type a squad list, in the XWS3.0 format or in plain text.",
@@ -713,7 +724,7 @@
 	"selects":"Select a squad",
 	"selectu":"Select unit",
 	"none":"none",
-	"type":"Types",
+	"type":"Type",
 	"squadron":"Squadron",
 	"phase0":"Build squad #1",
 	"phase1":"Build and select squads",

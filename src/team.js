@@ -53,11 +53,12 @@ Team.prototype = {
     tosquadron:function(s) {
 	var team=this.team;
 	var sortable = [];
-	for (var i in generics) sortable.push([i, generics[i]]);
+	var i,j;
+	for (i in generics) sortable.push([i, generics[i]]);
 	sortable.sort(function(a, b) {return a[0] > b[0]});
 	//for (var i=0; i<sortable.length; i++) 
 	//    log("sortable["+i+"]="+sortable[i][1].name+" "+sortable[i][1].team);
-	for (var i=0; i<sortable.length; i++) {
+	for (i=0; i<sortable.length; i++) {
 	    if (sortable[i][1].team==this.team) {
 		u=sortable[i][1];
 		/* Copy all functions for manual inheritance.  */
@@ -74,7 +75,7 @@ Team.prototype = {
 	// knockout
 	//ko.applyBindings({squad:ko.observableArray(squadron)});
 	var gid=0;
-	for (i in squadron) {
+/*	for (i in squadron) {
 	    u=squadron[i];
 	    if (u.team==1) u.id=gid++;
 	}
@@ -82,15 +83,27 @@ Team.prototype = {
 	    u=squadron[i];
 	    if (u.team==2) u.id=gid++;
 	}
+*/
+	for (i in squadron) {
+	    u=squadron[i];
+	    if (u.team==this.team&&typeof u.init=="function") u.init();
+	}
 	for (i in squadron) {
 	    u=squadron[i];
 	    if (u.team==this.team) {
-		if (typeof u.init!="undefined") u.init();
+		for (var j=0; j<u.upgrades.length; j++) {
+		    var upg=u.upgrades[j];
+		    if (typeof upg.init=="function") upg.init(u);
+		}
+	    }
+	}
+	for (i in squadron) {
+	    u=squadron[i];
+	    if (u.team==this.team) {
 		if (this.isia==true) u=$.extend(u,IAUnit.prototype);
 	    }
 	}
 	this.units.sort(function(a,b) {return b.getskill()-a.getskill();});
-	squadron.sort(function(a,b) {return b.getskill()-a.getskill();});
 	this.history={title: {text: UI_translation["Damage taken per turn"]},
 		      axisX:{  interval: 1,title: UI_translation["Turns"]},
 		      axisY: {	title: UI_translation["Cumulated damage"]},
@@ -130,7 +143,7 @@ Team.prototype = {
 		    sq[i].ty=70+82*i;
 		    sq[i].alpha=90;
 		}
-		$("#team1").append("<div id=\""+sq[i].id+"\" onclick='select(\""+sq[i].id+"\")'>"+sq[i]+"</div>");
+		$("#team1").append("<div id=\""+sq[i].id+"\" onclick='select($(this).attr(\"id\"))'>"+sq[i]+"</div>");
 	    } else {
 		if (sq[i].tx<=0||sq[i].ty<=0) {
 		    sq[i].tx=820+(sq[i].islarge?20:0);
