@@ -724,7 +724,7 @@ function displayfactionunits() {
 	if (PILOTS[i].faction==faction) {
 	    if (typeof p[u]=="undefined") p[u]=[];
 	    p[u].push(PILOTS[i]);
-	    PILOTS[i].pilotid=i;
+	    //PILOTS[i].pilotid=i;
 	}
     }
     for (i=0; i<UPGRADES.length; i++) {
@@ -2106,7 +2106,7 @@ TogetherJSConfig_on_ready = function () {
 		    },
 		    { "targets":[5],
 		      "render":function() {
-			  return "<img class='logmiddle' src='css/book.svg' onclick='battlelog($(this));'>";
+			  return "<img class='logmiddle' src='css/book.svg'>"; // onclick='battlelog($(this));'>";
 		      },
 		      "sortable":false
 		    },
