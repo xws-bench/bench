@@ -158,16 +158,23 @@ Team.prototype = {
 	$("#team"+team).css("top",$("nav").height()+2);
 	activeunit=sq[0];
     },
+    sortedgenerics: function() {
+	var sortable=[];
+	for (var i in generics) 
+	    if (generics[i].team==this.team) sortable.push(generics[i]);
+	sortable.sort(function(a,b) {
+	    if (typeof a.points=="undefined") log("undefined score");
+	    if (a.points<b.points) return -1; 
+	    if (a.points>b.points) return 1;
+	    return (a.toJuggler(false)<b.toJuggler(false));
+	});
+	return sortable;
+    },
     toASCII: function() {
 	var s="";
-	var sortable = [];
-	for (var i in generics) sortable.push([i, generics[i]])
-	sortable.sort(function(a, b) {return a[0] > b[0]})
-	for (var i=0; i<sortable.length; i++) {
-	    if (sortable[i][1].team==this.team) {
-		s+=sortable[i][1].toASCII()+";";
-	    }
-	}
+	var sortable=this.sortedgenerics();
+	for (var i=0; i<sortable.length; i++) 
+	    s+=sortable[i].toASCII()+";";
 	return s;
     },
    
@@ -179,15 +186,11 @@ Team.prototype = {
 	s.name=this.name;
 	var sq=[];
 	var pts=0;
-	var sortable = [];
-	for (var i in generics) sortable.push([i, generics[i]])
-	sortable.sort(function(a, b) {return a[0] > b[0]})
+	var sortable=this.sortedgenerics();
 	for (var i=0; i<sortable.length; i++) {
-	    if (sortable[i][1].team==this.team) {
-		var jp=sortable[i][1].toJSON();
-		pts+=jp.points;
-		sq.push(jp);
-	    }
+	    var jp=sortable[i].toJSON();
+	    pts+=jp.points;
+	    sq.push(jp);
 	}
 	s.pilots=sq;
 	s.points=pts;
@@ -200,14 +203,9 @@ Team.prototype = {
     toJuggler:function(translated) {
 	var s="";
 	var f={REBEL:"rebels",SCUM:"scum",EMPIRE:"empire"};
-	var sortable = [];
-	for (var i in generics) sortable.push([i, generics[i]])
-	sortable.sort(function(a, b) {return a[0] > b[0]})
-	for (var i=0; i<sortable.length; i++) {
-	    if (sortable[i][1].team==this.team) {
-		s=s+sortable[i][1].toJuggler(translated)+"\n";
-	    }
-	}
+	var sortable = this.sortedgenerics();
+	for (var i=0; i<sortable.length; i++) 
+	    s+=sortable[i].toJuggler(translated)+"\n";
 	return s;
     },
     parseJuggler : function(str,translated) {
@@ -291,7 +289,6 @@ Team.prototype = {
 	    var coord=pilots[i].split(":");
 	    var updstr=coord[0].split(",");
 	    var pid=parseInt(updstr[0],10);
-	    log(this.team+" "+pid);
 	    this.faction=PILOTS[pid].faction;
 	    this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
 	    var p=new Unit(this.team,pid);
