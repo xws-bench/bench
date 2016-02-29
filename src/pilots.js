@@ -40,7 +40,7 @@ var PILOTS = [
     {
 	name:"Contracted Scout",
 	faction:SCUM,
-	id:0,
+	pilotid:0,
 	done:true,
 	unit:"JumpMaster 5000",
 	skill:3,
