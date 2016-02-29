@@ -56,9 +56,10 @@ Upgrades implemented, .'Zeb' Orrelios, .4-LOM, Agent Kallus, Guidance Chips, .Ho
 
 */
 window.callback = function () { alert("called callback");return true; };
-window.onerror = function(message, source, lineno, colno, error) {
+/*window.onerror = function(message, source, lineno, colno, error) {
     log("<b>ERROR: "+error+"</b>");
  };
+*/
 function center() {
     var bbox=activeunit.g.getBBox();
     var xx=(bbox.x+bbox.width/2);
@@ -112,6 +113,7 @@ var myCallback = function (error, options, response) {
 	    t1+=tt[i].replace(/\*/g," + ").replace(/_/g," ")+"<br>";
 	    s1+=tt[i].replace(/\*/g," + ").replace(/_/g," ")+"\n";
 	}
+	TEAMS[1].parseJuggler(s1,false);
 	for (var i=1; i<response.rows.length; i++) {
 	    myTemplate(i,response.rows[i].cellsArray,null,null);
 	}
@@ -139,20 +141,48 @@ var myTemplate = function(num,cells,cellarrays,labels) {
     var team1=tt[0].split("\.");
     var team2=tt[1].split("\.");
     var t1="",s1="";
+
     if (tt[0]==SEARCHINGSQUAD) { var sc=score2,ts=type2; team1=team2; score2=score1; type2=type1; score1=sc; type1=ts; }
     for (var j=0; j<team1.length-1; j++) {
 	s1+=team1[j].replace(/\*/g," + ").replace(/_/g," ")+"\n";
 	t1+=team1[j].replace(/\*/g," + ").replace(/_/g," ")+"<br>";
     }
+    TEAMS[2].parseJuggler(s1,false);
     if (LANG!="en") {
-	TEAMS[0].parseJuggler(s1,false);
-	t1=TEAMS[0].toJuggler(true).replace(/\n/g,"<br>");
+	t1=TEAMS[2].toJuggler(true).replace(/\n/g,"<br>");
     }
     if (type2=="Human") score2="<b>"+score2+"</b>";
     if (type1=="Human") score1="<b>"+score1+"</b>";
+  
     SQUADBATTLE.row.add([score2+"-"+score1,"<span onclick='$(\"#replay\").attr(\"src\",\""+cells[2]+"\")'>"+t1+"</span>"]).draw(false);
 }
-
+var computeurl=function(error, options,response) {
+    console.log(error,options,response);
+    var scoreh=0;
+    var scorec=0;
+    var n=0;
+    if (typeof response.rows!="undefined") {
+    	for (var i=1; i<10; i++) {
+	    var squad=response.rows[i].cellsArray[0];
+	    var tt=squad.split("VS");
+	    var team1=tt[0].split("\.");
+	    var team2=tt[1].split("\.");
+	    var s1="",s2="";
+	    for (var j=0; j<team1.length-1; j++) {
+		s1+=team1[j].replace(/\*/g," + ").replace(/_/g," ")+"\n";
+		s2+=team2[j].replace(/\*/g," + ").replace(/_/g," ")+"\n";
+	    }
+	    TEAMS[1].parseJuggler(s1,false);
+	    TEAMS[2].parseJuggler(s2,false);
+	    var longurl = response.rows[i].cellsArray[2];
+	    var curl=longurl.split("?")[1];
+	    var arg=LZString.decompressFromEncodedURIComponent(decodeURI(curl));
+	    var args=[];
+	    args= arg.split('&');
+	    log(LZString.compressToEncodedURIComponent(TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+args[2]+"&"+args[3]+"&"+args[4]+"&"+args[5]+"&"+args[6]));
+	}
+    }
+}
 function formatstring(s) {
     return s.replace(/%HIT%/g,"<code class='hit'></code>")
 	.replace(/%ACTION%/g,"<b>Action:</b>")
@@ -682,6 +712,15 @@ function displayAIperformance() {
 	    labels:["Score"]
 	});
     }   
+}
+function recomputeurl() {
+    $('#squadbattlediv').sheetrock({
+	url: mySpreadsheets[0],
+	query:"select C,D,E",
+	callback:computeurl,
+	rowTemplate:function () { return "";},
+	labels:["ascii","short","long"]
+    }); 
 }
 function displaycombats(t) {
     t=t.replace(/\n/g,".");
@@ -1277,7 +1316,9 @@ function nextphase() {
 	if (TEAMS[1].initiative==true) log("TEAM #1 has initiative");
 	else log("TEAM #2 has initiative");
 	$(".activeunit").prop("disabled",false);
-	activeunit=squadron[0];
+	var i;
+	for (i in squadron) if (!squadron[i].isdocked) break;
+	activeunit=squadron[i];
 	activeunit.select();
 	activeunit.show();
 	var zoom=function(centerx,centery,z) {
@@ -1917,7 +1958,7 @@ $(document).ready(function() {
 	s.attr({width:"100%",height:"100%",viewBox:"0 0 900 900"});
 	TEAMS[1].setfaction("REBEL");
 	TEAMS[2].setfaction("EMPIRE");
-	UPGRADES.sort(function(a,b) {
+	/*UPGRADES.sort(function(a,b) {
 	    var an=a.name;
 	    var bn=b.name;
 	    if (typeof UI_translation[an]!="undefined"&&typeof UI_translation[an].name!="undefined") an=UI_translation[a.name].name;
@@ -1930,7 +1971,7 @@ $(document).ready(function() {
 		var d=a.points-b.points;
 		if (d==0) return a.name.localeCompare(b.name);
 		else return d;
-	    });
+	    });*/
 	var n=0,u=0,ut=0;
 	var str="";
 	for (i=0; i<PILOTS.length; i++) {
@@ -2029,7 +2070,8 @@ $(document).ready(function() {
 	$("#player1").append("<option value='computer'>"+UI_translation["computer"]+"</option>");
 	$("#player2").html("<option selected value='human'>"+UI_translation["human"]+"</option>");
 	$("#player2").append("<option value='computer'>"+UI_translation["computer"]+"</option>");
-	//jwerty.key("shift+i", displayAIperformance);
+
+	jwerty.key("shift+i", recomputeurl);
 	//jwerty.key("shift+i", TogetherJS);
 /*
 TogetherJSConfig_on_ready = function () {
@@ -2106,7 +2148,7 @@ TogetherJSConfig_on_ready = function () {
 		    },
 		    { "targets":[5],
 		      "render":function() {
-			  return "<img class='logmiddle' src='css/book.svg'>"; // onclick='battlelog($(this));'>";
+			  return "<img class='logmiddle' src='css/book.svg' onclick='alert(\"Battle log temporarily disabled\")'>";// onclick='battlelog($(this));'>";
 		      },
 		      "sortable":false
 		    },
