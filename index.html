@@ -14,8 +14,7 @@
     <script src="js/jwerty.min.js"></script>
     <script src="js/jquery-1.11.3.min.js"></script>
 <script>
-TogetherJSConfig_findRoom = "squadronbenchmark_users"
-</script>
+TogetherJSConfig_findRoom = "squadronbenchmark_users"</script>
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="js/jquery.a-tools-1.4.1.js"></script>
     <script src="js/jquery.asuggest.js"></script>
@@ -43,7 +42,8 @@ TogetherJSConfig_findRoom = "squadronbenchmark_users"
 	  <span class="ver"></span>
 	  <img onclick="changelanguage('en')" class="langselect" src="css/uk-on.png">
 	  <img onclick="changelanguage('fr')" class="langselect" src="css/fr-on.png">
-
+	  <img class="mute" onclick="Howler.mute();$('.mute').hide();$('.unmute').show();" width="10px" src="css/speaker.svg">
+	  <img class="unmute" onclick="Howler.unmute();$('.unmute').hide();$('.mute').show();" width="10px" src="css/mute.svg">
 	</span>
 	<div class="buttonbar">
 	  <button onclick="currentteam=TEAMS[0];createsquad()" class="mainbutton m-create"></button>
