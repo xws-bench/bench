@@ -66,15 +66,11 @@ Bomb.prototype = {
 	var c="";
 	if (!this.isactive) c="class='inactive'"
 	a="<td><code class='"+this.type+" upgrades'></code>";
-	//if (this.ordnance) a+=
 	a+="</td>";
-	var text=UPGRADE_translation[this.name];
-	var name=this.name;
 	var ord="";
 	if (this.ordnance) ord="<sup style=\"padding:1px;color:white;background-color:red;border-radius:100%;\">x2</sup>";
-	if (typeof text!="undefined"&&typeof text.name!="undefined") name=text.name;
-	b="<td class='tdstat'><span>"+name.replace(/\'/g,"&#39;")+ord+"</span></td>";
-	if (typeof text!="undefined"&&typeof text.text!="undefined") text=text.text; else text="";
+	b="<td class='tdstat'><span>"+translate(this.name).replace(/\'/g,"&#39;")+ord+"</span></td>";
+	var text=getupgtxttranslation(this.name,this.type);
 	if (text=="") d="<td class='outoverflow'></td>";
 	else d="<td class='tooltip outoverflow'><span>"+formatstring(text)+"</span></td>";
 	if (this.unit.team==1)  
@@ -142,7 +138,7 @@ Bomb.prototype = {
 		    function() {this.pos[k].attr({stroke:this.unit.color,strokeWidth:"4px"})}.bind(this),
 		    function() {this.pos[k].attr({strokeWidth:"0"})}.bind(this));
 		
-		this.pos[k].click(
+		this.pos[k].on("touch click",
 		    function() { resolve(moves[k],k,cleanup); });}.bind(this)
 	    )(i);
 	}
@@ -238,7 +234,6 @@ function Weapon(sh,wdesc) {
     this.isprimary=false;
     $.extend(this,wdesc);
     sh.upgrades[sh.upgrades.length]=this;
-    this.rank=sh.upgrades.length-1;
     this.wrapping=[];
     //log("Installing weapon "+this.name+" ["+this.type+"]");
     this.isactive=true;
@@ -261,17 +256,15 @@ Weapon.prototype = {
 	    for (i=0; i<r.length; i++) if (r[i].team!=this.unit.team) break;
 	    if (i==r.length) c="class='nofire'"
 	}
-	i=this.unit.id;
+	var rank = this.unit.upgrades.indexOf(this);
+	var i = squadron.indexOf(this.unit);
 	a="<td><button class='statfire'";
-	a+=" onclick='if (!generics.u"+i+".dead&&!generics.u"+i+".isdocked) generics.u"+i+".togglehitsector("+this.rank+")'";
+	if (i>-1) a+=" onclick='if (!squadron["+i+"].isdocked) squadron["+i+"].togglehitsector("+rank+")'";
 	a+=">"+this.getattack()+"<span class='symbols'>"+A[this.type.toUpperCase()].key+"</span>"
 	a+="</button></td>";
-	var text=UPGRADE_translation[this.name];
-	var name=this.name;
 	var ord="";
 	if (this.ordnance) ord="<sup style=\"padding:1px;color:white;background-color:red;border-radius:100%;\">x2</sup>";
-	if (typeof text!="undefined"&&typeof text.name!="undefined") name=text.name;
-	b="<td class='tdstat'><span>"+name.replace(/\'/g,"&#39;")+ord+" <span style='font-size:smaller'>";
+	b="<td class='tdstat'><span>"+translate(this.name).replace(/\'/g,"&#39;")+ord+" <span style='font-size:smaller'>";
 	if ((typeof this.getrequirements()!="undefined")) {
 	    if ("Target".match(this.getrequirements())) b+="<code class='symbols'>"+A["TARGET"].key+"</code>"
 	    if ("Focus".match(this.getrequirements())) b+=(this.getrequirements().length>5?"/":"")+"<code class='symbols'>"+A["FOCUS"].key+"</code>"
@@ -430,16 +423,13 @@ Upgrade.prototype = {
 	var d;
 	if (!this.isactive) c="class='inactive'"
 	a="<td><code class='"+this.type+" upgrades'></code></td>"; 
-	var text=UPGRADE_translation[this.name+(this.type==CREW?"(Crew)":"")];
-	var name=this.name;
-	if (typeof text!="undefined"&&typeof text.name!="undefined") name=text.name;
-	b="<td class='tdstat'>"+name.replace(/\'/g,"&#39;");
+	b="<td class='tdstat'>"+translate(this.name).replace(/\'/g,"&#39;");
 	if (typeof this.shield!="undefined" &&this.shield>0)
 	    b+=" <code class='cshield' title='"+this.shield+" shield(s)'></code>";
 	b+="</td>";
-	if (typeof text!="undefined"&&typeof text.text!="undefined") text=text.text; else text="";
+	var text=formatstring(getupgtxttranslation(this.name,this.type));
 	if (text=="") d="<td class='outoverflow'></td>";
-	else d="<td class='tooltip outoverflow'><span>"+formatstring(text)+"</span></td>";
+	else d="<td class='tooltip outoverflow'><span>"+text+"</span></td>";
 	if (this.unit.team==1)  
 	    return "<tr "+c+">"+b+a+d+"</tr>"; 
 	else return "<tr "+c+">"+a+b+d+"</tr>";
@@ -1440,7 +1430,7 @@ var UPGRADES= [
 	    target.wrap_after("cancelhit",self,function(r,org,r2) {
 		self.unit.log("%HIT% cannot be cancelled [%0]",self.name);
 		return r;
-	    }).unwrapper("endattack");
+	    }).unwrapper("endbeingattacked");
 	    Weapon.prototype.declareattack.call(this,target);
 	},
         range: [1,1],
@@ -1700,7 +1690,7 @@ var UPGRADES= [
         init: function(sh) {
 	    var self=this;
 	    sh.wrap_after("preattackroll",this,function(w,t) {
-		if (t.focus+t.evade==0) 
+		if (t.focus+t.evade==0&&this.stress==0) 
 		    this.donoaction([{org:this,name:this.name,type:"ELITE",action:function(n) {
 			this.wrap_after("getattackstrength",self,function(i,t,a) {
 			    return a+1;
@@ -1928,7 +1918,7 @@ var UPGRADES= [
 		    for (var i=0; i<=roll.dice; i++) {
 			(function(k) {
 			    var e=$("<button>").html(k+" <code class='xevadetoken'></code>")
-				.click(function() { resolve(k);}.bind(this));
+				.on("touch click",function() { resolve(k);}.bind(this));
 			    $("#actiondial").append(e);
 			}.bind(this))(i);
 		    }
@@ -2728,7 +2718,7 @@ var UPGRADES= [
 	    target.wrap_after("cancelhit",self,function(r,org,r2) {
 		self.unit.log("%HIT% cannot be cancelled [%0]",self.name);
 		return r;
-	    }).unwrapper("endattack");
+	    }).unwrapper("endbeingattacked");
 	    Weapon.prototype.declareattack.call(this,target);
 	},
         range: [1,1],
@@ -3963,26 +3953,16 @@ var UPGRADES= [
       faction:REBEL,
       unique:true,
       done:true,
-      init:function(sh) {
+      init: function(sh) {
 	  var self=this;
-	  Unit.prototype.wrap_after("preattackroll",this,function(w,t) {
-	      var p=this.selectnearbyenemy(2);
-	      if (sh.canusefocus()&&p.indexOf(sh)>-1) { 
-		  this.donoaction([{org:self,name:self.name,type:"CREW",action:function(n) {
-			this.wrap_after("getattackstrength",self,function(i,t,a) {
-			    var ra= this.weapons[i].getrangeattackbonus();
-			    a=a-ra;
-			    if (a>0) a=a-1;			    
-			    return a+ra;
-			}).unwrapper("attackroll");
-			sh.removefocustoken();
-			this.log("-1 attack against %1 [%0]",self.name,sh.name);
-			this.endnoaction(n,"CREW");
-		    }.bind(this)}],"",true);
-	    }
+	  Unit.prototype.wrap_after("handledifficulty",self,function(difficulty) {
+	      if (difficulty=="WHITE"&&this.stress>0
+		  &&this.team==self.team&&this.getrange(self)<=2) {
+		  this.log("-1 %STRESS% [%0]",self.name);
+		  this.removestresstoken();
+	      }
 	  });
       }
-      
     },
     { name:"Sabine Wren",
       type:CREW,
@@ -4081,7 +4061,7 @@ var UPGRADES= [
 		 self.damage+=n;
 
 	     }); 
-	     this.wrap_before("endbeingattacked",self,function(c,h) {
+	     this.wrap_before("endbeingattacked",self,function(c,h,t) {
 		 if (self.damage>=3) {
 		     this.log("+1 %SHIELD% [%0]",self.name);
 		     this.addshield(1);
@@ -4158,10 +4138,10 @@ var UPGRADES= [
 	 var self=this;
 	 sh.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
 	     req: function(m,n) {
-		 var t=this.weapons[activeweapon].type;
+		 var t=this.weapons[this.activeweapon].type;
 		 if (t==TORPEDO||t==MISSILE) return true;
 		 return false;
-	     },
+	     }.bind(sh),
 	     f: function(m,n) {
 		 var b=FCH_blank(m,n);
 		 var f=FCH_focus(m);
@@ -4176,7 +4156,7 @@ var UPGRADES= [
 		 else if (f>0) { sh.log("%FOCUS% -> "+s+" [%0]", self.name); m+=to-FCH_FOCUS;}
 		 else if (h>0&&to==FCH_CRIT) { sh.log("%HIT% -> %CRIT% [%0]",self.name); m+=to-FCH_HIT; }
 		 return m;
-	     }
+	     }.bind(sh)
 	 });
      }
     },
@@ -4197,7 +4177,45 @@ var UPGRADES= [
      faction:SCUM,
      points:1,
      unique:true,
+     done:true,
      type:CREW,
+     init: function(sh) {
+	 var self=this;
+	 sh.adddicemodifier(ATTACK_M,MOD_M,DEFENSE_M,this,{
+	     req: function(m,n) { return true; },
+	     f:function(m,n) {
+		 var f=FE_focus(m);
+		 if (f>0) {
+		     targetunit.log("Reroll %0 %FOCUS% [%1]",f,self.name);
+		     sh.log("+%0 %STRESS% [%1]",f,self.name);
+		     var roll=sh.rolldefensedie(f);
+		     m-=FE_FOCUS*f;
+		     for (var i=0; i<f; i++) {
+			 sh.addstress();
+			 if (roll[i]=="evade") m+=FE_EVADE;
+			 if (roll[i]=="focus") m+=FE_FOCUS;
+		     }
+		 }
+		 return m;
+	     },str:"focus"});
+	 sh.adddicemodifier(ATTACK_M,MOD_M,DEFENSE_M,this,{
+	     req: function(m,n) { return true; },
+	     f:function(m,n) {
+		 var f=FE_evade(m);
+		 if (f>0) {
+		     targetunit.log("Reroll %0 %EVADE% [%1]",f,self.name);
+		     sh.log("+%0 %STRESS% [%1]",f,self.name);
+		     var roll=sh.rolldefensedie(f);
+		     m-=FE_EVADE*f;
+		     for (var i=0; i<f; i++) {
+			 sh.addstress();
+			 if (roll[i]=="evade") m+=FE_EVADE;
+			 if (roll[i]=="focus") m+=FE_FOCUS;
+		     }
+		 }
+		 return m;
+	     },str:"evade"});
+     },
     },
     {name:"4-LOM",
      faction:SCUM,
@@ -4268,7 +4286,17 @@ var UPGRADES= [
 	unique:true,
 	type:CREW,
 	points:3,
-	faction:SCUM
+	faction:SCUM,
+	done:true,
+	init: function(sh) {
+	    sh.adddicemodifier(ATTACK_M,REROLL_M,ATTACK_M,this,{
+		dice:["blank","focus"],
+		n:function() { if (targetunit.unique==true) return 2; return 1; },
+		req:function(attacker,w,defender) {
+		    return this.isactive;
+		}.bind(this)
+	    });
+	}
     },
     {
 	name:"'Gonk'",
@@ -4334,7 +4362,29 @@ var UPGRADES= [
 	name:"R5-P8",
 	unique:true,
 	type:SALVAGED,
-	points:3
+	points:3,
+	done:true,
+	init: function(sh) {
+	    var self=this;
+	    sh.wrap_after("endbeingattacked",this,function(c,h,t) {
+		this.donoaction([{name:this.name,org:this,type:"HIT",action:function(n) {
+		    var roll=this.rollattackdie(1)[0];
+		    this.log("roll 1 attack dice [%0]",self.name);
+		    if (roll=="hit"||roll=="critical") { 
+			t.log("+1 %HIT% [%1]",self.name)
+			t.resolvehit(1); 
+			t.checkdead(); 
+		    }
+		    if (roll=="critical") {
+			this.log("+1 %HIT% [%1]",self.name)
+			this.resolvehit(1);
+			this.checkdead();
+		    }
+		    this.endnoaction(n,"");
+		}.bind(this)}],"",true);
+
+	    });
+	}
     },
     {
 	name:"Attanni Mindlink",
@@ -4407,6 +4457,24 @@ var UPGRADES= [
 	uninstall: function(sh) {
 	    this.unwrap(this);
 	},
-    }
-	
+    },
+    {name:"Long Range Scanner",
+     type:MOD,
+     points:0,
+     done:true,
+     requiredupg:[TORPEDO,MISSILE],
+     init: function(sh) {
+	 sh.wrap_after("gettargetableunits",this,function(n,q) {
+	     var p=[];
+	     if (n<3) return p;
+	     for (var i in squadron) {
+		 if (squadron[i].team!=this.team) {
+		     var r=this.getrange(squadron[i]);
+		     if (r>=3) p.push(squadron[i]);
+		 }
+	     }
+	     return p;
+	});
+     }
+    }	
 ];

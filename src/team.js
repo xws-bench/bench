@@ -54,13 +54,17 @@ Team.prototype = {
 	var team=this.team;
 	var sortable = [];
 	var i,j;
-	for (i in generics) sortable.push([i, generics[i]]);
-	sortable.sort(function(a, b) {return a[0] > b[0]});
-	//for (var i=0; i<sortable.length; i++) 
-	//    log("sortable["+i+"]="+sortable[i][1].name+" "+sortable[i][1].team);
-	for (i=0; i<sortable.length; i++) {
-	    if (sortable[i][1].team==this.team) {
-		u=sortable[i][1];
+	var sortable = this.sortedgenerics();
+	var team1=0;
+	var id=0;
+	for (var i in generics) 
+	    if (generics[i].team==1) team1++;
+	//log("found team1:"+team1);
+	for (var i=0; i<sortable.length; i++) {
+	    if (this.team==sortable[i].team) {
+		sortable[i].id=id++;
+		if (sortable[i].team==2) sortable[i].id+=team1;
+		var u=sortable[i];
 		/* Copy all functions for manual inheritance.  */
 		for (var j in PILOTS[u.pilotid]) {
 		    var p=PILOTS[u.pilotid];
@@ -74,16 +78,6 @@ Team.prototype = {
 	}	
 	// knockout
 	//ko.applyBindings({squad:ko.observableArray(squadron)});
-	var gid=0;
-/*	for (i in squadron) {
-	    u=squadron[i];
-	    if (u.team==1) u.id=gid++;
-	}
-	for (i in squadron) {
-	    u=squadron[i];
-	    if (u.team==2) u.id=gid++;
-	}
-*/
 	for (i in squadron) {
 	    u=squadron[i];
 	    if (u.team==this.team&&typeof u.init=="function") u.init();
@@ -210,7 +204,7 @@ Team.prototype = {
     },
     parseJuggler : function(str,translated) {
 	var f,i,j,k;
-	var pid;
+	var pid=-1;
 	var getf=function(f) {
 	    if (f=="REBEL") return 1;
 	    if (f=="SCUM") return 2;
@@ -229,8 +223,7 @@ Team.prototype = {
 		var v=PILOTS[j].name;
 		var va=v;
 		var vn=v+(PILOTS[j].faction==SCUM?" (Scum)":"");
-		if (translated==true&&typeof PILOT_translation[vn]!="undefined"&&typeof PILOT_translation[vn].name!="undefined")
-		    va=PILOT_translation[vn].name;
+		if (translated==true) va=translate(vn);
 		if (PILOTS[j].ambiguous==true) va+="("+PILOTS[j].unit+")";
 		if (va.replace(/\'/g,"")==pstr[0]) {
 		    lf=lf|getf(PILOTS[j].faction);
@@ -242,28 +235,28 @@ Team.prototype = {
 	this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
 
 	for (i=0; i<pilots.length; i++) {
+	    pid=-1;
 	    var pstr=pilots[i].split(/\s+\+\s+/);
 	    for (j=0;j<PILOTS.length; j++) {
 		var v=PILOTS[j].name;
 		var va=v;
 		var vn=v+(PILOTS[j].faction==SCUM?" (Scum)":"");
 		if (PILOTS[j].faction==this.faction) {
-		    if (translated==true&&typeof PILOT_translation[vn]!="undefined"&&typeof PILOT_translation[vn].name!="undefined") 
-			va=PILOT_translation[vn].name;
+		    if (translated==true) va=translate(vn);
 		    if (PILOTS[j].ambiguous==true) va+="("+PILOTS[j].unit+")";
 		    if (va.replace(/\'/g,"")==pstr[0]) { pid=j; break; }
 		} 
 	    }
-	    if (typeof pid=="undefined") console.log("pid undefined: >"+pstr[0]+"<"+this.faction);
+	    if (pid==-1) {
+		console.log("pid undefined:"+translated+" "+pstr[0]+"#"+this.faction);
+		continue;
+	    }
 	    var p=new Unit(this.team,pid);
 	    p.upg=[];
 	    var authupg=[MOD,TITLE].concat(PILOTS[p.pilotid].upgrades);
 	    for (j=1; j<pstr.length; j++) {
 		for (k=0; k<UPGRADES.length; k++) {
-		    var v=UPGRADES[k].name+(UPGRADES[k].type=="Crew"?"(Crew)":"");
-		    if ((translated==true&&typeof UPGRADE_translation[v]!="undefined"
-			 &&typeof UPGRADE_translation[v].name!="undefined"
-			 &&UPGRADE_translation[v].name.replace(/\'/g,"").replace(/\(Crew\)/g,"")==pstr[j])
+		    if ((translated==true&&translate(UPGRADES[k].name).replace(/\'/g,"").replace(/\(Crew\)/g,"")==pstr[j])
 			||(UPGRADES[k].name.replace(/\'/g,"")==pstr[j]))
 			if (authupg.indexOf(UPGRADES[k].type)>-1) {
 			    p.upg[j-1]=k;
@@ -328,7 +321,7 @@ Team.prototype = {
 	    p=new Unit(this.team,0);
 	    if (pilot.ship=="") pilot.ship="tiefofighter";
 	    // log calling selectship ??
-	    log("call selectship "+pilot.name);
+	    //log("call selectship "+pilot.name);
 	    p.selectship(PILOT_dict[pilot.ship],PILOT_dict[pilot.name]);
 	    /* Copy all functions for manual inheritance. Call init. */
 	    for (k in PILOTS[this.pilotid]) {
