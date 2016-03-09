@@ -574,7 +574,7 @@ var PILOTS = [
 	    this.wrap_after("cleanupattack",this,function() {
 		var p=[];
 		if (this.candoboost()) 
-		    p.push(this.newaction(this.resovleboost,"BOOST"));
+		    p.push(this.newaction(this.resolveboost,"BOOST"));
 		if (this.candoroll()) 
 		    p.push(this.newaction(this.resolveroll,"ROLL"))
 		this.doaction(p,"free %BOOST% or %ROLL% action");
@@ -1980,7 +1980,7 @@ var PILOTS = [
         faction:SCUM,
 	pilotid:105,
 	init: function() {
-            this.wrap_after("endbeingattacked",this,function(c,h) {
+            this.wrap_after("endbeingattacked",this,function(c,h,t) {
 		if (c+h==0) {
 		    this.log("no hit, +1 %EVADE%");
 		    this.addevadetoken();
@@ -3010,7 +3010,7 @@ var PILOTS = [
        done:true,
        init: function() {
 	   var self=this;
-	    sh.wrap_after("isattackedby",this,function(w,a) {
+	    this.wrap_after("isattackedby",this,function(w,a) {
 		if (self.targeting.indexOf(a)>-1) 
 		    a.wrap_after("getdicemodifiers",self,function(mods) {
 			var p=[];
@@ -3019,7 +3019,7 @@ var PILOTS = [
 			return p;
 		    }).unwrapper("endattack");
 	    })
-	    sh.wrap_after("declareattack",this,function(w,t) {
+	    this.wrap_after("declareattack",this,function(w,t) {
 		if (self.targeting.indexOf(t)>-1) 
 		    t.wrap_after("getdicemodifiers",self,function(mods) {
 			var p=[];
@@ -3151,7 +3151,27 @@ var PILOTS = [
 	unit:"VCX-100",
 	skill:4,
 	points:38,
-	upgrades:[SYSTEM,TURRET,TORPEDO,TORPEDO,CREW,CREW]
+	upgrades:[SYSTEM,TURRET,TORPEDO,TORPEDO,CREW,CREW],
+	done:true,
+	init:function() {
+	    var self=this;
+	    Unit.prototype.wrap_after("preattackroll",this,function(w,t) {
+		var p=this.selectnearbyenemy(2);
+		if (self.canusefocus()&&p.indexOf(self)>-1) { 
+		    this.donoaction([{org:self,name:self.name,type:"FOCUS",action:function(n) {
+			this.wrap_after("getattackstrength",self,function(i,t,a) {
+			    var ra= this.weapons[i].getrangeattackbonus(t);
+			    a=a-ra;
+			    if (a>0) a=a-1;			    
+			    return a+ra;
+			}).unwrapper("attackroll");
+			self.removefocustoken();
+			this.log("-1 attack against %1",self.name);
+			this.endnoaction(n,"FOCUS");
+		    }.bind(this)}],"",true);
+		}
+	    });
+	}
     },
     {
 	name:"'Wampa'",
@@ -3251,6 +3271,7 @@ var PILOTS = [
 	done:true,
 	points:25,
 	init: function() {
+	    var self=this;
 	    this.wrap_after("getattackstrength",this,function(i,sh,a) {
 		if (i==0) {
 		    if (this.weapons[0].getrange(sh)>1) {
@@ -3258,6 +3279,10 @@ var PILOTS = [
 			return a+1;
 		    }
 		} 
+		return a;
+	    });
+	    Weapon.prototype.wrap_after("getrangedefensebonus",this,function(t,a) {
+		if (a>0&&t==self) return 0;
 		return a;
 	    });
 	},
@@ -3273,7 +3298,7 @@ var PILOTS = [
 	points:22,
 	done:true,
 	init: function() {
-	    this.wrap_after("endbeingattacked",this,function(c,h) {
+	    this.wrap_after("endbeingattacked",this,function(c,h,t) {
 		if (this.candoaction()) {
 		    this.log("+1 free action [%0]",this.name);
 		    this.doaction(this.getactionlist());
@@ -3361,12 +3386,22 @@ var PILOTS = [
 	done:true,
 	init: function() {
 	    var den=-1;
-	    this.wrap_after("endbeingattacked",this,function(c,h) {
-		if (den<round&&this.isinfiringarc(activeunit)) {
+	    var self=this;
+	    this.wrap_after("endbeingattacked",this,function(c,h,t) {
+		if (den<round&&this.isinfiringarc(t)) {
+		    var str="";
+		    var wn=[];
 		    this.log("2nd attack");
 		    den=round;
-		    // TODO: primary weapon only
-		    this.resolveattack(0,activeunit); 
+		    for (var w=0; w<this.weapons.length; w++) if (this.weapons[w].canfire(t)) wn.push(w);
+		    targetunit=t;
+		    self.select();
+		    for (var i in wn) {
+			var w=A[this.weapons[wn[i]].type.toUpperCase()];
+			str+="<div class='symbols' onclick='activeunit.selecttargetforattack("+wn[i]+",targetunit)'>"+w.key+"</div>";
+		    }
+		    str+="<button class='m-skip' onclick='activeunit.hasfired++;activeunit.show();activeunit.deferred.resolve();'></button>";
+		    $("#attackdial").html("<div>"+str+"</div>").show();
 		}
 	    });
 	},

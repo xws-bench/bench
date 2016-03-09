@@ -39,9 +39,6 @@ var stype="";
 var REPLAY="";
 var PERMALINK="";
 /*
-News:
-Pilots implemented, .Zuckuss, Maranno, Contracted Scout, Tel Trevura, Dengar
-Upgrades implemented, .'Zeb' Orrelios, .4-LOM, Agent Kallus, Guidance Chips, .Hound's Tooth, Juke, .Kanan Jarrus, .R4-B11, R7 Astromech, .Sabine Wren, Tactical Jammer, Targeting Astromech, Targeting Coordinator, TIE/D, TIE/x7, Weapons Engineer, Punishing one, Attani Mindlink, Rage, 'Gonk'
 
     <script src="src/obstacles.js"></script>
     <script src="src/critical.js"></script>
@@ -179,16 +176,37 @@ var computeurl=function(error, options,response) {
 	    var arg=LZString.decompressFromEncodedURIComponent(decodeURI(curl));
 	    var args=[];
 	    args= arg.split('&');
-	    log(LZString.compressToEncodedURIComponent(TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+args[2]+"&"+args[3]+"&"+args[4]+"&"+args[5]+"&"+args[6]));
+	    //log(LZString.compressToEncodedURIComponent(TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+args[2]+"&"+args[3]+"&"+args[4]+"&"+args[5]+"&"+args[6]));
 	}
     }
+}
+function translate(a) {
+    if (typeof PILOT_translation[a]!="undefined"
+	&&typeof PILOT_translation[a].name!="undefined") 
+	return PILOT_translation[a].name;
+    if (typeof PILOT_translation[a+" (Scum)"]!="undefined"
+	&&typeof PILOT_translation[a+" (Scum)"].name!="undefined") 
+	return PILOT_translation[a+" (Scum)"].name;
+    if (typeof UPGRADE_translation[a]!="undefined"
+	&&typeof UPGRADE_translation[a].name!="undefined") 
+	return UPGRADE_translation[a].name;
+    if (typeof UPGRADE_translation[a+"(Crew)"]!="undefined"
+	&&typeof UPGRADE_translation[a+"(Crew)"].name!="undefined") 
+	return UPGRADE_translation[a+"(Crew)"].name;
+    if (typeof CRIT_translation[a]!="undefined"
+	&&typeof CRIT_translation[a].name!="undefined")
+	return CRIT_translation[a].name;
+    return a;
 }
 function formatstring(s) {
     return s.replace(/%HIT%/g,"<code class='hit'></code>")
 	.replace(/%ACTION%/g,"<b>Action:</b>")
+	.replace(/%STRESS%/g,"<code class='xstresstoken'></code>")
 	.replace(/%CRIT%/g,"<code class='critical'></code>")
 	.replace(/%EVADE%/g,"<code class='symbols'>e</code>")
 	.replace(/%FOCUS%/g,"<code class='symbols'>f</code>")
+	.replace(/%SHIELD%/g,"<code class='cshield'></code>")
+	.replace(/%HULL%/g,"<code class='chull'></code>")
 	.replace(/%ROLL%/g,"<code class='symbols'>r</code>")
 	.replace(/%TURNLEFT%/g,"<code class='symbols'>4</code>")
 	.replace(/%TURNRIGHT%/g,"<code class='symbols'>6</code>")
@@ -668,10 +686,9 @@ document.addEventListener("win",win,false);
 function battlelog(t) {
     var row=SQUADLIST.row(t.parents("tr"));
     var data = row.data()[3];
-    if (LANG!="en") {
-	TEAMS[0].parseJuggler(data,true);
-	data=TEAMS[0].toJuggler(false);
-    }
+    if (LANG!="en") TEAMS[0].parseJuggler(data,true);
+    else TEAMS[0].parseJuggler(data,false);
+    data=TEAMS[0].toJuggler(false);
     displaycombats(data);
     window.location="#battlelog";
 }
@@ -697,10 +714,11 @@ function switchdialimg(b) {
     }
 }
 var mySpreadsheets=[
-    "https://docs.google.com/spreadsheets/d/1Xofg3BpKQhttm2EllgSXi-AjDrcdZPgOKkdTXJLovPE/edit#gid=0",
+"https://docs.google.com/spreadsheets/d/1n35IFydakSJf9N9b9byLog2MooaWXk_w8-GQdipGe8I/edit#gid=0"
+/*    "https://docs.google.com/spreadsheets/d/1Xofg3BpKQhttm2EllgSXi-AjDrcdZPgOKkdTXJLovPE/edit#gid=0",
     "https://docs.google.com/spreadsheets/d/1NseMuMal1BMWexfWGGoN5egLDALk1eaxQ8ke-x4zCbQ/edit?#gid=0",
     "https://docs.google.com/spreadsheets/d/1X0qrjgF2JpsQMpzF-uwuzkinxWvup2Z2LS6pApydVPM/edit?#gid=0",
-    "https://docs.google.com/spreadsheets/d/128D4m1GBOQw3vCXe5hY75XQXvyjSsOCBX79oyJ213OA/edit?#gid=0",
+    "https://docs.google.com/spreadsheets/d/128D4m1GBOQw3vCXe5hY75XQXvyjSsOCBX79oyJ213OA/edit?#gid=0",*/
 ];
 function displayAIperformance() {
     for (var i=0; i<mySpreadsheets.length; i++) {
@@ -824,7 +842,7 @@ function displayfactionunits() {
 		var text=getpilottexttranslation(name,faction);
 		if (text!="") 
 		    text+=(p[i][j].done==true?"":"<div><strong class='m-notimplemented'></strong></div>");
-		str+="<tr data="+p[i][j].pilotid+"><td><button pilotid="+p[i][j].pilotid+" onclick='addunit("+p[i][j].pilotid+")'>+</button></td><td>"+getpilottranslation(name,faction)+"</td><td>"+p[i][j].points+"</td>";
+		str+="<tr data="+p[i][j].pilotid+"><td><button pilotid="+p[i][j].pilotid+" onclick='addunit("+p[i][j].pilotid+")'>+</button></td><td>"+translate(name)+"</td><td>"+p[i][j].points+"</td>";
 		str+="<td class='statskill'>"+p[i][j].skill+"</td>";
 		str+="<td>";
 		if (p[i][j].upgrades.indexOf(ELITE)>-1)
@@ -839,20 +857,10 @@ function displayfactionunits() {
 	}
     }
 }
-function getpilottranslation(name,faction) {
-    var idxn=name+(faction=="SCUM"?" (Scum)":"");
-    if (typeof PILOT_translation[idxn]!="undefined"&&typeof PILOT_translation[idxn].name!="undefined") return PILOT_translation[idxn].name;
-    return name;
-}
 function getpilottexttranslation(name,faction) {
     var idxn=name+(faction=="SCUM"?" (Scum)":"");
     if (typeof PILOT_translation[idxn]!="undefined"&&typeof PILOT_translation[idxn].text!="undefined") return formatstring(PILOT_translation[idxn].text);
     return "";
-}
-function getupgtranslation(name,type) {
-    var v=name+(type==CREW?"(Crew)":"");
-    if (typeof UPGRADE_translation[v]!="undefined"&&typeof UPGRADE_translation[v].name!="undefined") name=UPGRADE_translation[v].name.replace(/\(Crew\)/g,"");
-    return name;
 }
 function getupgtxttranslation(name,type) {
     var v=name+(type==CREW?"(Crew)":"");
@@ -897,19 +905,17 @@ function addupgradeaddhandler(u) {
 	for (var i=0; i<p.length; i++) {
 	    var upg=UPGRADES[p[i]];
 	    var disabled=false;
-	    var text=upg.name;
 	    var pts=upg.points+this.upgbonus[org];
 	    if (pts<0) pts=0;
 	    var tt=">";
 	    var attack="</td><td>";
 	    if (typeof upg.attack!="undefined") attack="<span class='statfire'>"+upg.attack+"</span></td><td>["+upg.range[0]+"-"+upg.range[1]+"]";
-	    var v=text+(upg.type==CREW?"(Crew)":"");
-	    if (typeof UPGRADE_translation[v]!="undefined"&&typeof UPGRADE_translation[v].name!="undefined") text=UPGRADE_translation[v].name.replace(/\(Crew\)/g,"");
-	    if (typeof UPGRADE_translation[v]!="undefined"&&typeof UPGRADE_translation[v].text!="undefined") tt=" class='tooltip'>"+formatstring(UPGRADE_translation[v].text)+(upg.done==true?"":"<div><strong class='m-notimplemented'></strong></div>");
+	    var text=formatstring(getupgtxttranslation(upg.name,upg.type));
+	    if (text!="") tt=" class='tooltip'>"+text+(upg.done==true?"":"<div><strong class='m-notimplemented'></strong></div>");
 
 	    if (UNIQUE[upg.name]==true) disabled=true;
 	    if ((upg.limited==true||this.exclupg[upg.type]==true)&&$("#unit"+this.id+" .upg span[data="+p[i]+"]").length>0) disabled=true;
-	    $("#unit"+this.id+" .upglist").append("<tr><td><button "+(disabled?"disabled":"")+" num="+num+" data="+p[i]+">+</button></td><td>"+text+"</td><td>"+pts+"</td><td>"+attack+"</td><td"+tt+"</td></tr>")
+	    $("#unit"+this.id+" .upglist").append("<tr><td><button "+(disabled?"disabled":"")+" num="+num+" data="+p[i]+">+</button></td><td>"+translate(upg.name).replace(/\(Crew\)/g,"")+"</td><td>"+pts+"</td><td>"+attack+"</td><td"+tt+"</td></tr>")
 	}
 	$("#unit"+this.id+" .upglist button").click(function(e) {
 	    var data=e.currentTarget.getAttribute("data");
@@ -953,23 +959,20 @@ function addunit(n) {
     return u;
 }
 function addupgrade(self,data,num) {
-    $("#unit"+self.id+" .upglist").empty();
-    if (typeof UPGRADES[data]=="undefined") return;
-    if (UPGRADES[data].unique==true) addunique(UPGRADES[data].name);
-    if (UPGRADES[data].limited==true) addlimited(self,data);
-    $("#unit"+self.id+" .upgavail span[num="+num+"]").css("display","none");
-    var text=UPGRADES[data].name;
-    var v=text+(UPGRADES[data].type==CREW?"(Crew)":"");
-    if (typeof UPGRADE_translation[v]!="undefined"&&typeof UPGRADE_translation[v].name!="undefined") text=UPGRADE_translation[v].name.replace(/\(Crew\)/g,"").replace(/\'/g,"");
-    else text=text.replace(/\'/g,"");
     var org=UPGRADES[data];
+    $("#unit"+self.id+" .upglist").empty();
+    if (typeof org=="undefined") return;
+    if (org.unique==true) addunique(org.name);
+    if (org.limited==true) addlimited(self,data);
+    $("#unit"+self.id+" .upgavail span[num="+num+"]").css("display","none");
+    var text=translate(org.name).replace(/\(Crew\)/g,"").replace(/\'/g,"");
     if (typeof self.upgbonus[org.type]=="undefined") self.upgbonus[org.type]=0;
     var pts=org.points+self.upgbonus[org.type];
     if (pts<0) pts=0;
-    $("#unit"+self.id+" .upg").append("<span data="+data+" num="+num+"><code class='upgrades "+UPGRADES[data].type+"'></code>"+text+" (<span class='pts'>"+pts+"</span>)</span>");
+    $("#unit"+self.id+" .upg").append("<span data="+data+" num="+num+"><code class='upgrades "+org.type+"'></code>"+text+" (<span class='pts'>"+pts+"</span>)</span>");
     self.upg[num]=data;
-    if (typeof UPGRADES[data].install!="undefined") UPGRADES[data].install(self);
-    Upgrade.prototype.install.call(UPGRADES[data],self);
+    if (typeof org.install!="undefined") org.install(self);
+    Upgrade.prototype.install.call(org,self);
     $("#unit"+self.id+" .shipdial").html("<table>"+self.getdialstring()+"</table>");
 
     self.showupgradeadd();
@@ -986,13 +989,14 @@ function addupgrade(self,data,num) {
     }.bind(self));
 }
 function removeupgrade(self,num,data) {
-    $("#unit"+self.id+" .upgavail span[num="+num+"]").css("display","block");
+    var org=UPGRADES[data];
+   $("#unit"+self.id+" .upgavail span[num="+num+"]").css("display","block");
     $("#unit"+self.id+" .upg span[num="+num+"]").remove();
-    if (UPGRADES[data].unique==true) removeunique(UPGRADES[data].name);
-    if (UPGRADES[data].limited==true) removelimited(self,data);
+    if (org.unique==true) removeunique(org.name);
+    if (org.limited==true) removelimited(self,data);
     self.upg[num]=-1;
-    if (typeof UPGRADES[data].uninstall!="undefined") UPGRADES[data].uninstall(self);
-    Upgrade.prototype.uninstall.call(UPGRADES[data],self);
+    if (typeof org.uninstall!="undefined") org.uninstall(self);
+    Upgrade.prototype.uninstall.call(org,self);
     $("#unit"+self.id+" .shipdial").html("<table>"+self.getdialstring()+"</table>");
 
     self.showupgradeadd();
@@ -1026,95 +1030,7 @@ function addrow(team,name,pts,faction,jug) {
 //    COMBATLIST.row.add(["",link,n,team1,team2]).draw(false);
     //});
 //}
-function makeGrid(points1,points2){    
-    var dataLength = points1.length;
-    var allData = points1.concat(points2);
-    var maxValue = Math.max.apply(null, allData);
-    var minValue = Math.min.apply(null, allData);
-    if (maxValue > $('#svgLine').height()){ 
-      $('#svgLine').height(maxValue+10);
-    }
-    
-    // Creates the vertical lines in the graph
-    for (var i=0; i<dataLength; i++) {
-      var x = i*100;
-      var xLine = sl.line(x, minValue-10, x, maxValue+10).attr({
-        stroke: "#ccc",
-        strokeWidth: 0.25
-      });
-    }
-    
-    // Creates the horizontal lines in the graph
-    var w = dataLength*100;
-    var delimiter = 5;
-    var values = (maxValue+10)-(minValue-10);
-    var offset = ((maxValue+10)%delimiter);
-    for (var i=values; i > 0; i--){
-      if ((i-offset) % delimiter === 0){ // Change where lines appear by changing the delimiter (10 for every 10 units, 50 for 50, etc.)
-        var yLine = sl.line(0, i, w, i).attr({
-          stroke: '#ccc',
-          strokeWidth: 0.25
-        });
-      }
-    }
-  
-  }
-  
-  function convertToPath(points){
-    var path = '';
-    
-    for (var i=0; i<points.length; i++){
-      var x = i*100;
-      var y = -points[i]+$('#svgLine').height(); // Convert points to how we like to view graphs
-      if (i===0){
-        path += 'M'+x+','+y+' S';
-      }
-      else if (i===points.length-1){
-        path += x+','+y;
-      }
-      else {
-        path += x+','+y+',';
-      }
-    }
-    return path;
-  }
- 
-  function makePath(data, color){
-    var pathString = convertToPath(data);
-    var graphHeight = $('#svgLine').height();
-    var fillString = pathString+' V'+graphHeight+' H0 Z';
-    
-    function getDefaultPath(isFill){
-      var defaultPathString = 'M0,'+graphHeight+' H';
-      
-      
-      for (var i=0; i<data.length; i++) {
-        if (i!==0){ 
-          defaultPathString += i*100+' ';
-        }
-      }
-      
-      if(isFill){
-        defaultPathString += 'V'+graphHeight+' H0 Z';
-      }
-      return defaultPathString;
-    }
-    
-    var path = sl.path(getDefaultPath()).attr({
-      stroke: color,
-      strokeWidth: 2,
-      fill: 'transparent'
-    });
-  
-    var fill = sl.path(getDefaultPath(true)).attr({
-      fill: color,
-      fillOpacity: 0.25    
-    });
-  
-    path.animate({ path: pathString },500);
-    fill.animate({ path: fillString },500);
-    
-  }
+
 function endselection() {
     var team;
     $("#creation").hide();
@@ -1184,12 +1100,11 @@ function nextphase() {
 	    TEAMS[1].isia=false; else TEAMS[1].isia=true;
 	if ($("#player2 option:checked").val()=="human") 
 	    TEAMS[2].isia=false; else TEAMS[2].isia=true;
+	for (var i in squadron) console.log("--squadron["+i+"]:"+squadron[i].name+" "+squadron[i].id);
+
  	break;
     case CREATION_PHASE:
 	endselection();
-	phase=SELECT_PHASE;
-	return;
-    case XP_PHASE:
 	phase=SELECT_PHASE;
 	return;
     case SETUP_PHASE: 
@@ -1887,13 +1802,14 @@ $(document).ready(function() {
 	  K5:{path:s.path("M 0 0 L 0 -240").attr({display:"none"}), speed: 5, key: "2" }
 	};
     // Load unit data
-    var availlanguages={"en":"🇬🇧","fr":"🇫🇷"};
+    var availlanguages=["en","fr"];
     LANG = localStorage['LANG'] || window.navigator.userLanguage || window.navigator.language;
     LANG=LANG.substring(0,2);
     $.ajaxSetup({beforeSend: function(xhr){
 	if (xhr.overrideMimeType)
 	    xhr.overrideMimeType("application/json");
     }});
+    if (availlanguages.indexOf(LANG)==-1) LANG="en";
     $.when(
 	$.ajax("data/ships.json"),
 	$.ajax("data/strings."+LANG+".json"),
@@ -2057,7 +1973,7 @@ $(document).ready(function() {
 	"info":true,
 	"paging":         true});
 
-	$('#squadbattle tbody').on( 'click', 'tr', function () {
+	$('#squadbattle tbody').on('click','tr', function () {
             if ( $(this).hasClass('selected') ) {
 		$(this).removeClass('selected');
             }
@@ -2071,7 +1987,7 @@ $(document).ready(function() {
 	$("#player2").html("<option selected value='human'>"+UI_translation["human"]+"</option>");
 	$("#player2").append("<option value='computer'>"+UI_translation["computer"]+"</option>");
 
-	jwerty.key("shift+i", recomputeurl);
+	jwerty.key("shift+i", displayAIperformance);
 	//jwerty.key("shift+i", TogetherJS);
 /*
 TogetherJSConfig_on_ready = function () {
@@ -2080,6 +1996,7 @@ TogetherJSConfig_on_ready = function () {
       $("#togetherjs-dock").addClass("togetherjs-dock-top").css({top:"-15px",background:"rgba(0,0,0,0)",border:"0px",width:"20em"}).css("box-shadow","none");
 
 };*/ //,3000);
+
 
 	var arg=LZString.decompressFromEncodedURIComponent(decodeURI(window.location.search.substr(1)));
 	var args=[];
@@ -2148,7 +2065,7 @@ TogetherJSConfig_on_ready = function () {
 		    },
 		    { "targets":[5],
 		      "render":function() {
-			  return "<img class='logmiddle' src='css/book.svg' onclick='alert(\"Battle log temporarily disabled\")'>";// onclick='battlelog($(this));'>";
+			  return "<img class='logmiddle' src='css/book.svg' onclick='battlelog($(this));'>";
 		      },
 		      "sortable":false
 		    },
@@ -2201,16 +2118,13 @@ TogetherJSConfig_on_ready = function () {
 	var pilots=[];
 	for (i=0; i<PILOTS.length; i++) {
 	    var n=i;
-	    var name=PILOTS[i].name;
-	    if (typeof PILOT_translation[name]!="undefined"&&typeof PILOT_translation[name].name!="undefined") name=PILOT_translation[name].name;
+	    var name=translate(PILOTS[i].name);
 	    if (PILOTS[i].ambiguous==true) name+="("+PILOTS[i].unit+")";
 	    pilots.push(name.replace(/\'/g,"").replace(/\(Scum\)/g,""));
 	}
 	var upgrades=[];
 	for (i in UPGRADE_translation) {
-	    var n=i;
-	    if (typeof UPGRADE_translation[n].name!="undefined") n=UPGRADE_translation[i].name;
-	    upgrades.push(n.replace(/\'/g,"").replace(/\(Crew\)/g,""));
+	    upgrades.push(translate(i).replace(/\'/g,"").replace(/\(Crew\)/g,""));
 	}
 	$(".squadbg > textarea").asuggest(pilots, { 'delimiters': '^\n', 'cycleOnTab': true });
 	$(".squadbg > textarea").asuggest(upgrades, { 'delimiters': '+ ', 'cycleOnTab':true});
@@ -2229,7 +2143,7 @@ var startreplayall=function() {
     actionrlock=$.Deferred();
     actionrlock.progress(replayall);
     $("#positiondial").hide();
-    for (var j in squadron) console.log("squadron["+j+"]:"+squadron[j].name);
+    //for (var j in squadron) console.log("squadron["+j+"]:"+squadron[j].name+" "+squadron[j].id);
     replayall();
 }
 var stopreplay=function() {
@@ -2252,7 +2166,11 @@ var replayall=function() {
 	if (squadron[j].id==id) u=squadron[j];
 	else {
 	    console.log("cannot find id "+id);
-	    for (j in squadron) log("squadron["+j+"]="+squadron[j].name);
+	    //for (j in squadron) console.log("squadron["+j+"]="+squadron[j].name);
+	    console.log("notify");
+	    actionrlock.notify();
+	    console.log("endnotify");
+	    return;
 	}
     } 
     //if (u!=null) log("cmd : "+u.name+" "+c[1]);
@@ -2264,11 +2182,12 @@ var replayall=function() {
 		"CT":"addcloaktoken",
 		"i":"removeiontoken",
 		"I":"addiontoken",
-		"i":"removetractorbeamtoken",
-		"I":"addtractorbeamtoken",
+		"tb":"removetractorbeamtoken",
+		"TB":"addtractorbeamtoken",
 		"ST":"addstress",
+		"DPY":"deploy",
 		"st":"removestresstoken",
-		"d":"dies"
+		"d":"dies",
 	   };
     if (typeof FTABLE[c[1]]=="string") {
 	var f=Unit.prototype[FTABLE[c[1]]];
@@ -2296,7 +2215,11 @@ var replayall=function() {
     case "t": 
 	for (j in squadron) 
 	    if (squadron[j].id==parseInt(c[2],10)) break;
-	if (squadron[j].id!=parseInt(c[2],10)) console.log("cannot find target "+c[2]);
+	if (squadron[j].id!=parseInt(c[2],10)) {
+	    console.log("cannot find target "+c[2]);
+	    actionrlock.notify();
+	    break;
+	}
 	var t=squadron[j];
 	if (typeof Unit.prototype.removetarget.vanilla=="function") 
 	    Unit.prototype.removetarget.vanilla.call(u,t);
@@ -2306,7 +2229,11 @@ var replayall=function() {
     case "T":
 	for (j in squadron) 
 	    if (squadron[j].id==parseInt(c[2],10)) break;
-	if (squadron[j].id!=parseInt(c[2],10)) console.log("cannot find target "+c[2]);
+	if (squadron[j].id!=parseInt(c[2],10)) {
+	    console.log("cannot find target "+c[2]);
+	    actionrlock.notify();
+	    break;
+	}
 	var t=squadron[j];
 	if (typeof Unit.prototype.addtarget.vanilla=="function") 
 	    Unit.prototype.addtarget.vanilla.call(u,t);
@@ -2336,12 +2263,16 @@ var replayall=function() {
 	u.select();
 	for (j in squadron) 
 	    if (squadron[j].id==parseInt(c[2],10)) break;
-	if (squadron[j].id!=parseInt(c[2],10)) console.log("cannot find target unit "+c[2]);
-	targetunit=squadron[j];
-	u.activeweapon=parseInt(c[3],10);
-	u.playfiresnd();
-	//u.log("fires on "+targetunit.name+" with "+u.weapons[u.activeweapon].name);
-	setTimeout(function() { actionrlock.notify(); }, 1000);
+	if (squadron[j].id!=parseInt(c[2],10)) {
+	    console.log("cannot find target unit "+c[2]);
+	    actionrlock.notify();
+	} else {
+	    targetunit=squadron[j];
+	    u.activeweapon=parseInt(c[3],10);
+	    u.playfiresnd();
+	    //u.log("fires on "+targetunit.name+" with "+u.weapons[u.activeweapon].name);
+	    setTimeout(function() { actionrlock.notify(); }, 1000);
+	}
 	break;
     case "am": 
 	u.select();

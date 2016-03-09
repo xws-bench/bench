@@ -278,7 +278,7 @@ var CRITICAL_DECK=[
 	    var self=this;
 	    this.unit.log("Critical: %0",this.name);
 	    this.isactive=true;
-	    this.unit.wrap_after("getattackstrength",this,function(w,t,a) { this.getattackstrength.unwrap(self); self.isactive=false; return 0; }.bind(this));
+	    this.unit.wrap_after("getattackstrength",this,function(w,t,a) { this.getattackstrength.unwrap(self); self.isactive=false; return 0; });
 	},
 	facedown: function() {
 	    this.isactive=false;
