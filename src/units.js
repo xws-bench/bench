@@ -378,10 +378,8 @@ Unit.prototype = {
 		x+=p.left+startX;
 		var y=m.y(bbox.x,bbox.y-20)/max;
 		y+=p.top+startY;
-		var name=this.name;
-		var text=PILOT_translation[this.name+(this.faction=="SCUM"?" (Scum)":"")];
-		if (typeof text!="undefined"&&typeof text.name!="undefined") name=text.name;
-		$(".info").css({left:x,top:y}).html(name).appendTo("body").show();
+		$(".info").css({left:x,top:y}).html(translate(this.name))
+		    .appendTo("body").show();
 	    }.bind(this),
 	    function() { $(".info").hide(); 
 		       }.bind(this));
@@ -399,6 +397,7 @@ Unit.prototype = {
     wrap_after: function (name,org,after,unwrap) {
 	var self=this;
 	var save=self[name];
+	if (typeof save=="undefined") this.log("name:"+name+" undefined");
 	var global=false;
 	if (typeof save.org=="undefined"&&this!=Bomb.prototype&&this!=Unit.prototype&&this!=Weapon.prototype) global=true;
 	var f=function () {
@@ -517,20 +516,17 @@ Unit.prototype = {
 	return s;
     },
     toJuggler: function(translated) {
-	var s="";
-	s=PILOT_translation[this.name+(this.faction=="SCUM"?" (Scum)":"")];
-	if (translated!=true||typeof s=="undefined"||typeof s.name=="undefined") 
-	    s=this.name.replace(/\'/g,""); 
-	else s=s.name.replace(/\'/g,"");
+	var s=this.name;
+
+	if (translated==true) s=translate(this.name);
+	s=s.replace(/\'/g,""); 
 	if (PILOTS[this.pilotid].ambiguous==true) s=s+"("+this.ship.name+")";
 	for (var i=0; i<this.upg.length; i++) {
 	    var upg=this.upg[i];
 	    if (upg>-1) {
-		var v=UPGRADES[upg].name+(UPGRADES[upg].type=="Crew"?"(Crew)":"");
-		if (translated==true&&typeof UPGRADE_translation[v]!="undefined"&&typeof UPGRADE_translation[v].name!="undefined")
-		  s += " + "+UPGRADE_translation[v].name.replace(/\(Crew\)/g,"").replace(/\'/g,"");
-		else s += " + "+v.replace(/\(Crew\)/g,"").replace(/\'/g,"");
-		
+		var v=UPGRADES[upg].name;
+		if (translated==true) v=translate(UPGRADES[upg].name);
+		s += " + "+v.replace(/\(Crew\)/g,"").replace(/\'/g,"");		
 	    }
 	}
 	return s;
@@ -555,7 +551,7 @@ Unit.prototype = {
 	var imgname=PILOTS[this.pilotid].dict;
 	if (PILOTS[this.pilotid].ambiguous==true) imgname+="-"+unitlist[this.ship.name].dict;
 	str+="<img class='headimg' src='png/"+faction+"/"+imgname+".png'>";
-	str+="<table><tr><td class='statskill'>"+this.getskill()+"</td><td class='shipname'>"+getpilottranslation(this.name,faction)+"</td><td>(<span class='pts'>"+this.points+"</span>)</td><td><div class='close' data="+this.id+" title='Remove'>&#xd7;</div>";
+	str+="<table><tr><td class='statskill'>"+this.getskill()+"</td><td class='shipname'>"+translate(this.name)+"</td><td>(<span class='pts'>"+this.points+"</span>)</td><td><div class='close' data="+this.id+" title='Remove'>&#xd7;</div>";
 	if (PILOTS[this.pilotid].unique!=true) 
 	    str+="<div class='duplicate' data="+this.id+" title='Duplicate'><img src='css/duplicate.svg' width='20px'></div>";
 	str+="</td></tr></table>";
@@ -690,7 +686,7 @@ Unit.prototype = {
 		&& this.ship.name.search(u.ship)==-1) continue;
 	    if (typeof u.ishuge != "undefined") continue;
 	    if (typeof u.islarge != "undefined" 
-		&& this.islarge!=true) continue;
+		&& this.islarge!=u.islarge) continue;
 	    if (typeof u.skillmin != "undefined" 
 		&& this.getskill()<u.skillmin) continue;
 	    if (typeof u.noupgrades != "undefined" 
@@ -699,6 +695,10 @@ Unit.prototype = {
 		&& this.shipactionList.indexOf(u.actionrequired.toUpperCase())==-1) continue;
 	    if (typeof this.maxupg[u.type]!="undefined") {
 		if (this.maxupg[u.type]<u.points) continue;
+	    }
+	    if (typeof u.requiredupg!="undefined") {
+		for (var i=0; i<u.requiredupg.length; i++)
+		    if (this.upgradetype.indexOf(u.requiredupg[i])==-1) continue;
 	    }
 	    if (type.match(u.type)) {
 		var n=u.name;
@@ -1338,6 +1338,7 @@ Unit.prototype = {
     evadeattack: function(sh) {
 	var e=getdefenseresult();
 	var ch=sh.weapons[sh.activeweapon].modifydamagegiven(getattackresult());
+	displayattackroll(getattackdice(),ch);
 	var r=this.cancelhit({ch:ch,e:e},sh);
 	r=this.cancelcritical(r,sh);
 	if (typeof r=="undefined") this.log("undefined cancel critical");
@@ -1383,7 +1384,7 @@ Unit.prototype = {
 	    this.criticalresolved=targetunit.resolvecritical(this.criticalresolved);
 	    this.weapons[this.activeweapon].posthit(targetunit,c,h);
 	} 
-	targetunit.endbeingattacked(c,h);
+	targetunit.endbeingattacked(c,h,this);
 	this.weapons[this.activeweapon].endattack(c,h);
 	this.usedweapon=this.activeweapon;
 	this.endattack(c,h);
@@ -1421,7 +1422,7 @@ Unit.prototype = {
 	for (i=0; i<DICES.length; i++) $("."+DICES[i]+"dice").remove();
 	this.show();
     },
-    endbeingattacked: function(c,h) {
+    endbeingattacked: function(c,h,t) {
 	this.show();
     },
     showpositions:function(gd) {
@@ -1505,6 +1506,8 @@ Unit.prototype = {
 	    return a;
 	}
 	NOLOG=false;
+	var ref=(this.m.split().rotate+360+180)%360-180;
+
 	for (i=0; i<gd.length; i++) {
 	    var next=[];
 	    var mm = this.getpathmatrix(this.m,gd[i].move);
@@ -1529,13 +1532,15 @@ Unit.prototype = {
 	    if ((gd[i].color==GREEN||gd[i].color==WHITE)&&!gd[i].move.match(/K\d|SR\d|SL\d|TRL\d|TRR\d/)) {
 		var gpm=mm.split();
 		g++;
-		//this.log("rotate "+gpm.rotate+" "+gd[i].move+" >"+ma);
-		mx+=gpm.dx; my+=gpm.dy; ma+=(gpm.rotate+360+180)%360-180;
+		gpm.rotate=(gpm.rotate-ref+180)%360-180;
+		mx+=gpm.dx; my+=gpm.dy; ma+=gpm.rotate;
+		//this.log("rotate "+gpm.rotate+" "+gd[i].move+" >"+(ma/g));
 	    }
 	}
 	if (g==0) g=1;
 	mx=mx/g; my=my/g; ma=ma/g;
-	this.meanm= (new Snap.Matrix()).translate(mx,my).rotate(ma,0,0);
+	//this.log("ROTATE >"+(ma+ref));
+	this.meanm= (new Snap.Matrix()).translate(mx,my).rotate(ma+ref,0,0);
 	NOLOG=false;
     },
     removetarget: function(t) {
@@ -1592,6 +1597,7 @@ Unit.prototype = {
 		p.ol.hover(function() { this.pos[i].ol.attr({stroke:this.color,strokeWidth:4})}.bind(this),
 			   function() { this.pos[i].ol.attr({strokeWidth:0})}.bind(this));
 		    p.ol.click(function() { resolve(moves[this.pos[i].k],this.pos[i].k,cleanup); }.bind(this));
+		    p.ol.touchend(function() { resolve(moves[this.pos[i].k],this.pos[i].k,cleanup); }.bind(this));
 		    }.bind(this))(i);
 	    }
 	} else resolve(this.m,-1,cleanup);
@@ -1658,12 +1664,18 @@ Unit.prototype = {
     getrollmatrix:function(m) {
 	var m0=this.getpathmatrix(this.m.clone().rotate(90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(-90,0,0);
 	var m1=this.getpathmatrix(this.m.clone().rotate(-90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(90,0,0);
-	return [m0.clone().translate(0,-20),
-		m0,
-		m0.clone().translate(0,20),
-		m1.clone().translate(0,-20),
-		m1,
-		m1.clone().translate(0,20)]
+	p=[m0.clone().translate(0,-20),
+	   m0,
+	   m0.clone().translate(0,20),
+	   m1.clone().translate(0,-20),
+	   m1,
+	   m1.clone().translate(0,20)];
+	if (this.islarge) 	p=p.concat([m0.clone().translate(0,-40),
+				   m0.clone().translate(0,40),
+				   m1.clone().translate(0,-40),
+				   m1.clone().translate(0,40)]);
+	return p;
+	
     },
     resolveroll: function(n) {
 	this.resolveactionmove(this.getrollmatrix(this.m),
@@ -2301,27 +2313,13 @@ Unit.prototype = {
 
     },
     movelog: function(s) {
+	//console.log("REGISTER:"+this.id+"-"+s)
 	ANIM+="_"+this.id+"-"+s
     },
     computepoints: function() {
     },
     log: function(str,a,b,c) {
 	if (NOLOG) return;
-	var translate=function(a) {
-	    if (typeof PILOT_translation[a]!="undefined"
-		&&typeof PILOT_translation[a].name!="undefined") 
-		return PILOT_translation[a].name;
-	    if (typeof PILOT_translation[a+" (Scum)"]!="undefined"
-		&&typeof PILOT_translation[a+" (Scum)"].name!="undefined") 
-		return PILOT_translation[a+" (Scum)"].name;
-	    if (typeof UPGRADE_translation[a]!="undefined"
-		&&typeof UPGRADE_translation[a].name!="undefined") 
-		return UPGRADE_translation[a].name;
-	    if (typeof CRIT_translation[a]!="undefined"
-		&&typeof CRIT_translation[a].name!="undefined")
-		return CRIT_translation[a].name;
-	    return a;
-	}
 	if (typeof UI_translation[str]!="undefined") str=UI_translation[str];
 	if (typeof a=="string") a=translate(a);
 	str=str.replace(/%0/g,a)
@@ -2329,36 +2327,7 @@ Unit.prototype = {
 	str=str.replace(/%1/g,b)
 	if (typeof c=="string") c=translate(c);
 	str=str.replace(/%2/g,c)
-	str=str.replace(/%HIT%/g,"<code class='hit'></code>")
-	.replace(/%STRESS%/g,"<code class='xstresstoken'></code>")
-	.replace(/%CRIT%/g,"<code class='critical'></code>")
-	.replace(/%EVADE%/g,"<code class='xevadetoken'></code>")
-	.replace(/%FOCUS%/g,"<code class='xfocustoken'></code>")
-	.replace(/%SHIELD%/g,"<code class='cshield'></code>")
-	.replace(/%HULL%/g,"<code class='chull'></code>")
-	.replace(/%ROLL%/g,"<code class='symbols'>r</code>")
-	.replace(/%TURNLEFT%/g,"<code class='symbols'>4</code>")
-	.replace(/%TURNRIGHT%/g,"<code class='symbols'>6</code>")
-	.replace(/%BOOST%/g,"<code class='symbols'>b</code>")
-        .replace(/%ELITE%/g,"<code class='symbols'>E</code>")
- 	.replace(/%BOMB%/g,"<code class='symbols'>B</code>")
-	.replace(/%STRAIGHT%/g,"<code class='symbols'>8</code>")
-	.replace(/%CREW%/g,"<code class='symbols'>C</code>")
-        .replace(/%STOP%/g,"<code class='symbols'>5</code>")
-        .replace(/%TARGET%/g,"<code class='symbols'>l</code>")
-        .replace(/%TORPEDO%/g,"<code class='symbols'>P</code>")
- 	.replace(/%CANNON%/g,"<code class='symbols'>C</code>")
-	.replace(/%SYSTEM%/g,"<code class='symbols'>S</code>")
-	.replace(/%ILLICIT%/g,"<code class='symbols'>I</code>")
-        .replace(/%MISSILE%/g,"<code class='symbols'>M</code>")
-        .replace(/%TURRET%/g,"<code class='symbols'>U</code>")
-        .replace(/%BANKLEFT%/g,"<code class='symbols'>7</code>")
-        .replace(/%BANKRIGHT%/g,"<code class='symbols'>9</code>")
-        .replace(/%UTURN%/g,"<code class='symbols'>2</code>")
-        .replace(/%SLOOPLEFT%/g,"<code class='symbols'>1</code>")
-        .replace(/%SLOOPRIGHT%/g,"<code class='symbols'>3</code>")
-        .replace(/%TALONLEFT%/g,"<code class='symbols'>;</code>")
-        .replace(/%TALONRIGHT%/g,"<code class='symbols'>:</code>");
+	str=formatstring(str);
 	log("<div><span style='color:"+this.color+"'>["+this.name+"]</span> "+str+"</div>");
     },
     candocloak: function() {
@@ -2408,8 +2377,9 @@ Unit.prototype = {
 	parent.docked=this;
     },
     deploy: function(parent,dm) {
+	this.movelog("DPY");
 	$("#"+this.id).removeClass("docked");
-	$("#"+this.id).html(""+u)
+	$("#"+this.id).html(""+this)
 	$("#"+this.id).click(function() { this.select(); }.bind(this));
 	this.g.attr({display:"block"});
 	this.geffect.attr({display:"block"});
@@ -2513,14 +2483,10 @@ Unit.prototype = {
 	    }    
 	}
 	str+="<div><div class='statskill'>"+this.getskill()+"</div>";
-	var text=PILOT_translation[this.name+(this.faction=="SCUM"?" (Scum)":"")];
-	var t=text;
-	var name;
-	if (typeof text=="undefined"||typeof text.text=="undefined") t=""; else t="<span>"+formatstring(text.text)+"</span>"; 
-	if (typeof text=="undefined"||typeof text.name=="undefined") name=this.name; else name=text.name;
+	t="<span>"+formatstring(getpilottexttranslation(this.name,this.faction))+"</span>";
 	str+="<div class='name'>";
 	if (t!="") str+="<div class='tooltip outoverflow'>"+t+"</div>"
-	str+="<div>"+name+"</div></div>";
+	str+="<div>"+translate(this.name)+"</div></div>";
 	text=SHIP_translation[this.ship.name];
 	if (typeof text=="undefined") text=this.ship.name;
 	str+="<div><div style='font-size:smaller'><code class='"+this.faction+"'></code>&nbsp;"+text+"</div></div>";
