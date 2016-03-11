@@ -25,11 +25,9 @@ width:120px;
 .leftpanel section .stat {
 left:120px
 }
-
 .leftpanel section .stat2 {
 left:128px
 }
-
 .leftpanel section .stat3 {
 left:136px
 }
@@ -252,10 +250,9 @@ height:4ex;
 margin:3px;
 padding:0;
 border:0;
-font-size:1.5em;
+/*font-size:1.5em;*/
 color:white;
 float:left;
-letter-spacing:1.5px;
 }
 
 h2 {
@@ -374,7 +371,7 @@ width:1em;
 }
 .xwing::after {
 content:"x";
-font-family:ships;
+font-family:'symbols';
 font-size:larger
 }
 .modalDialog {
@@ -1364,16 +1361,11 @@ font-size:smaller;
 }
 .PREBUILT::before {
 background-image:url(prebuilt.png);/*"!"*/
-background-size: 100%;
-background-repeat: no-repeat;
-width: 1em; 
-height: 1em;
-padding-left:1em;
-content:"";
 }
-
 .REBEL::before {
 background-image:url(rebel.png);/*"!"*/
+}
+.EMPIRE::before,.REBEL::before,.SCUM::before,.PREBUILT::before {
 background-size: 100%;
 background-repeat: no-repeat;
 width: 1em; 
@@ -1381,25 +1373,11 @@ height: 1em;
 padding-left:1em;
 content:"";
 }
-
 .EMPIRE::before {
 background-image:url(empire.png);/*"@"*/
-    background-size: 100%;
-    background-repeat: no-repeat;
-width: 1em; 
-height: 1em;
-padding-left:1em;
-    content:"";
 }
-
 .SCUM::before {
 background-image:url(scum.png);/*"#"*/
-background-size: 100%;
-background-repeat: no-repeat;
-width: 1em; 
-height: 1em;
-padding-left:1em;
-content:"";
 }
 .flame1 {
 content:url(png/flame1.png);
@@ -1443,6 +1421,13 @@ color:white;
 background:rgba(50,50,50,0.5);
 cursor:move;
 height:1em;
+}
+.title {
+letter-spacing:2px;
+font-size:larger;
+font-weight:bold;
+margin-left:4px;
+vertical-align:middle;
 }
 .log {
 text-align:left;
@@ -1715,9 +1700,7 @@ width:80%;
   top:3.2ex;
 }
 .buttonbar {
-position:absolute;
-right:0;
-top:-3px;
+float:right;
 height:4ex;
 }
 span.share-buttons a {
@@ -1738,9 +1721,13 @@ span.share-buttons a {
 .share-buttons img,.menu img {
     vertical-align:middle;
 }
+.facebook, .tweet,.googlep,.email {
+text-decoration:none;
+color:#D0D0D0;
+}
 @font-face {
 font-family:'symbols';
-src:url(xwing-miniatures.ttf) format("truetype")
+src:url(xwings.ttf) format("truetype")
 }
 @font-face {
 font-family:'space';
@@ -1748,11 +1735,7 @@ src:url(EurostileLTStd.otf) format("truetype")
 }
 @font-face {
 font-family:'spacename';
-src:url(EurostileLTStd-Demi.otf) format("truetype");
-}
-@font-face {
-font-family:'ships';
-src:url(xwing-miniatures-ships.ttf) format("truetype")
+src:url(EurostileLTStd-Demi.otf) format("truetype")
 }
 ul.caroussel {
   padding: 5px 150px 0 80px;
