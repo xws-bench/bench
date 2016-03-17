@@ -504,21 +504,23 @@ color:red
 }
 .close,.duplicate {
 margin-right:.5ex;
-color:red;
 position:absolute;
 right:0;
 text-decoration:none;
 cursor:pointer;
 }
 .duplicate {
-top:3em;
-font-size:1em;
+top:2em;
+font-size:2em;
+color:white;
 }
 .duplicate:hover {
-background:grey;
+background:white;
+color:black;
 }
 .close {
 top:0;
+color:red;
 }
 .close:hover,.closemiddle:hover {
 background:red;
@@ -983,7 +985,7 @@ color:#CC0;
 color:#fff
 }
 
-.upgrades {
+.upgrades,.TOP::before {
 color:#ffd700
 }
 
@@ -1014,7 +1016,7 @@ content:"m"
 .Title::after {
 content:"t"
 }
-.Elite::after {
+.Elite::after,.TOP::before {
 content:"E"
 }
 .Tech::after {
@@ -1364,6 +1366,16 @@ background-image:url(prebuilt.png);/*"!"*/
 }
 .REBEL::before {
 background-image:url(rebel.png);/*"!"*/
+}
+.TOP::before {
+font-family:'symbols';
+text-decoration:none;
+margin-left:2px;
+box-shadow:1px 1px 3px #000;
+background:#333;
+border-radius:50%;
+border-style:solid;
+border-width:0;
 }
 .EMPIRE::before,.REBEL::before,.SCUM::before,.PREBUILT::before {
 background-size: 100%;
