@@ -950,7 +950,7 @@
         "text": "<strong>Attaque :</strong> défaussez cette carte pour attaquer 1 vaisseau (même s'il est en dehors de votre arc de tir)."
       },
       "Salvaged Astromech": {
-        "name": "Atromech récupéré",
+        "name": "Astromech récupéré",
         "text": "Quand vous recevez une carte de dégâts ayant le trait <strong>Vaisseau</strong>, vous pouvez immédiatement la défausser (avant d'en résoudre l'effet). Puis, défaussez cette carte d'amélioration."
       },
       "'Genius'": {
@@ -958,7 +958,7 @@
         "text": "Si vous êtes équipé d'une bombe qui peut être larguée avant que vous ne révéliez votre manœuvre, vous pouvez au lieu de cela larguer la bombe <strong>après</strong> avoir éxecuté votre manœuvre."
       },
       "Unhinged Astromech": {
-        "name": "Atromech déglingué",
+        "name": "Astromech déglingué",
         "text": "Vous pouvez considérer toutes les manœuvres de vitesse 3 comme manœuvres vertes."
       },
       "R4-B11": {
@@ -1187,6 +1187,7 @@
 	"m-save":"Sauvegarde",
 	"m-reset":"Recommencer",
 	"m-share":"Partager",
+	"m-top":"Top 10",
 	"np":"Suivant",
 	"m-import":"Import",
 	"m-add":"Ajouter",
@@ -1318,6 +1319,8 @@
 "2 rolls for damage [%0]":"2 lancers pour dommage [%0]",
 "2nd attack with %0 [%1]":"2eme attaque avec %0 [%1]",
 "2nd attack with %0":"2eme attaque avec %0",
+"2nd attack":"2eme attaque",
+"2nd action":"2eme action",
 "Could not find pilot ":"Ne peut trouver pilote ",
 "Hits cannot be cancelled by defense dice [%0]":"Les dommages ne peuvent pas être annulés par les dés de défense [%0]",
 "Installing bomb ":"Installation de bombes",
@@ -1396,12 +1399,14 @@
 "select unit for free %TARGET% (or self to cancel)":"choisir une unité pour un %TARGET% gratuit (ou l'unité pour annuler)",
 "select unit to lock (or self to cancel)":"choisir une unité à cibler (ou l'unité pour annuler)",
 "select unit to move %TARGET% (or self to cancel)":"choisir l'unité pour déplacer %TARGET% (ou l'unité pour annuler)",
+"select weapon for retaliation":"choisir une arme pour la riposte",
 "select unit to target, +1 %STRESS% (or self to cancel)":"choisir l'unité à cibler, +1 %STRESS% (ou l'unité pour annuler)",
 "target any unit in area [%0]":"cibler une unité en jeu [%0]",
 "turn faceup one damage card [%0]":"mettre face visible une carte de dommage [%0]",
 "turn faceup damage facedown":"mettre face cachée une carte de dommage face visible",
 "uninstalling effect [%0]":"désinstallation [%0]",
 "Critical: %0":"Critique : %0",
+"retaliate!":"riposte!",
 "has exploded!":"a explosé !",
 "elite action from %0 available":"action elite de %0 disponible",
 "share %0 upgrade":"partage de %0",
