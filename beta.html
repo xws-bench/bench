@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+    <title>Squad Benchmark: combat trainer and squad builder for X-Wing Miniatures game</title>
+    <meta name="description" content="Web app for X-Wing Miniatures game">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="css/xwings.css">
+    <link rel="stylesheet" href="css/jquery.dataTables.min.css">
+    <style type="text/css" id="localstrings"></style>
+    <script async>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-63149795-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+
+  <body>
+    <nav>
+      <div>
+	<span class="h2"><span class="xwing"></span><span class="title">Squadron Benchmark</span>
+	  <span class="ver"></span>
+	  <img onclick="changelanguage('en')" class="langselect" src="css/uk-on.png">
+	  <img onclick="changelanguage('fr')" class="langselect" src="css/fr-on.png">
+	  <span class="mute symbols" style="font-size:0.5em" onclick="Howler.mute();$('.mute').hide();$('.unmute').show();">&#xE909;</span>
+	  <span class="unmute symbols" style="font-size:0.5em" onclick="Howler.unmute();$('.unmute').hide();$('.mute').show();">&#xE90A;</span>
+	</span>
+	<span class="buttonbar">
+	  <button onclick="currentteam=TEAMS[0];createsquad()" class="mainbutton m-create"></button>
+	  <button class="m-reset permalink" onclick="resetlink()">&#10096; </button>
+	  <span id="phase"></span>
+	  <button class="nextphase" onclick="nextphase()"><span class='np'></span> <span id='npimg'>&#10097;</span></button>
+	  <span class="menu" onmouseover="$('nav ul').css({display:'block',visibility:'visible'})" onmouseout="$('nav ul').css({display:'none',visibility:'hidden'})"><span class="symbols" style="color:white;font-size:larger;">&#xE906;</span>
+	    <ul>
+	      <li><a class="m-about" href="#about"></a></li>
+	      <li><a class="m-proba" href="#proba" id="showproba"></a></li>
+	      <li><a class="m-console" href="#" onclick="$('footer').css({display:'block',visibility:'visible'})"></a></li>
+	      <li><a class="m-blog" href="http://xws-benchmark.blogspot.fr/"></a></li>
+	      <li><a class="m-donate" href="#donate"></a></li>
+	      <li><a class="m-credits" href="#credit"></a></li>
+	  </ul></span>
+	  </span>
+
+      </div>
+    </nav>
+
+    <aside class="leftpanel" id="leftpanel">
+      <section id="team1" class="team">
+	<h2 style='display:none'>List of units</h2>
+      </section>
+    </aside>
+
+    <aside id="rightpanel" class="rightpanel">
+      <section id="team2" class="team">
+	<h2 style='display:none'>List of units</h2>
+      </section>
+    </aside>
+    
+    <article id="game" class="main">
+      <h2 style='display:none'>Main panel</h2>
+      <section class="phasepanel">
+	<h2 style='display:none'>Main panel</h2>
+	<table id="positiondial">
+	  <tr>
+	    <td onclick="activeunit.turn(-45)" title="key: <T>" class="symbols">4</td>
+	    <td onclick="activeunit.turn(45)" title="key: <t>" class="symbols">6</td>
+	  </tr>
+	  <tr>
+	    <td onclick="activeunit.turn(-5)" title="key: <B>" class="symbols">7</td>
+	    <td onclick="activeunit.turn(5)" title="key: <b>" class="symbols">9</td>
+	  </tr>
+	</table>
+	<table id="maneuverdial"></table>
+	<div id="activationdial"></div>
+	<div id="actiondial"></div>
+	<div id="attackdial"></div>
+	<div id="combatdial">
+	  <table style='width:100%'>
+	    <tr style='width:100%' id="attack"><td></td></tr>
+	    <tr style='width:100%' id="defense"><td></td></tr>
+	  </table>
+	  <div id="atokens"></div>
+	  <div id="dtokens"></div>
+	</div>
+      </section>
+
+      <section class="playmat">
+      <h2 style='display:none'>Game area</h2>
+	<svg id="svgout"></svg>
+      </section>
+
+      <section class="info">
+	<h2 style='display:none'>Info panel</h2>
+      </section>
+
+    </article>
+
+     <section id="modal" class="modalDialog">
+	<div>
+	  <h2>
+	    <span class="victory"></span>
+	    <a href="#" title="Close" class="close">&#10060;</a>
+	  </h2>
+	  <div>
+	    <button class="permalink m-replay" onclick="window.location.reload(true)">&#8634; </button>
+	    <table class="victory-table"></table>
+	    <div class="replays">Share combat: 
+	      <a href="#" class="victory-link"><code></code></a>
+	      <span class="share-button">
+		<a class="symbols tweet" href="#" target="_blank"><span width="30px">&#xE90D;</span></a>
+		<a class="facebook symbols" href="#" target="_blank"><span width="30px" class="symbols">&#xE90C;</span></a>
+		<a class="googlep symbols" href="#" target="_blank"><span width="30px" class="symbols">&#xE90B;</span></a>
+		<a class="email" href="#" title="Share by Email"><span width="30px" class="symbols">&#xE903;</span></a>
+</a>
+	      </span>
+	    </div>
+	    <button class="m-reset permalink" onclick="resetlink()">&#10096; </button>
+	  </div>
+	</div>
+     </section>
+ 
+     <article id="creation" class="mainarticle">
+       <div>
+	 <h3 class="inunitlist"><span class="m-name"></span> - <span id="totalpts">0</span>&nbsp;<span class="total m-totalpts"></span></h3>
+	 <div class="selector">
+	   <span class="REBEL m-rebel" onclick="currentteam.changefaction('REBEL')"></span>
+	   <span class="SCUM m-scum" onclick="currentteam.changefaction('SCUM')"></span>
+	   <span class="EMPIRE m-empire" onclick="currentteam.changefaction('EMPIRE')"></span>
+	 </div>
+	 <div class="unitlist">
+	   <ul id="caroussel" class="caroussel"></ul>
+	   <ul id="listunits" class="caroussel"></ul>
+	 </div>
+       </div>
+     </article>
+
+
+     <article id="selectphase" class="mainarticle">
+
+       <h3 class="m-selectinstructions"></h3>
+       <table id="setuplist" class="setupselector">
+	 <tr><td><select onchange="changesetup()"></select></td><td><span></span></td><td><img src="png/classic.png"></td></tr>
+       </table><div>
+       <table class="squadselected">
+	 <tr>
+	   <td>
+	     <span class="m-squad1"></span>
+	     <select id="player1"></select>
+	     <button onclick="currentteam=TEAMS[1];createsquad()" class="m-create"></button>	 
+	     <button onclick="currentteam=TEAMS[1];importsquad(1)" class="m-import"></button>
+	   </td>
+	   <td>
+	     <span class="m-squad2"></span>
+	     <select id="player2"></select>
+	     <button onclick="currentteam=TEAMS[2];createsquad()" class="m-create"></button>	 
+	     <button onclick="currentteam=TEAMS[2];importsquad(2)" class="m-import"></button>
+	   </td>
+	 </tr>
+	 <tr>
+	   <td class="squadbg"><div>1</div><textarea id="squad1" cols="40" rows="8"></textarea></td>
+	   <td class="squadbg"><div class="right">2</div><textarea id="squad2" cols="40" rows="8"></textarea></td>
+	 </tr>
+       </table>
+       </div>
+       <h3 class="m-manage"></h3>
+       <div id="uselector" class="selector">
+	 <span class="REBEL m-rebel" onclick="stype='REBEL';SQUADLIST.draw();"></span>
+	 <span class="SCUM m-scum" onclick="stype='SCUM';SQUADLIST.draw();"></span>
+	 <span class="EMPIRE m-empire" onclick="stype='EMPIRE';SQUADLIST.draw();"></span>
+	 <span class="PREBUILT Prebuilt" onclick="stype='PREBUILT';SQUADLIST.draw();"></span>
+	 <span class="TOP m-top" onclick="stype='ELITE';SQUADLIST.draw();"></span><span style='position:relative;left:-1.5em;'><sup><a href="http://xwing.miniranker.com/" style="color:white;text-decoration:none">(*)</a></sup></span>
+	 <span class="Mybuilds" onclick="stype='USER';SQUADLIST.draw();"></span>
+       </div>
+       <table id="squadlist" class="compact stripe hover order-column row-border">
+       </table>
+       <br>
+     </article>
+
+
+     <section id="battlelog" class="modalDialog">
+       <div>
+	 <h2><span class="m-experience"></span><a href="#" title="Close" class="close">&times;</a></h2>
+	 <div>
+	   <table class="battlingtable">
+	     <tr><th class="m-battlingsquad"></th>
+	       <td id="battlingsquad"></td>
+	     </tr>
+	   </table>
+	   <div class="m-battlexp"></div>
+	 <table style="width:100%">
+	   <tr>
+	     <td>
+	       <iframe id="replay" src=""></iframe>
+	       <div>
+		 <button class="mainbutton" onclick='location.replace($("#replay").attr("src"))'><span class="symbols" width="15px" height="15px">&#xE905</span></button>
+		 </div>
+	     </td>
+	     <td style="width:calc(100% - 400px);">
+	       <div id="squadbattlediv"></div>
+	       <table id="squadbattle" style="color:black" class="compact stripe hover order-column row-border"></table>
+	     </td>
+	   </tr>
+	 </table>
+	 </div>
+       </div>
+     </section>
+ 
+
+  <section id="proba" class="modalDialog">
+        <div>
+          <h2><span class="m-proba"></span><a href="#" title="Close" class="close">&times;</a>
+          </h2>
+          <div>
+            <p>
+            This table gives the % of chance to hit for an attacker. In rows, the number of dice for the attacker, and in column the number of dice of the defender. You can set the tokens or rerolls for both units. Each cell gives the % of chance for the attacker to hit the defender, the mean number of hits (<code class="hit"></code>) and criticals (<code class="critical"></code>) given. 
+            </p>
+              <table>
+                <tr><td>Attacker</td><td>Defender</td></tr>
+                <tr>
+                  <td><input type="checkbox" onclick="fillprobatable()" id="focusA" value="focus">
+                    <label for="focusA" class="xfocustoken"></label>
+                    <input type="checkbox" onclick="fillprobatable()" id="targetA" value="target">
+                    <label for="targetA" class="xtargettoken"></label>
+                    <input type="number" min=0 max=5 step=1 style="width:2em" onchange="fillprobatable()" id="rerollA" value="0">rerolls
+                  </td>
+                  <td><input type="checkbox" onclick="fillprobatable()" id="focusD" value="focus">
+                    <label for="focusD" class="xfocustoken"></label>
+                    <input type="checkbox" onclick="fillprobatable()" id="evadeD" value="evade">
+                    <label for="evadeD" class="xevadetoken"></label>
+                    <input type="checkbox" onclick="fillprobatable()" id="cloakD" value="0">
+                    <label for="cloakD" class="xcloaktoken"></label>
+                    <input type="number" min=0 max=5 step=1 style="width:2em" onchange="fillprobatable()"  id="rerollD" value="0">rerolls
+                  </td>
+                </tr>
+              </table>
+            <table id="probatable">  
+            </table>
+          </div>
+        </div>
+      </section>
+
+   <section id="about" class="modalDialog">
+        <div draggable="true">
+          <h2><span class="m-about"></span><a href="#" title="Close" class="close">&#10060;</a>
+          </h2>
+          <div>
+
+Squadron Benchmark is a web app for
+ testing squadrons built for the X-Wing Miniatures game. You can design
+ your squads and simulate a battle between them. Both sides can be
+ controlled either by the player or by an simple AI. The user moves
+ the different units and can try new strategies, squadron composition,
+ maneuvers and placement. It can be used to build scenarios, benchmark
+ against squads you can find in competition, try new ships or
+ pilots...  The app offers the following features:
+<ul>
+<li>Import your squads using JSON format</li>
+<li>Move units and perform their actions as in the real game. All ship maneuver dials and of all actions in their bars are handled.</li>
+<li>Detection of collisions with other ships and asteroids, automatic handling of stress, action and combat effects, rolling hit dice for possible damage automatically.</li>
+<li>Automatic handling of a number of card effects (pilots, upgrades, ...). Biggs for instance is the unique possible target when in range of a ennemy. Howlrunner effect is automatically taken into account. A console provides feed back on what happens and which effect is triggered.</li>
+<li>Combat is as simple as selected a target, and using tokens. Dices are rolled, damages and criticals are delivered automatically, shields are used, ...</li> 
+<li>A simple AI ! It can move the units around and tries to fire at your units. It is simple to outmaneuver it but still, be careful not to be too confident :-) </li>
+</ul>
+
+The app is not really a game since the user plays both sides, there is no multi-player version of the app and there will not be. This is in no way a substitute for the real game but is a complementary tool.
+<br/>
+ The app is (c) Denis Wings 2015-2016 (deniswings@free.fr). MIT license. <br>
+</div>
+
+        </div>
+      </section>
+
+    <section id="donate" class="modalDialog">
+        <div>
+          <h2><span class="m-donate"></span><a href="#" title="Close" class="close">&#10060;</a>
+          </h2>
+          <div style="padding:10px;width:calc(100% - 20px)">
+<br>
+            If you like this web app and find it useful, if you want to encourage further developments, feel free to donate ! 
+<br>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+              <input type="hidden" name="cmd" value="_s-xclick">
+              <input type="hidden" name="hosted_button_id" value="NYM7QUG8UKGE2">
+              <input type="image" src="png/btn_donateCC_LG.png" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            </form>
+<br>        The app will stay free to use for all, with no advertisement. 
+            Feel free to provide feed back, report bugs or suggest improvements on the blog. All comments are welcome !
+<br>Thank you for your support !
+<br>
+--Denis Wings
+          </div>
+        </div>
+      </section>
+
+
+      <section id="credit" class="modalDialog">
+	<div>
+	  <h2><span class="m-credit"></span><a href="#" title="Close" class="close">&#xd7;</a>
+	  </h2>
+	  <div>
+	  The app is (c) Denis Wings (deniswings@free.fr). The License of the code is an MIT license. <br/>
+	  The app is based on the vector fonts provided
+	  by <a href="https://github.com/geordanr/xwing-miniatures-font">Xwing-miniatures-font</a>
+	  (see License thereafter).
+	  The <a href="https://github.com/elistevens/xws-spec">JSON
+	  format of X-Wing squadrons</a> provides the list of all
+	  ships, pilots, upgrades and several translations.
+
+	  The sounds of space ships, lasers and explosions come from <a href="http://www.sa-matra.net/sounds/starwars/">Sa-Matra</a> website. Thanks !
+
+	  The code of the app relies on <a href="http://snapsvg.io/">Snap</a> for SVG and <a href="https://jquery.com/">jQuery</a>. See their websites for the licenses. 
+
+	  <p><b>Disclaimer</b></p>
+	  <p>
+	    X-Wing: The Miniatures Game is a trademark of Fantasy
+	    Flight Games. This site is not endorsed by Fantasy Flight
+	    Games, Lucasfilm Ltd. or Twentieth Century Fox and is
+	    intended for entertainment and information purposes
+	    only. Star Wars, the Star Wars logo, all names and
+	    pictures of Star Wars characters, vehicles and any other
+	    Star Wars related items are registered trademarks and/or
+	    copyrights of Lucasfilm Ltd., or their respective
+	    trademark and copyright holders. This site in no way
+	    constitutes a threat to any trademark or intellectual
+	    property. This web app is not-for-profit and is only
+	    intended for use by fans of the game line.
+	  </p>
+	  
+	  <p><b>Xwing-miniatures-font license</b></p> 
+	  <p>The MIT License (MIT)</p>
+	  <p>Copyright (c) 2014 Geordan Rosario</p>
+	  <p>Permission is hereby granted, free of charge, to any person obtaining a copy
+	    of this software and associated documentation files (the "Software"), to deal
+	    in the Software without restriction, including without limitation the rights
+	    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+	    copies of the Software, and to permit persons to whom the Software is
+	    furnished to do so, subject to the following conditions:
+	    The above copyright notice and this permission notice shall be included in
+	    all copies or substantial portions of the Software.
+	    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+	    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+	    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+	    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+	    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+	    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+	    THE SOFTWARE.
+	  </p>
+	</div></div>
+      </section>
+    <footer>
+      <a href="#" onclick="$('footer').css({display:'none',visibility:'hidden'})" title="Close" class="close">&#xd7;</a>
+      <div class='title'>Console</div>
+      <div class="log" id='log'></div>
+    </footer>
+    <script src="js/all.min.js"></script>
+    <script src="src/obstacles.js"></script>
+    <script src="src/critical.js"></script>
+    <script src="src/units.js"></script>
+    <script src="src/iaunits.js"></script>
+    <script src="src/pilots.js"></script>
+    <script src="src/upgrades.js"></script>
+    <script src="src/team.js"></script>
+    <script src="src/xwings.js"></script>
+  </body>
+</html>
+
