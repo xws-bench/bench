@@ -33,6 +33,7 @@
 	  <span class="unmute symbols" style="font-size:0.5em" onclick="Howler.unmute();$('.unmute').hide();$('.mute').show();">&#xE90A;</span>
 	</span>
 	<span class="buttonbar">
+	  <button class="mainbutton" onclick="TogetherJS(this); return false;">Together</button>
 	  <button onclick="currentteam=TEAMS[0];createsquad()" class="mainbutton m-create"></button>
 	  <button class="m-reset permalink" onclick="resetlink()">&#10096; </button>
 	  <span id="phase"></span>
@@ -360,6 +361,7 @@ The app is not really a game since the user plays both sides, there is no multi-
       <div class="log" id='log'></div>
     </footer>
     <script src="js/all.min.js"></script>
+    <script src="togetherjs-min.js"></script>
     <script src="src/obstacles.js"></script>
     <script src="src/critical.js"></script>
     <script src="src/units.js"></script>
