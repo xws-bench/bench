@@ -222,8 +222,7 @@ Team.prototype = {
 	    for (j=0;j<PILOTS.length; j++) {
 		var v=PILOTS[j].name;
 		var va=v;
-		var vn=v+(PILOTS[j].faction==SCUM?" (Scum)":"");
-		if (translated==true) va=translate(vn);
+		if (translated==true) va=translate(va);
 		if (PILOTS[j].ambiguous==true) va+="("+PILOTS[j].unit+")";
 		if (va.replace(/\'/g,"")==pstr[0]) {
 		    lf=lf|getf(PILOTS[j].faction);
@@ -240,16 +239,14 @@ Team.prototype = {
 	    for (j=0;j<PILOTS.length; j++) {
 		var v=PILOTS[j].name;
 		var va=v;
-		var vn=v+(PILOTS[j].faction==SCUM?" (Scum)":"");
 		if (PILOTS[j].faction==this.faction) {
-		    if (translated==true) va=translate(vn);
+		    if (translated==true) va=translate(va);
 		    if (PILOTS[j].ambiguous==true) va+="("+PILOTS[j].unit+")";
 		    if (va.replace(/\'/g,"")==pstr[0]) { pid=j; break; }
 		} 
 	    }
 	    if (pid==-1) {
-		console.log("pid undefined:"+translated+" "+pstr[0]+"#"+this.faction);
-		continue;
+		throw("pid undefined:"+translated+" "+pstr[0]+"#"+this.faction);
 	    }
 	    var p=new Unit(this.team,pid);
 	    p.upg=[];

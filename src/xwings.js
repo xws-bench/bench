@@ -3,7 +3,7 @@ var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.8.2";
+var VERSION="v0.8.3";
 var LANG="en";
 var DECLOAK_PHASE=1;
 var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6,XP_PHASE=7;
@@ -103,23 +103,21 @@ var AIstats = function(error,options, response) {
     }
 }
 var myCallback = function (error, options, response) {
-    if (typeof response.rows!="undefined") {
+   if (response!=null&&typeof response.rows!="undefined") {
+	//console.log("found "+response.rows.length);
 	var t=SEARCHINGSQUAD,t1="",s1="";
 	var tt=t.split("\.");
 	for (var i=0; i<tt.length; i++) {
 	    t1+=tt[i].replace(/\*/g," + ").replace(/_/g," ")+"<br>";
 	    s1+=tt[i].replace(/\*/g," + ").replace(/_/g," ")+"\n";
 	}
+	stype="";
 	TEAMS[1].parseJuggler(s1,false);
 	for (var i=1; i<response.rows.length; i++) {
 	    myTemplate(i,response.rows[i].cellsArray,null,null);
 	}
-	stype="";
-	if (LANG!="en") {
-	    TEAMS[0].parseJuggler(s1,false);
-	    t1=TEAMS[0].toJuggler(true).replace(/\n/g,"<br>");
-	}
-	$("#battlingsquad").html(t1);
+       /*
+*/
 	SQUADBATTLE.columns.adjust().draw();
     }
 };
@@ -150,7 +148,6 @@ var myTemplate = function(num,cells,cellarrays,labels) {
     }
     if (type2=="Human") score2="<b>"+score2+"</b>";
     if (type1=="Human") score1="<b>"+score1+"</b>";
-  
     SQUADBATTLE.row.add([score2+"-"+score1,"<span onclick='$(\"#replay\").attr(\"src\",\""+cells[2]+"\")'>"+t1+"</span>"]).draw(false);
 }
 var computeurl=function(error, options,response) {
@@ -365,6 +362,7 @@ function displayattacktokens(u,f) {
     var dm=targetunit.getresultmodifiers(u.ar,u.ad,DEFENSE_M,ATTACK_M);
     if (dm.length>0) {
 	$("#atokens").append(dm);
+	//$("#atokens td").click(function() { displayattacktokens(u,f); });
 	$("#atokens").append($("<button>").addClass("m-done").click(function() {
 	    displayattacktokens2(u,f);
 	}))
@@ -377,6 +375,7 @@ function displayattacktokens2(u,f) {
     var am=u.getresultmodifiers(u.ar,u.da,ATTACK_M,ATTACK_M);
     if (am.length>0) {
 	$("#atokens").append(am);
+	//$("#atokens td").click(function() { displayattacktokens2(u,f); });
 	$("#atokens").append($("<button>").addClass("m-done").click(function() {
 	    $("#atokens").empty();
 	    f();}.bind(u)));
@@ -387,6 +386,7 @@ function displaydefensetokens(u,f) {
     var dm=activeunit.getresultmodifiers(u.ar,u.ad,ATTACK_M,DEFENSE_M);
     if (dm.length>0) {
 	$("#dtokens").append(dm);
+	//$("#dtokens td").click(function() { displaydefensetokens(u,f); });
 	$("#dtokens").append($("<button>").addClass("m-done").click(function() {
 	    displaydefensetokens2(u,f);
 	}))
@@ -397,6 +397,7 @@ function displaydefensetokens2(u,f) {
     u.lastdf=f;
     $("#dtokens").empty();
     $("#dtokens").append(u.getresultmodifiers(u.dr,u.dd,DEFENSE_M,DEFENSE_M));
+    //$("#dtokens td").click(function() { displaydefensetokens2(u,f); });
     $("#dtokens").append($("<button>").addClass("m-fire").click(function() {
 	$("#combatdial").hide();
 	f();}.bind(u)));
@@ -585,7 +586,6 @@ function enablenextphase() {
 	    if (ready&&$(".nextphase").prop("disabled")) log(UI_translation["All units have been activated, ready to end phase"]);
 	}
 	break;	
-
     }
     if (ready) $(".nextphase").prop("disabled",false);
     // Replay
@@ -656,7 +656,6 @@ function win() {
 	$(".facebook").attr("href","https://www.facebook.com/sharer/sharer.php?u="+encodeURI(url));
 	$(".googlep").attr("href","https://plus.google.com/share?url="+encodeURI(url));
 	$(".email").attr("href","mailto:?body="+url);
-	$(".reddit").attr("href","https://www.reddit.com/submit?url=" + url);
     });
     /*var y1=0,y2=0;
     var t1=TEAMS[1].history;
@@ -686,7 +685,7 @@ document.addEventListener("win",win,false);
 function battlelog(t) {
     var row=SQUADLIST.row(t.parents("tr"));
     var data = row.data()[3];
-    if (LANG!="en") TEAMS[0].parseJuggler(data,true);
+    if (LANG!="en") TEAMS[0].parseJuggler(data,false);
     else TEAMS[0].parseJuggler(data,false);
     data=TEAMS[0].toJuggler(false);
     displaycombats(data);
@@ -714,13 +713,10 @@ function switchdialimg(b) {
     }
 }
 var mySpreadsheets=[
-"https://docs.google.com/spreadsheets/d/1n35IFydakSJf9N9b9byLog2MooaWXk_w8-GQdipGe8I/edit#gid=0"
-/*    "https://docs.google.com/spreadsheets/d/1Xofg3BpKQhttm2EllgSXi-AjDrcdZPgOKkdTXJLovPE/edit#gid=0",
-    "https://docs.google.com/spreadsheets/d/1NseMuMal1BMWexfWGGoN5egLDALk1eaxQ8ke-x4zCbQ/edit?#gid=0",
-    "https://docs.google.com/spreadsheets/d/1X0qrjgF2JpsQMpzF-uwuzkinxWvup2Z2LS6pApydVPM/edit?#gid=0",
-    "https://docs.google.com/spreadsheets/d/128D4m1GBOQw3vCXe5hY75XQXvyjSsOCBX79oyJ213OA/edit?#gid=0",*/
+"https://docs.google.com/spreadsheets/d/1n35IFydakSJf9N9b9byLog2MooaWXk_w8-GQdipGe8I/edit#gid=0",
+"https://docs.google.com/spreadsheets/d/1Jzigt2slBhygjcylCsy4UywpsEJEjejvtCfixNoa_z4/edit#gid=0"
 ];
-function displayAIperformance() {
+/*function displayAIperformance() {
     for (var i=0; i<mySpreadsheets.length; i++) {
 	$('#squadbattlediv').sheetrock({
 	    url: mySpreadsheets[i],
@@ -730,7 +726,8 @@ function displayAIperformance() {
 	    labels:["Score"]
 	});
     }   
-}
+}*/
+/*
 function recomputeurl() {
     $('#squadbattlediv').sheetrock({
 	url: mySpreadsheets[0],
@@ -739,19 +736,29 @@ function recomputeurl() {
 	rowTemplate:function () { return "";},
 	labels:["ascii","short","long"]
     }); 
-}
+}*/
 function displaycombats(t) {
+    var s1=t;
     t=t.replace(/\n/g,".");
     t=t.replace(/ \+ /g,"*");
     //t=t.replace(/-/g,"\\-");
     t=t.replace(/ /g,"_");
     $("#replay").attr("src","");
 
-    //console.log("asking for "+t);
     if (t.slice(-1)!=".") t=t+".";
     SEARCHINGSQUAD=t;
+    //console.log("asking for "+t);
 
-    SQUADBATTLE.clear();
+    var t1="";
+    if (LANG!="en") {
+	TEAMS[0].parseJuggler(s1,false);
+	s1=TEAMS[0].toJuggler(true);
+    }
+    t1=s1.replace(/\n/g,"<br>");
+
+    $("#battlingsquad").html(t1);
+    SQUADBATTLE.clear().draw();;
+ 
     for (var i=0; i<mySpreadsheets.length; i++) {
 	$('#squadbattlediv').sheetrock({
 	    url: mySpreadsheets[i],
@@ -784,6 +791,7 @@ function displayfactionunits() {
 	    //PILOTS[i].pilotid=i;
 	}
     }
+    for (u in p) p[u].sort(function(a,b) { return a.points - b.points; });
     for (i=0; i<UPGRADES.length; i++) {
 	var u=UPGRADES[i];
 	if (u.type==TITLE) unitlist[u.ship].hastitle=true;
@@ -839,17 +847,17 @@ function displayfactionunits() {
 	    //$("#carousel figure:nth-child("+n+")").css("transform","rotateY( "+(360/count*n)+"deg ) translateZ( "+tz+"px )");
 	    for (j=0; j<p[i].length; j++) {
 		var name=p[i][j].name;
-		var text=getpilottexttranslation(name,faction);
-		if (text!="") 
-		    text+=(p[i][j].done==true?"":"<div><strong class='m-notimplemented'></strong></div>");
 		str+="<tr data="+p[i][j].pilotid+"><td><button pilotid="+p[i][j].pilotid+" onclick='addunit("+p[i][j].pilotid+")'>+</button></td><td>"+translate(name)+"</td><td>"+p[i][j].points+"</td>";
 		str+="<td class='statskill'>"+p[i][j].skill+"</td>";
 		str+="<td>";
 		if (p[i][j].upgrades.indexOf(ELITE)>-1)
 		    str+="<code class='"+ELITE+" upgrades'></code>";
 		str+="</td>";
-		if (text!="") str+="<td class='tooltip'>"+text+"</td>";
-		else str+="<td></td>";
+		var text=getpilottexttranslation(name,faction);
+		if (text!="") {
+		    text+=(p[i][j].done==true?"":"<div><strong class='m-notimplemented'></strong></div>");
+		    str+="<td class='tooltip'>"+text+"</td>";
+		} else str+="<td></td>";
 		str+="</tr>";
 	    }
 	    str+="</table>";
@@ -1010,6 +1018,7 @@ function setselectedunit(n,td) {
     try {
 	currentteam.parseJuggler(jug,true);
     } catch(e) {
+	log("catching e");
 	currentteam.parseJuggler(jug,false);
     }
     currentteam.name=currentteam.toASCII();
@@ -1393,8 +1402,14 @@ function select(id) {
     for (i in squadron) {
 	if (squadron[i].id==id) break;
     }
+    if (typeof TogetherJS!="undefined"&&TogetherJS.running) {
+	TogetherJS.send({
+	    type: 'select',
+	    uid: id,
+	});
+    }
     squadron[i].select();
-    $("#"+u.id).attr({color:"black",background:"white"});
+    //$("#"+u.id).attr({color:"black",background:"white"});
     $("#"+activeunit.id).attr({color:"white",background:"tomato"});
 }
 
@@ -1978,7 +1993,7 @@ $(document).ready(function() {
 		$(this).removeClass('selected');
             }
             else {
-		SQUADBATTLE.$('tr.selected').removeClass('selected');
+		$("#squadbattle tr.selected").removeClass("selected");
 		$(this).addClass('selected');
             }
 	} );
@@ -1987,7 +2002,7 @@ $(document).ready(function() {
 	$("#player2").html("<option selected value='human'>"+UI_translation["human"]+"</option>");
 	$("#player2").append("<option value='computer'>"+UI_translation["computer"]+"</option>");
 
-	jwerty.key("shift+i", displayAIperformance);
+	//jwerty.key("shift+i", displayAIperformance);
 	//jwerty.key("shift+i", TogetherJS);
 /*
 TogetherJSConfig_on_ready = function () {
@@ -2065,7 +2080,7 @@ TogetherJSConfig_on_ready = function () {
 		    },
 		    { "targets":[5],
 		      "render":function() {
-			  return "<img class='logmiddle' src='css/book.svg' onclick='battlelog($(this));'>";
+			  return "<span class='logmiddle symbols' onclick='battlelog($(this));'>&#xE901;</span>";
 		      },
 		      "sortable":false
 		    },
@@ -2074,6 +2089,8 @@ TogetherJSConfig_on_ready = function () {
 		      "render":function(data,type,row) {
 			  if (row[4].search("SQUAD")>-1)
 			      return "<span style='display:none'>"+data+" USER</span><span class='"+data+"'></span>";
+			  else if (row[4]=="ELITE") 
+			      return "<span style='display:none'>"+data+" ELITE</span><span class='"+data+"'></span><span class='TOP'></span>";
 			  return "<span style='display:none'>"+data+" PREBUILT</span><span class='"+data+"'></span><span class='prebuilt'></span>";
 			  
 		      }
