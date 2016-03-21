@@ -375,6 +375,14 @@ The app is not really a game since the user plays both sides, there is no multi-
     <script src="src/upgrades.js"></script>
     <script src="src/team.js"></script>
     <script src="src/xwings.js"></script>
+<script>
+TogetherJS.hub.on('select', function (msg) {
+  if (!msg.sameUrl) {
+      return;
+  }
+  select(msg.uid);
+});
+</script>
   </body>
 </html>
 
