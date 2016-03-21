@@ -506,6 +506,7 @@ var PILOTS = [
 		    } else { this.action=-1; this.actiondone=true; this.deferred.resolve(); }
 		}.bind(this))
 	    } else { this.action=-1; this.actiondone=true; this.deferred.resolve(); }
+	    return this.deferred;
  	},
 	secaction:-1,
         points: 29,
@@ -909,7 +910,7 @@ var PILOTS = [
 		    p[k].wrap_after("getskill",self,function(s) {
 			return 12;
 		    }).unwrapper("endcombatphase");
-		},["select unit for 12 PS"],false);
+		},["select unit [%0]",this.name],false);
 		return l;
 	    });
 	},     
@@ -966,7 +967,6 @@ var PILOTS = [
 		    if (f=="critical") return {m:m+FCH_CRIT,n:n+1};
 		    return {m:m,n:n+1};
 		},str:"hit"});
-	    this.desactivate();
 	},
         points: 25,
         upgrades: [ELITE,TURRET,CREW],
@@ -1006,7 +1006,7 @@ var PILOTS = [
 			&&attacker.getrange(this)==1
 			&&attacker.team==this.team
 			&&w.isprimary!=true) {
-			attacker.log("+2 rerolls [%0]",this.name);
+			attacker.log("+%1 reroll(s) [%0]",this.name,2);
 			return true;
 		    }
 		    return false;
@@ -3015,7 +3015,7 @@ var PILOTS = [
 		    a.wrap_after("getdicemodifiers",self,function(mods) {
 			var p=[];
 			for (var i=0; i<mods.length; i++)
-			    if (d.from!=ATTACK_M) p.push(mods[i]);
+			    if (mods[i].from!=ATTACK_M) p.push(mods[i]);
 			return p;
 		    }).unwrapper("endattack");
 	    })
@@ -3024,7 +3024,7 @@ var PILOTS = [
 		    t.wrap_after("getdicemodifiers",self,function(mods) {
 			var p=[];
 			for (var i=0; i<mods.length; i++)
-			    if (d.from!=DEFENSE_M) p.push(mods[i]);
+			    if (mods[i].from!=DEFENSE_M) p.push(mods[i]);
 			return p;
 		    }).unwrapper("endbeingattacked");
 	    })
@@ -3385,23 +3385,37 @@ var PILOTS = [
 	points:33,
 	done:true,
 	init: function() {
-	    var den=-1;
+	    this.den=-1;
 	    var self=this;
-	    this.wrap_after("endbeingattacked",this,function(c,h,t) {
-		if (den<round&&this.isinfiringarc(t)) {
-		    var str="";
-		    var wn=[];
-		    this.log("2nd attack");
-		    den=round;
-		    for (var w=0; w<this.weapons.length; w++) if (this.weapons[w].canfire(t)) wn.push(w);
-		    targetunit=t;
+	    Unit.prototype.wrap_before("endattack",this,function() {
+		var t=this;
+		var p=[];
+		var wn=[];
+		if (targetunit==self&&!self.iscloacked&&!self.isfireobstructed()&&self.isinfiringarc(t)&&self.den<round) {
+		    self.log("retaliate!");
 		    self.select();
-		    for (var i in wn) {
-			var w=A[this.weapons[wn[i]].type.toUpperCase()];
-			str+="<div class='symbols' onclick='activeunit.selecttargetforattack("+wn[i]+",targetunit)'>"+w.key+"</div>";
-		    }
-		    str+="<button class='m-skip' onclick='activeunit.hasfired++;activeunit.show();activeunit.deferred.resolve();'></button>";
-		    $("#attackdial").html("<div>"+str+"</div>").show();
+		    for (var i in self.weapons) 
+			if (self.weapons[i].canfire(t)) wn.push(i);
+		    for (var i in wn) 
+			p.push({org:self,type:self.weapons[wn[i]].type.toUpperCase(),name:"Retaliation",
+				action:function(n) {
+				    self.wrap_after("endattack",self,function() {
+					this.den=round;
+					this.hasfired=this.hf;
+				    }).unwrapper("cleanupattack");
+				    self.wrap_before("cleanupattack",self,function() {
+					if (this.hasfired>0&&this.den==round) {
+					    this.newlock().done(nextcombat);
+					}
+				    });
+				
+				    targetunit=t;
+				    this.selecttargetforattack(i,t);
+				    this.endnoaction(n,"HIT");
+				}.bind(self)});
+		    self.hf=self.hasfired;
+		    if (p.length>0) self.donoaction(p,"select weapon for retaliation",true);
+		   
 		}
 	    });
 	},
@@ -3466,5 +3480,13 @@ var PILOTS = [
 	},
 	upgrades:[ELITE,TORPEDO,TORPEDO,CREW,SALVAGED,ILLICIT]
     },
-
+    { name:"Tomax Bren",
+      faction:EMPIRE,
+      pilotid:182,
+      unit:"TIE Bomber",
+      skill:8,
+      unique:true,
+      points:24,
+      upgrades:[ELITE,TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB]
+    }
 ];

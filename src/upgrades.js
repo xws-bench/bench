@@ -59,7 +59,7 @@ Bomb.prototype = {
 	this.unit.lastdrop=round;
 	$(".bombs").remove(); 
 	this.drop(this.unit.getbomblocation(),n);
-	this.unit.showactivation();
+	//this.unit.showactivation();
     },
     toString: function() {
 	var a,b,d,str="";
@@ -195,8 +195,9 @@ Bomb.prototype = {
 		}.bind(this));
 	    }
 	    this.unit.bombdropped(this);
-	    this.unit.endaction(n);
-	}.bind(dropped));
+	    //this.unit.log("endaction dropped "+n);
+	    this.unit.endaction(n,"DROP");
+	}.bind(dropped),false,true);
     },
     getOutline: function(m) {
 	var path=s.path(this.getOutlineString(m).s);
@@ -399,6 +400,7 @@ function Upgrade(sh,i) {
     sh.upgrades.push(this);
     this.isactive=true;
     this.unit=sh;
+    this.wrapping=[];
     var addedaction=this.addedaction;
     if (typeof addedaction!="undefined") {
 	var added=addedaction.toUpperCase();
@@ -573,7 +575,7 @@ var UPGRADES= [
 		    var f=FCH_focus(m);
 		    if (f>0) {
 			this.unit.log("1 %FOCUS% -> 1 %CRIT% [%0]",this.name);
-			return m-FCH_FOCUS+FCH_CRIT;
+			m=m-FCH_FOCUS+FCH_CRIT;
 		    }
 		    return m;
 		}.bind(this),str:"focus"});
@@ -762,7 +764,7 @@ var UPGRADES= [
 		 displayattacktokens(this);
 		 if (b>0) {		
 		     this.log("1 blank -> 1 %HIT% [%0]",self.name);
-		     return m+FCH_HIT; 
+		     m=m+FCH_HIT; 
 		 } 
 		 return m;
 	     }.bind(sh),str:"focus"});
@@ -847,7 +849,7 @@ var UPGRADES= [
 		    p[k].log("PS set to %1 [%0]",self.name,this.getskill());
 		    p[k].wrap_after("getskill",self,function(s) {
 			return sh.getskill();
-		    }).unwrap("endcombatphase");
+		    }).unwrapper("endcombatphase");
 		},["select unit [%0]",self.name],false);
 	    });
 	},
@@ -863,15 +865,15 @@ var UPGRADES= [
 	    return (this.isactive)&&(p.length>0);
 	},
 	action: function(n) {
-	    var unit=this.unit;
-	    var p=this.unit.selectnearbyally(2,function(t,s) { return s.getskill()<t.getskill()&&s.candoaction();});
-	    this.unit.resolveactionselection(p,function(k) {
+	    var self=this.unit;
+	    var p=self.selectnearbyally(2,function(t,s) { return s.getskill()<t.getskill()&&s.candoaction();});
+	    self.resolveactionselection(p,function(k) {
 		p[k].select();
-		p[k].doaction(p[k].getactionlist()).done(function() {
-		    this.select();
-		    this.endaction(n,"ELITE");
-		}.bind(this));
-	    }.bind(this.unit));
+		p[k].doaction(p[k].getactionlist(),"+1 free action").done(function() {
+		    self.select();
+		});
+		self.endaction(n,"ELITE");
+	    });
 	},
     },
     {
@@ -905,7 +907,7 @@ var UPGRADES= [
 		    var f=FCH_focus(m);
 		    if (f>0&&this.mark==round) {	
 			if (f>1) this.unit.log("%0 %FOCUS% -> 1 %CRIT%, %1 %HIT% [%2]",f,f-1,self.name); else this.unit.log("1 %FOCUS% -> 1 %CRIT% [%1]",f,self.name);
-			return m-FCH_FOCUS*f+FCH_CRIT+(f-1)*FCH_HIT; 
+			m=m-FCH_FOCUS*f+FCH_CRIT+(f-1)*FCH_HIT; 
 		    } 
 		    return m;
 		}.bind(this),str:"focus"});
@@ -936,7 +938,8 @@ var UPGRADES= [
 		}.bind(this), 
 		f:function(m,n) {
 		    var b=FCH_blank(m,n);
-		    if (b>0) return m+FCH_HIT; else return m;
+		    if (b>0) m=m+FCH_HIT; 
+		    return m;
 		}.bind(this),str:"blank"});
 	},
         range: [2,3],
@@ -1182,8 +1185,9 @@ var UPGRADES= [
 		f:function(m,n) {
 		    if (FCH_hit(m)>0) {
 			this.log("1 %HIT% -> 1 %CRIT% [%0]",self.name);
-			return m-FCH_HIT+FCH_CRIT; 
-		    } else return m;
+			m=m-FCH_HIT+FCH_CRIT; 
+		    } 
+		    return m;
 		}.bind(sh),str:"hit"});
 	},
 	done:true,
@@ -1242,8 +1246,11 @@ var UPGRADES= [
 	    if (!this.exploded) {
 		var roll=this.unit.rollattackdie(3);
 		for (var i=0; i<3; i++) {
-		    if (roll[i]=="hit") { t.resolvehit(1); t.checkdead(); }
+		    if (roll[i]=="hit") { 
+			t.log("+1 %HIT% [%0]",this.name); 
+			t.resolvehit(1); t.checkdead(); }
 		    else if (roll[i]=="critical") { 
+			t.log("+1 %CRIT% [%0]",this.name); 
 			t.resolvecritical(1);
 			t.checkdead();
 		    }
@@ -1587,13 +1594,13 @@ var UPGRADES= [
 	    var self=this;
 	    sh.adddicemodifier(DEFENSE_M,MOD_M,ATTACK_M,this,{
 		req:function(m,n) {
-		    return (targetunit==this&&self.isactive);
+		    return self.isactive;
 		}.bind(sh),
 		f:function(m,n) {
 		    var h=FCH_hit(m);
 		    if (h>0) {
 			this.unit.log("1 %HIT% -> 1 %FOCUS% [%0]",self.name);
-			return m-FCH_HIT+FCH_FOCUS;
+			m=m-FCH_HIT+FCH_FOCUS;
 		    }
 		    return m;
 		}.bind(this),str:"hit"});
@@ -2902,6 +2909,7 @@ var UPGRADES= [
 		    this.doaction([this.newaction(this.addevade,"EVADE")],
 				  "Stygium P.A.: +1 %EVADE%");
 		}
+		return true;
 	    });
 	    sh.wrap_after("addcloak",this,function(n) {
 		if (this.candoevade()) 
@@ -3019,7 +3027,7 @@ var UPGRADES= [
 		    var b=FE_blank(m,n);
 		    if (b>0) {
 			this.log("1 blank -> 1 %EVADE% [%0]",self.name);
-			return m+FE_EVADE;
+			m=m+FE_EVADE;
 		    }
 		    return m;
 		}.bind(sh),
@@ -3280,10 +3288,10 @@ var UPGRADES= [
 		if (!this.exploded) {
 		    var roll=this.unit.rollattackdie(2);
 		    for (var i=0; i<2; i++) {
-			if (roll[i]=="hit") { t.resolvehit(1); t.checkdead(); }
-			else if (roll[i]=="critical") { 
-			    t.resolvecritical(1);
-			    t.checkdead();
+			if (roll[i]=="hit") {
+			    t.log("+1 %HIT% [%0]",this.name); 
+			    t.resolvehit(1); 
+			    t.checkdead(); 
 			}
 		    }
 		    Bomb.prototype.detonate.call(this);
@@ -3317,7 +3325,7 @@ var UPGRADES= [
             name: "Glitterstim",
             type: ILLICIT,
             points: 2,
-	    activated: false,
+	    activated: -1,
 	    done:true,
 	    init: function(sh) {
 		var self=this;
@@ -3326,7 +3334,7 @@ var UPGRADES= [
 			this.donoaction([
 			    {org:self,name:self.name,type:"ILLICIT",action:function(n) {
 				this.addstress();
-				self.desactivate();
+				self.isactive=false;
 				self.activated=round;
 				this.endnoaction(n,"ILLICIT");
 			    }.bind(this)}],"",true);
@@ -3335,13 +3343,13 @@ var UPGRADES= [
 		});
 		sh.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
 		    req:function(m,n) {
-			return self.activated==round&&self.isactive;
+			return self.activated==round;
 		    },
 		    f:function(m,n) {
 			var f=FCH_focus(m);
 			if (f>0) {
 			    this.unit.log("%FOCUS% -> %HIT% [%0]",self.name);
-			    return m-FCH_FOCUS*f+f*FCH_HIT;
+			    m=m-FCH_FOCUS*f+f*FCH_HIT;
 			}
 			return m;
 		    }.bind(this),str:"focus"});
@@ -3353,7 +3361,7 @@ var UPGRADES= [
 			var f=FE_focus(m);
 			if (f>0) {
 			    this.unit.log("%FOCUS% -> %EVADE% [%0]",self.name);
-			    return m-FE_FOCUS*f+FE_EVADE*f;
+			    m=m-FE_FOCUS*f+FE_EVADE*f;
 			}
 			return m;
 		    }.bind(this),str:"focus"});
@@ -3375,9 +3383,9 @@ var UPGRADES= [
 	    var self=this;
 	    sh.wrap_before("endround",this,function() {
 		var roll=this.rollattackdie(1)[0];
-		if (roll=="focus"&&this.iscloaked) {
+		if (roll=="focus"&&this.iscloaked&&self.isactive==true) {
 		    this.log("decloaked [%0]",self.name);
-		    self.desactivate();
+		    self.isactive=false;
 		    this.wrap_after("getdecloakmatrix",self,function(m,l) {
 			return l.concat(m);
 		    });
@@ -3509,7 +3517,7 @@ var UPGRADES= [
 	    var self=this;
 	    var tlt=-1;
 	    sh.wrap_after("cleanupattack",this,function() {
-		if (tlt<round&&this.usedweapon>-1
+		if (tlt<round&&this.usedweapon>-1&&!targetunit.dead
 		    &&this.weapons[this.usedweapon]==self) {
 		    this.log("2nd attack with %0 [%1]",self.name,self.name);
 		    tlt=round;
@@ -3590,22 +3598,24 @@ var UPGRADES= [
 	    canbedropped: function() { return false; },
 	    explode: function() {},
 	    detonate:function(t) {
-		t.log("makes detonation");
 		if (!this.exploded) {
 		    var roll=this.unit.rollattackdie(1)[0];
-		    if (roll=="hit") { t.resolvehit(1); t.checkdead(); }
+		    if (roll=="hit") { 
+			t.log("+1 %HIT% [%0]",this.name); 
+			t.resolvehit(1); 
+			t.checkdead(); }
 		    else if (roll=="critical") { 
+			t.log("+1 %CRIT% [%0]",this.name); 
 			t.resolvecritical(1);
 			t.checkdead();
 		    }
+		    t.log("+2 ion tokens [%0]",this.name);
 		    t.addiontoken();
 		    t.addiontoken();
-		    this.unit.log("%1 skips action phase [%0]",self.name,t.name);
-		    var cdema=t.candoendmaneuveraction;
-		    t.candoendmaneuveraction=function() {
-			t.candoendmaneuveraction=cdema;
+		    t.log("%1 skips action phase [%0]",this.name,t.name);
+		    t.wrap_after("candoendmaneuveraction",this,function() {
 			return false;
-		    }
+		    }).unwrapper("endactivationphase");
 		    Bomb.prototype.detonate.call(this);
 		}
 	    },       
@@ -3670,16 +3680,16 @@ var UPGRADES= [
 	    var self=this;
 	    sh.adddicemodifier(ATTACK_M,MOD_M,DEFENSE_M,this,{
 		req:function() {
-		    return this.isinfiringarc(targetunit)&&this.isactive;
+		    return this.isinfiringarc(targetunit)&&self.isactive;
 		}.bind(sh),
 		f:function(m,n) {
-		    this.desactivate();
+		    self.desactivate();
 		    if (FE_evade(m)>0) {
-			this.log("-1 %EVADE% [%0]",self.name);
+			sh.log("-1 %EVADE% [%0]",self.name);
 			m=m-FE_EVADE;
 		    } 
 		    return m;
-		}.bind(this),str:"evade"});
+		},str:"evade"});
 	    }
         },
         {
@@ -3805,11 +3815,17 @@ var UPGRADES= [
 	       p.dock(sh);
 	       p.show();
 	       sh.wrap_before("dies",self,function() {
-		   this.init.call(this.docked); // Copy capacities
-		   this.docked.wrap_before("endround",this.docked,function() {
+		   var u=this.docked;
+		   this.init.call(u); // Copy capacities
+		   this.hasfired=false;
+		   u.wrap_before("endround",u,function() {
 		       this.hasmoved=false;
 		   });
-		   this.docked.deploy(this,self.getdeploymentmatrix(this.docked));
+		   u.wrap_after("canfire",u,function() { return false; }).unwrapper("endround");
+		   //this.doselection(function(n) {
+		   u.deploy(this,self.getdeploymentmatrix(u));
+		   //    this.endnoaction(n,"TITLE");
+		   //}.bind(this));
 	       });
 	   }
         },
@@ -3971,19 +3987,24 @@ var UPGRADES= [
       faction:REBEL,
       unique:true,
       done:true,
+      rd:-1,
       init: function(sh) {
 	  var self=this;
 	  Bomb.prototype.wrap_after("explode",this,function() {
-	      var p=[];
+	      var p=[self.unit];
+	      if (self.rd==round) return;
 	      for (var i in squadron) {
 		  var u=squadron[i];
 		  if (this.unit.team!=u.team&&this.getrange(squadron[i])==1) p.push(u); 
 	      }
 	      this.unit.selectunit(p,function(p,k) {
+		  if (k==0) return;
+		  p[k].log("+1 %HIT% [%0]",self.name);
 		  p[k].resolvehit(1);
+		  self.rd=round;
 		  SOUNDS.explode.play();
 		  p[k].checkdead();
-	      },["select unit [%0]",self.name],false);
+	      },["select unit (or self to cancel) [%0]",self.name],false);
 	  });
       }
     },
@@ -4022,15 +4043,15 @@ var UPGRADES= [
 		sh.weapons[0].auxiliary=function(i,m) { return this.getPrimarySectorString(i,m.clone().rotate(180,0,0)); };
 		sh.weapons[0].subauxiliary=function(i,j,m) { return this.getPrimarySubSectorString(i,j,m.clone().rotate(180,0,0)); };
 		sh.weapons[0].type="Bilaser";
-		sh.wrap_before("endmaneuver",this,function() {
+		sh.wrap_after("endmaneuver",this,function() {
 		    if (this.docked) {
-			this.donoaction([{org:self,type:"TITLE",name:self.name,action:function(n) {
+			u.donoaction([{org:self,type:"TITLE",name:self.name,action:function(n) {
 
+			    this.weapons[0].auxiliary=undefined;
+			    this.weapons[0].subauxiliary=undefined;
+			    this.weapons[0].type="Laser";
 			    u.deploy(this,self.getdeploymentmatrix(u));
-			    sh.weapons[0].auxiliary=undefined;
-			    sh.weapons[0].subauxiliary=undefined;
-			    sh.weapons[0].type="Laser";
-			    this.endnoaction(n,"TITLE");
+			    u.endnoaction(n,"TITLE");
 			}.bind(this)}],"",true);
 		    }
 		});

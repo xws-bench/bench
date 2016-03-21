@@ -86,7 +86,7 @@ var CRITICAL_DECK=[
 	    this.unit.wrap_before("begincombatphase",this,function() {
 		var roll=this.rollattackdie(1)[0];
 		if (roll=="hit") {
-		    this.log("+1 %HIT% [%0]",this.name);
+		    this.unit.log("+1 %HIT% [%0]",this.name);
 		    this.resolvehit(1); this.checkdead();
 		}
 	    });
@@ -97,7 +97,7 @@ var CRITICAL_DECK=[
 	},
 	facedown: function() {
 	    if (this.isactive) {
-		log("Console no longer in fire for "+this.unit.name);		
+		this.unit.log("%0 repaired",this.name);		
 		this.unit.begincombatphase.unwrap(this);
 	    }
 	    this.isactive=false;
@@ -112,22 +112,22 @@ var CRITICAL_DECK=[
 	    this.isactive=true;
 	    for (var i=0; i<this.unit.weapons.length;i++) 
 		if (this.unit.weapons[i].isprimary) break;
-	    this.w=this.unit.weapons[i];
-	    this.w.wrap_after("getattack",this,function(a) {
+	    this.w=i;
+	    this.unit.weapons[i].wrap_after("getattack",this,function(a) {
 		if (a>0) return a-1; else return a;
-	    });
+	    });	    
 	},
 	facedown: function() {
 	    if (this.isactive) {
-		this.w.getattack.unwrap(this);
-		this.unit.log("%0 repaired",this.w.name);
+		this.unit.weapons[this.w].getattack.unwrap(this);
+		this.unit.log("%0 repaired",this.unit.weapons[this.w].name);
 		this.isactive=false;
 	    }
 	},
 	action: function(n) {
 	    var roll=this.unit.rollattackdie(1)[0];
 	    if (roll=="critical"||roll=="hit") this.facedown();
-	    else log("Primary weapon for "+this.unit.name+" not functioning.");
+	    else this.unit.log("%0 not repaired",this.name);
 	    this.unit.endaction(n,"CRITICAL");
 	}
     },
