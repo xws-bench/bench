@@ -7,12 +7,30 @@ IAUnit.prototype= {
 	var i,j,k,d=0;
 	var q=[],possible=-1;
 	var gd=this.getdial();
-	var enemies=[];
+	//var enemies=[];
+	var s=this.getskill();
+	for (i in squadron) {
+	    var u=squadron[i];
+	    var us=u.getskill();
+	    u.oldm=u.m;
+	    //console.log("setting oldm");
+	    if (us<s) {
+		if (u.team!=this.team) {
+		    if (u.meanmround!=round) u.evaluatemoves(false,false);
+		    u.m=u.meanm;
+		} else {
+		    //Be safe
+		    if (typeof u.futurem=="undefined") u.futurem=u.m;
+		    u.m=u.futurem;
+		}
+	    }
+	}
 	this.evaluatemoves(true,true);
+	//console.log(this.name+"end evaluates move");
 	//log("computing all enemy positions");
 	// Find all possible future positions of enemies
 	var k=0;
-	for (i in squadron) {
+	/*for (i in squadron) {
 	    var u=squadron[i];
 	    if (u.team!=this.team) {
 		if (u.meanmround!=round) u.evaluatemoves(false,false);
@@ -20,7 +38,7 @@ IAUnit.prototype= {
 		u.m=u.meanm;
 		enemies.push(u);
 	    }
-	}
+	}*/
 	var findpositions=function(gd) {
 	    var q=[],c,j,i;
 	// Find all possible moves, with no collision and with units in range 
@@ -28,15 +46,16 @@ IAUnit.prototype= {
 	    //log("find positions with color "+c);
 	    for (i=0; i<gd.length; i++) {
 		var d=gd[i];
-		if (d.color==RED) continue;
+		if (d.color==BLACK) continue;
 		var mm=this.getpathmatrix(this.m,gd[i].move);
 		var n=12-4*COLOR.indexOf(d.color);
+		if (d.color==RED) n-=20;
 		var n0=n;
 		var oldm=this.m;
 		this.m=mm;
 		n+=this.evaluateposition();
 		if (d.difficulty=="RED") n=n-1.5;
-		//this.log(d.move+" "+d.difficulty+" "+n);
+		//this.log(d.move+" "+d.color+" "+n);
 		this.m=oldm;
 		//this.log(d.move+":"+n+"/"+n0+" "+d.color);
 		q.push({n:n,m:i});
@@ -45,7 +64,7 @@ IAUnit.prototype= {
 	}.bind(this);
 	q=findpositions(gd);
 	// Restore position
-	for (k=0; k<enemies.length; k++) enemies[k].m=enemies[k].oldm;
+	for (i in squadron) squadron[i].m=squadron[i].oldm;
 	if (q.length>0) {
 	    q.sort(function(a,b) { return b.n-a.n; });
 	    //for (i=0; i<q.length; i++) this.log(">"+q[i].n+" "+gd[q[i].m].move);
@@ -58,6 +77,7 @@ IAUnit.prototype= {
 	    //if (typeof gd[d] == "undefined") log("(q=vide) UNDEFINED GD FOR "+this.name+" "+gd.length+" "+possible);
 
 	}
+	this.futurem=this.getpathmatrix(this.m,gd[d].move);
 	this.log("Maneuver set");//+":"+d+"/"+q.length+" possible?"+possible+"->"+gd[d].move);
 	return d;
     },
@@ -122,6 +142,7 @@ IAUnit.prototype= {
 		$("#npimg").html("<img style='width:10px' src='png/waiting.gif'/>");
 	    }
 	    var p;
+	    //p=($.Deferred()).resolve()
 	    p=setInterval(function() {
 		var m=this.computemaneuver(); 
 		IACOMPUTING--;
