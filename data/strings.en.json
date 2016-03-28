@@ -484,7 +484,7 @@
     "Stygium Particle Accelerator":{"text":
     "When you either decloak or perform a cloak action, you may perform a free evade action."},
     "Cloaking Device":{"text":
-    "Action: Perform a free cloak action. At the end of each round, if you are cloaked, roll 1 attack die. On a Focus result, discard this card, then decloak or discard your cloak token."},
+    "%ACTION% Perform a free cloak action. At the end of each round, if you are cloaked, roll 1 attack die. On a %FOCUS% result, discard this card, then decloak or discard your cloak token."},
     "Advanced Cloaking Device":{"text":
     "After you perform an attack, you may perform a free cloak action."},
     "Combat Retrofit":{"text":
@@ -543,7 +543,7 @@
      "Extra Munitions":{
             "text":"When you equip this card, place 1 ordnance token on each equipped %TORPEDO%, %MISSILE%, and %BOMB% Upgrade card.  When you are instructed to discard an Upgrade card, you may discard 1 ordnance token on that card instead."},
         "Cluster Mines":{
-            "text":"<strong>Action:</strong> Discard this card to <strong>drop</strong> 3 cluster mine tokens. When a ship's base or maneuver template overlaps a cluster mine token, that token <strong>detonates</strong>.<strong>Cluster Mines Tokens:</strong> When one of these bomb tokens detonates, the ship that moved through or overlapped this token rolls 2 attack dice and suffers all damage (%HIT%) rolled.  Then discard this token."},
+            "text":"%ACTION% Discard this card to <strong>drop</strong> 3 cluster mine tokens. When a ship's base or maneuver template overlaps a cluster mine token, that token <strong>detonates</strong>.<strong>Cluster Mines Tokens:</strong> When one of these bomb tokens detonates, the ship that moved through or overlapped this token rolls 2 attack dice and suffers all damage (%HIT%) rolled.  Then discard this token."},
         "Glitterstim":{
             "text":"At the start of the Combat phase, you may discard this card and receive 1 stress token.  If you do, until the end of the round, when attacking  or defending, you may change all of your %FOCUS% results to %HIT% or %EVADE% results."},
         "Bossk(Crew)":{
@@ -561,7 +561,7 @@
 },
 "BB-8":{
 	"text":"When you reveal a green maneuver, you may perform a free barrel roll action."},
-	"Tractor Beam":{"text":"Attack: Attack 1 ship. If this attack hits, the defender receives 1 tractor beam token. Then cancel all dice results."},
+	"Tractor Beam":{"text":"<strong>Attack:</strong> Attack 1 ship. If this attack hits, the defender receives 1 tractor beam token. Then cancel all dice results."},
 	"Juke":{"text":"When attacking, if you have an evade token, you may change 1 of the defender's Evade results to a Focus result."},
 	"Cool Hand": {"text":"When you receive a stress token, you may discard this card to assign 1 focus or evade token to your ship."},
 	"Wired":{"text":"When attacking or defending, if you are stressed, you may reroll 1 or more of your %FOCUS% results."},
@@ -569,7 +569,7 @@
         "Ion Bombs":{
             "text":"When you reveal your maneuver dial, you may discard this card to <strong>drop</strong> 1 ion bomb token. This token <strong>detonates</strong> at the end of the Activation phase. <strong>Ion Bombs Token:</strong> When this bomb token detonates, each ship at Range 1 of the token receives 2 ion tokens.  Then discard this token."},
         "Conner Net":{
-            "text":"<strong>Action:</strong> Discard this card to <strong>drop</strong> 1 Conner Net token. When a ship's base or maneuver template overlaps this token, this token <strong>detonates</strong>. <strong>Conner Net Token:</strong> When this bomb token detonates, the ship that moved through or overlapped this token suffers 1 damage, receives 2 ion tokens, and skips its Perform Action step.  Then discard this token."},
+            "text":"%ACTION% Discard this card to <strong>drop</strong> 1 Conner Net token. When a ship's base or maneuver template overlaps this token, this token <strong>detonates</strong>. <strong>Conner Net Token:</strong> When this bomb token detonates, the ship that moved through or overlapped this token suffers 1 damage, receives 2 ion tokens, and skips its Perform Action step.  Then discard this token."},
         "Bombardier(Crew)":{
             "text":"When dropping a bomb, you may use the (%STRAIGHT% 2) template instead of the (%STRAIGHT% 1) template."},
         "'Crack Shot'": {
@@ -615,9 +615,11 @@
      "'Gonk'(Crew)":{"text":"%ACTION% Place 1 shield token on this card. %ACTION% Remove 1 shield token from this card to recover 1 shield (up to your shield value)."},
      "Dengar(Crew)":{"text":"When attacking, you may reroll 1 attack die. If the defender is a unique pilot, you may instead reroll up to 2 attack dice."},
      "Punishing One":{"text":"Increase your primary weapon value by 1."},
-     "Long Range Scanner":{"text":"You can acquire target locks on ships at Range 3 and beyond. You cannot acquire target locks on ships at Range 1-2. You can equip this card only if you have %TORPEDO% and %MISSILE% in your upgrade bar."}
+     "Long Range Scanner":{"text":"You can acquire target locks on ships at Range 3 and beyond. You cannot acquire target locks on ships at Range 1-2. You can equip this card only if you have %TORPEDO% and %MISSILE% in your upgrade bar."},
+     "Thermal Detonator":{"text":"When you reveal your maneuver dial, you may discard this card to drop 1 thermal detonator token. This token detonates at the end of the Activation phase. <strong>Thermal Detonator Token:</strong> When this bomb token detonates, each ship at Range 1 of the token suffers 1 damage and receives 1 stress token.  Then discard this token."},
+     "Electronic Baffle":{"text":"When you receive a stress token or an ion token, you may suffer 1 damage to discard that token."},
+     "Overclocked R4":{"text":"During the Combat Phase, when you spend a focus token, you may receive 1 stress token to assign 1 focus token to your ship."}
  },
-
     "criticals":{
 	"Structural Damage":{
 	    "text":"Reduce your agility value by 1 (to a minimum of '0'). %ACTION% Roll 1 attack die, on a %HIT% result, flip this card facedown."
@@ -663,6 +665,7 @@
 	}
     },
     "css":{
+	"m-all":"All",
 	"m-ncombats":"Combats",
 	"m-battlingsquad":"Battling squad",
 	"m-squadpilots":"Select pilots",
@@ -694,6 +697,8 @@
 	"m-totalpts":"Total points",
 	"m-name":"My squad",
 	"m-console":"Show console",
+	"m-volume":"Volume",
+	"m-trace":"Show traces",
 	"m-donate":"Donate",
 	"m-done":"Done",
 	"m-create":"New",

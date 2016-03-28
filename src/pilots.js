@@ -2623,7 +2623,7 @@ var PILOTS = [
 			this.mirandaturn=round;
 			this.log("-1 attack die");
 			this.wrap_after("getattackstrength",this,function(i,sh,a){
-			    var ra= this.weapons[i].getrangeattackbonus();
+			    var ra= this.weapons[i].getrangeattackbonus(sh);
 			    if (a-ra>0) a=a-1;			    
 			    return a;
 			}).unwrapper("attackroll");
@@ -3431,15 +3431,14 @@ var PILOTS = [
 	points:30,
 	done:true,
 	init: function() {
-	    this.wrap_before("checkdead",this,function() {
+	    this.wrap_after("checkdead",this,function() {
 		if (this.hull<=0&&!this.dead) {
-		    this.hull=this.ship.hull;
+		    this.addhull(this.ship.hull-this.hull);
 		    this.addshield(this.ship.shield);
-		    // TODO: erase criticals
 		    this.criticals=[];
-		    this.log("resurrection");
+		    SOUNDS.explode.play();
+		    this.log("resurrects");
 		    this.applydamage(4);
-		    this.checkdead.unwrap(this);
 		}
 	    });
 	},
@@ -3456,27 +3455,29 @@ var PILOTS = [
 	done:true,
 	init: function() {
 	    var self=this;
-	    this.selectunit(this.selectnearbyally(4),function(p,k) {
-		var f=this.focus,e=this.evade
-		for (var i=0; i<f; i++) {
-		    p[k].addfocustoken();
-		    this.removefocustoken();
-		}
-		for (var i=0; i<e; i++) {
-		    p[k].addevadetoken();
-		    this.removeevadetoken();
-		}
-		var t=this.targeting;
-		for (var i=t.length;i>=0; i--) {
-		    p[k].addtargettoken(t[i]);
-		    this.removetarget(t[i]);
-		}
-		var t=this.istargeted;
-		for (var i=t.length;i>=0; i--) {
-		    t[i].removetarget(this);
-		    t[i].addtargettoken(p[k]);
-		}
-	    },["select unit (or self to cancel) [%0]",this.name],true);
+	    this.wrap_before("begincombatphase",this,function() {
+		this.selectunit(this.selectnearbyally(4),function(p,k) {
+		    var f=this.focus,e=this.evade
+		    for (var i=0; i<f; i++) {
+			p[k].addfocustoken();
+			this.removefocustoken();
+		    }
+		    for (var i=0; i<e; i++) {
+			p[k].addevadetoken();
+			this.removeevadetoken();
+		    }
+		    var t=this.targeting;
+		    for (var i=t.length;i>=0; i--) {
+			p[k].addtargettoken(t[i]);
+			this.removetarget(t[i]);
+		    }
+		    var t=this.istargeted;
+		    for (var i=t.length;i>=0; i--) {
+			t[i].removetarget(this);
+			t[i].addtargettoken(p[k]);
+		    }
+		},["select unit (or self to cancel) [%0]",this.name],true);
+	    });
 	},
 	upgrades:[ELITE,TORPEDO,TORPEDO,CREW,SALVAGED,ILLICIT]
     },
@@ -3488,5 +3489,45 @@ var PILOTS = [
       unique:true,
       points:24,
       upgrades:[ELITE,TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB]
-    }
+    },
+    { name:"Lothal Rebel",
+      faction:REBEL,
+      done:true,
+      unit:"VCX-100",
+      skill:3,
+      pilotid:183,
+      points:35,
+      upgrades:[SYSTEM,TURRET,TORPEDO,TORPEDO,CREW,CREW]
+    },
+   {
+       name:"Baron of the Empire",
+       faction:EMPIRE,
+       pilotid:184,
+       done:true,
+       unit:"TIE Adv. Prototype",
+       skill:4,
+       points:19,
+       upgrades:[ELITE,MISSILE]
+    },
+   {
+       name:"Gand Findsman",
+       faction:SCUM,
+       pilotid:185,
+       done:true,
+       unit:"G-1A Starfighter",
+       skill:5,
+       points:25,
+       upgrades:[ELITE,CREW,SYSTEM,ILLICIT]
+    },
+    {
+       name:"Ruthless Freelancer",
+       faction:SCUM,
+       pilotid:186,
+       done:true,
+       unit:"G-1A Starfighter",
+       skill:3,
+       points:23,
+       upgrades:[CREW,SYSTEM,ILLICIT]
+    },
+    
 ];
