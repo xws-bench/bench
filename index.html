@@ -19,7 +19,34 @@
       
       ga('create', 'UA-63149795-1', 'auto');
       ga('send', 'pageview');
-    </script>
+</script>
+<script>
+function handlepaste (elem, e) { 
+    var savedcontent = elem.innerHTML;
+    if (e && e.clipboardData && e.clipboardData.getData) {
+        if (/text\/html/.test(e.clipboardData.types)) {
+            elem.innerHTML = e.clipboardData.getData('text/html');
+        }
+        else if (/text\/plain/.test(e.clipboardData.types)) {
+            elem.innerHTML = e.clipboardData.getData('text/plain');
+        }
+        else {
+            elem.innerHTML = "";
+        }
+        waitforpastedata(elem, savedcontent);
+        if (e.preventDefault) {
+                e.stopPropagation();
+                e.preventDefault();
+        }
+        return false;
+    }
+    else {// Everything else - empty editdiv and allow browser to paste content into it, then cleanup
+        elem.innerHTML = "";
+        waitforpastedata(elem, savedcontent);
+        return true;
+    }
+}
+</script>
   </head>
 
   <body>
@@ -29,19 +56,17 @@
 	  <span class="ver"></span>
 	  <img onclick="changelanguage('en')" class="langselect" src="css/uk-on.png">
 	  <img onclick="changelanguage('fr')" class="langselect" src="css/fr-on.png">
-	  <span class="mute symbols" style="font-size:0.5em" onclick="Howler.mute();$('.mute').hide();$('.unmute').show();">&#xE909;</span>
-	  <span class="unmute symbols" style="font-size:0.5em" onclick="Howler.unmute();$('.unmute').hide();$('.mute').show();">&#xE90A;</span>
+	  <span class="symbols" onclick="window.location='#setting'">&#x2699;</span>
 	</span>
 	<span class="buttonbar">
 	  <button onclick="currentteam=TEAMS[0];createsquad()" class="mainbutton m-create"></button>
-	  <button class="m-reset permalink" onclick="resetlink()">&#10096; </button>
+	  <button class="m-reset permalink" onclick="resetlink()" >&#10096; </button>
 	  <span id="phase"></span>
 	  <button class="nextphase" onclick="nextphase()"><span class='np'></span> <span id='npimg'>&#10097;</span></button>
 	  <span class="menu" onmouseover="$('nav ul').css({display:'block',visibility:'visible'})" onmouseout="$('nav ul').css({display:'none',visibility:'hidden'})"><span class="symbols" style="color:white;font-size:larger;">&#xE906;</span>
 	    <ul>
 	      <li><a class="m-about" href="#about"></a></li>
 	      <li><a class="m-proba" href="#proba" id="showproba"></a></li>
-	      <li><a class="m-console" href="#" onclick="$('footer').css({display:'block',visibility:'visible'})"></a></li>
 	      <li><a class="m-blog" href="http://xws-benchmark.blogspot.fr/"></a></li>
 	      <li><a class="m-donate" href="#donate"></a></li>
 	      <li><a class="m-credits" href="#credit"></a></li>
@@ -153,26 +178,25 @@
 	   <td>
 	     <span class="m-squad1"></span>
 	     <select id="player1"></select>
-	     <button onclick="currentteam=TEAMS[1];createsquad()" class="m-create"></button>	 
-	     <button onclick="currentteam=TEAMS[1];importsquad(1)" class="m-import"></button>
-	   </td>
+	     <button onclick="currentteam=TEAMS[1];createsquad()" class="m-create"></button>
+ 	   </td>
 	   <td>
 	     <span class="m-squad2"></span>
 	     <select id="player2"></select>
-	     <button onclick="currentteam=TEAMS[2];createsquad()" class="m-create"></button>	 
-	     <button onclick="currentteam=TEAMS[2];importsquad(2)" class="m-import"></button>
+	     <button onclick="currentteam=TEAMS[2];createsquad()" class="m-create"></button>
 	   </td>
 	 </tr>
-	 <tr>
-	   <td class="squadbg"><div>1</div><textarea id="squad1" cols="40" rows="8"></textarea></td>
-	   <td class="squadbg"><div class="right">2</div><textarea id="squad2" cols="40" rows="8"></textarea></td>
+	 <tr >
+	   <td class="squadbg"><div>1</div><textarea onchange="currentteam=TEAMS[1];importsquad(1)" onpaste="setTimeout(function(){currentteam=TEAMS[1];importsquad(1);}, 4)" id="squad1" cols="40" rows="8"></textarea></td>
+	   <td class="squadbg"><div class="right">2</div><textarea  onchange="currentteam=TEAMS[2];importsquad(2)" onpaste="setTimeout(function(){currentteam=TEAMS[2];importsquad(2);}, 4)" id="squad2" cols="40" rows="8" ></textarea></td>
 	 </tr>
        </table>
        </div>
        <h3 class="m-manage"></h3>
-       <div id="uselector" class="selector">
+       <div id="uselector" class="selector" >
+	 <span class="m-all" onclick="stype='';SQUADLIST.draw();"></span>
 	 <span class="REBEL m-rebel" onclick="stype='REBEL';SQUADLIST.draw();"></span>
-	 <span class="SCUM m-scum" onclick="stype='SCUM';SQUADLIST.draw();"></span>
+	 <span class="SCUM m-scum" onclick="stype='SCUM';SQUADLIST.draw();" ></span>
 	 <span class="EMPIRE m-empire" onclick="stype='EMPIRE';SQUADLIST.draw();"></span>
 	 <span class="PREBUILT Prebuilt" onclick="stype='PREBUILT';SQUADLIST.draw();"></span>
 	 <span class="TOP m-top" onclick="stype='ELITE';SQUADLIST.draw();"></span><span style='position:relative;left:-1.5em;'><sup><a href="http://xwing.miniranker.com/" style="color:white;text-decoration:none">(*)</a></sup></span>
@@ -299,24 +323,65 @@ The app is not really a game since the user plays both sides, there is no multi-
         </div>
       </section>
 
+      <section id="setting" class="modalDialog">
+	<div>
+	  <h2><span>Settings</span><a href="#" title="Close" class="close">&#xd7;</a>
+	    
+	  </h2>
+	  <div>
+	    <table>
+	      <tr>
+		<td class="m-console"></td>
+		<td>
+		  <input type="checkbox" checked value="1" id="consolecb" onclick="$('footer').toggle()"/>
+		</td>
+	      </tr>
+	      <tr>
+		<td class="m-trace"></td>
+		<td>
+		  <input type="checkbox" onclick="TRACE=!TRACE;$('.trace').toggle()"/>
+		</td>
+	      </tr>
+	      <tr>
+		<td class="m-volume"></td>
+		<td>
+		  <span class="symbols" style="font-size:larger">&#xE90A;</span>
+		  <input type="range" min="0" max="100" id="vol" value="80" oninput="var vol=parseInt(value,10)/100.; localStorage.volume=vol; Howler.volume(vol);"/>
+		  <span class="symbols" style="font-size:larger">&#xE909;</span>
+		</td>
+	      </tr>
+	    </table>
+	  </div>
+	</div>
+      </section>
 
       <section id="credit" class="modalDialog">
 	<div>
-	  <h2><span class="m-credit"></span><a href="#" title="Close" class="close">&#xd7;</a>
+	  <h2><span class="m-credits"></span><a href="#" title="Close" class="close">&#xd7;</a>
 	  </h2>
 	  <div>
-	  The app is (c) Denis Wings (deniswings@free.fr). The License of the code is an MIT license. <br/>
-	  The app is based on the vector fonts provided
-	  by <a href="https://github.com/geordanr/xwing-miniatures-font">Xwing-miniatures-font</a>
-	  (see License thereafter).
-	  The <a href="https://github.com/elistevens/xws-spec">JSON
-	  format of X-Wing squadrons</a> provides the list of all
-	  ships, pilots, upgrades and several translations.
+	    <p><b>License and copyright</b></p>
+	    <p>The app is (c) Denis Wings 2015-2016 (deniswings@free.fr). The code has an <a href="https://opensource.org/licenses/MIT">MIT license</a>. </p>
+	    <p><b>Acknowledgements</b></p>
+	    <p>
+	      The sounds of space ships, lasers and explosions come from <a href="http://www.sa-matra.net/sounds/starwars/">Sa-Matra</a> website. Thanks !
 
-	  The sounds of space ships, lasers and explosions come from <a href="http://www.sa-matra.net/sounds/starwars/">Sa-Matra</a> website. Thanks !
-
-	  The code of the app relies on <a href="http://snapsvg.io/">Snap</a> for SVG and <a href="https://jquery.com/">jQuery</a>. See their websites for the licenses. 
-
+	  The code of the app relies on the following external fonts and libraries. See their website for their license:
+	  <ul>
+	    <li><a href="https://github.com/geordanr/xwing-miniatures-font">Xwing-miniatures-font</a> (<a href="https://raw.githubusercontent.com/geordanr/xwing-miniatures-font/master/LICENSE">MIT license</a>)</li>
+	    <li><a href="https://github.com/elistevens/xws-spec">JSON
+	  format of X-Wing squadrons</a>, as well as several translations</li>
+	    <li><a href="http://snapsvg.io/">Snap</a> for SVG and <a href="https://jquery.com/">jQuery</a> (resp. <a href="https://raw.githubusercontent.com/adobe-webplatform/Snap.svg/master/LICENSE">Apache 2</a> and MIT licenses)</li>
+	    <li><a href="https://github.com/janl/mustache.js">Mustache</a> for a minimal templating (<a href="https://raw.githubusercontent.com/janl/mustache.js/master/LICENSE">MIT license</a>)</li>
+	    <li><a href="https://github.com/keithamus/jwerty">Jwerty</a> for keyboard event handling (<a href="https://raw.githubusercontent.com/keithamus/jwerty/master/LICENSE">MIT license</a>)</li>
+	    <li><a href="http://goldfirestudios.com/blog/104/howler.js-Modern-Web-Audio-Javascript-Library">Howler</a> for sound playing (<a href="https://raw.githubusercontent.com/goldfire/howler.js/master/LICENSE.md">MIT license</a>)</li>
+	    <li><a href="https://datatables.net/">Datatables</a> for tables (<a href="https://datatables.net/license/mit">MIT license</a>)</li>
+	    <li><a href="http://imankulov.github.io/asuggest/">Asuggest</a> for auto-completion (MIT/GPL license)</li>
+	    <li><a href="http://pieroxy.net/blog/pages/lz-string/index.html">lz-string</a> for compression (<a href="https://raw.githubusercontent.com/pieroxy/lz-string/master/LICENSE.txt">Public license</a>)</li>
+	    <li><a href="http://hammerjs.github.io/">Hammer</a> for touch events (<a href="https://raw.githubusercontent.com/hammerjs/hammer.js/master/LICENSE.md">MIT license</a>)</li>
+	    <li><a href="https://github.com/chriszarate/sheetrock">Sheetrock</a> for Google Spreadsheet queries (MIT license)</li>
+	  </ul>
+	  </p>
 	  <p><b>Disclaimer</b></p>
 	  <p>
 	    X-Wing: The Miniatures Game is a trademark of Fantasy
@@ -333,34 +398,153 @@ The app is not really a game since the user plays both sides, there is no multi-
 	    intended for use by fans of the game line.
 	  </p>
 	  
-	  <p><b>Xwing-miniatures-font license</b></p> 
-	  <p>The MIT License (MIT)</p>
-	  <p>Copyright (c) 2014 Geordan Rosario</p>
-	  <p>Permission is hereby granted, free of charge, to any person obtaining a copy
-	    of this software and associated documentation files (the "Software"), to deal
-	    in the Software without restriction, including without limitation the rights
-	    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-	    copies of the Software, and to permit persons to whom the Software is
-	    furnished to do so, subject to the following conditions:
-	    The above copyright notice and this permission notice shall be included in
-	    all copies or substantial portions of the Software.
-	    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-	    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-	    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-	    THE SOFTWARE.
-	  </p>
 	</div></div>
       </section>
+
     <footer>
-      <a href="#" onclick="$('footer').css({display:'none',visibility:'hidden'})" title="Close" class="close">&#xd7;</a>
+      <a href="#" onclick="$('#consolecb').removeAttr('Checked'); $('footer').css({display:'none'})" title="Close" class="close">&#xd7;</a>
       <div class='title'>Console</div>
       <div class="log" id='log'></div>
     </footer>
+
     <script src="js/all.min.js"></script>
-    <script src="js/bench.min.js" async></script>
+   <script src="js/bench.min.js" async></script>
+
+    <script id="unit-creation" type="x-tmpl-mustache">
+      <img class="headimg" src="png/{{faction}}/{{imgname}}.png">
+      <table>
+	<tr>
+	  <td class="statskill">{{skill}}</td>
+	  <td class="shipname">{{name}}</td><td>(<span class="pts">{{points}}</span>)</td>
+	  <td>
+	    <div class="close" data={{id}} title="Remove">&#xd7;</div>
+	    {{#unique}}
+	    <div class="duplicate symbols" data="{{id}}" title="Duplicate">&#xE902;</div>
+	    {{/unique}}
+	  </td>
+	</tr>
+      </table>
+      <table>
+	<tr>
+	  <td onclick="switchdialimg(true)" class="shipimg" rowspan="4" style="background-image:url(png/{{shipimg}})">
+	      <div class="xsymbols RED">{{fire}}</div>
+	      <div class="xsymbols GREEN">{{evade}}</div>
+	      <div class="xsymbols YELLOW">{{hull}}</div>
+	      <div class="xsymbols BLUE">{{shield}}</div>
+	  </td>
+	  <td onclick="switchdialimg(false)" class="shipdial" rowspan="4">
+	    <table>
+	      {{{dialstring}}}
+	    </table>
+	  </td>
+	  <td>{{shipname}}</td>
+	</tr>
+	<tr>
+	  <td class="actionlist">{{{actionstring}}}</td>
+	</tr>
+      </table>
+      <table class="upgs">
+	<tr>
+	  <td colspan=3 class="upgavail">{{{upgradeaddstring}}}</td>
+	</tr>
+	<tr>
+	  <td colspan=3 class="upg"></td>
+	  <tbody class="upglist"></tbody>
+      </table>
+    </script>
+
+    <script id="faction" type="x-tmpl-mustache">
+      <table>
+	<tr>
+	  <td  rowspan="3">
+	    <div onclick="switchdialimg(true)" class="shipimg"  style="background-image:url(png/{{shipimg}})">
+	      <div class="xsymbols RED">{{fire}}</div>
+	      <div class="xsymbols GREEN">{{evade}}</div>
+	      <div class="xsymbols YELLOW">{{hull}}</div>
+	      <div class="xsymbols BLUE">{{shield}}</div>
+	    </div>
+	    <div class="shipdial"  onclick="switchdialimg(false)"> 
+	    <table>
+	      {{#diallist}}
+	      <tr>
+		{{#item}}<td>{{.}}</td>{{/item}}
+		{{#moves}}
+		<td><span class="symbols {{difficulty}}">{{key}}</span></td>
+		{{/moves}}
+	      </tr>
+	      {{/diallist}}
+	    </table>
+	    </div>
+	  </td>
+	  <td>{{shipname}}</td>
+	</tr><tr>
+	  <td class="actionlist">
+	    {{#actionlist}}
+	    <span class="GREEN symbols">{{.}}</span>
+	    {{/actionlist}}
+	  </td>
+	</tr><tr>
+	  <td>
+	    {{#shipupgrades}}
+	    <span class="upgrades {{.}}"></span>
+	    {{/shipupgrades}}
+	    {{#hastitle}}<span class="upgrades Title"></span>{{/hastitle}}
+	    <span class="upgrades Mod"></span>
+	  </td>
+	</tr>
+      </table>
+      <table class="pilots">
+	{{#pilots}}
+	<tr data="{{pilotid}}">
+	  <td><button pilotid="{{pilotid}}" onclick="addunit({{pilotid}})">+</button></td>
+	  <td>{{trname}}</td>
+	  <td>({{points}})</td>
+	  <td class="statskill">{{skill}}</td>
+	  <td>{{#haselite}}<code class="upgrades Elite"></code>{{/haselite}}</td>
+	  {{#tooltip}}<td class="tooltip">{{{.}}}</td>{{/tooltip}}
+	  {{^tooltip}}<td></td>{{/tooltip}}
+	</tr>
+	{{/pilots}}
+      </table>
+    </script>
+
+    <script id="bomb-left" type="x-tmpl-mustache">
+      <tr{{^isactive}} class="inactive"{{/isactive}}>
+	<td class='tdstat'>
+	  <span>
+	    {{trname}}
+	    {{#ordnance}}
+	    <sup style="padding:1px;color:white;background-color:red;border-radius:100%;">x2</sup>
+	    {{/ordnance}}
+	  </span>
+	</td>
+	<td><code class="{{type}} upgrades"></code></td>
+	<td class="outoverflow">
+	  {{#tooltip}}
+	  <span class="tooltip">{{.}}</span>
+	  {{/tooltip}}
+	</td>
+      </tr>
+    </script>
+    <script id="bomb-right" type="x-tmpl-mustache">
+      <tr{{^isactive}} class="inactive"{{/isactive}}>
+	<td><code class="{{type}} upgrades"></code></td>
+	<td class='tdstat'>
+	  <span>
+	    {{trname}}
+	    {{#ordnance}}
+	    <sup style="padding:1px;color:white;background-color:red;border-radius:100%;">x2</sup>
+	    {{/ordnance}}
+	  </span>
+	</td>
+	<td class="outoverflow">
+	  {{#tooltip}}
+	  <span class="tooltip">{{.}}</span>
+	  {{/tooltip}}
+	</td>
+      </tr>
+    </script>
+
   </body>
 </html>
 

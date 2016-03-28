@@ -299,7 +299,7 @@ Team.prototype = {
     },
     parseJSON:function(str,translated) {
 	var s;
-	var f={"rebels":"REBEL","scum":"SCUM","empire":"EMPIRE"};
+	var f={"rebel":REBEL,"scum":SCUM,"empire":EMPIRE};
 	try {
 	    s=$.parseJSON(str);
 	} catch(err) {
@@ -314,17 +314,19 @@ Team.prototype = {
 	for (i=0; i<s.pilots.length; i++) {
 	    var pilot=s.pilots[i];
 	    var p;
+	    var pid=-1;
 	    pilot.team=this.team;
-	    p=new Unit(this.team,0);
-	    if (pilot.ship=="") pilot.ship="tiefofighter";
-	    // log calling selectship ??
-	    //log("call selectship "+pilot.name);
-	    p.selectship(PILOT_dict[pilot.ship],PILOT_dict[pilot.name]);
-	    /* Copy all functions for manual inheritance. Call init. */
-	    for (k in PILOTS[this.pilotid]) {
-		var u=PILOTS[this.pilotpid];
-		if (typeof u[k]=="function") p[k]=u[k];
+	    for (j=0; j<PILOTS.length; j++) {
+		if (PILOTS[j].faction==this.faction&&
+		   PILOTS[j].unit==PILOT_dict[pilot.ship]) {
+		    va=PILOTS[j].name;
+		    if (va==PILOT_dict[pilot.name]) { pid=j; break; }
+		}
 	    }
+	    if (pid==-1) throw("pid undefined:"+PILOT_dict[pilot.name]);
+	    p=new Unit(this.team,pid);
+	    p.upg=[];
+
 	    if (typeof pilot.upgrades!="undefined")  {
 		var nupg=0;
 		for (j in pilot.upgrades) { 

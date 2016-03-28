@@ -4,7 +4,7 @@ var PX=[300,500,300,500,300,500];
 var PY=[250,250,400,400,550,550];
 var id=0;
 function loadrock(s,str) {
-    var i;
+    var i,j;
     var coord=[],o,ob;
     PATTERN = s.image(ROCKIMG,0,0,200,200).pattern(0,0,200,200);
     if (str !="") {
@@ -13,7 +13,7 @@ function loadrock(s,str) {
 	    ob=o[i].split(",");
 	    coord[i]=[parseInt(ob[0],10),parseInt(ob[1],10),parseInt(ob[2],10)];
 	}
-    } else for (i=0; i<6; i++) coord[i]=[0,0,0];
+    } else for (i=0; i<6; i++) coord[i]=[Math.random()*150-75,Math.random()*150-50,Math.random()*45];
     for (i=0; i<6; i++) {
 	OBSTACLES[i]=new Rock(i,coord[i]);
     }
@@ -55,7 +55,7 @@ function Rock(frag,coord) {
 			this.dragstart.bind(this),
 			this.dragstop.bind(this));
 	this.path="";
-	this.g.hover(function() {this.g.attr({strokeWidth:4});}.bind(this),
+	this.g.hover(function() { this.g.attr({strokeWidth:4});}.bind(this),
 		     function()  {this.g.attr({strokeWidth:0});}.bind(this));
 	this.g.addClass("unit");
 	var b=this.g.getBBox();

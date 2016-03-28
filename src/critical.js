@@ -86,7 +86,7 @@ var CRITICAL_DECK=[
 	    this.unit.wrap_before("begincombatphase",this,function() {
 		var roll=this.rollattackdie(1)[0];
 		if (roll=="hit") {
-		    this.unit.log("+1 %HIT% [%0]",this.name);
+		    this.log("+1 %HIT% [%0]",this.name);
 		    this.resolvehit(1); this.checkdead();
 		}
 	    });

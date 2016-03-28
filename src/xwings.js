@@ -3,7 +3,7 @@ var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.8.3";
+var VERSION="v0.8.4";
 var LANG="en";
 var DECLOAK_PHASE=1;
 var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6,XP_PHASE=7;
@@ -31,6 +31,7 @@ var ANIM="";
 var SETUPS={};
 var SETUP;
 var SHOWDIAL=[];
+var TRACE=false;
 //var sl;
 var increment=1;
 var theta=0;
@@ -46,6 +47,7 @@ var PERMALINK="";
     <script src="src/iaunits.js"></script>
     <script src="src/pilots.js"></script>
     <script src="src/upgrades.js"></script>
+    <script src="src/upgcards.js"></script>
     <script src="src/team.js"></script>
     <script src="src/xwings.js"></script>
 
@@ -146,8 +148,15 @@ var myTemplate = function(num,cells,cellarrays,labels) {
     if (LANG!="en") {
 	t1=TEAMS[2].toJuggler(true).replace(/\n/g,"<br>");
     }
+    score1=""+score1;
+    score2=""+score2;
+    for (var i=0; i<3; i++) {
+	if (score1.length<3) score1="0"+score1;
+	if (score2.length<3) score2="0"+score2;
+    }
     if (type2=="Human") score2="<b>"+score2+"</b>";
     if (type1=="Human") score1="<b>"+score1+"</b>";
+
     SQUADBATTLE.row.add([score2+"-"+score1,"<span onclick='$(\"#replay\").attr(\"src\",\""+cells[2]+"\")'>"+t1+"</span>"]).draw(false);
 }
 var computeurl=function(error, options,response) {
@@ -714,7 +723,8 @@ function switchdialimg(b) {
 }
 var mySpreadsheets=[
 "https://docs.google.com/spreadsheets/d/1n35IFydakSJf9N9b9byLog2MooaWXk_w8-GQdipGe8I/edit#gid=0",
-"https://docs.google.com/spreadsheets/d/1Jzigt2slBhygjcylCsy4UywpsEJEjejvtCfixNoa_z4/edit#gid=0"
+"https://docs.google.com/spreadsheets/d/1Jzigt2slBhygjcylCsy4UywpsEJEjejvtCfixNoa_z4/edit#gid=0",
+"https://docs.google.com/spreadsheets/d/1dkvDxaH3mJhps9pi-R5L_ttK_EmDKUZwaCE9RZUYueg/edit#gid=0"
 ];
 /*function displayAIperformance() {
     for (var i=0; i<mySpreadsheets.length; i++) {
@@ -776,6 +786,7 @@ function displayfactionunits() {
     var faction=currentteam.faction;
     var p={};
     var t={};
+    var uu=[];
     if (phase!=CREATION_PHASE) return;
     for (i in unitlist) if (unitlist[i].faction.indexOf(faction)>-1) count++;
 
@@ -787,6 +798,13 @@ function displayfactionunits() {
 	var u=PILOTS[i].unit;
 	if (PILOTS[i].faction==faction) {
 	    if (typeof p[u]=="undefined") p[u]=[];
+	    /* should go elsewhere */
+	    if (PILOTS[i].upgrades.indexOf(ELITE)>-1) PILOTS[i].haselite=true;
+	    var text=getpilottexttranslation(PILOTS[i].name,faction);
+	    if (text!="")
+		text+=(PILOTS[i].done==true?"":"<div><strong class='m-notimplemented'></strong></div>");
+	    PILOTS[i].tooltip=text;
+	    PILOTS[i].trname=translate(PILOTS[i].name);
 	    p[u].push(PILOTS[i]);
 	    //PILOTS[i].pilotid=i;
 	}
@@ -796,73 +814,50 @@ function displayfactionunits() {
 	var u=UPGRADES[i];
 	if (u.type==TITLE) unitlist[u.ship].hastitle=true;
     }
-    for (i in unitlist) {
-	str="";
-	if(unitlist[i].faction.indexOf(faction)>-1) {
-	    n++;
-	    var u=unitlist[i];
-	    var text=SHIP_translation[i];
-	    if (typeof text=="undefined") text=i;
-
-	    str+="<table><tr>";
-	    // shipimg
-	    str+="<td onclick='switchdialimg(true)' class='shipimg' rowspan='4' style='background-image:url(png/"+u.img[0]+")'>";
-	    str+="<div class='xsymbols RED'>"+repeat('u',u.fire)+"</div>"
-	    str+="<div class='xsymbols GREEN'>"+repeat('u',u.evade)+"</div>"
-	    str+="<div class='xsymbols YELLOW'>"+repeat('u',u.hull)+"</div>"
-	    str+="<div class='xsymbols BLUE'>"+repeat('u',u.shield)+"</div></td>";
-	    var m=[];
-	    for (j=0; j<=5; j++) {
-		m[j]=[];
-		for (k=0; k<=6; k++) m[j][k]="<td></td>";
-	    }
-	    for (j=0; j<u.dial.length; j++) {
-		d=u.dial[j];
-		var cx=MPOS[d.move][0],cy=MPOS[d.move][1];
-		m[cx][cy]="<td><span class='symbols "+d.difficulty+"' >"+P[d.move].key+"</span></td>";
-	    }
-	    str+="<td onclick='switchdialimg(false)' class='shipdial' rowspan='4'><table>"
-	    for (j=5; j>=0; j--) {
-		str+="<tr>";
-		if (j>0&&j<5) str+="<td>"+j+"</td>"; else str+="<td></td>";
-		for (k=0; k<=6; k++) str+=m[j][k];
-		str+="</tr>\n";
-	    }
-	    str+="</table></td>";
-	    
-	    str+="<td class='shipname'>"+text;
-	    str+="</td></tr><tr><td>";
-	    for (j=0; j<u.actionList.length; j++) {
-		str+="<code class='GREEN symbols'>"+A[u.actionList[j]].key+"</code>&nbsp;";
-	    }
-	    str+="</td></tr><tr><td>";
-	    for (j=0; j<p[i][0].upgrades.length; j++) {
-		if (p[i][0].upgrades[j]!=ELITE) 
-		    str+="<code class='upgrades "+p[i][0].upgrades[j]+"'></code>";
-	    }
-	    if (u.hastitle==true) str+="<code class='upgrades Title'></code>";
-	    str+="<code class='upgrades Mod'></code>";
-	    str+="</td></tr></table>";
-	    str+="<table class='pilots'>";
-	    //$("#carousel figure:nth-child("+n+")").css("transform","rotateY( "+(360/count*n)+"deg ) translateZ( "+tz+"px )");
-	    for (j=0; j<p[i].length; j++) {
-		var name=p[i][j].name;
-		str+="<tr data="+p[i][j].pilotid+"><td><button pilotid="+p[i][j].pilotid+" onclick='addunit("+p[i][j].pilotid+")'>+</button></td><td>"+translate(name)+"</td><td>"+p[i][j].points+"</td>";
-		str+="<td class='statskill'>"+p[i][j].skill+"</td>";
-		str+="<td>";
-		if (p[i][j].upgrades.indexOf(ELITE)>-1)
-		    str+="<code class='"+ELITE+" upgrades'></code>";
-		str+="</td>";
-		var text=getpilottexttranslation(name,faction);
-		if (text!="") {
-		    text+=(p[i][j].done==true?"":"<div><strong class='m-notimplemented'></strong></div>");
-		    str+="<td class='tooltip'>"+text+"</td>";
-		} else str+="<td></td>";
-		str+="</tr>";
-	    }
-	    str+="</table>";
-	    $("#caroussel").append("<li>"+str+"</li>");	    
+    for (i in unitlist) 
+	if (unitlist[i].faction.indexOf(faction)>-1) { 
+	    unitlist[i].trname=SHIP_translation[i]; 
+	    unitlist[i].name=i;
+	    if (typeof unitlist[i].trname=="undefined") unitlist[i].trname=i;
+	    uu.push(unitlist[i]);
 	}
+    uu.sort(function(a,b) { return a.trname > b.trname; });
+    for (i=0; i<uu.length; i++) {
+	str="";
+	n++;
+	var u=uu[i];
+	var template = $('#faction').html();
+	Mustache.parse(template);
+	var m=[];str="";
+	for (j=0; j<=5; j++) m[j]={item:"",moves:null};
+	for (j=0; j<u.dial.length; j++) {
+	    d=u.dial[j];
+	    var cx=MPOS[d.move][0],cy=MPOS[d.move][1];
+	    m[5-cx].item=cx;
+	    if (m[5-cx].moves==null) {
+		m[5-cx].moves=[];
+		for (k=0; k<=6; k++) m[5-cx].moves[k]={difficulty:"",key:""};
+	    }
+	    m[5-cx].moves[cy]={difficulty:d.difficulty,key:P[d.move].key};
+	}
+	var rendered=Mustache.render(template, {
+	    shipimg:u.img[0],
+	    fire:repeat('u',u.fire),
+	    evade:repeat('u',u.evade),
+	    hull:repeat('u',u.hull),
+	    shield:repeat('u',u.shield),
+	    diallist:m,
+	    shipname:u.trname,
+	    actionlist:function() {
+		var al=[];
+		for (j=0; j<u.actionList.length; j++) al[j]=A[u.actionList[j]].key;
+		return al;
+	    },
+	    hastitle:u.hastitle,
+	    shipupgrades:p[u.name][0].upgrades,
+	    pilots:p[u.name]
+	});
+	$("#caroussel").append("<li>"+rendered+"</li>");	    
     }
 }
 function getpilottexttranslation(name,faction) {
@@ -1018,7 +1013,6 @@ function setselectedunit(n,td) {
     try {
 	currentteam.parseJuggler(jug,true);
     } catch(e) {
-	log("catching e");
 	currentteam.parseJuggler(jug,false);
     }
     currentteam.name=currentteam.toASCII();
@@ -1064,12 +1058,41 @@ function checkrow(n,t) {
     setselectedunit(n,data);
 }
 function importsquad(t) {
-    currentteam.parseJuggler($("#squad"+t).val(),true);
+    currentteam.parseJSON($("#squad"+t).val(),true);
     currentteam.name="SQUAD."+currentteam.toASCII();
     var jug=currentteam.toJuggler(true);
     currentteam.toJSON(); // just for points
     localStorage[currentteam.name]=JSON.stringify({"pts":currentteam.points,"faction":currentteam.faction,"jug":currentteam.toJuggler(false)});
     addrow(t,currentteam.name,currentteam.points,currentteam.faction,jug);
+}
+function findsquad(t) {
+    currentteam.parseJSON($("#squad"+t).val(),true);
+    var jug=currentteam.toJuggler(false);
+    var pattern=jug.replace(/ \+.*/g,"").replace(/\n/g,".*\.").replace(/ /g,"_");
+    log(pattern);
+    $('#squad'+t).sheetrock({
+	url: mySpreadsheets[0],
+	query:"select C where C matches '.*VS"+pattern+"'",
+	callback:matchsquad,
+	rowTemplate:function () { return "";},
+	labels:["squad"]
+    }); 
+}
+function matchsquad(error, options,response) {
+    if (response!=null&&typeof response.rows!="undefined") {
+	response.rows.sort(function(a,b) { return a.cellsArray[0]<b.cellsArray[0]; });
+	var str="<ol>";
+	var oldsquad="";
+   	for (var i in response.rows) {
+	    var squad=response.rows[i].cellsArray[0];
+	    var tt=squad.split("VS");
+	    if (tt[1]==oldsquad) continue;
+	    str+="<li>"+tt[1]+"</li>";
+	    oldsquad=tt[1];
+	}
+	str+="</ol>";
+	log(str);
+    }
 }
 function startcombat() {
 }
@@ -1187,6 +1210,7 @@ function nextphase() {
 	//window.location="#creation";
 	break;
     case SETUP_PHASE:
+	loadsound();
 	$(".buttonbar .share-buttons").show();
 	$("#team2").css("top",$("nav").height()+2);
 	$("#team1").css("top",$("nav").height()+2);
@@ -1276,6 +1300,7 @@ function nextphase() {
 	$("#svgout").mousemove(function(e) {dragmove(e);});
 	$("#svgout").mouseup(function(e) {dragstop(e);});
 	jwerty.key("escape", nextphase);
+	
 	jwerty.key("c", center);
 	/* By-passes */
 	jwerty.key("9", function() { 
@@ -1295,16 +1320,16 @@ function nextphase() {
 	jwerty.key("shift+p",function() {
 	    $(".possible").remove();
 	});
-	jwerty.key("1", function() { activeunit.focus++;activeunit.show();});
-	jwerty.key("2", function() { activeunit.evade++;activeunit.show();});
+	jwerty.key("1", function() { activeunit.addfocustoken();activeunit.show();});
+	jwerty.key("2", function() { activeunit.addevadetoken();activeunit.show();});
 	jwerty.key("3", function() { if (!activeunit.iscloaked) {activeunit.iscloaked=true;activeunit.agility+=2;activeunit.show();}});
-	jwerty.key("4", function() { activeunit.stress++;activeunit.show();});
-	jwerty.key("5", function() { activeunit.ionized++;activeunit.show();});
-	jwerty.key("shift+1", function() { if (activeunit.focus>0) activeunit.focus--;activeunit.show();});
-	jwerty.key("shift+2", function() { if (activeunit.evade>0) activeunit.evade--;activeunit.show();});
+	jwerty.key("4", function() { activeunit.addstress();activeunit.show();});
+	jwerty.key("5", function() { activeunit.addiontoken();activeunit.show();});
+	jwerty.key("shift+1", function() { if (activeunit.focus>0) activeunit.removefocustoken();activeunit.show();});
+	jwerty.key("shift+2", function() { if (activeunit.evade>0) activeunit.removeevadetoken();activeunit.show();});
 	jwerty.key("shift+3", function() { if (activeunit.iscloaked) {activeunit.iscloaked=false;activeunit.agility-=2;activeunit.show();}});
-	jwerty.key("shift+4", function() { if (activeunit.stress>0) activeunit.stress--;activeunit.show();});
-	jwerty.key("shift+5", function() { if (activeunit.ionized>0) activeunit.ionized--;activeunit.show();});
+	jwerty.key("shift+4", function() { if (activeunit.stress>0) activeunit.removestresstoken();activeunit.show();});
+	jwerty.key("shift+5", function() { if (activeunit.ionized>0) activeunit.removeiontoken();});
 	jwerty.key("f",function() { 
 	    var s=""; 
 	    for(i in activeunit.actionsdone) s+=activeunit.actionsdone[i]+" ";
@@ -1313,8 +1338,8 @@ function nextphase() {
 	jwerty.key("d",function() { activeunit.resolvehit(1);});
 	jwerty.key("c",function() { activeunit.resolvecritical(1);});
 	jwerty.key("shift+d",function() { 
-	    if (activeunit.hull<activeunit.ship.hull) activeunit.hull++; 
-	    else if (activeunit.shield<activeunit.ship.shield) activeunit.shield++; 
+	    if (activeunit.hull<activeunit.ship.hull) activeunit.addhull(1); 
+	    else if (activeunit.shield<activeunit.ship.shield) activeunit.addshield(1); 
 	    activeunit.show();
 	});
 	if (SETUP.asteroids>0) {
@@ -1851,7 +1876,7 @@ $(document).ready(function() {
 	for (var i in css_translation) {
 	    str+="."+i+"::after { content:\""+css_translation[i]+"\";}\n";
 	}
-
+	log("<pre>"+str+"</pre>");
 	$("#localstrings").html(str);
 
 	UPGRADE_dict=result3[0].upgrades;
@@ -1864,7 +1889,7 @@ $(document).ready(function() {
 		if (i==PILOT_dict[j]) unitlist[i].dict=j;
 	}
 	/*Sanity check */
-	/*
+	
 	for (var i=0; i<PILOTS.length; i++) {
 	    var found=false;
 	    for (var j in PILOT_dict) 
@@ -1876,7 +1901,7 @@ $(document).ready(function() {
 	    for (var j in UPGRADE_dict) 
 		if (UPGRADES[i].name==UPGRADE_dict[j]) { found=true; break; }
 	    if (!found) log("no xws translation for "+UPGRADES[i].name);
-	}*/
+	}
 
 
 	for (i in result4[0].data) {
@@ -1926,7 +1951,6 @@ $(document).ready(function() {
 	$("#showproba").prop("disabled",true);
 	var d=new Date();
 	//for (i=0; i<d.getMinutes(); i++) Math.random();
-	loadsound();
 	var mousewheel=function(t,event) {
 	    var min=$("nav").height()+2;
 	    var e = event.originalEvent; // old IE support
@@ -1943,7 +1967,10 @@ $(document).ready(function() {
 		    });
 	}
 
+	if (typeof localStorage.volume=="undefined") localStorage.volume=0.8;
 
+	Howler.volume(localStorage.volume);
+	$("#vol").val(localStorage.volume*100);
 
 	var mc= new Hammer(document.getElementById('svgout'));
 	mc.get("pinch").set({enable:true});
@@ -1982,6 +2009,7 @@ $(document).ready(function() {
 	"autoWidth": true,
 	"scrollY": "20em",
 	"scrollX":true,
+	"deferRender": true,
 	"scrollCollapse": true,
 	"ordering":true,
 	"processing":true,
@@ -2053,7 +2081,7 @@ TogetherJSConfig_on_ready = function () {
 		    return data[1].search(stype)>-1;
 		}
 	    );
-
+	    var first=0;
 	    SQUADLIST=$("#squadlist").DataTable({
 		"language": {
 		    "search":UI_translation["Search"],
@@ -2074,12 +2102,12 @@ TogetherJSConfig_on_ready = function () {
 		    { "targets":[6],
 		      "width":"2em",
 		      "render":function() {
-			  return "<span class='squadmiddle' onclick='checkrow(1,$(this))'>1</span>&nbsp;<span class='squadmiddle right' onclick='checkrow(2,$(this))'>2</span>";
+			  return "<span class='squadtop'><span class='squadmiddle' onclick='checkrow(1,$(this))'>1</span>&nbsp;<span class='squadmiddle right' onclick='checkrow(2,$(this))'>2</span></span>";
 		      },
 		      "sortable":false
 		    },
 		    { "targets":[5],
-		      "render":function() {
+		      "render":function(d,c,row) {
 			  return "<span class='logmiddle symbols' onclick='battlelog($(this));'>&#xE901;</span>";
 		      },
 		      "sortable":false
@@ -2109,7 +2137,7 @@ TogetherJSConfig_on_ready = function () {
 				}
 			    return data.replace(/\n/g,"<br>");
 			}
-		    }],    
+		    }],   
 		"ajax": "data/full4b.json",
 		"scrollY":        "20em",
 		"scrollCollapse": true,
@@ -2117,6 +2145,7 @@ TogetherJSConfig_on_ready = function () {
 		"ordering":true,
 		"info":true,
 		"paging":         true});
+
 
 	    for (i in localStorage) {
 		if (typeof localStorage[i]=="string"&&i.match(/SQUAD.*/)) {
@@ -2130,7 +2159,8 @@ TogetherJSConfig_on_ready = function () {
 		    } else addrow(0,i,l.pts,l.faction,l.jug);
 		}
 	    }
-
+	    $("#squadlist tr:first-child .squadtop").attr("data-intro","Select squad").attr("data-position","bottom");
+	    $("#squadlist tr:first-child .logmiddle").attr("data-intro",'Battle log').attr("data-position",'left'); 
 	}
 	var pilots=[];
 	for (i=0; i<PILOTS.length; i++) {
