@@ -110,8 +110,12 @@ IAUnit.prototype= {
 	this.m=old;
 	if (ready&&scorei>-1) { 
 	    if (automove) {
+		var gpm=moves[scorei].split();
+		var tpm=this.m.split();
+		s.path("M "+tpm.dx+" "+tpm.dy+" L "+gpm.dx+" "+gpm.dy).attr({stroke:this.color,display:TRACE?"block":"none",strokeWidth:"20px",strokeLinecap:"round",strokeDasharray:"1, 30",opacity:0.2,fill:"rgba(0,0,0,0)"}).addClass("trace");//.appendTo(VIEWPORT);
+
 	    	this.m=moves[scorei]; 
-		var gpm=this.m.split();
+		gpm=this.m.split();
 		this.movelog("am-"+Math.floor(300+gpm.dx)+"-"+Math.floor(300+gpm.dy)+"-"+Math.floor((360+Math.floor(gpm.rotate))%360));
 	    }
 	    var mine=this.getmcollisions(this.m);
