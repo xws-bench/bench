@@ -56,7 +56,7 @@ function handlepaste (elem, e) {
 	  <span class="ver"></span>
 	  <img onclick="changelanguage('en')" class="langselect" src="css/uk-on.png">
 	  <img onclick="changelanguage('fr')" class="langselect" src="css/fr-on.png">
-	  <span class="symbols" onclick="window.location='#setting'">&#x2699;</span>
+	  <span class="symbols button" onclick="window.location='#setting'">&#x2699;</span>
 	</span>
 	<span class="buttonbar">
 	  <button onclick="currentteam=TEAMS[0];createsquad()" class="mainbutton m-create"></button>
@@ -266,6 +266,8 @@ function handlepaste (elem, e) {
               </table>
             <table id="probatable">  
             </table>
+	    <div class="ack"><button onclick="window.location='#'">Ok</button></div>
+
           </div>
         </div>
       </section>
@@ -296,6 +298,7 @@ Squadron Benchmark is a web app for
 The app is not really a game since the user plays both sides, there is no multi-player version of the app and there will not be. This is in no way a substitute for the real game but is a complementary tool.
 <br/>
  The app is (c) Denis Wings 2015-2016 (deniswings@free.fr). MIT license. <br>
+	    <div class="ack"><button onclick="window.location='#'">Ok</button></div>
 </div>
 
         </div>
@@ -305,7 +308,7 @@ The app is not really a game since the user plays both sides, there is no multi-
         <div>
           <h2><span class="m-donate"></span><a href="#" title="Close" class="close">&#10060;</a>
           </h2>
-          <div style="padding:10px;width:calc(100% - 20px)">
+          <div>
 <br>
             If you like this web app and find it useful, if you want to encourage further developments, feel free to donate ! 
 <br>
@@ -319,7 +322,9 @@ The app is not really a game since the user plays both sides, there is no multi-
 <br>Thank you for your support !
 <br>
 --Denis Wings
+	    <div class="ack"><button onclick="window.location='#'">Ok</button></div>
           </div>
+
         </div>
       </section>
 
@@ -351,6 +356,7 @@ The app is not really a game since the user plays both sides, there is no multi-
 		</td>
 	      </tr>
 	    </table>
+	    <div class="ack"><button onclick="window.location='#'">Ok</button></div>
 	  </div>
 	</div>
       </section>
@@ -397,7 +403,7 @@ The app is not really a game since the user plays both sides, there is no multi-
 	    property. This web app is not-for-profit and is only
 	    intended for use by fans of the game line.
 	  </p>
-	  
+	  <div class="ack"><button onclick="window.location='#'">Ok</button></div>
 	</div></div>
       </section>
 
@@ -408,7 +414,7 @@ The app is not really a game since the user plays both sides, there is no multi-
     </footer>
 
     <script src="js/all.min.js"></script>
-   <script src="js/bench.min.js" async></script>
+    <script src="js/bench.min.js" async></script>
 
     <script id="unit-creation" type="x-tmpl-mustache">
       <img class="headimg" src="png/{{faction}}/{{imgname}}.png">
@@ -484,7 +490,7 @@ The app is not really a game since the user plays both sides, there is no multi-
 	    {{/actionlist}}
 	  </td>
 	</tr><tr>
-	  <td>
+	  <td class="shipupgrades">
 	    {{#shipupgrades}}
 	    <span class="upgrades {{.}}"></span>
 	    {{/shipupgrades}}
