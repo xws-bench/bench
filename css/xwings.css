@@ -303,7 +303,15 @@ box-shadow:2px 2px 2px #CCC;
 margin:2px;
 text-align:justify
 }
-
+.shipupgrades .Elite {
+display:none
+}
+.ack {
+width:100%;
+text-align:center;
+padding:1px;
+background:#EEE
+}
 .caroussel li:nth-child(-n+5) tr .tooltip {
 left:180px;
 vertical-align:top;
@@ -693,7 +701,7 @@ width:1.8em;
 vertical-align:middle
 }
 
-button {
+.button, .upgavail code.upgrades, table.dataTable td:first-child {
 cursor:pointer
 }
 
@@ -1076,7 +1084,7 @@ border-radius:1em;
 padding:2px
 }
 
-.smallbutton,.bigbutton,.button,.permalink,.nextphase,.mainbutton {
+.smallbutton,.bigbutton,.permalink,.nextphase,.mainbutton {
 display:inline-block;
 text-align:center;
 box-shadow:1px 1px 3px #000;
@@ -1088,7 +1096,7 @@ cursor:pointer;
 border-radius:5px
 }
 
-.bigbutton,.button,.permalink,.nextphase,.mainbutton {
+.bigbutton,.permalink,.nextphase,.mainbutton {
 padding:.25em;
 margin:.25em
 }
@@ -1486,16 +1494,9 @@ text-decoration:none;
 border:0;
 border-radius:4px
 }
-
-.button {
-width:150px;
-background:#822
-}
-
 .disabled {
 background:#a9a9a9
 }
-
 .bigbutton:disabled,.nextphase:disabled,.mainbutton:disabled,.activeunit:disabled {
 background:gray;
 color:#d3d3d3;
@@ -1869,10 +1870,6 @@ table.dataTable td {
 vertical-align:middle
 }
 
-table.dataTable td:first-child {
-cursor:pointer
-}
-
 .dataTables_wrapper {
 width:95%;
 margin-left:2.5%;
@@ -2145,10 +2142,6 @@ height:15em
 
 .upglist td {
 width:calc(100% - 5px)
-}
-
-.upgavail code.upgrades {
-cursor:pointer
 }
 
 .upglist {
