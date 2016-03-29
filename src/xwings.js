@@ -1876,7 +1876,6 @@ $(document).ready(function() {
 	for (var i in css_translation) {
 	    str+="."+i+"::after { content:\""+css_translation[i]+"\";}\n";
 	}
-	log("<pre>"+str+"</pre>");
 	$("#localstrings").html(str);
 
 	UPGRADE_dict=result3[0].upgrades;

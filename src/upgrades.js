@@ -97,16 +97,20 @@ Bomb.prototype = {
     getcollisions: function() {
 	var ob=this.getOutlineString();
 	var p=[];
+	s.path(ob.s).attr({strokeWidth:4,fill:YELLOW}).appendTo(VIEWPORT);
 	for (i in squadron) {
 	    var u=squadron[i];
 	    var so=u.getOutlineString(u.m);
 	    os=so.s;
 	    op=so.p;
+	    s.path(os).attr({strokeWidth:4,fill:YELLOW}).appendTo(VIEWPORT);
 	    if (Snap.path.intersection(ob.s,os).length>0 
 		||this.unit.isPointInside(ob.s,op)
 		||this.unit.isPointInside(os,ob.p)) {
+		this.unit.log("found collision "+this.unit.name+" bomb and "+u.name);
 		p.push(u); 
-	    }
+	    } else this.unit.log("no collision "+this.unit.name+" bomb and "+u.name);
+
 	}
 	return p;
     },
@@ -139,16 +143,18 @@ Bomb.prototype = {
 	if (moves.length==1) {
 	    this.pos[0]=this.getOutline(moves[0]).attr({fill:this.unit.color,opacity:0.7});
 	    resolve(moves[0],0,cleanup);
-	} else for (i=0; i<moves.length; i++) {
-	    this.pos[i]=this.getOutline(moves[i]).attr({fill:this.unit.color,opacity:0.7});
-	    (function(k) {
-		this.pos[k].hover(
-		    function() {this.pos[k].attr({stroke:this.unit.color,strokeWidth:"4px"})}.bind(this),
-		    function() {this.pos[k].attr({strokeWidth:"0"})}.bind(this));
+	} else {
+	    for (i=0; i<moves.length; i++) {
+		this.pos[i]=this.getOutline(moves[i]).attr({fill:this.unit.color,opacity:0.7});
+		(function(k) {
+		    this.pos[k].hover(
+			function() {this.pos[k].attr({stroke:this.unit.color,strokeWidth:"4px"})}.bind(this),
+			function() {this.pos[k].attr({strokeWidth:"0"})}.bind(this));
 		
-		this.pos[k].on("touch click",
+		    this.pos[k].click(
 		    function() { resolve(moves[k],k,cleanup); });}.bind(this)
-	    )(i);
+		)(i);
+	    }
 	}
     },
     drop: function(lm,n) {
@@ -198,19 +204,18 @@ Bomb.prototype = {
 	    if (this.stay) {
 		OBSTACLES.push(this);
 		var p=this.getcollisions();
+		console.log("collisions : "+p.length);
 		if (p.length>0) this.unit.resolveactionselection(p,function(k) {
 		    this.detonate(p[k]);
 		}.bind(this));
 	    }
 	    this.unit.bombdropped(this);
 	    //this.unit.log("endaction dropped "+n);
-	    this.unit.endaction(n,"DROP");
+	    this.unit.endnoaction(n,"DROP");
 	}.bind(dropped),false,true);
     },
     getOutline: function(m) {
-	var path=s.path(this.getOutlineString(m).s);
-	path.appendTo(VIEWPORT);
-	return path;
+	return s.path(this.getOutlineString(m).s).appendTo(VIEWPORT);
     },
     getOutlineString: function(m) {
 	var w=15;
