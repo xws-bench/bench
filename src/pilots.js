@@ -2456,7 +2456,7 @@ var PILOTS = [
 	unit: "TIE Advanced",
         skill: 3,
         points: 23,
-        upgrades: [ELITE,MISSILE],
+        upgrades: [MISSILE],
 	done:true,
 	init: function() {
 	    this.wrap_after("endcombatphase",this,function() {
@@ -2734,18 +2734,18 @@ var PILOTS = [
             unit: "TIE Punisher",
             skill: 6,
 	    done:true,
-	    bombdropped: function() {
-		var p=[];
-		if (this.candoroll()) 
-		    p=[this.newaction(this.resolveroll,"ROLL")];
-		this.doaction(p,"free %ROLL% action");
-	    },
 	    init: function() {
 		this.wrap_after("getbombposition",this,function(lm,size,p) {
 		    for (var i=0; i<lm.length; i++)
-			p.push(this.getpathmatrix(this.m,lm[i]).translate(0,-size))
+			p.push(this.getpathmatrix(this.m.clone(),lm[i]).translate(0,-size+20));
 		    return p;
-		})
+		});
+		this.wrap_after("bombdropped",this,function() {
+		    if (this.candoroll()&&this.candoaction()) {
+			$("#activationdial").hide();
+			this.doaction([this.newaction(this.resolveroll,"ROLL")],"free %ROLL% action")
+		    }
+		});
 	    },
             upgrades: [SYSTEM,TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB,BOMB],
             points: 26
@@ -3149,7 +3149,7 @@ var PILOTS = [
 	unique:true,
 	pilotid:168,
 	unit:"VCX-100",
-	skill:4,
+	skill:5,
 	points:38,
 	upgrades:[SYSTEM,TURRET,TORPEDO,TORPEDO,CREW,CREW],
 	done:true,
