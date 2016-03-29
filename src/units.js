@@ -1358,7 +1358,7 @@ Unit.prototype = {
     resolveishit:function() {},
     hashit:function(t) { return this.criticalresolved+this.hitresolved>0;},
     resolvedamage: function() {
-	this.fireline.remove();
+	$(".fireline").remove();
 	this.playfiresnd();
 	var ch=targetunit.evadeattack(this);
 	ch=this.weapons[this.activeweapon].modifydamageassigned(ch,targetunit);
@@ -1412,7 +1412,7 @@ Unit.prototype = {
 	var process=setInterval(function() { p.remove(); clearInterval(process);
 	},200);
 	this.movelog("f-"+targetunit.id+"-"+this.activeweapon);
-	if (typeof this.weapons[this.activeweapon].firesnd!="undefined") 
+	if (typeof this.weapons[this.activeweapon]!="undefined" && typeof this.weapons[this.activeweapon].firesnd!="undefined") 
 	    SOUNDS[this.weapons[this.activeweapon].firesnd].play();
 	else SOUNDS[this.ship.firesnd].play();		
     },
@@ -1793,6 +1793,7 @@ Unit.prototype = {
     },
     endaction: function(n,type) {
 	//this.log("endaction "+n+" "+type);
+	if (phase==ACTIVATION_PHASE) $("#activationdial").show();
 	this.actiondone=true; this.clearaction();
 	this.endnoaction(n,type);
     },
@@ -1899,11 +1900,12 @@ Unit.prototype = {
 	displaycombatdial();
 	var bb=targetunit.g.getBBox();
 	var start=transformPoint(this.m,{x:0,y:-(this.islarge?40:20)});
-	this.fireline=s.path("M "+start.x+" "+start.y+" L "+(bb.x+bb.w/2)+" "+(bb.y+bb.h/2))
+	s.path("M "+start.x+" "+start.y+" L "+(bb.x+bb.w/2)+" "+(bb.y+bb.h/2))
+	    .appendTo(VIEWPORT)
 	    .attr({stroke:this.color,
 		   strokeWidth:2,
 		   strokeDasharray:100,
-		   "class":"animated"})//.appendTo(VIEWPORT);
+		   "class":"animated fireline"});
 	//this.log("resolveattack:"+attack+"/"+defense);
 	this.select();	
 	for (i in squadron) if (squadron[i]==this) break;
@@ -1942,14 +1944,31 @@ Unit.prototype = {
     drawpathmove:function(mm,path,lenC) {
 	if (this.islarge) {
 	    var m=mm.clone();
-	    s.path('M 0 0 l 0 -20').transform(m).attr({stroke:this.color,display:TRACE?"block":"none",strokeWidth:"20px",opacity:0.2,fill:"rgba(0,0,0,0)"}).addClass("trace");//.appendTo(VIEWPORT);
+	    s.path('M 0 0 l 0 -20')
+		.transform(m)
+		.appendTo(VIEWPORT)
+		.attr({stroke:this.color,display:TRACE?"block":"none",strokeWidth:"20px",opacity:0.2,fill:"rgba(0,0,0,0)"})
+		.addClass("trace");
 	    var p=s.path(path.getSubpath(0,lenC-40)).attr("display","none");
-	    p.clone().transform(m.translate(0,-20)).attr({stroke:this.color,display:TRACE?"block":"none",strokeWidth:"20px",opacity:0.2,fill:"rgba(0,0,0,0)"}).addClass("trace");//.appendTo(VIEWPORT);
-	    s.path('M 0 0 l 0 -20').transform(this.getmatrixwithmove(mm,p,lenC-20)).attr({stroke:this.color,display:TRACE?"block":"none",strokeWidth:"20px",opacity:0.2,fill:"rgba(0,0,0,0)"}).addClass("trace");//.appendTo(VIEWPORT);
+	    p.clone()
+		.transform(m.translate(0,-20))
+		.appendTo(VIEWPORT)
+		.attr({stroke:this.color,display:TRACE?"block":"none",strokeWidth:"20px",opacity:0.2,fill:"rgba(0,0,0,0)"})
+		.addClass("trace");
+	    s.path('M 0 0 l 0 -20')
+		.transform(this.getmatrixwithmove(mm,p,lenC-20))
+		.appendTo(VIEWPORT)
+		.attr({stroke:this.color,display:TRACE?"block":"none",strokeWidth:"20px",opacity:0.2,fill:"rgba(0,0,0,0)"})
+		.addClass("trace");
 	} else {
-	    s.path(path.getSubpath(0,lenC)).transform(mm).attr({stroke:this.color,display:TRACE?"block":"none",strokeWidth:"20px",opacity:0.2,fill:"rgba(0,0,0,0)"}).addClass("trace");//.appendTo(VIEWPORT);
+	    s.path(path.getSubpath(0,lenC))
+		.transform(mm)
+		.attr({stroke:this.color,display:TRACE?"block":"none",strokeWidth:"20px",opacity:0.2,fill:"rgba(0,0,0,0)"})
+		.addClass("trace")
+		.appendTo(VIEWPORT);
 
 	}	    
+	this.show();
     },
     getmatrixwithmove: function(mm,path, len) {
 	var lenC = path.getTotalLength();
@@ -2336,6 +2355,7 @@ Unit.prototype = {
 		var adi=ad[k];
 		if (adi.pred()) { 
 		    adi.elt.appendTo("#activationdial > div").click(function() { 
+			$("#activationdial").html("<div></div>");
 			adi.action();
 		    }).html(adi.html);
 		}
@@ -2439,7 +2459,7 @@ Unit.prototype = {
 	    parent.endnoaction(n,"DEPLOY");
 	}.bind(this));
     },
-    endcombatphase:function() {},
+    endcombatphase:function() { $(".fireline").remove(); },
     endphase: function() { this.tractorbeam=0;},
     beginplanningphase: function() {
 	this.actionsdone=[];

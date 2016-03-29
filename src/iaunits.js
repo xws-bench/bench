@@ -112,7 +112,8 @@ IAUnit.prototype= {
 	    if (automove) {
 		var gpm=moves[scorei].split();
 		var tpm=this.m.split();
-		s.path("M "+tpm.dx+" "+tpm.dy+" L "+gpm.dx+" "+gpm.dy).attr({stroke:this.color,display:TRACE?"block":"none",strokeWidth:"20px",strokeLinecap:"round",strokeDasharray:"1, 30",opacity:0.2,fill:"rgba(0,0,0,0)"}).addClass("trace");//.appendTo(VIEWPORT);
+		s.path("M "+tpm.dx+" "+tpm.dy+" L "+gpm.dx+" "+gpm.dy).appendTo(VIEWPORT).attr({stroke:this.color,display:TRACE?"block":"none",strokeWidth:"20px",strokeLinecap:"round",strokeDasharray:"1, 30",opacity:0.2,fill:"rgba(0,0,0,0)"}).addClass("trace");
+		this.show();
 
 	    	this.m=moves[scorei]; 
 		gpm=this.m.split();

@@ -5,6 +5,7 @@ var UPGRADES= [
 	firesnd:"falcon_fire",
 	points: 5,
 	attack: 3,
+	upgid:0,
 	done:true,
 	prehit: function(target,c,h) {
 	    this.unit.hitresolved=1;
@@ -1046,8 +1047,7 @@ var UPGRADES= [
 		    this.log("red into white maneuver [%0]",upg.name);
 		    upg.desactivate();
 		    this.wrap_after("getmaneuver",upg,function(d) {
-			d.difficulty="WHITE";
-			return d;
+			return {move:d.move,difficulty:"WHITE"};
 		    }).unwrapper("endactivationphase"); 
 		    this.show();
 		}.bind(this), A[ELITE.toUpperCase()].key, $("<div>").attr({class:"symbols"}));
@@ -2144,13 +2144,19 @@ var UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    var self=this;
-	    for (var i=0; i<sh.bombs.length; i++) {
-		var b=sh.bombs[i];
-		if (typeof b.action=="undefined") {
-		    b.action=function(n) { this.actiondrop(n); };
-		    b.candoaction=function() { return  this.unit.lastdrop!=round&&this.isactive&&self.isactive; };
+	    sh.wrap_after("handledifficulty",this,function(d) {
+		var p=[];
+		if (this.lastdrop==round) return;
+		for (var i=0; i<this.bombs.length; i++) {
+		    var b=this.bombs[i];
+		    if (typeof b.action=="undefined"&&b.isactive) {
+			p.push({type:"BOMB",name:b.name,org:self,action:function(n) {
+			    this.actiondrop(n);
+			}.bind(b)});
+		    }
 		}
-	    }
+		this.donoaction(p,"",true);
+	    });
 	},
         type: SALVAGED,
         points: 0,
@@ -2599,7 +2605,6 @@ var UPGRADES= [
 	uninstall:function(sh) {
 	    sh.shipimg="a-wing-2.png";
 	},
-        special_case: "A-Wing Test Pilot",
     },
     {
         name: "Outrider",
@@ -2799,7 +2804,6 @@ var UPGRADES= [
 	    }
 	},
 	init: function(u) {
-	    this.clone();
 	    var p=s.path("M41.844,-21 C54.632,-21 65,-11.15 65,1 C65,13.15 54.632,23 41.844,23 C33.853,22.912 25.752,18.903 21.904,12.169 C17.975,18.963 10.014,22.806 1.964,23 C-7.439,22.934 -14.635,18.059 -18.94,10.466 C-22.908,18.116 -30.804,22.783 -39.845,23 C-52.633,23 -63,13.15 -63,1 C-63,-11.15 -52.633,-21 -39.845,-21 C-30.441,-20.935 -23.246,-16.06 -18.94,-8.466 C-14.972,-16.116 -7.076,-20.783 1.964,-21 C9.956,-20.913 18.055,-16.902 21.904,-10.17 C25.832,-16.964 33.795,-20.807 41.844,-21 z").attr({display:"none"});
 	    var l=p.getTotalLength();
 	    this.op0=[];
@@ -2991,7 +2995,7 @@ var UPGRADES= [
 	    var u=this;
 	    sh.wrap_after("handledifficulty",this,function(d) {
 		if (d=="WHITE"||d=="GREEN"&&u.isactive) {
-		    this.donoaction([{type:ELITE,name:u.name,org:u,action:function(n) {
+		    this.donoaction([{type:"ELITE",name:u.name,org:u,action:function(n) {
 			u.desactivate();
 			this.addstress(1);
 			this.m=this.m.rotate(180,0,0);
@@ -3494,7 +3498,7 @@ var UPGRADES= [
 	  var self=this;
 	  Bomb.prototype.wrap_after("explode",this,function() {
 	      var p=[self.unit];
-	      if (self.rd==round) return;
+	      if (self.rd==round||this.unit.team!=self.team) return;
 	      for (var i in squadron) {
 		  var u=squadron[i];
 		  if (this.unit.team!=u.team&&this.getrange(squadron[i])==1) p.push(u); 
@@ -3679,7 +3683,7 @@ var UPGRADES= [
 		 else if (f>0) { sh.log("%FOCUS% -> "+s+" [%0]", self.name); m+=to-FCH_FOCUS;}
 		 else if (h>0&&to==FCH_CRIT) { sh.log("%HIT% -> %CRIT% [%0]",self.name); m+=to-FCH_HIT; }
 		 return m;
-	     }.bind(sh)
+	     }.bind(sh),str:"target"
 	 });
      }
     },
