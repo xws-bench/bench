@@ -2,10 +2,10 @@ var UPGRADES= [
     {
 	name: "Ion Cannon Turret",
 	type: TURRET,
+     upgid:0,
 	firesnd:"falcon_fire",
 	points: 5,
 	attack: 3,
-	upgid:0,
 	done:true,
 	prehit: function(target,c,h) {
 	    this.unit.hitresolved=1;
@@ -20,6 +20,7 @@ var UPGRADES= [
 	requires: "Target",
 	consumes:true,
         type: TORPEDO,
+     upgid:1,
 	firesnd:"missile",
         points: 4,
 	done:true,
@@ -65,6 +66,7 @@ var UPGRADES= [
 	    sh.log("uninstalling effect [%0]",this.name);
 	},
         type: ASTROMECH,
+     upgid:2,
         points: 1,
     },
     {
@@ -81,6 +83,7 @@ var UPGRADES= [
 	},
         unique: true,
         type: ASTROMECH,
+     upgid:3,
         points: 4,
     },
     {
@@ -100,6 +103,7 @@ var UPGRADES= [
 	},
         unique: true,
         type: ASTROMECH,
+     upgid:4,
         points: 3,
     },
     {
@@ -130,18 +134,20 @@ var UPGRADES= [
 	},
         unique: true,
         type: ASTROMECH,
+     upgid:5,
         points: 3,
     },
     { name: "R5-X3",
       unique:true,
       type:ASTROMECH,
+     upgid:6,
       points:1,
       done:true,
       init: function(sh) {
 	  var self=this;
 	  sh.wrap_after("updateactivationdial",this,function() {
 	      this.addactivationdial(function() { 
-		  return !self.hasionizationeffect()&&self.isactive;
+		  return self.isactive;
 	      },function() {
 		  this.log("ignore obstacles [%0]",self.name);
 		  self.desactivate();
@@ -158,15 +164,16 @@ var UPGRADES= [
       unique:true,
       done:true,
       type:ASTROMECH,
+     upgid:7,
       points:2,
       init: function(sh) {
 	  var self=this;
 	  self.bb=-1;
 	  sh.wrap_after("updateactivationdial",this,function(ad) {
-	      if (self.isactive&&self.bb!=round&&!self.hasionizationeffect()) 
+	      if (self.isactive&&self.bb!=round) 
 		  this.addactivationdial(
 		      function() { 
-			  return !this.hasmoved&&this.maneuver>-1&&(this.getmaneuver().difficulty=="GREEN")&&this.candoroll()&&!this.hasionizationeffect(); 
+			  return !this.hasmoved&&this.maneuver>-1&&(this.getmaneuver().difficulty=="GREEN")&&this.candoroll(); 
 		      }.bind(this),
 		      function() {
 			  self.bb=round;
@@ -181,6 +188,7 @@ var UPGRADES= [
     {name:"Integrated Astromech",
      points:0,
      type:MOD,
+     upgid:8,
      ship:"X-Wing",
      done:true,
      init: function(sh) {
@@ -209,6 +217,7 @@ var UPGRADES= [
     {name:"Weapons Guidance",
      points:2,
      type:TECH,
+     upgid:9,
      done:true,
      init: function(sh) {
 	 var self=this;
@@ -244,6 +253,7 @@ var UPGRADES= [
 	done:true,
         unique: true,
         type: ASTROMECH,
+     upgid:10,
         points: 2,
     },
     {
@@ -270,6 +280,7 @@ var UPGRADES= [
 	    });
 	},
         type: ASTROMECH,
+     upgid:11,
         points: 1,
     },
     {
@@ -291,11 +302,13 @@ var UPGRADES= [
 	    sh.wrap_after("deal",this,newdeal);
 	},
         type: ELITE,
+     upgid:12,
         points: 1,
     },
     {
         name: "Swarm Tactics",
         type: ELITE,
+     upgid:13,
         points: 2,
 	done:true,
 	init: function(sh) {
@@ -317,6 +330,7 @@ var UPGRADES= [
         unique: true,
 	done:true,
         type: ELITE,
+     upgid:14,
         points: 2,
 	candoaction: function() {  
 	    var p=this.unit.selectnearbyally(2,function(t,s) { return s.getskill()<t.getskill()&&s.candoaction();});
@@ -349,6 +363,7 @@ var UPGRADES= [
 	    } else this.unit.resolveroll(n);
 	},        
         type: ELITE,
+     upgid:15,
 	done:true,
         points: 2,
     },
@@ -377,6 +392,7 @@ var UPGRADES= [
 	},
         done:true,
         type: ELITE,
+     upgid:16,
         points: 3,
     },
     {
@@ -384,6 +400,7 @@ var UPGRADES= [
 	requires:"Target",
 	consumes:true,
         type: MISSILE,
+     upgid:17,
 	firesnd:"missile",
         points: 4,
         attack: 4,
@@ -405,6 +422,7 @@ var UPGRADES= [
     {
         name: "Cluster Missiles",
         type: MISSILE,
+     upgid:18,
 	firesnd:"missile",
 	requires:"Target",
 	consumes:true,
@@ -457,6 +475,7 @@ var UPGRADES= [
 		},true,true);
 	},
         type: ELITE,
+     upgid:19,
         points: 3,
     },
     {
@@ -481,6 +500,7 @@ var UPGRADES= [
 		}.bind(this),str:"critical"});
 	},
         type: ELITE,
+     upgid:20,
         points:2,
     },
     {
@@ -488,6 +508,7 @@ var UPGRADES= [
 	requires:"Target",
 	consumes:false,
         type: MISSILE,
+     upgid:21,
 	firesnd:"missile",
         attack: 4,
         range: [2,3],
@@ -528,6 +549,7 @@ var UPGRADES= [
 	},
 	done:true,
         type: ELITE,
+     upgid:22,
         points: 3,
     },
     {
@@ -540,6 +562,7 @@ var UPGRADES= [
 	},
 	done:true,
         type: ELITE,
+     upgid:23,
         points: 1,
     },
     {
@@ -561,6 +584,7 @@ var UPGRADES= [
 	},
 	done:true,
         type: ELITE,
+     upgid:24,
         points: 4,
     },
     {
@@ -578,11 +602,13 @@ var UPGRADES= [
 	    });
 	},
         type: CREW,
+     upgid:25,
         points: 5,
     },
     {
         name: "Ion Cannon",
         type: CANNON,
+     upgid:26,
 	firesnd:"slave_fire",
 	done:true,
 	prehit: function(target,c,h) {
@@ -598,6 +624,7 @@ var UPGRADES= [
     {
         name: "Heavy Laser Cannon",
         type: CANNON,
+     upgid:27,
 	firesnd:"slave_fire",
 	done:true,
 	modifydamagegiven: function(ch) {
@@ -634,9 +661,35 @@ var UPGRADES= [
 	    }
 	},
         type: BOMB,
+     upgid:28,
         points: 2,
     },    
-
+    {
+        name: "Thermal Detonator",
+	done:true,
+	img:"seismic.png",
+	snd:"explode",
+	width: 16,
+	height:8,
+	size:15,
+        explode: function() {
+	    if (phase==ACTIVATION_PHASE&&!this.exploded) {
+		var r=this.getrangeallunits();
+		var i;
+		Bomb.prototype.explode.call(this);
+		for (i=0; i<r[1].length; i++) {
+		    var u=squadron[r[1][i].unit];
+		    u.log("+1 %HIT%, +1 %STRESS% [%0]",this.name);
+		    u.resolvehit(1);
+		    u.addstress();
+		    u.checkdead();
+		}
+	    }
+	},
+        type: BOMB,
+     upgid:29,
+        points: 2,
+    },
     {
         name: "Mercenary Copilot",
         init: function(sh) {
@@ -653,11 +706,13 @@ var UPGRADES= [
 	},
 	done:true,
         type: CREW,
+     upgid:30,
         points: 2,
     },
     {
         name: "Assault Missiles",
         type: MISSILE,
+     upgid:31,
 	requires:"Target",
 	consumes:true,
 	firesnd:"missile",
@@ -688,6 +743,7 @@ var UPGRADES= [
 
 	},
         type: ELITE,
+     upgid:32,
         points: 1,
     },
     {
@@ -720,7 +776,7 @@ var UPGRADES= [
 	    }
 	},
         getOutlineString: function(m) {
-	    var N=25;
+	    var N=30;
 	    var s="M ";
 	    this.op=[];
 	    if (typeof m=="undefined") m=this.m;
@@ -736,11 +792,13 @@ var UPGRADES= [
 	    return {s:s,p:this.op};
 	},
         type: BOMB,
+     upgid:33,
         points: 3,
     },
     {
         name: "Weapons Engineer",
         type: CREW,
+     upgid:34,
         points: 3,
 	done:true,
 	init: function(sh) {
@@ -784,6 +842,7 @@ var UPGRADES= [
 	},
 	done:true,
         type: ELITE,
+     upgid:35,
         points: 1,
     },
     {
@@ -810,6 +869,7 @@ var UPGRADES= [
 		},str:"focus"});
 	},
         type: CREW,
+     upgid:36,
         points: 7,
     },
     {
@@ -834,6 +894,7 @@ var UPGRADES= [
 	},
         unique: true,
         type: CREW,
+     upgid:37,
         points: 1,
     },
     {
@@ -842,6 +903,7 @@ var UPGRADES= [
         unique: true,
 	done:true,
         type: CREW,
+     upgid:38,
 	init: function(sh) {
 	    var self=this;
 	    var newdeal=function(c,f,p) {
@@ -865,6 +927,7 @@ var UPGRADES= [
 	requires:"Target",
 	consumes:true,
         type: TORPEDO,
+     upgid:39,
 	firesnd:"missile",
         attack: 5,
 	done:true,
@@ -890,6 +953,7 @@ var UPGRADES= [
     {
         name: "Autoblaster",
         type: CANNON,
+     upgid:40,
 	done:true,
 	firesnd:"slave_fire",
         attack: 3,
@@ -915,11 +979,13 @@ var UPGRADES= [
 	    });
 	},
         type: SYSTEM,
+     upgid:41,
         points: 2,
     },
     {
         name: "Blaster Turret",
         type: TURRET,
+     upgid:42,
 	done:true,
 	firesnd:"falcon_fire",
 	requires:"Focus",
@@ -939,11 +1005,13 @@ var UPGRADES= [
 	},
 	done:true,
         type: CREW,
+     upgid:43,
         points: 3,
     },
     {
         name: "Saboteur",
         type: CREW,
+     upgid:44,
 	done:true,
 	candoaction:function() { 
 	    var a=this.unit.selectnearbyenemy(1);
@@ -983,6 +1051,7 @@ var UPGRADES= [
 	    });
 	},
         type: CREW,
+     upgid:45,
         points: 1,
     },
     {
@@ -1004,6 +1073,7 @@ var UPGRADES= [
 	    }
 	},
         type: BOMB,
+     upgid:46,
         points: 5,
     },
     {
@@ -1014,7 +1084,7 @@ var UPGRADES= [
 	    sh.wrap_after("updateactivationdial",this,function() {
 		this.addactivationdial(function() { 
 		    // if ionized, doesnot reveal a maneuver
-		    return !this.hasionizationeffect()
+		    return this.ionized==0
 			&&!this.hasmoved
 			&&upg.isactive
 			&&this.maneuver>-1
@@ -1031,6 +1101,7 @@ var UPGRADES= [
 	    })
 	},        
         type: ELITE,
+     upgid:47,
         points: 1,
     },
     {
@@ -1039,13 +1110,14 @@ var UPGRADES= [
         init: function(sh) {
 	    var self=this;
 	    sh.wrap_before("beginactivation",this,function() {
-		if (this.candoaction()&&!this.hasionizationeffect()) 
+		if (this.candoaction()) 
 		    this.doaction(this.getactionlist()).done(function(r) {
 			if (r!=null) this.wrap_after("candoendmaneuveraction",self,function() {return false;}).unwrapper("doendmaneuveraction");
 		    }.bind(this))
 	    });
 	},
         type: SYSTEM,
+     upgid:48,
         points: 3,
     },
     {
@@ -1067,6 +1139,7 @@ var UPGRADES= [
 	},
 	done:true,
         type: SYSTEM,
+     upgid:49,
         points: 4,
     },
     {
@@ -1091,6 +1164,7 @@ var UPGRADES= [
 	    });
 	},
         type: CREW,
+     upgid:50,
         points: 3,
     },
     {
@@ -1110,6 +1184,7 @@ var UPGRADES= [
 	},
         unique: true,
         type: CREW,
+     upgid:51,
         points: 3,
     },
     {
@@ -1128,6 +1203,7 @@ var UPGRADES= [
 	},
 	done:true,
         type: CREW,
+     upgid:52,
         points: 4,
     },
     {
@@ -1136,7 +1212,7 @@ var UPGRADES= [
             sh.wrap_after("getmaneuverlist",this,function(list) {
 		var gd=this.getdial();
 		var p=list;
-		if (this.hasionizationeffect()) return p;
+		if (this.ionized>0) return p;
 		for (var i in list) {
 		    var bearing=i.replace(/\d/,'');
 		    for (j=0; j<gd.length; j++) 
@@ -1149,6 +1225,7 @@ var UPGRADES= [
 	},
 	done:true,
         type: CREW,
+     upgid:53,
         points: 3,
     },
     {
@@ -1169,6 +1246,7 @@ var UPGRADES= [
 	    });
 	},
         type: ELITE,
+     upgid:54,
         points: 4,
     },
     {
@@ -1176,6 +1254,7 @@ var UPGRADES= [
 	requires:"Target",
 	consumes:false,
         type: MISSILE,
+     upgid:55,
 	firesnd:"missile",
 	done:true,
 	prehit: function(t,c,h) {
@@ -1202,6 +1281,7 @@ var UPGRADES= [
 	    });
 	},
         type: ELITE,
+     upgid:56,
         points: 2,
     },
     {
@@ -1223,6 +1303,7 @@ var UPGRADES= [
 	},
 	done:true,
         type: ELITE,
+     upgid:57,
         points: 2,
     },
     {
@@ -1241,6 +1322,7 @@ var UPGRADES= [
 	    });
 	},
         type: ELITE,
+     upgid:58,
         points: 3,
     },
     {
@@ -1257,6 +1339,7 @@ var UPGRADES= [
 		}.bind(sh)});
 	},
         type: ELITE,
+     upgid:59,
         points: 3,
     },
     {
@@ -1264,6 +1347,7 @@ var UPGRADES= [
 	requires:"Target",
 	consumes:true,
         type: TORPEDO,
+     upgid:60,
 	firesnd:"missile",
 	done:true,
 	endattack: function(c,h) {
@@ -1277,13 +1361,14 @@ var UPGRADES= [
     {
         name: "R7 Astromech",
         type: ASTROMECH,
+     upgid:61,
         points: 2,
 	done:true,
 	init: function(sh) {
 	    sh.adddicemodifier(DEFENSE_M,REROLL_M,ATTACK_M,this,{
 		dice:["critical","hit"],
 		n:function() { return 9; },
-		req: function() { return this.targeting.indexOf(activeunit)>-1; }.bind(sh)
+		req: function() { return this.targeting.indexOf(activeunit)>-1; }.bind(this)
 	    });
 	}
     },
@@ -1308,11 +1393,13 @@ var UPGRADES= [
 	done:true,
         unique: true,
         type: ASTROMECH,
+     upgid:62,
         points: 3,
     },
     {
         name: "Tactician",
         type: CREW,
+     upgid:63,
 	limited:true,
         points: 2,
 	done:true,
@@ -1331,6 +1418,7 @@ var UPGRADES= [
         faction:REBEL,
         unique: true,
         type: CREW,
+     upgid:64,
         points: 4,
 	done:true,
 	init: function(sh) {
@@ -1360,6 +1448,7 @@ var UPGRADES= [
         unique: true,
         faction:REBEL,
         type: CREW,
+     upgid:65,
         points: 3,
 	done:true,
 	init:function(sh) {
@@ -1413,6 +1502,7 @@ var UPGRADES= [
 	},
         unique: true,
         type: ASTROMECH,
+     upgid:66,
         points: 2,
     },
     {
@@ -1423,6 +1513,7 @@ var UPGRADES= [
 	done:true,
         unique: true,
         type: ASTROMECH,
+     upgid:67,
         points: 1,
     },
     {
@@ -1438,11 +1529,13 @@ var UPGRADES= [
 	    });
 	},
         type: SYSTEM,
+     upgid:68,
         points: 1,
     },
     {
         name: "Chardaan Refit",
         type: MISSILE,
+     upgid:69,
 	done:true,
 	isWeapon: function() { return false; },
         points: -2,
@@ -1451,6 +1544,7 @@ var UPGRADES= [
     {
         name: "Proton Rockets",
         type: MISSILE,
+     upgid:70,
 	firesnd:"missile",
 	requires:"Focus",
 	consumes:false,
@@ -1471,6 +1565,7 @@ var UPGRADES= [
         unique: true,
 	done:true,
         type: CREW,
+     upgid:71,
         points: 3,
 	init: function(sh) {
 	    sh.wrap_after("removestresstoken",this,function() {
@@ -1484,6 +1579,7 @@ var UPGRADES= [
         faction:REBEL,
         unique: true,
         type: CREW,
+     upgid:72,
         points: 2,
 	done:true,
 	init: function(sh) {
@@ -1494,10 +1590,10 @@ var UPGRADES= [
 		    jan=round;
 		    this.log("select %FOCUS% or %EVADE% token [%0]",self.name)
 		    this.donoaction(
-			[{name:self.name,org:self,type:"FOCUS",action:function(n) { 
+			[{name:u.name,org:u,type:"FOCUS",action:function(n) { 
 			    this.endnoaction(n,"FOCUS"); }.bind(this)},
-			 {name:self.name,org:self,type:"EVADE",action:function(n) { 
-			     this.removefocustoken();
+			 {name:u.name,org:u,type:"EVADE",action:function(n) { 
+			     this.focus--;
 			     this.addevadetoken(); 
 			     this.endnoaction(n,"EVADE"); }.bind(this)}],
 			"",true);
@@ -1525,6 +1621,7 @@ var UPGRADES= [
 	done:true,
         unique: true,
         type: ASTROMECH,
+     upgid:73,
         points: 1,
     },
     {
@@ -1542,6 +1639,7 @@ var UPGRADES= [
 	},        
         unique: true,
         type: ASTROMECH,
+     upgid:74,
         points: 3,
     },
     {
@@ -1561,6 +1659,7 @@ var UPGRADES= [
 		}.bind(sh),str:"target"});
 	},
         type: CREW,
+     upgid:75,
         unique: true,
         done:true,
         points: 2,
@@ -1569,6 +1668,7 @@ var UPGRADES= [
         name: "Leia Organa",
         faction:REBEL,
         type: CREW,
+     upgid:76,
         unique: true,
 	done:true,
 	init: function(sh) {
@@ -1595,6 +1695,7 @@ var UPGRADES= [
     {
         name: "Targeting Coordinator",
         type: CREW,
+     upgid:77,
         limited: true,
 	done:true,
         points: 4,
@@ -1604,6 +1705,7 @@ var UPGRADES= [
         name: "Lando Calrissian",
         faction:REBEL,
         type: CREW,
+     upgid:78,
         unique: true,
 	done:true,
 	candoaction: function() { return this.isactive; },
@@ -1628,6 +1730,7 @@ var UPGRADES= [
         name: "Mara Jade",
         faction:EMPIRE,
         type: CREW,
+     upgid:79,
         unique: true,
 	done:true,
         init: function(sh) {
@@ -1647,6 +1750,7 @@ var UPGRADES= [
         name: "Fleet Officer",
         faction:EMPIRE,
         type: CREW,
+     upgid:80,
 	done:true,
         candoaction: function() { return this.isactive;	},
 	action: function(n) {
@@ -1679,6 +1783,7 @@ var UPGRADES= [
     {
         name: "Stay On Target",
         type: ELITE,
+     upgid:81,
         points: 2,
 	done:true,
 	init: function(sh) {
@@ -1686,7 +1791,6 @@ var UPGRADES= [
             sh.wrap_after("getmaneuverlist",this,function(list) {
 		var gd=this.getdial();
 		var p=list;
-		if (this.hasionizationeffect()) return p;
 		for (var i in list) {
 		    var speed=list[i].move.substr(-1);
 		    for (var j=0; j<gd.length; j++) 
@@ -1709,6 +1813,7 @@ var UPGRADES= [
 	    sh.wrap_after("getobstructiondef",this,function() { return 0; });
 	},
         type: CREW,
+     upgid:82,
         points: 2,
         
     },
@@ -1740,6 +1845,7 @@ var UPGRADES= [
 	},
         unique: true,
         type: ELITE,
+     upgid:83,
         points: 2,
     },
     {
@@ -1755,6 +1861,7 @@ var UPGRADES= [
 	},
 	done:true,
         type: CREW,
+     upgid:84,
         points: 2,
         
     },
@@ -1762,6 +1869,7 @@ var UPGRADES= [
         name: "Ruthlessness",
         faction:EMPIRE,
         type: ELITE,
+     upgid:85,
         points: 3,
 	done:true,
         init: function(sh) {
@@ -1792,6 +1900,7 @@ var UPGRADES= [
 	    });
 	},
         type: ELITE,
+     upgid:86,
         points: 2,
     },
     {
@@ -1810,6 +1919,7 @@ var UPGRADES= [
 	},
 	done:true,
         type: CREW,
+     upgid:87,
         points: 4,
         
     },
@@ -1819,6 +1929,7 @@ var UPGRADES= [
         unique: true,
 	done:true,
         type: CREW,
+     upgid:88,
         points: 2,
 	init: function(sh) {
 	    var crew=this;
@@ -1848,6 +1959,7 @@ var UPGRADES= [
 	requires:"Target",
 	consumes:true,
         type: TORPEDO,
+     upgid:89,
 	firesnd:"missile",
 	done:true,
 	prehit: function(t,c,h) {
@@ -1880,6 +1992,7 @@ var UPGRADES= [
 	    });
 	},
         type: ELITE,
+     upgid:90,
         points: 2,
         
     },
@@ -1904,6 +2017,7 @@ var UPGRADES= [
 		}.bind(sh),str:"focus"});
 	},   
         type: ELITE,
+     upgid:91,
         points: 1,
     },
     {
@@ -1921,6 +2035,7 @@ var UPGRADES= [
 	},                
 	done:true,
         type: SYSTEM,
+     upgid:92,
         points: 3,
     },
     {
@@ -1930,7 +2045,7 @@ var UPGRADES= [
 	    var upg=this;
 	    sh.wrap_after("updateactivationdial",this,function() {
 		this.addactivationdial(function() { 
-		    return !this.hasmoved&&upg.isactive&&!this.hasionizationeffect();
+		    return !this.hasmoved&&upg.isactive&&this.ionized==0; 
 		}.bind(this),function() {
 		    upg.desactivate();
 		    this.addstress();
@@ -1943,10 +2058,12 @@ var UPGRADES= [
 	    });
 	},
         type: ILLICIT,
+     upgid:93,
         points: 1,
     },
     { name:"Tractor Beam",
       type:CANNON,
+     upgid:94,
       points:1,
       attack:3,
       done:true,
@@ -1961,6 +2078,7 @@ var UPGRADES= [
     {
         name: "Flechette Cannon",
         type: CANNON,
+     upgid:95,
 	firesnd:"slave_fire",
 	done:true,
 	prehit: function(t,c,h) {
@@ -1976,6 +2094,7 @@ var UPGRADES= [
     {
         name: "'Mangler' Cannon",
         type: CANNON,
+     upgid:96,
 	firesnd:"slave_fire",
         points: 4,
         attack: 3,
@@ -2012,11 +2131,13 @@ var UPGRADES= [
 	    });
 	},
         type: ILLICIT,
+     upgid:97,
         points: 2,
     },
     {
         name: "Feedback Array",
         type: ILLICIT,
+     upgid:98,
 	done:true,
         init: function(sh) {
 	    var self=this;
@@ -2042,6 +2163,7 @@ var UPGRADES= [
 	isTurret:function() { return true;},
 	endattack: function(c,h) { this.isactive=false; },
         type: ILLICIT,
+     upgid:99,
 	firesnd:"xwing_fire",
         points: 3,
         attack: 3,
@@ -2053,6 +2175,7 @@ var UPGRADES= [
         unique: true,
 	done:true,
         type: CREW,
+     upgid:100,
 	init: function (sh) {
 	    sh.greedoa=-1;
 	    sh.greedod=-1;
@@ -2087,6 +2210,7 @@ var UPGRADES= [
     {
         name: "Salvaged Astromech",   
         type: SALVAGED,
+     upgid:101,
 	done:true,
         points: 2,
 	init: function(sh) {
@@ -2112,6 +2236,7 @@ var UPGRADES= [
 	isWeapon: function() { return false; },
         limited: true,
         type: TORPEDO,
+     upgid:102,
         points: 0,
         ship: "Y-Wing",
     },
@@ -2136,11 +2261,13 @@ var UPGRADES= [
 	    });
 	},
         type: SALVAGED,
+     upgid:103,
         points: 0,
     },
     {
         name: "Unhinged Astromech",
         type: SALVAGED,
+     upgid:104,
 	done:true,
         install: function(sh) {
 	    var save=[];
@@ -2169,6 +2296,7 @@ var UPGRADES= [
         name: "R4-B11",
         unique: true,
         type: SALVAGED,
+     upgid:105,
         points: 3,
 	done:true,
 	init: function(sh) {
@@ -2183,6 +2311,7 @@ var UPGRADES= [
     {
         name: "Autoblaster Turret",
         type: TURRET,
+     upgid:106,
 	firesnd:"falcon_fire",
 	done:true,
         points: 2,
@@ -2213,12 +2342,14 @@ var UPGRADES= [
 	    });
 	},
         type: SALVAGED,
+     upgid:107,
         points: 2,
     },
     {
         name: "K4 Security Droid",
         faction:SCUM,
         type: CREW,
+     upgid:108,
 	done:true,
         init: function(sh) {
 	    var self=this;
@@ -2239,6 +2370,7 @@ var UPGRADES= [
         limited: true,
 	done:true,
         type: CREW,
+     upgid:109,
         init: function(sh) {
 	    var self=this;
 	    sh.wrap_after("handledifficulty",this,function(d) {
@@ -2253,6 +2385,7 @@ var UPGRADES= [
     {
         name: "Advanced Targeting Computer",
         type: SYSTEM,
+     upgid:110,
         points: 5,
 	init: function(sh) {
 	    var self=this;
@@ -2274,6 +2407,7 @@ var UPGRADES= [
     {
         name: "Stealth Device",
 	type:MOD,
+     upgid:111,
 	done:true,
 	install:function(sh) {
 	    sh.wrap_after("getagility",this,function(a) { return a+1;});
@@ -2295,6 +2429,7 @@ var UPGRADES= [
     {
         name: "Shield Upgrade",
 	type:MOD,    
+     upgid:112,
 	done:true,
 	install: function(sh) {
 	    sh.shield++; sh.ship.shield++;
@@ -2307,6 +2442,7 @@ var UPGRADES= [
     {
         name: "Engine Upgrade",
 	type:MOD,
+     upgid:113,
 	done:true,
 	addedaction:"Boost",
         points: 4,
@@ -2314,6 +2450,7 @@ var UPGRADES= [
     {
         name: "Anti-Pursuit Lasers",
 	type:MOD,
+     upgid:114,
         islarge:true,
 	done:true,
         points: 2,
@@ -2334,6 +2471,7 @@ var UPGRADES= [
     {
         name: "Targeting Computer",
 	type:MOD,
+     upgid:115,
 	done:true,
 	addedaction:"Target",
         points: 2,
@@ -2341,6 +2479,7 @@ var UPGRADES= [
     {
         name: "Hull Upgrade",
 	type:MOD,
+     upgid:116,
 	done:true,
         install: function(sh) {
 	    sh.hull++; sh.ship.hull++;
@@ -2353,6 +2492,7 @@ var UPGRADES= [
     {
         name: "Munitions Failsafe",
 	type:MOD,
+     upgid:117,
         init: function(sh) {
 	    var self=this;
 	    sh.wrap_after("endattack",this,function(c,h) {
@@ -2369,6 +2509,7 @@ var UPGRADES= [
     {
         name: "Stygium Particle Accelerator",
 	type:MOD,
+     upgid:118,
 	done:true,
         init: function(sh) {
 	    sh.wrap_after("resolvedecloak",this,function() {
@@ -2389,6 +2530,7 @@ var UPGRADES= [
     {
         name: "Advanced Cloaking Device",
 	type:MOD,
+     upgid:119,
         points: 4,
 	done:true,
 	init: function(sh) {
@@ -2404,6 +2546,7 @@ var UPGRADES= [
     {
         name: "B-Wing/E2",
 	type:MOD,
+     upgid:120,
 	done:true,
         upgrades:[CREW],
         points: 1,
@@ -2418,6 +2561,7 @@ var UPGRADES= [
     {
         name: "Countermeasures",
 	type:MOD,
+     upgid:121,
         islarge:true,
 	done:true,
 	init: function(sh) {
@@ -2443,6 +2587,7 @@ var UPGRADES= [
     {
         name: "Experimental Interface",
 	type:MOD,
+     upgid:122,
         unique: true,
         points: 3,
 	init: function(sh) {
@@ -2463,17 +2608,16 @@ var UPGRADES= [
     {
         name: "Tactical Jammer",
 	type:MOD,
+     upgid:123,
         islarge:true,
         points: 1,
 	done:true,
 	init: function(sh) {
 	    Unit.prototype.wrap_after("getobstructiondef",this,function(t,ob) {
-		this.log("obstruction to "+t.name+":"+ob);
 		if (this.team!=sh.team&&ob==0) {
 		    OBSTACLES.push(sh);
-		    ob=this.getoutlinerange(this.m,t).o?1:0;
+		    ob=this.getoutlinerange(this.m,sh).o?1:0;
 		    OBSTACLES.splice(OBSTACLES.indexOf(sh),1);
-		    if (ob==1) this.log("fire obstructed by %0",sh.name)
 		}
 		return ob;
 	    });
@@ -2482,6 +2626,7 @@ var UPGRADES= [
     {
         name: "Autothrusters",
 	type:MOD,
+     upgid:124,
         actionrequired:"Boost",
         points: 2,
 	done:true,
@@ -2506,6 +2651,7 @@ var UPGRADES= [
     {
         name: "Slave I",
         type:TITLE,
+     upgid:125,
         unique: true,
         points: 0,
 	done:true,
@@ -2515,6 +2661,7 @@ var UPGRADES= [
     {
         name: "Millennium Falcon",
         type:TITLE,
+     upgid:126,
 	done:true,
 	addedaction:"Evade",
         unique: true,
@@ -2524,11 +2671,13 @@ var UPGRADES= [
     {
         name: "Moldy Crow",
         type:TITLE,
+     upgid:127,
         init: function(sh) {
 	    var self=this;
-	    sh.wrap_after("resetfocus",this,function() {
-		if (this.focus>0) this.log("keep %FOCUS% tokens [%0]",self.name);
-		return this.focus;
+	    sh.wrap_before("endround",this,function() {
+		this.evade=0;
+		if (this.focus>0) this.log("keep focus tokens [%0]",self.name);
+		this.showinfo();
 	    });
 	},
         unique: true,
@@ -2539,6 +2688,7 @@ var UPGRADES= [
     {
         name: "ST-321",
         type:TITLE,
+     upgid:128,
 	done:true,
         init: function(sh) {
 	    var self=this;
@@ -2556,6 +2706,7 @@ var UPGRADES= [
     {
         name: "Royal Guard TIE",
         type:TITLE,
+     upgid:129,
 	done:true,
         upgrades:[MOD],
 	skillmin:5,
@@ -2571,6 +2722,7 @@ var UPGRADES= [
     {
         name: "A-Wing Test Pilot",
         type:TITLE,
+     upgid:130,
 	done:true,
         upgrades:[ELITE],
 	skillmin:2,
@@ -2587,6 +2739,7 @@ var UPGRADES= [
     {
         name: "Outrider",
         type:TITLE,
+     upgid:131,
 	done:true,
         init: function(sh) {
 	    var i;
@@ -2607,15 +2760,15 @@ var UPGRADES= [
     {
         name: "Dauntless",
         type:TITLE,
+     upgid:132,
 	done:true,
         init: function(sh) {
 	    var self=this;
 	    sh.wrap_after("doendmaneuveraction",this,function() {
 		if (this.candoaction()&&this.collision) {
 		    this.log("+1 free action [%0]",self.name);
-		    this.doaction(this.getactionlist()).done(function(t) {
-			if (t!=null) this.addstress();
-		    }.bind(this));
+		    this.doaction(this.getactionlist());
+		    this.addstress();
 		}
 	    });
 	},
@@ -2626,6 +2779,7 @@ var UPGRADES= [
     {
         name: "Virago",
         type:TITLE,
+     upgid:133,
 	done:true,
         upgrades:[ILLICIT,SYSTEM],
         unique: true,
@@ -2638,6 +2792,7 @@ var UPGRADES= [
 	done:true,
         upgrades:["Cannon|Torpedo|Missile"],
         type:TITLE,
+     upgid:134,
         points: 2,
         ship: "M3-A Interceptor",
 
@@ -2645,15 +2800,28 @@ var UPGRADES= [
     {
         name: 'IG-2000',
         type:TITLE,
+     upgid:135,
 	done:true,
         install:function(sh) { sh.ig2000=true;	},
 	uninstall:function(sh) { sh.ig2000=false; },
 	init: function(sh) {
-	    for (var i in squadron) {
-		var u=squadron[i];
-		if (u!=sh&&u.ig2000==true&&u.team==sh.team) {
-		    sh.log("copying %0 abilities [%1]",u.name,this.name);
-		    u.init.call(sh);
+	    sh.init=function() {
+		var i;
+		for (i in squadron) {
+		    var u=squadron[i];
+		    if (u!=sh&&u.ig2000==true&&u.team==sh.team) {
+			if (u.name=="IG-88A") {
+			    sh.cleanupattack=u.cleanupattack;}
+			if (u.name=="IG-88B") { 
+			    sh.endattack=u.endattack;
+			}
+			if (u.name=="IG-88C") {
+			    sh.resolveboost=u.resolveboost;
+			}
+			if (u.name=="IG-88D") {
+			    sh.getmaneuverlist=u.getmaneuverlist;
+			}
+		    }
 		}
 	    }
 	},
@@ -2663,6 +2831,7 @@ var UPGRADES= [
     {
         name: "BTL-A4 Y-Wing",
         type:TITLE,
+     upgid:136,
 	done:true,
         init: function(sh) {
 	    var turret=-1;
@@ -2692,6 +2861,7 @@ var UPGRADES= [
     {
         name: "Andrasta",
         type:TITLE,
+     upgid:137,
 	done:true,
         upgrades:[BOMB,BOMB],
         unique: true,
@@ -2701,6 +2871,7 @@ var UPGRADES= [
     {
         name: "TIE/x1",
         type:TITLE,
+     upgid:138,
 	done:true,
         upgrades:[SYSTEM],
 	pointsupg:-4,
@@ -2710,6 +2881,7 @@ var UPGRADES= [
     {
         name: "Emperor Palpatine",
         type:CREW,
+     upgid:139,
 	unique:true,
 	takesdouble:true,
         points: 8,
@@ -2718,6 +2890,7 @@ var UPGRADES= [
     {
         name: "Extra Munitions",
         type: TORPEDO,
+     upgid:140,
         limited: true,
 	isWeapon: function() { return false; },
         points: 2,
@@ -2728,6 +2901,7 @@ var UPGRADES= [
     {
         name: "Cluster Mines",
         type: BOMB,
+     upgid:141,
 	snd:"explode",
 	img:"cluster.png",
 	width: 15,
@@ -2736,8 +2910,9 @@ var UPGRADES= [
 	size:22,
 	stay:true,
 	done:true,
-        getOutlineStringsmall: function(m) {
-	    var N=20;
+	/*
+        getOutlineString: function(m) {
+	    var N=30;
 	    var s="M ";
 	    this.op=[];
 	    if (typeof m=="undefined") m=this.m;
@@ -2751,7 +2926,7 @@ var UPGRADES= [
 	    }
 	    s+="Z";
 	    return {s:s,p:this.op};
-	},
+	},*/
 	candoaction: function() { return  this.unit.lastdrop!=round&&this.isactive; },
 	action: function(n) {   this.actiondrop(n);  },
 	canbedropped: function() { return false; },
@@ -2768,14 +2943,6 @@ var UPGRADES= [
 		}
 		Bomb.prototype.detonate.call(this);
 	    }
-	},
-	display: function(x,y) {
-	    this.getOutlineString=this.getOutlineStringsmall;
-	    var b1=$.extend({},this);
-	    var b2=$.extend({},this);
-	    Bomb.prototype.display.call(b1,this.repeatx,0);
-	    Bomb.prototype.display.call(b2,-this.repeatx,0);
-	    Bomb.prototype.display.call(this,0,0);
 	},
 	init: function(u) {
 	    var p=s.path("M41.844,-21 C54.632,-21 65,-11.15 65,1 C65,13.15 54.632,23 41.844,23 C33.853,22.912 25.752,18.903 21.904,12.169 C17.975,18.963 10.014,22.806 1.964,23 C-7.439,22.934 -14.635,18.059 -18.94,10.466 C-22.908,18.116 -30.804,22.783 -39.845,23 C-52.633,23 -63,13.15 -63,1 C-63,-11.15 -52.633,-21 -39.845,-21 C-30.441,-20.935 -23.246,-16.06 -18.94,-8.466 C-14.972,-16.116 -7.076,-20.783 1.964,-21 C9.956,-20.913 18.055,-16.902 21.904,-10.17 C25.832,-16.964 33.795,-20.807 41.844,-21 z").attr({display:"none"});
@@ -2804,6 +2971,7 @@ var UPGRADES= [
     {
         name: "Glitterstim",
         type: ILLICIT,
+     upgid:142,
         points: 2,
 	activated: -1,
 	done:true,
@@ -2850,6 +3018,7 @@ var UPGRADES= [
     {
         name: "Cloaking Device",
 	type:ILLICIT,
+     upgid:143,
 	islarge:false,
         points: 2,
 	candoaction: function() { return this.isactive; },
@@ -2880,6 +3049,7 @@ var UPGRADES= [
         unique: true,
         faction: SCUM,
         type: CREW,
+     upgid:144,
         points: 2,
 	done:true,
 	init: function(sh) {
@@ -2895,6 +3065,7 @@ var UPGRADES= [
     },
     { name:"Wired",
       type: ELITE,
+     upgid:145,
       init: function(sh) {
 	  var self=this;
 	  var req=function() {
@@ -2917,6 +3088,7 @@ var UPGRADES= [
     },
     { name:"Cool Hand",
       type: ELITE,
+     upgid:146,
       points:1,
       done:true,
       init: function(sh) {
@@ -2943,6 +3115,7 @@ var UPGRADES= [
     },
     { name:"Juke",
       type: ELITE,
+     upgid:147,
       points:2,
       islarge:false,
       done:true,
@@ -2963,6 +3136,7 @@ var UPGRADES= [
     {
         name: "Lightning Reflexes",
         type: ELITE,
+     upgid:148,
         points: 1,
 	done:true,
 	init: function(sh) {
@@ -2984,6 +3158,7 @@ var UPGRADES= [
     {
 	name: "Twin Laser Turret",
 	type: TURRET,
+     upgid:149,
 	points: 6,
 	done:true,
 	attack: 3,
@@ -3009,6 +3184,7 @@ var UPGRADES= [
     {
         name: "Plasma Torpedoes",
         type: TORPEDO,
+     upgid:150,
         points: 3,
         attack: 4,
 	requires:"Target",
@@ -3023,6 +3199,7 @@ var UPGRADES= [
     {
 	name: "Ion Bombs",
 	type: BOMB,
+     upgid:151,
 	points: 2,
 	width: 14,
 	height:14,
@@ -3044,6 +3221,7 @@ var UPGRADES= [
     {
         name: "Conner Net",
         type: BOMB,
+     upgid:152,
 	snd:"explode",
 	img:"conner-net3.png",
 	width:40,
@@ -3104,6 +3282,7 @@ var UPGRADES= [
     {
 	name: "Bombardier",
 	type: CREW,
+     upgid:153,
 	points: 1,
 	done:true,
 	init:function(sh) {
@@ -3115,6 +3294,7 @@ var UPGRADES= [
     },
     {name:"Agent Kallus",
      type:CREW,
+     upgid:154,
      faction:EMPIRE,
      points:2,
      done:true,
@@ -3154,6 +3334,7 @@ var UPGRADES= [
     {
         name: "'Crack Shot'",
         type: ELITE,
+     upgid:155,
         points: 1,
 	done:true,
 	init: function(sh) {
@@ -3175,6 +3356,7 @@ var UPGRADES= [
     {
         name: "Advanced Homing Missiles",
         type: MISSILE,
+     upgid:156,
         points: 3,
 	requires:"Target",
 	consumes:false,
@@ -3191,6 +3373,7 @@ var UPGRADES= [
     {
 	name: "Advanced SLAM",
 	type:MOD,
+     upgid:157,
 	done:true,
 	points: 2,
 	init: function(sh) {
@@ -3210,6 +3393,7 @@ var UPGRADES= [
     {
         name: "Twin Ion Engine Mk. II",
 	type:MOD,
+     upgid:158,
         points: 1,
 	ship: "TIE",
 	done:true,
@@ -3233,6 +3417,7 @@ var UPGRADES= [
     {
         name: "Maneuvering Fins",
 	type:MOD,
+     upgid:159,
         points: 1,
         ship: "YV-666",
 	done:true,
@@ -3240,7 +3425,6 @@ var UPGRADES= [
 	    var self=this;
 	    sh.wrap_after("getmaneuverlist",self,function(list) {
 		var p=list;
-		if (this.hasionizationeffect()) return p;
 		for (var i in list) {
 		    if (i.match(/TR\d|TL\d/)) {
 			this.log("change turn into a bank [%0]",self.name);
@@ -3256,6 +3440,7 @@ var UPGRADES= [
         name: "Hound's Tooth",
         points: 6,
 	type:TITLE,
+     upgid:160,
         unique: true,
         ship: "YV-666",
 	done:true,
@@ -3314,6 +3499,7 @@ var UPGRADES= [
 	name: "XX-23 S-Thread Tracers",
 	points:1,
 	type:MISSILE,
+     upgid:161,
 	range:[1,3],
 	attack:3,
 	done:true,
@@ -3337,6 +3523,7 @@ var UPGRADES= [
 	name:"Comm Relay",
 	points: 3,
 	type:TECH,
+     upgid:162,
 	done:true,
 	init: function(sh) {
 	    var self=this;
@@ -3346,16 +3533,21 @@ var UPGRADES= [
 		    this.evade=1;
 		}
 		this.showinfo();
-	    });
-	    sh.wrap_after("resetevade",this,function() {
-		if (this.evade>0) this.log("keep 1 %EVADE% token [%0]",self.name);
-		return 1;
-	    });
+	    })
+	    var er=sh.endround;
+	    sh.endround=function() {
+		var e=this.evade;
+		er.call(sh);
+		this.evade=e;
+		if (e>0) this.log("keep %FOCUS% [%0]",self.name);
+		this.showinfo();
+	    };
 	},
     },
     {
 	name: "Dorsal Turret",
 	type: TURRET,
+     upgid:163,
 	points: 3,
 	attack: 2,
 	range: [1,2],
@@ -3371,10 +3563,11 @@ var UPGRADES= [
     },
     { name:"'Chopper'",
       type:CREW,
+     upgid:164,
       points:0,
       done:true,
-      init: function(sh) {
-	  sh.wrap_after("begincombatphase",this,function(lock) {
+      init: function() {
+	  this.wrap_after("begincombatphase",this,function(lock) {
 	      for (var i=0; i<this.touching.length; i++) {
 		  var u=this.touching[i];
 		  if (u.team!=this.team) {
@@ -3390,6 +3583,7 @@ var UPGRADES= [
     },
     { name:"Hera Syndulla",
       type:CREW,
+     upgid:165,
       points:1,
       faction:REBEL,
       done:true,
@@ -3403,6 +3597,7 @@ var UPGRADES= [
     },
     { name:"'Zeb' Orrelios",
       type:CREW,
+     upgid:166,
       points:1,
       faction:REBEL,
       unique:true,
@@ -3420,6 +3615,7 @@ var UPGRADES= [
     },
     { name:"Ezra Bridger",
       type:CREW,
+     upgid:167,
       points:3,
       faction:REBEL,
       unique:true,
@@ -3442,6 +3638,7 @@ var UPGRADES= [
     },
     { name:"Kanan Jarrus",
       type:CREW,
+     upgid:168,
       points:3,
       faction:REBEL,
       unique:true,
@@ -3459,6 +3656,7 @@ var UPGRADES= [
     },
     { name:"Sabine Wren",
       type:CREW,
+     upgid:169,
       points:2,
       upgrades:[BOMB],
       faction:REBEL,
@@ -3488,6 +3686,7 @@ var UPGRADES= [
     {
 	name:"Ghost",
 	type:TITLE,
+     upgid:170,
 	points:0,
 	unique:true,
 	done:true,
@@ -3538,6 +3737,7 @@ var UPGRADES= [
     },
     {name:"Phantom",
      type:TITLE,
+     upgid:171,
      points:0,
      unique:true,
      done:true,
@@ -3546,6 +3746,7 @@ var UPGRADES= [
     {name:"Reinforced Deflectors",
      points:3,
      type:SYSTEM,
+     upgid:172,
      islarge:true,
      done:true,
      init: function(sh) {
@@ -3574,6 +3775,7 @@ var UPGRADES= [
     {name:"Targeting Astromech",
      points:2,
      type:ASTROMECH,
+     upgid:173,
      done:true,
      init: function(sh) {
 	 var self=this;
@@ -3588,6 +3790,7 @@ var UPGRADES= [
     {name:"TIE/x7",
      points:-2,
      type:TITLE,
+     upgid:174,
      lostupgrades:[CANNON,MISSILE],
      ship:"TIE Defender",
      done:true,
@@ -3604,6 +3807,7 @@ var UPGRADES= [
     {name:"TIE/D",
      points:0,
      type:TITLE,
+     upgid:175,
      ship:"TIE Defender",
      done:true,
      init: function(sh) {
@@ -3623,6 +3827,7 @@ var UPGRADES= [
      points:0,
      done:true,
      type:TITLE,
+     upgid:176,
      ship:"TIE Bomber",
      maxupg:4,
      lostupgrades:[TORPEDO,MISSILE,BOMB],
@@ -3631,6 +3836,7 @@ var UPGRADES= [
     {name:"Guidance Chips",
      points:0,
      type:MOD,
+     upgid:177,
      done:true,
      init: function(sh) {
 	 var self=this;
@@ -3670,6 +3876,7 @@ var UPGRADES= [
 	 });
      },
      type:TITLE
+     upgid:178,
     },
     {name:"Zuckuss",
      faction:SCUM,
@@ -3677,6 +3884,7 @@ var UPGRADES= [
      unique:true,
      done:true,
      type:CREW,
+     upgid:179,
      init: function(sh) {
 	 var self=this;
 	 sh.adddicemodifier(ATTACK_M,MOD_M,DEFENSE_M,this,{
@@ -3721,6 +3929,7 @@ var UPGRADES= [
      unique:true,
      done:true,
      type:CREW,
+     upgid:180,
      init: function(sh) {
 	 sh.adddicemodifier(ATTACK_M,MOD_M,DEFENSE_M,this,{
 	     req: function() { return true; },
@@ -3741,27 +3950,17 @@ var UPGRADES= [
     },
     {name:"Mist Hunter",
      type:TITLE,
+     upgid:181,
      points:0,
      addedaction:"Roll",
      done:true,
      ship:"G-1A Starfighter",
      unique:true,
-     upgrades:[CANNON],
-     install: function(sh) {
-	 var j,tb;
-	 // Search for TB
-	 for (tb=0; tb<UPGRADES.length; tb++) if (UPGRADES[tb].name=="Tractor Beam") break;
-	 if (tb==UPGRADES.length) return;
-	 for (j=0; j<sh.upgradetype.length; j++) if (sh.upg[j]==tb) break;
-	 if (sh.upg[j]!=tb)
-	     for (j=0; j<sh.upgradetype.length; j++) {
-		 if (sh.upgradetype[j]==UPGRADES[tb].type&&sh.upg[j]==-1) { addupgrade(sh,tb,j,true); sh.log("%0 added [%1]",UPGRADES[tb].name,this.name); break; }
-	     }
-     }
     },
     {
 	name:"Adaptability(+1)",
 	type:ELITE,
+     upgid:182,
 	points:0,
 	done:true,
 	install: function(sh) {
@@ -3778,6 +3977,7 @@ var UPGRADES= [
     {
 	name:"Adaptability(-1)",
 	type:ELITE,
+     upgid:183,
 	points:0,
 	done:true,
 	install: function(sh) {
@@ -3795,6 +3995,7 @@ var UPGRADES= [
 	name:"Dengar",
 	unique:true,
 	type:CREW,
+     upgid:184,
 	points:3,
 	faction:SCUM,
 	done:true,
@@ -3812,6 +4013,7 @@ var UPGRADES= [
 	name:"'Gonk'",
 	unique:true,
 	type:CREW,
+     upgid:185,
 	points:2,
 	faction:SCUM,
 	shield:0,
@@ -3842,6 +4044,7 @@ var UPGRADES= [
 	name:"Boba Fett",
 	unique:true,
 	type:CREW,
+     upgid:186,
 	points:1,
 	faction:SCUM,
 	done:true,
@@ -3872,14 +4075,12 @@ var UPGRADES= [
 	name:"R5-P8",
 	unique:true,
 	type:SALVAGED,
+     upgid:187,
 	points:3,
 	done:true,
-	r5p8:-1,
 	init: function(sh) {
 	    var self=this;
 	    sh.wrap_after("endbeingattacked",this,function(c,h,t) {
-		if (self.r5p8==round) return;
-		self.r5p8=round;
 		this.donoaction([{name:this.name,org:this,type:"HIT",action:function(n) {
 		    var roll=this.rollattackdie(1)[0];
 		    this.log("roll 1 attack dice [%0]",self.name);
@@ -3902,6 +4103,7 @@ var UPGRADES= [
     {
 	name:"Attanni Mindlink",
 	type:ELITE,
+     upgid:188,
 	points:1,
 	done:true,
 	init: function(sh) {
@@ -3930,6 +4132,7 @@ var UPGRADES= [
     {
 	name:"Rage",
 	type:ELITE,
+     upgid:189,
 	round:-1,
 	candoaction: function() { return this.isactive; },
 	action: function(n) {
@@ -3958,6 +4161,7 @@ var UPGRADES= [
     {
 	name:"Punishing One",
 	type:TITLE,
+     upgid:190,
 	unique:true,
 	points:12,
 	done:true,
@@ -3973,6 +4177,7 @@ var UPGRADES= [
     },
     {name:"Long Range Scanner",
      type:MOD,
+     upgid:191,
      points:0,
      done:true,
      requiredupg:[TORPEDO,MISSILE],
@@ -3992,35 +4197,12 @@ var UPGRADES= [
     },
     {name:"Electronic Baffle",
      type:SYSTEM,
+     upgid:192,
      points:1,
     },
     {name:"Overclocked R4",
      type:SALVAGED,
+     upgid:193,
      points:1
-    },
-    {
-        name: "Thermal Detonator",
-	done:true,
-	img:"seismic.png",
-	snd:"explode",
-	width: 16,
-	height:8,
-	size:15,
-        explode: function() {
-	    if (phase==ACTIVATION_PHASE&&!this.exploded) {
-		var r=this.getrangeallunits();
-		var i;
-		Bomb.prototype.explode.call(this);
-		for (i=0; i<r[1].length; i++) {
-		    var u=squadron[r[1][i].unit];
-		    u.log("+1 %HIT%, +1 %STRESS% [%0]",this.name);
-		    u.resolvehit(1);
-		    u.addstress();
-		    u.checkdead();
-		}
-	    }
-	},
-        type: BOMB,
-        points: 2,
     }
 ];

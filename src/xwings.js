@@ -895,7 +895,7 @@ function removelimited(u,data) {
     $("#unit"+u.id+" .upglist button[data="+data+"]").prop("disabled",false);
 }
 function addupgradeaddhandler(u) {
-    $("#unit"+u.id+" .upgrades").click(function(e) {
+    $("#unit"+u.id+" button.upgrades").click(function(e) {
 	var org=e.currentTarget.getAttribute("class").split(" ")[1];
 	var num=e.currentTarget./*parentElement.*/getAttribute("num");
 	var p=this.getupgradelist(org);
@@ -954,14 +954,14 @@ function addunit(n) {
 	$("#unit"+data+" .upg span[data]").each(function() {
 	    var d=$(this).attr("data");
 	    var num=$(this).attr("num");
-	    if (UPGRADES[d].unique!=true) addupgrade(self,d,num);
+	    if (UPGRADES[d].unique!=true&&u.upgnocopy!=d) addupgrade(self,d,num);
 	});
     });
     currentteam.updatepoints();
     addupgradeaddhandler(u);
     return u;
 }
-function addupgrade(self,data,num) {
+function addupgrade(self,data,num,noremove) {
     var org=UPGRADES[data];
     $("#unit"+self.id+" .upglist").empty();
     if (typeof org=="undefined") return;
@@ -974,22 +974,23 @@ function addupgrade(self,data,num) {
     if (pts<0) pts=0;
     $("#unit"+self.id+" .upg").append("<span data="+data+" num="+num+"><code class='upgrades "+org.type+"'></code>"+text+" (<span class='pts'>"+pts+"</span>)</span>");
     self.upg[num]=data;
-    if (typeof org.install!="undefined") org.install(self);
     Upgrade.prototype.install.call(org,self);
+    if (typeof org.install!="undefined") org.install(self);
     $("#unit"+self.id+" .shipdial").html("<table>"+self.getdialstring()+"</table>");
 
     self.showupgradeadd();
     self.showactionlist();
     self.showstats();
     currentteam.updatepoints();
+    if (typeof noremove=="undefined") { 
+	$("#unit"+self.id+" .upg span[num="+num+"]").click(function(e) {
+	    var num=e.currentTarget.getAttribute("num");
+	    var data=e.currentTarget.getAttribute("data");
+	    $("#unit"+self.id+" .upglist").empty();
+	    removeupgrade(self,num,data);
+	}.bind(self));
+    } else self.upgnocopy=data;
 
-
-    $("#unit"+self.id+" .upg span[num="+num+"]").click(function(e) {
-	var num=e.currentTarget.getAttribute("num");
-	var data=e.currentTarget.getAttribute("data");
-	$("#unit"+self.id+" .upglist").empty();
-	removeupgrade(self,num,data);
-    }.bind(self));
 }
 function removeupgrade(self,num,data) {
     var org=UPGRADES[data];
@@ -1301,7 +1302,6 @@ function nextphase() {
 	$("#svgout").mouseup(function(e) {dragstop(e);});
 	jwerty.key("escape", nextphase);
 	
-	jwerty.key("c", center);
 	/* By-passes */
 	jwerty.key("9", function() { 
 		console.log("active:"+activeunit.name+" in hit range:"+activeunit.weapons[0].name);
@@ -1623,7 +1623,7 @@ function tohitproba(tokensA,tokensD,at,dt,attack,defense) {
 	for (h=0; h<=attack-f; h++) {
 	    for (c=0; c<=attack-h-f; c++) {
 		var n=100*f+10*c+h;
-		var fa,ca,ha,ff,e;
+		var fa,ca,ha,ff,ef;
 		var a=ATable[100*f+h+10*c]; // attack index
 		if (typeof tokensA.modifyattackroll!="undefined")
 		    n=tokensA.modifyattackroll(n,tokensD);
