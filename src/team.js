@@ -41,7 +41,7 @@ Team.prototype = {
     updatepoints: function() {
 	var s=0;
 	var score1=$("#listunits .pts").each(function() {
-	    s+=parseInt($(this).text())
+	    s+=parseInt($(this).text());
 	});
 	$("#totalpts").html(s);
     },
@@ -299,7 +299,7 @@ Team.prototype = {
     },
     parseJSON:function(str,translated) {
 	var s;
-	var f={"rebel":REBEL,"scum":SCUM,"empire":EMPIRE};
+	var f={"rebel":REBEL,"scum":SCUM,"imperial":EMPIRE};
 	try {
 	    s=$.parseJSON(str);
 	} catch(err) {

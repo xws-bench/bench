@@ -324,7 +324,9 @@ IAUnit.prototype= {
 	    var d=mods[i];
 	    if (d.from==from&&d.to==to) {
 		if (d.type==MOD_M&&d.req(m,n)) {
-		    modroll(d.f,i,to);
+		    if (d.str=="focus") {
+			if (FCH_focus(m)>0) modroll(d.f,i,to);
+		    } else modroll(d.f,i,to);
 		} if (d.type==ADD_M&&d.req(m,n)) {
 		    addroll(d.f,i,to); 
 		} if (d.type==REROLL_M&&d.req(activeunit,activeunit.weapons[activeunit.activeweapon],targetunit)) {

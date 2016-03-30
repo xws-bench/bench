@@ -336,10 +336,10 @@ Unit.prototype = {
 	    class: "xsymbols",
 		fill:"#0af",
 	    });
-	this.gstat=s.group(this.skillbar,this.firebar,this.evadebar,this.shieldbar,this.hullbar);
-	this.dialspeed = s.text(2+w,3-w,"").attr({class: "dialspeed"});
-	this.dialdirection = s.text(w+8,3-w,"").attr({class: "symbols" });
-	this.actionicon = s.text(w+2,-7,"").attr({class: "symbols",strokeWidth:0});
+	this.gstat=s.group(this.skillbar,this.firebar,this.evadebar,this.shieldbar,this.hullbar).attr({pointerEvents:"none"});
+	this.dialspeed = s.text(2+w,3-w,"").attr({class: "dialspeed",pointerEvents:"none"});
+	this.dialdirection = s.text(w+8,3-w,"").attr({class: "symbols",pointerEvents:"none" });
+	this.actionicon = s.text(w+2,-7,"").attr({pointerEvents:"none",class: "symbols",strokeWidth:0});
 	this.sector = s.polygon(3-w,-w,0,0,w-3,-w).attr({
 	    fill: this.color,
 	    opacity:0.5,
@@ -352,10 +352,13 @@ Unit.prototype = {
 	var i;
 	for(i=0; i<6; i++) {
 	    this.infoicon[i]=s.text(w-7,6-w+7*i,A[AINDEX[i+2]].key)
-		.attr({class: "xsymbols",fill:A[AINDEX[i+2]].color,strokeWidth: 0
+		.attr({pointerEvents:"none",
+		       class: "xsymbols",
+		       fill:A[AINDEX[i+2]].color,
+		       strokeWidth: 0
 		      });
 	}
-	this.geffect=s.group(this.imgflame,this.imgsmoke);
+	this.geffect=s.group(this.imgflame,this.imgsmoke).attr({pointerEvents:"none"});
 	// Order in the group is important. Latest is on top of stacked layers
 	this.g=s.group(this.sector,this.outline,this.img,this.dialspeed,this.dialdirection,this.actionicon,this.infoicon[0],this.infoicon[1],this.infoicon[2],this.infoicon[3],this.infoicon[4],this.infoicon[5],this.gstat);
 	VIEWPORT.add(this.g);
@@ -379,7 +382,7 @@ Unit.prototype = {
 		x+=p.left+startX;
 		var y=m.y(bbox.x,bbox.y-20)/max;
 		y+=p.top+startY;
-		$(".info").css({left:x,top:y}).html(translate(this.name))
+		$(".info").css({left:x,top:y}).attr({pointerEvents:"none"}).html(translate(this.name))
 		    .appendTo("body").show();
 	    }.bind(this),
 	    function() { $(".info").hide(); 
@@ -599,9 +602,7 @@ Unit.prototype = {
 	return this.skill;
     },
     getdial: function() {
-	if ((this.ionized>0&&!this.islarge) || this.ionized>1) {
-	    return [{move:"F1",difficulty:"WHITE"}];
-	}
+	if (this.hasionizationeffect()) return [{move:"F1",difficulty:"WHITE"}];
 	return this.dial;
     },
     doplan: function() { this.showdial(); return this.deferred; },
@@ -1030,7 +1031,6 @@ Unit.prototype = {
 		||this.isPointInside(ob.s,op)
 		||this.isPointInside(os,ob.p)) {
 		if (k<6) collision.overlap=k; else collision.mine.push(OBSTACLES[k]); 
-		break;
 	    }
 	}
 	if (typeof path!="undefined") {
@@ -1049,7 +1049,8 @@ Unit.prototype = {
 			    if (dx*dx+dy*dy<=100) { 
 				if (k<6) collision.template.push(k); 
 				else collision.mine.push(OBSTACLES[k]);
-				break } 
+				break;
+			    } 
 			}
 		    }
 		}
@@ -1393,10 +1394,17 @@ Unit.prototype = {
     cleanupattack: function() {
 	this.actionbarrier();
     },
+    resetfocus: function() {
+	return 0;
+    },
+    resetevade: function() {
+	return 0;
+    },
     endround: function() {
 	for (var i=0; i<this.upgrades.length; i++) 
 	    this.upgrades[i].endround();
-	this.focus=this.evade=0;
+	this.focus=this.resetfocus();
+	this.evade=this.resetevade();
 	this.hasfired=0;
 	this.ocollision.overlap=-1;
 	this.ocollision.template=[];
@@ -1584,7 +1592,7 @@ Unit.prototype = {
 	if (typeof possible=="undefined") possible=false;
 	for (i=moves.length-1; i>=0; i--) {
 	    var c=this.getmovecolor(moves[i],true,true);
-	    if ((possible&&(c==YELLOW||c==RED))||c==GREEN) {
+	    if ((possible&&(c==YELLOW||c==RED))||c==GREEN||(possible&&!automove)) {
 		p=this.getOutline(moves[i]).attr({display:"block"}).appendTo(VIEWPORT);
 		this.pos.push({ol:p,k:i});
 	    }
@@ -1651,7 +1659,6 @@ Unit.prototype = {
 	SOUNDS.decloak.play();
     },
     resolvedecloak: function() {
-	//this.log("do selection resolvedecloak");
 	this.doselection(function(n) {
 	    this.resolveactionmove(this.getdecloakmatrix(this.m),
 				   function (t,k) {
@@ -1761,12 +1768,10 @@ Unit.prototype = {
 		q.push(i);
 	    }
 	this.log("select maneuver for SLAM");
-	this.wrap_after("canfire",this,function() { return false;});
+	this.wrap_after("canfire",this,function() { return false;}).unwrapper("endround");
 	this.wrap_after("endmaneuver",this,function() {
 	    this.endaction(n,"SLAM");
-	    this.endmaneuver.unwrap();
-	    this.canfire.unwrap();
-	});
+	}).unwrapper("endactivationphase");
 
 	this.resolveactionmove(p,function(t,k) {
 	    this.maneuver=q[k];
@@ -2315,10 +2320,9 @@ Unit.prototype = {
     updateactivationdial: function() {
 	var self=this;
 	this.activationdial=[];
-	if (this.candropbomb()&&this.ionized!=0) {
+	if (this.candropbomb()&&(this.hasionizationeffect())) {
 	    this.log("ionized, cannot drop bombs");
-	}
-	if (this.candropbomb()&&this.ionized==0) {
+	} else {
 	    switch(this.bombs.length) {
 	    case 3: if (this.bombs[2].canbedropped()) 
 		this.addactivationdial(
@@ -2472,7 +2476,7 @@ Unit.prototype = {
 	return this.maneuver>-1;
     },
     getmaneuver: function() {
-	if (this.ionized>0) {
+	if (this.hasionizationeffect()) {
 	    return {move:"F1",difficulty:"WHITE"};
 	}
 	return this.getdial()[this.maneuver];
@@ -2496,6 +2500,9 @@ Unit.prototype = {
 	this.show();
     },
     endactivationphase: function() {
+    },
+    hasionizationeffect: function() {
+	return ((this.ionized>0&&!this.islarge)||this.ionized>1);
     },
     begincombatphase: function() {
         return this.newlock();
@@ -3042,21 +3049,24 @@ Unit.prototype = {
 	var dx=rsh[minj].x-ro[mini].x;
 	var dy=rsh[minj].y-ro[mini].y;
 	var a=-ro[mini].x*dy+ro[mini].y*dx; //(x-x0)*dy-(y-y0)*dx>0
-	if (OBSTACLES.length>0) 
-	for (k=0; k<6; k++) {
-	    var op=OBSTACLES[k].getOutlineString().p;
-	    var s=op[0].x*dy-op[0].y*dx+a;
-	    var v=s;
-	    for (i=1; i<op.length; i++) {
-		if (dist(rsh[minj],op[i])<1.2*min&&
-		    dist(ro[mini],op[i])<1.2*min) {
-		    v=op[i].x*dy-op[i].y*dx+a;
-		    if (v*s<0) break; 
+	if (OBSTACLES.length>0) {
+	    for (k=0; k<OBSTACLES.length; k++) {
+		var op=OBSTACLES[k].getOutlineString().p;
+		// The object is not yet intialized. Should not be here...
+		if (op.length==0) break;
+		var s=op[0].x*dy-op[0].y*dx+a;
+		var v=s;
+		for (i=1; i<op.length; i++) {
+		    if (dist(rsh[minj],op[i])<1.2*min&&
+			dist(ro[mini],op[i])<1.2*min) {
+			v=op[i].x*dy-op[i].y*dx+a;
+			if (v*s<0) break; 
+		    }
 		}
+		if (v*s<0) break;
 	    }
-	    if (v*s<0) break;
 	}
-	if (k<6) obs=true;
+	if (k<OBSTACLES.length) obs=true;
 	if (min<=10000) {return {d:1,o:obs}; }
 	if (min<=40000) { return {d:2,o:obs}; }
 	return {d:3,o:obs};
