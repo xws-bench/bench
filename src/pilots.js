@@ -27,7 +27,7 @@ var hera_fct=function() {
     var p={};
     var gd=this.getdial();
     p[m.move]=m;
-    if ((m.difficulty=="RED"||m.difficulty=="GREEN")&&this.ionized==false) {
+    if ((m.difficulty=="RED"||m.difficulty=="GREEN")&&((this.ionized<2&&this.islarge)||this.ionized==0)) {
 	for (var i=0; i<gd.length; i++) 
 	    if (gd[i].difficulty==m.difficulty
 		&&typeof p[gd[i].move]=="undefined") {
@@ -761,6 +761,7 @@ var PILOTS = [
         faction:EMPIRE,
 	init: function() {
 	    this.wrap_after("getmaneuverlist",this,function(p) {
+		if (this.hasionizationeffect()) return p;
 		for (var i=1; i<=3; i++) {
 		    if (typeof p["BL"+i]!="undefined") {
 			this.log("select %BANKLEFT% or %BANKRIGHT% turn");
@@ -1169,7 +1170,7 @@ var PILOTS = [
 		var found=false;
 		var m;
 		for (var i in p) if (i.match(/K/)) {found=true; m=p[i]; break; }
-		if (found&&this.ionized==false) {
+		if (found&&!this.hasionizationeffect()) {
 		    this.log("select %UTURN% speed");
 		    for (var i=1; i<=5; i+=2) {
 			if (typeof p["K"+i]=="undefined") {
@@ -1789,7 +1790,7 @@ var PILOTS = [
         skill: 7,
 	done:true,
 	init: function() {
-	    this.wrap_after("getocollisions",this,function(mbegin,mend,path,len) { 
+	    this.wrap_after("getocollisions",this,function(mbegin,mend,path,len,oc) { 
 		return {overlap:-1,template:[],mine:[]};
 	    });
 	},
@@ -2039,7 +2040,7 @@ var PILOTS = [
 	faction:SCUM,
 	pilotid:109,
 	done:true,
-	endattack: function(c,h) {
+	/*endattack: function(c,h) {
 	    if ((c+h==0)&&this.hasfired<2) {
 		for (var i=0; i<this.weapons.length; i++) {
 		    var w=this.weapons[i];
@@ -2050,6 +2051,20 @@ var PILOTS = [
 		    }
 		}
 	    } else Unit.prototype.endattack.call(this,c,h);
+	},*/
+	init: function() {
+	    this.wrap_after("endattack",this,function(c,h) {
+		if ((c+h==0)&&this.hasfired<2) {
+		    for (var i=0; i<this.weapons.length; i++) {
+			var w=this.weapons[i];
+			if (w.type=="Cannon"&&w.isWeapon()&&w.getrangeallunits().length>0) {
+			    this.log("2nd attack with %0",w.name);
+			    this.selecttargetforattack(i); 
+			    break;
+			}
+		    }
+		}
+	    });
 	},
         unique: true,
         unit: "Aggressor",
@@ -2077,16 +2092,18 @@ var PILOTS = [
         name: "IG-88D",
 	faction:SCUM, 
 	pilotid:111,
-        getmaneuverlist: function() {
-	    var gm=this.getmaneuver();
-	    var dial=gm.move;
-	    if (dial=="SL3") {
-		this.log("%SLOOPLEFT% or %TURNLEFT% maneuver");
-		return {"SL3":gm,"TL3":{move:"TL3",halfturn:true,difficulty:gm.difficulty}}
-	    } else if (dial=="SR3") {
-		this.log("%SLOOPRIGHT% or %TURNRIGHT% maneuver");
-		return {"SR3":gm,"TR3":{move:"TR3",halfturn:true,difficulty:gm.difficulty}}
-	    } else return {dial:gm}
+        init: function() {
+	    this.wrap_after("getmaneuverlist",this,function(dial) {
+		if (dial.indexOf("SL3")>-1) {
+		    this.log("%SLOOPLEFT% or %TURNLEFT% maneuver");
+		    dial["TL3"]={move:"TL3",halfturn:true,difficulty:gm.difficulty};
+		    return dial;
+		} else if (dial.indexOf("SR3")>-1) {
+		    this.log("%SLOOPRIGHT% or %TURNRIGHT% maneuver");
+		    dial["SR3"]={move:"TR3",halfturn:true,difficulty:gm.difficulty};
+		    return dial;
+		} else return dial;
+	    })
 	},
         unique: true,
 	done:true,
@@ -2409,6 +2426,7 @@ var PILOTS = [
 	    var m=this.getmaneuver();
 	    var p={};
 	    p[m.move]=m;
+	    if (this.hasionizationeffect()) return p;
 	    var speed = parseInt(m.move.substr(-1),10);
 	    for (var i=-1; i<=1; i++) {
 		var r=m.move.replace(/\d/,(speed+i)+"");
@@ -2853,7 +2871,7 @@ var PILOTS = [
 	  pilotid:151,
 	  beta:true,
 	  unit: "T-70 X-Wing",
-	  skill: 5,
+	  skill: 6,
 	  unique:true,
 	  init: function() { this.sr=-1; },
 	  removeshield:function(n) {
@@ -3115,6 +3133,7 @@ var PILOTS = [
 	points:21,
 	beginactivation: function() {
 	    var p=[];
+	    if (this.hasionizationeffect()) return;
 	    if (this.candoaction()) {
 		if (this.candoboost()) 
 		    p.push(this.newaction(this.resolveboost,"BOOST"));
@@ -3349,7 +3368,7 @@ var PILOTS = [
        done:true,
        unit:"G-1A Starfighter",
        skill:6,
-       points:26,
+       points:27,
        init: function() {
 	   this.wrap_before("endphase",this,function() {
 	       var p=this.selectnearbyunits(1,function() {return true;});
@@ -3467,14 +3486,15 @@ var PILOTS = [
 			this.removeevadetoken();
 		    }
 		    var t=this.targeting;
-		    for (var i=t.length;i>=0; i--) {
-			p[k].addtargettoken(t[i]);
+		    for (var i=t.length-1;i>=0; i--) {
+			p[k].addtarget(t[i]);
 			this.removetarget(t[i]);
 		    }
 		    var t=this.istargeted;
-		    for (var i=t.length;i>=0; i--) {
-			t[i].removetarget(this);
-			t[i].addtargettoken(p[k]);
+		    for (var i=t.length-1;i>=0; i--) {
+			var u=t[i];
+			u.removetarget(this);
+			u.addtarget(p[k]);
 		    }
 		},["select unit (or self to cancel) [%0]",this.name],true);
 	    });

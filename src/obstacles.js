@@ -66,7 +66,7 @@ function Rock(frag,coord) {
 	this.g.transform('t '+(-b.width/2)+" "+(-b.height/2));
 	this.getOutlineString();
 	this.show();
-    }.bind(this));
+    }.bind(this)); 
 }
 
 Rock.prototype = {

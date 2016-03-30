@@ -326,12 +326,12 @@ var CRITICAL_DECK=[
 	    this.unit.log("Critical: %0",this.name);
 	    this.isactive=true;
 	    this.unit.wrap_before("resolvecollision",this,function() {
-		this.removehull(1);
 		this.log("+1 %HIT% [%0]",self.name);
+		this.resolvehit(1);
 	    });
 	    this.unit.wrap_before("resolveocollision",this,function() {
-		this.removehull(1);
 		this.log("+1 %HIT% [%0]",self.name);
+		this.resolvehit(1);
 	    });
 	},
 	facedown: function() {
