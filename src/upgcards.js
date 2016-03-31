@@ -3629,16 +3629,15 @@ var UPGRADES= [
      ship:"TIE Defender",
      done:true,
      init: function(sh) {
-	 var ea=sh.endattack;
 	 var self=this;
-	 sh.endattack=function(c,h) {
+	 sh.wrap_before("endattack",this,function(c,h) {
 	     var w=this.weapons[0];
 	     var w1=this.weapons[this.activeweapon];
-	     if (w1.type==CANNON&&w1.point<=3&&w.isactive) {
+	     if (w1.type==CANNON&&w1.points<=3&&w.isactive) {
 		 this.log("2nd attack with %0 [%1]",w.name,self.name);
 		 this.selecttargetforattack(0); 
-	     } else ea.call(this,c,h);
-	 }
+	     } 
+	 })
      }
     },
     {name:"TIE Shuttle",

@@ -1227,7 +1227,7 @@ Unit.prototype = {
 	this.wrap_after("getagility",upg,function(a) {
 	    if (a>0) return a-1; else return a;
 	}).unwrapper("endphase");
-	if (this.tractorbeam==1) {
+	if (this.tractorbeam==1&&!this.islarge) {
 	    p=Unit.prototype.getrollmatrix.call(this,this.m).concat(this.getpathmatrix(this.m,"F1"));
 	    u.doselection(function(n) {
 		u.resolveactionmove.call(
@@ -1238,11 +1238,13 @@ Unit.prototype = {
     },
     addtractorbeamtoken: function() {
 	this.tractorbeam++;
+	this.animateaddtoken("xtractorbeamtoken");
 	this.movelog("TB");
 	this.show();
     },
     removetractorbeamtoken: function() {
 	this.tractorbeam--;
+	this.animateremovetoken("xtractorbeamtoken");
 	this.movelog("tb");
 	this.show();
     },
@@ -1665,6 +1667,7 @@ Unit.prototype = {
     removecloaktoken: function() {
 	this.agility-=2; 
 	this.iscloaked=false;
+	this.animateremovetoken("xcloaktoken");
 	this.movelog("ct");
 	SOUNDS.decloak.play();
     },
@@ -1758,6 +1761,7 @@ Unit.prototype = {
     addcloaktoken: function() {
 	this.iscloaked=true;
 	this.agility+=2;
+	this.animateaddtoken("xcloaktoken");
 	this.movelog("CT");
 	SOUNDS.cloak.play();
     },
@@ -2428,7 +2432,7 @@ Unit.prototype = {
 	if (this.ionized>0&&i<6) {
 	    this.infoicon[i++].attr({text:"Z",fill:A.STRESS.color});}
 	if (this.tractorbeam>0&&i<6) {
-	    this.infoicon[i++].attr({text:"T",fill:A.STRESS.color});}
+	    this.infoicon[i++].attr({text:"Y",fill:A.STRESS.color});}
 	for (var j=i; j<6; j++) {
 	    this.infoicon[i++].attr({text:""});}	    
     },
@@ -2609,6 +2613,7 @@ Unit.prototype = {
 	if (this.iscloaked) str+="<td class='xcloaktoken'></td>";
 	if (this.stress>0) str+="<td title='"+this.stress+" stress token(s)' class='xstresstoken'></td>";	
 	if (this.ionized>0) str+="<td title='"+this.ionized+" ionization token(s)' class='xionizedtoken'></td>";	
+	if (this.tractorbeam>0) str+="<td title='"+this.tractorbeam+" tractorbeam token(s)' class='xtractorbeamtoken'></td>";	
 	return str;
     },
     showstats: function() {
