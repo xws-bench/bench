@@ -200,7 +200,8 @@ position:absolute;
 -webkit-animation-fill-mode:forwards;
 animation-fill-mode:forwards;
 left:150px;
-top:0
+top:0;
+pointer-events:none
 }
 
 @keyframes up {
@@ -223,7 +224,8 @@ animation-fill-mode:forwards;
 animation-timing-function:ease;
 position:absolute;
 left:150px;
-top:0
+top:0;
+pointer-events:none
 }
 
 @keyframes down {
@@ -533,7 +535,8 @@ background:rgba(0,0,0,0);
 display:none;
 position:absolute;
 left:150px;
-top:0
+top:0;
+pointer-events:none
 }
 
 .phasepanel {
@@ -1950,7 +1953,9 @@ vertical-align:middle
 text-decoration:none;
 color:#D0D0D0
 }
-
+.odd {
+background:#f9f9f9
+}
 @font-face {
 font-family:'symbols';
 src:url(xwings.ttf) format("truetype")
