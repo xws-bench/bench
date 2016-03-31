@@ -80,28 +80,30 @@ function center() {
     activeunit.show();
 }
 var AIstats = function(error,options, response) {
-    console.log(error,options,response);
-    var scoreh=0;
-    var scorec=0;
-    var n=0;
+    //console.log(error,options,response);
     if (typeof response.rows!="undefined") {
-    	for (var i=1; i<response.rows.length; i++) {
-	    var t=response.rows[i].cellsArray[0].split(" ");
-	    var ts1=t[0].split(":");
-	    var type1=ts1[0];
-	    var score1=ts1[1];
-	    var ts2=t[1].split(":");
-	    var type2=ts2[0];
-	    var score2=ts2[1];
-	    if (type2!=type1) {
-		if (type2=="Human") scoreh+=parseInt(score2,10);
-		else scorec+=parseInt(score2,10);
-		if (type1=="Human") scoreh+=parseInt(score1,10);
-		else scorec+=parseInt(score1,10);
-		n++;
+    	for (var i=1; i<response.rows.length; i+=500) {
+	    var scoreh=0;
+	    var scorec=0;
+	    var n=0;
+	    for (var j=0; j<200&&j+i<response.rows.length; j++) {
+		var t=response.rows[i+j].cellsArray[0].split(" ");
+		var ts1=t[0].split(":");
+		var type1=ts1[0];
+		var score1=ts1[1];
+		var ts2=t[1].split(":");
+		var type2=ts2[0];
+		var score2=ts2[1];
+		if (type2!=type1) {
+		    if (type2=="Human") scoreh+=parseInt(score2,10);
+		    else scorec+=parseInt(score2,10);
+		    if (type1=="Human") scoreh+=parseInt(score1,10);
+		    else scorec+=parseInt(score1,10);
+		    n++;
+		}
 	    }
+	    if (n>0) log((Math.floor(scorec/n))); //+"-"+(Math.floor(scoreh/n)));
 	}
-	if (n>0) log("mean score:"+(Math.floor(scorec/n))+"-"+(Math.floor(scoreh/n)));
     }
 }
 var myCallback = function (error, options, response) {
@@ -726,7 +728,7 @@ var mySpreadsheets=[
 "https://docs.google.com/spreadsheets/d/1Jzigt2slBhygjcylCsy4UywpsEJEjejvtCfixNoa_z4/edit#gid=0",
 "https://docs.google.com/spreadsheets/d/1dkvDxaH3mJhps9pi-R5L_ttK_EmDKUZwaCE9RZUYueg/edit#gid=0"
 ];
-/*function displayAIperformance() {
+function displayAIperformance() {
     for (var i=0; i<mySpreadsheets.length; i++) {
 	$('#squadbattlediv').sheetrock({
 	    url: mySpreadsheets[i],
@@ -736,7 +738,7 @@ var mySpreadsheets=[
 	    labels:["Score"]
 	});
     }   
-}*/
+}
 /*
 function recomputeurl() {
     $('#squadbattlediv').sheetrock({
@@ -1326,14 +1328,16 @@ function nextphase() {
 	});
 	jwerty.key("1", function() { activeunit.addfocustoken();activeunit.show();});
 	jwerty.key("2", function() { activeunit.addevadetoken();activeunit.show();});
-	jwerty.key("3", function() { if (!activeunit.iscloaked) {activeunit.iscloaked=true;activeunit.agility+=2;activeunit.show();}});
+	jwerty.key("3", function() { if (!activeunit.iscloaked) {activeunit.addcloaktoken();activeunit.show();}});
 	jwerty.key("4", function() { activeunit.addstress();activeunit.show();});
 	jwerty.key("5", function() { activeunit.addiontoken();activeunit.show();});
+	jwerty.key("6", function() { activeunit.addtractorbeamtoken();activeunit.show();});
 	jwerty.key("shift+1", function() { if (activeunit.focus>0) activeunit.removefocustoken();activeunit.show();});
 	jwerty.key("shift+2", function() { if (activeunit.evade>0) activeunit.removeevadetoken();activeunit.show();});
-	jwerty.key("shift+3", function() { if (activeunit.iscloaked) {activeunit.iscloaked=false;activeunit.agility-=2;activeunit.show();}});
+	jwerty.key("shift+3", function() { if (activeunit.iscloaked) {activeunit.removecloaktoken();activeunit.show();}});
 	jwerty.key("shift+4", function() { if (activeunit.stress>0) activeunit.removestresstoken();activeunit.show();});
 	jwerty.key("shift+5", function() { if (activeunit.ionized>0) activeunit.removeiontoken();});
+	jwerty.key("shift+6", function() { if (activeunit.tractorbeam>0) activeunit.removetractorbeamtoken();});
 	jwerty.key("f",function() { 
 	    var s=""; 
 	    for(i in activeunit.actionsdone) s+=activeunit.actionsdone[i]+" ";
@@ -2027,7 +2031,7 @@ $(document).ready(function() {
 	$("#player2").html("<option selected value='human'>"+UI_translation["human"]+"</option>");
 	$("#player2").append("<option value='computer'>"+UI_translation["computer"]+"</option>");
 
-	//jwerty.key("shift+i", displayAIperformance);
+	jwerty.key("shift+i", displayAIperformance);
 	//jwerty.key("shift+i", TogetherJS);
 /*
 TogetherJSConfig_on_ready = function () {

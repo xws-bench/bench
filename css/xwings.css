@@ -1290,7 +1290,7 @@ border-style:solid;
 border-width:1px
 }
 
-.xevadetoken,.xfocustoken,.xcloaktoken,.xstresstoken,.xtargetedtoken,.xtargettoken,.xionizedtoken,.focusmodtokena,.evademodtokena,.stressmodtokena,.focusmodtokend,.hitmodtokena,.hitmodtokend,.criticalmodtokena,.illicitmodtokena,.blankmodtokena,.illicitmodtokend,.blankmodtokend,.evademodtokend,.criticalmodtokend,.targetmodtokena {
+.xevadetoken,.xfocustoken,.xcloaktoken,.xstresstoken,.xtargetedtoken,.xtargettoken,.xionizedtoken,.xtractorbeamtoken,.focusmodtokena,.evademodtokena,.stressmodtokena,.focusmodtokend,.hitmodtokena,.hitmodtokend,.criticalmodtokena,.illicitmodtokena,.blankmodtokena,.illicitmodtokend,.blankmodtokend,.evademodtokend,.criticalmodtokend,.targetmodtokena {
 font-family:'symbols';
 padding:4px;
 display:inline-block;
@@ -1335,7 +1335,7 @@ color:#0a0;
 border-color:#0a0
 }
 
-.stresstoken,.xstresstoken,.xionizedtoken,.xtargetedtoken {
+.stresstoken,.xstresstoken,.xionizedtoken,.xtractorbeamtoken,.xtargetedtoken {
 color:#f33;
 border-color:#f33
 }
@@ -1379,7 +1379,9 @@ content:"?"
 .xionizedtoken::after {
 content:"Z"
 }
-
+.xtractorbeamtoken::after {
+content:"Y"
+}
 .cloaktoken::after,.xcloaktoken::after {
 content:"k"
 }

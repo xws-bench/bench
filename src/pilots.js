@@ -2094,11 +2094,11 @@ var PILOTS = [
 	pilotid:111,
         init: function() {
 	    this.wrap_after("getmaneuverlist",this,function(dial) {
-		if (dial.indexOf("SL3")>-1) {
+		if (typeof dial["SL3"]!="undefined") {
 		    this.log("%SLOOPLEFT% or %TURNLEFT% maneuver");
 		    dial["TL3"]={move:"TL3",halfturn:true,difficulty:gm.difficulty};
 		    return dial;
-		} else if (dial.indexOf("SR3")>-1) {
+		} else if (typeof dial["SR3"]!="undefined") {
 		    this.log("%SLOOPRIGHT% or %TURNRIGHT% maneuver");
 		    dial["SR3"]={move:"TR3",halfturn:true,difficulty:gm.difficulty};
 		    return dial;
