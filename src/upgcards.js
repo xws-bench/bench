@@ -2204,11 +2204,13 @@ var UPGRADES= [
 	    var self=this;
 	    sh.wrap_before("declareattack",this,function(w,target) {
 		this.wrap_before("removefocustoken",self,function() {
-		    if (this.targeting.length==0) {
+		    this.donoaction([{org:self,name:self.name,
+				      type:"TARGET",action:function(n) {
 			this.log("+1 %TARGET% / %1 [%0]",self.name,targetunit.name);
 			this.addtarget(targetunit);
 			displayattacktokens(this);
-		    }
+			this.endnoaction(n,"TARGET");
+		    }.bind(this)}],"",true)
 		}).unwrapper("endattack");
 	    });
 	},
