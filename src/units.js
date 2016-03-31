@@ -1892,8 +1892,7 @@ Unit.prototype = {
 	    var cl="tokens";
 	    if (a.str) { cl="x"+a.str+"token"; s=""; }
 	    var e=$("<td>").addClass(cl).attr({id:"reroll"+i,title:n+" rerolls["+a.org.name+"]"}).html(s);
-	    e.click(function() { if (typeof a.f=="function") a.f(); 
-				 reroll(n,(to==ATTACK_M),a,i); });
+	    e.click(function() { reroll(n,(to==ATTACK_M),a,i); });
 	    return e;
 	};
 	var mods=this.getdicemodifiers(); 
