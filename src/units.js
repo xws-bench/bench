@@ -2206,7 +2206,7 @@ Unit.prototype = {
 			}.bind(this))(list[i],i);
 		    }
 		}
-		var e=$("<button>").addClass("m-skip").click(function() { this.resolveaction(null,n); }.bind(this));
+		var e=$("<button>").addClass("m-skip").addClass("wbutton").click(function() { this.resolveaction(null,n); }.bind(this));
 		$("#actiondial > div").append(e);
 	    } else this.endaction(n);
 	}.bind(this),list[0].name);  
@@ -2226,7 +2226,7 @@ Unit.prototype = {
 		}.bind(this))(list[i],i);
 	    }
 	    if (noskip==true) {
-		var e=$("<button>").addClass("m-skip").click(function() { this.resolvenoaction(null,n); }.bind(this));
+		var e=$("<button>").addClass("m-skip").addClass("wbutton").click(function() { this.resolvenoaction(null,n); }.bind(this));
 		$("#actiondial > div").append(e);
 	    }
 	}.bind(this),list[0].name);  
@@ -2272,7 +2272,7 @@ Unit.prototype = {
 		    str+="<div class='symbols "+w.color+"' onclick='activeunit.selecttargetforattack("+wn[i]+")'>"+w.key+"</div>"
 		}
 		// activeunit.hasfired++ ?
-		str+="<button class='m-skip' onclick='activeunit.hasfired++;activeunit.show();activeunit.unlock();'></button>";
+		str+="<button class='m-skip wbutton' onclick='activeunit.hasfired++;activeunit.show();activeunit.unlock();'></button>";
 		$("#attackdial").html("<div>"+str+"</div>").show();
 	    } else if (!this.hasfired) {
 		//this.log("showattack, has not fired");
@@ -2375,7 +2375,7 @@ Unit.prototype = {
 		}
 	    })(i);
 	}
-	$("<button>").addClass("m-move").click(function() { this.resolvemaneuver(); }.bind(this)).appendTo("#activationdial > div");
+	$("<button>").addClass("m-move").addClass("wbutton").click(function() { this.resolvemaneuver(); }.bind(this)).appendTo("#activationdial > div");
 
     },
     movelog: function(s) {
@@ -2965,7 +2965,7 @@ Unit.prototype = {
 		    $("#actiondial").append(e);
 		}.bind(this))(i);
 	    }
-	    var e=$("<button>").addClass("m-skip").click(function() { resolve(null,n); });
+	    var e=$("<button>").addClass("m-skip").addClass("wbutton").click(function() { resolve(null,n); });
 	    $("#actiondial").append(e);
 	    $("#actiondial").show();
 	}.bind(this),"upgrade");

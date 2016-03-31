@@ -1212,7 +1212,6 @@ function nextphase() {
 	break;
     case SETUP_PHASE:
 	loadsound();
-	log("setup top");
 	$(".buttonbar .share-buttons").show();
 	$("#team2").css("top",$("nav").height()+2);
 	$("#team1").css("top",$("nav").height()+2);
@@ -1302,7 +1301,11 @@ function nextphase() {
 	$("#svgout").mousemove(function(e) {dragmove(e);});
 	$("#svgout").mouseup(function(e) {dragstop(e);});
 	jwerty.key("escape", nextphase);
-	
+	/*$(document).keyup(function(event) {
+	    if (event.which==13) {
+		$(".wbutton").trigger("click");
+	    }
+	});*/
 	/* By-passes */
 	jwerty.key("9", function() { 
 		console.log("active:"+activeunit.name+" in hit range:"+activeunit.weapons[0].name);
