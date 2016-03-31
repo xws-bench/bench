@@ -6,6 +6,8 @@ Unit.prototype for old pilots and upgrades
 var UPGRADE_TYPES={
     Elite:"ept",Torpedo:TORPEDO,Astromech:"amd",Turret:"turret",Missile:"missile",Crew:"crew",Cannon:"cannon",Bomb:"bomb",Title:"title",Mod:"mod",System:"system",Illicit:"illicit",Salvaged:"salvaged",Tech:"tech"
 };
+function AUXILIARY(i,m) { return this.getPrimarySectorString(i,m.clone().rotate(180,0,0));};
+function SUBAUXILIARY(i,j,m) { return this.getPrimarySubSectorString(i,j,m.clone().rotate(180,0,0)); }
 function Laser(u,type,fire) {
     if (type=="Bilaser") 
 	return new Weapon(u,{
@@ -15,8 +17,8 @@ function Laser(u,type,fire) {
 	    attack: fire,
 	    range: [1,3],
 	    isprimary: true,
-	    auxiliary: function(i,m) { return this.getPrimarySectorString(i,m.clone().rotate(180,0,0)); },
-	    subauxiliary: function(i,j,m) { return this.getPrimarySubSectorString(i,j,m.clone().rotate(180,0,0)); }
+	    auxiliary: AUXILIARY,
+	    subauxiliary: SUBAUXILIARY,
 	});
     else if (type=="Laser180") {
 	return new Weapon(u,{
@@ -169,7 +171,6 @@ Bomb.prototype = {
     },
     display: function(x,y) {
 	if (x!=0||y!=0) this.m=this.m.clone().translate(x,y);
-	NOLOG=false;
 	this.img1=s.image("png/"+this.img,-this.width/2,-this.height/2,this.width,this.height);
 	this.outline=this.getOutline(new Snap.Matrix())
 	    .attr({display:"block","class":"bombanim",stroke:halftone(BLUE),strokeWidth:2,fill:"rgba(8,8,8,0.3)"});

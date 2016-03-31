@@ -170,6 +170,7 @@ function Unit(team,pilotid) {
     this.ship={};
     this.id=gid;
     this.life=1;
+    this.nomoreattack=0;
     this.wrapping=[];
     var id=this.id;
     generics["u"+gid]=this;
@@ -291,7 +292,7 @@ Unit.prototype = {
 	    if (typeof img=="undefined") 
 		this.img=s.text(-10,10,this.ship.code).transform('r -90 0 0 '+((this.faction=="EMPIRE"||this.faction=="SCUM")?'r -1 1':'')).attr({
 		class:"xwingship",
-	    }); else 	    this.img=s.image("png/"+img,-20*this.scale,-20*this.scale,40*this.scale,40*this.scale).transform('r 90 0 0');
+	    }); else 	    this.img=s.image("png/"+img,-20*this.scale,-20*this.scale,40*this.scale,40*this.scale).transform('r 90 0 0').attr({ pointerEvents:"none"});
 
 
 	    this.imgsmoke= s.image("png/smoke.gif",-20,-60,30,50).transform('r 180 0 0').attr({display:"none"});
@@ -310,6 +311,11 @@ Unit.prototype = {
 	this.outline = s.rect(-w,-w,2*w,2*w).attr({
             fill: "rgba(8,8,8,0.5)",
             strokeWidth: 2,
+	});
+	this.border = s.rect(-w,-w,2*w,2*w).attr({
+	    fill:"rgba(0,0,0,0)",
+	    strokeWidth: 2,
+	    stroke:halftone(this.color),
 	});
 	this.skillbar=s.text(1-w,3-w,repeat('u',this.skill))
 	    .transform('r -90 0 0').attr({
@@ -360,7 +366,7 @@ Unit.prototype = {
 	}
 	this.geffect=s.group(this.imgflame,this.imgsmoke).attr({pointerEvents:"none"});
 	// Order in the group is important. Latest is on top of stacked layers
-	this.g=s.group(this.sector,this.outline,this.img,this.dialspeed,this.dialdirection,this.actionicon,this.infoicon[0],this.infoicon[1],this.infoicon[2],this.infoicon[3],this.infoicon[4],this.infoicon[5],this.gstat);
+	this.g=s.group(this.sector,this.outline,this.img,this.border,this.dialspeed,this.dialdirection,this.actionicon,this.infoicon[0],this.infoicon[1],this.infoicon[2],this.infoicon[3],this.infoicon[4],this.infoicon[5],this.gstat);
 	VIEWPORT.add(this.g);
 	VIEWPORT.add(this.geffect);
 	this.g.addClass("unit");
@@ -1263,12 +1269,15 @@ Unit.prototype = {
 	this.show();
    },
     dies: function() {
-	var i;
-
 	this.movelog("d-0");
 	$("#"+this.id).attr("onclick","");
 	$("#"+this.id).addClass("dead");
-	$("#"+this.id).html(""+this)
+	$("#"+this.id).html(""+this);
+	$("#"+this.id+" .outoverflow").each(function(index) { 
+	    if ($(this).css("top")!="auto") {
+		$(this).css("top",$(this).parent().offset().top+"px");
+	    }
+	});
 	i=squadron.indexOf(this);
 	for (i in squadron) {
 	    if (squadron[i]==this) {
@@ -1411,6 +1420,7 @@ Unit.prototype = {
 	this.ocollision.mine=[];
 	this.collision=false;
 	this.touching=[];
+	this.nomoreattack=0;
 	this.showinfo();
     },
     playfiresnd: function() {
@@ -1835,7 +1845,7 @@ Unit.prototype = {
 	return this.ocollision.overlap>-1;
     },
     canfire: function() {
- 	var b= (this.hasfired==0)/*&&((r[1].length>0||r[2].length>0||r[3].length>0)*/&&!this.iscloaked&&!this.isfireobstructed();
+ 	var b= (this.nomoreattack==0)&&(this.hasfired==0)/*&&((r[1].length>0||r[2].length>0||r[3].length>0)*/&&!this.iscloaked&&!this.isfireobstructed();
         return b;
     },
     getattackstrength: function(i,sh) {
@@ -2423,13 +2433,14 @@ Unit.prototype = {
 	    this.infoicon[i++].attr({text:""});}	    
     },
     showoutline: function() {
-        this.outline.attr({ stroke:((activeunit==this)?this.color:halftone(this.color)) }); 
+        this.border.attr({ stroke:((activeunit==this)?this.color:halftone(this.color)) }); 
     }, 
     dock:function(parent) {
 	this.isdocked=true;
 	$("#"+this.id).attr("onclick","");
 	$("#"+this.id).addClass("docked");
 	$("#"+this.id).html(""+this);
+
 	this.g.attr({display:"none"});
 	this.geffect.attr({display:"none"});
 	this.log("docked on %0",parent.name);
@@ -2439,7 +2450,12 @@ Unit.prototype = {
     deploy: function(parent,dm) {
 	this.movelog("DPY");
 	$("#"+this.id).removeClass("docked");
-	$("#"+this.id).html(""+this)
+	$("#"+this.id).html(""+this);
+	$("#"+this.id+" .outoverflow").each(function(index) { 
+	    if ($(this).css("top")!="auto") {
+		$(this).css("top",$(this).parent().offset().top+"px");
+	    }
+	});
 	$("#"+this.id).click(function() { this.select(); }.bind(this));
 	this.g.attr({display:"block"});
 	this.geffect.attr({display:"block"});
@@ -2611,7 +2627,6 @@ Unit.prototype = {
 	    this.evadebar.attr({text:repeat('u',this.getagility())});
 	    this.hullbar.attr({text:repeat('u',this.hull)});
 	    this.shieldbar.attr({text:repeat('u',this.shield+this.hull)});
-	    $("#"+this.id).html(""+this);
 	}
     },
     showpanel: function() {
@@ -2662,6 +2677,11 @@ Unit.prototype = {
 	this.showattack();
 	if (!this.dead) { 
 	    $("#"+this.id).html(""+this);
+	    $("#"+this.id+" .outoverflow").each(function(index) { 
+		if ($(this).css("top")!="auto") {
+		    $(this).css("top",$(this).parent().offset().top+"px");
+		}
+	    });
 	    //$("#"+this.id).addClass("selected");
 	}
     },
