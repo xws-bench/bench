@@ -1058,6 +1058,10 @@ box-shadow:1px 1px 3px #000;
 color:#000;
 background:#fff
 }
+.team > div.dead {
+color:grey;
+background:#000
+}
 
 .ctrl {
 position:absolute;
