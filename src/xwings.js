@@ -1212,6 +1212,7 @@ function nextphase() {
 	break;
     case SETUP_PHASE:
 	loadsound();
+	log("setup top");
 	$(".buttonbar .share-buttons").show();
 	$("#team2").css("top",$("nav").height()+2);
 	$("#team1").css("top",$("nav").height()+2);
@@ -1789,6 +1790,15 @@ var   dragstop= function(e) {
     }
     VIEWPORT.dragged=false;
 }
+var scrolloverflow=function(event) {
+    var id=event.target.id;
+    $("#"+id+" .outoverflow").each(function(index) { 
+	if ($(this).css("top")!="auto") {
+	    $(this).css("top",$(this).parent().offset().top+"px");
+	}
+    });
+}
+
 var changelanguage= function(l) {
     localStorage['LANG']=l;
     log("reloading "+l);
@@ -1949,22 +1959,7 @@ $(document).ready(function() {
 	log("Upgrades NOT implemented"+str);
 	$("#showproba").prop("disabled",true);
 	var d=new Date();
-	//for (i=0; i<d.getMinutes(); i++) Math.random();
-	var mousewheel=function(t,event) {
-	    var min=$("nav").height()+2;
-	    var e = event.originalEvent; // old IE support
-	    //var delta = Math.max(-100, Math.min(100, (e.wheelDelta || -e.detail)));
-	    var top=parseInt($("#team1").css("top"),10);//+delta;
-	    
-	};
-	var scrolloverflow=function(event) {
-	    var id=event.target.id;
-	    $("#"+id+" .outoverflow").each(function(index) { 
-		    if ($(this).css("top")!="auto") {
-			$(this).css("top",$(this).parent().offset().top+"px");
-		    }
-		    });
-	}
+
 
 	if (typeof localStorage.volume=="undefined") localStorage.volume=0.8;
 

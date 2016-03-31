@@ -1289,17 +1289,17 @@ var PILOTS = [
 		if (p.length>0) {
 		    var unit=this;
 		    this.doselection(function(n) {
-			this.log("select unit for a free action");
+			this.log("select unit for a free action"+p.length);
 			this.resolveactionselection(p,function(k) {
 			    var al=p[k].getactionlist();
 			    //log("selected "+p[k].name+" "+al.length);
 			    if (al.length>0) {
 				p[k].doaction(al).done(function() { 
 				    //log("endaction");
-				this.select();this.endnoaction(n,"");
-
+				    this.select();
 				}.bind(this));
-			    } else { //log("no action");
+				this.endnoaction(n,"");
+			    } else { 
 				this.select(); this.endnoaction(n,""); }
 			}.bind(this));
 		    }.bind(this));
@@ -3059,8 +3059,17 @@ var PILOTS = [
 	points:40,
 	done:true,
         getmaneuverlist: hera_fct,
-	upgrades:[SYSTEM,TURRET,TORPEDO,TORPEDO,CREW,CREW]
-    },
+	upgrades:[SYSTEM,TURRET,TORPEDO,TORPEDO,CREW,CREW],
+	init: function() {
+	    for (var i=0; i<this.weapons.length; i++) {
+		var w=this.weapons[i];
+		if (w.type==TORPEDO) {
+		    w.auxiliary=AUXILIARY,
+		    w.subauxiliary=SUBAUXILIARY
+		}
+	    }
+	}
+   },
     {
 	name:"'Chopper'",
 	unique:true,
@@ -3080,6 +3089,13 @@ var PILOTS = [
 		}
 		return l;
 	    });
+	    for (var i=0; i<this.weapons.length; i++) {
+		var w=this.weapons[i];
+		if (w.type==TORPEDO) {
+		    w.auxiliary=AUXILIARY,
+		    w.subauxiliary=SUBAUXILIARY
+		}
+	    }
 	},
 	upgrades:[SYSTEM,TURRET,TORPEDO,TORPEDO,CREW,CREW]
     },
@@ -3106,6 +3122,7 @@ var PILOTS = [
 		    } 
 		    return m;
 		}.bind(this),str:"focus"});
+
 	},        
 	upgrades:[ELITE,TURRET,CREW]
     },
@@ -3120,7 +3137,7 @@ var PILOTS = [
 	ambiguous:true,
 	points:22,
         getmaneuverlist: hera_fct,
-	upgrades:[ELITE,TURRET,CREW]
+	upgrades:[ELITE,TURRET,CREW],
     },
     {
 	name:"Sabine Wren",
@@ -3174,6 +3191,13 @@ var PILOTS = [
 	done:true,
 	init:function() {
 	    var self=this;
+	    for (var i=0; i<this.weapons.length; i++) {
+		var w=this.weapons[i];
+		if (w.type==TORPEDO) {
+		    w.auxiliary=AUXILIARY,
+		    w.subauxiliary=SUBAUXILIARY
+		}
+	    }
 	    Unit.prototype.wrap_after("preattackroll",this,function(w,t) {
 		var p=this.selectnearbyenemy(2);
 		if (self.canusefocus()&&p.indexOf(self)>-1) { 
@@ -3517,7 +3541,16 @@ var PILOTS = [
       skill:3,
       pilotid:183,
       points:35,
-      upgrades:[SYSTEM,TURRET,TORPEDO,TORPEDO,CREW,CREW]
+      upgrades:[SYSTEM,TURRET,TORPEDO,TORPEDO,CREW,CREW],
+      init: function() {
+	  for (var i=0; i<this.weapons.length; i++) {
+	      var w=this.weapons[i];
+	      if (w.type==TORPEDO) {
+		  w.auxiliary=AUXILIARY,
+		  w.subauxiliary=SUBAUXILIARY
+	      }
+	  }
+      }
     },
    {
        name:"Baron of the Empire",

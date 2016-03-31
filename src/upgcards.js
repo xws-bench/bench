@@ -3302,11 +3302,8 @@ var UPGRADES= [
 		u.wrap_before("endround",u,function() {
 		    this.hasmoved=false;
 		});
-		u.wrap_after("canfire",u,function() { return false; }).unwrapper("endround");
-		//this.doselection(function(n) {
+		u.nomoreattack=1;
 		u.deploy(this,self.getdeploymentmatrix(u));
-		//    this.endnoaction(n,"TITLE");
-		//}.bind(this));
 	    });
 	}
     },
@@ -3517,8 +3514,8 @@ var UPGRADES= [
 		var u=squadron[phantom];
 		if (TEAMS[sh.team].isia==true) u=$.extend(u,IAUnit.prototype);
 		u.dock(sh);
-		sh.weapons[0].auxiliary=function(i,m) { return this.getPrimarySectorString(i,m.clone().rotate(180,0,0)); };
-		sh.weapons[0].subauxiliary=function(i,j,m) { return this.getPrimarySubSectorString(i,j,m.clone().rotate(180,0,0)); };
+		sh.weapons[0].auxiliary=AUXILIARY,
+		sh.weapons[0].subauxiliary=SUBAUXILIARY
 		sh.weapons[0].type="Bilaser";
 		sh.wrap_after("endmaneuver",this,function() {
 		    if (this.docked) {
@@ -3530,6 +3527,31 @@ var UPGRADES= [
 			    u.deploy(this,self.getdeploymentmatrix(u));
 			    u.endnoaction(n,"TITLE");
 			}.bind(this)}],"",true);
+		    }
+		});
+		sh.wrap_after("endcombatphase",this,function() {
+		    if (this.docked) 
+			for (var i=0; i<this.weapons.length; i++) {
+			    var u=this.weapons[i];
+			    if (u.type==TURRET&&u.isactive&&this.attacknomore!=round) {
+				this.log("+1 attack with %1 [%0]",self.name,u.name);
+				this.attacknomore=round;
+				this.selecttargetforattack(i);
+				break;
+			    }
+			}	
+		});
+		sh.wrap_after("dies",this,function() {
+		    if (this.docked) {
+			if (this.docked.nomoreattack==0) 
+			    this.docked.nomoreattack++;
+			this.log("emergency deployment of %0, +1 %HIT% [%1]",this.docked.name,this.name);
+			this.docked.resolvehit(1);
+			this.docked.hasfired=false;
+			this.docked.wrap_before("endround",this.docked,function() {
+			    this.hasmoved=false;
+			});
+			u.deploy(this,self.getdeploymentmatrix(u));
 		    }
 		});
 	    } else sh.log("Phantom not found");
