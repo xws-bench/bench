@@ -3121,7 +3121,7 @@ var UPGRADES= [
      init: function(sh) {
 	 var self=this;
 	 sh.wrap_after("beginactivationphase",self,function(l) {
-	     if (round==0) {
+	     if (round==1) {
 		 this.selectunit(this.selectnearbyenemy(4),function(p,k) {
 		     self.nemesis=p[k];
 		     this.log("%0 chosen as nemesis [%1]",p[k].name,self.name);
