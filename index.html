@@ -20,33 +20,6 @@
       ga('create', 'UA-63149795-1', 'auto');
       ga('send', 'pageview');
 </script>
-<script>
-function handlepaste (elem, e) { 
-    var savedcontent = elem.innerHTML;
-    if (e && e.clipboardData && e.clipboardData.getData) {
-        if (/text\/html/.test(e.clipboardData.types)) {
-            elem.innerHTML = e.clipboardData.getData('text/html');
-        }
-        else if (/text\/plain/.test(e.clipboardData.types)) {
-            elem.innerHTML = e.clipboardData.getData('text/plain');
-        }
-        else {
-            elem.innerHTML = "";
-        }
-        waitforpastedata(elem, savedcontent);
-        if (e.preventDefault) {
-                e.stopPropagation();
-                e.preventDefault();
-        }
-        return false;
-    }
-    else {// Everything else - empty editdiv and allow browser to paste content into it, then cleanup
-        elem.innerHTML = "";
-        waitforpastedata(elem, savedcontent);
-        return true;
-    }
-}
-</script>
   </head>
 
   <body>
@@ -67,6 +40,7 @@ function handlepaste (elem, e) {
 	    <ul>
 	      <li><a class="m-about" href="#about"></a></li>
 	      <li><a class="m-proba" href="#proba" id="showproba"></a></li>
+	      <li><a class="m-kb" href="#kb">Keyboard bindings</a></li>
 	      <li><a class="m-blog" href="http://xws-benchmark.blogspot.fr/"></a></li>
 	      <li><a class="m-donate" href="#donate"></a></li>
 	      <li><a class="m-credits" href="#credit"></a></li>
@@ -88,7 +62,7 @@ function handlepaste (elem, e) {
       </section>
     </aside>
     
-    <article id="game" class="main">
+    <article id="game" style="display:none" class="main">
       <h2 style='display:none'>Main panel</h2>
       <section class="phasepanel">
 	<h2 style='display:none'>Main panel</h2>
@@ -151,14 +125,14 @@ function handlepaste (elem, e) {
 	</div>
      </section>
  
-     <article id="creation" class="mainarticle">
+     <article id="creation" style="display:none" defer class="mainarticle">
        <div>
 	 <h3 class="inunitlist"><span class="m-name"></span> - <span id="totalpts">0</span>&nbsp;<span class="total m-totalpts"></span></h3>
 	 <div class="selector">
 	   <span class="REBEL m-rebel" onclick="currentteam.changefaction('REBEL')"></span>
 	   <span class="SCUM m-scum" onclick="currentteam.changefaction('SCUM')"></span>
 	   <span class="EMPIRE m-empire" onclick="currentteam.changefaction('EMPIRE')"></span>
-	 </div>
+	 
 	 <div class="unitlist">
 	   <ul id="caroussel" class="caroussel"></ul>
 	   <ul id="listunits" class="caroussel"></ul>
@@ -167,29 +141,43 @@ function handlepaste (elem, e) {
      </article>
 
 
-     <article id="selectphase" class="mainarticle">
+     <article id="selectphase" style="display:none" class="mainarticle">
 
        <h3 class="m-selectinstructions"></h3>
-       <table id="setuplist" class="setupselector">
-	 <tr><td><select onchange="changesetup()"></select></td><td><span></span></td><td><img src="png/classic.png"></td></tr>
-       </table><div>
+       <div>
        <table class="squadselected">
 	 <tr>
 	   <td>
 	     <span class="m-squad1"></span>
 	     <select id="player1"></select>
 	     <button onclick="currentteam=TEAMS[1];createsquad()" class="m-create"></button>
+	     <button class="m-asteroids" onclick="location='#asteroid';TEAMS[1].selectrocks();"></button>
  	   </td>
 	   <td>
 	     <span class="m-squad2"></span>
 	     <select id="player2"></select>
 	     <button onclick="currentteam=TEAMS[2];createsquad()" class="m-create"></button>
+	     <button class="m-asteroids" onclick="location='#asteroid';TEAMS[2].selectrocks();"></button>
 	   </td>
 	 </tr>
-	 <tr >
+	 <tr>
 	   <td class="squadbg"><div>1</div><textarea onchange="currentteam=TEAMS[1];importsquad(1)" onpaste="setTimeout(function(){currentteam=TEAMS[1];importsquad(1);}, 4)" id="squad1" cols="40" rows="8"></textarea></td>
 	   <td class="squadbg"><div class="right">2</div><textarea  onchange="currentteam=TEAMS[2];importsquad(2)" onpaste="setTimeout(function(){currentteam=TEAMS[2];importsquad(2);}, 4)" id="squad2" cols="40" rows="8" ></textarea></td>
 	 </tr>
+	 <tr>
+	   <td colspan="2" class="squadbg" style="text-align:right">
+	     <span class="m-normalmap"></span>
+	     <img class="selected" src="css/mini10.jpg" onclick="$('.squadbg img').removeClass('selected'); $(this).addClass('selected');SETUP=SETUPS['Classic Map']">
+	     <img src="css/mini11.jpg" onclick="$('.squadbg img').removeClass('selected'); $(this).addClass('selected');SETUP=SETUPS['Blue Planet Map']">
+	     <img src="css/mini13.jpg" onclick="$('.squadbg img').removeClass('selected'); $(this).addClass('selected');SETUP=SETUPS['Blue Sky Map']">
+	     <img src="css/mini14.jpg" onclick="$('.squadbg img').removeClass('selected'); $(this).addClass('selected'); SETUP=SETUPS['Mars Map']">
+	     <img src="css/mini6.jpg" onclick="$('.squadbg img').removeClass('selected'); $(this).addClass('selected');SETUP=SETUPS['Cloud City Map']">
+	   </td>
+	 </tr>
+
+       </table>
+<table id="setuplist" style="display:none" class="setupselector">
+	 <tr><td><select onchange="changesetup()"></select></td><td><span></span></td><td></td></tr>
        </table>
        </div>
        <h3 class="m-manage"></h3>
@@ -198,14 +186,25 @@ function handlepaste (elem, e) {
 	 <span class="REBEL m-rebel" onclick="stype='REBEL';SQUADLIST.draw();"></span>
 	 <span class="SCUM m-scum" onclick="stype='SCUM';SQUADLIST.draw();" ></span>
 	 <span class="EMPIRE m-empire" onclick="stype='EMPIRE';SQUADLIST.draw();"></span>
-	 <span class="PREBUILT Prebuilt" onclick="stype='PREBUILT';SQUADLIST.draw();"></span>
-	 <span class="TOP m-top" onclick="stype='ELITE';SQUADLIST.draw();"></span><span style='position:relative;left:-1.5em;'><sup><a href="http://xwing.miniranker.com/" style="color:white;text-decoration:none">(*)</a></sup></span>
+	 <span class="Prebuilt"  onclick="stype='PREBUILT';SQUADLIST.draw();"><code style="font-size:larger">&#128230;</code></span>
+	 <span class="m-top" onclick="stype='ELITE';SQUADLIST.draw();"><code style="font-size:larger">&#127894;</code></span><span style='position:relative;left:-1.5em;'><sup><a href="http://xwing.miniranker.com/" style="color:white;text-decoration:none">(*)</a></sup></span>
 	 <span class="Mybuilds" onclick="stype='USER';SQUADLIST.draw();"></span>
        </div>
        <table id="squadlist" class="compact stripe hover order-column row-border">
        </table>
        <br>
      </article>
+
+     <section id="asteroid" class="modalDialog">
+       <div>
+	 <h2><span class="m-obstacles"></span><a href="#" title="Close" class="close">&times;</a></h2>
+	 <div>
+	   <span class="m-pick3"></span><br/><svg class="aster"></svg>
+	    <div class="ack"><button onclick="window.location='#'">Ok</button></div>
+
+	 </div>
+       </div>
+     </section>
 
 
      <section id="battlelog" class="modalDialog">
@@ -232,6 +231,7 @@ function handlepaste (elem, e) {
 	     </td>
 	   </tr>
 	 </table>
+	    <div class="ack"><button onclick="window.location='#'">Ok</button></div>
 	 </div>
        </div>
      </section>
@@ -272,6 +272,30 @@ function handlepaste (elem, e) {
         </div>
       </section>
 
+   <section id="kb" class="modalDialog">
+        <div draggable="true">
+          <h2><span class="m-kb">Keyboard bindings</span><a href="#" title="Close" class="close">&#10060;</a>
+          </h2>
+          <div>
+	    <table>
+	      <tr><th class="m-key">Keys</th><th class="m-action">Action</th></tr>
+	      <tr><td><code>ESC</code></td><td>Go to next phase</td></tr>
+	      <tr class="odd"><td><code>p/shift+p</code></td><td>Show/Hide possible moves for unit.</br>RED:goes out of board (this turn or the next), YELLOW:collides with obstacle, </br>WHITE:collides with unit, GREEN:ok</td></tr>
+	      <tr><td><code>m</code></td><td>Show average move, using only GREEN and WHITE moves, no K-/Talon turns. </br>Use shift+p to hide.</td></tr>
+	      <tr class="odd"><td><code>1/shift+1</code></td><td>Add/Remove <code class="xfocustoken"></code> to selected unit</td></tr>
+	      <tr><td><code>2/shift+2</code></td><td>Add/Remove <code class="xevadetoken"></code> to selected unit</td></tr>
+	      <tr class="odd"><td><code>3/shift+3</code></td><td>Add/Remove <code class="xcloaktoken"></code> to selected unit</td></tr>
+	      <tr><td><code>4/shift+4</code></td><td>Add/Remove <code class="xstresstoken"></code> to selected unit</td></tr>
+	      <tr class="odd"><td><code>5/shift+5</code></td><td>Add/Remove <code class="xionizedtoken"></code> (ionization token) to selected unit</td></tr>
+	      <tr class="odd"><td><code>6/shift+6</code></td><td>Add/Remove <code class="xtractorbeamtoken"></code> (tractor beam token) to selected unit</td></tr>
+	      <tr><td><code>d/shift+d</code></td><td>Add/Remove <code class="hit"></code> to selected unit</td></tr>
+	      <tr class="odd"><td><code>c</code></td><td>Add random <code class="critical"></code> to selected unit</td></tr>
+	    </table>
+	    <div class="ack"><button onclick="window.location='#'">Ok</button></div>
+	  </div>
+	</div>
+   </section>
+	      
    <section id="about" class="modalDialog">
         <div draggable="true">
           <h2><span class="m-about"></span><a href="#" title="Close" class="close">&#10060;</a>
@@ -335,6 +359,15 @@ The app is not really a game since the user plays both sides, there is no multi-
 	  </h2>
 	  <div>
 	    <table>
+	      <tr>
+		<td class="m-deckversion"></td>
+		<td>
+		  <input type="radio" id="ver1" name="deckversion" value="1" onclick="CURRENT_DECK=1"/>
+		  <label for="ver1" class="m-ver1"></label><br/>
+		  <input type="radio" id="ver2" checked name="deckversion" value="2" onclick="CURRENT_DECK=2"/>
+		  <label for="ver2"class="m-ver2"></label>
+		</td>
+	      </tr>
 	      <tr>
 		<td class="m-console"></td>
 		<td>
@@ -408,47 +441,53 @@ The app is not really a game since the user plays both sides, there is no multi-
       </section>
 
     <footer>
-      <a href="#" onclick="$('#consolecb').removeAttr('Checked'); $('footer').css({display:'none'})" title="Close" class="close">&#xd7;</a>
+      <a href="#" onclick="$('#consolecb').removeAttr('Checked'); $('footer').hide()" title="Close" class="close">&#xd7;</a>
       <div class='title'>Console</div>
       <div class="log" id='log'></div>
     </footer>
 
     <script src="js/all.min.js"></script>
+    <script>
+      if (location.search=="") $("#selectphase").show();
+    </script>
     <script src="js/bench.min.js" async></script>
 
     <script id="unit-creation" type="x-tmpl-mustache">
       <img class="headimg" src="png/{{faction}}/{{imgname}}.png">
-      <table>
-	<tr>
-	  <td class="statskill">{{skill}}</td>
-	  <td class="shipname">{{name}}</td><td>(<span class="pts">{{points}}</span>)</td>
-	  <td>
-	    <div class="close" data={{id}} title="Remove">&#xd7;</div>
-	    {{#unique}}
-	    <div class="duplicate symbols" data="{{id}}" title="Duplicate">&#xE902;</div>
-	    {{/unique}}
-	  </td>
-	</tr>
-      </table>
-      <table>
-	<tr>
-	  <td onclick="switchdialimg(true)" class="shipimg" rowspan="4" style="background-image:url(png/{{shipimg}})">
-	      <div class="xsymbols RED">{{fire}}</div>
-	      <div class="xsymbols GREEN">{{evade}}</div>
-	      <div class="xsymbols YELLOW">{{hull}}</div>
-	      <div class="xsymbols BLUE">{{shield}}</div>
-	  </td>
-	  <td onclick="switchdialimg(false)" class="shipdial" rowspan="4">
+      <div style="width:100%;position:absolute;top:0;">
+	<div style="float:right">
+	  <div class="close" data={{id}} title="Remove">&#xd7;</div>
+	  <table><tr><td>
+	  <div class="dialopen symbols" data={{id}} title="Show dial">6</div>
+	  <div class="tooltip shipdial">
 	    <table>
-	      {{{dialstring}}}
+	      {{#diallist}}
+	      <tr>
+		{{#item}}<td>{{.}}</td>{{/item}}
+		{{#moves}}
+		<td><span class="symbols {{difficulty}}">{{key}}</span></td>
+		{{/moves}}
+	      </tr>
+	      {{/diallist}}
 	    </table>
-	  </td>
-	  <td>{{shipname}}</td>
-	</tr>
-	<tr>
-	  <td class="actionlist">{{{actionstring}}}</td>
-	</tr>
-      </table>
+	  </div>
+	  </td></tr></table>
+	  {{#unique}}
+	  <div class="duplicate symbols" data="{{id}}" title="Duplicate">&#xE902;</div>
+	  {{/unique}}
+	</div>
+	<div style="margin:2px;float:left;width:2.5em;font-size:0.8em">
+	  <div class="statskill">{{skill}}</div>
+	  <div class="statfire"><span class="symbols">%</span><span class="val">{{fire}}</span></div>
+	  <div class="statevade"><span class="symbols">^</span><span class="val">{{evade}}</span></div>
+	  <div class="stathull"><span class="chull"></span><span class="val">{{hull}}</span></div>
+	  <div class="statshield"><span class="cshield"></span><span class="val">{{shield}}</span></div>
+	</div>
+      <div class="shipname">{{name}} (<span class="upts">{{points}}</span><span style="display:none" class="pts">{{points}}</span>)</div>
+      <div style="text-align:left">{{shipname}}</div>
+      <div style="text-align:left">{{{actionstring}}}</div>
+      </div>
+
       <table class="upgs">
 	<tr>
 	  <td colspan=3 class="upgavail">{{{upgradeaddstring}}}</td>
@@ -514,9 +553,10 @@ The app is not really a game since the user plays both sides, there is no multi-
       </table>
     </script>
 
-    <script id="bomb-left" type="x-tmpl-mustache">
-      <tr{{^isactive}} class="inactive"{{/isactive}}>
-	<td class='tdstat'>
+    <script id="bomb" type="x-tmpl-mustache">
+      <tr {{^isactive}} class="inactive"{{/isactive}}>
+	<td style="display:{{#left}}none{{/left}}{{^left}}block{{/left}}"><code class="{{type}} upgrades"></code></td>
+	<td class="tdstat">
 	  <span>
 	    {{trname}}
 	    {{#ordnance}}
@@ -524,30 +564,67 @@ The app is not really a game since the user plays both sides, there is no multi-
 	    {{/ordnance}}
 	  </span>
 	</td>
-	<td><code class="{{type}} upgrades"></code></td>
-	<td class="outoverflow">
-	  {{#tooltip}}
-	  <span class="tooltip">{{.}}</span>
-	  {{/tooltip}}
+	<td style="display:{{#left}}block{{/left}}{{^left}}none{{/left}}"><code class="{{type}} upgrades"></code></td>
+	{{#tooltip}}
+	<td class="tooltip outoverflow">
+	  <span>{{{.}}}</span>
 	</td>
+	{{/tooltip}}
+	{{^tooltip}}<td></td>{{/tooltip}}
       </tr>
     </script>
-    <script id="bomb-right" type="x-tmpl-mustache">
-      <tr{{^isactive}} class="inactive"{{/isactive}}>
-	<td><code class="{{type}} upgrades"></code></td>
-	<td class='tdstat'>
+
+    <script id="weapon" type="x-tmpl-mustache">
+      <tr class="{{^isactive}}inactive{{/isactive}} {{#nofire}}nofire{{/nofire}}">
+	<td style="display:{{#left}}none{{/left}}{{^left}}table-cell{{/left}}">
+	  <button class="statfire" onclick="if (!squadron[{{uid}}].isdocked) squadron[{{uid}}].togglehitsector({{rank}})">
+	    {{getattack}}<span class="symbols">{{attackkey}}</span>
+	  </button>
+	</td>
+	<td class="tdstat">
 	  <span>
 	    {{trname}}
 	    {{#ordnance}}
 	    <sup style="padding:1px;color:white;background-color:red;border-radius:100%;">x2</sup>
 	    {{/ordnance}}
+	    <span style="font-size:smaller">
+	      {{#req}}<span class="symbols">{{.}}</span>{{/req}}[{{getlowrange}}-{{gethighrange}}]
+	    </span>
 	  </span>
 	</td>
-	<td class="outoverflow">
-	  {{#tooltip}}
-	  <span class="tooltip">{{.}}</span>
-	  {{/tooltip}}
+	<td style="display:{{^left}}none{{/left}}{{#left}}table-cell{{/left}}">
+	  <button class="statfire" onclick="if (!squadron[{{uid}}].isdocked) squadron[{{uid}}].togglehitsector({{rank}})">
+	    {{getattack}}<span class="symbols">{{attackkey}}</span>
+	  </button>
 	</td>
+	{{#tooltip}}
+	<td class="tooltip outoverflow">
+	  <span>{{{.}}}</span>
+	</td>
+	{{/tooltip}}
+	{{^tooltip}}<td></td>{{/tooltip}}
+      </tr>
+    </script>
+
+    <script id="upgrade" type="x-tmpl-mustache">
+      <tr {{^isactive}} class="inactive"{{/isactive}}>
+	<td style="display:{{#left}}none{{/left}}{{^left}}table-cell{{/left}}">
+	  <code class="{{type}} upgrades"></code>
+	</td>
+	<td class="tdstat">
+	  <span>
+	    {{trname}}{{#hasshield}}<code class="cshield" title="{{shield}} shield(s)"></code>{{/hasshield}}
+	  </span>
+	</td>
+	<td style="display:{{^left}}none{{/left}}{{#left}}table-cell{{/left}}">
+	  <code class="{{type}} upgrades"></code>
+	</td>
+	{{#tooltip}}
+	<td class="tooltip outoverflow">
+	  <span>{{{.}}}</span>
+	</td>
+	{{/tooltip}}
+	{{^tooltip}}<td></td>{{/tooltip}}
       </tr>
     </script>
 

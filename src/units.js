@@ -50,6 +50,8 @@ var globalid=1;
 var targetunit;
 var PATTERN;
 var SOUND_FILES=[
+    "ogg/cloak_romulan",
+    "ogg/decloak_romulan",
     "ogg/EXPLODE3",
     "ogg/KX9_laser_cannon",
     "ogg/TIE-Fire",
@@ -70,27 +72,21 @@ var SOUND_FILES=[
     "ogg/ghost"
 ];
 var SOUNDS={};
-var SOUND_NAMES=["explode","xwing_fire","tie_fire","slave_fire","falcon_fire","xwing_fly","tie_fly","slave_fly","falcon_fly","yt2400_fly","ywing_fly","isd_fly","missile","xwing2_fly","dstar_gun","tie2_fly","slave2_fly","ghost"];
+var SOUND_NAMES=["cloak","decloak","explode","xwing_fire","tie_fire","slave_fire","falcon_fire","xwing_fly","tie_fly","slave_fly","falcon_fly","yt2400_fly","ywing_fly","isd_fly","missile","xwing2_fly","dstar_gun","tie2_fly","slave2_fly","ghost"];
 function loadsound() {
     var i;
-    var sound;
-    for (i=0; i<SOUND_FILES.length; i++) {
-	SOUNDS[SOUND_NAMES[i]]=new Howl({
-	    urls: [SOUND_FILES[i]+".ogg", SOUND_FILES[i]+".m4a", SOUND_FILES[i]+".wav"],
+    var sound={"explode":2,"cloak":0,"decloak":1};
+    for (i=0; i<squadron.length; i++) {
+	sound[squadron[i].ship.firesnd]=SOUND_NAMES.indexOf(squadron[i].ship.firesnd);
+	sound[squadron[i].ship.flysnd]=SOUND_NAMES.indexOf(squadron[i].ship.flysnd);
+    }
+    for (i in sound) {
+	SOUNDS[i]=new Howl({
+	    urls: [SOUND_FILES[sound[i]]+".ogg", SOUND_FILES[sound[i]]+".m4a", SOUND_FILES[sound[i]]+".wav"],
 	    autoplay:false,
 	    loop:false
 	});
     }
-    SOUNDS["cloak"] = new Howl({
-	urls: ["ogg/cloak_romulan.ogg","ogg/cloak_romulan.mp3"],
-	autoplay:false,
-	loop:false
-    });
-    SOUNDS["decloak"] = new Howl({
-	urls: ["ogg/decloak_romulan.ogg","ogg/decloak_romulan.mp3"],
-	autoplay:false,
-	loop:false
-    });
 }
 function transformPoint(matrix,point)  {
     var dx = point.x * matrix.a + point.y * matrix.c + matrix.e;
@@ -555,11 +551,9 @@ Unit.prototype = {
 	var i,j,k;
 	//var faction=currentteam.faction;
 	var str="";
-	var template = $('#unit-creation').html();
-	Mustache.parse(template);   // optional, speeds up future uses
 	var img=PILOTS[this.pilotid].dict;
 	if (PILOTS[this.pilotid].ambiguous==true) img+="-"+unitlist[this.ship.name].dict;
-	var rendered = Mustache.render(template, {
+	var rendered = Mustache.render(TEMPLATES["unit-creation"], {
 	    imgname:img,
 	    faction:currentteam.faction,
 	    skill:this.getskill(),
@@ -567,12 +561,12 @@ Unit.prototype = {
 	    points:this.points,
 	    unique:(PILOTS[this.pilotid].unique==true?false:true),
 	    id:this.id,
-	    evade:repeat('u',this.evade),
-	    hull:repeat('u',this.hull),
-	    shield:repeat('u',this.shield),
-	    fire:repeat('u',this.weapons[0].getattack()),
+	    evade:this.agility,
+	    hull:this.ship.hull,
+	    shield:this.ship.shield,
+	    fire:this.weapons[0].getattack(),
 	    shipimg:this.shipimg,
-	    dialstring:this.getdialstring(),
+	    diallist:dial2JSON(this.getdial()),
 	    shipname:SHIP_translation[this.ship.name],
 	    actionstring:this.getactionstring(),
 	    upgradeaddstring:this.getupgradeaddstring()
@@ -847,9 +841,7 @@ Unit.prototype = {
 	var op=this.getOutlinePoints(m);
 	var zone;
 	var i;
-	if (typeof SETUP.playzone1!="undefined"&&this.team==1) 
-	    zone=SETUP.playzone1;
-	else zone=SETUP.playzone;
+	zone=SETUPS.playzone;
 	for (i=0; i<4; i++)
 	    //if (op[i].x<0||op[i].x>900||op[i].y<0||op[i].y>900) return false;
 	    if (!Snap.path.isPointInside(zone,op[i].x,op[i].y)) return false;
@@ -1933,7 +1925,7 @@ Unit.prototype = {
 	    var defense=targetunit.getdefensestrength(w,this);
 	    this.doattackroll(this.attackroll(attack),attack,defense,i,n);
 	    //this.show();
-	}.bind(this),this.name+" attack")
+	}.bind(this),"in combat")
 	//this.show();
     },
     preattackroll:function(w,targetunit) {
@@ -1956,7 +1948,7 @@ Unit.prototype = {
 	displaydefenseroll(dr,dd);
 	displaydefensetokens(this,function() {
 	    this.resolvedamage();
-	    this.endnoaction(n,"incombat");
+	    this.endnoaction(n,"in combat");
 	}.bind(squadron[me]));
     },
     drawpathmove:function(mm,path,lenC) {
@@ -2492,7 +2484,7 @@ Unit.prototype = {
 	return this.newlock();
     },
     timetoshowmaneuver: function() {
-	return this.maneuver>-1;
+	return this.maneuver>-1&&skillturn>=this.getskill()&&phase==ACTIVATION_PHASE&&subphase==ACTIVATION_PHASE;
     },
     getmaneuver: function() {
 	if (this.hasionizationeffect()) {
@@ -2617,9 +2609,10 @@ Unit.prototype = {
     },
     showstats: function() {
 	if (phase==SELECT_PHASE||phase==CREATION_PHASE) {
-	    $("#unit"+this.id+" .shipimg").html(this.getstatstring());
-	    $("#unit"+this.id+" .shipimg").css("background-image",
-					       "url(png/"+this.shipimg+")");
+	    $("#unit"+this.id+" .stathull .val").html(this.ship.hull);
+	    $("#unit"+this.id+" .statshield .val").html(this.ship.shield);
+	    $("#unit"+this.id+" .statevade .val").html(this.getagility());
+	    $("#unit"+this.id+" .statfire .val").html(this.weapons[0].getattack());
 	} else {
 	    if (typeof this.skillbar=="undefined") {
 		console.trace();
@@ -2631,6 +2624,30 @@ Unit.prototype = {
 	    this.evadebar.attr({text:repeat('u',this.getagility())});
 	    this.hullbar.attr({text:repeat('u',this.hull)});
 	    this.shieldbar.attr({text:repeat('u',this.shield+this.hull)});
+	    var n=8+this.upgrades.length*2;
+	    if (this.hull+this.shield<=n) {
+		$("#"+this.id+" .stat .hull").html(repeat("u ",this.hull));
+		$("#"+this.id+" .stat .shield").html(repeat("u ",this.shield));
+	    } else if (this.hull>n) {
+		$("#"+this.id+" .stat .hull").html(repeat("u ",n));
+		if (this.hull<=n*2) {
+		    $("#"+this.id+" .stat2 .hull").html(repeat("u ",this.hull-n));
+		    if (this.shield+this.hull<=n*2) 
+			$("#"+this.id+" .stat2 .shield").html(repeat("u ",this.shield));
+		    else {
+			$("#"+this.id+" .stat2 .shield").html(repeat("u ",n*2-this.hull));
+			$("#"+this.id+" .stat3 .shield").html(repeat("u ",this.shield-n*2+this.hull));		
+		    }
+		} else {
+		    $("#"+this.id+" .stat2 .hull").html(repeat("u ",n));
+		    $("#"+this.id+" .stat3 .hull").html(repeat("u ",this.hull-n*2));
+		    $("#"+this.id+" .stat3 .shield").html(repeat("u ",this.shield));
+		}
+	    } else {
+		$("#"+this.id+" .stat .hull").html(repeat("u ",this.hull));
+		$("#"+this.id+" .stat .shield").html(repeat("u ",n-this.hull));
+		$("#"+this.id+" .stat2 .shield").html(repeat("u ",this.shield-n+this.hull));
+	    }
 	}
     },
     showpanel: function() {
@@ -2654,7 +2671,7 @@ Unit.prototype = {
 	return (this==activeunit&&this.hasmoved&&!this.actiondone&&phase==ACTIVATION_PHASE);
     },
     timeformaneuver: function() {
-	return (this==activeunit&&this.maneuver>-1&&!this.hasmoved&&this.getskill()==skillturn&&subphase==ACTIVATION_PHASE);
+	return  (this==activeunit&&this.maneuver>-1&&!this.hasmoved&&this.getskill()==skillturn&&phase==ACTIVATION_PHASE);
     },
     show: function() {
 	var i;
@@ -2888,7 +2905,7 @@ Unit.prototype = {
 	    if (s>0) this.applydamage(s);
 	}	    
 
-	this.showstats();
+	this.show();
 	return s;
     },
     resolvecritical: function(n) {
@@ -2900,7 +2917,7 @@ Unit.prototype = {
 	    this.removeshield(this.shield)
 	    if (s>0) this.applycritical(s);
 	}
-	this.showstats();
+	this.show();
 	return s;
     },
     removehull: function(n) {
@@ -2977,12 +2994,16 @@ Unit.prototype = {
 
     selectdamage: function() {
 	var i,s=0,m,j;
-	for (i=0; i<CRITICAL_DECK.length; i++) s+=CRITICAL_DECK[i].count;
+	for (i=0; i<CRITICAL_DECK.length; i++) 
+	    if (CRITICAL_DECK[i].version.indexOf(CURRENT_DECK)>-1)
+		s+=CRITICAL_DECK[i].count;
 	var r=this.rand(s);
 	m=0;
 	for (i=0; i<CRITICAL_DECK.length; i++) {
-	    m+=CRITICAL_DECK[i].count;
-	    if (m>r) return i;
+	    if (CRITICAL_DECK[i].version.indexOf(CURRENT_DECK)>-1){
+		m+=CRITICAL_DECK[i].count;
+		if (m>r) return i;
+	    }
 	}
 	return 0;	
     },

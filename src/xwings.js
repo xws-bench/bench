@@ -3,7 +3,7 @@ var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.8.4";
+var VERSION="v0.8.5";
 var LANG="en";
 var DECLOAK_PHASE=1;
 var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6,XP_PHASE=7;
@@ -28,10 +28,10 @@ var TEAMS=[new Team(0),new Team(1),new Team(2)];
 var currentteam=TEAMS[0];
 var VIEWPORT;
 var ANIM="";
-var SETUPS={};
 var SETUP;
 var SHOWDIAL=[];
 var TRACE=false;
+var TEMPLATES={"bomb":"","upgrade":"","weapon":""};
 //var sl;
 var increment=1;
 var theta=0;
@@ -59,6 +59,34 @@ window.callback = function () { alert("called callback");return true; };
     log("<b>ERROR: "+error+"</b>");
  };
 */
+var SETUPS={
+    "playzone":"M 0 0 L 900 0 900 900 0 900 Z",
+    "zone1":"M 0 0 L 100 0 100 900 0 900 Z",
+    "zone2":"M 800 0 L 900 0 900 900 800 900 Z",
+    "asteroids":6,
+     "Classic Map": {
+	"name":"Classic",
+	"background":"css/playmat10.jpg",
+    },
+    "Cloud City Map": {
+	"name":"Cloud City",
+	"background":"css/playmat6.jpg",
+    },
+    "Blue Sky Map": {
+	"name":"Blue Sky",
+	"background":"css/playmat13.jpg",
+    },
+    "Blue Planet Map": {
+	"name":"Blue Planet",
+	"background":"css/playmat11.jpg",
+    },
+    "Mars Map": {
+	"name":"Mars",
+	"background":"css/playmat14.jpg",
+    }
+}
+
+
 function center() {
     var bbox=activeunit.g.getBBox();
     var xx=(bbox.x+bbox.width/2);
@@ -82,11 +110,11 @@ function center() {
 var AIstats = function(error,options, response) {
     //console.log(error,options,response);
     if (typeof response.rows!="undefined") {
-    	for (var i=1; i<response.rows.length; i+=500) {
-	    var scoreh=0;
+    	for (var i=1; i<response.rows.length; i+=200) {
 	    var scorec=0;
 	    var n=0;
-	    for (var j=0; j<200&&j+i<response.rows.length; j++) {
+	    var median=[];
+	    for (var j=0; j<500&&j+i<response.rows.length; j++) {
 		var t=response.rows[i+j].cellsArray[0].split(" ");
 		var ts1=t[0].split(":");
 		var type1=ts1[0];
@@ -94,15 +122,25 @@ var AIstats = function(error,options, response) {
 		var ts2=t[1].split(":");
 		var type2=ts2[0];
 		var score2=ts2[1];
+		var scoreco=0;
+		var scoreh=0;
 		if (type2!=type1) {
 		    if (type2=="Human") scoreh+=parseInt(score2,10);
-		    else scorec+=parseInt(score2,10);
+		    else scoreco+=parseInt(score2,10);
 		    if (type1=="Human") scoreh+=parseInt(score1,10);
-		    else scorec+=parseInt(score1,10);
+		    else scoreco+=parseInt(score1,10);
+		    median[n]=Math.floor((scoreco)/(scoreco+scoreh)*100);
 		    n++;
 		}
 	    }
-	    if (n>0) log((Math.floor(scorec/n))); //+"-"+(Math.floor(scoreh/n)));
+	    median.sort(function(a,b) { return a-b;});
+	    var half = Math.floor(median.length/2);
+
+	    if(median.length % 2)
+		log(median[half]);
+	    else
+		log((median[half-1] + median[half]) / 2.0);
+	    //if (n>0) log((Math.floor(scorec/n))); //+"-"+(Math.floor(scoreh/n)));
 	}
     }
 }
@@ -707,6 +745,8 @@ function createsquad() {
     $(".activeunit").prop("disabled",true);
     $("#selectphase").hide();
     phase=CREATION_PHASE;
+    $("footer").hide();
+    $('#consolecb').removeAttr('Checked');
     $(".nextphase").prop("disabled",false);
     currentteam.changefaction("REBEL");
     $(".factionselect selected").val("REBEL");
@@ -716,17 +756,18 @@ function createsquad() {
 }
 function switchdialimg(b) {
     if (b==true) {
-	$(".shipimg").css("display","none");
-	$(".shipdial").css("display","table-cell");
+	$("#caroussel .shipimg").css("display","none");
+	$("#caroussel .shipdial").css("display","table-cell");
     } else {
-	$(".shipdial").css("display","none");
-	$(".shipimg").css("display","table-cell");
+	$("#caroussel .shipdial").css("display","none");
+	$("#caroussel .shipimg").css("display","table-cell");
     }
 }
 var mySpreadsheets=[
 "https://docs.google.com/spreadsheets/d/1n35IFydakSJf9N9b9byLog2MooaWXk_w8-GQdipGe8I/edit#gid=0",
 "https://docs.google.com/spreadsheets/d/1Jzigt2slBhygjcylCsy4UywpsEJEjejvtCfixNoa_z4/edit#gid=0",
-"https://docs.google.com/spreadsheets/d/1dkvDxaH3mJhps9pi-R5L_ttK_EmDKUZwaCE9RZUYueg/edit#gid=0"
+"https://docs.google.com/spreadsheets/d/1dkvDxaH3mJhps9pi-R5L_ttK_EmDKUZwaCE9RZUYueg/edit#gid=0",
+"https://docs.google.com/spreadsheets/d/1IoViAKvpZFRlmzBXeY6S9jYX4Ju9ccL5boNxhLwUXiY/edit#gid=0"
 ];
 function displayAIperformance() {
     for (var i=0; i<mySpreadsheets.length; i++) {
@@ -739,6 +780,23 @@ function displayAIperformance() {
 	});
     }   
 }
+function selectrocks() {
+    var ROCKSHAPES=[1,2,3,4,5,6];
+    $(".aster img").click(function(e) {
+	var i=parseInt(e.target.id.substr(1),10);
+	if (ROCKSHAPES.indexOf(i)>-1) {
+	    ROCKSHAPES[i]=null;
+	} else {
+	    var j;
+	    for (j=0; j<6; j++) if (ROCKSHAPES[j]==null) break; 
+	    if (j<6) {
+		ROCKSHAPES[j]=i;
+		$("#a"+i).addClass("selected");
+	    }
+	}
+    }.bind(this))
+}
+
 /*
 function recomputeurl() {
     $('#squadbattlediv').sheetrock({
@@ -780,6 +838,22 @@ function displaycombats(t) {
 	    labels:["Score","Squadlist","URL"]
 	});
     }   
+}
+function dial2JSON(dial) {
+    var m=[];
+    var j;
+    for (j=0; j<=5; j++) m[j]={item:"",moves:null};
+    for (j=0; j<dial.length; j++) {
+	d=dial[j];
+	var cx=MPOS[d.move][0],cy=MPOS[d.move][1];
+	m[5-cx].item=cx;
+	if (m[5-cx].moves==null) {
+	    m[5-cx].moves=[];
+	    for (k=0; k<=6; k++) m[5-cx].moves[k]={difficulty:"",key:""};
+	}
+	m[5-cx].moves[cy]={difficulty:d.difficulty,key:P[d.move].key};
+    }
+    return m;
 }
 function displayfactionunits() {
     var count=0;
@@ -828,27 +902,13 @@ function displayfactionunits() {
 	str="";
 	n++;
 	var u=uu[i];
-	var template = $('#faction').html();
-	Mustache.parse(template);
-	var m=[];str="";
-	for (j=0; j<=5; j++) m[j]={item:"",moves:null};
-	for (j=0; j<u.dial.length; j++) {
-	    d=u.dial[j];
-	    var cx=MPOS[d.move][0],cy=MPOS[d.move][1];
-	    m[5-cx].item=cx;
-	    if (m[5-cx].moves==null) {
-		m[5-cx].moves=[];
-		for (k=0; k<=6; k++) m[5-cx].moves[k]={difficulty:"",key:""};
-	    }
-	    m[5-cx].moves[cy]={difficulty:d.difficulty,key:P[d.move].key};
-	}
-	var rendered=Mustache.render(template, {
+	var rendered=Mustache.render(TEMPLATES["faction"], {
 	    shipimg:u.img[0],
 	    fire:repeat('u',u.fire),
 	    evade:repeat('u',u.evade),
 	    hull:repeat('u',u.hull),
 	    shield:repeat('u',u.shield),
-	    diallist:m,
+	    diallist:dial2JSON(u.dial),
 	    shipname:u.trname,
 	    actionlist:function() {
 		var al=[];
@@ -901,11 +961,13 @@ function addupgradeaddhandler(u) {
 	var org=e.currentTarget.getAttribute("class").split(" ")[1];
 	var num=e.currentTarget./*parentElement.*/getAttribute("num");
 	var p=this.getupgradelist(org);
+	$("#unit"+this.id+" .upgs .upgavail").hide();
+	$("#unit"+this.id+" .upgs .upg").hide();
 	$("#unit"+this.id+" .upglist").empty();
 	$("#unit"+this.id+" .upglist").append("<tr><td><button>+</button></td><td><span class='m-none'></span></td><td></td><td></td></tr>");
-	$("#unit"+this.id+" .upglist ").click(function() {
+	/*$("#unit"+this.id+" .upglist ").click(function() {
 	    $("#unit"+this.id+" .upglist").empty();
-	}.bind(this));
+	}.bind(this));*/
 	if (typeof this.upgbonus[org]=="undefined") this.upgbonus[org]=0;
 	for (var i=0; i<p.length; i++) {
 	    var upg=UPGRADES[p[i]];
@@ -925,6 +987,8 @@ function addupgradeaddhandler(u) {
 	$("#unit"+this.id+" .upglist button").click(function(e) {
 	    var data=e.currentTarget.getAttribute("data");
 	    var num=e.currentTarget.getAttribute("num");
+	    $("#unit"+this.id+" .upgs .upgavail").show();
+	    $("#unit"+this.id+" .upgs .upg").show();
 	    addupgrade(this,data,num);
 	}.bind(this));
     }.bind(u));
@@ -940,7 +1004,7 @@ function addunit(n) {
     $("#unit"+u.id+" .close").click(function() {
 	var data=$(this).attr("data");
 	var u=generics["u"+data];
-	$("#unit"+data+" .upg span[data]").each(function() {
+	$("#unit"+data+" .upg div[data]").each(function() {
 	    var d=$(this).attr("data");
 	    if (UPGRADES[d].unique==true) removeunique(UPGRADES[d].name);
 	});
@@ -953,7 +1017,7 @@ function addunit(n) {
 	var data=$(this).attr("data");
 	var u=generics["u"+data];
 	var self=addunit(u.pilotid);
-	$("#unit"+data+" .upg span[data]").each(function() {
+	$("#unit"+data+" .upg div[data]").each(function() {
 	    var d=$(this).attr("data");
 	    var num=$(this).attr("num");
 	    if (UPGRADES[d].unique!=true&&u.upgnocopy!=d) addupgrade(self,d,num);
@@ -974,7 +1038,7 @@ function addupgrade(self,data,num,noremove) {
     if (typeof self.upgbonus[org.type]=="undefined") self.upgbonus[org.type]=0;
     var pts=org.points+self.upgbonus[org.type];
     if (pts<0) pts=0;
-    $("#unit"+self.id+" .upg").append("<span data="+data+" num="+num+"><code class='upgrades "+org.type+"'></code>"+text+" (<span class='pts'>"+pts+"</span>)</span>");
+    $("#unit"+self.id+" .upg").append("<div data="+data+" num="+num+"><code class='upgrades "+org.type+"'></code>"+text+"<span class='pts'>"+pts+"</span></div>");
     self.upg[num]=data;
     Upgrade.prototype.install.call(org,self);
     if (typeof org.install!="undefined") org.install(self);
@@ -985,7 +1049,7 @@ function addupgrade(self,data,num,noremove) {
     self.showstats();
     currentteam.updatepoints();
     if (typeof noremove=="undefined") { 
-	$("#unit"+self.id+" .upg span[num="+num+"]").click(function(e) {
+	$("#unit"+self.id+" .upg div[num="+num+"]").click(function(e) {
 	    var num=e.currentTarget.getAttribute("num");
 	    var data=e.currentTarget.getAttribute("data");
 	    $("#unit"+self.id+" .upglist").empty();
@@ -997,7 +1061,7 @@ function addupgrade(self,data,num,noremove) {
 function removeupgrade(self,num,data) {
     var org=UPGRADES[data];
    $("#unit"+self.id+" .upgavail span[num="+num+"]").css("display","block");
-    $("#unit"+self.id+" .upg span[num="+num+"]").remove();
+    $("#unit"+self.id+" .upg div[num="+num+"]").remove();
     if (org.unique==true) removeunique(org.name);
     if (org.limited==true) removelimited(self,data);
     self.upg[num]=-1;
@@ -1022,12 +1086,12 @@ function setselectedunit(n,td) {
     currentteam.toJSON(); // Just for score
     addrow(n,currentteam.name,0,currentteam.faction,currentteam.toJuggler(true));
 }
-function addrow(team,name,pts,faction,jug) {
+function addrow(team,name,pts,faction,jug,fill) {
     if (team==1) {$("#squad1").val(jug); $("#squad1").attr("data-name",name);}
     if (team==2) {$("#squad2").val(jug); $("#squad2").attr("data-name",name);}
     enablenextphase();
     var n=faction.toUpperCase();
-    if (typeof localStorage[name]!="undefined")
+    if (typeof localStorage[name]=="undefined"||fill==true)
 	SQUADLIST.row.add(["",n,""+pts,jug,name,"",""]).draw(false);
 }
 //function addrowcombat(link,team1,team2,n) {
@@ -1044,8 +1108,12 @@ function endselection() {
     currentteam.name="SQUAD."+currentteam.toASCII();
     currentteam.toJSON();// Just for points
     var jug=currentteam.toJuggler(false);
-    localStorage[currentteam.name]=JSON.stringify({"pts":currentteam.points,"faction":currentteam.faction,"jug":jug});
-    if (currentteam==TEAMS[1]) team=1; else if (currentteam==TEAMS[2]) team=2;
+    log("local:"+localStorage[currentteam.name]+" "+currentteam.name);
+    if (typeof localStorage[currentteam.name]=="undefined") {
+	localStorage[currentteam.name]=JSON.stringify({"pts":currentteam.points,"faction":currentteam.faction,"jug":jug,"rocks":currentteam.rocks});
+
+    }
+    if (currentteam==TEAMS[1]) team=1; else if (currentteam==TEAMS[2]) team=2; 
     addrow(team,currentteam.name,currentteam.points,currentteam.faction,currentteam.toJuggler(true));
 }
 function removerow(t) {
@@ -1058,6 +1126,10 @@ function removerow(t) {
 function checkrow(n,t) {
    var row=SQUADLIST.row(t.parents("tr"));
     var data = row.data()[3];
+    var name=row.data()[4];
+    if (name.match("SQUAD")) {
+	TEAMS[n].setrocks($.parseJSON(localStorage[name]).rocks);
+    }
     setselectedunit(n,data);
 }
 function importsquad(t) {
@@ -1136,7 +1208,7 @@ function nextphase() {
 	if ($("#player2 option:checked").val()=="human") 
 	    TEAMS[2].isia=false; else TEAMS[2].isia=true;
 	for (var i in squadron) console.log("--squadron["+i+"]:"+squadron[i].name+" "+squadron[i].id);
-
+	
  	break;
     case CREATION_PHASE:
 	endselection();
@@ -1198,6 +1270,11 @@ function nextphase() {
     $(".nextphase").prop("disabled",false);
     switch(phase) {
     case SELECT_PHASE:
+	TEMPLATES["unit-creation"]=$("#unit-creation").html();
+	Mustache.parse(TEMPLATES["unit-creation"]);  
+	TEMPLATES["faction"]=$("#faction").html();
+	Mustache.parse(TEMPLATES["faction"]);  
+
 	$(".mainbutton").show();
 	$(".buttonbar .share-buttons").hide();
 	$(".h2 .share-buttons").show();
@@ -1213,12 +1290,17 @@ function nextphase() {
 	//window.location="#creation";
 	break;
     case SETUP_PHASE:
-	loadsound();
+	var t=["bomb","weapon","upgrade"];
+	for (var i=0;i<t.length; i++) {
+	    TEMPLATES[t[i]]=$("#"+t[i]).html();
+	    Mustache.parse(TEMPLATES[t[i]]);
+	}
+
 	$(".buttonbar .share-buttons").show();
 	$("#team2").css("top",$("nav").height()+2);
 	$("#team1").css("top",$("nav").height()+2);
 	$(".ctrl").css("display","block");
-	ZONE[0]=s.path(SETUP.playzone).attr({
+	ZONE[0]=s.path(SETUPS.playzone).attr({
 		strokeWidth: 6,
 		stroke:halftone(WHITE),
 		strokeDasharray:"20,10,5,5,5,10",
@@ -1226,39 +1308,26 @@ function nextphase() {
 		pointerEvents:"none"
 	    });
 	if (SETUP.background!="") $(".playmat").css({background:"url("+SETUP.background+") no-repeat",backgroundSize:"100% 100%"});
-	if (SETUP.pattern=="") ZONE[0].attr("fillOpacity",0);
-	else {
-	    var pattern = s.image(SETUP.pattern,0,0,360,360).pattern(0,0,360,360);
-	    ZONE[0].attr("fill",pattern);
-	}
+	ZONE[0].attr("fillOpacity",0);
 	ZONE[0].appendTo(VIEWPORT);
-	ZONE[1]=s.path(SETUP.zone1).attr({
+	ZONE[1]=s.path(SETUPS.zone1).attr({
 		fill: TEAMS[1].color,
 		strokeWidth: 2,
 		opacity: 0.3,
 		pointerEvents:"none"
 	    });
 	ZONE[1].appendTo(VIEWPORT);
-	ZONE[2]=s.path(SETUP.zone2).attr({
+	ZONE[2]=s.path(SETUPS.zone2).attr({
 		fill: TEAMS[2].color,
 		strokeWidth: 2,
 		opacity: 0.3,
 		pointerEvents:"none"
 	    });
 	ZONE[2].appendTo(VIEWPORT);
-	if (typeof SETUP.playzone1!="undefined"){ 
-	    ZONE[3]=s.path(SETUP.playzone1).attr({
-		strokeWidth: 6,
-		stroke:halftone(WHITE),
-		strokeDasharray:"20,10,5,5,5,10",
-		id:'ZONE',
-		fillOpacity:0,
-		pointerEvents:"none"
-	    });
-	    ZONE[3].appendTo(VIEWPORT);
-	}
 	TEAMS[1].endselection(s);
 	TEAMS[2].endselection(s);
+	loadsound();
+
 	if (TEAMS[1].points>TEAMS[2].points) TEAMS[2].initiative=true;
 	else {
 	    if (TEAMS[2].faction=="EMPIRE") TEAMS[2].initiative=true;
@@ -1350,7 +1419,7 @@ function nextphase() {
 	    else if (activeunit.shield<activeunit.ship.shield) activeunit.addshield(1); 
 	    activeunit.show();
 	});
-	if (SETUP.asteroids>0) {
+	if (SETUPS.asteroids>0) {
 	    loadrock(s,ROCKDATA);
 	}
 	log("<div>["+UI_translation["turn #"]+round+"]"+UI_translation["phase"+phase]+"</div>");
@@ -1412,7 +1481,13 @@ function resetlink() {
     switch (phase) {
     case SETUP_PHASE:
     case SELECT_PHASE: 
-    case XP_PHASE: document.location.reload(true); break;
+    case XP_PHASE: 
+	var uri = window.location.toString();
+	if (uri.indexOf("?") > 0) {
+	    var clean_uri = uri.substring(0, uri.indexOf("?"));
+	    window.history.replaceState({}, document.title, clean_uri);
+	}
+	document.location.reload(true); break;
     case CREATION_PHASE: phase=0; document.location.search=""; nextphase(); break; 
     default: 
 	document.location.search="?"+PERMALINK;
@@ -1808,18 +1883,12 @@ var scrolloverflow=function(event) {
 
 var changelanguage= function(l) {
     localStorage['LANG']=l;
-    log("reloading "+l);
+    //log("reloading "+l);
     location.reload();
-}
-var changesetup=function() {
-    SETUP = SETUPS[$("#setuplist select").val()];
-    var desc=UI_translation[SETUP.description];
-    if (typeof desc=="undefined") desc=SETUP.description;
-    $("#setuplist span").html(desc);
-    $("#setuplist img").attr("src",SETUP.img);
 }
 $(document).ready(function() {
     s= Snap("#svgout")
+
     VIEWPORT = s.g().attr({id:"viewport"});
     VIEWPORT.m=new Snap.Matrix();
 
@@ -1870,9 +1939,8 @@ $(document).ready(function() {
     $.when(
 	$.ajax("data/ships.json"),
 	$.ajax("data/strings."+LANG+".json"),
-	$.ajax("data/xws.json"),
-	$.ajax("data/setups.json")
-    ).done(function(result1,result2,result3,result4) {
+	$.ajax("data/xws.json")
+    ).done(function(result1,result2,result3) {
 	var process=setInterval(function() {
 	    ATTACK[dice]=attackproba(dice);
 	    DEFENSE[dice]=defenseproba(dice);
@@ -1919,17 +1987,14 @@ $(document).ready(function() {
 	    if (!found) log("no xws translation for "+UPGRADES[i].name);
 	}
 
-
-	for (i in result4[0].data) {
-	    var st=result4[0].data[i];
-	    SETUPS[i]=st;
-	}
 	var r=0,e=0,i;
 	squadron=[];
 
 	s.attr({width:"100%",height:"100%",viewBox:"0 0 900 900"});
 	TEAMS[1].setfaction("REBEL");
 	TEAMS[2].setfaction("EMPIRE");
+	//TEAMS[1].selectrocks();
+	//TEAMS[2].selectrocks();
 	/*UPGRADES.sort(function(a,b) {
 	    var an=a.name;
 	    var bn=b.name;
@@ -2068,13 +2133,7 @@ TogetherJSConfig_on_ready = function () {
 	    phase=0;
 	    nextphase();
 	    
-	    for (i in SETUPS) {
-		var j=i;
-		if (typeof UI_translation[i]!="undefined") j=UI_translation[i];
-		$("#setuplist select").append("<option value='"+i+"'>"+j+"</option>");
-	    }
 	    SETUP = SETUPS["Classic Map"];
-	    changesetup();
 
 	    $("#squadlist").html("<thead><tr><th></th><th>"+UI_translation["type"]+"</th><th><span class='m-points'></span></th><th><span class='m-units'></span></th><th></th><th></th><th></th></tr></thead>");
 	    $.fn.dataTable.ext.search.push(
@@ -2119,8 +2178,8 @@ TogetherJSConfig_on_ready = function () {
 			  if (row[4].search("SQUAD")>-1)
 			      return "<span style='display:none'>"+data+" USER</span><span class='"+data+"'></span>";
 			  else if (row[4]=="ELITE") 
-			      return "<span style='display:none'>"+data+" ELITE</span><span class='"+data+"'></span><span class='TOP'></span>";
-			  return "<span style='display:none'>"+data+" PREBUILT</span><span class='"+data+"'></span><span class='prebuilt'></span>";
+			      return "<span style='display:none'>"+data+" ELITE</span><span class='"+data+"'></span><span style='font-size:larger'></span>&#127894;";
+			  return "<span style='display:none'>"+data+" PREBUILT</span><span class='"+data+"'></span><span style='font-size:larger'>&#128230;</span>";
 			  
 		      }
 		    },
@@ -2154,10 +2213,14 @@ TogetherJSConfig_on_ready = function () {
 		    var l=$.parseJSON(localStorage[i]);
 		    if (typeof l.jug=="undefined"||typeof l.pts=="undefined")
 			delete localStorage[i]
-		    else if (LANG!="en") { 
-			TEAMS[0].parseJuggler(l.jug,false); 
-			addrow(0,i,l.pts,l.faction,TEAMS[0].toJuggler(true)); 
-		    } else addrow(0,i,l.pts,l.faction,l.jug);
+		    else {
+			if (LANG!="en") { 
+			    TEAMS[0].parseJuggler(l.jug,false); 
+			    addrow(0,i,l.pts,l.faction,TEAMS[0].toJuggler(true),true); 
+			} else {
+			    addrow(0,i,l.pts,l.faction,l.jug,true);
+			}
+		    }
 		}
 	    }
 	    $("#squadlist tr:first-child .squadtop").attr("data-intro","Select squad").attr("data-position","bottom");

@@ -2077,7 +2077,7 @@ var PILOTS = [
 	faction:SCUM,
 	pilotid:110,
 	init: function() {
-            this.wrap_after("resolveboost",this,function(n) {
+            this.wrap_before("resolveboost",this,function(n) {
 		this.doaction([this.newaction(this.addevade,"EVADE")],"free evade action");
 	    })
 	},

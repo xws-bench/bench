@@ -1204,7 +1204,16 @@
 	"Cloaking Device":{"name":"Appareil d'Occultation","text":"%ACTION% effectuez une action d'occultation gratuite. A la fin de chaque round, si vous êtes occulté, lancez 1 dé d'attaque. Sur un résultat %FOCUS%, défaussez cette carte, puis désoccultez-vous ou défaussez votre marqueur d'occultation."}
     },
     "css":{
-	"m-all":"All",
+	"m-hangar":"Hangar",
+	"m-obstacles":"Obstacles",
+	"m-asteroids":"Astéroïdes",
+	"m-debris":"Débris",
+	"m-pick3":"Choisissez 3 obstacles :",
+	"m-normalmap":"Cartes :",
+	"m-deckversion":"Version du paquet de dégâts",
+	"m-ver1":"X-Wing",
+	"m-ver2":"Le Réveil de la Force",
+	"m-all":"Tous",
 	"m-ncombats":"Combats",
 	"m-battlingsquad":"Escadron au combat",
 	"m-squadpilots":"Choisissez les pilotes",
@@ -1463,6 +1472,11 @@
 "desactivating %0 [%1]":"désactivation de %0 [%1]"
     },
     "criticals":{
+	"Weapons Failure":{"name":"Armes défaillantes","text":"Quand vous attaquez, lancez 1 dé d'attaque de moins. %ACTION% lancez 1 dé d'attaque. Sur un résultat %HIT% ou %CRIT%, retournez cette carte face cachée."},
+	"Shaken Pilot":{"name":"Pilote Secoué","text":"Durant la phase de préparation, vous ne pouvez pas assigner de manœuvre ligne droite. Quand vous révélez une manœuvre, retournez cette carte face cachée."},
+	"Major Hull Breach":{"name":"Brèche majeure dans la coque","text":"Dès le début du tour suivant celui où vous avez reçu cette carte, toutes les cartes de dégâts qui vous sont assignées le sont face visible. %ACTION% retournez cette carte face cachée."},
+	"Major Explosion":{"name":"Explosion majeure","text":"Lancez 1 dé d'attaque. Sur un résultat %HIT%, encaissez un dégât critique. Ensuite, retournez cette carte face cachée."},
+	"Loose Stabilizer":{"name":"Perte de stabilisateur","text":"Après avoir exécuté une manœuvre blanche, recevez un marqueur de stress"},
 	"Structural Damage":{
 	    "name":"Dommages structurels",
 	    "text":"Réduisez votre valeur d'agilité de 1 (jusqu'à un minimum de 0). %ACTION% lancez 1 dé d'attaque. Sur un résultat %HIT%, retournez cette carte face cachée."

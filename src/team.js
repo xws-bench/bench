@@ -17,15 +17,109 @@ Team.prototype = {
 	this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;	
     },
     changefaction: function(faction) {
-	var i;
-	for (var i in generics) {
-	    if (generics[i].team==this.team) {
-		delete generics[i];
+	$("#rocks").hide();
+	$("#debris").hide();
+	$("#caroussel").show();
+	if (this.faction!=faction) {
+	    for (var i in generics) {
+		if (generics[i].team==this.team) {
+		    delete generics[i];
+		}
 	    }
+	    $("#totalpts").html(0);
+	    this.setfaction(faction);
+	    displayfactionunits();
 	}
-	$("#totalpts").html(0);
-	this.setfaction(faction);
-	displayfactionunits();
+    },
+    setrocks:function(r) {
+	if (typeof r=="undefined") this.rocks=[null,null,null];
+	else this.rocks=r;
+    },
+    selectrocks:function() {
+	if (typeof this.rocks=="undefined") this.rocks=[null,null,null];
+	$(".aster").empty();
+	var sa=Snap(".aster");
+	var viewport=sa.g();
+	var g=[];
+	var maxw=0,maxh=0;
+	var pa = sa.image(ROCKIMG,0,0,256,256).pattern(0,0,256,256);
+	var rl=ROCKS.length;
+	for (var i=0; i<rl; i++) {
+	    g[i]=sa.path(ROCKS[i]).attr({strokeWidth:0});
+	    if (this.rocks.indexOf(i)>-1) g[i].attr("fill",halftone(this.color));
+	    else g[i].attr({fill:pa});
+	    g[i].attr("stroke",this.color);
+	    var bb=g[i].getBBox();
+	    if (maxw<bb.width) maxw=bb.width;
+	    if (maxh<bb.height) maxh=bb.height;
+	}
+	var h=$(".aster").height();
+	var w=$(".aster").width();
+	for (var i=0; i<rl; i++) {
+	    (function(i) {
+		s=h/maxh;
+		if (w/maxw/rl<s) s=w/maxw/rl;
+		var bb=g[i].getBBox();
+		var m1=MT(i*w/rl+w/rl/4,h/2-bb.height*s/2).scale(s,s);
+		g[i].transform(m1);
+		console.log("appending asteroid "+i);
+		g[i].appendTo(viewport);
+		g[i].hover(function()  {g[i].attr({strokeWidth:12});},
+			function()  {g[i].attr({strokeWidth:0});});
+		g[i].click(function() { 
+		    var n=this.rocks.indexOf(i);
+		    if (n>-1) {
+			this.rocks[n]=null;
+			g[i].attr("fill",pa);
+		    } else { 
+			if (!this.rocks[0]) this.rocks[0]=i;
+			else if (!this.rocks[1]) this.rocks[1]=i;
+			else if (!this.rocks[2]) this.rocks[2]=i;
+			if (this.rocks.indexOf(i)>-1) g[i].attr("fill",halftone(this.color));
+		    }
+		}.bind(this));
+	    }.bind(this))(i)
+	}
+    },
+    selectdebris:function() {
+	$("#caroussel").hide();
+	$("#debris").show();
+	if (typeof this.rocks=="undefined") this.rocks=[null,null,null];
+	var sa=Snap(".deb");
+	var viewport=sa.g();
+
+	var pa = sa.image(ROCKIMG,0,0,256,256).pattern(0,0,256,256);
+
+	for (var i=0; i<DEBRIS.length; i++) {
+	    (function(i) {
+		var g=sa.path(DEBRIS[i]).attr({strokeWidth:0});
+		if (this.rocks.indexOf(i)>-1) g.attr("fill",halftone(this.color));
+		else g.attr({fill:pa});
+		g.attr("stroke",this.color);
+		var bb=g.getBBox();
+		var h=$(".deb").height();
+		var w=$(".deb").width();
+		var s=h/500;
+		if (w/500/DEBRIS.length<s) s=w/500/DEBRIS.length;
+		var m1=MT(i*w/DEBRIS.length,h/2-bb.height*s/2).scale(s,s);
+		g.transform(m1);
+		g.appendTo(viewport);
+		g.hover(function()  {g.attr({strokeWidth:12});},
+			function()  {g.attr({strokeWidth:0});});
+		g.click(function() { 
+		    var n=this.rocks.indexOf(i);
+		    if (n>-1) {
+			this.rocks[n]=null;
+			g.attr("fill",pa);
+		    } else { 
+			if (!this.rocks[0]) this.rocks[0]=i;
+			else if (!this.rocks[1]) this.rocks[1]=i;
+			else if (!this.rocks[2]) this.rocks[2]=i;
+			if (this.rocks.indexOf(i)>-1) g.attr("fill",halftone(this.color));
+		    }
+		}.bind(this));
+	    }.bind(this))(i)
+	}
     },
     checkdead: function() {
 	var i;
@@ -39,11 +133,16 @@ Team.prototype = {
 	this.isia=!this.isia;
     },
     updatepoints: function() {
-	var s=0;
-	var score1=$("#listunits .pts").each(function() {
-	    s+=parseInt($(this).text());
+	var tot=0;
+	var score1=$("#listunits li").each(function() {
+	    var s=0;
+	    $(this).find(".pts").each(function() {
+		s+=parseInt($(this).text());
+	    });
+	    $(this).find(".upts").html(s);
+	    tot+=s;
 	});
-	$("#totalpts").html(s);
+	$("#totalpts").html(tot);
     },
     addunit:function(n) {
 	var u=new Unit(this.team,n);
