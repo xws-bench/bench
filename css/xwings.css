@@ -421,7 +421,7 @@ nav div ul li:hover {
 background:#b0c4de
 }
 
-.selector span {
+.selector > span {
 margin:10px;
 text-decoration:underline;
 cursor:pointer
@@ -2036,7 +2036,7 @@ width:calc(100% - 210px);
 white-space:nowrap;
 overflow-x:auto;
 overflow-y:hidden;
-height:16em;
+height:22em;
 text-align:center;
 margin:10px;
 }
@@ -2052,9 +2052,9 @@ ul.caroussel li {
 position:relative;
 padding:0;
 color:#fff;
-font-size:.6em;
+font-size:.7em;
 display:inline-block;
-height:21em;
+height:25em;
 border-radius:10px;
 box-shadow:inset 1px 1px 0 rgba(255,255,255,.4),0 0 30px rgba(0,0,0,0.2);
 width:180px;
@@ -2070,7 +2070,7 @@ margin-right:-100px
 }
 
 ul#listunits {
-height:21em
+height:30em
 }
 
 .inunitlist {
@@ -2079,7 +2079,7 @@ margin:2px
 }
 
 ul#listunits li {
-height:25em;
+height:32em;
 margin-top:40px
 }
 
@@ -2208,7 +2208,7 @@ display:block;
 overflow-x:hidden;
 overflow-y:auto;
 width:100%;
-height:13em
+height:16em
 }
 
 .upglist td {
@@ -2216,7 +2216,7 @@ width:calc(100% - 5px)
 }
 
 .upglist {
-height:14em;
+height:20em;
 display:block;
 overflow-x:hidden;
 overflow-y:auto;
