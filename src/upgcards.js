@@ -2200,17 +2200,21 @@ var UPGRADES= [
     {
         name: "R4 Agromech",
 	done:true,
+	spendfocus:false,
         init: function(sh) {
 	    var self=this;
+	    sh.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
+		req:function(m,n) { return self.spendfocus; },
+		f:function(m,n) { 
+		    this.addtarget(targetunit); 
+		    this.log("+1 %TARGET% / %1 [%0]",self.name,targetunit.name);
+		    displayattacktokens(this); return m; 
+		}.bind(sh),str:"target"});
 	    sh.wrap_before("declareattack",this,function(w,target) {
+		self.spendfocus=false;
 		this.wrap_before("removefocustoken",self,function() {
-		    this.donoaction([{org:self,name:self.name,
-				      type:"TARGET",action:function(n) {
-			this.log("+1 %TARGET% / %1 [%0]",self.name,targetunit.name);
-			this.addtarget(targetunit);
-			displayattacktokens(this);
-			this.endnoaction(n,"TARGET");
-		    }.bind(this)}],"",true)
+		    self.spendfocus=true;
+		    displayattacktokens(this);
 		}).unwrapper("endattack");
 	    });
 	},
@@ -2279,9 +2283,11 @@ var UPGRADES= [
 	done:true,
 	install:function(sh) {
 	    sh.wrap_after("getagility",this,function(a) { return a+1;});
+	    sh.showstats();
 	},
 	uninstall:function(sh) {
 	    sh.getagility.unwrap(this);
+	    sh.showstats();
 	},
 	init: function(sh) {
 	    var upg=this;
@@ -2300,9 +2306,11 @@ var UPGRADES= [
 	done:true,
 	install: function(sh) {
 	    sh.shield++; sh.ship.shield++;
+	    sh.showstats();
 	},
 	uninstall:function(sh) {
 	    sh.shield--; sh.ship.shield--;
+	    sh.showstats();
 	},
         points: 4,
     },
@@ -2346,9 +2354,11 @@ var UPGRADES= [
 	done:true,
         install: function(sh) {
 	    sh.hull++; sh.ship.hull++;
+	    sh.showstats();
 	},     
 	uninstall:function(sh) {
 	    sh.hull--; sh.ship.hull--;
+	    sh.showstats();
 	},
         points: 3,
     },
@@ -3989,9 +3999,11 @@ var UPGRADES= [
 	    sh.weapons[0].wrap_after("getattack",this,function(a) {
 		return a+1;
 	    });
+	    sh.showstats();
 	},
 	uninstall: function(sh) {
 	    this.unwrap(this);
+	    sh.showstats();
 	},
     },
     {name:"Long Range Scanner",

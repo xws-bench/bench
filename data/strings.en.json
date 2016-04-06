@@ -621,6 +621,11 @@
      "Overclocked R4":{"text":"During the Combat Phase, when you spend a focus token, you may receive 1 stress token to assign 1 focus token to your ship."}
  },
     "criticals":{
+	"Weapons Failure":{"text":"When attacking, roll 1 fewer attack die. %ACTION% Roll 1 attack die. On a %HIT% or %CRIT% result, flip this card facedown."},
+	"Shaken Pilot":{"text":"During the Planning phase, you cannot be assigned straight maneuvers. When you reveal a maneuver, flip this card facedown."},
+	"Major Hull Breach":{"text":"Starting the round after you receive this card, all Damage cards dealt to you are dealt faceup. %ACTION% Flip this card facedown"},
+	"Major Explosion":{"text":"Roll 1 attack die.  On a %HIT% result, suffer 1 critical damage.  Then flip this card facedown."},
+	"Loose Stabilizer":{"text":"After you execute a white maneuver, receive 1 stress token. %ACTION% Flip this card facedown."},
 	"Structural Damage":{
 	    "text":"Reduce your agility value by 1 (to a minimum of '0'). %ACTION% Roll 1 attack die, on a %HIT% result, flip this card facedown."
 	},
@@ -665,6 +670,15 @@
 	}
     },
     "css":{
+	"m-hangar":"Hangar",
+	"m-obstacles":"Obstacles",
+	"m-asteroids":"Asteroids",
+	"m-debris":"Debris",
+	"m-pick3":"Pick 3 obstacles",
+	"m-normalmap":"Maps:",
+	"m-deckversion":"Damage deck version",
+	"m-ver1":"X-Wing",
+	"m-ver2":"The Force Awakens",
 	"m-all":"All",
 	"m-ncombats":"Combats",
 	"m-battlingsquad":"Battling squad",

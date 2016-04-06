@@ -133,11 +133,6 @@ IAUnit.prototype= {
 	}
 	else { this.m=old; cleanup(this,-1); }
     },
-    timetoshowmaneuver: function() {
-	/*if (phase==ACTIVATION_PHASE&&this.maneuver>-1) 
-	    this.log("show ? "+(skillturn==this.skill)+" "+this.skill+" "+skillturn);*/
-	return this.maneuver>-1 && phase==ACTIVATION_PHASE&&skillturn==this.getskill();
-    },
     doplan: function() {
 	$("#move").css({display:"none"});
 	$("#maneuverdial").empty();

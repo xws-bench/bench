@@ -1,3 +1,5 @@
+var V1="deckv1",V2="deckv2";
+var CURRENT_DECK=V2;
 function Critical(sh,i) {
     this.lethal=false;
     $.extend(this,CRITICAL_DECK[i]);
@@ -29,6 +31,7 @@ var CRITICAL_DECK=[
 	type:"ship",
 	count: 2,
 	name:"Structural Damage",
+	version:[V1,V2],
 	faceup: function() {
 	    this.unit.log("Critical: %0",this.name);
 	    this.isactive=true;
@@ -55,7 +58,8 @@ var CRITICAL_DECK=[
     {
 	type:"ship",
 	name:"Damaged Engine",
-	count: 1,
+	version:[V1,V2],
+	count: 2,
 	faceup: function() {
 	    this.unit.log("Critical: %0",this.name);
 	    this.isactive=true;
@@ -79,6 +83,7 @@ var CRITICAL_DECK=[
 	type:"ship",
 	name:"Console Fire",
 	count: 2,
+	version:[V1,V2],
 	lethal:true,
 	faceup: function() {
 	    this.unit.log("Critical: %0",this.name);
@@ -107,6 +112,7 @@ var CRITICAL_DECK=[
 	type:"ship",
 	count: 2,
 	name:"Weapon Malfunction",
+	version:[V1],
 	faceup:function() {
 	    this.unit.log("Critical: %0",this.name);
 	    this.isactive=true;
@@ -135,6 +141,7 @@ var CRITICAL_DECK=[
 	type:"ship",
 	count:2,
 	name:"Damaged Sensor Array",
+	version:[V1,V2],
 	faceup: function() {
 	    this.unit.log("Critical: %0",this.name);
 	    this.isactive=true;
@@ -159,6 +166,7 @@ var CRITICAL_DECK=[
 	count: 2,
 	type:"ship",
 	lethal:true,
+	version:[V1],
 	faceup: function() {
 	    this.unit.log("Critical: %0",this.name);
 	    var roll=this.unit.rollattackdie(1)[0]
@@ -172,6 +180,7 @@ var CRITICAL_DECK=[
     {
 	name:"Thrust Control Fire",
 	count: 2,
+	version:[V1,V2],
 	type:"ship",
 	faceup: function() {
 	    this.unit.log("Critical: %0",this.name);
@@ -185,6 +194,7 @@ var CRITICAL_DECK=[
     { 
 	name:"Direct Hit!",
 	count:7,
+	version:[V1,V2],
 	type:"ship",
 	lethal:true,
 	faceup: function() {
@@ -201,6 +211,7 @@ var CRITICAL_DECK=[
 	name:"Munitions Failure",
 	count:2,
 	type:"ship",
+	version:[V1],
 	lethal:true,
 	faceup: function() {
 	    this.unit.log("Critical: %0",this.name);
@@ -224,6 +235,7 @@ var CRITICAL_DECK=[
 	count:2,
 	type:"ship",
 	lethal:true,
+	version:[V1],
 	faceup: function() {
 	    var self=this;
 	    this.unit.log("Critical: %0",this.name);
@@ -249,6 +261,7 @@ var CRITICAL_DECK=[
 	name:"Damaged Cockpit",
 	count:2,
 	type:"pilot",
+	version:[V1,V2],
 	faceup: function() {
 	    var self=this;
 	    this.unit.log("Critical: %0",this.name);
@@ -273,6 +286,7 @@ var CRITICAL_DECK=[
     { 
 	name:"Blinded Pilot",
 	count:2,
+	version:[V1,V2],
 	type:"pilot",
 	faceup: function() {
 	    var self=this;
@@ -289,6 +303,7 @@ var CRITICAL_DECK=[
 	count:2,
 	type:"pilot",
 	lethal:true,
+	version:[V1],
 	faceup: function() {
 	    this.unit.log("Critical: %0",this.name);
 	    var i;
@@ -319,6 +334,7 @@ var CRITICAL_DECK=[
     { 
 	name:"Stunned Pilot",
 	count:2,
+	version:[V1,V2],
 	type:"pilot",
 	lethal:true,
 	faceup: function() {
@@ -340,6 +356,128 @@ var CRITICAL_DECK=[
 		this.unit.unwrap("resolveocollision",this);
 		this.unit.log("no longer stunned");
 	    }
+	    this.isactive=false;
 	}
+    },
+    {
+	name:"Loose Stabilizer",
+	count:2,
+	type:"ship",
+	faceup: function() {
+	    var self=this;
+	    this.unit.log("Critical: %0",this.name);
+	    this.unit.wrap_after("handledifficulty",this,function(d) {
+		if (d=="WHITE") this.addstress();
+	    });
+	},
+	facedown: function() {
+	    if (this.isactive) {
+		this.unit.unwrap("handledifficulty",this);
+		this.unit.log("%0 repaired",this.name);
+	    }
+	    this.isactive=false;
+	},
+	version:[V2],
+    },
+    {
+	name:"Major Explosion",
+	count:2,
+	type:"ship",
+	lethal:true,
+	faceup:function() {
+	    var self=this;
+	    this.unit.log("Critical: %0",this.name);
+	    var roll=this.unit.rollattackdie(1)[0];
+	    if (roll=="hit") {
+		this.unit.log("+1 %CRIT% [%0]",this.name);
+		this.unit.resolvecritical(1);
+	    }
+	    this.isactive=false;
+	},
+	facedown:function() {},
+	version:[V2],
+    },
+    { 
+	name:"Major Hull Breach",
+	count:2,
+	type:"ship",
+	lethal:true,
+	version:[V2],
+	faceup:function() {
+	    var myround=round;
+	    this.unit.log("Critical: %0",this.name);
+	    this.unit.wrap_after("deal",this,function(crit,face,p) {
+		if (round==myround) return p;
+		var dd=$.Deferred();
+		p.done(function(c) {
+		    c.face=FACEUP;
+		    dd.resolve(c);
+		});
+		return dd.promise();
+	    });
+	},
+	facedown: function() {
+	    if (this.isactive) {
+		this.unit.unwrap("deal",this);
+	    }
+	    this.isactive=false;
+	},
+	action: function(n) {
+	    this.facedown();
+	    this.unit.endaction(n,"CRITICAL");
+	}
+    },
+    {
+	name:"Shaken Pilot",
+	count:2,
+	type:"pilot",
+	faceup: function() {
+	    this.unit.log("Critical: %0",this.name);
+	    this.isactive=true;
+	    var save=[];
+	    var self=this;
+	    this.unit.wrap_after("getdial",this,function(a) {
+		if (save.length==0) {
+		    for (var i=0; i<a.length; i++) {
+			if (!a[i].move.match(/F1|F2|F3|F4|F5/)) 
+			    save.push({move:a[i].move,difficulty:a[i].difficulty});
+		    }
+		}
+		return save;
+	    });
+	    this.unit.wrap_after("timetoshowmaneuver",this,function(t) {
+		if (t) self.facedown();
+		return t;
+	    });	    
+	},
+	facedown: function() {
+	    if (this.isactive) {
+		this.unit.getdial.unwrap(this);
+		this.unit.timetoshowmaneuver.unwrap(this);
+	    }
+	    this.isactive=false;
+	},
+	version:[V2],
+    },
+    {
+	name:"Weapons Failure",
+	count:2,
+	type:"ship",
+	faceup: function() {
+	    for (var i in this.weapons) 
+		this.weapons[i].wrap_after("getattack",this,function(a) { return (a>0)?a-1:a; }); 
+	},
+	facedown: function() {
+	    for (var i in this.weapons) 
+		this.weapons[i].getattack.unwrap(this);
+	},
+	action: function(n) {
+	    var roll=this.unit.rollattackdie(1)[0];
+	    if (roll=="hit"||roll=="critical") {
+		this.facedown();
+	    } else this.unit.log("%0 not repaired ",this.name);
+	    this.unit.endaction(n,"CRITICAL");
+	},
+	version:[V2],
     }
 ];

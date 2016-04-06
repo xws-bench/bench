@@ -64,28 +64,10 @@ Bomb.prototype = {
 	//this.unit.showactivation();
     },
     toString: function() {
-	var a,b,d,str="";
-	var c="";
-	var template;
-	if (this.unit.team==1) template=$("#bomb-left").html();
-	else template=$("#bomb-right").html();
-	Mustache.parse(template);
 	this.tooltip = formatstring(getupgtxttranslation(this.name,this.type));
 	this.trname=translate(this.name).replace(/\'/g,"&#39;");
-	var rendered=Mustache.render(template, this);
-	/*if (!this.isactive) c="class='inactive'"
-	a="<td><code class='"+this.type+" upgrades'></code>";
-	a+="</td>";
-	var ord="";
-	if (this.ordnance) ord="<sup style=\"padding:1px;color:white;background-color:red;border-radius:100%;\">x2</sup>";
-	b="<td class='tdstat'><span>"+translate(this.name).replace(/\'/g,"&#39;")+ord+"</span></td>";
-	var text=getupgtxttranslation(this.name,this.type);
-	if (text=="") d="<td class='outoverflow'></td>";
-	else d="<td class='tooltip outoverflow'><span>"+formatstring(text)+"</span></td>";
-	if (this.unit.team==1)  
-	    return "<tr "+c+">"+b+a+d+"</tr>"; 
-	else return "<tr "+c+">"+a+b+d+"</tr>";*/
-	return rendered;
+	this.left=(this.unit.team==1);
+	return Mustache.render(TEMPLATES["bomb"], this);
     },
     getrangeallunits: function () { 
 	var range=[[],[],[],[],[]],i;
@@ -259,35 +241,23 @@ Weapon.prototype = {
     hasauxiliaryfiringarc: function() { return false; },
     desactivate: Unit.prototype.desactivate,
     toString: function() {
-	var a,b,d,str="";
-	var c="";
-	if (!this.isactive) c="class='inactive'"
-	else {
+	this.tooltip = formatstring(getupgtxttranslation(this.name,this.type));
+	this.trname=translate(this.name).replace(/\'/g,"&#39;");
+	this.left=(this.unit.team==1);
+	if (this.isactive) {
 	    var i,r=this.getrangeallunits();
 	    for (i=0; i<r.length; i++) if (r[i].team!=this.unit.team) break;
-	    if (i==r.length) c="class='nofire'"
+	    if (i==r.length) this.nofire=true; else this.nofire=false;
 	}
-	var rank = this.unit.upgrades.indexOf(this);
-	var i = squadron.indexOf(this.unit);
-	a="<td><button class='statfire'";
-	if (i>-1) a+=" onclick='if (!squadron["+i+"].isdocked) squadron["+i+"].togglehitsector("+rank+")'";
-	a+=">"+this.getattack()+"<span class='symbols'>"+A[this.type.toUpperCase()].key+"</span>"
-	a+="</button></td>";
-	var ord="";
-	if (this.ordnance) ord="<sup style=\"padding:1px;color:white;background-color:red;border-radius:100%;\">x2</sup>";
-	b="<td class='tdstat'><span>"+translate(this.name).replace(/\'/g,"&#39;")+ord+" <span style='font-size:smaller'>";
+	this.attackkey=A[this.type.toUpperCase()].key;
+	this.req=[];
 	if ((typeof this.getrequirements()!="undefined")) {
-	    if ("Target".match(this.getrequirements())) b+="<code class='symbols'>"+A["TARGET"].key+"</code>"
-	    if ("Focus".match(this.getrequirements())) b+=(this.getrequirements().length>5?"/":"")+"<code class='symbols'>"+A["FOCUS"].key+"</code>"
+	    if ("Target".match(this.getrequirements())) this.req.push([A["TARGET"].key]);
+	    if ("Focus".match(this.getrequirements())) this.req.push(A["FOCUS"].key);
 	}
-	b+="["+this.getlowrange()+"-"+this.gethighrange()+"]</span></span></td>";
-	if (typeof text!="undefined"&&typeof text.text!="undefined") text=text.text; else text="";
-	if (text=="") d="<td class='outoverflow'></td>";
-	else d="<td class='tooltip outoverflow'><span>"+formatstring(text)+"</span></td>";
-
-	if (this.unit.team==1)  
-	    return "<tr "+c+">"+b+a+d+"</tr>"; 
-	else return "<tr "+c+">"+a+b+d+"</tr>";
+	this.uid = squadron.indexOf(this.unit);
+	this.rank=this.unit.upgrades.indexOf(this);
+	return Mustache.render(TEMPLATES["weapon"], this);
     },
     prehit: function(t,c,h) {},
     posthit:function(t,c,h) {},
@@ -430,21 +400,11 @@ function Upgradefromid(sh,i) {
 }
 Upgrade.prototype = {
     toString: function() {
-	var a,b,str="";
-	var c="";
-	var d;
-	if (!this.isactive) c="class='inactive'"
-	a="<td><code class='"+this.type+" upgrades'></code></td>"; 
-	b="<td class='tdstat'>"+translate(this.name).replace(/\'/g,"&#39;");
-	if (typeof this.shield!="undefined" &&this.shield>0)
-	    b+=" <code class='cshield' title='"+this.shield+" shield(s)'></code>";
-	b+="</td>";
-	var text=formatstring(getupgtxttranslation(this.name,this.type));
-	if (text=="") d="<td class='outoverflow'></td>";
-	else d="<td class='tooltip outoverflow'><span>"+text+"</span></td>";
-	if (this.unit.team==1)  
-	    return "<tr "+c+">"+b+a+d+"</tr>"; 
-	else return "<tr "+c+">"+a+b+d+"</tr>";
+	this.tooltip = formatstring(getupgtxttranslation(this.name,this.type));
+	this.trname=translate(this.name).replace(/\'/g,"&#39;");
+	this.left=(this.unit.team==1);
+	if (typeof this.shield!="undefined" &&this.shield>0) this.hasshield=true; else this.hasshield=false;
+	return Mustache.render(TEMPLATES["upgrade"], this);
     },
     isWeapon: function() { return false; },
     isBomb: function() { return false; },
