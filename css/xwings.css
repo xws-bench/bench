@@ -305,6 +305,7 @@ box-shadow:2px 2px 2px #CCC;
 margin:2px;
 text-align:justify
 }
+
 .shipupgrades .Elite {
 display:none
 }
@@ -616,6 +617,12 @@ top:2%;
 left:2%;
 overflow-y:auto
 }
+#asteroid > div {
+width:95%;
+left:2%;
+top:20%;
+overflow-y:auto;
+}
 
 #proba > div,#combatmodal > div,#donate > div {
 width:400px;
@@ -638,7 +645,7 @@ margin:0
 color:red
 }
 
-.close,.duplicate {
+.close,.duplicate,.dialopen {
 margin-right:.5ex;
 position:absolute;
 right:0;
@@ -647,16 +654,22 @@ cursor:pointer
 }
 
 .duplicate {
-top:2em;
-font-size:2em;
+top:3.6em;
+font-size:1.5em;
 color:#fff
 }
-
-.duplicate:hover {
+.duplicate:hover,.dialopen:hover {
 background:#fff;
 color:#000
 }
-
+.dialopen {
+top:2.3em;
+border-radius:50%;
+border:1px solid;
+width:1em;
+padding:2px;
+font-size:larger;
+}
 .close {
 top:0;
 color:red
@@ -670,6 +683,7 @@ color:#fff
 .closemiddle {
 margin-right:.5ex;
 color:red;
+font-size:1.5em;
 text-decoration:none;
 cursor:pointer;
 width:2em;
@@ -682,6 +696,7 @@ padding-right:2px
 text-decoration:none;
 cursor:pointer;
 width:4ex;
+font-size:1.5em;
 background:#A00;
 border:1px solid #A00
 }
@@ -701,6 +716,7 @@ opacity:.75
 .logmiddle {
 cursor:pointer;
 width:1.8em;
+font-size:1.5em;
 vertical-align:middle
 }
 
@@ -1271,7 +1287,8 @@ display:inline
 }
 
 #listunits .close {
-font-size:3em
+font-size:2em;
+top:0.3em;
 }
 
 .evadetoken,.focustoken,.cloaktoken,.stresstoken,.targettoken {
@@ -1551,18 +1568,22 @@ font-family:'symbols'
 .statfire {
 color:red
 }
-
-.statfire,.statevade,.player {
+#rocks {
+display:none;
+color:white;
+}
+button.statfire,button.statevade,.player {
 cursor:pointer;
 font-size:smaller
 }
 
 .PREBUILT::before {
-background-image:url(prebuilt.png)
+/*background-image:url(prebuilt.png)*/
 }
 
 .REBEL::before {
-background-image:url(rebel.png)
+background-image:url(rebel.jpg);
+border-radius:50%
 }
 
 .TOP::before {
@@ -1577,20 +1598,22 @@ border-width:0
 }
 
 .EMPIRE::before,.REBEL::before,.SCUM::before,.PREBUILT::before {
-background-size:100%;
+background-size:cover;
 background-repeat:no-repeat;
 width:1em;
-height:1em;
-padding-left:1em;
+padding-left:1.2em;
+padding-top:.2em;
 content:""
 }
 
 .EMPIRE::before {
-background-image:url(empire.png)
+background-image:url(empire.jpg);
+border-radius:50%;
 }
 
 .SCUM::before {
-background-image:url(scum.png)
+background-image:url(scum.jpg);
+border-radius:50%;
 }
 
 .flame1 {
@@ -1830,13 +1853,45 @@ td.squadbg .right {
 background:#4682b4;
 border:1px solid #4682b4
 }
-
+td.squadbg img:hover,td.squadbg img.selected {
+border:3px solid #A00;
+padding:0;
+}
+td.squadbg img {
+padding:3px;
+border:0px;
+border-radius:50%;
+margin:0;
+}
 td.squadbg div,.squadmiddle {
 padding:.2em .3em 0;
 color:#fff;
 border-radius:50%
 }
-
+.aster > img:hover,.aster > div.selected,.deb > img:hover,.deb > div.selected {
+border:2px solid #A00;
+padding:0;
+}
+.aster > img,.deb > img {
+border:0;
+border-radius:50%;
+padding:2px;
+width:36px;
+height:36px;
+}
+.aster,.deb {
+text-align:center;
+width:100%;
+border:0;
+background:rgba(255,255,255,0.8);
+border-radius:5px;
+height:5em;
+}
+.squadbg svg {
+width:100%;
+height:3em;
+background:rgba(255,255,255,0.5)
+}
 .tosquad {
 border:2px solid #000;
 color:#fff;
@@ -1846,7 +1901,9 @@ padding-left:.2em;
 padding-right:.2em;
 border-radius:50%
 }
-
+.m-normalmap::after {
+    vertical-align: top;
+}
 .squadmanage {
 width:100%;
 background:#b0c4de;
@@ -1891,17 +1948,6 @@ width:95%;
 margin-left:2.5%;
 opacity:.75
 }
-
-.prebuilt::after {
-background:url(prebuilt.png);
-background-size:100%;
-background-repeat:no-repeat;
-width:1em;
-height:1em;
-padding-left:1em;
-content:" "
-}
-
 .squadselected button {
 border-collapse:collapse
 }
@@ -1913,7 +1959,12 @@ margin:0;
 border:0;
 resize:none
 }
-
+#setting td:first-child {
+text-align:right;
+}
+#setting td:last-child {
+text-align:left;
+}
 .modalDialog textarea {
 height:12em;
 width:80%
@@ -1985,7 +2036,7 @@ width:calc(100% - 210px);
 white-space:nowrap;
 overflow-x:auto;
 overflow-y:hidden;
-height:18em;
+height:16em;
 text-align:center;
 margin:10px;
 }
@@ -2003,7 +2054,7 @@ padding:0;
 color:#fff;
 font-size:.6em;
 display:inline-block;
-height:24em;
+height:21em;
 border-radius:10px;
 box-shadow:inset 1px 1px 0 rgba(255,255,255,.4),0 0 30px rgba(0,0,0,0.2);
 width:180px;
@@ -2019,7 +2070,7 @@ margin-right:-100px
 }
 
 ul#listunits {
-height:26em
+height:21em
 }
 
 .inunitlist {
@@ -2028,7 +2079,7 @@ margin:2px
 }
 
 ul#listunits li {
-height:80%;
+height:25em;
 margin-top:40px
 }
 
@@ -2046,14 +2097,21 @@ border-collapse:collapse
 .upgavail,.upg {
 white-space:normal
 }
-
+.upgavail button:hover {
+border:1px solid gold;
+padding:0;
+}
+.upgavail button {
+padding:1px;
+}
 ul.caroussel td,.upglist > tr > td {
 vertical-align:middle
 }
 
 ul.caroussel table.upgs {
 padding-left:4px;
-vertical-align:top
+vertical-align:top;
+width:100%
 }
 
 ul#caroussel .highlighted ~ li {
@@ -2087,7 +2145,7 @@ ul#caroussel:hover li:hover ~ li {
 transform:rotateY(-45deg) translateX(120px)
 }
 
-ul.caroussel .shipimg,ul.caroussel .shipdial,ul.listunits .shipimg,ul.listunits .shipdial {
+ul.caroussel .shipimg,ul.caroussel .shipdial,ul.listunits .shipdial {
 opacity:1;
 background-size:30px 30px;
 background-repeat:no-repeat;
@@ -2104,14 +2162,16 @@ ul.caroussel button {
 cursor:pointer;
 opacity:1
 }
-
+.shipdial.tooltip {
+background:#000;
+}
 .shipdial {
 color:#fff;
 max-width:30px;
 width:30px;
 font-size:6px;
 empty-cells:hide;
-padding:3px
+padding:3px;
 }
 
 .shipdial td {
@@ -2148,7 +2208,7 @@ display:block;
 overflow-x:hidden;
 overflow-y:auto;
 width:100%;
-height:15em
+height:13em
 }
 
 .upglist td {
@@ -2164,7 +2224,8 @@ width:100%
 }
 
 .upg span {
-text-decoration:underline
+float:right;
+padding-right:2px;
 }
 
 .shipdial {
@@ -2178,7 +2239,9 @@ text-align:center;
 padding:2px;
 white-space:normal
 }
-
+.unitlist .shipname {
+text-shadow:1px 1px #000,1px -1px #000,-1px 1px #000,-1px -1px #000;
+}
 .pts {
 text-align:right
 }
