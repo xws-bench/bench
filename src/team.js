@@ -57,12 +57,11 @@ Team.prototype = {
 	var w=$(".aster").width();
 	for (var i=0; i<rl; i++) {
 	    (function(i) {
-		s=h/maxh;
+		var s=h/maxh;
 		if (w/maxw/rl<s) s=w/maxw/rl;
 		var bb=g[i].getBBox();
 		var m1=MT(i*w/rl+w/rl/4,h/2-bb.height*s/2).scale(s,s);
 		g[i].transform(m1);
-		console.log("appending asteroid "+i);
 		g[i].appendTo(viewport);
 		g[i].hover(function()  {g[i].attr({strokeWidth:12});},
 			function()  {g[i].attr({strokeWidth:0});});

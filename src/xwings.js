@@ -1300,6 +1300,7 @@ function nextphase() {
 	$("#team2").css("top",$("nav").height()+2);
 	$("#team1").css("top",$("nav").height()+2);
 	$(".ctrl").css("display","block");
+	console.log("s="+s+" "+SETUPS.playzone);
 	ZONE[0]=s.path(SETUPS.playzone).attr({
 		strokeWidth: 6,
 		stroke:halftone(WHITE),
