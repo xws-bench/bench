@@ -553,6 +553,8 @@ Unit.prototype = {
 	var str="";
 	var img=PILOTS[this.pilotid].dict;
 	if (PILOTS[this.pilotid].ambiguous==true) img+="-"+unitlist[this.ship.name].dict;
+	var sname=SHIP_translation[this.ship.name];
+	if (typeof SHIP_translation[this.ship.name]=="undefined") sname=this.ship.name;
 	var rendered = Mustache.render(TEMPLATES["unit-creation"], {
 	    imgname:img,
 	    faction:currentteam.faction,
@@ -567,7 +569,7 @@ Unit.prototype = {
 	    fire:this.weapons[0].getattack(),
 	    shipimg:this.shipimg,
 	    diallist:dial2JSON(this.getdial()),
-	    shipname:SHIP_translation[this.ship.name],
+	    shipname:sname,
 	    actionstring:this.getactionstring(),
 	    upgradeaddstring:this.getupgradeaddstring()
 	});
