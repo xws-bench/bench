@@ -558,10 +558,7 @@ The app is not really a game since the user plays both sides, there is no multi-
 	<td style="display:{{#left}}none{{/left}}{{^left}}block{{/left}}"><code class="{{type}} upgrades"></code></td>
 	<td class="tdstat">
 	  <span>
-	    {{trname}}
-	    {{#ordnance}}
-	    <sup style="padding:1px;color:white;background-color:red;border-radius:100%;">x2</sup>
-	    {{/ordnance}}
+	    {{{trname}}}{{#ordnance}}<sup style="padding:1px;color:white;background-color:red;border-radius:100%;">x2</sup>{{/ordnance}}
 	  </span>
 	</td>
 	<td style="display:{{#left}}block{{/left}}{{^left}}none{{/left}}"><code class="{{type}} upgrades"></code></td>
@@ -583,10 +580,7 @@ The app is not really a game since the user plays both sides, there is no multi-
 	</td>
 	<td class="tdstat">
 	  <span>
-	    {{trname}}
-	    {{#ordnance}}
-	    <sup style="padding:1px;color:white;background-color:red;border-radius:100%;">x2</sup>
-	    {{/ordnance}}
+	    {{{trname}}}{{#ordnance}}<sup style="padding:1px;color:white;background-color:red;border-radius:100%;">x2</sup>{{/ordnance}}
 	    <span style="font-size:smaller">
 	      {{#req}}<span class="symbols">{{.}}</span>{{/req}}[{{getlowrange}}-{{gethighrange}}]
 	    </span>
@@ -613,7 +607,7 @@ The app is not really a game since the user plays both sides, there is no multi-
 	</td>
 	<td class="tdstat">
 	  <span>
-	    {{trname}}{{#hasshield}}<code class="cshield" title="{{shield}} shield(s)"></code>{{/hasshield}}
+	    {{{trname}}}{{#hasshield}}<code class="cshield" title="{{shield}} shield(s)"></code>{{/hasshield}}
 	  </span>
 	</td>
 	<td style="display:{{^left}}none{{/left}}{{#left}}table-cell{{/left}}">
