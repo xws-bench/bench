@@ -33,6 +33,8 @@ var DEBRIS=[
 function loadrock(s,str) {
     var i,j;
     var coord=[],o,ob;
+    if (typeof TEAMS[1].rocks=="undefined"||TEAMS[1].rocks[2]==null) TEAMS[1].rocks=[0,1,2];
+    if (typeof TEAMS[2].rocks=="undefined"||TEAMS[2].rocks[2]==null) TEAMS[2].rocks=[3,4,5];
     if (str !="") {
 	o=str.split(";");
 	for (i=0; i<6; i++) {
@@ -44,8 +46,6 @@ function loadrock(s,str) {
 	    }
 	}
     } else for (i=0; i<6; i++) coord[i]=[Math.random()*150-75,Math.random()*150-50,Math.random()*45];
-    if (typeof TEAMS[1].rocks=="undefined"||TEAMS[1].rocks[2]==null) TEAMS[1].rocks=[0,1,2];
-    if (typeof TEAMS[2].rocks=="undefined"||TEAMS[2].rocks[2]==null) TEAMS[2].rocks=[3,4,5];
     for (i=0; i<3; i++) {
 	OBSTACLES[i]=new Rock(TEAMS[1].rocks[i],coord[i]);
 	OBSTACLES[i+3]=new Rock(TEAMS[2].rocks[i],coord[i+3]);
