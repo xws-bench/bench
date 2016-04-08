@@ -74,11 +74,14 @@ var SOUND_FILES=[
 var SOUNDS={};
 var SOUND_NAMES=["cloak","decloak","explode","xwing_fire","tie_fire","slave_fire","falcon_fire","xwing_fly","tie_fly","slave_fly","falcon_fly","yt2400_fly","ywing_fly","isd_fly","missile","xwing2_fly","dstar_gun","tie2_fly","slave2_fly","ghost"];
 function loadsound() {
-    var i;
+    var i,j;
     var sound={"explode":2,"cloak":0,"decloak":1};
     for (i=0; i<squadron.length; i++) {
 	sound[squadron[i].ship.firesnd]=SOUND_NAMES.indexOf(squadron[i].ship.firesnd);
 	sound[squadron[i].ship.flysnd]=SOUND_NAMES.indexOf(squadron[i].ship.flysnd);
+	for (j=0; j<squadron[i].weapons.length; j++) 
+	    sound[squadron[i].weapons[j].firesnd]=SOUND_NAMES.indexOf(squadron[i].weapons[j].firesnd);
+	    
     }
     for (i in sound) {
 	SOUNDS[i]=new Howl({
@@ -2702,7 +2705,7 @@ Unit.prototype = {
 	    $("#"+this.id).html(""+this);
 	    $("#"+this.id+" .outoverflow").each(function(index) { 
 		if ($(this).css("top")!="auto") {
-		    $(this).css("top",$(this).parent().offset().top+"px");
+		    $(this).css("top",($(this).parent().offset().top)+"px");
 		}
 	    });
 	    //$("#"+this.id).addClass("selected");
