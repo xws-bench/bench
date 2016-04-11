@@ -187,7 +187,6 @@ Bomb.prototype = {
 	if (this.stay) {
 	    OBSTACLES.push(this);
 	    var p=this.getcollisions();
-	    console.log("collisions : "+p.length);
 	    if (p.length>0) this.unit.resolveactionselection(p,function(k) {
 		this.detonate(p[k]);
 	    }.bind(this));
@@ -207,16 +206,18 @@ Bomb.prototype = {
 	var p=this.op;
 	return {s:"M "+p[0].x+" "+p[0].y+" L "+p[1].x+" "+p[1].y+" "+p[2].x+" "+p[2].y+" "+p[3].x+" "+p[3].y+" Z",p:p}; 
     },
-    explode: function() {
+    explode_base: function() {
+	log("explode base executed for "+this.name);
 	this.exploded=true;
 	this.unit.log("%0 explodes",this.name);
 	SOUNDS[this.snd].play();
 	this.g.remove();
 	BOMBS.splice(BOMBS.indexOf(this),1);
     },
+    explode: function() { this.explode_base(); },
     detonate: function() {
 	OBSTACLES.splice(OBSTACLES.indexOf(this),1);
-	Bomb.prototype.explode.call(this);
+	this.explode_base();
     },
     endround: function() {},
     show: function() {},
