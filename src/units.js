@@ -410,8 +410,7 @@ Unit.prototype = {
 	var global=false;
 	if (typeof save.org=="undefined"&&this!=Bomb.prototype&&this!=Unit.prototype&&this!=Weapon.prototype) global=true;
 	var f=function () {
-            var args = Array.prototype.slice.call(arguments),
-            result;
+            var args = Array.prototype.slice.call(arguments),result;
 	    if (global) {
 		result=this.__proto__[name].apply(this,args);
             } else result=save.apply( this, args);
@@ -2212,6 +2211,13 @@ Unit.prototype = {
 	}.bind(this),list[0].name);  
     },
     donoaction: function(list,str,noskip) {
+	var l;
+	if (list.length==0) {
+	    this.log("no action available");
+	    return this.enqueueaction(function(n) {
+		this.endnoaction(n);
+	    }.bind(this),this.name);
+	} 
 	return this.enqueueaction(function(n) {
 	    var i;
  	    if (typeof str!="undefined"&&str!="") this.log(str);
@@ -2837,7 +2843,7 @@ Unit.prototype = {
 		this.checkdead(); 
 	    }
 	    else if (roll=="critical") { 
-		this.log("+1 %CRITICAL% [collision]"); 
+		this.log("+1 %CRIT% [collision]"); 
 		this.resolvecritical(1);
 		this.checkdead();
 	    }
