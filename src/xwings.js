@@ -1300,7 +1300,7 @@ function nextphase() {
 	$("#team2").css("top",$("nav").height()+2);
 	$("#team1").css("top",$("nav").height()+2);
 	$(".ctrl").css("display","block");
-	console.log("s="+s+" "+SETUPS.playzone);
+	
 	ZONE[0]=s.path(SETUPS.playzone).attr({
 		strokeWidth: 6,
 		stroke:halftone(WHITE),
@@ -1929,7 +1929,7 @@ $(document).ready(function() {
 	  K5:{path:s.path("M 0 0 L 0 -240").attr({display:"none"}), speed: 5, key: "2" }
 	};
     // Load unit data
-    var availlanguages=["en","fr"];
+    var availlanguages=["en","fr","de"];
     LANG = localStorage['LANG'] || window.navigator.userLanguage || window.navigator.language;
     LANG=LANG.substring(0,2);
     $.ajaxSetup({beforeSend: function(xhr){

@@ -95,10 +95,11 @@ function Rock(frag,coord) {
     this.g.addClass("unit");
     var b=this.g.getBBox();
     this.o=[];
+    var scale=0.27;
     for (k=1; k<4; k++) {
-	this.o[k]=s.ellipse(b.x+b.width/2,b.y+b.height/2,200*k+b.width/2,200*k+b.height/2).attr({pointerEvents:"none",display:"none",fill:WHITE,opacity:0.3,strokeWidth:2});
+	this.o[k]=s.ellipse(b.x+b.width/2,b.y+b.height/2,200/scale/2*k+b.width/2,200/scale/2*k+b.height/2).attr({pointerEvents:"none",display:"none",fill:WHITE,opacity:0.3,strokeWidth:2});
     }
-    this.m=(new Snap.Matrix()).translate(coord[0]+PX[i],coord[1]+PY[i]).rotate(coord[2],0,0).scale(0.27,0.27);
+    this.m=(new Snap.Matrix()).translate(coord[0]+PX[i],coord[1]+PY[i]).rotate(coord[2],0,0).scale(scale,scale);
 
     //this.g.transform('t '+(-b.width/2-b.x)+" "+(-b.height/2-b.y));
     this.getOutlineString();

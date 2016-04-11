@@ -163,7 +163,7 @@ var UPGRADES= [
 	  var self=this;
 	  self.bb=-1;
 	  sh.wrap_after("updateactivationdial",this,function(ad) {
-	      if (self.isactive&&self.bb!=round&&!self.hasionizationeffect()) 
+	      if (self.isactive&&self.bb!=round&&!this.hasionizationeffect()) 
 		  this.addactivationdial(
 		      function() { 
 			  return !this.hasmoved&&this.maneuver>-1&&(this.getmaneuver().difficulty=="GREEN")&&this.candoroll()&&!this.hasionizationeffect(); 
@@ -620,18 +620,18 @@ var UPGRADES= [
 	width: 16,
 	height:8,
 	size:15,
-        explode: function() {
-	    if (phase==ACTIVATION_PHASE&&!this.exploded) {
-		var r=this.getrangeallunits();
-		var i;
-		Bomb.prototype.explode.call(this);
-		for (i=0; i<r[1].length; i++) {
-		    var u=squadron[r[1][i].unit];
-		    u.log("+1 %HIT% [%0]",this.name);
-		    u.resolvehit(1);
-		    u.checkdead();
+        init: function(sh) {
+	    this.wrap_after("detonate_base",this,function() {
+		if (phase==ACTIVATION_PHASE&&!this.exploded) {
+		    var r=this.getrangeallunits();
+		    for (var i=0; i<r[1].length; i++) {
+			var u=squadron[r[1][i].unit];
+			u.log("+1 %HIT% [%0]",this.name);
+			u.resolvehit(1);
+			u.checkdead();
+		    }
 		}
-	    }
+	    });
 	},
         type: BOMB,
         points: 2,
@@ -993,14 +993,15 @@ var UPGRADES= [
 	size:15,
 	snd:"explode",
 	img:"proton.png",
-        explode: function() {
+	explode:function() {
+	    log("proton bombs");
 	    if (phase==ACTIVATION_PHASE&&!this.exploded) {
 		var r=this.getrangeallunits();
-		Bomb.prototype.explode.call(this);
 		for (var i=0; i<r[1].length; i++) {
 		    squadron[r[1][i].unit].applycritical(1);
 		    squadron[r[1][i].unit].checkdead();
 		}
+		this.explode_base();
 	    }
 	},
         type: BOMB,
@@ -1041,7 +1042,7 @@ var UPGRADES= [
 	    sh.wrap_before("beginactivation",this,function() {
 		if (this.candoaction()&&!this.hasionizationeffect()) 
 		    this.doaction(this.getactionlist()).done(function(r) {
-			if (r!=null) this.wrap_after("candoendmaneuveraction",self,function() {return false;}).unwrapper("doendmaneuveraction");
+			if (r!=null) this.wrap_after("candoendmaneuveraction",self,function() { return false;}).unwrapper("endactivationphase");
 		    }.bind(this))
 	    });
 	},
@@ -3042,14 +3043,14 @@ var UPGRADES= [
 	done:true,
 	snd:"explode",
 	img:"ion.png",
-	explode: function() {
+	explode:function() {
 	    if (phase==ACTIVATION_PHASE&&!this.exploded) {
 		var r=this.getrangeallunits();
-		Bomb.prototype.explode.call(this);
 		for (var i=0; i<r[1].length; i++) {
 		    squadron[r[1][i].unit].addiontoken();
 		    squadron[r[1][i].unit].addiontoken();
 		}
+		this.explode_base();
 	    }
 	}
     },
@@ -3455,11 +3456,12 @@ var UPGRADES= [
       faction:REBEL,
       unique:true,
       done:true,
+      rd:-1,
       init: function(sh) {
 	  var self=this;
 	  Unit.prototype.wrap_after("handledifficulty",self,function(difficulty) {
-	      if (difficulty=="WHITE"&&this.stress>0
-		  &&this.team==self.team&&this.getrange(self)<=2) {
+	      if (difficulty=="WHITE"&&this.stress>0&&self.rd<round
+		  &&this.team==self.unit.team&&this.getrange(self.unit)<=2) {
 		  this.log("-1 %STRESS% [%0]",self.name);
 		  this.removestresstoken();
 	      }
@@ -3476,12 +3478,13 @@ var UPGRADES= [
       rd:-1,
       init: function(sh) {
 	  var self=this;
-	  Bomb.prototype.wrap_after("explode",this,function() {
+	  log("wrapping sabine");
+	  Bomb.prototype.wrap_after("explode_base",this,function() {
 	      var p=[self.unit];
-	      if (self.rd==round||this.unit.team!=self.team) return;
+	      if (self.rd==round||this.unit.team!=self.unit.team) return;
 	      for (var i in squadron) {
 		  var u=squadron[i];
-		  if (this.unit.team!=u.team&&this.getrange(squadron[i])==1) p.push(u); 
+		  if (this.unit.team!=u.team&&this.getrange(u)==1) p.push(u); 
 	      }
 	      this.unit.selectunit(p,function(p,k) {
 		  if (k==0) return;
@@ -4041,21 +4044,20 @@ var UPGRADES= [
 	width: 16,
 	height:8,
 	size:15,
-        explode: function() {
+	explode: function() {
 	    if (phase==ACTIVATION_PHASE&&!this.exploded) {
 		var r=this.getrangeallunits();
-		var i;
-		Bomb.prototype.explode.call(this);
-		for (i=0; i<r[1].length; i++) {
+		for (var i=0; i<r[1].length; i++) {
 		    var u=squadron[r[1][i].unit];
 		    u.log("+1 %HIT%, +1 %STRESS% [%0]",this.name);
 		    u.resolvehit(1);
 		    u.addstress();
 		    u.checkdead();
 		}
+		this.explode_base();
 	    }
 	},
         type: BOMB,
-        points: 2,
+        points: 3,
     }
 ];
