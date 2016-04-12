@@ -3219,6 +3219,12 @@ var UPGRADES= [
 	points: 2,
 	init: function(sh) {
 	    var da=sh.doaction;
+	    var self=this;
+	    /*sh.wrap_after("resolveslam",this,function(n) {
+		this.wrap_after("endaction",self,function() {
+		    this.endaction.unwrap(self);
+		})
+	    });*/
 	    sh.doaction= function(la) {
 		var dar=da.call(this,la)
 		dar.then(function(r) {
