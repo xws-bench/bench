@@ -55,7 +55,7 @@ function Bomb(sh,bdesc) {
 Bomb.prototype = {
     isWeapon: function() { return false; },
     isBomb: function() { return true; },
-    canbedropped: function() { return this.isactive&&!this.unit.hasmoved; },
+    canbedropped: function() { return this.isactive&&!this.unit.hasmoved&&this.unit.lastdrop!=round; },
     desactivate:Unit.prototype.desactivate,
     actiondrop: function(n) {
 	this.unit.lastdrop=round;
@@ -148,7 +148,7 @@ Bomb.prototype = {
 	    this.display(0,0);
 	    this.unit.bombdropped(this);
 	    //this.unit.log("endaction dropped "+n);
-	    this.unit.endnoaction(n,"DROP");
+	    if (typeof n!="undefined") this.unit.endnoaction(n,"DROP");
 	}.bind(dropped),false,true);
     },
     display: function(x,y) {
@@ -207,7 +207,6 @@ Bomb.prototype = {
 	return {s:"M "+p[0].x+" "+p[0].y+" L "+p[1].x+" "+p[1].y+" "+p[2].x+" "+p[2].y+" "+p[3].x+" "+p[3].y+" Z",p:p}; 
     },
     explode_base: function() {
-	log("explode base executed for "+this.name);
 	this.exploded=true;
 	this.unit.log("%0 explodes",this.name);
 	SOUNDS[this.snd].play();

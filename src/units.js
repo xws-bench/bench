@@ -2169,7 +2169,7 @@ Unit.prototype = {
 	    &&this.ocollision.template.length==0
 	    &&this.ocollision.overlap==-1; },
     doendmaneuveraction: function() {
-	if (this.candoendmaneuveraction()) return this.doaction(this.getactionlist());
+	if (this.candoendmaneuveraction()) return this.doaction(this.getactionlist(),"");
 	this.action=-1; this.actiondone=true;
 	return this.deferred.resolve();
     },
@@ -2197,6 +2197,7 @@ Unit.prototype = {
 			(function(k,h) {
 			    var e=$("<div>").addClass("symbols").text(A[k.type].key)
 				.click(function () { this.resolveaction(k,n) }.bind(this));
+			    if (k.type=="BOMB") e.addClass("bombs");
 			    e.attr("title",list[i].name);
 			    if (list[i].name.slice(-2)=="/2") {
 				e.css("color","yellow");
@@ -2338,29 +2339,35 @@ Unit.prototype = {
 	this.activationdial=[];
 	if (this.candropbomb()&&(this.hasionizationeffect())) {
 	    this.log("ionized, cannot drop bombs");
-	} else {
+	} else if (self.lastdrop!=round) {
 	    switch(this.bombs.length) {
 	    case 3: if (this.bombs[2].canbedropped()) 
 		this.addactivationdial(
-		    function() { return self.bombs[2].canbedropped(); },
-		    function() { self.doselection(function(n) {
-			self.bombs[2].actiondrop(n);
-		    })}, A["BOMB"].key,
-		    $("<div>").attr({class:"symbols",title:self.bombs[2].name}));
+		    function() { return self.lastdrop!=round&&self.bombs[2].canbedropped(); },
+		    function() { 
+			self.lastdrop=round;
+			$(".bombs").remove();
+			self.bombs[2].actiondrop();
+		    }, A["BOMB"].key,
+		    $("<div>").attr({class:"symbols bombs",title:self.bombs[2].name}));
 	    case 2:if (this.bombs[1].canbedropped()) 
 		this.addactivationdial(
-		    function() { return self.bombs[1].canbedropped(); },
-		    function() { self.doselection(function(n) {
-			self.bombs[1].actiondrop(n);
-		    })}, A["BOMB"].key,
-		    $("<div>").attr({class:"symbols",title:self.bombs[1].name}));
+		    function() { return self.lastdrop!=round&&self.bombs[1].canbedropped(); },
+		    function() { 
+			self.lastdrop=round;
+			$(".bombs").remove();			
+			self.bombs[1].actiondrop();
+		    }, A["BOMB"].key,
+		    $("<div>").attr({class:"symbols bombs",title:self.bombs[1].name}));
 	    case 1:if (this.bombs[0].canbedropped()) 
 		this.addactivationdial(
-		    function() { return self.bombs[0].canbedropped(); },
-		    function() { self.doselection(function(n) {
-			self.bombs[0].actiondrop(n);
-		    })}, A["BOMB"].key,
-		    $("<div>").attr({class:"symbols",title:self.bombs[0].name}));
+		    function() { return self.lastdrop!=round&&self.bombs[0].canbedropped(); },
+		    function() { 
+			self.lastdrop=round;
+			$(".bombs").remove();
+			self.bombs[0].actiondrop();
+		    }, A["BOMB"].key,
+		    $("<div>").attr({class:"symbols bombs",title:self.bombs[0].name}));
 	    }
 	}
 	return this.activationdial;
@@ -2495,7 +2502,7 @@ Unit.prototype = {
 	return this.newlock();
     },
     timetoshowmaneuver: function() {
-	return this.maneuver>-1&&skillturn>=this.getskill()&&phase==ACTIVATION_PHASE&&subphase==ACTIVATION_PHASE;
+	return this.maneuver>-1&&phase<=ACTIVATION_PHASE;
     },
     getmaneuver: function() {
 	if (this.hasionizationeffect()) {
