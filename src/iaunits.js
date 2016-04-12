@@ -175,6 +175,9 @@ IAUnit.prototype= {
     },
     showactivation: function() {
     },
+    timetoshowmaneuver: function() {
+	return this.maneuver>-1&&skillturn>=this.getskill()&&phase==ACTIVATION_PHASE&&subphase==ACTIVATION_PHASE;
+    },
     doactivation: function() {
 	var ad=this.updateactivationdial();
 	if (this.timeformaneuver()) {
@@ -249,7 +252,6 @@ IAUnit.prototype= {
 	}
 	list.sort(cmp);
 
-	//this.log("inside doaction "+list.length);
 	if (list.length==0) return this.enqueueaction(function(n) {
 	    this.endnoaction(n);
 	}.bind(this));
@@ -259,7 +261,6 @@ IAUnit.prototype= {
 		if (typeof str!="undefined") this.log(str);
 		var a=null;
 		for (i=0; i<list.length; i++) {
-		    //this.log("action possible:"+list[i].type);
 		    if (list[i].type=="CRITICAL") { a=list[i]; break; }
 		    else if (list[i].type=="CLOAK"&&this.candocloak()) {
 			a=list[i]; break;
@@ -273,9 +274,9 @@ IAUnit.prototype= {
 			if (this.candofocus()) { a=list[i]; break; }
 		    } else { a = list[i]; break }
 		}
-		if (a==null) this.log("no possible action");
-		//if (a!=null) this.log("action chosen: "+a.type);
-		//else this.log("null action chosen");
+		/*if (a==null) this.log("no possible action");
+		if (a!=null) this.log("action chosen: "+a.type);
+		else this.log("null action chosen");*/
 		this.resolveaction(a,n);
 	    } else {
 		this.endaction(n);
@@ -296,9 +297,9 @@ IAUnit.prototype= {
 		for (w=0; w<this.weapons.length; w++) {
 		    var el=r[w];
 		    for (i=0;i<el.length; i++) {
-			var p=this.getattackstrength(w,el[i]);
-			if (p>power&&!el[i].isdocked) { 
-			    //this.log("power "+power+" "+el[i]);
+			var p=this.evaluatetohit(w,el[i]).tohit;
+			//this.log("power "+p+" "+el[i].name);
+			if (p>power&&!el[i].isdocked) {
 			    t=el[i]; power=p; this.activeweapon=w; 
 			}
 		    }
@@ -320,7 +321,11 @@ IAUnit.prototype= {
 	    if (d.from==from&&d.to==to) {
 		if (d.type==MOD_M&&d.req(m,n)) {
 		    if (d.str=="focus") {
-			if (FCH_focus(m)>0) modroll(d.f,i,to);
+			if (d.from==ATTACK_M&&d.to==ATTACK_M) {
+			    if (FCH_focus(m)>0) modroll(d.f,i,to);
+			} else if (d.from==DEFENSE_M&&d.to==DEFENSE_M) {
+			    if (FE_focus(m)>0) modroll(d.f,i,to);
+			}
 		    } else modroll(d.f,i,to);
 		} if (d.type==ADD_M&&d.req(m,n)) {
 		    addroll(d.f,i,to); 

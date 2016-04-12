@@ -704,7 +704,7 @@ var PILOTS = [
 		if (d=="GREEN") {
 		    this.selectunit(this.selectnearbyally(1),function(p,k) {
 			p[k].log("+1 action [%0]",this.name);
-			p[k].doaction(p[k].getactionbarlist());
+			p[k].doaction(p[k].getactionbarlist(),"");
 		    }.bind(this),["select unit (or self to cancel) [%0]",this.name],true);
 		}
 	    });
@@ -832,7 +832,7 @@ var PILOTS = [
 			    return {ch:r2.ch+FCH_CRIT,e:r2.e+1};
 			}
 			return r2;
-		    }
+		    } else return r2;
 		}.bind(this)).unwrapper("endbeingattacked");
 	    });
 	},
@@ -1294,7 +1294,7 @@ var PILOTS = [
 			    var al=p[k].getactionlist();
 			    //log("selected "+p[k].name+" "+al.length);
 			    if (al.length>0) {
-				p[k].doaction(al).done(function() { 
+				p[k].doaction(al,"").done(function() { 
 				    //log("endaction");
 				    this.select();
 				}.bind(this));
@@ -1417,18 +1417,19 @@ var PILOTS = [
 	pilotid:78,
 	faction:REBEL,
         init:  function() {
+	    var self=this;
 	    Unit.prototype.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
 		req:function(m,n) {
-		    return this.isinfiringarc(targetunit);
-		}.bind(this), 
+		    return !self.dead&&self.isinfiringarc(targetunit);
+		}, 
 		f:function(m,n) {
 		    var h=FCH_hit(m);
 		    if (h>0) {
-			activeunit.log("1 %HIT% -> 1 %CRIT% [%0]",this.name);
+			this.log("1 %HIT% -> 1 %CRIT% [%0]",self.name);
 			return m+FCH_CRIT-FCH_HIT;
 		    } 
 		    return m;
-		}.bind(this),str:"hit"});
+		},str:"hit"});
 	},        
         unique: true,
         unit: "E-Wing",
@@ -3344,7 +3345,7 @@ var PILOTS = [
 	    this.wrap_after("endbeingattacked",this,function(c,h,t) {
 		if (this.candoaction()) {
 		    this.log("+1 free action [%0]",this.name);
-		    this.doaction(this.getactionlist());
+		    this.doaction(this.getactionlist(),"");
 		}
 	    });
 	},

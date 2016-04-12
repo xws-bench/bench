@@ -504,8 +504,19 @@ var UPGRADES= [
 	init: function(sh) {
 	    var ptl=this;
 	    ptl.r=-1;
+	    sh.wrap_before("endaction",this,function(n,type) {
+		if (ptl.r!=round) {
+		    ptl.r=round;
+		    this.log("select an action or Skip to cancel [%0]",ptl.name);
+		    this.doaction(this.getactionbarlist(),"+1 free action").done(function(type) {
+			if (type!=null) this.addstress(); else ptl.r=-1;
+		    }.bind(this));
+		}
+	    });
+	    /*
 	    ptl.da=sh.doaction;
 	    sh.doaction= function(la,str) {
+		this.log("ptl");
 		var dar=ptl.da.call(this,la,str);
 		var df=$.Deferred();
 		dar.then(function(r) {
@@ -520,7 +531,7 @@ var UPGRADES= [
 		    }
 		}.bind(this));
 		return df;
-	    }
+	    }*/
 	},
 	desactivate: function() {
 	    this.unit.doaction=this.da;
@@ -1041,7 +1052,7 @@ var UPGRADES= [
 	    var self=this;
 	    sh.wrap_before("beginactivation",this,function() {
 		if (this.candoaction()&&!this.hasionizationeffect()) 
-		    this.doaction(this.getactionlist()).done(function(r) {
+		    this.doaction(this.getactionlist(),"").done(function(r) {
 			if (r!=null) this.wrap_after("candoendmaneuveraction",self,function() { return false;}).unwrapper("endactivationphase");
 		    }.bind(this))
 	    });
@@ -2465,7 +2476,7 @@ var UPGRADES= [
 		if (upg.r!=round) {
 		    upg.r=round;
 		    this.log("select an action or Skip to cancel [%0]",upg.name);
-		    this.doaction(this.getupgactionlist()).done(function(type) {
+		    this.doaction(this.getupgactionlist(),"").done(function(type) {
 			if (type!=null) this.addstress(); else upg.r=-1;
 		    }.bind(this));
 		}
@@ -2626,7 +2637,7 @@ var UPGRADES= [
 	    sh.wrap_after("doendmaneuveraction",this,function() {
 		if (this.candoaction()&&this.collision) {
 		    this.log("+1 free action [%0]",self.name);
-		    this.doaction(this.getactionlist()).done(function(t) {
+		    this.doaction(this.getactionlist(),"").done(function(t) {
 			if (t!=null) this.addstress();
 		    }.bind(this));
 		}
