@@ -1709,8 +1709,8 @@ function tohitproba(tokensA,tokensD,at,dt,attack,defense) {
 		var n=100*f+10*c+h;
 		var fa,ca,ha,ff,ef;
 		var a=ATable[100*f+h+10*c]; // attack index
-		if (typeof tokensA.modifyattackroll!="undefined")
-		    n=tokensA.modifyattackroll(n,tokensD);
+		//if (typeof tokensA.modifyattackroll!="undefined")
+		//    n=tokensA.modifyattackroll(n,tokensD);
 		fa=Math.floor(n/100);
 		ca=Math.floor((n-100*fa)/10);
 		ha=n-100*fa-10*ca;
@@ -1718,8 +1718,8 @@ function tohitproba(tokensA,tokensD,at,dt,attack,defense) {
 		    for (ef=0; ef<=defense-ff; ef++) {
 			var fd;
 			var m=10*ff+ef
-			if (typeof tokensD.modifydefenseroll!="undefined") 
-			    m=tokensD.modifydefenseroll(m);
+			//if (typeof tokensD.modifydefenseroll!="undefined") 
+			//    m=tokensD.modifydefenseroll(m);
 			fd=Math.floor(m/10);
 			evade=m-10*fd;
 			if (defense==0) d=1; else d=DTable[m]

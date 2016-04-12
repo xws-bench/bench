@@ -178,6 +178,14 @@ Team.prototype = {
 	//ko.applyBindings({squad:ko.observableArray(squadron)});
 	for (i in squadron) {
 	    u=squadron[i];
+	    if (u.team==this.team) {
+		if (this.isia==true) {
+		    u=$.extend(u,IAUnit.prototype);
+		}
+	    }
+	}
+	for (i in squadron) {
+	    u=squadron[i];
 	    if (u.team==this.team&&typeof u.init=="function") u.init();
 	}
 	for (i in squadron) {
@@ -189,12 +197,7 @@ Team.prototype = {
 		}
 	    }
 	}
-	for (i in squadron) {
-	    u=squadron[i];
-	    if (u.team==this.team) {
-		if (this.isia==true) u=$.extend(u,IAUnit.prototype);
-	    }
-	}
+
 	this.units.sort(function(a,b) {return b.getskill()-a.getskill();});
 	this.history={title: {text: UI_translation["Damage taken per turn"]},
 		      axisX:{  interval: 1,title: UI_translation["Turns"]},
