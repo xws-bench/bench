@@ -1782,7 +1782,9 @@ Unit.prototype = {
 	this.wrap_after("endmaneuver",this,function() {
 	    this.endaction(n,"SLAM");
 	}).unwrapper("endactivationphase");
-
+	this.wrap_after("candoendmaneuveraction",this,function() {
+	    return false;
+	}).unwrapper("endactivationphase");
 	this.resolveactionmove(p,function(t,k) {
 	    this.maneuver=q[k];
 	    this.resolvemaneuver();
