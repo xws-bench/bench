@@ -974,7 +974,7 @@ function addupgradeaddhandler(u) {
 	    var upg=UPGRADES[p[i]];
 	    var disabled=false;
 	    var pts=upg.points+this.upgbonus[org];
-	    if (pts<0) pts=0;
+	    if (upg.points>0&&pts<0) pts=0;
 	    var tt=">";
 	    var attack="</td><td>";
 	    if (typeof upg.attack!="undefined") attack="<span class='statfire'>"+upg.attack+"</span></td><td>["+upg.range[0]+"-"+upg.range[1]+"]";
@@ -1038,7 +1038,7 @@ function addupgrade(self,data,num,noremove) {
     var text=translate(org.name).replace(/\(Crew\)/g,"").replace(/\'/g,"");
     if (typeof self.upgbonus[org.type]=="undefined") self.upgbonus[org.type]=0;
     var pts=org.points+self.upgbonus[org.type];
-    if (pts<0) pts=0;
+    if (org.points>=0&&pts<0) pts=0;
     $("#unit"+self.id+" .upg").append("<div data="+data+" num="+num+"><code class='upgrades "+org.type+"'></code>"+text+"<span class='pts'>"+pts+"</span></div>");
     self.upg[num]=data;
     Upgrade.prototype.install.call(org,self);
