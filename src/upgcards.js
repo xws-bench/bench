@@ -3220,11 +3220,10 @@ var UPGRADES= [
 	init: function(sh) {
 	    var da=sh.doaction;
 	    var self=this;
-	    /*sh.wrap_after("resolveslam",this,function(n) {
-		this.wrap_after("endaction",self,function() {
-		    this.endaction.unwrap(self);
-		})
-	    });*/
+	    sh.wrap_after("resolveslam",this,function() {
+		this.candoendmaneuveraction.unwrap(this);
+	    });
+	    /*
 	    sh.doaction= function(la) {
 		var dar=da.call(this,la)
 		dar.then(function(r) {
@@ -3234,7 +3233,7 @@ var UPGRADES= [
 			return da.call(this,this.getactionbarlist());
 		    } else return dar;
 		}.bind(this));
-	    }
+	    }*/
 	}
     },
     {
