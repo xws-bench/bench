@@ -10,6 +10,9 @@
     <link rel="apple-touch-icon" sizes="76x76" href="squadronbenchmark-76x76.png"/>
     <link rel="apple-touch-icon" sizes="120x120" href="squadronbenchmark-120x120.png"/>
     <link rel="apple-touch-icon" sizes="152x152" href="squadronbenchmark-152x152.png"/>
+
+
+
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -38,6 +41,7 @@
 	  <span class="menu" onmouseover="$('nav ul').css({display:'block',visibility:'visible'})" onmouseout="$('nav ul').css({display:'none',visibility:'hidden'})"><span class="symbols" style="color:white;font-size:larger;">&#xE906;</span>
 	    <ul>
 	      <li><a class="m-about" href="#about"></a></li>
+	      <li><a class="m-help" href="http://xws-benchmark.blogspot.fr/p/how-to-play.html" target="_blank"></a></li>
 	      <li><a class="m-proba" href="#proba" id="showproba"></a></li>
 	      <li><a class="m-kb" href="#kb">Keyboard bindings</a></li>
 	      <li><a class="m-blog" href="http://xws-benchmark.blogspot.fr/"></a></li>
@@ -444,12 +448,11 @@ The app is not really a game since the user plays both sides, there is no multi-
       <div class='title'>Console</div>
       <div class="log" id='log'></div>
     </footer>
-
     <script src="js/all.min.js"></script>
+    <script src="js/bench.min.js" async></script>
     <script>
       if (location.search=="") $("#selectphase").show();
     </script>
-    <script src="js/bench.min.js" async></script>
 
     <script async>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
