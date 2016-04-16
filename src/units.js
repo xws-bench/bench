@@ -498,7 +498,7 @@ Unit.prototype = {
 	var pointsreduction={};
 	for (var i=0; i<this.upg.length; i++) {
 	    var u=this.upg[i];
-	    if (u!=-1&&typeof u!="undefined") {
+	    if (u>-1&&typeof u!="undefined") {
 		var up=UPGRADES[u];
 		if (typeof upgpt[upg_lookup(up.type)]=="undefined") upgpt[upg_lookup(up.type)]=[];
 		s.points+=up.points;
@@ -511,7 +511,7 @@ Unit.prototype = {
 	}
 	for (var i=0; i<this.upg.length; i++) {
 	    var u=this.upg[i];
-	    if (u!=-1&&typeof u!="undefined") {
+	    if (u>-1&&typeof u!="undefined") {
 		if (typeof pointsreduction[UPGRADES[u].type]!="undefined") {
 		    var r=pointsreduction[UPGRADES[u].type];
 		    if (UPGRADES[u].points+r>0) s.points+=r;
@@ -3020,10 +3020,11 @@ Unit.prototype = {
 	var r=this.rand(s);
 	m=0;
 	for (i=0; i<CRITICAL_DECK.length; i++) {
-	    if (CRITICAL_DECK[i].version.indexOf(CURRENT_DECK)>-1){
+	    if (CRITICAL_DECK[i].name=="Damaged Engine") return i;
+/*	    if (CRITICAL_DECK[i].version.indexOf(CURRENT_DECK)>-1){
 		m+=CRITICAL_DECK[i].count;
 		if (m>r) return i;
-	    }
+	    }*/
 	}
 	return 0;	
     },
