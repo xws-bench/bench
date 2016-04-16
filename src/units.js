@@ -3020,11 +3020,10 @@ Unit.prototype = {
 	var r=this.rand(s);
 	m=0;
 	for (i=0; i<CRITICAL_DECK.length; i++) {
-	    if (CRITICAL_DECK[i].name=="Damaged Engine") return i;
-/*	    if (CRITICAL_DECK[i].version.indexOf(CURRENT_DECK)>-1){
+	    	    if (CRITICAL_DECK[i].version.indexOf(CURRENT_DECK)>-1){
 		m+=CRITICAL_DECK[i].count;
 		if (m>r) return i;
-	    }*/
+	    }
 	}
 	return 0;	
     },

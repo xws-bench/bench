@@ -3718,7 +3718,7 @@ var UPGRADES= [
 	 var self=this;
 	 sh.wrap_after("addtarget",this,function(t) {
 	     if (self.isactive&&this.candoaction()&&this.candoevade()) 
-		 this.doaction([this.newaction(this.addevade,"EVADE")]);
+		 this.doselection(function(n) { this.addevade(n); }.bind(this));
 	 });
      },
      type:TITLE
