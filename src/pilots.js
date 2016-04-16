@@ -2851,16 +2851,18 @@ var PILOTS = [
 	  unit: "T-70 X-Wing",
 	  skill: 7,
 	  unique:true,
-	  getdial:function() {
+	  init: function() {
 	      var save=[];
-	      var gd=Unit.prototype.getdial.call(this);
-	      for (var i=0; i<gd.length; i++) {
-		  var move=gd[i].move;
-		  var d=gd[i].difficulty;
-		  if (move.match(/TR[RL]\d/)&&this.stress==0) d="WHITE";
-		  save[i]={move:move,difficulty:d};
-	      }
-	      return save;
+	      this.wrap_after("getdial",this,function(gd) {
+		  if (save.length==0)
+		      for (var i=0; i<gd.length; i++) {
+			  var move=gd[i].move;
+			  var d=gd[i].difficulty;
+			  if (move.match(/TR[RL]\d/)) d="WHITE";
+			  save[i]={move:move,difficulty:d};
+		      }
+		  if (this.stress==0) return save; else return gd;
+	      })
 	  },
 	  upgrades: [ELITE,TORPEDO,ASTROMECH,TECH],
 	  points: 30
