@@ -3203,17 +3203,21 @@ var PILOTS = [
 	    }
 	    Unit.prototype.wrap_after("preattackroll",this,function(w,t) {
 		var p=this.selectnearbyenemy(2);
+		var attacker=this;
 		if (self.canusefocus()&&p.indexOf(self)>-1) { 
-		    this.donoaction([{org:self,name:self.name,type:"FOCUS",action:function(n) {
+		    self.donoaction([{org:self,name:self.name,type:"FOCUS",action:function(n) {
 			this.wrap_after("getattackstrength",self,function(i,t,a) {
+			    NOLOG=true;
 			    var ra= this.weapons[i].getrangeattackbonus(t);
 			    a=a-ra;
+			    NOLOG=false;
 			    if (a>0) a=a-1;			    
 			    return a+ra;
 			}).unwrapper("attackroll");
 			self.removefocustoken();
-			this.log("-1 attack against %1",self.name);
-			this.endnoaction(n,"FOCUS");
+			this.log("-1 attack against %0",self.name);
+			this.select();
+			self.endnoaction(n,"FOCUS");
 		    }.bind(this)}],"",true);
 		}
 	    });
