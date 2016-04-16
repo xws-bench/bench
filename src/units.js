@@ -2691,7 +2691,7 @@ Unit.prototype = {
 	return (this==activeunit&&this.hasmoved&&!this.actiondone&&phase==ACTIVATION_PHASE);
     },
     timeformaneuver: function() {
-	return  (this==activeunit&&this.maneuver>-1&&!this.hasmoved&&this.getskill()==skillturn&&phase==ACTIVATION_PHASE);
+	return  (this==activeunit&&this.maneuver>-1&&!this.hasmoved&&this.getskill()==skillturn&&phase==ACTIVATION_PHASE&&subphase==ACTIVATION_PHASE);
     },
     show: function() {
 	var i;
