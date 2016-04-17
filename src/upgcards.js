@@ -3717,8 +3717,10 @@ var UPGRADES= [
      init: function(sh) {
 	 var self=this;
 	 sh.wrap_after("addtarget",this,function(t) {
-	     if (self.isactive&&this.candoaction()&&this.candoevade()) 
+	     if (self.isactive&&this.candoaction()&&this.candoevade()) {
+		 this.log("free %EVADE% action [%0]",this.name);
 		 this.doselection(function(n) { this.addevade(n); }.bind(this));
+	     }
 	 });
      },
      type:TITLE
