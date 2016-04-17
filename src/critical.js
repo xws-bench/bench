@@ -273,7 +273,7 @@ var CRITICAL_DECK=[
 	    this.log();
 	    this.isactive=true;
 	    this.unit.wrap_before("endround",this,function() {
-		this.wrap_after("getagility",self,function() {
+		this.wrap_after("getskill",self,function() {
 		    return 0;
 		});
 		filltabskill();
