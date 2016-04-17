@@ -110,11 +110,11 @@ function center() {
 var AIstats = function(error,options, response) {
     //console.log(error,options,response);
     if (typeof response.rows!="undefined") {
-    	for (var i=1; i<response.rows.length; i+=200) {
+    	for (var i=1; i<response.rows.length; i+=300) {
 	    var scorec=0;
 	    var n=0;
-	    var median=[];
-	    for (var j=0; j<500&&j+i<response.rows.length; j++) {
+	    var median=0;
+	    for (var j=0; j<300&&j+i<response.rows.length; j++) {
 		var t=response.rows[i+j].cellsArray[0].split(" ");
 		var ts1=t[0].split(":");
 		var type1=ts1[0];
@@ -129,18 +129,11 @@ var AIstats = function(error,options, response) {
 		    else scoreco+=parseInt(score2,10);
 		    if (type1=="Human") scoreh+=parseInt(score1,10);
 		    else scoreco+=parseInt(score1,10);
-		    median[n]=Math.floor((scoreco)/(scoreco+scoreh)*100);
+		    median+=Math.floor((scoreco)/(scoreco+scoreh)*100);
 		    n++;
 		}
 	    }
-	    median.sort(function(a,b) { return a-b;});
-	    var half = Math.floor(median.length/2);
-
-	    if(median.length % 2)
-		log(median[half]);
-	    else
-		log((median[half-1] + median[half]) / 2.0);
-	    //if (n>0) log((Math.floor(scorec/n))); //+"-"+(Math.floor(scoreh/n)));
+	    log(median/n);
 	}
     }
 }
@@ -2011,6 +2004,9 @@ $(document).ready(function() {
 		if (d==0) return a.name.localeCompare(b.name);
 		else return d;
 	    });*/
+
+	
+
 	var n=0,u=0,ut=0;
 	var str="";
 	for (i=0; i<PILOTS.length; i++) {
@@ -2033,7 +2029,6 @@ $(document).ready(function() {
 	log("Upgrades NOT implemented"+str);
 	$("#showproba").prop("disabled",true);
 	var d=new Date();
-
 
 	if (typeof localStorage.volume=="undefined") localStorage.volume=0.8;
 
@@ -2098,7 +2093,7 @@ $(document).ready(function() {
 	$("#player2").html("<option selected value='human'>"+UI_translation["human"]+"</option>");
 	$("#player2").append("<option value='computer'>"+UI_translation["computer"]+"</option>");
 
-	jwerty.key("shift+i", displayAIperformance);
+	//jwerty.key("shift+i", displayAIperformance);
 	//jwerty.key("shift+i", TogetherJS);
 /*
 TogetherJSConfig_on_ready = function () {
@@ -2170,7 +2165,7 @@ TogetherJSConfig_on_ready = function () {
 		    },
 		    { "targets":[5],
 		      "render":function(d,c,row) {
-			  return "<span class='logmiddle symbols' onclick='battlelog($(this));'>&#xE901;</span>";
+			  return "<span class='logmiddle symbols' onclick='battlelog($(this));'>&#xE9;</span>";
 		      },
 		      "sortable":false
 		    },
@@ -2180,8 +2175,8 @@ TogetherJSConfig_on_ready = function () {
 			  if (row[4].search("SQUAD")>-1)
 			      return "<span style='display:none'>"+data+" USER</span><span class='"+data+"'></span>";
 			  else if (row[4]=="ELITE") 
-			      return "<span style='display:none'>"+data+" ELITE</span><span class='"+data+"'></span><span style='font-size:larger'></span>&#127894;";
-			  return "<span style='display:none'>"+data+" PREBUILT</span><span class='"+data+"'></span><span style='font-size:larger'>&#128230;</span>";
+			      return "<span style='display:none'>"+data+" ELITE</span><span class='"+data+"'></span><span style='font-size:larger'></span><code style='color:orange' class='symbols'>ï</code>";
+			  return "<span style='display:none'>"+data+" PREBUILT</span><span class='"+data+"'></span><code style='font-size:larger' class='symbols'>ì</code>";
 			  
 		      }
 		    },
