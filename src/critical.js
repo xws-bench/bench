@@ -451,17 +451,17 @@ var CRITICAL_DECK=[
 		}
 		return save;
 	    });
-	    this.unit.wrap_after("timetoshowmaneuver",this,function(t) {
-		if (t) self.facedown();
+	    this.unit.wrap_after("timeformaneuver",this,function(t) {
+		if (t&&!this.hasionizationeffect()) self.facedown();
 		return t;
 	    });	    
 	},
 	facedown: function() {
 	    if (this.isactive) {
+		this.isactive=false;
 		this.unit.getdial.unwrap(this);
-		this.unit.timetoshowmaneuver.unwrap(this);
+		this.unit.timeformaneuver.unwrap(this);
 	    }
-	    this.isactive=false;
 	},
 	version:[V2],
     },
