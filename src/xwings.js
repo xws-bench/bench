@@ -1478,18 +1478,20 @@ function resetlink() {
     switch (phase) {
     case SETUP_PHASE:
     case SELECT_PHASE: 
-    case XP_PHASE: 
-	var uri = window.location.toString();
-	if (uri.indexOf("?") > 0) {
+	document.location.search="";
+/*	if (uri.indexOf("?") > 0) {
 	    var clean_uri = uri.substring(0, uri.indexOf("?"));
 	    window.history.replaceState({}, document.title, clean_uri);
 	}
-	document.location.reload(true); break;
+	document.location.reload(true); */
+	break;
     case CREATION_PHASE: phase=0; document.location.search=""; nextphase(); break; 
     default: 
+	log("reset to phase 0");
+	phase=0;
 	document.location.search="?"+PERMALINK;
 	//document.location.assign(document.location.href);
-	//document.location.reload(true);
+	document.location.reload(true);
     }
 }
 function record(id,val,str) {
