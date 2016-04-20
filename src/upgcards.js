@@ -969,16 +969,16 @@ var UPGRADES= [
 		this.unit.resolveactionselection(p,function(k) {
 		    var i,q=[];
 		    for (i=0; i<p[k].criticals.length; i++) 
-			if (p[k].criticals[i].isactive==false) q.push(p[k].criticals[i]);
+			if (p[k].criticals[i].isactive==false) q.push(i);
 		    if (q.length>0) {
 			var r=p[k].rand(q.length);
 			p[k].log("turn faceup one damage card [%0]",self.name);
-			q[r].faceup();
+			p[k].criticals[q[r]].faceup();
 			p[k].show();
 		    } else p[k].log("no damage card [%0]",self.name);
 		    this.endaction(n,"CREW");
-		}.bind(this));
-	    } else this.endaction(n,"CREW");
+		}.bind(this.unit));
+	    } else this.unit.endaction(n,"CREW");
 	},
         points: 2,
     },
