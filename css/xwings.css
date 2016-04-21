@@ -1290,12 +1290,17 @@ display:inline
 font-size:2em;
 top:0.3em;
 }
-.counttoken {
+.counttoken,.ordnance {
 font-size:0.6em;
 padding:1px;
 color:white;
-background-color:black;
 border-radius:50%
+}
+.counttoken {
+background-color:black;
+}
+.ordnance {
+background-color:red;
 }
 .evadetoken,.focustoken,.cloaktoken,.stresstoken,.targettoken {
 font-family:'symbols';
