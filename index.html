@@ -111,7 +111,8 @@
 	    <a href="#" title="Close" class="close">&#10060;</a>
 	  </h2>
 	  <div>
-	    <button class="permalink m-replay" onclick="window.location.reload(true)">&#8634; </button>
+	    <button class="permalink m-replay" onclick="window.location.reload(true)">&#8634; </button><button class="m-reset permalink" onclick="resetlink()" >&lt; </button>
+
 	    <table class="victory-table"></table>
 	    <div class="replays">Share combat: 
 	      <a href="#" class="victory-link"><code></code></a>
@@ -634,6 +635,17 @@ The app is not really a game since the user plays both sides, there is no multi-
 	{{/tooltip}}
 	{{^tooltip}}<td></td>{{/tooltip}}
       </tr>
+    </script>
+
+    <script id="usabletokens" type="x-tmpl-mustache">
+      {{#focus}}<span class="xfocustoken"></span>{{/focus}}{{#focuses}}<sup class="counttoken">x{{.}}</sup>{{/focuses}}
+      {{#evade}}<span class="xevadetoken"></span>{{/evade}}{{#evades}}<sup class="counttoken">x{{.}}</sup>{{/evades}}
+      {{#targetingname}}<span class="xtargettoken" title="targeting {{.}}"></span>{{/targetingname}}
+      {{#targetedname}}<span class="xtargetedtoken" title="targeted by {{.}}"></span>{{/targetedname}}
+      {{#iscloaked}}<span class='xcloaktoken'></span>{{/iscloaked}}
+      {{#stress}}<span class="xstresstoken"></span>{{/stress}}{{#stresses}}<sup class="counttoken">x{{.}}</sup>{{/stresses}}
+      {{#ionized}}<span class="xionizedtoken"></span>{{/ionized}}{{#ionizedes}}<sup class="counttoken">x{{.}}</sup>{{/ionizedes}}
+      {{#tractorbeam}}<span class="xtractorbeamtoken"></span>{{/tractorbeam}}{{#tractorbeames}}<sup class="counttoken">x{{.}}</up>{{/tractorbeames}}
     </script>
 
   </body>

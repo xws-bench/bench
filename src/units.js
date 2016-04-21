@@ -2428,6 +2428,7 @@ Unit.prototype = {
     },
     showinfo: function() {
 	var i=0;
+	$("#"+this.id+" .usabletokens").html(this.getusabletokens());
 	if (this.focus>0) {
 	    this.infoicon[i++].attr({text:A.FOCUS.key,fill:A.FOCUS.color});}
 	if (this.evade>0) {
@@ -2585,7 +2586,7 @@ Unit.prototype = {
 	if (typeof text=="undefined") text=this.ship.name;
 	str+="<div><div style='font-size:smaller'><code class='"+this.faction+"'></code>&nbsp;"+text+"</div></div>";
 	str+="<div><div>";
-	if (i>-1) str+="<div><table style='width:100%'><tr style='width:100%'>"+this.getusabletokens()+"</tr></table></div>";
+	if (i>-1) str+="<div class='usabletokens' style='width:100%'>"+this.getusabletokens()+"</div>";
 	str+="</div></div>";
 	var a;
 	var b;
@@ -2613,19 +2614,18 @@ Unit.prototype = {
 	    &&(typeof sh=="undefined" || this.targeting.indexOf(sh)>-1);
     },
     getusabletokens: function() {
-	var str=""; var targets=""
-	if (this.focus>0) str+="<td title='"+this.focus+" focus token(s)' class='xfocustoken'></td>";
-	if (this.evade>0) str+="<td title='"+this.evade+" evade token(s)' class='xevadetoken'></td>";
-	for (var j=0; j<this.targeting.length; j++) targets+=this.targeting[j].name+" ";
-	if (this.targeting.length>0) str+="<td title='targeting "+targets.replace(/\'/g,"&#39;")+"' class='xtargettoken'></td>";
-	targets="";
-	for (var j=0; j<this.istargeted.length; j++) targets+=this.istargeted[j].name+" ";
-	if (this.istargeted.length>0) str+="<td title='targeted by "+targets.replace(/\'/g,"&#39;")+"' class='xtargetedtoken'></td>";
-	if (this.iscloaked) str+="<td class='xcloaktoken'></td>";
-	if (this.stress>0) str+="<td title='"+this.stress+" stress token(s)' class='xstresstoken'></td>";	
-	if (this.ionized>0) str+="<td title='"+this.ionized+" ionization token(s)' class='xionizedtoken'></td>";	
-	if (this.tractorbeam>0) str+="<td title='"+this.tractorbeam+" tractorbeam token(s)' class='xtractorbeamtoken'></td>";	
-	return str;
+	this.focuses=(this.focus>1?[this.focus]:[]);
+	this.evades=(this.evade>1?[this.evade]:[]);
+	this.stresses=(this.stress>1?[this.stress]:[]);
+	this.ionizedes=(this.ionized>1?[this.ionized]:[]);
+	this.tractorbeames=(this.tractorbeam>1?[this.tractorbeam]:[]);
+	this.targetedname=[];
+	this.targetingname=[];
+	for (var j=0; j<this.istargeted.length; j++) 
+	    this.targetedname[j]=this.istargeted[j].name.replace(/\'/g,"&#39;");
+	for (var j=0; j<this.targeting.length; j++) 
+	    this.targetingname[j]=this.targeting[j].name.replace(/\'/g,"&#39;");
+	return Mustache.render(TEMPLATES["usabletokens"], this);
     },
     showstats: function() {
 	if (phase==SELECT_PHASE||phase==CREATION_PHASE) {
@@ -3020,7 +3020,7 @@ Unit.prototype = {
 	var r=this.rand(s);
 	m=0;
 	for (i=0; i<CRITICAL_DECK.length; i++) {
-	    	    if (CRITICAL_DECK[i].version.indexOf(CURRENT_DECK)>-1){
+	    if (CRITICAL_DECK[i].version.indexOf(CURRENT_DECK)>-1){
 		m+=CRITICAL_DECK[i].count;
 		if (m>r) return i;
 	    }

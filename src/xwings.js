@@ -766,13 +766,15 @@ var mySpreadsheets=[
 "https://docs.google.com/spreadsheets/d/1zlqDnXJ9J-k4apP1DadPx_vdv6Asdp_b9QvaytKI9ek/edit#gid=0"
 ];
 function displayAIperformance() {
+    var t="Syndicate_Thug*Twin_Laser_Turret*Unhinged_Astromech.Syndicate_Thug*Twin_Laser_Turret*Unhinged_Astromech.Syndicate_Thug*Twin_Laser_Turret*Unhinged_Astromech.Syndicate_Thug*Twin_Laser_Turret*Unhinged_Astromech."
+    log(t);
     for (var i=0; i<mySpreadsheets.length; i++) {
 	$('#squadbattlediv').sheetrock({
 	    url: mySpreadsheets[i],
-	    query:"select B",
+	    query:"select B,C where C ends with '"+t+"' or C starts with '"+t+"'",
 	    callback:AIstats,
 	    rowTemplate:function () { return "";},
-	    labels:["Score"]
+	    labels:["Score","Squad"]
 	});
     }   
 }
@@ -1270,6 +1272,8 @@ function nextphase() {
 	Mustache.parse(TEMPLATES["unit-creation"]);  
 	TEMPLATES["faction"]=$("#faction").html();
 	Mustache.parse(TEMPLATES["faction"]);  
+	TEMPLATES["usabletokens"]=$("#usabletokens").html();
+	Mustache.parse(TEMPLATES["usabletokens"]);  
 
 	$(".mainbutton").show();
 	$(".buttonbar .share-buttons").hide();

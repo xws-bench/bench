@@ -2877,13 +2877,15 @@ var PILOTS = [
 	  unit: "T-70 X-Wing",
 	  skill: 6,
 	  unique:true,
-	  init: function() { this.sr=-1; },
-	  removeshield:function(n) {
-	      if (this.sr<round) {
-		  this.log("+1 %SHIELD%");
-		  this.sr=round; this.addevadetoken();
-	      }
-	      Unit.prototype.removeshield.call(this,n);
+	  init: function() { 
+	      this.sr=-1;
+	      this.wrap_after("removeshield",this,function(n) {
+		  if (this.sr<round) {
+		      this.log("+1 %SHIELD%");
+		      this.sr=round; 
+		      this.addevadetoken();
+		  }
+	      });
 	  },
 	  upgrades: [TORPEDO,ASTROMECH,TECH],
 	  points: 29
