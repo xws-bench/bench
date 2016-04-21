@@ -312,6 +312,7 @@ Team.prototype = {
 	    return 4;
 	};
 	var f=7;
+	if (str=="") return;
 	var pilots=str.trim().split("\n");
 	var del=[];
 	for (i in generics) { 
@@ -347,25 +348,26 @@ Team.prototype = {
 		} 
 	    }
 	    if (pid==-1) {
-		throw("pid undefined:"+translated+" "+pstr[0]+"#"+this.faction);
-	    }
+		throw("pid undefined:"+translated+"!!"+pstr[0]+"!!"+this.faction);
+	    } 
 	    var p=new Unit(this.team,pid);
 	    p.upg=[];
 	    var authupg=[MOD,TITLE].concat(PILOTS[p.pilotid].upgrades);
 	    for (j=1; j<pstr.length; j++) {
 		for (k=0; k<UPGRADES.length; k++) {
 		    if ((translated==true&&translate(UPGRADES[k].name).replace(/\'/g,"").replace(/\(Crew\)/g,"")==pstr[j])
-			||(UPGRADES[k].name.replace(/\'/g,"")==pstr[j]))
+			||(UPGRADES[k].name.replace(/\'/g,"")==pstr[j])) {
 			if (authupg.indexOf(UPGRADES[k].type)>-1) {
 			    p.upg[j-1]=k;
 			    if (typeof UPGRADES[k].upgrades!="undefined") 
 				if (UPGRADES[k].upgrades[0]=="Cannon|Torpedo|Missile")
 				    authupg=authupg.concat(["Cannon","Torpedo","Missile"]);
-				else authupg=authupg.concat(UPGRADES[k].upgrades);
+			    else authupg=authupg.concat(UPGRADES[k].upgrades);
 			    if (typeof UPGRADES[k].install!= "undefined") 
 				UPGRADES[k].install(p);
 			    break;
 			} else log("UPGRADE not listed: "+UPGRADES[k].type+" in "+p.name);
+		    }
 		if (k==UPGRADES.length) log("UPGRADE undefined: "+pstr[j]);
 		}
 	    }
