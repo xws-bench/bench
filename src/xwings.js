@@ -690,14 +690,26 @@ function win() {
     //console.log("note:"+encodeURI(note));
     var link="https://api-ssl.bitly.com/v3/user/link_save?access_token=ceb626e1d1831b8830f707af14556fc4e4e1cb4c&longUrl="+encodeURI("http://xws-bench.github.io/bench/index.html?"+permalink(false))+"&title="+encodeURI(titl)+"&note="+encodeURI(note);
     $.when($.ajax(link)).done(function(result1) {
-	var url=result1.data.link_save.link;
-	$(".victory-link").attr("href",url);
-	$(".victory-link code").text(url);
-	$(".tweet").attr("href","https://twitter.com/intent/tweet?url="+encodeURI(url)+"&text=A%20Squad%20Benchmark%20combat");
+	var url;
+	var text;
+	if (typeof result1.data.link_save=="undefined") { 
+	    url=encodeURI("http://xws-bench.github.io/bench/index.html?"+permalink(false));
+	    text="longurl";
+	    $(".victory-link").attr("href",url);
+	    $(".victory-link code").text(text);
+	    $(".tweet").hide();
+	    $(".facebook").attr("href","https://www.facebook.com/sharer/sharer.php?u="+encodeURI(url));
+	    $(".googlep").attr("href","https://plus.google.com/share?url="+encodeURI(url));
+	    $(".email").attr("href","mailto:?body="+url);
+	} else {
+	    url=result1.data.link_save.link;
+	    text=url;
+	    $(".tweet").attr("href","https://twitter.com/intent/tweet?url="+encodeURI(url)+"&text=A%20Squad%20Benchmark%20combat").show();
 
-	$(".facebook").attr("href","https://www.facebook.com/sharer/sharer.php?u="+encodeURI(url));
-	$(".googlep").attr("href","https://plus.google.com/share?url="+encodeURI(url));
-	$(".email").attr("href","mailto:?body="+url);
+	    $(".facebook").attr("href","https://www.facebook.com/sharer/sharer.php?u="+encodeURI(url));
+	    $(".googlep").attr("href","https://plus.google.com/share?url="+encodeURI(url));
+	    $(".email").attr("href","mailto:?body="+url);
+	}
     });
     /*var y1=0,y2=0;
     var t1=TEAMS[1].history;
@@ -1268,12 +1280,6 @@ function nextphase() {
     $(".nextphase").prop("disabled",false);
     switch(phase) {
     case SELECT_PHASE:
-	TEMPLATES["unit-creation"]=$("#unit-creation").html();
-	Mustache.parse(TEMPLATES["unit-creation"]);  
-	TEMPLATES["faction"]=$("#faction").html();
-	Mustache.parse(TEMPLATES["faction"]);  
-	TEMPLATES["usabletokens"]=$("#usabletokens").html();
-	Mustache.parse(TEMPLATES["usabletokens"]);  
 
 	$(".mainbutton").show();
 	$(".buttonbar .share-buttons").hide();
@@ -2051,6 +2057,13 @@ $(document).ready(function() {
 	    if (activeunit.dragged==true) return;
 	    viewport_translate(-ev.velocityX*50,-ev.velocityY*50);
 	});
+
+	TEMPLATES["unit-creation"]=$("#unit-creation").html();
+	Mustache.parse(TEMPLATES["unit-creation"]);  
+	TEMPLATES["faction"]=$("#faction").html();
+	Mustache.parse(TEMPLATES["faction"]);  
+	TEMPLATES["usabletokens"]=$("#usabletokens").html();
+	Mustache.parse(TEMPLATES["usabletokens"]);  
 	
 	mc.zoom=1;
 	mc.on("pinch",function(ev) {
