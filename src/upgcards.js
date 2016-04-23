@@ -631,18 +631,17 @@ var UPGRADES= [
 	width: 16,
 	height:8,
 	size:15,
-        init: function(sh) {
-	    this.wrap_after("detonate_base",this,function() {
-		if (phase==ACTIVATION_PHASE&&!this.exploded) {
-		    var r=this.getrangeallunits();
-		    for (var i=0; i<r[1].length; i++) {
-			var u=squadron[r[1][i].unit];
-			u.log("+1 %HIT% [%0]",this.name);
-			u.resolvehit(1);
-			u.checkdead();
-		    }
+        explode:function() {
+	    if (phase==ACTIVATION_PHASE&&!this.exploded) {
+		var r=this.getrangeallunits();
+		for (var i=0; i<r[1].length; i++) {
+		    var u=squadron[r[1][i].unit];
+		    u.log("+1 %HIT% [%0]",this.name);
+		    u.resolvehit(1);
+		    u.checkdead();
 		}
-	    });
+		this.explode_base();
+	    }
 	},
         type: BOMB,
         points: 2,

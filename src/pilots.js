@@ -3592,5 +3592,26 @@ var PILOTS = [
        points:23,
        upgrades:[CREW,SYSTEM,ILLICIT]
     },
-    
+    {
+	name:"'Zeta Leader'",
+	faction:EMPIRE,
+	pilotid:187,
+	done:true,
+	unit:"TIE/FO Fighter",
+	skill:7,
+	points:20,
+	upgrades:[ELITE,TECH],
+	preattackroll: function(w,t) {
+	    var a1={org:this,name:this.name,type:"STRESS",action:function(n) {
+		this.log("+1 attack die");
+		this.wrap_after("getattackstrength",this,function(i,sh,a){
+		    return 1+a;
+		}).unwrapper("attackroll");
+		this.addstress();
+		this.endnoaction(n,"STRESS");
+	    }.bind(this)};
+	    if (this.stress==0) 
+		this.donoaction([a1],"select to add +1 attack roll",true);
+	}
+    }
 ];
