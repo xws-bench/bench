@@ -557,7 +557,8 @@ function reroll(n,forattack,a,id) {
 	$("#atokens #reroll"+id).remove();
 	var r=activeunit.rollattackdie(m);
 	for (i=0; i<m; i++) {
-	    $("#attack").prepend("<td noreroll='true' class='"+r[i]+"reddice'></td>");
+	    //$("#attack").prepend("<td noreroll='true' class='"+r[i]+"reddice'></td>");
+	    $("#attack").prepend("<td class='"+r[i]+"reddice'></td>");
 	}
     } else { 
 	for (i=0; i<3; i++) {
@@ -581,11 +582,11 @@ function reroll(n,forattack,a,id) {
 	activeunit.defenseroll(m).done(function(r) {
 	    var i;
 	    for (i=0; i<FE_evade(r.roll); i++)
-		$("#defense").prepend("<td noreroll='true' class='evadegreendice'></td>");
+		$("#defense").prepend("<td class='evadegreendice'></td>");
 	    for (i=0; i<FE_focus(r.roll); i++)
-		$("#defense").prepend("<td noreroll='true' class='focusgreendice'></td>");
+		$("#defense").prepend("<td class='focusgreendice'></td>");
 	    for (i=0; i<FE_blank(r.roll,r.dice); i++)
-		$("#defense").prepend("<td noreroll='true' class='blankgreendice'></td>");
+		$("#defense").prepend("<td class='blankgreendice'></td>");
 	});
     }
 }
