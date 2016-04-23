@@ -406,7 +406,7 @@ Unit.prototype = {
     wrap_after: function (name,org,after,unwrap) {
 	var self=this;
 	var save=self[name];
-	if (typeof save=="undefined") this.error("name"+name+" undefined");
+	if (typeof save=="undefined") console.log("name"+name+" undefined");
 	var global=false;
 	if (typeof save.org=="undefined"&&this!=Bomb.prototype&&this!=Unit.prototype&&this!=Weapon.prototype) global=true;
 	var f=function () {
