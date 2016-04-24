@@ -29,16 +29,20 @@
       <div>
 	<span class="h2"><span class="xwing"></span><span class="title">Squadron Benchmark</span>
 	  <span class="ver"></span>
-	  <img onclick="changelanguage('en')" class="langselect" src="css/uk-on.png">
-	  <img onclick="changelanguage('fr')" class="langselect" src="css/fr-on.png">
-	  <span class="symbols button" onclick="window.location='#setting'">&#xEA;</span>
+	  <select id="langselect" onchange="changelanguage($(this).val())">
+	    <option value="en">English</option>
+	    <option value="fr">Français</option>
+	    <option value="de">Deutsch</option>
+	    <option value="es">Español</option>
+	  </select>
+	  <span class="symbols button" style="vertical-align:bottom" onclick="window.location='#setting'">&#xEA;</span>
 	</span>
 	<span class="buttonbar">
 	  <button onclick="currentteam=TEAMS[0];createsquad()" class="mainbutton m-create"></button>
 	  <button class="m-reset permalink" onclick="resetlink()" >&lt; </button>
 	  <span id="phase"></span>
 	  <button class="nextphase" onclick="nextphase()"><span class='np'></span> <span id='npimg'>&gt;</span></button>
-	  <span class="menu" onmouseover="$('nav ul').css({display:'block',visibility:'visible'})" onmouseout="$('nav ul').css({display:'none',visibility:'hidden'})"><span class="symbols" style="color:white;font-size:larger;">&#xE2;</span>
+	  <span class="menu" onmouseover="$('nav ul').css({display:'block',visibility:'visible'})" onmouseout="$('nav ul').css({display:'none',visibility:'hidden'})"><span class="symbols" style="padding:5px;vertical-align:bottom;color:white;font-size:larger;">&#xE2;</span>
 	    <ul>
 	      <li><a class="m-about" href="#about"></a></li>
 	      <li><a class="m-help" href="http://xws-benchmark.blogspot.fr/p/how-to-play.html" target="_blank"></a></li>
