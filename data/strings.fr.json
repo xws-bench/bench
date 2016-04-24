@@ -1,14 +1,14 @@
 { 
     "ships":{
 	"TIE Fighter":"Chasseur TIE",
-   "TIE Interceptor":"Intercepteur TIE",
-    "TIE Defender":"Défenseur TIE",
-    "TIE Phantom":"TIE Fantôme",
-    "TIE Bomber":"Bombardier TIE",
-    "Lambda-Class Shuttle":"Navette de classe Lambda",
-    "VT-49 Decimator":"Décimateur VT-49",
-    "Z-95 Headhunter":"Chasseur de têtes Z-95",
-    "M3-A Interceptor":"Intercepteur M3-A",
+	"TIE Interceptor":"Intercepteur TIE",
+	"TIE Defender":"Défenseur TIE",
+	"TIE Phantom":"TIE Fantôme",
+	"TIE Bomber":"Bombardier TIE",
+	"Lambda-Class Shuttle":"Navette de classe Lambda",
+	"VT-49 Decimator":"Décimateur VT-49",
+	"Z-95 Headhunter":"Chasseur de têtes Z-95",
+	"M3-A Interceptor":"Intercepteur M3-A",
 	"Kihraxz Fighter":"Chasseur Kihraxz",
 	"Exhaust Port":"Bouche d'aération",
 	"Attack Shuttle":"Navette d'Attaque",
@@ -843,9 +843,6 @@
       "Targeting Coordinator(Crew)": {
         "name": "Coordinateur de visée",
         "text": "<strong>énergie :</strong> vous pouvez dépenser 1 énergie pour choisir un vaisseau allié situé à portée 1-2. Verrouillez une cible, puis assignez le marqueur d'acquisition de cible bleu au vaisseau choisi."
-      },
-      "Raymus Antilles(Crew)": {
-        "text": "Au début de la phase d'activation, choisissez 1 vaisseau ennemi situé à portée 1-3. Vous pouvez regarder la manœuvre choisie pour ce vaisseau. Si la manœuvre est blanche, assignez 1 marqueur de stress à ce vaisseau."
       },
       "'Leebo'(Crew)": {
         "text": "%ACTION% Effectuez une action d'accélération gratuite. Ensuite, recevez 1 marqueur ionique."
