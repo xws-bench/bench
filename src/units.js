@@ -79,8 +79,9 @@ function loadsound() {
     for (i=0; i<squadron.length; i++) {
 	sound[squadron[i].ship.firesnd]=SOUND_NAMES.indexOf(squadron[i].ship.firesnd);
 	sound[squadron[i].ship.flysnd]=SOUND_NAMES.indexOf(squadron[i].ship.flysnd);
-	for (j=0; j<squadron[i].weapons.length; j++) 
+	for (j=1; j<squadron[i].weapons.length; j++) {
 	    sound[squadron[i].weapons[j].firesnd]=SOUND_NAMES.indexOf(squadron[i].weapons[j].firesnd);
+	}
 	    
     }
     for (i in sound) {
