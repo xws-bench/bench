@@ -348,7 +348,8 @@ Team.prototype = {
 		} 
 	    }
 	    if (pid==-1) {
-		throw("pid undefined:"+translated+"!!"+pstr[0]+"!!"+this.faction);
+		if (translated==false) return this.parseJuggler(str,true);
+		console.log("pid undefined:"+translated+"!!"+pstr[0]+"!!"+this.faction);
 	    } 
 	    var p=new Unit(this.team,pid);
 	    p.upg=[];
@@ -406,7 +407,7 @@ Team.prototype = {
 	try {
 	    s=$.parseJSON(str);
 	} catch(err) {
-	    return this.parseJuggler(str,translated);
+	    this.parseJuggler(str,translated);
 	}
 	var i,j,k;
 	this.name=s.name;
