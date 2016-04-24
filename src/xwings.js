@@ -3,7 +3,7 @@ var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.8.5";
+var VERSION="v0.8.6";
 var LANG="en";
 var DECLOAK_PHASE=1;
 var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6,XP_PHASE=7;
@@ -251,6 +251,7 @@ function formatstring(s) {
 	.replace(/%TURNRIGHT%/g,"<code class='symbols'>6</code>")
 	.replace(/%BOOST%/g,"<code class='symbols'>b</code>")
         .replace(/%ELITE%/g,"<code class='symbols'>E</code>")
+	.replace(/%ION%/g,"<code class='xionizedtoken'></code>")
  	.replace(/%BOMB%/g,"<code class='symbols'>B</code>")
 	.replace(/%STRAIGHT%/g,"<code class='symbols'>8</code>")
         .replace(/%STOP%/g,"<code class='symbols'>5</code>")
@@ -650,13 +651,14 @@ function win() {
     var score1=0,score2=0;
     for (i=0; i<allunits.length; i++) {
 	var u=allunits[i];
-	if (u.dead) {
+	if (u.dead||(u.islarge&&u.shield+u.hull<(u.ship.hull+u.ship.shield)/2)) {
+	    var p=u.dead?u.points:(u.points/2);
 	    if (u.team==1) {
-		s2+="<tr><td>"+u.name+"</td><td>"+u.points+"</td></tr>";
-		score2+=u.points;
+		s2+="<tr><td>"+u.name+(!u.dead?" (1/2 points)":"")+"</td><td>"+p+"</td></tr>";
+		score2+=p;
 	    } else {
-		s1+="<tr><td>"+u.name+"</td><td>"+u.points+"</td></tr>";
-		score1+=u.points;
+		s1+="<tr><td>"+u.name+(!u.dead?" (1/2 points)":"")+"</td><td>"+p+"</td></tr>";
+		score1+=p;
 	    }
 	}
     }

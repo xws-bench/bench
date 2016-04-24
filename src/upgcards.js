@@ -301,14 +301,17 @@ var UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    sh.wrap_before("begincombatphase",this,function() {
+		//this.log("apply combat phase");
 		this.selectunit(sh.selectnearbyally(1,function(a,b) { 
 		    return a.getskill()>b.getskill(); 
 		}),function(p,k) {
-		    p[k].log("PS set to %1 [%0]",self.name,this.getskill());
 		    p[k].wrap_after("getskill",self,function(s) {
 			return sh.getskill();
 		    }).unwrapper("endcombatphase");
-		},["select unit [%0]",self.name],false);
+		    p[k].log("PS set to %1 [%0]",self.name,p[k].getskill());
+		    //log("showing "+p[k].getskill());
+		    p[k].show();
+		},["select unit to give PS %1 [%0]",self.name,self.unit.getskill()],false);
 	    });
 	},
     },
@@ -4048,10 +4051,49 @@ var UPGRADES= [
     {name:"Electronic Baffle",
      type:SYSTEM,
      points:1,
+     done:true,
+     init: function(sh) {
+	 var self=this;
+	 sh.wrap_after("addstress",this,function() {
+	     this.donoaction([{type:"STRESS",name:self.name,org:self,
+			       action:function(n) {
+				    this.removestresstoken();
+				   this.log("-1 %STRESS%, +1 %HIT% [%0]",self.name);
+				   this.resolvehit(1);
+				   this.endnoaction(n,"SYSTEM");
+			       }.bind(this)}]);
+	 },"Take 1 %HIT% instead of %STRESS% token",true)
+	 sh.wrap_after("addiontoken",this,function() {
+	     this.donoaction([{type:"ION",name:self.name,org:self,
+			       action:function(n) {
+				   this.removeiontoken();
+				   this.log("-1 %ION%, +1 %HIT% [%0]",self.name);
+				   this.resolvehit(1);
+				   this.endnoaction(n,"SYSTEM");
+			       }.bind(this)}]);
+	 },"Take 1 %HIT% instead of %ION% token",true);
+     }
     },
-    {name:"Overclocked R4",
-     type:SALVAGED,
-     points:1
+    {
+	name:"Overclocked R4",
+	type:SALVAGED,
+	points:1,
+	done:true,
+	init: function(sh) {
+	    var self=this;
+	    sh.wrap_after("begincombatphase",self,function(l) {
+		this.wrap_after("removefocustoken",self,function() {
+		    this.donoaction([{type:"STRESS",name:self.name,org:self,
+				      action:function(n) {
+					  this.addstress();
+					  this.addfocustoken();
+					  this.endnoaction(n,"SALVAGED");
+				      }.bind(this)}],
+				    "Add %STRESS% for %FOCUS%",true);
+		}).unwrapper("endcombatphase");
+		return l;
+	    });
+	}
     },
     {
         name: "Thermal Detonator",
