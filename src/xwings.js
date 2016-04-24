@@ -1496,19 +1496,21 @@ function resetlink() {
     case SETUP_PHASE:
     case SELECT_PHASE: 
 	document.location.search="";
-/*	if (uri.indexOf("?") > 0) {
+	var uri=document.location.href;
+	if (uri.indexOf("?") > 0) {
 	    var clean_uri = uri.substring(0, uri.indexOf("?"));
 	    window.history.replaceState({}, document.title, clean_uri);
 	}
-	document.location.reload(true); */
+	document.location.reload(true);
 	break;
     case CREATION_PHASE: phase=0; document.location.search=""; nextphase(); break; 
     default: 
-	log("reset to phase 0");
+	//log("reset to phase 0");
 	phase=0;
-	document.location.search="?"+PERMALINK;
+	if (document.location.href.indexOf("?")>0) document.location.reload(true);
+	else document.location.search="?"+PERMALINK;
 	//document.location.assign(document.location.href);
-	document.location.reload(true);
+	//document.location.reload(true);
     }
 }
 function record(id,val,str) {
