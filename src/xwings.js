@@ -1468,6 +1468,12 @@ function nextphase() {
 	log("<div>["+UI_translation["turn #"]+round+"]"+UI_translation["phase"+phase]+"</div>");
 	$("#attackdial").show();
 	skillturn=12;
+	/*for (var j=12; j>=0; j--) 
+	    for (var i=0; i<tabskill[j].length; i++) {
+		var u=tabskill[j][i];
+		u.begincombatphase().done(nextcombat);
+	    };
+*/
 	for (i in squadron) squadron[i].begincombatphase().done(nextcombat);
 	barrier(nextcombat);
 	break;
@@ -1938,7 +1944,7 @@ $(document).ready(function() {
 	  K5:{path:s.path("M 0 0 L 0 -240").attr({display:"none"}), speed: 5, key: "2" }
 	};
     // Load unit data
-    var availlanguages=["en","fr","de"];
+    var availlanguages=["en","fr","de","es"];
     LANG = localStorage['LANG'] || window.navigator.userLanguage || window.navigator.language;
     LANG=LANG.substring(0,2);
     $.ajaxSetup({beforeSend: function(xhr){
@@ -1946,6 +1952,7 @@ $(document).ready(function() {
 	    xhr.overrideMimeType("application/json");
     }});
     if (availlanguages.indexOf(LANG)==-1) LANG="en";
+    $("#langselect").val(LANG);
     $.when(
 	$.ajax("data/ships.json"),
 	$.ajax("data/strings."+LANG+".json"),
