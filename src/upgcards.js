@@ -4057,6 +4057,7 @@ var UPGRADES= [
 	 sh.wrap_after("addstress",this,function() {
 	     this.donoaction([{type:"STRESS",name:self.name,org:self,
 			       action:function(n) {
+				   this.select();
 				    this.removestresstoken();
 				   this.log("-1 %STRESS%, +1 %HIT% [%0]",self.name);
 				   this.resolvehit(1);
@@ -4066,6 +4067,7 @@ var UPGRADES= [
 	 sh.wrap_after("addiontoken",this,function() {
 	     this.donoaction([{type:"ION",name:self.name,org:self,
 			       action:function(n) {
+				   this.select();
 				   this.removeiontoken();
 				   this.log("-1 %ION%, +1 %HIT% [%0]",self.name);
 				   this.resolvehit(1);

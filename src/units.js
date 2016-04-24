@@ -2428,7 +2428,16 @@ Unit.prototype = {
     },
     showinfo: function() {
 	var i=0;
-	$("#"+this.id+" .usabletokens").html(this.getusabletokens());
+	var h=$("#"+this.id+" .usabletokens").html();
+	var gut=this.getusabletokens();
+	$("#"+this.id+" .usabletokens").html(gut);
+	if (h!=gut) {
+	    for (var j in squadron) {
+		var u=squadron[j];
+		if (this.team==u.team&&this.getskill()>=u.getskill())
+		    u.showoverflow();
+	    }
+	}
 	if (this.focus>0) {
 	    this.infoicon[i++].attr({text:A.FOCUS.key,fill:A.FOCUS.color});}
 	if (this.evade>0) {
@@ -2634,11 +2643,6 @@ Unit.prototype = {
 	    $("#unit"+this.id+" .statevade .val").html(this.getagility());
 	    $("#unit"+this.id+" .statfire .val").html(this.weapons[0].getattack());
 	} else {
-	    if (typeof this.skillbar=="undefined") {
-		console.trace();
-		this.error("undefined skillbar?");
-		return;
-	    }
 	    this.skillbar.attr({text:repeat('u',this.getskill())});
 	    this.firebar.attr({text:repeat('u',this.weapons[0].getattack())});
 	    this.evadebar.attr({text:repeat('u',this.getagility())});
@@ -2693,6 +2697,16 @@ Unit.prototype = {
     timeformaneuver: function() {
 	return  (this==activeunit&&this.maneuver>-1&&!this.hasmoved&&this.getskill()==skillturn&&phase==ACTIVATION_PHASE&&subphase==ACTIVATION_PHASE);
     },
+    showoverflow: function() {
+	if (!this.dead) { 
+	    $("#"+this.id).html(""+this);
+	    $("#"+this.id+" .outoverflow").each(function(index) { 
+		if ($(this).css("top")!="auto") {
+		    $(this).css("top",($(this).parent().offset().top)+"px");
+		}
+	    });
+	}
+    },
     show: function() {
 	var i;
 	if (phase==CREATION_PHASE) {
@@ -2716,15 +2730,7 @@ Unit.prototype = {
 	this.showmaneuver();
 	if (phase==ACTIVATION_PHASE) this.showactivation();
 	this.showattack();
-	if (!this.dead) { 
-	    $("#"+this.id).html(""+this);
-	    $("#"+this.id+" .outoverflow").each(function(index) { 
-		if ($(this).css("top")!="auto") {
-		    $(this).css("top",($(this).parent().offset().top)+"px");
-		}
-	    });
-	    //$("#"+this.id).addClass("selected");
-	}
+	this.showoverflow();
     },
     showhitsector: function(b,wp) {
         var opacity=(b)?"inline":"none";

@@ -782,7 +782,6 @@ var mySpreadsheets=[
 ];
 function displayAIperformance() {
     var t="Syndicate_Thug*Twin_Laser_Turret*Unhinged_Astromech.Syndicate_Thug*Twin_Laser_Turret*Unhinged_Astromech.Syndicate_Thug*Twin_Laser_Turret*Unhinged_Astromech.Syndicate_Thug*Twin_Laser_Turret*Unhinged_Astromech."
-    log(t);
     for (var i=0; i<mySpreadsheets.length; i++) {
 	$('#squadbattlediv').sheetrock({
 	    url: mySpreadsheets[i],
@@ -1121,7 +1120,6 @@ function endselection() {
     currentteam.name="SQUAD."+currentteam.toASCII();
     currentteam.toJSON();// Just for points
     var jug=currentteam.toJuggler(false);
-    log("local:"+localStorage[currentteam.name]+" "+currentteam.name);
     if (typeof localStorage[currentteam.name]=="undefined") {
 	localStorage[currentteam.name]=JSON.stringify({"pts":currentteam.points,"faction":currentteam.faction,"jug":jug,"rocks":currentteam.rocks});
 
@@ -1157,7 +1155,6 @@ function findsquad(t) {
     currentteam.parseJSON($("#squad"+t).val(),true);
     var jug=currentteam.toJuggler(false);
     var pattern=jug.replace(/ \+.*/g,"").replace(/\n/g,".*\.").replace(/ /g,"_");
-    log(pattern);
     $('#squad'+t).sheetrock({
 	url: mySpreadsheets[0],
 	query:"select C where C matches '.*VS"+pattern+"'",
@@ -1179,7 +1176,6 @@ function matchsquad(error, options,response) {
 	    oldsquad=tt[1];
 	}
 	str+="</ol>";
-	log(str);
     }
 }
 function startcombat() {
@@ -2308,9 +2304,7 @@ var replayall=function() {
 	else {
 	    console.log("cannot find id "+id);
 	    //for (j in squadron) console.log("squadron["+j+"]="+squadron[j].name);
-	    console.log("notify");
 	    actionrlock.notify();
-	    console.log("endnotify");
 	    return;
 	}
     } 
