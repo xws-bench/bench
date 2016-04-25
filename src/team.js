@@ -407,7 +407,7 @@ Team.prototype = {
 	try {
 	    s=$.parseJSON(str);
 	} catch(err) {
-	    s=this.parseJuggler(str,translated);
+	    return this.parseJuggler(str,translated);
 	}
 	var i,j,k;
 	this.name=s.name;
