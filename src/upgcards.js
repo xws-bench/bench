@@ -2217,18 +2217,25 @@ var UPGRADES= [
 	spendfocus:false,
         init: function(sh) {
 	    var self=this;
+	    /*
 	    sh.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
 		req:function(m,n) { return self.spendfocus; },
 		f:function(m,n) { 
+		    this.log("use id:"+this.id+" "+self.id);
+		    self.spendfocus=false;
 		    this.addtarget(targetunit); 
 		    this.log("+1 %TARGET% / %1 [%0]",self.name,targetunit.name);
-		    displayattacktokens(this); return m; 
-		}.bind(sh),str:"target"});
+		    displayattacktokens2(this); return m; 
+		    }.bind(sh),str:"target"});
+	    */
 	    sh.wrap_before("declareattack",this,function(w,target) {
 		self.spendfocus=false;
 		this.wrap_before("removefocustoken",self,function() {
-		    self.spendfocus=true;
-		    displayattacktokens(this);
+		    //self.spendfocus=true;
+		    /*this.log("id:"+this.id+" "+self.id);
+		    displayattacktokens2(this);*/
+		    this.addtarget(target);
+		    this.log("+1 %TARGET% / %1 [%0]",self.name,target.name);
 		}).unwrapper("endattack");
 	    });
 	},
