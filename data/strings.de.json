@@ -208,7 +208,8 @@
         "Gand Findsman (Scum)": {"name": "Gand-Finder"},
         "Zuckuss (Scum)": {"text": "Sobald du angreifst, darfst du 1 zusätzlichen Angriffswürfel werfen. Falls du das tust, wirft der Verteidiger 1 zusätzlichen Verteidigungswürfel."},
         "Tomax Bren": {"text": "Once per round, after you discard an %ELITE% Upgrade card, flip that card faceup."},
-        "'Deathfire'": {"text": "When you reveal your maneuver dial or after you perform an action, you may perform a %BOMB% Upgrade card action as a free action."}
+        "'Deathfire'": {"text": "When you reveal your maneuver dial or after you perform an action, you may perform a %BOMB% Upgrade card action as a free action."},
+	"Countess Ryad":{"text":"When you reveal a %STRAIGHT% maneuver, you may treat it as a %UTURN% maneuver."}
 },
 "upgrades":{
         "Ion Cannon Turret": {"name": "Ionengeschütz","text": "<strong>Angriff:</strong> Greife 1 Schiff an (es muss nicht in deinem Feuerwinkel sein). <br />Wenn der Angriff trifft, nimmt das verteidigende Schiff 1 Schaden und erhält 1 Ionenmarker. Dann werden alle übrigen Würfelergebnisse negiert."},
@@ -552,7 +553,7 @@
 	"m-points":"Pts",
 	"m-units":"Units",
 	"m-move":"Move",
-	"m-fire":"Fire!",
+	"m-fire":"Feuer!",
 	"m-skip":"Skip",
 	"m-pilotselect":"Pilot selection",
 	"m-player":"Player",
