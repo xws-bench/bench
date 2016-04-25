@@ -412,8 +412,9 @@ function displayattacktokens(u,f) {
     } else displayattacktokens2(u,f);
 }
 function displayattacktokens2(u,f) {
+    //u.log(u.id+" f:"+(typeof f)+" "+(typeof u.lastaf));
     if (typeof f!="function") f=u.lastaf;
-    u.lastaf=f;
+    else u.lastaf=f;
     $("#atokens").empty();
     var am=u.getresultmodifiers(u.ar,u.da,ATTACK_M,ATTACK_M);
     if (am.length>0) {
