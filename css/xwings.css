@@ -2109,11 +2109,19 @@ border-collapse:collapse
 white-space:normal
 }
 .upgavail button:hover {
-border:1px solid gold;
-padding:0;
+border:0;
+padding:2px;
+color:black;
+background:white;
 }
 .upgavail button {
 padding:1px;
+border-radius:20%;
+background:black;
+color:white;
+margin:2px;
+opacity:0.8;
+border:1px solid white;
 }
 ul.caroussel td,.upglist > tr > td {
 vertical-align:middle

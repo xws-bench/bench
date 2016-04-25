@@ -3597,6 +3597,7 @@ var PILOTS = [
 	faction:EMPIRE,
 	pilotid:187,
 	done:true,
+	unique:true,
 	unit:"TIE/FO Fighter",
 	skill:7,
 	points:20,
@@ -3612,6 +3613,28 @@ var PILOTS = [
 	    }.bind(this)};
 	    if (this.stress==0) 
 		this.donoaction([a1],"select to add +1 attack roll",true);
+	}
+    },
+    {
+	name:"Countess Ryad",
+	faction:EMPIRE,
+	pilotid:188,
+	done:true,
+	unique:true,
+	unit:"TIE Defender",
+	skill:5,
+	points:34,
+	upgrades:[ELITE,CANNON,MISSILE],
+	init: function() {
+	    this.wrap_after("getmaneuverlist",this,function(p) {
+		if (this.hasionizationeffect()) return p;
+		for (var i=1; i<=5; i++) {
+		    if (typeof p["F"+i]!="undefined") {
+			p["K"+i]={move:"K"+i,difficulty:p["F"+i].difficulty};
+		    }
+		}
+		return p;
+	    });
 	}
     }
 ];

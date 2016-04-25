@@ -2350,7 +2350,7 @@ var UPGRADES= [
 			t.log("+%1 %HIT% [%0]",upg.name,1) 
 			t.resolvehit(1);
 			t.checkdead();
-		    }
+		    } else t.log("no effect [%0]",upg.name);
 		}
 	    });
 	}
@@ -4120,5 +4120,24 @@ var UPGRADES= [
 	},
         type: BOMB,
         points: 3,
-    }
+    },
+    {
+        name: "Ion Projector",
+	type:MOD,
+        islarge:true,
+	done:true,
+        points: 2,
+	init: function(sh) {
+	    var upg=this;
+	    sh.wrap_before("collidedby",this,function(t) {
+		if (upg.isactive&&t.team!=this.team) {
+		    var roll=this.rollattackdie(1)[0];
+		    if (roll=="hit"||roll=="critical") {
+			t.log("+%1 %ION% [%0]",upg.name,1) 
+			t.addiontoken();
+		    }
+		} else t.log("no effect [%0]",upg.name);
+	    });
+	}
+    },
 ];
