@@ -193,7 +193,7 @@ Team.prototype = {
 	    if (u.team==this.team) {
 		for (var j=0; j<u.upgrades.length; j++) {
 		    var upg=u.upgrades[j];
-		    if (typeof upg.init=="function") upg.init(u);
+		    if (typeof upg.init=="function"&&!u.isdocked) upg.init(u);
 		}
 	    }
 	}
@@ -323,12 +323,12 @@ Team.prototype = {
 	    var lf=0;
 	    for (j=0;j<PILOTS.length; j++) {
 		var v=PILOTS[j].name;
-		var va=v;
-		if (translated==true) va=translate(va);
-		if (PILOTS[j].ambiguous==true) va+="("+PILOTS[j].unit+")";
-		if (va.replace(/\'/g,"")==pstr[0]) {
-		    lf=lf|getf(PILOTS[j].faction);
-		}
+		var vat=translate(v);
+		var pu="";
+		if (PILOTS[j].ambiguous==true) pu="("+PILOTS[j].unit+")";
+		vat+=pu; v+=pu;
+		if (v.replace(/\'/g,"")==pstr[0]) lf=lf|getf(PILOTS[j].faction);
+		if (vat.replace(/\'/g,"")==pstr[0]) lf=lf|getf(PILOTS[j].faction);
 	    }
 	    f=f&lf;
 	}
@@ -340,15 +340,19 @@ Team.prototype = {
 	    var pstr=pilots[i].split(/\s+\+\s+/);
 	    for (j=0;j<PILOTS.length; j++) {
 		var v=PILOTS[j].name;
-		var va=v;
+		var vat=v;
+		var pu="";
 		if (PILOTS[j].faction==this.faction) {
-		    if (translated==true) va=translate(va);
-		    if (PILOTS[j].ambiguous==true) va+="("+PILOTS[j].unit+")";
-		    if (va.replace(/\'/g,"")==pstr[0]) { pid=j; break; }
+		    vat=translate(v);
+		    if (PILOTS[j].ambiguous==true) pu="("+PILOTS[j].unit+")";
+		    v+=pu;
+		    vat+=pu;
+		    if (v.replace(/\'/g,"")==pstr[0]) { pid=j; break; }
+		    if (vat.replace(/\'/g,"")==pstr[0]) { pid=j; translated=true; break; }
 		} 
 	    }
 	    if (pid==-1) {
-		if (translated==false) return this.parseJuggler(str,true);
+		//if (translated==false) return this.parseJuggler(str,true);
 		console.log("pid undefined:"+translated+"!!"+pstr[0]+"!!"+this.faction);
 	    } 
 	    var p=new Unit(this.team,pid);
