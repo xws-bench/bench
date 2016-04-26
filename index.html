@@ -282,7 +282,7 @@
 
    <section id="kb" class="modalDialog">
         <div draggable="true">
-          <h2><span class="m-kb">Keyboard bindings</span><a href="#" title="Close" class="close">&#10060;</a>
+          <h2><span class="m-kb"></span><a href="#" title="Close" class="close">&#10060;</a>
           </h2>
           <div>
 	    <table>
@@ -309,25 +309,27 @@
           <h2><span class="m-about"></span><a href="#" title="Close" class="close">&#10060;</a>
           </h2>
           <div>
+This is short introduction of Squadron Benchmark. Read <a href="http://xws-benchmark.blogspot.fr/">the blog</a> dedicated to the app for a more exhaustive description, for a manual and for news. 
+<br/>
 
 Squadron Benchmark is a web app for
  testing squadrons built for the X-Wing Miniatures game. You can design
  your squads and simulate a battle between them. Both sides can be
- controlled either by the player or by an simple AI. The user moves
- the different units and can try new strategies, squadron composition,
- maneuvers and placement. It can be used to build scenarios, benchmark
- against squads you can find in competition, try new ships or
- pilots...  The app offers the following features:
+ controlled either by the player or by a simple AI. The player moves
+ the different units and can test new strategies, squadron compositions,
+ maneuvers and initial placements. It can be used to build scenarios, to benchmark
+ against squads you can find in competitions, test new units or
+ upgrades...  The app offers the following features:
 <ul>
-<li>Import your squads using JSON format</li>
-<li>Move units and perform their actions as in the real game. All ship maneuver dials and of all actions in their bars are handled.</li>
-<li>Detection of collisions with other ships and asteroids, automatic handling of stress, action and combat effects, rolling hit dice for possible damage automatically.</li>
+<li>Import your squads using JSON format or text format</li>
+<li>Move units and perform their actions as in the real game.</li>
+<li>Detection of collisions with other ships and asteroids, automatic handling of stress, action and combat effects, rolling hit dice for possible hits and criticals.</li>
 <li>Automatic handling of a number of card effects (pilots, upgrades, ...). Biggs for instance is the unique possible target when in range of a ennemy. Howlrunner effect is automatically taken into account. A console provides feed back on what happens and which effect is triggered.</li>
-<li>Combat is as simple as selected a target, and using tokens. Dices are rolled, damages and criticals are delivered automatically, shields are used, ...</li> 
+<li>Combat rules: Select the weapon to fire, the target unit, see the results of rolled dice and apply effects. Damages and criticals are delivered automatically, shields are used, ...</li> 
 <li>A simple AI ! It can move the units around and tries to fire at your units. It is simple to outmaneuver it but still, be careful not to be too confident :-) </li>
 </ul>
 
-The app is not really a game since the user plays both sides, there is no multi-player version of the app and there will not be. This is in no way a substitute for the real game but is a complementary tool.
+The app is not really a game since the player plays both sides or against an AI, there is no multi-player version of the app and there will not be. This is in no way a substitute for the real game but is a complementary tool.
 <br/>
  The app is (c) Denis Wings 2015-2016 (deniswings@free.fr). MIT license. <br>
 	    <div class="ack"><button onclick="window.location='#'">Ok</button></div>
@@ -456,7 +458,6 @@ The app is not really a game since the user plays both sides, there is no multi-
     </footer>
     <script src="js/all.min.js"></script>
     <script src="js/bench.min.js" async></script>
-
     <script>
       if (location.search=="") $("#selectphase").show();
     </script>
