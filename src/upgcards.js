@@ -145,8 +145,8 @@ var UPGRADES= [
 	      },function() {
 		  this.log("ignore obstacles [%0]",self.name);
 		  self.desactivate();
-		  this.wrap_after("getocollisions",self,function(mbegin,mend,path,len) { 
-		      return {overlap:-1,template:[],mine:[]};
+		  this.wrap_after("getocollisions",self,function(mbegin,mend,path,len,ob) { 
+		      return {overlap:-1,template:[],mine:ob.mine};
 		  }).unwrapper("endround");
 		  this.show();
 	      }.bind(this), A[ASTROMECH.toUpperCase()].key, $("<div>").attr({class:"symbols"}));

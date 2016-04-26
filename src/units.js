@@ -278,6 +278,7 @@ Unit.prototype = {
 	this.criticalresolved=0;
 	this.m=new Snap.Matrix(); 
 	this.collision=false;
+	this.oldoverlap=-1;
 	this.ocollision={overlap:-1,template:[],mine:[]};
 	var uu=[];
 	for (j in upgs) if (upgs[j]>-1) uu.push(Upgradefromid(this,upgs[j]));
@@ -1033,7 +1034,10 @@ Unit.prototype = {
 	    if (Snap.path.intersection(ob.s,os).length>0 
 		||this.isPointInside(ob.s,op)
 		||this.isPointInside(os,ob.p)) {
-		if (k<6) collision.overlap=k; else collision.mine.push(OBSTACLES[k]); 
+		if (this.oldoverlap!=k) {
+		    if (k<6) collision.overlap=k; 
+		    else collision.mine.push(OBSTACLES[k]);
+		} 
 	    }
 	}
 	if (typeof path!="undefined") {
@@ -1044,7 +1048,7 @@ Unit.prototype = {
 	    }
 	    for (j=0; j<pathpts.length; j++) {
 		for (k=0; k<OBSTACLES.length; k++) {
-		    if (k!=collision.overlap&&collision.template.indexOf(k)==-1&&collision.mine.indexOf(OBSTACLES[k])==-1) { // Do not count overlapped obstacle twice
+		    if (k!=collision.overlap&&k!=this.oldoverlap&&collision.template.indexOf(k)==-1&&collision.mine.indexOf(OBSTACLES[k])==-1) { // Do not count overlapped obstacle twice
 			var o2=OBSTACLES[k].getOutlineString().p;
 			for(i=0; i<o2.length; i++) {
 			    var dx=(o2[i].x-pathpts[j].x);
@@ -1345,7 +1349,7 @@ Unit.prototype = {
     },
     evadeattack: function(sh) {
 	var e=getdefenseresult();
-	var ch=sh.weapons[sh.activeweapon].modifydamagegiven(getattackresult());
+	var ch=getattackresult();
 	displayattackroll(getattackdice(),ch);
 	var r=this.cancelhit({ch:ch,e:e},sh);
 	r=this.cancelcritical(r,sh);
@@ -1414,6 +1418,7 @@ Unit.prototype = {
 	this.focus=this.resetfocus();
 	this.evade=this.resetevade();
 	this.hasfired=0;
+	this.oldoverlap=this.ocollision.overlap;
 	this.ocollision.overlap=-1;
 	this.ocollision.template=[];
 	this.ocollision.mine=[];
@@ -1587,8 +1592,9 @@ Unit.prototype = {
 		    if (typeof OBSTACLES[mine[i]].detonate=="function") 
 			OBSTACLES[mine[i]].detonate(this)
 		    else {
+			this.ocollision.overlap=i;
 			this.log("colliding with obstacle");
-			this.resolveocollision(1,0);
+			if (!this.canmoveonobstacles()) this.resolveocollision(1,0);
 		    }
 		}
 	    if (automove) {
@@ -1647,8 +1653,9 @@ Unit.prototype = {
     },
     resolveboost: function(n) {
 	this.resolveactionmove(this.getboostmatrix(this.m),
-	    function (t,k) { t.endaction(n,"BOOST"); },true,false);
+	    function (t,k) { t.endaction(n,"BOOST"); },true,this.canmoveonobstacles());
     },
+    canmoveonobstacles:function() { return false; },
     getdecloakmatrix: function(m) {
 	var m0=this.getpathmatrix(this.m.clone().rotate(90,0,0),"F2").translate(0,(this.islarge?20:0)).rotate(-90,0,0);
 	var m1=this.getpathmatrix(this.m.clone().rotate(-90,0,0),"F2").translate(0,(this.islarge?20:0)).rotate(90,0,0);
@@ -1699,7 +1706,7 @@ Unit.prototype = {
     },
     resolveroll: function(n) {
 	this.resolveactionmove(this.getrollmatrix(this.m),
-	    function(t,k) { t.endaction(n,"ROLL");},true,false);
+	    function(t,k) { t.endaction(n,"ROLL");},true,this.canmoveonobstacles());
     },
     boundtargets:function(sh) {
 	if (this.targeting.indexOf(sh)>-1) return true;
@@ -1847,6 +1854,9 @@ Unit.prototype = {
     isfireobstructed: function() {
 	return this.ocollision.overlap>-1;
     },
+    hascollidedobstacle: function() {
+	return this.ocollision.overlap>-1||this.ocollision.template.length>0;
+    },
     canfire: function() {
  	var b= (this.nomoreattack==0)&&(this.hasfired==0)/*&&((r[1].length>0||r[2].length>0||r[3].length>0)*/&&!this.iscloaked&&!this.isfireobstructed();
         return b;
@@ -1941,8 +1951,9 @@ Unit.prototype = {
 	this.showattack(forced);
     },
     doattackroll: function(ar,da,defense,me,n) {
-	displayattackroll(ar,da);
-	this.ar=ar; this.da=da;
+	this.ar=this.weapons[this.activeweapon].modifydamagegiven(ar);
+	this.da=da;
+	displayattackroll(this.ar,da);
 	displayattacktokens(this,function() {
 	    targetunit.defenseroll(defense).done(function(r) {
 		targetunit.dodefenseroll(r.roll,r.dice,me,n);
@@ -2060,8 +2071,8 @@ Unit.prototype = {
 	
    
 	this.ocollision=this.getocollisions(oldm,m,path,lenC);
-	if (this.isfireobstructed()) { this.log("overlaps obstacle: no action, cannot attack"); }
-	if (this.ocollision.template.length>0) { this.log("template overlaps obstacle: no action"); }
+	if (this.isfireobstructed()) { this.log("overlaps obstacle: cannot attack"); }
+	if (this.hascollidedobstacle()) { this.log("unit or template overlaps obstacle: no action"); }
 	if (lenC>0) this.m=m;
 	var turn=0;
 	// Animate movement
@@ -2094,7 +2105,7 @@ Unit.prototype = {
 		this.handledifficulty(difficulty);
 		this.lastmaneuver=this.maneuver;
 		//path.remove();
-		if (this.ocollision.overlap>-1||this.ocollision.template.length>0) 
+		if (this.hascollidedobstacle()) 
 		    this.resolveocollision(this.ocollision.overlap,this.ocollision.template.length);
 		if (this.ocollision.mine.length>0) 
 		    for (i=0; i<this.ocollision.mine.length; i++) {

@@ -1791,8 +1791,11 @@ var PILOTS = [
         skill: 7,
 	done:true,
 	init: function() {
-	    this.wrap_after("getocollisions",this,function(mbegin,mend,path,len,oc) { 
-		return {overlap:-1,template:[],mine:[]};
+	    this.wrap_after("hascollidedobstacle",this,function(b) { 
+		return false;
+	    });
+	    this.wrap_after("canmoveonobstacles",this,function() {
+		return true;
 	    });
 	},
         points: 36,
