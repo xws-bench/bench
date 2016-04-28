@@ -49,27 +49,28 @@ var active=0;
 var globalid=1;
 var targetunit;
 var PATTERN;
+var SOUND_DIR="ogg/";
 var SOUND_FILES=[
-    "ogg/cloak_romulan",
-    "ogg/decloak_romulan",
-    "ogg/EXPLODE3",
-    "ogg/KX9_laser_cannon",
-    "ogg/TIE-Fire",
-    "ogg/Slave1-Guns",
-    "ogg/Falcon-Guns",
-    "ogg/XWing-Fly1",
-    "ogg/TIE-Fly2",
-    "ogg/Slave1-Fly1",
-    "ogg/Falcon-Fly1",
-    "ogg/Falcon-Fly3",
-    "ogg/YWing-Fly2",
-    "ogg/ISD-Fly",
-    "ogg/missile",
-    "ogg/XWing-Fly2",
-    "ogg/DStar-Gun4",
-    "ogg/TIE-Fly6",
-    "ogg/Slave1-Fly2",
-    "ogg/ghost"
+    "cloak_romulan",
+    "decloak_romulan",
+    "EXPLODE3",
+    "KX9_laser_cannon",
+    "TIE-Fire",
+    "Slave1-Guns",
+    "Falcon-Guns",
+    "XWing-Fly1",
+    "TIE-Fly2",
+    "Slave1-Fly1",
+    "Falcon-Fly1",
+    "Falcon-Fly3",
+    "YWing-Fly2",
+    "ISD-Fly",
+    "missile",
+    "XWing-Fly2",
+    "DStar-Gun4",
+    "TIE-Fly6",
+    "Slave1-Fly2",
+    "ghost"
 ];
 var SOUNDS={};
 var SOUND_NAMES=["cloak","decloak","explode","xwing_fire","tie_fire","slave_fire","falcon_fire","xwing_fly","tie_fly","slave_fly","falcon_fly","yt2400_fly","ywing_fly","isd_fly","missile","xwing2_fly","dstar_gun","tie2_fly","slave2_fly","ghost"];
@@ -86,7 +87,7 @@ function loadsound() {
     }
     for (i in sound) {
 	SOUNDS[i]=new Howl({
-	    urls: [SOUND_FILES[sound[i]]+".ogg", SOUND_FILES[sound[i]]+".m4a", SOUND_FILES[sound[i]]+".wav"],
+	    urls: [SOUND_DIR+SOUND_FILES[sound[i]]+".ogg", SOUND_DIR+SOUND_FILES[sound[i]]+".m4a", SOUND_DIR+SOUND_FILES[sound[i]]+".wav"],
 	    autoplay:false,
 	    loop:false
 	});
@@ -856,12 +857,7 @@ Unit.prototype = {
     getOutlinePoints: function(m) {
 	var w=(this.islarge)?40:20;
 	if (typeof m=="undefined") m=this.m;
-	var p1={x:m.x(-w,-w),y:m.y(-w,-w)};
-	var p2={x:m.x(w,-w),y:m.y(w,-w)};
-	var p3={x:m.x(w,w),y:m.y(w,w)};
-	var p4={x:m.x(-w,w),y:m.y(-w,w)};
-	var op=[p1,p2,p3,p4];
-	return op;
+	return [{x:m.x(-w,-w),y:m.y(-w,-w)},{x:m.x(w,-w),y:m.y(w,-w)},{x:m.x(w,w),y:m.y(w,w)},{x:m.x(-w,w),y:m.y(-w,w)}];
     },
     getOutlineString: function(m) {
 	var p=this.getOutlinePoints(m);
@@ -874,74 +870,45 @@ Unit.prototype = {
 	var g=s.g(t,p).transform(m).attr({fill:this.color,opacity:0.3,display:"none"});
 	return g;
     },
-    getRangeString: function(n,m) {
+    getRangePoints: function(n,m) {
 	var w=(this.islarge)?40:20;
+	return $.map([{x:-w,y:-100*n-w},{x:w,y:-100*n-w},{x:100*n+w,y:-w},{x:100*n+w,y:w},{x:w,y:100*n+w},{x:-w,y:100*n+w},{x:-100*n-w,y:w},{x:-100*n-w,y:-w}],
+	//return $.map([{x:-w,y:-100*n-w},{x:w,y:-100*n-w},{x:100*n+1+w,y:-w},{x:100*n+1+w,y:w},{x:w,y:100*n+1+w},{x:-w,y:100*n+1+w},{x:-100*n-w-1,y:w},{x:-100*n-w-1,y:-w}],
+		    function(a,i) { return transformPoint(m,a); });
+    },
+    getHalfRangePoints:function(n,m) {
+	var w=(this.islarge)?40:20;
+	return $.map([{x:100*n+w,y:0},{x:100*n+w,y:-w},{x:w,y:-100*n-w},{x:-w,y:-100*n-w},{x:-100*n-w,y:-w},{x:-100*n-w,y:0}],
+		    function(a,i) { return transformPoint(m,a); });
+    },
+    getRangeString: function(n,m) {
 	var circle=" A "+(100*n)+" "+(100*n)+" 0 0 1 ";
-	var p1=transformPoint(m,{x:-w,y:-100*n-w});
-	var p2=transformPoint(m,{x:w,y:-100*n-w});	
-	var p3=transformPoint(m,{x:100*n+1+w,y:-w});
-	var p4=transformPoint(m,{x:100*n+1+w,y:w});
-	var p5=transformPoint(m,{x:w,y:100*n+1+w});
-	var p6=transformPoint(m,{x:-w,y:100*n+1+w});
-	var p7=transformPoint(m,{x:-100*n-w-1,y:w});
-	var p8=transformPoint(m,{x:-100*n-w-1,y:-w});
-	return ("M "+p2.x+" "+p2.y+circle+p3.x+" "+p3.y+" L "+p4.x+" "+p4.y+circle+p5.x+" "+p5.y+" L "+p6.x+" "+p6.y+circle+p7.x+" "+p7.y+" L "+p8.x+" "+p8.y+circle+p1.x+" "+p1.y+" Z");
+	var p=this.getRangePoints(n,m);
+	return ("M "+p[1].x+" "+p[1].y+circle+p[2].x+" "+p[2].y+" L "+p[3].x+" "+p[3].y+circle+p[4].x+" "+p[4].y+" L "+p[5].x+" "+p[5].y+circle+p[6].x+" "+p[6].y+" L "+p[7].x+" "+p[7].y+circle+p[0].x+" "+p[0].y+" Z");
     },
     getHalfRangeString: function(n,m) {
-	var w=(this.islarge)?40:20;
 	var circle=" A "+(100*n)+" "+(100*n)+" 0 0 0 ";
-	var p3=transformPoint(m,{x:100*n+1+w,y:0});
-	var p4=transformPoint(m,{x:100*n+1+w,y:-w});
-	var p5=transformPoint(m,{x:w,y:-100*n-1-w});
-	var p6=transformPoint(m,{x:-w,y:-100*n-1-w});
-	var p7=transformPoint(m,{x:-100*n-w-1,y:-w});
-	var p8=transformPoint(m,{x:-100*n-w-1,y:0});
-	return ("M "+p3.x+" "+p3.y+" L "+p4.x+" "+p4.y+circle+p5.x+" "+p5.y+" L "+p6.x+" "+p6.y+circle+p7.x+" "+p7.y+" L "+p8.x+" "+p8.y+" "+p3.x+" "+p3.y);
+	var p=this.getHalfRangePoints(n,m);
+	return ("M "+p[0].x+" "+p[0].y+" L "+p[1].x+" "+p[1].y+circle+p[2].x+" "+p[2].y+" L "+p[3].x+" "+p[3].y+circle+p[4].x+" "+p[4].y+" L "+p[5].x+" "+p[5].y+" Z");
     },
     getSubRangeString: function(n1,n2,m) {
 	var w=(this.islarge)?40:20;
 	var circle=" A "+(100*n1)+" "+(100*n1)+" 0 0 1 ";
-	var p1=transformPoint(m,{x:-w,y:-100*n1-w});
-	var p2=transformPoint(m,{x:w,y:-100*n1-w});	
-	var p9=transformPoint(m,{x:50*n1+w,y:-100*n1-w});
-	var p10=transformPoint(m,{x:100*n1+w,y:-50*n1-w});
-	var p3=transformPoint(m,{x:100*n1+w,y:-w});
-	var p4=transformPoint(m,{x:100*n1+w,y:w});
-	var p5=transformPoint(m,{x:w,y:100*n1+w});
-	var p6=transformPoint(m,{x:-w,y:100*n1+w});
-	var p7=transformPoint(m,{x:-100*n1-w,y:w});
-	var p8=transformPoint(m,{x:-100*n1-w,y:-w});
-	var str="M "+p1.x+" "+p1.y+" L "+p2.x+" "+p2.y+circle+p3.x+" "+p3.y+" L "+p4.x+" "+p4.y+circle+p5.x+" "+p5.y+" L "+p6.x+" "+p6.y+circle+p7.x+" "+p7.y+" L "+p8.x+" "+p8.y+circle+p1.x+" "+p1.y;
+	var p=this.getRangePoints(n1,m);
+	var str="M "+p[0].x+" "+p[0].y+" L "+p[1].x+" "+p[1].y+circle+p[2].x+" "+p[2].y+" L "+p[3].x+" "+p[3].y+circle+p[4].x+" "+p[4].y+" L "+p[5].x+" "+p[5].y+circle+p[6].x+" "+p[6].y+" L "+p[7].x+" "+p[7].y+circle+p[0].x+" "+p[0].y;
 	circle=" A "+(100*n2)+" "+(100*n2)+" 0 0 0 ";
-	p1=transformPoint(m,{x:-w,y:-100*n2-w});
-	p2=transformPoint(m,{x:w,y:-100*n2-w});	
-	p3=transformPoint(m,{x:100*n2+w,y:-w});
-	p4=transformPoint(m,{x:100*n2+w,y:w});
-	p5=transformPoint(m,{x:w,y:100*n2+w});
-	p6=transformPoint(m,{x:-w,y:100*n2+w});
-	p7=transformPoint(m,{x:-100*n2-w,y:w});
-	p8=transformPoint(m,{x:-100*n2-w,y:-w});
-	str+=" L "+p1.x+" "+p1.y+circle+p8.x+" "+p8.y+" L "+p7.x+" "+p7.y+circle+p6.x+" "+p6.y+" L "+p5.x+" "+p5.y+circle+p4.x+" "+p4.y+" L "+p3.x+" "+p3.y+circle+p2.x+" "+p2.y+" L "+p1.x+" "+p1.y;
+	p=this.getRangePoints(n2,m);
+	str+=" L "+p[0].x+" "+p[0].y+circle+p[7].x+" "+p[7].y+" L "+p[6].x+" "+p[6].y+circle+p[5].x+" "+p[5].y+" L "+p[4].x+" "+p[4].y+circle+p[3].x+" "+p[3].y+" L "+p[2].x+" "+p[2].y+circle+p[1].x+" "+p[1].y+" L "+p[0].x+" "+p[0].y;
 	return str;
     },
     getHalfSubRangeString: function(n1,n2,m) {
 	var w=(this.islarge)?40:20;
 	var circle=" A "+(100*n1)+" "+(100*n1)+" 0 0 0 ";
-	var p3=transformPoint(m,{x:100*n1+w,y:0});
-	var p4=transformPoint(m,{x:100*n1+w,y:-w});
-	var p5=transformPoint(m,{x:w,y:-100*n1-w});
-	var p6=transformPoint(m,{x:-w,y:-100*n1-w});
-	var p7=transformPoint(m,{x:-100*n1-w,y:-w});
-	var p8=transformPoint(m,{x:-100*n1-w,y:0});
-	var str="M "+p3.x+" "+p3.y+" L "+p4.x+" "+p4.y+circle+p5.x+" "+p5.y+" L "+p6.x+" "+p6.y+circle+p7.x+" "+p7.y+" L "+p8.x+" "+p8.y;
+	var p=this.getHalfRangePoints(n1,m);
+	var str="M "+p[0].x+" "+p[0].y+" L "+p[1].x+" "+p[1].y+circle+p[2].x+" "+p[2].y+" L "+p[3].x+" "+p[3].y+circle+p[4].x+" "+p[4].y+" L "+p[5].x+" "+p[5].y;
 	var circle=" A "+(100*n2)+" "+(100*n2)+" 0 0 1 ";
-	p3=transformPoint(m,{x:100*n2+w,y:0});
-	p4=transformPoint(m,{x:100*n2+w,y:-w});
-	p5=transformPoint(m,{x:w,y:-100*n2-w});
-	p6=transformPoint(m,{x:-w,y:-100*n2-w});
-	p7=transformPoint(m,{x:-100*n2-w,y:-w});
-	p8=transformPoint(m,{x:-100*n2-w,y:0});
-	str+=" L "+p8.x+" "+p8.y+" L "+p7.x+" "+p7.y+circle+p6.x+" "+p6.y+" L "+p5.x+" "+p5.y+circle+p4.x+" "+p4.y+" L "+p3.x+" "+p3.y+" Z";
+	p=this.getHalfRangePoints(n2,m);
+	str+=" L "+p[5].x+" "+p[5].y+" L "+p[4].x+" "+p[4].y+circle+p[3].x+" "+p[3].y+" L "+p[2].x+" "+p[2].y+circle+p[1].x+" "+p[1].y+" L "+p[0].x+" "+p[0].y+" Z";
 	return str;
     },
     getPrimarySectorString: function(n,m) {
@@ -965,13 +932,11 @@ Unit.prototype = {
     getSectorPoints: function(n,m) {
 	var w=(this.islarge)?40:20;
 	var socle=Math.sqrt((w-3)*(w-3)+w*w);
-	var p1 = transformPoint(m,{x:-(socle+100*n)/Math.sqrt(1+w*w/(w-3)/(w-3)),
-		  y:-(socle+100*n)/Math.sqrt(1+(w-3)*(w-3)/w/w)});
-	var p2 = transformPoint(m,{x:-w+3,y:-w-100*n-1});
-	var p3 = transformPoint(m,{x:w-3,y:-w-100*n-1});
-	var p4 = transformPoint(m,{x:(socle+100*n)/Math.sqrt(1+w*w/(w-3)/(w-3)),
-		  y:-(socle+2+100*n)/Math.sqrt(1+(w-3)*(w-3)/w/w)});
-	return [p1,p2,p3,p4];
+	return $.map([{x:-(socle+100*n)/Math.sqrt(1+w*w/(w-3)/(w-3)),y:-(socle+100*n)/Math.sqrt(1+(w-3)*(w-3)/w/w)},
+			{x:-w+3,y:-w-100*n-1},
+			{x:w-3,y:-w-100*n-1},
+			{x:(socle+100*n)/Math.sqrt(1+w*w/(w-3)/(w-3)),y:-(socle+2+100*n)/Math.sqrt(1+(w-3)*(w-3)/w/w)}],
+		    function(a,i) { return transformPoint(m,a); });
     },
     setmaneuver: function(i) {
 	this.lastmaneuver=this.maneuver;
