@@ -609,7 +609,7 @@ var PILOTS = [
 	done:true,
 	init: function() {
 	    this.wrap_after("candoaction",this,function() {
-		return (this.collision==0&&this.ocollision.template.length==0&&this.ocollision.overlap==-1);
+		return (this.collision==0&&!this.hascollidedobstacle());
 	    });
 	},
         unit: "A-Wing",
@@ -2057,18 +2057,17 @@ var PILOTS = [
 	    } else Unit.prototype.endattack.call(this,c,h);
 	},*/
 	init: function() {
-	    this.wrap_after("endattack",this,function(c,h) {
-		if ((c+h==0)&&this.hasfired<2) {
-		    for (var i=0; i<this.weapons.length; i++) {
-			var w=this.weapons[i];
-			if (w.type=="Cannon"&&w.isWeapon()&&w.getrangeallunits().length>0) {
-			    this.log("2nd attack with %0",w.name);
-			    this.selecttargetforattack(i); 
-			    break;
-			}
-		    }
+	    var wn=-1;
+	    for (var i=0; i<this.weapons.length; i++) {
+		var w=this.weapons[i];
+		if (w.type=="Cannon"&&w.isWeapon()) {
+		    wn=i; break;
 		}
-	    });
+	    }
+	    if (wn==-1) return;
+	    this.addattack(function(c,h) { 
+		return (c+h==0)&&this.hasfired<2; 
+	    }.bind(this),this,wn);
 	},
         unique: true,
         unit: "Aggressor",
@@ -3240,9 +3239,7 @@ var PILOTS = [
 	done:true,
 	init: function() {
 	    this.adddicemodifier(ATTACK_M,ADD_M,ATTACK_M,this,{
-		req:function(m,n) { 
-		    return true; 
-		},
+		req:function(m,n) { return true; },
 		f:function(m,n) {
 		    this.log("cancel all dice");
 		    if (FCH_crit(m)>0) {

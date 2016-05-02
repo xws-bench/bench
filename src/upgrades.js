@@ -352,10 +352,16 @@ Weapon.prototype = {
 	    if (this.ordnance) this.ordnance=false; else this.desactivate();
 	}
     },
+    hasenemiesinrange:function() {
+	for (var i in squadron) {
+	    var sh=squadron[i];
+	    if (this.unit.team!=sh.team&&this.getrange(sh)>0) return true;
+	}
+	return false;
+    },
     getenemiesinrange: function() {
-	var i;
 	var r=[];
-	for (i in squadron) {
+	for (var i in squadron) {
 	    var sh=squadron[i];
 	    if (this.unit.team!=sh.team&&this.getrange(sh)>0) r.push(sh);
 	}
