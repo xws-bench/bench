@@ -3,7 +3,7 @@
 
 
  */
-var FAST=true;
+var FAST=false;
 var s;
 var BLACK="#111",GREEN="#0F0",RED="#F00",WHITE="#FFF",BLUE="#0AF",YELLOW="#FF0",GREY="#888";
 var HALFBLACK="#222",HALFGREEN="#080",HALFRED="#800",HALFWHITE="#888",HALFBLUE="#058",HALFYELLOW="#880",HALFGREY="#444";
@@ -2107,7 +2107,9 @@ Unit.prototype = {
 	var ml=this.getmaneuverlist();
 	for (var i in ml) {
 	    q.push(ml[i]);
-	    p.push(this.getpathmatrix(this.m,ml[i].move));
+	    if (ml[i].halfturn==true&&!ml[i].move.match(/K\d|SR\d|SL\d/))
+		p.push(this.getpathmatrix(this.m,ml[i].move).rotate(180,0,0));
+	    else p.push(this.getpathmatrix(this.m,ml[i].move));
 	}
 	this.resolveactionmove(p,function(t,k) {
 	    if (k==-1) k=0;

@@ -2100,13 +2100,13 @@ var PILOTS = [
 	    this.wrap_after("getmaneuverlist",this,function(dial) {
 		if (typeof dial["SL3"]!="undefined") {
 		    this.log("%SLOOPLEFT% or %TURNLEFT% maneuver");
-		    dial["TL3"]={move:"TL3",halfturn:true,difficulty:gm.difficulty};
-		    return dial;
-		} else if (typeof dial["SR3"]!="undefined") {
+		    dial["TL3"]={move:"TL3",halfturn:true,difficulty:dial["SL3"].difficulty};
+		} 
+		if (typeof dial["SR3"]!="undefined") {
 		    this.log("%SLOOPRIGHT% or %TURNRIGHT% maneuver");
-		    dial["SR3"]={move:"TR3",halfturn:true,difficulty:gm.difficulty};
-		    return dial;
-		} else return dial;
+		    dial["TR3"]={move:"TR3",halfturn:true,difficulty:dial["SR3"].difficulty};
+		} 
+		return dial;
 	    })
 	},
         unique: true,
@@ -3636,5 +3636,34 @@ var PILOTS = [
 		return p;
 	    });
 	}
+    },
+    {
+	name:"'Deathfire'",
+	faction:EMPIRE,
+	pilotid:189,
+	done:false,
+	unique:true,
+	unit:"TIE Bomber",
+	skill:3,
+	points:17,
+	upgrades:[TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB],
+	/*init: function() {
+	    var i;
+	    for (i=0; i<this.upgrades.length; i++) {
+		var upg=this.upgrades[i];
+		if (typeof upg.action=="function"&&upg.type==BOMB) {
+		    this.addactivationdial(
+			function() { return upg[i].candoaction()&&!this.hasionizationeffect; }.bind(this),
+			function() { 
+			    this.doaction([{org:upg[i],
+					    action:upg[i].action,
+					    type:upg[i].type.toUpperCase(),
+					    name:upg[i].name}]);
+			}.bind(this),
+			A["BOMB"].key,
+			$("<div>").attr({class:"symbols bombs",title:this.name}));
+		}
+	    }
+	}*/
     }
 ];
