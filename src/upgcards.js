@@ -300,20 +300,44 @@ var UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    var self=this;
-	    sh.wrap_before("begincombatphase",this,function() {
-		//this.log("apply combat phase");
-		this.selectunit(sh.selectnearbyally(1,function(a,b) { 
-		    return a.getskill()>b.getskill(); 
-		}),function(p,k) {
-		    p[k].wrap_after("getskill",self,function(s) {
-			return sh.getskill();
-		    }).unwrapper("endcombatphase");
-		    p[k].log("PS set to %1 [%0]",self.name,p[k].getskill());
-		    //log("showing "+p[k].getskill());
-		    p[k].show();
-		},["select unit to give PS %1 [%0]",self.name,self.unit.getskill()],false);
+	    if (typeof Unit.prototype.getswarm=="undefined")
+		Unit.prototype.getswarm=function() { return [[],[],[]]; }
+	    Unit.prototype.wrap_after("getswarm",this,function(p) {
+		p[self.unit.team]=p[self.unit.team].concat(self.unit);
+		return p;
 	    });
-	},
+	    self.unit.propswarm=-1;
+	    sh.wrap_before("begincombatphase",this,function() {
+		var p=this.getswarm()[this.team];
+		var uu=this;
+		if (this!=p[0]) return; // Only one handles all Swarm chain
+		var m=p.length;
+		for (var i=0; i<m; i++) {
+		    this.doselection(function(n) {
+			p.sort(function(a,b) {
+			    if (a.getskill()>b.getskill()) return 1;
+			    if (a.getskill()<b.getskill()) return -1;
+			    return 0;
+			});
+			var u=p.pop();
+			var q=u.selectnearbyally(1,function(a,b) {
+			    return a.getskill()>b.getskill();
+			});
+			u.select();
+			var sk=u.getskill();
+			if (q.length==0) uu.endnoaction(n,"SELECT");
+			else u.resolveactionselection(q,function(k) {
+			    q[k].wrap_after("getskill",self,function(s) {
+				return sk;
+			    }).unwrapper("endcombatphase");
+			    q[k].log("PS set to %1 [%0]",self.name,sk);
+			    q[k].showskill();
+			    uu.endnoaction(n,"SELECT");
+			});
+		    })
+		}
+	    });
+	}
     },
     {
         name: "Squad Leader",
@@ -414,23 +438,30 @@ var UPGRADES= [
         points: 4,
         attack: 3,
 	done:true,
-	fired:-1,
+	fired:2,
 	endattack: function() {
-	    if (this.fired==round) {
+	    this.fired--;
+	    this.unit.log("ENDATTACK CLUSTER "+this.fired);
+	    if (this.fired==0) {
 		if (this.ordnance) {
-		    this.ordnance=false; 
+		    this.ordnance=false;
+		    this.fired+=2;
 		} else this.desactivate();
 	    }
 	},
 	init: function(sh) {
-	    var m=this;
+	    var wn = this.unit.weapons.indexOf(this);
+	    sh.addattack(function(c,h) { 
+		return this.activeweapon==wn&&targetunit.hull+targetunit.shield>0; 
+	    }.bind(sh),this,wn,function() { return targetunit; });
+	    /*
 	    sh.wrap_after("endattack",this,function(c,h) {
 		if (m.fired<round&&m.isactive&&this.usedweapon>-1&&this.weapons[this.usedweapon]==m) {
 		    this.log("2nd attack with %0 [%1]",m.name,m.name);
 		    m.fired=round;
 		    this.resolveattack(this.activeweapon,targetunit); 
 		}
-	    }.bind(sh));
+	    }.bind(sh));*/
 	},
         range: [1,2],
     },
@@ -581,15 +612,7 @@ var UPGRADES= [
         name: "Gunner",
 	done:true,
         init: function(sh) {
-	    var self=this;
-	    var gunner=-1;
-	    sh.wrap_before("endattack",this,function(c,h) {
-		if (c+h==0&&gunner<round) {
-		    gunner=round;
-		    this.log("+1 attack with primary weapon [%0]",self.name);
-		    this.selecttargetforattack(0); 
-		}
-	    });
+	    sh.addattack(function(c,h) { return c+h==0; },this,0);
 	},
         type: CREW,
         points: 5,
@@ -807,13 +830,7 @@ var UPGRADES= [
         init: function(sh) {
 	    var self=this;
 	    var luke=-1;
-	    sh.wrap_before("endattack",this,function(c,h) {
-		if ((c+h==0)&&luke<round) {
-		    luke=round;
-		    this.log("+1 attack with primary weapon [%0]",self.name);
-		    this.selecttargetforattack(0);
-		}
-	    });
+	    sh.addattack(function(c,h) { return c+h==0; },this,0);
 	    sh.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
 		req:function(m,n) {
 		    return luke==round&&self.isactive;
@@ -2711,13 +2728,9 @@ var UPGRADES= [
 	    sh.wrap_after("isTurret",this,function(w,b) {
 		return (w!=sh.weapons[turret]&&b);
 	    });
-	    var btl=-1;
-	    sh.wrap_before("endattack",this,function(c,h) {
-		if (btl<round&&turret>-1&&this.weapons[this.activeweapon].isprimary) {
-		    this.log("+1 attack with %0 [%1]",this.weapons[turret].name,self.name);
-		    this.selecttargetforattack(turret);
-		}
-	    });
+	    sh.addattack(function(c,h) { 
+		return this.weapons[this.activeweapon].isprimary;
+	    }.bind(sh),self,turret); 
 	},
         points: 0,
         ship: "Y-Wing",
@@ -3669,15 +3682,10 @@ var UPGRADES= [
      ship:"TIE Defender",
      done:true,
      init: function(sh) {
-	 var self=this;
-	 sh.wrap_before("endattack",this,function(c,h) {
-	     var w=this.weapons[0];
+	 sh.addattack(function(c,h) { 
 	     var w1=this.weapons[this.activeweapon];
-	     if (w1.type==CANNON&&w1.points<=3&&w.isactive) {
-		 this.log("2nd attack with %0 [%1]",w.name,self.name);
-		 this.selecttargetforattack(0); 
-	     } 
-	 })
+	     return (w1.type==CANNON&&w1.points<=3);
+	 }.bind(sh),this,0);
      }
     },
     {name:"TIE Shuttle",
@@ -3976,14 +3984,16 @@ var UPGRADES= [
 	    });
 	    sh.wrap_after("addfocustoken",this,function() {
 		var p=this.getattanni();
-		for (var i in p) if (p[i]!=this&&p[i].focus==0) {
+		for (var i in p) if (p[i]!=this&&p[i].team==this.team
+				     &&p[i].focus==0) {
 		    p[i].addfocustoken();
 		    p[i].log("+1 %FOCUS% [%0]",self.name);
 		}
 	    });
 	    sh.wrap_after("addstress",this,function() {
 		var p=this.getattanni();
-		for (var i in p) if (p[i]!=this&&p[i].stress==0) {
+		for (var i in p) if (p[i]!=this&&p[i].team==this.team
+				     &&p[i].stress==0) {
 		    p[i].addstress();
 		    p[i].log("+1 %STRESS% [%0]",self.name);
 		}

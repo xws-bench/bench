@@ -142,15 +142,14 @@ IAUnit.prototype= {
 		$("#npimg").html("<img style='width:10px' src='png/waiting.gif'/>");
 	    }
 	    var p;
-	    //p=($.Deferred()).resolve()
 	    p=setInterval(function() {
 		var m=this.computemaneuver(); 
 		IACOMPUTING--;
-		if (IACOMPUTING==0) $("#npimg").html("&#10097;");
+		if (IACOMPUTING==0) $("#npimg").html("&gt;");
 		this.newm=this.getpathmatrix(this.m,this.getdial()[m].move);
 		this.setmaneuver(m);
 		clearInterval(p);
-	    }.bind(this),1);
+	    }.bind(this),0);
 	}
 	return this.deferred;
     },
@@ -287,10 +286,11 @@ IAUnit.prototype= {
 	$("#attackdial").empty();
     },
     doattack: function(forced) {
-	//this.log("attack?"+forced+" "+skillturn+" "+this.skill+" "+this.canfire());
+	//this.log("ia/attack?"+this.id+" forced:"+forced+" turn:"+(skillturn==this.skill));
 	if (forced==true||(phase==COMBAT_PHASE&&skillturn==this.getskill())) {
 	    var power=0,t=null;
 	    var i,w;
+	    //this.log(this.id+" readytofire?"+this.canfire());
 	    if (this.canfire()) {
 		NOLOG=true;
 		var r=this.getenemiesinrange();
@@ -305,13 +305,17 @@ IAUnit.prototype= {
 		    }
 		}
 		NOLOG=false;
-		//this.log("ia/doattack >"+wn[0].name+" "+t.name);
+		//this.log("wn:"+this.activeweapon+" "+power);
+		//if (t!=null) this.log("ia/doattack "+this.id+":"+this.weapons[this.activeweapon].name+" "+t.name);
       		if (t!=null) return this.selecttargetforattack(this.activeweapon,t);
-		//console.log("ia/doattack "+this.name+"<select target");
+		//this.log("ia/doattack:canfire but no target");
 	    }
-	    //console.log("ia/doattack:no target");
-	    this.hasfired++; this.deferred.resolve();
+	    //this.log("ia/doattack "+this.id+":cannot fire");
+	    this.hasfired++; 
+	    this.unlock();
 	}
+	//this.log("noattack");
+	return false;
     },
     getresultmodifiers: function(m,n,from,to) {
 	var mods=this.getdicemodifiers(); 

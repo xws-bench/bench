@@ -3,10 +3,11 @@
 
 
  */
+var FAST=false;
 var s;
 var BLACK="#111",GREEN="#0F0",RED="#F00",WHITE="#FFF",BLUE="#0AF",YELLOW="#FF0",GREY="#888";
 var HALFBLACK="#222",HALFGREEN="#080",HALFRED="#800",HALFWHITE="#888",HALFBLUE="#058",HALFYELLOW="#880",HALFGREY="#444";
-var TIMEANIM=1000;
+var TIMEANIM=FAST?0:1000;
 var FACE=["focus","hit","critical","evade","blank"];
 var ATTACKDICE= [0,0,1,1,1,2,4,4];
 var DEFENSEDICE=[0,0,3,3,3,4,4,4];
@@ -944,7 +945,8 @@ Unit.prototype = {
 	this.showdial();
 	this.showmaneuver();
 	if (typeof this.deferred == "undefined") this.error("undefined deferred");
-	this.deferred.notify();
+	nextplanning();
+	//this.deferred.notify();
     },
     select: function() {
 	if (this.dead||this.isdocked) return activeunit;
@@ -1275,7 +1277,7 @@ Unit.prototype = {
 	else this.imgexplosion= s.image("png/explosion3.gif#"+Math.random(),-40,-40,80,80);
 	this.geffect.add(this.imgexplosion);
 	this.show();
-	SOUNDS.explode.play();
+	if (!FAST) SOUNDS.explode.play();
 	this.dead=true;
 	
 	this.log("has exploded!");
@@ -1285,7 +1287,7 @@ Unit.prototype = {
 	    this.show();
 	    if (TEAMS[this.team].checkdead()) win();	
 	    //squadron[0].select();
-	}.bind(this), 1000); // 29 images * 4 1/100th s
+	}.bind(this), (FAST?0:1000)); // 29 images * 4 1/100th s
     },
     canbedestroyed: function() {
 	if (skillturn!=this.getskill()) return true;
@@ -1337,7 +1339,7 @@ Unit.prototype = {
     hashit:function(t) { return this.criticalresolved+this.hitresolved>0;},
     resolvedamage: function() {
 	$(".fireline").remove();
-	this.playfiresnd();
+	if (!FAST) this.playfiresnd();
 	var ch=targetunit.evadeattack(this);
 	ch=this.weapons[this.activeweapon].modifydamageassigned(ch,targetunit);
 	ch=targetunit.modifydamageassigned(ch,this);
@@ -1638,7 +1640,7 @@ Unit.prototype = {
 	this.iscloaked=false;
 	this.animateremovetoken("xcloaktoken");
 	this.movelog("ct");
-	SOUNDS.decloak.play();
+	if (!FAST) SOUNDS.decloak.play();
     },
     resolvedecloak: function() {
 	this.doselection(function(n) {
@@ -1732,7 +1734,7 @@ Unit.prototype = {
 	this.agility+=2;
 	this.animateaddtoken("xcloaktoken");
 	this.movelog("CT");
-	SOUNDS.cloak.play();
+	if (!FAST) SOUNDS.cloak.play();
     },
     addcloak: function(n) {
 	this.addcloaktoken();
@@ -1898,7 +1900,6 @@ Unit.prototype = {
 		   strokeWidth:2,
 		   strokeDasharray:100,
 		   "class":"animated fireline"});
-	//this.log("resolveattack:"+attack+"/"+defense);
 	this.select();	
 	for (i in squadron) if (squadron[i]==this) break;
 	this.preattackroll(w,targetunit);
@@ -1915,10 +1916,11 @@ Unit.prototype = {
     doattack: function(forced) {
 	this.showattack(forced);
     },
-    doattackroll: function(ar,da,defense,me,n) {
-	this.ar=this.weapons[this.activeweapon].modifydamagegiven(ar);
-	this.da=da;
-	displayattackroll(this.ar,da);
+    doattackroll: function(ar,ad,defense,me,n) {
+	ar=this.weapons[this.activeweapon].modifydamagegiven(ar);
+	displayattackroll(ar,ad);
+	//this.log("target:"+targetunit.name+" "+defense+" "+ar+" "+ad+" "+defense+" "+n+" me:"+squadron[me].name);
+	this.ar=ar;this.ad=ad;
 	displayattacktokens(this,function() {
 	    targetunit.defenseroll(defense).done(function(r) {
 		targetunit.dodefenseroll(r.roll,r.dice,me,n);
@@ -1935,6 +1937,7 @@ Unit.prototype = {
 	}.bind(squadron[me]));
     },
     drawpathmove:function(mm,path,lenC) {
+	if (FAST) return;
 	if (this.islarge) {
 	    var m=mm.clone();
 	    s.path('M 0 0 l 0 -20')
@@ -2043,8 +2046,8 @@ Unit.prototype = {
 	// Animate movement
 	if (lenC>0) {
 	    this.hasmoved=true;
-	    $("#activationdial").empty()
-	    SOUNDS[this.ship.flysnd].play();
+	    $("#activationdial").empty();
+	    if (!FAST) SOUNDS[this.ship.flysnd].play();
 	    Snap.animate(0, lenC, function( value ) {
 		m = this.getmatrixwithmove(oldm,path,value);
 		this.g.transform(m);
@@ -2129,8 +2132,7 @@ Unit.prototype = {
 	this.actionbarrier();
     },
     unlock:function(v) {
-	//this.log("unlock");
-	this.deferred.resolve(v);
+	return this.deferred.resolve(v);
     },
     newlock:function() {
 	this.deferred=$.Deferred();
@@ -2142,15 +2144,31 @@ Unit.prototype = {
     candomaneuver: function() {
 	return this.maneuver>-1;
     },
+    addattack: function(f,org,wn,t) {
+	this.addattack=-1;
+	this.wrap_after("endattack",org,function(c,h) {
+	    this.log("f:"+f(c,h)+" active:"+this.weapons[wn].isactive);
+	    if (f(c,h)&&this.weapons[wn].isactive
+		&&this.addattack<round) {
+		this.latedeferred=this.deferred;
+		this.addattack=round;
+		this.newlock().done(function() {
+		    this.deferred=this.latedeferred;
+		    this.log("+1 attack with %1 [%0]",org.name,this.weapons[wn].name);
+		    if (typeof t=="function") this.resolveattack(wn,t());
+		    else this.selecttargetforattack(wn); 
+		}.bind(this));
+	    }
+	})
+    },
     candoendmaneuveraction: function() { 
 	return this.candoaction()
 	    &&!this.collision
-	    &&this.ocollision.template.length==0
-	    &&this.ocollision.overlap==-1; },
+	    &&!this.hascollidedobstacle(); },
     doendmaneuveraction: function() {
 	if (this.candoendmaneuveraction()) return this.doaction(this.getactionlist(),"");
 	this.action=-1; this.actiondone=true;
-	return this.deferred.resolve();
+	return this.unlock();
     },
     doselection: function(f,org) {
 	return this.enqueueaction(function(n) {
@@ -2612,6 +2630,9 @@ Unit.prototype = {
 	for (var j=0; j<this.targeting.length; j++) 
 	    this.targetingname[j]=this.targeting[j].name.replace(/\'/g,"&#39;");
 	return Mustache.render(TEMPLATES["usabletokens"], this);
+    },
+    showskill:function() {
+	$("#"+this.id+" .statskill").html(this.getskill());
     },
     showstats: function() {
 	if (phase==SELECT_PHASE||phase==CREATION_PHASE) {

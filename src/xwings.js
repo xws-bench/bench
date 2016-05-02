@@ -403,7 +403,6 @@ function displayattacktokens(u,f) {
     var dm=targetunit.getresultmodifiers(u.ar,u.ad,DEFENSE_M,ATTACK_M);
     if (dm.length>0) {
 	$("#atokens").append(dm);
-	//$("#atokens td").click(function() { displayattacktokens(u,f); });
 	$("#atokens").append($("<button>").addClass("m-done").click(function() {
 	    displayattacktokens2(u,f);
 	}))
@@ -414,10 +413,9 @@ function displayattacktokens2(u,f) {
     if (typeof f!="function") f=u.lastaf;
     else u.lastaf=f;
     $("#atokens").empty();
-    var am=u.getresultmodifiers(u.ar,u.da,ATTACK_M,ATTACK_M);
+    var am=u.getresultmodifiers(u.ar,u.ad,ATTACK_M,ATTACK_M);
     if (am.length>0) {
 	$("#atokens").append(am);
-	//$("#atokens td").click(function() { displayattacktokens2(u,f); });
 	$("#atokens").append($("<button>").addClass("m-done").click(function() {
 	    $("#atokens").empty();
 	    f();}.bind(u)));
@@ -425,7 +423,7 @@ function displayattacktokens2(u,f) {
 }
 function displaydefensetokens(u,f) {
     $("#dtokens").empty();
-    var dm=activeunit.getresultmodifiers(u.ar,u.ad,ATTACK_M,DEFENSE_M);
+    var dm=activeunit.getresultmodifiers(u.dr,u.dd,ATTACK_M,DEFENSE_M);
     if (dm.length>0) {
 	$("#dtokens").append(dm);
 	//$("#dtokens td").click(function() { displaydefensetokens(u,f); });
@@ -440,9 +438,15 @@ function displaydefensetokens2(u,f) {
     $("#dtokens").empty();
     $("#dtokens").append(u.getresultmodifiers(u.dr,u.dd,DEFENSE_M,DEFENSE_M));
     //$("#dtokens td").click(function() { displaydefensetokens2(u,f); });
-    $("#dtokens").append($("<button>").addClass("m-fire").click(function() {
-	$("#combatdial").hide();
-	f();}.bind(u)));
+    if (FAST) { 	    
+	activeunit.log("fire hidden");
+	$("#combatdial").hide(); 
+	f(); 
+    } else {
+	$("#dtokens").append($("<button>").addClass("m-fire").click(function() {
+	    $("#combatdial").hide();
+	    f();}.bind(u)));
+    }
 }
 function FE_focus(r) {
     return Math.floor(r/10)%10;
@@ -612,9 +616,7 @@ function enablenextphase() {
     case PLANNING_PHASE:
 	for (i in squadron)
 	    if (squadron[i].maneuver<0&&!squadron[i].isdocked) { ready=false; break; }
-	if (ready&&$(".nextphase").prop("disabled")) {
-	    log(UI_translation["All units have planned a maneuver, ready to end phase"]);
-	}
+	if (ready&&$(".nextphase").prop("disabled")) log(UI_translation["All units have planned a maneuver, ready to end phase"]);
 	break;
     case ACTIVATION_PHASE:
 	if (subphase!=ACTIVATION_PHASE) {
@@ -631,6 +633,9 @@ function enablenextphase() {
 	break;	
     }
     if (ready) $(".nextphase").prop("disabled",false);
+    //log("ready "+ready);
+    if (ready&&FAST&&phase>=SETUP_PHASE) 
+	return nextphase();
     // Replay
     /*var p=next_replay();
     if (REPLAY.length>0&&next_replay()[0]=="nextphase") {
@@ -694,11 +699,9 @@ function win() {
     $.when($.ajax(link)).done(function(result1) {
 	var url;
 	var text;
+	text="see replay";
 	if (typeof result1.data.link_save=="undefined") { 
 	    url=encodeURI("http://xws-bench.github.io/bench/index.html?"+permalink(false));
-	    text="longurl";
-	    $(".victory-link").attr("href",url);
-	    $(".victory-link code").text(text);
 	    $(".tweet").hide();
 	    $(".facebook").attr("href","https://www.facebook.com/sharer/sharer.php?u="+encodeURI(url));
 	    $(".googlep").attr("href","https://plus.google.com/share?url="+encodeURI(url));
@@ -712,6 +715,8 @@ function win() {
 	    $(".googlep").attr("href","https://plus.google.com/share?url="+encodeURI(url));
 	    $(".email").attr("href","mailto:?body="+url);
 	}
+	$(".victory-link").attr("href",url);
+	$(".victory-link code").text(text);
     });
     /*var y1=0,y2=0;
     var t1=TEAMS[1].history;
@@ -1524,12 +1529,6 @@ function select(id) {
     var i;
     for (i in squadron) {
 	if (squadron[i].id==id) break;
-    }
-    if (typeof TogetherJS!="undefined"&&TogetherJS.running) {
-	TogetherJS.send({
-	    type: 'select',
-	    uid: id,
-	});
     }
     squadron[i].select();
     //$("#"+u.id).attr({color:"black",background:"white"});
@@ -2394,9 +2393,9 @@ var replayall=function() {
 	} else {
 	    targetunit=squadron[j];
 	    u.activeweapon=parseInt(c[3],10);
-	    u.playfiresnd();
+	    if (!FAST) u.playfiresnd();
 	    //u.log("fires on "+targetunit.name+" with "+u.weapons[u.activeweapon].name);
-	    setTimeout(function() { actionrlock.notify(); }, 1000);
+	    setTimeout(function() { actionrlock.notify(); }, (FAST?0:1000));
 	}
 	break;
     case "am": 
