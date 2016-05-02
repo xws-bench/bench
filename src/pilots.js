@@ -1330,7 +1330,7 @@ var PILOTS = [
         unit: "TIE Defender",
         skill: 6,
         points: 34,
-        upgrades: [CANNON,MISSILE],
+        upgrades: [ELITE,CANNON,MISSILE],
     },
     {
         name: "Onyx Squadron Pilot",
@@ -2973,7 +2973,7 @@ var PILOTS = [
        unit: "TIE/FO Fighter",
        skill: 6,
        init: function() {
-	   this.wrap_after("begincombatphase",this,function() {
+	   this.wrap_after("begincombatphase",this,function(l) {
 	       var p=this.selectnearbyally(1);
 	       p.push(this);
 	       for (var i=0; i<p.length; i++) p[i].removestresstoken();
