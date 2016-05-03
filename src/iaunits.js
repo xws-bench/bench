@@ -168,6 +168,7 @@ IAUnit.prototype= {
 				   if (k>0) {
 				       t.agility-=2; t.iscloaked=false;
 				       SOUNDS.decloak.play();
+				       t.show();
 				   }
 				   this.hasdecloaked=true;
 			       }.bind(this),true);
