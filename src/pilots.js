@@ -3325,6 +3325,11 @@ var PILOTS = [
 	points:25,
 	init: function() {
 	    var self=this;
+	    //0 is primary
+	    this.weapons[0].wrap_after("getrangedefensebonus",this,function(sh,b) {
+		if (b==1) this.unit.log("defense range nullified");
+		return 0;
+	    });
 	    this.wrap_after("getattackstrength",this,function(i,sh,a) {
 		if (i==0) {
 		    if (this.weapons[0].getrange(sh)>1) {
