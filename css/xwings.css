@@ -312,8 +312,9 @@ display:none
 .ack {
 width:100%;
 text-align:center;
-padding:1px;
+padding:7px;
 background:#EEE
+margin-bottom:5px;
 }
 .caroussel li:nth-child(-n+5) tr .tooltip {
 left:180px;
@@ -1106,8 +1107,27 @@ color:#fff;
 border-radius:1em;
 padding:2px
 }
-
-.smallbutton,.bigbutton,.permalink,.nextphase,.mainbutton {
+.bigbutton {
+display:inline-block;
+text-align:center;
+border:0;
+text-decoration:none;
+background:white;
+color:black;
+cursor:pointer;
+padding:3px;
+margin:1px;
+font-size:1em;
+font-family:"spacename" bold;
+font-variant:small-caps;
+color:white;
+background:lightsteelblue;
+}
+.bigbutton:hover {
+color:lightsteelblue;
+background:white;
+}
+.smallbutton,.permalink,.nextphase,.mainbutton {
 display:inline-block;
 text-align:center;
 box-shadow:1px 1px 3px #000;
@@ -1116,10 +1136,12 @@ border:0;
 text-decoration:none;
 background:#b0c4de;
 cursor:pointer;
-border-radius:5px
+border-radius:5px;
+padding:0;
+margin:0;
 }
 
-.bigbutton,.permalink,.nextphase,.mainbutton {
+.permalink,.nextphase,.mainbutton {
 padding:.25em;
 margin:.25em
 }
@@ -1152,7 +1174,7 @@ height:40vw
 }
 
 .bigbutton {
-width:74px
+width:100%
 }
 
 .GREEN {

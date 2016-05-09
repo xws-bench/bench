@@ -22,6 +22,32 @@ var maarek_fct = function() {
     };
     Unit.prototype.wrap_after("deal",this,newdeal);
 };
+var poe_fct=function() {
+    this.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
+	req:function(m,n) { 
+	    return this.focus>0;
+	}.bind(this),
+	f:function(m,n) {
+	    var f=FCH_focus(m);
+	    if (f>0) {
+		this.log("1 %FOCUS% -> 1 %HIT%");
+		return m-FCH_FOCUS+FCH_HIT;
+	    }
+	    return m;
+	}.bind(this),str:"focus"});
+    this.adddicemodifier(DEFENSE_M,MOD_M,DEFENSE_M,this,{
+	req:function(m,n) { 
+	    return this.focus>0;
+	}.bind(this),
+	f:function(m,n) {
+	    var f=FE_focus(m);
+	    if (f>0) {
+		this.log("1 %FOCUS% -> 1 %EVADE%");
+		return m-FE_FOCUS+FE_EVADE;
+	    }
+	    return m;
+	}.bind(this), str:"focus"});
+}
 var hera_fct=function() {
     var m=this.getmaneuver();
     var p={};
@@ -175,11 +201,9 @@ var PILOTS = [
 		    return true;
 		}, 
 		f:function(m,n) {
-		    var f=FE_focus(m);
-		    var e=FE_evade(m);
-		    if (f>0) {
+		    if (FE_focus(m)>0) {
 			this.log("1 %FOCUS% -> 1 %EVADE%");
-			return m-FE_FOCUS+FE_EVADE;
+			m=m-FE_FOCUS+FE_EVADE;
 		    } 
 		    return m;
 		}.bind(this),
@@ -466,6 +490,7 @@ var PILOTS = [
         skill: 7,
         points: 36,
 	init: maarek_fct,
+	shipimg:"tie-defender-red.png",
         upgrades: [ELITE,CANNON,MISSILE],
     },
     {
@@ -821,9 +846,9 @@ var PILOTS = [
 	pilotid:46,
         unit: "B-Wing",
         skill: 8,
+	shipimg:"b-wing-1.png",
 	init: function() {
 	    var self=this;
-	    this.shipimg="b-wing-1.png";
 	    this.wrap_after("declareattack",this,function(w,target) {
 		target.wrap_after("cancelcritical",self,function(r,org,r2) {
 		    if (FCH_crit(r.ch)>0) {
@@ -848,8 +873,8 @@ var PILOTS = [
         skill: 6,
 	pilotid:47,
         points: 28,
+	shipimg:"b-wing-1.png",
 	init: function() {
-	    this.shipimg="b-wing-1.png";
 	    var m={
 		dice:["blank","focus"],
 		n:function() { return 1; },
@@ -1331,6 +1356,7 @@ var PILOTS = [
         skill: 6,
         points: 34,
         upgrades: [ELITE,CANNON,MISSILE],
+	shipimg:"tie-defender-red.png"
     },
     {
         name: "Onyx Squadron Pilot",
@@ -1679,8 +1705,8 @@ var PILOTS = [
 	faction:REBEL,
 	done:true,
 	pilotid:90,
+	shipimg:"b-wing-1.png",
 	init: function() {
-	    this.shipimg="b-wing-1.png";
 	    this.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
 		req:function(m,n) {
 		    return this.stress>0; 
@@ -1706,8 +1732,8 @@ var PILOTS = [
 	faction:REBEL,
 	done:true,
 	pilotid:91,
+	shipimg:"b-wing-1.png",
 	init: function() {
-	    this.shipimg="b-wing-1.png";
 	    this.log("can fire %TORPEDO% at 360 degrees");
 	    this.wrap_after("isTurret",this,function(w,b) {
 		if (w.type=="Torpedo") return true;
@@ -2801,32 +2827,7 @@ var PILOTS = [
 	    done:true,
             skill: 8,
             upgrades: [ELITE,TORPEDO,ASTROMECH,TECH],
-	    init: function() {
-		this.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
-		    req:function(m,n) { 
-			return this.focus>0;
-		    }.bind(this),
-		    f:function(m,n) {
-			var f=FCH_focus(m);
-			if (f>0) {
-			    this.log("1 %FOCUS% -> 1 %HIT%");
-			    return m-FCH_FOCUS+FCH_HIT;
-			}
-			return m;
-		    }.bind(this),str:"focus"});
-		this.adddicemodifier(DEFENSE_M,MOD_M,DEFENSE_M,this,{
-		    req:function(m,n) { 
-			return this.focus>0;
-		    }.bind(this),
-		    f:function(m,n) {
-			var f=FE_focus(m);
-			if (f>0) {
-			    this.log("1 %FOCUS% -> 1 %EVADE%");
-			    return m-FE_FOCUS+FE_EVADE;
-			}
-			return m;
-		    }.bind(this), str:"focus"});
-	    },
+	    init: poe_fct,
             points: 31
         },
       {
@@ -3629,6 +3630,7 @@ var PILOTS = [
 	unit:"TIE Defender",
 	skill:5,
 	points:34,
+	shipimg:"tie-defender-red.png",
 	upgrades:[ELITE,CANNON,MISSILE],
 	init: function() {
 	    this.wrap_after("getmaneuverlist",this,function(p) {
@@ -3670,5 +3672,44 @@ var PILOTS = [
 		}
 	    }
 	}*/
+    },
+    {
+	name:"Rey",
+	faction:REBEL,
+	pilotid:190,
+	done:true,
+	unique:true,
+        unit: "YT-1300",
+        skill: 8,
+        points: 45,
+        upgrades: [ELITE,MISSILE,CREW,CREW],
+	init: function() {
+	    this.adddicemodifier(ATTACK_M,REROLL_M,ATTACK_M,this,{
+		dice:["blank"],
+		n:function() { return 2; },
+		req:function(attacker,w,defender) {
+		    return attacker.isinfiringarc(defender);
+		}
+	    });
+	    this.adddicemodifier(DEFENSE_M,REROLL_M,DEFENSE_M,this,{
+		dice:["blank"],
+		n:function() { return 2; },
+		req:function(attacker,w,defender) {
+		    return defender.isinfiringarc(attacker);
+		}
+	    });
+	}
+    },
+    {
+        name: "Poe Dameron (HoR)",
+        faction: REBEL,
+	pilotid:191,
+        unit: "T-70 X-Wing",
+	unique:true,
+	done:true,
+	init: poe_fct,
+        skill: 9,
+        upgrades: [ELITE,TORPEDO,ASTROMECH,TECH],
+	points:33
     }
 ];

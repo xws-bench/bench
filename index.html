@@ -34,6 +34,7 @@
 	    <option value="fr">Français</option>
 	    <option value="de">Deutsch</option>
 	    <option value="es">Español</option>
+	    <option value="it">Italiano</option>
 	    <option value="pl">Polski</option>
 	  </select>
 	  <span class="symbols button" style="vertical-align:bottom" onclick="window.location='#setting'">&#xEA;</span>
@@ -59,12 +60,16 @@
     </nav>
 
     <aside class="leftpanel" id="leftpanel">
+      <button class="bigbutton m-asteroids" onclick="location='#asteroid';TEAMS[1].selectrocks(false);"></button>
+      <button class="bigbutton m-debris" onclick="location='#asteroid';TEAMS[1].selectrocks(true);"></button>
       <section id="team1" class="team">
 	<h2 style='display:none'>List of units</h2>
       </section>
     </aside>
 
     <aside id="rightpanel" class="rightpanel">
+      <button class="bigbutton m-asteroids" onclick="location='#asteroid';TEAMS[2].selectrocks(false);"></button>
+      <button class="bigbutton  m-debris" onclick="location='#asteroid';TEAMS[2].selectrocks(true);"></button>
       <section id="team2" class="team">
 	<h2 style='display:none'>List of units</h2>
       </section>
@@ -160,13 +165,11 @@
 	     <span class="m-squad1"></span>
 	     <select id="player1"></select>
 	     <button onclick="currentteam=TEAMS[1];createsquad()" class="m-create"></button>
-	     <button class="m-asteroids" onclick="location='#asteroid';TEAMS[1].selectrocks();"></button>
  	   </td>
 	   <td>
 	     <span class="m-squad2"></span>
 	     <select id="player2"></select>
 	     <button onclick="currentteam=TEAMS[2];createsquad()" class="m-create"></button>
-	     <button class="m-asteroids" onclick="location='#asteroid';TEAMS[2].selectrocks();"></button>
 	   </td>
 	 </tr>
 	 <tr>
@@ -419,7 +422,10 @@ The app is not really a game since the player plays both sides or against an AI,
 	  The code of the app relies on the following external fonts and libraries. See their website for their license:
 	  <ul>
 	    <li><a href="https://github.com/geordanr/xwing-miniatures-font">Xwing-miniatures-font</a> (<a href="https://raw.githubusercontent.com/geordanr/xwing-miniatures-font/master/LICENSE">MIT license</a>)</li>
-	    <li><a href="https://github.com/geordanr/xwing">Yet Another Squad Builder</a> translations for cards (<a href="https://github.com/geordanr/xwing/blob/master/LICENSE">MIT license</a>)
+	    <li>For card translations:
+	      <ul><li><a href="https://github.com/geordanr/xwing">Yet Another Squad Builder</a> (<a href="https://github.com/geordanr/xwing/blob/master/LICENSE">MIT license</a>)</li>
+		<li><a href="">Fab's Squadron Generator</a></li>
+	    </ul></li>
 	    <li><a href="https://github.com/elistevens/xws-spec">JSON
 	  format of X-Wing squadrons</a>, as well as several translations</li>
 	    <li><a href="http://snapsvg.io/">Snap</a> for SVG and <a href="https://jquery.com/">jQuery</a> (resp. <a href="https://raw.githubusercontent.com/adobe-webplatform/Snap.svg/master/LICENSE">Apache 2</a> and MIT licenses)</li>
