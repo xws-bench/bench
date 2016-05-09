@@ -141,8 +141,8 @@ var UPGRADES= [
 	  var self=this;
 	  sh.wrap_after("updateactivationdial",this,function() {
 	      this.addactivationdial(function() { 
-		  return !self.hasionizationeffect()&&self.isactive;
-	      },function() {
+		  return !this.hasionizationeffect()&&self.isactive;
+	      }.bind(this),function() {
 		  this.log("ignore obstacles [%0]",self.name);
 		  self.desactivate();
 		  this.wrap_after("getocollisions",self,function(mbegin,mend,path,len,ob) { 
@@ -829,14 +829,15 @@ var UPGRADES= [
 	done:true,
         init: function(sh) {
 	    var self=this;
-	    var luke=-1;
 	    sh.addattack(function(c,h) { return c+h==0; },this,0);
 	    sh.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
-		req:function(m,n) {
-		    return luke==round&&self.isactive;
-		}.bind(sh),
+		req:function(m,n) { return self.unit.addattack==round&&self.isactive;},
 		f:function(m,n) {
-		    if (m>100) return m-99; else return m;
+		    if (FCH_focus(m)>0) {
+			this.log("1 %FOCUS% -> 1 %HIT% [%0]",self.name);
+			m=m-FCH_FOCUS+FCH_HIT;
+		    } 
+		    return m;
 		},str:"focus"});
 	},
         type: CREW,
@@ -2997,8 +2998,7 @@ var UPGRADES= [
 	  sh.adddicemodifier(ATTACK_M,MOD_M,DEFENSE_M,this,{
 	      req:function() { return this.evade>0; },
 	      f:function(m,n) {
-		  var e=FE_evade(m);
-		  if (e>0) {
+		  if (FE_evade(m)>0) {
 		      targetunit.log("%EVADE% -> %FOCUS% [%0]",self.name); 
 		      m=m-FE_EVADE+FE_FOCUS;
 		  }
@@ -4046,7 +4046,7 @@ var UPGRADES= [
 	    sh.showstats();
 	},
     },
-    {name:"Long Range Scanner",
+    {name:"Long-Range Scanners",
      type:MOD,
      points:0,
      done:true,

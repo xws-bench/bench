@@ -32,23 +32,25 @@ Team.prototype = {
 	}
     },
     setrocks:function(r) {
-	if (typeof r=="undefined") this.rocks=[null,null,null];
+	if (typeof r=="undefined") this.rocks=[-1,-1,-1];
 	else this.rocks=r;
     },
-    selectrocks:function() {
-	if (typeof this.rocks=="undefined") this.rocks=[null,null,null];
+    selectrocks:function(isdebris) {
+	if (typeof this.rocks=="undefined") this.rocks=[-1,-1,-1];
 	$(".aster").empty();
 	var sa=Snap(".aster");
 	var viewport=sa.g();
 	var g=[];
 	var maxw=0,maxh=0;
-	var pa = sa.image(ROCKIMG,0,0,256,256).pattern(0,0,256,256);
-	var rl=ROCKS.length;
+	var pa = sa.image((isdebris?DEBRISIMG:ROCKIMG),0,0,256,256).pattern(0,0,256,256);
+	var ASTER=(isdebris?DEBRISCLOUD:ROCKS);
+	var rl=ASTER.length;
+	var offset=(isdebris?MAXROCKS:0);
 	for (var i=0; i<rl; i++) {
-	    g[i]=sa.path(ROCKS[i]).attr({strokeWidth:0});
-	    if (this.rocks.indexOf(i)>-1) g[i].attr("fill",halftone(this.color));
-	    else g[i].attr({fill:pa});
-	    g[i].attr("stroke",this.color);
+	    g[i]=sa.path(ASTER[i]).attr({strokeWidth:3});
+	    if (this.rocks.indexOf(i+offset)>-1)
+		g[i].attr({fill:halftone(this.color),stroke:this.color});
+	    else g[i].attr({fill:pa,stroke:"#888"});
 	    var bb=g[i].getBBox();
 	    if (maxw<bb.width) maxw=bb.width;
 	    if (maxh<bb.height) maxh=bb.height;
@@ -64,57 +66,29 @@ Team.prototype = {
 		g[i].transform(m1);
 		g[i].appendTo(viewport);
 		g[i].hover(function()  {g[i].attr({strokeWidth:12});},
-			function()  {g[i].attr({strokeWidth:0});});
+			function()  {g[i].attr({strokeWidth:3});});
 		g[i].click(function() { 
-		    var n=this.rocks.indexOf(i);
+		    var n=this.rocks.indexOf(i+offset);
 		    if (n>-1) {
-			this.rocks[n]=null;
+			this.rocks[n]=-1;
 			g[i].attr("fill",pa);
 		    } else { 
-			if (!this.rocks[0]) this.rocks[0]=i;
-			else if (!this.rocks[1]) this.rocks[1]=i;
-			else if (!this.rocks[2]) this.rocks[2]=i;
-			if (this.rocks.indexOf(i)>-1) g[i].attr("fill",halftone(this.color));
-		    }
-		}.bind(this));
-	    }.bind(this))(i)
-	}
-    },
-    selectdebris:function() {
-	$("#caroussel").hide();
-	$("#debris").show();
-	if (typeof this.rocks=="undefined") this.rocks=[null,null,null];
-	var sa=Snap(".deb");
-	var viewport=sa.g();
-
-	var pa = sa.image(ROCKIMG,0,0,256,256).pattern(0,0,256,256);
-
-	for (var i=0; i<DEBRIS.length; i++) {
-	    (function(i) {
-		var g=sa.path(DEBRIS[i]).attr({strokeWidth:0});
-		if (this.rocks.indexOf(i)>-1) g.attr("fill",halftone(this.color));
-		else g.attr({fill:pa});
-		g.attr("stroke",this.color);
-		var bb=g.getBBox();
-		var h=$(".deb").height();
-		var w=$(".deb").width();
-		var s=h/500;
-		if (w/500/DEBRIS.length<s) s=w/500/DEBRIS.length;
-		var m1=MT(i*w/DEBRIS.length,h/2-bb.height*s/2).scale(s,s);
-		g.transform(m1);
-		g.appendTo(viewport);
-		g.hover(function()  {g.attr({strokeWidth:12});},
-			function()  {g.attr({strokeWidth:0});});
-		g.click(function() { 
-		    var n=this.rocks.indexOf(i);
-		    if (n>-1) {
-			this.rocks[n]=null;
-			g.attr("fill",pa);
-		    } else { 
-			if (!this.rocks[0]) this.rocks[0]=i;
-			else if (!this.rocks[1]) this.rocks[1]=i;
-			else if (!this.rocks[2]) this.rocks[2]=i;
-			if (this.rocks.indexOf(i)>-1) g.attr("fill",halftone(this.color));
+			if (this.rocks[0]==-1) this.rocks[0]=i+offset;
+			else if (this.rocks[1]==-1) this.rocks[1]=i+offset;
+			else if (this.rocks[2]==-1) this.rocks[2]=i+offset;
+			if (this.rocks[0]>-1&&this.rocks[1]>-1&&this.rocks[2]>-1) {
+			    //var o=OBSTACLES[i+(this.team-1)*3];
+			    //$("ASTEROID"+this.team).remove();
+			    for (var k=0; k<3; k++) {
+				var o=OBSTACLES[k+(this.team-1)*3];
+				o.g.remove();
+				OBSTACLES[k+(this.team-1)*3]=
+				    new Rock(this.rocks[k],
+					     [o.tx,o.ty,o.alpha],
+					     isdebris,this.team,k);
+			    }
+			}
+			if (this.rocks.indexOf(i+offset)>-1) g[i].attr("fill",halftone(this.color));
 		    }
 		}.bind(this));
 	    }.bind(this))(i)

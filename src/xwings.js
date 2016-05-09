@@ -3,7 +3,7 @@ var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.8.6";
+var VERSION="v0.8.7";
 var LANG="en";
 var DECLOAK_PHASE=1;
 var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6,XP_PHASE=7;
@@ -1230,6 +1230,7 @@ function nextphase() {
     case SETUP_PHASE: 
 	$(".buttonbar .share-buttons").hide();
 	$("#leftpanel").show();
+	$(".bigbutton").hide();
 	ZONE[1].remove();
 	ZONE[2].remove();
 	TEAMS[1].endsetup();
@@ -1304,7 +1305,7 @@ function nextphase() {
 	    TEMPLATES[t[i]]=$("#"+t[i]).html();
 	    Mustache.parse(TEMPLATES[t[i]]);
 	}
-
+	$(".bigbutton").show();
 	$(".buttonbar .share-buttons").show();
 	$("#team2").css("top",$("nav").height()+2);
 	$("#team1").css("top",$("nav").height()+2);
@@ -1942,7 +1943,7 @@ $(document).ready(function() {
 	  K5:{path:s.path("M 0 0 L 0 -240").attr({display:"none"}), speed: 5, key: "2" }
 	};
     // Load unit data
-    var availlanguages=["en","fr","de","es","pl"];
+    var availlanguages=["en","fr","de","es","it","pl"];
     LANG = localStorage['LANG'] || window.navigator.userLanguage || window.navigator.language;
     LANG=LANG.substring(0,2);
     $.ajaxSetup({beforeSend: function(xhr){
