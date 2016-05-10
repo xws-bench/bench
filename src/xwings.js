@@ -1126,7 +1126,6 @@ function endselection() {
     var jug=currentteam.toJuggler(false);
     if (typeof localStorage[currentteam.name]=="undefined") {
 	localStorage[currentteam.name]=JSON.stringify({"pts":currentteam.points,"faction":currentteam.faction,"jug":jug,"rocks":currentteam.rocks});
-
     }
     if (currentteam==TEAMS[1]) team=1; else if (currentteam==TEAMS[2]) team=2; 
     addrow(team,currentteam.name,currentteam.points,currentteam.faction,currentteam.toJuggler(true));
@@ -1720,31 +1719,31 @@ function tohitproba(tokensA,tokensD,at,dt,attack,defense) {
     for (f=0; f<=attack; f++) {
 	for (h=0; h<=attack-f; h++) {
 	    for (c=0; c<=attack-h-f; c++) {
-		var n=100*f+10*c+h;
+		var n=FCH_FOCUS*f+FCH_CRIT*c+FCH_HIT*h;
 		var fa,ca,ha,ff,ef;
-		var a=ATable[100*f+h+10*c]; // attack index
+		var a=ATable[FCH_FOCUS*f+FCH_HIT*h+FCH_CRIT*c]; // attack index
 		//if (typeof tokensA.modifyattackroll!="undefined")
 		//    n=tokensA.modifyattackroll(n,tokensD);
-		fa=Math.floor(n/100);
-		ca=Math.floor((n-100*fa)/10);
-		ha=n-100*fa-10*ca;
+		fa=FCH_focus(n);
+		ca=FCH_crit(n);
+		ha=FCH_hit(n);
 		for (ff=0; ff<=defense; ff++) {
 		    for (ef=0; ef<=defense-ff; ef++) {
 			var fd;
-			var m=10*ff+ef
+			var m=FE_FOCUS*ff+FE_EVADE*ef
 			//if (typeof tokensD.modifydefenseroll!="undefined") 
 			//    m=tokensD.modifydefenseroll(m);
-			fd=Math.floor(m/10);
-			evade=m-10*fd;
+			fd=FE_focus(m)
+			evade=FE_evade(m);
 			if (defense==0) d=1; else d=DTable[m]
 			hit=ha;
 			i=0;
 			if (tokensD.evade>0) { evade+=1; }
 			if (tokensD.focus>0) { evade+=fd; }
 			if (tokensA.focus>0) { hit+=fa; }
-			if (hit>evade) { i = hit-evade; evade=0; } 
+			if (hit>evade) { i = FCH_HIT*(hit-evade); evade=0; } 
 			else { evade=evade-hit; }
-			if (ca>evade) { i+= 10*(ca-evade); }
+			if (ca>evade) { i+= FCH_CRIT*(ca-evade); }
 			p[i]+=a*d;
 		    }
 		}
@@ -1753,7 +1752,7 @@ function tohitproba(tokensA,tokensD,at,dt,attack,defense) {
     }
     for (h=0; h<=attack; h++) {
 	for (c=0; c<=attack-h; c++) {
-	    i=h+10*c;
+	    i=FCH_HIT*h+FCH_CRIT*c;
 	    if (c+h>0) tot+=p[i];
 	    //log("c"+c+" h"+h+" "+p[i]);
 	    mean+=h*p[i];
@@ -1943,7 +1942,7 @@ $(document).ready(function() {
 	  K5:{path:s.path("M 0 0 L 0 -240").attr({display:"none"}), speed: 5, key: "2" }
 	};
     // Load unit data
-    var availlanguages=["en","fr","de","es","pl"];
+    var availlanguages=["en","fr","de","es","it","pl"];
     LANG = localStorage['LANG'] || window.navigator.userLanguage || window.navigator.language;
     LANG=LANG.substring(0,2);
     $.ajaxSetup({beforeSend: function(xhr){
@@ -2121,8 +2120,6 @@ $(document).ready(function() {
 	$("#player2").html("<option selected value='human'>"+UI_translation["human"]+"</option>");
 	$("#player2").append("<option value='computer'>"+UI_translation["computer"]+"</option>");
 
-	//jwerty.key("shift+i", displayAIperformance);
-
 	var arg=LZString.decompressFromEncodedURIComponent(decodeURI(window.location.search.substr(1)));
 	var args=[];
 	if (arg!=null) args= arg.split('&');
@@ -2148,7 +2145,13 @@ $(document).ready(function() {
 	} else {
 	    phase=0;
 	    nextphase();
-	    
+	    if (args.length==1) {
+		if ($("#squad1").val()=="") currentteam=TEAMS[1];
+		else currentteam=TEAMS[2];
+		currentteam.parseJSON(args[0]);
+		endselection();
+	    }
+
 	    SETUP = SETUPS["Classic Map"];
 
 	    $("#squadlist").html("<thead><tr><th></th><th>"+UI_translation["type"]+"</th><th><span class='m-points'></span></th><th><span class='m-units'></span></th><th></th><th></th><th></th></tr></thead>");
