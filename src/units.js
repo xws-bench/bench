@@ -320,7 +320,7 @@ Unit.prototype = {
 	    stroke:halftone(this.color),
 	});
 	this.tohitstats={};
-	this.tohit = s.text(-w,0,"95%").attr({class:"tohit",fill:"#fff",opacity:"1",display:"none"});
+	this.tohit = s.text(-w,0,"0").attr({class:"tohit",fill:"#fff",opacity:"1",display:"none"});
 	this.skillbar=s.text(1-w,3-w,repeat('u',this.skill))
 	    .transform('r -90 0 0').attr({
 		class: "xsymbols",
@@ -1806,13 +1806,20 @@ Unit.prototype = {
 	if (sh!=this&&r<=3&&r>0) {
 	    var attack=this.getattackstrength(w,sh);
 	    var defense=sh.getdefensestrength(w,this);
-	    if (this.targeting.indexOf(sh)>-1) this.reroll=10;
+	    // Check this: either one TL and no requirement, or more than one TL. 
+	    if ((this.targeting.indexOf(sh)>-1&&!"Target".match(this.getrequirements()))
+		||(this.targeting.indexOf(sh,this.targeting.indexOf(sh)+1)>-1))
+		this.reroll=10;
 	    else this.reroll=0;
-	    return tohitproba(this,sh,
+	    // If TL and focus are required, use both...TODO
+	    if (this.focus>0&&(typeof this.weapons[w].getrequirements()!="undefined")&&"Focus".match(this.weapons[w].getrequirements())) this.focus--;
+	    var thp= tohitproba(this,sh,
 			      this.getattacktable(attack),
 			      sh.getdefensetable(defense),
 			      attack,
 			      defense);
+	    if (typeof this.weapons[w].getrequirements()!="undefined"&&"Focus".match(this.weapons[w].getrequirements())) this.focus++;
+	    return thp;
 	} else return {proba:[],tohit:0,meanhit:0,meancritical:0,tokill:0};
     },
     isfireobstructed: function() {
@@ -2736,26 +2743,52 @@ Unit.prototype = {
 	this.showattack();
 	this.showoverflow();
     },
+    updatetohit: function(b,wp) {
+	var w=this.weapons[wp];
+	var e=w.getenemiesinrange();
+	if (!b) 
+	    for (var i in e) delete e[i].tohitstats[this.id];
+	else for (var i in e) e[i].tohitstats[this.id]={unit:this,weapon:wp};
+	var sum=0;
+
+	for (var i in e) {
+	    var u=e[i];
+	    NOLOG=true;
+	    var sum=0;
+	    var focus=u.focus;
+	    var evade=u.evade;
+	    for (var j in u.tohitstats) {
+		var v=u.tohitstats[j];
+		if (typeof v.unit=="undefined") continue;
+		sum+=v.unit.evaluatetohit(v.weapon,u).meanhit;
+		if (u.focus>0) u.focus--;
+		if (u.evade>0) u.evade--;
+	    }
+	    u.tohitstats.sum=sum;
+	    u.evade=evade;
+	    u.focus=focus;
+	    NOLOG=false;
+	}
+	// Display
+	for (var i in e) {
+	    var u=e[i];
+	    var sum=u.tohitstats.sum;
+	    if (sum==0) u.tohit.attr({display:"none"});
+	    else u.tohit.transform("r "+this.m.split().rotate+" 0 0").attr({text:Math.floor(sum*100)/100,display:"block"});
+	    u.show();
+	}
+    },
     showhitsector: function(b,wp) {
         var opacity=(b)?"inline":"none";
 	this.select();
 	if (typeof wp=="undefined") wp=0;
 	var w=this.weapons[wp];
-	var e=w.getenemiesinrange();
-	
 	if (!b) {
 	    for (i=0; i<this.sectors.length; i++) this.sectors[i].remove();
 	    for (i=0; i<this.ranges.length; i++) this.ranges[i].remove();
 	    this.ranges=[];
 	    this.sectors=[];
-	    /*for (var i in e) {
-		var u=e[i];
-		var sum=0;
-		u.tohitstats[this.id]=0;
-		for (var j in u.tohitstats) sum+=u.tohitstats[j];
-		if (sum==0) u.tohit.transform("r "+this.m.split().rotate+" 0 0").attr({display:"none"});
-		else u.tohit.attr({text:Math.floor(sum*100)/100});
-	    }*/
+	    //this.updatetohit(b,wp);
 	    return;
 	}
 	var r0=w.getlowrange(), r1=w.gethighrange();
@@ -2786,19 +2819,7 @@ Unit.prototype = {
 
 	    }
 	}
-	/*var e=w.getenemiesinrange();
-	for (var i in e) {
-	    var u=e[i];
-	    var sum=0;
-	    NOLOG=true;
-	    var mh=this.evaluatetohit(wp,u).meanhit;
-	    NOLOG=false;
-	    u.tohitstats[this.id]=mh;
-	    for (var j in u.tohitstats) sum+=u.tohitstats[j];
-	    if (sum==0) u.tohit.attr({display:"none"});
-	    else u.tohit.transform("r "+this.m.split().rotate+" 0 0").attr({text:Math.floor(sum*100)/100,display:"block"});
-	    u.show();
-	}*/
+	//this.updatetohit(b,wp);
     },
     showrange: function(b,r0,r1) {
         var opacity=(b)?"inline":"none";

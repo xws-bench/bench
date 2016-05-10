@@ -148,8 +148,6 @@ Team.prototype = {
 		this.units.push(u);
 	    }
 	}	
-	// knockout
-	//ko.applyBindings({squad:ko.observableArray(squadron)});
 	for (i in squadron) {
 	    u=squadron[i];
 	    if (u.team==this.team) {
