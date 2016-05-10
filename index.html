@@ -383,6 +383,14 @@ The app is not really a game since the player plays both sides or against an AI,
 		</td>
 	      </tr>
 	      <tr>
+		<td class="m-builder">Select a squad builder</td>
+		<td>
+		  <input type="radio" id="sb1" checked name="squadbuilder" value="1" onclick="SQUADBUILDER=1"/>
+		  <label for="sb1" class="m-sbintern">Internal Squad Builder</label><br/>
+		  <input type="radio" id="sb2" name="squadbuilder" value="2" onclick="SQUADBUILDER=2"/>
+		  <label for="sb1" class="m-sbfab">Fab's Squadron Builder</label><br/><span style="font-size:smaller">Create your squad and then copy/paste it in XWS format (share button).</span> 
+		</td>
+	      <tr>
 		<td class="m-console"></td>
 		<td>
 		  <input type="checkbox" checked value="1" id="consolecb" onclick="$('footer').toggle()"/>
