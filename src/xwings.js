@@ -1943,7 +1943,7 @@ $(document).ready(function() {
 	  K5:{path:s.path("M 0 0 L 0 -240").attr({display:"none"}), speed: 5, key: "2" }
 	};
     // Load unit data
-    var availlanguages=["en","fr","de","es","it","pl"];
+    var availlanguages=["en","fr","de","es","pl"];
     LANG = localStorage['LANG'] || window.navigator.userLanguage || window.navigator.language;
     LANG=LANG.substring(0,2);
     $.ajaxSetup({beforeSend: function(xhr){
