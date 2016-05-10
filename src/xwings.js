@@ -39,6 +39,7 @@ var UNIQUE=[];
 var stype="";
 var REPLAY="";
 var PERMALINK="";
+var SQUADBUILDER=1;
 /*
 
     <script src="src/obstacles.js"></script>
@@ -756,6 +757,10 @@ function battlelog(t) {
 function createsquad() {
     $(".activeunit").prop("disabled",true);
     $("#selectphase").hide();
+    if (SQUADBUILDER==2) {
+	document.location.href="http://x-wing.fabpsb.net/gindex.php";
+	return;
+    }
     phase=CREATION_PHASE;
     $("footer").hide();
     $('#consolecb').removeAttr('Checked');
