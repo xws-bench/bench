@@ -788,7 +788,8 @@ var mySpreadsheets=[
 "https://docs.google.com/spreadsheets/d/1D2UbgrM6V7KJcRmyUQBxn5jxT-Nj8UGlpvLYlasH6TQ/edit#gid=0",
 "https://docs.google.com/spreadsheets/d/15pAnwcBlp4l01eJgyNXW9uGu5jYDhxk3oSveBIQhJFc/edit#gid=0",
 "https://docs.google.com/spreadsheets/d/1P64wZXXV_3gJE0wdLTDWW2pdOliInCRlTXm1lgYNumc/edit#gid=0",
-"https://docs.google.com/spreadsheets/d/1zlqDnXJ9J-k4apP1DadPx_vdv6Asdp_b9QvaytKI9ek/edit#gid=0"
+"https://docs.google.com/spreadsheets/d/1zlqDnXJ9J-k4apP1DadPx_vdv6Asdp_b9QvaytKI9ek/edit#gid=0",
+"https://docs.google.com/spreadsheets/d/1hK3niJbtDIE8xxv-9vQGcqd5eQ1D6dP5hQ7GicDVh-A/edit#gid=0"
 ];
 function displayAIperformance() {
     for (var i=0; i<mySpreadsheets.length; i++) {
