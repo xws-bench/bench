@@ -1338,9 +1338,9 @@ Unit.prototype = {
 	target.isattackedby(w,this);
     },
     isattackedby:function(k,a) {},
-    modifydamageassigned: function(ch,attacker) {
-	return ch;
-    },
+    modifydamageassigned: function(ch,attacker) {return ch;},
+    modifydefenseroll: function(a,m,n) { return m;},
+    modifyattackroll: function(d,m,n) { return m;},
     resolveishit:function() {},
     hashit:function(t) { return this.criticalresolved+this.hitresolved>0;},
     resolvedamage: function() {
@@ -1376,6 +1376,7 @@ Unit.prototype = {
 	if (targetunit.canbedestroyed(skillturn)) targetunit.checkdead();
 	this.cleanupattack();
     },
+    postattack: function(i) { },
     cleanupattack: function() {
 	this.actionbarrier();
     },
