@@ -1387,6 +1387,13 @@ function nextphase() {
 	$("#svgout").mousedown(function(event) { dragstart(event);});
 	$("#svgout").mousemove(function(e) {dragmove(e);});
 	$("#svgout").mouseup(function(e) {dragstop(e);});
+
+
+	/*$(".modalDialog > div").draggable();
+	$(".modalDialog > div").on("dragstart",modal_dragstart); 
+	$(document.body).on('dragover',modal_dragover); 
+	$(document.body).on('drop',modal_drop); 
+*/
 	jwerty.key("escape", nextphase);
 	/*$(document).keyup(function(event) {
 	    if (event.which==13) {
@@ -1701,14 +1708,15 @@ function defendwithreroll(tokensD,dt,defense) {
     return p;
 }
 
-function tohitproba(tokensA,tokensD,at,dt,attack,defense) {
+function tohitproba(attacker,weapon,defender,at,dt,attack,defense) {
     var p=[];
     var k=[];
     var f,h,c,d,fd,e,i,j,hit,evade;
+    var missed=0;
     var tot=0,mean=0,meanc=0;
     var ATable=at;
     var DTable=dt;
-    var rr=tokensA.reroll;
+    var rr=attacker.reroll;
     var dt=(defense==0)?[]:dt;
     for (h=0; h<=attack; h++) {
 	for (c=0; c<=attack-h; c++) {
@@ -1718,49 +1726,90 @@ function tohitproba(tokensA,tokensD,at,dt,attack,defense) {
     }
     
     if (typeof ATable=="undefined") return {proba:[],tohit:0,meanhit:0,meancritical:0,tokill:0};
-    ATable=attackwithreroll(tokensA,at,attack);
+    ATable=attackwithreroll(attacker,at,attack);
     //log("Attack "+attack+" Defense "+defense);
-    if (defense>0) DTable=defendwithreroll(tokensD,dt,defense);
+    if (defense>0) DTable=defendwithreroll(defender,dt,defense);
     for (j=0; j<=20; j++) { k[j]=0; }
     for (f=0; f<=attack; f++) {
 	for (h=0; h<=attack-f; h++) {
 	    for (c=0; c<=attack-h-f; c++) {
 		var n=FCH_FOCUS*f+FCH_CRIT*c+FCH_HIT*h;
 		var fa,ca,ha,ff,ef;
+		var focusa=attacker.focus;
+
 		var a=ATable[FCH_FOCUS*f+FCH_HIT*h+FCH_CRIT*c]; // attack index
-		//if (typeof tokensA.modifyattackroll!="undefined")
-		//    n=tokensA.modifyattackroll(n,tokensD);
+		if (typeof weapon.modifydamagegiven=="function")
+		    n=weapon.modifydamagegiven(n);
 		fa=FCH_focus(n);
 		ca=FCH_crit(n);
 		ha=FCH_hit(n);
+		hit=ha;
+		if (attacker.focus>0&&fa>0) { hit+=fa;attacker.focus--; }
+
 		for (ff=0; ff<=defense; ff++) {
 		    for (ef=0; ef<=defense-ff; ef++) {
 			var fd;
+			var focusd=defender.focus;
+			var evade=defender.evade;
+			var savedevade=defender.evade;
+			var savedfocus=defender.focus;
 			var m=FE_FOCUS*ff+FE_EVADE*ef
-			//if (typeof tokensD.modifydefenseroll!="undefined") 
-			//    m=tokensD.modifydefenseroll(m);
+			//if (typeof defender.modifydefenseroll!="undefined") 
+			//    m=defender.modifydefenseroll(m);
 			fd=FE_focus(m)
 			evade=FE_evade(m);
 			if (defense==0) d=1; else d=DTable[m]
-			hit=ha;
 			i=0;
-			if (tokensD.evade>0) { evade+=1; }
-			if (tokensD.focus>0) { evade+=fd; }
-			if (tokensA.focus>0) { hit+=fa; }
+			if (defender.focus>0&&fd>0&&evade<hit+ca) { evade+=fd;defender.focus--; }
+			if (defender.evade>0&&evade<hit+ca) { evade+=1;defender.evade--; }
 			if (hit>evade) { i = FCH_HIT*(hit-evade); evade=0; } 
 			else { evade=evade-hit; }
 			if (ca>evade) { i+= FCH_CRIT*(ca-evade); }
-			p[i]+=a*d;
+			if (typeof weapon.modifyhit=="function"&&i>0) i=weapon.modifyhit(i);
+			if (typeof weapon.immediateattack!="undefined") 
+			    console.log(i+" "+weapon.immediateattack.pred(i)+" "+attacker.name);
+			if (typeof weapon.immediateattack!="undefined"
+			    &&weapon.immediateattack.pred(i)
+			    &&typeof attacker.iar=="undefined") {
+			    attacker.iar=true;
+			    var w=weapon.immediateattack.weapon();
+			    console.log("immediate "+weapon.name+" -> "+attacker.weapons[w].name);
+			    var r=attacker.gethitrange(w,defender);
+			    if (r<=3&&r>0) {
+				var attack=attacker.getattackstrength(w,defender);
+				var defense=defender.getdefensestrength(w,attacker);
+				var thp= tohitproba(attacker,attacker.weapons[w],defender,
+						    defender.getattacktable(attack),
+						    defender.getdefensetable(defense),
+						    attack,
+						    defense);
+			    //console.log("after call:"+p[0]+" + "+thp.proba[0]+" * "+(a*d));
+				for (var hh=0; hh<=attack; hh++) {
+				    for (var cc=0; cc<=attack-hh; cc++) {
+					j=FCH_HIT*hh+FCH_CRIT*cc;
+					var k=i+j;
+					if (typeof p[k]=="undefined") p[k]=0;
+					p[k]+=thp.proba[j]*a*d;
+				    }
+				}
+			    } else p[i]=a*d;
+			    delete attacker.iar;
+			} else {
+			    p[i]+=a*d;
+			}
+			defender.focus=savedfocus;
+			defender.evade=savedevade;
 		    }
 		}
+		attacker.focus=focusa;
 	    }
 	}
     }
+    //console.log("missed "+missed+"/"+p[0]+" "+attacker.name+" "+weapon.iar);
     for (h=0; h<=attack; h++) {
 	for (c=0; c<=attack-h; c++) {
 	    i=FCH_HIT*h+FCH_CRIT*c;
-	    if (c+h>0) tot+=p[i];
-	    //log("c"+c+" h"+h+" "+p[i]);
+	    if (i>0) tot+=p[i];
 	    mean+=h*p[i];
 	    meanc+=c*p[i];
 	    // Max 3 criticals leading to 2 damages each...Proba too low anyway after that.
@@ -1791,7 +1840,7 @@ function probatable(attacker,defender) {
 	for (j=0; j<=5; j++) {
 	    var k=j;
 	    if (defender.adddice>0) k+=defender.adddice;
-	    var th=tohitproba(attacker,defender,ATTACK[i],DEFENSE[k],i,k);
+	    var th=tohitproba(attacker,{},defender,ATTACK[i],DEFENSE[k],i,k);
 	    str+="<td class='probacell' style='background:hsl("+(1.2*(100-th.tohit))+",100%,80%)'>";
 	    str+="<div>"+th.tohit+"%</div><div><code class='symbols'>d</code>"+th.meanhit+"</div><div><code class='symbols'>c</code>"+th.meancritical+"</div></td>";
 	}
