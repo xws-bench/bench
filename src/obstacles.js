@@ -97,8 +97,8 @@ function Rock(frag,coord,isdebris,team,n) {
     this.g.addClass("unit");
     var b=this.g.getBBox();
     this.o=[];
-    //var scale=0.27;
-    var scale=0.4;
+    var scale=0.27;
+    if (isdebris) scale=0.4;
     for (k=1; k<4; k++) {
 	this.o[k]=s.ellipse(b.x+b.width/2,b.y+b.height/2,200/scale/2*k+b.width/2,200/scale/2*k+b.height/2).attr({pointerEvents:"none",display:"none",fill:WHITE,opacity:0.3,strokeWidth:2});
     }
