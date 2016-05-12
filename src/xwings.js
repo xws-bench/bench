@@ -1736,14 +1736,16 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense) {
 		var n=FCH_FOCUS*f+FCH_CRIT*c+FCH_HIT*h;
 		var fa,ca,ha,ff,ef;
 		var focusa=attacker.focus;
+		var savedreroll=attacker.reroll;
 
 		var a=ATable[FCH_FOCUS*f+FCH_HIT*h+FCH_CRIT*c]; // attack index
 		if (typeof weapon.modifydamagegiven=="function")
 		    n=weapon.modifydamagegiven(n);
+		if (typeof attacker.modifyattackroll=="function")
+		    n=attacker.modifyattackroll(defender,n,attack);
 		fa=FCH_focus(n);
 		ca=FCH_crit(n);
-		ha=FCH_hit(n);
-		hit=ha;
+		hit=FCH_hit(n);
 		if (attacker.focus>0&&fa>0) { hit+=fa;attacker.focus--; }
 
 		for (ff=0; ff<=defense; ff++) {
@@ -1754,8 +1756,8 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense) {
 			var savedevade=defender.evade;
 			var savedfocus=defender.focus;
 			var m=FE_FOCUS*ff+FE_EVADE*ef
-			//if (typeof defender.modifydefenseroll!="undefined") 
-			//    m=defender.modifydefenseroll(m);
+			if (typeof defender.modifydefenseroll!="undefined") 
+			    m=defender.modifydefenseroll(attacker,m,defense);
 			fd=FE_focus(m)
 			evade=FE_evade(m);
 			if (defense==0) d=1; else d=DTable[m]
@@ -1766,33 +1768,34 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense) {
 			else { evade=evade-hit; }
 			if (ca>evade) { i+= FCH_CRIT*(ca-evade); }
 			if (typeof weapon.modifyhit=="function"&&i>0) i=weapon.modifyhit(i);
-			if (typeof weapon.immediateattack!="undefined") 
-			    console.log(i+" "+weapon.immediateattack.pred(i)+" "+attacker.name);
+
+			attacker.reroll=0;
+			if (typeof attacker.postattack=="function") {
+			    attacker.postattack(i);
+			}
 			if (typeof weapon.immediateattack!="undefined"
 			    &&weapon.immediateattack.pred(i)
 			    &&typeof attacker.iar=="undefined") {
 			    attacker.iar=true;
 			    var w=weapon.immediateattack.weapon();
-			    console.log("immediate "+weapon.name+" -> "+attacker.weapons[w].name);
 			    var r=attacker.gethitrange(w,defender);
+			    // No prerequisite checked.
 			    if (r<=3&&r>0) {
-				var attack=attacker.getattackstrength(w,defender);
-				var defense=defender.getdefensestrength(w,attacker);
+				//console.log("immediate attack:"+weapon.name+"->"+attacker.weapons[w].name+" "+attacker.reroll+" "+attacker.name)
+				var attack2=attacker.getattackstrength(w,defender);
+				var defense2=defender.getdefensestrength(w,attacker);
 				var thp= tohitproba(attacker,attacker.weapons[w],defender,
-						    defender.getattacktable(attack),
-						    defender.getdefensetable(defense),
-						    attack,
-						    defense);
-			    //console.log("after call:"+p[0]+" + "+thp.proba[0]+" * "+(a*d));
-				for (var hh=0; hh<=attack; hh++) {
-				    for (var cc=0; cc<=attack-hh; cc++) {
-					j=FCH_HIT*hh+FCH_CRIT*cc;
-					var k=i+j;
-					if (typeof p[k]=="undefined") p[k]=0;
-					p[k]+=thp.proba[j]*a*d;
-				    }
+						    attacker.getattacktable(attack2),
+						    defender.getdefensetable(defense2),
+						    attack2,
+						    defense2);
+				//console.log(attacker.name+" after call "+n+"/"+m+" ("+attack2+"/"+defense2+"/"+attacker.weapons[w].name+"):"+p[0]+" + "+thp.proba[0]+" * "+(a*d));
+				for (var j in thp.proba) {
+				    var k=i+j*1;
+				    if (typeof p[k]=="undefined") p[k]=0;
+				    p[k]+=thp.proba[j]*a*d;
 				}
-			    } else p[i]=a*d;
+			    } else p[i]+=a*d;
 			    delete attacker.iar;
 			} else {
 			    p[i]+=a*d;
@@ -1802,6 +1805,7 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense) {
 		    }
 		}
 		attacker.focus=focusa;
+		attacker.reroll=savedreroll;
 	    }
 	}
     }

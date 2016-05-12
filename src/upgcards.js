@@ -7,6 +7,7 @@ var UPGRADES= [
 	attack: 3,
 	upgid:0,
 	done:true,
+	modifyhit: function(ch) { return FCH_HIT; },
 	prehit: function(target,c,h) {
 	    this.unit.hitresolved=1;
 	    this.unit.criticalresolved=0;
@@ -439,9 +440,10 @@ var UPGRADES= [
         attack: 3,
 	done:true,
 	fired:2,
+	followupattack: function() { return this.unit.weapons.indexOf(this); },
 	endattack: function() {
 	    this.fired--;
-	    this.unit.log("ENDATTACK CLUSTER "+this.fired);
+	    //this.unit.log("ENDATTACK CLUSTER "+this.fired);
 	    if (this.fired==0) {
 		if (this.ordnance) {
 		    this.ordnance=false;
@@ -612,6 +614,8 @@ var UPGRADES= [
         name: "Gunner",
 	done:true,
         init: function(sh) {
+	    for (var i in sh.weapons) 
+		sh.weapons[i].immediateattack={pred:function(k) { return k==0; },weapon:function() { return 0;}};
 	    sh.addattack(function(c,h) { return c+h==0; },this,0);
 	},
         type: CREW,
@@ -622,6 +626,7 @@ var UPGRADES= [
         type: CANNON,
 	firesnd:"slave_fire",
 	done:true,
+	modifyhit: function(ch) { return FCH_HIT; },
 	prehit: function(target,c,h) {
 	    this.unit.hitresolved=1;
 	    this.unit.criticalresolved=0;
@@ -829,6 +834,8 @@ var UPGRADES= [
 	done:true,
         init: function(sh) {
 	    var self=this;
+	    for (var i in sh.weapons) 
+		sh.weapons[i].immediateattack={pred:function(i) { return i==0; },weapon:function() { return 0;}};
 	    sh.addattack(function(c,h) { return c+h==0; },this,0);
 	    sh.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
 		req:function(m,n) { return self.unit.addattack==round&&self.isactive;},
@@ -940,6 +947,8 @@ var UPGRADES= [
 	done:true,
         init: function(sh) {
 	    var self=this;
+	    self.f=-1;
+	    sh.wrap_before("postattack",this,function(i) {this.reroll=10; });
 	    sh.wrap_before("cleanupattack",this,function() {
 		this.log("+1 %TARGET% / %1 [%0]",self.name,targetunit.name);
 		this.addtarget(targetunit);
@@ -1210,6 +1219,7 @@ var UPGRADES= [
         type: MISSILE,
 	firesnd:"missile",
 	done:true,
+	modifyhit: function(ch) { return FCH_HIT; },
 	prehit: function(t,c,h) {
 	    this.unit.log("+%1 %HIT%, +1 ion token [%0]",this.name,2);
 	    this.unit.hitresolved=1;
@@ -1799,6 +1809,7 @@ var UPGRADES= [
         init: function(sh) {
 	    var self=this;
 	    sh.wrap_after("endattack",this,function(c,h) {
+		if (c+h==0) return;
 		var p=targetunit.selectnearbyunits(1,function(t,o) { return o != targetunit; });
 		this.selectunit(p,function(p,k) {
 		    p[k].log("+%1 %HIT% [%0]",self.name,1);
@@ -1942,6 +1953,10 @@ var UPGRADES= [
         name: "Accuracy Corrector",
 	init: function(sh) {
 	    var self=this;
+	    sh.wrap_after("modifyattackroll",this,function(d,m,n,m2) {
+		if (FCH_hit(m2)+FCH_crit(m2)<2) return FCH_HIT*2;
+		return m2;
+	    });
 	    sh.adddicemodifier(ATTACK_M,ADD_M,ATTACK_M,this,{
 		req:function(m,n) { 
 		    return self.isactive; 
@@ -1982,6 +1997,7 @@ var UPGRADES= [
       points:1,
       attack:3,
       done:true,
+      modifyhit: function(ch) { return 0; },
       prehit: function(t,c,h) {
 	  this.unit.hitresolved=0;
 	  this.unit.criticalresolved=0;
@@ -1995,9 +2011,10 @@ var UPGRADES= [
         type: CANNON,
 	firesnd:"slave_fire",
 	done:true,
+	modifyhit:function(ch) { return FCH_HIT;},
 	prehit: function(t,c,h) {
 	    this.unit.hitresolved=1;
-	    this.unit.criticalresolved=1;
+	    this.unit.criticalresolved=0;
 	    t.log("+1 %HIT%, +1 %STRESS% [%0]",this.name);
 	    if (t.stress==0) t.addstress();
 	},
@@ -2538,6 +2555,10 @@ var UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    var self=this;
+	    sh.wrap_after("modifydefenseroll",this,function(attacker,m,n,ch) {
+		if (attacker.getsector(this)>2&&FE_blank(m,n)>0) return ch+FE_EVADE;
+		return ch;
+	    });
 	    sh.adddicemodifier(DEFENSE_M,MOD_M,DEFENSE_M,this,{
 		req:function(m,n) {
 		    if (activeunit.getsector(this)>2) return self.isactive;
@@ -2729,6 +2750,7 @@ var UPGRADES= [
 	    sh.wrap_after("isTurret",this,function(w,b) {
 		return (w!=sh.weapons[turret]&&b);
 	    });
+	    sh.weapons[0].followupattack=function() { return turret; };
 	    sh.addattack(function(c,h) { 
 		return this.weapons[this.activeweapon].isprimary;
 	    }.bind(sh),self,turret); 
@@ -2856,6 +2878,9 @@ var UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    var self=this;
+	    /*sh.weapons[i].wrap_after("modifyattackroll",this,function(n,m) {
+		if (FCH_focus(m)>0) return m-FCH_FOCUS
+	    });*/
 	    sh.wrap_after("begincombatphase",this,function(lock) {
 		if (self.isactive) {
 		    this.donoaction([
@@ -3034,6 +3059,8 @@ var UPGRADES= [
 	done:true,
 	attack: 3,
 	range: [2,3],
+	followupattack: function() { return this.unit.weapons.indexOf(this); },
+	modifyhit:function(ch) { return FCH_HIT;},
 	prehit: function(target,c,h) {
 	    this.unit.hitresolved=1;
 	    this.unit.criticalresolved=0;
@@ -3227,6 +3254,7 @@ var UPGRADES= [
         attack: 3,
         range: [2,2],
 	done:true,
+	modifyhit:function(ch) { return FCH_CRIT;},
 	prehit: function(t,c,h) {
 	    t.log("+1 %CRIT% [%0]",this.name);
 	    t.applycritical(1);
@@ -3367,6 +3395,7 @@ var UPGRADES= [
 	done:true,
 	requires:"Focus",
 	consumes:false,
+	modifyhit: function(ch) { return 0; },
 	prehit:function(t,c,h) {
 	    var p=this.unit.selectnearbyally(2);
 	    var s="";
@@ -3682,6 +3711,10 @@ var UPGRADES= [
      ship:"TIE Defender",
      done:true,
      init: function(sh) {
+	 for (var i in sh.unit.weapons) {
+	     var w=sh.unit.weapons[i];
+	     if (w.type==CANNON&&w.points<=3) w.followupattack=function() { return 0; };
+	 }
 	 sh.addattack(function(c,h) { 
 	     var w1=this.weapons[this.activeweapon];
 	     return (w1.type==CANNON&&w1.points<=3);

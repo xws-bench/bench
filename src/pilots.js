@@ -2091,6 +2091,8 @@ var PILOTS = [
 		}
 	    }
 	    if (wn==-1) return;
+	    for (var i in this.weapons) 
+		this.weapons[i].immediateattack={pred:function(k) { return k==0&&wn>-1; },weapon:function() { return wn;}};
 	    this.addattack(function(c,h) { 
 		return (c+h==0)&&this.hasfired<2; 
 	    }.bind(this),this,wn);
