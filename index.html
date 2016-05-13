@@ -381,8 +381,7 @@ The app is not really a game since the player plays both sides or against an AI,
 		  <input type="radio" id="ver2" checked name="deckversion" value="2" onclick="CURRENT_DECK=2"/>
 		  <label for="ver2"class="m-ver2"></label>
 		</td>
-	      </tr>
-	      <tr>
+	      </tr><tr>
 		<td class="m-builder">Select a squad builder</td>
 		<td>
 		  <input type="radio" id="sb1" checked name="squadbuilder" value="1" onclick="SQUADBUILDER=1"/>
@@ -390,13 +389,21 @@ The app is not really a game since the player plays both sides or against an AI,
 		  <input type="radio" id="sb2" name="squadbuilder" value="2" onclick="SQUADBUILDER=2"/>
 		  <label for="sb1" class="m-sbfab">Fab's Squadron Builder</label><br/><span style="font-size:smaller">Create your squad and then copy/paste it in XWS format (share button).</span> 
 		</td>
-	      <tr>
+	      </tr><tr>
 		<td class="m-console"></td>
 		<td>
 		  <input type="checkbox" checked value="1" id="consolecb" onclick="$('footer').toggle()"/>
 		</td>
-	      </tr>
-	      <tr>
+	      </tr><tr>
+		<td>Console color</td>
+		<td>
+		  <input type="radio" id="cb1" value="2" checked name="colorconsole" onclick="$('footer').css('filter','none');"/>
+		  <label for="cb1" class="m-sbintern">Black</label><br/>
+
+		  <input type="radio" id="cb2" value="1" name="colorconsole" onclick="$('footer').css('filter','invert(100%)');"/>
+		  <label for="cb2" class="m-sbintern">White</label><br/>
+		</td>
+	      </tr><tr>
 		<td class="m-trace"></td>
 		<td>
 		  <input type="checkbox" onclick="TRACE=!TRACE;$('.trace').toggle()"/>
@@ -417,7 +424,7 @@ The app is not really a game since the player plays both sides or against an AI,
       </section>
 
       <section id="credit" class="modalDialog">
-	<div>
+	<div draggable="true">
 	  <h2><span class="m-credits"></span><a href="#" title="Close" class="close">&#xd7;</a>
 	  </h2>
 	  <div>
@@ -467,13 +474,13 @@ The app is not really a game since the player plays both sides or against an AI,
 	</div></div>
       </section>
 
-    <footer>
+    <footer draggable="true">
       <a href="#" onclick="$('#consolecb').removeAttr('Checked'); $('footer').hide()" title="Close" class="close">&#xd7;</a>
       <div class='title'>Console</div>
       <div class="log" id='log'></div>
     </footer>
     <script src="js/all.min.js"></script>
-    <script src="js/bench.min.js" async></script>
+   <script src="js/bench.min.js" async></script>
 
     <script>
       if (location.search=="") $("#selectphase").show();

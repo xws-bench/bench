@@ -2130,6 +2130,20 @@ $(document).ready(function() {
 	TEMPLATES["usabletokens"]=$("#usabletokens").html();
 	Mustache.parse(TEMPLATES["usabletokens"]);  
 	
+	$('body').on('mousedown', 'footer', function() {
+            $(this).addClass('draggable').parents().on('mousemove', function(e) {
+		$('.draggable').offset({
+                    top: e.pageY - $('.draggable').outerHeight() / 2,
+                    left: e.pageX - $('.draggable').outerWidth() / 2
+		}).on('mouseup', function() {
+                    $(this).removeClass('draggable');
+		});
+            });
+            if (typeof e.preventDefault=="function") e.preventDefault();
+	}).on("mouseup",function() {
+	    $(".draggable").removeClass("draggable");
+	});
+
 	mc.zoom=1;
 	mc.on("pinch",function(ev) {
 	    if (ev.target.id!="svgout") { return;}
