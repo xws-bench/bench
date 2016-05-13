@@ -126,7 +126,7 @@ IAUnit.prototype= {
 			OBSTACLES[mine[i]].detonate(this)
 		    else {
 			this.log("colliding with obstacle");
-			this.resolveocollision(1,0);
+			this.resolveocollision(1,[]);
 		    }
 		}
 	    cleanup(this,scorei); 

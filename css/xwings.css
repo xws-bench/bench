@@ -996,7 +996,8 @@ color:#fff
 }
 
 .phasepanel .symbols:hover,.phasepanel .selected {
-background-color:#AAA;
+filter: invert(200%);
+-webkit-filter: ivvert(200%);
 }
 
 .table,.team {
@@ -1689,13 +1690,13 @@ left:30%;
 width:40%;
 z-index:16;
 color:#d3d3d3;
+cursor:move;
 height:6em
 }
 
 footer .title {
 color:#fff;
 background:rgba(50,50,50,0.5);
-cursor:move;
 height:1em
 }
 
