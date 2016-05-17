@@ -1106,11 +1106,11 @@ function setselectedunit(n,td) {
     }
     currentteam.name=currentteam.toASCII();
     currentteam.toJSON(); // Just for score
-    addrow(n,currentteam.name,0,currentteam.faction,currentteam.toJuggler(true));
+    addrow(n,currentteam.name,currentteam.points,currentteam.faction,currentteam.toJuggler(true));
 }
 function addrow(team,name,pts,faction,jug,fill) {
-    if (team==1) {$("#squad1").val(jug); $("#squad1").attr("data-name",name);}
-    if (team==2) {$("#squad2").val(jug); $("#squad2").attr("data-name",name);}
+    if (team==1) {$("#squad1").val(jug); $("#squad1points").html(pts); $("#squad1").attr("data-name",name);}
+    if (team==2) {$("#squad2").val(jug); $("#squad2points").html(pts); $("#squad2").attr("data-name",name);}
     enablenextphase();
     var n=faction.toUpperCase();
     if (typeof localStorage[name]=="undefined"||fill==true)
