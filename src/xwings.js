@@ -2218,10 +2218,12 @@ $(document).ready(function() {
 	} else {
 	    phase=0;
 	    nextphase();
-	    if (args.length==1) {
+	    if (sessionStorage.getItem("import")) {
+		log("Importing from another Squad Builder...");
 		if ($("#squad1").val()=="") currentteam=TEAMS[1];
 		else currentteam=TEAMS[2];
-		currentteam.parseJSON(args[0]);
+		currentteam.parseJSON(sessionStorage.getItem("import"));
+		sessionStorage.clear();
 		endselection();
 	    }
 
