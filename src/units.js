@@ -1340,7 +1340,7 @@ Unit.prototype = {
     isattackedby:function(k,a) {},
     modifydamageassigned: function(ch,attacker) {return ch;},
     modifydefenseroll: function(a,m,n) { return m;},
-    modifyattackroll: function(d,m,n) { return m;},
+    modifyattackroll: function(m,n,d) { return m;},
     resolveishit:function() {},
     hashit:function(t) { return this.criticalresolved+this.hitresolved>0;},
     resolvedamage: function() {
@@ -2763,7 +2763,6 @@ Unit.prototype = {
 	if (!b) 
 	    for (var i in e) delete e[i].tohitstats[this.id];
 	else for (var i in e) e[i].tohitstats[this.id]={unit:this,weapon:wp};
-	var sum=0;
 
 	for (var i in e) {
 	    var u=e[i];
@@ -2791,7 +2790,7 @@ Unit.prototype = {
 		    var ww=w;
 		    w=v.unit.weapons[w].followupattack();
 		    ss=v.unit.evaluatetohit(w,u);
-		    console.log("follow-up attack "+v.unit.weapons[ww].name+" -> "+v.unit.weapons[w].name);
+		    //console.log("follow-up attack "+v.unit.weapons[ww].name+" -> "+v.unit.weapons[w].name);
 		    tohit *=(1-ss.tohit/100.);
 		    meanhit+=ss.meanhit;
 		    meancrit+=ss.meancritical;
@@ -2837,8 +2836,8 @@ Unit.prototype = {
 	    for (i=0; i<this.ranges.length; i++) this.ranges[i].remove();
 	    this.ranges=[];
 	    this.sectors=[];
-	    //this.updatetohit(b,wp);
-	    //this.displaytohit(wp);
+	    this.updatetohit(b,wp);
+	    this.displaytohit(wp);
 	    return;
 	}
 	var r0=w.getlowrange(), r1=w.gethighrange();
@@ -2869,8 +2868,8 @@ Unit.prototype = {
 
 	    }
 	}
-	//this.updatetohit(b,wp);
-	//this.displaytohit(wp);
+	this.updatetohit(b,wp);
+	this.displaytohit(wp);
     },
     showrange: function(b,r0,r1) {
         var opacity=(b)?"inline":"none";

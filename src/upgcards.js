@@ -650,6 +650,10 @@ var UPGRADES= [
 	    }
 	    return ch;
 	},
+	modifyattackroll:function(ch,n,d) {
+	    if (FCH_crit(ch)>0) return ch+FCH_crit(ch)*(-FCH_CRIT+FCH_HIT);
+	    return ch;
+	},
         points: 7,
         attack: 4,
         range: [2,3],
@@ -2556,7 +2560,7 @@ var UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    sh.wrap_after("modifydefenseroll",this,function(attacker,m,n,ch) {
-		if (attacker.getsector(this)>2&&FE_blank(m,n)>0) return ch+FE_EVADE;
+		if (attacker.getsector(this)>2&&FE_blank(ch,n)>0) ch= ch+FE_EVADE;
 		return ch;
 	    });
 	    sh.adddicemodifier(DEFENSE_M,MOD_M,DEFENSE_M,this,{
@@ -3736,6 +3740,20 @@ var UPGRADES= [
      done:true,
      init: function(sh) {
 	 var self=this;
+	 for (i in sh.weapons) {
+	     var t=FCH_HIT;
+	     var w=sh.weapons[i];
+	     var w0=sh.weapons[0];
+	     if (w0.isprimary&&w0.getattack()>=3) t=FCH_CRIT;
+	     if (w.type.match(/Torpedo|Missile/)) {
+		 w.wrap_after("modifyattackroll",this,function(m,n,d,m2) {
+		     if (FCH_blank(m2,n)>0) m2=m2+t;
+		     else if (FCH_focus(m2)>0) m2=m2-FCH_FOCUS+t;
+		     else if (FCH_crit(m2)>0) m2=m2-FCH_HIT+t;
+		     return m2;
+		 });
+	     }
+	 }
 	 sh.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
 	     req: function(m,n) {
 		 var t=this.weapons[this.activeweapon].type;

@@ -280,6 +280,7 @@ Weapon.prototype = {
 	return (r>=this.getlowrange()&&r<=this.gethighrange());
     },
     modifydamagegiven: function(ch) { return ch; },
+    modifyattackroll: function(ch,n,d) { return ch; },
     modifydamageassigned: function(ch,t) { return ch; },
     canfire: function(sh) {
 	if (typeof sh=="undefined") console.log("undefined unit: "+this.unit.name+" "+this.name);
