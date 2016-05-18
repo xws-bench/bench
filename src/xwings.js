@@ -1729,7 +1729,7 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense) {
     ATable=attackwithreroll(attacker,at,attack);
     //log("Attack "+attack+" Defense "+defense);
     if (defense>0) DTable=defendwithreroll(defender,dt,defense);
-    for (j=0; j<=20; j++) { k[j]=0; }
+    //for (j=0; j<=20; j++) { k[j]=0; }
     for (f=0; f<=attack; f++) {
 	for (h=0; h<=attack-f; h++) {
 	    for (c=0; c<=attack-h-f; c++) {
@@ -1739,10 +1739,8 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense) {
 		var savedreroll=attacker.reroll;
 
 		var a=ATable[FCH_FOCUS*f+FCH_HIT*h+FCH_CRIT*c]; // attack index
-		if (typeof weapon.modifydamagegiven=="function")
-		    n=weapon.modifydamagegiven(n);
-		if (typeof attacker.modifyattackroll=="function")
-		    n=attacker.modifyattackroll(defender,n,attack);
+		if (typeof weapon.modifyattackroll!="undefined") n=weapon.modifyattackroll(n,attack,defender);
+		if (typeof attacker.modifyattackroll!="undefined") n=attacker.modifyattackroll(n,attack,defender);
 		fa=FCH_focus(n);
 		ca=FCH_crit(n);
 		hit=FCH_hit(n);
@@ -1768,11 +1766,10 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense) {
 			else { evade=evade-hit; }
 			if (ca>evade) { i+= FCH_CRIT*(ca-evade); }
 			if (typeof weapon.modifyhit=="function"&&i>0) i=weapon.modifyhit(i);
-
 			attacker.reroll=0;
-			if (typeof attacker.postattack=="function") {
+			/*if (typeof attacker.postattack=="function") {
 			    attacker.postattack(i);
-			}
+			}*/
 			if (typeof weapon.immediateattack!="undefined"
 			    &&weapon.immediateattack.pred(i)
 			    &&typeof attacker.iar=="undefined") {
@@ -1817,7 +1814,7 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense) {
 	    mean+=h*p[i];
 	    meanc+=c*p[i];
 	    // Max 3 criticals leading to 2 damages each...Proba too low anyway after that.
-	    switch(c) {
+	    /*switch(c) {
 	    case 0:
 		for(j=1; j<=c+h; j++) k[j]+=p[i];
 		break;
@@ -1829,11 +1826,12 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense) {
 		for(j=1; j<=c+h; j++) k[j]+=p[i]*(33-7)/33*(32-7)/32;
 		for (j=2; j<=c+h+1; j++) k[j]+=p[i]*(7/33*(1-6/32)+(1-7/33)*7/32);
 		for (j=3; j<=c+h+2; j++) k[j]+=p[i]*7/33*6/32;
-	    }
+	    }*/
 	}
     }
+    //log("proba "+attacker.name+" "+attacker.iar+" "+tot);
     return {proba:p, tohit:Math.floor(tot*10000)/100, meanhit:tot==0?0:Math.floor(mean * 100) / 100,
-	    meancritical:tot==0?0:Math.floor(meanc*100)/100,tokill:k} ;
+	    meancritical:tot==0?0:Math.floor(meanc*100)/100}; //,tokill:k} ;
 }
 
 function probatable(attacker,defender) {
