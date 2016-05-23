@@ -1241,20 +1241,20 @@ var PILOTS = [
         init: function() {
 	    var unit=this;
 	    Unit.prototype.wrap_after("canusefocus",this,function(b) {
-		if (this.getrange(unit)==1&&this.team!=unit.team) return false;
+		if (this.getrange(unit)==1&&this.team!=unit.team&&!unit.dead) return false;
 		return b
 	    });
 	    Unit.prototype.wrap_after("canuseevade",this,function(b) {
 		// Am I attacking Carnor Jax?
-		if (this.getrange(unit)==1&&this.team!=unit.team) return false;
+		if (this.getrange(unit)==1&&this.team!=unit.team&&!unit.dead) return false;
 		return b;
 	    });
 	    Unit.prototype.wrap_after("candofocus",this,function(b) {
-		if (this.getrange(unit)==1&&this.team!=unit.team) return false;
+		if (this.getrange(unit)==1&&this.team!=unit.team&&!unit.dead) return false;
 		return b;
 	    });
 	    Unit.prototype.wrap_after("candoevade",this,function(b) {
-		if (this.getrange(unit)==1&&this.team!=unit.team) return false;
+		if (this.getrange(unit)==1&&this.team!=unit.team&&!unit.dead) return false;
 		return b;
 	    });
 	},
@@ -1992,7 +1992,7 @@ var PILOTS = [
 		n:function() { return 1; },
 		req:function(attacker,w,defender) {
 		    // Serissu dead ? 
-		    if (defender!=this&&defender.getrange(this)==1&&defender.team==this.team) {
+		    if (defender!=this&&!this.dead&&defender.getrange(this)==1&&defender.team==this.team) {
 			defender.log("+%1 reroll(s) [%0]",this.name,1);
 			return true;
 		    }
@@ -2355,7 +2355,7 @@ var PILOTS = [
 	init: function() {
 	    var unit=this;
 	    Unit.prototype.wrap_after("addiontoken",this,function() {
-		if (this.getrange(unit)<=3 &&unit.team!=this.team&&unit.stress==0) {
+		if (!unit.dead&&this.getrange(unit)<=3 &&unit.team!=this.team&&unit.stress==0) {
 		    unit.addstress();
 		    this.resolvehit(1);
 		    unit.log("+1 %cSTRESS%");
@@ -2576,7 +2576,7 @@ var PILOTS = [
 	init: function() {
 	    var self=this;
 	    Unit.prototype.wrap_after("declareattack",this,function(wp,t) {
-		if (self.team==this.team&&self.canusetarget(t))
+		if (!self.dead&&self.team==this.team&&self.canusetarget(t))
 		    self.donoaction([this.newaction(function(n) {
 			this.removetarget(t);
 			t.wrap_after("getdefensestrength",self,function(i,sh,d) {
@@ -2714,7 +2714,7 @@ var PILOTS = [
 	    init: function() {
 		var self=this;
 		Unit.prototype.wrap_before("beginattack",this,function() {
-		    if (this!=self&&this.team==self.team) {
+		    if (!self.dead&&this!=self&&this.team==self.team) {
 			this.wrap_after("canusefocus",self,function(b) {
 			    return b||(self.canusefocus()&&this.getrange(self)<=2);
 			}).unwrapper("endattack");
@@ -3277,7 +3277,7 @@ var PILOTS = [
 	    this.log("share %0 upgrade",elite.name);
 	    Unit.prototype.wrap_after("getupgactionlist",self,function(l) {
 		var p=this.selectnearbyally(3);
-		if (this.ship.name.match(/.*TIE.*Fighter.*/)&&p.indexOf(self)>-1&&elite.candoaction()&&elite.isactive) {
+		if (!self.dead&&this.ship.name.match(/.*TIE.*Fighter.*/)&&p.indexOf(self)>-1&&elite.candoaction()&&elite.isactive) {
 		    this.log("elite action from %0 available",self.name);
 		    elite.unit=this;
 		    l.push({org:elite,action:elite.action,type:elite.type.toUpperCase(),name:elite.name});
@@ -3299,7 +3299,7 @@ var PILOTS = [
 	init: function() {
 	    var self=this;
 	    Unit.prototype.wrap_after("removefocustoken",this,function() {
-		if (this.team==self.team&&this!=self&&this.getrange(self)<=1) {
+		if (!self.dead&&this.team==self.team&&this!=self&&this.getrange(self)<=1) {
 		    self.log("+1 %FOCUS%");
 		    self.addfocustoken();
 		}
@@ -3452,7 +3452,7 @@ var PILOTS = [
 		var t=this;
 		var p=[];
 		var wn=[];
-		if (targetunit==self&&!self.iscloacked&&!self.isfireobstructed()&&self.isinfiringarc(t)&&self.den<round) {
+		if (!self.dead&&targetunit==self&&!self.iscloacked&&!self.isfireobstructed()&&self.isinfiringarc(t)&&self.den<round) {
 		    self.log("retaliate!");
 		    self.select();
 		    for (var i in self.weapons) 
