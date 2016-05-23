@@ -3041,7 +3041,7 @@ var UPGRADES= [
       init: function(sh) {
 	  var self=this;
 	  sh.adddicemodifier(ATTACK_M,MOD_M,DEFENSE_M,this,{
-	      req:function() { return this.evade>0; },
+	      req:function() { return self.unit.evade>0; },
 	      f:function(m,n) {
 		  if (FE_evade(m)>0) {
 		      targetunit.log("%EVADE% -> %FOCUS% [%0]",self.name); 
