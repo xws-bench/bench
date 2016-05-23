@@ -431,6 +431,8 @@ Unit.prototype = {
 	f.org=org;
 	if (typeof org.wrapping=="undefined") org.wrapping=[];
 	org.wrapping.push({name:name,wrap:this});
+	if (typeof save.vanilla!="undefined") f.vanilla=save.vanilla;
+	else f.vanilla=save;
 	f.unwrapper=function(name2) {
 	    var uw=self.wrap_before(name2,org,function(a) {
 		f.unwrap(org);
