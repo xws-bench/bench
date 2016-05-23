@@ -453,7 +453,7 @@ var PILOTS = [
 		n:function() { return 1; },
 		req:function(attacker,w,defender) {
 		    // Howlrunner dead ? 
-		    if (attacker!=this
+		    if (attacker!=this&&!this.dead
 			&&attacker.getrange(this)==1
 			&&attacker.team==this.team&&w.isprimary) {
 			attacker.log("+%1 reroll(s) [%0]",this.name,1);
