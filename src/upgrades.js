@@ -43,10 +43,8 @@ function Laser(u,type,fire) {
 function Bomb(sh,bdesc) {
     $.extend(this,bdesc);
     sh.upgrades.push(this);
-    //log("Installing bomb "+this.name);
     this.isactive=true;
     this.wrapping=[];
-    this.ordnance=sh.ordnance;
     this.unit=sh;
     sh.bombs.push(this);
     this.exploded=false;
@@ -230,7 +228,6 @@ function Weapon(sh,wdesc) {
     this.wrapping=[];
     //log("Installing weapon "+this.name+" ["+this.type+"]");
     this.isactive=true;
-    if (this.type.match(/Missile|Torpedo/)) this.ordnance=sh.ordnance;
     this.unit=sh;
     sh.weapons.push(this);
     //if (this.init != undefined) this.init(sh);
@@ -388,11 +385,13 @@ function Upgrade(sh,i) {
     this.isactive=true;
     this.unit=sh;
     this.wrapping=[];
+    /*
     var addedaction=this.addedaction;
     if (typeof addedaction!="undefined") {
 	var added=addedaction.toUpperCase();
 	sh.shipactionList.push(added);
     }
+*/
     //if (typeof this.init != "undefined") this.init(sh);
 }
 function Upgradefromid(sh,i) {
@@ -411,6 +410,10 @@ Upgrade.prototype = {
 	this.trname=translate(this.name).replace(/\'/g,"&#39;");
 	this.left=(this.unit.team==1);
 	if (typeof this.shield!="undefined" &&this.shield>0) this.hasshield=true; else this.hasshield=false;
+	if (typeof this.switch!="undefined"&&phase==SETUP_PHASE) {
+	    for (j=0; j<this.unit.upgrades.length; j++) if (this.unit.upgrades[j]==this) break;
+	    this.hasswitch={uid:this.unit.id,uuid:j}
+	} else this.hasswitch=false;
 	return Mustache.render(TEMPLATES["upgrade"], this);
     },
     isWeapon: function() { return false; },
@@ -480,7 +483,7 @@ Upgrade.prototype = {
 	    if (typeof this.maxupg!="undefined") sh.maxupg[this.upgrades[0]]=0;
 	    for (var i=0; i<this.upgrades.length; i++) {
 		var num=i+sh["addedupg"+this.id];
-		var e=$("#unit"+sh.id+" .upg span[num="+num+"]");
+		var e=$("#unit"+sh.id+" .upg div[num="+num+"]");
 		if (e.length>0) {
 		    var data=e.attr("data");
 		    removeupgrade(sh,num,data);
@@ -502,7 +505,10 @@ Upgrade.prototype = {
 		if (sh.upgradetype[i]==this.type&&sh.upg[i]==-2)
 		    sh.upg[i]=-1;
 	}
-    }
+    },
+    wrap_before: Unit.prototype.wrap_before,
+    wrap_after: Unit.prototype.wrap_after,
+
 }
 
 var rebelonly=function(p) {

@@ -296,7 +296,7 @@
 	      <tr><th class="m-key">Keys</th><th class="m-action">Action</th></tr>
 	      <tr><td><code>ESC</code></td><td>Go to next phase</td></tr>
 	      <tr class="odd"><td><code>p/shift+p</code></td><td>Show/Hide possible moves for unit.</br>RED:goes out of board (this turn or the next), YELLOW:collides with obstacle, </br>WHITE:collides with unit, GREEN:ok</td></tr>
-	      <tr><td><code>m</code></td><td>Show average move, using only GREEN and WHITE moves, no K-/Talon turns. </br>Use shift+p to hide.</td></tr>
+	      <tr><td><code>m</code></td><td>Show average move, using only GREEN and WHITE moves, no K-/Tallon turns. </br>Use shift+p to hide.</td></tr>
 	      <tr class="odd"><td><code>1/shift+1</code></td><td>Add/Remove <code class="xfocustoken"></code> to selected unit</td></tr>
 	      <tr><td><code>2/shift+2</code></td><td>Add/Remove <code class="xevadetoken"></code> to selected unit</td></tr>
 	      <tr class="odd"><td><code>3/shift+3</code></td><td>Add/Remove <code class="xcloaktoken"></code> to selected unit</td></tr>
@@ -381,10 +381,7 @@ The app is not really a game since the player plays both sides or against an AI,
 	  <ul>
 	    <li><a href="https://github.com/geordanr/xwing-miniatures-font">Xwing-miniatures-font</a> (<a href="https://raw.githubusercontent.com/geordanr/xwing-miniatures-font/master/LICENSE">MIT license</a>)</li>
 	    <li>For card translations:
-	      <ul>
-		<li><a href="https://github.com/geordanr/xwing">Yet Another Squad Builder</a> (<a href="https://github.com/geordanr/xwing/blob/master/LICENSE">MIT license</a>)</li>
-		<li><a href="http://x-wing.fabpsb.net/">Fab's Squadron Builder</a></li>
-	    </ul></li>
+	      <a href="https://github.com/geordanr/xwing">Yet Another Squad Builder</a> (<a href="https://github.com/geordanr/xwing/blob/master/LICENSE">MIT license</a>)</li>
 	    <li><a href="https://github.com/elistevens/xws-spec">JSON
 	  format of X-Wing squadrons</a>, as well as several translations</li>
 	    <li><a href="http://snapsvg.io/">Snap</a> for SVG and <a href="https://jquery.com/">jQuery</a> (resp. <a href="https://raw.githubusercontent.com/adobe-webplatform/Snap.svg/master/LICENSE">Apache 2</a> and MIT licenses)</li>
@@ -471,7 +468,7 @@ The app is not really a game since the player plays both sides or against an AI,
 	    </p>
 	      
 	    <p>Thanks also for all of the contributors reporting bugs and proposing features</p>  
-	    <p>The sounds of space ships, lasers and explosions come from <a href="http://www.sa-matra.net/sounds/starwars/">Sa-Matra</a> website. Thanks !<p/>
+	    <p>The Italian translation comes from Fab's squad builder web site. The sounds of space ships, lasers and explosions come from <a href="http://www.sa-matra.net/sounds/starwars/">Sa-Matra</a> website. Thanks !</p>
 
 	  <p><b>Disclaimer</b></p>
 	  <p>
@@ -497,13 +494,13 @@ The app is not really a game since the player plays both sides or against an AI,
       <div class='title'>Console</div>
       <div class="log" id='log'></div>
     </footer>
-    <script src="js/all.min.js"></script>
-   <script src="js/bench.min.js" async></script>
 
+    <script src="js/all.min.js"></script>
+    <script src="js/bench.min.js" async></script>
     <script>
       if (location.search=="") $("#selectphase").show();
     </script>
-
+    
     <script async>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -512,7 +509,7 @@ The app is not really a game since the player plays both sides or against an AI,
       
       ga('create', 'UA-63149795-1', 'auto');
       ga('send', 'pageview');
-</script>
+    </script>
 
 
     <script id="unit-creation" type="x-tmpl-mustache">
@@ -548,19 +545,18 @@ The app is not really a game since the player plays both sides or against an AI,
 	</div>
       <div class="shipname">{{name}} (<span class="upts">{{points}}</span><span style="display:none" class="pts">{{points}}</span>)</div>
       <div class="shipname" style="font-size:0.8em;color:#ddd">{{shipname}}</div>
-      <div style="font-size:0.8em">{{{actionstring}}}</div>
+      <div style="font-size:0.8em" class="actionlist">{{{actionstring}}}</div>
       </div>
-
+      
       <table class="upgs">
 	<tr>
 	  <td colspan=3 class="upgavail">{{{upgradeaddstring}}}</td>
 	</tr>
-	<tr>
-	  <td colspan=3 class="upg"></td>
-	  <tbody class="upglist"></tbody>
+	<tbody class="upg"></tbody>
+	<tbody class="upglist"></tbody>
       </table>
     </script>
-
+    
     <script id="faction" type="x-tmpl-mustache">
       <table>
 	<tr>
@@ -638,7 +634,7 @@ The app is not really a game since the player plays both sides or against an AI,
       <tr class="{{^isactive}}inactive{{/isactive}} {{#nofire}}nofire{{/nofire}}">
 	<td style="display:{{#left}}none{{/left}}{{^left}}table-cell{{/left}}">
 	  <button class="statfire" onclick="if (!squadron[{{uid}}].isdocked) squadron[{{uid}}].togglehitsector({{rank}})">
-	    {{getattack}}<span class="symbols">{{attackkey}}</span>
+	    <span class="val">{{getattack}}</span><span class="symbols">{{attackkey}}</span>
 	  </button>
 	</td>
 	<td class="tdstat">
@@ -670,7 +666,7 @@ The app is not really a game since the player plays both sides or against an AI,
 	</td>
 	<td class="tdstat">
 	  <span>
-	    {{{trname}}}{{#hasshield}}<code class="cshield" title="{{shield}} shield(s)"></code>{{/hasshield}}
+	    {{{trname}}}{{#hasshield}}<code class="cshield" title="{{shield}} shield(s)"></code>{{/hasshield}}{{#hasswitch}}<code class="smallbutton symbols" onclick="if (!squadron[{{uid}}].isdocked) squadron[{{uid}}].upgrades[{{uuid}}].switch();">î</code>{{/hasswitch}}
 	  </span>
 	</td>
 	<td style="display:{{^left}}none{{/left}}{{#left}}table-cell{{/left}}">
@@ -684,7 +680,7 @@ The app is not really a game since the player plays both sides or against an AI,
 	{{^tooltip}}<td></td>{{/tooltip}}
       </tr>
     </script>
-
+    
     <script id="usabletokens" type="x-tmpl-mustache">
       {{#focus}}<span class="xfocustoken"></span>{{/focus}}{{#focuses}}<sup class="counttoken">x{{.}}</sup>{{/focuses}}
       {{#evade}}<span class="xevadetoken"></span>{{/evade}}{{#evades}}<sup class="counttoken">x{{.}}</sup>{{/evades}}
@@ -693,9 +689,8 @@ The app is not really a game since the player plays both sides or against an AI,
       {{#iscloaked}}<span class='xcloaktoken'></span>{{/iscloaked}}
       {{#stress}}<span class="xstresstoken"></span>{{/stress}}{{#stresses}}<sup class="counttoken">x{{.}}</sup>{{/stresses}}
       {{#ionized}}<span class="xionizedtoken"></span>{{/ionized}}{{#ionizedes}}<sup class="counttoken">x{{.}}</sup>{{/ionizedes}}
-      {{#tractorbeam}}<span class="xtractorbeamtoken"></span>{{/tractorbeam}}{{#tractorbeames}}<sup class="counttoken">x{{.}}</up>{{/tractorbeames}}
+      {{#tractorbeam}}<span class="xtractorbeamtoken"></span>{{/tractorbeam}}{{#tractorbeames}}<sup class="counttoken">x{{.}}</sup>{{/tractorbeames}}
     </script>
-
   </body>
 </html>
 

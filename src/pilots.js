@@ -3549,8 +3549,30 @@ var PILOTS = [
       unit:"TIE Bomber",
       skill:8,
       unique:true,
+      done:true,
       points:24,
-      upgrades:[ELITE,TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB]
+      upgrades:[ELITE,TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB],
+      init: function() {
+	  var self=this;
+	  self.flip=-1;
+	  for (var i=0; i<this.upgrades.length; i++) {
+	      var upg=this.upgrades[i];
+	      if (upg.type==ELITE) (function(upg) {
+		  upg.wrap_after("desactivate",this,function() {
+		      if (self.flip<round) { 
+			  self.donoaction([{org:self,name:self.name,type:"ELITE",
+					    action:function(n) {
+						upg.isactive=true;
+						self.log("name reactivated:"+upg.name);
+						if (typeof upg.init=="function") upg.init(self);
+						self.flip=round;
+						self.endnoaction(n,"ELITE");
+					    }}],"Choose to reactivate an elite upgrade (or not)",true);
+		      }
+		  });
+	      })(upg);
+	  }
+      },
     },
     { name:"Lothal Rebel",
       faction:REBEL,
@@ -3650,30 +3672,21 @@ var PILOTS = [
 	name:"'Deathfire'",
 	faction:EMPIRE,
 	pilotid:189,
-	done:false,
+	done:true,
 	unique:true,
 	unit:"TIE Bomber",
 	skill:3,
 	points:17,
 	upgrades:[TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB],
-	/*init: function() {
+	init: function() {
 	    var i;
 	    for (i=0; i<this.upgrades.length; i++) {
 		var upg=this.upgrades[i];
 		if (typeof upg.action=="function"&&upg.type==BOMB) {
-		    this.addactivationdial(
-			function() { return upg[i].candoaction()&&!this.hasionizationeffect; }.bind(this),
-			function() { 
-			    this.doaction([{org:upg[i],
-					    action:upg[i].action,
-					    type:upg[i].type.toUpperCase(),
-					    name:upg[i].name}]);
-			}.bind(this),
-			A["BOMB"].key,
-			$("<div>").attr({class:"symbols bombs",title:this.name}));
+		    upg.wrap_after("canbedropped",this,Bomb.prototype.canbedropped);
 		}
 	    }
-	}*/
+	}
     },
     {
 	name:"Rey",
