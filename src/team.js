@@ -118,6 +118,9 @@ Team.prototype = {
 	$("#totalpts").html(tot);
     },
     addunit:function(n) {
+	if (n==-1) {
+	    log("unknown addunit pilot "+pilots[n]);
+	}
 	var u=new Unit(this.team,n);
 	$("#listunits").append(""+u);
 	this.updatepoints();
@@ -159,6 +162,15 @@ Team.prototype = {
 	for (i in squadron) {
 	    u=squadron[i];
 	    if (u.team==this.team&&typeof u.init=="function") u.init();
+	}
+	for (i in squadron) {
+	    u=squadron[i];
+	    if (u.team==this.team) {
+		for (var j=0; j<u.upgrades.length; j++) {
+		    var upg=u.upgrades[j];
+		    if (typeof upg.install=="function") upg.install(u);
+		}
+	    }
 	}
 	for (i in squadron) {
 	    u=squadron[i];
@@ -326,7 +338,10 @@ Team.prototype = {
 	    if (pid==-1) {
 		//if (translated==false) return this.parseJuggler(str,true);
 		console.log("pid undefined:"+translated+"!!"+pstr[0]+"!!"+this.faction);
-	    } 
+	    }
+ 	    if (pid==-1) {
+		log("unknown Juggler pilot:"+pilots[i]+"/"+str);
+	    }
 	    var p=new Unit(this.team,pid);
 	    p.upg=[];
 	    var authupg=[MOD,TITLE].concat(PILOTS[p.pilotid].upgrades);
@@ -340,8 +355,7 @@ Team.prototype = {
 				if (UPGRADES[k].upgrades[0]=="Cannon|Torpedo|Missile")
 				    authupg=authupg.concat(["Cannon","Torpedo","Missile"]);
 			    else authupg=authupg.concat(UPGRADES[k].upgrades);
-			    if (typeof UPGRADES[k].install!= "undefined") 
-				UPGRADES[k].install(p);
+
 			    break;
 			} else log("UPGRADE not listed: "+UPGRADES[k].type+" in "+p.name);
 		    }
@@ -361,12 +375,15 @@ Team.prototype = {
 	    var pid=parseInt(updstr[0],10);
 	    this.faction=PILOTS[pid].faction;
 	    this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
+	    if (pid==-1) {
+		log("unknown ASCII pilot "+pilots[i]);
+	    }
 	    var p=new Unit(this.team,pid);
 	    p.upg=[];
 	    for (var j=1; j<updstr.length; j++) {
 		var n=parseInt(updstr[j],10);
 		p.upg[j-1]=n;
-	        if (typeof UPGRADES[n].install!="undefined") UPGRADES[n].install(p);
+	        //if (typeof UPGRADES[n].install!="undefined") UPGRADES[n].install(p);
 	    }
 	    if (coord.length>1) {
 		var c=coord[1].split(",");
@@ -404,6 +421,7 @@ Team.prototype = {
 		}
 	    }
 	    if (pid==-1) throw("pid undefined:"+PILOT_dict[pilot.name]);
+
 	    p=new Unit(this.team,pid);
 	    p.upg=[];
 
@@ -416,7 +434,7 @@ Team.prototype = {
 			for (var z=0; z<UPGRADES.length; z++) 
 			    if (UPGRADES[z].name==UPGRADE_dict[upg[k]]) {
 				p.upg[nupg]=z;
-				if (typeof UPGRADES[z].install != "undefined") UPGRADES[z].install(p);
+				//if (typeof UPGRADES[z].install != "undefined") UPGRADES[z].install(p);
 				break;
 			    }
 		    }

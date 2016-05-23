@@ -328,7 +328,7 @@ vertical-align:top;
 margin-top:-2em
 }
 
-tr:hover .tooltip,.name:hover .tooltip {
+tr:hover .tooltip, .tr:hover .tooltip, .name:hover .tooltip {
 transition:opacity .25s ease-in-out;
 display:block;
 opacity:1
@@ -1151,6 +1151,7 @@ margin:.25em
 padding:2px;
 margin:2px;
 color:#000;
+font-size:smaller;
 background:#FFEBCD
 }
 
@@ -2064,7 +2065,7 @@ src:url(EurostileLTStd-Demi.otf) format("truetype")
 
 ul.caroussel {
 padding:5px 150px 0 25px;
-perspective:780px;
+/*perspective:780px;*/
 background-color:transparent;
 width:calc(100% - 210px);
 white-space:nowrap;

@@ -249,7 +249,7 @@ function Unit(team,pilotid) {
     }
     this.upgradesno=k;
     this.points=PILOTS[pilotid].points;
-    this.install(this);
+    //this.install(this);
     TEAMS[this.team].updatepoints();
 }
 Unit.prototype = {
@@ -438,7 +438,7 @@ Unit.prototype = {
 		return a;
 	    });
 	}
-	f.unwrap=function(o) { 
+	f.unwrap=function(o) {
 	    if (f.org==o) {
 		if (global) self[name]=self.__proto__[name];
 		else self[name]=f.save;
@@ -447,6 +447,7 @@ Unit.prototype = {
 		}
 		self.show();
 	    } else if (typeof f.save.unwrap=="function") f.save=f.save.unwrap(o);
+	    log("showing "+self.name);
 	    self.show();
 	    return self[name];
 	}
@@ -551,8 +552,8 @@ Unit.prototype = {
     },
     toASCII: function() {
 	var s=this.pilotid;
-	for (var i=0; i<this.upg.length; i++) {
-	    var u=this.upg[i];
+	for (var i=0; i<this.upgrades.length; i++) {
+	    var u=this.upgrades[i].id;
 	    if (u>-1) s+=","+u;
 	}
 	s+=":"+Math.floor(this.tx)+","+Math.floor(this.ty)+","+Math.floor(this.alpha);
@@ -1658,6 +1659,12 @@ Unit.prototype = {
 	}.bind(this))*/
 	return true;
     },
+    gettallonrollmatrix: function(m,maneuver) {
+	var m0=this.getpathmatrix(m,maneuver);
+	return [m0.clone().translate(0,-20),
+		m0,
+		m0.clone().translate(0,20)];
+    },
     getrollmatrix:function(m) {
 	var m0=this.getpathmatrix(this.m.clone().rotate(90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(-90,0,0);
 	var m1=this.getpathmatrix(this.m.clone().rotate(-90,0,0),"F1").translate(0,(this.islarge?20:0)).rotate(90,0,0);
@@ -2022,7 +2029,7 @@ Unit.prototype = {
 	    }
 	}
     },
-    completemaneuver: function(dial,difficulty,halfturn) {
+    completemaneuver: function(dial,difficulty,halfturn,finalm) {
 	var path=P[dial].path;
 	var m,oldm;
 	if (dial=="F0") {
@@ -2087,7 +2094,8 @@ Unit.prototype = {
 			this.m.rotate(-90,0,0);
 			turn=-90;
 		    } else if (dial.match(/TRR\d/)) {
-			this.m.rotate(90,0,0);
+			if (typeof finalm!="undefined") this.m=finalm; 
+			else this.m.rotate(90,0,0);
 			turn=90;
 		    } else {
 		    }
@@ -2132,7 +2140,13 @@ Unit.prototype = {
 	var ml=this.getmaneuverlist();
 	for (var i in ml) {
 	    q.push(ml[i]);
-	    if (ml[i].halfturn==true&&!ml[i].move.match(/K\d|SR\d|SL\d/))
+	    if (ml[i].move.match(/TRR\d|TRL\d/)) {
+		var gtr=this.gettallonrollmatrix(this.m,ml[i].move);
+		for (var j=0; j<gtr.length; j++) {
+		    p.push(gtr[j]);
+		    if (j>0) q.push(ml[i]);
+		}
+	    } else if (ml[i].halfturn==true&&!ml[i].move.match(/K\d|SR\d|SL\d/))
 		p.push(this.getpathmatrix(this.m,ml[i].move).rotate(180,0,0));
 	    else p.push(this.getpathmatrix(this.m,ml[i].move));
 	}
@@ -2141,7 +2155,7 @@ Unit.prototype = {
 	    var dial=q[k].move;
 	    var difficulty=q[k].difficulty;
 	    if (q[k].halfturn!=true) q[k].halfturn=false; 
-	    this.completemaneuver(dial,difficulty,q[k].halfturn);
+	    this.completemaneuver(dial,difficulty,q[k].halfturn,p[k]);
 	}.bind(this), false,true);
     },
     endmaneuver: function() {
@@ -2362,7 +2376,7 @@ Unit.prototype = {
 	var self=this;
 	this.activationdial=[];
 	if (this.candropbomb()&&(this.hasionizationeffect())) {
-	    this.log("ionized, cannot drop bombs");
+	    //this.log("ionized, cannot drop bombs");
 	} else if (self.lastdrop!=round) {
 	    switch(this.bombs.length) {
 	    case 3: if (this.bombs[2].canbedropped()) 
@@ -2623,7 +2637,7 @@ Unit.prototype = {
 	var b;
 	var strw="",stru="",strc="";
 	
-	a="<td><button class='statevade' onclick='if (!squadron["+i+"].dead&&!squadron["+i+"].isdocked) squadron["+i+"].togglerange();'>"+this.getagility()+"<span class='symbols'>^</span></button></td>";
+	a="<td><button class='statevade' onclick='if (!squadron["+i+"].dead&&!squadron["+i+"].isdocked) squadron["+i+"].togglerange();'><span class='val'>"+this.getagility()+"</span><span class='symbols'>^</span></button></td>";
 	b="<td></td>";
 	if (this.team==1) strw+="<tr>"+b+a+"</tr>"; else strw+="<tr>"+a+b+"</tr>";
 
@@ -2659,14 +2673,16 @@ Unit.prototype = {
 	return Mustache.render(TEMPLATES["usabletokens"], this);
     },
     showskill:function() {
-	$("#"+this.id+" .statskill").html(this.getskill());
+	var s=this.getskill();
+	$("#unit"+this.id+" .statskill").html(s);
+	$("#"+this.id+" .statskill").html(s);
     },
     showstats: function() {
+	$("#unit"+this.id+" .statevade .val").html(this.getagility());
+	//$("#unit"+this.id+" .statfire .val").html(this.weapons[0].getattack());
 	if (phase==SELECT_PHASE||phase==CREATION_PHASE) {
 	    $("#unit"+this.id+" .stathull .val").html(this.ship.hull);
 	    $("#unit"+this.id+" .statshield .val").html(this.ship.shield);
-	    $("#unit"+this.id+" .statevade .val").html(this.getagility());
-	    $("#unit"+this.id+" .statfire .val").html(this.weapons[0].getattack());
 	} else {
 	    this.skillbar.attr({text:repeat('u',this.getskill())});
 	    this.firebar.attr({text:repeat('u',this.weapons[0].getattack())});

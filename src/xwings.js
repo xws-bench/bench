@@ -1,4 +1,13 @@
-var phase=1;
+/* modifications:
+   - cool hand bug
+   - Tomax Bren
+   -creation screen, perspective removed, upgrade installation checked and corrected for some (skill)
+   - Systems officer added
+   -adaptability: one card, duality handled in setup
+   -setup with new upgrades added
+   -creation screen, mist hunter + cannon corrected (cannon couldn't be removed)
+   
+*/var phase=1;
 var subphase=0;
 var round=1;
 var skillturn=0;
@@ -87,7 +96,20 @@ var SETUPS={
     }
 }
 
+function changeimage(input) {
+    console.log("files"+input.files+" "+input.files[0]);
+    if (input.files && input.files[0]) {
+	var reader=new FileReader();
+	reader.onload=function(e) {
+	    var bb=ZONE[0].getBBox();
+	    var BACKGROUND = s.image(e.target.result,0,0,bb.w,bb.h).pattern(0,0,bb.w,bb.h);
+	    ZONE[0].attr({fill:BACKGROUND,fillOpacity:1});
 
+	}
+	reader.readAsDataURL(input.files[0]);
+    }
+}
+//?GwdgXAHAjANAnAVngBgNxQEwygFgmECbBJONTGYJKAZmrwKRuBXTxho9kxrAxYhYyqAGQ0QlfBBCcSSALTDcRGtwycZkHLAwT5UCGhBwO2Chiw5kkKEkEnFaERgg4OJGPolocbjLEVsNBpkSk8DP1R5CA1wlxhyDygJBAkoNHl+GH4HWjsRADMAQwAbAGcAU0LSypEAYRKisrKASwBjESA#
 function center() {
     var bbox=activeunit.g.getBBox();
     var xx=(bbox.x+bbox.width/2);
@@ -138,14 +160,26 @@ var AIstats = function(error,options, response) {
 	}
     }
 }
+var mk2split = function(t) {
+    var tt=t.split("\.");
+    var r=[];
+    var missing=false;
+    for (var i=1; i<tt.length; i++) {
+	if (tt[i].match(/_II.*/)) { r.push(tt[i-1]+"."+tt[i]); tt[i]=null; missing=false;} 
+	else { if (tt[i-1]) r.push(tt[i-1]); missing=true; }
+    }
+    if (missing) r.push(tt[tt.length-1]);
+    return r;
+}
 var myCallback = function (error, options, response) {
    if (response!=null&&typeof response.rows!="undefined") {
 	//console.log("found "+response.rows.length);
 	var t=SEARCHINGSQUAD,t1="",s1="";
-	var tt=t.split("\.");
+	var tt=mk2split(t);
 	for (var i=0; i<tt.length; i++) {
 	    t1+=tt[i].replace(/\*/g," + ").replace(/_/g," ")+"<br>";
 	    s1+=tt[i].replace(/\*/g," + ").replace(/_/g," ")+"\n";
+	    log(tt[i].replace(/\*/g," + ").replace(/_/g," ")+"<br>");
 	}
 	stype="";
 	TEAMS[1].parseJuggler(s1,false);
@@ -167,8 +201,8 @@ var myTemplate = function(num,cells,cellarrays,labels) {
     var score2=ts2[1];
     var squad=cells[1];
     var tt=squad.split("VS");
-    var team1=tt[0].split("\.");
-    var team2=tt[1].split("\.");
+    var team1=mk2split(tt[0]);
+    var team2=mk2split(tt[1]);
     var t1="",s1="";
 
     if (tt[0]==SEARCHINGSQUAD) { var sc=score2,ts=type2; team1=team2; score2=score1; type2=type1; score1=sc; type1=ts; }
@@ -200,8 +234,8 @@ var computeurl=function(error, options,response) {
     	for (var i=1; i<10; i++) {
 	    var squad=response.rows[i].cellsArray[0];
 	    var tt=squad.split("VS");
-	    var team1=tt[0].split("\.");
-	    var team2=tt[1].split("\.");
+	    var team1=tt[0].split("\.(?! II)");
+	    var team2=tt[1].split("\.(?! II)");
 	    var s1="",s2="";
 	    for (var j=0; j<team1.length-1; j++) {
 		s1+=team1[j].replace(/\*/g," + ").replace(/_/g," ")+"\n";
@@ -994,6 +1028,7 @@ function addupgradeaddhandler(u) {
 	for (var i=0; i<p.length; i++) {
 	    var upg=UPGRADES[p[i]];
 	    var disabled=false;
+	    if (upg.invisible) continue;
 	    var pts=upg.points+this.upgbonus[org];
 	    if (upg.points>0&&pts<0) pts=0;
 	    var tt=">";
@@ -1003,7 +1038,7 @@ function addupgradeaddhandler(u) {
 	    if (text!="") tt=" class='tooltip'>"+text+(upg.done==true?"":"<div><strong class='m-notimplemented'></strong></div>");
 
 	    if (UNIQUE[upg.name]==true) disabled=true;
-	    if ((upg.limited==true||this.exclupg[upg.type]==true)&&$("#unit"+this.id+" .upg span[data="+p[i]+"]").length>0) disabled=true;
+	    if ((upg.limited==true||this.exclupg[upg.type]==true)&&$("#unit"+this.id+" .upg tr[data="+p[i]+"]").length>0) disabled=true;
 	    $("#unit"+this.id+" .upglist").append("<tr><td><button "+(disabled?"disabled":"")+" num="+num+" data="+p[i]+">+</button></td><td>"+translate(upg.name).replace(/\(Crew\)/g,"")+"</td><td>"+pts+"</td><td>"+attack+"</td><td"+tt+"</td></tr>")
 	}
 	$("#unit"+this.id+" .upglist button").click(function(e) {
@@ -1026,7 +1061,7 @@ function addunit(n) {
     $("#unit"+u.id+" .close").click(function() {
 	var data=$(this).attr("data");
 	var u=generics["u"+data];
-	$("#unit"+data+" .upg div[data]").each(function() {
+	$("#unit"+data+" .upg tr[data]").each(function() {
 	    var d=$(this).attr("data");
 	    if (UPGRADES[d].unique==true) removeunique(UPGRADES[d].name);
 	});
@@ -1039,7 +1074,7 @@ function addunit(n) {
 	var data=$(this).attr("data");
 	var u=generics["u"+data];
 	var self=addunit(u.pilotid);
-	$("#unit"+data+" .upg div[data]").each(function() {
+	$("#unit"+data+" .upg tr[data]").each(function() {
 	    var d=$(this).attr("data");
 	    var num=$(this).attr("num");
 	    if (UPGRADES[d].unique!=true&&u.upgnocopy!=d) addupgrade(self,d,num);
@@ -1060,7 +1095,11 @@ function addupgrade(self,data,num,noremove) {
     if (typeof self.upgbonus[org.type]=="undefined") self.upgbonus[org.type]=0;
     var pts=org.points+self.upgbonus[org.type];
     if (org.points>=0&&pts<0) pts=0;
-    $("#unit"+self.id+" .upg").append("<div data="+data+" num="+num+"><code class='upgrades "+org.type+"'></code>"+text+"<span class='pts'>"+pts+"</span></div>");
+    var tt="";
+    var tttext=formatstring(getupgtxttranslation(org.name,org.type));
+    if (tttext!="") tt="<div class='tooltip'>"+tttext+(org.done==true?"":"<div><strong class='m-notimplemented'></strong></div></div>");
+
+    $("#unit"+self.id+" .upg").append("<tr data="+data+" num="+num+"><td><code class='upgrades "+org.type+"'></code></td><td>"+text+tt+"</td><td class='pts'>"+pts+"<button>-</button></td></tr>");
     self.upg[num]=data;
     Upgrade.prototype.install.call(org,self);
     if (typeof org.install!="undefined") org.install(self);
@@ -1071,9 +1110,9 @@ function addupgrade(self,data,num,noremove) {
     self.showstats();
     currentteam.updatepoints();
     if (typeof noremove=="undefined") { 
-	$("#unit"+self.id+" .upg div[num="+num+"]").click(function(e) {
-	    var num=e.currentTarget.getAttribute("num");
-	    var data=e.currentTarget.getAttribute("data");
+	$("#unit"+self.id+" .upg tr[num="+num+"] button").click(function(e) {
+	    var num=e.currentTarget.parentElement.parentElement.getAttribute("num");
+	    var data=e.currentTarget.parentElement.parentElement.getAttribute("data");
 	    $("#unit"+self.id+" .upglist").empty();
 	    removeupgrade(self,num,data);
 	}.bind(self));
@@ -1083,7 +1122,7 @@ function addupgrade(self,data,num,noremove) {
 function removeupgrade(self,num,data) {
     var org=UPGRADES[data];
    $("#unit"+self.id+" .upgavail span[num="+num+"]").css("display","block");
-    $("#unit"+self.id+" .upg div[num="+num+"]").remove();
+    $("#unit"+self.id+" .upg tr[num="+num+"]").remove();
     if (org.unique==true) removeunique(org.name);
     if (org.limited==true) removelimited(self,data);
     self.upg[num]=-1;
@@ -1321,10 +1360,13 @@ function nextphase() {
 		stroke:halftone(WHITE),
 		strokeDasharray:"20,10,5,5,5,10",
 		id:'ZONE',
+	        fillOpacity:0,
 		pointerEvents:"none"
 	    });
+	$("#imagebg").change(function() {
+	    changeimage(this);
+	});
 	if (SETUP.background!="") $(".playmat").css({background:"url("+SETUP.background+") no-repeat",backgroundSize:"100% 100%"});
-	ZONE[0].attr("fillOpacity",0);
 	ZONE[0].appendTo(VIEWPORT);
 	ZONE[1]=s.path(SETUPS.zone1).attr({
 		fill: TEAMS[1].color,
@@ -2080,11 +2122,9 @@ $(document).ready(function() {
 		var d=a.points-b.points;
 		if (d==0) return a.name.localeCompare(b.name);
 		else return d;
-	    });*/
+	    });*/	
 
-	
-
-	var n=0,u=0,ut=0;
+	var n=0,u=0,ut=0,ntot=0;
 	var str="";
 	for (i=0; i<PILOTS.length; i++) {
 	    if (PILOTS[i].done==true) { if (PILOTS[i].unique) u++; n++; }
@@ -2098,12 +2138,14 @@ $(document).ready(function() {
 	n=0;
 	str="";
 	for (i=0; i<UPGRADES.length; i++) {
+	    if (UPGRADES[i].invisible) continue; 
 	    if (UPGRADES[i].done==true) n++;
-	    else str+=", "+(UPGRADES[i].unique?".":"")+UPGRADES[i].name;
+	    else str+=(str==""?"":", ")+(UPGRADES[i].unique?".":"")+UPGRADES[i].name;
+	    ntot++;
 	}
 	$(".ver").html(VERSION);
-	log(n+"/"+UPGRADES.length+" upgrades implemented");
-	log("Upgrades NOT implemented"+str);
+	log(n+"/"+ntot+" upgrades with full effect");
+	log("Upgrades NOT working yet:"+str);
 	$("#showproba").prop("disabled",true);
 	var d=new Date();
 

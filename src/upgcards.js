@@ -1700,8 +1700,15 @@ var UPGRADES= [
 	    if (!this.isactive) return;
 	    var p=this.unit.selectnearbyally(2);
 	    if (p.length>0) {
-		if (p.length==2) {
+		if (p.length==1) {
+		    p[0].addfocustoken();
+		    this.unit.addstress();
+		    this.unit.endaction(n,CREW);
+		}else if (p.length==2) {
 		    p[0].addfocustoken(); p[1].addfocustoken();
+		    p[0].log("adding focus");
+		    p[1].log("adding focus");
+		    this.unit.log("addstress");
 		    this.unit.addstress();
 		    this.unit.endaction(n,CREW);
 		} else {
@@ -2073,17 +2080,21 @@ var UPGRADES= [
 	done:true,
         init: function(sh) {
 	    var self=this;
-	    sh.wrap_before("begincombatphase",this,function() {
-		this.selectunit(this.selectnearbyenemy(1),function(p,k) {
-		    this.resolvehit(1);
-		    this.addiontoken();
-		    SOUNDS.explode.play();
-		    p[k].resolvehit(1);
-		    p[k].checkdead();
-		    this.checkdead();
-		    this.hasfired=true;
-		    this.hasdamaged=true;
-		}, ["select unit (or self to cancel) [%0]",self.name],true);
+	    /* TODO: timing pas terrible */
+	    sh.wrap_before("doattack",this,function(forced) {
+		this.donoaction([{name:self.name,org:self,type:"ILLICIT",action:function(n){
+		    this.selectunit(this.selectnearbyenemy(1),function(p,k) {
+			this.resolvehit(1);
+			this.addiontoken();
+			SOUNDS.explode.play();
+			p[k].resolvehit(1);
+			p[k].checkdead();
+			this.checkdead();
+			this.hasfired=true;
+			this.hasdamaged=true;
+		    }, ["select unit (or self to cancel) [%0]",self.name],false);
+		    this.endnoaction(n);
+		}.bind(this)}]);
 	    });
 	},
         points: 2,
@@ -2342,17 +2353,20 @@ var UPGRADES= [
 	type:MOD,
 	done:true,
 	install:function(sh) {
+	    sh.log("installing getagility");
 	    sh.wrap_after("getagility",this,function(a) { return a+1;});
 	    sh.showstats();
 	},
 	uninstall:function(sh) {
 	    sh.getagility.unwrap(this);
+	    sh.log("uninstalling "+this.name+" agility:"+sh.getagility());
 	    sh.showstats();
 	},
 	init: function(sh) {
 	    var upg=this;
 	    sh.log("+1 agility [%0]",upg.name)
 	    sh.wrap_before("resolveishit",this,function(t) {
+		upg.uninstall(this);
 		upg.desactivate(); 
 		this.log("%0 is hit => destroyed",upg.name);
 		this.show();
@@ -2795,8 +2809,12 @@ var UPGRADES= [
 	isWeapon: function() { return false; },
         points: 2,
 	done:true,
-	install: function(sh) { sh.ordnance=true;  },
-	uninstall: function(sh) { sh.ordnance=false;  }
+	init: function(sh) { 
+	    for (var i=0; i<sh.upgrades.length; i++) {
+		var u=sh.upgrades[i];
+		if (u.type.match(/Missile|Torpedo|Bomb/)) u.ordnance=true;
+	    }
+	},
     },
     {
         name: "Cluster Mines",
@@ -2998,15 +3016,13 @@ var UPGRADES= [
       init: function(sh) {
 	  var self=this;
 	  sh.wrap_after("addstress",this,function() {
-	      /* No stress action ? as.call(this);*/
-	      this.stress++;
-	      this.donoaction([{type:FOCUS,name:self.name,org:self,
+	      this.donoaction([{type:"FOCUS",name:self.name,org:self,
 				action:function(n) {
 				    self.desactivate();
 				    this.addfocustoken();
 				    this.endnoaction(n,"ELITE");
 				}.bind(this)},
-			       {type:EVADE,name:self.name,org:self,
+			       {type:"EVADE",name:self.name,org:self,
 				action:function(n) {
 				    self.desactivate();
 				    this.addevadetoken();
@@ -3874,44 +3890,25 @@ var UPGRADES= [
 	 // Search for TB
 	 for (tb=0; tb<UPGRADES.length; tb++) if (UPGRADES[tb].name=="Tractor Beam") break;
 	 if (tb==UPGRADES.length) return;
-	 for (j=0; j<sh.upgradetype.length; j++) if (sh.upg[j]==tb) break;
-	 if (sh.upg[j]!=tb)
-	     for (j=0; j<sh.upgradetype.length; j++) {
-		 if (sh.upgradetype[j]==UPGRADES[tb].type&&sh.upg[j]==-1) { addupgrade(sh,tb,j,true); sh.log("%0 added [%1]",UPGRADES[tb].name,this.name); break; }
+	 for (j=0; j<sh.upgradetype.length; j++) {
+	     if (sh.upgradetype[j]==UPGRADES[tb].type&&sh.upg[j]==-1) {
+		 addupgrade(sh,tb,j,true); sh.log("%0 added [%1]",UPGRADES[tb].name,this.name); 
+		 break; 
 	     }
-     }
+	 }
+     },
     },
     {
 	name:"Adaptability(+1)",
 	type:ELITE,
 	points:0,
-	done:true,
-	install: function(sh) {
-	    sh.wrap_after("getskill",this,function(s) {
-		return s+1;
-	    });
-	    sh.showskill();
-	},
-	uninstall: function(sh) {
-	    sh.getskill.unwrap(this);
-	    sh.showskill();
-	},
+	invisible:true,
     },
     {
 	name:"Adaptability(-1)",
 	type:ELITE,
 	points:0,
-	done:true,
-	install: function(sh) {
-	    sh.wrap_after("getskill",this,function(s) {
-		return s-1;
-	    });
-	    sh.showskill();
-	},
-	uninstall: function(sh) {
-	    sh.getskill.unwrap(this);
-	    sh.showskill();
-	},
+	invisible:true,
     },
     { 
 	name:"Dengar",
@@ -4205,6 +4202,47 @@ var UPGRADES= [
 			t.addiontoken();
 		    }
 		} else t.log("no effect [%0]",upg.name);
+	    });
+	}
+    },
+    {
+	name:"Adaptability",
+	type:ELITE,
+	points:0,
+	done:true,
+	faceup:false,
+	switch: function() {
+	    this.faceup=!this.faceup;
+	    if (this.faceup) this.name="Adaptability(+1)"; 
+	    else this.name="Adaptability(-1)";
+	    this.unit.showskill();
+	},
+	init: function(sh) {
+	    var self=this;
+	    sh.wrap_after("getskill",this,function(s) {
+		return (self.faceup?s+1:s-1);
+	    });
+	    this.switch();
+	    sh.showskill();
+	},
+    },
+    {
+	name:"Systems Officer",
+	type:CREW,
+	limited:true,
+	faction:EMPIRE,
+	done:true,
+	points:2,
+	init: function(sh) {
+            sh.wrap_after("handledifficulty",this,function(d) {
+		var a=this.selectnearbyally(1)
+		if (d=="GREEN"&&a.length>0){ 
+		    this.selectunit(a,function(p,k) {
+			p[k].selectunit(p[k].gettargetableunits(3),function(pp,kk) {
+			    this.addtarget(pp[kk]);
+			},["select target to lock"],false);
+		    },["select unit for free %TARGET% (or self to cancel)"],true);
+		}
 	    });
 	}
     },
