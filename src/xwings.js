@@ -1,12 +1,13 @@
 /* modifications:
    - cool hand bug
    - Tomax Bren
+   -Deathfire 
    -creation screen, perspective removed, upgrade installation checked and corrected for some (skill)
    - Systems officer added
    -adaptability: one card, duality handled in setup
    -setup with new upgrades added
    -creation screen, mist hunter + cannon corrected (cannon couldn't be removed)
-   
+   - feedback array more of less corrected
 */var phase=1;
 var subphase=0;
 var round=1;
@@ -459,6 +460,7 @@ function displayattacktokens2(u,f) {
 function displaydefensetokens(u,f) {
     $("#dtokens").empty();
     var dm=activeunit.getresultmodifiers(u.dr,u.dd,ATTACK_M,DEFENSE_M);
+    log("attack/defense: "+dm.length);
     if (dm.length>0) {
 	$("#dtokens").append(dm);
 	//$("#dtokens td").click(function() { displaydefensetokens(u,f); });
@@ -2435,8 +2437,8 @@ var replayall=function() {
     if (typeof FTABLE[c[1]]=="string") {
 	var f=Unit.prototype[FTABLE[c[1]]];
 	if (typeof f=="undefined") log("ftable "+c[1]+" "+FTABLE[c[1]]);
-	if (typeof f.vanilla=="function") f.vanilla.call(u,t);
-	else f.call(u);
+	if (typeof f.vanilla=="function") { f.vanilla.call(u,t); }
+	else {  f.call(u);}
 	actionrlock.notify();
 	return;
     }
