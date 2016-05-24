@@ -44,7 +44,7 @@
 	  <button class="m-reset permalink" onclick="resetlink()" >&lt; </button>
 	  <span id="phase"></span>
 	  <button class="nextphase" onclick="nextphase()"><span class='np'></span> <span id='npimg'>&gt;</span></button>
-	  <span class="menu" onmouseover="$('nav ul').css({display:'block',visibility:'visible'})" onmouseout="$('nav ul').css({display:'none',visibility:'hidden'})"><span class="symbols" style="padding:5px;vertical-align:bottom;color:white;font-size:larger;">&#xE2;</span>
+	  <span class="menu" ><span class="symbols" style="padding:5px;vertical-align:bottom;color:white;font-size:larger;">&#xE2;</span>
 	    <ul>
 	      <li><a class="m-about" href="#about"></a></li>
 	      <li><a class="m-help" href="http://xws-benchmark.blogspot.fr/p/how-to-play.html" target="_blank"></a></li>
@@ -497,6 +497,7 @@ The app is not really a game since the player plays both sides or against an AI,
 
     <script src="js/all.min.js"></script>
     <script src="js/bench.min.js" async></script>
+
     <script>
       if (location.search=="") $("#selectphase").show();
     </script>

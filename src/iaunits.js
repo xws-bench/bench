@@ -48,7 +48,7 @@ IAUnit.prototype= {
 		var d=gd[i];
 		if (d.color==BLACK) continue;
 		var mm=this.getpathmatrix(this.m,gd[i].move);
-		var n=12-4*COLOR.indexOf(d.color);
+		var n=24-8*COLOR.indexOf(d.color);
 		if (d.color==RED) n-=20;
 		var n0=n;
 		var oldm=this.m;

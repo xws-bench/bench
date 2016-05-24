@@ -240,6 +240,7 @@ function Unit(team,pilotid) {
     var up=PILOTS[pilotid].upgrades;
     this.upg=[];
     this.upgbonus=[];
+    this.log("setting upg to -1");
     for (j=0; j<10; j++) {this.upg[j]=-1};
     this.upgradetype=[];
     for (k=0; k<up.length; k++) this.upgradetype[k]=up[k];
@@ -997,6 +998,31 @@ Unit.prototype = {
 	}
 	return mine;
     },
+    getBall: function(m) {
+	return { x:m.x(0,0),y:m.y(0,0),diam:this.islarge?56:28 };
+    },
+    fastgetocollisions: function(mbegin,mend,path,len) {
+	var k,i,j;
+	// Overlapping obstacle ?
+	var pp=[];
+	var tb=this.getBall(mend);
+	for (i=0; i<=len; i+=len/5) {
+	    var p=path.getPointAtLength(i);
+	    pp.push({x:mbegin.x(p.x,p.y),y:mbegin.y(p.x,p.y)});
+	}
+	//s.circle(tb.x,tb.y,tb.diam).attr({fill:"#f00"});
+
+	for (k=0; k<OBSTACLES.length; k++){
+	    var b=OBSTACLES[k].getBall();
+	    //s.circle(b.x,b.y,b.diam).attr({fill:"#fff"});
+	    var d=(b.diam+tb.diam)*(tb.diam+b.diam);
+	    //log("ob"+k+" "+b.x+"x"+b.y+","+tb.x+"x"+tb.y+"<"+d);
+	    if ((b.x-tb.x)*(b.x-tb.x)+(b.y-tb.y)*(b.y-tb.y)<d) return true;
+	    for (i=0; i<pp.length; i++) 
+	 	if ((b.x-pp[i].x)*(b.x-pp[i].x)+(b.y-pp[i].y)*(b.y-pp[i].y)<d) return true;
+	}
+	return false;
+    },
     getocollisions: function(mbegin,mend,path,len) {
 	var k,i,j;
 	var pathpts=[],os=[],op=[];
@@ -1018,7 +1044,7 @@ Unit.prototype = {
 	}
 	if (typeof path!="undefined") {
 	    // Template overlaps ? 
-	    for (i=0; i<=len; i++) {
+	    for (i=0; i<=len; i+=5) {
 		var p=path.getPointAtLength(i);
 		pathpts.push({x:mbegin.x(p.x,p.y),y:mbegin.y(p.x,p.y)});
 	    }
@@ -1074,29 +1100,22 @@ Unit.prototype = {
     },
     /* TODO: should prevent collision with obstacles if collision with
      * unit shortens path */
-    getmovecolor: function(m,withcollisions,withobstacles,path,len) {
+    getmovecolor: function(m,withcollisions,withobstacles,path,len,order) {
 	var i,k;
 	if (!this.isinzone(m)) return RED;
-	var so=this.getOutlineString(m);
-	if (withobstacles) {
-	    var c=this.getocollisions(this.m,m,path,len);
-	    if (c.overlap>-1||c.mine.length>0||c.template.length>0) return YELLOW;
-	}
+	if (withobstacles&&this.fastgetocollisions(this.m,m,path,len))
+	    return YELLOW;
  	if (withcollisions) {
+	    var so=this.getOutlineString(m);
+	    var sk=this.getskill();
 	    for (k in squadron) {
 		var u=squadron[k];
-		var um=u.m;
 		if (u==this) continue;
-		/*if (typeof u.newm!="undefined") {
-		    um=u.newm;
-		}*/
-		var su=u.getOutlineString(um);
+		var m=(order?u.futurem:u.m);
+		var su=u.getOutlineString(m);
 		if (Snap.path.intersection(su.s,so.s).length>0
 		    ||((this.islarge&&!u.islarge&&this.isPointInside(so.s,su.p)))
-		    ||((!this.islarge&&u.islarge)&&this.isPointInside(su.s,so.p))) 
-		{
-		    return WHITE;
-		    }
+		    ||((!this.islarge&&u.islarge)&&this.isPointInside(su.s,so.p))) return WHITE;
 	    }
 	}
 	return GREEN;
@@ -1489,37 +1508,43 @@ Unit.prototype = {
 	var mx=0,my=0,ma=0;
 	var g=0;
 	var i;
-	var cmax=function(a,b) {
-	    if (a==BLACK||a==RED||(a==YELLOW&&(b==GREEN||b==WHITE))||(a==WHITE&&b==GREEN))
-		return a;
-	    return b;
-	}
-	var cmin=function(a,b) {
-	    if (cmax(a,b)==a) return b;
-	    return a;
-	}
+	var VALUES={"#000":0,"#F00":1,"#FF0":2,"#FFF":3,"#0F0":4};
 	NOLOG=false;
 	var ref=(this.m.split().rotate+360+180)%360-180;
 
 	for (i=0; i<gd.length; i++) {
-	    var next=[];
+	    gd[i].path=P[gd[i].move].path;
+	    gd[i].len=gd[i].path.getTotalLength();
+	}
+	var m=this.m;
+	for (i=0; i<gd.length; i++) {
 	    var mm = this.getpathmatrix(this.m,gd[i].move);
 	    gd[i].m=mm;
 	    if (!this.canreveal(gd[i])) gd[i].color=BLACK; 
 	    else {
-		var c=RED;
-		gd[i].color=this.getmovecolor(mm,withcollisions,withobstacles);
-		if (gd[i].color!=RED&&gd[i].color!=BLACK&&withcollisions&&withobstacles) {
+		var color=this.getmovecolor(mm,withcollisions,withobstacles,gd[i].path,gd[i].len,true);
+		gd[i].color=color;
+		
+		if (color!=RED&&color!=BLACK&&withcollisions&&withobstacles) {
+		    var c=RED;
 		    for (j=0; j<gd.length; j++) {
-			if (gd[j].move=="F0"||(gd[j].difficulty=="RED"&&
-			    ((this.stress>0&&gd[i].difficulty!="GREEN")
-			 ||gd[i].difficulty=="RED"))) continue;
-			var mmm=this.getpathmatrix(mm,gd[j].move);
-			c=cmin(c,this.getmovecolor(mmm,false,false));
+			if (gd[j].move=="F0") continue;
+			//if (gd[j].move=="F0"||(gd[j].difficulty=="RED"&&
+			//    ((this.stress>0&&gd[i].difficulty!="GREEN")
+			// ||gd[i].difficulty=="RED"))) continue;
+			// Simplification: no need to uturn here.
+			var mmm=this.getmatrixwithmove(mm,gd[j].path,gd[j].len);
+			ccc=GREEN;
+			if (!this.isinzone(mmm)) ccc=RED;
+			else if (withobstacles&&this.fastgetocollisions(mm,mmm,gd[j].path,gd[j].len)) ccc=YELLOW;
+			    //this.log("trying "+gd[i].move+"-> "+gd[j].move+" "+fc);
+			if (VALUES[ccc]>VALUES[c]) c=ccc;
 		    }
-		    if (gd[i].move!="F0") gd[i].color=cmax(c,gd[i].color);
+		    if (gd[i].move!="F0") 
+			if (VALUES[c]<VALUES[color]) gd[i].color=c;
 		}
-		//this.log(">"+gd[i].move+" "+gd[i].color);
+		
+		//this.log(">"+gd[i].move+" "+gd[i].color+" "+withobstacles);
 	    }
 	    if ((gd[i].color==GREEN||gd[i].color==WHITE)&&!gd[i].move.match(/K\d|SR\d|SL\d|TRL\d|TRR\d/)) {
 		var gpm=mm.split();
