@@ -461,10 +461,11 @@ Upgrade.prototype = {
 	// Emperor
 	if (typeof this.takesdouble!="undefined") {
 	    var j;
-	    for (j=0; j<sh.upgradetype.length; j++)
-		if (sh.upgradetype[j]==this.type&&(sh.upg[j]==-1||UPGRADES[sh.upg[j]].name!=this.name)) {
+	    for (j=0; j<sh.upgradetype.length; j++){
+		if (sh.upgradetype[j]==this.type&&(sh.upg[j]<0||UPGRADES[sh.upg[j]].name!=this.name)) {
 		    break;
 		}
+	    }
 	    if (j<sh.upgradetype.length) {
 		if (sh.upg[j]>-1) removeupgrade(sh,j,sh.upg[j]);
 		sh.upg[j]=-2;

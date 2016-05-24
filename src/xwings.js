@@ -460,7 +460,6 @@ function displayattacktokens2(u,f) {
 function displaydefensetokens(u,f) {
     $("#dtokens").empty();
     var dm=activeunit.getresultmodifiers(u.dr,u.dd,ATTACK_M,DEFENSE_M);
-    log("attack/defense: "+dm.length);
     if (dm.length>0) {
 	$("#dtokens").append(dm);
 	//$("#dtokens td").click(function() { displaydefensetokens(u,f); });
@@ -476,7 +475,6 @@ function displaydefensetokens2(u,f) {
     $("#dtokens").append(u.getresultmodifiers(u.dr,u.dd,DEFENSE_M,DEFENSE_M));
     //$("#dtokens td").click(function() { displaydefensetokens2(u,f); });
     if (FAST) { 	    
-	activeunit.log("fire hidden");
 	$("#combatdial").hide(); 
 	f(); 
     } else {
@@ -2042,6 +2040,13 @@ $(document).ready(function() {
 	  K4:{path:s.path("M 0 0 L 0 -200").attr({display:"none"}), speed: 4, key:"2"},
 	  K5:{path:s.path("M 0 0 L 0 -240").attr({display:"none"}), speed: 5, key: "2" }
 	};
+
+    $(".menu").mouseover(function() {
+	$(".menu ul").css({display:'block',visibility:'visible'})
+    }).mouseout(function() {
+	$('nav ul').css({display:'none',visibility:'hidden'})
+    });
+
     // Load unit data
     var availlanguages=["en","fr","de","es","it","pl"];
     LANG = localStorage['LANG'] || window.navigator.userLanguage || window.navigator.language;
