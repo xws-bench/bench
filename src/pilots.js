@@ -3520,17 +3520,17 @@ var PILOTS = [
 		this.selectunit(this.selectnearbyally(4),function(p,k) {
 		    var f=this.focus,e=this.evade
 		    for (var i=0; i<f; i++) {
-			p[k].addfocustoken();
 			this.removefocustoken();
+			p[k].addfocustoken();
 		    }
 		    for (var i=0; i<e; i++) {
-			p[k].addevadetoken();
 			this.removeevadetoken();
+			p[k].addevadetoken();
 		    }
 		    var t=this.targeting;
 		    for (var i=t.length-1;i>=0; i--) {
-			p[k].addtarget(t[i]);
 			this.removetarget(t[i]);
+			p[k].addtarget(t[i]);
 		    }
 		    var t=this.istargeted;
 		    for (var i=t.length-1;i>=0; i--) {
