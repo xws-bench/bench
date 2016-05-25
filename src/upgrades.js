@@ -55,6 +55,10 @@ Bomb.prototype = {
     isBomb: function() { return true; },
     canbedropped: function() { return this.isactive&&!this.unit.hasmoved&&this.unit.lastdrop!=round; },
     desactivate:Unit.prototype.desactivate,
+    getBall: function() {
+	var b=this.g.getBBox();
+	return {x:b.x+b.width/2,y:b.y+b.height/2,diam:Math.max(b.width/2,b.height/2)};
+    },
     actiondrop: function(n) {
 	this.unit.lastdrop=round;
 	$(".bombs").remove(); 

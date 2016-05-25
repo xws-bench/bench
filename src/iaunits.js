@@ -223,27 +223,6 @@ IAUnit.prototype= {
 		this.resolvenoaction(a,n);
 	    }.bind(this),"donoaction ia");
     },
-    setpriority:function(action) {
-	var PRIORITIES={"FOCUS":3,"EVADE":1,"CLOAK":4,"TARGET":2,"CRITICAL":10};
-	var p=PRIORITIES[action.type];
-	if (typeof p=="undefined") p=0;
-	action.priority=p;
-	var pl=[];
-	if (action.type=="BOOST") pl=this.getboostmatrix(this.m);
-	if (action.type=="ROLL") pl=this.getrollmatrix(this.m);
-	if (pl.length>0) {
-	    var old=this.m;
-	    var e=this.evaluateposition();
-	    var emove=e-1;
-	    for (i=0; i<pl.length; i++) {
-		this.m=pl[i];
-		emove=Math.max(emove,this.evaluateposition());
-	    }
-	    this.m=old;
-	    if (emove>e) action.priority=2*(emove-e);
-	}
-	//log(this.name+": priority for "+action.type+":"+action.priority);
-    }, 
     doaction: function(list,str) {
 	var cmp=function(a,b) { return b.priority-a.priority; }
 
@@ -265,11 +244,12 @@ IAUnit.prototype= {
 		    else if (list[i].type=="CLOAK"&&this.candocloak()) {
 			a=list[i]; break;
 		    } else if (list[i].type=="EVADE"&&this.candoevade()) {
-			var noone=true;
+			/*var noone=true;
 			var grlu=this.getenemiesinrange();
 			for (i=0; i<grlu.length; i++) 
 			    if (grlu[i].length>0) { noone=false; break; }
-			if (noone) { a=list[i]; break; }
+			if (noone) { */
+			    a=list[i]; break; //}
 		    } else if (list[i].type=="FOCUS") {
 			if (this.candofocus()) { a=list[i]; break; }
 		    } else { a = list[i]; break }
