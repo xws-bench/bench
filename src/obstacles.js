@@ -102,7 +102,6 @@ function Rock(frag,coord,isdebris,team,n) {
     for (k=1; k<4; k++) {
 	this.o[k]=s.ellipse(b.x+b.width/2,b.y+b.height/2,200/scale/2*k+b.width/2,200/scale/2*k+b.height/2).attr({pointerEvents:"none",display:"none",fill:WHITE,opacity:0.3,strokeWidth:2});
     }
-    this.o[1]=s.ellipse(b.x+b.width/2,b.y+b.height/2,Math.max(b.width/2,b.height/2),Math.max(b.width/2,b.height/2)).attr({pointerEvents:"none",display:"none",fill:WHITE,opacity:0.3,strokeWidth:2});
     this.m=(new Snap.Matrix()).translate(coord[0]+PX[i],coord[1]+PY[i]).rotate(coord[2],0,0).scale(scale,scale);
 
     //this.g.transform('t '+(-b.width/2-b.x)+" "+(-b.height/2-b.y));
@@ -179,10 +178,6 @@ Rock.prototype = {
     dragshow: function() {
 	for (var k=1; k<4; k++) 
 	    this.o[k].transform(this.dragMatrix).attr({display:"block"}).appendTo(VIEWPORT);
-	var x=this.dragMatrix.x(this.ball.x,this.ball.y);
-	var y=this.dragMatrix.y(this.ball.x,this.ball.y);
-	this.ball.x=x;
-	this.ball.y=y;
 	this.g.transform(this.dragMatrix);
 	this.g.appendTo(VIEWPORT);
     },
@@ -190,6 +185,7 @@ Rock.prototype = {
     dragstop: function(a) { 
 	for (var k=1; k<4; k++) 
 	    this.o[k].attr({display:"none"});
+	this.m=this.dragMatrix;
 	Unit.prototype.dragstop.call(this,a);
     },
     show: function() {
