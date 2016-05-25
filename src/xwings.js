@@ -1388,10 +1388,7 @@ function nextphase() {
 
 	if (TEAMS[1].points>TEAMS[2].points) TEAMS[2].initiative=true;
 	else if (TEAMS[2].points>TEAMS[1].points) TEAMS[1].initiative=true;
-	else {
-	    if (TEAMS[2].faction=="EMPIRE") TEAMS[2].initiative=true;
-	    else TEAMS[1].initiative=true;
-	}
+	else TEAMS[1].initiative=true;
 	if (TEAMS[1].initiative==true) log("TEAM #1 has initiative");
 	else log("TEAM #2 has initiative");
 	$(".activeunit").prop("disabled",false);
