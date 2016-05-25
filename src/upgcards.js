@@ -3811,8 +3811,8 @@ var UPGRADES= [
      ship:"TIE Defender",
      done:true,
      init: function(sh) {
-	 for (var i in sh.unit.weapons) {
-	     var w=sh.unit.weapons[i];
+	 for (var i in sh.weapons) {
+	     var w=sh.weapons[i];
 	     if (w.type==CANNON&&w.points<=3) w.followupattack=function() { return 0; };
 	 }
 	 sh.addattack(function(c,h) { 
