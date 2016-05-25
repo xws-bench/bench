@@ -1387,6 +1387,7 @@ function nextphase() {
 	loadsound();
 
 	if (TEAMS[1].points>TEAMS[2].points) TEAMS[2].initiative=true;
+	else if (TEAMS[2].points>TEAMS[1].points) TEAMS[1].initiative=true;
 	else {
 	    if (TEAMS[2].faction=="EMPIRE") TEAMS[2].initiative=true;
 	    else TEAMS[1].initiative=true;
