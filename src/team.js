@@ -155,7 +155,7 @@ Team.prototype = {
 	    u=squadron[i];
 	    if (u.team==this.team) {
 		if (this.isia==true) {
-		    u=$.extend(u,IAUnit.prototype);
+		    squadron[i]=$.extend(u,IAUnit.prototype);
 		}
 	    }
 	}
@@ -198,9 +198,11 @@ Team.prototype = {
 	return this.units;
     },
     endsetup: function() {
-	if (this.isia)
-	    for (i=0; i<this.units.length; i++) 
+	/*if (this.isia)
+	    for (i=0; i<this.units.length; i++) {
+		console.log("is ia (endsetup)");
 		$.extend(this.units[i],IAUnit.prototype);
+	    }*/
 	for (i=0; i<this.units.length; i++) { 
 	    this.units[i].g.undrag();
 	}

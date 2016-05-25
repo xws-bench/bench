@@ -38,6 +38,11 @@ var UPGRADES= [
 		    }
 		    return m;
 		}.bind(this),str:"focus"});
+	    var self=this;
+	    sh.wrap_after("setpriority",this,function(a) {
+		if (a.type=="TARGET"&&self.isactive&&this.candotarget()) 
+		    a.priority+=10;
+	    });
 	},        
         range: [2,3],
     },
@@ -427,6 +432,11 @@ var UPGRADES= [
 		    if (b>0) m=m+FCH_HIT; 
 		    return m;
 		}.bind(this),str:"blank"});
+	    sh.wrap_after("setpriority",this,function(a) {
+		if (a.type=="TARGET"&&missile.isactive&&this.candotarget()) 
+		    a.priority+=10;
+	    });
+
 	},
         range: [2,3],
     },
@@ -453,6 +463,7 @@ var UPGRADES= [
 	},
 	init: function(sh) {
 	    var wn = this.unit.weapons.indexOf(this);
+	    var self=this;
 	    sh.addattack(function(c,h) { 
 		return this.activeweapon==wn&&targetunit.hull+targetunit.shield>0; 
 	    }.bind(sh),this,wn,function() { return targetunit; });
@@ -464,6 +475,10 @@ var UPGRADES= [
 		    this.resolveattack(this.activeweapon,targetunit); 
 		}
 	    }.bind(sh));*/
+	    sh.wrap_after("setpriority",this,function(a) {
+		if (a.type=="TARGET"&&self.isactive&&this.candotarget()) 
+		    a.priority+=10;
+	    });
 	},
         range: [1,2],
     },
@@ -532,6 +547,14 @@ var UPGRADES= [
 	    Weapon.prototype.declareattack.call(this,target);
 	    targetunit.wrap_after("canuseevade",this,function() { return false; }).unwrapper("endbeingattacked");
 	    targetunit.log("cannot use evade tokens [%0]",this.name);
+	},
+	init: function(sh) {
+	    var self=this;
+	    sh.wrap_after("setpriority",this,function(a) {
+		if (a.type=="TARGET"&&self.isactive&&this.candotarget()) 
+		    a.priority+=10;
+	    });
+
 	},
         points: 5,
     },
@@ -650,10 +673,10 @@ var UPGRADES= [
 	    }
 	    return ch;
 	},
-	modifyattackroll:function(ch,n,d) {
+	/*modifyattackroll:function(ch,n,d) {
 	    if (FCH_crit(ch)>0) return ch+FCH_crit(ch)*(-FCH_CRIT+FCH_HIT);
 	    return ch;
-	},
+	},*/
         points: 7,
         attack: 4,
         range: [2,3],
@@ -713,6 +736,12 @@ var UPGRADES= [
 		squadron[r[1][i].unit].log("+1 %HIT% [%0]",this.name);
 		squadron[r[1][i].unit].resolvehit(1);
 	    }
+	    var self=this;
+	    sh.wrap_after("setpriority",this,function(a) {
+		if (a.type=="TARGET"&&self.isactive&&this.candotarget()) 
+		    a.priority+=10;
+	    });
+
 	},
         points: 5,
         attack: 4,
@@ -926,6 +955,11 @@ var UPGRADES= [
 		    }
 		    return m;
 		}.bind(this),str:"blank"});
+	    sh.wrap_after("setpriority",this,function(a) {
+		if (a.type=="TARGET"&&self.isactive&&this.candotarget()) 
+		    a.priority+=10;
+	    });
+
 	},        
         points: 6,
     },
@@ -1230,6 +1264,13 @@ var UPGRADES= [
 	    this.unit.criticalresolved=0;
 	    t.addiontoken(); t.addiontoken();
 	},
+	init: function(sh) {
+	    var self=this;
+	    sh.wrap_after("setpriority",this,function(a) {
+		if (a.type=="TARGET"&&self.isactive&&this.candotarget()) 
+		    a.priority+=10;
+	    });
+	},
         points: 3,
         attack: 3,
         range: [2,3],
@@ -1315,6 +1356,13 @@ var UPGRADES= [
 	endattack: function(c,h) {
 	    if (targetunit.hull<=4) targetunit.addstress();
 	    Weapon.prototype.endattack.call(this);
+	},
+	init: function(sh) {
+	    var self=this;
+	    sh.wrap_after("setpriority",this,function(a) {
+		if (a.type=="TARGET"&&self.isactive&&this.candotarget()) 
+		    a.priority+=10;
+	    });
 	},
         points: 2,
         attack: 3,
@@ -1508,6 +1556,14 @@ var UPGRADES= [
 	    if (this.unit.agility<=3) a+=this.unit.agility;
 	    else a+=3;
 	    return a;
+	},
+	init: function(sh) {
+	    var self=this;
+	    sh.wrap_after("setpriority",this,function(a) {
+		if (a.type=="FOCUS"&&self.isactive&&self.candofocus()) 
+		    a.priority+=10;
+	    });
+
 	},
         range: [1,1],
     },
@@ -1911,6 +1967,13 @@ var UPGRADES= [
 		squadron[r[1][i].unit].log("+1 ion token [%0]",this.name);
 		squadron[r[1][i].unit].addiontoken();
 	    }
+	},
+	init: function(sh) {
+	    var self=this;
+	    sh.wrap_after("setpriority",this,function(a) {
+		if (a.type=="TARGET"&&self.isactive&&this.candotarget()) 
+		    a.priority+=10;
+	    });
 	},
         points: 5,
         attack: 4,
@@ -3049,6 +3112,9 @@ var UPGRADES= [
 		  }
 		  return m;
 	      },str:"evade"});
+	  sh.wrap_after("setpriority",this,function(a) {
+	      if (a.type=="EVADE") a.priority=10;
+	  });
       }
     },
     {
@@ -3110,6 +3176,13 @@ var UPGRADES= [
 	posthit: function(t,c,h) {
 	    if (t.shield>0) t.log("-1 %SHIELD% [%0]",this.name);
 	    t.removeshield(1);
+	},
+	init: function(sh) {
+	    var self=this;
+	    sh.wrap_after("setpriority",this,function(a) {
+		if (a.type=="TARGET"&&self.isactive&&this.candotarget()) 
+		    a.priority+=10;
+	    });
 	},
         range: [2,3]
     },
@@ -3280,7 +3353,14 @@ var UPGRADES= [
 	    t.applycritical(1);
 	    this.unit.hitresolved=0;
 	    this.unit.criticalresolved=0;
-	}
+	},
+	init: function(sh) {
+	    var self=this;
+	    sh.wrap_after("setpriority",this,function(a) {
+		if (a.type=="TARGET"&&self.isactive&&this.candotarget()) 
+		    a.priority+=10;
+	    });
+	},
     },
     {
 	name: "Advanced SLAM",

@@ -240,7 +240,6 @@ function Unit(team,pilotid) {
     var up=PILOTS[pilotid].upgrades;
     this.upg=[];
     this.upgbonus=[];
-    this.log("setting upg to -1");
     for (j=0; j<10; j++) {this.upg[j]=-1};
     this.upgradetype=[];
     for (k=0; k<up.length; k++) this.upgradetype[k]=up[k];
@@ -591,6 +590,26 @@ Unit.prototype = {
 	});
 	return rendered;
     },
+    setpriority:function(action) {
+	var PRIORITIES={"FOCUS":3,"EVADE":1,"CLOAK":4,"TARGET":2,"CRITICAL":100};
+	var p=PRIORITIES[action.type];
+	if (typeof p=="undefined") p=0;
+	action.priority=p;
+	var pl=[];
+	if (action.type=="BOOST") pl=this.getboostmatrix(this.m);
+	if (action.type=="ROLL") pl=this.getrollmatrix(this.m);
+	if (pl.length>0) {
+	    var old=this.m;
+	    var e=this.evaluateposition();
+	    var emove=e-1;
+	    for (i=0; i<pl.length; i++) {
+		this.m=pl[i];
+		emove=Math.max(emove,this.evaluateposition());
+	    }
+	    this.m=old;
+	    if (emove>e) action.priority=2*(emove-e);
+	}
+    }, 
     getstatstring:function() {
 	var str="";
 	str+="<div class='xsymbols RED'>"+repeat('u',this.weapons[0].getattack())+"</div>"
@@ -999,24 +1018,24 @@ Unit.prototype = {
 	return mine;
     },
     getBall: function(m) {
-	return { x:m.x(0,0),y:m.y(0,0),diam:this.islarge?56:28 };
+	return { x:m.x(0,0),y:m.y(0,0),diam:(this.islarge?56:28) };
     },
     fastgetocollisions: function(mbegin,mend,path,len) {
-	var k,i,j;
+	var k,i;
 	// Overlapping obstacle ?
 	var pp=[];
 	var tb=this.getBall(mend);
 	for (i=0; i<=len; i+=len/5) {
 	    var p=path.getPointAtLength(i);
-	    pp.push({x:mbegin.x(p.x,p.y),y:mbegin.y(p.x,p.y)});
+	    pp[i]={x:mbegin.x(p.x,p.y),y:mbegin.y(p.x,p.y)};
 	}
 	//s.circle(tb.x,tb.y,tb.diam).attr({fill:"#f00"});
 
 	for (k=0; k<OBSTACLES.length; k++){
 	    var b=OBSTACLES[k].getBall();
+	    var D=b.diam+tb.diam;
 	    //s.circle(b.x,b.y,b.diam).attr({fill:"#fff"});
-	    var d=(b.diam+tb.diam)*(tb.diam+b.diam);
-	    //log("ob"+k+" "+b.x+"x"+b.y+","+tb.x+"x"+tb.y+"<"+d);
+	    var d=D*D;
 	    if ((b.x-tb.x)*(b.x-tb.x)+(b.y-tb.y)*(b.y-tb.y)<d) return true;
 	    for (i=0; i<pp.length; i++) 
 	 	if ((b.x-pp[i].x)*(b.x-pp[i].x)+(b.y-pp[i].y)*(b.y-pp[i].y)<d) return true;
@@ -1514,7 +1533,7 @@ Unit.prototype = {
 
 	for (i=0; i<gd.length; i++) {
 	    gd[i].path=P[gd[i].move].path;
-	    gd[i].len=gd[i].path.getTotalLength();
+	    gd[i].len=gd[i].path.getTotalLength()+(this.islarge?40:0);
 	}
 	var m=this.m;
 	for (i=0; i<gd.length; i++) {
