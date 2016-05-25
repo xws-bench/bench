@@ -1027,7 +1027,7 @@ Unit.prototype = {
 	var tb=this.getBall(mend);
 	for (i=0; i<=len; i+=len/5) {
 	    var p=path.getPointAtLength(i);
-	    pp[i]={x:mbegin.x(p.x,p.y),y:mbegin.y(p.x,p.y)};
+	    pp.push({x:mbegin.x(p.x,p.y),y:mbegin.y(p.x,p.y)});
 	}
 	//s.circle(tb.x,tb.y,tb.diam).attr({fill:"#f00"});
 
