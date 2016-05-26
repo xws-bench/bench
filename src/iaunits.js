@@ -273,7 +273,7 @@ IAUnit.prototype= {
 	    var i,w;
 	    //this.log(this.id+" readytofire?"+this.canfire());
 	    if (this.canfire()) {
-		NOLOG=true;
+		NOLOG=false;
 		var r=this.getenemiesinrange();
 		for (w=0; w<this.weapons.length; w++) {
 		    var el=r[w];
@@ -301,19 +301,30 @@ IAUnit.prototype= {
     getresultmodifiers: function(m,n,from,to) {
 	var mods=this.getdicemodifiers(); 
 	var lm=[];
+	var mm;
+	NOLOG=false;
 	for (var i=0; i<mods.length; i++) {
 	    var d=mods[i];
 	    if (d.from==from&&d.to==to) {
 		if (d.type==MOD_M&&d.req(m,n)) {
-		    if (d.str=="focus") {
+		    switch(d.str) {
+		    case "focus":
 			if (d.from==ATTACK_M&&d.to==ATTACK_M) {
 			    if (FCH_focus(m)>0) modroll(d.f,i,to);
 			} else if (d.from==DEFENSE_M&&d.to==DEFENSE_M) {
-			    if (FE_focus(m)>0) modroll(d.f,i,to);
-			}
-		    } else modroll(d.f,i,to);
+			    mm=getattackvalue();
+			    if (FE_focus(m)>0&&FCH_hit(mm)+FCH_crit(mm)>FE_evade(m)) modroll(d.f,i,to);
+			}; break;
+		    default: modroll(d.f,i,to);
+		    }
 		} if (d.type==ADD_M&&d.req(m,n)) {
-		    addroll(d.f,i,to); 
+		    switch(d.str) {
+		    case "evade":
+			mm=getattackvalue();
+			if (FCH_hit(mm)+FCH_crit(mm)>FE_evade(m)) addroll(d.f,i,to);
+			break;
+		    default: addroll(d.f,i,to);
+		    } 
 		} if (d.type==REROLL_M&&d.req(activeunit,activeunit.weapons[activeunit.activeweapon],targetunit)) {
 		    if (typeof d.f=="function") d.f();
 		    reroll(n,(to==ATTACK_M),d,i);

@@ -1526,9 +1526,9 @@ Unit.prototype = {
 	var gd=this.getdial();
 	var mx=0,my=0,ma=0;
 	var g=0;
-	var i;
+	var i,best=RED;
 	var VALUES={"#000":0,"#F00":1,"#FF0":2,"#FFF":3,"#0F0":4};
-	NOLOG=false;
+	NOLOG=true;
 	var ref=(this.m.split().rotate+360+180)%360-180;
 
 	for (i=0; i<gd.length; i++) {
@@ -1547,30 +1547,33 @@ Unit.prototype = {
 		if (color!=RED&&color!=BLACK&&withcollisions&&withobstacles) {
 		    var c=RED;
 		    for (j=0; j<gd.length; j++) {
-			if (gd[j].move=="F0") continue;
-			//if (gd[j].move=="F0"||(gd[j].difficulty=="RED"&&
-			//    ((this.stress>0&&gd[i].difficulty!="GREEN")
-			// ||gd[i].difficulty=="RED"))) continue;
+			var ccc;
+			if (gd[j].move=="F0"||
+			    (gd[j].difficulty=="RED"&&
+			    ((this.stress>0&&gd[i].difficulty!="GREEN")
+			     ||gd[i].difficulty=="RED"))) continue;
 			// Simplification: no need to uturn here.
 			var mmm=this.getmatrixwithmove(mm,gd[j].path,gd[j].len);
 			ccc=GREEN;
 			if (!this.isinzone(mmm)) ccc=RED;
 			else if (withobstacles&&this.fastgetocollisions(mm,mmm,gd[j].path,gd[j].len)) ccc=YELLOW;
-			    //this.log("trying "+gd[i].move+"-> "+gd[j].move+" "+fc);
+			//this.log("trying "+gd[i].move+"-> "+gd[j].move+" "+ccc);
 			if (VALUES[ccc]>VALUES[c]) c=ccc;
 		    }
-		    if (gd[i].move!="F0") 
-			if (VALUES[c]<VALUES[color]) gd[i].color=c;
+		    if (VALUES[c]<VALUES[color]) gd[i].color=c;
 		}
-		
 		//this.log(">"+gd[i].move+" "+gd[i].color+" "+withobstacles);
 	    }
+	    if (VALUES[best]>VALUES[gd[i].color]) best=gd[i].color;
 	    if ((gd[i].color==GREEN||gd[i].color==WHITE)&&!gd[i].move.match(/K\d|SR\d|SL\d|TRL\d|TRR\d/)) {
 		var gpm=mm.split();
 		g++;
 		gpm.rotate=(gpm.rotate-ref+180)%360-180;
 		mx+=gpm.dx; my+=gpm.dy; ma+=gpm.rotate;
 	    }
+	}
+	for (i=0; i<gd.length; i++) {
+	    if (gd[i].move=="F0") gd[i].color=best;
 	}
 	if (g==0) g=1;
 	mx=mx/g; my=my/g; ma=ma/g;

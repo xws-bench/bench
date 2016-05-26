@@ -3113,7 +3113,7 @@ var UPGRADES= [
 		  return m;
 	      },str:"evade"});
 	  sh.wrap_after("setpriority",this,function(a) {
-	      if (a.type=="EVADE") a.priority=10;
+	      if (a.type=="EVADE"&&this.evade==0) a.priority=10;
 	  });
       }
     },
