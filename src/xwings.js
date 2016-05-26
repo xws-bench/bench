@@ -397,6 +397,9 @@ function adddefensedie(type,n) {
 function getattackdice() {
     return $(".focusreddice").length+$(".criticalreddice").length+$(".hitreddice").length+$(".blankreddice").length;
 }
+function getattackvalue() {
+    return $(".focusreddice").length*FCH_FOCUS+$(".criticalreddice").length*FCH_CRIT+$(".hitreddice").length*FCH_HIT;
+}
 function getdefensedice() {
     return $(".focusgreendice").length+$(".blankgreendice").length+$(".evadegreendice").length; 
 }

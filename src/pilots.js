@@ -3056,7 +3056,11 @@ var PILOTS = [
 			    if (mods[i].from!=DEFENSE_M) p.push(mods[i]);
 			return p;
 		    }).unwrapper("endbeingattacked");
-	    })
+	    });
+	   this.wrap_after("setpriority",this,function(a) {
+	       if (a.type=="TARGET"&&this.candotarget()&&this.targeting.length==0) 
+		   a.priority+=10;
+	   });
        }
    },
     {
