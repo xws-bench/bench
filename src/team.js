@@ -403,6 +403,11 @@ Team.prototype = {
 	var f={"rebel":REBEL,"scum":SCUM,"imperial":EMPIRE};
 	try {
 	    s=$.parseJSON(str);
+	    ga('send','event', {
+		eventCategory: 'social',
+		eventAction: 'receive',
+		eventLabel: 'xws'
+	    });
 	} catch(err) {
 	    return this.parseJuggler(str,translated);
 	}

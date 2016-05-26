@@ -174,6 +174,13 @@ var mk2split = function(t) {
 }
 var myCallback = function (error, options, response) {
    if (response!=null&&typeof response.rows!="undefined") {
+       ga('send','event', {
+	   eventCategory: 'interaction',
+	   eventAction: 'battlelog',
+	   eventLabel: 'battlelog',
+	   eventValue:response.rows.length
+       });
+
 	//console.log("found "+response.rows.length);
 	var t=SEARCHINGSQUAD,t1="",s1="";
 	var tt=mk2split(t);
@@ -753,6 +760,34 @@ function win() {
 	    $(".googlep").attr("href","https://plus.google.com/share?url="+encodeURI(url));
 	    $(".email").attr("href","mailto:?body="+url);
 	}
+	$(".email").click(function() {
+	    ga('send','event', {
+		eventCategory: 'social',
+		eventAction: 'send',
+		eventLabel: 'email'
+	    });
+	});
+	$(".facebook").click(function() {
+	    ga('send', 'event',{
+		eventCategory: 'social',
+		eventAction: 'send',
+		eventLabel: 'facebook'
+	    });
+	});
+	$(".googlep").click(function() {
+	    ga('send','event', {
+		eventCategory: 'social',
+		eventAction: 'send',
+		eventLabel: 'googlep'
+	    });
+	});
+	$(".tweet").click(function() {
+	    ga('send','event', {
+		eventCategory: 'social',
+		eventAction: 'send',
+		eventLabel: 'tweet'
+	    });
+	});
 	$(".victory-link").attr("href",url);
 	$(".victory-link code").text(text);
     });
@@ -788,6 +823,7 @@ function battlelog(t) {
     else TEAMS[0].parseJuggler(data,false);
     data=TEAMS[0].toJuggler(false);
     displaycombats(data);
+
     window.location="#battlelog";
 }
 
@@ -798,6 +834,11 @@ function createsquad() {
 	document.location.href="http://x-wing.fabpsb.net/gindex.php";
 	return;
     }
+    ga('send','event', {
+	eventCategory: 'interaction',
+	eventAction: 'create',
+	eventLabel: 'create'
+    });
     phase=CREATION_PHASE;
     $("footer").hide();
     $('#consolecb').removeAttr('Checked');
@@ -2403,6 +2444,12 @@ var stopreplay=function() {
     actionrlock=$.Deferred();
 }
 var restartreplay=function() {
+    ga('send','event', {
+	eventCategory: 'interaction',
+	eventAction: 'replay',
+	eventLabel: 'replay'
+    });
+
     actionrlock=$.Deferred();
     actionrlock.progress(replayall);
     replayall();
