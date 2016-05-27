@@ -2360,7 +2360,9 @@ Unit.prototype = {
 	    if (this.canfire()) {
 		var r=this.getenemiesinrange();
 		$("#attackdial").empty();
-		for (w=0; w<this.weapons.length; w++) if (r[w].length>0) wn.push(w);
+		for (w=0; w<this.weapons.length; w++) {
+		    if (r[w].length>0) wn.push(w);
+		}
 		for (i=0; i<wn.length; i++) {
 		    var w=A[this.weapons[wn[i]].type.toUpperCase()];
 		    str+="<div class='symbols "+w.color+"' onclick='activeunit.selecttargetforattack("+wn[i]+")'>"+w.key+"</div>"

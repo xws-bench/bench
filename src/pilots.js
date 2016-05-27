@@ -634,7 +634,7 @@ var PILOTS = [
 	done:true,
 	init: function() {
 	    this.wrap_after("candoaction",this,function() {
-		return (this.collision==0&&!this.hascollidedobstacle());
+		return true;
 	    });
 	},
         unit: "A-Wing",
@@ -1736,7 +1736,7 @@ var PILOTS = [
 	init: function() {
 	    this.log("can fire %TORPEDO% at 360 degrees");
 	    this.wrap_after("isTurret",this,function(w,b) {
-		if (w.type=="Torpedo") return true;
+		if (w.type==TORPEDO) return true;
 		return b;
 	    })
 	},

@@ -564,7 +564,7 @@ var UPGRADES= [
 	    var ptl=this;
 	    ptl.r=-1;
 	    sh.wrap_before("endaction",this,function(n,type) {
-		if (ptl.r!=round) {
+		if (ptl.r!=round&&this.candoaction()&&type!=null) {
 		    ptl.r=round;
 		    this.log("select an action or Skip to cancel [%0]",ptl.name);
 		    this.doaction(this.getactionbarlist(),"+1 free action").done(function(type) {
@@ -2598,7 +2598,7 @@ var UPGRADES= [
 	    var upg=this;
 	    upg.r=-1;
 	    sh.wrap_before("endaction",this,function(n,type) {
-		if (upg.r!=round) {
+		if (upg.r!=round&&this.candoaction()&&type!=null) {
 		    upg.r=round;
 		    this.log("select an action or Skip to cancel [%0]",upg.name);
 		    this.doaction(this.getupgactionlist(),"").done(function(type) {
