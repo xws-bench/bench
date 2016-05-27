@@ -1795,7 +1795,7 @@ var UPGRADES= [
             sh.wrap_after("getmaneuverlist",this,function(list) {
 		var gd=this.getdial();
 		var p=list;
-		if (this.hasionizationeffect()) return p;
+		if (this.hasionizationeffect()||this.stress>0) return p;
 		for (var i in list) {
 		    var speed=list[i].move.substr(-1);
 		    for (var j=0; j<gd.length; j++) 
