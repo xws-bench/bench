@@ -1,4 +1,4 @@
-var ROCKIMG="b3.png"; //"png/asteroid.jpg";
+var ROCKIMG="png/asteroid.jpg";
 var DEBRISIMG="png/debris.png";
 var OBSTACLES=[];
 var PX=[300,500,300,500,300,500];
