@@ -28,8 +28,10 @@ Critical.prototype= {
     log: function() {
 	this.unit.log("Critical: %0",this.name);
 	var n="";
-	if (typeof CRIT_translation[this.name].text!="undefined") n=formatstring(CRIT_translation[this.name].text)
-	log("<ul><li>"+n+"</li></ul>");
+	if (typeof CRIT_translation[this.name].text!="undefined") {
+	    n=formatstring(CRIT_translation[this.name].text)
+	    log("<ul><li>"+n+"</li></ul>");
+	} else log("no translation:"+this.name);
     }
 }
 var CRITICAL_DECK=[
@@ -223,7 +225,7 @@ var CRITICAL_DECK=[
 	    this.log();
 	    var m=[];
 	    for (i=0; i<this.unit.weapons.length; i++) {
-		if (!this.unit.weapons[i].isprimary) m.push(this.unit.weapons[i]);
+		if (this.unit.weapons[i].issecondary) m.push(this.unit.weapons[i]);
 	    }
 	    this.isactive=false;
 	    if (m.length==0) return;

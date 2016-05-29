@@ -544,9 +544,9 @@ var UPGRADES= [
         range: [2,3],
 	done:true,
 	declareattack: function(target) {
-	    Weapon.prototype.declareattack.call(this,target);
 	    targetunit.wrap_after("canuseevade",this,function() { return false; }).unwrapper("endbeingattacked");
 	    targetunit.log("cannot use evade tokens [%0]",this.name);
+	    return Weapon.prototype.declareattack.call(this,target);
 	},
 	init: function(sh) {
 	    var self=this;
@@ -673,10 +673,6 @@ var UPGRADES= [
 	    }
 	    return ch;
 	},
-	/*modifyattackroll:function(ch,n,d) {
-	    if (FCH_crit(ch)>0) return ch+FCH_crit(ch)*(-FCH_CRIT+FCH_HIT);
-	    return ch;
-	},*/
         points: 7,
         attack: 4,
         range: [2,3],
@@ -975,7 +971,7 @@ var UPGRADES= [
 		self.unit.log("%HIT% cannot be cancelled [%0]",self.name);
 		return r;
 	    }).unwrapper("endbeingattacked");
-	    Weapon.prototype.declareattack.call(this,target);
+	    return Weapon.prototype.declareattack.call(this,target);
 	},
         range: [1,1],
         points: 5,
@@ -1493,7 +1489,7 @@ var UPGRADES= [
 	done:true,
         init: function(sh) {
 	    var self=this;
-	    sh.wrap_after("declareattack",this,function(w,target) {
+	    sh.wrap_before("resolveattack",this,function(w,target) {
 		if (this.isinfiringarc(target)) {
 		    this.donoaction([{org:self,name:self.name,type:"ASTROMECH",action:function(n) {
 			this.addstress();
@@ -2141,24 +2137,26 @@ var UPGRADES= [
         name: "Feedback Array",
         type: ILLICIT,
 	done:true,
+	range:[1,1],
+	issecondary:false,
+	isWeapon:function() { return true; },
+	declareattack: function(target) { 
+	    this.unit.addhasfired();
+	    this.unit.resolvehit(1);
+	    this.unit.addiontoken();
+	    SOUNDS.explode.play();
+	    this.unit.log("-1 %HIT%, +1 %ION% [%0]",this.name);
+	    target.log("-1 %HIT% [%0]",this.name);
+	    target.resolvehit(1);
+	    target.checkdead();
+	    this.unit.checkdead();
+	    this.unit.hasfired=true;
+	    this.unit.hasdamaged=true;
+	    return false;
+	},
         init: function(sh) {
 	    var self=this;
-	    /* TODO: timing pas terrible */
-	    sh.wrap_before("doattack",this,function(forced) {
-		this.donoaction([{name:self.name,org:self,type:"ILLICIT",action:function(n){
-		    this.selectunit(this.selectnearbyenemy(1),function(p,k) {
-			this.resolvehit(1);
-			this.addiontoken();
-			SOUNDS.explode.play();
-			p[k].resolvehit(1);
-			p[k].checkdead();
-			this.checkdead();
-			this.hasfired=true;
-			this.hasdamaged=true;
-		    }, ["select unit (or self to cancel) [%0]",self.name],false);
-		    this.endnoaction(n);
-		}.bind(this)}]);
-	    });
+	    this.toString=Upgrade.prototype.toString;
 	},
         points: 2,
     },
@@ -2327,27 +2325,25 @@ var UPGRADES= [
     {
         name: "R4 Agromech",
 	done:true,
-	spendfocus:false,
         init: function(sh) {
 	    var self=this;
-	    /*
+	    this.spendfocus=false;
 	    sh.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
-		req:function(m,n) { return self.spendfocus; },
+		req:function(m,n) { this.log("spendfocus"+self.spendfocus); return self.spendfocus; }.bind(sh),
 		f:function(m,n) { 
-		    this.log("use id:"+this.id+" "+self.id);
 		    self.spendfocus=false;
 		    this.addtarget(targetunit); 
 		    this.log("+1 %TARGET% / %1 [%0]",self.name,targetunit.name);
-		    displayattacktokens2(this); return m; 
-		    }.bind(sh),str:"target"});
-	    */
-	    sh.wrap_before("declareattack",this,function(w,target) {
+		    displayattacktokens2(this);
+		    return m; 
+		}.bind(sh),str:"target"});
+	    sh.wrap_before("resolveattack",this,function(w,target) {
 		self.spendfocus=false;
 		this.wrap_before("removefocustoken",self,function() {
-		    //self.spendfocus=true;
-		    /*this.log("id:"+this.id+" "+self.id);
-		    displayattacktokens2(this);*/
-		    this.addtarget(target);
+		    self.spendfocus=true;
+		    /*this.log("id:"+this.id+" "+self.id);*/
+		    //this.addtarget(target);
+		    displayattacktokens2(this);
 		    this.log("+1 %TARGET% / %1 [%0]",self.name,target.name);
 		}).unwrapper("endattack");
 	    });
@@ -3170,6 +3166,7 @@ var UPGRADES= [
         type: TORPEDO,
         points: 3,
         attack: 4,
+	firesnd:"missile",
 	requires:"Target",
 	consumes:true,
 	done:true,
@@ -4243,7 +4240,7 @@ var UPGRADES= [
 	}
     },
     {
-        name: "Thermal Detonator",
+        name: "Thermal Detonators",
 	done:true,
 	img:"seismic.png",
 	snd:"explode",
