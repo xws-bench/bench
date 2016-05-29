@@ -81,7 +81,7 @@ var PILOTS = [
         unit: "X-Wing",
         skill: 9,
 	init: function() {
-	    this.wrap_after("declareattack",this,function(w,target) {
+	    this.wrap_before("resolveattack",this,function(w,target) {
 		target.log("-1 defense [%0]",this.name);
 		target.wrap_after("getagility",this,function(a) {
 		    if (a>0) return a-1; 
@@ -764,7 +764,7 @@ var PILOTS = [
 	pilotid:42,
 	done:true,
 	init: function() {
-	    this.wrap_after("declareattack",this,function(w,target) {
+	    this.wrap_before("resolveattack",this,function(w,target) {
 		var self=this;
 		target.wrap_after("cancelcritical",self,function(r,org,r2) {
 		    if (FCH_crit(r.ch)>FCH_crit(r2.ch)) {
@@ -849,7 +849,7 @@ var PILOTS = [
 	shipimg:"b-wing-1.png",
 	init: function() {
 	    var self=this;
-	    this.wrap_after("declareattack",this,function(w,target) {
+	    this.wrap_before("resolveattack",this,function(w,target) {
 		target.wrap_after("cancelcritical",self,function(r,org,r2) {
 		    if (FCH_crit(r.ch)>0) {
 			if (FCH_crit(r2.ch)==0) {
@@ -2575,7 +2575,7 @@ var PILOTS = [
 	done:true,
 	init: function() {
 	    var self=this;
-	    Unit.prototype.wrap_after("declareattack",this,function(wp,t) {
+	    Unit.prototype.wrap_before("resolveattack",this,function(wp,t) {
 		if (!self.dead&&self.team==this.team&&self.canusetarget(t))
 		    self.donoaction([this.newaction(function(n) {
 			this.removetarget(t);
@@ -3048,7 +3048,7 @@ var PILOTS = [
 			return p;
 		    }).unwrapper("endattack");
 	    })
-	    this.wrap_after("declareattack",this,function(w,t) {
+	    this.wrap_before("resolveattack",this,function(w,t) {
 		if (self.targeting.indexOf(t)>-1) 
 		    t.wrap_after("getdicemodifiers",self,function(mods) {
 			var p=[];

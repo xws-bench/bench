@@ -17,6 +17,7 @@ function Laser(u,type,fire) {
 	    attack: fire,
 	    range: [1,3],
 	    isprimary: true,
+	    issecondary:false,
 	    auxiliary: AUXILIARY,
 	    subauxiliary: SUBAUXILIARY,
 	});
@@ -28,6 +29,7 @@ function Laser(u,type,fire) {
 	    attack: fire,
 	    range: [1,3],
 	    isprimary: true,
+	    issecondary:false,
 	    auxiliary: function(i,m) { return this.getHalfRangeString(i,m); },
 	    subauxiliary: function(i,j,m) { return this.getHalfSubRangeString(i,j,m); }
 	});	
@@ -38,6 +40,7 @@ function Laser(u,type,fire) {
 	attack: fire,
 	range: [1,3],
 	isprimary: true,
+	issecondary:false,
     });
 }
 function Bomb(sh,bdesc) {
@@ -227,6 +230,7 @@ Bomb.prototype = {
 }
 function Weapon(sh,wdesc) {
     this.isprimary=false;
+    this.issecondary=true;
     $.extend(this,wdesc);
     sh.upgrades[sh.upgrades.length]=this;
     this.wrapping=[];
@@ -234,7 +238,6 @@ function Weapon(sh,wdesc) {
     this.isactive=true;
     this.unit=sh;
     sh.weapons.push(this);
-    //if (this.init != undefined) this.init(sh);
 }
 Weapon.prototype = {
     isBomb: function() { return false; },
@@ -318,6 +321,7 @@ Weapon.prototype = {
 		this.unit.removefocustoken();
 	    this.unit.show();
 	}
+	return true;
     },
     getrangedefensebonus: function(sh) {
 	if (this.isprimary) {

@@ -7,13 +7,16 @@
    -adaptability: one card, duality handled in setup
    -setup with new upgrades added
    -creation screen, mist hunter + cannon corrected (cannon couldn't be removed)
-   - feedback array more of less corrected
+   - feedback corrected
+   -plasma torpedo sound
+   -R4 Agromech
+   - Thermal Detonators spelling
 */var phase=1;
 var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.8.8";
+var VERSION="v0.8.9";
 var LANG="en";
 var DECLOAK_PHASE=1;
 var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6,XP_PHASE=7;
@@ -455,7 +458,7 @@ function displayattacktokens(u,f) {
     } else displayattacktokens2(u,f);
 }
 function displayattacktokens2(u,f) {
-    //u.log(u.id+" f:"+(typeof f)+" "+(typeof u.lastaf));
+    u.log(u.id+" f:"+(typeof f)+" "+(typeof u.lastaf));
     if (typeof f!="function") f=u.lastaf;
     else u.lastaf=f;
     $("#atokens").empty();

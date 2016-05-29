@@ -81,8 +81,12 @@ function loadsound() {
     for (i=0; i<squadron.length; i++) {
 	sound[squadron[i].ship.firesnd]=SOUND_NAMES.indexOf(squadron[i].ship.firesnd);
 	sound[squadron[i].ship.flysnd]=SOUND_NAMES.indexOf(squadron[i].ship.flysnd);
+	squadron[i].log("fly:"+sound[squadron[i].ship.flysnd]);
+	squadron[i].log("fire:"+sound[squadron[i].ship.firesnd]);
 	for (j=1; j<squadron[i].weapons.length; j++) {
 	    sound[squadron[i].weapons[j].firesnd]=SOUND_NAMES.indexOf(squadron[i].weapons[j].firesnd);
+	    squadron[i].log("weapon "+squadron[i].weapons[j].name+":"+squadron[i].weapons[j].firesnd);
+
 	}
 	    
     }
@@ -1371,12 +1375,13 @@ Unit.prototype = {
 	return r.ch;
     },
     declareattack:function(w,target) {
-	//console.log("declareattack:"+this.name)
 	targetunit=target;
 	this.activeweapon=w;
-	this.weapons[w].declareattack(target);
-	this.log("attacks %0 with %1",target.name,this.weapons[w].name);
-	target.isattackedby(w,this);
+	if (this.weapons[w].declareattack(target)) {
+	    this.log("attacks %0 with %1",target.name,this.weapons[w].name);
+	    target.isattackedby(w,this);
+	    return true;
+	} else return false;
     },
     isattackedby:function(k,a) {},
     modifydamageassigned: function(ch,attacker) {return ch;},
@@ -2333,8 +2338,8 @@ Unit.prototype = {
     },
     selecttargetforattack: function(wp,target) {
 	if (typeof target!="undefined") {
-	    this.declareattack(wp,target); 
-	    this.resolveattack(wp,target);
+	    if (this.declareattack(wp,target))  
+		this.resolveattack(wp,target);
 	    return true;
 	} 
 	var p=this.weapons[wp].getenemiesinrange();
@@ -2345,8 +2350,8 @@ Unit.prototype = {
 	} else {
 	    $("#attackdial").empty();
 	    this.selectunit(p,function(p,k) {
-		this.declareattack(wp,p[k]); 
-		this.resolveattack(wp,p[k]);
+		if (this.declareattack(wp,p[k]))  
+		    this.resolveattack(wp,p[k]);
 	    },[""],false);
 	}
 	return true;
@@ -3130,7 +3135,7 @@ Unit.prototype = {
 	if (cancellable) p.push(this);
 	if (p.length>0) {
 	    this.doselection(function(n) {
-		if (typeof astr!="undefined") this.log.apply(this,astr);
+		if (typeof astr!="undefined"&&astr[0]!="") this.log.apply(this,astr);
 		this.resolveactionselection(p,function(k) {
 		    if (!cancellable||this!=p[k]) f.call(this,p,k);
 		    this.endnoaction(n,"SELECT");
