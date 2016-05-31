@@ -750,12 +750,22 @@ function win() {
 	text="see replay";
 	if (typeof result1.data.link_save=="undefined") { 
 	    url=encodeURI("http://xws-bench.github.io/bench/index.html?"+permalink(false));
+	    //$('#submission').src="form.html";
+	    $("#submission").contents().find('#entry_209965003').val(titl);
+	    log("setting "+titl);
+	    $('#submission').contents().find('#entry_390767903').val(note);
+	    log("setting "+note);
+	    $('#submission').contents().find('#entry_245821581').val("no short url");
+	    $('#submission').contents().find('#entry_1690611500').val(url);
+	    log("setting "+url);
+	    $('#submission').contents().find("#ss-form").submit();
 	    $(".tweet").hide();
 	    $(".facebook").attr("href","https://www.facebook.com/sharer/sharer.php?u="+encodeURI(url));
 	    $(".googlep").attr("href","https://plus.google.com/share?url="+encodeURI(url));
 	    $(".email").attr("href","mailto:?body="+url);
 	} else {
 	    url=result1.data.link_save.link;
+
 	    text=url;
 	    $(".tweet").attr("href","https://twitter.com/intent/tweet?url="+encodeURI(url)+"&text=A%20Squad%20Benchmark%20combat").show();
 
@@ -1311,7 +1321,7 @@ function nextphase() {
 	    TEAMS[1].isia=false; else TEAMS[1].isia=true;
 	if ($("#player2 option:checked").val()=="human") 
 	    TEAMS[2].isia=false; else TEAMS[2].isia=true;
-	for (var i in squadron) console.log("--squadron["+i+"]:"+squadron[i].name+" "+squadron[i].id);
+	//for (var i in squadron) console.log("--squadron["+i+"]:"+squadron[i].name+" "+squadron[i].id);
 	
  	break;
     case CREATION_PHASE:
@@ -1369,7 +1379,7 @@ function nextphase() {
     else if (phase<3) $("#phase").html(UI_translation["phase"+phase]);
     else $("#phase").html(UI_translation["turn #"]+round+" "+UI_translation["phase"+phase]);
     $("#combatdial").hide();
-    if (phase>SELECT_PHASE) for (i in squadron) {squadron[i].unselect();}
+    //if (phase>SELECT_PHASE) for (i in squadron) {squadron[i].unselect();}
     // Init new phase
 
     $(".nextphase").prop("disabled",false);
@@ -2285,6 +2295,27 @@ $(document).ready(function() {
 	$("#player2").html("<option selected value='human'>"+UI_translation["human"]+"</option>");
 	$("#player2").append("<option value='computer'>"+UI_translation["computer"]+"</option>");
 
+
+
+/*
+	$.ajax({
+            url: "https://docs.google.com/a/xws-bench.github.io/forms/d/1NKJ1jOqR8F0lSrBtpRgIJe0GYVAk782FKss9a_XU0N4/formResponse",
+            data: {"entry.1" : "blabla", "entry.2" : "toto", "entry.3": "titi"},
+            type: "POST",
+            dataType: "xml",
+            statusCode: {
+                0: function (){
+		    log("ok sent!");
+                        //Success message
+                },
+                200: function (){
+		    log("ko sent");
+                    //Success Message
+                }
+            }
+	});
+*/
+
 	var arg=LZString.decompressFromEncodedURIComponent(decodeURI(window.location.search.substr(1)));
 	var args=[];
 	if (arg!=null) args= arg.split('&');
@@ -2310,6 +2341,7 @@ $(document).ready(function() {
 	} else {
 	    phase=0;
 	    nextphase();
+	    //log("##"+sessionStorage.getItem("import"));
 	    if (sessionStorage.getItem("import")) {
 		log("Importing from another Squad Builder...");
 		if ($("#squad1").val()=="") currentteam=TEAMS[1];

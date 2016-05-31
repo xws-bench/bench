@@ -81,12 +81,8 @@ function loadsound() {
     for (i=0; i<squadron.length; i++) {
 	sound[squadron[i].ship.firesnd]=SOUND_NAMES.indexOf(squadron[i].ship.firesnd);
 	sound[squadron[i].ship.flysnd]=SOUND_NAMES.indexOf(squadron[i].ship.flysnd);
-	squadron[i].log("fly:"+sound[squadron[i].ship.flysnd]);
-	squadron[i].log("fire:"+sound[squadron[i].ship.firesnd]);
 	for (j=1; j<squadron[i].weapons.length; j++) {
 	    sound[squadron[i].weapons[j].firesnd]=SOUND_NAMES.indexOf(squadron[i].weapons[j].firesnd);
-	    squadron[i].log("weapon "+squadron[i].weapons[j].name+":"+squadron[i].weapons[j].firesnd);
-
 	}
 	    
     }
@@ -2979,7 +2975,10 @@ Unit.prototype = {
     isinsector: function(m,n,sh,getSubSectorString,getSectorString,flag) {
 	var o1;
 	var o2=sh.getOutlineString(sh.m);
-	if (n>1) o1=getSubSectorString.call(this,n-1,n,m); else o1=getSectorString.call(this,n,m);
+	if (n>1) o1=getSubSectorString.call(this,n-1,n,m); else o1=getSectorString.call(this,n,m);	
+	/*this.log("intersects?"+(Snap.path.intersection(o2.s,o1).length>0)+" "+
+		 this.isPointInside(o1,o2.p)+" "+
+		 intersections);*/
 	return (o1!=null&&(Snap.path.intersection(o2.s,o1).length>0
 	       		   ||this.isPointInside(o1,o2.p)))
     },
