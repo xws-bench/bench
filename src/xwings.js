@@ -458,7 +458,6 @@ function displayattacktokens(u,f) {
     } else displayattacktokens2(u,f);
 }
 function displayattacktokens2(u,f) {
-    u.log(u.id+" f:"+(typeof f)+" "+(typeof u.lastaf));
     if (typeof f!="function") f=u.lastaf;
     else u.lastaf=f;
     $("#atokens").empty();
@@ -2341,8 +2340,9 @@ $(document).ready(function() {
 	} else {
 	    phase=0;
 	    nextphase();
-	    //log("##"+sessionStorage.getItem("import"));
-	    if (sessionStorage.getItem("import")) {
+	    console.log("##"+sessionStorage.getItem("import"));
+	    console.log("##"+localStorage.getItem("import"));
+	    if (localStorage.getItem("import")) {
 		log("Importing from another Squad Builder...");
 		if ($("#squad1").val()=="") currentteam=TEAMS[1];
 		else currentteam=TEAMS[2];
@@ -2423,7 +2423,6 @@ $(document).ready(function() {
 		"ordering":true,
 		"info":true,
 		"paging":         true});
-
 
 	    for (i in localStorage) {
 		if (typeof localStorage[i]=="string"&&i.match(/SQUAD.*/)) {

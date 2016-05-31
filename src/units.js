@@ -449,7 +449,6 @@ Unit.prototype = {
 		}
 		self.show();
 	    } else if (typeof f.save.unwrap=="function") f.save=f.save.unwrap(o);
-	    log("showing "+self.name);
 	    self.show();
 	    return self[name];
 	}
@@ -1869,27 +1868,29 @@ Unit.prototype = {
 	if (sh!=this&&r<=3&&r>0) {
 	    var attack=this.getattackstrength(w,sh);
 	    var defense=sh.getdefensestrength(w,this);
-	    var restorefocus=0;
-	    // Check this: either one TL and no requirement, or more than one TL. 
-	    if (this.weapons[w].consumes
-		&&((this.targeting.indexOf(sh)>-1
-		    &&!"Target".match(this.weapons[w].getrequirements()))
-		||(this.targeting.indexOf(sh,this.targeting.indexOf(sh)+1)>-1)))
-		this.reroll=10;
-	    else this.reroll=0;
+	    var restorefocus=this.focus;
+	    var restorereroll=this.reroll;
+	    var wp=this.weapons[w];
+	    // Check this: either one TL and no requirement, or more than one TL.
+	    if (this.targeting.indexOf(sh)>-1) this.reroll=10;
+	    if (wp.consumes==true
+		&&"Target".match(wp.getrequirements())
+		&&this.canusetarget(sh)) {
+		this.reroll=0; 
+	    }
 	    // If TL and focus are required, use both...TODO
-	    if (this.focus>0
-		&&(typeof this.weapons[w].getrequirements()!="undefined")
-		&&this.weapons[w].consumes
-		&&"Focus".match(this.weapons[w].getrequirements())) { 
-		this.focus--; restorefocus=1; 
+	    if (wp.consumes==true
+		&&"Focus".match(wp.getrequirements())
+		&&this.canusefocus(sh)) {
+		this.focus--; 
 	    }
 	    var thp= tohitproba(this,this.weapons[w],sh,
 			      this.getattacktable(attack),
 			      sh.getdefensetable(defense),
 			      attack,
 			      defense);
-	    if (restorefocus) this.focus++;
+	    if (restorefocus) this.focus=restorefocus;
+	    if (restorereroll) this.reroll=restorereroll;
 	    return thp;
 	} else return {proba:[],tohit:0,meanhit:0,meancritical:0,tokill:0};
     },
