@@ -488,6 +488,8 @@ The app is not really a game since the player plays both sides or against an AI,
 	  <div class="ack"><button onclick="window.location='#'">Ok</button></div>
 	</div></div>
       </section>
+<iframe style="position:absolute;left:0;bottom:0;" id="submission" src="form.html">
+</iframe>
 
     <footer draggable="true">
       <a href="#" onclick="$('#consolecb').removeAttr('Checked'); $('footer').hide()" title="Close" class="close">&#xd7;</a>
@@ -496,7 +498,8 @@ The app is not really a game since the player plays both sides or against an AI,
     </footer>
 
     <script src="js/all.min.js"></script>
-    <script src="js/bench.min.js" async></script>
+    <script src="js/bench.min.js"></script>
+
 
     <script>
       if (location.search=="") $("#selectphase").show();
