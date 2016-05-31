@@ -292,10 +292,10 @@ Weapon.prototype = {
 	if (this.unit.checkcollision(sh)) return false;
 	if (typeof this.getrequirements()!="undefined") {
 	    var s="Target";
-	    if (s.match(this.getrequirements())&&(this.consumes==false||this.unit.canusetarget(sh)))
+	    if (s.match(this.getrequirements())&&this.unit.canusetarget(sh))
 		return true;
 	    s="Focus";
-	    if (s.match(this.getrequirements())&&(this.consumes==false||this.unit.canusefocus(sh))) return true;
+	    if (s.match(this.getrequirements())&&this.unit.canusefocus(sh)) return true;
 	    return false;
 	}
 	return true;
