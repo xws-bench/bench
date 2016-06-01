@@ -1025,10 +1025,23 @@ Unit.prototype = {
 	// Overlapping obstacle ?
 	var pp=[];
 	var tb=this.getBall(mend);
+	if (typeof path=="undefined") {
+	    var minv=mbegin.invert();
+	    var x1=0;
+	    var y1=0;
+	    var x2=mend.x(0,0);
+	    var y2=mend.y(0,0);
+	    var x3=minv.x(x2,y2);
+	    var y3=minv.y(x2,y2);
+	    path=s.path("M "+x1+" "+y1+" L "+x3+" "+y3).appendTo(VIEWPORT).attr({display:"none"});
+	    len=path.getTotalLength();
+	}
 	for (i=0; i<=len; i+=len/5) {
 	    var p=path.getPointAtLength(i);
 	    pp.push({x:mbegin.x(p.x,p.y),y:mbegin.y(p.x,p.y)});
 	}
+	//for (i=0; i<pp.length; i++) 
+	//    s.circle(pp[i].x,pp[i].y,2).attr({fill:"#fff"});
 	//s.circle(tb.x,tb.y,tb.diam).attr({fill:"#f00"});
 
 	for (k=0; k<OBSTACLES.length; k++){
@@ -1155,8 +1168,9 @@ Unit.prototype = {
     candoboost:function() {
 	var moves=this.getboostmatrix(this.m);
 	var b=false;
-	for (var i=0; i<moves.length; i++) 
+	for (var i=0; i<moves.length; i++) {
 	    b=b||(this.getmovecolor(moves[i],true,true)==GREEN);
+	}
 	return b;
     },
     newaction:function(a,str) {
