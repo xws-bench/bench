@@ -448,10 +448,10 @@ var UPGRADES= [
         points: 4,
         attack: 3,
 	done:true,
-	fired:2,
 	followupattack: function() { return this.unit.weapons.indexOf(this); },
 	endattack: function() {
 	    this.fired--;
+	    if (targetunit.hull<=0) this.fired=0;
 	    //this.unit.log("ENDATTACK CLUSTER "+this.fired);
 	    if (this.fired==0) {
 		if (this.ordnance) {
@@ -463,6 +463,7 @@ var UPGRADES= [
 	init: function(sh) {
 	    var wn = this.unit.weapons.indexOf(this);
 	    var self=this;
+	    this.fired=2;
 	    sh.addattack(function(c,h) { 
 		return this.activeweapon==wn&&targetunit.hull+targetunit.shield>0; 
 	    }.bind(sh),this,wn,function() { return targetunit; });
