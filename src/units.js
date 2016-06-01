@@ -254,6 +254,7 @@ function Unit(team,pilotid) {
 }
 Unit.prototype = {
     tosquadron: function(s) {
+	var i,j;
 	var upgs=this.upg;
 	this.usedweapon=-1;
 	this.activeweapon=-1;
