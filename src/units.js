@@ -2977,9 +2977,6 @@ Unit.prototype = {
 	var o1;
 	var o2=sh.getOutlineString(sh.m);
 	if (n>1) o1=getSubSectorString.call(this,n-1,n,m); else o1=getSectorString.call(this,n,m);	
-	/*this.log("intersects?"+(Snap.path.intersection(o2.s,o1).length>0)+" "+
-		 this.isPointInside(o1,o2.p)+" "+
-		 intersections);*/
 	return (o1!=null&&(Snap.path.intersection(o2.s,o1).length>0
 	       		   ||this.isPointInside(o1,o2.p)))
     },
@@ -2994,8 +2991,9 @@ Unit.prototype = {
     getprimarysector: function(sh,m) {
 	var i;
 	if (typeof m=="undefined") m=this.m;
-	var n=this.getoutlinerange(m,sh).d
-	if (this.isinsector(m,n,sh,this.getPrimarySubSectorString,this.getPrimarySectorString)) return n;
+	var n=this.getoutlinerange(m,sh).d;
+	for (i=n; i<=n+1&&i<=3; i++) 
+	    if (this.isinsector(m,i,sh,this.getPrimarySubSectorString,this.getPrimarySectorString)) return i;
 	return 4;
     },
     isinoutline: function(o1,sh,m) {

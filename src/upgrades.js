@@ -336,9 +336,11 @@ Weapon.prototype = {
     getsector: function(sh) {
 	var m=this.unit.m;
 	var n=this.unit.getoutlinerange(m,sh).d;
-	if (this.unit.isinsector(m,n,sh,this.unit.getPrimarySubSectorString,this.unit.getPrimarySectorString)) return n;
+	for (var i=n; i<=n+1&&i<=3; i++) 
+	    if (this.unit.isinsector(m,i,sh,this.unit.getPrimarySubSectorString,this.unit.getPrimarySectorString)) return i;
 	if (typeof this.auxiliary=="undefined") return 4;
-	if (this.unit.isinsector(m,n,sh,this.subauxiliary,this.auxiliary)) return n;
+	for (var i=n; i<=n+1&&i<=3; i++) 
+	    if (this.unit.isinsector(m,i,sh,this.subauxiliary,this.auxiliary)) return i;
 	return 4;
     },
     getrange: function(sh) {
