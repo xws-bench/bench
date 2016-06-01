@@ -168,6 +168,10 @@ Team.prototype = {
 	    if (u.team==this.team) {
 		for (var j=0; j<u.upgrades.length; j++) {
 		    var upg=u.upgrades[j];
+		    // Need to unwrap generic upgrades, installed when creating the squad
+		    if (upg.id>=0&&typeof UPGRADES[upg.id].uninstall=="function") 
+			UPGRADES[upg.id].uninstall(u);
+		    // Now install the upgrades added during the tosquadron call
 		    if (typeof upg.install=="function") upg.install(u);
 		}
 	    }

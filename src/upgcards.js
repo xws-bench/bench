@@ -68,7 +68,6 @@ var UPGRADES= [
 	},
 	uninstall:function(sh) {
 	    sh.getdial.unwrap(this);
-	    sh.log("uninstalling effect [%0]",this.name);
 	},
         type: ASTROMECH,
         points: 1,
@@ -2412,13 +2411,11 @@ var UPGRADES= [
 	type:MOD,
 	done:true,
 	install:function(sh) {
-	    sh.log("installing getagility");
 	    sh.wrap_after("getagility",this,function(a) { return a+1;});
 	    sh.showstats();
 	},
 	uninstall:function(sh) {
 	    sh.getagility.unwrap(this);
-	    sh.log("uninstalling "+this.name+" agility:"+sh.getagility());
 	    sh.showstats();
 	},
 	init: function(sh) {
