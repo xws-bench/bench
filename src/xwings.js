@@ -1618,7 +1618,7 @@ function resetlink() {
     default: 
 	//log("reset to phase 0");
 	phase=0;
-	if (document.location.href.indexOf("?")>0) document.location.reload(true);
+	if (document.location.href.indexOf("?")>=0) document.location.reload(true);
 	else document.location.search="?"+PERMALINK;
 	//document.location.assign(document.location.href);
 	//document.location.reload(true);
