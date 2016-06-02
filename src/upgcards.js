@@ -3518,14 +3518,18 @@ var UPGRADES= [
 	    var self=this;
 	    sh.wrap_after("addevadetoken",this,function() {
 		if (this.evade>1) {
-		    this.log("1 %FOCUS% max [%0]",self.name);
+		    this.log("1 %EVADE% max [%0]",self.name);
 		    this.evade=1;
 		}
 		this.showinfo();
 	    });
 	    sh.wrap_after("resetevade",this,function() {
-		if (this.evade>0) this.log("keep 1 %EVADE% token [%0]",self.name);
-		return 1;
+		var r=0;
+		if (this.evade>0) {
+		    this.log("keep 1 %EVADE% token [%0]",self.name);
+		    r=1;
+		}
+		return r;
 	    });
 	},
     },
