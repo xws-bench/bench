@@ -67,7 +67,8 @@ var UPGRADES= [
 	    });
 	},
 	uninstall:function(sh) {
-	    sh.getdial.unwrap(this);
+	    if (typeof sh.getdial.unwrap=="function") 
+		sh.getdial.unwrap(this);
 	},
         type: ASTROMECH,
         points: 1,
@@ -753,7 +754,7 @@ var UPGRADES= [
 	    sh.showskill();
 	},
 	uninstall: function(sh) {
-	    sh.getskill.unwrap(this);
+	    if (typeof sh.getskill.unwrap=="function") sh.getskill.unwrap(this);
 	    sh.showskill();
 
 	},
@@ -897,7 +898,8 @@ var UPGRADES= [
 	    });
 	},
 	uninstall:function(sh) {
-	    sh.getdial.unwrap(this);
+	    if (typeof sh.getdial.unwrap=="function") 
+		sh.getdial.unwrap(this);
 	},
         unique: true,
         type: CREW,
@@ -2276,7 +2278,7 @@ var UPGRADES= [
 			var d=gd[i].difficulty;
 			var move=gd[i].move;
 			if (move.match(/[A-Z]+3/)) {
-			    this.log("%0 is green [%1]",move,self.name);
+			    //this.log("%0 is green [%1]",move,self.name);
 			    d="GREEN";
 			}
 			save[i]={move:move,difficulty:d};
@@ -2286,7 +2288,8 @@ var UPGRADES= [
 	    });
 	},
 	uninstall:function(sh) {
-	    sh.getdial.unwrap(this);
+	    if (typeof sh.getdial.unwrap=="function")
+		sh.getdial.unwrap(this);
 	},
         points: 1,
     },
@@ -2416,7 +2419,7 @@ var UPGRADES= [
 	    sh.showstats();
 	},
 	uninstall:function(sh) {
-	    sh.getagility.unwrap(this);
+	    if (sh.getagility.unwrap=="function") sh.getagility.unwrap(this);
 	    sh.showstats();
 	},
 	init: function(sh) {
@@ -3401,7 +3404,8 @@ var UPGRADES= [
 	    })
 	},
 	uninstall:function(sh) {
-	    sh.getdial.unwrap(this);
+	    if (typeof sh.getdial.unwrap=="function") 
+		sh.getdial.unwrap(this);
 	}
     },
     {
@@ -4165,7 +4169,8 @@ var UPGRADES= [
 	    sh.showstats();
 	},
 	uninstall: function(sh) {
-	    this.unwrap(this);
+	    if (typeof sh.weapons[0].getattack.unwrap=="function") 
+		sh.weapons[0].getattack.unwrap(this);
 	    sh.showstats();
 	},
     },
