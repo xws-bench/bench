@@ -3626,13 +3626,14 @@ var UPGRADES= [
       faction:REBEL,
       unique:true,
       done:true,
-      rd:-1,
       init: function(sh) {
 	  var self=this;
+	  this.rd=-1;
 	  Unit.prototype.wrap_after("handledifficulty",self,function(difficulty) {
 	      if (difficulty=="WHITE"&&this.stress>0&&self.rd<round
 		  &&this.team==self.unit.team&&this.getrange(self.unit)<=2) {
 		  this.log("-1 %STRESS% [%0]",self.name);
+		  self.rd=round;
 		  this.removestresstoken();
 	      }
 	  });
