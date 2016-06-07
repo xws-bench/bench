@@ -1595,7 +1595,7 @@ function permalink(reset) {
     if (!reset) { if (REPLAY!="") r=REPLAY; else r=ANIM; } 
     return LZString.compressToEncodedURIComponent(TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock()+"&"+TEAMS[1].isia+"&"+TEAMS[2].isia+"&"+SETUP.name+"&"+r);
 }
-function resetlink() {
+function resetlink(home) {
     switch (phase) {
     case SETUP_PHASE:
     case SELECT_PHASE: 
@@ -1609,7 +1609,8 @@ function resetlink() {
 	break;
     case CREATION_PHASE: phase=0; document.location.search=""; nextphase(); break; 
     default: 
-	if (ANIM.lastIndexOf("P-")>-1) {
+	if (home==true) document.location.search="";
+	else if (ANIM.lastIndexOf("P-")>-1) {
 	    ANIM=ANIM.slice(0,ANIM.lastIndexOf("_-P-"));
 	    var arg=LZString.decompressFromEncodedURIComponent(decodeURI(PERMALINK));
 	    args=arg.split("&");
