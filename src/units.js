@@ -1391,7 +1391,8 @@ Unit.prototype = {
 	    this.log("attacks %0 with %1",target.name,this.weapons[w].name);
 	    target.isattackedby(w,this);
 	    return true;
-	} else return false;
+	} else this.log("cannot declare attack to "+target.name+" with "+this.weapons[w].name); 	    
+	return false;
     },
     isattackedby:function(k,a) {},
     modifydamageassigned: function(ch,attacker) {return ch;},
@@ -2350,6 +2351,7 @@ Unit.prototype = {
 	return (this.iscloaked&&phase==ACTIVATION_PHASE&&!this.hasdecloaked);
     },
     selecttargetforattack: function(wp,target) {
+	log("selecting target for attack");
 	if (typeof target!="undefined") {
 	    if (this.declareattack(wp,target))  
 		this.resolveattack(wp,target);
@@ -2363,6 +2365,7 @@ Unit.prototype = {
 	} else {
 	    $("#attackdial").empty();
 	    this.selectunit(p,function(p,k) {
+		this.log("selecting "+p[k].name+" as target ?"+this.declareattack(wp,p[k]));
 		if (this.declareattack(wp,p[k]))  
 		    this.resolveattack(wp,p[k]);
 	    },[""],false);

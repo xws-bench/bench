@@ -408,9 +408,10 @@ function Upgradefromid(sh,i) {
     var upg=UPGRADES[i];
     upg.id=i;
     if (upg.type==BOMB) return new Bomb(sh,upg);
-    if (typeof upg.isWeapon != "undefined") 
+    if (typeof upg.isWeapon != "undefined") { 
 	if (upg.isWeapon()) return new Weapon(sh,upg);
-    else return new Upgrade(sh,i);
+	else return new Upgrade(sh,i);
+    }
     if (upg.type.match(/Turretlaser|Bilaser|Laser180|Laser|Torpedo|Cannon|Missile|Turret/)||upg.isweapon==true) return new Weapon(sh,upg);
     return new Upgrade(sh,i);
 }
