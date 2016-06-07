@@ -1844,10 +1844,11 @@ Unit.prototype = {
 	var n=actionr.length-1;
 	if (typeof org=="undefined") org="undefined";
 	//this.log("enqueueaction "+n+":"+org.name);
-	actionr[n-1].done(function() { 
-	    //this.log("|| "+n+" execute"); 
-	    callback(n) 
-	}.bind(this));
+	if (n==0) callback(n); else 
+	    actionr[n-1].done(function() { 
+		//this.log("|| "+n+" execute"); 
+		callback(n) 
+	    }.bind(this));
 	return actionr[n];
     },
     endnoaction: function(n,type) {
@@ -3061,6 +3062,7 @@ Unit.prototype = {
 	if (this.hull>this.ship.hull) this.hull=this.ship.hull;
     },
     animateremovetoken: function(type) {
+	if (FAST) return;
 	var m=VIEWPORT.m.clone();
 	var w=$("#svgout").width();
 	var h=$("#svgout").height();
@@ -3079,6 +3081,7 @@ Unit.prototype = {
 	$("<div>").addClass("upanim").css({left:x,top:y}).html("<code class='"+type+"'></code>").appendTo("body").show();
     },
     animateaddtoken: function(type) {
+	if (FAST) return;
 	var m=VIEWPORT.m.clone();
 	var w=$("#svgout").width();
 	var h=$("#svgout").height();

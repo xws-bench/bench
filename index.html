@@ -41,7 +41,7 @@
 	</span>
 	<span class="buttonbar">
 	  <button onclick="currentteam=TEAMS[0];createsquad()" class="mainbutton m-create"></button>
-	  <button class="m-reset permalink" onclick="resetlink()" >&lt; </button>
+	  <button class="permalink" onclick="resetlink()" >&lt; Back</button>
 	  <span id="phase"></span>
 	  <button class="nextphase" onclick="nextphase()"><span class='np'></span> <span id='npimg'>&gt;</span></button>
 	  <span class="menu" ><span class="symbols" style="padding:5px;vertical-align:bottom;color:white;font-size:larger;">&#xE2;</span>
@@ -122,7 +122,7 @@
 	    <a href="#" title="Close" class="close">&#10060;</a>
 	  </h2>
 	  <div>
-	    <button class="permalink m-replay" onclick="window.location.reload(true)">&lt;&lt;</button><button class="m-reset permalink" onclick="resetlink()" >&lt; </button>
+	    <button class="permalink m-replay" onclick="resetlink(true)">&lt;&lt;</button><button class="m-reset permalink" onclick="resetlink()" >&lt; </button>
 
 	    <table class="victory-table"></table>
 	    <div class="replays">Share combat: 
@@ -135,7 +135,6 @@
 </a>
 	      </span>
 	    </div>
-	    <button class="m-reset permalink" onclick="resetlink()">&lt; </button>
 	  </div>
 	</div>
      </section>
@@ -177,7 +176,7 @@
 	 </tr>
 	 <tr>
 	   <td class="squadbg"><div>1</div><textarea onchange="currentteam=TEAMS[1];importsquad(1)" onpaste="setTimeout(function(){currentteam=TEAMS[1];importsquad(1);}, 4)" id="squad1" cols="40" rows="8"></textarea></td>
-	   <td class="squadbg"><div class="right">2</div><textarea  onchange="currentteam=TEAMS[2];importsquad(2)" onpaste="setTimeout(function(){currentteam=TEAMS[2];importsquad(2);}, 4)" id="squad2" cols="40" rows="8" ></textarea></td>
+	   <td class="squadbg"><div class="right">2</div><textarea  onchange="alert('keychange');currentteam=TEAMS[2];importsquad(2)" onpaste="setTimeout(function(){currentteam=TEAMS[2];importsquad(2);}, 4)" id="squad2" cols="40" rows="8" ></textarea></td>
 	 </tr>
 	 <tr>
 	   <td colspan="2" class="squadbg" style="text-align:right">
@@ -498,7 +497,7 @@ The app is not really a game since the player plays both sides or against an AI,
     </footer>
 
     <script src="js/all.min.js"></script>
-    <script src="js/bench.min.js" async></script>
+    <script src="js/bench.min.js"></script>
 
     <script>
       if (location.search=="") $("#selectphase").show();

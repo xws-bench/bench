@@ -625,8 +625,11 @@
 	"Structural Damage":{
 	    "text":"Reduce your agility value by 1 (to a minimum of '0'). %ACTION% Roll 1 attack die, on a %HIT% result, flip this card facedown."
 	},
+	"Structural Damage ":{
+	    "text":"Reduce your agility value by 1 (to a minimum of '0'). %ACTION% Roll 1 attack die, on a %HIT% or %CRIT% result, flip this card facedown."
+	},
 	"Damaged Engine":{
-	    "text":"Treat all turn maneuvers (sharp left OR sharp right) as red maneuvers."
+	    "text":"Treat all turn maneuvers (left turn OR right turn) as red maneuvers."
 	},
 	"Console Fire":{
 	    "text":"At the start of each combat phase, roll 1 attack die.  On a %HIT% result, suffer 1 damage. %ACTION% Flip this card facedown."
@@ -636,6 +639,9 @@
 	},
 	"Damaged Sensor Array":{
 	    "text":"You cannot perform the actions listed in your action bar. %ACTION% Roll 1 attack die.  On a %HIT% result, flip this card facedown."
+	},
+	"Damaged Sensor Array ":{
+	    "text":"You cannot perform the actions except actions listed on Damage cards. %ACTION% Roll 1 attack die.  On a %HIT% or %CRIT% result, flip this card facedown."
 	},
 	"Minor Explosion":{
 	    "text":"Immediately roll 1 attack die.  On a %HIT% result, suffer 1 damage.  Then flip this card facedown."
@@ -655,14 +661,23 @@
 	"Damaged Cockpit":{
 	    "text":"After the round in which you receive this card, treat your pilot skill value as '0'"
 	},
+	"Damaged Cockpit ":{
+	    "text":"Starting the round after you receive this card, treat your pilot skill value as '0'"
+	},
 	"Blinded Pilot":{
 	    "text":"The next time you attack, do not roll any attack dice.  Then flip this card facedown."
+	},
+	"Blinded Pilot ":{
+	    "text":"You cannot perform attacks. After your next opportunity to attackk (even if there was no target for an attack), flip this card facedown."
 	},
 	"Injured Pilot":{
 	    "text":"All players must ignore your pilot ability and all of your %ELITE% upgrade cards."
 	},
 	"Stunned Pilot":{
 	    "text":"After you execute a maneuver that causes you to overlap either another ship or obstacle token, suffer 1 damage."
+	},
+	"Stunned Pilot ":{
+	    "text":"After you execute a maneuver, if you are touching another ship or overlapping an obstacle token, suffer 1 damage."
 	}
     },
     "css":{

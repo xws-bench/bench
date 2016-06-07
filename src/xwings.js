@@ -1,16 +1,8 @@
 /* modifications:
-   - cool hand bug
-   - Tomax Bren
-   -Deathfire 
-   -creation screen, perspective removed, upgrade installation checked and corrected for some (skill)
-   - Systems officer added
-   -adaptability: one card, duality handled in setup
-   -setup with new upgrades added
-   -creation screen, mist hunter + cannon corrected (cannon couldn't be removed)
-   - feedback corrected
-   -plasma torpedo sound
-   -R4 Agromech
-   - Thermal Detonators spelling
+   - Kanan (crew) once per round
+   - button to reset animation when played
+   - Comm relay with evade reappearing corrected
+
 */var phase=1;
 var subphase=0;
 var round=1;
@@ -101,7 +93,6 @@ var SETUPS={
 }
 
 function changeimage(input) {
-    console.log("files"+input.files+" "+input.files[0]);
     if (input.files && input.files[0]) {
 	var reader=new FileReader();
 	reader.onload=function(e) {
@@ -135,7 +126,6 @@ function center() {
     activeunit.show();
 }
 var AIstats = function(error,options, response) {
-    //console.log(error,options,response);
     if (typeof response.rows!="undefined") {
     	for (var i=1; i<response.rows.length; i+=200) {
 	    var scorec=0;
@@ -751,12 +741,9 @@ function win() {
 	    url=encodeURI("http://xws-bench.github.io/bench/index.html?"+permalink(false));
 	    //$('#submission').src="form.html";
 	    $("#submission").contents().find('#entry_209965003').val(titl);
-	    log("setting "+titl);
 	    $('#submission').contents().find('#entry_390767903').val(note);
-	    log("setting "+note);
 	    $('#submission').contents().find('#entry_245821581').val("no short url");
 	    $('#submission').contents().find('#entry_1690611500').val(url);
-	    log("setting "+url);
 	    $('#submission').contents().find("#ss-form").submit();
 	    $(".tweet").hide();
 	    $(".facebook").attr("href","https://www.facebook.com/sharer/sharer.php?u="+encodeURI(url));
@@ -1302,9 +1289,24 @@ var ZONE=[];
 function movelog(s) {
     ANIM+="_-"+s;
 }
+function endsetupphase() {
+    $(".buttonbar .share-buttons").hide();
+    $("#leftpanel").show();
+    $(".bigbutton").hide();
+    ZONE[1].remove();
+    ZONE[2].remove();
+    TEAMS[1].endsetup();
+    TEAMS[2].endsetup();
+    PERMALINK=permalink(true);
+    $(".playerselect").remove();
+    $(".nextphase").prop("disabled",true);
+    $(".unit").css("cursor","pointer");
+    $("#positiondial").hide();
+    for (var i=0; i<OBSTACLES.length; i++) OBSTACLES[i].g.undrag();
+    HISTORY=[];
+}
 function nextphase() {
     var i;
-    movelog("P-"+round+"-"+(phase+1));
     // End of phases
     //if (!enablenextphase()) return;
     window.location="#";
@@ -1328,20 +1330,7 @@ function nextphase() {
 	phase=SELECT_PHASE;
 	return;
     case SETUP_PHASE: 
-	$(".buttonbar .share-buttons").hide();
-	$("#leftpanel").show();
-	$(".bigbutton").hide();
-	ZONE[1].remove();
-	ZONE[2].remove();
-	TEAMS[1].endsetup();
-	TEAMS[2].endsetup();
-	PERMALINK=permalink(true);
-	$(".playerselect").remove();
-	$(".nextphase").prop("disabled",true);
-	$(".unit").css("cursor","pointer");
-	$("#positiondial").hide();
-	for (i=0; i<OBSTACLES.length; i++) OBSTACLES[i].g.undrag();
-	HISTORY=[];
+	endsetupphase();
 	/*
 	if (REPLAY.length>0) {
 	    replayid=0;
@@ -1374,6 +1363,7 @@ function nextphase() {
 	break;
     }
     phase=(phase==COMBAT_PHASE)?PLANNING_PHASE:phase+1;
+    movelog("P-"+round+"-"+(phase));
     if (phase==1) $("#phase").empty();
     else if (phase<3) $("#phase").html(UI_translation["phase"+phase]);
     else $("#phase").html(UI_translation["turn #"]+round+" "+UI_translation["phase"+phase]);
@@ -1382,9 +1372,11 @@ function nextphase() {
     // Init new phase
 
     $(".nextphase").prop("disabled",false);
+    setphase();
+}
+function setphase() {
     switch(phase) {
     case SELECT_PHASE:
-
 	$(".mainbutton").show();
 	$(".buttonbar .share-buttons").hide();
 	$(".h2 .share-buttons").show();
@@ -1489,7 +1481,8 @@ function nextphase() {
 	$(".modalDialog > div").on("dragstart",modal_dragstart); 
 	$(document.body).on('dragover',modal_dragover); 
 	$(document.body).on('drop',modal_drop); 
-*/
+	*/
+	jwerty.key("shift+i",function() { document.location.reload(true); });
 	jwerty.key("escape", nextphase);
 	/*$(document).keyup(function(event) {
 	    if (event.which==13) {
@@ -1611,17 +1604,34 @@ function resetlink() {
 	if (uri.indexOf("?") > 0) {
 	    var clean_uri = uri.substring(0, uri.indexOf("?"));
 	    window.history.replaceState({}, document.title, clean_uri);
-	}
-	document.location.reload(true);
+	    //document.location.assign(clean_uri);
+	} //else document.location.reload(true);
 	break;
     case CREATION_PHASE: phase=0; document.location.search=""; nextphase(); break; 
     default: 
-	//log("reset to phase 0");
-	phase=0;
-	if (document.location.href.indexOf("?")>=0) document.location.reload(true);
-	else document.location.search="?"+PERMALINK;
-	//document.location.assign(document.location.href);
-	//document.location.reload(true);
+	if (ANIM.lastIndexOf("P-")>-1) {
+	    ANIM=ANIM.slice(0,ANIM.lastIndexOf("_-P-"));
+	    var arg=LZString.decompressFromEncodedURIComponent(decodeURI(PERMALINK));
+	    args=arg.split("&");
+	    args[2]=saverock();
+	    args[6]=ANIM;
+	    arg=args.join("&");
+	    /*phase=0;*/
+	    document.location.search="?"+LZString.compressToEncodedURIComponent(arg);
+	    //document.location.reload(true);
+		/*
+		var arg=LZString.decompressFromEncodedURIComponent(decodeURI(window.location.search.substr(1)));
+		var args=[];
+		if (arg!=null) args= arg.split('&');
+		if (args.length>1) {
+		    if (args.length>6&args[6]!="") { 
+			var a=args.slice(0,6).join("&"); 
+			PERMALINK=LZString.compressToEncodedURIComponent(a);
+			phase=0;
+		    document.location.search="?"+PERMALINK;
+		} else document.location.reload(true);
+*/
+	}
     }
 }
 function record(id,val,str) {
@@ -1866,6 +1876,7 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense) {
 			/*if (typeof attacker.postattack=="function") {
 			    attacker.postattack(i);
 			}*/
+			/*
 			if (typeof weapon.immediateattack!="undefined"
 			    &&weapon.immediateattack.pred(i)
 			    &&typeof attacker.iar=="undefined") {
@@ -1874,7 +1885,7 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense) {
 			    var r=attacker.gethitrange(w,defender);
 			    // No prerequisite checked.
 			    if (r<=3&&r>0) {
-				//console.log("immediate attack:"+weapon.name+"->"+attacker.weapons[w].name+" "+attacker.reroll+" "+attacker.name)
+				console.log("immediate attack:"+weapon.name+"->"+attacker.weapons[w].name+" "+attacker.reroll+" "+attacker.name)
 				var attack2=attacker.getattackstrength(w,defender);
 				var defense2=defender.getdefensestrength(w,attacker);
 				var thp= tohitproba(attacker,attacker.weapons[w],defender,
@@ -1890,7 +1901,7 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense) {
 				}
 			    } else p[i]+=a*d;
 			    delete attacker.iar;
-			} else {
+			} else*/ {
 			    p[i]+=a*d;
 			}
 			defender.focus=savedfocus;
@@ -2105,16 +2116,24 @@ $(document).ready(function() {
     var availlanguages=["en","fr","de","es","it","pl"];
     LANG = localStorage['LANG'] || window.navigator.userLanguage || window.navigator.language;
     LANG=LANG.substring(0,2);
-    $.ajaxSetup({beforeSend: function(xhr){
-	if (xhr.overrideMimeType)
-	    xhr.overrideMimeType("application/json");
-    }});
+    $.ajaxSetup({
+	beforeSend: function(xhr){
+	    if (xhr.overrideMimeType) xhr.overrideMimeType("application/json");
+	},
+	isLocal:true
+    });
     if (availlanguages.indexOf(LANG)==-1) LANG="en";
     $("#langselect").val(LANG);
     $.when(
-	$.ajax("data/ships.json"),
-	$.ajax("data/strings."+LANG+".json"),
-	$.ajax("data/xws.json")
+	$.ajax("data/ships.json",{error:function(xhr,status,error) {
+	    console.log("**Error loading ships.json\n"+status+" "+error);
+	}}),
+	$.ajax("data/strings."+LANG+".json",{error:function(xhr,status,error) {
+	    console.log("**Error loading strings."+LANG+".json\n"+status+" "+error);
+	}}),
+	$.ajax("data/xws.json",{error:function(xhr,status,error) {
+	    console.log("**Error loading xws.json\n"+status+" "+error);
+	}})
     ).done(function(result1,result2,result3) {
 	var process=setInterval(function() {
 	    ATTACK[dice]=attackproba(dice);
@@ -2461,7 +2480,12 @@ $(document).ready(function() {
 var cmd=[];
 var startreplayall=function() {
     if (REPLAY.length==0) return; 
-    cmd=REPLAY.split("_");
+    FAST=true;
+    ANIM=REPLAY;
+    var arg=LZString.decompressFromEncodedURIComponent(decodeURI(window.location.search.substr(1)));
+    var args=arg.split("&");
+    //log("ANIM "+args[6]);
+    cmd=args[6].split("_");
     cmd.splice(0,1);
     if (cmd.length==0) return;
     ZONE[1].remove();
@@ -2489,11 +2513,18 @@ var restartreplay=function() {
     replayall();
 }
 var replayall=function() {
+    if (cmd=="") {
+	FAST=false;
+	filltabskill();
+	setphase();
+	return;
+    }
     var c=cmd[0].split("-");
-    console.log(cmd[0]);
+    //console.log(cmd[0]);
     cmd.splice(0,1);
     var u=null;
     var j;
+    endsetupphase();
     if (c[0].length>0) {
 	var id=parseInt(c[0],10);
 	for (j in squadron) if (squadron[j].id==id) break; 
@@ -2523,7 +2554,7 @@ var replayall=function() {
 	   };
     if (typeof FTABLE[c[1]]=="string") {
 	var f=Unit.prototype[FTABLE[c[1]]];
-	if (typeof f=="undefined") log("ftable "+c[1]+" "+FTABLE[c[1]]);
+	//if (typeof f=="undefined") console.log("ftable "+c[1]+" "+FTABLE[c[1]]);
 	if (typeof f.vanilla=="function") { f.vanilla.call(u,t); }
 	else {  f.call(u);}
 	actionrlock.notify();
@@ -2623,6 +2654,14 @@ var replayall=function() {
 	var l=parseInt(c[4],10);
 	var oldm=u.m;
 	var path=P[d].path;
+	if (FAST) {
+	    u.m=u.getmatrixwithmove(oldm,path,l);
+	    u.m.rotate(parseFloat(c[3],0,0),0,0);
+	    u.g.transform(u.m);
+	    u.geffect.transform(u.m);
+	    actionrlock.notify();
+	    break;
+	}
 	SOUNDS[u.ship.flysnd].play();
 	Snap.animate(0,l,function(value) {
 	    var m=this.getmatrixwithmove(oldm,path,value);
@@ -2636,6 +2675,10 @@ var replayall=function() {
 	    actionrlock.notify();
 	}.bind(u));
 	break;
-    default: log("undefined cmd "+c[1]);
+    default: 
+	console.log("unknown cmd:"+c[1]);
+	FAST=false;
+	filltabskill();
+	setphase();
     }
 }

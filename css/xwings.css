@@ -313,7 +313,7 @@ display:none
 width:100%;
 text-align:center;
 padding:7px;
-background:#EEE
+background:#EEE;
 margin-bottom:5px;
 }
 .caroussel li:nth-child(-n+5) tr .tooltip {
@@ -994,12 +994,10 @@ color:#fff
 background:#ff8c00;
 color:#fff
 }
-
-.phasepanel .symbols:hover,.phasepanel .selected {
-filter: invert(200%);
--webkit-filter: ivvert(200%);
+#actiondial .symbols:hover,#attackdial .symbols:hover,#positiondial .symbols:hover {
+color:#000;
+background:#FFF;
 }
-
 .table,.team {
 display:block;
 width:100%;
@@ -1993,6 +1991,18 @@ padding:0;
 margin:0;
 border:0;
 resize:none
+}
+.symbols.maneuver.GREEN:hover,.symbols.maneuver.GREEN.selected {
+color:#000;
+background:#0F0;
+}
+.symbols.maneuver.WHITE:hover,.symbols.maneuver.WHITE.selected {
+color:#000;
+background:#FFF;
+}
+.symbols.maneuver.RED:hover,.symbols.maneuver.RED.selected {
+color:#000;
+background:#F00;
 }
 #setting td:first-child {
 text-align:right;
