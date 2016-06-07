@@ -158,7 +158,7 @@ var PILOTS = [
         init: function() {
 	    var biggs=this;
 	    Weapon.prototype.wrap_after("getenemiesinrange",this,function(r) {
-		if (r.indexOf(biggs)>-1) {
+		if (this.unit.foundbiggs==true) {
 		    var p=[];
 		    for (var i=0; i<r.length; i++) {
 			var u=r[i];
@@ -169,17 +169,22 @@ var PILOTS = [
 		return r;
 	    });
 	    Unit.prototype.wrap_after("getenemiesinrange",this,function(r) {
-		var found=false;
+		this.foundbiggs=false;
 		var p=[];
 		for (var i=0; i<this.weapons.length; i++) {
-		    p[i]=[];
-		    if (r[i].indexOf(biggs)>-1) {
+		    if (r[i].indexOf(biggs)>-1) { this.foundbiggs=true; break; }
+		}
+		if (this.foundbiggs) {
+		    for (var i=0; i<this.weapons.length; i++) {
+			p[i]=[];
 			for (var j=0; j<r[i].length; j++) {
 			    var u=r[i][j];
-			    if (u==biggs||u.getrange(biggs)>1) p[i].push(u);
+			    if (u==biggs||u.getrange(biggs)>1) {
+				p[i].push(u);
+			    }
 			}
-		    } else p[i]=r[i];
-		}
+		    }
+		} else p=r;
 		return p;
 	    });
 	},
