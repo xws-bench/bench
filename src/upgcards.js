@@ -2321,7 +2321,7 @@ var UPGRADES= [
 		self.unit.log("%HIT% cannot be cancelled [%0]",self.name);
 		return r;
 	    }).unwrapper("endbeingattacked");
-	    Weapon.prototype.declareattack.call(this,target);
+	    return Weapon.prototype.declareattack.call(this,target);
 	},
         range: [1,1],
     },
@@ -3958,7 +3958,7 @@ var UPGRADES= [
 		     }).unwrapper("endbeingattacked");
 		 }
 		 return m;
-	     },str:"focus"});
+	     }.bind(sh),str:"focus"});
      }
     },
     {name:"Mist Hunter",
