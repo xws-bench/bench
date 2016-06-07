@@ -1591,16 +1591,16 @@ var UPGRADES= [
 	    var self=this;
 	    Unit.prototype.wrap_after("addfocustoken",this,function() {
 		if (this.getrange(sh)<=3&&this.team==sh.team&&jan<round) {
-		    jan=round;
 		    this.log("select %FOCUS% or %EVADE% token [%0]",self.name)
 		    this.donoaction(
 			[{name:self.name,org:self,type:"FOCUS",action:function(n) { 
 			    this.endnoaction(n,"FOCUS"); }.bind(this)},
 			 {name:self.name,org:self,type:"EVADE",action:function(n) { 
+			     jan=round;
 			     this.removefocustoken();
 			     this.addevadetoken(); 
 			     this.endnoaction(n,"EVADE"); }.bind(this)}],
-			"",true);
+			"",false);
 		}
 	    })
 	},
