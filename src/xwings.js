@@ -1299,8 +1299,9 @@ function endsetupphase() {
     ZONE[2].remove();
     TEAMS[1].endsetup();
     TEAMS[2].endsetup();
-    $("#player1_msdd").hide();
-    $("#player2_msdd").hide();
+    $(".ddArrow").hide();
+    $("#player1_msdd").css("pointer-events","none");
+    $("#player2_msdd").css("pointer-events","none");
     PERMALINK=permalink(true);
     $(".playerselect").remove();
     $(".nextphase").prop("disabled",true);
@@ -1425,6 +1426,9 @@ function setphase(cannotreplay) {
 	$("#player2").msDropDown({roundedCorner:false});
 	$("#player1_msdd").show();
 	$("#player2_msdd").show();
+	$(".ddArrow").show();
+	$("#player1_msdd").css("pointer-events","all");
+	$("#player2_msdd").css("pointer-events","all");
 	$(".bigbutton").show();
 	$(".buttonbar .share-buttons").show();
 	$("#team2").css("top",$("nav").height()+2);
