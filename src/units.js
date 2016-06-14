@@ -1035,6 +1035,7 @@ Unit.prototype = {
 	    var y3=minv.y(x2,y2);
 	    path=s.path("M "+x1+" "+y1+" L "+x3+" "+y3).appendTo(VIEWPORT).attr({display:"none"});
 	    len=path.getTotalLength();
+	    if (len==0) return false;
 	}
 	for (i=0; i<=len; i+=len/5) {
 	    var p=path.getPointAtLength(i);
@@ -1043,7 +1044,6 @@ Unit.prototype = {
 	//for (i=0; i<pp.length; i++) 
 	//    s.circle(pp[i].x,pp[i].y,2).attr({fill:"#fff"});
 	//s.circle(tb.x,tb.y,tb.diam).attr({fill:"#f00"});
-
 	for (k=0; k<OBSTACLES.length; k++){
 	    var b=OBSTACLES[k].getBall();
 	    var D=b.diam+tb.diam;

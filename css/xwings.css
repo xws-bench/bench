@@ -1111,16 +1111,13 @@ display:inline-block;
 text-align:center;
 border:0;
 text-decoration:none;
-background:white;
+background:#e2e2e4;
 color:black;
 cursor:pointer;
 padding:3px;
 margin:1px;
 font-size:1em;
-font-family:"spacename" bold;
-font-variant:small-caps;
-color:white;
-background:lightsteelblue;
+font-family:"space";
 }
 .bigbutton:hover {
 color:lightsteelblue;
@@ -1918,7 +1915,7 @@ width:100%;
 border:0;
 background:rgba(255,255,255,0.8);
 border-radius:5px;
-height:5em;
+height:10em;
 }
 .squadbg svg {
 width:100%;

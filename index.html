@@ -20,6 +20,7 @@
     <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" href="css/xwings.css">
     <link rel="stylesheet" href="css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="css/dd.css" />
     <style type="text/css" id="localstrings"></style>
 
   </head>
@@ -62,16 +63,16 @@
     </nav>
 
     <aside class="leftpanel" id="leftpanel">
-      <button class="bigbutton m-asteroids" onclick="location='#asteroid';TEAMS[1].selectrocks(false);"></button>
-      <button class="bigbutton m-debris" onclick="location='#asteroid';TEAMS[1].selectrocks(true);"></button>
+      <button class="bigbutton m-asteroids" onclick="location='#asteroid';TEAMS[1].selectrocks();"></button>
+      <select class="bigbutton" id="player1"></select>
       <section id="team1" class="team">
 	<h2 style='display:none'>List of units</h2>
       </section>
     </aside>
 
     <aside id="rightpanel" class="rightpanel">
-      <button class="bigbutton m-asteroids" onclick="location='#asteroid';TEAMS[2].selectrocks(false);"></button>
-      <button class="bigbutton  m-debris" onclick="location='#asteroid';TEAMS[2].selectrocks(true);"></button>
+      <button class="bigbutton m-asteroids" onclick="location='#asteroid';TEAMS[2].selectrocks();"></button>
+      <select class="bigbutton" id="player2"></select>
       <section id="team2" class="team">
 	<h2 style='display:none'>List of units</h2>
       </section>
@@ -164,13 +165,12 @@
 	 <tr>
 	   <td>
 	     <span class="m-squad1"></span>
-	     <select id="player1"></select>
+
 	     <button onclick="currentteam=TEAMS[1];createsquad()" class="m-create"></button>
 	     <span id="squad1points">0</span> <span class="m-points"></span>
  	   </td>
 	   <td>
 	     <span class="m-squad2"></span>
-	     <select id="player2"></select>
 	     <button onclick="currentteam=TEAMS[2];createsquad()" class="m-create"></button>
 	     <span id="squad2points">0</span> <span class="m-points"></span>
 	   </td>
@@ -407,6 +407,10 @@ The app is not really a game since the player plays both sides or against an AI,
 	  <div>
 	    <table>
 	      <tr>
+		<td>Avatar</td><td><img src="css/human.png" id="profile-avatar" alt="Image for Profile"><input type="file" id="uploader"></td>
+	      </tr><tr>
+		<td>Name</td><td><input type="text" id="nameinput" onchange="localStorage.name=$('#nameinput').val()"></td>
+	      </tr><tr>
 		<td class="m-deckversion"></td>
 		<td>
 		  <input type="radio" id="ver1" name="deckversion" value="1" onclick="CURRENT_DECK=1"/>
@@ -498,7 +502,7 @@ The app is not really a game since the player plays both sides or against an AI,
     </footer>
 
     <script src="js/all.min.js"></script>
-    <script src="js/bench.min.js"></script>
+    <script src="js/bench.min.js" async></script>
 
     <script>
       if (location.search=="") $("#selectphase").show();

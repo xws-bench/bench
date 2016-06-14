@@ -35,63 +35,77 @@ Team.prototype = {
 	if (typeof r=="undefined") this.rocks=[-1,-1,-1];
 	else this.rocks=r;
     },
-    selectrocks:function(isdebris) {
+    displayrockdebris: function(i,w,h,s,g,viewport,pa) {
+	var j=(i%MAXROCKS)+(i>=MAXROCKS?ROCKS.length:0);
+	var bb=g[j].getBBox();
+	var m1;
+	if (i<MAXROCKS)
+	    m1=MT(i*w/ROCKS.length+w/ROCKS.length/4,h/4-bb.height*s/2).scale(s,s);
+	else m1=MT((i-MAXROCKS)*w/DEBRISCLOUD.length+w/DEBRISCLOUD.length/4,3*h/4-bb.height*s/2).scale(s,s);
+	g[j].transform(m1);
+	g[j].appendTo(viewport);
+	g[j].hover(function()  {g[j].attr({strokeWidth:12});},
+		   function()  {g[j].attr({strokeWidth:3});});
+	g[j].click(function() { 
+	    var n=this.rocks.indexOf(i);
+	    if (n>-1) {
+		this.rocks[n]=-1;
+		g[j].attr("fill",pa);
+	    } else { 
+		if (this.rocks[0]==-1) this.rocks[0]=i;
+		else if (this.rocks[1]==-1) this.rocks[1]=i;
+		else if (this.rocks[2]==-1) this.rocks[2]=i;
+		if (this.rocks[0]>-1&&this.rocks[1]>-1&&this.rocks[2]>-1) {
+		    //var o=OBSTACLES[i+(this.team-1)*3];
+		    //$("ASTEROID"+this.team).remove();
+		    for (var k=0; k<3; k++) {
+			var o=OBSTACLES[k+(this.team-1)*3];
+			o.g.remove();
+			OBSTACLES[k+(this.team-1)*3]=
+			    new Rock(this.rocks[k],
+				     [o.tx,o.ty,o.alpha],
+				     this.team,k);
+		    }
+		}
+		if (this.rocks.indexOf(i)>-1) g[j].attr("fill",halftone(this.color));
+	    }
+	}.bind(this));
+    },
+    selectrocks:function() {
 	if (typeof this.rocks=="undefined") this.rocks=[-1,-1,-1];
 	$(".aster").empty();
 	var sa=Snap(".aster");
-	var viewport=sa.g();
 	var g=[];
+	var viewport=sa.g();
 	var maxw=0,maxh=0;
-	var pa = sa.image((isdebris?DEBRISIMG:ROCKIMG),0,0,256,256).pattern(0,0,256,256);
-	var ASTER=(isdebris?DEBRISCLOUD:ROCKS);
-	var rl=ASTER.length;
-	var offset=(isdebris?MAXROCKS:0);
-	for (var i=0; i<rl; i++) {
-	    g[i]=sa.path(ASTER[i]).attr({strokeWidth:3});
-	    if (this.rocks.indexOf(i+offset)>-1)
-		g[i].attr({fill:halftone(this.color),stroke:this.color});
-	    else g[i].attr({fill:pa,stroke:"#888"});
+	var padebris = sa.image(DEBRISIMG,0,0,256,256).pattern(0,0,256,256);
+	var parock = sa.image(ROCKIMG,0,0,256,256).pattern(0,0,256,256);
+	for (var i=0; i<ROCKS.length+DEBRISCLOUD.length; i++) {
+	    if (i<ROCKS.length) {
+		g[i]=sa.path(ROCKS[i]).attr({strokeWidth:3});
+		if (this.rocks.indexOf(i)>-1)
+		    g[i].attr({fill:halftone(this.color),stroke:this.color});
+		else g[i].attr({fill:parock,stroke:"#888"});
+	    } else {
+		g[i]=sa.path(DEBRISCLOUD[i-ROCKS.length]).attr({strokeWidth:3});
+		if (this.rocks.indexOf(i)>-1)
+		    g[i].attr({fill:halftone(this.color),stroke:this.color});
+		else g[i].attr({fill:padebris,stroke:"#888"});
+	    }
 	    var bb=g[i].getBBox();
 	    if (maxw<bb.width) maxw=bb.width;
 	    if (maxh<bb.height) maxh=bb.height;
 	}
 	var h=$(".aster").height();
 	var w=$(".aster").width();
-	for (var i=0; i<rl; i++) {
-	    (function(i) {
-		var s=h/maxh;
-		if (w/maxw/rl<s) s=w/maxw/rl;
-		var bb=g[i].getBBox();
-		var m1=MT(i*w/rl+w/rl/4,h/2-bb.height*s/2).scale(s,s);
-		g[i].transform(m1);
-		g[i].appendTo(viewport);
-		g[i].hover(function()  {g[i].attr({strokeWidth:12});},
-			function()  {g[i].attr({strokeWidth:3});});
-		g[i].click(function() { 
-		    var n=this.rocks.indexOf(i+offset);
-		    if (n>-1) {
-			this.rocks[n]=-1;
-			g[i].attr("fill",pa);
-		    } else { 
-			if (this.rocks[0]==-1) this.rocks[0]=i+offset;
-			else if (this.rocks[1]==-1) this.rocks[1]=i+offset;
-			else if (this.rocks[2]==-1) this.rocks[2]=i+offset;
-			if (this.rocks[0]>-1&&this.rocks[1]>-1&&this.rocks[2]>-1) {
-			    //var o=OBSTACLES[i+(this.team-1)*3];
-			    //$("ASTEROID"+this.team).remove();
-			    for (var k=0; k<3; k++) {
-				var o=OBSTACLES[k+(this.team-1)*3];
-				o.g.remove();
-				OBSTACLES[k+(this.team-1)*3]=
-				    new Rock(this.rocks[k],
-					     [o.tx,o.ty,o.alpha],
-					     isdebris,this.team,k);
-			    }
-			}
-			if (this.rocks.indexOf(i+offset)>-1) g[i].attr("fill",halftone(this.color));
-		    }
-		}.bind(this));
-	    }.bind(this))(i)
+	var s=h/2/maxh;
+	if (w/maxw/ROCKS.length<s) s=w/maxw/ROCKS.length;
+
+	for (var i=0; i<ROCKS.length; i++) {
+	    this.displayrockdebris(i,w,h,s,g,viewport,parock);
+	}
+	for (var i=0; i<DEBRISCLOUD.length; i++) {
+	    this.displayrockdebris(i+MAXROCKS,w,h,s,g,viewport,padebris);
 	}
     },
     checkdead: function() {
@@ -151,7 +165,8 @@ Team.prototype = {
 		this.units.push(u);
 	    }
 	}	
-	for (i in squadron) {
+	
+/*	for (i in squadron) {
 	    u=squadron[i];
 	    if (u.team==this.team) {
 		if (this.isia==true) {
@@ -159,7 +174,7 @@ Team.prototype = {
 		}
 	    }
 	}
-	for (i in squadron) {
+*/	for (i in squadron) {
 	    u=squadron[i];
 	    if (u.team==this.team&&typeof u.init=="function") u.init();
 	}
@@ -202,14 +217,17 @@ Team.prototype = {
 	return this.units;
     },
     endsetup: function() {
-	/*if (this.isia)
+	var i,j;
+/*	if (this.isia)
 	    for (i=0; i<this.units.length; i++) {
-		console.log("is ia (endsetup)");
+		log(this.units[i].name+"is ia (endsetup)");
 		$.extend(this.units[i],IAUnit.prototype);
-	    }*/
-	for (i=0; i<this.units.length; i++) { 
+	    }
+*/	for (i=0; i<this.units.length; i++) { 
 	    this.units[i].g.undrag();
 	}
+
+
 
     },
     endselection:function(s) {

@@ -573,28 +573,8 @@ var UPGRADES= [
 		    }.bind(this));
 		}
 	    });
-	    /*
-	    ptl.da=sh.doaction;
-	    sh.doaction= function(la,str) {
-		this.log("ptl");
-		var dar=ptl.da.call(this,la,str);
-		var df=$.Deferred();
-		dar.then(function(r) {
-		    if (ptl.r<round&&this.candoaction()) {
-			ptl.r=round;		
-			var dac=ptl.da.call(this,this.getactionbarlist(),"+1 free action");
-			dac.done(function(rr) { 
-			    if (rr!=null) this.addstress();
-			    else ptl.r=-1;
-			    df.resolve(rr);
-			}.bind(this));
-		    }
-		}.bind(this));
-		return df;
-	    }*/
 	},
 	desactivate: function() {
-	    this.unit.doaction=this.da;
 	    Upgrade.prototype.desactivate.call(this);
 	},
 	done:true,
@@ -3366,22 +3346,10 @@ var UPGRADES= [
 	done:true,
 	points: 2,
 	init: function(sh) {
-	    var da=sh.doaction;
 	    var self=this;
 	    sh.wrap_after("resolveslam",this,function() {
 		this.candoendmaneuveraction.unwrap(this);
 	    });
-	    /*
-	    sh.doaction= function(la) {
-		var dar=da.call(this,la)
-		dar.then(function(r) {
-		    if (r=="SLAM"&&this.ocollision.overlap==-1
-			&&this.ocollision.template.length==0
-			&&!this.collision) {
-			return da.call(this,this.getactionbarlist());
-		    } else return dar;
-		}.bind(this));
-	    }*/
 	}
     },
     {
