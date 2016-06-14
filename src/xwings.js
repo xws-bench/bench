@@ -60,7 +60,8 @@ var SQUADBUILDER=1;
 		 <button onclick='$("#replay")[0].contentWindow.stopreplay();'>Stop</button>
 
 */
-window.callback = function () { alert("called callback");return true; };
+jQuery.event.props.push('dataTransfer');
+
 /*window.onerror = function(message, source, lineno, colno, error) {
     log("<b>ERROR: "+error+"</b>");
  };
@@ -1290,6 +1291,7 @@ function movelog(s) {
     ANIM+="_-"+s;
 }
 function endsetupphase() {
+    //log("endsetup phase"+ phase);
     $(".buttonbar .share-buttons").hide();
     $("#leftpanel").show();
     $(".bigbutton").hide();
@@ -1297,6 +1299,8 @@ function endsetupphase() {
     ZONE[2].remove();
     TEAMS[1].endsetup();
     TEAMS[2].endsetup();
+    $("#player1_msdd").hide();
+    $("#player2_msdd").hide();
     PERMALINK=permalink(true);
     $(".playerselect").remove();
     $(".nextphase").prop("disabled",true);
@@ -1307,6 +1311,7 @@ function endsetupphase() {
 }
 function nextphase() {
     var i;
+    //log("nextphase "+phase);
     // End of phases
     //if (!enablenextphase()) return;
     window.location="#";
@@ -1318,10 +1323,6 @@ function nextphase() {
 	$("#creation").hide();
 	$("#rightpanel").show();
 	$("#leftpanel").show();
-	if ($("#player1 option:checked").val()=="human") 
-	    TEAMS[1].isia=false; else TEAMS[1].isia=true;
-	if ($("#player2 option:checked").val()=="human") 
-	    TEAMS[2].isia=false; else TEAMS[2].isia=true;
 	//for (var i in squadron) console.log("--squadron["+i+"]:"+squadron[i].name+" "+squadron[i].id);
 	
  	break;
@@ -1330,6 +1331,19 @@ function nextphase() {
 	phase=SELECT_PHASE;
 	return;
     case SETUP_PHASE: 
+	if ($("#player1 option:checked").val()=="human") 
+	    TEAMS[1].isia=false; else TEAMS[1].isia=true;
+	if ($("#player2 option:checked").val()=="human") 
+	    TEAMS[2].isia=false; else TEAMS[2].isia=true;
+	for (i in squadron) {
+	    u=squadron[i];
+	    if (TEAMS[u.team].isia==true) {
+		log(squadron[i].name+" is ia");
+		for (j in IAUnit.prototype) 
+		    squadron[i][j]=IAUnit.prototype[j];
+	    }
+	}
+
 	endsetupphase();
 	/*
 	if (REPLAY.length>0) {
@@ -1374,7 +1388,8 @@ function nextphase() {
     $(".nextphase").prop("disabled",false);
     setphase();
 }
-function setphase() {
+function setphase(cannotreplay) {
+    //log("setphase "+phase+" "+cannotreplay);
     switch(phase) {
     case SELECT_PHASE:
 	$(".mainbutton").show();
@@ -1392,11 +1407,24 @@ function setphase() {
 	//window.location="#creation";
 	break;
     case SETUP_PHASE:
+	//log("starting setupphase");
 	var t=["bomb","weapon","upgrade"];
 	for (var i=0;i<t.length; i++) {
 	    TEMPLATES[t[i]]=$("#"+t[i]).html();
 	    Mustache.parse(TEMPLATES[t[i]]);
 	}
+	var name=localStorage.getItem("name");
+	if (typeof name=="undefined") name=UI_translation["human"];
+	var himg=localStorage["image"];
+	if (typeof himg=="undefined") himg="css/human.png";
+	$("#player1").html("<option selected data-image='"+himg+"' value='human'>"+name+"</option>");
+	$("#player1").append("<option data-image='css/computer.png' value='computer'>"+UI_translation["computer"]+"</option>");
+	$("#player2").html("<option selected data-image='"+himg+"' value='human'>"+name+"</option>");
+	$("#player2").append("<option data-image='css/computer.png' value='computer'>"+UI_translation["computer"]+"</option>");
+	$("#player1").msDropDown({roundedCorner:false});
+	$("#player2").msDropDown({roundedCorner:false});
+	$("#player1_msdd").show();
+	$("#player2_msdd").show();
 	$(".bigbutton").show();
 	$(".buttonbar .share-buttons").show();
 	$("#team2").css("top",$("nav").height()+2);
@@ -1538,7 +1566,7 @@ function setphase() {
 	$(".unit").css("cursor","move");
 	$("#positiondial").show();
 	$(".permalink").show();
-	startreplayall();
+	if (cannotreplay!=true) startreplayall();
 	break;
     case PLANNING_PHASE: 
 	active=0;
@@ -1877,7 +1905,7 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense) {
 			/*if (typeof attacker.postattack=="function") {
 			    attacker.postattack(i);
 			}*/
-			/*
+			
 			if (typeof weapon.immediateattack!="undefined"
 			    &&weapon.immediateattack.pred(i)
 			    &&typeof attacker.iar=="undefined") {
@@ -1902,7 +1930,7 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense) {
 				}
 			    } else p[i]+=a*d;
 			    delete attacker.iar;
-			} else*/ {
+			} else {
 			    p[i]+=a*d;
 			}
 			defender.focus=savedfocus;
@@ -2231,6 +2259,8 @@ $(document).ready(function() {
 	var d=new Date();
 
 	if (typeof localStorage.volume=="undefined") localStorage.volume=0.8;
+	if (typeof localStorage.image!="undefined") $("#profile-avatar").attr("src",localStorage.image);
+	if (typeof localStorage.name!="undefined") $("#nameinput").val(localStorage.name);
 
 	Howler.volume(localStorage.volume);
 	$("#vol").val(localStorage.volume*100);
@@ -2309,11 +2339,6 @@ $(document).ready(function() {
 		$(this).addClass('selected');
             }
 	} );
-	$("#player1").html("<option selected value='human'>"+UI_translation["human"]+"</option>");
-	$("#player1").append("<option value='computer'>"+UI_translation["computer"]+"</option>");
-	$("#player2").html("<option selected value='human'>"+UI_translation["human"]+"</option>");
-	$("#player2").append("<option value='computer'>"+UI_translation["computer"]+"</option>");
-
 
 
 /*
@@ -2489,14 +2514,20 @@ var startreplayall=function() {
     cmd=args[6].split("_");
     cmd.splice(0,1);
     if (cmd.length==0) return;
-    ZONE[1].remove();
-    ZONE[2].remove();
     $(".nextphase").prop("disabled",true);
     $(".unit").css("cursor","pointer");
     actionrlock=$.Deferred();
     actionrlock.progress(replayall);
-    $("#positiondial").hide();
     //for (var j in squadron) console.log("squadron["+j+"]:"+squadron[j].name+" "+squadron[j].id);
+    for (i in squadron) {
+	u=squadron[i];
+	if (TEAMS[u.team].isia==true) {
+	    log(squadron[i].name+" is ia");
+	    for (j in IAUnit.prototype) 
+		squadron[i][j]=IAUnit.prototype[j];
+	}
+    }
+    //endsetupphase();
     replayall();
 }
 var stopreplay=function() {
@@ -2508,16 +2539,27 @@ var restartreplay=function() {
 	eventAction: 'replay',
 	eventLabel: 'replay'
     });
-
     actionrlock=$.Deferred();
     actionrlock.progress(replayall);
+
     replayall();
 }
 var replayall=function() {
+    //log("replay all "+cmd+" "+phase+" "+round);
     if (cmd=="") {
 	FAST=false;
 	filltabskill();
-	setphase();
+	//log("setting phase"+phase);
+	if (phase!=SETUP_PHASE) setphase();
+	else {
+	    $(".nextphase").prop("disabled",false);
+	    for (var i=0; i<OBSTACLES.length; i++) {
+		var ob=OBSTACLES[i];
+		ob.g.drag(ob.dragmove.bind(ob), 
+		    ob.dragstart.bind(ob),
+		    ob.dragstop.bind(ob));
+	    }
+	}
 	return;
     }
     var c=cmd[0].split("-");
@@ -2525,7 +2567,7 @@ var replayall=function() {
     cmd.splice(0,1);
     var u=null;
     var j;
-    endsetupphase();
+    //endsetupphase();
     if (c[0].length>0) {
 	var id=parseInt(c[0],10);
 	for (j in squadron) if (squadron[j].id==id) break; 
@@ -2564,8 +2606,9 @@ var replayall=function() {
     switch(c[1]) {
     case "P": 
 	var p=phase;
-	round=parseInt(c[2],10);
+	r=parseInt(c[2],10);
 	phase=parseInt(c[3],10);
+	round=r;
 	if (p>phase) {
 	    for (var i in squadron) {
 		var u=squadron[i];
@@ -2573,6 +2616,7 @@ var replayall=function() {
 		u.showinfo();
 	    }
 	}
+	if (phase>SETUP_PHASE&&r==1) endsetupphase();
 	$("#phase").html(UI_translation["turn #"]+round+" "+UI_translation["phase"+phase]);
 	actionrlock.notify();
 	break;
@@ -2680,6 +2724,6 @@ var replayall=function() {
 	console.log("unknown cmd:"+c[1]);
 	FAST=false;
 	filltabskill();
-	setphase();
+	setphase((phase==SETUP_PHASE));
     }
 }

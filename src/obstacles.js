@@ -61,23 +61,22 @@ function saverock() {
     return str;
 }
 
-function Rock(frag,coord,isdebris,team,n) {    
+function Rock(frag,coord,team,n) {    
     var k;
     var i=(team-1)+n;
     this.o=[];
-    this.type=isdebris?DEBRIS:ROCK;
+    this.type=(frag>=MAXROCKS)?DEBRIS:ROCK;
     this.id=frag;
-    this.name=(isdebris?"Debris #":"Asteroid #")+i;
+    this.name=(frag>=MAXROCKS?"Debris #":"Asteroid #")+i;
     this.arraypts=[];
     this.dragged=false;
     this.tx=coord[0];
     this.ty=coord[1];
     this.alpha=coord[2];
     
-    PATTERN = s.image((isdebris?DEBRISIMG:ROCKIMG),0,0,256,256).pattern(0,0,256,256);
-    var ASTER=(isdebris?DEBRISCLOUD:ROCKS);
-    frag=frag+(isdebris?-MAXROCKS:0);
-    this.g=s.path(ASTER[frag]).attr({
+    PATTERN = s.image(((frag>=MAXROCKS)?DEBRISIMG:ROCKIMG),0,0,256,256).pattern(0,0,256,256);
+    var ASTER=(frag>=MAXROCKS?DEBRISCLOUD:ROCKS);
+    this.g=s.path(ASTER[frag%MAXROCKS]).attr({
 	fill: PATTERN,
 	strokeWidth: 2,
 	stroke: "#888",
@@ -98,7 +97,8 @@ function Rock(frag,coord,isdebris,team,n) {
     var b=this.g.getBBox();
     this.o=[];
     var scale=0.27;
-    if (isdebris) scale=0.4;
+    if (frag>=MAXROCKS) scale=0.4;
+    frag=frag%MAXROCKS;
     for (k=1; k<4; k++) {
 	this.o[k]=s.ellipse(b.x+b.width/2,b.y+b.height/2,200/scale/2*k+b.width/2,200/scale/2*k+b.height/2).attr({pointerEvents:"none",display:"none",fill:WHITE,opacity:0.3,strokeWidth:2});
     }
