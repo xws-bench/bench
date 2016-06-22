@@ -11,11 +11,6 @@
 
     init: function() {
       s = Avatar.settings;
-      Avatar.bindUIActions();
-    },
-
-    bindUIActions: function() {
-
       var timer;
 
       s.bod.on("dragover", function(event) {

@@ -18,11 +18,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="iOS Squadron Benchmark">
     <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="css/xwings.css">
-    <link rel="stylesheet" href="css/jquery.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="css/dd.css" />
+    <link rel="stylesheet" href="css/xwings.css"/>
+    <link rel="stylesheet" href="css/jquery.dataTables.min.css"/>
     <style type="text/css" id="localstrings"></style>
-
   </head>
 
   <body>
@@ -63,16 +61,16 @@
     </nav>
 
     <aside class="leftpanel" id="leftpanel">
+      <image id="player1img"  style="background:#e2e2e4;width:2em;vertical-align:middle" src="css/human.png" alt=""><select class="bigbutton2 playertype" id="player1" style="width:calc( 100% - 2em )"></select>
       <button class="bigbutton m-asteroids" onclick="location='#asteroid';TEAMS[1].selectrocks();"></button>
-      <select class="bigbutton" id="player1"></select>
       <section id="team1" class="team">
 	<h2 style='display:none'>List of units</h2>
       </section>
     </aside>
 
     <aside id="rightpanel" class="rightpanel">
+      <image id="player2img" style="background:#e2e2e4;width:2em;vertical-align:middle" src="css/human.png" alt=""><select class="bigbutton2 playertype" id="player2" style="width:calc( 100% - 2em )"></select>
       <button class="bigbutton m-asteroids" onclick="location='#asteroid';TEAMS[2].selectrocks();"></button>
-      <select class="bigbutton" id="player2"></select>
       <section id="team2" class="team">
 	<h2 style='display:none'>List of units</h2>
       </section>
@@ -325,7 +323,7 @@ Squadron Benchmark is a web app for
  controlled either by the player or by a simple AI. The player moves
  the different units and can test new strategies, squadron compositions,
  maneuvers and initial placements. It can be used to build scenarios, to benchmark
- against squads you can find in competitions, test new units or
+against squads you can find in competitions, test new units or
  upgrades...  The app offers the following features:
 <ul>
 <li>Import your squads using JSON format or text format</li>
@@ -503,6 +501,7 @@ The app is not really a game since the player plays both sides or against an AI,
 
     <script src="js/all.min.js"></script>
     <script src="js/bench.min.js" async></script>
+    
 
     <script>
       if (location.search=="") $("#selectphase").show();
