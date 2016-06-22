@@ -10,6 +10,24 @@ function Team(team) {
     this.allhits=this.allcrits=this.allevade=this.allred=this.allgreen=0;
 }
 Team.prototype = {
+    setia: function() {
+	for (i in squadron) {
+	    u=squadron[i];
+	    if (squadron[i].team==this.team)
+		for (j in IAUnit.prototype) 
+		    squadron[i][j]=IAUnit.prototype[j];
+	}
+	this.ia=true;
+    },
+    setplayer: function() {
+	for (i in squadron) {
+	    u=squadron[i];
+	    if (squadron[i].team==this.team)
+		for (j in IAUnit.prototype) 
+		    if (typeof Unit.prototype[j]!="undefined") squadron[i][j]=Unit.prototype[j];
+	}
+	this.ia=false;
+    },
     setfaction: function(faction) {
 	$(".listunits .generic").remove();
 	this.faction=faction;
@@ -218,17 +236,7 @@ Team.prototype = {
     },
     endsetup: function() {
 	var i,j;
-/*	if (this.isia)
-	    for (i=0; i<this.units.length; i++) {
-		log(this.units[i].name+"is ia (endsetup)");
-		$.extend(this.units[i],IAUnit.prototype);
-	    }
-*/	for (i=0; i<this.units.length; i++) { 
-	    this.units[i].g.undrag();
-	}
-
-
-
+	for (i=0; i<this.units.length; i++) this.units[i].g.undrag();
     },
     endselection:function(s) {
 	var i;

@@ -55,6 +55,8 @@ var SQUADBUILDER=1;
     <script src="src/upgrades.js"></script>
     <script src="src/upgcards.js"></script>
     <script src="src/team.js"></script>
+    <script src="src/resample.js"></script>
+    <script src="src/avatar.js"></script>
     <script src="src/xwings.js"></script>
 
 		 <button onclick='$("#replay")[0].contentWindow.stopreplay();'>Stop</button>
@@ -306,6 +308,18 @@ function formatstring(s) {
         .replace(/%TALONRIGHT%/g,"<code class='symbols'>:</code>")
         .replace(/%ASTROMECH%/g,"<code class='symbols'>A</code>")
 	.replace(/%CREW%/g,"<code class='symbols'>W</code>");
+}
+function displayplayertype(team,img) {
+    var himg=localStorage["image"];
+    if (typeof img!="undefined") himg=img; 
+    if (typeof himg=="undefined") himg="css/human.png";
+    if (!TEAMS[team].isia) {
+	$("#player"+team+" option[value='human']").prop("selected",true); 
+	$("#player"+team+"img").attr("src",himg);
+    } else {
+	$("#player"+team+" option[value='computer']").prop("selected",true); 
+	$("#player"+team+"img").attr("src","css/computer.png");
+    } 
 }
 function nextunit(cando, changeturn,changephase,activenext) {
     var i,sk=false,last=0;
@@ -686,6 +700,7 @@ function enablenextphase() {
 }
 
 function win() {
+    movelog("W");
     var title="m-draw";
     var i;
     var s1="",s2="";
@@ -1291,23 +1306,21 @@ function movelog(s) {
     ANIM+="_-"+s;
 }
 function endsetupphase() {
-    //log("endsetup phase"+ phase);
+    log("endsetup phase"+ phase);
     $(".buttonbar .share-buttons").hide();
     $("#leftpanel").show();
     $(".bigbutton").hide();
+    $(".bigbutton2").prop("disabled",true);
     ZONE[1].remove();
     ZONE[2].remove();
     TEAMS[1].endsetup();
     TEAMS[2].endsetup();
-    $(".ddArrow").hide();
-    $("#player1_msdd").css("pointer-events","none");
-    $("#player2_msdd").css("pointer-events","none");
     PERMALINK=permalink(true);
     $(".playerselect").remove();
     $(".nextphase").prop("disabled",true);
     $(".unit").css("cursor","pointer");
     $("#positiondial").hide();
-    for (var i=0; i<OBSTACLES.length; i++) OBSTACLES[i].g.undrag();
+    for (var i=0; i<OBSTACLES.length; i++) OBSTACLES[i].unDrag();
     HISTORY=[];
 }
 function nextphase() {
@@ -1336,15 +1349,9 @@ function nextphase() {
 	    TEAMS[1].isia=false; else TEAMS[1].isia=true;
 	if ($("#player2 option:checked").val()=="human") 
 	    TEAMS[2].isia=false; else TEAMS[2].isia=true;
-	for (i in squadron) {
-	    u=squadron[i];
-	    if (TEAMS[u.team].isia==true) {
-		log(squadron[i].name+" is ia");
-		for (j in IAUnit.prototype) 
-		    squadron[i][j]=IAUnit.prototype[j];
-	    }
-	}
-
+	if (TEAMS[1].isia==true) TEAMS[1].setia();
+	if (TEAMS[2].isia==true) TEAMS[2].setia();
+	
 	endsetupphase();
 	/*
 	if (REPLAY.length>0) {
@@ -1414,22 +1421,25 @@ function setphase(cannotreplay) {
 	    TEMPLATES[t[i]]=$("#"+t[i]).html();
 	    Mustache.parse(TEMPLATES[t[i]]);
 	}
-	var name=localStorage.getItem("name");
-	if (typeof name=="undefined") name=UI_translation["human"];
-	var himg=localStorage["image"];
-	if (typeof himg=="undefined") himg="css/human.png";
-	$("#player1").html("<option selected data-image='"+himg+"' value='human'>"+name+"</option>");
-	$("#player1").append("<option data-image='css/computer.png' value='computer'>"+UI_translation["computer"]+"</option>");
-	$("#player2").html("<option selected data-image='"+himg+"' value='human'>"+name+"</option>");
-	$("#player2").append("<option data-image='css/computer.png' value='computer'>"+UI_translation["computer"]+"</option>");
-	$("#player1").msDropDown({roundedCorner:false});
-	$("#player2").msDropDown({roundedCorner:false});
-	$("#player1_msdd").show();
-	$("#player2_msdd").show();
-	$(".ddArrow").show();
-	$("#player1_msdd").css("pointer-events","all");
-	$("#player2_msdd").css("pointer-events","all");
+	var name=localStorage.name;
+	if (typeof name=="undefined"||name==null) name=UI_translation["human"];
+	$("#player1").html("<option selected value='human'>"+name+"</option>");
+	$("#player1").append("<option value='computer'>"+UI_translation["computer"]+"</option>");
+	$("#player2").html("<option selected value='human'>"+name+"</option>");
+	$("#player2").append("<option value='computer'>"+UI_translation["computer"]+"</option>");
+	$("#player1").change(function() {
+	    TEAMS[1].isia=!TEAMS[1].isia;
+	    displayplayertype(1);
+	});
+	$("#player2").change(function() {
+	    TEAMS[2].isia=!TEAMS[2].isia;
+	    displayplayertype(2);
+	});
+	displayplayertype(1);
+	displayplayertype(2);
 	$(".bigbutton").show();
+	$(".bigbutton2").prop("disabled",false);
+
 	$(".buttonbar .share-buttons").show();
 	$("#team2").css("top",$("nav").height()+2);
 	$("#team1").css("top",$("nav").height()+2);
@@ -1514,7 +1524,7 @@ function setphase(cannotreplay) {
 	$(document.body).on('dragover',modal_dragover); 
 	$(document.body).on('drop',modal_drop); 
 	*/
-	jwerty.key("shift+i",function() { document.location.reload(true); });
+	jwerty.key("shift+i",function() { });
 	jwerty.key("escape", nextphase);
 	/*$(document).keyup(function(event) {
 	    if (event.which==13) {
@@ -1625,7 +1635,9 @@ function log(str) {
 function permalink(reset) {
     var r="";
     if (!reset) { if (REPLAY!="") r=REPLAY; else r=ANIM; } 
-    return LZString.compressToEncodedURIComponent(TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock()+"&"+TEAMS[1].isia+"&"+TEAMS[2].isia+"&"+SETUP.name+"&"+r);
+    var himg=localStorage["image"];
+    if (typeof himg=="undefined") himg="";
+    return LZString.compressToEncodedURIComponent(TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock()+"&"+TEAMS[1].isia+"&"+TEAMS[2].isia+"&"+SETUP.name+"&"+r+"&"+himg);
 }
 function resetlink(home) {
     switch (phase) {
@@ -1636,8 +1648,7 @@ function resetlink(home) {
 	if (uri.indexOf("?") > 0) {
 	    var clean_uri = uri.substring(0, uri.indexOf("?"));
 	    window.history.replaceState({}, document.title, clean_uri);
-	    //document.location.assign(clean_uri);
-	} //else document.location.reload(true);
+	}
 	break;
     case CREATION_PHASE: phase=0; document.location.search=""; nextphase(); break; 
     default: 
@@ -1649,21 +1660,7 @@ function resetlink(home) {
 	    args[2]=saverock();
 	    args[6]=ANIM;
 	    arg=args.join("&");
-	    /*phase=0;*/
 	    document.location.search="?"+LZString.compressToEncodedURIComponent(arg);
-	    //document.location.reload(true);
-		/*
-		var arg=LZString.decompressFromEncodedURIComponent(decodeURI(window.location.search.substr(1)));
-		var args=[];
-		if (arg!=null) args= arg.split('&');
-		if (args.length>1) {
-		    if (args.length>6&args[6]!="") { 
-			var a=args.slice(0,6).join("&"); 
-			PERMALINK=LZString.compressToEncodedURIComponent(a);
-			phase=0;
-		    document.location.search="?"+PERMALINK;
-		} else document.location.reload(true);
-*/
 	}
     }
 }
@@ -2264,7 +2261,7 @@ $(document).ready(function() {
 
 	if (typeof localStorage.volume=="undefined") localStorage.volume=0.8;
 	if (typeof localStorage.image!="undefined") $("#profile-avatar").attr("src",localStorage.image);
-	if (typeof localStorage.name!="undefined") $("#nameinput").val(localStorage.name);
+	if (typeof localStorage.name!="undefined") $("#nameinput").val(localStorage.name); else $("#nameinput").val("Human");
 
 	Howler.volume(localStorage.volume);
 	$("#vol").val(localStorage.volume*100);
@@ -2377,10 +2374,11 @@ $(document).ready(function() {
 	    TEAMS[2].toJSON(); // Just for points
 	    TEAMS[1].isia=false;
 	    TEAMS[2].isia=false;
-	    if (args[3]=="true") { $("#player1 option[value='computer']").prop("selected",true); TEAMS[1].isia=true;}
-	    else $("#player1 option[value='human']").prop("selected",true);
-	    if (args[4]=="true") { $("#player2 option[value='computer']").prop("selected",true); TEAMS[2].isia=true; }
-	    else $("#player2 option[value='human']").prop("selected",true);
+	    if (args[3]=="true") TEAMS[1].isia=true;	
+	    displayplayertype(1,args[6]);
+	    if (args[4]=="true") TEAMS[2].isia=true;
+	    displayplayertype(2,args[6]);
+
 	    SETUP=SETUPS[args[5]+" Map"];
 	    phase=SELECT_PHASE;
 	    if (args.length>6&args[6]!="") { REPLAY=args[6]; }
@@ -2389,8 +2387,6 @@ $(document).ready(function() {
 	} else {
 	    phase=0;
 	    nextphase();
-	    console.log("##"+sessionStorage.getItem("import"));
-	    console.log("##"+localStorage.getItem("import"));
 	    if (localStorage.getItem("import")) {
 		log("Importing from another Squad Builder...");
 		if ($("#squad1").val()=="") currentteam=TEAMS[1];
@@ -2510,7 +2506,8 @@ $(document).ready(function() {
 var cmd=[];
 var startreplayall=function() {
     if (REPLAY.length==0) return; 
-    FAST=true;
+    log("last character: "+REPLAY.substr(-1));
+    if (REPLAY.substr(-1)=="W") FAST=false; else FAST=true;
     ANIM=REPLAY;
     var arg=LZString.decompressFromEncodedURIComponent(decodeURI(window.location.search.substr(1)));
     var args=arg.split("&");
@@ -2523,14 +2520,8 @@ var startreplayall=function() {
     actionrlock=$.Deferred();
     actionrlock.progress(replayall);
     //for (var j in squadron) console.log("squadron["+j+"]:"+squadron[j].name+" "+squadron[j].id);
-    for (i in squadron) {
-	u=squadron[i];
-	if (TEAMS[u.team].isia==true) {
-	    log(squadron[i].name+" is ia");
-	    for (j in IAUnit.prototype) 
-		squadron[i][j]=IAUnit.prototype[j];
-	}
-    }
+    if (TEAMS[1].isia==true) TEAMS[1].setia();
+    if (TEAMS[2].isia==true) TEAMS[2].setia();
     //endsetupphase();
     replayall();
 }
@@ -2557,12 +2548,11 @@ var replayall=function() {
 	if (phase!=SETUP_PHASE) setphase();
 	else {
 	    $(".nextphase").prop("disabled",false);
-	    for (var i=0; i<OBSTACLES.length; i++) {
-		var ob=OBSTACLES[i];
-		ob.g.drag(ob.dragmove.bind(ob), 
-		    ob.dragstart.bind(ob),
-		    ob.dragstop.bind(ob));
-	    }
+	    for (var i=0; i<OBSTACLES.length; i++) OBSTACLES[i].addDrag();
+	    if (TEAMS[1].isia==true) TEAMS[1].setplayer();
+	    if (TEAMS[2].isia==true) TEAMS[2].setplayer();
+	    displayplayertype(1);
+	    displayplayertype(2);
 	}
 	return;
     }
@@ -2608,6 +2598,7 @@ var replayall=function() {
 	return;
     }
     switch(c[1]) {
+    case "W": /* do nothing */ break;
     case "P": 
 	var p=phase;
 	r=parseInt(c[2],10);

@@ -1106,7 +1106,7 @@ color:#fff;
 border-radius:1em;
 padding:2px
 }
-.bigbutton {
+.bigbutton,.bigbutton2 {
 display:inline-block;
 text-align:center;
 border:0;
@@ -1114,14 +1114,12 @@ text-decoration:none;
 background:#e2e2e4;
 color:black;
 cursor:pointer;
-padding:3px;
-margin:1px;
+padding-top:3px;
+padding-bottom:3px;
+margin-top:1px;
+margin-bottom:1px;
 font-size:1em;
 font-family:"space";
-}
-.bigbutton:hover {
-color:lightsteelblue;
-background:white;
 }
 .smallbutton,.permalink,.nextphase,.mainbutton {
 display:inline-block;
@@ -1170,7 +1168,7 @@ width:40vw;
 height:40vw
 }
 
-.bigbutton {
+.bigbutton,.bigbutton2 {
 width:100%
 }
 
@@ -1553,7 +1551,7 @@ border-radius:4px
 .disabled {
 background:#a9a9a9
 }
-.bigbutton:disabled,.nextphase:disabled,.mainbutton:disabled,.activeunit:disabled {
+.bigbutton:disabled,.nextphase:disabled,.mainbutton:disabled,.activeunit:disabled,.bigbutton2:disabled {
 background:gray;
 color:#d3d3d3;
 cursor:default

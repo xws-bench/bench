@@ -85,11 +85,8 @@ function Rock(frag,coord,team,n) {
  
     for (k=0; k<this.g.getTotalLength(); k+=5) 
 	this.arraypts.push(this.g.getPointAtLength(k));
-    if (REPLAY.length==0) {
-	this.g.drag(this.dragmove.bind(this), 
-		    this.dragstart.bind(this),
-		    this.dragstop.bind(this));
-    }
+    if (REPLAY.length==0) this.addDrag();
+
     this.path="";
     this.g.hover(function() { this.g.attr({strokeWidth:6,stroke:"#F00"});}.bind(this),
 		 function()  {this.g.attr({strokeWidth:2,stroke:"#888"});}.bind(this));
@@ -111,6 +108,14 @@ function Rock(frag,coord,team,n) {
 }
 
 Rock.prototype = {
+    addDrag: function() {
+	this.g.drag(this.dragmove.bind(this), 
+		    this.dragstart.bind(this),
+		    this.dragstop.bind(this));
+    },
+    unDrag: function() {
+	this.g.undrag();
+    },
     getBall: function() {
 	var b=this.g.getBBox();
 	return {x:b.x+b.width/2,y:b.y+b.height/2,diam:Math.max(b.width/2,b.height/2)};
