@@ -817,15 +817,15 @@ var UPGRADES= [
         name: "Draw Their Fire",
         init: function(sh) {
 	    var self=this;
-	    this.ea=Unit.prototype.resolvecritical;
+	    self.ea=Unit.prototype.resolvecritical;
 	    Unit.prototype.resolvecritical=function(c) {
 		if (c>0&&this.team==sh.team&&sh!=this&&this.getrange(sh)==1){
 		    this.selectunit([this,sh],function(p,k) {
-			if (k==0) { this.ea.call(this,1); }
-			else { this.ea.call(sh,1);}
+			if (k==0) { self.ea.call(this,1); }
+			else { self.ea.call(sh,1);}
 		    },["select unit [%0]",self.name],false);
-		    this.ea.call(this,c-1);
-		} else this.ea.call(this,c);
+		    self.ea.call(this,c-1);
+		} else self.ea.call(this,c);
 		return c;
 	    }
 	}, 
@@ -1538,7 +1538,7 @@ var UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    sh.wrap_after("setpriority",this,function(a) {
-		if (a.type=="FOCUS"&&self.isactive&&self.candofocus()) 
+		if (a.type=="FOCUS"&&self.isactive&&this.candofocus()) 
 		    a.priority+=10;
 	    });
 

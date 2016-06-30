@@ -748,64 +748,59 @@ function win() {
     note=note.replace(/ \+ /g,"*");
     note=note.replace(/ /g,"_");
     //console.log("note:"+encodeURI(note));
-    var link="https://api-ssl.bitly.com/v3/user/link_save?access_token=ceb626e1d1831b8830f707af14556fc4e4e1cb4c&longUrl="+encodeURI("http://xws-bench.github.io/bench/index.html?"+permalink(false))+"&title="+encodeURI(titl)+"&note="+encodeURI(note);
-    $.when($.ajax(link)).done(function(result1) {
-	var url;
-	var text;
-	text="see replay";
-	if (typeof result1.data.link_save=="undefined") { 
-	    url=encodeURI("http://xws-bench.github.io/bench/index.html?"+permalink(false));
-	    //$('#submission').src="form.html";
-	    $("#submission").contents().find('#entry_209965003').val(titl);
-	    $('#submission').contents().find('#entry_390767903').val(note);
-	    $('#submission').contents().find('#entry_245821581').val("no short url");
-	    $('#submission').contents().find('#entry_1690611500').val(url);
-	    $('#submission').contents().find("#ss-form").submit();
-	    $(".tweet").hide();
-	    $(".facebook").attr("href","https://www.facebook.com/sharer/sharer.php?u="+encodeURI(url));
-	    $(".googlep").attr("href","https://plus.google.com/share?url="+encodeURI(url));
-	    $(".email").attr("href","mailto:?body="+url);
-	} else {
-	    url=result1.data.link_save.link;
 
-	    text=url;
+    var url=encodeURI("file:///Users/denis/Documents/bench/index.html?"+permalink(false));
+    $("#submission").contents().find('#entry_209965003').val(titl);
+    $('#submission').contents().find('#entry_390767903').val(note);
+    $('#submission').contents().find('#entry_245821581').val("no short url");
+    $('#submission').contents().find('#entry_1690611500').val(url);
+    $('#submission').contents().find("#ss-form").submit();
+    $(".tweet").hide();
+    $(".facebook").attr("href","https://www.facebook.com/sharer/sharer.php?u="+encodeURI(url));
+    $(".googlep").attr("href","https://plus.google.com/share?url="+encodeURI(url));
+    $(".email").attr("href","mailto:?body="+url);
+    var link="https://api-ssl.bitly.com/v3/user/link_save?access_token=ceb626e1d1831b8830f707af14556fc4e4e1cb4c&longUrl="+url+"&title="+encodeURI(titl)+"&note="+encodeURI(note);
+    $.when($.ajax(link)).done(function(result1) {
+
+	if (typeof result1.data.link_save!="undefined") { 
+	    url=result1.data.link_save.link;
 	    $(".tweet").attr("href","https://twitter.com/intent/tweet?url="+encodeURI(url)+"&text=A%20Squad%20Benchmark%20combat").show();
 
 	    $(".facebook").attr("href","https://www.facebook.com/sharer/sharer.php?u="+encodeURI(url));
 	    $(".googlep").attr("href","https://plus.google.com/share?url="+encodeURI(url));
 	    $(".email").attr("href","mailto:?body="+url);
 	}
-	$(".email").click(function() {
-	    ga('send','event', {
-		eventCategory: 'social',
-		eventAction: 'send',
-		eventLabel: 'email'
-	    });
-	});
-	$(".facebook").click(function() {
-	    ga('send', 'event',{
-		eventCategory: 'social',
-		eventAction: 'send',
-		eventLabel: 'facebook'
-	    });
-	});
-	$(".googlep").click(function() {
-	    ga('send','event', {
-		eventCategory: 'social',
-		eventAction: 'send',
-		eventLabel: 'googlep'
-	    });
-	});
-	$(".tweet").click(function() {
-	    ga('send','event', {
-		eventCategory: 'social',
-		eventAction: 'send',
-		eventLabel: 'tweet'
-	    });
-	});
-	$(".victory-link").attr("href",url);
-	$(".victory-link code").text(text);
+
     });
+    $(".email").click(function() {
+	ga('send','event', {
+	    eventCategory: 'social',
+	    eventAction: 'send',
+	    eventLabel: 'email'
+	});
+    });
+    $(".facebook").click(function() {
+	ga('send', 'event',{
+	    eventCategory: 'social',
+	    eventAction: 'send',
+	    eventLabel: 'facebook'
+	});
+    });
+    $(".googlep").click(function() {
+	ga('send','event', {
+	    eventCategory: 'social',
+	    eventAction: 'send',
+	    eventLabel: 'googlep'
+	});
+    });
+    $(".tweet").click(function() {
+	ga('send','event', {
+	    eventCategory: 'social',
+	    eventAction: 'send',
+	    eventLabel: 'tweet'
+	});
+    });
+    $(".victory-link").attr("href",url);
     /*var y1=0,y2=0;
     var t1=TEAMS[1].history;
     var t2=TEAMS[2].history;
@@ -1306,7 +1301,6 @@ function movelog(s) {
     ANIM+="_-"+s;
 }
 function endsetupphase() {
-    log("endsetup phase"+ phase);
     $(".buttonbar .share-buttons").hide();
     $("#leftpanel").show();
     $(".bigbutton").hide();
@@ -1634,12 +1628,12 @@ function log(str) {
 }
 function permalink(reset) {
     var r="";
-    if (!reset) { if (REPLAY!="") r=REPLAY; else r=ANIM; } 
+    if (!reset) { /*if (REPLAY!="") r=REPLAY; else*/ r=ANIM; } 
     var himg=localStorage["image"];
     if (typeof himg=="undefined") himg="";
     return LZString.compressToEncodedURIComponent(TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock()+"&"+TEAMS[1].isia+"&"+TEAMS[2].isia+"&"+SETUP.name+"&"+r+"&"+himg);
 }
-function resetlink(home) {
+function resetlink(home,setup) {
     switch (phase) {
     case SETUP_PHASE:
     case SELECT_PHASE: 
@@ -1653,8 +1647,11 @@ function resetlink(home) {
     case CREATION_PHASE: phase=0; document.location.search=""; nextphase(); break; 
     default: 
 	if (home==true) document.location.search="";
-	else if (ANIM.lastIndexOf("P-")>-1) {
-	    ANIM=ANIM.slice(0,ANIM.lastIndexOf("_-P-"));
+	else {
+	    if (setup==true) ANIM="";
+	    else if (ANIM.lastIndexOf("P-")>-1) {
+		ANIM=ANIM.slice(0,ANIM.lastIndexOf("_-P-"));
+	    }
 	    var arg=LZString.decompressFromEncodedURIComponent(decodeURI(PERMALINK));
 	    args=arg.split("&");
 	    args[2]=saverock();
@@ -1664,6 +1661,7 @@ function resetlink(home) {
 	}
     }
 }
+
 function record(id,val,str) {
     //HISTORY.push({s:str,v:val,id:id});
     //log("<div style='background-color:red;color:white'>"+id+"."+str+":"+val+"<div>");
@@ -2275,6 +2273,7 @@ $(document).ready(function() {
 	    viewport_translate(-ev.velocityX*50,-ev.velocityY*50);
 	});
 
+
 	TEMPLATES["unit-creation"]=$("#unit-creation").html();
 	Mustache.parse(TEMPLATES["unit-creation"]);  
 	TEMPLATES["faction"]=$("#faction").html();
@@ -2506,7 +2505,6 @@ $(document).ready(function() {
 var cmd=[];
 var startreplayall=function() {
     if (REPLAY.length==0) return; 
-    log("last character: "+REPLAY.substr(-1));
     if (REPLAY.substr(-1)=="W") FAST=false; else FAST=true;
     ANIM=REPLAY;
     var arg=LZString.decompressFromEncodedURIComponent(decodeURI(window.location.search.substr(1)));
