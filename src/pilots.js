@@ -985,7 +985,7 @@ var PILOTS = [
 	    var self=this;
 	    Unit.prototype.adddicemodifier(ATTACK_M,ADD_M,ATTACK_M,this,{
 		req:function(m,n) {
-		    return (self.stress==0)&&
+		    return (self.stress==0)&&(!self.dead)&&
 			(activeunit.team==self.team)&&(activeunit!=self)
 			&&(self.getrange(activeunit)<=3);
 		}, 
