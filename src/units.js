@@ -1161,15 +1161,20 @@ Unit.prototype = {
     candoroll:function() {
 	var moves=this.getrollmatrix(this.m);
 	var b=false;
-	for (var i=0; i<moves.length; i++) 
-	    b=b||(this.getmovecolor(moves[i],true,true)==GREEN);
+	var ob=this.canmoveonobstacles();
+	for (var i=0; i<moves.length; i++) {
+	    var c=this.getmovecolor(moves[i],true,true);
+	    b=b||(c==GREEN)||(c==YELLOW&&ob);
+	}
 	return b;
     },
     candoboost:function() {
 	var moves=this.getboostmatrix(this.m);
 	var b=false;
+	var ob=this.canmoveonobstacles();
 	for (var i=0; i<moves.length; i++) {
-	    b=b||(this.getmovecolor(moves[i],true,true)==GREEN);
+	    var c=this.getmovecolor(moves[i],true,true);
+	    b=b||(c==GREEN)||(c==YELLOW&&ob);
 	}
 	return b;
     },
@@ -1257,7 +1262,7 @@ Unit.prototype = {
 	    if (a>0) return a-1; else return a;
 	}).unwrapper("endphase");
 	if (this.tractorbeam==1&&!this.islarge) {
-	    p=Unit.prototype.getrollmatrix.call(this,this.m).concat(this.getpathmatrix(this.m,"F1"));
+	    p=Unit.prototype.getrollmatrix.call(this,this.m).concat(this.getpathmatrix(this.m,"F1")).concat(this.m);
 	    u.doselection(function(n) {
 		u.resolveactionmove.call(
 		    this,p,

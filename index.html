@@ -40,7 +40,7 @@
 	</span>
 	<span class="buttonbar">
 	  <button onclick="currentteam=TEAMS[0];createsquad()" class="mainbutton m-create"></button>
-	  <button class="permalink m-replay" onclick="resetlink(true)" >&lt;&lt; </button>
+	  <button class="permalink m-reset" onclick="resetlink(true)" >&lt;&lt; </button>
 	  <button class="permalink" onclick="resetlink()" >&lt; Back</button>
 	  <span id="phase"></span>
 	  <button class="nextphase" onclick="nextphase()"><span class='np'></span> <span id='npimg'>&gt;</span></button>
@@ -122,11 +122,11 @@
 	    <a href="#" title="Close" class="close">&#10060;</a>
 	  </h2>
 	  <div>
-	    <button class="permalink m-replay" onclick="resetlink(true)">&lt;&lt;</button><button class="m-reset permalink" onclick="resetlink()" >&lt; </button>
+	    <button class="permalink m-reset" onclick="resetlink(true)">&lt;&lt;</button><button class="m-restart permalink" onclick="resetlink(false,true)" >&lt; </button>
 
 	    <table class="victory-table"></table>
 	    <div class="replays">Share combat: 
-	      <a href="#" class="victory-link"><code></code></a>
+	      <a href="#" class="victory-link m-replay"></a>
 	      <span class="share-button">
 		<a class="symbols tweet" href="#" target="_blank"><span width="30px">&#xDD;</span></a>
 		<a class="facebook symbols" href="#" target="_blank"><span width="30px" class="symbols">&#xDC;</span></a>
@@ -516,7 +516,6 @@ The app is not really a game since the player plays both sides or against an AI,
       ga('create', 'UA-63149795-1', 'auto');
       ga('send', 'pageview');
     </script>
-
 
     <script id="unit-creation" type="x-tmpl-mustache">
       <img class="headimg" src="png/{{faction}}/{{imgname}}.png">

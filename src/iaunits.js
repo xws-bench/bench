@@ -92,7 +92,7 @@ IAUnit.prototype= {
 	}
 	endselect(crits[0]);
     },
-    resolveactionmove: function(moves,cleanup,automove,possible) {
+    resolveactionmove: function(moves,cleanup,automove,possible,scoring) {
 	var i;
 	var ready=false;
 	var score=-1000;
@@ -101,9 +101,13 @@ IAUnit.prototype= {
 	for (i=0; i<moves.length; i++) {
 	    var c=this.getmovecolor(moves[i],true,true);
 	    if (c==GREEN) {
+		var e;
 		ready=true;
-		this.m=moves[i];
-		var e=this.evaluateposition();
+		if (typeof scoring=="array") e=scoring[i];  
+		else {
+		    this.m=moves[i];
+		    e=this.evaluateposition();
+		}
 		if (score<e) { score=e; scorei=i; }
 	    }
 	}
@@ -163,15 +167,23 @@ IAUnit.prototype= {
 	}
     },
     resolvedecloak: function() {
-	this.resolveactionmove(this.getdecloakmatrix(this.m),
+	var p=this.getdecloakmatrix(this.m);
+	var move=this.getdial()[this.maneuver].move;
+	var scoring=[];
+	var old=this.m;
+	for (var i=0; i<p.length; i++) {
+	    this.m=this.getpathmatrix(p[i],move);
+	    scoring[i]=this.evaluateposition();
+	}
+	this.m=old;
+	this.resolveactionmove(p,
 			       function(t,k) {
 				   if (k>0) {
-				       t.agility-=2; t.iscloaked=false;
-				       SOUNDS.decloak.play();
+				       this.removecloaktoken();
 				       t.show();
 				   }
 				   this.hasdecloaked=true;
-			       }.bind(this),true);
+			       }.bind(this),true,scoring);
     },
     showactivation: function() {
     },
