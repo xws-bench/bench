@@ -1,4 +1,4 @@
-var V1="deckv1",V2="deckv2";
+var V1="v1",V2="v2";
 var CURRENT_DECK=V2;
 function Critical(sh,i) {
     this.lethal=false;
@@ -39,7 +39,35 @@ var CRITICAL_DECK=[
 	type:"ship",
 	count: 2,
 	name:"Structural Damage",
-	version:[V1,V2],
+	version:[V2],
+	faceup: function() {
+	    this.log();
+	    this.isactive=true;
+	    this.unit.wrap_after("getagility",this,function(a) {
+		if (a>0) return a-1; else return a;
+	    });
+	},
+	facedown:function() {
+	    if (this.isactive) {
+		this.unit.getagility.unwrap(this);
+		this.unit.log("%0 repaired",this.name);
+		this.unit.showstats();
+	    }
+	    this.isactive=false;
+	},
+	action: function(n) {
+	    var roll=this.unit.rollattackdie(1)[0];
+	    if (roll=="hit"||roll=="critical") {
+		this.facedown();
+	    } else this.unit.log("%0 not repaired",this.name);
+	    this.unit.endaction(n,"CRITICAL");
+	},
+    },
+    {
+	type:"ship",
+	count: 2,
+	name:"Structural Damage (original)",
+	version:[V1],
 	faceup: function() {
 	    this.log();
 	    this.isactive=true;
@@ -59,7 +87,7 @@ var CRITICAL_DECK=[
 	    var roll=this.unit.rollattackdie(1)[0];
 	    if (roll=="hit") {
 		this.facedown();
-	    } else this.unit.log("%0 not repaired ",this.name);
+	    } else this.unit.log("%0 not repaired",this.name);
 	    this.unit.endaction(n,"CRITICAL");
 	},
     },
@@ -148,8 +176,8 @@ var CRITICAL_DECK=[
     {
 	type:"ship",
 	count:2,
-	name:"Damaged Sensor Array",
-	version:[V1,V2],
+	name:"Damaged Sensor Array (original)",
+	version:[V1],
 	faceup: function() {
 	    this.log();
 	    this.isactive=true;
@@ -165,6 +193,30 @@ var CRITICAL_DECK=[
 	action: function(n) {
 	    var roll=this.unit.rollattackdie(1)[0];
 	    if (roll=="hit") this.facedown();
+	    else this.unit.log("%0 not repaired",this.name);
+	    this.unit.endaction(n,"CRITICAL");
+	}
+    },
+    {
+	type:"ship",
+	count:2,
+	name:"Damaged Sensor Array",
+	version:[V2],
+	faceup: function() {
+	    this.log();
+	    this.isactive=true;
+	    this.unit.wrap_after("getactionbarlist",this,function() { return [];});
+	},
+	facedown: function() {
+	    if (this.isactive) {
+		this.unit.getactionbarlist.unwrap(this);
+		this.unit.log("%0 repaired",this.name);
+		this.isactive=false;
+	    }
+	},
+	action: function(n) {
+	    var roll=this.unit.rollattackdie(1)[0];
+	    if (roll=="hit"||roll=="critical") this.facedown();
 	    else this.unit.log("%0 not repaired",this.name);
 	    this.unit.endaction(n,"CRITICAL");
 	}
@@ -414,6 +466,7 @@ var CRITICAL_DECK=[
 	faceup:function() {
 	    var myround=round;
 	    this.log();
+	    this.isactive=true;
 	    this.unit.wrap_after("deal",this,function(crit,face,p) {
 		if (round==myround) return p;
 		var dd=$.Deferred();
@@ -483,7 +536,7 @@ var CRITICAL_DECK=[
 	    var roll=this.unit.rollattackdie(1)[0];
 	    if (roll=="hit"||roll=="critical") {
 		this.facedown();
-	    } else this.unit.log("%0 not repaired ",this.name);
+	    } else this.unit.log("%0 not repaired",this.name);
 	    this.unit.endaction(n,"CRITICAL");
 	},
 	version:[V2],

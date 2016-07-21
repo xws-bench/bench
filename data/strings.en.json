@@ -1,6 +1,8 @@
 {
     "ships":{},
     "pilots":{
+	"'Quickdraw'":{"text":"Once per round, when you lose a shield token, you may perform a primary weapon attack."},
+	"'Backdraft'":{"text":"When attacking a ship inside your auxiliary firing arc, you may add 1 %CRIT% result."},
 	"Rey":{"text":"When attacking or defending, if the enemy ship is inside your firing arc, you may reroll up to 2 of your blank results."},
 	"Turbolaser":{"text":"A laser cannon turret. It cannot move."}, 
 	"Thermal Exhaust Port":{"text":"The thermal exhaust of the Death Star. To be played in the Death Star map."},
@@ -105,7 +107,7 @@
     "Tarn Mison":{"text":"When an enemy ship declares you as the target of an attack, you may acquire a target lock on that ship."},
     "Jake Farrell":{"text":"After you perform a focus action or are assigned a focus token, you may perform a free boost or barrel roll action."},
     "Gemmer Sojan":{"text":"While you are at Range 1 of at least 1 enemy ship, increase your agility value by 1."},
-    "Keyan Farlander":{"text":"When attacking, you may remove 1 stress token to change all of your %FOCUS% results to %HIT%results."},
+    "Keyan Farlander":{"text":"When attacking, you may remove 1 stress token to change all of your %FOCUS% results to %HIT% results."},
     "Nera Dantels":{"text":"You can perform %TORPEDO% secondary weapon attacks against enemy ships outside your firing arc."},
     "CR90 Corvette (Fore)":{"text":"When attacking with your primary weapon, you may spend 1 energy to roll 1 additional attack die."},
     "Dash Rendar":{"text":"You may ignore obstacles during the Activation phase and when performing actions."},
@@ -217,7 +219,13 @@
 	"Countess Ryad":{"text":"When you reveal a %STRAIGHT% maneuver, you may treat it as a %UTURN% maneuver."},
 	"'Deathfire'":{"text":"When you reveal your maneuver dial or after you perform an action, you may perform a %BOMB% Upgrade card action as a free action."}
  },
- "upgrades": {
+    "upgrades": {
+	"Vectored Thrusters":{"text":"Your action bar gains the %ROLL% action icon."},
+	"Tail Gunner":{"text":"When attacking from your rear-facing auxiliary firing arc, reduce the defender's agility by 1 (to a minimum of '0')."},
+	"R3 Astromech":{"text":"Once per round, when attacking with a primary weapon, you may cancel 1 of your focus results during the 'Modify Attack Dice' step to assign 1 %EVADE% token to your ship."},
+	"Sensor Cluster":{"text":"When defending, you may spend a focus token to change 1 of your blank results to an %EVADE% result."},
+	"Special Ops Training":{"text":"When attacking with a primary weapon from your primary firing arc, you may roll 1 additional attack die. If you do not, you may perform an additional attack from your auxiliary firing arc."},
+     "Collision Detector":{"text":"When performing a boost, barrel roll, or decloak, your ship and maneuver template can overlap obstacles. When rolling for obstacle damage, ignore all %CRITICAL% results."},
     "Ion Cannon Turret":{"text":
     "<strong>Attack:</strong> Attack 1 ship (even a ship outside your firing arc). If this attack hits the target ship, the ship suffers 1 damage and receives 1 ion token.  Then cancel all dice results."},
     "Proton Torpedoes":{"text":
@@ -622,10 +630,10 @@
 	"Major Hull Breach":{"text":"Starting the round after you receive this card, all Damage cards dealt to you are dealt faceup. %ACTION% Flip this card facedown"},
 	"Major Explosion":{"text":"Roll 1 attack die.  On a %HIT% result, suffer 1 critical damage.  Then flip this card facedown."},
 	"Loose Stabilizer":{"text":"After you execute a white maneuver, receive 1 stress token. %ACTION% Flip this card facedown."},
-	"Structural Damage":{
+	"Structural Damage (original)":{
 	    "text":"Reduce your agility value by 1 (to a minimum of '0'). %ACTION% Roll 1 attack die, on a %HIT% result, flip this card facedown."
 	},
-	"Structural Damage ":{
+	"Structural Damage":{
 	    "text":"Reduce your agility value by 1 (to a minimum of '0'). %ACTION% Roll 1 attack die, on a %HIT% or %CRIT% result, flip this card facedown."
 	},
 	"Damaged Engine":{
@@ -640,7 +648,7 @@
 	"Damaged Sensor Array":{
 	    "text":"You cannot perform the actions listed in your action bar. %ACTION% Roll 1 attack die.  On a %HIT% result, flip this card facedown."
 	},
-	"Damaged Sensor Array ":{
+	"Damaged Sensor Array (original)":{
 	    "text":"You cannot perform the actions except actions listed on Damage cards. %ACTION% Roll 1 attack die.  On a %HIT% or %CRIT% result, flip this card facedown."
 	},
 	"Minor Explosion":{

@@ -27,7 +27,7 @@ var NOLOG=false;
 var generics=[];
 var gid=0;
 var REROLL_M=0,ADD_M=1,MOD_M=2
-var ATTACK_M=0,DEFENSE_M=1;
+var ATTACK_M=0,DEFENSE_M=1,ATTACKCOMPARE_M=2;
 var FACEUP=1,FACEDOWN=2,DISCARD=0;
 var xws_lookup=function(s) {
     for (var i in PILOT_dict) {
@@ -561,6 +561,15 @@ Unit.prototype = {
 	s+=":"+Math.floor(this.tx)+","+Math.floor(this.ty)+","+Math.floor(this.alpha);
 	return s;
     },
+    toKey: function() {
+	var s=("00"+this.pilotid.toString(32)).slice(-2);
+	var p=[];
+	for (var i=0; i<this.upg.length; i++) 
+	    if (this.upg[i]>-1) p.push(this.upg[i]);
+	p.sort();
+	for (var i=0; i<p.length; i++) s+=("00"+p[i].toString(32)).slice(-2);
+	return s;	
+    },
     toString2: function() {
 	var n=0;
 	var i,j,k;
@@ -583,7 +592,7 @@ Unit.prototype = {
 	    shield:this.ship.shield,
 	    fire:this.weapons[0].getattack(),
 	    shipimg:this.shipimg,
-	    diallist:dial2JSON(this.getdial()),
+	    diallist:dial2JSON(this.getdialwi()),
 	    shipname:sname,
 	    actionstring:this.getactionstring(),
 	    upgradeaddstring:this.getupgradeaddstring()
@@ -639,8 +648,11 @@ Unit.prototype = {
 	return this.skill;
     },
     getdial: function() {
-	if (this.hasionizationeffect()) return [{move:"F1",difficulty:"WHITE"}];
 	return this.dial;
+    },
+    getdialwi: function() {
+	if (this.hasionizationeffect()) return [{move:"F1",difficulty:"WHITE"}];
+	return this.getdial();
     },
     doplan: function() { this.showdial(); return this.deferred; },
     getdialstring: function() {
@@ -650,7 +662,7 @@ Unit.prototype = {
 	    m[j]=[];
 	    for (k=0; k<=6; k++) m[j][k]="<td></td>";
 	}
-	var gd=this.getdial();
+	var gd=this.getdialwi();
 	for (j=0; j<gd.length; j++) {
 	    d=gd[j];
 	    var cx=MPOS[d.move][0],cy=MPOS[d.move][1];
@@ -669,7 +681,7 @@ Unit.prototype = {
     },
     showdial: function() {
 	var m=[],i,j,d;
-	var gd=this.getdial();
+	var gd=this.getdialwi();
 	if (phase==PLANNING_PHASE||phase==SELECT_PHASE||phase==CREATION_PHASE) {
 	    for (i=0; i<=5; i++) {
 		m[i]=[];
@@ -728,9 +740,15 @@ Unit.prototype = {
 		if (this.maxupg[u.type]<u.points) continue;
 	    }
 	    if (typeof u.requiredupg!="undefined") {
-		for (var i=0; i<u.requiredupg.length; i++)
-		    if (this.upgradetype.indexOf(u.requiredupg[i])==-1) continue;
-	    }
+		var hasrequired=true;
+		for (var i=0; i<u.requiredupg.length; i++) {
+		    if (this.upgradetype.indexOf(u.requiredupg[i])==-1) {
+			hasrequired=false;
+			break;
+		    }
+		}
+		if (!hasrequired) continue;
+	    } // instead of upgradetype ?
 	    if (type.match(u.type)) {
 		var n=u.name;
 		var n2=u.name+((u.type=="Crew")?"(Crew)":"")
@@ -802,6 +820,7 @@ Unit.prototype = {
     getdicemodifiers: function() {
 	return [{from:ATTACK_M,type:MOD_M,to:ATTACK_M,org:this,
 		 req:function() {return this.canusefocus();}.bind(this),
+		 aiactivate: function(m,n) { return FCH_focus(m)>0; },
 		 f:function(m,n) {
 		     this.removefocustoken();
 		     var f=FCH_focus(m);
@@ -818,6 +837,10 @@ Unit.prototype = {
 		 str:"target",token:true},
 		{from:DEFENSE_M,type:MOD_M,to:DEFENSE_M,org:this,
 		 req:function() {return this.canusefocus();}.bind(this),
+		 aiactivate:function(m,n) { 
+		     mm=getattackvalue();
+		     return FE_focus(m)>0&&FCH_hit(mm)+FCH_crit(mm)>FE_evade(m); 
+		 },
 		 f:function(m,n) {
 		     this.removefocustoken();
 		     var f=FE_focus(m);
@@ -826,6 +849,10 @@ Unit.prototype = {
 		 }.bind(this),str:"focus",token:true},
 		{from:DEFENSE_M,type:ADD_M,to:DEFENSE_M,org:this,
 		 req:function() {return this.canuseevade(); }.bind(this),
+		 aiactivate:function(m,n) { 
+		     mm=getattackvalue();
+		     return (FCH_hit(mm)+FCH_crit(mm)>FE_evade(m));
+		 },
 		 f: function(m,n) {	    
 		     this.removeevadetoken(); 
 		     return {m:m+FE_EVADE,n:n+1} 
@@ -1161,7 +1188,7 @@ Unit.prototype = {
     candoroll:function() {
 	var moves=this.getrollmatrix(this.m);
 	var b=false;
-	var ob=this.canmoveonobstacles();
+	var ob=this.canmoveonobstacles("ROLL");
 	for (var i=0; i<moves.length; i++) {
 	    var c=this.getmovecolor(moves[i],true,true);
 	    b=b||(c==GREEN)||(c==YELLOW&&ob);
@@ -1171,7 +1198,7 @@ Unit.prototype = {
     candoboost:function() {
 	var moves=this.getboostmatrix(this.m);
 	var b=false;
-	var ob=this.canmoveonobstacles();
+	var ob=this.canmoveonobstacles("BOOST");
 	for (var i=0; i<moves.length; i++) {
 	    var c=this.getmovecolor(moves[i],true,true);
 	    b=b||(c==GREEN)||(c==YELLOW&&ob);
@@ -1493,13 +1520,13 @@ Unit.prototype = {
 	}	
     },
     showmeanposition: function() {
-	var gd=this.getdial();
+	var gd=this.getdialwi();
 	var o;
 	this.evaluatemoves(true,true);
 	this.showpositions([{color:GREEN,move:"mean",m:this.meanm}]);
     },
     shownextpositions: function() {
-	var gd=this.getdial();
+	var gd=this.getdialwi();
 	var o;
 	this.evaluatemoves(true,true);
 	var n=[];
@@ -1508,7 +1535,7 @@ Unit.prototype = {
     },
     showpossiblepositions:function() {
 	this.evaluatemoves(true,true);
-	var gd=this.getdial();
+	var gd=this.getdialwi();
 	this.showpositions(gd);
     },
     evaluateposition: function() {
@@ -1544,7 +1571,7 @@ Unit.prototype = {
     },
     evaluatemoves: function(withcollisions,withobstacles) {
 	this.meanmround=round;
-	var gd=this.getdial();
+	var gd=this.getdialwi();
 	var mx=0,my=0,ma=0;
 	var g=0;
 	var i,best=RED;
@@ -1635,7 +1662,7 @@ Unit.prototype = {
 		    else {
 			this.ocollision.overlap=i;
 			this.log("colliding with obstacle");
-			if (!this.canmoveonobstacles()) this.resolveocollision(1,[]);
+			if (!possible) this.resolveocollision(1,[]);
 		    }
 		}
 	    if (automove) {
@@ -1645,7 +1672,6 @@ Unit.prototype = {
 	    f(this,k);
 	    this.show();
 	}.bind(this);
-	if (typeof possible=="undefined") possible=false;
 	for (i=moves.length-1; i>=0; i--) {
 	    var c=this.getmovecolor(moves[i],true,true);
 	    if ((possible&&(c==YELLOW||c==RED))||c==GREEN||(possible&&!automove)) {
@@ -1694,9 +1720,9 @@ Unit.prototype = {
     },
     resolveboost: function(n) {
 	this.resolveactionmove(this.getboostmatrix(this.m),
-	    function (t,k) { t.endaction(n,"BOOST"); },true,this.canmoveonobstacles());
+	    function (t,k) { t.endaction(n,"BOOST"); },true,this.canmoveonobstacles("BOOST"));
     },
-    canmoveonobstacles:function() { return false; },
+    canmoveonobstacles:function(type) { return false; },
     getdecloakmatrix: function(m) {
 	var m0=this.getpathmatrix(this.m.clone().rotate(90,0,0),"F2").translate(0,(this.islarge?20:0)).rotate(-90,0,0);
 	var m1=this.getpathmatrix(this.m.clone().rotate(-90,0,0),"F2").translate(0,(this.islarge?20:0)).rotate(90,0,0);
@@ -1723,7 +1749,7 @@ Unit.prototype = {
 				       if (k>0) this.removecloaktoken();
 				       this.hasdecloaked=true;
 				       this.endnoaction(n,"");
-				   }.bind(this),true,false);
+				   }.bind(this),true,this.canmoveonobstacles("DECLOAK"));
 	}.bind(this))/*.done(function() {
 	    this.unlock();
 	}.bind(this))*/
@@ -1753,7 +1779,7 @@ Unit.prototype = {
     },
     resolveroll: function(n) {
 	this.resolveactionmove(this.getrollmatrix(this.m),
-	    function(t,k) { t.endaction(n,"ROLL");},true,this.canmoveonobstacles());
+	    function(t,k) { t.endaction(n,"ROLL");},true,this.canmoveonobstacles("ROLL"));
     },
     boundtargets:function(sh) {
 	if (this.targeting.indexOf(sh)>-1) return true;
@@ -1821,7 +1847,7 @@ Unit.prototype = {
 	this.endaction(n,"CLOAK");
     },
     resolveslam: function(n) {
-	var gd=this.getdial();
+	var gd=this.getdialwi();
 	if (gd.length<=this.lastmaneuver) this.lastmaneuver=0;
 	var realdial=gd[this.lastmaneuver].move;
 	var speed=realdial.substr(-1);
@@ -2269,8 +2295,7 @@ Unit.prototype = {
 		this.newlock().done(function() {
 		    this.deferred=this.latedeferred;
 		    this.log("+1 attack with %1 [%0]",org.name,this.weapons[wn].name);
-		    if (typeof t=="function") this.resolveattack(wn,t());
-		    else this.selecttargetforattack(wn); 
+		    if (typeof t!="undefined") this.selecttargetforattack(wn,t); 
 		}.bind(this));
 	    }
 	})
@@ -2322,7 +2347,7 @@ Unit.prototype = {
 	    } else this.endaction(n);
 	}.bind(this),list[0].name);  
     },
-    donoaction: function(list,str,noskip) {
+    donoaction: function(list,str,noskip,skipaction) {
 	var l;
 	if (list.length==0) {
 	    this.log("no action available");
@@ -2344,7 +2369,10 @@ Unit.prototype = {
 		}.bind(this))(list[i],i);
 	    }
 	    if (noskip==true) {
-		var e=$("<button>").addClass("m-skip").addClass("wbutton").click(function() { this.resolvenoaction(null,n); }.bind(this));
+		var e=$("<button>").addClass("m-skip").addClass("wbutton").click(function() { 
+		    if (typeof skipaction=="function") skipaction();
+		    this.resolvenoaction(null,n); 
+		}.bind(this));
 		$("#actiondial > div").append(e);
 	    }
 	}.bind(this),list[0].name);  
@@ -2355,13 +2383,9 @@ Unit.prototype = {
     candecloak: function() {
 	return (this.iscloaked&&phase==ACTIVATION_PHASE&&!this.hasdecloaked);
     },
-    selecttargetforattack: function(wp,target) {
-	if (typeof target!="undefined") {
-	    if (this.declareattack(wp,target))  
-		this.resolveattack(wp,target);
-	    return true;
-	} 
-	var p=this.weapons[wp].getenemiesinrange();
+    selecttargetforattack: function(wp,targetlist) {
+	var p=targetlist;
+	if (typeof targetlist=="undefined") p=this.weapons[wp].getenemiesinrange();
 	if (p.length==0) {
 	    this.log("no target for %0",this.weapons[wp].name);
 	    this.cleanupattack();
@@ -2605,7 +2629,7 @@ Unit.prototype = {
 	//this.wrap_after("canfire",this,function(t) { return false; }).unwrapper("endcombatphase");
 	parent.doselection(function(n) {
 	    this.resolveactionmove(dm,function(t,k) {
-		var half=this.getdial().length;
+		var half=this.getdialwi().length;
 		if (k>=half) { this.m.translate(0,-20); k=k-half; }
 		else this.m.translate(0,20).rotate(180,0,0);
 		this.maneuver=k;
@@ -2631,7 +2655,7 @@ Unit.prototype = {
 	if (this.hasionizationeffect()) {
 	    return {move:"F1",difficulty:"WHITE"};
 	}
-	return this.getdial()[this.maneuver];
+	return this.getdialwi()[this.maneuver];
     },
     showmaneuver: function() {
 	if (this.timetoshowmaneuver()) {
@@ -3037,18 +3061,19 @@ Unit.prototype = {
     },
     collidedby: function(sh) {
     },
+    canhavehitocollision: function() { return true; },
+    canhavecriticalocollision: function() { return true; },
     resolveocollision: function(o,t) {
 	var i;
 	var p=t;
 	if (p.indexOf(o)==-1&&o>-1) p.push(o);
 	for (i=0; i<p.length; i++) {
 	    var roll=this.rollattackdie(1)[0];
-	    if (roll=="hit"&&p[i].type==ROCK) { 
+	    if (roll=="hit"&&p[i].type==ROCK&&this.canhavehitocollision()) {
 		this.log("+1 %HIT% [collision]"); 
 		this.resolvehit(1); 
 		this.checkdead(); 
-	    }
-	    else if (roll=="critical") { 
+	    } else if (roll=="critical"&&this.canhavecriticalocollision())   {
 		this.log("+1 %CRIT% [collision]"); 
 		this.resolvecritical(1);
 		this.checkdead();

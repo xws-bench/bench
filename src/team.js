@@ -288,7 +288,18 @@ Team.prototype = {
 	    s+=sortable[i].toASCII()+";";
 	return s;
     },
-   
+    toKey: function() {
+	var s="";
+	var p=[];
+	for (var i in generics) {
+	    if (generics[i].team==this.team) p.push(generics[i]);
+	}
+	p.sort(function(a,b) { return a.pilotid-b.pilotid; });
+	for (var i=0; i<p.length; i++) 
+	    s+=p[i].toKey()+";";
+	//s+=p[0].toKey();
+	return s;
+    },
     toJSON:function() {
 	var s={};
 	var f={REBEL:"rebels",SCUM:"scum",EMPIRE:"empire"};
@@ -383,16 +394,25 @@ Team.prototype = {
 		    if ((translated==true&&translate(UPGRADES[k].name).replace(/\'/g,"").replace(/\(Crew\)/g,"")==pstr[j])
 			||(UPGRADES[k].name.replace(/\'/g,"")==pstr[j])) {
 			if (authupg.indexOf(UPGRADES[k].type)>-1) {
-			    p.upg[j-1]=k;
 			    if (typeof UPGRADES[k].upgrades!="undefined") 
 				if (UPGRADES[k].upgrades[0]=="Cannon|Torpedo|Missile")
 				    authupg=authupg.concat(["Cannon","Torpedo","Missile"]);
 			    else authupg=authupg.concat(UPGRADES[k].upgrades);
-
+			    break;
+			} 
+		    }
+		    if (k==UPGRADES.length) log("UPGRADE undefined: "+pstr[j]);
+		}
+	    }
+	    for (j=1; j<pstr.length; j++) {
+		for (k=0; k<UPGRADES.length; k++) {
+		    if ((translated==true&&translate(UPGRADES[k].name).replace(/\'/g,"").replace(/\(Crew\)/g,"")==pstr[j])
+			||(UPGRADES[k].name.replace(/\'/g,"")==pstr[j])) {
+			if (authupg.indexOf(UPGRADES[k].type)>-1) {
+			    p.upg[j-1]=k;
 			    break;
 			} else log("UPGRADE not listed: "+UPGRADES[k].type+" in "+p.name);
 		    }
-		if (k==UPGRADES.length) log("UPGRADE undefined: "+pstr[j]);
 		}
 	    }
 	}

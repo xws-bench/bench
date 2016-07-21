@@ -1463,6 +1463,10 @@
 	"Loose Stabilizer":{"name":"Perte de stabilisateur","text":"Après avoir exécuté une manœuvre blanche, recevez un marqueur de stress"},
 	"Structural Damage":{
 	    "name":"Dommages structurels",
+	    "text":"Réduisez votre valeur d'agilité de 1 (jusqu'à un minimum de 0). %ACTION% lancez 1 dé d'attaque. Sur un résultat %HIT% ou %CRIT%, retournez cette carte face cachée."
+	},
+	"Structural Damage (original)":{
+	    "name":"Dommages structurels (v1)",
 	    "text":"Réduisez votre valeur d'agilité de 1 (jusqu'à un minimum de 0). %ACTION% lancez 1 dé d'attaque. Sur un résultat %HIT%, retournez cette carte face cachée."
 	},
 	"Damaged Engine":{
@@ -1479,6 +1483,10 @@
 	},
 	"Damaged Sensor Array":{
 	    "name":"Console de senseurs endommagée",
+	    "text":"Vous ne pouvez pas effectuer les actions de votre barre d'action. %ACTION%lancez 1 dé d'attaque. Sur un résultat %HIT% ou %CRIT%, retournez cette carte face cachée."
+	},
+	"Damaged Sensor Array (original)":{
+	    "name":"Console de senseurs endommagée (v1)",
 	    "text":"Vous ne pouvez pas effectuer les actions de votre barre d'action. %ACTION%lancez 1 dé d'attaque. Sur un résultat %HIT%, retournez cette carte face cachée."
 	},
 	"Minor Explosion":{

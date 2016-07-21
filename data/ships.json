@@ -1044,5 +1044,37 @@
 	    {"move":"K4","difficulty":"RED"}
 	],
 	"actionList":["FOCUS","TARGET","ROLL"]
+    },
+     "TIE/SF Fighter":{
+	"firesnd":"tie_fire",
+	"flysnd":"tie2_fly",
+	"scale":0.9,
+	"img":["tie-sf.png"],
+	"faction":["EMPIRE"],
+	"weapon_type":"Bilaser",
+	"code":"F",
+	"fire": 2,
+	"evade": 2,
+	"hull": 3,
+	"shield": 3,
+	"dial": [
+	    {"move":"BL1","difficulty":"GREEN"},
+	    {"move":"F1","difficulty":"GREEN"},
+	    {"move":"BR1","difficulty":"GREEN"},
+	    {"move":"TL2","difficulty":"WHITE"},
+	    {"move":"BL2","difficulty":"WHITE"},
+	    {"move":"F2","difficulty":"GREEN"},
+	    {"move":"BR2","difficulty":"WHITE"},
+	    {"move":"TR2","difficulty":"WHITE"},
+	    {"move":"SL3","difficulty":"RED"},
+	    {"move":"TL3","difficulty":"RED"},
+	    {"move":"BL3","difficulty":"WHITE"},
+	    {"move":"F3","difficulty":"GREEN"},
+	    {"move":"BR3","difficulty":"WHITE"},
+	    {"move":"TR3","difficulty":"RED"},
+	    {"move":"SR3","difficulty":"RED"},
+	    {"move":"F4","difficulty":"WHITE"}
+	],
+	"actionList":[ "FOCUS","ROLL","TARGET"]
     }
 }

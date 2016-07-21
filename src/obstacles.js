@@ -47,7 +47,17 @@ function loadrock(s,str) {
 		else TEAMS[2].rocks[i-3]=parseInt(ob[3],10);
 	    }
 	}
-    } else for (i=0; i<6; i++) coord[i]=[Math.random()*150-75,Math.random()*150-50,Math.random()*45];
+    } else for (i=0; i<6; i++) {
+	do {
+	    var ok=true;
+	    coord[i]=[Math.random()*400+200-PX[i],Math.random()*400+200-PY[i],Math.random()*45];
+	    for (j=0; j<i; j++) {
+		var dx=coord[i][0]-coord[j][0]+PX[i]-PX[j];
+		var dy=coord[i][0]-coord[j][0]+PY[i]-PY[j];
+		if (dx*dx+dy*dy<15000) { ok=false;break; }
+	    } 
+	} while (!ok);
+    }
     for (i=0; i<3; i++) {
 	OBSTACLES[i]=new Rock(TEAMS[1].rocks[i],coord[i],TEAMS[1].rocks[i]>=MAXROCKS,1,i);
 	OBSTACLES[i+3]=new Rock(TEAMS[2].rocks[i],coord[i+3],TEAMS[2].rocks[i]>=MAXROCKS,2,i);

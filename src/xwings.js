@@ -1,14 +1,24 @@
 /* modifications:
-   - Kanan (crew) once per round
-   - button to reset animation when played
-   - Comm relay with evade reappearing corrected
-
-*/var phase=1;
+ * Manaroo
+ * Proton Torpedoes
+ * Back button
+ * criticals (v1 and v2)
+ * long-range scanners condition checking ok
+ * R4-B11 corrected
+ * Maarek Steel Defender cost corrected 
+ * crack shot activation
+ * Garven  + Jan Ors (crew): replacing focus is not removing focus token
+ * Wampa at compare step
+  * collision detector, tail gunner, vectored thrusters, R3 Astromech, Sensor Cluster, special ops training
+  * shaken pilot + ionized: corrected.
+  * Conner net: 1 damage, always (was random)
+*/
+var phase=1;
 var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.8.9";
+var VERSION="v0.8.10";
 var LANG="en";
 var DECLOAK_PHASE=1;
 var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6,XP_PHASE=7;
@@ -47,17 +57,9 @@ var PERMALINK="";
 var SQUADBUILDER=1;
 /*
 
-    <script src="src/obstacles.js"></script>
-    <script src="src/critical.js"></script>
-    <script src="src/units.js"></script>
-    <script src="src/iaunits.js"></script>
-    <script src="src/pilots.js"></script>
-    <script src="src/upgrades.js"></script>
-    <script src="src/upgcards.js"></script>
-    <script src="src/team.js"></script>
-    <script src="src/resample.js"></script>
-    <script src="src/avatar.js"></script>
-    <script src="src/xwings.js"></script>
+
+
+
 
 		 <button onclick='$("#replay")[0].contentWindow.stopreplay();'>Stop</button>
 
@@ -130,11 +132,12 @@ function center() {
 }
 var AIstats = function(error,options, response) {
     if (typeof response.rows!="undefined") {
+	log("rows: "+response.rows.length);
     	for (var i=1; i<response.rows.length; i+=200) {
 	    var scorec=0;
 	    var n=0;
 	    var median=0;
-	    for (var j=0; j<200&&j+i<response.rows.length; j++) {
+	    for (var j=1; j<200&&j+i<response.rows.length; j++) {
 		var t=response.rows[i+j].cellsArray[0].split(" ");
 		var ts1=t[0].split(":");
 		var type1=ts1[0];
@@ -153,7 +156,7 @@ var AIstats = function(error,options, response) {
 		    n++;
 		}
 	    }
-	    log(median/n);
+	    console.log(median/n);
 	}
     }
 }
@@ -183,7 +186,6 @@ var myCallback = function (error, options, response) {
 	for (var i=0; i<tt.length; i++) {
 	    t1+=tt[i].replace(/\*/g," + ").replace(/_/g," ")+"<br>";
 	    s1+=tt[i].replace(/\*/g," + ").replace(/_/g," ")+"\n";
-	    log(tt[i].replace(/\*/g," + ").replace(/_/g," ")+"<br>");
 	}
 	stype="";
 	TEAMS[1].parseJuggler(s1,false);
@@ -230,30 +232,46 @@ var myTemplate = function(num,cells,cellarrays,labels) {
     SQUADBATTLE.row.add([score2+"-"+score1,"<span onclick='$(\"#replay\").attr(\"src\",\""+cells[2]+"\")'>"+t1+"</span>"]).draw(false);
 }
 var computeurl=function(error, options,response) {
-    console.log(error,options,response);
+    //console.log(error,options,response);
     var scoreh=0;
     var scorec=0;
     var n=0;
+    var histogram=[];
     if (typeof response.rows!="undefined") {
-    	for (var i=1; i<10; i++) {
+    	for (var i=1; i<response.rows.length; i++) {
 	    var squad=response.rows[i].cellsArray[0];
 	    var tt=squad.split("VS");
-	    var team1=tt[0].split("\.(?! II)");
-	    var team2=tt[1].split("\.(?! II)");
+	    var team1=mk2split(tt[0]);
+	    var team2=mk2split(tt[1]);
 	    var s1="",s2="";
+
 	    for (var j=0; j<team1.length-1; j++) {
 		s1+=team1[j].replace(/\*/g," + ").replace(/_/g," ")+"\n";
-		s2+=team2[j].replace(/\*/g," + ").replace(/_/g," ")+"\n";
 	    }
+	    try {
 	    TEAMS[1].parseJuggler(s1,false);
+	    for (var j=0; j<team2.length-1; j++) 
+	    	s2+=team2[j].replace(/\*/g," + ").replace(/_/g," ")+"\n";
 	    TEAMS[2].parseJuggler(s2,false);
-	    var longurl = response.rows[i].cellsArray[2];
-	    var curl=longurl.split("?")[1];
-	    var arg=LZString.decompressFromEncodedURIComponent(decodeURI(curl));
-	    var args=[];
-	    args= arg.split('&');
+	    } catch (e) {
+	    }
+	    for (var j in generics) {
+		if (typeof histogram[generics[j].pilotid]=="undefined") 
+		    histogram[generics[j].pilotid]=0;
+		histogram[generics[j].pilotid]++;
+	    }
+	    //console.log(TEAMS[1].toKey());
+
+	    //var longurl = response.rows[i].cellsArray[2];
+	    //var curl=longurl.split("?")[1];
+	    //var arg=LZString.decompressFromEncodedURIComponent(decodeURI(curl));
+	    //var args=[];
+	    //args= arg.split('&');
 	    //log(LZString.compressToEncodedURIComponent(TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+args[2]+"&"+args[3]+"&"+args[4]+"&"+args[5]+"&"+args[6]));
 	}
+    }
+    for (var i in histogram) {
+	console.log(PILOTS[i].name+":"+histogram[i]);
     }
 }
 function translate(a) {
@@ -311,11 +329,17 @@ function formatstring(s) {
 }
 function displayplayertype(team,img) {
     var himg=localStorage["image"];
+    var pimg=localStorage["imageplayer"+team];
+    var hname=localStorage["name"];
+    var name=localStorage["playername"];
+    if (typeof name!="undefined") hname=name;
     if (typeof img!="undefined") himg=img; 
+    if (typeof pimg!="undefined") himg=pimg; 
     if (typeof himg=="undefined") himg="css/human.png";
     if (!TEAMS[team].isia) {
 	$("#player"+team+" option[value='human']").prop("selected",true); 
 	$("#player"+team+"img").attr("src",himg);
+	$("#player"+team+" option[value='human']").text(hname);
     } else {
 	$("#player"+team+" option[value='computer']").prop("selected",true); 
 	$("#player"+team+"img").attr("src","css/computer.png");
@@ -489,12 +513,31 @@ function displaydefensetokens2(u,f) {
     if (typeof f!="function") f=u.lastdf;
     u.lastdf=f;
     $("#dtokens").empty();
-    $("#dtokens").append(u.getresultmodifiers(u.dr,u.dd,DEFENSE_M,DEFENSE_M));
-    //$("#dtokens td").click(function() { displaydefensetokens2(u,f); });
+    var dm=u.getresultmodifiers(u.dr,u.dd,DEFENSE_M,DEFENSE_M);
     if (FAST) { 	    
-	$("#combatdial").hide(); 
-	f(); 
+	//$("#combatdial").hide(); 
+	displaycompareresults(u,f);
+	//f(); 
     } else {
+	$("#dtokens").append(dm);
+	$("#dtokens").append($("<button>").addClass("m-fire").click(function() {
+	    //$("#combatdial").hide();
+	    //f();
+	    displaycompareresults(activeunit,f);
+	}.bind(u)));
+    }
+}
+function displaycompareresults(u,f) {
+    if (typeof f!="function") f=u.lastdf;
+    u.lastdf=f;
+    $("#dtokens").empty();
+    dm=u.getresultmodifiers(targetunit.dr,targetunit.dd,ATTACKCOMPARE_M,DEFENSE_M);
+    am=u.getresultmodifiers(u.ar,u.ad,ATTACMCOMPARE_M,ATTACK_M);
+    if (FAST||(dm.length==0&&am.length==0)) {
+	$("#combatdial").hide();
+	f();
+    } else {
+	$("#dtokens").append(dm).append(am);
 	$("#dtokens").append($("<button>").addClass("m-fire").click(function() {
 	    $("#combatdial").hide();
 	    f();}.bind(u)));
@@ -749,7 +792,7 @@ function win() {
     note=note.replace(/ /g,"_");
     //console.log("note:"+encodeURI(note));
 
-    var url=encodeURI("file:///Users/denis/Documents/bench/index.html?"+permalink(false));
+    var url=encodeURI("http://xws-bench.github.io/bench/index.html?"+permalink(false));
     $("#submission").contents().find('#entry_209965003').val(titl);
     $('#submission').contents().find('#entry_390767903').val(note);
     $('#submission').contents().find('#entry_245821581').val("no short url");
@@ -869,7 +912,7 @@ function switchdialimg(b) {
     }
 }
 var mySpreadsheets=[
-"https://docs.google.com/spreadsheets/d/1n35IFydakSJf9N9b9byLog2MooaWXk_w8-GQdipGe8I/edit#gid=0",
+/*"https://docs.google.com/spreadsheets/d/1n35IFydakSJf9N9b9byLog2MooaWXk_w8-GQdipGe8I/edit#gid=0",
 "https://docs.google.com/spreadsheets/d/1Jzigt2slBhygjcylCsy4UywpsEJEjejvtCfixNoa_z4/edit#gid=0",
 "https://docs.google.com/spreadsheets/d/1dkvDxaH3mJhps9pi-R5L_ttK_EmDKUZwaCE9RZUYueg/edit#gid=0",
 "https://docs.google.com/spreadsheets/d/1IoViAKvpZFRlmzBXeY6S9jYX4Ju9ccL5boNxhLwUXiY/edit#gid=0",
@@ -877,7 +920,8 @@ var mySpreadsheets=[
 "https://docs.google.com/spreadsheets/d/15pAnwcBlp4l01eJgyNXW9uGu5jYDhxk3oSveBIQhJFc/edit#gid=0",
 "https://docs.google.com/spreadsheets/d/1P64wZXXV_3gJE0wdLTDWW2pdOliInCRlTXm1lgYNumc/edit#gid=0",
 "https://docs.google.com/spreadsheets/d/1zlqDnXJ9J-k4apP1DadPx_vdv6Asdp_b9QvaytKI9ek/edit#gid=0",
-"https://docs.google.com/spreadsheets/d/1hK3niJbtDIE8xxv-9vQGcqd5eQ1D6dP5hQ7GicDVh-A/edit#gid=0"
+"https://docs.google.com/spreadsheets/d/1hK3niJbtDIE8xxv-9vQGcqd5eQ1D6dP5hQ7GicDVh-A/edit#gid=0",*/
+"https://docs.google.com/spreadsheets/d/1KR1uc7QgbiDkxCU5J1rm9qBMMjwKC0WyfAuDhnrbgAA/edit#gid=0"
 ];
 function displayAIperformance() {
     for (var i=0; i<mySpreadsheets.length; i++) {
@@ -907,16 +951,16 @@ function selectrocks() {
     }.bind(this))
 }
 
-/*
+
 function recomputeurl() {
     $('#squadbattlediv').sheetrock({
 	url: mySpreadsheets[0],
-	query:"select C,D,E",
+	query:"select C",
 	callback:computeurl,
 	rowTemplate:function () { return "";},
 	labels:["ascii","short","long"]
     }); 
-}*/
+}
 function displaycombats(t) {
     var s1=t;
     t=t.replace(/\n/g,".");
@@ -1345,7 +1389,8 @@ function nextphase() {
 	    TEAMS[2].isia=false; else TEAMS[2].isia=true;
 	if (TEAMS[1].isia==true) TEAMS[1].setia();
 	if (TEAMS[2].isia==true) TEAMS[2].setia();
-	
+	ZONE[0].attr({fillOpacity:0});
+	$(".imagebg").hide();
 	endsetupphase();
 	/*
 	if (REPLAY.length>0) {
@@ -1391,6 +1436,8 @@ function nextphase() {
     setphase();
 }
 function setphase(cannotreplay) {
+    $(".imagebg").hide();
+
     //log("setphase "+phase+" "+cannotreplay);
     switch(phase) {
     case SELECT_PHASE:
@@ -1410,6 +1457,7 @@ function setphase(cannotreplay) {
 	break;
     case SETUP_PHASE:
 	//log("starting setupphase");
+	$(".imagebg").show();
 	var t=["bomb","weapon","upgrade"];
 	for (var i=0;i<t.length; i++) {
 	    TEMPLATES[t[i]]=$("#"+t[i]).html();
@@ -1518,7 +1566,6 @@ function setphase(cannotreplay) {
 	$(document.body).on('dragover',modal_dragover); 
 	$(document.body).on('drop',modal_drop); 
 	*/
-	jwerty.key("shift+i",function() { });
 	jwerty.key("escape", nextphase);
 	/*$(document).keyup(function(event) {
 	    if (event.which==13) {
@@ -1630,8 +1677,10 @@ function permalink(reset) {
     var r="";
     if (!reset) { /*if (REPLAY!="") r=REPLAY; else*/ r=ANIM; } 
     var himg=localStorage["image"];
+    var name=localStorage["name"];
     if (typeof himg=="undefined") himg="";
-    return LZString.compressToEncodedURIComponent(TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock()+"&"+TEAMS[1].isia+"&"+TEAMS[2].isia+"&"+SETUP.name+"&"+r+"&"+himg);
+    if (typeof name=="undefined") name="";
+    return LZString.compressToEncodedURIComponent(TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock()+"&"+TEAMS[1].isia+"&"+TEAMS[2].isia+"&"+SETUP.name+"&"+r+"&"+himg+"&"+name);
 }
 function resetlink(home,setup) {
     switch (phase) {
@@ -1643,15 +1692,22 @@ function resetlink(home,setup) {
 	    var clean_uri = uri.substring(0, uri.indexOf("?"));
 	    window.history.replaceState({}, document.title, clean_uri);
 	}
+	location.reload();
 	break;
     case CREATION_PHASE: phase=0; document.location.search=""; nextphase(); break; 
     default: 
-	if (home==true) document.location.search="";
-	else {
+	if (home==true) {
+	    if (document.location.search!="") document.location.search="";
+	    else document.location.reload();
+	} else {
 	    if (setup==true) ANIM="";
-	    else if (ANIM.lastIndexOf("P-")>-1) {
-		ANIM=ANIM.slice(0,ANIM.lastIndexOf("_-P-"));
-	    }
+	    else {
+		var idx=ANIM.search('_-P-'+round+'-3');
+		if (ANIM.indexOf("_",idx+1)==-1) {
+		    idx=ANIM.search('_-P-'+(round-1)+'-3');
+		}
+		ANIM=ANIM.slice(0,ANIM.indexOf("_",idx+1));
+	    }	
 	    var arg=LZString.decompressFromEncodedURIComponent(decodeURI(PERMALINK));
 	    args=arg.split("&");
 	    args[2]=saverock();
@@ -1913,7 +1969,7 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense) {
 			    var r=attacker.gethitrange(w,defender);
 			    // No prerequisite checked.
 			    if (r<=3&&r>0) {
-				console.log("immediate attack:"+weapon.name+"->"+attacker.weapons[w].name+" "+attacker.reroll+" "+attacker.name)
+				//console.log("immediate attack:"+weapon.name+"->"+attacker.weapons[w].name+" "+attacker.reroll+" "+attacker.name)
 				var attack2=attacker.getattackstrength(w,defender);
 				var defense2=defender.getdefensestrength(w,attacker);
 				var thp= tohitproba(attacker,attacker.weapons[w],defender,
@@ -2139,6 +2195,10 @@ $(document).ready(function() {
     }).mouseout(function() {
 	$('nav ul').css({display:'none',visibility:'hidden'})
     });
+    
+    jwerty.key("shift+i",function() {recomputeurl(); });
+
+
 
     // Load unit data
     var availlanguages=["en","fr","de","es","it","pl"];
@@ -2280,7 +2340,7 @@ $(document).ready(function() {
 	Mustache.parse(TEMPLATES["faction"]);  
 	TEMPLATES["usabletokens"]=$("#usabletokens").html();
 	Mustache.parse(TEMPLATES["usabletokens"]);  
-	
+
 	$('body').on('mousedown', 'footer', function() {
             $(this).addClass('draggable').parents().on('mousemove', function(e) {
 		$('.draggable').offset({
@@ -2374,16 +2434,24 @@ $(document).ready(function() {
 	    TEAMS[1].isia=false;
 	    TEAMS[2].isia=false;
 	    if (args[3]=="true") TEAMS[1].isia=true;	
-	    displayplayertype(1,args[6]);
+	    else { 
+		localStorage["imageplayer1"]=args[7];
+		localStorage["playername"]=args[8];
+	    }
 	    if (args[4]=="true") TEAMS[2].isia=true;
-	    displayplayertype(2,args[6]);
-
+	    else { 
+		localStorage["imageplayer2"]=args[7];
+		localStorage["playername"]=args[8];
+	    }
 	    SETUP=SETUPS[args[5]+" Map"];
 	    phase=SELECT_PHASE;
 	    if (args.length>6&args[6]!="") { REPLAY=args[6]; }
 	    PERMALINK=LZString.compressToEncodedURIComponent(TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock()+"&"+TEAMS[1].isia+"&"+TEAMS[2].isia+"&"+args[5]);
 	    return nextphase();
 	} else {
+	    delete localStorage["imageplayer1"];
+	    delete localStorage["imageplayer2"];
+	    delete localStorage["playername"];
 	    phase=0;
 	    nextphase();
 	    if (localStorage.getItem("import")) {
@@ -2509,7 +2577,6 @@ var startreplayall=function() {
     ANIM=REPLAY;
     var arg=LZString.decompressFromEncodedURIComponent(decodeURI(window.location.search.substr(1)));
     var args=arg.split("&");
-    //log("ANIM "+args[6]);
     cmd=args[6].split("_");
     cmd.splice(0,1);
     if (cmd.length==0) return;
@@ -2521,6 +2588,12 @@ var startreplayall=function() {
     if (TEAMS[1].isia==true) TEAMS[1].setia();
     if (TEAMS[2].isia==true) TEAMS[2].setia();
     //endsetupphase();
+    subphase=ACTIVATION_PHASE;
+    for (i in squadron) {
+	squadron[i].hasmoved=false; 
+	squadron[i].maneuver=-1;
+	squadron[i].hasdecloaked=false;
+    }
     replayall();
 }
 var stopreplay=function() {
@@ -2534,7 +2607,6 @@ var restartreplay=function() {
     });
     actionrlock=$.Deferred();
     actionrlock.progress(replayall);
-
     replayall();
 }
 var replayall=function() {
@@ -2545,6 +2617,7 @@ var replayall=function() {
 	//log("setting phase"+phase);
 	if (phase!=SETUP_PHASE) setphase();
 	else {
+	    $(".imagebg").hide();
 	    $(".nextphase").prop("disabled",false);
 	    for (var i=0; i<OBSTACLES.length; i++) OBSTACLES[i].addDrag();
 	    if (TEAMS[1].isia==true) TEAMS[1].setplayer();
