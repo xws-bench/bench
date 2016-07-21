@@ -532,7 +532,7 @@ function displaycompareresults(u,f) {
     u.lastdf=f;
     $("#dtokens").empty();
     dm=u.getresultmodifiers(targetunit.dr,targetunit.dd,ATTACKCOMPARE_M,DEFENSE_M);
-    am=u.getresultmodifiers(u.ar,u.ad,ATTACMCOMPARE_M,ATTACK_M);
+    am=u.getresultmodifiers(u.ar,u.ad,ATTACKCOMPARE_M,ATTACK_M);
     if (FAST||(dm.length==0&&am.length==0)) {
 	$("#combatdial").hide();
 	f();
