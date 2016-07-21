@@ -40,6 +40,9 @@
 	</span>
 	<span class="buttonbar">
 	  <button onclick="currentteam=TEAMS[0];createsquad()" class="mainbutton m-create"></button>
+	  <label for="imagebg" style="display:none" class="imagebg permalink">Import setup image</label>
+	  <input style="display:none" type="file" id="imagebg">
+
 	  <button class="permalink m-reset" onclick="resetlink(true)" >&lt;&lt; </button>
 	  <button class="permalink" onclick="resetlink()" >&lt; Back</button>
 	  <span id="phase"></span>
@@ -498,10 +501,8 @@ The app is not really a game since the player plays both sides or against an AI,
       <div class='title'>Console</div>
       <div class="log" id='log'></div>
     </footer>
-
     <script src="js/all.min.js"></script>
     <script src="js/bench.min.js" async></script>
-    
 
     <script>
       if (location.search=="") $("#selectphase").show();

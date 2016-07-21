@@ -27,6 +27,9 @@ var poe_fct=function() {
 	req:function(m,n) { 
 	    return this.focus>0;
 	}.bind(this),
+	aiactivate: function(m,n) {
+	    return FCH_focus(m)>0;
+	},
 	f:function(m,n) {
 	    var f=FCH_focus(m);
 	    if (f>0) {
@@ -39,6 +42,9 @@ var poe_fct=function() {
 	req:function(m,n) { 
 	    return this.focus>0;
 	}.bind(this),
+	aiactivate: function(m,n) {
+	    return FE_focus(m)>0;
+	},
 	f:function(m,n) {
 	    var f=FE_focus(m);
 	    if (f>0) {
@@ -51,7 +57,7 @@ var poe_fct=function() {
 var hera_fct=function() {
     var m=this.getmaneuver();
     var p={};
-    var gd=this.getdial();
+    var gd=this.getdialwi();
     p[m.move]=m;
     if ((m.difficulty=="RED"||m.difficulty=="GREEN")&&((this.ionized<2&&this.islarge)||this.ionized==0)) {
 	for (var i=0; i<gd.length; i++) 
@@ -202,9 +208,10 @@ var PILOTS = [
 	faction:REBEL,
 	init: function() {
 	    this.adddicemodifier(DEFENSE_M,MOD_M,DEFENSE_M,this,{
-		req: function(m,n) {
-		    return true;
-		}, 
+		req: function(m,n) { return true; },
+		aiactivate:function(m,n) { 
+		    return FE_focus(m)>0;
+		},
 		f:function(m,n) {
 		    if (FE_focus(m)>0) {
 			this.log("1 %FOCUS% -> 1 %EVADE%");
@@ -346,9 +353,11 @@ var PILOTS = [
 		req:function(m,n) { 
 		    return (this.getrange(targetunit)==1);
 		}.bind(this),
+		aiactivate: function(m,n) {
+		    return FCH_hit(m)>0;
+		},
 		f:function(m,n) {
-		    var h=FCH_hit(m);
-		    if (h>0) {
+		    if (FCH_hit(m)>0) {
 			this.log("1 %HIT% -> 1 %CRIT%");
 			m= m-FCH_HIT+FCH_CRIT;
 		    }
@@ -493,7 +502,7 @@ var PILOTS = [
         faction:EMPIRE,
 	unit: "TIE Defender",
         skill: 7,
-        points: 36,
+        points: 35,
 	init: maarek_fct,
 	shipimg:"tie-defender-red.png",
         upgrades: [ELITE,CANNON,MISSILE],
@@ -1033,7 +1042,7 @@ var PILOTS = [
 		n:function() { return 2; },
 		req:function(attacker,w,defender) {
 		    // Jonus dead ? 
-		    if (attacker!=this
+		    if (attacker!=this&&!this.dead
 			&&attacker.getrange(this)==1
 			&&attacker.team==this.team
 			&&w.isprimary!=true) {
@@ -1082,7 +1091,7 @@ var PILOTS = [
 	init: function() {
 	    var self=this;
 	    Unit.prototype.wrap_after("gettargetableunits",this,function(n,p) {
-		if (p.indexOf(self)>-1) p=[self];
+		if (p.indexOf(self)>-1&&!self.dead) p=[self];
 		return p;
 	    });
 	},
@@ -1128,7 +1137,7 @@ var PILOTS = [
 	    var self=this;
 	    Unit.prototype.wrap_after("addstress",this,function() {
 		var p=this.selectnearbyally(2);
-		if (p.indexOf(self)>-1&&self.stress<=2) {
+		if (p.indexOf(self)>-1&&self.stress<=2&&!self.dead) {
 		    this.log("%STRESS% -> %0 [%0]",self.name);
 		    this.removestresstoken();
 		    this.showinfo();
@@ -1174,7 +1183,7 @@ var PILOTS = [
 		function(t,k) {
 		    if (k<12) t.addstress();
 		    t.endaction(n,"ROLL");
-		},true);
+		},true,this.canmoveonobstacles("ROLL"));
 	    return true;
 	},
         upgrades: [ ],
@@ -1453,9 +1462,9 @@ var PILOTS = [
 		req:function(m,n) {
 		    return !self.dead&&self.isinfiringarc(targetunit);
 		}, 
+		aiactivate: function(m,n) { return FCH_hit(m); },
 		f:function(m,n) {
-		    var h=FCH_hit(m);
-		    if (h>0) {
+		    if (FCH_hit(m)>0) {
 			this.log("1 %HIT% -> 1 %CRIT% [%0]",self.name);
 			return m+FCH_CRIT-FCH_HIT;
 		    } 
@@ -1716,6 +1725,9 @@ var PILOTS = [
 		req:function(m,n) {
 		    return this.stress>0; 
 		}.bind(this),
+		aiactivate: function(m,n) {
+		    return FCH_focus(m)>0;
+		},
 		f:function(m,n) {
 		    var f=FCH_focus(m);
 		    this.removestresstoken();
@@ -1890,6 +1902,9 @@ var PILOTS = [
 		req:function(m,n) {
 		    return  (this.getrange(targetunit)<=2);
 		}.bind(this),
+		aiactivate: function(m,n) {
+		    return FCH_focus(m);
+		},
 		f:function(m,n) {
 		    var f=FCH_focus(m);
 		    if (f>0) {
@@ -1992,12 +2007,15 @@ var PILOTS = [
 	pilotid:104,
 	done:true,
         init: function() {
+	    var self=this;
 	    Unit.prototype.adddicemodifier(DEFENSE_M,REROLL_M,DEFENSE_M,this,{
 		dice:["blank","focus"],
 		n:function() { return 1; },
 		req:function(attacker,w,defender) {
 		    // Serissu dead ? 
-		    if (defender!=this&&!this.dead&&defender.getrange(this)==1&&defender.team==this.team) {
+		    if (defender!=this&&!self.dead
+			&&!this.dead&&defender.getrange(this)==1
+			&&defender.team==this.team) {
 			defender.log("+%1 reroll(s) [%0]",this.name,1);
 			return true;
 		    }
@@ -2774,8 +2792,9 @@ var PILOTS = [
 	    },
 	    /* TODO: A bit too automatic */
 	    boundtargets: function(sh) {
+		var p=this.targeting;
 		if (this.targeting.indexOf(sh)>-1) return true;
-		for (var i=this.targeting.length-2;i>=0; i++) this.removetarget(this.targeting[i]);
+		for (var i=p.length-2;i>=0; i++) this.removetarget(p[i]);
 		return false;
 	    },
             upgrades: [SYSTEM,TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB,BOMB],
@@ -3221,7 +3240,7 @@ var PILOTS = [
 	    Unit.prototype.wrap_after("preattackroll",this,function(w,t) {
 		var p=this.selectnearbyenemy(2);
 		var attacker=this;
-		if (self.canusefocus()&&p.indexOf(self)>-1) { 
+		if (self.canusefocus()&&p.indexOf(self)>-1&&!self.dead) { 
 		    self.donoaction([{org:self,name:self.name,type:"FOCUS",action:function(n) {
 			this.wrap_after("getattackstrength",self,function(i,t,a) {
 			    NOLOG=true;
@@ -3250,7 +3269,7 @@ var PILOTS = [
 	points:14,
 	done:true,
 	init: function() {
-	    this.adddicemodifier(ATTACK_M,ADD_M,ATTACK_M,this,{
+	    this.adddicemodifier(ATTACKCOMPARE_M,ADD_M,ATTACK_M,this,{
 		req:function(m,n) { return true; },
 		f:function(m,n) {
 		    this.log("cancel all dice");
@@ -3480,7 +3499,7 @@ var PILOTS = [
 				    });
 				
 				    targetunit=t;
-				    this.selecttargetforattack(i,t);
+				    this.selecttargetforattack(i,[t]);
 				    this.endnoaction(n,"HIT");
 				}.bind(self)});
 		    self.hf=self.hasfired;
@@ -3538,8 +3557,9 @@ var PILOTS = [
 		    }
 		    var t=this.targeting;
 		    for (var i=t.length-1;i>=0; i--) {
-			this.removetarget(t[i]);
-			p[k].addtarget(t[i]);
+			var u=t[i];
+			this.removetarget(u);
+			p[k].addtarget(u);
 		    }
 		    var t=this.istargeted;
 		    for (var i=t.length-1;i>=0; i--) {
@@ -3735,5 +3755,36 @@ var PILOTS = [
         skill: 9,
         upgrades: [ELITE,TORPEDO,ASTROMECH,TECH],
 	points:33
-    }
+    },
+    {
+        name: "'Quickdraw'",
+        faction: EMPIRE,
+	pilotid:192,
+        unit: "TIE/SF Fighter",
+	unique:true,
+        skill: 9,
+        upgrades: [ELITE,SYSTEM,MISSILE,TECH],
+	points:29
+    },
+    {
+        name: "'Backdraft'",
+        faction: EMPIRE,
+	pilotid:193,
+        unit: "TIE/SF Fighter",
+	unique:true,
+        skill: 7,
+        upgrades: [ELITE,SYSTEM,MISSILE,TECH],
+	points:27
+    },
+    {
+        name: "Zeta Specialist",
+        faction: EMPIRE,
+	pilotid:194,
+	done:true,
+        unit: "TIE/SF Fighter",
+	unique:true,
+        skill: 3,
+        upgrades: [SYSTEM,MISSILE,TECH],
+	points:23
+    },
 ];

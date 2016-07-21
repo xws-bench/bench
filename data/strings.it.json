@@ -396,6 +396,9 @@
 	"Major Explosion":{"text":"Roll 1 attack die.  On a %HIT% result, suffer 1 critical damage.  Then flip this card facedown."},
 	"Loose Stabilizer":{"text":"After you execute a white maneuver, receive 1 stress token. %ACTION% Flip this card facedown."},
 	"Structural Damage":{
+	    "text":"Reduce your agility value by 1 (to a minimum of '0'). %ACTION% Roll 1 attack die, on a %HIT% or %CRIT% result, flip this card facedown."
+	},
+	"Structural Damage (original)":{
 	    "text":"Reduce your agility value by 1 (to a minimum of '0'). %ACTION% Roll 1 attack die, on a %HIT% result, flip this card facedown."
 	},
 	"Damaged Engine":{
@@ -408,6 +411,9 @@
 	    "text":"Reduce your primary weapon value by 1 (to a minimum of '0'). %ACTION% Roll 1 attack die. On a %HIT% or %CRIT% result, flip this card facedown."
 	},
 	"Damaged Sensor Array":{
+	    "text":"You cannot perform the actions listed in your action bar. %ACTION% Roll 1 attack die.  On a %HIT% or %CRIT% result, flip this card facedown."
+	},
+	"Damaged Sensor Array (original)":{
 	    "text":"You cannot perform the actions listed in your action bar. %ACTION% Roll 1 attack die.  On a %HIT% result, flip this card facedown."
 	},
 	"Minor Explosion":{

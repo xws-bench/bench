@@ -6,7 +6,7 @@ IAUnit.prototype= {
     computemaneuver: function() {
 	var i,j,k,d=0;
 	var q=[],possible=-1;
-	var gd=this.getdial();
+	var gd=this.getdialwi();
 	//var enemies=[];
 	var s=this.getskill();
 	for (i in squadron) {
@@ -42,7 +42,7 @@ IAUnit.prototype= {
 	var findpositions=function(gd) {
 	    var q=[],c,j,i;
 	// Find all possible moves, with no collision and with units in range 
-	    var COLOR=[GREEN,WHITE,YELLOW];
+	    var COLOR=[GREEN,WHITE,YELLOW,RED];
 	    //log("find positions with color "+c);
 	    for (i=0; i<gd.length; i++) {
 		var d=gd[i];
@@ -50,6 +50,7 @@ IAUnit.prototype= {
 		var mm=this.getpathmatrix(this.m,gd[i].move);
 		var n=24-8*COLOR.indexOf(d.color);
 		if (d.color==RED) n-=20;
+		if (d.color==BLACK) n=-100;
 		var n0=n;
 		var oldm=this.m;
 		this.m=mm;
@@ -150,7 +151,7 @@ IAUnit.prototype= {
 		var m=this.computemaneuver(); 
 		IACOMPUTING--;
 		if (IACOMPUTING==0) $("#npimg").html("&gt;");
-		this.newm=this.getpathmatrix(this.m,this.getdial()[m].move);
+		this.newm=this.getpathmatrix(this.m,this.getdialwi()[m].move);
 		this.setmaneuver(m);
 		clearInterval(p);
 	    }.bind(this),0);
@@ -168,7 +169,7 @@ IAUnit.prototype= {
     },
     resolvedecloak: function() {
 	var p=this.getdecloakmatrix(this.m);
-	var move=this.getdial()[this.maneuver].move;
+	var move=this.getdialwi()[this.maneuver].move;
 	var scoring=[];
 	var old=this.m;
 	for (var i=0; i<p.length; i++) {
@@ -285,7 +286,7 @@ IAUnit.prototype= {
 	    var i,w;
 	    //this.log(this.id+" readytofire?"+this.canfire());
 	    if (this.canfire()) {
-		NOLOG=false;
+		NOLOG=true;
 		var r=this.getenemiesinrange();
 		for (w=0; w<this.weapons.length; w++) {
 		    var el=r[w];
@@ -319,27 +320,16 @@ IAUnit.prototype= {
 	    var d=mods[i];
 	    if (d.from==from&&d.to==to) {
 		if (d.type==MOD_M&&d.req(m,n)) {
-		    switch(d.str) {
-		    case "focus":
-			if (d.from==ATTACK_M&&d.to==ATTACK_M) {
-			    if (FCH_focus(m)>0) modroll(d.f,i,to);
-			} else if (d.from==DEFENSE_M&&d.to==DEFENSE_M) {
-			    mm=getattackvalue();
-			    if (FE_focus(m)>0&&FCH_hit(mm)+FCH_crit(mm)>FE_evade(m)) modroll(d.f,i,to);
-			}; break;
-		    default: modroll(d.f,i,to);
-		    }
+		    if (typeof d.aiactivate!="function"||d.aiactivate(m,n)==true) 
+			modroll(d.f,i,to);
 		} if (d.type==ADD_M&&d.req(m,n)) {
-		    switch(d.str) {
-		    case "evade":
-			mm=getattackvalue();
-			if (FCH_hit(mm)+FCH_crit(mm)>FE_evade(m)) addroll(d.f,i,to);
-			break;
-		    default: addroll(d.f,i,to);
-		    } 
+		    if (typeof d.aiactivate!="function"||d.aiactivate(m,n)==true) 
+			addroll(d.f,i,to);
 		} if (d.type==REROLL_M&&d.req(activeunit,activeunit.weapons[activeunit.activeweapon],targetunit)) {
-		    if (typeof d.f=="function") d.f();
-		    reroll(n,(to==ATTACK_M),d,i);
+		    if (typeof d.aiactivate!="function"||d.aiactivate(m,n)==true) {
+			if (typeof d.f=="function") d.f();
+			reroll(n,(to==ATTACK_M),d,i);
+		    }
 		}
 	    }
 	}
