@@ -2108,7 +2108,7 @@ var PILOTS = [
 		this.weapons[i].immediateattack={pred:function(k) { return k==0&&wn>-1; },weapon:function() { return wn;}};
 	    this.addattack(function(c,h) { 
 		return (c+h==0)&&this.hasfired<2; 
-	    }.bind(this),this,wn,[targetunit]);
+	    }.bind(this),this,wn);
 	},
         unique: true,
         unit: "Aggressor",
