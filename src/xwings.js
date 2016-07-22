@@ -13,6 +13,7 @@
   * shaken pilot + ionized: corrected.
   * Conner net: 1 damage, always (was random)
 */
+// AIzaSyBN2T9d2ZuWaT0Vj6EanYb5IgWzLlhy7Zo 
 var phase=1;
 var subphase=0;
 var round=1;
@@ -915,7 +916,7 @@ function switchdialimg(b) {
     }
 }
 var mySpreadsheets=[
-/*"https://docs.google.com/spreadsheets/d/1n35IFydakSJf9N9b9byLog2MooaWXk_w8-GQdipGe8I/edit#gid=0",
+"https://docs.google.com/spreadsheets/d/1n35IFydakSJf9N9b9byLog2MooaWXk_w8-GQdipGe8I/edit#gid=0",
 "https://docs.google.com/spreadsheets/d/1Jzigt2slBhygjcylCsy4UywpsEJEjejvtCfixNoa_z4/edit#gid=0",
 "https://docs.google.com/spreadsheets/d/1dkvDxaH3mJhps9pi-R5L_ttK_EmDKUZwaCE9RZUYueg/edit#gid=0",
 "https://docs.google.com/spreadsheets/d/1IoViAKvpZFRlmzBXeY6S9jYX4Ju9ccL5boNxhLwUXiY/edit#gid=0",
@@ -923,9 +924,10 @@ var mySpreadsheets=[
 "https://docs.google.com/spreadsheets/d/15pAnwcBlp4l01eJgyNXW9uGu5jYDhxk3oSveBIQhJFc/edit#gid=0",
 "https://docs.google.com/spreadsheets/d/1P64wZXXV_3gJE0wdLTDWW2pdOliInCRlTXm1lgYNumc/edit#gid=0",
 "https://docs.google.com/spreadsheets/d/1zlqDnXJ9J-k4apP1DadPx_vdv6Asdp_b9QvaytKI9ek/edit#gid=0",
-"https://docs.google.com/spreadsheets/d/1hK3niJbtDIE8xxv-9vQGcqd5eQ1D6dP5hQ7GicDVh-A/edit#gid=0",*/
-"https://docs.google.com/spreadsheets/d/1KR1uc7QgbiDkxCU5J1rm9qBMMjwKC0WyfAuDhnrbgAA/edit#gid=0"
+"https://docs.google.com/spreadsheets/d/1hK3niJbtDIE8xxv-9vQGcqd5eQ1D6dP5hQ7GicDVh-A/edit#gid=0",
+//"https://docs.google.com/spreadsheets/d/1KR1uc7QgbiDkxCU5J1rm9qBMMjwKC0WyfAuDhnrbgAA/edit#gid=0"
 ];
+
 function displayAIperformance() {
     for (var i=0; i<mySpreadsheets.length; i++) {
 	$('#squadbattlediv').sheetrock({
