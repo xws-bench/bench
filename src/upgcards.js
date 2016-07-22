@@ -474,7 +474,7 @@ var UPGRADES= [
 	    this.fired=2;
 	    sh.addattack(function(c,h) { 
 		return this.activeweapon==wn&&targetunit.hull+targetunit.shield>0; 
-	    }.bind(sh),this,wn,[targetunit]);
+	    }.bind(sh),this,wn);
 	    /*
 	    sh.wrap_after("endattack",this,function(c,h) {
 		if (m.fired<round&&m.isactive&&this.usedweapon>-1&&this.weapons[this.usedweapon]==m) {
@@ -631,7 +631,7 @@ var UPGRADES= [
         init: function(sh) {
 	    for (var i in sh.weapons) 
 		sh.weapons[i].immediateattack={pred:function(k) { return k==0; },weapon:function() { return 0;}};
-	    sh.addattack(function(c,h) { return c+h==0; },this,0,[targetunit]);
+	    sh.addattack(function(c,h) { return c+h==0; },this,0);
 	},
         type: CREW,
         points: 5,
@@ -861,9 +861,9 @@ var UPGRADES= [
 	    var self=this;
 	    for (var i in sh.weapons) 
 		sh.weapons[i].immediateattack={pred:function(i) { return i==0; },weapon:function() { return 0;}};
-	    sh.addattack(function(c,h) { return c+h==0; },this,0,[targetunit]);
+	    sh.addattack(function(c,h) { return c+h==0; },this,0);
 	    sh.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
-		req:function(m,n) { return self.unit.addattack==round&&self.isactive;},
+		req:function(m,n) { return self.unit.addedattack==round&&self.isactive;},
 		aiactivate: function(m,n) {
 		    return FCH_focus(m)>0;
 		},
@@ -2635,7 +2635,6 @@ var UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    Unit.prototype.wrap_after("getobstructiondef",this,function(t,ob) {
-		this.log("obstruction to "+t.name+":"+ob);
 		if (this.team!=sh.team&&ob==0) {
 		    OBSTACLES.push(sh);
 		    ob=this.getoutlinerange(this.m,t).o?1:0;
@@ -2852,7 +2851,7 @@ var UPGRADES= [
 	    sh.weapons[0].followupattack=function() { return turret; };
 	    sh.addattack(function(c,h) { 
 		return this.weapons[this.activeweapon].isprimary;
-	    }.bind(sh),self,turret,[targetunit]); 
+	    }.bind(sh),self,turret); 
 	},
         points: 0,
         ship: "Y-Wing",
@@ -3829,7 +3828,7 @@ var UPGRADES= [
 	 sh.addattack(function(c,h) { 
 	     var w1=this.weapons[this.activeweapon];
 	     return (w1.type==CANNON&&w1.points<=3);
-	 }.bind(sh),this,0,[targetunit]);
+	 }.bind(sh),this,0);
      }
     },
     {name:"TIE Shuttle",
@@ -4349,8 +4348,20 @@ var UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    var self=this;
+	    self.secondattack=false;
+	    sh.addattack(function(c,h) { return self.secondattack;},this,w,function() {
+		var p=wp.getenemiesinrange();
+		var q=[];
+		// select only targets in auxiliary arc
+		for (var i in p) {
+		    if (this.getprimarysector(p[i])==4) q.push(p[i]);
+		}
+		return q;
+	    });	
+	    
 	    sh.wrap_after("preattackroll",this,function(w,t) {
 		var wp=this.weapons[w];
+		self.secondattack=false;
 		if (wp.isprimary&&this.isinfiringarc(t)&&this.getprimarysector(t)<4) {
 		    var a1={org:this,name:this.name,type:"HIT",action:function(n) {
 			this.log("+1 attack die");
@@ -4360,14 +4371,8 @@ var UPGRADES= [
 			this.endnoaction(n,"HIT");
 		    }.bind(this)};
 		    this.donoaction([a1],"Add 1 additional attack die or one auxiliary arc attack (by default)",true,function() {
+			self.secondattack=true;
 			this.log("+1 auxiliary attack");
-			var p=wp.getenemiesinrange();
-			var q=[];
-			// select only targets in auxiliary arc
-			for (var i in p) {
-			    if (this.getprimarysector(p[i])==4) q.push(p[i]);
-			}
-			this.addattack(function(c,h) { return true;},this,w,q);	
 		    }.bind(this));
 		}
 	    });

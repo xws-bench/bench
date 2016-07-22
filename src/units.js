@@ -2294,13 +2294,13 @@ Unit.prototype = {
 	return this.maneuver>-1;
     },
     addattack: function(f,org,wn,t) {
-	this.addattack=-1;
+	this.addedattack=-1;
 	this.wrap_after("endattack",org,function(c,h) {
 	    //this.log("f:"+f(c,h)+" active:"+this.weapons[wn].isactive);
 	    if (f(c,h)&&this.weapons[wn].isactive
-		&&this.addattack<round) {
+		&&this.addedattack<round) {
 		this.latedeferred=this.deferred;
-		this.addattack=round;
+		this.addedattack=round;
 		this.newlock().done(function() {
 		    this.deferred=this.latedeferred;
 		    this.log("+1 attack with %1 [%0]",org.name,this.weapons[wn].name);
@@ -2392,18 +2392,19 @@ Unit.prototype = {
     candecloak: function() {
 	return (this.iscloaked&&phase==ACTIVATION_PHASE&&!this.hasdecloaked);
     },
-    selecttargetforattack: function(wp,targetlist) {
-	var p=targetlist;
-	if (typeof targetlist=="undefined") p=this.weapons[wp].getenemiesinrange();
+    selecttargetforattack: function(wp,targetlistgenerator) {
+	var p;
+	if (typeof targetlistgenerator!="function") p=this.weapons[wp].getenemiesinrange();
+	else p=targetlistgenerator();
 	if (p.length==0) {
 	    this.log("no target for %0",this.weapons[wp].name);
 	    this.cleanupattack();
 	    return false;
 	} else {
 	    $("#attackdial").empty();
-	    this.selectunit(p,function(p,k) {
-		if (this.declareattack(wp,p[k])) 
-		    this.resolveattack(wp,p[k]);
+	    this.selectunit(p,function(q,k) {
+		if (this.declareattack(wp,q[k])) 
+		    this.resolveattack(wp,q[k]);
 	    },[""],false);
 	}
 	return true;
