@@ -3510,14 +3510,16 @@ var PILOTS = [
 	points:30,
 	done:true,
 	init: function() {
-	    this.wrap_after("checkdead",this,function() {
-		if (this.hull<=0&&!this.dead) {
+	    this.resurrected=false;
+	    this.wrap_before("checkdead",this,function() {
+		if (this.hull<=0&&!this.dead&&!this.resurrected) {
 		    this.addhull(this.ship.hull-this.hull);
-		    this.addshield(this.ship.shield);
 		    this.criticals=[];
 		    SOUNDS.explode.play();
-		    this.log("resurrects");
+		    this.resurrected=true;
+		    this.log("resists!");
 		    this.applydamage(4);
+		    this.showoverflow();
 		}
 	    });
 	},

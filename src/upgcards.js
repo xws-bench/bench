@@ -54,6 +54,7 @@ var UPGRADES= [
 	    var i;
 	    var self=this;
 	    var save=[];
+	    sh.installed=true;
 	    sh.wrap_after("getdial",this,function(gd) {
 		if (save.length==0) { 
 		    for (i=0; i<gd.length; i++) {
@@ -741,6 +742,7 @@ var UPGRADES= [
         name: "Veteran Instincts",
 	done:true,
         install: function(sh) {
+	    sh.installed=true;
 	    sh.wrap_after("getskill",this,function(s) {
 		return s+2;
 	    });
@@ -882,6 +884,7 @@ var UPGRADES= [
 	done:true,
         install: function(sh) {
 	    var save=[];
+	    sh.installed=true;
 	    sh.wrap_after("getdial",this,function(gd) {
 		if (save.length==0) 
 		    for (var i=0; i<gd.length; i++) {
@@ -2282,6 +2285,7 @@ var UPGRADES= [
         install: function(sh) {
 	    var save=[];
 	    var self=this;
+	    sh.installed=true;
 	    sh.wrap_after("getdial",this,function(gd) {
 		if (save.length==0) {
 		    for (var i=0; i<gd.length; i++) {
@@ -2426,6 +2430,7 @@ var UPGRADES= [
 	type:MOD,
 	done:true,
 	install:function(sh) {
+	    sh.installed=true;
 	    sh.wrap_after("getagility",this,function(a) { return a+1;});
 	    sh.showstats();
 	},
@@ -2450,6 +2455,7 @@ var UPGRADES= [
 	type:MOD,    
 	done:true,
 	install: function(sh) {
+	    sh.installed=true;
 	    sh.shield++; sh.ship.shield++;
 	    sh.showstats();
 	},
@@ -2498,10 +2504,14 @@ var UPGRADES= [
 	type:MOD,
 	done:true,
         install: function(sh) {
+	    sh.log("hull->"+sh.hull+"/"+sh.ship.hull);
 	    sh.hull++; sh.ship.hull++;
+	    sh.log("hull:"+sh.ship.hull);
+	    sh.installed=true;
 	    sh.showstats();
 	},     
 	uninstall:function(sh) {
+	    sh.log("call uninstall hull upgrade");
 	    sh.hull--; sh.ship.hull--;
 	    sh.showstats();
 	},
@@ -3387,6 +3397,7 @@ var UPGRADES= [
 	done:true,
         install: function(sh) {
 	    var save=[];
+	    sh.installed=true;
 	    sh.wrap_after("getdial",this,function(gd) {
 		if (save.length==0) 
 		    for (var i=0; i<gd.length; i++) {
@@ -3968,6 +3979,7 @@ var UPGRADES= [
      upgrades:[CANNON],
      install: function(sh) {
 	 var j,tb;
+	 sh.installed=true;
 	 // Search for TB
 	 for (tb=0; tb<UPGRADES.length; tb++) if (UPGRADES[tb].name=="Tractor Beam") break;
 	 if (tb==UPGRADES.length) return;
@@ -4165,6 +4177,7 @@ var UPGRADES= [
 	done:true,
 	ship:"JumpMaster 5000",
 	install: function(sh) {
+	    sh.installed=true;
 	    sh.weapons[0].wrap_after("getattack",this,function(a) {
 		return a+1;
 	    });
