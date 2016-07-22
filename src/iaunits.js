@@ -328,7 +328,7 @@ IAUnit.prototype= {
 		} if (d.type==REROLL_M&&d.req(activeunit,activeunit.weapons[activeunit.activeweapon],targetunit)) {
 		    if (typeof d.aiactivate!="function"||d.aiactivate(m,n)==true) {
 			if (typeof d.f=="function") d.f();
-			reroll(n,(to==ATTACK_M),d,i);
+			reroll(n,from,to,d,i);
 		    }
 		}
 	    }
