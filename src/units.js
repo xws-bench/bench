@@ -2295,7 +2295,7 @@ Unit.prototype = {
 		this.newlock().done(function() {
 		    this.deferred=this.latedeferred;
 		    this.log("+1 attack with %1 [%0]",org.name,this.weapons[wn].name);
-		    if (typeof t!="undefined") this.selecttargetforattack(wn,t); 
+		    this.selecttargetforattack(wn,t); 
 		}.bind(this));
 	    }
 	})

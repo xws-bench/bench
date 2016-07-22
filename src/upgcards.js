@@ -627,7 +627,7 @@ var UPGRADES= [
         init: function(sh) {
 	    for (var i in sh.weapons) 
 		sh.weapons[i].immediateattack={pred:function(k) { return k==0; },weapon:function() { return 0;}};
-	    sh.addattack(function(c,h) { return c+h==0; },this,0);
+	    sh.addattack(function(c,h) { return c+h==0; },this,0,[targetunit]);
 	},
         type: CREW,
         points: 5,
@@ -856,7 +856,7 @@ var UPGRADES= [
 	    var self=this;
 	    for (var i in sh.weapons) 
 		sh.weapons[i].immediateattack={pred:function(i) { return i==0; },weapon:function() { return 0;}};
-	    sh.addattack(function(c,h) { return c+h==0; },this,0);
+	    sh.addattack(function(c,h) { return c+h==0; },this,0,[targetunit]);
 	    sh.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
 		req:function(m,n) { return self.unit.addattack==round&&self.isactive;},
 		aiactivate: function(m,n) {
@@ -2837,7 +2837,7 @@ var UPGRADES= [
 	    sh.weapons[0].followupattack=function() { return turret; };
 	    sh.addattack(function(c,h) { 
 		return this.weapons[this.activeweapon].isprimary;
-	    }.bind(sh),self,turret); 
+	    }.bind(sh),self,turret,[targetunit]); 
 	},
         points: 0,
         ship: "Y-Wing",
@@ -3812,7 +3812,7 @@ var UPGRADES= [
 	 sh.addattack(function(c,h) { 
 	     var w1=this.weapons[this.activeweapon];
 	     return (w1.type==CANNON&&w1.points<=3);
-	 }.bind(sh),this,0);
+	 }.bind(sh),this,0,[targetunit]);
      }
     },
     {name:"TIE Shuttle",
