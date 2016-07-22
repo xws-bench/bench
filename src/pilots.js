@@ -764,7 +764,8 @@ var PILOTS = [
 	    this.adddicemodifier(ATTACK_M,REROLL_M,ATTACK_M,this,{
 		dice:["blank","focus","hit","critical"],
 		n:function() { return 9; },
-		req:function(attack,w,defender) { return true; }
+		req:function(attack,w,defender) { return true; },
+		mustreroll:true,
 	    });
 	},
         upgrades: [ELITE,MISSILE,CREW,CREW],
@@ -1736,7 +1737,8 @@ var PILOTS = [
 			return m-FCH_FOCUS*f+FCH_HIT*f;
 		    }
 		    return m;
-		}.bind(this),str:"stress"});
+		}.bind(this),str:"stress",noreroll:"focus"
+	    });
 	},
         unique: true,
         unit: "B-Wing",

@@ -826,7 +826,7 @@ Unit.prototype = {
 		     var f=FCH_focus(m);
 		     if (f>0)  m=m-FCH_FOCUS*f+FCH_HIT*f;
 		     return m;    
-		 }.bind(this),str:"focus",token:true},
+		 }.bind(this),str:"focus",token:true,noreroll:"focus"},
 		{from:ATTACK_M,type:REROLL_M,to:ATTACK_M,org:this,
 		 req:function(a,w,t) {return this.canusetarget(t);}.bind(this),
 		 n:function() { return 9; },
@@ -856,7 +856,7 @@ Unit.prototype = {
 		 f: function(m,n) {	    
 		     this.removeevadetoken(); 
 		     return {m:m+FE_EVADE,n:n+1} 
-		 }.bind(this),str:"evade",token:true},
+		 }.bind(this),str:"evade",token:true,noreroll:"focus"},
 	       ];
     },
     adddicemodifier: function(from,type,to,org,mod) {
@@ -1965,6 +1965,15 @@ Unit.prototype = {
 	if (obstacledef>0) this.log("+%0 defense for obstacle",obstacledef);
 	return def+sh.weapons[i].getrangedefensebonus(this)+obstacledef;
     },
+    hasnorerollmodifiers: function(from,to,m,n,modtype) {
+	var mods=this.getdicemodifiers(); 
+	for (var i=0; i<mods.length; i++) {
+	    var d=mods[i];
+	    if (d.from==from&&d.to==to)
+		if (d.type==MOD_M&&d.req(m,n)&&d.noreroll==modtype) return true;
+	}
+	return false;
+    },
     getresultmodifiers: function(m,n,from,to) {
 	var str="";
 	var i,j;
@@ -1992,7 +2001,7 @@ Unit.prototype = {
 	    var cl="tokens";
 	    if (a.str) { cl="x"+a.str+"token"; s=""; }
 	    var e=$("<td>").addClass(cl).attr({id:"reroll"+i,title:n+" rerolls["+a.org.name+"]"}).html(s);
-	    e.click(function() { reroll(n,(to==ATTACK_M),a,i); });
+	    e.click(function() { reroll(n,from,to,a,i); });
 	    return e;
 	};
 	var mods=this.getdicemodifiers(); 

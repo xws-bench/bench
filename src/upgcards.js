@@ -233,7 +233,7 @@ var UPGRADES= [
 		     m=m+FCH_HIT; 
 		 } 
 		 return m;
-	     }.bind(sh),str:"focus"});
+	     }.bind(sh),str:"blank"});
      }
     },
     {
@@ -404,7 +404,10 @@ var UPGRADES= [
 			m=m-FCH_FOCUS*f+FCH_CRIT+(f-1)*FCH_HIT; 
 		    } 
 		    return m;
-		}.bind(this),str:"focus"});
+		}.bind(this),
+		str:"focus",
+		noreroll:"focus"
+	    });
 	},
 	candoaction: function() { return this.isactive; },
 	action: function(n) {
@@ -1368,9 +1371,10 @@ var UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    sh.adddicemodifier(DEFENSE_M,REROLL_M,ATTACK_M,this,{
-		dice:["critical","hit"],
+		dice:["critical","hit","focus"],
 		n:function() { return 9; },
-		req: function() { return this.targeting.indexOf(activeunit)>-1; }.bind(sh)
+		req: function() { return this.targeting.indexOf(activeunit)>-1; }.bind(sh),
+		mustreroll:true,
 	    });
 	}
     },
@@ -1656,7 +1660,7 @@ var UPGRADES= [
 		    this.log("%0 %FOCUS% -> %0 %HIT% [%1]",f,self.name);
 		    this.removetarget(targetunit);
 		    return m-FCH_FOCUS*f+FCH_HIT*f;
-		}.bind(sh),str:"target"});
+		}.bind(sh),str:"target",noreroll:"focus"});
 	},
         type: CREW,
         unique: true,
@@ -2310,7 +2314,8 @@ var UPGRADES= [
 		dice:["evade","focus","blank"],
 		n:function() { return 9; },
 		req: function() { return (this.targeting.indexOf(targetunit)>-1) }.bind(sh),
-		f:function() { this.removetarget(targetunit); }.bind(sh)
+		f:function() { this.removetarget(targetunit); }.bind(sh),
+		mustreroll:true,
 	    });
 	},
     },
@@ -2988,11 +2993,11 @@ var UPGRADES= [
 		f:function(m,n) {
 		    var f=FCH_focus(m);
 		    if (f>0) {
-			this.unit.log("%FOCUS% -> %HIT% [%0]",self.name);
+			this.unit.log("%1 %FOCUS% -> %1 %HIT% [%0]",self.name,f);
 			m=m-FCH_FOCUS*f+f*FCH_HIT;
 		    }
 		    return m;
-		}.bind(this),str:"focus"});
+		}.bind(this),str:"focus",noreroll:"focus"});
 	    sh.adddicemodifier(DEFENSE_M,MOD_M,DEFENSE_M,this,{
 		req:function(m,n) {
 		    return self.activated==round;
@@ -3000,11 +3005,11 @@ var UPGRADES= [
 		f:function(m,n) {
 		    var f=FE_focus(m);
 		    if (f>0) {
-			this.unit.log("%FOCUS% -> %EVADE% [%0]",self.name);
+			this.unit.log("%1 %FOCUS% -> %1 %EVADE% [%0]",self.name,f);
 			m=m-FE_FOCUS*f+FE_EVADE*f;
 		    }
 		    return m;
-		}.bind(this),str:"focus"});
+		}.bind(this),str:"focus",noreroll:"focus"});
 	},
     },
     {
@@ -3294,7 +3299,7 @@ var UPGRADES= [
 			     var f=FCH_focus(m);
 			     if (f>0) {
 				 m=m-FCH_FOCUS+FCH_HIT;
-				 this.log("%FOCUS% -> %HIT% [%0]",self.name);
+				 this.log("1 %FOCUS% -> 1 %HIT% [%0]",self.name);
 			     }
 			     return m;
 			 },str:"focus"});
@@ -3304,7 +3309,7 @@ var UPGRADES= [
 			     var f=FE_focus(m);
 			     if (f>0) {
 				 m=m-FE_FOCUS+FE_EVADE;
-				 this.log("%FOCUS% -> %EVADE% [%0]",self.name);
+				 this.log("1 %FOCUS% -> 1 %EVADE% [%0]",self.name);
 			     }
 			     return m;
 			 },str:"focus"});
@@ -3892,13 +3897,14 @@ var UPGRADES= [
      type:CREW,
      init: function(sh) {
 	 var self=this;
+	 /* TODO : not a modifier, but rerolls.  */
 	 sh.adddicemodifier(ATTACK_M,MOD_M,DEFENSE_M,this,{
 	     req: function(m,n) { return true; },
 	     f:function(m,n) {
 		 var f=FE_focus(m);
 		 if (f>0) {
 		     targetunit.log("Reroll %0 %FOCUS% [%1]",f,self.name);
-		     sh.log("+%0 %STRESS% [%1]",f,self.name);
+		     sh.log("%0 %STRESS% [%1]",f,self.name);
 		     var roll=sh.rolldefensedie(f);
 		     m-=FE_FOCUS*f;
 		     for (var i=0; i<f; i++) {
@@ -3949,7 +3955,7 @@ var UPGRADES= [
 		     }).unwrapper("endbeingattacked");
 		 }
 		 return m;
-	     }.bind(sh),str:"focus"});
+	     }.bind(sh),str:"ion"});
      }
     },
     {name:"Mist Hunter",
@@ -4373,7 +4379,7 @@ var UPGRADES= [
 			m=m+FE_EVADE;
 		    }
 		    return m;
-		}.bind(sh),str:"focus"});
+		}.bind(sh),str:"blank"});
 	}
     },
     {
