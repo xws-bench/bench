@@ -535,11 +535,14 @@ function displaycompareresults(u,f) {
     am=u.getresultmodifiers(u.ar,u.ad,ATTACKCOMPARE_M,ATTACK_M);
     if (FAST||(dm.length==0&&am.length==0)) {
 	$("#combatdial").hide();
+	//log("hiding combat dial compare");
 	f();
     } else {
+	log("not hiding combat dial compare");
 	$("#dtokens").append(dm).append(am);
 	$("#dtokens").append($("<button>").addClass("m-fire").click(function() {
 	    $("#combatdial").hide();
+	    //log("hiding combat dial finally");
 	    f();}.bind(u)));
     }
 }

@@ -219,7 +219,7 @@ IAUnit.prototype= {
 	list.sort(cmp);
 	return this.enqueueaction(function(n) {
 		this.select();
-		if (typeof str!="undefined") this.log(str);
+		if (typeof str!="undefined"&&str!="") this.log(str);
 		var a=null;
 		for (i=0; i<list.length; i++) {
 		    if (list[i].type=="CRITICAL") { a=list[i]; break; }
@@ -299,9 +299,9 @@ IAUnit.prototype= {
 		    }
 		}
 		NOLOG=false;
-		//this.log("wn:"+this.activeweapon+" "+power);
+		//this.log("ia/wn:"+this.activeweapon+" "+power);
 		//if (t!=null) this.log("ia/doattack "+this.id+":"+this.weapons[this.activeweapon].name+" "+t.name);
-      		if (t!=null) return this.selecttargetforattack(this.activeweapon,t);
+      		if (t!=null) return this.selecttargetforattack(this.activeweapon,[t]);
 		//this.log("ia/doattack:canfire but no target");
 	    }
 	    //this.log("ia/doattack "+this.id+":cannot fire");
