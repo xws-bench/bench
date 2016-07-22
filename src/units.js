@@ -2393,7 +2393,7 @@ Unit.prototype = {
 	} else {
 	    $("#attackdial").empty();
 	    this.selectunit(p,function(p,k) {
-		if (this.declareattack(wp,p[k]))  
+		if (this.declareattack(wp,p[k])) 
 		    this.resolveattack(wp,p[k]);
 	    },[""],false);
 	}
