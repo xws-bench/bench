@@ -633,15 +633,15 @@ function displaydefenseroll(r,n) {
     $(".blankgreendice").click(change);
 }
 
-function reroll(n,forattack,a,id) {
+function reroll(n,from,to,a,id) {
     var i,l,m=0;
     var attackroll=["blank","focus","hit","critical"];
     var defenseroll=["blank","focus","evade"];
     if (typeof a.f=="function") a.f();
-    if (forattack) {
+    if (to==ATTACK_M) {
 	for (i=0; i<4; i++) {
 	    // Do not reroll focus
-	    if (activeunit.canusefocus()&&activeunit.candofocus()&&i==1) continue;
+	    if (activeunit.hasnorerollmodifiers(from,to,getattackvalue(),getattackdice(),"focus")&&typeof a.mustreroll=="undefined"&&attackroll[i]=="focus") continue;
 	    if (a.dice.indexOf(attackroll[i])>-1) {
 		l=$("."+attackroll[i]+"reddice:not([noreroll])");
 		if (l.length<n) {
@@ -666,7 +666,7 @@ function reroll(n,forattack,a,id) {
     } else { 
 	for (i=0; i<3; i++) {
 	    // Do not reroll focus
-	    if (targetunit.canusefocus()&&targetunit.candofocus()&&i==1) continue;
+	    if (typeof a.mustreroll=="undefined"&&targetunit.hasnorerollmodifiers(from,to,getattackvalue(),getattackdice(),"focus")&&attackroll[i]=="focus") continue;
 	    if (a.dice.indexOf(defenseroll[i])>-1) {
 		l=$("."+defenseroll[i]+"greendice:not([noreroll])");
 		if (l.length<n) {
