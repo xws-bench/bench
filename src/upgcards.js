@@ -3489,6 +3489,7 @@ var UPGRADES= [
 	    var p=this.unit.selectnearbyally(2);
 	    var s="";
 	    if (p.length>0) {
+		p=p.concat(this.unit);
 		for (var i=0; i<p.length; i++) {
 		    s+=p[i].name+" ";
 		    p[i].addtarget(t);
