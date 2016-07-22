@@ -361,13 +361,18 @@ var UPGRADES= [
 	action: function(n) {
 	    var self=this.unit;
 	    var p=self.selectnearbyally(2,function(t,s) { return s.getskill()<t.getskill()&&s.candoaction();});
-	    self.resolveactionselection(p,function(k) {
-		p[k].select();
-		p[k].doaction(p[k].getactionlist(),"+1 free action").done(function() {
-		    self.select();
+	    if (p.length>0) {
+		self.resolveactionselection(p,function(k) {
+		    p[k].select();
+		    p[k].doaction(p[k].getactionlist(),"+1 free action").done(function() {
+			self.select();
+		    });
+		    self.endaction(n,"ELITE");
 		});
+	    } else {
+		self.log("no lower skilled pilot within range 2 [%0]",this.name);
 		self.endaction(n,"ELITE");
-	    });
+	    }
 	},
     },
     {
