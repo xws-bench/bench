@@ -2093,18 +2093,6 @@ var PILOTS = [
 	faction:SCUM,
 	pilotid:109,
 	done:true,
-	/*endattack: function(c,h) {
-	    if ((c+h==0)&&this.hasfired<2) {
-		for (var i=0; i<this.weapons.length; i++) {
-		    var w=this.weapons[i];
-		    if (w.type=="Cannon"&&w.isWeapon()&&w.getrangeallunits().length>0) {
-			this.log("2nd attack with %0",w.name);
-			this.selecttargetforattack(i); 
-			break;
-		    }
-		}
-	    } else Unit.prototype.endattack.call(this,c,h);
-	},*/
 	init: function() {
 	    var wn=-1;
 	    for (var i=0; i<this.weapons.length; i++) {
@@ -2118,7 +2106,7 @@ var PILOTS = [
 		this.weapons[i].immediateattack={pred:function(k) { return k==0&&wn>-1; },weapon:function() { return wn;}};
 	    this.addattack(function(c,h) { 
 		return (c+h==0)&&this.hasfired<2; 
-	    }.bind(this),this,wn);
+	    }.bind(this),this,wn,[targetunit]);
 	},
         unique: true,
         unit: "Aggressor",
