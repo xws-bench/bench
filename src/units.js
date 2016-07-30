@@ -1035,9 +1035,10 @@ Unit.prototype = {
 	op=so.p;
 	for (k=0; k<OBSTACLES.length; k++){
 	    var ob=OBSTACLES[k].getOutlineString();
-	    if (Snap.path.intersection(ob.s,os).length>0 
+	    if (OBSTACLES[k].type==BOMB
+		&&(Snap.path.intersection(ob.s,os).length>0 
 		||this.isPointInside(ob.s,op)
-		||this.isPointInside(os,ob.p)) {
+		||this.isPointInside(os,ob.p))) {
 		mine.push(k);
 		break;
 	    }
@@ -1072,6 +1073,7 @@ Unit.prototype = {
 	//    s.circle(pp[i].x,pp[i].y,2).attr({fill:"#fff"});
 	//s.circle(tb.x,tb.y,tb.diam).attr({fill:"#f00"});
 	for (k=0; k<OBSTACLES.length; k++){
+	    if (OBSTACLES[k].type==BOMB) continue;
 	    var b=OBSTACLES[k].getBall();
 	    var D=b.diam+tb.diam;
 	    //s.circle(b.x,b.y,b.diam).attr({fill:"#fff"});
@@ -1091,13 +1093,14 @@ Unit.prototype = {
 	os=so.s;
 	op=so.p;
 	for (k=0; k<OBSTACLES.length; k++){
-	    var ob=OBSTACLES[k].getOutlineString();
+	    var o=OBSTACLES[k];
+	    var ob=o.getOutlineString();
 	    if (Snap.path.intersection(ob.s,os).length>0 
 		||this.isPointInside(ob.s,op)
 		||this.isPointInside(os,ob.p)) {
 		if (this.oldoverlap!=k) {
-		    if (k<6) collision.overlap=k; 
-		    else collision.mine.push(OBSTACLES[k]);
+		    if (o.type!=BOMB) collision.overlap=k; 
+		    else collision.mine.push(o);
 		} 
 	    }
 	}
@@ -1109,13 +1112,14 @@ Unit.prototype = {
 	    }
 	    for (j=0; j<pathpts.length; j++) {
 		for (k=0; k<OBSTACLES.length; k++) {
-		    if (k!=collision.overlap&&k!=this.oldoverlap&&collision.template.indexOf(k)==-1&&collision.mine.indexOf(OBSTACLES[k])==-1) { // Do not count overlapped obstacle twice
-			var o2=OBSTACLES[k].getOutlineString().p;
+		    var o=OBSTACLES[k];
+		    if (k!=collision.overlap&&k!=this.oldoverlap&&collision.template.indexOf(k)==-1&&collision.mine.indexOf(o)==-1) { // Do not count overlapped obstacle twice
+			var o2=o.getOutlineString().p;
 			for(i=0; i<o2.length; i++) {
 			    var dx=(o2[i].x-pathpts[j].x);
 			    var dy=(o2[i].y-pathpts[j].y);
 			    if (dx*dx+dy*dy<=100) { 
-				if (k<6) collision.template.push(k); 
+				if (o.type!=BOMB) collision.template.push(k); 
 				else collision.mine.push(OBSTACLES[k]);
 				break;
 			    } 
@@ -1657,8 +1661,9 @@ Unit.prototype = {
 	    var mine=this.getmcollisions(this.m);
 	    if (mine.length>0) 
 		for (i=0; i<mine.length; i++) {
-		    if (typeof OBSTACLES[mine[i]].detonate=="function") 
-			OBSTACLES[mine[i]].detonate(this)
+		    var o=OBSTACLES[mine[i]];
+		    if (o.type==BOMB&&typeof o.detonate=="function") 
+			o.detonate(this)
 		    else {
 			this.ocollision.overlap=i;
 			this.log("colliding with obstacle");
@@ -2295,6 +2300,7 @@ Unit.prototype = {
     },
     addattack: function(f,org,wn,t) {
 	this.addedattack=-1;
+	if (typeof t=="undefined") t=function() { log("target for 2nd attack:"+targetunit.name); return [targetunit];};
 	this.wrap_after("endattack",org,function(c,h) {
 	    //this.log("f:"+f(c,h)+" active:"+this.weapons[wn].isactive);
 	    if (f(c,h)&&this.weapons[wn].isactive
@@ -2371,7 +2377,6 @@ Unit.prototype = {
 	    $("#actiondial").html($("<div>"));
 	    for (i=0; i<list.length; i++) {
 		(function(k,h) {
-		    //log("type : "+k.type);
 		    var e=$("<div title='"+k.name+"'>").addClass("symbols").text(A[k.type].key)
 			.click(function () { this.resolvenoaction(k,n) }.bind(this));
 		    $("#actiondial > div").append(e);
@@ -3352,7 +3357,7 @@ Unit.prototype = {
 	    for (k=0; k<OBSTACLES.length; k++) {
 		var op=OBSTACLES[k].getOutlineString().p;
 		// The object is not yet intialized. Should not be here...
-		if (op.length==0) break;
+		if (op.length==0||OBSTACLES[k].type==BOMB) break;
 		var s=op[0].x*dy-op[0].y*dx+a;
 		var v=s;
 		for (i=1; i<op.length; i++) {

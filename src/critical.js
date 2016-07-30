@@ -479,7 +479,7 @@ var CRITICAL_DECK=[
 	},
 	facedown: function() {
 	    if (this.isactive) {
-		this.unit.unwrap("deal",this);
+		this.unit.deal.unwrap(this);
 	    }
 	    this.isactive=false;
 	},

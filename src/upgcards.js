@@ -1772,7 +1772,6 @@ var UPGRADES= [
 		    p[0].addfocustoken(); p[1].addfocustoken();
 		    p[0].log("adding focus");
 		    p[1].log("adding focus");
-		    this.unit.log("addstress");
 		    this.unit.addstress();
 		    this.unit.endaction(n,CREW);
 		} else {
@@ -2985,9 +2984,6 @@ var UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    var self=this;
-	    /*sh.weapons[i].wrap_after("modifyattackroll",this,function(n,m) {
-		if (FCH_focus(m)>0) return m-FCH_FOCUS
-	    });*/
 	    sh.wrap_after("begincombatphase",this,function(lock) {
 		if (self.isactive) {
 		    this.donoaction([
@@ -4219,24 +4215,26 @@ var UPGRADES= [
      init: function(sh) {
 	 var self=this;
 	 sh.wrap_after("addstress",this,function() {
+	     var self=this.deferred;
 	     this.donoaction([{type:"STRESS",name:self.name,org:self,
 			       action:function(n) {
-				   this.select();
-				    this.removestresstoken();
+				   //this.select();
+				   this.removestresstoken();
 				   this.log("-1 %STRESS%, +1 %HIT% [%0]",self.name);
 				   this.resolvehit(1);
 				   this.endnoaction(n,"SYSTEM");
-			       }.bind(this)}],"Take 1 %HIT% instead of %STRESS% token",true)
+				   this.unlock("SYSTEM");
+			       }.bind(this)}],"Take 1 %HIT% instead of %STRESS% token",true).done(function() { this.deferred=self.resolve(); });
 	 });
 	 sh.wrap_after("addiontoken",this,function() {
 	     this.donoaction([{type:"ION",name:self.name,org:self,
 			       action:function(n) {
-				   this.select();
+				   //this.select();
 				   this.removeiontoken();
 				   this.log("-1 %ION%, +1 %HIT% [%0]",self.name);
 				   this.resolvehit(1);
 				   this.endnoaction(n,"SYSTEM");
-			       }.bind(this)}],"Take 1 %HIT% instead of %ION% token",true)});
+			       }.bind(this)}],"Take 1 %HIT% instead of %ION% token",true);});
      }
     },
     {
