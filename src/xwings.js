@@ -2440,12 +2440,12 @@ $(document).ready(function() {
 	    TEAMS[2].isia=false;
 	    if (args[3]=="true") TEAMS[1].isia=true;	
 	    else { 
-		localStorage["imageplayer1"]=args[7];
+		localStorage["imageplayer"]=args[7];
 		localStorage["playername"]=args[8];
 	    }
 	    if (args[4]=="true") TEAMS[2].isia=true;
 	    else { 
-		localStorage["imageplayer2"]=args[7];
+		localStorage["imageplayer"]=args[7];
 		localStorage["playername"]=args[8];
 	    }
 	    SETUP=SETUPS[args[5]+" Map"];
@@ -2454,8 +2454,7 @@ $(document).ready(function() {
 	    PERMALINK=LZString.compressToEncodedURIComponent(TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock()+"&"+TEAMS[1].isia+"&"+TEAMS[2].isia+"&"+args[5]);
 	    return nextphase();
 	} else {
-	    delete localStorage["imageplayer1"];
-	    delete localStorage["imageplayer2"];
+	    delete localStorage["imageplayer"];
 	    delete localStorage["playername"];
 	    phase=0;
 	    nextphase();
