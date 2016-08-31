@@ -3,6 +3,17 @@ function IAUnit() {
 }
 
 IAUnit.prototype= {
+    confirm: function(a) {
+	return true;
+    },
+    guessevades: function(roll,promise) {
+	if (this.rand(roll.dice+1)==FE_evade(roll.roll)) {
+	    this.log("guessed correctly the number of evades ! +1 %EVADE% [%0]",self.name);
+	    roll.roll+=FE_EVADE;
+	    roll.dice+=1;
+	}
+	promise.resolve(roll);
+    },
     computemaneuver: function() {
 	var i,j,k,d=0;
 	var q=[],possible=-1;
@@ -279,35 +290,34 @@ IAUnit.prototype= {
     showattack: function() {
 	$("#attackdial").empty();
     },
-    doattack: function(forced) {
+    doattack: function(weaponlist,enemies) {
 	//this.log("ia/attack?"+this.id+" forced:"+forced+" turn:"+(skillturn==this.skill));
-	if (forced==true||(phase==COMBAT_PHASE&&skillturn==this.getskill())) {
-	    var power=0,t=null;
-	    var i,w;
-	    //this.log(this.id+" readytofire?"+this.canfire());
-	    if (this.canfire()) {
-		NOLOG=true;
-		var r=this.getenemiesinrange();
-		for (w=0; w<this.weapons.length; w++) {
-		    var el=r[w];
-		    for (i=0;i<el.length; i++) {
-			var p=this.evaluatetohit(w,el[i]).tohit;
-			//this.log("power "+p+" "+el[i].name);
-			if (p>power&&!el[i].isdocked) {
-			    t=el[i]; power=p; this.activeweapon=w; 
-			}
-		    }
+	var power=0,t=null;
+	var i,w;
+	//this.log(this.id+" readytofire?"+this.canfire());
+	NOLOG=true;
+	if (typeof weaponlist=="undefined") weaponlist=this.weapons;
+
+	var r=this.getenemiesinrange(weaponlist,enemies);
+	for (w=0; w<weaponlist.length; w++) {
+	    var el=r[w];
+	    var wp=this.weapons.indexOf(weaponlist[w]);
+	    for (i=0;i<el.length; i++) {
+		var p=this.evaluatetohit(wp,el[i]).tohit;
+		//this.log("power "+p+" "+el[i].name);
+		if (p>power&&!el[i].isdocked) {
+		    t=el[i]; power=p; this.activeweapon=wp; 
 		}
-		NOLOG=false;
-		//this.log("ia/wn:"+this.activeweapon+" "+power);
-		//if (t!=null) this.log("ia/doattack "+this.id+":"+this.weapons[this.activeweapon].name+" "+t.name);
-      		if (t!=null) return this.selecttargetforattack(this.activeweapon,[t]);
-		//this.log("ia/doattack:canfire but no target");
 	    }
-	    //this.log("ia/doattack "+this.id+":cannot fire");
-	    this.hasfired++; 
-	    this.unlock();
 	}
+	NOLOG=false;
+	//this.log("ia/wn:"+this.activeweapon+" "+power);
+	//if (t!=null) this.log("ia/doattack "+this.id+":"+this.weapons[this.activeweapon].name+" "+t.name);
+      	if (t!=null) return this.selecttargetforattack(this.activeweapon,[t]);
+	//this.log("ia/doattack:canfire but no target");
+	//this.log("ia/doattack "+this.id+":cannot fire");
+	this.addhasfired(); 
+	this.cleanupattack();
 	//this.log("noattack");
 	return false;
     },

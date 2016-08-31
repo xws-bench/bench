@@ -412,7 +412,7 @@ Team.prototype = {
 			if (authupg.indexOf(UPGRADES[k].type)>-1) {
 			    p.upg[j-1]=k;
 			    break;
-			} else log("UPGRADE not listed: "+UPGRADES[k].type+" in "+p.name);
+			} else log("** "+pstr[j]+" UPGRADE not listed: "+UPGRADES[k].type+" in "+p.name);
 		    }
 		}
 	    }

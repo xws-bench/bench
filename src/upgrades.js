@@ -6,10 +6,12 @@ Unit.prototype for old pilots and upgrades
 var UPGRADE_TYPES={
     Elite:"ept",Torpedo:TORPEDO,Astromech:"amd",Turret:"turret",Missile:"missile",Crew:"crew",Cannon:"cannon",Bomb:"bomb",Title:"title",Mod:"mod",System:"system",Illicit:"illicit",Salvaged:"salvaged",Tech:"tech"
 };
-function AUXILIARY(i,m) { return this.getPrimarySectorString(i,m.clone().rotate(180,0,0));};
-function SUBAUXILIARY(i,j,m) { return this.getPrimarySubSectorString(i,j,m.clone().rotate(180,0,0)); }
+function AUXILIARY(i,m) { return this.getPrimarySectorString(i,m.clone().rotate(this.arcrotation,0,0));};
+function SUBAUXILIARY(i,j,m) { return this.getPrimarySubSectorString(i,j,m.clone().rotate(this.arcrotation,0,0)); }
 function Laser(u,type,fire) {
-    if (type=="Bilaser") 
+    switch(type) {
+    case "Bilaser":
+    case "Mobilelaser":
 	return new Weapon(u,{
 	    type: type,
 	    name:"Laser",
@@ -19,9 +21,9 @@ function Laser(u,type,fire) {
 	    isprimary: true,
 	    issecondary:false,
 	    auxiliary: AUXILIARY,
-	    subauxiliary: SUBAUXILIARY,
+	    subauxiliary: SUBAUXILIARY
 	});
-    else if (type=="Laser180") {
+    case "Laser180":
 	return new Weapon(u,{
 	    type: type,
 	    name:"Laser",
@@ -33,7 +35,7 @@ function Laser(u,type,fire) {
 	    auxiliary: function(i,m) { return this.getHalfRangeString(i,m); },
 	    subauxiliary: function(i,j,m) { return this.getHalfSubRangeString(i,j,m); }
 	});	
-    } else return new Weapon(u,{
+    default: return new Weapon(u,{
 	type: type,
 	name:"Laser",
 	isactive:true,
@@ -42,6 +44,7 @@ function Laser(u,type,fire) {
 	isprimary: true,
 	issecondary:false,
     });
+    }
 }
 function Bomb(sh,bdesc) {
     $.extend(this,bdesc);
@@ -242,15 +245,18 @@ function Weapon(sh,wdesc) {
 Weapon.prototype = {
     isBomb: function() { return false; },
     isWeapon: function() { return true; },
-    hasauxiliaryfiringarc: function() { return false; },
-    desactivate: Unit.prototype.desactivate,
+    desactivate:function() {
+	if (this.ordnance&&this.type.match(/Torpedo|Missile/)) {
+	    this.ordnance=false;
+	} else Unit.prototype.desactivate.call(this);
+    },
     toString: function() {
 	this.tooltip = formatstring(getupgtxttranslation(this.name,this.type));
 	this.trname=translate(this.name).replace(/\'/g,"&#39;");
 	this.left=(this.unit.team==1);
 	if (this.isactive) {
 	    var i,r=this.getrangeallunits();
-	    for (i=0; i<r.length; i++) if (r[i].team!=this.unit.team) break;
+	    for (i=0; i<r.length; i++) if (r[i].isenemy(this.unit)) break;
 	    if (i==r.length) this.nofire=true; else this.nofire=false;
 	}
 	this.attackkey=A[this.type.toUpperCase()].key;
@@ -288,7 +294,7 @@ Weapon.prototype = {
     modifydamageassigned: function(ch,t) { return ch; },
     canfire: function(sh) {
 	if (typeof sh=="undefined") console.log("undefined unit: "+this.unit.name+" "+this.name);
-	if (!this.isactive||this.unit.team==sh.team) return false;
+	if (!this.isactive||this.unit.isally(sh)) return false;
 	if (this.unit.checkcollision(sh)) return false;
 	if (typeof this.getrequirements()!="undefined") {
 	    var s="Target";
@@ -333,6 +339,21 @@ Weapon.prototype = {
 	}
 	return 0;
     },
+    getauxiliarysector: function(sh) {
+	var m=this.unit.m;
+	if (typeof this.auxiliary=="undefined") return 4;
+	var n=this.unit.getoutlinerange(m,sh).d;
+	for (var i=n; i<=n+1&&i<=3; i++) 
+	    if (this.unit.isinsector(m,i,sh,this.subauxiliary,this.auxiliary)) return i;
+	return 4;
+    },
+    getprimarysector: function(sh) {
+	var m=this.unit.m;
+	var n=this.unit.getoutlinerange(m,sh).d;
+	for (var i=n; i<=n+1&&i<=3; i++) 
+	    if (this.unit.isinsector(m,i,sh,this.unit.getPrimarySubSectorString,this.unit.getPrimarySectorString)) return i;
+	return 4;
+    },
     getsector: function(sh) {
 	var m=this.unit.m;
 	var n=this.unit.getoutlinerange(m,sh).d;
@@ -356,22 +377,22 @@ Weapon.prototype = {
 	return 0;
     },
     endattack: function(c,h) {
-	if (this.type.match(/Torpedo|Missile/)) {
-	    if (this.ordnance) this.ordnance=false; else this.desactivate();
-	}
+	if (this.type.match(/Torpedo|Missile/)) this.desactivate();
     },
+    hasdoubleattack: function() { return false; },
     hasenemiesinrange:function() {
 	for (var i in squadron) {
 	    var sh=squadron[i];
-	    if (this.unit.team!=sh.team&&this.getrange(sh)>0) return true;
+	    if (this.unit.isenemy(sh)&&this.getrange(sh)>0) return true;
 	}
 	return false;
     },
-    getenemiesinrange: function() {
+    getenemiesinrange: function(enemylist) {
 	var r=[];
-	for (var i in squadron) {
-	    var sh=squadron[i];
-	    if (this.unit.team!=sh.team&&this.getrange(sh)>0) r.push(sh);
+	if (typeof enemylist=="undefined") enemylist=squadron;
+	for (var i in enemylist) {
+	    var sh=enemylist[i];
+	    if (this.unit.isenemy(sh)&&this.getrange(sh)>0) r.push(sh);
 	}
 	return r;
     },
@@ -412,7 +433,7 @@ function Upgradefromid(sh,i) {
 	if (upg.isWeapon()) return new Weapon(sh,upg);
 	else return new Upgrade(sh,i);
     }
-    if (upg.type.match(/Turretlaser|Bilaser|Laser180|Laser|Torpedo|Cannon|Missile|Turret/)||upg.isweapon==true) return new Weapon(sh,upg);
+    if (upg.type.match(/Turretlaser|Bilaser|Mobilelaser|Laser180|Laser|Torpedo|Cannon|Missile|Turret/)||upg.isweapon==true) return new Weapon(sh,upg);
     return new Upgrade(sh,i);
 }
 Upgrade.prototype = {
@@ -436,7 +457,11 @@ Upgrade.prototype = {
 	return this.range[1];
     },
     endround: function() {},
-    desactivate:Unit.prototype.desactivate,
+    desactivate:function() {
+	if (this.ordnance&&this.type.match(/Torpedo|Missile/)) {
+	    this.ordnance=false;
+	} else Unit.prototype.desactivate.call(this);
+    },
     show: function() {},
     install: function(sh) {
 	if (typeof this.addedaction!="undefined") {

@@ -86,20 +86,26 @@ function Rock(frag,coord,team,n) {
     
     PATTERN = s.image(((frag>=MAXROCKS)?DEBRISIMG:ROCKIMG),0,0,256,256).pattern(0,0,256,256);
     var ASTER=(frag>=MAXROCKS?DEBRISCLOUD:ROCKS);
-    this.g=s.path(ASTER[frag%MAXROCKS]).attr({
+    this.inside=s.path(ASTER[frag%MAXROCKS]).attr({
 	fill: PATTERN,
-	strokeWidth: 2,
+	strokeWidth: 0,
 	stroke: "#888",
 	"class":"ASTEROID"+team,
     });
- 
-    for (k=0; k<this.g.getTotalLength(); k+=5) 
-	this.arraypts.push(this.g.getPointAtLength(k));
+    this.outline=s.path(ASTER[frag%MAXROCKS]).attr({
+	fill:"rgba(0,0,0,0)",
+	strokeWidth:2,
+	stroke:"#888"
+    });
+    this.g=s.group(this.outline,this.inside);
+    for (k=0; k<this.outline.getTotalLength(); k+=5) 
+	this.arraypts.push(this.outline.getPointAtLength(k));
     if (REPLAY.length==0) this.addDrag();
 
     this.path="";
-    this.g.hover(function() { this.g.attr({strokeWidth:6,stroke:"#F00"});}.bind(this),
-		 function()  {this.g.attr({strokeWidth:2,stroke:"#888"});}.bind(this));
+    this.outlinepts=[];
+    this.g.hover(function() { this.outline.attr({strokeWidth:6,stroke:"#F00"});}.bind(this),
+		 function()  {this.outline.attr({strokeWidth:2,stroke:"#888"});}.bind(this));
     this.g.addClass("unit");
     var b=this.g.getBBox();
     this.o=[];
@@ -113,6 +119,7 @@ function Rock(frag,coord,team,n) {
 
     //this.g.transform('t '+(-b.width/2-b.x)+" "+(-b.height/2-b.y));
     this.getOutlineString();
+
     //log("ROCK called "+coord[0]+" "+PX[i]+" "+frag);
     this.show();
 }
@@ -140,11 +147,10 @@ Rock.prototype = {
     togglerange: function() { },
     getOutlinePoints: function () {
 	var k;
-	var pts=[];
-	for (k=0; k<this.arraypts.length; k+=5)
-	    pts.push(transformPoint(this.m,this.arraypts[k]));
-	pts.obstacle=true;
-	return pts;
+	this.outlinepts=[];
+	for (k=0; k<this.arraypts.length; k+=5) 
+	    this.outlinepts.push(transformPoint(this.m,this.arraypts[k]));
+	return this.outlinepts;
     },
     getBox: function() { },
     getOutline: function() {
@@ -155,16 +161,16 @@ Rock.prototype = {
     getOutlineString: function() {
 	var k;
 	var pts=[];
+	this.getOutlinePoints();
 	this.path="M ";
-	for (k=0; k<this.arraypts.length; k+=5) {
-	    var p=transformPoint(this.m,this.arraypts[k]);
-	    pts.push(p);
+	for (k=0; k<this.outlinepts.length; k++) {
+	    var p=this.outlinepts[k];
 	    this.path+=p.x+" "+p.y+" ";
 	    if (k==0) this.path+="L ";
 	}
 	this.path+="Z";
 	//s.path(this.path).attr({fill:WHITE,opacity:0.5,class:"possible"});
-	return {s:this.path,p:pts};
+	return {s:this.path,p:this.outlinepts};
     },
     turn: function(n) {
 	this.m.add(MR(n,0,0));
@@ -206,5 +212,13 @@ Rock.prototype = {
     show: function() {
 	this.g.transform(this.m);
 	this.g.appendTo(VIEWPORT);
+    },
+    setclickhandler: function(f) {
+	this.g.unmousedown();
+	this.g.mousedown(f);
+    },
+    setdefaultclickhandler: function() {
+	this.g.unmousedown();
+	this.g.mousedown(function() { this.select();}.bind(this));
     }
 }

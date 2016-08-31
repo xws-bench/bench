@@ -56,7 +56,7 @@ var CRITICAL_DECK=[
 	    this.isactive=false;
 	},
 	action: function(n) {
-	    var roll=this.unit.rollattackdie(1)[0];
+	    var roll=this.unit.rollattackdie(1,this,"hit")[0];
 	    if (roll=="hit"||roll=="critical") {
 		this.facedown();
 	    } else this.unit.log("%0 not repaired",this.name);
@@ -84,7 +84,7 @@ var CRITICAL_DECK=[
 	    this.isactive=false;
 	},
 	action: function(n) {
-	    var roll=this.unit.rollattackdie(1)[0];
+	    var roll=this.unit.rollattackdie(1,this,"hit")[0];
 	    if (roll=="hit") {
 		this.facedown();
 	    } else this.unit.log("%0 not repaired",this.name);
@@ -122,10 +122,11 @@ var CRITICAL_DECK=[
 	version:[V1,V2],
 	lethal:true,
 	faceup: function() {
+	    var self=this;
 	    this.log();
 	    this.isactive=true;
 	    this.unit.wrap_before("begincombatphase",this,function() {
-		var roll=this.rollattackdie(1)[0];
+		var roll=this.rollattackdie(1,self,"blank")[0];
 		if (roll=="hit") {
 		    this.log("+1 %HIT% [%0]",this.name);
 		    this.resolvehit(1); this.checkdead();
@@ -167,7 +168,7 @@ var CRITICAL_DECK=[
 	    }
 	},
 	action: function(n) {
-	    var roll=this.unit.rollattackdie(1)[0];
+	    var roll=this.unit.rollattackdie(1,this,"hit")[0];
 	    if (roll=="critical"||roll=="hit") this.facedown();
 	    else this.unit.log("%0 not repaired",this.name);
 	    this.unit.endaction(n,"CRITICAL");
@@ -191,7 +192,7 @@ var CRITICAL_DECK=[
 	    }
 	},
 	action: function(n) {
-	    var roll=this.unit.rollattackdie(1)[0];
+	    var roll=this.unit.rollattackdie(1,this,"hit")[0];
 	    if (roll=="hit") this.facedown();
 	    else this.unit.log("%0 not repaired",this.name);
 	    this.unit.endaction(n,"CRITICAL");
@@ -215,7 +216,7 @@ var CRITICAL_DECK=[
 	    }
 	},
 	action: function(n) {
-	    var roll=this.unit.rollattackdie(1)[0];
+	    var roll=this.unit.rollattackdie(1,this,"hit")[0];
 	    if (roll=="hit"||roll=="critical") this.facedown();
 	    else this.unit.log("%0 not repaired",this.name);
 	    this.unit.endaction(n,"CRITICAL");
@@ -229,7 +230,7 @@ var CRITICAL_DECK=[
 	version:[V1],
 	faceup: function() {
 	    this.log();
-	    var roll=this.unit.rollattackdie(1)[0]
+	    var roll=this.unit.rollattackdie(1,this,"blank")[0]
 	    this.isactive=false;
 	    if (roll=="hit") this.unit.removehull(1); 
 	},
@@ -302,7 +303,7 @@ var CRITICAL_DECK=[
 	    this.isactive=true;
 	    this.hd=this.unit.handledifficulty;
 	    this.unit.wrap_after("handledifficulty",this,function(d) {
-		var roll=this.rollattackdie(1)[0];
+		var roll=this.rollattackdie(1,self,"blank")[0];
 		if (roll=="hit"&&d=="RED") {
 		    this.log("+1 %HIT% [%0]",self.name);
 		    this.removehull(1);
@@ -447,7 +448,7 @@ var CRITICAL_DECK=[
 	faceup:function() {
 	    var self=this;
 	    this.log();
-	    var roll=this.unit.rollattackdie(1)[0];
+	    var roll=this.unit.rollattackdie(1,this,"blank")[0];
 	    if (roll=="hit") {
 		this.unit.log("+1 %CRIT% [%0]",this.name);
 		this.unit.resolvecritical(1);
@@ -533,7 +534,7 @@ var CRITICAL_DECK=[
 		this.weapons[i].getattack.unwrap(this);
 	},
 	action: function(n) {
-	    var roll=this.unit.rollattackdie(1)[0];
+	    var roll=this.unit.rollattackdie(1,this,"hit")[0];
 	    if (roll=="hit"||roll=="critical") {
 		this.facedown();
 	    } else this.unit.log("%0 not repaired",this.name);
