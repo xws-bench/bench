@@ -3455,10 +3455,10 @@ var PILOTS = [
 	init: function() {
 	    var self=this;
 	    this.dengarattack=-1;
-	    this.addattack(function(c,h) { 
+	    this.addattack(function(c,h,t) { 
 		// Side effect ! 
-		this.retaliationtarget=activeunit;
-		return this.dengarattack<round
+		this.retaliationtarget=t;
+		return this.dengarattack<round&&t!=this
 		    &&this.isinprimaryfiringarc(activeunit); 
 	    }, this,this.weapons,function() {
 		this.dengarattack=round;
@@ -3887,9 +3887,11 @@ var PILOTS = [
 	points:25,
 	init: function() {
 	    this.wrap_after("handledifficulty",this,function(difficulty) {
-		this.addfocustoken(); 
-		this.addfocustoken();
-		this.log("red maneuver -> +2 %FOCUS% [%0]",this.name);
+		if (difficulty=="RED") {
+		    this.addfocustoken(); 
+		    this.addfocustoken();
+		    this.log("red maneuver -> +2 %FOCUS% [%0]",this.name);
+		}
 	    });
 
 	}

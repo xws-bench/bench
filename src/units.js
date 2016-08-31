@@ -1538,8 +1538,8 @@ Unit.prototype = {
 		    this.log("+1 attack with %0",this.weapons[this.activeweapon].name);
 		    this.resolveattack(this.activeweapon,targetunit); 
 		}.bind(this));
-		this.cleanupattack();
 	    }
+	    this.cleanupattack();
 	}
     },
     afterattackeffect:function(c,h) {},
@@ -2433,13 +2433,14 @@ Unit.prototype = {
 		anyactiveweapon=true; break;
 	    }
 //	    this.log("trigger for "+wrapper+":"+f.call(this,c,h)+" noattack?"+(this.noattack<round)+" active?"+anyactiveweapon+" cloak?"+(this.iscloaked)+" attacker?"+attacker.name+" "+c+" "+h);
-	    if (f.call(this,c,h)&&this.noattack<round&&anyactiveweapon
+	    if (f.call(this,c,h,attacker)&&this.noattack<round&&anyactiveweapon
 	       &&!this.iscloaked&&!this.isfireobstructed()) {
-		this.latedeferred=attacker.deferred;
+		var latedeferred=attacker.deferred;
 		var fctattack=function() {
 		    var enemies;
 		    var wpl=[];
-		    this.deferred=this.latedeferred;
+		    this.deferred=latedeferred;
+
 		    if (typeof targetselector=="function") {
 			enemies=targetselector.call(this);
 		    } else enemies=this.selectnearbyenemy(3);
@@ -2447,10 +2448,15 @@ Unit.prototype = {
 			if (weaponlist[i].isactive
 			    &&weaponlist[i].getenemiesinrange(enemies).length>0)
 			    wpl.push(weaponlist[i]);
+		    this.select();
 		    if (wpl.length==0) {
 			this.log("no available target for %0",org.name);
 			this.cleanupattack();
 			return; // No available target !
+		    }
+		    if (!f.call(this,c,h,attacker)) {
+			this.cleanupattack();
+			return;
 		    }
 		    this.log("+1 attack [%0]",org.name);
 		    if (typeof effect=="function") 
@@ -2458,7 +2464,6 @@ Unit.prototype = {
 			    effect.call(this);
 			}.bind(this)).unwrapper("cleanupattack");
 		    this.maxfired++;
-		    this.select();
 		    //this.log("doattack "+wpl.length+" "+enemies.length);
 		    this.doattack(wpl,enemies);
 		}.bind(this);
