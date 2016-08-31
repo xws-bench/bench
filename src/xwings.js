@@ -1,4 +1,4 @@
-/* modifications:
+/* v0.8.10:
  * Manaroo
  * Proton Torpedoes
  * Back button
@@ -12,6 +12,16 @@
   * collision detector, tail gunner, vectored thrusters, R3 Astromech, Sensor Cluster, special ops training
   * shaken pilot + ionized: corrected.
   * Conner net: 1 damage, always (was random)
+  * Electronic baffle and timing between activated units
+  * Filtering squads
+  * Jek Porkins and damage dealt instead of inflicted
+  * C-3PO with IA: automatic choose roll
+  * Emperor Palpatine finally implemented: pop ups windows to choose whether it triggers. 
+  * wave 9 units: Norra Wexley, Shara Bey, Thane Kyrel, Braylen Stramm, Fenn Rau, Kad Solus, Old Teroch, Sabine Wren, Asajj Ventress, Ketsu Onyo, Quickdraw, Backdraft
+  * wave 9 upgrades: gyroscopic targeting, black market slicer tools, IG-88D, Ketsu Onyo, Latts Razzi, Fearlessness, Concord Dawn Protector, Alliance Overhaul, Vectored Thrusters, Tail Gunner, R3 Astromech, Sensor Cluster, Special Ops Training, Colliding Detector, Seismic Torpedo
+   * collision with asteroids: critical results taken into account
+   * english texts for missing translations
+   * top10 list updated with new squads
 */
 // AIzaSyBN2T9d2ZuWaT0Vj6EanYb5IgWzLlhy7Zo 
 var phase=1;
@@ -19,8 +29,9 @@ var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.8.10";
+var VERSION="v0.9.0";
 var LANG="en";
+var FILTER="none";
 var DECLOAK_PHASE=1;
 var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6,XP_PHASE=7;
 var DICES=["focusred","hitred","criticalred","blankred","focusgreen","evadegreen","blankgreen"];
@@ -65,7 +76,7 @@ var SQUADBUILDER=1;
 		 <button onclick='$("#replay")[0].contentWindow.stopreplay();'>Stop</button>
 
 */
-jQuery.event.props.push('dataTransfer');
+//jQuery.event.props.push('dataTransfer');
 
 /*window.onerror = function(message, source, lineno, colno, error) {
     log("<b>ERROR: "+error+"</b>");
@@ -96,6 +107,16 @@ var SETUPS={
 	"name":"Mars",
 	"background":"css/playmat14.jpg",
     }
+}
+
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
 }
 
 function changeimage(input) {
@@ -330,7 +351,7 @@ function formatstring(s) {
 }
 function displayplayertype(team,img) {
     var himg=localStorage["image"];
-    var pimg=localStorage["imageplayer"+team];
+    var pimg=localStorage["imageplayer"];
     var hname=localStorage["name"];
     var name=localStorage["playername"];
     if (typeof name!="undefined") hname=name;
@@ -358,15 +379,17 @@ function nextunit(cando, changeturn,changephase,activenext) {
 	    changeturn(tabskill);
 	    last=0;
 	    if (skillturn>=0 && skillturn<=12) {
-		while (last<tabskill[skillturn].length&&tabskill[skillturn][last].isdocked==true) last++;
+		while (last<tabskill[skillturn].length&&(tabskill[skillturn][last].isdocked==true||!cando(tabskill[skillturn][last]))) last++;
 		if (last==tabskill[skillturn].length) last=-1;
 	    }
 	} while (skillturn>=0 && skillturn<=12 && last==-1);
     } 
     if (skillturn<0||skillturn>12||last==-1) return changephase();
-    active=last; 
-    tabskill[skillturn][last].select();
-    activenext();
+    barrier(function() {
+	active=last; 
+	tabskill[skillturn][last].select();
+	activenext();
+    });
 }
 function endphase() {
     for (var i in squadron) squadron[i].endphase();
@@ -384,21 +407,25 @@ function nextcombat() {
 		 if (dead&&(TEAMS[1].checkdead()||TEAMS[2].checkdead())) win();
 	     },
 	     function() {
-		 log(UI_translation["No more firing units, ready to end phase."]); 
+		 $("#attackdial").hide();
 		 for (var i in squadron) squadron[i].endcombatphase();
+		 log(UI_translation["No more firing units, ready to end phase."]);
 		 barrier(endphase);
-		 enablenextphase();
+		 return enablenextphase();
 	     },
 	     function() {
 		 activeunit.beginattack();
-		 activeunit.doattack(false);
+		 activeunit.doattack();
 	     });
 }
 function nextactivation() {
     nextunit(function(t) { return t.candomaneuver(); },
 	     function() { if (skillturn<13) skillturn++; },
-	     function() { return enablenextphase(); },
-	     function() {     
+	     function() { 
+		 //barrier(endphase); 
+		 return enablenextphase(); },
+	     function() {    
+		 //activeunit.log("next activation");
 		 activeunit.beginactivation();
 		 activeunit.doactivation();
 	     });
@@ -539,7 +566,6 @@ function displaycompareresults(u,f) {
 	//log("hiding combat dial compare");
 	f();
     } else {
-	log("not hiding combat dial compare");
 	$("#dtokens").append(dm).append(am);
 	$("#dtokens").append($("<button>").addClass("m-fire").click(function() {
 	    $("#combatdial").hide();
@@ -573,6 +599,22 @@ var FE_FOCUS=10;
 var FCH_HIT=1;
 var FCH_FOCUS=100;
 var FCH_CRIT=10;
+
+var UNITFILTER={};
+var ACTIONFILTER={};
+var MOVEFILTER={};
+function unitfilter(s) {
+    var i,j;
+    if (typeof UNITFILTER[s]!="undefined") delete UNITFILTER[s];
+    else UNITFILTER[s]=true;
+    displayfactionunits(true);
+}
+function actionfilter(s) {
+    var i,j;
+    if (typeof ACTIONFILTER[s]!="undefined") delete ACTIONFILTER[s];
+    else ACTIONFILTER[s]=true;
+    displayfactionunits(true);
+}
 
 function addroll(f,id,to) {
     if (to==DEFENSE_M) return addrolld(f,id);
@@ -880,7 +922,6 @@ function battlelog(t) {
     else TEAMS[0].parseJuggler(data,false);
     data=TEAMS[0].toJuggler(false);
     displaycombats(data);
-
     window.location="#battlelog";
 }
 
@@ -903,8 +944,43 @@ function createsquad() {
     currentteam.changefaction("REBEL");
     $(".factionselect selected").val("REBEL");
     $("#creation").show();
+    var u={};
+    u.getdialwi=function() {
+	return 	[
+	    {"move":"TL1","difficulty":"WHITE"},
+	    {"move":"BL1","difficulty":"WHITE"},
+	    {"move":"F1","difficulty":"WHITE"},
+	    {"move":"SL2","difficulty":"WHITE"},
+	    {"move":"TL2","difficulty":"WHITE"},
+	    {"move":"BL2","difficulty":"WHITE"},
+	    {"move":"F2","difficulty":"WHITE"},
+	    {"move":"K2","difficulty":"WHITE"},
+	    {"move":"SL3","difficulty":"WHITE"},
+	    {"move":"TL3","difficulty":"WHITE"},
+	    {"move":"BL3","difficulty":"WHITE"},
+	    {"move":"F3","difficulty":"WHITE"},
+	    {"move":"K3","difficulty":"WHITE"},
+	    {"move":"F4","difficulty":"WHITE"},
+	    {"move":"K4","difficulty":"WHITE"},
+	    {"move":"F5","difficulty":"WHITE"},
+	    {"move":"K5","difficulty":"WHITE"}
+	];
+    };
+    //$(".m-create").hide();
+    //$(".title").html("Squad Building");
+    $("#dialfilter").html(Unit.prototype.getdialstring.call(u));
+    $("#dialfilter td[move]").click(function() { 
+	var m=$(this).attr("move"); 
+	if (typeof MOVEFILTER[m]!="undefined") {
+	    delete MOVEFILTER[m];
+	    $(this).removeClass("selected");
+	} else { 
+	    MOVEFILTER[m]=true;
+	    $(this).addClass("selected");
+	}
+	displayfactionunits(true);
+    });
     displayfactionunits();
-    //$("#coverflow").coverflow();
 }
 function switchdialimg(b) {
     if (b==true) {
@@ -916,7 +992,7 @@ function switchdialimg(b) {
     }
 }
 var mySpreadsheets=[
-"https://docs.google.com/spreadsheets/d/1n35IFydakSJf9N9b9byLog2MooaWXk_w8-GQdipGe8I/edit#gid=0",
+/*"https://docs.google.com/spreadsheets/d/1n35IFydakSJf9N9b9byLog2MooaWXk_w8-GQdipGe8I/edit#gid=0",
 "https://docs.google.com/spreadsheets/d/1Jzigt2slBhygjcylCsy4UywpsEJEjejvtCfixNoa_z4/edit#gid=0",
 "https://docs.google.com/spreadsheets/d/1dkvDxaH3mJhps9pi-R5L_ttK_EmDKUZwaCE9RZUYueg/edit#gid=0",
 "https://docs.google.com/spreadsheets/d/1IoViAKvpZFRlmzBXeY6S9jYX4Ju9ccL5boNxhLwUXiY/edit#gid=0",
@@ -924,8 +1000,8 @@ var mySpreadsheets=[
 "https://docs.google.com/spreadsheets/d/15pAnwcBlp4l01eJgyNXW9uGu5jYDhxk3oSveBIQhJFc/edit#gid=0",
 "https://docs.google.com/spreadsheets/d/1P64wZXXV_3gJE0wdLTDWW2pdOliInCRlTXm1lgYNumc/edit#gid=0",
 "https://docs.google.com/spreadsheets/d/1zlqDnXJ9J-k4apP1DadPx_vdv6Asdp_b9QvaytKI9ek/edit#gid=0",
-"https://docs.google.com/spreadsheets/d/1hK3niJbtDIE8xxv-9vQGcqd5eQ1D6dP5hQ7GicDVh-A/edit#gid=0",
-//"https://docs.google.com/spreadsheets/d/1KR1uc7QgbiDkxCU5J1rm9qBMMjwKC0WyfAuDhnrbgAA/edit#gid=0"
+"https://docs.google.com/spreadsheets/d/1hK3niJbtDIE8xxv-9vQGcqd5eQ1D6dP5hQ7GicDVh-A/edit#gid=0",*/
+"https://docs.google.com/spreadsheets/d/1KR1uc7QgbiDkxCU5J1rm9qBMMjwKC0WyfAuDhnrbgAA/edit#gid=0"
 ];
 
 function displayAIperformance() {
@@ -993,6 +1069,7 @@ function displaycombats(t) {
 	    url: mySpreadsheets[i],
 	    query:"select B,C,D where C contains '"+t+"'",
 	    callback:myCallback,
+	    fetchSize:100,
 	    rowTemplate:function () { return "";},
 	    labels:["Score","Squadlist","URL"]
 	});
@@ -1014,7 +1091,7 @@ function dial2JSON(dial) {
     }
     return m;
 }
-function displayfactionunits() {
+function displayfactionunits(noreset) {
     var count=0;
     var n=0;
     var i,j,k;
@@ -1023,10 +1100,13 @@ function displayfactionunits() {
     var t={};
     var uu=[];
     if (phase!=CREATION_PHASE) return;
+    //getdialwi
+    if (faction=="REBEL") $("#dialfilter td[move='SL3']").text(P['TRL3'].key).attr("move","TRL3"); else  $("#dialfilter td[move='TRL3']").text(P['SL3'].key).attr("move","SL3");
+
     for (i in unitlist) if (unitlist[i].faction.indexOf(faction)>-1) count++;
 
     var tz = Math.round( ( 186 / 2 ) / Math.tan( Math.PI / count ) );
-    $(".caroussel").html("");
+    if (noreset==true) $("#caroussel").html(""); else $(".caroussel").html("");
     increment = 360. / count;
     var str;
     for (i=0; i<PILOTS.length; i++) {
@@ -1061,25 +1141,42 @@ function displayfactionunits() {
 	str="";
 	n++;
 	var u=uu[i];
-	var rendered=Mustache.render(TEMPLATES["faction"], {
-	    shipimg:u.img[0],
-	    fire:repeat('u',u.fire),
-	    evade:repeat('u',u.evade),
-	    hull:repeat('u',u.hull),
-	    shield:repeat('u',u.shield),
-	    diallist:dial2JSON(u.dial),
-	    shipname:u.trname,
-	    actionlist:function() {
-		var al=[];
-		for (j=0; j<u.actionList.length; j++) al[j]=A[u.actionList[j]].key;
-		return al;
-	    },
-	    hastitle:u.hastitle,
-	    shipupgrades:p[u.name][0].upgrades,
-	    pilots:p[u.name]
-	});
-	$("#caroussel").append("<li>"+rendered+"</li>");	    
+	var filter=p[u.name][0].upgrades;
+	var filtered=true;
+	for (j in UNITFILTER)
+	    if (filter.indexOf(j)==-1) filtered=false;
+	for (j in ACTIONFILTER) 
+	    if (u.actionList.indexOf(j)==-1) filtered=false;
+	for (j in MOVEFILTER) {
+	    var found=false;
+	    for (k=0; k<u.dial.length; k++)
+		if (u.dial[k].move==j) found=true;
+	    if (!found) filtered=false;
+	}
+	if (filtered) {
+	    var rendered=Mustache.render(TEMPLATES["faction"], {
+		shipimg:u.img[0],
+		fire:repeat('u',u.fire),
+		evade:repeat('u',u.evade),
+		hull:repeat('u',u.hull),
+		shield:repeat('u',u.shield),
+		diallist:dial2JSON(u.dial),
+		shipname:u.trname,
+		actionlist:function() {
+		    var al=[];
+		    for (j=0; j<u.actionList.length; j++) al[j]=A[u.actionList[j]].key;
+		    return al;
+		},
+		hastitle:u.hastitle,
+		shipupgrades:p[u.name][0].upgrades,
+		pilots:p[u.name]
+	    });
+	    $("#caroussel").append("<li>"+rendered+"</li>");	    
+	}
     }
+}
+function selectweapon(weapons) {
+    $("#attackdial").html(Mustache.render(TEMPLATES["selectweapon"],weapons)).show();
 }
 function getpilottexttranslation(name,faction) {
     var idxn=name+(faction=="SCUM"?" (Scum)":"");
@@ -1268,6 +1365,7 @@ function addrow(team,name,pts,faction,jug,fill) {
 function endselection() {
     var team;
     $("#creation").hide();
+    //$(".title").html("Squadron Benchmark");
     $("#selectphase").show();
     currentteam.name="SQUAD."+currentteam.toASCII();
     currentteam.toJSON();// Just for points
@@ -1310,6 +1408,7 @@ function findsquad(t) {
 	url: mySpreadsheets[0],
 	query:"select C where C matches '.*VS"+pattern+"'",
 	callback:matchsquad,
+	fetchSize:100,
 	rowTemplate:function () { return "";},
 	labels:["squad"]
     }); 
@@ -1378,6 +1477,7 @@ function nextphase() {
 	$("#game").show();
 	$("#selectphase").hide();
 	$("#creation").hide();
+	//$(".title").html("Squadron Benchmark");
 	$("#rightpanel").show();
 	$("#leftpanel").show();
 	//for (var i in squadron) console.log("--squadron["+i+"]:"+squadron[i].name+" "+squadron[i].id);
@@ -1456,6 +1556,7 @@ function setphase(cannotreplay) {
 	$("#game").hide();
 	$("#selectphase").show();
 	$("#creation").hide();
+	//$(".title").html("Squadron Benchmark");
 	currentteam.setfaction("REBEL");
 	$(".nextphase").prop("disabled",true);
 	//window.location="#creation";
@@ -1672,6 +1773,8 @@ function setphase(cannotreplay) {
     }
 }
 function barrier(f) {
+    //for (var i=0; i<actionr.length; i++) 
+    //	log(i+":"+actionr[i].state());
     $.when.apply(null,actionr).done(f);
 }
 function log(str) {
@@ -1699,7 +1802,11 @@ function resetlink(home,setup) {
 	}
 	location.reload();
 	break;
-    case CREATION_PHASE: phase=0; document.location.search=""; nextphase(); break; 
+    case CREATION_PHASE: 
+	phase=0; 
+	document.location.search=""; 
+	nextphase(); 
+	break; 
     default: 
 	if (home==true) {
 	    if (document.location.search!="") document.location.search="";
@@ -2154,47 +2261,51 @@ var changelanguage= function(l) {
     location.reload();
 }
 $(document).ready(function() {
+    var i;
     s= Snap("#svgout")
 
     VIEWPORT = s.g().attr({id:"viewport"});
     VIEWPORT.m=new Snap.Matrix();
-
-    P = { F0:{path:s.path("M 0 0 L 0 0").attr({display:"none"}), speed: 0, key:"5"},
-	  F1:{path:s.path("M 0 0 L 0 -80").attr({display:"none"}), speed: 1, key:"8"},
-	  F2:{path:s.path("M 0 0 L 0 -120").attr({display:"none"}), speed: 2, key:"8"},
-	  F3:{path:s.path("M 0 0 L 0 -160").attr({display:"none"}), speed: 3, key:"8"},
-	  F4:{path:s.path("M 0 0 L 0 -200").attr({display:"none"}), speed: 4, key:"8"},
-	  F5:{path:s.path("M 0 0 L 0 -240").attr({display:"none"}), speed: 5, key: "8" },
+    FILTER = s.filter(Snap.filter.blur(5,5));
+    P = { F0:{path:s.path("M 0 0 L 0 0"), speed: 0, key:"5"},
+	  F1:{path:s.path("M 0 0 L 0 -80"), speed: 1, key:"8"},
+	  F2:{path:s.path("M 0 0 L 0 -120"), speed: 2, key:"8"},
+	  F3:{path:s.path("M 0 0 L 0 -160"), speed: 3, key:"8"},
+	  F4:{path:s.path("M 0 0 L 0 -200"), speed: 4, key:"8"},
+	  F5:{path:s.path("M 0 0 L 0 -240"), speed: 5, key: "8" },
 	  // Turn right
-	  TR1:{path:s.path("M0 0 C 0 -40 15 -55 55 -55").attr({display:"none"}), speed: 1, key:"6"},// 35 -35
-	  TR2:{path:s.path("M0 0 C 0 -50 33 -83 83 -83").attr({display:"none"}), speed:2, key:"6"},// 63 -63
-	  TR3:{path:s.path("M0 0 C 0 -60 45 -105 105 -105").attr({display:"none"}), speed:3, key:"6"}, // 85 -85
-	  TRR3:{path:s.path("M0 0 C 0 -60 45 -105 105 -105").attr({display:"none"}), speed:3, key:";"}, // 85 -85
+	  TR1:{path:s.path("M0 0 C 0 -40 15 -55 55 -55"), speed: 1, key:"6"},// 35 -35
+	  TR2:{path:s.path("M0 0 C 0 -50 33 -83 83 -83"), speed:2, key:"6"},// 63 -63
+	  TRR2:{path:s.path("M0 0 C 0 -50 33 -83 83 -83"), speed:2, key:";"},// 63 -63
+	  TR3:{path:s.path("M0 0 C 0 -60 45 -105 105 -105"), speed:3, key:"6"}, // 85 -85
+	  TRR3:{path:s.path("M0 0 C 0 -60 45 -105 105 -105"), speed:3, key:";"}, // 85 -85
 	  // Turn left
-	  TL1:{path:s.path("M0 0 C 0 -40 -15 -55 -55 -55").attr({display:"none"}), speed:1, key:"4"}, // -35 -35
-	  TL2:{path:s.path("M0 0 C 0 -50 -33 -83 -83 -83").attr({display:"none"}), speed:2, key:"4"},// -63 -63
-	  TL3:{path:s.path("M0 0 C 0 -60 -45 -105 -105 -105").attr({display:"none"}), speed:3, key:"4"}, // -85 -85
-	  TRL3:{path:s.path("M0 0 C 0 -60 -45 -105 -105 -105").attr({display:"none"}), speed:3, key:":"}, // -85 -85
+	  TL1:{path:s.path("M0 0 C 0 -40 -15 -55 -55 -55"), speed:1, key:"4"}, // -35 -35
+	  TL2:{path:s.path("M0 0 C 0 -50 -33 -83 -83 -83"), speed:2, key:"4"},// -63 -63
+	  TRL2:{path:s.path("M0 0 C 0 -50 -33 -83 -83 -83"), speed:2, key:":"},// -63 -63
+	  TL3:{path:s.path("M0 0 C 0 -60 -45 -105 -105 -105"), speed:3, key:"4"}, // -85 -85
+	  TRL3:{path:s.path("M0 0 C 0 -60 -45 -105 -105 -105"), speed:3, key:":"}, // -85 -85
 	  // Bank right
-	  BR1:{path:s.path("M0 0 C 0 -20 18 -72 38 -92").attr({display:"none"}), speed:1, key:"9"}, // 24 -58 (+/-14.14)
-	  BR2:{path:s.path("M0 0 C 0 -30 24 -96 54 -126").attr({display:"none"}), speed:2, key:"9"}, // 40 -92 (+/-14.14)
-	  SR2:{path:s.path("M0 0 C 0 -30 24 -96 54 -126").attr({display:"none"}), speed:2, key:"3"}, // 40 -92 (+/-14.14)
-	  BR3:{path:s.path("M0 0 C 0 -40 29 -120 69 -160").attr({display:"none"}), speed:3, key:"9"}, // 55 -126 (+/-14.14)
-	  SR3:{path:s.path("M0 0 C 0 -40 29 -120 69 -160").attr({display:"none"}), speed:3, key:"3"}, // 55 -126 (+/-14.14)
+	  BR1:{path:s.path("M0 0 C 0 -20 18 -72 38 -92"), speed:1, key:"9"}, // 24 -58 (+/-14.14)
+	  BR2:{path:s.path("M0 0 C 0 -30 24 -96 54 -126"), speed:2, key:"9"}, // 40 -92 (+/-14.14)
+	  SR2:{path:s.path("M0 0 C 0 -30 24 -96 54 -126"), speed:2, key:"3"}, // 40 -92 (+/-14.14)
+	  BR3:{path:s.path("M0 0 C 0 -40 29 -120 69 -160"), speed:3, key:"9"}, // 55 -126 (+/-14.14)
+	  SR3:{path:s.path("M0 0 C 0 -40 29 -120 69 -160"), speed:3, key:"3"}, // 55 -126 (+/-14.14)
 	  // Bank left
-	  BL1:{path:s.path("M0 0 C 0 -20 -18 -72 -38 -92").attr({display:"none"}), speed:1, key:"7"}, // 24 -58 (+/-14.14)
-	  BL2:{path:s.path("M0 0 C 0 -30 -24 -96 -54 -126").attr({display:"none"}), speed:2, key:"7"}, // 40 -92 (+/-14.14)
-	  SL2:{path:s.path("M0 0 C 0 -30 -24 -96 -54 -126").attr({display:"none"}), speed:2, key:"1"}, // 40 -92 (+/-14.14)
-	  BL3:{path:s.path("M0 0 C 0 -40 -29 -120 -69 -160").attr({display:"none"}), speed:3, key:"7"}, // 55 -126 (+/-14.14)
-	  SL3:{path:s.path("M0 0 C 0 -40 -29 -120 -69 -160").attr({display:"none"}), speed:3, key:"1"}, // 55 -126 (+/-14.14)
+	  BL1:{path:s.path("M0 0 C 0 -20 -18 -72 -38 -92"), speed:1, key:"7"}, // 24 -58 (+/-14.14)
+	  BL2:{path:s.path("M0 0 C 0 -30 -24 -96 -54 -126"), speed:2, key:"7"}, // 40 -92 (+/-14.14)
+	  SL2:{path:s.path("M0 0 C 0 -30 -24 -96 -54 -126"), speed:2, key:"1"}, // 40 -92 (+/-14.14)
+	  BL3:{path:s.path("M0 0 C 0 -40 -29 -120 -69 -160"), speed:3, key:"7"}, // 55 -126 (+/-14.14)
+	  SL3:{path:s.path("M0 0 C 0 -40 -29 -120 -69 -160"), speed:3, key:"1"}, // 55 -126 (+/-14.14)
 	  // K turns (similar to straight line, special treatment in move function)
-	  K1:{path:s.path("M 0 0 L 0 -80").attr({display:"none"}), speed: 1, key:"2"},
-	  K2:{path:s.path("M 0 0 L 0 -120").attr({display:"none"}), speed: 2, key:"2"},
-	  K3:{path:s.path("M 0 0 L 0 -160").attr({display:"none"}), speed: 3, key:"2"},
-	  K4:{path:s.path("M 0 0 L 0 -200").attr({display:"none"}), speed: 4, key:"2"},
-	  K5:{path:s.path("M 0 0 L 0 -240").attr({display:"none"}), speed: 5, key: "2" }
+	  K1:{path:s.path("M 0 0 L 0 -80"), speed:1, key:"2"},
+	  K2:{path:s.path("M 0 0 L 0 -120"), speed:2, key:"2"},
+	  K3:{path:s.path("M 0 0 L 0 -160"), speed:3, key:"2"},
+	  K4:{path:s.path("M 0 0 L 0 -200"), speed:4, key:"2"},
+	  K5:{path:s.path("M 0 0 L 0 -240"), speed:5, key: "2" }
 	};
-
+    for (i in P)
+	P[i].path.attr({display:"none"});
     $(".menu").mouseover(function() {
 	$(".menu ul").css({display:'block',visibility:'visible'})
     }).mouseout(function() {
@@ -2226,8 +2337,11 @@ $(document).ready(function() {
 	}}),
 	$.ajax("data/xws.json",{error:function(xhr,status,error) {
 	    console.log("**Error loading xws.json\n"+status+" "+error);
+	}}),
+	$.ajax("data/strings.en.json",{error:function(xhr,status,error) {
+	    console.log("**Error loading strings."+LANG+".json\n"+status+" "+error);
 	}})
-    ).done(function(result1,result2,result3) {
+    ).done(function(result1,result2,result3,r4) {
 	var process=setInterval(function() {
 	    ATTACK[dice]=attackproba(dice);
 	    DEFENSE[dice]=defenseproba(dice);
@@ -2238,6 +2352,9 @@ $(document).ready(function() {
 		clearInterval(process);}
 	},500);
 	unitlist=result1[0];
+	ENSHIP_translation=r4[0].ships;
+	ENPILOT_translation=r4[0].pilots;
+	ENUPGRADE_translation=r4[0].upgrades;
 	SHIP_translation=result2[0].ships;
 	PILOT_translation=result2[0].pilots;
 	UPGRADE_translation=result2[0].upgrades;
@@ -2245,6 +2362,24 @@ $(document).ready(function() {
 	CRIT_translation=result2[0].criticals;
 	var css_translation=result2[0].css;
 	var str="";
+
+	if (LANG!="en") {
+	    for (i in ENUPGRADE_translation) {
+		var u=ENUPGRADE_translation[i];
+		var v=UPGRADE_translation[i];
+		var t=u.text;
+		if (typeof v=="undefined") UPGRADE_translation[i]=u;
+	    }
+	    for (i in ENPILOT_translation) {
+		var u=ENPILOT_translation[i];
+		var v=PILOT_translation[i];
+		var t=u.text;
+		if (typeof v=="undefined") {
+		    PILOT_translation[i]=u;
+		}
+	    }
+	}
+
 	for (var i in css_translation) {
 	    str+="."+i+"::after { content:\""+css_translation[i]+"\";}\n";
 	}
@@ -2345,6 +2480,8 @@ $(document).ready(function() {
 	Mustache.parse(TEMPLATES["faction"]);  
 	TEMPLATES["usabletokens"]=$("#usabletokens").html();
 	Mustache.parse(TEMPLATES["usabletokens"]);  
+	TEMPLATES["selectweapon"]=$("#selectweapon").html();
+	Mustache.parse(TEMPLATES["selectweapon"]);  
 
 	$('body').on('mousedown', 'footer', function() {
             $(this).addClass('draggable').parents().on('mousemove', function(e) {
@@ -2543,6 +2680,7 @@ $(document).ready(function() {
 	    for (i in localStorage) {
 		if (typeof localStorage[i]=="string"&&i.match(/SQUAD.*/)) {
 		    //delete localStorage[i];
+		    
 		    var l=$.parseJSON(localStorage[i]);
 		    if (typeof l.jug=="undefined"||typeof l.pts=="undefined")
 			delete localStorage[i]
@@ -2568,10 +2706,10 @@ $(document).ready(function() {
 	}
 	var upgrades=[];
 	for (i in UPGRADE_translation) {
-	    upgrades.push(translate(i).replace(/\'/g,"").replace(/\(Crew\)/g,""));
+	    upgrades.push(' '+translate(i).replace(/\'/g,"").replace(/\(Crew\)/g,""));
 	}
 	$(".squadbg > textarea").asuggest(pilots, { 'delimiters': '^\n', 'cycleOnTab': true });
-	$(".squadbg > textarea").asuggest(upgrades, { 'delimiters': '+ ', 'cycleOnTab':true});
+	$(".squadbg > textarea").asuggest(upgrades, { 'delimiters': '+', 'cycleOnTab':true});
     });
 });
 var cmd=[];
@@ -2716,6 +2854,9 @@ var replayall=function() {
 	if (typeof Unit.prototype.addtarget.vanilla=="function") 
 	    Unit.prototype.addtarget.vanilla.call(u,t);
 	else Unit.prototype.addtarget.call(u,t);
+	actionrlock.notify();
+	break;
+    case "R": u.setarcrotate(parseInt(c[2],10)); 
 	actionrlock.notify();
 	break;
     case "s": Unit.prototype.removeshield.call(u,parseInt(c[2],10)); 

@@ -373,7 +373,7 @@ font-size:larger;
 text-align:center
 }
 
-h3 {
+h3,p {
 text-align:center;
 margin:10px;
 color:#fff
@@ -776,7 +776,8 @@ overflow-x:hidden
 .unitlist {
 overflow-x:hidden;
 overflow-y:hidden;
-white-space:nowrap
+white-space:nowrap;
+font-size:smaller
 }
 
 button.statevade,button.statfire {
@@ -1260,7 +1261,7 @@ content:"CPM"
 content:"M"
 }
 
-.Illicit::after,.illicitmodtokena,.illicitmodtokend {
+.Illicit::after,.illicitmodtokena::after,.illicitmodtokend::after {
 content:"I"
 }
 
@@ -1268,7 +1269,7 @@ content:"I"
 content:"C"
 }
 
-.Crew::after {
+.Crew::after,.crewmodtokena::after,.crewmodtokend::after {
 content:"W"
 }
 
@@ -1335,7 +1336,7 @@ border-style:solid;
 border-width:1px
 }
 
-.xevadetoken,.xfocustoken,.xcloaktoken,.xstresstoken,.xtargetedtoken,.xtargettoken,.xionizedtoken,.xtractorbeamtoken,.focusmodtokena,.ionmodtokena,.evademodtokena,.stressmodtokena,.focusmodtokend,.hitmodtokena,.hitmodtokend,.criticalmodtokena,.illicitmodtokena,.blankmodtokena,.illicitmodtokend,.blankmodtokend,.evademodtokend,.criticalmodtokend,.targetmodtokena {
+.xevadetoken,.xfocustoken,.xcloaktoken,.xstresstoken,.xtargetedtoken,.xtargettoken,.xionizedtoken,.xtractorbeamtoken,.focusmodtokena,.ionmodtokena,.evademodtokena,.stressmodtokena,.focusmodtokend,.hitmodtokena,.hitmodtokend,.criticalmodtokena,.illicitmodtokena,.blankmodtokena,.illicitmodtokend,.blankmodtokend,.evademodtokend,.criticalmodtokend,.targetmodtokena,.targetmodtokend,.crewmodtokena,.crewmodtokend {
 font-family:'symbols';
 padding:4px;
 display:inline-block;
@@ -1413,7 +1414,7 @@ content:"f"
 content:"e"
 }
 
-.targettoken::after,.xtargettoken::after,.xtargetedtoken::after,.targetmodtokena::after {
+.targettoken::after,.xtargettoken::after,.xtargetedtoken::after,.targetmodtokena::after,.targetmodtokend::after {
 content:"l"
 }
 
@@ -1442,13 +1443,13 @@ text-decoration:none;
 box-shadow:1px 1px 3px #000
 }
 
-.focusreddice,.hitreddice,.blankreddice,.criticalreddice,.reddice,.evademodtokena,.focusmodtokena,.targetmodtokena,.hitmodtokena,.criticalmodtokena,.blankmodtokena,.stressmodtokena,.illicitmodtokena,.ionmodtokena {
+.focusreddice,.hitreddice,.blankreddice,.criticalreddice,.reddice,.evademodtokena,.focusmodtokena,.targetmodtokena,.hitmodtokena,.criticalmodtokena,.blankmodtokena,.stressmodtokena,.illicitmodtokena,.ionmodtokena,.crewmodtokena {
 background:#f33;
 opacity:.9;
 color:#fff
 }
 
-.focusmodtokend,.blankmodtokend,.evademodtokend,.hitmodtokend,.illicitmodtokend,.criticalmodtokend {
+.focusmodtokend,.blankmodtokend,.evademodtokend,.hitmodtokend,.illicitmodtokend,.criticalmodtokend,.targetmodtokend,.crewmodtokend {
 background:#3f3;
 opacity:.9;
 color:#fff
@@ -1682,7 +1683,7 @@ background:rgba(0,0,0,0.5);
 bottom:0;
 left:30%;
 width:40%;
-z-index:16;
+z-index:1;
 color:#d3d3d3;
 cursor:move;
 height:6em
@@ -1709,43 +1710,32 @@ font-size:smaller;
 color:#d3d3d3;
 height:5em
 }
-
 .unit {
 cursor:move
 }
-
 .headunits input {
 border-radius:10px
 }
-
 td {
 vertical-align:top;
 margin:0;
 border:0;
 text-align:left
 }
-
-#team1 .details td {
-text-align:right
+#team1 .details td,#team2 .details td {
+text-align:center;
+font-size:smaller
 }
-
-#team2 .details td {
-text-align:left
-}
-
 .upgrade td:nth-child(2) {
 width:20%
 }
-
 .upgrade td:nth-child(3) {
 width:80%
 }
-
 tr {
 margin:0;
 border:0
 }
-
 .xwingship {
 font-family:'ships';
 padding:4px;
@@ -2326,4 +2316,27 @@ width:20%
 .m-battlexp {
 text-align:right;
 font-size:.5em
+}
+#unitfilter {
+float:left;
+background:#333;
+width:8em;
+border:0;
+padding:0;
+margin:0;
+border-radius:0 0 15px 0;
+}
+#unitfilter .GREEN {
+font-size:larger;
+}
+#dialfilter td[move] {
+width:1em;
+font-size:xx-small;
+opacity:0.5;
+text-align:center
+}
+#dialfilter td[move]:hover,#dialfilter td[move].selected {
+color:black;
+background:yellow;
+opacity:1
 }

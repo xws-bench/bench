@@ -144,17 +144,42 @@
  
      <article id="creation" style="display:none"  class="mainarticle">
        <div>
-	 <h3 class="inunitlist"><span class="m-name"></span> - <span id="totalpts">0</span>&nbsp;<span class="total m-totalpts"></span></h3>
+	 <button onclick="$('#unitfilter').toggle();">Filter</button>
+	 <div id="unitfilter" class="selector">
+	   <div>Upgrades</div>
+	   <div><input type="checkbox" id="fturret" onclick="unitfilter(TURRET)"><label for="fturret" class="upgrades Turret"></label>
+	   <input type="checkbox" id="fcrew" onclick="unitfilter(CREW)"><label for="fcrew" class="upgrades Crew"></label></div>
+	   <div><input type="checkbox" id="fastromech" onclick="unitfilter(ASTROMECH)"><label for="fastromech" class="upgrades Astromech"></label>
+	   <input type="checkbox" id="fsalvaged" onclick="unitfilter(SALVAGED)"><label for="fsalvaged" class="upgrades Salvaged"></label></div>
+	   <div><input type="checkbox" id="fsystem" onclick="unitfilter(SYSTEM)"><label for="fsystem" class="upgrades System"></label>
+	   <input type="checkbox" id="fcannon" onclick="unitfilter(CANNON)"><label for="fcannon" class="upgrades Cannon"></label></div>
+	   <div><input type="checkbox" id="ftorpedo" onclick="unitfilter(TORPEDO)"><label for="ftorpedo" class="upgrades Torpedo"></label>
+	   <input type="checkbox" id="fmissile" onclick="unitfilter(MISSILE)"><label for="fmissile" class="upgrades Missile"></label></div>
+	   <div><input type="checkbox" id="fbomb" onclick="unitfilter(BOMB)"><label for="fbomb" class="upgrades Bomb"></label>
+	   <input type="checkbox" id="fillicit" onclick="unitfilter(ILLICIT)"><label for="fillicit" class="upgrades Illicit"></label></div>
+	   <div><input type="checkbox" id="ftech" onclick="unitfilter(TECH)"><label for="ftech" class="upgrades Tech"></label></div>
+	   <div>Actions</div>
+	   <div><input type="checkbox" id="ffocus" onclick="actionfilter('FOCUS')"><label for="ffocus" class="symbols GREEN">f</label>
+	   <input type="checkbox" id="fevade" onclick="actionfilter('EVADE')"><label for="fevade" class="symbols GREEN">e</label></div>
+	   <div><input type="checkbox" id="froll" onclick="actionfilter('ROLL')"><label for="froll" class="symbols GREEN">r</label>
+	   <input type="checkbox" id="ftarget" onclick="actionfilter('TARGET')"><label for="ftarget" class="symbols GREEN">l</label></div>
+	   <div><input type="checkbox" id="fboost" onclick="actionfilter('BOOST')"><label for="fboost" class="symbols GREEN">b</label>
+	   <input type="checkbox" id="fcloak" onclick="actionfilter('CLOAK')"><label for="fcloak" class="symbols GREEN">k</label></div>
+	   <div><input type="checkbox" id="fslam" onclick="actionfilter('SLAM')"><label for="fslam" class="symbols GREEN">s</label>
+	   <input type="checkbox" id="farc" onclick="actionfilter('ARCROTATE')"><label for="farc" class="symbols GREEN">R</label></div>
+	   <div>Maneuvers</div>
+	   <table id="dialfilter"></table>
+	 </div>
 	 <div class="selector">
 	   <span class="REBEL m-rebel" onclick="currentteam.changefaction('REBEL')"></span>
 	   <span class="SCUM m-scum" onclick="currentteam.changefaction('SCUM')"></span>
 	   <span class="EMPIRE m-empire" onclick="currentteam.changefaction('EMPIRE')"></span>
-	 
+	 </div>
 	 <div class="unitlist">
 	   <ul id="caroussel" class="caroussel"></ul>
+	   <h3 class="inunitlist"><span id="totalpts">0</span>&nbsp;<span class="total m-totalpts"></span></h3>
 	   <ul id="listunits" class="caroussel"></ul>
 	 </div>
-       </div>
      </article>
 
 
@@ -378,23 +403,18 @@ The app is not really a game since the player plays both sides or against an AI,
 	    <p><b>Licence and copyright</b></p>
 	    <p>The app is (c) Denis Wings 2015-2016 (deniswings@free.fr). The code has an <a href="https://opensource.org/licenses/MIT">MIT license</a>. </p>
 
-	    The code of the app relies on the following external fonts and libraries. See their website for their license:
-	  <ul>
-	    <li><a href="https://github.com/geordanr/xwing-miniatures-font">Xwing-miniatures-font</a> (<a href="https://raw.githubusercontent.com/geordanr/xwing-miniatures-font/master/LICENSE">MIT license</a>)</li>
-	    <li>For card translations:
-	      <a href="https://github.com/geordanr/xwing">Yet Another Squad Builder</a> (<a href="https://github.com/geordanr/xwing/blob/master/LICENSE">MIT license</a>)</li>
-	    <li><a href="https://github.com/elistevens/xws-spec">JSON
-	  format of X-Wing squadrons</a>, as well as several translations</li>
-	    <li><a href="http://snapsvg.io/">Snap</a> for SVG and <a href="https://jquery.com/">jQuery</a> (resp. <a href="https://raw.githubusercontent.com/adobe-webplatform/Snap.svg/master/LICENSE">Apache 2</a> and MIT licenses)</li>
-	    <li><a href="https://github.com/janl/mustache.js">Mustache</a> for a minimal templating (<a href="https://raw.githubusercontent.com/janl/mustache.js/master/LICENSE">MIT license</a>)</li>
-	    <li><a href="https://github.com/keithamus/jwerty">Jwerty</a> for keyboard event handling (<a href="https://raw.githubusercontent.com/keithamus/jwerty/master/LICENSE">MIT license</a>)</li>
-	    <li><a href="http://goldfirestudios.com/blog/104/howler.js-Modern-Web-Audio-Javascript-Library">Howler</a> for sound playing (<a href="https://raw.githubusercontent.com/goldfire/howler.js/master/LICENSE.md">MIT license</a>)</li>
-	    <li><a href="https://datatables.net/">Datatables</a> for tables (<a href="https://datatables.net/license/mit">MIT license</a>)</li>
-	    <li><a href="http://imankulov.github.io/asuggest/">Asuggest</a> for auto-completion (MIT/GPL license)</li>
-	    <li><a href="http://pieroxy.net/blog/pages/lz-string/index.html">lz-string</a> for compression (<a href="https://raw.githubusercontent.com/pieroxy/lz-string/master/LICENSE.txt">Public license</a>)</li>
-	    <li><a href="http://hammerjs.github.io/">Hammer</a> for touch events (<a href="https://raw.githubusercontent.com/hammerjs/hammer.js/master/LICENSE.md">MIT license</a>)</li>
-	    <li><a href="https://github.com/chriszarate/sheetrock">Sheetrock</a> for Google Spreadsheet queries (MIT license)</li>
-	  </ul>
+	    The code of the app relies on the following external fonts and libraries. See their website for their license: <a href="https://github.com/geordanr/xwing-miniatures-font">Xwing-miniatures-font</a>, <a href="https://github.com/geordanr/xwing">Yet Another Squad Builder</a> and <a href="https://github.com/elistevens/xws-spec">JSON
+	  format of X-Wing squadrons</a> for card translations, 
+	    <a href="http://snapsvg.io/">Snap</a>,
+	    <a href="https://jquery.com/">jQuery</a>, 
+	    <a href="https://github.com/janl/mustache.js">Mustache</a>,
+	    <a href="https://github.com/keithamus/jwerty">Jwerty</a>,
+	    <a href="http://goldfirestudios.com/blog/104/howler.js-Modern-Web-Audio-Javascript-Library">Howler</a>,
+	    <a href="https://datatables.net/">Datatables</a>,
+	    <a href="http://imankulov.github.io/asuggest/">Asuggest</a>,
+	    <a href="http://pieroxy.net/blog/pages/lz-string/index.html">lz-string</a>,
+	    <a href="http://hammerjs.github.io/">Hammer</a>,
+	    <a href="https://github.com/chriszarate/sheetrock">Sheetrock</a>.
 	  </p>
 	  <div class="ack"><button onclick="window.location='#'">Ok</button></div>
 	</div></div>
@@ -469,7 +489,7 @@ The app is not really a game since the player plays both sides or against an AI,
 	    <p><b>Thanks</b></p>
 	    
 	    <p>Many thanks to supporters and patrons, in particular to:<br/>
-	      <em>James Ramsay, Club165 Ventures, Lorenz Thor, Edward Coxwell-Rodgers, 宜軒 詹, Carlo Casalini, Bryan Gagen, James Berry, Lucas Haeser.</em>
+	      <em>James Ramsay, Club165 Ventures, Lorenz Thor, Edward Coxwell-Rodgers, 宜軒 詹, Carlo Casalini, Bryan Gagen, James Berry, Lucas Haeser, Josh Chamot.</em>
 	    </p>
 	      
 	    <p>Thanks also for all of the contributors reporting bugs and proposing features</p>  
@@ -503,7 +523,6 @@ The app is not really a game since the player plays both sides or against an AI,
     </footer>
     <script src="js/all.min.js"></script>
     <script src="js/bench.min.js" async></script>
-
     <script>
       if (location.search=="") $("#selectphase").show();
     </script>
@@ -672,7 +691,7 @@ The app is not really a game since the player plays both sides or against an AI,
 	</td>
 	<td class="tdstat">
 	  <span>
-	    {{{trname}}}{{#hasshield}}<code class="cshield" title="{{shield}} shield(s)"></code>{{/hasshield}}{{#hasswitch}}<code class="smallbutton symbols" onclick="if (!squadron[{{uid}}].isdocked) squadron[{{uid}}].upgrades[{{uuid}}].switch();">î</code>{{/hasswitch}}
+	    {{{trname}}}{{#ordnance}}<sup class="ordnance">x2</sup>{{/ordnance}}{{#hasshield}}<code class="cshield" title="{{shield}} shield(s)"></code>{{/hasshield}}{{#hasswitch}}<code class="smallbutton symbols" onclick="if (!squadron[{{uid}}].isdocked) squadron[{{uid}}].upgrades[{{uuid}}].switch();">î</code>{{/hasswitch}}
 	  </span>
 	</td>
 	<td style="display:{{^left}}none{{/left}}{{#left}}table-cell{{/left}}">
@@ -696,6 +715,10 @@ The app is not really a game since the player plays both sides or against an AI,
       {{#stress}}<span class="xstresstoken"></span>{{/stress}}{{#stresses}}<sup class="counttoken">x{{.}}</sup>{{/stresses}}
       {{#ionized}}<span class="xionizedtoken"></span>{{/ionized}}{{#ionizedes}}<sup class="counttoken">x{{.}}</sup>{{/ionizedes}}
       {{#tractorbeam}}<span class="xtractorbeamtoken"></span>{{/tractorbeam}}{{#tractorbeames}}<sup class="counttoken">x{{.}}</sup>{{/tractorbeames}}
+    </script>
+
+    <script id="selectweapon" type="x-tmpl-mustache">
+      {{#weapons}}<div class="symbols {{color}}" onclick="activeunit.selecttargetforattack({{id}})">{{key}}</div>{{/weapons}}
     </script>
   </body>
 </html>
