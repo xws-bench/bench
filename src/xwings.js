@@ -485,18 +485,7 @@ function displaycombatdial() {
     $("#defense").empty();
     $("#combatdial").show();
 }
-function displayattackroll(m,n) {
-    var i,j=0;
-    for (i=0; i<DICES.length; i++) $("."+DICES[i]+"dice").remove();
-    $("#attack").empty();
-    for (i=0; i<Math.floor(m/100)%10; i++,j++)
-	$("#attack").append("<td class='focusreddice'></td>");
-    for (i=0; i<(Math.floor(m/10))%10; i++,j++)
-	$("#attack").append("<td class='criticalreddice'></td>");
-    for (i=0; i<m%10; i++,j++)
-	$("#attack").append("<td class='hitreddice'></td>");
-    for (i=j; i<n; i++)
-	$("#attack").append("<td class='blankreddice'></td>");
+function addredclickchange() {
     var change=function() { 
 	if ($(this).hasClass("focusreddice")) {
 	    $(this).removeClass("focusreddice"); $(this).addClass("hitreddice");
@@ -512,6 +501,20 @@ function displayattackroll(m,n) {
     $(".hitreddice").click(change);
     $(".blankreddice").click(change);
     $(".criticalreddice").click(change);
+}
+function displayattackroll(m,n) {
+    var i,j=0;
+    for (i=0; i<DICES.length; i++) $("."+DICES[i]+"dice").remove();
+    $("#attack").empty();
+    for (i=0; i<Math.floor(m/100)%10; i++,j++)
+	$("#attack").append("<td class='focusreddice'></td>");
+    for (i=0; i<(Math.floor(m/10))%10; i++,j++)
+	$("#attack").append("<td class='criticalreddice'></td>");
+    for (i=0; i<m%10; i++,j++)
+	$("#attack").append("<td class='hitreddice'></td>");
+    for (i=j; i<n; i++)
+	$("#attack").append("<td class='blankreddice'></td>");
+    addredclickchange();
 }
 function displayattacktokens(u,f) {
     $("#atokens").empty();
@@ -661,15 +664,7 @@ function modrolld(f,id) {
     displaydefenseroll(r,n);
     $("#dtokens #mod"+id).remove();
 }
-function displaydefenseroll(r,n) {
-    var i,j=0;
-    $("#defense").empty();
-    for (i=0; i<Math.floor(r/10); i++,j++)
-	$("#defense").append("<td class='focusgreendice'></td>");
-    for (i=0; i<r%10; i++,j++)
-	$("#defense").append("<td class='evadegreendice'></td>");
-    for (i=j; i<n; i++)
-	$("#defense").append("<td class='blankgreendice'></td>");
+function addgreenclickchange() {
     var change=function() { 
 	if ($(this).hasClass("focusgreendice")) {
 	    $(this).removeClass("focusgreendice"); $(this).addClass("evadegreendice");
@@ -683,13 +678,23 @@ function displaydefenseroll(r,n) {
     $(".evadegreendice").click(change);
     $(".blankgreendice").click(change);
 }
+function displaydefenseroll(r,n) {
+    var i,j=0;
+    $("#defense").empty();
+    for (i=0; i<Math.floor(r/10); i++,j++)
+	$("#defense").append("<td class='focusgreendice'></td>");
+    for (i=0; i<r%10; i++,j++)
+	$("#defense").append("<td class='evadegreendice'></td>");
+    for (i=j; i<n; i++)
+	$("#defense").append("<td class='blankgreendice'></td>");
+    addgreenclickchange();
+}
 
 function reroll(n,from,to,a,id) {
     var i,l,m=0;
     var attackroll=["blank","focus","hit","critical"];
     var defenseroll=["blank","focus","evade"];
     if (typeof a.f=="function") a.f();
-    //log("reroll:"+n+" "+from+" "+to+" "+a.n);
     if (to==ATTACK_M) {
 	for (i=0; i<4; i++) {
 	    // Do not reroll focus
@@ -708,13 +713,13 @@ function reroll(n,from,to,a,id) {
 		}
 	    }
 	}
-	//console.log("rerolling "+m+" dices");
 	$("#atokens #reroll"+id).remove();
 	var r=activeunit.rollattackdie(m);
 	for (i=0; i<m; i++) {
 	    //$("#attack").prepend("<td noreroll='true' class='"+r[i]+"reddice'></td>");
-	    $("#attack").prepend("<td class='"+r[i]+"reddice'></td>");
+	    $("#attack").append("<td class='"+r[i]+"reddice' noreroll></td>");
 	}
+	addredclickchange();
     } else { 
 	for (i=0; i<3; i++) {
 	    // Do not reroll focus
@@ -737,11 +742,12 @@ function reroll(n,from,to,a,id) {
 	activeunit.defenseroll(m).done(function(r) {
 	    var i;
 	    for (i=0; i<FE_evade(r.roll); i++)
-		$("#defense").prepend("<td class='evadegreendice'></td>");
+		$("#defense").append("<td class='evadegreendice'></td>");
 	    for (i=0; i<FE_focus(r.roll); i++)
-		$("#defense").prepend("<td class='focusgreendice'></td>");
+		$("#defense").append("<td class='focusgreendice'></td>");
 	    for (i=0; i<FE_blank(r.roll,r.dice); i++)
-		$("#defense").prepend("<td class='blankgreendice'></td>");
+		$("#defense").append("<td class='blankgreendice'></td>");
+	    addgreenclickchange();
 	});
     }
 }

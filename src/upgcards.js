@@ -2867,8 +2867,8 @@ var UPGRADES= [
 	    var self=this;
 	    self.unit.emperor=-1;
 	    Unit.prototype.wrap_after("rollattackdie",self,function(n,org,best,tab) {
-		if (typeof org.name!="undefined"
-		    &&self.unit.isally(this)
+		if (self.unit.isally(this)
+		    &&typeof  best!="undefined"
 		    &&self.unit.emperor<round) {
 		    for (i=0; i<tab.length; i++) if (tab[i]!=best) break;
 		    if (i<tab.length&&
@@ -2879,7 +2879,8 @@ var UPGRADES= [
 			self.unit.emperor=round;
 		    }
 		}
-		return tab;
+		if (typeof best!="undefined") return tab;
+		else return org;
 	    });
 	    Unit.prototype.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
 		req:function(m,n) {
