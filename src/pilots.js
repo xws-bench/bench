@@ -163,7 +163,11 @@ var PILOTS = [
 	pilotid:7,
         init: function() {
 	    var biggs=this;
-	    Weapon.prototype.wrap_after("getenemiesinrange",this,function(r) {
+	    Weapon.prototype.wrap_after("getenemiesinrange",this,function(enemylist,r) {
+		if (typeof r=="undefined") {
+		    r=enemylist;
+		    enemylist=this.unit.selectnearbyenemy(3);
+		}
 		if (this.unit.foundbiggs==true) {
 		    var p=[];
 		    for (var i=0; i<r.length; i++) {
@@ -174,14 +178,15 @@ var PILOTS = [
 		}
 		return r;
 	    });
-	    Unit.prototype.wrap_after("getenemiesinrange",this,function(r) {
+	    Unit.prototype.wrap_after("getenemiesinrange",this,function(weaponlist,enemies,r) {
+
 		this.foundbiggs=false;
 		var p=[];
-		for (var i=0; i<this.weapons.length; i++) {
+		for (var i=0; i<weaponlist.length; i++) {
 		    if (r[i].indexOf(biggs)>-1) { this.foundbiggs=true; break; }
 		}
 		if (this.foundbiggs) {
-		    for (var i=0; i<this.weapons.length; i++) {
+		    for (var i=0; i<weaponlist.length; i++) {
 			p[i]=[];
 			for (var j=0; j<r[i].length; j++) {
 			    var u=r[i][j];
@@ -3821,7 +3826,7 @@ var PILOTS = [
 	unique:true,
 	done:true,
         skill: 5,
-        upgrades: [ELITE,CREW,ILLICIT,ILLICIT],
+        upgrades: [CREW,ILLICIT,ILLICIT],
 	points:35,
 	init: function() {
 	    this.adddicemodifier(DEFENSE_M,ADD_M,DEFENSE_M,this,{
@@ -3841,7 +3846,7 @@ var PILOTS = [
 	done:true,
         unit: "Lancer-class Pursuit Craft",
         skill: 2,
-        upgrades: [ELITE,CREW,ILLICIT,ILLICIT],
+        upgrades: [CREW,ILLICIT,ILLICIT],
 	points:33
     },
     {
