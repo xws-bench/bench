@@ -1807,13 +1807,13 @@ Unit.prototype = {
 	    function (t,k) { t.endaction(n,"BOOST"); },true,this.canmoveonobstacles("BOOST"));
     },
     candoarcrotate: function() { return this.hasmobilearc; },
-    setarcrotate: function(r) { this.arcrotation=180+90*k; },
+    setarcrotate: function(r) { this.arcrotation=90*r; },
     resolvearcrotate: function(n,noaction) {
 	var aux=this.weapons[0].auxiliary;
 	var sectors=[];
 	var self=this;
 	for (var i=0; i<4; i++) { 
-	    sectors[i]=s.path(aux.call(this,1,this.m.clone().rotate(i*90,0,0))).attr({fill:this.color,stroke:this.color,opacity:0.1}).appendTo(VIEWPORT);
+	    sectors[i]=s.path(aux.call(this,1,this.m.clone().rotate(i*90-this.arcrotation,0,0))).attr({fill:this.color,stroke:this.color,opacity:0.1}).appendTo(VIEWPORT);
 	}
 	for (var i=0; i<4; i++) {
 	    (function(k) {
