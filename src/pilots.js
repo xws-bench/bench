@@ -3975,7 +3975,6 @@ var PILOTS = [
 		}.bind(this),str:"target"});
 	    this.adddicemodifier(DEFENSE_M,ADD_M,DEFENSE_M,this,{
 		req:function(m,n) {
-		    this.log("defense ?"+this.canusetarget(activeunit));
 		    return this.canusetarget(activeunit);
 		}.bind(this),
 		f:function(m,n) {

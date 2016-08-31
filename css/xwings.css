@@ -1722,8 +1722,11 @@ margin:0;
 border:0;
 text-align:left
 }
-#team1 .details td,#team2 .details td {
-text-align:center;
+#team1 .details td {
+text-align:right
+}
+#team2 .details td {
+text-align:left
 }
 .upgrade td:nth-child(2) {
 width:20%
