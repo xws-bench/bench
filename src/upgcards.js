@@ -3982,12 +3982,12 @@ var UPGRADES= [
 	     req: function() { return true; },
 	     f: function(m,n) {
 		 this.addiontoken();
-		 if (targetunit.canuseevade()) {
-		     targetunit.wrap_after("canuseevade",this,function(b) {
+		 if (targetunit.canusefocus()&&FE_focus(m)>1) {
+		     targetunit.wrap_after("canusefocus",this,function() {
 			 return false;
 		     }).unwrapper("afterdefenseeffect");
-		 } else if (targetunit.canusefocus()) {
-		     targetunit.wrap_after("canusefocus",this,function() {
+		 } else if (targetunit.canuseevade()) {
+		     targetunit.wrap_after("canuseevade",this,function(b) {
 			 return false;
 		     }).unwrapper("afterdefenseeffect");
 		 }
@@ -4469,7 +4469,7 @@ var UPGRADES= [
 	    var self=this;
 	    sh.wrap_before("resolveattack",self,function(w,target) {
 		var wp=this.weapons[w];
-		if (wp.isprimary&&this.isinfiringarc(target)&&this.getauxiliarysector(target)<=3&&wp.type!="Bilaser") {
+		if (wp.isprimary&&wp.getauxiliarysector(target)<=3&&wp.type=="Bilaser") {
 		    target.log("-1 defense [%0]",this.name);
 		    target.wrap_after("getagility",this,function(a) {
 			if (a>0) return a-1; 
