@@ -4147,6 +4147,7 @@ var UPGRADES= [
 		return p.concat(self.unit);
 	    });
 	    sh.wrap_after("addfocustoken",this,function() {
+		if (this.dead||!self.isactive) return;
 		var p=this.getattanni();
 		for (var i in p) if (p[i]!=this&&p[i].isally(this)
 				     &&p[i].focus==0) {
@@ -4155,6 +4156,7 @@ var UPGRADES= [
 		}
 	    });
 	    sh.wrap_after("addstress",this,function() {
+		if (this.dead||!self.isactive) return;
 		var p=this.getattanni();
 		for (var i in p) if (p[i]!=this&&p[i].isally(this)
 				     &&p[i].stress==0) {
@@ -4708,6 +4710,23 @@ var UPGRADES= [
 		      this.resolvearcrotate(n,true);
 		    }.bind(this)}],"",true);
 	  });
+      }
+    },
+    { name:"Shadow Caster",
+      ship:"Lancer-class Pursuit Craft",
+      type:TITLE,
+      points:3,
+      done:true,
+      unique:true,
+      init: function(sh) {
+	  var self=this;
+	  sh.wrap_before("hashit",this,function(t,r) {
+	      if (this.weapons[0].getauxiliarysector(t)<=2) {
+		  this.log("+1 tractor beam token [%0]",self.name);
+		  t.addtractorbeam(this);
+	      }
+	      return r;
+	   });
       }
     }
 ];
