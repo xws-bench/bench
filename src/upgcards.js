@@ -2867,7 +2867,9 @@ var UPGRADES= [
 	    var self=this;
 	    self.unit.emperor=-1;
 	    Unit.prototype.wrap_after("rollattackdie",self,function(n,org,best,tab) {
-		if (typeof org.name!="undefined"&&self.unit.emperor<round) {
+		if (typeof org.name!="undefined"
+		    &&self.unit.isally(this)
+		    &&self.unit.emperor<round) {
 		    for (i=0; i<tab.length; i++) if (tab[i]!=best) break;
 		    if (i<tab.length&&
 			confirm("Emperor Palpatine effect\n"
