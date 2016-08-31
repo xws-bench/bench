@@ -689,6 +689,7 @@ function reroll(n,from,to,a,id) {
     var attackroll=["blank","focus","hit","critical"];
     var defenseroll=["blank","focus","evade"];
     if (typeof a.f=="function") a.f();
+    //log("reroll:"+n+" "+from+" "+to+" "+a.n);
     if (to==ATTACK_M) {
 	for (i=0; i<4; i++) {
 	    // Do not reroll focus

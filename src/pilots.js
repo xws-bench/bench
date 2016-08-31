@@ -3764,7 +3764,6 @@ var PILOTS = [
 	pilotid:194,
 	done:true,
         unit: "TIE/SF Fighter",
-	unique:true,
         skill: 3,
         upgrades: [SYSTEM,MISSILE,TECH],
 	points:23
