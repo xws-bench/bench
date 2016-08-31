@@ -22,6 +22,7 @@
    * collision with asteroids: critical results taken into account
    * english texts for missing translations
    * top10 list updated with new squads
+   * Agent Kallus
 */
 // AIzaSyBN2T9d2ZuWaT0Vj6EanYb5IgWzLlhy7Zo 
 var phase=1;
@@ -71,7 +72,15 @@ var SQUADBUILDER=1;
 
 
 
-
+    <script src="src/obstacles.js"></script>
+    <script src="src/team.js"></script>
+    <script src="src/units.js"></script>
+    <script src="src/upgrades.js"></script>
+    <script src="src/upgcards.js"></script>
+    <script src="src/critical.js"></script>
+    <script src="src/pilots.js"></script>
+    <script src="src/iaunits.js"></script>
+    <script src="src/xwings.js"></script>
 
 		 <button onclick='$("#replay")[0].contentWindow.stopreplay();'>Stop</button>
 

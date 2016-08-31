@@ -1817,6 +1817,7 @@ Unit.prototype = {
 	}
 	for (var i=0; i<4; i++) {
 	    (function(k) {
+		sectors[k].hover(function() { sectors[k].attr({opacity:0.4}); }, function() { sectors[k].attr({opacity:0.1}); });
 		sectors[k].click(function() { 
 		    self.setarcrotate(k);
 		    self.movelog("R-"+k);
