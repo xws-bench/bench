@@ -593,8 +593,7 @@ var PILOTS = [
 		this.checkdead();
 	    });
 	    this.wrap_after("canbedestroyed",this,function(skillturn,b) {
-		if (skillturn==-1) return true;
-		return false;
+		return (skillturn==-1);
 	    });
 	},
         points: 23,
@@ -610,7 +609,7 @@ var PILOTS = [
         skill: 7,
 	init: function() {
 	    this.addafterattackeffect(this,function() {
-		var p=[];
+		var p=[];/*TODO: should not test before performing the action */
 		if (this.candoboost()) 
 		    p.push(this.newaction(this.resolveboost,"BOOST"));
 		if (this.candoroll()) 
