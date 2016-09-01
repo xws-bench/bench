@@ -90,9 +90,8 @@ var PILOTS = [
 	    this.wrap_before("resolveattack",this,function(w,target) {
 		target.log("-1 defense [%0]",this.name);
 		target.wrap_after("getagility",this,function(a) {
-		    if (a>0) return a-1; 
-		    return a;
-		}).unwrapper("afterdefenseeffect");
+		    return (a>0)?a-1:a; 
+		}).unwrapper("cleanupattack");
 		target.showstats();
 	    });
 	},
@@ -540,18 +539,12 @@ var PILOTS = [
 	pilotid:27,
         unit: "TIE Advanced",
         skill: 9,
-	doendmaneuveraction: function() {
-	    if (this.candoendmaneuveraction()) {
-		var x=this.doaction(this.getactionlist(),"1st action");
-		//this.log("action:"+x);
-		x.done(function() {
-		    if (this.candoaction()) {
-			this.doaction(this.getactionlist(),"2nd action");
-		    } else { this.action=-1; this.actiondone=true; this.deferred.resolve(); }
-		}.bind(this))
-	    } else { this.action=-1; this.actiondone=true; this.deferred.resolve(); }
-	    return this.deferred;
- 	},
+	init: function() {
+	    this.wrap_before("doendmaneuveraction",this,function() {
+		this.log("+1 action [%0]",this.name);
+		this.doaction(this.getactionlist(),"",this.candoendmaneuveraction);
+	    });
+	},
 	secaction:-1,
         points: 29,
         upgrades: [ELITE,MISSILE],
@@ -1575,7 +1568,7 @@ var PILOTS = [
 	done:true,
 	pilotid:84,
 	init: function() {
-	    this.addafterattackeffect(this,function(c,h) {
+	    this.wrap_before("cleanupattack",this,function() {
 		if (targetunit.targeting.length>0) {
 		    targetunit.log("-1 %TARGET% [%0]",this.name);
 		    targetunit.removetarget(targetunit.targeting[0]);
@@ -2361,7 +2354,7 @@ var PILOTS = [
 		if (!unit.dead&&this.getrange(unit)<=3 &&unit.isenemy(this)&&unit.stress==0) {
 		    unit.addstress();
 		    this.resolvehit(1);
-		    unit.log("+1 %cSTRESS%");
+		    unit.log("+1 %STRESS%");
 		    this.log("+%1 %HIT [%0]",unit.name,1);
 		    this.checkdead();
 		}
