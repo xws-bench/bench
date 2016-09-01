@@ -1084,7 +1084,7 @@ function displaycombats(t) {
     for (var i=0; i<mySpreadsheets.length; i++) {
 	$('#squadbattlediv').sheetrock({
 	    url: mySpreadsheets[i],
-	    query:"select B,C,D where C contains '"+t+"'",
+	    query:"select B,C,E where C contains '"+t+"'",
 	    callback:myCallback,
 	    fetchSize:100,
 	    rowTemplate:function () { return "";},
