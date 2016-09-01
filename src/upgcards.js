@@ -2417,7 +2417,11 @@ var UPGRADES= [
 	    sh.showstats();
 	},
 	uninstall:function(sh) {
-	    if (sh.getagility.unwrap=="function") sh.getagility.unwrap(this);
+	    if (sh.getagility.unwrap=="function") {
+		sh.getagility.unwrap(this);
+		//log("removing stealth device");
+	    }
+	    sh.installed=false;
 	    sh.showstats();
 	},
 	init: function(sh) {
@@ -2869,7 +2873,7 @@ var UPGRADES= [
 	    var self=this;
 	    self.unit.emperor=-1;
 	    var replace=function(n,org,best,tab) {
-		if (self.unit.isally(this)
+		if (self.unit.isally(this)&&!self.unit.dead
 		    &&typeof  best!="undefined"
 		    &&self.unit.emperor<round) {
 		    for (var i=0; i<tab.length; i++) if (tab[i]!=best) break;
@@ -4728,8 +4732,8 @@ var UPGRADES= [
       unique:true,
       init: function(sh) {
 	  var self=this;
-	  sh.wrap_before("hashit",this,function(t,r) {
-	      if (this.weapons[0].getauxiliarysector(t)<=2) {
+	  sh.wrap_after("hashit",this,function(t,r) {
+	      if (r&&this.weapons[0].getauxiliarysector(t)<=2) {
 		  this.log("+1 tractor beam token [%0]",self.name);
 		  t.addtractorbeam(this);
 	      }
