@@ -23,6 +23,7 @@
    * english texts for missing translations
    * top10 list updated with new squads
    * Agent Kallus
+   * Wes Janson FAQ
 */
 // AIzaSyBN2T9d2ZuWaT0Vj6EanYb5IgWzLlhy7Zo 
 var phase=1;
@@ -2558,26 +2559,6 @@ $(document).ready(function() {
             }
 	} );
 
-
-/*
-	$.ajax({
-            url: "https://docs.google.com/a/xws-bench.github.io/forms/d/1NKJ1jOqR8F0lSrBtpRgIJe0GYVAk782FKss9a_XU0N4/formResponse",
-            data: {"entry.1" : "blabla", "entry.2" : "toto", "entry.3": "titi"},
-            type: "POST",
-            dataType: "xml",
-            statusCode: {
-                0: function (){
-		    log("ok sent!");
-                        //Success message
-                },
-                200: function (){
-		    log("ko sent");
-                    //Success Message
-                }
-            }
-	});
-*/
-
 	var arg=LZString.decompressFromEncodedURIComponent(decodeURI(window.location.search.substr(1)));
 	var args=[];
 	if (arg!=null) args= arg.split('&');
@@ -2591,6 +2572,7 @@ $(document).ready(function() {
 	    TEAMS[2].toJSON(); // Just for points
 	    TEAMS[1].isia=false;
 	    TEAMS[2].isia=false;
+	    console.log("player name and image:"+args[8]+"<>"+args[7]+"<>");
 	    if (args[3]=="true") TEAMS[1].isia=true;	
 	    else { 
 		localStorage["imageplayer"]=args[7];

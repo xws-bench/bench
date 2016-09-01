@@ -271,7 +271,6 @@ Unit.prototype = {
 	this.actionsdone=[];
 	this.hasmoved=false;
 	this.hasdecloaked=false;
-	this.actiondone=false;
 	this.reroll=0;
 	this.focus=0;
 	this.tractorbeam=0;
@@ -805,7 +804,7 @@ Unit.prototype = {
     },
     confirm: function(s) { return confirm(s); },
     rollattackdie: function(n,org,best) { var p=[]; for (var i=0; i<n; i++) p.push(FACE[ATTACKDICE[this.rand(8)]]); return p; },
-    rolldefensedie: function(n) { var p=[]; for (var i=0; i<n; i++) p.push(FACE[DEFENSEDICE[this.rand(8)]]); return p; },
+    rolldefensedie: function(n,org,best) { var p=[]; for (var i=0; i<n; i++) p.push(FACE[DEFENSEDICE[this.rand(8)]]); return p; },
     rand: function(n) { return Math.floor(Math.random()*n); },
     getdefensetable: function(n) { return DEFENSE[n]; },
     defenseroll: function(n) {
@@ -2008,7 +2007,7 @@ Unit.prototype = {
 	if (n==0) callback(n); 
 	else actionr[n-1].done(function() { 
 	    //this.log("|| "+n+" execute "+actionr[n].name); 
-	    callback(n) 
+	    callback(n)
 	}.bind(this));
 	return actionr[n];
     },
@@ -2016,13 +2015,14 @@ Unit.prototype = {
 	//this.log("*** "+n+" "+(actionr.length-1));
 	actionr[n].resolve(type);
 	//this.log("n="+n+" "+(actionr.length-1));
-	if (n==actionr.length-1) actionrlock.resolve();
+	if (n==actionr.length-1) {
+	    actionrlock.resolve();
+	}
 	this.show();
     },
     endaction: function(n,type) {
 	//this.log("endaction "+n+" "+type);
 	if (phase==ACTIVATION_PHASE) $("#activationdial").show();
-	this.actiondone=true; 
 	this.clearaction();
 	this.endnoaction(n,type);
     },
@@ -2478,14 +2478,16 @@ Unit.prototype = {
 	    &&!this.collision
 	    &&!this.hascollidedobstacle(); },
     doendmaneuveraction: function() {
-	if (this.candoendmaneuveraction()) return this.doaction(this.getactionlist(),"");
-	this.action=-1; this.actiondone=true;
-	return this.unlock();
+	return this.doaction(this.getactionlist(),"",this.candoendmaneuveraction);
+	/*
+	this.action=-1; 
+	*/
     },
     doselection: function(f,org) {
 	return this.enqueueaction(f,org);  
     },
-    doaction: function(list,str) {
+    doaction: function(list,str,candoaction) {
+	if (typeof candoaction=="undefined") candoaction=this.candoaction;
 	if (list.length==0) {
 	    this.log("no action available");
 	    return this.enqueueaction(function(n) {
@@ -2495,7 +2497,7 @@ Unit.prototype = {
 	return this.enqueueaction(function(n) {
 	    var i;
 	    $("#actiondial").empty();
-	    if (this.candoaction()) {
+	    if (candoaction.call(this)) {
 		this.select();
  		if (typeof str!="undefined"&&str!="") this.log(str);
 		$("#actiondial").html($("<div>"));
@@ -2630,6 +2632,9 @@ Unit.prototype = {
 	    actionrlock.resolve();
 	    this.unlock();
 	}
+    },
+    addafteractions: function(f) {
+	actionrlock.done(f);
     },
     areactionspending: function() {
 	for (var i=0; i<actionr.length; i++) {
@@ -3017,10 +3022,6 @@ Unit.prototype = {
 	var mm=m.split();
 	var d=mm.scalex;
 	$(".phasepanel").css({left:x+d*(this.islarge?40:20),top:y}).show();
-    },
-    timeforaction: function() {
-	//log("waiting ?"+waitingforaction.isexecuting+" active?"+(this==activeunit)+" moved?"+this.hasmoved+" actiondone?"+this.actiondone);
-	return (this==activeunit&&this.hasmoved&&!this.actiondone&&phase==ACTIVATION_PHASE);
     },
     timeformaneuver: function() {
 	return  (this==activeunit&&this.maneuver>-1&&!this.hasmoved&&this.getskill()==skillturn&&phase==ACTIVATION_PHASE&&subphase==ACTIVATION_PHASE);
@@ -3503,13 +3504,13 @@ Unit.prototype = {
 	var gr=this.weapons[w].getrange(sh);
 	return gr;
     },
-    getenemiesinrange: function(weaponlist) {
+    getenemiesinrange: function(weaponlist,enemylist) {
 	var str='';
 	var k,i;
 	var range=[];
 	if (typeof weaponlist=="undefined") weaponlist=this.weapons;
 	for(i=0; i<weaponlist.length; i++) {
-	    range[i]=weaponlist[i].getenemiesinrange();
+	    range[i]=weaponlist[i].getenemiesinrange(enemylist);
 	}
 	return range;
     },

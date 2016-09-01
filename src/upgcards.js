@@ -567,7 +567,8 @@ var UPGRADES= [
 		    ptl.r=round;
 		    this.log("select an action or Skip to cancel [%0]",ptl.name);
 		    this.doaction(this.getactionbarlist(),"+1 free action").done(function(type) {
-			if (type!=null) this.addstress(); else ptl.r=-1;
+			if (type==null) ptl.r=-1; 
+			else this.addafteractions(function() { this.addstress(); }.bind(this));
 		    }.bind(this));
 		}
 	    });
@@ -2601,7 +2602,8 @@ var UPGRADES= [
 		    upg.r=round;
 		    this.log("select an action or Skip to cancel [%0]",upg.name);
 		    this.doaction(this.getupgactionlist(),"").done(function(type) {
-			if (type!=null) this.addstress(); else upg.r=-1;
+			if (type==null) upg.r=-1;
+			else this.addafteractions(function() { this.addstress(); }.bind(this));
 		    }.bind(this));
 		}
 	    });
@@ -4245,6 +4247,7 @@ var UPGRADES= [
      init: function(sh) {
 	 var self=this;
 	 sh.wrap_after("addstress",this,function() {
+	     this.log("adding eb action");
 	     this.donoaction([{type:"STRESS",name:self.name,org:self,
 			       action:function(n) {
 				   this.removestresstoken();
