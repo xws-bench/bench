@@ -2866,11 +2866,11 @@ var UPGRADES= [
 	init: function() {
 	    var self=this;
 	    self.unit.emperor=-1;
-	    Unit.prototype.wrap_after("rollattackdie",self,function(n,org,best,tab) {
+	    var replace=function(n,org,best,tab) {
 		if (self.unit.isally(this)
 		    &&typeof  best!="undefined"
 		    &&self.unit.emperor<round) {
-		    for (i=0; i<tab.length; i++) if (tab[i]!=best) break;
+		    for (var i=0; i<tab.length; i++) if (tab[i]!=best) break;
 		    if (i<tab.length&&
 			confirm("Emperor Palpatine effect\n"
 				+org.name+": "+tab[0]+" die -> "+best+" die ?")) {
@@ -2881,7 +2881,9 @@ var UPGRADES= [
 		}
 		if (typeof best!="undefined") return tab;
 		else return org;
-	    });
+	    }
+	    Unit.prototype.wrap_after("rollattackdie",self,replace);
+	    Unit.prototype.wrap_after("rolldefensedie",self,replace);
 	    Unit.prototype.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
 		req:function(m,n) {
 		    return self.unit.emperor<round&&activeunit.isally(self.unit);
@@ -3941,8 +3943,8 @@ var UPGRADES= [
 		 var f=FE_focus(m);
 		 if (f>0) {
 		     targetunit.log("Reroll %0 %FOCUS% [%1]",f,self.name);
-		     sh.log("%0 %STRESS% [%1]",f,self.name);
-		     var roll=sh.rolldefensedie(f);
+		     sh.log("+%0 %STRESS% [%1]",f,self.name);
+		     var roll=sh.rolldefensedie(f,self,"evade");
 		     m-=FE_FOCUS*f;
 		     for (var i=0; i<f; i++) {
 			 sh.addstress();
@@ -3959,7 +3961,7 @@ var UPGRADES= [
 		 if (f>0) {
 		     targetunit.log("Reroll %0 %EVADE% [%1]",f,self.name);
 		     sh.log("+%0 %STRESS% [%1]",f,self.name);
-		     var roll=sh.rolldefensedie(f);
+		     var roll=sh.rolldefensedie(f,self,"evade");
 		     m-=FE_EVADE*f;
 		     for (var i=0; i<f; i++) {
 			 sh.addstress();
