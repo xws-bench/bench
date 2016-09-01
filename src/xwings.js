@@ -1343,6 +1343,7 @@ function removeupgrade(self,num,data) {
     if (org.unique==true) removeunique(org.name);
     if (org.limited==true) removelimited(self,data);
     self.upg[num]=-1;
+    //log("removing upgrade: "+(typeof org.uninstall));
     if (typeof org.uninstall!="undefined") org.uninstall(self);
     Upgrade.prototype.uninstall.call(org,self);
     $("#unit"+self.id+" .shipdial").html("<table>"+self.getdialstring()+"</table>");
