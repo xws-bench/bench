@@ -828,7 +828,9 @@ var UPGRADES= [
 	    var self=this;
 	    self.ea=Unit.prototype.resolvecritical;
 	    Unit.prototype.resolvecritical=function(c) {
-		if (c>0&&this.isally(sh)&&sh!=this&&this.getrange(sh)==1){
+		if (!self.unit.dead
+		    &&c>0&&this.isally(sh)
+		    &&sh!=this&&this.getrange(sh)==1){
 		    this.selectunit([this,sh],function(p,k) {
 			if (k==0) { self.ea.call(this,1); }
 			else { self.ea.call(sh,1);}
@@ -1576,7 +1578,7 @@ var UPGRADES= [
 	    var jan=-1;
 	    var self=this;
 	    Unit.prototype.wrap_after("addfocustoken",this,function() {
-		if (this.getrange(sh)<=3&&this.isally(sh)&&jan<round) {
+		if (!self.unit.dead&&this.getrange(sh)<=3&&this.isally(sh)&&jan<round) {
 		    this.log("select %FOCUS% or %EVADE% token [%0]",self.name)
 		    this.donoaction(
 			[{name:self.name,org:self,type:"FOCUS",action:function(n) { 
@@ -1879,7 +1881,7 @@ var UPGRADES= [
 	    var unit=this.unit;
 	    var self=this;
 	    Unit.prototype.wrap_after("getagility",this,function(a) {
-		if (this.isenemy(unit)&&a>0&&(typeof this.touching!="undefined")) 
+		if (!unit.dead&&this.isenemy(unit)&&a>0&&(typeof this.touching!="undefined")) 
 		    if (this.touching.indexOf(unit)>-1) {
 			this.log("-1 agility [%0]",self.name);
 			return a-1;
@@ -2621,8 +2623,9 @@ var UPGRADES= [
         points: 1,
 	done:true,
 	init: function(sh) {
+	    var self=this;
 	    Unit.prototype.wrap_after("getobstructiondef",this,function(t,ob) {
-		if (this.isenemy(sh)&&ob==0) {
+		if (!self.unit.dead&&this.isenemy(sh)&&ob==0) {
 		    OBSTACLES.push(sh);
 		    ob=this.getoutlinerange(this.m,t).o?1:0;
 		    OBSTACLES.splice(OBSTACLES.indexOf(sh),1);
@@ -2914,7 +2917,7 @@ var UPGRADES= [
 		},str:"crew"});
 	    Unit.prototype.adddicemodifier(DEFENSE_M,MOD_M,DEFENSE_M,this,{
 		req:function(m,n) {
-		    return targetunit.isally(self.unit)&&self.unit.emperor<round;
+		    return !self.unit.dead&&targetunit.isally(self.unit)&&self.unit.emperor<round;
 		},
 		f:function(m,n) {
 		    self.unit.emperor=round;
@@ -3639,12 +3642,13 @@ var UPGRADES= [
       unique:true,
       done:true,
       init: function(sh) {
+	  var self=this;
 	  Unit.prototype.wrap_after("checkcollision",this,function(t,b) {
-	      if (t==sh&&sh.isinfiringarc(t)) return false;
+	      if (!self.unit.dead&&t==sh&&sh.isinfiringarc(t)) return false;
 	      return b;
 	  });
 	  sh.wrap_after("checkcollision",this,function(t,b) {
-	      if (sh.isinfiringarc(t)) return false;
+	      if (!self.unit.dead&&sh.isinfiringarc(t)) return false;
 	      return b;
 	  });
       }
@@ -3681,7 +3685,7 @@ var UPGRADES= [
 	  var self=this;
 	  this.rd=-1;
 	  Unit.prototype.wrap_after("handledifficulty",self,function(difficulty) {
-	      if (difficulty=="WHITE"&&this.stress>0&&self.rd<round
+	      if (!self.unit.dead&&difficulty=="WHITE"&&this.stress>0&&self.rd<round
 		  &&this.isally(self.unit)&&this.getrange(self.unit)<=2) {
 		  this.log("-1 %STRESS% [%0]",self.name);
 		  self.rd=round;
