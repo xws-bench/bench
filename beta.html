@@ -13,7 +13,7 @@
           'longUrl': 'http://xws-benchmark.github.io/bench/beta.html'
         });
         request.then(function(response) {
-          appendResults(response.result.shortUrl);
+          appendResults(response.result);
         }, function(reason) {
           console.log('Error: ' + reason.result.error.message);
         });
