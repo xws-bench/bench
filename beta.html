@@ -15,7 +15,7 @@
         });
         request.then(function(response) {
       for (var i in response.result) 
-          console.log(response.result[i]);
+          console.log(i+" "+response.result[i]);
         }, function(reason) {
           console.log('Error: ' + reason.result.error.message);
         });
