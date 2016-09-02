@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script>
+      function appendResults(text) {
+        var results = document.getElementById('results');
+        results.appendChild(document.createElement('P'));
+        results.appendChild(document.createTextNode(text));
+      }
+
+      function makeRequest() {
+        var request = gapi.client.urlshortener.url.get({
+          'longUrl': 'http://xws-benchmark.github.io/bench'
+        });
+        request.then(function(response) {
+          appendResults(response.result.longUrl);
+        }, function(reason) {
+          console.log('Error: ' + reason.result.error.message);
+        });
+      }
+
+      function init() {
+        gapi.client.setApiKey('AIzaSyBN2T9d2ZuWaT0Vj6EanYb5IgWzLlhy7Zo');
+        gapi.client.load('urlshortener', 'v1').then(makeRequest);
+      }
+
+      gapi.load('client', init);
+    </script>
+  </head>
+  <body>
+    <div id="results"></div>
+  </body>
+</html>
+
