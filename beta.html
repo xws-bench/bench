@@ -9,7 +9,7 @@
       }
 
       function makeRequest() {
-        var request = gapi.client.urlshortener.url.get({
+        var request = gapi.client.urlshortener.url.insert({
           'longUrl': 'http://xws-benchmark.github.io/bench'
         });
         request.then(function(response) {
