@@ -1,5 +1,6 @@
 <html>
   <head>
+    <script src="js/all.min.js"></script>
     <script src="https://apis.google.com/js/api.js"></script>
     <script>
       function appendResults(text) {
@@ -13,7 +14,8 @@
           'longUrl': 'http://xws-benchmark.github.io/bench/beta.html'
         });
         request.then(function(response) {
-          appendResults(response.result);
+      for (var i in response.result) 
+          console.log(response.result[i]);
         }, function(reason) {
           console.log('Error: ' + reason.result.error.message);
         });
