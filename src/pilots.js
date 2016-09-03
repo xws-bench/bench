@@ -1707,7 +1707,7 @@ var PILOTS = [
 		    return this.stress>0; 
 		}.bind(this),
 		aiactivate: function(m,n) {
-		    return FCH_focus(m)>0;
+		    return true;
 		},
 		f:function(m,n) {
 		    var f=FCH_focus(m);

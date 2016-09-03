@@ -1546,6 +1546,7 @@ Unit.prototype = {
     postattack: function(i) { },
     cleanupattack: function() {
 	this.actionbarrier();
+	ENGAGED=false;
     },
     resetfocus: function() {
 	return 0;
@@ -2558,6 +2559,7 @@ Unit.prototype = {
     selecttargetforattack: function(wp,enemies) {
 	var p;
 	var str="";
+	ENGAGED=true;
 	p=this.weapons[wp].getenemiesinrange(enemies);
 	if (p.length==0) {
 	    this.log("no target for %0",this.weapons[wp].name);
@@ -2579,7 +2581,7 @@ Unit.prototype = {
 	var i,j,w;
 	$("#attackdial").show();
 	if (typeof weaponlist=="undefined") weaponlist=this.weapons;
-	
+	//else this.attackweapons=weaponlist;
 	var r=this.getenemiesinrange(weaponlist,enemylist);
 	var d=$("<div>");
 	for (w=0,j=0; w<weaponlist.length; w++) {
@@ -3058,7 +3060,10 @@ Unit.prototype = {
 	this.showdial();
 	this.showmaneuver();
 	if (phase==ACTIVATION_PHASE) this.showactivation();
-	//this.showattack();
+	if (!ENGAGED&&phase==COMBAT_PHASE){ 
+	    if (this.getskill()==skillturn&&this.hasfired<this.maxfired) this.showattack(); 
+	    else $("#attackdial").empty();
+	}
 	this.showoverflow();
     },
     updatetohit: function(b,wp) {

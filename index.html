@@ -24,6 +24,8 @@
   </head>
 
   <body>
+    <script src="https://apis.google.com/js/api.js"></script>
+
     <nav>
       <div>
 	<span class="h2"><span class="xwing"></span><span class="title">Squadron Benchmark</span>
@@ -42,9 +44,8 @@
 	  <button onclick="currentteam=TEAMS[0];createsquad()" class="mainbutton m-create"></button>
 	  <label for="imagebg" style="display:none" class="imagebg permalink">Import setup image</label>
 	  <input style="display:none" type="file" id="imagebg">
-
-	  <button class="permalink m-reset" onclick="resetlink(true)" >&lt;&lt; </button>
-	  <button class="permalink" onclick="resetlink()" >&lt; Back</button>
+	  <button class="permalink m-reset" onclick="resetlink(true,false)" >&lt;&lt; </button>
+	  <select class="permalink" id="turnselector" onchange="resetlink(false,false,true);"><option value="-1">&lt; Back</option></select>
 	  <span id="phase"></span>
 	  <button class="nextphase" onclick="nextphase()"><span class='np'></span> <span id='npimg'>&gt;</span></button>
 	  <span class="menu" ><span class="symbols" style="padding:5px;vertical-align:bottom;color:white;font-size:larger;">&#xE2;</span>
@@ -125,7 +126,7 @@
 	    <a href="#" title="Close" class="close">&#10060;</a>
 	  </h2>
 	  <div>
-	    <button class="permalink m-reset" onclick="resetlink(true)">&lt;&lt;</button><button class="m-restart permalink" onclick="resetlink(false,true)" >&lt; </button>
+	    <button class="permalink m-reset" onclick="resetlink(true,false)">&lt;&lt;</button><button class="m-restart permalink" onclick="resetlink(false,true)" >&lt; </button>
 
 	    <table class="victory-table"></table>
 	    <div class="replays">Share combat: 
@@ -247,6 +248,14 @@
        </div>
      </section>
 
+     <section id="bug" class="modalDialog">
+       <div>
+	 <h2><span class="m-submitabug"></span><a href="#" title="Close" class="close">&times;</a></h2>
+	 <div>
+	    <div class="ack"><button onclick="window.location='#'">Ok</button></div>
+	 </div>
+       </div>
+     </section>
 
      <section id="battlelog" class="modalDialog">
        <div>
@@ -447,12 +456,14 @@ The app is not really a game since the player plays both sides or against an AI,
 		  <input type="radio" id="sb2" name="squadbuilder" value="2" onclick="SQUADBUILDER=2"/>
 		  <label for="sb1" class="m-sbfab">Fab's Squadron Builder</label><br/><span style="font-size:smaller">Create your squad and then copy/paste it in XWS format (share button).</span> 
 		</td>
-	      </tr><tr>
+	      </tr>
+	      <tr>
 		<td class="m-console"></td>
 		<td>
 		  <input type="checkbox" checked value="1" id="consolecb" onclick="$('footer').toggle()"/>
 		</td>
-	      </tr><tr>
+	      </tr>
+	      <tr>
 		<td>Console color</td>
 		<td>
 		  <input type="radio" id="cb1" value="2" checked name="colorconsole" onclick="$('footer').css('filter','none');"/>
@@ -523,6 +534,7 @@ The app is not really a game since the player plays both sides or against an AI,
     </footer>
     <script src="js/all.min.js"></script>
     <script src="js/bench.min.js" async></script>
+
     <script>
       if (location.search=="") $("#selectphase").show();
     </script>
