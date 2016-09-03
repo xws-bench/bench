@@ -288,7 +288,7 @@ IAUnit.prototype= {
 	}.bind(this),"doaction ia");
     },
     showattack: function() {
-	$("#attackdial").empty();
+	//$("#attackdial").empty();
     },
     doattack: function(weaponlist,enemies) {
 	//this.log("ia/attack?"+this.id+" forced:"+forced+" turn:"+(skillturn==this.skill));
