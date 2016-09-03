@@ -60,7 +60,7 @@ var ANIM="";
 var SETUP;
 var SHOWDIAL=[];
 var TRACE=false;
-var TEMPLATES={"bomb":"","upgrade":"","weapon":""};
+var TEMPLATES={"bomb":"","upgrade":"","weapon":"","social":""};
 //var sl;
 var increment=1;
 var UNIQUE=[];
@@ -204,23 +204,15 @@ var mk2split = function(t) {
 }
 var save=function() {
     var url="http://xws-bench.github.io/bench/?"+permalink(false);
-    var makerequest=function() {
-	console.log("gapi:"+gapi+" "+gapi.client);
-	var request = gapi.client.urlshortener.url.insert({
-            'longUrl': url
-	});
-	request.then(function(response) {
-	    console.log(response.result.id);
-	}, function(reason) {
-            console.log('Error: ' + reason.result.error.message);
-	});
-	return request;
-    }
-    var initgapi=function() {
-        gapi.client.setApiKey('AIzaSyBN2T9d2ZuWaT0Vj6EanYb5IgWzLlhy7Zo');
-        gapi.client.load('urlshortener', 'v1').then(makerequest);
-    }
-    gapi.load('client', initgapi);
+    var request = gapi.client.urlshortener.url.insert({
+        'longUrl': url
+    });
+    request.then(function(response) {
+	console.log(response.result.id);
+    }, function(reason) {
+        console.log('Error: ' + reason.result.error.message);
+    });
+    return request;
 }
 var myCallback = function (error, options, response) {
    if (response!=null&&typeof response.rows!="undefined") {
@@ -888,21 +880,15 @@ function win() {
     $('#submission').contents().find('#entry_1690611500').val(url);
     $('#submission').contents().find("#ss-form").submit();
     $(".tweet").hide();
-    $(".facebook").attr("href","https://www.facebook.com/sharer/sharer.php?u="+encodeURI(url));
-    $(".googlep").attr("href","https://plus.google.com/share?url="+encodeURI(url));
-    $(".email").attr("href","mailto:?body="+url);
+    $(".social").html(Mustache.render(TEMPLATES["social"],{ url:encodeURI(url) }));
     var link="https://api-ssl.bitly.com/v3/user/link_save?access_token=ceb626e1d1831b8830f707af14556fc4e4e1cb4c&longUrl="+url+"&title="+encodeURI(titl)+"&note="+encodeURI(note);
     $.when($.ajax(link)).done(function(result1) {
 
 	if (typeof result1.data.link_save!="undefined") { 
 	    url=result1.data.link_save.link;
-	    $(".tweet").attr("href","https://twitter.com/intent/tweet?url="+encodeURI(url)+"&text=A%20Squad%20Benchmark%20combat").show();
-
-	    $(".facebook").attr("href","https://www.facebook.com/sharer/sharer.php?u="+encodeURI(url));
-	    $(".googlep").attr("href","https://plus.google.com/share?url="+encodeURI(url));
-	    $(".email").attr("href","mailto:?body="+url);
+	    var rendered=Mustache.render(TEMPLATES["social"], {	url:encodeURI(url) });
+	    $(".social").html(rendered);
 	}
-
     });
     $(".email").click(function() {
 	ga('send','event', {
@@ -967,7 +953,6 @@ function battlelog(t) {
     displaycombats(data);
     window.location="#battlelog";
 }
-
 function createsquad() {
     $(".activeunit").prop("disabled",true);
     $("#selectphase").hide();
@@ -1609,7 +1594,7 @@ function setphase(cannotreplay) {
 	break;
     case SETUP_PHASE:
 	$(".imagebg").show();
-	var t=["bomb","weapon","upgrade"];
+	var t=["bomb","weapon","upgrade","social"];
 	for (var i=0;i<t.length; i++) {
 	    TEMPLATES[t[i]]=$("#"+t[i]).html();
 	    Mustache.parse(TEMPLATES[t[i]]);
@@ -2372,7 +2357,11 @@ $(document).ready(function() {
     });
 
     jwerty.key("shift+i",function() {save(); });
-
+    var initgapi=function() {
+        gapi.client.setApiKey('AIzaSyBN2T9d2ZuWaT0Vj6EanYb5IgWzLlhy7Zo');
+        gapi.client.load('urlshortener', 'v1');
+    }
+    gapi.load('client', initgapi);
 
     // Load unit data
     var availlanguages=["en","fr","de","es","it","pl"];
