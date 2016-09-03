@@ -210,7 +210,7 @@ var save=function() {
             'longUrl': url
 	});
 	request.then(function(response) {
-	    console.log(response.result[i].id);
+	    console.log(response.result.id);
 	}, function(reason) {
             console.log('Error: ' + reason.result.error.message);
 	});
