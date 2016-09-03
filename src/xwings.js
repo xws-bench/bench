@@ -2855,7 +2855,7 @@ var replayall=function() {
 	var p=phase;
 	r=parseInt(c[2],10);
 	phase=parseInt(c[3],10);
-	if (round!=r) $("#turnselector").append("<option value='"+round+"'>"+UI_translation["turn #"+round]+"</option>");
+	if (round!=r) $("#turnselector").append("<option value='"+round+"'>"+UI_translation["turn #"]+round+"</option>");
 	round=r;
 	if (p>phase) {
 	    for (var i in squadron) {
