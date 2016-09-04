@@ -204,15 +204,25 @@ var mk2split = function(t) {
 }
 var save=function() {
     var url="http://xws-bench.github.io/bench/?"+permalink(false);
-    var request = gapi.client.urlshortener.url.insert({
-        'longUrl': url
-    });
-    request.then(function(response) {
-	console.log(response.result.id);
-    }, function(reason) {
-        console.log('Error: ' + reason.result.error.message);
-    });
-    return request;
+    $(".social").html(Mustache.render(TEMPLATES["social"],{ 
+	url:url,
+	name:"save this link",
+	encodedurl:encodeURI(url)}));
+    if (typeof gapi.client.urlshortener!="undefined") {
+	var request = gapi.client.urlshortener.url.insert({
+            'longUrl': url
+	});    
+	request.then(function(response) {
+	    var url=response.result.id;
+	    $(".social").html(Mustache.render(TEMPLATES["social"],{ 
+		url:url,
+		name:url,
+		encodedurl:encodeURI(url) }));
+	    console.log(response.result.id);
+	}, function(reason) {
+            console.log('Error: ' + reason.result.error.message);
+	});
+    }
 }
 var myCallback = function (error, options, response) {
    if (response!=null&&typeof response.rows!="undefined") {
@@ -272,7 +282,7 @@ var myTemplate = function(num,cells,cellarrays,labels) {
     if (type2=="Human") score2="<b>"+score2+"</b>";
     if (type1=="Human") score1="<b>"+score1+"</b>";
 
-    SQUADBATTLE.row.add([score2+"-"+score1,"<span onclick='$(\"#replay\").attr(\"src\",\""+cells[2]+"\")'>"+t1+"</span>"]).draw(false);
+    SQUADBATTLE.row.add([score2+"-"+score1,"<span onclick='$(\".replay\").attr(\"src\",\""+cells[2]+"\")'>"+t1+"</span>"]).draw(false);
 }
 var computeurl=function(error, options,response) {
     //console.log(error,options,response);
@@ -1076,7 +1086,7 @@ function displaycombats(t) {
     t=t.replace(/ \+ /g,"*");
     //t=t.replace(/-/g,"\\-");
     t=t.replace(/ /g,"_");
-    $("#replay").attr("src","");
+    $(".replay").attr("src","");
 
     if (t.slice(-1)!=".") t=t+".";
     SEARCHINGSQUAD=t;
@@ -1497,6 +1507,8 @@ function endsetupphase() {
 }
 function nextphase() {
     var i;
+    $("#savebtn").hide();
+
     //log("nextphase "+phase);
     // End of phases
     //if (!enablenextphase()) return;
@@ -1762,6 +1774,7 @@ function setphase(cannotreplay) {
 	$(".unit").css("cursor","move");
 	$("#positiondial").show();
 	$(".permalink").show();
+	$("#savebtn").hide();
 	if (cannotreplay!=true) startreplayall();
 	break;
     case PLANNING_PHASE: 
@@ -1775,6 +1788,7 @@ function setphase(cannotreplay) {
 	$("#maneuverdial").show();
 	skillturn=0;
 	filltabskill();
+	$("#savebtn").show();
 	for (i in squadron) {
 	    squadron[i].newm=squadron[i].m;
 	    squadron[i].beginplanningphase().progress(nextplanning);

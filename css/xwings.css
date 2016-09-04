@@ -624,7 +624,9 @@ left:2%;
 top:20%;
 overflow-y:auto;
 }
-
+#save > div {
+width:50%
+}
 #proba > div,#combatmodal > div,#donate > div {
 width:400px;
 font-size:smaller
@@ -1159,7 +1161,7 @@ background:#000;
 color:#ffebcd
 }
 
-#replay {
+.replay {
 background:#fff;
 opacity:1;
 margin:2em;
