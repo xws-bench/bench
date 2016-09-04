@@ -44,6 +44,7 @@
 	  <button onclick="currentteam=TEAMS[0];createsquad()" class="mainbutton m-create"></button>
 	  <label for="imagebg" style="display:none" class="imagebg permalink">Import setup image</label>
 	  <input style="display:none" type="file" id="imagebg">
+	  <button class="permalink" id="savebtn" onclick="document.location='#save'; save()" >Permalink</button>
 	  <button class="permalink m-reset" onclick="resetlink(true,false)" >&lt;&lt; </button>
 	  <select class="permalink" id="turnselector" onchange="resetlink(false,false,true);"><option value="-1">&lt; Back</option></select>
 	  <span id="phase"></span>
@@ -126,8 +127,6 @@
 	    <a href="#" title="Close" class="close">&#10060;</a>
 	  </h2>
 	  <div>
-	    <button class="permalink m-reset" onclick="resetlink(true,false)">&lt;&lt;</button><button class="m-restart permalink" onclick="resetlink(false,true)" >&lt; </button>
-
 	    <table class="victory-table"></table>
 	    <div class="replays">Share combat: 
 	      <a href="#" class="victory-link m-replay"></a>
@@ -139,6 +138,20 @@
 </a>
 	      </span>
 	    </div>
+	  </div>
+	</div>
+     </section>
+ 
+     <section id="save" class="modalDialog">
+	<div>
+	  <h2>
+	    <span class="victory">Share and save this combat</span>
+	    <a href="#" title="Close" class="close">&#10060;</a>
+	  </h2>
+	  <div>
+	    <span>Copy/paste the link below to save your combat, or share it with your friends.</span>
+	    <div class="share-button social"></div>
+	    <div class="ack"><button onclick="window.location='#'">Ok</button></div>
 	  </div>
 	</div>
      </section>
@@ -218,7 +231,7 @@
 	 </tr>
 
        </table>
-<table id="setuplist" style="display:none" class="setupselector">
+       <table id="setuplist" style="display:none" class="setupselector">
 	 <tr><td><select onchange="changesetup()"></select></td><td><span></span></td><td></td></tr>
        </table>
        </div>
@@ -731,6 +744,25 @@ The app is not really a game since the player plays both sides or against an AI,
 
     <script id="selectweapon" type="x-tmpl-mustache">
       {{#weapons}}<div class="symbols {{color}}" onclick="activeunit.selecttargetforattack({{id}})">{{key}}</div>{{/weapons}}
+    </script>
+
+    <script id="social" type="x-tmpl-mustache">
+      <div>
+	<a href="{{url}}" class="victory-link">{{name}}</a>
+	<a class="symbols tweet" href="https://twitter.com/intent/tweet?url={{encodedurl}}&text=A%20Squad%20Benchmark%20combat" target="_blank"><span width="30px">&#xDD;</span></a>
+	<a class="facebook symbols" href="https://www.facebook.com/sharer/sharer.php?u={{endodedurl}}" target="_blank"><span width="30px" class="symbols">&#xDC;</span></a>
+	<a class="googlep symbols" href="https://plus.google.com/share?url={{encodedurl}}" target="_blank"><span width="30px" class="symbols">&#xF2;</span></a>
+	<a class="email" href="mailto:?body={{encodedurl}}" title="Share by Email"><span width="30px" class="symbols">&#xE7;</span></a>
+      </div>
+      <table><tr><td>
+	    <iframe src="{{url}}" class="replay"></iframe>
+	</td><td>
+	  To include the combat replay on the left on your web pages, copy/paste the following lines:
+	  <br/>
+	  <textarea style="font-family:courrier;color:black;background:lightgray;font-size:smaller;width:80%">
+	    &lt;iframe style="width:40vw;height:40vw;max-width:400px;max-height:400px" src="{{url}}"&gt;&lt;/iframe&gt;
+	  </textarea>
+      </td></tr></table>
     </script>
   </body>
 </html>
