@@ -15,7 +15,7 @@
 	"'Backdraft'":{"text":"When attacking a ship inside your auxiliary firing arc, you may add 1 %CRIT% result."},
 	"Rey":{"text":"When attacking or defending, if the enemy ship is inside your firing arc, you may reroll up to 2 of your blank results."},
 	"Turbolaser":{"text":"A laser cannon turret. It cannot move."}, 
-	"Thermal Exhaust Port":{"text":"The thermal exhaust of the Death Star. To be played in the Death Star map."},
+	"Thermal Exhaust Port":{"text":"The thermal exhaust of the Death Star."},
     "Wedge Antilles":{"text":
     "When attacking, reduce the defender's agility value by 1 (to a minimum of 0)."},
     "Garven Dreis":{"text":
@@ -207,6 +207,8 @@
 	{"text":"When performing a boost action, you may use the %TURNLEFT% 1 or %TURNRIGHT% 1 template"},
 	"Poe Dameron":
 	{"text":"While attacking or defending, if you have a focus token, you may change 1 of your %FOCUS% results to a %HIT% or %EVADE% result."},
+	"Poe Dameron (HoR)":
+	{"text":"While attacking or defending, if you have a focus token, you may change 1 of your %FOCUS% results to a %HIT% or %EVADE% result."},
 	"Hera Syndulla":
 	{"text":"When you reveal a green or red maneuver, you may rotate your dial to another maneuver of the same difficulty."},
 	"'Chopper'":{"text":"At the start of the Combat phase, each enemy ship you are touching receives 1 stress token."},
@@ -230,6 +232,9 @@
 	"'Deathfire'":{"text":"When you reveal your maneuver dial or after you perform an action, you may perform a %BOMB% Upgrade card action as a free action."}
  },
     "upgrades": {
+	"Sabine's Masterpiece":{"text":"Your upgrade bar gains the %CREW% and %ILLICIT% upgrade icons."},
+	"Jyn Erso(Crew)":{"text":"%ACTION% Choose 1 friendly ship at Range 1-2. Assign 1 focus token to that ship for each enemy ship inside your firing arc at Range 1-3. You cannot assign more than 3 tokens in this way."},
+	"Unkar Plutt(Crew)":{"text":"After executing a maneuver that causes you to overlap an enemy ship, you may suffer 1 damage to perform 1 free actions."},
 	"Gyroscopic Targeting":{"text":"At the end of the Combat phase, if you executed a 3, 4 or 5-speed maneuver this round, you may rotate your mobile firing arc."},
 	"Black Market Slicer Tools":{"text":"%ACTION% Choose a stressed enemy ship at Range 1-2 and roll 1 attack die. On a %HIT% or a %CRIT% result, remove 1 stress token and deal it 1 facedown Damage card."},
 	"IG-88D(Crew)":{"text":"You have the pilot ability of each friendly ship with the IG-2000 Upgrade card (in addition to your own pilot ability)."},
@@ -710,6 +715,7 @@
 	}
     },
     "css":{
+	"m-submitabug":"Bug report",
 	"m-kb":"Keyboard bindings",
 	"m-hangar":"Hangar",
 	"m-obstacles":"Obstacles",

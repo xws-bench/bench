@@ -1,28 +1,4 @@
-/* v0.8.10:
- * Manaroo
- * Proton Torpedoes
- * Back button
- * criticals (v1 and v2)
- * long-range scanners condition checking ok
- * R4-B11 corrected
- * Maarek Steel Defender cost corrected 
- * crack shot activation
- * Garven  + Jan Ors (crew): replacing focus is not removing focus token
- * Wampa at compare step
-  * collision detector, tail gunner, vectored thrusters, R3 Astromech, Sensor Cluster, special ops training
-  * shaken pilot + ionized: corrected.
-  * Conner net: 1 damage, always (was random)
-  * Electronic baffle and timing between activated units
-  * Filtering squads
-  * Jek Porkins and damage dealt instead of inflicted
-  * C-3PO with IA: automatic choose roll
-  * Emperor Palpatine finally implemented: pop ups windows to choose whether it triggers. 
-  * wave 9 units: Norra Wexley, Shara Bey, Thane Kyrel, Braylen Stramm, Fenn Rau, Kad Solus, Old Teroch, Sabine Wren, Asajj Ventress, Ketsu Onyo, Quickdraw, Backdraft
-  * wave 9 upgrades: gyroscopic targeting, black market slicer tools, IG-88D, Ketsu Onyo, Latts Razzi, Fearlessness, Concord Dawn Protector, Alliance Overhaul, Vectored Thrusters, Tail Gunner, R3 Astromech, Sensor Cluster, Special Ops Training, Colliding Detector, Seismic Torpedo
-   * collision with asteroids: critical results taken into account
-   * english texts for missing translations
-   * top10 list updated with new squads
-   * Agent Kallus
+/* 
    * Wes Janson FAQ
 */
 // AIzaSyBN2T9d2ZuWaT0Vj6EanYb5IgWzLlhy7Zo 
@@ -208,20 +184,25 @@ var save=function() {
 	url:url,
 	name:"save this link",
 	encodedurl:encodeURI(url)}));
-    if (typeof gapi.client.urlshortener!="undefined") {
+    if (typeof gapi!="undefined"&&typeof gapi.client.urlshortener!="undefined") {
 	var request = gapi.client.urlshortener.url.insert({
             'longUrl': url
 	});    
 	request.then(function(response) {
 	    var url=response.result.id;
+	    $(".tweet").show();
+	    $('#submission').contents().find('#entry_245821581').val(url);
+	    $('#submission').contents().find("#ss-form").submit();  
 	    $(".social").html(Mustache.render(TEMPLATES["social"],{ 
 		url:url,
 		name:url,
 		encodedurl:encodeURI(url) }));
-	    console.log(response.result.id);
 	}, function(reason) {
+	    $('#submission').contents().find("#ss-form").submit();
             console.log('Error: ' + reason.result.error.message);
 	});
+    } else {
+	$('#submission').contents().find("#ss-form").submit();
     }
 }
 var myCallback = function (error, options, response) {
@@ -888,46 +869,19 @@ function win() {
     $('#submission').contents().find('#entry_390767903').val(note);
     $('#submission').contents().find('#entry_245821581').val("no short url");
     $('#submission').contents().find('#entry_1690611500').val(url);
-    $('#submission').contents().find("#ss-form").submit();
     $(".tweet").hide();
-    $(".social").html(Mustache.render(TEMPLATES["social"],{ url:encodeURI(url) }));
-    var link="https://api-ssl.bitly.com/v3/user/link_save?access_token=ceb626e1d1831b8830f707af14556fc4e4e1cb4c&longUrl="+url+"&title="+encodeURI(titl)+"&note="+encodeURI(note);
-    $.when($.ajax(link)).done(function(result1) {
-
-	if (typeof result1.data.link_save!="undefined") { 
-	    url=result1.data.link_save.link;
-	    var rendered=Mustache.render(TEMPLATES["social"], {	url:encodeURI(url) });
-	    $(".social").html(rendered);
-	}
-    });
-    $(".email").click(function() {
-	ga('send','event', {
-	    eventCategory: 'social',
-	    eventAction: 'send',
-	    eventLabel: 'email'
-	});
-    });
-    $(".facebook").click(function() {
-	ga('send', 'event',{
-	    eventCategory: 'social',
-	    eventAction: 'send',
-	    eventLabel: 'facebook'
-	});
-    });
-    $(".googlep").click(function() {
-	ga('send','event', {
-	    eventCategory: 'social',
-	    eventAction: 'send',
-	    eventLabel: 'googlep'
-	});
-    });
-    $(".tweet").click(function() {
-	ga('send','event', {
-	    eventCategory: 'social',
-	    eventAction: 'send',
-	    eventLabel: 'tweet'
-	});
-    });
+    save();
+    for (i in ["email","facebook","tweet","googlep"]) {
+	(function(n) {
+	    $("."+n).click(function() {
+		ga("send","event",{
+		    eventCategory: 'social',
+		    eventAction: 'send',
+		    eventLabel: n
+		});
+	    });
+	})(i);
+    }
     $(".victory-link").attr("href",url);
     /*var y1=0,y2=0;
     var t1=TEAMS[1].history;
@@ -1711,18 +1665,8 @@ function setphase(cannotreplay) {
 	$("#svgout").mousemove(function(e) {dragmove(e);});
 	$("#svgout").mouseup(function(e) {dragstop(e);});
 
-
-	/*$(".modalDialog > div").draggable();
-	$(".modalDialog > div").on("dragstart",modal_dragstart); 
-	$(document.body).on('dragover',modal_dragover); 
-	$(document.body).on('drop',modal_drop); 
-	*/
 	jwerty.key("escape", nextphase);
-	/*$(document).keyup(function(event) {
-	    if (event.which==13) {
-		$(".wbutton").trigger("click");
-	    }
-	});*/
+
 	/* By-passes */
 	jwerty.key("9", function() { 
 		console.log("active:"+activeunit.name+" in hit range:"+activeunit.weapons[0].name);
@@ -1810,12 +1754,7 @@ function setphase(cannotreplay) {
 	log("<div>["+UI_translation["turn #"]+round+"]"+UI_translation["phase"+phase]+"</div>");
 	$("#attackdial").show();
 	skillturn=12;
-	/*for (var j=12; j>=0; j--) 
-	    for (var i=0; i<tabskill[j].length; i++) {
-		var u=tabskill[j][i];
-		u.begincombatphase().done(nextcombat);
-	    };
-*/
+
 	for (i in squadron) squadron[i].begincombatphase().done(nextcombat);
 	barrier(nextcombat);
 	break;
@@ -2375,7 +2314,7 @@ $(document).ready(function() {
         gapi.client.setApiKey('AIzaSyBN2T9d2ZuWaT0Vj6EanYb5IgWzLlhy7Zo');
         gapi.client.load('urlshortener', 'v1');
     }
-    gapi.load('client', initgapi);
+    if (typeof gapi!="undefined") gapi.load('client', initgapi);
 
     // Load unit data
     var availlanguages=["en","fr","de","es","it","pl"];
@@ -2436,6 +2375,7 @@ $(document).ready(function() {
 		var v=PILOT_translation[i];
 		var t=u.text;
 		if (typeof v=="undefined") {
+		    log("translation not found:"+i);
 		    PILOT_translation[i]=u;
 		}
 	    }

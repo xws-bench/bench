@@ -212,8 +212,11 @@ function Unit(team,pilotid) {
 	name:PILOTS[pilotid].unit,
 	hastitle:u.hastitle,
     };
-    if (typeof PILOTS[pilotid].shipimg=="undefined") this.shipimg=u.img[0];
-	else this.shipimg=PILOTS[pilotid].shipimg;
+    if (typeof PILOTS[pilotid].shipimg=="undefined") {
+	var t=u.faction.indexOf(this.faction);
+	if (t==-1) t=0;
+	this.shipimg=u.img[t];
+    } else this.shipimg=PILOTS[pilotid].shipimg;
     this.scale=u.scale;
     this.islarge=(u.islarge==true)?true:false;
     this.hull=u.hull;
