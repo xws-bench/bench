@@ -1341,7 +1341,7 @@ Unit.prototype = {
     addtractorbeam:function(u) {
 	this.addtractorbeamtoken();
 	if (this.tractorbeam==1&&!this.islarge) {
-	    p=Unit.prototype.getrollmatrix.call(this,this.m).concat(this.getpathmatrix(this.m,"F1")).concat(this.m);
+	    p=Unit.prototype.getrollmatrix.call(this,this.m).concat(this.getpathmatrix(this.m,"F1"));
 	    u.doselection(function(n) {
 		u.resolveactionmove.call(
 		    this,p,
