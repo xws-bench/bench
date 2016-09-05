@@ -3062,6 +3062,10 @@ var UPGRADES= [
 	    sh.wrap_before("endphase",this,function() {
 		if (this.glitter==round) self.desactivate();
 	    });
+	    /*TODO: to change into canchangefocusdice
+	      sh.wrap_after("canusefocus",this,function(r) {
+		return r||(this.glitter==round);
+	    });*/
 	    sh.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
 		req:function(m,n) {
 		    return this.glitter==round;

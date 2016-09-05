@@ -549,7 +549,7 @@ The app is not really a game since the player plays both sides or against an AI,
 
     <footer draggable="true">
       <a href="#" onclick="$('#consolecb').removeAttr('Checked'); $('footer').hide()" title="Close" class="close">&#xd7;</a>
-      <input type="text" placeholder="Add comment for active unit" onchange="activeunit.movelog('L-%%'+encodeURIComponent($(this).val())+'%%');$(this).val('');">
+      <input type="text" id="addcomment" placeholder="Add comment for active unit" onchange="activeunit.movelog('L-%%'+encodeURIComponent($(this).val())+'%%');$(this).val('');">
       <div class="log" id="log"></div>
     </footer>
     <script src="js/all.min.js"></script>
