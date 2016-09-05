@@ -1,4 +1,3 @@
-var factions=["REBEL","EMPIRE"];
 var allunits=[];
 
 function Team(team) {

@@ -716,8 +716,11 @@ var UPGRADES= [
 	prehit: function(t,c,h) {
 	    var r=t.getrangeallunits();
 	    for (var i=0; i<r[1].length; i++) {
-		squadron[r[1][i].unit].log("+1 %HIT% [%0]",this.name);
-		squadron[r[1][i].unit].resolvehit(1);
+		var u=squadron[r[1][i].unit];
+		if (u!=t) {
+		    squadron[r[1][i].unit].log("+1 %HIT% [%0]",this.name);
+		    squadron[r[1][i].unit].resolvehit(1);
+		}
 	    }
 	},
 	init: function(sh) {
@@ -4744,5 +4747,67 @@ var UPGRADES= [
 	      return r;
 	   });
       }
+    },
+    { name:"Jyn Erso",
+      faction:REBEL,
+      points:2,
+      unique:true,
+      done:true,
+      type:CREW,
+      candoaction: function() {  
+	  return this.isactive&&!this.unit.dead;
+      },
+      action: function(n) {
+	  var self=this.unit;
+	  var p=self.selectnearbyally(2);
+	  var e=self.selectnearbyenemy(3,function(s,t) {
+	      return s.isinfiringarc(t);
+	  });
+	  if (p.length>0&&e.length>0) {
+	      self.resolveactionselection(p,function(k) {
+		  var l=e.length;
+		  if (l>3) l=3;
+		  for (var i=0; i<l; i++) p[k].addfocustoken();
+		  self.endaction(n,"CREW");
+	      });
+	  } else {
+	      self.log("no effect [%0]",this.name);
+	      self.endaction(n,"CREW");
+	  }
+      }
+    },
+    { name:"Unkar Plutt",
+      faction:SCUM,
+      points:1,
+      type:CREW,
+      done:true,
+      unique:true,
+      init: function(sh) {
+	  var self=this;
+	  sh.unkar=-1;
+	  sh.wrap_after("getcollidingunits",this,function(m,c) {
+	      if (c.length>0&&this.unkar<round) {
+		  this.unkar=round;
+		  this.donoaction([{org:self,type:"CREW",name:self.name,action:function(n) {
+		      self.unit.log("+1 %HIT%, +1 free action [%0]",self.name);
+		      this.resolvehit(1);
+		      SOUNDS.explode.play();
+		      this.checkdead();
+		      this.doaction(this.getactionlist(),"");
+		      this.endnoaction(n,"CREW");
+		  }.bind(this)}],"",true);
+	      }
+	      return c;
+	  });
+      }
+    },
+    {name:"Sabine's Masterpiece",
+     faction:REBEL,
+     ship:"TIE Fighter",
+     unique:true,
+     done:true,
+     type:TITLE,
+     upgrades:[CREW,ILLICIT],
+     points:1,
     }
 ];

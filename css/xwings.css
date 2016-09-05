@@ -319,13 +319,13 @@ margin-bottom:5px;
 .caroussel li:nth-child(-n+5) tr .tooltip {
 left:180px;
 vertical-align:top;
-margin-top:-2em
+margin-top:0em
 }
 
 .caroussel li:nth-child(n+5) tr .tooltip {
 right:180px;
 vertical-align:top;
-margin-top:-2em
+margin-top:0em
 }
 
 tr:hover .tooltip, .tr:hover .tooltip, .name:hover .tooltip {
@@ -2083,6 +2083,7 @@ padding:0
 }
 
 ul.caroussel li {
+transform:translateZ(0px) scale(1.25);
 position:relative;
 padding:0;
 color:#fff;
@@ -2092,10 +2093,10 @@ height:25em;
 border-radius:10px;
 box-shadow:inset 1px 1px 0 rgba(255,255,255,.4),0 0 30px rgba(0,0,0,0.2);
 width:180px;
-opacity:.5;
+/*opacity:.5;*/
 z-index:0;
 transition:all .45s;
-margin:20px -40px 0 0
+margin:20px 45px 0 0
 }
 
 ul#caroussel li {
@@ -2104,7 +2105,10 @@ margin-right:-100px
 }
 
 ul#listunits {
-height:30em
+height:30em;
+padding:0 0 0 2em;
+margin:0;
+width:100%
 }
 
 .inunitlist {
@@ -2169,7 +2173,6 @@ transform:rotateY(0deg) translateZ(0px) scale(1.25)
 }
 
 ul.caroussel li:hover,ul.caroussel li.highlighted {
-transform:translateZ(0px) scale(1.25);
 opacity:1;
 z-index:60!important;
 background:#000

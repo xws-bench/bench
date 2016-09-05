@@ -1,3 +1,14 @@
+var sabine_fct=function() {
+    var p=[];
+    if (this.hasionizationeffect()) return;
+    if (this.candoaction()) {
+	if (this.candoboost()) 
+	    p.push(this.newaction(this.resolveboost,"BOOST"));
+	if (this.candoroll()) 
+	    p.push(this.newaction(this.resolveroll,"ROLL"));
+	this.doaction(p,"free %BOOST% or %ROLL% action");
+    }
+}
 var maarek_fct = function() {
     var unit=this;
     var newdeal=function(c,f,p) {
@@ -3038,7 +3049,7 @@ var PILOTS = [
        done:true,
        init: function() {
 	   var self=this;
-	    /*this.wrap_after("isattackedby",this,function(w,a) {
+	    this.wrap_after("isattackedby",this,function(w,a) {
 		if (self.targeting.indexOf(a)>-1) 
 		    a.wrap_after("getdicemodifiers",self,function(mods) {
 			var p=[];
@@ -3060,7 +3071,7 @@ var PILOTS = [
 	   this.wrap_after("setpriority",this,function(a) {
 	       if (a.type=="TARGET"&&this.candotarget()&&this.targeting.length==0) 
 		   a.priority+=10;
-	   });*/
+	   });
        }
    },
     {
@@ -3163,16 +3174,9 @@ var PILOTS = [
 	unit:"Attack Shuttle",
 	skill:5,
 	points:21,
-	beginactivation: function() {
-	    var p=[];
-	    if (this.hasionizationeffect()) return;
-	    if (this.candoaction()) {
-		if (this.candoboost()) 
-		    p.push(this.newaction(this.resolveboost,"BOOST"));
-		if (this.candoroll()) 
-		    p.push(this.newaction(this.resolveroll,"ROLL"));
-		this.doaction(p,"free %BOOST% or %ROLL% action");
-	    }
+	ambiguous:true,
+	init: function() {
+	    this.wrap_after("beginactivation",this,sabine_fct);
 	},
 	upgrades:[ELITE,TURRET,CREW]
     },
@@ -3246,7 +3250,7 @@ var PILOTS = [
 	done:true,
 	init: function() {
 	    this.adddicemodifier(ATTACKCOMPARE_M,ADD_M,ATTACK_M,this,{
-		req:function(m,n) { return true; },
+		req:function(m,n) { return n>0; },
 		f:function(m,n) {
 		    this.log("cancel all dice");
 		    if (FCH_crit(m)>0) {
@@ -4061,5 +4065,20 @@ var PILOTS = [
         skill: 5,
         upgrades: [ELITE,SYSTEM,MISSILE,TECH],
 	points:25
+    },
+    {
+        name: "Sabine Wren",
+        faction: REBEL,
+	pilotid:210,
+	done:true,
+	unique:true,
+        unit: "TIE Fighter",
+        skill: 5,
+	ambiguous:true,
+        upgrades: [ELITE],
+	points:15,
+	init: function() {
+	    this.wrap_after("beginactivation",this,sabine_fct);
+	}
     },
 ];
