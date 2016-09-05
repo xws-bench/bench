@@ -923,6 +923,7 @@ function battlelog(t) {
 function createsquad() {
     $(".activeunit").prop("disabled",true);
     $("#selectphase").hide();
+    $("#addcomment").hide();
     ga('send','event', {
 	eventCategory: 'interaction',
 	eventAction: 'create',
@@ -1461,7 +1462,6 @@ function endsetupphase() {
 function nextphase() {
     var i;
     $("#savebtn").hide();
-
     //log("nextphase "+phase);
     // End of phases
     //if (!enablenextphase()) return;
@@ -1544,6 +1544,7 @@ function setphase(cannotreplay) {
     //log("setphase "+phase+" "+cannotreplay);
     switch(phase) {
     case SELECT_PHASE:
+	$("#addcomment").hide();
 	$(".mainbutton").show();
 	$(".buttonbar .share-buttons").hide();
 	$(".h2 .share-buttons").show();
@@ -1561,6 +1562,8 @@ function setphase(cannotreplay) {
 	break;
     case SETUP_PHASE:
 	$(".imagebg").show();
+	$("#addcomment").show();
+
 	var t=["bomb","weapon","upgrade","social"];
 	for (var i=0;i<t.length; i++) {
 	    TEMPLATES[t[i]]=$("#"+t[i]).html();
