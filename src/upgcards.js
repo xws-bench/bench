@@ -2301,13 +2301,25 @@ var UPGRADES= [
         points: 3,
 	done:true,
 	init: function(sh) {
-	    sh.adddicemodifier(ATTACK_M,REROLL_M,DEFENSE_M,this,{
-		dice:["evade","focus","blank"],
-		n:function() { return 9; },
-		req: function() { return (this.targeting.indexOf(targetunit)>-1) }.bind(sh),
-		f:function() { this.removetarget(targetunit); }.bind(sh),
-		mustreroll:true,
-	    });
+	    var self=this;
+	    sh.adddicemodifier(ATTACK_M,MOD_M,DEFENSE_M,this,{
+		req: function(m,n) { return  (this.targeting.indexOf(targetunit)>-1); }.bind(sh),
+		f:function(m,n) {
+		    var e=FE_evade(m);
+		    var f=FE_focus(m);
+		    if (!targetunit.canusefocus()) f=0;
+		    this.removetarget(targetunit);
+		    if (e+f>0) {
+			targetunit.log("Reroll %0 %EVADE%, %1 %FOCUS% [%2]",e,f,self.name);
+			var roll=targetunit.rolldefensedie(f,self,"evade");
+			m-=FE_EVADE*e+FE_FOCUS*f;
+			for (var i=0; i<f+e; i++) {
+			    if (roll[i]=="evade") m+=FE_EVADE;
+			    if (roll[i]=="focus") m+=FE_FOCUS;
+			}
+		    }
+		    return m;
+		}.bind(sh),str:"target"});
 	},
     },
     {
