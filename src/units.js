@@ -392,24 +392,7 @@ Unit.prototype = {
 	this.g.addClass("unit");
 	this.g.hover(
 	    function () { 
-		var m=VIEWPORT.m.clone();
-		var w=$("#svgout").width();
-		var h=$("#svgout").height();
-		var startX=0;
-		var startY=0;
-		if (h>w) startY=(h-w)/2;
-		else startX=(w-h)/2;
-		var max=Math.max(900./w,900./h);
-		
-		var bbox=this.g.getBBox();
-		var p=$("#svgout").offset();
-		var min=Math.min($("#playmat").width(),$("#playmat").height());
-		var x=m.x(bbox.x,bbox.y-20)/max;
-		x+=p.left+startX;
-		var y=m.y(bbox.x,bbox.y-20)/max;
-		y+=p.top+startY;
-		$(".info").css({left:x,top:y}).attr({pointerEvents:"none"}).html(translate(this.name))
-		    .appendTo("body").show();
+		this.setinfo(translate(this.name));
 	    }.bind(this),
 	    function() { $(".info").hide(); 
 		       }.bind(this));
@@ -423,6 +406,25 @@ Unit.prototype = {
 	this.g.drag(this.dragmove.bind(this),
 		    this.dragstart.bind(this),
 		    this.dragstop.bind(this));
+    },
+    setinfo: function(info) {
+	var m=VIEWPORT.m.clone();
+	var w=$("#svgout").width();
+	var h=$("#svgout").height();
+	var startX=0;
+	var startY=0;
+	if (h>w) startY=(h-w)/2;
+	else startX=(w-h)/2;
+	var max=Math.max(900./w,900./h);
+	
+	var bbox=this.g.getBBox();
+	var p=$("#svgout").offset();
+	var min=Math.min($("#playmat").width(),$("#playmat").height());
+	var x=m.x(bbox.x,bbox.y-20)/max;
+	x+=p.left+startX;
+	var y=m.y(bbox.x,bbox.y-20)/max;
+	y+=p.top+startY;
+	return $(".info").css({left:x,top:y}).attr({pointerEvents:"none"}).html(formatstring(info)).appendTo("body").show();
     },
     wrap_after: function (name,org,after,unwrap) {
 	var self=this;
@@ -1428,7 +1430,7 @@ Unit.prototype = {
 	    //this.m=MT(-60,-60);
 	    this.geffect.attr({display:"none"});
 	    this.show();
-	    if (TEAMS[this.team].checkdead()) win();	
+	    if (TEAMS[this.team].checkdead()) win(this.team);	
 	    //squadron[0].select();
 	}.bind(this), (FAST?0:1000)); // 29 images * 4 1/100th s
     },
@@ -1854,14 +1856,18 @@ Unit.prototype = {
 	this.movelog("ct");
 	if (!FAST) SOUNDS.decloak.play();
     },
-    resolvedecloak: function() {
+    resolvedecloak: function(noskip) {
+	var s="(or self to cancel)";
+	if (noskip==true) s="(or self)";
+	this.log("select position to decloak "+s);
 	this.doselection(function(n) {
-	    this.resolveactionmove(this.getdecloakmatrix(this.m),
-				   function (t,k) {
-				       if (k>0) this.removecloaktoken();
-				       this.hasdecloaked=true;
-				       this.endnoaction(n,"");
-				   }.bind(this),true,this.canmoveonobstacles("DECLOAK"));
+	    this.resolveactionmove(
+		this.getdecloakmatrix(this.m),
+		function (t,k) {
+		    if (k>0||noskip==true) this.removecloaktoken();
+		    this.hasdecloaked=true;
+		    this.endnoaction(n,"DECLOAK");
+		}.bind(this),true,this.canmoveonobstacles("DECLOAK"));
 	}.bind(this))/*.done(function() {
 	    this.unlock();
 	}.bind(this))*/
@@ -2726,7 +2732,8 @@ Unit.prototype = {
 
     },
     movelog: function(s) {
-	//console.log("REGISTER:"+this.id+"-"+s)
+	if (s.match(/L-%%.*/)) 
+	    this.setinfo(decodeURIComponent(s.substring(4,s.length-2))).delay(1500).fadeOut(400);
 	ANIM+="_"+this.id+"-"+s
     },
     computepoints: function() {
@@ -3406,7 +3413,7 @@ Unit.prototype = {
 		    if (!cancellable||this!=p[k]) f.call(this,p,k);
 		    this.endnoaction(n,"SELECT");
 		}.bind(this));
-	    }.bind(this));
+	    }.bind(this),"selectunit");
 	}
     },
     selectcritical: function(crits,endselect) {

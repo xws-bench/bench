@@ -16,6 +16,7 @@ var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHAS
 var DICES=["focusred","hitred","criticalred","blankred","focusgreen","evadegreen","blankgreen"];
 var BOMBS=[];
 var ROCKDATA="";
+var WINCOND=0;
 var allunits=[];
 var PILOT_translation,SHIP_translation,CRIT_translation,UI_translation,UPGRADE_translation,PILOT_dict,UPGRADE_dict;
 var actionr=[];
@@ -43,7 +44,6 @@ var UNIQUE=[];
 var stype="";
 var REPLAY="";
 var PERMALINK="";
-var SQUADBUILDER=1;
 /*
 
 
@@ -416,7 +416,9 @@ function nextcombat() {
 		     if (u.canbedestroyed(skillturn))
 			 if (u.checkdead()) dead=true;
 		 }
-		 if (dead&&(TEAMS[1].checkdead()||TEAMS[2].checkdead())) win();
+		 if (dead&&TEAMS[1].checkdead()&&TEAMS[2].checkdead()) win(0);
+		 if (dead&&TEAMS[1].checkdead()) win(1);
+		 if (dead&&TEAMS[2].checkdead())  win(2);
 	     },
 	     function() {
 		 $("#attackdial").hide();
@@ -814,7 +816,7 @@ function enablenextphase() {
     return ready;
 }
 
-function win() {
+function win(destroyed) {
     movelog("W");
     var title="m-draw";
     var i;
@@ -853,8 +855,9 @@ function win() {
 //    str+="<div style='font-size:smaller'>Average <span class='hit'></span>/die:"+meanhit+" (norm:0.375)</div><div>Average <span class='critical'></span>:"+meancrit+" (norm: 0.125)</div>/die</td>";
     $(".victory-table").append("<tr><th class='m-squad2'></th><th>"+score2+"</th></tr>");
     $(".victory-table").append(s2);
-    if (d>0) title="m-1win";
-    else if (d<0) title="m-2win";
+    if ((d>0&&WINCOND<0)||(destroyed==2&&WINCOND>round)) title="m-1win";
+    else if ((d<0&&WINCOND<0)||(destroyed==1&&WINCOND>round)) title="m-2win";
+    
     $(".victory").attr("class",title);
     var titl = (TEAMS[1].isia?"Computer":"Human")+":"+score1+" "+(TEAMS[2].isia?"Computer":"Human")+":"+score2;
     var note=TEAMS[1].toJuggler(false);
@@ -920,10 +923,6 @@ function battlelog(t) {
 function createsquad() {
     $(".activeunit").prop("disabled",true);
     $("#selectphase").hide();
-    if (SQUADBUILDER==2) {
-	document.location.href="http://x-wing.fabpsb.net/gindex.php";
-	return;
-    }
     ga('send','event', {
 	eventCategory: 'interaction',
 	eventAction: 'create',
@@ -1523,6 +1522,8 @@ function nextphase() {
 	for (i in squadron) squadron[i].endround();
 	$("#turnselector").append("<option value='"+round+"'>"+UI_translation["turn #"]+round+"</option>");
 	round++;
+	if (WINCOND<round&&WINCOND>0) win(0);
+	if (-WINCOND<round&&WINCOND<0) win(0);
 	break;
     }
     phase=(phase==COMBAT_PHASE)?PLANNING_PHASE:phase+1;
@@ -1668,43 +1669,35 @@ function setphase(cannotreplay) {
 	jwerty.key("escape", nextphase);
 
 	/* By-passes */
-	jwerty.key("9", function() { 
-		console.log("active:"+activeunit.name+" in hit range:"+activeunit.weapons[0].name);
-		var w=activeunit.weapons[0];
-		for (var i in squadron) {
-		    console.log("      "+squadron[i].name+":"+w.getrange(squadron[i]));
-		}
-	    });
-	jwerty.key("p",function() {
+	jwerty.key("ctrl+p",function() {
 	    activeunit.showpossiblepositions();
-	    //activeunit.evaluateposition();
-	});
-	jwerty.key("m",function() {
+	},{});
+	jwerty.key("ctrl+m",function() {
 	    activeunit.showmeanposition();
 	});
-	jwerty.key("shift+p",function() {
+	jwerty.key("ctrl+shift+p",function() {
 	    $(".possible").remove();
 	});
-	jwerty.key("1", function() { activeunit.addfocustoken();activeunit.show();});
-	jwerty.key("2", function() { activeunit.addevadetoken();activeunit.show();});
-	jwerty.key("3", function() { if (!activeunit.iscloaked) {activeunit.addcloaktoken();activeunit.show();}});
-	jwerty.key("4", function() { activeunit.addstress();activeunit.show();});
-	jwerty.key("5", function() { activeunit.addiontoken();activeunit.show();});
-	jwerty.key("6", function() { activeunit.addtractorbeamtoken();activeunit.show();});
-	jwerty.key("shift+1", function() { if (activeunit.focus>0) activeunit.removefocustoken();activeunit.show();});
-	jwerty.key("shift+2", function() { if (activeunit.evade>0) activeunit.removeevadetoken();activeunit.show();});
-	jwerty.key("shift+3", function() { if (activeunit.iscloaked) {activeunit.removecloaktoken();activeunit.show();}});
-	jwerty.key("shift+4", function() { if (activeunit.stress>0) activeunit.removestresstoken();activeunit.show();});
-	jwerty.key("shift+5", function() { if (activeunit.ionized>0) activeunit.removeiontoken();});
-	jwerty.key("shift+6", function() { if (activeunit.tractorbeam>0) activeunit.removetractorbeamtoken();});
-	jwerty.key("f",function() { 
+	jwerty.key("ctrl+1", function() { activeunit.addfocustoken();activeunit.show();});
+	jwerty.key("ctrl+2", function() { activeunit.addevadetoken();activeunit.show();});
+	jwerty.key("ctrl+3", function() { if (!activeunit.iscloaked) {activeunit.addcloaktoken();activeunit.show();}});
+	jwerty.key("ctrl+4", function() { activeunit.addstress();activeunit.show();});
+	jwerty.key("ctrl+5", function() { activeunit.addiontoken();activeunit.show();});
+	jwerty.key("ctrl+6", function() { activeunit.addtractorbeamtoken();activeunit.show();});
+	jwerty.key("ctrl+shift+1", function() { if (activeunit.focus>0) activeunit.removefocustoken();activeunit.show();});
+	jwerty.key("ctrl+shift+2", function() { if (activeunit.evade>0) activeunit.removeevadetoken();activeunit.show();});
+	jwerty.key("ctrl+shift+3", function() { if (activeunit.iscloaked) {activeunit.removecloaktoken();activeunit.show();}});
+	jwerty.key("ctrl+shift+4", function() { if (activeunit.stress>0) activeunit.removestresstoken();activeunit.show();});
+	jwerty.key("ctrl+shift+5", function() { if (activeunit.ionized>0) activeunit.removeiontoken();});
+	jwerty.key("ctrl+shift+6", function() { if (activeunit.tractorbeam>0) activeunit.removetractorbeamtoken();});
+	jwerty.key("ctrl+f",function() { 
 	    var s=""; 
 	    for(i in activeunit.actionsdone) s+=activeunit.actionsdone[i]+" ";
 	    activeunit.log("actions done:"+s);
 	});
-	jwerty.key("d",function() { activeunit.resolvehit(1);});
-	jwerty.key("c",function() { activeunit.resolvecritical(1);});
-	jwerty.key("shift+d",function() { 
+	jwerty.key("ctrl+d",function() { activeunit.resolvehit(1);});
+	jwerty.key("ctrl+c",function() { activeunit.resolvecritical(1);});
+	jwerty.key("ctrl+shift+d",function() { 
 	    if (activeunit.hull<activeunit.ship.hull) activeunit.addhull(1); 
 	    else if (activeunit.shield<activeunit.ship.shield) activeunit.addshield(1); 
 	    activeunit.show();
@@ -2309,7 +2302,6 @@ $(document).ready(function() {
 	$('nav ul').css({display:'none',visibility:'hidden'})
     });
 
-    jwerty.key("shift+i",function() {save(); });
     var initgapi=function() {
         gapi.client.setApiKey('AIzaSyBN2T9d2ZuWaT0Vj6EanYb5IgWzLlhy7Zo');
         gapi.client.load('urlshortener', 'v1');
@@ -2751,8 +2743,11 @@ var replayall=function() {
 	}
 	return;
     }
+
+
     var c=cmd[0].split("-");
-    //console.log(cmd[0]);
+    console.log(cmd[0]);
+
     cmd.splice(0,1);
     var u=null;
     var j;
@@ -2810,6 +2805,13 @@ var replayall=function() {
 	if (phase==SETUP_PHASE+1&&r==1) endsetupphase();
 	$("#phase").html(UI_translation["turn #"]+round+" "+UI_translation["phase"+phase]);
 	actionrlock.notify();
+	break;
+    case "L":	
+	if (!FAST) {
+	    var i=(decodeURIComponent(c[2].substring(2,c[2].length-2)));
+	    u.setinfo(i).delay(1500).fadeOut(400);
+	    setTimeout(function() { actionrlock.notify();},2000);
+	} else actionrlock.notify();
 	break;
     case "t": 
 	for (j in squadron) 

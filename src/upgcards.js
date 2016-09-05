@@ -103,7 +103,7 @@ var UPGRADES= [
 	    this.unit.log("+1 agility until end of round [%0]",self.name);
 	    self.wrap_after("getagility",this,function(a) {
 		return a+1;
-	    }).unwrapper("endround");
+	    }).unwrapper("endphase");
 	    self.showstats();
 	    self.endaction(n,ASTROMECH);
 	    return true;
@@ -157,7 +157,7 @@ var UPGRADES= [
 		  self.desactivate();
 		  this.wrap_after("getocollisions",self,function(mbegin,mend,path,len,ob) { 
 		      return {overlap:-1,template:[],mine:ob.mine};
-		  }).unwrapper("endround");
+		  }).unwrapper("endphase");
 		  this.show();
 	      }.bind(this), A[ASTROMECH.toUpperCase()].key, $("<div>").attr({class:"symbols"}));
 	      return this.activationdial;
@@ -262,7 +262,7 @@ var UPGRADES= [
 	done:true,
         init: function(sh) {
 	    var self=this;
-	    sh.wrap_before("endround",this,function() {
+	    sh.wrap_before("endphase",this,function() {
 		var c=-1,cl=-1;
 		for (var i=0; i<this.criticals.length; i++) {
 		    var cr=this.criticals[i];
@@ -602,10 +602,10 @@ var UPGRADES= [
 	    this.unit.log("-1 agility, +1 primary attack until end of turn [%0]",this.name);
 	    this.unit.wrap_after("getagility",this,function(a) {
 		if (a>0) return a-1; else return 0;
-	    }).unwrapper("endround");
+	    }).unwrapper("endphase");
 	    w.wrap_after("getattack",this,function(a) {
 		return a+1;
-	    }).unwrapper("endround");
+	    }).unwrapper("endphase");
 	    this.unit.showstats();
 	    this.unit.endaction(n,ELITE);
 	},
@@ -2585,7 +2585,7 @@ var UPGRADES= [
 		    mod.desactivate();
 		    this.wrap_after("getagility",mod,function(a) {
 			return a+1;
-		    }).unwrapper("endround");
+		    }).unwrapper("endphase");
 		    if (this.istargeted.length>0) {
 			this.log("select a lock to remove [%0]",mod.name);
 			this.resolveactionselection(this.istargeted,function(k) { 
@@ -3081,7 +3081,7 @@ var UPGRADES= [
 	type:ILLICIT,
 	islarge:false,
         points: 2,
-	candoaction: function() { return this.isactive; },
+	candoaction: function() { return this.isactive&&!this.unit.iscloaked; },
 	action: function(n) {
 	    var self=this.unit;
 	    self.log("cloaked [%0]",this.name);
@@ -3090,16 +3090,13 @@ var UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    var self=this;
-	    sh.wrap_before("endround",this,function() {
+	    sh.wrap_after("endphase",this,function() {
 		var roll=this.rollattackdie(1,self,"blank")[0];
 		if (roll=="focus"&&this.iscloaked&&self.isactive==true) {
-		    this.log("decloaked [%0]",self.name);
-		    self.isactive=false;
-		    this.wrap_after("getdecloakmatrix",self,function(m,l) {
-			return l.concat(m);
-		    });
-		    this.resolvedecloak();
-		}
+		    this.log("%0 failed -> decloaking",self.name);
+		    this.resolvedecloak(true);
+		    self.desactivate();
+		} else this.log("%0 still working",self.name);
 	    });
 	},
     },
@@ -3533,7 +3530,7 @@ var UPGRADES= [
 		var u=this.docked;
 		this.init.call(u); // Copy capacities
 		this.hasfired=0;
-		u.wrap_before("endround",u,function() {
+		u.wrap_before("endphase",u,function() {
 		    this.hasmoved=false;
 		});
 		u.noattack=round;
@@ -3793,7 +3790,7 @@ var UPGRADES= [
 			this.log("emergency deployment of %0, +1 %HIT% [%1]",this.docked.name,this.name);
 			this.docked.resolvehit(1);
 			this.docked.hasfired=0;
-			this.docked.wrap_before("endround",this.docked,function() {
+			this.docked.wrap_before("endphase",this.docked,function() {
 			    this.hasmoved=false;
 			});
 			u.deploy(this,self.getdeploymentmatrix(u));

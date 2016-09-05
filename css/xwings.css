@@ -1696,7 +1696,6 @@ color:#fff;
 background:rgba(50,50,50,0.5);
 height:1em
 }
-
 .title {
 letter-spacing:2px;
 font-size:larger;
@@ -1704,13 +1703,22 @@ font-weight:700;
 margin-left:4px;
 vertical-align:middle
 }
-
 .log {
 text-align:left;
 overflow-y:scroll;
 font-size:smaller;
 color:#d3d3d3;
 height:5em
+}
+footer input {
+color:white;
+background:rgba(80,80,80,0.5);
+width:calc( 100% - 6px );
+height:1em;
+border:2px;
+border-style:inset;
+padding:1px;
+cursor:text;
 }
 .unit {
 cursor:move
