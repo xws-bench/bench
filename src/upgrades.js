@@ -442,6 +442,7 @@ Upgrade.prototype = {
 	this.trname=translate(this.name).replace(/\'/g,"&#39;");
 	this.left=(this.unit.team==1);
 	if (typeof this.shield!="undefined" &&this.shield>0) this.hasshield=true; else this.hasshield=false;
+	if (typeof this.focus!="undefined" &&this.focus>0) this.hasfocus=true; else this.hasfocus=false;
 	if (typeof this.switch!="undefined"&&phase==SETUP_PHASE) {
 	    for (j=0; j<this.unit.upgrades.length; j++) if (this.unit.upgrades[j]==this) break;
 	    this.hasswitch={uid:this.unit.id,uuid:j}
