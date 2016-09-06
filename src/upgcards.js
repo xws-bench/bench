@@ -4840,19 +4840,31 @@ var UPGRADES= [
     },
     {name:"Burnout Slam",
      islarge:true,
+     done:true,
      type:ILLICIT,
      addedaction:"SLAM",
      points:1,
      init: function(sh) {
 	 var self=this;
 	 sh.wrap_after("resolveslam",this,function() {
-	     if(self.isactive) self.desactivate();
+	     if(self.isactive) {
+		 var n=self.unit.shipactionList.indexOf("SLAM");
+		 self.unit.shipactionList.splice(n,1);
+		 self.desactivate();
+	     }
 	 }.bind(sh));
      }
     },
     {name:"Finn",
      faction:REBEL,
      points:5,
+     unique:true,
+     type:CREW,
+    },
+    {name:"Rey",
+     faction:REBEL,
+     points:2,
+     unique:true,
      type:CREW,
     }
 ];
