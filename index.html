@@ -348,16 +348,16 @@
 	    <table>
 	      <tr><th class="m-key">Keys</th><th class="m-action">Action</th></tr>
 	      <tr><td><code>ESC</code></td><td>Go to next phase</td></tr>
-	      <tr class="odd"><td><code>p/shift+p</code></td><td>Show/Hide possible moves for unit.</br>RED:goes out of board (this turn or the next), YELLOW:collides with obstacle, </br>WHITE:collides with unit, GREEN:ok</td></tr>
-	      <tr><td><code>m</code></td><td>Show average move, using only GREEN and WHITE moves, no K-/Tallon turns. </br>Use shift+p to hide.</td></tr>
-	      <tr class="odd"><td><code>1/shift+1</code></td><td>Add/Remove <code class="xfocustoken"></code> to selected unit</td></tr>
-	      <tr><td><code>2/shift+2</code></td><td>Add/Remove <code class="xevadetoken"></code> to selected unit</td></tr>
-	      <tr class="odd"><td><code>3/shift+3</code></td><td>Add/Remove <code class="xcloaktoken"></code> to selected unit</td></tr>
-	      <tr><td><code>4/shift+4</code></td><td>Add/Remove <code class="xstresstoken"></code> to selected unit</td></tr>
-	      <tr class="odd"><td><code>5/shift+5</code></td><td>Add/Remove <code class="xionizedtoken"></code> (ionization token) to selected unit</td></tr>
-	      <tr class="odd"><td><code>6/shift+6</code></td><td>Add/Remove <code class="xtractorbeamtoken"></code> (tractor beam token) to selected unit</td></tr>
-	      <tr><td><code>d/shift+d</code></td><td>Add/Remove <code class="hit"></code> to selected unit</td></tr>
-	      <tr class="odd"><td><code>c</code></td><td>Add random <code class="critical"></code> to selected unit</td></tr>
+	      <tr class="odd"><td><code>ctrl+p/ctrl+shift+p</code></td><td>Show/Hide possible moves for unit.</br>RED:goes out of board (this turn or the next), YELLOW:collides with obstacle, </br>WHITE:collides with unit, GREEN:ok</td></tr>
+	      <tr><td><code>ctrl+m</code></td><td>Show average move, using only GREEN and WHITE moves, no K-/Tallon turns. </br>Use shift+p to hide.</td></tr>
+	      <tr class="odd"><td><code>ctrl+1/ctrl+shift+1</code></td><td>Add/Remove <code class="xfocustoken"></code> to selected unit</td></tr>
+	      <tr><td><code>ctrl+2/ctrl+shift+2</code></td><td>Add/Remove <code class="xevadetoken"></code> to selected unit</td></tr>
+	      <tr class="odd"><td><code>ctrl+3/ctrl+shift+3</code></td><td>Add/Remove <code class="xcloaktoken"></code> to selected unit</td></tr>
+	      <tr><td><code>ctrl+4/ctrl+shift+4</code></td><td>Add/Remove <code class="xstresstoken"></code> to selected unit</td></tr>
+	      <tr class="odd"><td><code>ctrl+5/ctrl+shift+5</code></td><td>Add/Remove <code class="xionizedtoken"></code> (ionization token) to selected unit</td></tr>
+	      <tr class="odd"><td><code>ctrl+6/ctrl+shift+6</code></td><td>Add/Remove <code class="xtractorbeamtoken"></code> (tractor beam token) to selected unit</td></tr>
+	      <tr><td><code>ctrl+d/ctrl+shift+d</code></td><td>Add/Remove <code class="hit"></code> to selected unit</td></tr>
+	      <tr class="odd"><td><code>ctrl+c</code></td><td>Add random <code class="critical"></code> to selected unit</td></tr>
 	    </table>
 	    <div class="ack"><button onclick="window.location='#'">Ok</button></div>
 	  </div>
@@ -520,7 +520,7 @@ The app is not really a game since the player plays both sides or against an AI,
 	    <p><b>Thanks</b></p>
 	    
 	    <p>Many thanks to supporters and patrons, in particular to:<br/>
-	      <em>James Ramsay, Club165 Ventures, Lorenz Thor, Edward Coxwell-Rodgers, 宜軒 詹, Carlo Casalini, Bryan Gagen, James Berry, Lucas Haeser, Josh Chamot.</em>
+	      <em>James Ramsay, Club165 Ventures, Lorenz Thor, Edward Coxwell-Rodgers, 宜軒 詹, Carlo Casalini, Bryan Gagen, James Berry, Lucas Haeser, Josh Chamot, Erich Leopold.</em>
 	    </p>
 	      
 	    <p>Thanks also for all of the contributors reporting bugs and proposing features</p>  
@@ -554,7 +554,6 @@ The app is not really a game since the player plays both sides or against an AI,
     </footer>
     <script src="js/all.min.js"></script>
     <script src="js/bench.min.js" async></script>
-
 
     <script>
       if (location.search=="") $("#selectphase").show();
