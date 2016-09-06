@@ -553,7 +553,9 @@ Unit.prototype = {
 
 	if (translated==true) s=translate(this.name);
 	s=s.replace(/\'/g,""); 
-	if (PILOTS[this.pilotid].ambiguous==true) s=s+"("+this.ship.name+")";
+	if (PILOTS[this.pilotid].ambiguous==true
+	    &&typeof PILOTS[this.pilotid].edition!="undefined") 
+	    s=s+"("+PILOTS[this.pilotid].edition+")";
 	for (var i=0; i<this.upg.length; i++) {
 	    var upg=this.upg[i];
 	    if (upg>-1) {
@@ -588,7 +590,9 @@ Unit.prototype = {
 	//var faction=currentteam.faction;
 	var str="";
 	var img=PILOTS[this.pilotid].dict;
-	if (PILOTS[this.pilotid].ambiguous==true) img+="-"+unitlist[this.ship.name].dict;
+	if (PILOTS[this.pilotid].ambiguous==true
+	    &&typeof PILOTS[this.pilotid].edition!="undefined") 
+	    img+="-"+PILOTS[this.pilotid].edition.toLowerCase().replace(" ","");
 	var sname=SHIP_translation[this.ship.name];
 	if (typeof SHIP_translation[this.ship.name]=="undefined") sname=this.ship.name;
 	var rendered = Mustache.render(TEMPLATES["unit-creation"], {
@@ -1383,6 +1387,8 @@ Unit.prototype = {
 	this.movelog("i");
 	this.show();
    },
+    warndeath: function(c,h,t) {
+    },
     dies: function() {
 	this.movelog("d-0");
 	$("#"+this.id).attr("onclick","");
@@ -1396,7 +1402,9 @@ Unit.prototype = {
 	i=squadron.indexOf(this);
 	for (i in squadron) {
 	    if (squadron[i]==this) {
-		delete squadron[i]; break;
+		delete squadron[i];
+	    } else if (squadron[i].team==this.team) {
+		squadron[i].warndeath(this.hull,this.shield,this);
 	    }
 	}
 	filltabskill();
@@ -2437,12 +2445,12 @@ Unit.prototype = {
 	
 	this.wrap_after(wrapper,org,function(c,h,attacker) {
 	    var anyactiveweapon=false;
-	    if (wrapper=="removeshield") attacker=activeunit;
+	    if (wrapper=="removeshield"||wrapper=="warndeath") attacker=activeunit;
 	    else if (typeof attacker=="undefined") attacker=this;
 	    for (i in weaponlist) if (weaponlist[i].isactive) {
 		anyactiveweapon=true; break;
 	    }
-//	    this.log("trigger for "+wrapper+":"+f.call(this,c,h)+" noattack?"+(this.noattack<round)+" active?"+anyactiveweapon+" cloak?"+(this.iscloaked)+" attacker?"+attacker.name+" "+c+" "+h);
+	    //this.log("trigger for "+wrapper+":"+" noattack?"+(this.noattack<round)+" active?"+anyactiveweapon+" cloak?"+(this.iscloaked)+" attacker?"+attacker.name+" "+c+" "+h+" "+this.isfireobstructed()+" f?"+f.call(this,c,h,attacker));
 	    if (f.call(this,c,h,attacker)&&this.noattack<round&&anyactiveweapon
 	       &&!this.iscloaked&&!this.isfireobstructed()) {
 		var latedeferred=attacker.deferred;
@@ -2477,7 +2485,7 @@ Unit.prototype = {
 		    //this.log("doattack "+wpl.length+" "+enemies.length);
 		    this.doattack(wpl,enemies);
 		}.bind(this);
-		if (wrapper!="endcombatphase"&&phase==COMBAT_PHASE) 
+		if (wrapper!="endcombatphase"&&wrapper!="warndeath"&&phase==COMBAT_PHASE) 
 		    attacker.newlock().done(fctattack);
 		else fctattack();
 	    } 
@@ -2897,7 +2905,7 @@ Unit.prototype = {
 	else if (this.isdocked) str="<div class='docked'>"; else str="<div>";
 
 	str+="<div><div class='statskill'>"+this.getskill()+"</div>";
-	t=formatstring(getpilottexttranslation(this.name,this.faction));
+	t=formatstring(getpilottexttranslation(this,this.faction));
 	str+="<div class='name'>";
 	if (t!="") str+="<div class='tooltip outoverflow'><span>"+t+"</span></div>"
 	str+="<div>"+translate(this.name)+"</div></div>";
@@ -3277,7 +3285,7 @@ Unit.prototype = {
 	for (i=0; i<p.length; i++) {
 	    var roll=this.rollattackdie(1,OBSTACLES[p[i]],"blank")[0];
 	    switch(roll){
-	    case "focus": this.log("roll for collision:<span class='focusreddice'></span"); break;
+	    case "focus": this.log("roll for collision: <span class='focusreddice'></span>"); break;
 	    case "hit": this.log("roll for collision: <span class='hitreddice'></span>"); break;
 	    case "blank": this.log("roll for collision: <span class='blankreddice'></span>"); break;
 	    case "critical": this.log("roll for collision: <span class='criticalreddice'></span>"); break;

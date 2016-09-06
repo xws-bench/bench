@@ -2509,12 +2509,10 @@ var UPGRADES= [
         install: function(sh) {
 	    sh.log("hull->"+sh.hull+"/"+sh.ship.hull);
 	    sh.hull++; sh.ship.hull++;
-	    sh.log("hull:"+sh.ship.hull);
 	    sh.installed=true;
 	    sh.showstats();
 	},     
 	uninstall:function(sh) {
-	    sh.log("call uninstall hull upgrade");
 	    sh.hull--; sh.ship.hull--;
 	    sh.showstats();
 	},
@@ -4822,5 +4820,39 @@ var UPGRADES= [
      type:TITLE,
      upgrades:[CREW,ILLICIT],
      points:1,
+    },
+    {name:"Millenium Falcon(HoR)",
+     faction:REBEL,
+     ambiguous:true,
+     ship:"YT-1300",
+     unique:true,
+     type:TITLE,
+     points:1,
+    },
+    {name:"Smuggling Compartment",
+     ship:"YT-",
+     type:MOD,
+     limited:true,
+     done:true,
+     points:0,
+     upgrades:[MOD,ILLICIT],
+     maxupg:3,
+    },
+    {name:"Burnout Slam",
+     islarge:true,
+     type:ILLICIT,
+     addedaction:"SLAM",
+     points:1,
+     init: function(sh) {
+	 var self=this;
+	 sh.wrap_after("resolveslam",this,function() {
+	     if(self.isactive) self.desactivate();
+	 }.bind(sh));
+     }
+    },
+    {name:"Finn",
+     faction:REBEL,
+     points:5,
+     type:CREW,
     }
 ];
