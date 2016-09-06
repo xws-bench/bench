@@ -352,7 +352,7 @@ Team.prototype = {
 		var v=PILOTS[j].name;
 		var vat=translate(v);
 		var pu="";
-		if (PILOTS[j].ambiguous==true) pu="("+PILOTS[j].unit+")";
+		if (PILOTS[j].ambiguous==true&&typeof PILOTS[j].edition!="undefined") pu="("+PILOTS[j].edition+")";
 		vat+=pu; v+=pu;
 		if (v.replace(/\'/g,"")==pstr[0]) lf=lf|getf(PILOTS[j].faction);
 		if (vat.replace(/\'/g,"")==pstr[0]) lf=lf|getf(PILOTS[j].faction);
@@ -371,7 +371,7 @@ Team.prototype = {
 		var pu="";
 		if (PILOTS[j].faction==this.faction) {
 		    vat=translate(v);
-		    if (PILOTS[j].ambiguous==true) pu="("+PILOTS[j].unit+")";
+		    if (PILOTS[j].ambiguous==true&&typeof PILOTS[j].edition!="undefined") pu="("+PILOTS[j].edition+")";
 		    v+=pu;
 		    vat+=pu;
 		    if (v.replace(/\'/g,"")==pstr[0]) { pid=j; break; }

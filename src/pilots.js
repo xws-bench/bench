@@ -514,6 +514,7 @@ var PILOTS = [
 	done:true,
 	pilotid:24,
 	ambiguous:true,
+	edition:"TIE Defender",
         faction:EMPIRE,
 	unit: "TIE Defender",
         skill: 7,
@@ -724,6 +725,7 @@ var PILOTS = [
         name: "Chewbacca",
         unique: true,
 	done:true,
+	ambiguous:true,
 	faction:REBEL,
         unit: "YT-1300",
         skill: 5,
@@ -2837,6 +2839,7 @@ var PILOTS = [
             unit: "T-70 X-Wing",
 	    unique:true,
 	    done:true,
+	    ambiguous:true,
             skill: 8,
             upgrades: [ELITE,TORPEDO,ASTROMECH,TECH],
 	    init: poe_fct,
@@ -3161,6 +3164,7 @@ var PILOTS = [
 	unit:"Attack Shuttle",
 	skill:7,
 	ambiguous:true,
+	edition:"Attack Shuttle",
 	points:22,
         getmaneuverlist: hera_fct,
 	upgrades:[ELITE,TURRET,CREW],
@@ -3706,12 +3710,14 @@ var PILOTS = [
 	}
     },
     {
-        name: "Poe Dameron (HoR)",
+        name: "Poe Dameron",
         faction: REBEL,
 	pilotid:191,
         unit: "T-70 X-Wing",
 	unique:true,
 	done:true,
+	ambiguous:true,
+	edition:"HoR",
 	init: poe_fct,
         skill: 9,
         upgrades: [ELITE,TORPEDO,ASTROMECH,TECH],
@@ -4075,10 +4081,44 @@ var PILOTS = [
         unit: "TIE Fighter",
         skill: 5,
 	ambiguous:true,
+	edition:"TIE Fighter",
         upgrades: [ELITE],
 	points:15,
 	init: function() {
 	    this.wrap_after("beginactivation",this,sabine_fct);
 	}
+    },
+    { name:"Chewbacca",
+      unit:"YT-1300",
+      skill:5,
+      unique:true,
+      edition:"HoR",
+      ambiguous:true,
+      done:true,
+      pilotid:211,
+      faction:REBEL,
+      upgrades:[ELITE,MISSILE,CREW,CREW],
+      points:42,
+      init:function() {
+	  var self=this;
+	  this.addattack(function(c,h,t) { 
+	      return c+h<=0&&self.getrange(t)<=3;
+	    }, this,this.weapons,function() {
+	    },function() {
+		return squadron;
+	    },"warndeath");
+      }
+    },
+    { name:"Han Solo",
+      unit:"YT-1300",
+      skill:9,
+      done:true,
+      unique:true,
+      edition:"HoR",
+      ambiguous:true,
+      pilotid:212,
+      faction:REBEL,
+      upgrades:[ELITE,MISSILE,CREW,CREW],
+      points:46
     },
 ];

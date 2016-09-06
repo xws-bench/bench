@@ -359,7 +359,9 @@ function formatstring(s) {
         .replace(/%TALONLEFT%/g,"<code class='symbols'>;</code>")
         .replace(/%TALONRIGHT%/g,"<code class='symbols'>:</code>")
         .replace(/%ASTROMECH%/g,"<code class='symbols'>A</code>")
-	.replace(/%CREW%/g,"<code class='symbols'>W</code>");
+	.replace(/%CREW%/g,"<code class='symbols'>W</code>")
+	.replace(/%SLAM%/g,"<code class='symbols'>s</code>")
+    ;
 }
 function displayplayertype(team,img) {
     var himg=localStorage["image"];
@@ -1107,7 +1109,7 @@ function displayfactionunits(noreset) {
 	    if (typeof p[u]=="undefined") p[u]=[];
 	    /* should go elsewhere */
 	    if (PILOTS[i].upgrades.indexOf(ELITE)>-1) PILOTS[i].haselite=true;
-	    var text=getpilottexttranslation(PILOTS[i].name,faction);
+	    var text=getpilottexttranslation(PILOTS[i],faction);
 	    if (text!="")
 		text+=(PILOTS[i].done==true?"":"<div><strong class='m-notimplemented'></strong></div>");
 	    PILOTS[i].tooltip=text;
@@ -1170,8 +1172,12 @@ function displayfactionunits(noreset) {
 function selectweapon(weapons) {
     $("#attackdial").html(Mustache.render(TEMPLATES["selectweapon"],weapons)).show();
 }
-function getpilottexttranslation(name,faction) {
-    var idxn=name+(faction=="SCUM"?" (Scum)":"");
+function getpilottexttranslation(u,faction) {
+    var idxn=u.name+(faction=="SCUM"?" (Scum)":"");
+    if (typeof u.edition!="undefined") {
+	var i=u.name+"("+u.edition+")";
+	if (typeof PILOT_translation[i]!="undefined"&&typeof PILOT_translation[i].text!="undefined") return formatstring(PILOT_translation[i].text);
+    }
     if (typeof PILOT_translation[idxn]!="undefined"&&typeof PILOT_translation[idxn].text!="undefined") return formatstring(PILOT_translation[idxn].text);
     return "";
 }
@@ -2370,7 +2376,6 @@ $(document).ready(function() {
 		var v=PILOT_translation[i];
 		var t=u.text;
 		if (typeof v=="undefined") {
-		    log("translation not found:"+i);
 		    PILOT_translation[i]=u;
 		}
 	    }
@@ -2678,7 +2683,9 @@ $(document).ready(function() {
 	for (i=0; i<PILOTS.length; i++) {
 	    var n=i;
 	    var name=translate(PILOTS[i].name);
-	    if (PILOTS[i].ambiguous==true) name+="("+PILOTS[i].unit+")";
+	    if (PILOTS[i].ambiguous==true
+		&&typeof PILOTS[i].edition!="undefined") 
+		name+="("+PILOTS[i].edition+")";
 	    pilots.push(name.replace(/\'/g,"").replace(/\(Scum\)/g,""));
 	}
 	var upgrades=[];
