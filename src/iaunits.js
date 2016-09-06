@@ -247,8 +247,9 @@ IAUnit.prototype= {
 		this.resolvenoaction(a,n);
 	    }.bind(this),"donoaction ia");
     },
-    doaction: function(list,str) {
+    doaction: function(list,str,cando) {
 	var cmp=function(a,b) { return b.priority-a.priority; }
+	if (typeof cando=="undefined") cando=this.candoaction;
 
 	for (i=0; i<list.length; i++) {
 	    this.setpriority(list[i]);
@@ -259,7 +260,7 @@ IAUnit.prototype= {
 	    this.endnoaction(n);
 	}.bind(this));
 	return this.enqueueaction(function(n) {
-	    if (this.candoaction()) {
+	    if (cando()) {
 		this.select();
 		if (typeof str!="undefined") this.log(str);
 		var a=null;
