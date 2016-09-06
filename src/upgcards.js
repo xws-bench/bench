@@ -4866,5 +4866,21 @@ var UPGRADES= [
      points:2,
      unique:true,
      type:CREW,
+     init:function(sh) {
+	 var self=this;
+	 self.focus=0;
+	 sh.wrap_before("endphase",this,function() {
+	     this.log("+1 %FOCUS% on %0",self.name);
+	     self.focus++;
+	 });
+	 sh.wrap_after("begincombatphase",this,function() {
+	     this.donoaction([{org:self,type:"CREW",name:self.name,action:function(n) {
+		 if (self.focus>0) {
+		     self.focus--;
+		     self.unit.addfocustoken();
+		 }
+	     }}]);
+	 });
+     }
     }
 ];

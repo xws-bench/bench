@@ -19,6 +19,10 @@
 	"JumpMaster 5000":"JumpMaster 5000"
     },
     "pilots": {
+	"Countess Ryad":{"text":"Quand vous révélez une manœuvre %STRAIGHT%, vous pouvez la traiter comme une manœuvre %UTURN%.","name":"Comtesse Ryad"},
+	"Deathfire":{"text":"Quand vous révélez votre cadran de manœuvre ou après avoir effectué une action, vous pouvez effectuer une action de carte d'amélioration %BOMB% en tant qu'action gratuite."},
+	
+	"Tomax Bren":{"text":"Une fois par tour, après avoir défaussé une carte d'amélioration %ELITE%, retournez cette dernière face visible."},
 	"Rey":{"text":"When attacking or defending, if the enemy ship is inside your firing arc, you may reroll up to 2 of your blank results."},
 	"Hera Syndulla":{"text":"Quand vous révélez une manœuvre verte ou rouge, vous pouvez tourner votre cadran sur une autre manœuvre de même difficulté."},
 	"Kanan Jarrus":{"text":"Quand un vaisseau ennemi situé à portée 1-2 attaque, vous pouvez dépenser un marqueur de concentration. Dans ce cas, l'attaquant lance 1 dé d'attaque en moins."},
@@ -146,7 +150,7 @@
         "name": "Pilote de l'escadron Storm"
       },
       "Maarek Stele": {
-        "text": "Si votre attaque se solde par une carte de dégâts face visible pour le défenseur, piochez 3 cartes de dégâts, choisissez-en une que vous lui infligez et défaussez les autres."
+        "text": "Si votre attaque assigne une carte de dégâts face visible pour le défenseur, piochez 3 cartes de dégâts à la place, choisissez-en une que vous lui assignez et défaussez les autres."
       },
       "Darth Vader": {
         "name": "Dark Vador",

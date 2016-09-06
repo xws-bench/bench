@@ -502,6 +502,7 @@ var PILOTS = [
 	pilotid:23,
 	ambiguous:true,
         faction:EMPIRE,
+	edition:"TIE Advanced",
 	unit: "TIE Advanced",
         skill: 7,
         points: 27,
@@ -3085,6 +3086,7 @@ var PILOTS = [
 	skill:7,
 	pilotid:162,
 	ambiguous:true,
+	edition:"VCX-100",
 	points:40,
 	done:true,
         getmaneuverlist: hera_fct,
@@ -3179,6 +3181,7 @@ var PILOTS = [
 	skill:5,
 	points:21,
 	ambiguous:true,
+	edition:"Attack Shuttle",
 	init: function() {
 	    this.wrap_after("beginactivation",this,sabine_fct);
 	},
