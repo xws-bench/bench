@@ -2184,29 +2184,28 @@ var UPGRADES= [
 	    sh.greedoa=-1;
 	    sh.greedod=-1;
 	    var self=this;
-	    var newdeal=function(c,f) {
-		this.log("first damage is a faceup damage [%0]",self.name);
-		return {crit:cf.crit,face:FACEUP};
-	    };
-            sh.wrap_before("hashit",this,function(t) {
-		if (this.greedoa<round) {
-		    this.greedoa=round;
-		    var adeal=t.deal;
-		    t.deal=function(c,f) {
-			this.deal=adeal;
-			return adeal.call(this,c,FACEUP);
+            sh.wrap_before("hashit",self,function(t,r) {
+		t.wrap_after("deal",self,function(crit,face,p) {
+		    if (self.unit.greedoa<round) {
+			self.unit.greedoa=round;
+			this.log("first damage is a faceup damage [%0]",self.name);
+			dd=$.Deferred();
+			return dd.resolve({crit:crit,face:FACEUP}).promise();
 		    }
-		}
+		    return p;
+		}).unwrapper("endbeingattacked");
+		return r;
 	    });
-	    sh.wrap_before("evadeattack",this,function(t) {
-		if (this.greedod<round) {
-		    this.greedod=round;
-		    var tdeal=this.deal;
-		    this.deal=function(c,f) { 
-			this.deal=tdeal; 
-			return tdeal.call(this,c,FACEUP); 
-		    };
-		}
+	    sh.wrap_after("resolveishit",self,function() {
+		this.wrap_after("deal",self,function(crit,face,p) {
+		    if (this.greedod<round) {
+			this.greedod=round;
+			this.log("first damage is a faceup damage [%0]",self.name);
+			dd=$.Deferred();
+			return dd.resolve({crit:crit,face:FACEUP}).promise();
+		    }
+		    return p;
+		}).unwrapper("endbeingattacked");
 	    });
 	},
         points: 1,

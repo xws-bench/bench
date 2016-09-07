@@ -2097,9 +2097,10 @@ var PILOTS = [
 		if (w.type=="Cannon"&&w.isWeapon()) wn.push(w);
 	    }
 	    if (wn.length==0) return;
+	    var wp=this.weapons.indexOf(wn[0]);
 	    for (var i in this.weapons) 
 		// TODO: immediateattack unused ?
-		this.weapons[i].immediateattack={pred:function(k) { return k==0&&wn.length>0; },weapon:function() { return wn[0];}};
+		this.weapons[i].immediateattack={pred:function(k) { return k==0; },weapon:function() { return wp;}};
 	    this.addattack(function(c,h) { 
 		return (c+h==0)&&(this.ig88battack<round);
 	    },{name:"IG-88B"},wn,function () {
