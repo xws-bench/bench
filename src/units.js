@@ -429,14 +429,11 @@ Unit.prototype = {
     wrap_after: function (name,org,after,unwrap) {
 	var self=this;
 	var save=self[name];
+	if (typeof self[name].save=="undefined"&&this!=Bomb.prototype&&this!=Unit.prototype&&this!=Weapon.prototype) self[name].save=self.__proto__[name];
 	if (typeof save=="undefined") console.log("name"+name+" undefined");
-	var global=false;
-	if (typeof save.org=="undefined"&&this!=Bomb.prototype&&this!=Unit.prototype&&this!=Weapon.prototype) global=true;
 	var f=function () {
             var args = Array.prototype.slice.call(arguments),result;
-	    if (global) {
-		result=this.__proto__[name].apply(this,args);
-            } else result=save.apply( this, args);
+	    result=save.apply( this, args);
             result=after.apply( this, args.concat([result]));
 	    return result;
 	}
@@ -453,17 +450,21 @@ Unit.prototype = {
 		return a;
 	    });
 	}
+	save.next=f;
 	f.unwrap=function(o) {
 	    if (f.org==o) {
-		if (global) self[name]=self.__proto__[name];
-		else self[name]=f.save;
+		f.save.next=f.next;
+		if (typeof f.next=="undefined") self[name]=f.save;
 		if (name=="getskill") {
 		    filltabskill();
 		}
 		self.show();
-	    } else if (typeof f.save.unwrap=="function") f.save=f.save.unwrap(o);
+		return f.save;
+	    } else if (typeof f.save.unwrap=="function") {
+		f.save=f.save.unwrap(o);
+	    }
 	    self.show();
-	    return self[name];
+	    return f;
 	}
 	this[name]=f;
 	if (name=="getskill") {
@@ -483,6 +484,8 @@ Unit.prototype = {
     wrap_before: function(name,org,before,unwrap) {
 	var self=this;
 	var save=self[name];
+	if (typeof self[name].save=="undefined"&&this!=Bomb.prototype&&this!=Unit.prototype&&this!=Weapon.prototype) self[name].save=self.__proto__[name];
+	if (typeof save=="undefined") console.log("name"+name+" undefined");
 	var f=function () {
             var args = Array.prototype.slice.call(arguments),
             result;
@@ -503,13 +506,15 @@ Unit.prototype = {
 		uw.unwrap(org);
 	    });
 	}
+	save.next=f;
 	f.unwrap=function(o) {
-	    if (f.org==o||typeof f.save.unwrap!="function") {
-		self[name]=f.save;
-		if (typeof unwrap=="function") unwrap.call(self);
+	    if (f.org==o) {
+		f.save.next=f.next;
+		if (typeof f.next=="undefined") self[name]=f.save;
 		self.show();
-	    } else f.save=f.save.unwrap(o);
-	    return f.save;
+		return f.save;
+	    } else if (typeof f.save.unwrap=="function") f.save=f.save.unwrap(o);
+	    return f;
 	}
 	this[name]=f;
 	return f;
