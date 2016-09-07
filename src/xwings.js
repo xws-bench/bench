@@ -868,16 +868,16 @@ function win(destroyed) {
     note=note.replace(/ \+ /g,"*");
     note=note.replace(/ /g,"_");
     //console.log("note:"+encodeURI(note));
-
-    var url=encodeURI("http://xws-bench.github.io/bench/index.html?"+permalink(false));
-    $("#submission").contents().find('#entry_209965003').val(titl);
-    $('#submission').contents().find('#entry_390767903').val(note);
-    $('#submission').contents().find('#entry_245821581').val("no short url");
-    $('#submission').contents().find('#entry_1690611500').val(url);
-    $(".tweet").hide();
-    save();
-    for (i in ["email","facebook","tweet","googlep"]) {
-	(function(n) {
+    if (!FAST) {
+	var url=encodeURI("http://xws-bench.github.io/bench/index.html?"+permalink(false));
+	$("#submission").contents().find('#entry_209965003').val(titl);
+	$('#submission').contents().find('#entry_390767903').val(note);
+	$('#submission').contents().find('#entry_245821581').val("no short url");
+	$('#submission').contents().find('#entry_1690611500').val(url);
+	$(".tweet").hide();
+	save();
+	for (i in ["email","facebook","tweet","googlep"]) {
+	    (function(n) {
 	    $("."+n).click(function() {
 		ga("send","event",{
 		    eventCategory: 'social',
@@ -885,9 +885,10 @@ function win(destroyed) {
 		    eventLabel: n
 		});
 	    });
-	})(i);
+	    })(i);
+	}
+	$(".victory-link").attr("href",url);
     }
-    $(".victory-link").attr("href",url);
     /*var y1=0,y2=0;
     var t1=TEAMS[1].history;
     var t2=TEAMS[2].history;
@@ -1349,7 +1350,7 @@ function setselectedunit(n,td) {
 function addrow(team,name,pts,faction,jug,fill) {
     if (team==1) {$("#squad1").val(jug); $("#squad1points").html(pts); $("#squad1").attr("data-name",name);}
     if (team==2) {$("#squad2").val(jug); $("#squad2points").html(pts); $("#squad2").attr("data-name",name);}
-    enablenextphase();
+    //enablenextphase();
     var n=faction.toUpperCase();
     if (typeof localStorage[name]=="undefined"||fill==true)
 	SQUADLIST.row.add(["",n,""+pts,jug,name,"",""]).draw(false);
