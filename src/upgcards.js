@@ -1060,6 +1060,10 @@ var UPGRADES= [
 	    sh.wrap_before("beginactivationphase",this,function() {
 		this.selectunit(this.selectnearbyenemy(2),function(p,k) {
 		    p[k].showmaneuver();
+		    var d = this.getmaneuver();
+		    var c  =C[(typeof this.forceddifficulty!="undefined")?this.forceddifficulty:d.difficulty];
+		    p[k].log("has a %0<span class='symbols'>"+P[d.move].key+"</span> maneuver [%1]",P[d.move].speed,self.name);
+
 		},["select unit [%0]",self.name],false);
 	    });
 	},
@@ -3719,10 +3723,10 @@ var UPGRADES= [
       rd:-1,
       init: function(sh) {
 	  var self=this;
-	  log("wrapping sabine");
+	  self.rd=-1;
 	  Bomb.prototype.wrap_after("explode_base",this,function() {
 	      var p=[self.unit];
-	      if (self.rd==round||this.unit.isenemy(self)) return;
+	      if (self.rd==round||this.unit.isenemy(self.unit)) return;
 	      for (var i in squadron) {
 		  var u=squadron[i];
 		  if (this.unit.isenemy(u)&&this.getrange(u)==1) p.push(u); 
