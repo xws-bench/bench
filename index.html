@@ -471,8 +471,8 @@ The app is not really a game since the player plays both sides or against an AI,
 	      <tr>
 		<td class="m-victorycond">Victory conditions</td>
 		<td>
-		  <input type="radio" id="vc2" selected name="wincond" value="2" onclick="WINCOND=parseInt($('#turnvc option:selected').text(),10)"/>
-		  <label for="vc2">Destroy all units before Turn <select id="turnvc" onchange="$('#vc2').trigger('click');"><option>6</option><option>7</option><option>8</option><option>9</option><option selected>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option></select></label><br/>
+		  <input checked type="radio" id="vc2" selected name="wincond" value="2" onclick="WINCOND=parseInt($('#turnvc option:selected').text(),10)"/>
+		  <label for="vc2">Destroy all units before Turn <select id="turnvc" onchange="$('#vc2').trigger('click');"><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option selected >15</option></select></label><br/>
 		  <input type="radio" id="vc3" name="wincond" value="3" onclick="WINCOND=-parseInt($('#highvc option:selected').text(),10)"/>
 		  <label for="vc3">Highest score after <select id="highvc" onchange="$('#vc3').trigger('click');"><option>6</option><option>7</option><option>8</option><option>9</option><option selected>10</option><option>11</option></select> Turns</label>
 		</td>
@@ -554,7 +554,6 @@ The app is not really a game since the player plays both sides or against an AI,
     </footer>
     <script src="js/all.min.js"></script>
     <script src="js/bench.min.js" async></script>
-
     <script>
       if (location.search=="") $("#selectphase").show();
     </script>
@@ -723,7 +722,7 @@ The app is not really a game since the player plays both sides or against an AI,
 	</td>
 	<td class="tdstat">
 	  <span>
-	    {{{trname}}}{{#ordnance}}<sup class="ordnance">x2</sup>{{/ordnance}}{{#hasshield}}<code class="cshield" title="{{shield}} shield(s)"></code>{{/hasshield}}{{#hasswitch}}<code class="smallbutton symbols" onclick="if (!squadron[{{uid}}].isdocked) squadron[{{uid}}].upgrades[{{uuid}}].switch();">î</code>{{/hasswitch}}
+	    {{{trname}}}{{#ordnance}}<sup class="ordnance">x2</sup>{{/ordnance}}{{#hasshield}}<code class="cshield" title="{{shield}} shield(s)"></code>{{/hasshield}}{{#hasfocus}}<code class="xfocustoken" title="{{focus}}"></code>{{/hasfocus}}{{#hasswitch}}<code class="smallbutton symbols" onclick="if (!squadron[{{uid}}].isdocked) squadron[{{uid}}].upgrades[{{uuid}}].switch();">î</code>{{/hasswitch}}
 	  </span>
 	</td>
 	<td style="display:{{^left}}none{{/left}}{{#left}}table-cell{{/left}}">
