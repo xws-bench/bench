@@ -248,6 +248,7 @@ IAUnit.prototype= {
 	    }.bind(this),"donoaction ia");
     },
     doaction: function(list,str,cando) {
+	var i;
 	var cmp=function(a,b) { return b.priority-a.priority; }
 	if (typeof cando=="undefined") cando=this.candoaction;
 
@@ -255,14 +256,14 @@ IAUnit.prototype= {
 	    this.setpriority(list[i]);
 	}
 	list.sort(cmp);
-
 	if (list.length==0) return this.enqueueaction(function(n) {
 	    this.endnoaction(n);
 	}.bind(this));
 	return this.enqueueaction(function(n) {
+	    var i;
 	    if (cando.call(this)) {
 		this.select();
-		if (typeof str!="undefined") this.log(str);
+		if (typeof str!="undefined"&&str!="") this.log(str);
 		var a=null;
 		for (i=0; i<list.length; i++) {
 		    if (list[i].type=="CRITICAL") { a=list[i]; break; }

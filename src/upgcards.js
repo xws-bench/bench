@@ -2185,27 +2185,29 @@ var UPGRADES= [
 	    sh.greedod=-1;
 	    var self=this;
             sh.wrap_before("hashit",self,function(t,r) {
-		t.wrap_after("deal",self,function(crit,face,p) {
-		    if (self.unit.greedoa<round) {
-			self.unit.greedoa=round;
-			this.log("first damage is a faceup damage [%0]",self.name);
-			dd=$.Deferred();
-			return dd.resolve({crit:crit,face:FACEUP}).promise();
-		    }
-		    return p;
-		}).unwrapper("endbeingattacked");
+		if (self.unit.greedoa<round)
+		    t.wrap_after("deal",self,function(crit,face,p) {
+			if (self.unit.greedoa<round) {
+			    self.unit.greedoa=round;
+			    this.log("first damage is a faceup damage [%0]",self.name);
+			    dd=$.Deferred();
+			    return dd.resolve({crit:crit,face:FACEUP}).promise();
+			}
+			return p;
+		    }).unwrapper("endbeingattacked");
 		return r;
 	    });
 	    sh.wrap_after("resolveishit",self,function() {
-		this.wrap_after("deal",self,function(crit,face,p) {
-		    if (this.greedod<round) {
-			this.greedod=round;
-			this.log("first damage is a faceup damage [%0]",self.name);
-			dd=$.Deferred();
-			return dd.resolve({crit:crit,face:FACEUP}).promise();
-		    }
-		    return p;
-		}).unwrapper("endbeingattacked");
+		if (this.greedod<round)
+		    this.wrap_after("deal",self,function(crit,face,p) {
+			if (this.greedod<round) {
+			    this.greedod=round;
+			    this.log("first damage is a faceup damage [%0]",self.name);
+			    dd=$.Deferred();
+			    return dd.resolve({crit:crit,face:FACEUP}).promise();
+			}
+			return p;
+		    }).unwrapper("endbeingattacked");
 	    });
 	},
         points: 1,

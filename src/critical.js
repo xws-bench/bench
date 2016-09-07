@@ -479,9 +479,7 @@ var CRITICAL_DECK=[
 	    });
 	},
 	facedown: function() {
-	    if (this.isactive) {
-		this.unit.deal.unwrap(this);
-	    }
+	    if (this.isactive) this.unit.deal.unwrap(this);
 	    this.isactive=false;
 	},
 	action: function(n) {
