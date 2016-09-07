@@ -1347,10 +1347,10 @@ function setselectedunit(n,td) {
     currentteam.toJSON(); // Just for score
     addrow(n,currentteam.name,currentteam.points,currentteam.faction,currentteam.toJuggler(true));
 }
-function addrow(team,name,pts,faction,jug,fill) {
+function addrow(team,name,pts,faction,jug,fill,isselection) {
     if (team==1) {$("#squad1").val(jug); $("#squad1points").html(pts); $("#squad1").attr("data-name",name);}
     if (team==2) {$("#squad2").val(jug); $("#squad2points").html(pts); $("#squad2").attr("data-name",name);}
-    //enablenextphase();
+    if (isselection!=true) enablenextphase();
     var n=faction.toUpperCase();
     if (typeof localStorage[name]=="undefined"||fill==true)
 	SQUADLIST.row.add(["",n,""+pts,jug,name,"",""]).draw(false);
@@ -1374,7 +1374,7 @@ function endselection() {
 	localStorage[currentteam.name]=JSON.stringify({"pts":currentteam.points,"faction":currentteam.faction,"jug":jug,"rocks":currentteam.rocks});
     }
     if (currentteam==TEAMS[1]) team=1; else if (currentteam==TEAMS[2]) team=2; 
-    addrow(team,currentteam.name,currentteam.points,currentteam.faction,currentteam.toJuggler(true));
+    addrow(team,currentteam.name,currentteam.points,currentteam.faction,currentteam.toJuggler(true),true);
 }
 function removerow(t) {
     var row = SQUADLIST.row(t.parents("tr"));
@@ -1679,35 +1679,35 @@ function setphase(cannotreplay) {
 	jwerty.key("escape", nextphase);
 
 	/* By-passes */
-	jwerty.key("ctrl+p",function() {
+	jwerty.key("alt+p",function() {
 	    activeunit.showpossiblepositions();
 	},{});
-	jwerty.key("ctrl+m",function() {
+	jwerty.key("alt+m",function() {
 	    activeunit.showmeanposition();
 	});
-	jwerty.key("ctrl+shift+p",function() {
+	jwerty.key("alt+shift+p",function() {
 	    $(".possible").remove();
 	});
-	jwerty.key("ctrl+1", function() { activeunit.addfocustoken();activeunit.show();});
-	jwerty.key("ctrl+2", function() { activeunit.addevadetoken();activeunit.show();});
-	jwerty.key("ctrl+3", function() { if (!activeunit.iscloaked) {activeunit.addcloaktoken();activeunit.show();}});
-	jwerty.key("ctrl+4", function() { activeunit.addstress();activeunit.show();});
-	jwerty.key("ctrl+5", function() { activeunit.addiontoken();activeunit.show();});
-	jwerty.key("ctrl+6", function() { activeunit.addtractorbeamtoken();activeunit.show();});
-	jwerty.key("ctrl+shift+1", function() { if (activeunit.focus>0) activeunit.removefocustoken();activeunit.show();});
-	jwerty.key("ctrl+shift+2", function() { if (activeunit.evade>0) activeunit.removeevadetoken();activeunit.show();});
-	jwerty.key("ctrl+shift+3", function() { if (activeunit.iscloaked) {activeunit.removecloaktoken();activeunit.show();}});
-	jwerty.key("ctrl+shift+4", function() { if (activeunit.stress>0) activeunit.removestresstoken();activeunit.show();});
-	jwerty.key("ctrl+shift+5", function() { if (activeunit.ionized>0) activeunit.removeiontoken();});
-	jwerty.key("ctrl+shift+6", function() { if (activeunit.tractorbeam>0) activeunit.removetractorbeamtoken();});
-	jwerty.key("ctrl+f",function() { 
+	jwerty.key("alt+1", function() { activeunit.addfocustoken();activeunit.show();});
+	jwerty.key("alt+2", function() { activeunit.addevadetoken();activeunit.show();});
+	jwerty.key("alt+3", function() { if (!activeunit.iscloaked) {activeunit.addcloaktoken();activeunit.show();}});
+	jwerty.key("alt+4", function() { activeunit.addstress();activeunit.show();});
+	jwerty.key("alt+5", function() { activeunit.addiontoken();activeunit.show();});
+	jwerty.key("alt+6", function() { activeunit.addtractorbeamtoken();activeunit.show();});
+	jwerty.key("alt+shift+1", function() { if (activeunit.focus>0) activeunit.removefocustoken();activeunit.show();});
+	jwerty.key("alt+shift+2", function() { if (activeunit.evade>0) activeunit.removeevadetoken();activeunit.show();});
+	jwerty.key("alt+shift+3", function() { if (activeunit.iscloaked) {activeunit.removecloaktoken();activeunit.show();}});
+	jwerty.key("alt+shift+4", function() { if (activeunit.stress>0) activeunit.removestresstoken();activeunit.show();});
+	jwerty.key("alt+shift+5", function() { if (activeunit.ionized>0) activeunit.removeiontoken();});
+	jwerty.key("alt+shift+6", function() { if (activeunit.tractorbeam>0) activeunit.removetractorbeamtoken();});
+	jwerty.key("alt+f",function() { 
 	    var s=""; 
 	    for(i in activeunit.actionsdone) s+=activeunit.actionsdone[i]+" ";
 	    activeunit.log("actions done:"+s);
 	});
-	jwerty.key("ctrl+d",function() { activeunit.resolvehit(1);});
-	jwerty.key("ctrl+c",function() { activeunit.resolvecritical(1);});
-	jwerty.key("ctrl+shift+d",function() { 
+	jwerty.key("alt+d",function() { activeunit.resolvehit(1);});
+	jwerty.key("alt+c",function() { activeunit.resolvecritical(1);});
+	jwerty.key("alt+shift+d",function() { 
 	    if (activeunit.hull<activeunit.ship.hull) activeunit.addhull(1); 
 	    else if (activeunit.shield<activeunit.ship.shield) activeunit.addshield(1); 
 	    activeunit.show();
