@@ -4713,9 +4713,9 @@ var UPGRADES= [
 		  var roll=self.unit.rollattackdie(1,self,"blank")[0];
 		  if (roll=="hit"||roll=="critical") { 
 		      q[k].applydamage(1); 
+		      q[k].removestresstoken();
 		      q[k].checkdead(); 
 		  }
-		  if (!q[k].dead) q[k].removestresstoken();
 	      },["select unit [%0]",self.name],false);
 	  }
 	  this.unit.endaction(n,ILLICIT);
