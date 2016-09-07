@@ -16,7 +16,7 @@ var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHAS
 var DICES=["focusred","hitred","criticalred","blankred","focusgreen","evadegreen","blankgreen"];
 var BOMBS=[];
 var ROCKDATA="";
-var WINCOND=0;
+var WINCOND=15;
 var allunits=[];
 var PILOT_translation,SHIP_translation,CRIT_translation,UI_translation,UPGRADE_translation,PILOT_dict,UPGRADE_dict;
 var actionr=[];
