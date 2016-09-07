@@ -260,7 +260,7 @@ IAUnit.prototype= {
 	    this.endnoaction(n);
 	}.bind(this));
 	return this.enqueueaction(function(n) {
-	    if (cando()) {
+	    if (cando.call(this)) {
 		this.select();
 		if (typeof str!="undefined") this.log(str);
 		var a=null;
