@@ -1396,8 +1396,7 @@ var UPGRADES= [
 	    if (!this.isactive) return;
 	    var p=this.unit.selectnearbyenemy(2);
 	    if (p.length>0) {
-		p.push(this.unit);
-		this.unit.log("select unit (or self to cancel) [%0]",self.name);
+		this.unit.log("select unit [%0]",self.name);
 		this.unit.resolveactionselection(p,function(k) {
 		    if (p[k]!=this) { 
 			if (p[k].isinfiringarc(this)) this.addtarget(p[k]);
