@@ -179,6 +179,7 @@ var mk2split = function(t) {
     return r;
 }
 var save=function() {
+    movelog("W");
     var url="http://xws-bench.github.io/bench/?"+permalink(false);
     $(".social").html(Mustache.render(TEMPLATES["social"],{ 
 	url:url,
@@ -825,8 +826,11 @@ function win(destroyed) {
     var s1="",s2="";
     var defaults="<tr><td class='m-nocasualty'></td><td>0</td></tr>";
     var score1=0,score2=0;
+    var saved1=false,saved2=false;
     for (i=0; i<allunits.length; i++) {
 	var u=allunits[i];
+	if (!u.dead&&u.team==1) saved1=true;
+	if (!u.dead&&u.team==2) saved2=true;
 	if (u.dead||(u.islarge&&u.shield+u.hull<(u.ship.hull+u.ship.shield)/2)) {
 	    var p=u.dead?u.points:(u.points/2);
 	    if (u.team==1) {
@@ -838,6 +842,8 @@ function win(destroyed) {
 	    }
 	}
     }
+    if (saved1==false) score2=100;
+    if (saved2==false) score1=100;
     if (s1=="") s1=defaults;
     if (s2=="") s2=defaults;
     var d=score1 - score2;
@@ -2807,7 +2813,8 @@ var replayall=function() {
 	if (p>phase) {
 	    for (var i in squadron) {
 		var u=squadron[i];
-		u.focus=u.evade=0;
+		u.resetfocus();
+		u.resetevade();
 		u.showinfo();
 	    }
 	}
