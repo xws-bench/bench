@@ -1488,7 +1488,7 @@ Unit.prototype = {
 	    this.log("attacks %0 with %1",target.name,this.weapons[w].name);
 	    target.isattackedby(w,this);
 	    return true;
-	} else this.log("cannot declare attack to "+target.name+" with "+this.weapons[w].name); 	    
+	} else this.log("cannot attack %0 [%1]",target.name,this.weapons[w].name); 	    
 	return false;
     },
     isattackedby:function(k,a) {},

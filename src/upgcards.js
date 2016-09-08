@@ -2145,6 +2145,7 @@ var UPGRADES= [
         type: ILLICIT,
 	done:true,
 	range:[1,1],
+	isTurret:function() { return true; },
 	issecondary:false,
 	isWeapon:function() { return true; },
 	declareattack: function(target) { 
