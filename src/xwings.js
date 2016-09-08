@@ -868,16 +868,15 @@ function win(destroyed) {
     note=note.replace(/ \+ /g,"*");
     note=note.replace(/ /g,"_");
     //console.log("note:"+encodeURI(note));
-    if (!FAST) {
-	var url=encodeURI("http://xws-bench.github.io/bench/index.html?"+permalink(false));
-	$("#submission").contents().find('#entry_209965003').val(titl);
-	$('#submission').contents().find('#entry_390767903').val(note);
-	$('#submission').contents().find('#entry_245821581').val("no short url");
-	$('#submission').contents().find('#entry_1690611500').val(url);
-	$(".tweet").hide();
-	save();
-	for (i in ["email","facebook","tweet","googlep"]) {
-	    (function(n) {
+    var url=encodeURI("http://xws-bench.github.io/bench/index.html?"+permalink(false));
+    $("#submission").contents().find('#entry_209965003').val(titl);
+    $('#submission').contents().find('#entry_390767903').val(note);
+    $('#submission').contents().find('#entry_245821581').val("no short url");
+    $('#submission').contents().find('#entry_1690611500').val(url);
+    $(".tweet").hide();
+    save();
+    for (i in ["email","facebook","tweet","googlep"]) {
+	(function(n) {
 	    $("."+n).click(function() {
 		ga("send","event",{
 		    eventCategory: 'social',
@@ -885,10 +884,9 @@ function win(destroyed) {
 		    eventLabel: n
 		});
 	    });
-	    })(i);
-	}
-	$(".victory-link").attr("href",url);
+	})(i);
     }
+    $(".victory-link").attr("href",url);
     /*var y1=0,y2=0;
     var t1=TEAMS[1].history;
     var t2=TEAMS[2].history;
