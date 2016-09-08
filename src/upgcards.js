@@ -3304,6 +3304,7 @@ var UPGRADES= [
 	size:40,
 	done:true,
 	init: function() {
+	    this.conner=-1;
 	    var p=s.path("M-11.379,-0.26 C-11.241,-6.344 -16.969,-14.641 -19.247,-20.448 C-21.524,-26.255 -24.216,-38.147 -20.213,-39.46 C-16.21,-40.774 -8.619,-37.594 2.424,-37.663 C13.466,-37.732 22.162,-41.327 23.68,-39.322 C25.198,-37.317 26.716,-30.404 22.714,-21.278 C18.711,-12.152 14.156,-6.828 14.087,0.293 C14.018,7.414 19.47,15.364 22.3,22.555 C25.129,29.745 25.681,39.908 23.128,41.429 C20.574,42.95 13.673,41.29 4.218,41.29 C-5.237,41.29 -19.316,42.742 -20.903,41.29 C-22.49,39.839 -24.354,34.446 -20.213,23.108 C-16.072,11.769 -11.448,11.424 -11.379,1.606 C-11.322,-6.487 -11.514,5.685 -11.379,-0.26 z").attr({display:"none"});
 	    var l=p.getTotalLength();
 	    this.op0=[];
@@ -3327,21 +3328,39 @@ var UPGRADES= [
 	},
 	stay:true,
 	candoaction: function() { return this.unit.lastdrop!=round&&this.isactive; },
-	action: function(n) {   this.actiondrop(n);  },
+	action: function(n) {  this.conner=round; this.actiondrop(n);  },
 	canbedropped: function() { return false; },
 	explode: function() {},
 	detonate:function(t) {
+	    var self=this;
 	    if (!this.exploded) {
-		t.log("+1 %HIT% [%0]",this.name); 
-		t.resolvehit(1); 
-		t.checkdead(); 
-		t.log("+2 ion tokens [%0]",this.name);
-		t.addiontoken();
-		t.addiontoken();
-		t.log("%1 skips action phase [%0]",this.name,t.name);
-		t.wrap_after("candoendmaneuveraction",this,function() {
-		    return false;
-		}).unwrapper("endactivationphase");
+		if (this.conner==round) {
+		    if (!t.hasmoved) {
+			t.log("%1 skips action phase [%0]",self.name,t.name);
+			//exploded the round it was dropped
+			t.wrap_after("candoendmaneuveraction",self,function() {
+			    return false;
+			}).unwrapper("endactivationphase");
+		    } else {
+			t.wrap_after("beginplanningphase",this,function(l) {
+			    t.log("+2 ion tokens [%0]",self.name);
+			    t.addiontoken();
+			    t.addiontoken();
+			    return l;
+			}).unwrapper("endactivationphase");
+		    }
+		} else {
+		    t.log("+1 %HIT% [%0]",this.name); 
+		    t.resolvehit(1); 
+		    t.checkdead(); 
+		    t.log("+2 ion tokens [%0]",this.name);
+		    t.addiontoken();
+		    t.addiontoken();
+		    t.log("%1 skips action phase [%0]",this.name,t.name);
+		    t.wrap_after("candoendmaneuveraction",this,function() {
+			return false;
+		    }).unwrapper("endactivationphase");
+		}
 		Bomb.prototype.detonate.call(this);
 	    }
 	},       
