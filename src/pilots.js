@@ -3761,7 +3761,7 @@ var PILOTS = [
 	init: function() {
 	    this.adddicemodifier(ATTACK_M,ADD_M,ATTACK_M,this,{
 		req:function(m,n) {
-		    return this.weapons[0].getauxiliarysector(activeunit)<=3;
+		    return !targetunit.dead&&this.activeweapon==0&&this.weapons[0].getauxiliarysector(targetunit)<=3;
 		}.bind(this),
 		f:function(m,n) {
 		    this.log("%0 in auxiliary arc -> +1 %CRIT%",targetunit.name);
