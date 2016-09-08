@@ -1059,8 +1059,7 @@ var UPGRADES= [
 	    sh.wrap_before("beginactivationphase",this,function() {
 		this.selectunit(this.selectnearbyenemy(2),function(p,k) {
 		    p[k].showmaneuver();
-		    var d = this.getmaneuver();
-		    var c  =C[(typeof this.forceddifficulty!="undefined")?this.forceddifficulty:d.difficulty];
+		    var d = p[k].getmaneuver();
 		    p[k].log("has a %0<span class='symbols'>"+P[d.move].key+"</span> maneuver [%1]",P[d.move].speed,self.name);
 
 		},["select unit [%0]",self.name],false);

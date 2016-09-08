@@ -2626,8 +2626,6 @@ Unit.prototype = {
 		wn[j++]=this.weapons.indexOf(weaponlist[w]);
 	    }
 	}
-	for (w in weaponlist) this.log("can use weapon:"+weaponlist[w].name);
-	for (w in wn) this.log("found targets for:"+this.weapons[w].name);
 	var self=this;
 	for (i=0; i<wn.length; i++) {
 	    (function(ww) {
