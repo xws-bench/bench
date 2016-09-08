@@ -565,9 +565,8 @@ var UPGRADES= [
 	    sh.wrap_before("endaction",this,function(n,type) {
 		if (ptl.r!=round&&this.candoaction()&&type!=null) {
 		    ptl.r=round;
-		    this.log("select an action or Skip to cancel [%0]",ptl.name);
-		    this.doaction(this.getactionbarlist(),"+1 free action").done(function(type) {
-			if (type==null) ptl.r=-1; 
+		    this.doaction(this.getactionbarlist(),"+1 free action (Skip to cancel) ["+ptl.name+"]").done(function(type2) {
+			if (type2==null) ptl.r=-1; 
 			else this.addafteractions(function() { this.addstress(); }.bind(this));
 		    }.bind(this));
 		}
@@ -1529,6 +1528,7 @@ var UPGRADES= [
         name: "Chardaan Refit",
         type: MISSILE,
 	done:true,
+	firesnd:"missile",
 	isWeapon: function() { return false; },
         points: -2,
         ship: "A-Wing"
@@ -2147,6 +2147,7 @@ var UPGRADES= [
 	range:[1,1],
 	isTurret:function() { return true; },
 	issecondary:false,
+	firesnd:"missile",
 	isWeapon:function() { return true; },
 	declareattack: function(target) { 
 	    this.unit.addhasfired();
@@ -2242,6 +2243,7 @@ var UPGRADES= [
         name: "Bomb Loadout",
         upgrades:[BOMB],
 	done:true,
+	firesnd:"missile",
 	isWeapon: function() { return false; },
         limited: true,
         type: TORPEDO,
@@ -2957,6 +2959,7 @@ var UPGRADES= [
         name: "Extra Munitions",
         type: TORPEDO,
         limited: true,
+	firesnd:"missile",
 	isWeapon: function() { return false; },
         points: 2,
 	done:true,
@@ -3452,7 +3455,7 @@ var UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    sh.wrap_after("resolveslam",this,function() {
-		this.candoendmaneuveraction.unwrap(this);
+		this.doaction(this.getactionlist(),"+1 free action (Skip to cancel) ["+self.name+"]");
 	    });
 	}
     },
@@ -4071,7 +4074,7 @@ var UPGRADES= [
 	init: function(sh) {
 	    sh.adddicemodifier(ATTACK_M,REROLL_M,ATTACK_M,this,{
 		dice:["blank","focus"],
-		n:function() { if (targetunit.unique==true) return 2; return 1; },
+		n:function() { return (targetunit.unique==true)?2:1; },
 		req:function(attacker,w,defender) {
 		    return this.isactive;
 		}.bind(this)
@@ -4607,6 +4610,7 @@ var UPGRADES= [
       type:TORPEDO,
       points:2,
       done:true,
+      firesnd:"missile",
       isWeapon: function() { return false; },
       candoaction: function() { return this.isactive; },
       action: function(n) {
