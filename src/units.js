@@ -81,12 +81,12 @@ function loadsound() {
     var sound={"explode":2,"cloak":0,"decloak":1};
     for (i=0; i<squadron.length; i++) {
 	sound[squadron[i].ship.firesnd]=SOUND_NAMES.indexOf(squadron[i].ship.firesnd);
-	if (SOUND_NAMES.indexOf(squadron[i].ship.firesnd)==-1) console.log("cannot find sound for "+squadron[i].ship.firesnd);
+	if (SOUND_NAMES.indexOf(squadron[i].ship.firesnd)==-1) console.log("cannot find fire sound for "+squadron[i].ship.firesnd+"/"+squadron[i].ship.name);
 	sound[squadron[i].ship.flysnd]=SOUND_NAMES.indexOf(squadron[i].ship.flysnd);
-	if (SOUND_NAMES.indexOf(squadron[i].ship.flysnd)==-1) console.log("cannot find sound for "+squadron[i].ship.flysnd);
+	if (SOUND_NAMES.indexOf(squadron[i].ship.flysnd)==-1) console.log("cannot find sound for "+squadron[i].ship.flysnd+"/"+squadron[i].ship.name);
 	for (j=1; j<squadron[i].weapons.length; j++) {
 	    sound[squadron[i].weapons[j].firesnd]=SOUND_NAMES.indexOf(squadron[i].weapons[j].firesnd);
-	    if (SOUND_NAMES.indexOf(squadron[i].weapons[j].firesnd)==-1) console.log("cannot find sound for "+squadron[i].weapons[j].firesnd);
+	    if (SOUND_NAMES.indexOf(squadron[i].weapons[j].firesnd)==-1) console.log("cannot find fire sound for "+squadron[i].weapons[j].firesnd+"/"+squadron[i].weapons[j].name);
 	}
 	    
     }
