@@ -618,7 +618,7 @@ Unit.prototype = {
 	    shield:this.ship.shield,
 	    fire:this.weapons[0].getattack(),
 	    shipimg:this.shipimg,
-	    diallist:dial2JSON(this.getdialwi()),
+	    diallist:dial2JSON(this.getdial()),
 	    shipname:sname,
 	    actionstring:this.getactionstring(),
 	    upgradeaddstring:this.getupgradeaddstring()
@@ -675,11 +675,8 @@ Unit.prototype = {
 	return this.skill;
     },
     getdial: function() {
-	return this.dial;
-    },
-    getdialwi: function() {
 	if (this.hasionizationeffect()) return [{move:"F1",difficulty:"WHITE"}];
-	return this.getdial();
+	return this.dial;
     },
     doplan: function() { this.showdial(); return this.deferred; },
     getdialstring: function() {
@@ -689,7 +686,7 @@ Unit.prototype = {
 	    m[j]=[];
 	    for (k=0; k<=6; k++) m[j][k]="<td></td>";
 	}
-	var gd=this.getdialwi();
+	var gd=this.getdial();
 	for (j=0; j<gd.length; j++) {
 	    d=gd[j];
 	    var cx=MPOS[d.move][0],cy=MPOS[d.move][1];
@@ -708,7 +705,7 @@ Unit.prototype = {
     },
     showdial: function() {
 	var m=[],i,j,d;
-	var gd=this.getdialwi();
+	var gd=this.getdial();
 	if (phase==PLANNING_PHASE||phase==SELECT_PHASE||phase==CREATION_PHASE) {
 	    for (i=0; i<=5; i++) {
 		m[i]=[];
@@ -1624,13 +1621,13 @@ Unit.prototype = {
 	}	
     },
     showmeanposition: function() {
-	var gd=this.getdialwi();
+	var gd=this.getdial();
 	var o;
 	this.evaluatemoves(true,true);
 	this.showpositions([{color:GREEN,move:"mean",m:this.meanm}]);
     },
     shownextpositions: function() {
-	var gd=this.getdialwi();
+	var gd=this.getdial();
 	var o;
 	this.evaluatemoves(true,true);
 	var n=[];
@@ -1639,7 +1636,7 @@ Unit.prototype = {
     },
     showpossiblepositions:function() {
 	this.evaluatemoves(true,true);
-	var gd=this.getdialwi();
+	var gd=this.getdial();
 	this.showpositions(gd);
     },
     evaluateposition: function() {
@@ -1675,7 +1672,7 @@ Unit.prototype = {
     },
     evaluatemoves: function(withcollisions,withobstacles) {
 	this.meanmround=round;
-	var gd=this.getdialwi();
+	var gd=this.getdial();
 	var mx=0,my=0,ma=0;
 	var g=0;
 	var i,best=RED;
@@ -2002,7 +1999,7 @@ Unit.prototype = {
 	this.endaction(n,"CLOAK");
     },
     resolveslam: function(n) {
-	var gd=this.getdialwi();
+	var gd=this.getdial();
 	if (gd.length<=this.lastmaneuver) this.lastmaneuver=0;
 	var realdial=gd[this.lastmaneuver].move;
 	var speed=realdial.substr(-1);
@@ -2861,7 +2858,7 @@ Unit.prototype = {
 	//this.wrap_after("canfire",this,function(t) { return false; }).unwrapper("endcombatphase");
 	parent.doselection(function(n) {
 	    this.resolveactionmove(dm,function(t,k) {
-		var half=this.getdialwi().length;
+		var half=this.getdial().length;
 		if (k>=half) { this.m.translate(0,-20); k=k-half; }
 		else this.m.translate(0,20).rotate(180,0,0);
 		this.maneuver=k;
@@ -2887,7 +2884,7 @@ Unit.prototype = {
 	if (this.hasionizationeffect()) {
 	    return {move:"F1",difficulty:"WHITE"};
 	}
-	return this.getdialwi()[this.maneuver];
+	return this.getdial()[this.maneuver];
     },
     showmaneuver: function() {
 	if (this.timetoshowmaneuver()) {

@@ -17,7 +17,7 @@ IAUnit.prototype= {
     computemaneuver: function() {
 	var i,j,k,d=0;
 	var q=[],possible=-1;
-	var gd=this.getdialwi();
+	var gd=this.getdial();
 	//var enemies=[];
 	var s=this.getskill();
 	for (i in squadron) {
@@ -162,7 +162,7 @@ IAUnit.prototype= {
 		var m=this.computemaneuver(); 
 		IACOMPUTING--;
 		if (IACOMPUTING==0) $("#npimg").html("&gt;");
-		this.newm=this.getpathmatrix(this.m,this.getdialwi()[m].move);
+		this.newm=this.getpathmatrix(this.m,this.getdial()[m].move);
 		this.setmaneuver(m);
 		clearInterval(p);
 	    }.bind(this),0);
@@ -180,7 +180,7 @@ IAUnit.prototype= {
     },
     resolvedecloak: function() {
 	var p=this.getdecloakmatrix(this.m);
-	var move=this.getdialwi()[this.maneuver].move;
+	var move=this.getdial()[this.maneuver].move;
 	var scoring=[];
 	var old=this.m;
 	for (var i=0; i<p.length; i++) {
