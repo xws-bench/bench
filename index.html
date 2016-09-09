@@ -288,7 +288,7 @@
 	 <table style="width:100%">
 	   <tr>
 	     <td>
-	       <iframe id="replay" src=""></iframe>
+	       <iframe id="replay" class="replay" src=""></iframe>
 	       <div>
 		 <button class="mainbutton" onclick='location.replace($("#replay").attr("src"))'><span class="symbols" width="15px" height="15px">&#xFB</span></button>
 		 </div>
@@ -554,6 +554,7 @@ The app is not really a game since the player plays both sides or against an AI,
     </footer>
     <script src="js/all.min.js"></script>
     <script src="js/bench.min.js" async></script>
+
     <script>
       if (location.search=="") $("#selectphase").show();
     </script>

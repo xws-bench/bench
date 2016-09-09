@@ -944,7 +944,7 @@ function createsquad() {
     $(".factionselect selected").val("REBEL");
     $("#creation").show();
     var u={};
-    u.getdialwi=function() {
+    u.getdial=function() {
 	return 	[
 	    {"move":"TL1","difficulty":"WHITE"},
 	    {"move":"BL1","difficulty":"WHITE"},
@@ -1099,7 +1099,7 @@ function displayfactionunits(noreset) {
     var t={};
     var uu=[];
     if (phase!=CREATION_PHASE) return;
-    //getdialwi
+
     if (faction=="REBEL") $("#dialfilter td[move='SL3']").text(P['TRL3'].key).attr("move","TRL3"); else  $("#dialfilter td[move='TRL3']").text(P['SL3'].key).attr("move","SL3");
 
     for (i in unitlist) if (unitlist[i].faction.indexOf(faction)>-1) count++;

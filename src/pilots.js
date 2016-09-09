@@ -68,7 +68,7 @@ var poe_fct=function() {
 var hera_fct=function() {
     var m=this.getmaneuver();
     var p={};
-    var gd=this.getdialwi();
+    var gd=this.getdial();
     p[m.move]=m;
     if ((m.difficulty=="RED"||m.difficulty=="GREEN")&&((this.ionized<2&&this.islarge)||this.ionized==0)) {
 	for (var i=0; i<gd.length; i++) 

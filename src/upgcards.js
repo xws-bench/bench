@@ -890,14 +890,9 @@ var UPGRADES= [
 	    var save=[];
 	    sh.installed=true;
 	    sh.wrap_after("getdial",this,function(gd) {
-		if (save.length==0) 
-		    for (var i=0; i<gd.length; i++) {
-			var move=gd[i].move;
-			var d=gd[i].difficulty;
-			if (move.match(/F[1-5]/)) d="GREEN";
-			save[i]={move:move,difficulty:d};
-		    }
-		return save;
+		for (var i=0; i<gd.length; i++)
+		    if (gd[i].move.match(/F[1-5]/)) gd[i].difficulty="GREEN";
+		return gd;
 	    });
 	},
 	uninstall:function(sh) {
@@ -1219,7 +1214,7 @@ var UPGRADES= [
         name: "Navigator",
         init: function(sh) {
             sh.wrap_after("getmaneuverlist",this,function(list) {
-		var gd=this.getdialwi();
+		var gd=this.getdial();
 		var p=list;
 		if (this.hasionizationeffect()) return p;
 		for (var i in list) {
@@ -1580,16 +1575,16 @@ var UPGRADES= [
         points: 2,
 	done:true,
 	init: function(sh) {
-	    var jan=-1;
+	    this.jan=-1;
 	    var self=this;
 	    Unit.prototype.wrap_after("addfocustoken",this,function() {
-		if (!self.unit.dead&&this.getrange(sh)<=3&&this.isally(sh)&&jan<round) {
+		if (!self.unit.dead&&this.getrange(sh)<=3&&this.isally(sh)&&self.jan<round) {
 		    this.log("select %FOCUS% or %EVADE% token [%0]",self.name)
 		    this.donoaction(
 			[{name:self.name,org:self,type:"FOCUS",action:function(n) { 
 			    this.endnoaction(n,"FOCUS"); }.bind(this)},
 			 {name:self.name,org:self,type:"EVADE",action:function(n) { 
-			     jan=round;
+			     self.jan=round;
 			     this.focus--; /* fix for bug with Garven */
 			     this.addevadetoken(); 
 			     this.endnoaction(n,"EVADE"); }.bind(this)}],
@@ -1786,7 +1781,7 @@ var UPGRADES= [
 	init: function(sh) {
 	    var self=this;
             sh.wrap_after("getmaneuverlist",this,function(list) {
-		var gd=this.getdialwi();
+		var gd=this.getdial();
 		var p=list;
 		if (this.hasionizationeffect()||this.stress>0) return p;
 		for (var i in list) {
@@ -3531,7 +3526,7 @@ var UPGRADES= [
         ship: "YV-666",
 	done:true,
 	getdeploymentmatrix:function(u) {
-	    var gd=u.getdialwi();
+	    var gd=u.getdial();
 	    var p=[];
 	    for (var i=0; i<gd.length; i++) {
 		var m0=this.unit.m.clone().translate(0,20).rotate(180,0,0);
@@ -3770,7 +3765,7 @@ var UPGRADES= [
 	unique:true,
 	done:true,
 	getdeploymentmatrix:function(u) {
-	    var gd=u.getdialwi();
+	    var gd=u.getdial();
 	    var p=[];
 	    for (var i=0; i<gd.length; i++) {
 		var m0=this.unit.m.clone().translate(0,20).rotate(180,0,0);
@@ -3884,7 +3879,7 @@ var UPGRADES= [
      init: function(sh) {
 	 var self=this;
 	 sh.wrap_before("endmaneuver",this,function() {
-	     if (this.getdialwi()[this.maneuver].move.match(/[345]/)) {
+	     if (this.getdial()[this.maneuver].move.match(/[345]/)) {
 		 this.log("+1 %EVADE% [%0]",self.name);
 		 this.addevadetoken();
 	     }
