@@ -2826,13 +2826,14 @@ var replayall=function() {
 	var p=phase;
 	r=parseInt(c[2],10);
 	phase=parseInt(c[3],10);
-	if (round!=r) $("#turnselector").append("<option value='"+round+"'>"+UI_translation["turn #"]+round+"</option>");
-	round=r;
-	if (p>phase) {
+	if (round!=r) {
+	    $("#turnselector").append("<option value='"+round+"'>"+UI_translation["turn #"]+round+"</option>");
+	    round=r;
 	    for (var i in squadron) {
 		var u=squadron[i];
-		u.resetfocus();
-		u.resetevade();
+		u.focus=Unit.prototype.resetfocus.call(u);
+		u.evade=Unit.prototype.resetevade.call(u);
+		u.tractorbeam=Unit.prototype.resettractorbeam.call(u);
 		u.showinfo();
 	    }
 	}
