@@ -305,7 +305,13 @@ box-shadow:2px 2px 2px #CCC;
 margin:2px;
 text-align:justify
 }
-
+#textfilter {
+background:#888;
+margin:0;
+border:0;
+padding:0
+border-radius:1ex;
+}
 .shipupgrades .Elite {
 display:none
 }
