@@ -158,8 +158,9 @@
  
      <article id="creation" style="display:none"  class="mainarticle">
        <div>
-	 <button onclick="$('#unitfilter').toggle();">Filter</button>
 	 <div id="unitfilter" class="selector">
+	   <div>Search</div>
+	   <input style="width:100%" type="search" id="textfilter" onchange="textfilter($(this).val())">
 	   <div>Upgrades</div>
 	   <div><input type="checkbox" id="fturret" onclick="unitfilter(TURRET)"><label for="fturret" class="upgrades Turret"></label>
 	   <input type="checkbox" id="fcrew" onclick="unitfilter(CREW)"><label for="fcrew" class="upgrades Crew"></label></div>
@@ -184,6 +185,7 @@
 	   <div>Maneuvers</div>
 	   <table id="dialfilter"></table>
 	 </div>
+	 <button style="float:left" onclick="$('#unitfilter').toggle();">Filter</button>
 	 <div class="selector">
 	   <span class="REBEL m-rebel" onclick="currentteam.changefaction('REBEL')"></span>
 	   <span class="SCUM m-scum" onclick="currentteam.changefaction('SCUM')"></span>

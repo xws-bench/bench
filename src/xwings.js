@@ -623,6 +623,7 @@ var FCH_CRIT=10;
 var UNITFILTER={};
 var ACTIONFILTER={};
 var MOVEFILTER={};
+var TEXTFILTER="";
 function unitfilter(s) {
     var i,j;
     if (typeof UNITFILTER[s]!="undefined") delete UNITFILTER[s];
@@ -633,6 +634,11 @@ function actionfilter(s) {
     var i,j;
     if (typeof ACTIONFILTER[s]!="undefined") delete ACTIONFILTER[s];
     else ACTIONFILTER[s]=true;
+    displayfactionunits(true);
+}
+function textfilter(s) {
+    TEXTFILTER=s;
+    log(TEXTFILTER);
     displayfactionunits(true);
 }
 
@@ -1140,12 +1146,24 @@ function displayfactionunits(noreset) {
 	str="";
 	n++;
 	var u=uu[i];
+	var q=p[u.name];
 	var filter=p[u.name][0].upgrades;
 	var filtered=true;
 	for (j in UNITFILTER)
 	    if (filter.indexOf(j)==-1) filtered=false;
 	for (j in ACTIONFILTER) 
 	    if (u.actionList.indexOf(j)==-1) filtered=false;
+	if (TEXTFILTER!="") {
+	    q=[];
+	    for (k in p[u.name]) {
+		var v=p[u.name][k];
+		var ttext=getpilottexttranslation(v,faction);
+		var tname=translate(v.name);
+		var r=new RegExp(TEXTFILTER,'i');
+		if (ttext.match(r)||tname.match(r)) q.push(v);
+	    }
+	    if (q.length==0) filtered=false;
+	}
 	for (j in MOVEFILTER) {
 	    var found=false;
 	    for (k=0; k<u.dial.length; k++)
@@ -1168,7 +1186,7 @@ function displayfactionunits(noreset) {
 		},
 		hastitle:u.hastitle,
 		shipupgrades:p[u.name][0].upgrades,
-		pilots:p[u.name]
+		pilots:q
 	    });
 	    $("#caroussel").append("<li>"+rendered+"</li>");	    
 	}
