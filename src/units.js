@@ -450,6 +450,7 @@ Unit.prototype = {
 	    var uw=self.wrap_before(name2,org,function(a) {
 		f.unwrap(org);
 		uw.unwrap(org);
+		self.show();
 		return a;
 	    });
 	}
@@ -509,6 +510,7 @@ Unit.prototype = {
 	    var uw=self.wrap_before(name2,org,function() {
 		f.unwrap(org);
 		uw.unwrap(org);
+		self.show();
 	    });
 	}
 	save.next=f;

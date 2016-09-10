@@ -305,12 +305,13 @@ box-shadow:2px 2px 2px #CCC;
 margin:2px;
 text-align:justify
 }
-#textfilter {
+.textfilter {
 background:#888;
 margin:0;
 border:0;
 padding:0
 border-radius:1ex;
+font-size:1em;
 }
 .shipupgrades .Elite {
 display:none
@@ -655,7 +656,6 @@ color:red
 }
 
 .close,.duplicate,.dialopen {
-margin-right:.5ex;
 position:absolute;
 right:0;
 text-decoration:none;
@@ -664,23 +664,27 @@ cursor:pointer
 
 .duplicate {
 top:3.6em;
+margin-right:0.5ex;
 font-size:1.5em;
 color:#fff
 }
 .duplicate:hover,.dialopen:hover {
-background:#fff;
-color:#000
+border:2px;
 }
 .dialopen {
 top:2.3em;
+right:0;
+margin-right:0.5ex;
+padding-left:0.5ex;
 border-radius:50%;
 border:1px solid;
-width:1em;
-padding:2px;
+width:1.5em;
+height:1.5em;
 font-size:larger;
 }
 .close {
 top:0;
+margin-right:0.5ex;
 color:red
 }
 
