@@ -3468,7 +3468,7 @@ var PILOTS = [
 		// Side effect ! 
 		this.retaliationtarget=t;
 		return this.dengarattack<round&&t!=this
-		    &&this.isinprimaryfiringarc(activeunit); 
+		    &&this.isinprimaryfiringarc(t); 
 	    }, this,this.weapons,function() {
 		this.dengarattack=round;
 	    },function() {

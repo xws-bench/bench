@@ -1241,6 +1241,7 @@ function addupgradeaddhandler(u) {
 	$("#unit"+this.id+" .upgs .upgavail").hide();
 	$("#unit"+this.id+" .upgs .upg").hide();
 	$("#unit"+this.id+" .upglist").empty();
+	//$("#unit"+this.id+" .upglist").append("<tr><td></td><td colspan='3'><input class='textfilter' type='search'></td></tr>");
 	$("#unit"+this.id+" .upglist").append("<tr><td><button>+</button></td><td><span class='m-none'></span></td><td></td><td></td></tr>");
 	/*$("#unit"+this.id+" .upglist ").click(function() {
 	    $("#unit"+this.id+" .upglist").empty();
