@@ -1257,6 +1257,7 @@ function addupgradeaddhandler(u) {
 	    var text=formatstring(getupgtxttranslation(upg.name,upg.type));
 	    if (upg.done!=true) text+="<div><strong class='m-notimplemented'></strong></div>";
 	    if (typeof upg.attack!="undefined") attacks=[{attack:upg.attack,lrange:upg.range[0],hrange:upg.range[1]}];
+	    log(pts+" "+text+" disabled"+disabled+" num"+num+" data"+p[i]+" name"+translate(upg.name)+" attacks"+attacks[0].attack);
 	    q.push({
 		pts:pts,
 		tooltip:[text],
