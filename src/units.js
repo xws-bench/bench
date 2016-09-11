@@ -477,10 +477,8 @@ Unit.prototype = {
 	return f;
     },
     desactivate:function() {
-	log(this.name+" desactivates")
 	for (var i in this.wrapping) {
 	    var w=this.wrapping[i];
-	    log(this.name+" removing "+w.name+" in "+w.wrap.name);
 	    if (typeof w.wrap[w.name].unwrap=="function") {
 		w.wrap[w.name].unwrap(this);
 	    }
