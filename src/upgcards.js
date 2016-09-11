@@ -806,7 +806,7 @@ var UPGRADES= [
         points: 3,
 	done:true,
 	init: function(sh) {
-	    var second=false;
+	    this.second=false;
 	    var self=this;
 	    sh.boundtargets=function(t) {
 		if (this.targeting.indexOf(t)>-1) return true;
@@ -815,9 +815,9 @@ var UPGRADES= [
 		return false;
 	    };
 	    sh.wrap_after("addtarget",this,function(u) {
-		if (second==true) second=false;
+		if (this.second==true) this.second=false;
 		else this.doselection(function(n) {
-		    second=true;
+		    this.second=true;
 		    this.log("select target to lock [%0]",self.name);
 		    this.resolvetargetnoaction(n,true);
 		}.bind(this));
@@ -985,8 +985,10 @@ var UPGRADES= [
 	    self.f=-1;
 	    sh.wrap_before("postattack",this,function(i) {this.reroll=10; });
 	    sh.addafterattackeffect(this,function() {
-		this.log("+1 %TARGET% / %1 [%0]",self.name,targetunit.name);
-		this.addtarget(targetunit);
+		if (this.gettargetableunits(3).indexOf(targetunit)>-1) {
+		    this.log("+1 %TARGET% / %1 [%0]",self.name,targetunit.name);
+		    this.addtarget(targetunit);
+		} else this.log("no valid target [%0]",self.name);
 	    });
 	},
         type: SYSTEM,
@@ -2620,9 +2622,8 @@ var UPGRADES= [
 	    sh.wrap_before("endaction",this,function(n,type) {
 		if (upg.r!=round&&this.candoaction()&&type!=null) {
 		    upg.r=round;
-		    this.log("select an action or Skip to cancel [%0]",upg.name);
-		    this.doaction(this.getupgactionlist(),"").done(function(type) {
-			if (type==null) upg.r=-1;
+		    this.doaction(this.getupgactionlist(),"+1 free action (Skip to cancel)").done(function(type2) {
+			if (type2==null) upg.r=-1;
 			else this.addafteractions(function() { this.addstress(); }.bind(this));
 		    }.bind(this));
 		}
@@ -3125,10 +3126,14 @@ var UPGRADES= [
         points: 2,
 	done:true,
 	init: function(sh) {
+	    var self=this;
 	    sh.wrap_after("hashit",this,function(t,b) {
 		if (!b) {
+		    this.log("+1 stress, +1 %FOCUS%, +1 %TARGET% [%0]",self.name);
 		    if (this.stress==0) this.addstress();
-		    this.addtarget(t);
+		    if (this.gettargetableunits(3).indexOf(t)>-1) 
+			this.addtarget(t);
+		    else this.log("no valid target [%0]",self.name);
 		    this.addfocustoken();
 		}
 		return b;
@@ -3589,8 +3594,10 @@ var UPGRADES= [
 	    if (p.length>0) {
 		p=p.concat(this.unit);
 		for (var i=0; i<p.length; i++) {
-		    s+=p[i].name+" ";
-		    p[i].addtarget(t);
+		    if (p[i].gettargetableunits(3).indexOf(t)>-1) {
+			p[i].addtarget(t);
+			s+=p[i].name+" ";
+		    } else p[i].log("no valid target [%0]",this.name);
 		}
 		this.unit.log("all dice cancelled, %0 now targeted by %1",t,s);
 		this.unit.hitresolved=0;

@@ -260,7 +260,8 @@ var PILOTS = [
             this.wrap_after("addtarget",this,function(t) {
 		this.selectunit(this.selectnearbyally(2),function(p,k) {
 		    p[k].selectunit(p[k].gettargetableunits(3),function(pp,kk) {
-			this.addtarget(pp[kk]);
+			if (this.gettargetableunits(3).indexOf(pp[kk])>-1) 
+			    this.addtarget(pp[kk]);
 		    },["select target to lock"],false);
 		},["select unit for free %TARGET% (or self to cancel)"],true);
 	    });

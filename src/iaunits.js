@@ -1,7 +1,7 @@
 var IACOMPUTING=0;
 function IAUnit() {
 }
-
+/* TODO: getmaneuverlist instead of getdial */
 IAUnit.prototype= {
     confirm: function(a) {
 	return true;
