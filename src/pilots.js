@@ -3359,10 +3359,6 @@ var PILOTS = [
 		} 
 		return a;
 	    });
-	    Weapon.prototype.wrap_after("getrangedefensebonus",this,function(t,a) {
-		if (a>0&&t==self) return 0;
-		return a;
-	    });
 	},
 	upgrades:[ELITE,MISSILE]
     },
