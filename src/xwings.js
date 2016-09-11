@@ -1240,29 +1240,36 @@ function addupgradeaddhandler(u) {
 	var p=this.getupgradelist(org);
 	$("#unit"+this.id+" .upgs .upgavail").hide();
 	$("#unit"+this.id+" .upgs .upg").hide();
-	$("#unit"+this.id+" .upglist").empty();
 	//$("#unit"+this.id+" .upglist").append("<tr><td></td><td colspan='3'><input class='textfilter' type='search'></td></tr>");
-	$("#unit"+this.id+" .upglist").append("<tr><td><button>+</button></td><td><span class='m-none'></span></td><td></td><td></td></tr>");
-	/*$("#unit"+this.id+" .upglist ").click(function() {
-	    $("#unit"+this.id+" .upglist").empty();
-	}.bind(this));*/
+
 	if (typeof this.upgbonus[org]=="undefined") this.upgbonus[org]=0;
+
+	var q=[];
 	for (var i=0; i<p.length; i++) {
 	    var upg=UPGRADES[p[i]];
-	    var disabled=false;
+	    var disabled;
+	    var attacks=[];
 	    if (upg.invisible) continue;
+	    disabled=(UNIQUE[upg.name]==true)
+		||((upg.limited==true||this.exclupg[upg.type]==true)&&$("#unit"+this.id+" .upg tr[data="+p[i]+"]").length>0);
 	    var pts=upg.points+this.upgbonus[org];
 	    if (upg.points>0&&pts<0) pts=0;
-	    var tt=">";
-	    var attack="</td><td>";
-	    if (typeof upg.attack!="undefined") attack="<span class='statfire'>"+upg.attack+"</span></td><td>["+upg.range[0]+"-"+upg.range[1]+"]";
 	    var text=formatstring(getupgtxttranslation(upg.name,upg.type));
-	    if (text!="") tt=" class='tooltip'>"+text+(upg.done==true?"":"<div><strong class='m-notimplemented'></strong></div>");
-
-	    if (UNIQUE[upg.name]==true) disabled=true;
-	    if ((upg.limited==true||this.exclupg[upg.type]==true)&&$("#unit"+this.id+" .upg tr[data="+p[i]+"]").length>0) disabled=true;
-	    $("#unit"+this.id+" .upglist").append("<tr><td><button "+(disabled?"disabled":"")+" num="+num+" data="+p[i]+">+</button></td><td>"+translate(upg.name).replace(/\(Crew\)/g,"")+"</td><td>"+pts+"</td><td>"+attack+"</td><td"+tt+"</td></tr>")
+	    if (upg.done!=true) text+="<div><strong class='m-notimplemented'></strong></div>";
+	    if (typeof upg.attack!="undefined") attacks=[{attack:upg.attack,lrange:upg.range[0],hrange:upg.range[1]}];
+	    q.push({
+		pts:pts,
+		tooltip:[text],
+		text:text,
+		isdisabled:disabled,
+		num:num,
+		data:p[i],
+		name:translate(upg.name).replace(/\(Crew\)/g,""),
+		attacks:attacks
+	    });
 	}
+	$("#unit"+this.id+" .upglist").html(Mustache.render(TEMPLATES["upglist-creation"],{upglist:q}));
+
 	$("#unit"+this.id+" .upglist button").click(function(e) {
 	    var data=e.currentTarget.getAttribute("data");
 	    var num=e.currentTarget.getAttribute("num");
@@ -2501,6 +2508,8 @@ $(document).ready(function() {
 
 	TEMPLATES["unit-creation"]=$("#unit-creation").html();
 	Mustache.parse(TEMPLATES["unit-creation"]);  
+	TEMPLATES["upglist-creation"]=$("#upglist-creation").html();
+	Mustache.parse(TEMPLATES["upglist-creation"]);  
 	TEMPLATES["faction"]=$("#faction").html();
 	Mustache.parse(TEMPLATES["faction"]);  
 	TEMPLATES["usabletokens"]=$("#usabletokens").html();

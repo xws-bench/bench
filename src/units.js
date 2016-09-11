@@ -2425,7 +2425,8 @@ Unit.prototype = {
     },
     endmaneuver: function() {
 	var p=this.ionized;
-	for (var i=0; i<p; i++) this.removeiontoken();
+	if (this.hasionizationeffect()) 
+	    for (var i=0; i<p; i++) this.removeiontoken();
 	this.maneuver=-1;
 	this.hasmoved=true;
 	this.show();
