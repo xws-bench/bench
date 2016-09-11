@@ -160,7 +160,7 @@
        <div>
 	 <div id="unitfilter" class="selector">
 	   <div>Search</div>
-	   <input style="width:100%" type="search" id="textfilter" onchange="textfilter($(this).val())">
+	   <input style="width:100%" type="search" id="textfilter" class="textfilter" onchange="textfilter($(this).val())">
 	   <div>Upgrades</div>
 	   <div><input type="checkbox" id="fturret" onclick="unitfilter(TURRET)"><label for="fturret" class="upgrades Turret"></label>
 	   <input type="checkbox" id="fcrew" onclick="unitfilter(CREW)"><label for="fcrew" class="upgrades Crew"></label></div>
@@ -773,6 +773,22 @@ The app is not really a game since the player plays both sides or against an AI,
 	  </textarea>
       </td></tr></table>
     </script>
-  </body>
+
+    <script id="upglist-creation" type="x-tmpl-mustache">
+      <tr>
+	<td><button>+</button></td><td><span class='m-none'></span></td><td></td><td></td>
+      </tr>
+      {{#upglist}}
+      <tr>
+	<td><button {{#isdisabled}}disabled{{/isdisabled}} num="{{num}}" data="{{data}}">+</button></td>
+	<td>{{name}}</td>
+	<td>{{pts}}</td>
+	<td>{{#attacks}}<span class='statfire'>{{attack}}</span></td><td>[{{lrange}}-{{hrange}}]{{/attacks}}{{^attacks}}</td><td>{{/attacks}}</td>
+	{{#tooltip}}<td class="tooltip">{{{.}}}</td>{{/tooltip}}
+	{{^tooltip}}<td></td>{{/tooltip}}
+      </tr>
+      {{/upglist}}
+    </script>
+</body>
 </html>
 
