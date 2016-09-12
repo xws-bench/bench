@@ -4033,21 +4033,31 @@ var UPGRADES= [
      done:true,
      type:CREW,
      init: function(sh) {
-	 sh.adddicemodifier(ATTACK_M,MOD_M,DEFENSE_M,this,{
-	     req: function() { return true; },
+	 var self=this;
+	 sh.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
+	     req: function() { return targetunit.canusefocus(); },
 	     f: function(m,n) {
 		 this.addiontoken();
-		 if (targetunit.canusefocus()&&FE_focus(m)>1) {
+		 if (targetunit.canusefocus()) {
+		     targetunit.log("cannot use focus in this attack [%0]",self.name);
 		     targetunit.wrap_after("canusefocus",this,function() {
-			 return false;
-		     }).unwrapper("afterdefenseeffect");
-		 } else if (targetunit.canuseevade()) {
-		     targetunit.wrap_after("canuseevade",this,function(b) {
 			 return false;
 		     }).unwrapper("afterdefenseeffect");
 		 }
 		 return m;
-	     }.bind(sh),str:"ion"});
+	     }.bind(sh),str:"focus"});
+	 sh.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
+	     req: function() { return targetunit.canuseevade(); },
+	     f: function(m,n) {
+		 this.addiontoken();
+		 if (targetunit.canusefocus()) {
+		     targetunit.log("cannot use evade in this attack [%0]",self.name);
+		     targetunit.wrap_after("canuseevade",this,function() {
+			 return false;
+		     }).unwrapper("afterdefenseeffect");
+		 }
+		 return m;
+	     }.bind(sh),str:"evade"});
      }
     },
     {name:"Mist Hunter",
