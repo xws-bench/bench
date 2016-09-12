@@ -1,4 +1,4 @@
-/* TODO: postattack not used
+/* TODO: 
    add afterattack effect */
 var UPGRADES= [
     {
@@ -2596,7 +2596,7 @@ var UPGRADES= [
 	    sh.wrap_before("begincombatphase",this,function() {
 		if (mod.isactive) 
 		    this.donoaction([{action:function(n) {
-			mod.desactivate();
+			mod.isactive=false;
 			this.wrap_after("getagility",mod,function(a) {
 			    return a+1;
 			}).unwrapper("endphase");
