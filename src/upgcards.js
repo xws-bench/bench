@@ -2854,7 +2854,7 @@ var UPGRADES= [
 	    sh.wrap_after("isTurret",this,function(w,b) {
 		return false;
 	    });
-	    sh.weapons[0].followupattack=function() { return sh.indexOf(turret[0]); };
+	    //sh.weapons[0].followupattack=function() { return sh.indexOf(turret[0]); };
 	    sh.addattack(function(c,h) { 
 		return this.weapons[this.activeweapon].isprimary;
 	    },self,turret); 
@@ -3903,7 +3903,7 @@ var UPGRADES= [
 	 this.unit.tiedattack=-1;
 	 for (var i in sh.weapons) {
 	     var w=sh.weapons[i];
-	     if (w.type==CANNON&&w.points<=3) w.followupattack=function() { return 0; };
+	     //if (w.type==CANNON&&w.points<=3) w.followupattack=function() { return 0; };
 	 }
 	 sh.addattack(function(c,h) {
 	     var w1=this.weapons[this.activeweapon];

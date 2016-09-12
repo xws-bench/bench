@@ -2101,7 +2101,7 @@ var PILOTS = [
 	    var wp=this.weapons.indexOf(wn[0]);
 	    for (var i in this.weapons) 
 		// TODO: immediateattack unused ?
-		this.weapons[i].immediateattack={pred:function(k) { return k==0; },weapon:function() { return wp;}};
+		//this.weapons[i].immediateattack={pred:function(k) { return k==0; },weapon:function() { return wp;}};
 	    this.addattack(function(c,h) { 
 		return (c+h==0)&&(this.ig88battack<round);
 	    },{name:"IG-88B"},wn,function () {
