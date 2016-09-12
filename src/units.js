@@ -1123,9 +1123,9 @@ Unit.prototype = {
 	    len=path.getTotalLength();
 	    if (len==0) return false;
 	}
-	for (i=0; i<=len; i+=len/5) {
+	for (i=0,k=0; i<=len; i+=len/5,k++) {
 	    var p=path.getPointAtLength(i);
-	    pp.push({x:mbegin.x(p.x,p.y),y:mbegin.y(p.x,p.y)});
+	    pp[k]={x:mbegin.x(p.x,p.y),y:mbegin.y(p.x,p.y)};
 	}
 	//for (i=0; i<pp.length; i++) 
 	//    s.circle(pp[i].x,pp[i].y,2).attr({fill:"#fff"});
@@ -1166,9 +1166,9 @@ Unit.prototype = {
 	}
 	if (typeof path!="undefined") {
 	    // Template overlaps ? 
-	    for (i=0; i<=len; i+=5) {
+	    for (i=0,k=0; i<=len; i+=5,k++) {
 		var p=path.getPointAtLength(i);
-		pathpts.push({x:mbegin.x(p.x,p.y),y:mbegin.y(p.x,p.y)});
+		pathpts[k]={x:mbegin.x(p.x,p.y),y:mbegin.y(p.x,p.y)};
 	    }
 	    for (j=0; j<pathpts.length; j++) {
 		for (k=0; k<OBSTACLES.length; k++) {
@@ -1227,7 +1227,7 @@ Unit.prototype = {
     getmovecolor: function(m,withcollisions,withobstacles,path,len,order) {
 	var i,k;
 	if (!this.isinzone(m)) return RED;
-	if (withobstacles&&this.fastgetocollisions(this.m,m,path,len))
+	if (withobstacles&&this.getocollisions(this.m,m,path,len))
 	    return YELLOW;
  	if (withcollisions) {
 	    var so=this.getOutlineString(m);
@@ -2499,8 +2499,7 @@ Unit.prototype = {
 			    effect.call(this);
 			}.bind(this)).unwrapper("cleanupattack");
 		    this.maxfired++;
-		    //this.log("doattack "+wpl.length+" "+enemies.length);
-		    for (var i in wpl) this.log("+1attack with "+wpl[i].name);
+		    //for (var i in wpl) this.log("+1 attack with "+wpl[i].name);
 		    this.doattack(wpl,enemies);
 		}.bind(this);
 		if (wrapper!="endcombatphase"&&wrapper!="warndeath"&&phase==COMBAT_PHASE) 
@@ -2628,7 +2627,6 @@ Unit.prototype = {
 	for (i=0; i<wn.length; i++) {
 	    (function(ww) {
 		var widx=A[self.weapons[ww].type.toUpperCase()];
-		
 		d.append($("<div>").attr({"class":"symbols "+ww.color})
 			 .html(widx.key)
 			 .click(function() {
@@ -2642,8 +2640,7 @@ Unit.prototype = {
 		     this.show();
 		     this.cleanupattack();
 		 }.bind(this)));
-	$("#attackdial").empty();
-	$("#attackdial").append(d);
+	$("#attackdial").html(d);
     },
     candotarget: function() {
 	var l=this.gettargetableunits(3).length;
@@ -3096,8 +3093,8 @@ Unit.prototype = {
 	this.showdial();
 	this.showmaneuver();
 	if (phase==ACTIVATION_PHASE) this.showactivation();
-	if (!ENGAGED&&phase==COMBAT_PHASE){ 
-	    if (this.getskill()==skillturn&&this.hasfired<this.maxfired) this.showattack(this.activeweapons,this.activeenemies); 
+	if (!ENGAGED&&phase==COMBAT_PHASE){
+	    if (this.canfire()) this.showattack(this.activeweapons,this.activeenemies); 
 	    else $("#attackdial").empty();
 	}
 	this.showoverflow();

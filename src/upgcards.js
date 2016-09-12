@@ -582,10 +582,11 @@ var UPGRADES= [
     {
         name: "Deadeye",
         init: function(sh) {
-	    Weapon.prototype.wrap_after("getrequirements",this,function(g) {
-		if (this.unit==sh&&g=="Target") return "Target|Focus";
-		return g;
-	    });
+	    for (var i in sh.weapons) 
+		sh.weapons[i].wrap_after("getrequirements",this,function(g) {
+		    if (g=="Target") return "Target|Focus";
+		    return g;
+		});
 	},
 	done:true,
         type: ELITE,
@@ -596,7 +597,6 @@ var UPGRADES= [
         candoaction: function() { return this.isactive; },
 	action: function(n) {
 	    var w=this.unit.weapons[0];
-	    var gat=w.getattack;
 	    var self=this;
 	    this.unit.log("-1 agility, +1 primary attack until end of turn [%0]",this.name);
 	    this.unit.wrap_after("getagility",this,function(a) {
@@ -604,7 +604,7 @@ var UPGRADES= [
 	    }).unwrapper("endphase");
 	    w.wrap_after("getattack",this,function(a) {
 		return a+1;
-	    }).unwrapper("endphase");
+	    }).unwrapper("endround");
 	    this.unit.showstats();
 	    this.unit.endaction(n,ELITE);
 	},
@@ -2594,19 +2594,20 @@ var UPGRADES= [
 	init: function(sh) {
 	    var mod=this;
 	    sh.wrap_before("begincombatphase",this,function() {
-		this.donoaction([{action:function(n) {
-		    mod.desactivate();
-		    this.wrap_after("getagility",mod,function(a) {
-			return a+1;
-		    }).unwrapper("endphase");
-		    if (this.istargeted.length>0) {
-			this.log("select a lock to remove [%0]",mod.name);
-			this.resolveactionselection(this.istargeted,function(k) { 
-			    this.istargeted[k].removetarget(this);
-			    this.endnoaction(n,"MOD");
-			}.bind(this));
-		    } else this.endnoaction(n,"MOD");
-		}.bind(this),type:mod.type.toUpperCase(),name:mod.name}],"",true);
+		if (mod.isactive) 
+		    this.donoaction([{action:function(n) {
+			mod.desactivate();
+			this.wrap_after("getagility",mod,function(a) {
+			    return a+1;
+			}).unwrapper("endphase");
+			if (this.istargeted.length>0) {
+			    this.log("select a lock to remove [%0]",mod.name);
+			    this.resolveactionselection(this.istargeted,function(k) { 
+				this.istargeted[k].removetarget(this);
+				this.endnoaction(n,"MOD");
+			    }.bind(this));
+			} else this.endnoaction(n,"MOD");
+		    }.bind(this),type:mod.type.toUpperCase(),name:mod.name}],"",true);
 	    });
 	},
         points: 3,
