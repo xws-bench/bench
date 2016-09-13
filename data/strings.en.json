@@ -286,7 +286,7 @@
     "Cluster Missiles":{"text":
     "<strong>Attack (target lock):</strong> Spend your target lock and discard this card to perform this attack twice."},
     "Daredevil":{"text":
-    "%ACTION% Execute a white (%TURNLEFT% 1) or (%TURNRIGHT% 1) maneuver.  Then, receive 1 stress token. Then, if you do not have the %BOOST% action icon, roll 2 attack dice.  Suffer any damage (%HIT%) and any critical damage (%CRIT%) rolled."},
+    "%ACTION% Execute a white %TURNLEFT% 1 or %TURNRIGHT% 1 maneuver.  Then, receive 1 stress token. Then, if you do not have the %BOOST% action icon, roll 2 attack dice.  Suffer any damage %HIT% and any critical damage %CRIT% rolled."},
     "Elusiveness":{"text":
     "When defending, you may receive 1 stress token to choose 1 attack die.  The attacker must reroll that die. If you have at least 1 stress token, you cannot use this ability."},
     "Homing Missiles":{"text":
@@ -472,7 +472,7 @@
     "Calculation":{"text":
     "When attacking, you may spend a focus token to change 1 of your %FOCUS% results to a %CRIT% result."},
     "Accuracy Corrector":{"text":
-    "When attacking, you may cancel all of your dice results. Then, you may add 2 %HIT% results. Your dice cannot be modified again during this attack."},
+    "When attacking, you may cancel all of your dice results. Then, you may add 2 %HIT% results. Your dice cannot be modified again during this attack.","faq":"This card should read: When attacking, during the \"Modify Attack Dice\" step, you may cancel all of your dice results. Then, you may add 2 %HIT% results to your roll. Your dice cannot be modified again during this attack."},
     "Inertial Dampeners":{"text":
     "When you reveal your maneuver, you may discard this card to instead perform a white [0 %STOP%] maneuver. Then receive 1 stress token."},
     "Flechette Cannon":{"text":
@@ -602,11 +602,11 @@
         "Ion Bombs":{
             "text":"When you reveal your maneuver dial, you may discard this card to <strong>drop</strong> 1 ion bomb token. This token <strong>detonates</strong> at the end of the Activation phase. <strong>Ion Bombs Token:</strong> When this bomb token detonates, each ship at Range 1 of the token receives 2 ion tokens.  Then discard this token."},
         "Conner Net":{
-            "text":"%ACTION% Discard this card to <strong>drop</strong> 1 Conner Net token. When a ship's base or maneuver template overlaps this token, this token <strong>detonates</strong>. <strong>Conner Net Token:</strong> When this bomb token detonates, the ship that moved through or overlapped this token suffers 1 damage, receives 2 ion tokens, and skips its Perform Action step.  Then discard this token."},
+            "text":"%ACTION% Discard this card to <strong>drop</strong> 1 Conner Net token. When a ship's base or maneuver template overlaps this token, this token <strong>detonates</strong>. <strong>Conner Net Token:</strong> When this bomb token detonates, the ship that moved through or overlapped this token suffers 1 damage, receives 2 ion tokens, and skips its Perform Action step.  Then discard this token.","faq":"If a Conner Net is dropped overlapping a ship and immediately detonates, and that ship has not yet activated this phase, that ship executes the maneuver on its dial as normal and skips its “Perform Action” step. If a Conner Net is dropped overlapping a ship and immediately detonates, and that ship has activated this phase, that ship suffers the effects of being ionized next turn and does not skip any 'Perform Action' step. If a ship is ionized, executes its 1%STRAIGHT% maneuver, and overlaps a Conner Net, all ion tokens are discarded at the end of the maneuver."},
         "Bombardier(Crew)":{
             "text":"When dropping a bomb, you may use the (%STRAIGHT% 2) template instead of the (%STRAIGHT% 1) template."},
         "'Crack Shot'": {
-            "text": "When attacking a ship inside your firing arc, you may discard this card to cancel 1 of the defender's %EVADE% results."},
+            "text": "When attacking a ship inside your firing arc, you may discard this card to cancel 1 of the defender's %EVADE% results.","faq":"This card should read: When attacking a ship inside your  ring arc, at the start of the 'Compare Results' step, you may discard this card to cancel 1 of the defender's %EVADE% results."},
         "Advanced Homing Missiles":{
             "text":"<strong>Attack (target lock):</strong> Discard this card to perform this attack.If this attack hits, deal 1 faceup Damage card to the defender.  Then cancel <strong>all</strong> dice results."},
         "Advanced SLAM":

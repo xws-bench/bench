@@ -326,15 +326,15 @@ margin-bottom:5px;
 .caroussel li:nth-child(-n+5) tr .tooltip {
 left:180px;
 vertical-align:top;
-margin-top:0em
+margin-top:0em;
+top:0
 }
-
 .caroussel li:nth-child(n+5) tr .tooltip {
 right:180px;
 vertical-align:top;
-margin-top:0em
+margin-top:0em;
+top:0
 }
-
 tr:hover .tooltip, .tr:hover .tooltip, .name:hover .tooltip {
 transition:opacity .25s ease-in-out;
 display:block;
