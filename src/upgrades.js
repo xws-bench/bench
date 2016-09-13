@@ -196,7 +196,7 @@ Bomb.prototype = {
 	    OBSTACLES.push(this);
 	    var p=this.getcollisions();
 	    if (p.length>0) this.unit.resolveactionselection(p,function(k) {
-		this.detonate(p[k]);
+		this.detonate(p[k],true);
 	    }.bind(this));
 	}
     },
@@ -222,7 +222,7 @@ Bomb.prototype = {
 	BOMBS.splice(BOMBS.indexOf(this),1);
     },
     explode: function() { this.explode_base(); },
-    detonate: function() {
+    detonate: function(t,immediate) {
 	OBSTACLES.splice(OBSTACLES.indexOf(this),1);
 	this.explode_base();
     },

@@ -1774,7 +1774,7 @@ Unit.prototype = {
 		for (i=0; i<mine.length; i++) {
 		    var o=OBSTACLES[mine[i]];
 		    if (o.type==BOMB&&typeof o.detonate=="function") 
-			o.detonate(this)
+			o.detonate(this,false)
 		    else {
 			this.ocollision.overlap=i;
 			this.log("colliding with obstacle");
@@ -2385,7 +2385,7 @@ Unit.prototype = {
 		    this.resolveocollision(this.ocollision.overlap,this.ocollision.template);
 		if (this.ocollision.mine.length>0) 
 		    for (i=0; i<this.ocollision.mine.length; i++) {
-			this.ocollision.mine[i].detonate(this)
+			this.ocollision.mine[i].detonate(this,false)
 		    }
 		if (this.collision) this.resolvecollision();
 		this.endmaneuver();

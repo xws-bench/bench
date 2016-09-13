@@ -1206,7 +1206,9 @@ function getpilottexttranslation(u,faction) {
 }
 function getupgtxttranslation(name,type) {
     var v=name+(type==CREW?"(Crew)":"");
-    if (typeof UPGRADE_translation[v]!="undefined"&&typeof UPGRADE_translation[v].text!="undefined") return formatstring(UPGRADE_translation[v].text)
+    //var faq=UPGRADE_translation[v].faq;
+    //if (typeof faq=="undefined") faq="";
+    if (typeof UPGRADE_translation[v]!="undefined"&&typeof UPGRADE_translation[v].text!="undefined") return formatstring(UPGRADE_translation[v].text);
     return "";
 }
 function addunique(name) {
