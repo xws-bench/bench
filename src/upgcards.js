@@ -4911,6 +4911,25 @@ var UPGRADES= [
      points:5,
      unique:true,
      type:CREW,
+     done:true,
+     init: function(sh) {
+	 sh.adddicemodifier(ATTACK_M,ADD_M,ATTACK_M,this,{
+	     req:function(m,n) {
+		 return this.isactive&&this.unit.isinfiringarc(targetunit);
+	     }.bind(this),
+	     f:function(m,n) {
+		 this.unit.log("+1 blank [%0]",this.name);
+		 return {m:m,n:n+1};
+	     }.bind(this),str:"crew"});
+	 sh.adddicemodifier(DEFENSE_M,ADD_M,DEFENSE_M,this,{
+	     req:function(m,n) {
+		 return this.isactive&&this.unit.isinfiringarc(activeunit);
+	     }.bind(this),
+	     f:function(m,n) {
+		 this.unit.log("+1 blank [%0]",this.name);
+		 return {m:m,n:n+1};
+	     }.bind(this),str:"crew"});
+     }
     },
     {name:"Rey",
      faction:REBEL,
