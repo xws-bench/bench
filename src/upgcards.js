@@ -155,9 +155,11 @@ var UPGRADES= [
 	      }.bind(this),function() {
 		  this.log("ignore obstacles [%0]",self.name);
 		  self.desactivate();
-		  this.wrap_after("getocollisions",self,function(mbegin,mend,path,len,ob) { 
-		      return {overlap:-1,template:[],mine:ob.mine};
+		  this.wrap_after("hascollidedobstacle",self,function(b) { 
+		      return false;
 		  }).unwrapper("endphase");
+		  this.wrap_after("isfireobstructed",this,function() { return false; }).unwrapper("endphase");
+		  this.wrap_after("getobstructiondef",this,function() { return 0; }).unwrapper("endphase");
 		  this.show();
 	      }.bind(this), A[ASTROMECH.toUpperCase()].key, $("<div>").attr({class:"symbols"}));
 	      return this.activationdial;
@@ -201,7 +203,7 @@ var UPGRADES= [
 		 var u=this.upgrades[i];
 		 if (u.type==ASTROMECH&&u.isactive==true) { k=i; break; }
 	     }
-	     if (k==-1) return p;
+	     if (k==-1||!self.isactive) return p;
 	     var pp=$.Deferred();
 	     p.then(function(cf) {
 		 if (this.shield+this.hull==1||(cf.face==FACEUP&&cf.crit.lethal&&this.shield+this.hull<=2)) {
@@ -572,9 +574,6 @@ var UPGRADES= [
 		}
 	    });
 	},
-	desactivate: function() {
-	    Upgrade.prototype.desactivate.call(this);
-	},
 	done:true,
         type: ELITE,
         points: 3,
@@ -830,7 +829,7 @@ var UPGRADES= [
 	    var self=this;
 	    self.ea=Unit.prototype.resolvecritical;
 	    Unit.prototype.resolvecritical=function(c) {
-		if (!self.unit.dead
+		if (!self.unit.dead&&self.isactive
 		    &&c>0&&this.isally(sh)
 		    &&sh!=this&&this.getrange(sh)==1){
 		    this.selectunit([this,sh],function(p,k) {
@@ -842,10 +841,6 @@ var UPGRADES= [
 		return c;
 	    }
 	}, 
-	desactivate:function(sh) {
-	    Unit.prototype.resolvecritical=this.ea;
-	    Upgrade.prototype.desactivate.call(this,sh);
-	},
 	done:true,
         type: ELITE,
         points: 1,
@@ -912,6 +907,7 @@ var UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    var newdeal=function(c,f,p) {
+		if (!self.isactive) return p;
 		var pp=$.Deferred();
 		p.then(function(cf) {
 		    if (this.hull+this.shield==1||(cf.face==FACEUP&&cf.crit.lethal&&this.hull+this.shield<=2)) {
@@ -1668,6 +1664,7 @@ var UPGRADES= [
 	    var mod=this;
 	    var self=sh;
 	    sh.wrap_before("beginactivationphase",this,function() {
+		if (mod.isactive) 
 		this.donoaction([{type:"CREW",org:mod,name:mod.name,action:function(n) {
 		    mod.desactivate();
 		    for (var i in squadron) {
@@ -1923,6 +1920,7 @@ var UPGRADES= [
 	init: function(sh) {
 	    var crew=this;
 	    var newdeal=function(c,f,p) {
+		if (!crew.isactive) return p;
 		var pp=$.Deferred();
 		p.then(function(cf) {
 		    var i,cr=[];
@@ -2168,7 +2166,7 @@ var UPGRADES= [
 	done:true,
         isWeapon: function() { return true;},
 	isTurret:function() { return true;},
-	endattack: function(c,h) { this.isactive=false; },
+	endattack: function(c,h) { this.desactivate(); },
         type: ILLICIT,
 	firesnd:"xwing_fire",
         points: 3,
@@ -2221,6 +2219,7 @@ var UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    var newdeal=function(c,f,p) {
+		if (!self.isactive) return p;
 		var pp=$.Deferred();
 		p.then(function(cf) {
 		    if (cf.crit.type=="ship"&&cf.face==FACEUP) {
@@ -2448,6 +2447,7 @@ var UPGRADES= [
 	    var upg=this;
 	    sh.log("+1 agility [%0]",upg.name)
 	    sh.wrap_before("resolveishit",this,function(t) {
+		if (!upg.isactive) return;
 		upg.uninstall(this);
 		upg.desactivate(); 
 		this.log("%0 is hit => destroyed",upg.name);
@@ -2592,11 +2592,11 @@ var UPGRADES= [
         islarge:true,
 	done:true,
 	init: function(sh) {
-	    var mod=this;
+	    var mod=this;/* TODO: same time as attack */
 	    sh.wrap_before("begincombatphase",this,function() {
 		if (mod.isactive) 
 		    this.donoaction([{action:function(n) {
-			mod.isactive=false;
+			mod.desactivate();
 			this.wrap_after("getagility",mod,function(a) {
 			    return a+1;
 			}).unwrapper("endphase");
@@ -3070,7 +3070,7 @@ var UPGRADES= [
 	    });*/
 	    sh.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
 		req:function(m,n) {
-		    return this.glitter==round;
+		    return this.glitter==round&&self.isactive;
 		}.bind(sh),
 		f:function(m,n) {
 		    var f=FCH_focus(m);
@@ -3082,7 +3082,7 @@ var UPGRADES= [
 		}.bind(sh),str:"focus",noreroll:"focus"});
 	    sh.adddicemodifier(DEFENSE_M,MOD_M,DEFENSE_M,this,{
 		req:function(m,n) {
-		    return this.glitter==round;
+		    return this.glitter==round&&self.isactive;
 		}.bind(sh),
 		f:function(m,n) {
 		    var f=FE_focus(m);
@@ -3109,6 +3109,7 @@ var UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    sh.wrap_after("endphase",this,function() {
+		if (!self.isactive) return;
 		var roll=this.rollattackdie(1,self,"blank")[0];
 		if (roll=="focus"&&this.iscloaked&&self.isactive==true) {
 		    this.log("%0 failed -> decloaking",self.name);
@@ -3170,6 +3171,7 @@ var UPGRADES= [
       init: function(sh) {
 	  var self=this;
 	  sh.wrap_after("addstress",this,function() {
+	      if (!self.isactive) return;
 	      this.donoaction([{type:"FOCUS",name:self.name,org:self,
 				action:function(n) {
 				    self.desactivate();
@@ -4152,6 +4154,7 @@ var UPGRADES= [
 	    var self=this;
 	    sh.wrap_before("hashit",this,function(t) {
 		var bu=this;
+		if (!self.isactive) return;
 		t.wrap_after("deal",self,function(c,f,p) {
 		    p.then(function(crit) {
 			if (crit.face==FACEUP) {
@@ -4741,7 +4744,7 @@ var UPGRADES= [
       type:ILLICIT,
       points:1,
       done:true,
-      candoaction: function() { return true; },
+      candoaction: function() { return this.isactive; },
       action: function(n) {
 	  var self=this;
 	  var p=self.unit.selectnearbyenemy(2,function(s,t) {
