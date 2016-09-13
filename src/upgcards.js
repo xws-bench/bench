@@ -4917,20 +4917,24 @@ var UPGRADES= [
      points:2,
      unique:true,
      type:CREW,
+     done:true,
      init:function(sh) {
 	 var self=this;
 	 self.focus=0;
 	 sh.wrap_before("endphase",this,function() {
 	     this.log("+1 %FOCUS% on %0",self.name);
-	     self.focus++;
+	     if (this.focus>0) {
+		 self.focus++;
+		 this.removefocustoken();
+	     }
 	 });
-	 sh.wrap_after("begincombatphase",this,function() {
+	 sh.wrap_before("begincombatphase",this,function() {
+	     if (self.focus>0) 
 	     this.donoaction([{org:self,type:"CREW",name:self.name,action:function(n) {
-		 if (self.focus>0) {
-		     self.focus--;
-		     self.unit.addfocustoken();
-		 }
-	     }}]);
+		 self.focus--;
+		 self.unit.addfocustoken();
+		 self.unit.endnoaction(n,"CREW");
+	     }}],"",true);
 	 });
      }
     }
