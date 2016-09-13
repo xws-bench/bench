@@ -1207,9 +1207,11 @@ function getpilottexttranslation(u,faction) {
 }
 function getupgtxttranslation(name,type) {
     var v=name+(type==CREW?"(Crew)":"");
-    //var faq=UPGRADE_translation[v].faq;
-    //if (typeof faq=="undefined") faq="";
-    if (typeof UPGRADE_translation[v]!="undefined"&&typeof UPGRADE_translation[v].text!="undefined") return formatstring(UPGRADE_translation[v].text);
+    if (typeof UPGRADE_translation[v]!="undefined") {
+	/*var faq=UPGRADE_translation[v].faq;
+	if (typeof faq=="undefined") faq=""; else faq="<div style='color:grey'><strong>FAQ:</strong>"+faq+"</div>";*/
+	if (typeof UPGRADE_translation[v].text!="undefined") return formatstring(UPGRADE_translation[v].text);
+    }
     return "";
 }
 function addunique(name) {
