@@ -60,7 +60,7 @@ Bomb.prototype = {
     isWeapon: function() { return false; },
     isBomb: function() { return true; },
     canbedropped: function() { return this.isactive&&!this.unit.hasmoved&&this.unit.lastdrop!=round; },
-    desactivate:Unit.prototype.desactivate,
+    desactivate:function() { this.isactive=false; },
     getBall: function() {
 	var b=this.g.getBBox();
 	return {x:b.x+b.width/2,y:b.y+b.height/2,diam:Math.max(b.width/2,b.height/2)};
@@ -248,7 +248,7 @@ Weapon.prototype = {
     desactivate:function() {
 	if (this.ordnance&&this.type.match(/Torpedo|Missile/)) {
 	    this.ordnance=false;
-	} else Unit.prototype.desactivate.call(this);
+	} else { this.isactive=false; this.unit.show(); }
     },
     toString: function() {
 	this.tooltip = formatstring(getupgtxttranslation(this.name,this.type));
@@ -461,7 +461,7 @@ Upgrade.prototype = {
     desactivate:function() {
 	if (this.ordnance&&this.type.match(/Torpedo|Missile/)) {
 	    this.ordnance=false;
-	} else Unit.prototype.desactivate.call(this);
+	} else { this.isactive=false; this.unit.show(); }
     },
     show: function() {},
     install: function(sh) {

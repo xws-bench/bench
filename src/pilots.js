@@ -3559,7 +3559,7 @@ var PILOTS = [
 					    action:function(n) {
 						upg.isactive=true;
 						self.log("name reactivated:"+upg.name);
-						if (typeof upg.init=="function") upg.init(self);
+						//if (typeof upg.init=="function") upg.init(self);
 						self.flip=round;
 						self.endnoaction(n,"ELITE");
 					    }}],"Choose to reactivate an elite upgrade (or not)",true);
