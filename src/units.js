@@ -1226,9 +1226,15 @@ Unit.prototype = {
      * unit shortens path */
     getmovecolor: function(m,withcollisions,withobstacles,path,len,order) {
 	var i,k;
+	var col=false;
 	if (!this.isinzone(m)) return RED;
-	if (withobstacles&&this.fastgetocollisions(this.m,m,path,len))
-	    return YELLOW;
+	if (withobstacles) {	    
+	    var c=this.ocollision;
+	    this.ocollision=this.getocollisions(this.m,m,path,len);
+	    if (this.hascollidedobstacle()) col=true;
+	    this.ocollision=c;
+	}
+	if (col) return YELLOW;
  	if (withcollisions) {
 	    var so=this.getOutlineString(m);
 	    var sk=this.getskill();
