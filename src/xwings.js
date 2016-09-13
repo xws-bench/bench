@@ -17,6 +17,7 @@ var DICES=["focusred","hitred","criticalred","blankred","focusgreen","evadegreen
 var BOMBS=[];
 var ROCKDATA="";
 var WINCOND=0;
+var INREPLAY=false;
 var allunits=[];
 var PILOT_translation,SHIP_translation,CRIT_translation,UI_translation,UPGRADE_translation,PILOT_dict,UPGRADE_dict;
 var actionr=[];
@@ -2787,10 +2788,11 @@ var replayall=function() {
 	    displayplayertype(1);
 	    displayplayertype(2);
 	}
+	INREPLAY=false;
 	return;
     }
 
-
+    INREPLAY=true;
     var c=cmd[0].split("-");
     console.log(cmd[0]);
 
@@ -2834,7 +2836,7 @@ var replayall=function() {
 	return;
     }
     switch(c[1]) {
-    case "W": /* do nothing */ break;
+    case "W": log("out of replay");/* do nothing */ break;
     case "P": 
 	var p=phase;
 	r=parseInt(c[2],10);
@@ -2852,6 +2854,7 @@ var replayall=function() {
 	}
 	if (phase==SETUP_PHASE+1&&r==1) endsetupphase();
 	$("#phase").html(UI_translation["turn #"]+round+" "+UI_translation["phase"+phase]);
+	log("going to phase "+phase);
 	actionrlock.notify();
 	break;
     case "L":	
@@ -2908,9 +2911,6 @@ var replayall=function() {
 	u.show();
 	actionrlock.notify();
 	break;
-    case "d": u.dies(); 	
-	actionrlock.notify();
-	break;
     case "f": 		   
 	u.select();
 	for (j in squadron) 
@@ -2935,6 +2935,10 @@ var replayall=function() {
 	break;
     case "c":
 	(new Critical(u,parseInt(c[2],10))).faceup();
+	actionrlock.notify();
+	break;
+    case "D":
+	u.upgrades[parseInt(c[2],10)].desactivate();
 	actionrlock.notify();
 	break;
     case "m":

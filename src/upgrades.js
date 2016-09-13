@@ -60,7 +60,7 @@ Bomb.prototype = {
     isWeapon: function() { return false; },
     isBomb: function() { return true; },
     canbedropped: function() { return this.isactive&&!this.unit.hasmoved&&this.unit.lastdrop!=round; },
-    desactivate:function() { this.isactive=false; },
+    desactivate:function() { this.isactive=false;this.unit.movelog("D-"+this.unit.upgrades.indexOf(this)); },
     getBall: function() {
 	var b=this.g.getBBox();
 	return {x:b.x+b.width/2,y:b.y+b.height/2,diam:Math.max(b.width/2,b.height/2)};
@@ -248,7 +248,7 @@ Weapon.prototype = {
     desactivate:function() {
 	if (this.ordnance&&this.type.match(/Torpedo|Missile/)) {
 	    this.ordnance=false;
-	} else { this.isactive=false; this.unit.show(); }
+	} else { this.isactive=false; this.unit.movelog("D-"+this.unit.upgrades.indexOf(this)); this.unit.show(); }
     },
     toString: function() {
 	this.tooltip = formatstring(getupgtxttranslation(this.name,this.type));
@@ -461,7 +461,7 @@ Upgrade.prototype = {
     desactivate:function() {
 	if (this.ordnance&&this.type.match(/Torpedo|Missile/)) {
 	    this.ordnance=false;
-	} else { this.isactive=false; this.unit.show(); }
+	} else { this.isactive=false; this.unit.movelog("D-"+this.unit.upgrades.indexOf(this)); this.unit.show(); }
     },
     show: function() {},
     install: function(sh) {
