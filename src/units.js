@@ -1227,7 +1227,7 @@ Unit.prototype = {
     getmovecolor: function(m,withcollisions,withobstacles,path,len,order) {
 	var i,k;
 	if (!this.isinzone(m)) return RED;
-	if (withobstacles&&this.getocollisions(this.m,m,path,len))
+	if (withobstacles&&this.fastgetocollisions(this.m,m,path,len))
 	    return YELLOW;
  	if (withcollisions) {
 	    var so=this.getOutlineString(m);
@@ -1352,11 +1352,12 @@ Unit.prototype = {
     addtractorbeam:function(u) {
 	this.addtractorbeamtoken();
 	if (this.tractorbeam==1&&!this.islarge) {
+	    var oldm=this.m;
 	    p=Unit.prototype.getrollmatrix.call(this,this.m).concat(this.getpathmatrix(this.m,"F1"));
 	    u.doselection(function(n) {
 		u.resolveactionmove.call(
 		    this,p,
-		    function (t,k) { t.endnoaction(n,"BOOST"); },true,true);
+		    function (t,k) { t.ocollision=t.getocollisions(oldm,p[k]); t.endnoaction(n,"BOOST"); },true,true);
 	    }.bind(this));
 	}
     },
