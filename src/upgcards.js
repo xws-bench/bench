@@ -99,12 +99,13 @@ var UPGRADES= [
 	candoaction: function() { return this.isactive; },
 	action: function(n) {
 	    var self=this.unit;
-	    if (!this.isactive) return true;
-	    this.unit.log("+1 agility until end of round [%0]",self.name);
-	    self.wrap_after("getagility",this,function(a) {
-		return a+1;
-	    }).unwrapper("endphase");
-	    self.showstats();
+	    if (this.isactive) {
+		this.unit.log("+1 agility until end of round [%0]",self.name);
+		self.wrap_after("getagility",this,function(a) {
+		    return a+1;
+		}).unwrapper("endphase");
+		self.showstats();
+	    }
 	    self.endaction(n,ASTROMECH);
 	    return true;
 	},
@@ -123,20 +124,21 @@ var UPGRADES= [
 	},
 	action: function(n) {
 	    var self=this;
-	    if (!this.isactive) return true;
-	    this.unit.defenseroll(1).done(function(roll) {
-		if (FE_evade(roll.roll)+FE_focus(roll.roll)>0) {
-		    for (var i=0; i<this.criticals.length; i++)
-			if (this.criticals[i].isactive==false) {
-			    this.log("-1 %HIT% [%0]",self.name);
-			    this.criticals.slice(i,1);
-			    this.addhull(1);
-			    this.show();
-			    break;
+	    if (!this.isactive) {
+		this.unit.defenseroll(1).done(function(roll) {
+		    if (FE_evade(roll.roll)+FE_focus(roll.roll)>0) {
+			for (var i=0; i<this.criticals.length; i++)
+			    if (this.criticals[i].isactive==false) {
+				this.log("-1 %HIT% [%0]",self.name);
+				this.criticals.slice(i,1);
+				this.addhull(1);
+				this.show();
+				break;
 			}
-		}
-		this.endaction(n,ASTROMECH);
-	    }.bind(this.unit));
+		    }
+		    this.endaction(n,ASTROMECH);
+		}.bind(this.unit));
+	    } else this.unit.endaction(n,ASTROMECH);
 	},
         unique: true,
         type: ASTROMECH,
@@ -1024,7 +1026,7 @@ var UPGRADES= [
 	}, 
 	action: function(n) {
 	    var self=this;
-	    if (!this.isactive) return;
+	    if (!this.isactive) { this.unit.endaction(n,"CREW"); return; }
 	    var p=this.unit.selectnearbyenemy(1);
 	    if (p.length>0) {		
 		this.unit.log("select unit [%0]",this.name);
@@ -1386,9 +1388,8 @@ var UPGRADES= [
 	candoaction: function() { return this.isactive; },	    
 	action: function(n) {
 	    var self=this;
-	    if (!this.isactive) return;
 	    var p=this.unit.selectnearbyenemy(2);
-	    if (p.length>0) {
+	    if (p.length>0&&this.isactive) {
 		this.unit.log("select unit [%0]",self.name);
 		this.unit.resolveactionselection(p,function(k) {
 		    if (p[k]!=this) { 
@@ -1700,17 +1701,18 @@ var UPGRADES= [
 	action: function(n) {
 	    var self=this;
 	    var str="";
-	    if (!this.isactive) return;
-	    this.unit.defenseroll(2).done(function(roll) {
-		var f=FE_focus(roll.roll);
-		var e=FE_evade(roll.roll);
-		for (var i=0; i<f; i++) this.addfocustoken(); 
-		if (f>0) str+=" +"+f+" %FOCUS%"; 
-		for (var i=0; i<e; i++) this.addevadetoken(); 
-		if (e>0) str+=" +"+e+" %EVADE%"; 
-		if (str=="") this.log("no effect [%0]",self.name); else this.log(str+" [%0]",self.name);
-		this.endaction(n,"CREW");
-	    }.bind(this.unit));
+	    if (this.isactive) 
+		this.unit.defenseroll(2).done(function(roll) {
+		    var f=FE_focus(roll.roll);
+		    var e=FE_evade(roll.roll);
+		    for (var i=0; i<f; i++) this.addfocustoken(); 
+		    if (f>0) str+=" +"+f+" %FOCUS%"; 
+		    for (var i=0; i<e; i++) this.addevadetoken(); 
+		    if (e>0) str+=" +"+e+" %EVADE%"; 
+		    if (str=="") this.log("no effect [%0]",self.name); else this.log(str+" [%0]",self.name);
+		    this.endaction(n,"CREW");
+		}.bind(this.unit));
+	    else this.unit.endaction(n,"CREW");
 	},
         points: 3,
     },
@@ -1741,7 +1743,7 @@ var UPGRADES= [
         candoaction: function() { return this.isactive;	},
 	action: function(n) {
 	    var self=this;
-	    if (!this.isactive) return;
+	    if (!this.isactive) { this.unit.endaction(n,CREW); return;}
 	    var p=this.unit.selectnearbyally(2);
 	    if (p.length>0) {
 		if (p.length==1) {
@@ -1844,7 +1846,7 @@ var UPGRADES= [
         unique: true,
 	candoaction: function() { return this.isactive; },
 	action: function(n) {
-	    if (!this.isactive) return;
+	    if (!this.isactive) { this.unit.endaction(n,"BOOST"); return; }
 	    this.unit.log("free %BOOST% and ion token [%0]",this.name);
 	    this.unit.addiontoken();
 	    this.unit.resolveboost(n);
@@ -4126,21 +4128,23 @@ var UPGRADES= [
 	candoaction: function() { return this.isactive; },
 	action: function(n) {
 	    var self=this.unit;
-	    if (!this.isactive) return true;
-	    self.log("+1 %SHIELD% on %0 [%0]",this.name);
-	    this.shield++;
+	    if (this.isactive) { 
+		self.log("+1 %SHIELD% on %0 [%0]",this.name);
+		this.shield++;
+	    }
 	    self.endaction(n,CREW);
 	    return true;
 	},
-	candoaction2: function() { return this.isactive&&this.shield>0&&this.unit.shield<this.unit.ship.shield; },
+	candoaction2: function() { return this.isactive; },
 	action2:function(n) {
 	    var self=this.unit;
-	    if (!this.isactive) return true;
-	    if (self.shield<self.ship.shield) 
-		self.log("+1 %SHIELD% [%0]",this.name)
-	    self.addshield(1);
-	    this.shield--;
-	    self.show();
+	    if (this.isactive&&this.shield>0&&this.unit.shield<this.unit.ship.shield) {
+		if (self.shield<self.ship.shield) 
+		    self.log("+1 %SHIELD% [%0]",this.name)
+		self.addshield(1);
+		this.shield--;
+		self.show();
+	    }
 	    self.endaction(n,CREW);
 	    return true;
 	},
@@ -4247,12 +4251,13 @@ var UPGRADES= [
 	candoaction: function() { return this.isactive; },
 	action: function(n) {
 	    var self=this.unit;
-	    if (!this.isactive) return true;
-	    this.unit.log("+1 %FOCUS%, +2 %STRESS%, 3 rerolls [%0]",self.name);
-	    this.round=round;
-	    self.addfocustoken();
-	    self.addstress();
-	    self.addstress();
+	    if (this.isactive) {
+		this.unit.log("+1 %FOCUS%, +2 %STRESS%, 3 rerolls [%0]",self.name);
+		this.round=round;
+		self.addfocustoken();
+		self.addstress();
+		self.addstress();
+	    }
 	    self.endaction(n,ELITE);
 	    return true;
 	},
@@ -4652,7 +4657,7 @@ var UPGRADES= [
       action: function(n) {
 	  var self=this.unit;
 	  var p=self.selectnearbyobstacle(2);
-	  if (p.length>0) 
+	  if (p.length>0&&this.isactive) 
 	      self.resolveactionselection(p,function(k) {
 		  p[k].type=NONE;
 		  p[k].g.attr({display:"none"});
@@ -4753,7 +4758,7 @@ var UPGRADES= [
 	  var p=self.unit.selectnearbyenemy(2,function(s,t) {
 	      return t.stress>0;
 	  });
-	  if (p.length>0) {
+	  if (p.length>0&&this.isactive) {
 	      this.unit.selectunit(p,function(q,k) {
 		  var roll=self.unit.rollattackdie(1,self,"blank")[0];
 		  if (roll=="hit"||roll=="critical") { 
