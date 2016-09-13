@@ -3330,13 +3330,13 @@ var UPGRADES= [
 	},
 	stay:true,
 	candoaction: function() { return this.unit.lastdrop!=round&&this.isactive; },
-	action: function(n) {  this.conner=round; this.actiondrop(n);  },
+	action: function(n) {  this.actiondrop(n);  },
 	canbedropped: function() { return false; },
 	explode: function() {},
-	detonate:function(t) {
+	detonate:function(t,immediate) {
 	    var self=this;
 	    if (!this.exploded) {
-		if (this.conner==round) {
+		if (immediate) {
 		    if (!t.hasmoved) {
 			t.log("%1 skips action phase [%0]",self.name,t.name);
 			//exploded the round it was dropped
@@ -3344,26 +3344,29 @@ var UPGRADES= [
 			    return false;
 			}).unwrapper("endactivationphase");
 		    } else {
+			t.log("+2 ion tokens next turn [%0]",self.name);
 			t.wrap_after("beginplanningphase",this,function(l) {
-			    t.log("+2 ion tokens [%0]",self.name);
-			    t.addiontoken();
-			    t.addiontoken();
+			    this.log("+2 ion tokens [%0]",self.name);
+			    this.addiontoken();
+			    this.addiontoken();
+			    this.beginplanningphase.unwrap(self);
 			    return l;
-			}).unwrapper("endactivationphase");
+			});
 		    }
 		} else {
-		    t.log("+1 %HIT% [%0]",this.name); 
-		    t.resolvehit(1); 
-		    t.checkdead(); 
-		    t.log("+2 ion tokens [%0]",this.name);
-		    t.addiontoken();
-		    t.addiontoken();
-		    t.log("%1 skips action phase [%0]",this.name,t.name);
+		    t.wrap_before("cleanupmaneuver",this,function() {
+			t.log("+1 %HIT%, +2 ion tokens [%0]",this.name); 
+			t.resolvehit(1); 
+			t.checkdead(); 
+			t.addiontoken();
+			t.addiontoken();
+			t.log("%1 skips action phase [%0]",this.name,t.name);
+		    }).unwrapper("endactivationphase");
 		    t.wrap_after("candoendmaneuveraction",this,function() {
 			return false;
 		    }).unwrapper("endactivationphase");
 		}
-		Bomb.prototype.detonate.call(this);
+		Bomb.prototype.detonate.call(this,immediate);
 	    }
 	},       
 	points: 4,
