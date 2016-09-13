@@ -3106,7 +3106,7 @@ Unit.prototype = {
 	this.showmaneuver();
 	if (phase==ACTIVATION_PHASE) this.showactivation();
 	if (!ENGAGED&&phase==COMBAT_PHASE){
-	    if (this.canfire()&&!this.areactionspending()) this.showattack(this.activeweapons,this.activeenemies); 
+	    if (this.canfire()&&!this.areactionspending()&&!INREPLAY) this.showattack(this.activeweapons,this.activeenemies); 
 	    else $("#attackdial").empty();
 	}
 	this.showoverflow();
