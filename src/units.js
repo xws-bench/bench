@@ -1702,6 +1702,7 @@ Unit.prototype = {
 		
 		if (color!=RED&&color!=BLACK&&withcollisions&&withobstacles) {
 		    var c=RED;
+		    var ocol=this.ocollision;
 		    for (j=0; j<gd.length; j++) {
 			var ccc;
 			if (gd[j].move=="F0"||
@@ -1712,10 +1713,14 @@ Unit.prototype = {
 			var mmm=this.getmatrixwithmove(mm,gd[j].path,gd[j].len);
 			ccc=GREEN;
 			if (!this.isinzone(mmm)) ccc=RED;
-			else if (withobstacles&&this.fastgetocollisions(mm,mmm,gd[j].path,gd[j].len)) ccc=YELLOW;
-			//this.log("trying "+gd[i].move+"-> "+gd[j].move+" "+ccc);
+			else if (withobstacles) {
+			    if (this.fastgetocollisions(mm,mmm,gd[j].path,gd[j].len)) this.ocollision.overlap=1;
+			    else this.ocollision.overlap=-1;
+			    if (this.hascollidedobstacle()) ccc=YELLOW;
+			}
 			if (VALUES[ccc]>VALUES[c]) c=ccc;
 		    }
+		    this.ocollision=ocol;
 		    if (VALUES[c]<VALUES[color]) gd[i].color=c;
 		}
 		//this.log(">"+gd[i].move+" "+gd[i].color+" "+withobstacles);
@@ -3101,7 +3106,7 @@ Unit.prototype = {
 	this.showmaneuver();
 	if (phase==ACTIVATION_PHASE) this.showactivation();
 	if (!ENGAGED&&phase==COMBAT_PHASE){
-	    if (this.canfire()) this.showattack(this.activeweapons,this.activeenemies); 
+	    if (this.canfire()&&!this.areactionspending()) this.showattack(this.activeweapons,this.activeenemies); 
 	    else $("#attackdial").empty();
 	}
 	this.showoverflow();

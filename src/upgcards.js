@@ -3218,7 +3218,7 @@ var UPGRADES= [
 	init: function(sh) {
 	    var u=this;
 	    sh.wrap_after("handledifficulty",this,function(d) {
-		if (d=="WHITE"||d=="GREEN"&&u.isactive) {
+		if ((d=="WHITE"||d=="GREEN")&&u.isactive) {
 		    this.donoaction([{type:"ELITE",name:u.name,org:u,action:function(n) {
 			u.desactivate();
 			this.addstress(1);
