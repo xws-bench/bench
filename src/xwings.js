@@ -2071,9 +2071,11 @@ $(document).ready(function() {
     jwerty.key("alt+i",function() {
 	hello('google').login()
     });
+    jwerty.key("alt+j",function() {
+	hello('facebook').login()
+    });
 
     hello.on('auth.login', function(auth) {
-	
 	// Call user information, for the given network
 	hello(auth.network).api('me').then(function(r) {
 	    // Inject it into the container
@@ -2087,7 +2089,7 @@ $(document).ready(function() {
 	});
     });
     hello.init({
-	facebook: "",
+	facebook: "45d01a65b726a9237391237ef4630353",
 	windows: "",
 	google: "896425822430-lv5gd4lk9c88hc47cp5eeigsb1h8rbio.apps.googleusercontent.com"
     }, {redirect_uri: 'index.html'});
