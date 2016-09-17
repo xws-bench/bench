@@ -2073,9 +2073,10 @@ var PILOTS = [
         unit: "Aggressor",
         skill: 6,
         points: 36,
-	init: function() {
+	init: function(from) {
 	    this.addafterattackeffect(this,function(c,h) {
-		if (targetunit.dead&&(this.shield<this.ship.shield)) {
+		if ((typeof from=="undefined"||!from.dead)
+		    &&targetunit.dead&&(this.shield<this.ship.shield)) {
 		    this.addshield(1);
 		    this.showstats();
 		    this.log("+1 %SHIELD% for a kill");
@@ -2090,7 +2091,7 @@ var PILOTS = [
 	faction:SCUM,
 	pilotid:109,
 	done:true,
-	init: function() {
+	init: function(from) {
 	    var wn=[];
 	    this.ig88battack=-1;
 	    for (var i=0; i<this.weapons.length; i++) {
@@ -2103,7 +2104,7 @@ var PILOTS = [
 		// TODO: immediateattack unused ?
 		//this.weapons[i].immediateattack={pred:function(k) { return k==0; },weapon:function() { return wp;}};
 	    this.addattack(function(c,h) { 
-		return (c+h==0)&&(this.ig88battack<round);
+		return (c+h==0)&&(this.ig88battack<round)&&(typeof from=="undefined"||!from.dead);
 	    },{name:"IG-88B"},wn,function () {
 		this.ig88battack=round;
 	    },function() { return squadron });
@@ -2118,10 +2119,12 @@ var PILOTS = [
         name: "IG-88C",
 	faction:SCUM,
 	pilotid:110,
-	init: function() {
+	init: function(from) {
             this.wrap_before("resolveboost",this,function() {
-		this.log("free %EVADE% action [%0]","IG-88C");
-		this.doselection(function(n) { this.addevade(n); }.bind(this));
+		if (typeof from=="undefined"||!from.dead) {
+		    this.log("free %EVADE% action [%0]","IG-88C");
+		    this.doselection(function(n) { this.addevade(n); }.bind(this));
+		}
 	    })
 	},
         done:true,
@@ -2135,9 +2138,9 @@ var PILOTS = [
         name: "IG-88D",
 	faction:SCUM, 
 	pilotid:111,
-        init: function() {
+        init: function(from) {
 	    this.wrap_after("getmaneuverlist",this,function(dial) {
-		if (typeof dial["SL3"]!="undefined") {
+		if (typeof dial["SL3"]!="undefined"&&(typeof from=="undefined"||!from.dead)) {
 		    this.log("%SLOOPLEFT% or %TURNLEFT% maneuver");
 		    dial["TL3"]={move:"TL3",halfturn:true,difficulty:dial["SL3"].difficulty};
 		} 
