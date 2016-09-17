@@ -2831,7 +2831,7 @@ var UPGRADES= [
 		var u=squadron[i];
 		if (u!=sh&&u.ig2000==true&&u.isally(sh)) {
 		    sh.log("copying %0 abilities [%1]",u.name,this.name);
-		    u.init.call(sh);
+		    u.init.call(sh,u);
 		}
 	    }
 	},
@@ -4738,7 +4738,7 @@ var UPGRADES= [
 	      var u=squadron[i];
 	      if (u!=sh&&u.ig2000==true&&u.isally(sh)) {
 		  sh.log("copying %0 abilities [%1]",u.name,this.name);
-		    u.init.call(sh);
+		  u.init.call(sh,u);
 	      }
 	  }
       }

@@ -2838,7 +2838,7 @@ var replayall=function() {
 	return;
     }
     switch(c[1]) {
-    case "W": log("out of replay");/* do nothing */ break;
+    case "W":/* do nothing */ break;
     case "P": 
 	var p=phase;
 	r=parseInt(c[2],10);
@@ -2856,7 +2856,6 @@ var replayall=function() {
 	}
 	if (phase==SETUP_PHASE+1&&r==1) endsetupphase();
 	$("#phase").html(UI_translation["turn #"]+round+" "+UI_translation["phase"+phase]);
-	log("going to phase "+phase);
 	actionrlock.notify();
 	break;
     case "L":	
