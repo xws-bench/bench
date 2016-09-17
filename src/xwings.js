@@ -2083,7 +2083,7 @@ $(document).ready(function() {
 		  label.id = 'profile_' + auth.network;
 		  document.getElementById('profile').appendChild(label);
 		  }*/
-	    console.log(r.thumnail+" hello "+r.name);
+	    console.log(r.thumbnail+" hello "+r.name);
 	});
     });
     hello.init({
