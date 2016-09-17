@@ -2090,7 +2090,7 @@ $(document).ready(function() {
 	facebook: "",
 	windows: "",
 	google: "896425822430-lv5gd4lk9c88hc47cp5eeigsb1h8rbio.apps.googleusercontent.com"
-    }, {redirect_uri: 'bench/index.html'});
+    }, {redirect_uri: 'index.html'});
     
 
 
