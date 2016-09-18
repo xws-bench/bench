@@ -2101,7 +2101,7 @@ $(document).ready(function() {
     jwerty.key("alt+k",function() {
 	var fb = hello('facebook').getAuthResponse();
 	var wl = hello('google').getAuthResponse();
-	alert((online(fb) ? 'Signed' : 'Not signed') + ' into Facebook, ' + (online(wl) ? 'Signed' : 'Not signed') + ' into Google'+ fb.name);
+	console.log((online(fb) ? 'Signed' : 'Not signed') + ' into Facebook, ' + (online(wl) ? 'Signed' : 'Not signed') + ' into Google');
 
     });
 
