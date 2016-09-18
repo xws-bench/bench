@@ -2,7 +2,6 @@
    * Wes Janson FAQ
 */
 // AIzaSyBN2T9d2ZuWaT0Vj6EanYb5IgWzLlhy7Zo
-var SESSION={} 
 var phase=1;
 var subphase=0;
 var round=1;
@@ -2086,7 +2085,6 @@ $(document).ready(function() {
 		  document.getElementById('profile').appendChild(label);
 		  }*/
 	    console.log(r.thumbnail+" hello "+r.name);
-	    SESSION=r;
 	});
     });
     hello.init({
@@ -2097,11 +2095,13 @@ $(document).ready(function() {
     
     var online = function(session) {
 	var currentTime = (new Date()).getTime() / 1000;
-	return typeof session.name!="undefined" && session.access_token && session.expires > currentTime;
+	return session && session.access_token && session.expires > currentTime;
     };
 
     jwerty.key("alt+k",function() {
-	alert((online(SESSION) ? 'Signed' : 'Not signed') +" "+SESSION.name);
+	var fb = hello('facebook').getAuthResponse();
+	var wl = hello('google').getAuthResponse();
+	alert((online(fb) ? 'Signed' : 'Not signed') + ' into Facebook, ' + (online(wl) ? 'Signed' : 'Not signed') + ' into Google'+ fb.name);
 
     });
 
