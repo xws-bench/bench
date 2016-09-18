@@ -2094,8 +2094,8 @@ $(document).ready(function() {
     }, {redirect_uri: 'http://xws-bench.github.io/bench/index.html'});
     
     var online = function(session) {
-	var currentTime = (new Date()).getTime() / 1000;
-	return session && session.access_token && session.expires > currentTime;
+	console.log(session);
+	return session && session.access_token ;
     };
 
     jwerty.key("alt+k",function() {
