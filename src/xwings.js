@@ -1,7 +1,8 @@
 /* 
    * Wes Janson FAQ
 */
-// AIzaSyBN2T9d2ZuWaT0Vj6EanYb5IgWzLlhy7Zo 
+// AIzaSyBN2T9d2ZuWaT0Vj6EanYb5IgWzLlhy7Zo
+var SESSION={} 
 var phase=1;
 var subphase=0;
 var round=1;
