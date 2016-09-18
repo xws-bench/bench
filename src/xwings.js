@@ -2093,13 +2093,13 @@ $(document).ready(function() {
 	google: "896425822430-lv5gd4lk9c88hc47cp5eeigsb1h8rbio.apps.googleusercontent.com"
     }, {redirect_uri: 'http://xws-bench.github.io/bench/index.html'});
     
-    hello('facebook').api('me').then(function(r) {
+    /*hello('facebook').api('me').then(function(r) {
 	console.log("my name is (facebook) "+r.name);
     });
     hello('google').api('me').then(function(r) {
 	console.log("my name is (google) "+r.name);
     });
-
+*/
     // Load unit data
     var availlanguages=["en","fr","de","es","it","pl"];
     LANG = localStorage['LANG'] || window.navigator.userLanguage || window.navigator.language;
