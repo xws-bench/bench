@@ -2093,16 +2093,11 @@ $(document).ready(function() {
 	google: "896425822430-lv5gd4lk9c88hc47cp5eeigsb1h8rbio.apps.googleusercontent.com"
     }, {redirect_uri: 'http://xws-bench.github.io/bench/index.html'});
     
-    var online = function(session) {
-	console.log(session);
-	return session && session.access_token ;
-    };
-
-    jwerty.key("alt+k",function() {
-	var fb = hello('facebook').getAuthResponse();
-	var wl = hello('google').getAuthResponse();
-	console.log((online(fb) ? 'Signed' : 'Not signed') + ' into Facebook, ' + (online(wl) ? 'Signed' : 'Not signed') + ' into Google');
-
+    hello('facebook').api('me').then(function(r) {
+	console.log("my name is (facebook) "+r.name);
+    });
+    hello('google').api('me').then(function(r) {
+	console.log("my name is (google) "+r.name);
     });
 
     // Load unit data
