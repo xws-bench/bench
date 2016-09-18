@@ -2074,7 +2074,6 @@ $(document).ready(function() {
     jwerty.key("alt+j",function() {
 	hello('facebook').login()
     });
-
     hello.on('auth.login', function(auth) {
 	// Call user information, for the given network
 	hello(auth.network).api('me').then(function(r) {
@@ -2086,8 +2085,7 @@ $(document).ready(function() {
 		  document.getElementById('profile').appendChild(label);
 		  }*/
 	    console.log(r.thumbnail+" hello "+r.name);
-	}).else(function(e) {
-	    console.log(e);
+	    SESSION=r;
 	});
     });
     hello.init({
@@ -2096,8 +2094,15 @@ $(document).ready(function() {
 	google: "896425822430-lv5gd4lk9c88hc47cp5eeigsb1h8rbio.apps.googleusercontent.com"
     }, {redirect_uri: 'http://xws-bench.github.io/bench/index.html'});
     
+    var online = function(session) {
+	var currentTime = (new Date()).getTime() / 1000;
+	return typeof session.name!="undefined" && session.access_token && session.expires > currentTime;
+    };
 
+    jwerty.key("alt+k",function() {
+	alert((online(SESSION) ? 'Signed' : 'Not signed') +" "+SESSION.name);
 
+    });
 
     // Load unit data
     var availlanguages=["en","fr","de","es","it","pl"];
