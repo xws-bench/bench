@@ -2086,13 +2086,15 @@ $(document).ready(function() {
 		  document.getElementById('profile').appendChild(label);
 		  }*/
 	    console.log(r.thumbnail+" hello "+r.name);
+	}).else(function(e) {
+	    console.log(e);
 	});
     });
     hello.init({
-	facebook: "a3088ab3094a179783f6d97759047295",
+	facebook: "1615235965440706",
 	windows: "",
 	google: "896425822430-lv5gd4lk9c88hc47cp5eeigsb1h8rbio.apps.googleusercontent.com"
-    }, {redirect_uri: 'index.html'});
+    }, {redirect_uri: 'http://xws-bench.github.io/bench/index.html'});
     
 
 
