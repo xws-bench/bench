@@ -5007,7 +5007,6 @@ var UPGRADES= [
     },
     {name:"Snap Shot",
      points:2,
-     done:true,
      type:ELITE,
      /*
      init: function(sh) {
