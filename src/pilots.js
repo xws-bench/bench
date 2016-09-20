@@ -658,7 +658,7 @@ var PILOTS = [
 	pilotid:34,
 	done:true,
 	init: function() {
-	    this.wrap_after("candoaction",this,function() {
+	    this.wrap_after("hasnostresseffect",this,function() {
 		return true;
 	    });
 	},
@@ -4055,7 +4055,7 @@ var PILOTS = [
         upgrades: [TORPEDO,CREW,ASTROMECH],
 	points:25,
 	init: function() {
-	    this.wrap_after("handledifficulty",this,function() {
+	    this.wrap_before("endmaneuver",this,function() {
 		if (this.stress>0) {
 		    var roll=this.rollattackdie(1,this,"hit")[0];
 		    if (roll=="hit"||roll=="critical") {
@@ -4125,4 +4125,67 @@ var PILOTS = [
       upgrades:[ELITE,MISSILE,CREW,CREW],
       points:46
     },
+    {name:"Nien Nunb",
+     unit:"T-70 X-Wing",
+     unique:true,
+     done:true,
+     pilotid:213,
+     faction:REBEL,
+     upgrades:[ELITE,TORPEDO,ASTROMECH,TECH],
+     init:function() {
+	 this.wrap_after("addstress",this,function() {
+	     var p=this.selectnearbyenemy(1,function(s,t) {
+		 return s.isinprimaryfiringarc(t);
+	     });
+	     if (p.length>0)  this.removestresstoken();
+	 });
+     },
+     points:29,
+     skill:7
+    },
+    {name:"'Snap' Wexley",
+     unit:"T-70 X-Wing",
+     unique:true,
+     done:true,
+     pilotid:214,
+     faction:REBEL,
+     upgrades:[ELITE,TORPEDO,ASTROMECH,TECH],
+     points:28,
+     skill:6,
+     init:function() {
+	 this.wrap_before("endmaneuver",this,function() {
+	     var m=this.getdial()[this.maneuver].move;
+	     if (m.match(/\w+[234]/)&&!this.collision&&this.candoboost()) 
+		    this.doaction([this.newaction(this.resolveboost,"BOOST")],"free %BOOST%");
+	 });
+	 
+     }
+    },
+    {name:"Jess Pava",
+     unit:"T-70 X-Wing",
+     unique:true,
+     done:true,
+     pilotid:215,
+     faction:REBEL,
+     upgrades:[ELITE,TORPEDO,ASTROMECH,TECH],
+     points:25,
+     skill:3,
+     init: function() {
+	 var self=this;
+	 var f=function() {
+	     return self.selectnearbyally(1,function(s,t) { return s!=t; }).length;
+	 };
+	 this.adddicemodifier(ATTACK_M,REROLL_M,ATTACK_M,this,{
+	     dice:["blank","focus"],
+	     n:f,
+	     req:function(attack,w,defender) { return true; }
+	 });
+	 this.adddicemodifier(DEFENSE_M,REROLL_M,DEFENSE_M,this,{
+	     dice:["blank","focus"],
+	     n:f,
+	     req:function(attack,w,defender) { return true; }
+	 });
+     }
+    },
+    
 ];

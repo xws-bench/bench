@@ -4956,5 +4956,79 @@ var UPGRADES= [
 	     }}],"",true);
 	 });
      }
+    },
+    {name:"Black One",
+     points:1,
+     unique:true,
+     done:true,
+     ship:"T-70 X-Wing",
+     type:TITLE,
+     skillmin:7,
+     init: function(sh) {
+	 var self=this;
+	 sh.wrap_after("endaction",this,function(n,s) {
+	     if (s!="BOOST"&&s!="ROLL") return;
+	     var p=this.selectnearbyally(1,function(s,t) {
+		 for (var i=0; i<t.istargeted.length; i++) 
+		     if (!t.istargeted[i].isally(t)) return true;
+		 return false;
+	     });
+	     if (p.length>0) {
+		 this.selectunit(p,function(q,k) {
+		     for (var i=0; i<q[k].istargeted.length; i++) {
+			 var u=q[k].istargeted[i];
+			 if (!q[k].isally(u)) {
+			     q[k].log("removing %TARGET% from %0 [%1]",u.name,self.name);
+			     u.removetarget(q[k]);
+			     break;
+			 }
+		     }
+		 },["select unit (or self to cancel) [%0]",self.name],false);
+	     }
+	 });
+     }
+    },
+    {name:"Primed Thrusters",
+     points:1,
+     done:true,
+     islarge:false,
+     type:TECH,
+     init: function(sh) {
+	 sh.wrap_after("isactiondone",this,function(a,b) {
+	     if (this.stress>0&&a!="ROLL"&&a!="BOOST") return true;
+	     if (this.stress>0&&a=="ROLL"&&b) this.log("can do %ROLL% [%0]");
+	     if (this.stress>0&&a=="BOOST"&&b) this.log("can do %BOOST% [%0]");
+	     return b;
+	 });
+	 sh.wrap_after("hasnostresseffect",this,function() {
+	     return stress<3;
+	 });
+     }
+    },
+    {name:"Snap Shot",
+     points:2,
+     done:true,
+     type:ELITE,
+     /*
+     init: function(sh) {
+	 var self=this;
+	 sh.addattack(
+	     function(c,h,t) { return !t.isally(self.unit); },
+	     self,sh.weapons,
+	     function() { 
+		 self.unit.log("no dice modifiers, no other attack this round [%0]",self.name);
+		 self.unit.noattack=round;
+	     },function() { return [activeunit]; },
+	     "endmaneuver",true);
+     }*/
+    },
+    {name:"M9-G8",
+     type:ASTROMECH,
+     points:3,
+     unique:true,
+    },
+    {name:"Pattern Analyzer",
+     type:TECH,
+     points:2,
     }
 ];
