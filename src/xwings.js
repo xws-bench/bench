@@ -57,6 +57,8 @@ var PERMALINK="";
     <script src="src/critical.js"></script>
     <script src="src/pilots.js"></script>
     <script src="src/iaunits.js"></script>
+<script src="src/replay.js"></script>
+<script src="src/proba.js"></script>
     <script src="src/xwings.js"></script>
 
 		 <button onclick='$("#replay")[0].contentWindow.stopreplay();'>Stop</button>

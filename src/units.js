@@ -1285,7 +1285,7 @@ Unit.prototype = {
 	for (i=0; i<this.shipactionList.length; i++) {
 	    var a=this.shipactionList[i];
 	    /* TODO actionsdone */
-	    if (this.actionsdone.indexOf(a)==-1) {
+	    if (!this.isactiondone(a)) {
 		switch(a) {
 		    case "CLOAK": if (this.candocloak()) 
 			al.push(this.newaction(this.addcloak,"CLOAK")); break;
@@ -1311,10 +1311,10 @@ Unit.prototype = {
 	var i,al=[];
 	for (i=0; i<this.upgrades.length; i++) {
 	    var upg=this.upgrades[i];
-	    if ((this.actionsdone.indexOf(upg.name)==-1)
+	    if ((!this.isactiondone(upg.name))
 		&&upg.isactive&&typeof upg.action=="function"&&upg.candoaction()) 
 		al.push({org:upg,action:upg.action,type:upg.type.toUpperCase(),name:upg.name});
-	    if ((this.actionsdone.indexOf(upg.name+"/2")==-1)
+	    if ((!this.isactiondone(upg.name+"/2"))
 		&&upg.isactive&&typeof upg.action2=="function"&&upg.candoaction2()) 
 		al.push({org:upg,action:upg.action2,type:upg.type.toUpperCase(),name:upg.name+"/2"});
 	    
@@ -1325,7 +1325,7 @@ Unit.prototype = {
 	var i,al=[];
 	for (i=0; i<this.criticals.length; i++) {
 	    var crit=this.criticals[i];
-	    if ((this.actionsdone.indexOf(crit.name)==-1)
+	    if ((!this.isactiondone(crit.name))
 		&&crit.isactive&&typeof crit.action=="function") {
 		crit.type="CRITICAL"; crit.org=crit;
 		al.push(crit);
@@ -1707,7 +1707,7 @@ Unit.prototype = {
 			var ccc;
 			if (gd[j].move=="F0"||
 			    (gd[j].difficulty=="RED"&&
-			    ((this.stress>0&&gd[i].difficulty!="GREEN")
+			    ((this.hasstresseffect()&&gd[i].difficulty!="GREEN")
 			     ||gd[i].difficulty=="RED"))) continue;
 			// Simplification: no need to uturn here.
 			var mmm=this.getmatrixwithmove(mm,gd[j].path,gd[j].len);
@@ -2469,19 +2469,21 @@ Unit.prototype = {
 	this.wrap_after("afterdefenseeffect",org,f);
     },
     isattacktwice: function() { return false; },
-    addattack: function(f,org,weaponlist,effect,targetselector,wrapper) {
+    addattack: function(f,org,weaponlist,effect,targetselector,wrapper,global) {
+	var self=this;
 	if (typeof wrapper=="undefined") wrapper="endattack";
-	
-	this.wrap_after(wrapper,org,function(c,h,attacker) {
+	if (typeof global=="undefined") global=false;
+	var obj=global?Unit.prototype:this;
+	obj.wrap_after(wrapper,org,function(c,h,attacker) {
 	    var anyactiveweapon=false;
-	    if (wrapper=="removeshield"||wrapper=="warndeath") attacker=activeunit;
+	    if (wrapper=="removeshield"||wrapper=="warndeath"||wrapper=="endmaneuver") attacker=activeunit;
 	    else if (typeof attacker=="undefined") attacker=this;
 	    for (i in weaponlist) if (weaponlist[i].isactive) {
 		anyactiveweapon=true; break;
 	    }
-	    //this.log("trigger for "+wrapper+":"+" noattack?"+(this.noattack<round)+" active?"+anyactiveweapon+" cloak?"+(this.iscloaked)+" attacker?"+attacker.name+" "+c+" "+h+" "+this.isfireobstructed()+" f?"+f.call(this,c,h,attacker));
-	    if (f.call(this,c,h,attacker)&&this.noattack<round&&anyactiveweapon
-	       &&!this.iscloaked&&!this.isfireobstructed()) {
+	    this.log("trigger for "+wrapper+":"+" noattack?"+(this.noattack<round)+" active?"+anyactiveweapon+" attacker?"+attacker.name+" "+c+" "+h+" "+this.isfireobstructed()+" f?"+f.call(this,c,h,attacker));
+	    if (f.call(self,c,h,attacker)&&self.noattack<round&&anyactiveweapon
+	       &&!self.iscloaked&&!self.isfireobstructed()) {
 		var latedeferred=attacker.deferred;
 		var fctattack=function() {
 		    var enemies;
@@ -2495,7 +2497,7 @@ Unit.prototype = {
 			if (weaponlist[i].isactive
 			    &&weaponlist[i].getenemiesinrange(enemies).length>0)
 			    wpl.push(weaponlist[i]);
-		    this.select();
+		    //this.select();
 		    if (wpl.length==0) {
 			this.log("no available target for %0",org.name);
 			this.cleanupattack();
@@ -2513,7 +2515,7 @@ Unit.prototype = {
 		    this.maxfired++;
 		    //for (var i in wpl) this.log("+1 attack with "+wpl[i].name);
 		    this.doattack(wpl,enemies);
-		}.bind(this);
+		}.bind(self);
 		if (wrapper!="endcombatphase"&&wrapper!="warndeath"&&phase==COMBAT_PHASE) 
 		    attacker.newlock().done(fctattack);
 		else fctattack();
@@ -2533,6 +2535,9 @@ Unit.prototype = {
     doselection: function(f,org) {
 	return this.enqueueaction(f,org);  
     },
+    isactiondone: function(name) {
+	return this.actionsdone.indexOf(name)!=-1;
+    },
     doaction: function(list,str,candoaction) {
 	if (typeof candoaction=="undefined") candoaction=this.candoaction;
 	if (list.length==0) {
@@ -2549,7 +2554,7 @@ Unit.prototype = {
  		if (typeof str!="undefined"&&str!="") this.log(str);
 		$("#actiondial").html($("<div>"));
 		for (i=0; i<list.length; i++) {
-		    if (this.actionsdone.indexOf(list[i].name)==-1) {
+		    if (!this.isactiondone(list[i].name)) {
 			(function(k,h) {
 			    var e=$("<div>").addClass("symbols").text(A[k.type].key)
 				.click(function () { this.resolveaction(k,n) }.bind(this));
@@ -2596,8 +2601,11 @@ Unit.prototype = {
 	    }
 	}.bind(this),list[0].name);  
     },
-    candoaction: function() {
+    hasnostresseffect: function() {
 	return this.stress==0;
+    },
+    candoaction: function() {
+	return this.hasnostresseffect();
     },
     candecloak: function() {
 	return (this.iscloaked&&phase==ACTIVATION_PHASE&&!this.hasdecloaked);
