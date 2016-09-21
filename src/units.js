@@ -1707,7 +1707,7 @@ Unit.prototype = {
 			var ccc;
 			if (gd[j].move=="F0"||
 			    (gd[j].difficulty=="RED"&&
-			    ((this.hasstresseffect()&&gd[i].difficulty!="GREEN")
+			    ((this.hasnostresseffect()&&gd[i].difficulty!="GREEN")
 			     ||gd[i].difficulty=="RED"))) continue;
 			// Simplification: no need to uturn here.
 			var mmm=this.getmatrixwithmove(mm,gd[j].path,gd[j].len);
