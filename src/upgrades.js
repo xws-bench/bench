@@ -511,6 +511,7 @@ Upgrade.prototype = {
 	}
     },
     uninstall: function(sh) {
+	sh.log("removing upgrade "+this.name);
 	if (typeof this.addedaction!="undefined") {
 	    var aa=this.addedaction.toUpperCase();
 	    sh.shipactionList.splice(sh["addedaction"+this.id],1);

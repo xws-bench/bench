@@ -200,9 +200,9 @@ Team.prototype = {
 	    if (u.team==this.team) {
 		for (var j=0; j<u.upgrades.length; j++) {
 		    var upg=u.upgrades[j];
+		    //if (upg.id>=0) log("removing "+upg.name+"?"+u.installed+" "+(typeof upg.uninstall));
 		    // Need to unwrap generic upgrades, installed when creating the squad
-		    if (upg.id>=0&&typeof UPGRADES[upg.id].uninstall=="function"&&
-			u.installed==true)
+		    if (upg.id>=0&&typeof UPGRADES[upg.id].uninstall=="function")
 			UPGRADES[upg.id].uninstall(u);
 		    // Now install the upgrades added during the tosquadron call
 		    if (typeof upg.install=="function") upg.install(u);
@@ -409,7 +409,8 @@ Team.prototype = {
 		    if ((translated==true&&translate(UPGRADES[k].name).replace(/\'/g,"").replace(/\(Crew\)/g,"")==pstr[j])
 			||(UPGRADES[k].name.replace(/\'/g,"")==pstr[j])) {
 			if (authupg.indexOf(UPGRADES[k].type)>-1) {
-			    p.upg[j-1]=k;
+			    for (f=0; f<p.upgradetype.length; f++)
+				if (p.upgradetype[f]==UPGRADES[k].type&&p.upg[f]==-1) { p.upg[f]=k; break; }
 			    break;
 			} else log("** "+pstr[j]+" UPGRADE not listed: "+UPGRADES[k].type+" in "+p.name);
 		    }
@@ -436,7 +437,8 @@ Team.prototype = {
 	    for (var j=0; j<10; j++) p.upg[j]=-1;
 	    for (var j=1; j<updstr.length; j++) {
 		var n=parseInt(updstr[j],10);
-		p.upg[j-1]=n;
+		for (var f=0; f<p.upgradetype.length; f++)
+		    if (p.upgradetype[f]==UPGRADES[n].type&&p.upg[f]==-1) { p.upg[f]=n; break; }
 	        //if (typeof UPGRADES[n].install!="undefined") UPGRADES[n].install(p);
 	    }
 	    if (coord.length>1) {
@@ -493,7 +495,8 @@ Team.prototype = {
 			nupg++;
 			for (var z=0; z<UPGRADES.length; z++) 
 			    if (UPGRADES[z].name==UPGRADE_dict[upg[k]]) {
-				p.upg[nupg]=z;
+				for (var f=0; f<p.upgradetype.length; f++)
+				    if (p.upgradetype[f]==UPGRADES[z].type&&p.upg[f]==-1) { p.upg[f]=z; break; }
 				//if (typeof UPGRADES[z].install != "undefined") UPGRADES[z].install(p);
 				break;
 			    }

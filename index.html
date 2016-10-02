@@ -213,12 +213,12 @@
 	   <td>
 	     <span class="m-squad1"></span>
 
-	     <button onclick="currentteam=TEAMS[1];createsquad()" class="m-create"></button>
+	     <button onclick="currentteam=TEAMS[0];importsquad(1); targetteam=1;createsquad()" class="m-create"></button>
 	     <span id="squad1points">0</span> <span class="m-points"></span>
  	   </td>
 	   <td>
 	     <span class="m-squad2"></span>
-	     <button onclick="currentteam=TEAMS[2];createsquad()" class="m-create"></button>
+	     <button onclick="currentteam=TEAMS[0];importsquad(2);targetteam=2;createsquad()" class="m-create"></button>
 	     <span id="squad2points">0</span> <span class="m-points"></span>
 	   </td>
 	 </tr>
@@ -521,17 +521,16 @@ The app is not really a game since the player plays both sides or against an AI,
 	  <h2><span class="m-credits"></span><a href="#" title="Close" class="close">&#xd7;</a>
 	  </h2>
 	  <div>
-	    <p><b>Thanks</b></p>
+	    <h4>Thanks</h4>
 	    
-	    <p>Many thanks to supporters and patrons, in particular to:<br/>
-	      <em>James Ramsay, Club165 Ventures, Lorenz Thor, Edward Coxwell-Rodgers, 宜軒 詹, Carlo Casalini, Bryan Gagen, James Berry, Lucas Haeser, Josh Chamot, Erich Leopold.</em>
-	    </p>
+	    Many thanks to supporters and patrons, in particular to:<br/>
+	      <em>James Ramsay, Club165 Ventures, Lorenz Thor, Edward Coxwell-Rodgers, 宜軒 詹, Carlo Casalini, Bryan Gagen, James Berry, Lucas Haeser, Josh Chamot, Erich Leopold,Christian Linnig.</em>
+	    <br/>
 	      
-	    <p>Thanks also for all of the contributors reporting bugs and proposing features</p>  
-	    <p>The Italian translation comes from Fab's squad builder web site. The sounds of space ships, lasers and explosions come from <a href="http://www.sa-matra.net/sounds/starwars/">Sa-Matra</a> website. Thanks !</p>
+	    Thanks also for all of the contributors reporting bugs and proposing features.<br/>  
+	    The Italian translation comes from Fab's squad builder web site. The sounds of space ships, lasers and explosions come from <a href="http://www.sa-matra.net/sounds/starwars/">Sa-Matra</a> website. Thanks !<br/>
 
-	  <p><b>Disclaimer</b></p>
-	  <p>
+	  <h4>Disclaimer</h4>
 	    X-Wing: The Miniatures Game is a trademark of Fantasy
 	    Flight Games. This site is not endorsed by Fantasy Flight
 	    Games, Lucasfilm Ltd. or Twentieth Century Fox and is
@@ -544,7 +543,6 @@ The app is not really a game since the player plays both sides or against an AI,
 	    constitutes a threat to any trademark or intellectual
 	    property. This web app is not-for-profit and is only
 	    intended for use by fans of the game line.
-	  </p>
 	  <div class="ack"><button onclick="window.location='#'">Ok</button></div>
 	</div></div>
       </section>
@@ -557,7 +555,7 @@ The app is not really a game since the player plays both sides or against an AI,
       <div class="log" id="log"></div>
     </footer>
     <script src="js/all.min.js"></script>
-    <script src="js/bench.min.js" async></script>
+    <script src="js/bench.js" async></script>
 
     <script>
       if (location.search=="") $("#selectphase").show();
