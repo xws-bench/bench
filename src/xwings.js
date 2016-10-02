@@ -1,7 +1,6 @@
 /* 
    * Wes Janson FAQ
 */
-// AIzaSyBN2T9d2ZuWaT0Vj6EanYb5IgWzLlhy7Zo
 var phase=1;
 var subphase=0;
 var round=1;
@@ -12,8 +11,8 @@ var LANG="en";
 var ENGAGED=false;
 var FILTER="none";
 var DECLOAK_PHASE=1;
-var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6,XP_PHASE=7;
 var DICES=["focusred","hitred","criticalred","blankred","focusgreen","evadegreen","blankgreen"];
+var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6,XP_PHASE=7;
 var BOMBS=[];
 var ROCKDATA="";
 var WINCOND=0;
@@ -33,6 +32,7 @@ var SQUADLIST,SQUADBATTLE;
 var COMBATLIST;
 var TEAMS=[new Team(0),new Team(1),new Team(2)];
 var currentteam=TEAMS[0];
+var teamtarget=0;
 var VIEWPORT;
 var ANIM="";
 var SETUP;
@@ -40,7 +40,7 @@ var SHOWDIAL=[];
 var TRACE=false;
 var TEMPLATES={"bomb":"","upgrade":"","weapon":"","social":""};
 //var sl;
-var increment=1;
+//var increment=1;
 var UNIQUE=[];
 var stype="";
 var REPLAY="";
@@ -142,7 +142,7 @@ function center() {
 }
 var AIstats = function(error,options, response) {
     if (typeof response.rows!="undefined") {
-	log("rows: "+response.rows.length);
+	//log("rows: "+response.rows.length);
     	for (var i=1; i<response.rows.length; i+=200) {
 	    var scorec=0;
 	    var n=0;
@@ -988,7 +988,31 @@ function createsquad() {
 	}
 	displayfactionunits(true);
     });
+    for (var i in generics) {
+	var u=generics[i];
+	if (u.team==targetteam) {
+	    currentteam.faction=u.faction;
+	    break;
+	}
+    }
     displayfactionunits();
+    for (var i in generics) {
+	var u=generics[i];
+	if (u.team==targetteam) {
+	    currentteam.faction=u.faction;
+	    log("adding one unit "+u.pilotid+" "+u.faction);
+	    addunit(u.pilotid,u);
+	    for (var j=0; j<u.upgradetype.length; j++) {
+		var upg=u.upg[j];
+		log("upgtype:"+j+" "+u.upgradetype[j]);
+		if (upg>-1) {
+		    log("upg "+UPGRADES[upg].name+" "+j+" "+u.upgradetype[j]);
+		    addupgrade(u,upg,j);
+		}
+	    }
+	}
+    }
+    log(TEAMS[1].toJuggler(false));
 }
 function switchdialimg(b) {
     if (b==true) {
@@ -1113,9 +1137,9 @@ function displayfactionunits(noreset) {
 
     for (i in unitlist) if (unitlist[i].faction.indexOf(faction)>-1) count++;
 
-    var tz = Math.round( ( 186 / 2 ) / Math.tan( Math.PI / count ) );
+    //var tz = Math.round( ( 186 / 2 ) / Math.tan( Math.PI / count ) );
     if (noreset==true) $("#caroussel").html(""); else $(".caroussel").html("");
-    increment = 360. / count;
+    //increment = 360. / count;
     var str;
     for (i=0; i<PILOTS.length; i++) {
 	var u=PILOTS[i].unit;
@@ -1187,7 +1211,7 @@ function displayfactionunits(noreset) {
 		    for (j=0; j<u.actionList.length; j++) al[j]=A[u.actionList[j]].key;
 		    return al;
 		},
-		hastitle:u.hastitle,
+	hastitle:u.hastitle,
 		shipupgrades:p[u.name][0].upgrades,
 		pilots:q
 	    });
@@ -1287,8 +1311,8 @@ function addupgradeaddhandler(u) {
 	}.bind(this));
     }.bind(u));
 }
-function addunit(n) {
-    var u=new Unit(currentteam.team,n);
+function addunit(n,u) {
+    if (typeof u=="undefined") var u=new Unit(currentteam.team,n);
     $("#listunits").append("<li id='unit"+u.id+"'></li>");
     u.show();
     $("li#unit"+u.id).hover(function() { $(".highlighted").removeClass("highlighted"); 
@@ -1325,6 +1349,7 @@ function addupgrade(self,data,num,noremove) {
     var org=UPGRADES[data];
     $("#unit"+self.id+" .upglist").empty();
     if (typeof org=="undefined") return;
+    log("upgrade identified");
     if (org.unique==true) addunique(org.name);
     if (org.limited==true) addlimited(self,data);
     $("#unit"+self.id+" .upgavail span[num="+num+"]").css("display","none");
@@ -1335,8 +1360,9 @@ function addupgrade(self,data,num,noremove) {
     var tt="";
     var tttext=formatstring(getupgtxttranslation(org.name,org.type));
     if (tttext!="") tt="<div class='tooltip'>"+tttext+(org.done==true?"":"<div><strong class='m-notimplemented'></strong></div></div>");
-
+    //log("adding to unit "+self.id);
     $("#unit"+self.id+" .upg").append("<tr data="+data+" num="+num+"><td><code class='upgrades "+org.type+"'></code></td><td>"+text+tt+"</td><td class='pts'>"+pts+"<button>-</button></td></tr>");
+    //alert("is shown ?");
     self.upg[num]=data;
     Upgrade.prototype.install.call(org,self);
     if (typeof org.install!="undefined") org.install(self);
@@ -1358,13 +1384,14 @@ function addupgrade(self,data,num,noremove) {
 }
 function removeupgrade(self,num,data) {
     var org=UPGRADES[data];
-   $("#unit"+self.id+" .upgavail span[num="+num+"]").css("display","block");
+    $("#unit"+self.id+" .upgavail span[num="+num+"]").css("display","block");
     $("#unit"+self.id+" .upg tr[num="+num+"]").remove();
     if (org.unique==true) removeunique(org.name);
     if (org.limited==true) removelimited(self,data);
     self.upg[num]=-1;
-    //log("removing upgrade: "+(typeof org.uninstall));
-    if (typeof org.uninstall!="undefined") org.uninstall(self);
+    if (typeof org.uninstall!="undefined") {
+	org.uninstall(self);
+    }
     Upgrade.prototype.uninstall.call(org,self);
     $("#unit"+self.id+" .shipdial").html("<table>"+self.getdialstring()+"</table>");
 
@@ -1408,11 +1435,11 @@ function endselection() {
     currentteam.name="SQUAD."+currentteam.toASCII();
     currentteam.toJSON();// Just for points
     var jug=currentteam.toJuggler(false);
+    TEAMS[targetteam].parseJuggler(jug,false);
     if (typeof localStorage[currentteam.name]=="undefined") {
 	localStorage[currentteam.name]=JSON.stringify({"pts":currentteam.points,"faction":currentteam.faction,"jug":jug,"rocks":currentteam.rocks});
     }
-    if (currentteam==TEAMS[1]) team=1; else if (currentteam==TEAMS[2]) team=2; 
-    addrow(team,currentteam.name,currentteam.points,currentteam.faction,currentteam.toJuggler(true),true);
+    addrow(targetteam,currentteam.name,currentteam.points,currentteam.faction,currentteam.toJuggler(true),true);
 }
 function removerow(t) {
     var row = SQUADLIST.row(t.parents("tr"));
@@ -2069,7 +2096,7 @@ $(document).ready(function() {
         gapi.client.load('urlshortener', 'v1');
     }
     if (typeof gapi!="undefined") gapi.load('client', initgapi);
-
+    /*
     jwerty.key("alt+i",function() {
 	hello('google').login()
     });
@@ -2080,12 +2107,6 @@ $(document).ready(function() {
 	// Call user information, for the given network
 	hello(auth.network).api('me').then(function(r) {
 	    // Inject it into the container
-		/*var label = document.getElementById('profile_' + auth.network);
-		  if (!label) {
-		  label = document.createElement('div');
-		  label.id = 'profile_' + auth.network;
-		  document.getElementById('profile').appendChild(label);
-		  }*/
 	    console.log(r.thumbnail+" hello "+r.name);
 	});
     });
@@ -2094,7 +2115,7 @@ $(document).ready(function() {
 	windows: "",
 	google: "896425822430-lv5gd4lk9c88hc47cp5eeigsb1h8rbio.apps.googleusercontent.com"
     }, {redirect_uri: 'http://xws-bench.github.io/bench/index.html'});
-    
+    */    
     /*hello('facebook').api('me').then(function(r) {
 	console.log("my name is (facebook) "+r.name);
     });
@@ -2343,7 +2364,7 @@ $(document).ready(function() {
 	    TEAMS[2].toJSON(); // Just for points
 	    TEAMS[1].isia=false;
 	    TEAMS[2].isia=false;
-	    console.log("player name and image:"+args[8]+"<>"+args[7]+"<>");
+	    //console.log("player name and image:"+args[8]+"<>"+args[7]+"<>");
 	    if (args[3]=="true") TEAMS[1].isia=true;	
 	    else { 
 		localStorage["imageplayer"]=args[7];
