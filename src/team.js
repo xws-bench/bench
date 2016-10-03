@@ -404,6 +404,8 @@ Team.prototype = {
 		    if (k==UPGRADES.length) log("UPGRADE undefined: "+pstr[j]);
 		}
 	    }
+	    //for (j=0; j<p.upgradetype.length; j++)
+	//	p.log("found type "+p.upgradetype[j]);
 	    for (j=1; j<pstr.length; j++) {
 		for (k=0; k<UPGRADES.length; k++) {
 		    if ((translated==true&&translate(UPGRADES[k].name).replace(/\'/g,"").replace(/\(Crew\)/g,"")==pstr[j])
