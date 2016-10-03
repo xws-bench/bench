@@ -1157,13 +1157,6 @@ function displayfactionunits(noreset) {
 	}
     }
     for (u in p) p[u].sort(function(a,b) { return a.points - b.points; });
-    for (i=0; i<UPGRADES.length; i++) {
-	var u=UPGRADES[i];
-	if (u.type==TITLE) {
-	    //log("ship titled "+u.ship);
-	    unitlist[u.ship].hastitle=true;
-	}
-    }
     for (i in unitlist) 
 	if (unitlist[i].faction.indexOf(faction)>-1) { 
 	    unitlist[i].trname=SHIP_translation[i]; 
@@ -2204,6 +2197,14 @@ $(document).ready(function() {
 	    for (var i in unitlist) 
 		if (i==PILOT_dict[j]) unitlist[i].dict=j;
 	}
+	for (i=0; i<UPGRADES.length; i++) {
+	    var u=UPGRADES[i];
+	    if (u.type==TITLE) {
+		//log("ship titled "+u.ship);
+		unitlist[u.ship].hastitle=true;
+	    }
+	}
+
 	/*Sanity check */
 	
 	for (var i=0; i<PILOTS.length; i++) {
