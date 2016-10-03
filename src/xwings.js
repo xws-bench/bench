@@ -1159,7 +1159,10 @@ function displayfactionunits(noreset) {
     for (u in p) p[u].sort(function(a,b) { return a.points - b.points; });
     for (i=0; i<UPGRADES.length; i++) {
 	var u=UPGRADES[i];
-	if (u.type==TITLE) unitlist[u.ship].hastitle=true;
+	if (u.type==TITLE) {
+	    //log("ship titled "+u.ship);
+	    unitlist[u.ship].hastitle=true;
+	}
     }
     for (i in unitlist) 
 	if (unitlist[i].faction.indexOf(faction)>-1) { 
@@ -1349,7 +1352,7 @@ function addupgrade(self,data,num,noremove) {
     var org=UPGRADES[data];
     $("#unit"+self.id+" .upglist").empty();
     if (typeof org=="undefined") return;
-    log("upgrade identified");
+    //log("upgrade identified");
     if (org.unique==true) addunique(org.name);
     if (org.limited==true) addlimited(self,data);
     $("#unit"+self.id+" .upgavail span[num="+num+"]").css("display","none");

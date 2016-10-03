@@ -2433,16 +2433,13 @@ var UPGRADES= [
 	type:MOD,
 	done:true,
 	install:function(sh) {
-	    sh.installed=true;
 	    sh.wrap_after("getagility",this,function(a) { return a+1;});
 	    sh.showstats();
 	},
 	uninstall:function(sh) {
-	    if (sh.getagility.unwrap=="function") {
+	    if (typeof sh.getagility.unwrap=="function") {
 		sh.getagility.unwrap(this);
-		//log("removing stealth device");
 	    }
-	    sh.installed=false;
 	    sh.showstats();
 	},
 	init: function(sh) {
@@ -3734,8 +3731,9 @@ var UPGRADES= [
       init: function(sh) {
 	  var self=this;
 	  this.rd=-1;
-	  Unit.prototype.wrap_after("handledifficulty",self,function(difficulty) {
-	      if (!self.unit.dead&&difficulty=="WHITE"&&this.stress>0&&self.rd<round
+	  Unit.prototype.wrap_before("endmaneuver",self,function() {
+	      var d=this.maneuverdifficulty;
+	      if (!self.unit.dead&&d=="WHITE"&&this.stress>0&&self.rd<round
 		  &&this.isally(self.unit)&&this.getrange(self.unit)<=2) {
 		  this.log("-1 %STRESS% [%0]",self.name);
 		  self.rd=round;
@@ -4872,13 +4870,32 @@ var UPGRADES= [
      upgrades:[CREW,ILLICIT],
      points:1,
     },
-    {name:"Millenium Falcon(HoR)",
+    {name:"Millennium Falcon(HoR)",
      faction:REBEL,
      ambiguous:true,
      ship:"YT-1300",
      unique:true,
+     done:true,
      type:TITLE,
      points:1,
+     init: function(sh) {
+	 var self=this;
+         sh.wrap_after("getmaneuverlist",this,function(list) {
+	     var p=list;
+	     if (this.hasionizationeffect()) return p;
+	     for (var i in list) {
+		 if (i.match(/BR3|BL3/)) {
+			this.log("perform half-turn after a bank [%0]",self.name);
+			var m="K"+i;
+			p[m]={move:i,difficulty:list[i].difficulty,halfturn:true};
+		    }
+	     }
+	     return p;
+	 });
+	 sh.wrap_before("completemaneuver",this,function(dial,d,h) {
+	     if (dial.match(/BR3|BL3/)&&h==true) this.addstress();
+	 });
+     }
     },
     {name:"Smuggling Compartment",
      ship:"YT-",

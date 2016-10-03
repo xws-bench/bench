@@ -259,7 +259,7 @@ function Unit(team,pilotid) {
     }
     this.upgradesno=k;
     this.points=PILOTS[pilotid].points;
-    //this.install(this);
+    this.install(this);
     TEAMS[this.team].updatepoints();
 }
 Unit.prototype = {
@@ -614,8 +614,8 @@ Unit.prototype = {
 	    unique:(PILOTS[this.pilotid].unique==true?false:true),
 	    id:this.id,
 	    evade:this.agility,
-	    hull:this.ship.hull,
-	    shield:this.ship.shield,
+	    hull:this.hull,
+	    shield:this.shield,
 	    fire:this.weapons[0].getattack(),
 	    shipimg:this.shipimg,
 	    diallist:dial2JSON(this.getdial()),
@@ -2307,6 +2307,7 @@ Unit.prototype = {
     completemaneuver: function(dial,difficulty,halfturn,finalm) {
 	var path=P[dial].path;
 	var m,oldm;
+	this.maneuverdifficulty=difficulty;
 	if (dial=="F0") {
 	    //this.log("performing F0");
 	    this.hasmoved=true;

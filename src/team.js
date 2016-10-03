@@ -409,8 +409,10 @@ Team.prototype = {
 		    if ((translated==true&&translate(UPGRADES[k].name).replace(/\'/g,"").replace(/\(Crew\)/g,"")==pstr[j])
 			||(UPGRADES[k].name.replace(/\'/g,"")==pstr[j])) {
 			if (authupg.indexOf(UPGRADES[k].type)>-1) {
-			    for (f=0; f<p.upgradetype.length; f++)
+			    for (f=0; f<p.upgradetype.length; f++) {
+				//log("check ?"+p.upgradetype[f]+" "+UPGRADES[k].type);
 				if (p.upgradetype[f]==UPGRADES[k].type&&p.upg[f]==-1) { p.upg[f]=k; break; }
+			    }
 			    break;
 			} else log("** "+pstr[j]+" UPGRADE not listed: "+UPGRADES[k].type+" in "+p.name);
 		    }
