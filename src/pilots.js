@@ -1473,7 +1473,7 @@ var PILOTS = [
 	    var self=this;
 	    Unit.prototype.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
 		req:function(m,n) {
-		    return !self.dead&&self.isinfiringarc(targetunit);
+		    return self.isally(activeunit)&&!self.dead&&self.isinfiringarc(targetunit);
 		}, 
 		aiactivate: function(m,n) { return FCH_hit(m); },
 		f:function(m,n) {
