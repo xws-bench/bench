@@ -2373,7 +2373,7 @@ var PILOTS = [
 		    unit.addstress();
 		    this.resolvehit(1);
 		    unit.log("+1 %STRESS%");
-		    this.log("+%1 %HIT [%0]",unit.name,1);
+		    this.log("+%1 %HIT% [%0]",unit.name,1);
 		    this.checkdead();
 		}
 	    });

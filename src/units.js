@@ -2482,7 +2482,7 @@ Unit.prototype = {
 	    for (i in weaponlist) if (weaponlist[i].isactive) {
 		anyactiveweapon=true; break;
 	    }
-	    this.log("trigger for "+wrapper+":"+" noattack?"+(this.noattack<round)+" active?"+anyactiveweapon+" attacker?"+attacker.name+" "+c+" "+h+" "+this.isfireobstructed()+" f?"+f.call(this,c,h,attacker));
+	    //this.log("trigger for "+wrapper+":"+" noattack?"+(this.noattack<round)+" active?"+anyactiveweapon+" attacker?"+attacker.name+" "+c+" "+h+" "+this.isfireobstructed()+" f?"+f.call(this,c,h,attacker));
 	    if (f.call(self,c,h,attacker)&&self.noattack<round&&anyactiveweapon
 	       &&!self.iscloaked&&!self.isfireobstructed()) {
 		var latedeferred=attacker.deferred;
