@@ -1000,19 +1000,15 @@ function createsquad() {
 	var u=generics[i];
 	if (u.team==targetteam) {
 	    currentteam.faction=u.faction;
-	    log("adding one unit "+u.pilotid+" "+u.faction);
 	    addunit(u.pilotid,u);
 	    for (var j=0; j<u.upgradetype.length; j++) {
 		var upg=u.upg[j];
-		log("upgtype:"+j+" "+u.upgradetype[j]);
 		if (upg>-1) {
-		    log("upg "+UPGRADES[upg].name+" "+j+" "+u.upgradetype[j]);
 		    addupgrade(u,upg,j);
 		}
 	    }
 	}
     }
-    log(TEAMS[1].toJuggler(false));
 }
 function switchdialimg(b) {
     if (b==true) {

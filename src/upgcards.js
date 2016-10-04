@@ -1072,7 +1072,6 @@ var UPGRADES= [
 	snd:"explode",
 	img:"proton.png",
 	explode:function() {
-	    log("proton bombs");
 	    if (phase==ACTIVATION_PHASE&&!this.exploded) {
 		var r=this.getrangeallunits();
 		for (var i=0; i<r[1].length; i++) {
@@ -2362,7 +2361,6 @@ var UPGRADES= [
 		self.spendfocus=false;
 		this.wrap_before("removefocustoken",self,function() {
 		    self.spendfocus=true;
-		    /*this.log("id:"+this.id+" "+self.id);*/
 		    //this.addtarget(target);
 		    displayattacktokens2(this);
 		    this.log("+1 %TARGET% / %1 [%0]",self.name,target.name);
@@ -2509,7 +2507,6 @@ var UPGRADES= [
 	type:MOD,
 	done:true,
         install: function(sh) {
-	    sh.log("hull->"+sh.hull+"/"+sh.ship.hull);
 	    sh.hull++; sh.ship.hull++;
 	    sh.installed=true;
 	    sh.showstats();
@@ -3233,6 +3230,7 @@ var UPGRADES= [
     {
 	name: "Twin Laser Turret",
 	type: TURRET,
+	firesnd:"falcon_fire",
 	points: 6,
 	done:true,
 	attack: 3,
@@ -3448,6 +3446,7 @@ var UPGRADES= [
     {
         name: "Advanced Homing Missiles",
         type: MISSILE,
+	firesnd:"missile",
         points: 3,
 	requires:"Target",
 	consumes:false,
@@ -3587,6 +3586,7 @@ var UPGRADES= [
 	name: "XX-23 S-Thread Tracers",
 	points:1,
 	type:MISSILE,
+	firesnd:"missile",
 	range:[1,3],
 	attack:3,
 	done:true,
@@ -3638,6 +3638,7 @@ var UPGRADES= [
 	name: "Dorsal Turret",
 	type: TURRET,
 	points: 3,
+	firesnd:"falcon_fire",
 	attack: 2,
 	range: [1,2],
 	done:true,
@@ -4317,7 +4318,7 @@ var UPGRADES= [
      init: function(sh) {
 	 var self=this;
 	 sh.wrap_after("addstress",this,function() {
-	     this.log("adding eb action");
+	     //this.log("adding eb action");
 	     this.donoaction([{type:"STRESS",name:self.name,org:self,
 			       action:function(n) {
 				   this.removestresstoken();

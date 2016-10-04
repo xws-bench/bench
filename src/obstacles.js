@@ -206,7 +206,6 @@ Rock.prototype = {
     dragstop: function(a) { 
 	for (var k=1; k<4; k++) 
 	    this.o[k].attr({display:"none"});
-	this.m=this.dragMatrix;
 	Unit.prototype.dragstop.call(this,a);
     },
     show: function() {
