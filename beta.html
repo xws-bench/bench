@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <script src="js/all.min.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script>
+      function appendResults(text) {
+        var results = document.getElementById('results');
+        results.appendChild(document.createElement('P'));
+        results.appendChild(document.createTextNode(text));
+      }
+
+      function makeRequest() {
+        var request = gapi.client.urlshortener.url.insert({
+          'longUrl': 'http://xws-benchmark.github.io/bench/beta.html'
+        });
+        request.then(function(response) {
+      for (var i in response.result) 
+          console.log(i+" "+response.result[i]);
+        }, function(reason) {
+          console.log('Error: ' + reason.result.error.message);
+        });
+      }
+
+      function init() {
+        gapi.client.setApiKey('AIzaSyBN2T9d2ZuWaT0Vj6EanYb5IgWzLlhy7Zo');
+        gapi.client.load('urlshortener', 'v1').then(makeRequest);
+      }
+
+      gapi.load('client', init);
+    </script>
+  </head>
+  <body>
+    <div id="results"></div>
+  </body>
+</html>
+

@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+    <title>Ynot Squad Benchmark: combat trainer and squad builder for X-Wing Miniatures game</title>
+    <meta name="description" content="Web app for X-Wing Miniatures game">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="apple-touch-icon" href="squadronbenchmark-60x60.png"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="squadronbenchmark-76x76.png"/>
+    <link rel="apple-touch-icon" sizes="120x120" href="squadronbenchmark-120x120.png"/>
+    <link rel="apple-touch-icon" sizes="152x152" href="squadronbenchmark-152x152.png"/>
+
+
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="iOS Ynot Squad Benchmark">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="css/xwings.css"/>
+    <link rel="stylesheet" href="css/jquery.dataTables.min.css"/>
+    <style type="text/css" id="localstrings"></style>
+  </head>
+
+  <body>
+    
+
+    <nav>
+      <div>
+	<span class="h2"><span class="xwing"></span><span class="title">Ynot Squad Benchmark</span>
+	  <span class="ver"></span>
+	  <select id="langselect" onchange="changelanguage($(this).val())">
+	    <option value="en">English</option>
+	    <option value="fr">Français</option>
+	    <option value="de">Deutsch</option>
+	    <option value="es">Español</option>
+	    <option value="it">Italiano</option>
+	    <option value="pl">Polski</option>
+	  </select>
+	  <span class="symbols button" style="vertical-align:bottom" onclick="window.location='#setting'">&#xEA;</span>
+	</span>
+	<span class="buttonbar">
+	  <button onclick="currentteam=TEAMS[0];createsquad()" class="mainbutton m-create"></button>
+	  <label for="imagebg" style="display:none" class="imagebg permalink">Import setup image</label>
+	  <input style="display:none" type="file" id="imagebg">
+	  <button class="permalink" id="savebtn" onclick="document.location='#save'; save()" >Permalink</button>
+	  <button class="permalink m-reset" onclick="resetlink(true,false)" >&lt;&lt; </button>
+	  <select class="permalink" id="turnselector" onchange="resetlink(false,false,true);"><option value="-1">&lt; Back</option></select>
+	  <span id="phase"></span>
+	  <button class="nextphase" onclick="nextphase()"><span class='np'></span> <span id='npimg'>&gt;</span></button>
+	  <span class="menu" ><span class="symbols" style="padding:5px;vertical-align:bottom;color:white;font-size:larger;">&#xE2;</span>
+	    <ul>
+	      <li><a class="m-about" href="#about"></a></li>
+	      <li><a class="m-help" href="#http://xws-benchmark.blogspot.fr/p/how-to-play.html" target="_blank"></a></li>
+	      <li><a class="m-proba" href="#proba" id="showproba"></a></li>
+	      <li><a class="m-kb" href="#kb"></a></li>
+	      <li><a class="m-blog" href="#http://xws-benchmark.blogspot.fr/"></a></li>
+	      <li><a class="m-donate" href="##donate"></a></li>
+	      <li><a class="m-credits" href="#credit"></a></li>
+	      <li><a href="#licence">Licence</a></li>
+	  </ul></span>
+	  </span>
+
+      </div>
+    </nav>
+
+    <aside class="leftpanel" id="leftpanel">
+      <image id="player1img"  style="background:#e2e2e4;width:2em;vertical-align:middle" src="css/human.png" alt=""><select class="bigbutton2 playertype" id="player1" style="width:calc( 100% - 2em )"></select>
+      <button class="bigbutton m-asteroids" onclick="location='#asteroid';TEAMS[1].selectrocks();"></button>
+      <section id="team1" class="team">
+	<h2 style='display:none'>List of units</h2>
+      </section>
+    </aside>
+
+    <aside id="rightpanel" class="rightpanel">
+      <image id="player2img" style="background:#e2e2e4;width:2em;vertical-align:middle" src="css/human.png" alt=""><select class="bigbutton2 playertype" id="player2" style="width:calc( 100% - 2em )"></select>
+      <button class="bigbutton m-asteroids" onclick="location='#asteroid';TEAMS[2].selectrocks();"></button>
+      <section id="team2" class="team">
+	<h2 style='display:none'>List of units</h2>
+      </section>
+    </aside>
+    
+    <article id="game" style="display:none" class="main">
+      <h2 style='display:none'>Main panel</h2>
+      <section class="phasepanel">
+	<h2 style='display:none'>Main panel</h2>
+	<table id="positiondial">
+	  <tr>
+	    <td onclick="activeunit.turn(-45)" title="key: <T>" class="symbols">4</td>
+	    <td onclick="activeunit.turn(45)" title="key: <t>" class="symbols">6</td>
+	  </tr>
+	  <tr>
+	    <td onclick="activeunit.turn(-5)" title="key: <B>" class="symbols">7</td>
+	    <td onclick="activeunit.turn(5)" title="key: <b>" class="symbols">9</td>
+	  </tr>
+	</table>
+	<table id="maneuverdial"></table>
+	<div id="activationdial"></div>
+	<div id="actiondial"></div>
+	<div id="attackdial"></div>
+	<div id="combatdial">
+	  <table style='width:100%'>
+	    <tr style='width:100%' id="attack"><td></td></tr>
+	    <tr style='width:100%' id="defense"><td></td></tr>
+	  </table>
+	  <div id="atokens"></div>
+	  <div id="dtokens"></div>
+	</div>
+      </section>
+
+      <section class="playmat">
+      <h2 style='display:none'>Game area</h2>
+	<svg id="svgout"></svg>
+      </section>
+
+      <section class="info">
+	<h2 style='display:none'>Info panel</h2>
+      </section>
+
+    </article>
+
+     <section id="modal" class="modalDialog">
+	<div>
+	  <h2>
+	    <span class="victory"></span>
+	    <a href="#" title="Close" class="close">&#10060;</a>
+	  </h2>
+	  <div>
+	    <table class="victory-table"></table>
+	    <div class="replays">Share combat: 
+	      <a href="#" class="victory-link m-replay"></a>
+	      <span class="share-button">
+		<a class="symbols tweet" href="#" target="_blank"><span width="30px">&#xDD;</span></a>
+		<a class="facebook symbols" href="#" target="_blank"><span width="30px" class="symbols">&#xDC;</span></a>
+		<a class="googlep symbols" href="#" target="_blank"><span width="30px" class="symbols">&#xF2;</span></a>
+		<a class="email" href="#" title="Share by Email"><span width="30px" class="symbols">&#xE7;</span></a>
+</a>
+	      </span>
+	    </div>
+	  </div>
+	</div>
+     </section>
+ 
+     <section id="save" class="modalDialog">
+	<div>
+	  <h2>
+	    <span class="victory">Share and save this combat</span>
+	    <a href="#" title="Close" class="close">&#10060;</a>
+	  </h2>
+	  <div>
+	    <span>Copy/paste the link below to save your combat, or share it with your friends.</span>
+	    <div class="share-button social"></div>
+	    <div class="ack"><button onclick="window.location='#'">Ok</button></div>
+	  </div>
+	</div>
+     </section>
+ 
+     <article id="creation" style="display:none"  class="mainarticle">
+       <div>
+	 <div id="unitfilter" class="selector">
+	   <div>Search</div>
+	   <input style="width:100%" type="search" id="textfilter" class="textfilter" onchange="textfilter($(this).val())">
+	   <div>Upgrades</div>
+	   <div><input type="checkbox" id="fturret" onclick="unitfilter(TURRET)"><label for="fturret" class="upgrades Turret"></label>
+	   <input type="checkbox" id="fcrew" onclick="unitfilter(CREW)"><label for="fcrew" class="upgrades Crew"></label></div>
+	   <div><input type="checkbox" id="fastromech" onclick="unitfilter(ASTROMECH)"><label for="fastromech" class="upgrades Astromech"></label>
+	   <input type="checkbox" id="fsalvaged" onclick="unitfilter(SALVAGED)"><label for="fsalvaged" class="upgrades Salvaged"></label></div>
+	   <div><input type="checkbox" id="fsystem" onclick="unitfilter(SYSTEM)"><label for="fsystem" class="upgrades System"></label>
+	   <input type="checkbox" id="fcannon" onclick="unitfilter(CANNON)"><label for="fcannon" class="upgrades Cannon"></label></div>
+	   <div><input type="checkbox" id="ftorpedo" onclick="unitfilter(TORPEDO)"><label for="ftorpedo" class="upgrades Torpedo"></label>
+	   <input type="checkbox" id="fmissile" onclick="unitfilter(MISSILE)"><label for="fmissile" class="upgrades Missile"></label></div>
+	   <div><input type="checkbox" id="fbomb" onclick="unitfilter(BOMB)"><label for="fbomb" class="upgrades Bomb"></label>
+	   <input type="checkbox" id="fillicit" onclick="unitfilter(ILLICIT)"><label for="fillicit" class="upgrades Illicit"></label></div>
+	   <div><input type="checkbox" id="ftech" onclick="unitfilter(TECH)"><label for="ftech" class="upgrades Tech"></label></div>
+	   <div>Actions</div>
+	   <div><input type="checkbox" id="ffocus" onclick="actionfilter('FOCUS')"><label for="ffocus" class="symbols GREEN">f</label>
+	   <input type="checkbox" id="fevade" onclick="actionfilter('EVADE')"><label for="fevade" class="symbols GREEN">e</label></div>
+	   <div><input type="checkbox" id="froll" onclick="actionfilter('ROLL')"><label for="froll" class="symbols GREEN">r</label>
+	   <input type="checkbox" id="ftarget" onclick="actionfilter('TARGET')"><label for="ftarget" class="symbols GREEN">l</label></div>
+	   <div><input type="checkbox" id="fboost" onclick="actionfilter('BOOST')"><label for="fboost" class="symbols GREEN">b</label>
+	   <input type="checkbox" id="fcloak" onclick="actionfilter('CLOAK')"><label for="fcloak" class="symbols GREEN">k</label></div>
+	   <div><input type="checkbox" id="fslam" onclick="actionfilter('SLAM')"><label for="fslam" class="symbols GREEN">s</label>
+	   <input type="checkbox" id="farc" onclick="actionfilter('ARCROTATE')"><label for="farc" class="symbols GREEN">R</label></div>
+	   <div>Maneuvers</div>
+	   <table id="dialfilter"></table>
+	 </div>
+	 <button style="float:left" onclick="$('#unitfilter').toggle();">Filter</button>
+	 <div class="selector">
+	   <span class="REBEL m-rebel" onclick="currentteam.changefaction('REBEL')"></span>
+	   <span class="SCUM m-scum" onclick="currentteam.changefaction('SCUM')"></span>
+	   <span class="EMPIRE m-empire" onclick="currentteam.changefaction('EMPIRE')"></span>
+	 </div>
+
+	 <div class="unitlist">
+	   <ul id="caroussel" class="caroussel"></ul>
+	 </div>
+	 <div class="selector">
+	   <h3><span id="totalpts">0</span>&nbsp;<span class="total m-totalpts"></span></h3>
+	 </div>
+	 <div class="unitlist">
+	   <ul id="listunits" class="caroussel"></ul>
+	 </div>
+     </article>
+
+
+     <article id="selectphase" style="display:none" class="mainarticle">
+
+       <h3 class="m-selectinstructions"></h3>
+       <div>
+       <table class="squadselected">
+	 <tr>
+	   <td>
+	     <span class="m-squad1"></span>
+
+	     <button onclick="currentteam=TEAMS[0];importsquad(1); targetteam=1;createsquad()" class="m-create"></button>
+	     <span id="squad1points">0</span> <span class="m-points"></span>
+ 	   </td>
+	   <td>
+	     <span class="m-squad2"></span>
+	     <button onclick="currentteam=TEAMS[0];importsquad(2);targetteam=2;createsquad()" class="m-create"></button>
+	     <span id="squad2points">0</span> <span class="m-points"></span>
+	   </td>
+	 </tr>
+	 <tr>
+	   <td class="squadbg"><div>1</div><textarea onchange="currentteam=TEAMS[1];importsquad(1)" onpaste="setTimeout(function(){currentteam=TEAMS[1];importsquad(1);}, 4)" id="squad1" cols="40" rows="8"></textarea></td>
+	   <td class="squadbg"><div class="right">2</div><textarea  onchange="currentteam=TEAMS[2];importsquad(2)" onpaste="setTimeout(function(){currentteam=TEAMS[2];importsquad(2);}, 4)" id="squad2" cols="40" rows="8" ></textarea></td>
+	 </tr>
+	 <tr>
+	   <td colspan="2" class="squadbg" style="text-align:right">
+	     <span class="m-normalmap"></span>
+	     <img class="selected" src="css/mini10.jpg" onclick="$('.squadbg img').removeClass('selected'); $(this).addClass('selected');SETUP=SETUPS['Classic Map']">
+	     <img src="css/mini11.jpg" onclick="$('.squadbg img').removeClass('selected'); $(this).addClass('selected');SETUP=SETUPS['Blue Planet Map']">
+	     <img src="css/mini13.jpg" onclick="$('.squadbg img').removeClass('selected'); $(this).addClass('selected');SETUP=SETUPS['Blue Sky Map']">
+	     <img src="css/mini14.jpg" onclick="$('.squadbg img').removeClass('selected'); $(this).addClass('selected'); SETUP=SETUPS['Mars Map']">
+	     <img src="css/mini6.jpg" onclick="$('.squadbg img').removeClass('selected'); $(this).addClass('selected');SETUP=SETUPS['Cloud City Map']">
+	   </td>
+	 </tr>
+
+       </table>
+       <table id="setuplist" style="display:none" class="setupselector">
+	 <tr><td><select onchange="changesetup()"></select></td><td><span></span></td><td></td></tr>
+       </table>
+       </div>
+       <h3 class="m-manage"></h3>
+       <div id="uselector" class="selector" >
+	 <span class="m-all" onclick="stype='';SQUADLIST.draw();"></span>
+	 <span class="REBEL m-rebel" onclick="stype='REBEL';SQUADLIST.draw();"></span>
+	 <span class="SCUM m-scum" onclick="stype='SCUM';SQUADLIST.draw();" ></span>
+	 <span class="EMPIRE m-empire" onclick="stype='EMPIRE';SQUADLIST.draw();"></span>
+	 <span class="Prebuilt"  onclick="stype='PREBUILT';SQUADLIST.draw();"><code style="font-size:larger" class="symbols">ì</code></span>
+	 <span class="m-top" onclick="stype='ELITE';SQUADLIST.draw();"><span style="font-size:larger;color:orange" class="symbols">ï</span></span><span style='position:relative;left:-1.5em;'><sup><a href="http://xwing.miniranker.com/" style="color:white;text-decoration:none">(*)</a></sup></span>
+	 <span class="Mybuilds" onclick="stype='USER';SQUADLIST.draw();"></span>
+       </div>
+       <table id="squadlist" class="compact stripe hover order-column row-border">
+       </table>
+       <br>
+     </article>
+
+     <section id="asteroid" class="modalDialog">
+       <div>
+	 <h2><span class="m-obstacles"></span><a href="#" title="Close" class="close">&times;</a></h2>
+	 <div>
+	   <span class="m-pick3"></span><br/><svg class="aster"></svg>
+	    <div class="ack"><button onclick="window.location='#'">Ok</button></div>
+
+	 </div>
+       </div>
+     </section>
+
+     <section id="bug" class="modalDialog">
+       <div>
+	 <h2><span class="m-submitabug"></span><a href="#" title="Close" class="close">&times;</a></h2>
+	 <div>
+	    <div class="ack"><button onclick="window.location='#'">Ok</button></div>
+	 </div>
+       </div>
+     </section>
+
+     <section id="battlelog" class="modalDialog">
+       <div>
+	 <h2><span class="m-experience"></span><a href="#" title="Close" class="close">&times;</a></h2>
+	 <div>
+	   <table class="battlingtable">
+	     <tr><th class="m-battlingsquad"></th>
+	       <td id="battlingsquad"></td>
+	     </tr>
+	   </table>
+	   <div class="m-battlexp"></div>
+	 <table style="width:100%">
+	   <tr>
+	     <td>
+	       <iframe id="replay" class="replay" src=""></iframe>
+	       <div>
+		 <button class="mainbutton" onclick='location.replace($("#replay").attr("src"))'><span class="symbols" width="15px" height="15px">&#xFB</span></button>
+		 </div>
+	     </td>
+	     <td style="width:calc(100% - 400px);">
+	       <div id="squadbattlediv"></div>
+	       <table id="squadbattle" style="color:black" class="compact stripe hover order-column row-border"></table>
+	     </td>
+	   </tr>
+	 </table>
+	    <div class="ack"><button onclick="window.location='#'">Ok</button></div>
+	 </div>
+       </div>
+     </section>
+ 
+
+  <section id="proba" class="modalDialog">
+        <div>
+          <h2><span class="m-proba"></span><a href="#" title="Close" class="close">&times;</a>
+          </h2>
+          <div>
+            <p>
+            This table gives the % of chance to hit for an attacker. In rows, the number of dice for the attacker, and in column the number of dice of the defender. You can set the tokens or rerolls for both units. Each cell gives the % of chance for the attacker to hit the defender, the mean number of hits (<code class="hit"></code>) and criticals (<code class="critical"></code>) given. 
+            </p>
+              <table>
+                <tr><td>Attacker</td><td>Defender</td></tr>
+                <tr>
+                  <td><input type="checkbox" onclick="fillprobatable()" id="focusA" value="focus">
+                    <label for="focusA" class="xfocustoken"></label>
+                    <input type="checkbox" onclick="fillprobatable()" id="targetA" value="target">
+                    <label for="targetA" class="xtargettoken"></label>
+                    <input type="number" min=0 max=5 step=1 style="width:2em" onchange="fillprobatable()" id="rerollA" value="0">rerolls
+                  </td>
+                  <td><input type="checkbox" onclick="fillprobatable()" id="focusD" value="focus">
+                    <label for="focusD" class="xfocustoken"></label>
+                    <input type="checkbox" onclick="fillprobatable()" id="evadeD" value="evade">
+                    <label for="evadeD" class="xevadetoken"></label>
+                    <input type="checkbox" onclick="fillprobatable()" id="cloakD" value="0">
+                    <label for="cloakD" class="xcloaktoken"></label>
+                    <input type="number" min=0 max=5 step=1 style="width:2em" onchange="fillprobatable()"  id="rerollD" value="0">rerolls
+                  </td>
+                </tr>
+              </table>
+            <table id="probatable">  
+            </table>
+	    <div class="ack"><button onclick="window.location='#'">Ok</button></div>
+
+          </div>
+        </div>
+      </section>
+
+   <section id="kb" class="modalDialog">
+        <div draggable="true">
+          <h2><span class="m-kb"></span><a href="#" title="Close" class="close">&#10060;</a>
+          </h2>
+          <div>
+	    <table>
+	      <tr><th class="m-key">Keys</th><th class="m-action">Action</th></tr>
+	      <tr><td><code>ESC</code></td><td>Go to next phase</td></tr>
+	      <tr class="odd"><td><code>alt+p/alt+shift+p</code></td><td>Show/Hide possible moves for unit.</br>RED:goes out of board (this turn or the next), YELLOW:collides with obstacle, </br>WHITE:collides with unit, GREEN:ok</td></tr>
+	      <tr><td><code>alt+m</code></td><td>Show average move, using only GREEN and WHITE moves, no K-/Tallon turns. </br>Use shift+p to hide.</td></tr>
+	      <tr class="odd"><td><code>alt+1/alt+shift+1</code></td><td>Add/Remove <code class="xfocustoken"></code> to selected unit</td></tr>
+	      <tr><td><code>alt+2/alt+shift+2</code></td><td>Add/Remove <code class="xevadetoken"></code> to selected unit</td></tr>
+	      <tr class="odd"><td><code>alt+3/alt+shift+3</code></td><td>Add/Remove <code class="xcloaktoken"></code> to selected unit</td></tr>
+	      <tr><td><code>alt+4/alt+shift+4</code></td><td>Add/Remove <code class="xstresstoken"></code> to selected unit</td></tr>
+	      <tr class="odd"><td><code>alt+5/alt+shift+5</code></td><td>Add/Remove <code class="xionizedtoken"></code> (ionization token) to selected unit</td></tr>
+	      <tr class="odd"><td><code>alt+6/alt+shift+6</code></td><td>Add/Remove <code class="xtractorbeamtoken"></code> (tractor beam token) to selected unit</td></tr>
+	      <tr><td><code>alt+d/alt+shift+d</code></td><td>Add/Remove <code class="hit"></code> to selected unit</td></tr>
+	      <tr class="odd"><td><code>alt+c</code></td><td>Add random <code class="critical"></code> to selected unit</td></tr>
+	    </table>
+	    <div class="ack"><button onclick="window.location='#'">Ok</button></div>
+	  </div>
+	</div>
+   </section>
+	      
+   <section id="about" class="modalDialog">
+        <div draggable="true">
+          <h2><span class="m-about"></span><a href="#" title="Close" class="close">&#10060;</a>
+          </h2>
+          <div>
+This is short introduction of Ynot Squad Benchmark. Read <a href="http://xws-benchmark.blogspot.fr/">the blog</a> dedicated to the app for a more exhaustive description, for a manual and for news. 
+<br/>
+
+Ynot Squad Benchmark is a web app for
+ testing squadrons built for the X-Wing Miniatures game. You can design
+ your squads and simulate a battle between them. Both sides can be
+ controlled either by the player or by a simple AI. The player moves
+ the different units and can test new strategies, squadron compositions,
+ maneuvers and initial placements. It can be used to build scenarios, to benchmark
+against squads you can find in competitions, test new units or
+ upgrades...  The app offers the following features:
+<ul>
+<li>Import your squads using JSON format or text format</li>
+<li>Move units and perform their actions as in the real game.</li>
+<li>Detection of collisions with other ships and asteroids, automatic handling of stress, action and combat effects, rolling hit dice for possible hits and criticals.</li>
+<li>Automatic handling of a number of card effects (pilots, upgrades, ...). Biggs for instance is the unique possible target when in range of a ennemy. Howlrunner effect is automatically taken into account. A console provides feed back on what happens and which effect is triggered.</li>
+<li>Combat rules: Select the weapon to fire, the target unit, see the results of rolled dice and apply effects. Damages and criticals are delivered automatically, shields are used, ...</li> 
+<li>A simple AI ! It can move the units around and tries to fire at your units. It is simple to outmaneuver it but still, be careful not to be too confident :-) </li>
+</ul>
+
+The app is not really a game since the player plays both sides or against an AI, there is no multi-player version of the app and there will not be. This is in no way a substitute for the real game but is a complementary tool.
+<br/>
+ The app is (c) Denis Wings 2015-2016 (deniswings@free.fr). MIT license. <br>
+	    <div class="ack"><button onclick="window.location='#'">Ok</button></div>
+</div>
+
+        </div>
+      </section>
+
+    <section id="donate" class="modalDialog">
+        <div>
+          <h2><span class="m-donate"></span><a href="#" title="Close" class="close">&#10060;</a>
+          </h2>
+          <div>
+<br>
+            If you like this web app and find it useful, if you want to encourage further developments, feel free to donate ! 
+<br>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+              <input type="hidden" name="cmd" value="_s-xclick">
+              <input type="hidden" name="hosted_button_id" value="NYM7QUG8UKGE2">
+              <input type="image" src="png/btn_donateCC_LG.png" name="submit" alt="PayPal - The safer, easier way to pay online!">
+            </form>
+<br>        The app will stay free to use for all, with no advertisement. 
+            Feel free to provide feed back, report bugs or suggest improvements on the blog. All comments are welcome !
+<br>Thank you for your support !
+<br>
+--Denis Wings
+	    <div class="ack"><button onclick="window.location='#'">Ok</button></div>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="licence" class="modalDialog">
+	<div draggable="true">
+	  <h2><span>Licence</span><a href="#" title="Close" class="close">&#xd7;</a>
+	  </h2>
+	  <div>
+	    <p><b>Licence and copyright</b></p>
+	    <p>The app is (c) Denis Wings 2015-2016 (deniswings@free.fr). The code has an <a href="https://opensource.org/licenses/MIT">MIT license</a>. </p>
+
+	    The code of the app relies on the following external fonts and libraries. See their website for their license: <a href="https://github.com/geordanr/xwing-miniatures-font">Xwing-miniatures-font</a>, <a href="https://github.com/geordanr/xwing">Yet Another Squad Builder</a> and <a href="https://github.com/elistevens/xws-spec">JSON
+	  format of X-Wing squadrons</a> for card translations, 
+	    <a href="http://snapsvg.io/">Snap</a>,
+	    <a href="https://jquery.com/">jQuery</a>, 
+	    <a href="https://github.com/janl/mustache.js">Mustache</a>,
+	    <a href="https://github.com/keithamus/jwerty">Jwerty</a>,
+	    <a href="http://goldfirestudios.com/blog/104/howler.js-Modern-Web-Audio-Javascript-Library">Howler</a>,
+	    <a href="https://datatables.net/">Datatables</a>,
+	    <a href="http://imankulov.github.io/asuggest/">Asuggest</a>,
+	    <a href="http://pieroxy.net/blog/pages/lz-string/index.html">lz-string</a>,
+	    <a href="http://hammerjs.github.io/">Hammer</a>,
+	    <a href="https://github.com/chriszarate/sheetrock">Sheetrock</a>.
+	  </p>
+	  <div class="ack"><button onclick="window.location='#'">Ok</button></div>
+	</div></div>
+      </section>
+
+      <section id="setting" class="modalDialog">
+	<div>
+	  <h2><span>Settings</span><a href="#" title="Close" class="close">&#xd7;</a>
+	    
+	  </h2>
+	  <div>
+	    <table>
+	      <tr>
+		<td>Avatar</td><td><img src="css/human.png" id="profile-avatar" alt="Image for Profile"><input type="file" id="uploader"></td>
+	      </tr><tr>
+		<td>Name</td><td><input type="text" id="nameinput" onchange="localStorage.name=$('#nameinput').val()"></td>
+	      </tr><tr>
+		<td class="m-deckversion"></td>
+		<td>
+		  <input type="radio" id="ver1" name="deckversion" value="1" onclick="CURRENT_DECK=1"/>
+		  <label for="ver1" class="m-ver1"></label><br/>
+		  <input type="radio" id="ver2" checked name="deckversion" value="2" onclick="CURRENT_DECK=2"/>
+		  <label for="ver2"class="m-ver2"></label>
+		</td>
+	      </tr>
+
+	      <tr>
+		<td class="m-victorycond">Victory conditions</td>
+		<td>
+		  <input checked type="radio" id="vc1" selected name="wincond" value="2" onclick="WINCOND=0;"/>
+		  <label for="vc1">Death match</label><br/>
+		  <input checked type="radio" id="vc2" name="wincond" value="2" onclick="WINCOND=parseInt($('#turnvc option:selected').text(),10)"/>
+		  <label for="vc2">Destroy all units before Turn <select id="turnvc" onchange="$('#vc2').trigger('click');"><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option selected >15</option></select></label><br/>
+		  <input type="radio" id="vc3" name="wincond" value="3" onclick="WINCOND=-parseInt($('#highvc option:selected').text(),10)"/>
+		  <label for="vc3">Highest score after <select id="highvc" onchange="$('#vc3').trigger('click');"><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option></select> Turns</label>
+		</td>
+	      </tr>
+	      <tr>
+		<td class="m-console"></td>
+		<td>
+		  <input type="checkbox" checked value="1" id="consolecb" onclick="$('footer').toggle()"/>
+		</td>
+	      </tr>
+	      <tr>
+		<td>Console color</td>
+		<td>
+		  <input type="radio" id="cb1" value="2" checked name="colorconsole" onclick="$('footer').css('filter','none');"/>
+		  <label for="cb1" class="m-sbintern">Black</label><br/>
+
+		  <input type="radio" id="cb2" value="1" name="colorconsole" onclick="$('footer').css('filter','invert(100%)');"/>
+		  <label for="cb2" class="m-sbintern">White</label><br/>
+		</td>
+	      </tr><tr>
+		<td class="m-trace"></td>
+		<td>
+		  <input type="checkbox" onclick="TRACE=!TRACE;$('.trace').toggle()"/>
+		</td>
+	      </tr>
+	      <tr>
+		<td class="m-volume"></td>
+		<td>
+		  <span class="symbols" style="font-size:larger">&#xF5;</span>
+		  <input type="range" min="0" max="100" id="vol" value="80" oninput="var vol=parseInt(value,10)/100.; localStorage.volume=vol; Howler.volume(vol);"/>
+		  <span class="symbols" style="font-size:larger">&#xF1;</span>
+		</td>
+	      </tr>
+	    </table>
+	    <div class="ack"><button onclick="window.location='#'">Ok</button></div>
+	  </div>
+	</div>
+      </section>
+
+      <section id="credit" class="modalDialog">
+	<div draggable="true">
+	  <h2><span class="m-credits"></span><a href="#" title="Close" class="close">&#xd7;</a>
+	  </h2>
+	  <div>
+	    <h4>Thanks</h4>
+	    
+	    Many thanks to supporters and patrons, in particular to:<br/>
+	      <em>James Ramsay, Club165 Ventures, Lorenz Thor, Edward Coxwell-Rodgers, 宜軒 詹, Carlo Casalini, Bryan Gagen, James Berry, Lucas Haeser, Josh Chamot, Erich Leopold,Christian Linnig.</em>
+	    <br/>
+	      
+	    Thanks also for all of the contributors reporting bugs and proposing features.<br/>  
+	    The Italian translation comes from Fab's squad builder web site. The sounds of space ships, lasers and explosions come from <a href="http://www.sa-matra.net/sounds/starwars/">Sa-Matra</a> website. Thanks !<br/>
+
+	  <h4>Disclaimer</h4>
+	    X-Wing: The Miniatures Game is a trademark of Fantasy
+	    Flight Games. This site is not endorsed by Fantasy Flight
+	    Games, Lucasfilm Ltd. or Twentieth Century Fox and is
+	    intended for entertainment and information purposes
+	    only. Star Wars, the Star Wars logo, all names and
+	    pictures of Star Wars characters, vehicles and any other
+	    Star Wars related items are registered trademarks and/or
+	    copyrights of Lucasfilm Ltd., or their respective
+	    trademark and copyright holders. This site in no way
+	    constitutes a threat to any trademark or intellectual
+	    property. This web app is not-for-profit and is only
+	    intended for use by fans of the game line.
+	  <div class="ack"><button onclick="window.location='#'">Ok</button></div>
+	</div></div>
+      </section>
+      <iframe style="position:absolute;left:0;bottom:0;display:none;" id="submission" src="form.html">
+      </iframe>
+
+    <footer draggable="true">
+      <a href="#" onclick="$('#consolecb').removeAttr('Checked'); $('footer').hide()" title="Close" class="close">&#xd7;</a>
+      <input type="text" id="addcomment" placeholder="Add comment for active unit" onchange="activeunit.movelog('L-%%'+encodeURIComponent($(this).val())+'%%');$(this).val('');">
+      <div class="log" id="log"></div>
+    </footer>
+    <script src="js/all.min.js"></script>
+    <script src="js/bench.min.js" async></script>
+
+    <script>
+      if (location.search=="") $("#selectphase").show();
+    </script>
+    
+    <script async>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', 'UA-63149795-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+    <script id="unit-creation" type="x-tmpl-mustache">
+      <img class="headimg" src="png/{{faction}}/{{imgname}}.png">
+      <div style="width:100%;position:absolute;top:0;">
+	<div style="float:right">
+	  <div class="close" data={{id}} title="Remove">&#xd7;</div>
+	  <table><tr><td>
+	  <div class="dialopen symbols" data={{id}} title="Show dial">6</div>
+	  <div class="tooltip shipdial">
+	    <table>
+	      {{#diallist}}
+	      <tr>
+		{{#item}}<td>{{.}}</td>{{/item}}
+		{{#moves}}
+		<td><span class="symbols {{difficulty}}">{{key}}</span></td>
+		{{/moves}}
+	      </tr>
+	      {{/diallist}}
+	    </table>
+	  </div>
+	  </td></tr></table>
+	  {{#unique}}
+	  <div class="duplicate symbols" data="{{id}}" title="Duplicate">&#xE8;</div>
+	  {{/unique}}
+	</div>
+	<div style="margin:2px;float:left;width:2.5em;font-size:0.8em">
+	  <div class="statskill">{{skill}}</div>
+	  <div class="statfire"><span class="symbols">%</span><span class="val">{{fire}}</span></div>
+	  <div class="statevade"><span class="symbols">^</span><span class="val">{{evade}}</span></div>
+	  <div class="stathull"><span class="chull"></span><span class="val">{{hull}}</span></div>
+	  <div class="statshield"><span class="cshield"></span><span class="val">{{shield}}</span></div>
+	</div>
+      <div class="shipname">{{name}} (<span class="upts">{{points}}</span><span style="display:none" class="pts">{{points}}</span>)</div>
+      <div class="shipname" style="font-size:0.8em;color:#ddd">{{shipname}}</div>
+      <div style="font-size:0.8em" class="actionlist">{{{actionstring}}}</div>
+      </div>
+      
+      <table class="upgs">
+	<tr>
+	  <td colspan=3 class="upgavail">{{{upgradeaddstring}}}</td>
+	</tr>
+	<tbody class="upg"></tbody>
+	<tbody class="upglist"></tbody>
+      </table>
+    </script>
+    
+    <script id="faction" type="x-tmpl-mustache">
+      <table>
+	<tr>
+	  <td  rowspan="3">
+	    <div onclick="switchdialimg(true)" class="shipimg"  style="background-image:url(png/{{shipimg}})">
+	      <div class="xsymbols RED">{{fire}}</div>
+	      <div class="xsymbols GREEN">{{evade}}</div>
+	      <div class="xsymbols YELLOW">{{hull}}</div>
+	      <div class="xsymbols BLUE">{{shield}}</div>
+	    </div>
+	    <div class="shipdial"  onclick="switchdialimg(false)"> 
+	    <table>
+	      {{#diallist}}
+	      <tr>
+		{{#item}}<td>{{.}}</td>{{/item}}
+		{{#moves}}
+		<td><span class="symbols {{difficulty}}">{{key}}</span></td>
+		{{/moves}}
+	      </tr>
+	      {{/diallist}}
+	    </table>
+	    </div>
+	  </td>
+	  <td>{{shipname}}</td>
+	</tr><tr>
+	  <td class="actionlist">
+	    {{#actionlist}}
+	    <code class="GREEN symbols">{{.}}</code>
+	    {{/actionlist}}
+	  </td>
+	</tr><tr>
+	  <td class="shipupgrades">
+	    {{#shipupgrades}}
+	    <code class="upgrades {{.}}"></code>
+	    {{/shipupgrades}}
+	    {{#hastitle}}<code class="upgrades Title"></code>{{/hastitle}}
+	    <code class="upgrades Mod"></code>
+	  </td>
+	</tr>
+      </table>
+      <table class="pilots">
+	{{#pilots}}
+	<tr data="{{pilotid}}">
+	  <td><button pilotid="{{pilotid}}" onclick="addunit({{pilotid}})">+</button></td>
+	  <td>{{trname}}</td>
+	  <td>({{points}})</td>
+	  <td class="statskill">{{skill}}</td>
+	  <td>{{#haselite}}<code class="upgrades Elite"></code>{{/haselite}}</td>
+	  {{#tooltip}}<td class="tooltip">{{{.}}}</td>{{/tooltip}}
+	  {{^tooltip}}<td></td>{{/tooltip}}
+	</tr>
+	{{/pilots}}
+      </table>
+    </script>
+
+    <script id="bomb" type="x-tmpl-mustache">
+      <tr {{^isactive}} class="inactive"{{/isactive}}>
+	<td style="display:{{#left}}none{{/left}}{{^left}}block{{/left}}"><code class="{{type}} upgrades"></code></td>
+	<td class="tdstat">
+	  <span>
+	    {{{trname}}}{{#ordnance}}<sup class="ordnance">x2</sup>{{/ordnance}}
+	  </span>
+	</td>
+	<td style="display:{{#left}}block{{/left}}{{^left}}none{{/left}}"><code class="{{type}} upgrades"></code></td>
+	{{#tooltip}}
+	<td class="tooltip outoverflow">
+	  <span>{{{.}}}</span>
+	</td>
+	{{/tooltip}}
+	{{^tooltip}}<td></td>{{/tooltip}}
+      </tr>
+    </script>
+
+    <script id="weapon" type="x-tmpl-mustache">
+      <tr class="{{^isactive}}inactive{{/isactive}} {{#nofire}}nofire{{/nofire}}">
+	<td style="display:{{#left}}none{{/left}}{{^left}}table-cell{{/left}}">
+	  <button class="statfire" onclick="if (!squadron[{{uid}}].isdocked) squadron[{{uid}}].togglehitsector({{rank}})">
+	    <span class="val">{{getattack}}</span><span class="symbols">{{attackkey}}</span>
+	  </button>
+	</td>
+	<td class="tdstat">
+	  <span>
+	    {{{trname}}}{{#ordnance}}<sup class="ordnance">x2</sup>{{/ordnance}}
+	    <span style="font-size:smaller">
+	      {{#req}}<span class="symbols">{{.}}</span>{{/req}}[{{getlowrange}}-{{gethighrange}}]
+	    </span>
+	  </span>
+	</td>
+	<td style="display:{{^left}}none{{/left}}{{#left}}table-cell{{/left}}">
+	  <button class="statfire" onclick="if (!squadron[{{uid}}].isdocked) squadron[{{uid}}].togglehitsector({{rank}})">
+	    {{getattack}}<span class="symbols">{{attackkey}}</span>
+	  </button>
+	</td>
+	{{#tooltip}}
+	<td class="tooltip outoverflow">
+	  <span>{{{.}}}</span>
+	</td>
+	{{/tooltip}}
+	{{^tooltip}}<td></td>{{/tooltip}}
+      </tr>
+    </script>
+
+    <script id="upgrade" type="x-tmpl-mustache">
+      <tr {{^isactive}} class="inactive"{{/isactive}}>
+	<td style="display:{{#left}}none{{/left}}{{^left}}table-cell{{/left}}">
+	  <code class="{{type}} upgrades"></code>
+	</td>
+	<td class="tdstat">
+	  <span>
+	    {{{trname}}}{{#ordnance}}<sup class="ordnance">x2</sup>{{/ordnance}}{{#hasshield}}<code class="cshield" title="{{shield}} shield(s)"></code><sup class="ordnance">x{{shield}}</sup>{{/hasshield}}{{#hasfocus}}<code class="xfocustoken" title="{{focus}}"></code><sup class="ordnance">x{{focus}}</sup>{{/hasfocus}}{{#hasswitch}}<code class="smallbutton symbols" onclick="if (!squadron[{{uid}}].isdocked) squadron[{{uid}}].upgrades[{{uuid}}].switch();">î</code>{{/hasswitch}}
+	  </span>
+	</td>
+	<td style="display:{{^left}}none{{/left}}{{#left}}table-cell{{/left}}">
+	  <code class="{{type}} upgrades"></code>
+	</td>
+	{{#tooltip}}
+	<td class="tooltip outoverflow">
+	  <span>{{{.}}}</span>
+	</td>
+	{{/tooltip}}
+	{{^tooltip}}<td></td>{{/tooltip}}
+      </tr>
+    </script>
+    
+    <script id="usabletokens" type="x-tmpl-mustache">
+      {{#focus}}<span class="xfocustoken"></span>{{/focus}}{{#focuses}}<sup class="counttoken">x{{.}}</sup>{{/focuses}}
+      {{#evade}}<span class="xevadetoken"></span>{{/evade}}{{#evades}}<sup class="counttoken">x{{.}}</sup>{{/evades}}
+      {{#targetingname}}<span class="xtargettoken" title="targeting {{.}}"></span>{{/targetingname}}
+      {{#targetedname}}<span class="xtargetedtoken" title="targeted by {{.}}"></span>{{/targetedname}}
+      {{#iscloaked}}<span class='xcloaktoken'></span>{{/iscloaked}}
+      {{#stress}}<span class="xstresstoken"></span>{{/stress}}{{#stresses}}<sup class="counttoken">x{{.}}</sup>{{/stresses}}
+      {{#ionized}}<span class="xionizedtoken"></span>{{/ionized}}{{#ionizedes}}<sup class="counttoken">x{{.}}</sup>{{/ionizedes}}
+      {{#tractorbeam}}<span class="xtractorbeamtoken"></span>{{/tractorbeam}}{{#tractorbeames}}<sup class="counttoken">x{{.}}</sup>{{/tractorbeames}}
+    </script>
+
+    <script id="selectweapon" type="x-tmpl-mustache">
+      {{#weapons}}<div class="symbols {{color}}" onclick="activeunit.selecttargetforattack({{id}})">{{key}}</div>{{/weapons}}
+    </script>
+
+    <script id="social" type="x-tmpl-mustache">
+      <div>
+	<a href="{{url}}" class="victory-link">{{name}}</a>
+	<a class="symbols tweet" href="https://twitter.com/intent/tweet?url={{encodedurl}}&text=A%20Squad%20Benchmark%20combat" target="_blank"><span width="30px">&#xDD;</span></a>
+	<a class="facebook symbols" href="https://www.facebook.com/sharer/sharer.php?u={{endodedurl}}" target="_blank"><span width="30px" class="symbols">&#xDC;</span></a>
+	<a class="googlep symbols" href="https://plus.google.com/share?url={{encodedurl}}" target="_blank"><span width="30px" class="symbols">&#xF2;</span></a>
+	<a class="email" href="mailto:?body={{encodedurl}}" title="Share by Email"><span width="30px" class="symbols">&#xE7;</span></a>
+      </div>
+      <table><tr><td>
+	    <iframe src="{{url}}" class="replay"></iframe>
+	</td><td>
+	  To include the combat replay on the left on your web pages, copy/paste the following lines:
+	  <br/>
+	  <textarea style="font-family:courrier;color:black;background:lightgray;font-size:smaller;width:80%">
+	    &lt;iframe style="width:40vw;height:40vw;max-width:400px;max-height:400px" src="{{url}}"&gt;&lt;/iframe&gt;
+	  </textarea>
+      </td></tr></table>
+    </script>
+
+    <script id="upglist-creation" type="x-tmpl-mustache">
+      <tr>
+	<td><button>+</button></td><td><span class='m-none'></span></td><td></td><td></td>
+      </tr>
+      {{#upglist}}
+      <tr>
+	<td><button {{#isdisabled}}disabled{{/isdisabled}} num="{{num}}" data="{{data}}">+</button></td>
+	<td>{{name}}</td>
+	<td>{{pts}}</td>
+	<td>{{#attacks}}<span class='statfire'>{{attack}}</span></td><td>[{{lrange}}-{{hrange}}]{{/attacks}}{{^attacks}}</td><td>{{/attacks}}</td>
+	{{#tooltip}}<td class="tooltip">{{{.}}}</td>{{/tooltip}}
+	{{^tooltip}}<td></td>{{/tooltip}}
+      </tr>
+      {{/upglist}}
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,99 @@
+{"data":{
+    "Classic Map": {
+	"name":"Classic",
+	"type":"90cmx90cm",
+	"description":"The standard gameplay zone.",
+ 	"playzone":"M 0 0 L 900 0 900 900 0 900 Z",
+	"background":"css/playmat10.jpg",
+	"pattern":"",
+	"img":"png/classic.png",
+	"zone1":"M 0 0 L 100 0 100 900 0 900 Z",
+	"zone2":"M 800 0 L 900 0 900 900 800 900 Z",
+	"asteroids":6
+    },
+    "Cloud City Map": {
+	"name":"Cloud City",
+	"type":"90cmx90cm",
+	"description":"The standard gameplay zone.",
+ 	"playzone":"M 0 0 L 900 0 900 900 0 900 Z",
+	"background":"css/playmat6.jpg",
+	"pattern":"",
+	"img":"png/classic.png",
+	"zone1":"M 0 0 L 100 0 100 900 0 900 Z",
+	"zone2":"M 800 0 L 900 0 900 900 800 900 Z",
+	"asteroids":6
+    },
+    "Blue Sky Map": {
+	"name":"Blue Sky",
+	"type":"90cmx90cm",
+	"description":"The standard gameplay zone.",
+ 	"playzone":"M 0 0 L 900 0 900 900 0 900 Z",
+	"background":"css/playmat13.jpg",
+	"pattern":"",
+	"img":"png/classic.png",
+	"zone1":"M 0 0 L 100 0 100 900 0 900 Z",
+	"zone2":"M 800 0 L 900 0 900 900 800 900 Z",
+	"asteroids":6
+    },
+    "Blue Planet Map": {
+	"name":"Blue Planet",
+	"type":"90cmx90cm",
+	"description":"The standard gameplay zone.",
+ 	"playzone":"M 0 0 L 900 0 900 900 0 900 Z",
+	"background":"css/playmat11.jpg",
+	"pattern":"",
+	"img":"png/classic.png",
+	"zone1":"M 0 0 L 100 0 100 900 0 900 Z",
+	"zone2":"M 800 0 L 900 0 900 900 800 900 Z",
+	"asteroids":6
+    },
+    "Mars Map": {
+	"name":"Mars",
+	"type":"90cmx90cm",
+	"description":"The standard gameplay zone.",
+ 	"playzone":"M 0 0 L 900 0 900 900 0 900 Z",
+	"background":"css/playmat14.jpg",
+	"pattern":"",
+	"img":"png/classic.png",
+	"zone1":"M 0 0 L 100 0 100 900 0 900 Z",
+	"zone2":"M 800 0 L 900 0 900 900 800 900 Z",
+	"asteroids":6
+    },
+    "Epic Map": {
+	"name":"Epic",
+	"type":"180cmx90cm",
+	"img":"png/epic.png",
+	"description":"Twice the size of the standard gameplay zone, for large battles.",
+	"playzone":"M 0 0 L 1800 0 1800 900 0 900 Z",
+	"background":"css/playmat10.jpg",
+	"pattern":"",
+	"zone1":"M 0 0 L 100 0 100 900 0 900 Z",
+	"zone2":"M 1700 0 L 1800 0 1800 900 1700 900 Z",
+	"asteroids":6
+    },
+    "Deathstar Map":{
+	"name":"Deathstar",
+	"type":"A trench.",
+	"img":"png/trench.png",
+	"description":"Team #1 has to destroy the Death Star while Team #2 chases Team #1 in the trench. Stay on target! You need to select a Thermal Exhaust unit and position it at the right most position in the trench.",
+	"playzone":"M 0 200 L 1300 200 1300 400 1800 400 1800 200 2800 200 2800 360 1960 360 1960 560 1100 560 1100 360 0 360 Z",
+	"background":"css/deathstar.png",
+	"pattern":"png/deathstar2.png",
+	"zone1":"M 0 200 L 100 200 100 360 0 360 Z",
+	"zone2":"M 500 200 L 600  200 600 360 500 360 Z",
+	"asteroids":0
+    },
+    "Defender Map":{
+	"name":"Defender",
+	"type":"90cmx90cm",
+	"img":"png/defender.png",
+	"description":"Team #1 has to stay in a small area, while Team #2 moves in a standard zone.",
+	"playzone":"M 0 0 L 900 0 900 900 0 900 Z",
+	"playzone1":"M 300 300 L 600 300 600 600 300 600 Z",
+	"background":"css/playmat10.jpg",
+	"pattern":"",
+	"zone1":"M 300 300 L 600 300 600 600 300 600 Z",
+	"zone2":"M 800 0 L 900 0 900 900 800 900 Z",
+	"asteroids":6
+    }
+}}

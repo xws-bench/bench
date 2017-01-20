@@ -1,0 +1,2367 @@
+html,body {
+margin:0;
+padding:0;
+overflow:hidden;
+width:100%;
+height:100%;
+background-color:#fff;
+font-family:'space'
+}
+
+@media screen and (max-width:800px) {
+.title,.ver {
+display:none
+}
+
+html,body {
+font-size:12px
+}
+
+.leftpanel,.rightpanel,.leftpanel section,.rightpanel section {
+width:120px
+}
+
+.leftpanel section .stat {
+left:120px
+}
+
+.leftpanel section .stat2 {
+left:128px
+}
+
+.leftpanel section .stat3 {
+left:136px
+}
+
+.rightpanel section .stat {
+right:120px
+}
+
+.rightpanel section .stat2 {
+right:128px
+}
+
+.rightpanel section .stat3 {
+right:136px
+}
+
+.leftpanel section .pts,.leftpanel section .totalpts {
+left:135px
+}
+
+.rightpanel section .pts,.rightpanel section .totalpts {
+right:135px
+}
+
+.leftpanel,.rightpanel {
+width:120px
+}
+
+.main {
+left:120px;
+width:calc(100% - 240px)
+}
+
+.leftpanel section .tooltip {
+left:120px
+}
+
+.rightpanel section .tooltip {
+right:120px
+}
+}
+
+@media screen and (min-width:800px) {
+.main {
+left:170px;
+width:calc(100% - 340px)
+}
+
+.leftpanel,.rightpanel {
+width:170px
+}
+
+.leftpanel section,.rightpanel section {
+width:170px
+}
+
+.leftpanel section .stat {
+left:170px
+}
+
+.leftpanel section .tooltip {
+left:170px
+}
+
+.rightpanel section .tooltip {
+right:170px
+}
+
+.leftpanel section .stat2 {
+left:178px
+}
+
+.leftpanel section .pts,.leftpanel section .totalpts {
+left:185px
+}
+
+.rightpanel section .pts,.rightpanel section .totalpts {
+right:185px
+}
+
+.leftpanel section .stat3 {
+left:186px
+}
+
+.rightpanel section .stat {
+right:170px
+}
+
+.rightpanel section .stat2 {
+right:178px
+}
+
+.rightpanel section .stat3 {
+right:186px
+}
+}
+
+/*@media screen and (min-width:400px) {
+button.m-replay {
+visibility:hidden;
+display:none
+}
+}*/
+
+@media screen and (max-width:400px) {
+html,body/*,::after,select,.symbols,.statfire,.statevade*/ {
+font-size:8px
+}
+
+nav,footer {
+position:fixed;
+top:0;
+opacity:0;
+background:rgba(0,0,0,1)
+}
+
+.modalDialog {
+visibility:hidden
+}
+
+button.m-replay {
+visibility:visible;
+display:block
+}
+
+button.nextphase {
+position:fixed;
+top:0;
+left:0;
+opacity:1
+}
+
+.leftpanel,.rightpanel {
+display:none;
+visibility:hidden
+}
+
+.main,#selectphase,.playmat {
+top:0;
+left:0;
+position:fixed
+}
+}
+
+footer,article,nav,footer,body {
+display:block;
+font-family:'space'
+}
+
+.outline {
+animation-name:mine;
+animation-duration:.5s;
+-webkit-animation-direction:alternate;
+animation-direction:alternate;
+-webkit-animation-iteration-count:infinite;
+animation-iteration-count:infinite
+}
+.bombanim {
+stroke-dasharray: 100;
+animation:timer 4s linear;
+animation-iteration-count:infinite
+}
+
+.upanim {
+animation-name:up;
+animation-duration:1s;
+animation-timing-function:ease;
+position:absolute;
+-webkit-animation-fill-mode:forwards;
+animation-fill-mode:forwards;
+left:150px;
+top:0;
+pointer-events:none
+}
+
+@keyframes up {
+from {
+transform:translate(0,0);
+opacity:1
+}
+
+to {
+transform:translate(0,-2.5em);
+opacity:0
+}
+}
+
+.downanim {
+animation-name:down;
+animation-duration:1s;
+-webkit-animation-fill-mode:forwards;
+animation-fill-mode:forwards;
+animation-timing-function:ease;
+position:absolute;
+left:150px;
+top:0;
+pointer-events:none
+}
+
+@keyframes down {
+from {
+transform:translate(0,-2.5em);
+opacity:1
+}
+
+to {
+transform:translate(0,0);
+opacity:0
+}
+}
+
+@keyframes mine {
+from {
+transform:scale(0.8)
+}
+to {
+transform:scale(1.2)
+}
+}
+@keyframes timer {
+  to {
+    stroke-dashoffset: 1000;
+  }
+}
+.main {
+height:calc(100% - 4ex);
+position:fixed;
+top:5ex;
+z-index:0
+}
+
+.mainarticle {
+position:fixed;
+top:4ex;
+z-index:0;
+background:#000;
+overflow-y:auto;
+overflow-x:hidden
+}
+
+.playmat {
+padding:0;
+background-repeat:no-repeat;
+background-size:100% 100%;
+width:100%;
+height:100%;
+overflow:hidden
+}
+
+.playmat img {
+width:100%;
+height:100%
+}
+
+article {
+margin:0;
+padding:0;
+width:100%;
+height:calc(100% - 4ex)
+}
+
+.tooltip {
+position:fixed;
+width:20em;
+color:#000;
+font-weight:400;
+font-variant:normal;
+font-family:"space";
+display:none;
+background:#fffAF0;
+border-radius:5px;
+padding:5px;
+box-shadow:2px 2px 2px #CCC;
+margin:2px;
+text-align:justify
+}
+.textfilter {
+background:#888;
+margin:0;
+border:0;
+padding:0
+border-radius:1ex;
+font-size:1em;
+}
+.shipupgrades .Elite {
+display:none
+}
+.ack {
+width:100%;
+text-align:center;
+padding:7px;
+background:#EEE;
+margin-bottom:5px;
+}
+.caroussel li:nth-child(-n+5) tr .tooltip {
+left:180px;
+vertical-align:top;
+margin-top:0em;
+top:0
+}
+.caroussel li:nth-child(n+5) tr .tooltip {
+right:180px;
+vertical-align:top;
+margin-top:0em;
+top:0
+}
+tr:hover .tooltip, .tr:hover .tooltip, .name:hover .tooltip {
+transition:opacity .25s ease-in-out;
+display:block;
+opacity:1
+}
+
+body {
+background:#000;
+width:100%;
+margin:0;
+padding:0;
+border:0
+}
+
+nav {
+background:#4682b4;
+margin:0;
+clear:both;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+z-index:10;
+height:4ex
+}
+
+.h2 {
+margin:3px;
+padding:0;
+border:0;
+color:#fff;
+float:left
+}
+
+h2 {
+color:#4682b4;
+width:100%;
+position:absolute;
+top:0;
+left:0;
+margin:5px;
+font-size:larger;
+text-align:center
+}
+
+h3,p {
+text-align:center;
+margin:10px;
+color:#fff
+}
+
+nav ul,.squadmanage ul {
+list-style-type:none;
+margin:0;
+padding:0;
+display:inline
+}
+
+nav div ul {
+display:none;
+position:absolute;
+right:0;
+top:1.1em;
+border-radius:0 0 4px 4px;
+box-shadow:0 2px 2px -1px rgba(0,0,0,0.055);
+margin:0;
+padding:0;
+border:0;
+visibility:hidden;
+z-index:100;
+width:10em
+}
+
+nav div ul li {
+display:block;
+background:#b0c4de;
+padding:5px
+}
+
+nav a:hover {
+background:#4682b4
+}
+
+nav a {
+text-decoration:none;
+color:#fff;
+display:block;
+padding:5px
+}
+
+nav div ul li:hover {
+background:#b0c4de
+}
+
+.selector > span {
+margin:10px;
+text-decoration:underline;
+cursor:pointer
+}
+
+.selector {
+color:#fff;
+font-size:smaller;
+text-align:center;
+width:100%
+}
+
+.setupselector {
+text-align:left;
+vertical-align:middle;
+margin-left:2.5%;
+opacity:.75
+}
+
+.setupselector img {
+height:40px;
+text-align:right
+}
+
+.setupselector span {
+margin:10px;
+width:25%
+}
+
+.phase,.squad1,.squad2 {
+font-size:smaller
+}
+
+#squad1,#squad2 {
+font-family:'space';
+font-size:smaller;
+background:#fff
+}
+
+.generic {
+border-spacing:0;
+border-collapse:collapse;
+padding:0
+}
+
+.name select,.namewidth {
+width:calc(100% - 3em);
+background:#000;
+color:#fff;
+text-align:right;
+font-variant:small-caps;
+font-weight:700
+}
+
+.name {
+text-align:center;
+font-variant:small-caps;
+font-family:'spacename'
+}
+
+.upgrade select {
+text-align:center
+}
+
+.shipname select {
+text-align:center;
+width:15em;
+font-variant:small-caps
+}
+
+.shipname span {
+width:1em
+}
+
+.xwing::after {
+content:"x";
+font-family:'symbols';
+font-size:larger
+}
+
+.modalDialog {
+position:absolute;
+top:0;
+right:0;
+bottom:0;
+left:0;
+background:rgba(0,0,0,0.5);
+z-index:999;
+opacity:0;
+transition:opacity 400ms ease-in;
+display:none
+}
+
+.modalDialog:target {
+opacity:1;
+display:block
+}
+
+.generic {
+width:100%
+}
+
+.head {
+padding:5px
+}
+
+.info {
+width:10em;
+height:1em;
+color:#fff;
+background:rgba(0,0,0,0);
+display:none;
+position:absolute;
+left:150px;
+top:0;
+pointer-events:none
+}
+
+.phasepanel {
+position:absolute;
+top:0;
+left:0;
+color:#fff;
+background:rgba(0,0,0,0);
+width:50px
+}
+
+.modalDialog > div {
+position:absolute;
+margin:0;
+top:20%;
+left:20%;
+padding:25px 0 0;
+border-radius:10px;
+background:#b0c4de;
+color:#000;
+z-index:999
+}
+
+.modalDialog > div > div {
+overflow-x:hidden;
+overflow-y:auto;
+height:100%;
+width:100%;
+background:#fff;
+border-radius:0 0 10px 10px
+}
+
+.modalDialog textarea {
+margin-left:5%;
+width:90%
+}
+
+.modalDialog td {
+text-align:center
+}
+
+#modal > div,#credit > div,#about > div {
+height:50%;
+width:50%
+}
+
+#import > div,#help > div {
+height:16em;
+width:60%
+}
+
+.playerselector input {
+display:none
+}
+
+input:checked + .player img {
+opacity:1
+}
+
+.human img,.computer img {
+display:inline-block;
+opacity:.15
+}
+
+#creation > div {
+height:100%;
+width:100%;
+background:url(playmat12.jpg);
+background-repeat:no-repeat;
+background-size:100% 100%;
+overflow-y:auto
+}
+
+#battlelog > div {
+width:95%;
+top:2%;
+left:2%;
+overflow-y:auto
+}
+#asteroid > div {
+width:95%;
+left:2%;
+top:20%;
+overflow-y:auto;
+}
+#save > div {
+width:70%
+}
+#proba > div,#combatmodal > div,#donate > div {
+width:400px;
+font-size:smaller
+}
+
+#credit > div,#help > div,#about > div,#donate > div {
+text-align:justify
+}
+
+td,th,table {
+vertical-align:middle;
+text-align:center;
+border:0;
+padding:0;
+margin:0
+}
+
+.warn {
+color:red
+}
+
+.close,.duplicate,.dialopen {
+position:absolute;
+right:0;
+text-decoration:none;
+cursor:pointer
+}
+
+.duplicate {
+top:3.6em;
+margin-right:0.5ex;
+font-size:1.5em;
+color:#fff
+}
+.duplicate:hover,.dialopen:hover {
+border:2px;
+}
+.dialopen {
+top:2.3em;
+right:0;
+margin-right:0.5ex;
+padding-left:0.5ex;
+border-radius:50%;
+border:1px solid;
+width:1.5em;
+height:1.5em;
+font-size:larger;
+}
+.close {
+top:0;
+margin-right:0.5ex;
+color:red
+}
+
+.close:hover,.closemiddle:hover {
+background:red;
+color:#fff
+}
+
+.closemiddle {
+margin-right:.5ex;
+color:red;
+font-size:1.5em;
+text-decoration:none;
+cursor:pointer;
+width:2em;
+padding-left:4px;
+padding-top:0;
+padding-right:2px
+}
+
+.squadmiddle {
+text-decoration:none;
+cursor:pointer;
+width:4ex;
+font-size:1.5em;
+background:#A00;
+border:1px solid #A00
+}
+
+.squadmiddle.right {
+text-decoration:none;
+cursor:pointer;
+width:4ex;
+background:#4682b4;
+border:1px solid #4682b4
+}
+
+#squad1,#squad2 {
+opacity:.75
+}
+
+.logmiddle {
+cursor:pointer;
+width:1.8em;
+font-size:1.5em;
+vertical-align:middle
+}
+
+.button, .upgavail code.upgrades, table.dataTable td:first-child {
+cursor:pointer
+}
+
+.phasepanel {
+display:none
+}
+
+.attackwp {
+background:#000;
+color:#fff
+}
+
+#attack,#defense {
+margin:0;
+border:0;
+padding:0
+}
+
+.tdstat {
+width:100%;
+padding:2px;
+margin:1px;
+vertical-align:middle
+}
+
+.remover {
+color:red;
+font-weight:700;
+cursor:pointer
+}
+
+.stats {
+text-align:center
+}
+
+.statfire,.statevade,.PS,.statshield,.stathull,.statskill {
+line-height:1.5em;
+padding:.1em;
+margin:.1em;
+background:#333;
+border-radius:50%;
+min-width:1.5em;
+text-align:center
+}
+
+.team,.name {
+color:#000;
+overflow-y:auto;
+overflow-x:hidden
+}
+
+.unitlist {
+overflow-x:hidden;
+overflow-y:hidden;
+white-space:nowrap;
+font-size:smaller
+}
+
+button.statevade,button.statfire {
+width:2.2em
+}
+
+.name {
+font-weight:700
+}
+
+.shipselection {
+width:12em;
+height:1em
+}
+
+.statskill,.PS {
+color:#FA0
+}
+
+.statevade {
+color:#0A0
+}
+
+.stathull,.hull,.chull {
+color:#EE0
+}
+
+.statshield,.shield,.cshield {
+color:#0AF
+}
+
+.hull,.shield {
+display:inline-block;
+font-family:'symbols'
+}
+
+.stat,.stat2,.stat3 {
+line-height:8px;
+position:fixed;
+width:1.3ex;
+letter-spacing:4px
+}
+
+.leftpanel section,.rightpanel section {
+direction:ltr;
+z-index:2
+}
+
+.leftpanel section .statskill {
+float:right
+}
+
+.rightpanel section .statskill {
+float:left
+}
+
+.actions,.pts {
+color:#fff;
+text-align:center
+}
+
+.actions span {
+margin-left:4px
+}
+
+.leftpanel section .pts,.leftpanel section .totalpts,.rightpanel section .pts,.rightpanel section .totalpts {
+color:#fff;
+position:fixed;
+background:rgba(255,0,0,0);
+text-align:left;
+text-shadow:-1px -1px 0 #000;
+z-index:1;
+margin-top:.5em
+}
+
+.outoverflow {
+z-index:2
+}
+
+td,tr,table {
+margin:0;
+border:0;
+padding:0
+}
+
+.dial {
+color:#fff;
+max-width:10em;
+width:10em;
+z-index:1;
+border-radius:8px;
+font-size:smaller;
+empty-cells:hide
+}
+
+.dial tr td,.dial tr td:first-child {
+background:#000
+}
+
+.upgtxt {
+color:#fff;
+padding-left:1em
+}
+
+.rightpanel section .dial,.rightpanel section .upgtxt {
+right:220px;
+position:fixed
+}
+
+.leftpanel section .dial,.leftpanel section .upgtxt {
+left:190px;
+position:fixed
+}
+
+.plus {
+color:#fff;
+font-size:large;
+font-weight:700;
+padding:5px;
+display:inline-block;
+margin:5px;
+text-align:center;
+width:14px;
+line-height:14px;
+box-shadow:1px 1px 3px #000;
+border-radius:16px;
+border-style:solid;
+border-width:1px
+}
+
+select {
+height:2em;
+padding-left:0;
+margin-left:0;
+text-align:center
+}
+
+.hull,.shield {
+font-family:'symbols';
+line-height:8px;
+font-size:20px;
+border:0;
+margin:0;
+padding:0;
+font-weight:700
+}
+
+.phasepanel .symbols {
+text-decoration:none;
+text-align:center;
+min-width:20px;
+border-color:#fff;
+border-radius:50%;
+background:rgba(0,0,0,0.4);
+display:table-cell
+}
+
+.disabled,.disabled .selected {
+color:#aaa
+}
+
+.generic > tr:first-child > td {
+border-top:1px solid #fff;
+padding-top:5px
+}
+
+.listunits {
+border-collapse:collapse;
+overflow-y:auto
+}
+
+.headunits {
+background:#b0c4de;
+vertical-align:middle;
+width:100%;
+font-variant:small-caps;
+border-spacing:0;
+border-collapse:collapse
+}
+
+.headunits td:first-child {
+width:.8em
+}
+
+.headunits select {
+width:15em;
+margin-right:2em;
+font-variant:small-caps
+}
+
+.team .selected,.team .selected .details {
+background:orange;
+color:#fff
+}
+
+.headunits button {
+background:#fff;
+color:#000;
+display:inline-block;
+margin:2px;
+text-align:center;
+box-shadow:1px 1px 3px #000;
+padding:2px;
+border:0;
+border-radius:5px;
+height:2em
+}
+
+.headunits button:hover {
+background:#000;
+color:#fff
+}
+
+.team .selected .name {
+background:#ff8c00;
+color:#fff
+}
+#actiondial .symbols:hover,#attackdial .symbols:hover,#positiondial .symbols:hover {
+color:#000;
+background:#FFF;
+}
+.table,.team {
+display:block;
+width:100%;
+padding:0;
+border:0;
+border-collapse:collapse;
+border-spacing:0;
+empty-cells:hide
+}
+
+.table td {
+width:1em;
+padding:0;
+margin:0;
+font-size:1.5ex
+}
+
+.table .vertical,.tohit .details {
+display:none
+}
+
+.details {
+color:#fff;
+text-align:justify;
+margin:.1em;
+overflow:auto
+}
+
+.team .details {
+color:#000
+}
+
+.upgrade select {
+width:calc(100% - 3.5em);
+margin:0
+}
+
+.table > div,.team > div,.team > p {
+width:100%;
+padding:0;
+margin:0
+}
+
+.table > div > div,.phasepanel .table > div > button,.team > div > div {
+text-align:center;
+min-width:20px
+}
+
+.phasepanel .symbols {
+border:1px;
+border-radius:50%;
+border-style:solid
+}
+
+tttable {
+table-layout:fixed;
+width:100%
+}
+
+.team .dead.selected .details,.dead,.dead .tdstat,.dead .name,.dead .name .selected,.dead .REBEL,.dead .statfire,.dead .nofire .statfire,.dead .statevade,.dead .upgrades,.dead .EMPIRE,.dead .SCUM,.dead .statskill,.team .selected .dead .name {
+background:#000;
+color:gray
+}
+
+.team .docked.selected .details,.docked,.docked .tdstat,.docked .name,.docked .name .selected,.docked .REBEL,.docked .statfire,.docked .statevade,.docked .upgrades,.docked .EMPIRE,.docked .SCUM,.docked .statskill,.team .selected .docked .name {
+background:#696969;
+color:gray
+}
+
+.team > div {
+margin-left:0;
+padding-left:0;
+box-shadow:1px 1px 3px #000;
+color:#000;
+background:#fff
+}
+.team > div.dead {
+color:grey;
+background:#000
+}
+
+.ctrl {
+position:absolute;
+width:6em;
+display:none;
+left:190px;
+cursor:pointer;
+bottom:0;
+color:#000;
+background:rgba(50,50,50,0.5);
+border-radius:50%;
+margin:5px;
+padding:0;
+text-align:center
+}
+
+.ctrl table,.ctrl button {
+border-radius:50%;
+padding:8px;
+background:#fff
+}
+
+.clicks {
+background:red;
+color:#fff;
+border-radius:1em;
+padding:2px
+}
+.bigbutton,.bigbutton2 {
+display:inline-block;
+text-align:center;
+border:0;
+text-decoration:none;
+background:#e2e2e4;
+color:black;
+cursor:pointer;
+padding-top:3px;
+padding-bottom:3px;
+margin-top:1px;
+margin-bottom:1px;
+font-size:1em;
+font-family:"space";
+}
+.smallbutton,.permalink,.nextphase,.mainbutton {
+display:inline-block;
+text-align:center;
+box-shadow:1px 1px 3px #000;
+color:#fff;
+border:0;
+text-decoration:none;
+background:#b0c4de;
+cursor:pointer;
+border-radius:5px;
+padding:0;
+margin:0;
+}
+
+.permalink,.nextphase,.mainbutton {
+padding:.25em;
+margin:.25em
+}
+
+.smallbutton {
+padding:2px;
+margin:2px;
+color:#000;
+font-size:smaller;
+background:#FFEBCD
+}
+
+.mainbutton:not(:disabled):hover {
+background:#fff;
+color:#b0c4de
+}
+
+.smallbutton:not(:disabled):hover {
+background:#000;
+color:#ffebcd
+}
+
+.replay {
+background:#fff;
+opacity:1;
+margin:2em;
+max-width:400px;
+max-height:400px;
+width:40vw;
+height:40vw
+}
+
+.bigbutton,.bigbutton2 {
+width:100%
+}
+
+.GREEN {
+color:#0F0
+}
+
+.maneuver {
+border-radius:50%;
+border:1px solid;
+letter-spacing:4px;
+padding-left:4px;
+background:grey
+}
+
+.RED {
+color:red
+}
+
+.BLUE {
+color:#0AF
+}
+
+.YELLOW {
+color:#CC0
+}
+
+.WHITE {
+color:#fff
+}
+
+.upgrades,.TOP::before {
+color:#ffd700
+}
+
+.inactive,.inactive .upgrades,.inactive .statfire,.dead,.docked .nofire .statfire {
+color:gray
+}
+
+.nofire .statfire {
+color:#b22222
+}
+
+.Laser,.Turretlaser,.Bilaser {
+color:#F33
+}
+
+.Laser::after,.Bilaser::after {
+content:"%"
+}
+
+.Turretlaser::after {
+content:"$"
+}
+
+.Mod::after {
+content:"m"
+}
+
+.Title::after {
+content:"t"
+}
+
+.Elite::after,.TOP::before {
+content:"E"
+}
+
+.Tech::after {
+content:"X"
+}
+
+.Torpedo::after {
+content:"P"
+}
+
+.Astromech::after {
+content:"A"
+}
+
+.Bomb::after {
+content:"B"
+}
+
+.CannonTorpedoMissile::after {
+content:"CPM"
+}
+
+.Missile::after {
+content:"M"
+}
+
+.Illicit::after,.illicitmodtokena::after,.illicitmodtokend::after {
+content:"I"
+}
+
+.Cannon::after {
+content:"C"
+}
+
+.Crew::after,.crewmodtokena::after,.crewmodtokend::after {
+content:"W"
+}
+
+.System::after {
+content:"S"
+}
+
+.Turret::after {
+content:"U"
+}
+
+.Salvaged::after {
+content:"V"
+}
+
+.Mod::after {
+content:"m"
+}
+
+.chull::after {
+content:"&"
+}
+
+.cshield::after {
+content:"*"
+}
+
+.hit,.critical,.cshield,.chull {
+font-family:'symbols';
+text-align:center;
+line-height:14px;
+display:inline
+}
+
+#listunits .close {
+font-size:2em;
+top:0.3em;
+}
+.counttoken,.ordnance {
+font-size:0.6em;
+padding:1px;
+color:white;
+border-radius:50%
+}
+.counttoken {
+background-color:black;
+}
+.ordnance {
+background-color:red;
+}
+.evadetoken,.focustoken,.cloaktoken,.stresstoken,.targettoken {
+font-family:'symbols';
+padding:6px;
+display:inline-block;
+margin:0;
+text-align:center;
+width:14px;
+line-height:14px;
+text-decoration:none;
+box-shadow:1px 1px 3px #000;
+background:#333;
+border-radius:20px;
+border-style:solid;
+border-width:1px
+}
+
+.xevadetoken,.xfocustoken,.xcloaktoken,.xstresstoken,.xtargetedtoken,.xtargettoken,.xionizedtoken,.xtractorbeamtoken,.focusmodtokena,.ionmodtokena,.evademodtokena,.stressmodtokena,.focusmodtokend,.hitmodtokena,.hitmodtokend,.criticalmodtokena,.illicitmodtokena,.blankmodtokena,.illicitmodtokend,.blankmodtokend,.evademodtokend,.criticalmodtokend,.targetmodtokena,.targetmodtokend,.crewmodtokena,.crewmodtokend {
+font-family:'symbols';
+padding:4px;
+display:inline-block;
+margin:0;
+text-align:center;
+width:10px;
+font-size:smaller;
+line-height:9px;
+text-decoration:none;
+box-shadow:1px 1px 3px #000;
+background:#333;
+border-radius:10px;
+border-style:solid;
+border-width:1px
+}
+
+.Criticalupg,.Elite,.Tech,.Torpedo,.Astromech,.Turret,.Missile,.Crew,.Cannon,.Bomb,.Title,.Mod,.System,.Illicit,.Salvaged,.Laser,.Bilaser,.Turretlaser,.CannonTorpedoMissile {
+font-family:'symbols';
+padding:0;
+display:inline-block;
+font-size:2.3ex;
+text-align:center;
+text-decoration:none;
+box-shadow:1px 1px 3px #000;
+background:#333;
+border-radius:50%;
+border-style:solid;
+border-width:0;
+vertical-align:top
+}
+
+.CannonTorpedoMissile {
+font-size:smaller
+}
+
+label {
+font-size:smaller
+}
+
+.evadetoken,.focustoken,.xevadetoken,.xfocustoken {
+color:#0a0;
+border-color:#0a0
+}
+
+.stresstoken,.xstresstoken,.xionizedtoken,.xtractorbeamtoken,.xtargetedtoken {
+color:#f33;
+border-color:#f33
+}
+
+.targettoken,.cloaktoken,.xtargettoken,.xcloaktoken {
+color:#08d;
+border-color:#0af
+}
+
+.evadetoken:hover,.focustoken:hover {
+background:#050;
+color:#000
+}
+
+.targettoken:hover,.cloaktoken:hover {
+background:#058;
+color:#000
+}
+
+.stresstoken:hover {
+background:#500;
+color:#000
+}
+
+.focustoken::after,.xfocustoken::after {
+content:"f"
+}
+
+.evadetoken::after,.xevadetoken::after {
+content:"e"
+}
+
+.targettoken::after,.xtargettoken::after,.xtargetedtoken::after,.targetmodtokena::after,.targetmodtokend::after {
+content:"l"
+}
+
+.stresstoken::after,.xstresstoken::after {
+content:"?"
+}
+
+.xionizedtoken::after,.ionmodtokena::after {
+content:"Z"
+}
+.xtractorbeamtoken::after {
+content:"Y"
+}
+.cloaktoken::after,.xcloaktoken::after {
+content:"k"
+}
+
+.focusgreendice,.evadegreendice,.blankgreendice,.focusreddice,.hitreddice,.criticalreddice,.blankreddice,.reddice,.evadegreen,.greendice {
+padding:5px;
+margin:2px 0;
+border:0;
+text-align:center;
+min-width:12px;
+line-height:14px;
+text-decoration:none;
+box-shadow:1px 1px 3px #000
+}
+
+.focusreddice,.hitreddice,.blankreddice,.criticalreddice,.reddice,.evademodtokena,.focusmodtokena,.targetmodtokena,.hitmodtokena,.criticalmodtokena,.blankmodtokena,.stressmodtokena,.illicitmodtokena,.ionmodtokena,.crewmodtokena {
+background:#f33;
+opacity:.9;
+color:#fff
+}
+
+.focusmodtokend,.blankmodtokend,.evademodtokend,.hitmodtokend,.illicitmodtokend,.criticalmodtokend,.targetmodtokend,.crewmodtokend {
+background:#3f3;
+opacity:.9;
+color:#fff
+}
+
+.focusgreendice,.evadegreendice,.blankgreendice,.greendice {
+background:#3f3;
+opacity:.9;
+color:#fff
+}
+
+.evadegreen {
+background:#2e2;
+color:#fff
+}
+
+.focusreddice::after,.focusgreendice::after,.focusmodtokena::after,.focusmodtokend::after {
+font-family:'symbols';
+content:"f"
+}
+
+.hitreddice::after,.hit::after,.hitmodtokena::after,.hitmodtokend::after {
+font-family:'symbols';
+content:"d"
+}
+
+.stressmodtokena::after {
+font-family:'symbols';
+content:"?"
+}
+
+.criticalreddice::after,.critical::after,.Criticalupg::after,.criticalmodtokena::after,.criticalmodtokend::after {
+font-family:'symbols';
+content:"c"
+}
+
+.blankreddice::after,.blankgreendice::after,.blankmodtokena::after,.blankmodtokend::after {
+font-family:'symbols';
+content:"\00a0"
+}
+
+.evadegreendice::after,.evadegreen::after,.evademodtokend::after,.evademodtokena::after {
+font-family:'symbols';
+content:"e"
+}
+
+.nextphase {
+background:red
+}
+
+.permalink,.import {
+background:#fff;
+color:#4682b4
+}
+
+.animated {
+stroke-dasharray:100;
+animation:dash 3s linear;
+-webkit-animation-iteration-count:infinite;
+animation-iteration-count:infinite
+}
+
+@keyframes dash {
+to {
+stroke-dashoffset:-1000
+}
+}
+.activeunit {
+background:#000;
+text-decoration:none;
+color:#fff;
+padding:4px;
+margin:2px;
+border-radius:50%;
+cursor:pointer
+}
+
+.desc {
+width:170px
+}
+
+.description {
+margin:0;
+padding:0;
+border:0;
+color:#535353;
+background:rgba(255,255,255,0.7);
+border-radius:4px
+}
+
+.disabled {
+padding:3px;
+display:table-cell;
+margin:0;
+text-align:center;
+text-decoration:none;
+border:0;
+border-radius:4px
+}
+.disabled {
+background:#a9a9a9
+}
+.bigbutton:disabled,.nextphase:disabled,.mainbutton:disabled,.activeunit:disabled,.bigbutton2:disabled {
+background:gray;
+color:#d3d3d3;
+cursor:default
+}
+
+#squadlist,#phase {
+font-size:smaller;
+font-family:'space';
+color:#000
+}
+
+#squadlist table {
+empty-cells:hide;
+width:100%
+}
+
+.leftpanel,.rightpanel {
+top:calc(4ex);
+position:absolute;
+height:calc(100% - 4.3ex);
+color:#000;
+background:#000;
+border-width:0;
+margin:0;
+overflow-x:hidden;
+overflow-y:auto
+}
+
+.leftpanel {
+left:0;
+direction:rtl
+}
+
+.rightpanel {
+right:0
+}
+
+.symbols {
+font-family:'symbols'
+}
+
+.statfire {
+color:red
+}
+#rocks {
+display:none;
+color:white;
+}
+button.statfire,button.statevade,.player {
+cursor:pointer;
+font-size:smaller
+}
+
+.PREBUILT::before {
+/*background-image:url(prebuilt.png)*/
+}
+
+.REBEL::before {
+background-image:url(rebel.jpg);
+border-radius:50%
+}
+
+.TOP::before {
+font-family:'symbols';
+text-decoration:none;
+margin-left:2px;
+box-shadow:1px 1px 3px #000;
+background:#333;
+border-radius:50%;
+border-style:solid;
+border-width:0
+}
+
+.EMPIRE::before,.REBEL::before,.SCUM::before,.PREBUILT::before {
+background-size:cover;
+background-repeat:no-repeat;
+width:1em;
+padding-left:1.2em;
+padding-top:.2em;
+content:""
+}
+
+.EMPIRE::before {
+background-image:url(empire.jpg);
+border-radius:50%;
+}
+
+.SCUM::before {
+background-image:url(scum.jpg);
+border-radius:50%;
+}
+
+.flame1 {
+content:url(png/flame1.png)
+}
+
+.flame2 {
+content:url(png/flame2.png)
+}
+
+.xsymbols {
+font-family:'symbols';
+font-size:6px
+}
+
+.probacell {
+border:1px #fff solid;
+margin:0;
+padding:0;
+height:2ex;
+display:table-cell
+}
+
+.probacell:hover {
+border:1px solid;
+opacity:.7
+}
+
+.ver,.langselect {
+font-size:.5em;
+color:#fff;
+letter-spacing:0
+}
+
+footer {
+position:fixed;
+background:rgba(0,0,0,0.5);
+bottom:0;
+left:30%;
+width:40%;
+z-index:1;
+color:#d3d3d3;
+cursor:move;
+height:6em
+}
+
+footer .title {
+color:#fff;
+background:rgba(50,50,50,0.5);
+height:1em
+}
+.title {
+letter-spacing:2px;
+font-size:larger;
+font-weight:700;
+margin-left:4px;
+vertical-align:middle
+}
+.log {
+text-align:left;
+overflow-y:scroll;
+font-size:smaller;
+color:#d3d3d3;
+height:5em
+}
+footer input {
+color:white;
+background:rgba(80,80,80,0.5);
+width:calc( 100% - 6px );
+height:1em;
+border:2px;
+border-style:inset;
+padding:1px;
+cursor:text;
+}
+.unit {
+cursor:move
+}
+.headunits input {
+border-radius:10px
+}
+td {
+vertical-align:top;
+margin:0;
+border:0;
+text-align:left
+}
+#team1 .details td {
+text-align:right
+}
+#team2 .details td {
+text-align:left
+}
+.upgrade td:nth-child(2) {
+width:20%
+}
+.upgrade td:nth-child(3) {
+width:80%
+}
+tr {
+margin:0;
+border:0
+}
+.xwingship {
+font-family:'ships';
+padding:4px;
+display:inline-block;
+margin:0;
+text-align:center;
+width:14px;
+font-size:2.5em;
+line-height:9px;
+text-shadow:1px 0 0 #fff;
+box-shadow:1px 1px 3px #fff;
+background:#fff;
+border-radius:10px;
+border-style:solid;
+border-width:1px;
+color:#fff
+}
+
+.tokens {
+font-family:"Times New Roman",Times,serif;
+padding:4px;
+display:inline-block;
+margin:0;
+text-align:center;
+width:14px;
+font-size:smaller;
+line-height:9px;
+text-decoration:none;
+box-shadow:1px 1px 3px #000;
+background:#333;
+border-radius:50%;
+border-style:solid;
+border-width:1px;
+color:#08d
+}
+
+.arrow-right {
+width:0;
+height:0;
+border-style:solid;
+border-width:0 85px 20px;
+border-color:transparent transparent rgba(0,0,0,0.3);
+font-size:0;
+line-height:20px;
+position:absolute;
+top:5em;
+z-index:3
+}
+
+.arrow-down {
+width:0;
+height:0;
+border-style:solid;
+border-width:20px 85px 0;
+border-color:rgba(0,0,0,0.3) transparent transparent;
+font-size:0;
+line-height:20px;
+position:absolute;
+bottom:0;
+z-index:3
+}
+
+.content {
+display:none
+}
+
+.active {
+display:inline
+}
+
+.tab {
+padding:6px 4px;
+text-decoration:none;
+border-radius:0 0 5px 5px;
+background:#DDD;
+font-size:smaller;
+color:#222;
+opacity:.5
+}
+
+.tab.active,.tab:hover {
+background:#F9F9F9;
+color:#777;
+opacity:1
+}
+
+.squads {
+width:100%
+}
+
+.squads tr td:first-child {
+text-align:right;
+width:50%
+}
+
+.squads tr td:nth-child(2) {
+text-align:left;
+width:50%
+}
+
+#selectphase {
+color:#fff;
+background:url(playmat10.jpg);
+background-repeat:no-repeat;
+background-size:100% 100%;
+overflow-y:auto
+}
+
+.squads textarea,.modalDialog textarea {
+color:#fff;
+background:#000
+}
+
+.squads textarea {
+width:80%;
+height:12em
+}
+
+td.squadbg {
+position:relative
+}
+
+td.squadbg div {
+position:absolute;
+font-size:4em;
+left:calc(50% - 1em);
+top:15%;
+background:#A00;
+border:1px solid #A00
+}
+
+td.squadbg .right {
+background:#4682b4;
+border:1px solid #4682b4
+}
+td.squadbg img:hover,td.squadbg img.selected {
+border:3px solid #A00;
+padding:0;
+}
+td.squadbg img {
+padding:3px;
+border:0px;
+border-radius:50%;
+margin:0;
+}
+td.squadbg div,.squadmiddle {
+padding:.2em .3em 0;
+color:#fff;
+border-radius:50%
+}
+.aster > img:hover,.aster > div.selected,.deb > img:hover,.deb > div.selected {
+border:2px solid #A00;
+padding:0;
+}
+.aster > img,.deb > img {
+border:0;
+border-radius:50%;
+padding:2px;
+width:36px;
+height:36px;
+}
+.aster,.deb {
+text-align:center;
+width:100%;
+border:0;
+background:rgba(255,255,255,0.8);
+border-radius:5px;
+height:10em;
+}
+.squadbg svg {
+width:100%;
+height:3em;
+background:rgba(255,255,255,0.5)
+}
+.tosquad {
+border:2px solid #000;
+color:#fff;
+background:#000;
+opacity:.5;
+padding-left:.2em;
+padding-right:.2em;
+border-radius:50%
+}
+.m-normalmap::after {
+    vertical-align: top;
+}
+.squadmanage {
+width:100%;
+background:#b0c4de;
+margin:0;
+padding:0;
+border:0;
+height:1.3em
+}
+
+.squadmanage > span {
+color:#fff;
+font-size:smaller;
+border-right:1px solid #fff;
+vertical-align:middle;
+height:1em;
+padding:5px 10px
+}
+
+.squadmanage > span:hover {
+color:#fff;
+background:#4682b4;
+opacity:1
+}
+
+.dataTables_filter label,.dataTables_info {
+color:grey
+}
+
+table.dataTable td {
+vertical-align:middle
+}
+
+.dataTables_wrapper {
+width:95%;
+margin-left:2.5%;
+margin-top:1em;
+opacity:.75
+}
+
+.squadselected {
+width:95%;
+margin-left:2.5%;
+opacity:.75
+}
+.squadselected button {
+border-collapse:collapse
+}
+
+.squadselected td textarea {
+width:100%;
+padding:0;
+margin:0;
+border:0;
+resize:none
+}
+.symbols.maneuver.GREEN:hover,.symbols.maneuver.GREEN.selected {
+color:#000;
+background:#0F0;
+}
+.symbols.maneuver.WHITE:hover,.symbols.maneuver.WHITE.selected {
+color:#000;
+background:#FFF;
+}
+.symbols.maneuver.RED:hover,.symbols.maneuver.RED.selected {
+color:#000;
+background:#F00;
+}
+#setting td:first-child {
+text-align:right;
+}
+#setting td:last-child {
+text-align:left;
+}
+.modalDialog textarea {
+height:12em;
+width:80%
+}
+
+.h2 span.share-buttons {
+padding:0;
+margin:0;
+border:0;
+position:absolute;
+right:10px;
+top:3.2ex
+}
+
+.buttonbar {
+float:right;
+height:4ex
+}
+
+span.share-buttons a {
+display:inline;
+padding:0;
+margin:0;
+border:0
+}
+
+.h2 span.share-buttons img {
+height:1.5ex;
+width:1.5ex
+}
+
+.menu img {
+height:2ex;
+width:2ex;
+padding:10px
+}
+
+.share-buttons img,.menu img {
+vertical-align:middle
+}
+
+.facebook,.tweet,.googlep,.email {
+text-decoration:none;
+color:#D0D0D0
+}
+.odd {
+background:#f9f9f9
+}
+@font-face {
+font-family:'symbols';
+src:url(xwings.ttf) format("truetype")
+}
+
+@font-face {
+font-family:'space';
+src:url(EurostileLTStd.otf) format("truetype")
+}
+
+@font-face {
+font-family:'spacename';
+src:url(EurostileLTStd-Demi.otf) format("truetype")
+}
+
+ul.caroussel {
+padding:5px 150px 0 25px;
+/*perspective:780px;*/
+background-color:transparent;
+width:calc(100% - 210px);
+white-space:nowrap;
+overflow-x:auto;
+overflow-y:hidden;
+height:22em;
+text-align:center;
+margin:10px;
+}
+
+.headimg {
+width:180px;
+margin:0;
+border:0;
+padding:0
+}
+
+ul.caroussel li {
+transform:translateZ(0px) scale(1.25);
+position:relative;
+padding:0;
+color:#fff;
+font-size:.7em;
+display:inline-block;
+height:25em;
+border-radius:10px;
+box-shadow:inset 1px 1px 0 rgba(255,255,255,.4),0 0 30px rgba(0,0,0,0.2);
+width:180px;
+/*opacity:.5;*/
+z-index:0;
+transition:all .45s;
+margin:20px 45px 0 0
+}
+
+ul#caroussel li {
+transform:rotateY(45deg);
+margin-right:-100px
+}
+
+ul#listunits {
+height:30em;
+padding:0 0 0 2em;
+margin:0;
+width:100%
+}
+
+.inunitlist {
+padding:0;
+margin:2px
+}
+
+ul#listunits li {
+height:32em;
+margin-top:40px
+}
+
+ul#caroussel li.highlighted {
+transform:rotateY(0deg);
+opacity:1;
+z-index:55!important
+}
+
+ul.caroussel table {
+margin:2px 0 0 0px;
+border-collapse:collapse
+}
+
+.upgavail,.upg {
+white-space:normal
+}
+.upgavail button:hover {
+border:0;
+padding:2px;
+color:black;
+background:white;
+}
+.upgavail button {
+padding:1px;
+border-radius:20%;
+background:black;
+color:white;
+margin:2px;
+opacity:0.8;
+border:1px solid white;
+}
+ul.caroussel td,.upglist > tr > td {
+vertical-align:middle
+}
+
+ul.caroussel table.upgs {
+padding-left:4px;
+vertical-align:top;
+width:100%
+}
+
+ul#caroussel .highlighted ~ li {
+transform:rotateY(-45deg)
+}
+
+ul.caroussel li:hover,ul.caroussel li:first-child:hover,ul.caroussel li.highlighted ~ li:hover {
+z-index:100
+}
+
+ul#caroussel li:hover,ul#caroussel li.highlighted {
+transform:rotateY(0deg) translateZ(0px) scale(1.25)
+}
+
+ul.caroussel li:hover,ul.caroussel li.highlighted {
+opacity:1;
+z-index:60!important;
+background:#000
+}
+
+ul#caroussel li:hover ~ li {
+transform:rotateY(-45deg) translateX(120px)
+}
+
+ul#caroussel:hover li:not(:hover) {
+transform:rotateY(45deg) translateX(-80px)
+}
+
+ul#caroussel:hover li:hover ~ li {
+transform:rotateY(-45deg) translateX(120px)
+}
+
+ul.caroussel .shipimg,ul.caroussel .shipdial,ul.listunits .shipdial {
+opacity:1;
+background-size:30px 30px;
+background-repeat:no-repeat;
+background-position:center;
+width:35px;
+height:35px;
+max-width:35px;
+max-height:35px;
+margin:2px;
+cursor:pointer
+}
+
+ul.caroussel button {
+cursor:pointer;
+opacity:1
+}
+.shipdial.tooltip {
+background:#000;
+}
+.shipdial {
+color:#fff;
+max-width:30px;
+width:30px;
+font-size:6px;
+empty-cells:hide;
+padding:3px;
+}
+
+.shipdial td {
+width:4px;
+height:4px
+}
+
+ul.caroussel .shipimg {
+transform:rotate(90deg);
+line-height:25%;
+text-align:left;
+vertical-align:bottom;
+padding:5px 5px 5px 1px
+}
+
+ul.caroussel:not(:hover) li.highlighted {
+opacity:1
+}
+.pilots {
+width:100%
+}
+.pilots tr:hover,.upglist tr:hover {
+color:#000;
+background:#fff
+}
+
+.pilots td,.upglist td {
+white-space:normal;
+padding:2px
+}
+
+.pilots tbody {
+display:block;
+overflow-x:hidden;
+overflow-y:auto;
+width:100%;
+height:16em
+}
+
+.upglist td {
+width:calc(100% - 5px)
+}
+
+.upglist {
+height:20em;
+display:block;
+overflow-x:hidden;
+overflow-y:auto;
+width:100%
+}
+
+.upg span {
+float:right;
+padding-right:2px;
+}
+
+.shipdial {
+display:none
+}
+
+.shipname {
+font-variant:small-caps;
+font-weight:700;
+text-align:center;
+padding:2px;
+white-space:normal
+}
+.unitlist .shipname {
+text-shadow:1px 1px #000,1px -1px #000,-1px 1px #000,-1px -1px #000;
+}
+.pts {
+text-align:right
+}
+
+#squadbattle >tbody>tr>td,#battlingsquad {
+vertical-align:top;
+font-size:.7em
+}
+
+#squadbattle span {
+text-decoration:underline
+}
+
+#battlingsquad {
+vertical-align:top;
+width:50%
+}
+
+.battlingtable {
+width:100%
+}
+
+.battlingtable td {
+vertical-align:top;
+width:100%
+}
+
+.battlingtable th {
+text-align:right;
+vertical-align:top;
+width:20%
+}
+
+.m-battlexp {
+text-align:right;
+font-size:.5em
+}
+#unitfilter {
+float:left;
+background:#333;
+width:8em;
+border:0;
+padding:0;
+margin:0;
+border-radius:0 0 15px 0;
+}
+#unitfilter .GREEN {
+font-size:larger;
+}
+#dialfilter td[move] {
+width:1em;
+font-size:xx-small;
+opacity:0.5;
+text-align:center
+}
+#dialfilter td[move]:hover,#dialfilter td[move].selected {
+color:black;
+background:yellow;
+opacity:1
+}
