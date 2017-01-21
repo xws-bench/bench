@@ -4693,7 +4693,7 @@ var UPGRADES= [
 	  sh.adddicemodifier(DEFENSE_M,ADD_M,DEFENSE_M,this,{
 		req:function(m,n) {
 		    return (activeunit.stress>0);
-		}.bind(this),
+		}.bind(sh),
 		aiactivate: function(m,n) { return activeunit.stress>0;},
 		f:function(m,n) {
 		    if (activeunit.stress>0) {
@@ -4701,7 +4701,7 @@ var UPGRADES= [
 			activeunit.removestresstoken();
 			return {m:m+FE_EVADE, n:n+1};
 		    } else return {m:m,n:n};
-		}.bind(this),str:"evade"});
+		}.bind(sh),str:"evade"});
       }
     },
     { name:"Ketsu Onyo",
