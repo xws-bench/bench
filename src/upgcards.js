@@ -5013,9 +5013,6 @@ var UPGRADES= [
      type:TECH,
      init: function(sh) {
 	 sh.wrap_after("isactiondone",this,function(a,b) {
-		 this.log("Primed Thrusters a "+a);
-		 this.log("Primed Thrusters b "+b);
-		 this.log("Stress "+this.stress);
 	     if (this.stress>0&&a!="ROLL"&&a!="BOOST") return true;
 	     if (this.stress>0&&a=="ROLL"&&b) this.log("can do %ROLL% [%0]");
 	     if (this.stress>0&&a=="BOOST"&&b) this.log("can do %BOOST% [%0]");

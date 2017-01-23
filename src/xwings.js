@@ -841,7 +841,7 @@ function win(destroyed) {
 	if (!u.dead&&u.team==1) saved1=true;
 	if (!u.dead&&u.team==2) saved2=true;
 	if (u.dead||(u.islarge&&u.shield+u.hull<(u.ship.hull+u.ship.shield)/2)) {
-	    var p=u.dead?u.points:(u.points/2);
+	    var p=parseInt(u.dead?u.points:(u.points/2));
 	    if (u.team==1) {
 		s2+="<tr><td>"+u.name+(!u.dead?" (1/2 points)":"")+"</td><td>"+p+"</td></tr>";
 		score2+=p;
