@@ -5019,7 +5019,6 @@ var UPGRADES= [
 	     return b;
 	 });
 	 sh.wrap_after("hasnostresseffect",this,function() {
-		 this.log("Stress "+this.stress);
 	     return this.stress<3;
 	 });
      }
