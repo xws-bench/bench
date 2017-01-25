@@ -2810,6 +2810,12 @@ var UPGRADES= [
 	done:true,
         upgrades:["Cannon|Torpedo|Missile"],
         type:TITLE,
+        install: function(sh) {
+	    sh.hull++; sh.ship.hull++;
+	    sh.installed=true;
+	    sh.showstats();
+	},     
+
         points: 2,
         ship: "M3-A Interceptor",
 
