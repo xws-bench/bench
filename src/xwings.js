@@ -411,6 +411,10 @@ function nextunit(cando, changeturn,changephase,activenext) {
 }
 function endphase() {
     for (var i in squadron) squadron[i].endphase();
+		 if (TEAMS[1].checkdead()&&TEAMS[2].checkdead()) win(0);
+		 if (TEAMS[1].checkdead()) win(1);
+		 if (TEAMS[2].checkdead())  win(2);
+
 }
 function nextcombat() {
     nextunit(function(t) { return t.canfire(); },
@@ -422,9 +426,9 @@ function nextcombat() {
 		     if (u.canbedestroyed(skillturn))
 			 if (u.checkdead()) dead=true;
 		 }
-		 if (dead&&TEAMS[1].checkdead()&&TEAMS[2].checkdead()) win(0);
-		 if (dead&&TEAMS[1].checkdead()) win(1);
-		 if (dead&&TEAMS[2].checkdead())  win(2);
+		 if (TEAMS[1].checkdead()&&TEAMS[2].checkdead()) win(0);
+		 if (TEAMS[1].checkdead()) win(1);
+		 if (TEAMS[2].checkdead())  win(2);
 	     },
 	     function() {
 		 $("#attackdial").hide();
@@ -829,6 +833,7 @@ function enablenextphase() {
 }
 
 function win(destroyed) {
+	log("Team "+destroyed+" was destroyed!");
     movelog("W");
     var title="m-draw";
     var i;
@@ -872,8 +877,14 @@ function win(destroyed) {
 //    str+="<div style='font-size:smaller'>Average <span class='hit'></span>/die:"+meanhit+" (norm:0.375)</div><div>Average <span class='critical'></span>:"+meancrit+" (norm: 0.125)</div>/die</td>";
     $(".victory-table").append("<tr><th class='m-squad2'></th><th>"+score2+"</th></tr>");
     $(".victory-table").append(s2);
-    if ((d>0&&WINCOND<0)||(destroyed==2&&(WINCOND<round||WINCOND==0))) title="m-1win";
-    else if ((d<0&&WINCOND<0)||(destroyed==1&&(WINCOND<round||WINCOND==0))) title="m-2win";
+    if ((d>0&&WINCOND<0)||(destroyed==2&&(WINCOND<round||WINCOND==0))) {
+	title="m-1win";
+	log("Team 1 wins! "+score1+" to "+score2);
+	}
+    else if ((d<0&&WINCOND<0)||(destroyed==1&&(WINCOND<round||WINCOND==0))) {
+	title="m-2win";
+	log("Team 2 wins! "+score1+" to "+score2);
+	}
     
     $(".victory").attr("class",title);
     var titl = (TEAMS[1].isia?"Computer":"Human")+":"+score1+" "+(TEAMS[2].isia?"Computer":"Human")+":"+score2;
@@ -883,7 +894,7 @@ function win(destroyed) {
     note=note.replace(/ \+ /g,"*");
     note=note.replace(/ /g,"_");
     //console.log("note:"+encodeURI(note));
-    var url=encodeURI("http://xws-bench.github.io/bench/index.html?"+permalink(false));
+    var url=encodeURI("https://ynot6517.github.io/bench/index.html?"+permalink(false));
     $("#submission").contents().find('#entry_209965003').val(titl);
     $('#submission').contents().find('#entry_390767903').val(note);
     $('#submission').contents().find('#entry_245821581').val("no short url");

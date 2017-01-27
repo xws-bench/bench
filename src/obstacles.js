@@ -50,7 +50,7 @@ function loadrock(s,str) {
     } else for (i=0; i<6; i++) {
 	do {
 	    var ok=true;
-	    coord[i]=[Math.random()*400+200-PX[i],Math.random()*400+200-PY[i],Math.random()*45];
+	    coord[i]=[Math.random()*400+300-PX[i],Math.random()*400+300-PY[i],Math.random()*45];
 	    for (j=0; j<i; j++) {
 		var dx=coord[i][0]-coord[j][0]+PX[i]-PX[j];
 		var dy=coord[i][0]-coord[j][0]+PY[i]-PY[j];
