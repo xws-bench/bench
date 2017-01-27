@@ -4588,7 +4588,7 @@ var UPGRADES= [
 	ship:"ARC-170",
 	init: function(sh) {
 	    var self=this;
-	    sh.wrap_after("getattackstrength",this,function(w,sh,a) {
+	    sh.wrap_after("getattackstrength",this,function(w,sh,a){
 		if (this.weapons[w].isprimary&&this.isinprimaryfiringarc(targetunit)) {
 		    this.log("+1 attack die [%0]",self.name);
 		    return a+1;
