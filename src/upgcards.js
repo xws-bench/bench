@@ -3774,6 +3774,7 @@ var UPGRADES= [
 		  self.rd=round;
 		  SOUNDS.explode.play();
 		  p[k].checkdead();
+		  return;
 	      },["select unit (or self to cancel) [%0]",self.name],false);
 	  });
       }
