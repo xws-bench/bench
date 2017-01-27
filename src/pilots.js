@@ -4187,5 +4187,16 @@ var PILOTS = [
 	 });
      }
     },
+    { name:"Resistance Sympathizer",
+      unit:"YT-1300",
+      skill:3,
+      done:true,
+      unique:false,
+      edition:"HoR",
+      pilotid:216,
+      faction:REBEL,
+      upgrades:[MISSILE,CREW,CREW],
+      points:38
+    }
     
 ];
