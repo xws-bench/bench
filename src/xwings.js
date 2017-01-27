@@ -6,7 +6,7 @@ var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.9.2";
+var VERSION="v0.9.3";
 var LANG="en";
 var ENGAGED=false;
 var FILTER="none";
@@ -872,8 +872,8 @@ function win(destroyed) {
 //    str+="<div style='font-size:smaller'>Average <span class='hit'></span>/die:"+meanhit+" (norm:0.375)</div><div>Average <span class='critical'></span>:"+meancrit+" (norm: 0.125)</div>/die</td>";
     $(".victory-table").append("<tr><th class='m-squad2'></th><th>"+score2+"</th></tr>");
     $(".victory-table").append(s2);
-    if ((d>0&&WINCOND<0)||(destroyed==2&&(WINCOND>round||WINCOND==0))) title="m-1win";
-    else if ((d<0&&WINCOND<0)||(destroyed==1&&(WINCOND>round||WINCOND==0))) title="m-2win";
+    if ((d>0&&WINCOND<0)||(destroyed==2&&(WINCOND<round||WINCOND==0))) title="m-1win";
+    else if ((d<0&&WINCOND<0)||(destroyed==1&&(WINCOND<round||WINCOND==0))) title="m-2win";
     
     $(".victory").attr("class",title);
     var titl = (TEAMS[1].isia?"Computer":"Human")+":"+score1+" "+(TEAMS[2].isia?"Computer":"Human")+":"+score2;
