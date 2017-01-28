@@ -4827,10 +4827,13 @@ var UPGRADES= [
       },
       action: function(n) {
 	  var self=this.unit;
-	  var p=self.selectnearbyally(2);
+	  var p=self.selectnearbyallyandself(2);
 	  var e=self.selectnearbyenemy(3,function(s,t) {
 	      return s.isinfiringarc(t);
 	  });
+	  log("p "+p);
+	  log("p.length "+p.length);
+	  log("e.length "+e.length);
 	  if (p.length>0&&e.length>0) {
 	      self.resolveactionselection(p,function(k) {
 		  var l=e.length;

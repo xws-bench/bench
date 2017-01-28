@@ -1976,6 +1976,12 @@ Unit.prototype = {
 	    if (typeof f=="function") b=f(s,t);
 	    return s.isally(t)&&s!=t&&b; });
     },
+    selectnearbyallyandself: function(n,f) {
+	return this.selectnearbyunits(n,function(s,t) {
+	    var b=true;
+	    if (typeof f=="function") b=f(s,t);
+	    return s.isally(t)&&b; });
+    },
     selectnearbyenemy: function(n,f) {
 	return this.selectnearbyunits(n,function(s,t) {
 	    var b=true;
