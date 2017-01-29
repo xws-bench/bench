@@ -411,9 +411,9 @@ function nextunit(cando, changeturn,changephase,activenext) {
 }
 function endphase() {
     for (var i in squadron) squadron[i].endphase();
-		 if (TEAMS[1].checkdead()&&TEAMS[2].checkdead()) win(0);
-		 if (TEAMS[1].checkdead()) win(1);
-		 if (TEAMS[2].checkdead())  win(2);
+		 //if (TEAMS[1].checkdead()&&TEAMS[2].checkdead()) win(0);
+		 //if (TEAMS[1].checkdead()) win(1);
+		 //if (TEAMS[2].checkdead())  win(2);
 
 }
 function nextcombat() {
