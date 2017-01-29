@@ -200,6 +200,7 @@ IAUnit.prototype= {
     showactivation: function() {
     },
     timetoshowmaneuver: function() {
+	//this.log("this.maneuver "+this.maneuver)
 	return this.maneuver>-1&&skillturn>=this.getskill()&&phase==ACTIVATION_PHASE&&subphase==ACTIVATION_PHASE;
     },
     doactivation: function() {
@@ -207,10 +208,12 @@ IAUnit.prototype= {
 	if (this.timeformaneuver()) {
 	    //this.log("resolvemaneuver");
 	    this.resolvemaneuver();
-	} //else this.log("no resolvemaneuver");
+	} else this.log("no resolvemaneuver");
     },
     showaction: function() {
+	//this.log($("#actiondial").empty());
 	$("#actiondial").empty();
+	//this.log("this.action "+this.action);
 	if (this.action>-1&&this.action<this.actionList.length) {
 	    var a = this.actionList[this.action];
 	    var c=A[a].color;
@@ -280,9 +283,9 @@ IAUnit.prototype= {
 			if (this.candofocus()) { a=list[i]; break; }
 		    } else { a = list[i]; break }
 		}
-		/*if (a==null) this.log("no possible action");
+		if (a==null) this.log("no possible action");
 		if (a!=null) this.log("action chosen: "+a.type);
-		else this.log("null action chosen");*/
+		else this.log("null action chosen");
 		this.resolveaction(a,n);
 	    } else {
 		this.endaction(n);

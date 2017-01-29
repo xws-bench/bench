@@ -2416,7 +2416,6 @@ Unit.prototype = {
     },
     resolvemaneuver: function() {
 	$("#activationdial").empty();
-	// -1: No maneuver
 	if (this.maneuver<0) return;
 	var p=[],q=[];
 	var ml=this.getmaneuverlist();
@@ -2428,9 +2427,11 @@ Unit.prototype = {
 		    p.push(gtr[j]);
 		    if (j>0) q.push(ml[i]);
 		}
-	    } else if (ml[i].halfturn==true&&!ml[i].move.match(/K\d|SR\d|SL\d/))
+	    } else if (ml[i].halfturn==true&&!ml[i].move.match(/K\d|SR\d|SL\d/)) {
 		p.push(this.getpathmatrix(this.m,ml[i].move).rotate(180,0,0));
-	    else p.push(this.getpathmatrix(this.m,ml[i].move));
+		}
+	    else { p.push(this.getpathmatrix(this.m,ml[i].move));
+		}
 	}
 	this.resolveactionmove(p,function(t,k) {
 	    if (k==-1) k=0;

@@ -4588,10 +4588,10 @@ var UPGRADES= [
 	ship:"ARC-170",
 	init: function(sh) {
 	    var self=this;
-	    sh.wrap_after("getattackstrength",this,function(w,sh,a){
-		if (this.weapons[w].isprimary&&this.isinprimaryfiringarc(targetunit)) {
+	    sh.wrap_after("getattackstrength",this,function(w,sh,a) {
+		if (this.weapons[w].isprimary&&this.isinprimaryfiringarc(sh)) {
 		    this.log("+1 attack die [%0]",self.name);
-		    return a+1;
+			a=a+1
 		}
 		return a;
 	    }.bind(sh));
@@ -4599,9 +4599,7 @@ var UPGRADES= [
 		req:function(m,n) {
 		    return !this.isinprimaryfiringarc(targetunit); 
 		}.bind(sh),
-		aiactivate: function(m,n) {
-		    return FCH_focus(m)>0;
-		},
+		aiactivate: function(m,n) { return FCH_focus(m)>0; },
 		f:function(m,n) {
 		    var f=FCH_focus(m);
 		    if (f>0) {
