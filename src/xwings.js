@@ -6,7 +6,7 @@ var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.9.4";
+var VERSION="v0.9.5";
 var LANG="en";
 var ENGAGED=false;
 var FILTER="none";
@@ -883,7 +883,7 @@ function win(destroyed) {
 	}
     else if ((d<0&&WINCOND<0)||(destroyed==1&&(WINCOND<round||WINCOND==0))) {
 	title="m-2win";
-	log("Team 2 wins! "+score1+" to "+score2);
+	log("Team 2 wins! "+score2+" to "+score1);
 	}
     
     $(".victory").attr("class",title);
