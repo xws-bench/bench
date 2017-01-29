@@ -1560,8 +1560,9 @@ function nextphase() {
     case SETUP_PHASE: 
 	if ($("#player1 option:checked").val()=="human") 
 	    TEAMS[1].isia=false; else TEAMS[1].isia=true;
-	if ($("#player2 option:checked").val()=="human") 
-	    TEAMS[2].isia=false; else TEAMS[2].isia=true;
+	TEAMS[2].isia=true
+	if ($("#player2 option:checked").val()=="computer") 
+	    TEAMS[2].isia=true; else TEAMS[2].isia=false;
 	if (TEAMS[1].isia==true) TEAMS[1].setia();
 	if (TEAMS[2].isia==true) TEAMS[2].setia();
 	ZONE[0].attr({fillOpacity:0});
@@ -1646,10 +1647,11 @@ function setphase(cannotreplay) {
 	}
 	var name=localStorage.name;
 	if (typeof name=="undefined"||name==null) name=UI_translation["human"];
+	TEAMS[2].isia=true
 	$("#player1").html("<option selected value='human'>"+name+"</option>");
 	$("#player1").append("<option value='computer'>"+UI_translation["computer"]+"</option>");
-	$("#player2").html("<option selected value='human'>"+name+"</option>");
-	$("#player2").append("<option value='computer'>"+UI_translation["computer"]+"</option>");
+	$("#player2").html("<option selected value='computer'>"+UI_translation["computer"]+"</option>");
+	$("#player2").append("<option value='human'>"+name+"</option>");
 	$("#player1").change(function() {
 	    TEAMS[1].isia=!TEAMS[1].isia;
 	    displayplayertype(1);
