@@ -388,7 +388,7 @@ Team.prototype = {
 	    var p=new Unit(this.team,pid);
 	    p.upg=[];
 	    for (j=0; j<10; j++) p.upg[j]=-1;
-	    var authupg=[MOD,TITLE].concat(PILOTS[p.pilotid].upgrades);
+	    var authupg=[TITLE,MOD].concat(PILOTS[p.pilotid].upgrades);
 	    for (j=1; j<pstr.length; j++) {
 		for (k=0; k<UPGRADES.length; k++) {
 		    if ((translated==true&&translate(UPGRADES[k].name).replace(/\'/g,"").replace(/\(Crew\)/g,"")==pstr[j])

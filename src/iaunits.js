@@ -6,6 +6,7 @@ IAUnit.prototype= {
     confirm: function(a) {
 	return true;
     },
+
     guessevades: function(roll,promise) {
 	if (this.rand(roll.dice+1)==FE_evade(roll.roll)) {
 	    this.log("guessed correctly the number of evades ! +1 %EVADE% [%0]",self.name);
@@ -14,6 +15,7 @@ IAUnit.prototype= {
 	}
 	promise.resolve(roll);
     },
+
     computemaneuver: function() {
 	var i,j,k,d=0;
 	var q=[],possible=-1;
@@ -93,9 +95,11 @@ IAUnit.prototype= {
 	this.log("Maneuver set");//+":"+d+"/"+q.length+" possible?"+possible+"->"+gd[d].move);
 	return d;
     },
+
     resolveactionselection: function(units,cleanup) {
 	cleanup(0);
     },
+
     selectcritical: function(crits,endselect) {
 	for (var i=0; i<crits.length; i++) {
 	    if (CRITICAL_DECK[crits[i]].lethal==false) {
@@ -104,6 +108,7 @@ IAUnit.prototype= {
 	}
 	endselect(crits[0]);
     },
+
     resolveactionmove: function(moves,cleanup,automove,possible,scoring) {
 	var i;
 	var ready=false;
@@ -149,6 +154,7 @@ IAUnit.prototype= {
 	}
 	else { this.m=old; cleanup(this,-1); }
     },
+
     doplan: function() {
 	$("#move").css({display:"none"});
 	$("#maneuverdial").empty();
@@ -169,6 +175,7 @@ IAUnit.prototype= {
 	}
 	return this.deferred;
     },
+
     showdial: function() { 	
 	$("#maneuverdial").empty();
 	if (phase>=PLANNING_PHASE) {
@@ -178,6 +185,7 @@ IAUnit.prototype= {
 	    };
 	}
     },
+
     resolvedecloak: function() {
 	var p=this.getdecloakmatrix(this.m);
 	var move=this.getdial()[this.maneuver].move;
@@ -197,12 +205,14 @@ IAUnit.prototype= {
 				   this.hasdecloaked=true;
 			       }.bind(this),true,scoring);
     },
+
     showactivation: function() {
     },
     timetoshowmaneuver: function() {
 	//this.log("this.maneuver "+this.maneuver)
 	return this.maneuver>-1&&skillturn>=this.getskill()&&phase==ACTIVATION_PHASE&&subphase==ACTIVATION_PHASE;
     },
+
     doactivation: function() {
 	var ad=this.updateactivationdial();
 	if (this.timeformaneuver()) {
@@ -210,6 +220,7 @@ IAUnit.prototype= {
 	    this.resolvemaneuver();
 	} else this.log("no resolvemaneuver");
     },
+
     showaction: function() {
 	//this.log($("#actiondial").empty());
 	$("#actiondial").empty();
@@ -220,6 +231,7 @@ IAUnit.prototype= {
 	    this.actionicon.attr({fill:((this==activeunit)?c:halftone(c))});
 	} else this.actionicon.attr({text:""});	
     },
+
     donoaction:function(list,str) {
 	var cmp=function(a,b) {
 	    if (a.type=="CRITICAL") return -1;
@@ -250,6 +262,7 @@ IAUnit.prototype= {
 		this.resolvenoaction(a,n);
 	    }.bind(this),"donoaction ia");
     },
+
     doaction: function(list,str,cando) {
 	var i;
 	var cmp=function(a,b) { return b.priority-a.priority; }
@@ -292,15 +305,19 @@ IAUnit.prototype= {
 	    }
 	}.bind(this),"doaction ia");
     },
+
     showattack: function() {
 	//$("#attackdial").empty();
+	this.log("showattack");
     },
+
     doattack: function(weaponlist,enemies) {
 	//this.log("ia/attack?"+this.id+" forced:"+forced+" turn:"+(skillturn==this.skill));
-	var power=0,t=null;
+	var power=0,tp=null;
 	var i,w;
+	var wp=null
 	//this.log(this.id+" readytofire?"+this.canfire());
-	NOLOG=true;
+	//NOLOG=true;
 	if (typeof weaponlist=="undefined") weaponlist=this.weapons;
 
 	var r=this.getenemiesinrange(weaponlist,enemies);
@@ -311,25 +328,21 @@ IAUnit.prototype= {
 		var p=this.evaluatetohit(wp,el[i]).tohit;
 		//this.log("power "+p+" "+el[i].name);
 		if (p>power&&!el[i].isdocked) {
-		    t=el[i]; power=p; this.activeweapon=wp; 
+		    tp=el[i]; power=p; this.activeweapon=wp; 
 		}
 	    }
 	}
-	NOLOG=false;
-	//this.log("ia/wn:"+this.activeweapon+" "+power);
-	//if (t!=null) this.log("ia/doattack "+this.id+":"+this.weapons[this.activeweapon].name+" "+t.name);
-      	if (t!=null) return this.selecttargetforattack(this.activeweapon,[t]);
-	//this.log("ia/doattack:canfire but no target");
-	//this.log("ia/doattack "+this.id+":cannot fire");
+	//NOLOG=false;
+   	if (tp!=null) return this.selecttargetforattack(this.activeweapon,[tp]);
 	this.addhasfired(); 
 	this.cleanupattack();
-	//this.log("noattack");
 	return false;
     },
+
     getresultmodifiers: function(m,n,from,to) {
 	var mods=this.getdicemodifiers(); 
 	var lm=[];
-	var mm;
+	//var mm;
 	NOLOG=false;
 	for (var i=0; i<mods.length; i++) {
 	    var d=mods[i];

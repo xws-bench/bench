@@ -427,6 +427,7 @@ var CRITICAL_DECK=[
 	faceup: function() {
 	    var self=this;
 	    this.log();
+	    this.isactive=true;
 	    this.unit.wrap_after("handledifficulty",this,function(d) {
 		if (d=="WHITE") this.addstress();
 	    });
@@ -437,6 +438,10 @@ var CRITICAL_DECK=[
 		this.unit.log("%0 repaired",this.name);
 	    }
 	    this.isactive=false;
+	},
+	action: function(n) {
+	    this.facedown();
+	    this.unit.endaction(n,"CRITICAL");
 	},
 	version:[V2],
     },

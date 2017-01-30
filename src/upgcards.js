@@ -2458,14 +2458,14 @@ var UPGRADES= [
 	type:MOD,    
 	done:true,
 	install: function(sh) {
-	    sh.installed=true;
 	    sh.shield++; sh.ship.shield++;
+	    sh.installed=true;
 	    sh.showstats();
 	},
-	uninstall:function(sh) {
+	/*uninstall:function(sh) {
 	    sh.shield--; sh.ship.shield--;
 	    sh.showstats();
-	},
+	},*/
         points: 4,
     },
     {
@@ -2511,10 +2511,10 @@ var UPGRADES= [
 	    sh.installed=true;
 	    sh.showstats();
 	},     
-	uninstall:function(sh) {
+	/*uninstall:function(sh) {
 	    sh.hull--; sh.ship.hull--;
 	    sh.showstats();
-	},
+	},*/
         points: 3,
     },
     {
@@ -4588,8 +4588,8 @@ var UPGRADES= [
 	ship:"ARC-170",
 	init: function(sh) {
 	    var self=this;
-	    sh.wrap_after("getattackstrength",this,function(w,sh,a) {
-		if (this.weapons[w].isprimary&&this.isinprimaryfiringarc(sh)) {
+	    sh.wrap_after("getattackstrength",this,function(wpn,aot,a) {
+		if (this.weapons[wpn].isprimary&&this.isinprimaryfiringarc(aot)) {
 		    this.log("+1 attack die [%0]",self.name);
 			a=a+1
 		}
