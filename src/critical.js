@@ -443,7 +443,7 @@ var CRITICAL_DECK=[
 	    this.facedown();
 	    this.unit.endaction(n,"CRITICAL");
 	},
-	version:[V2],
+	version:[V2]
     },
     {
 	name:"Major Explosion",
