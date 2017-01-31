@@ -3090,7 +3090,6 @@ var PILOTS = [
 	unit:"VCX-100",
 	skill:7,
 	pilotid:162,
-	ambiguous:true,
 	edition:"VCX-100",
 	points:40,
 	done:true,

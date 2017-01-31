@@ -434,7 +434,7 @@ var CRITICAL_DECK=[
 	},
 	facedown: function() {
 	    if (this.isactive) {
-		this.unit.unwrap("handledifficulty",this);
+		this.unit.handledifficulty.unwrap(this);
 		this.unit.log("%0 repaired",this.name);
 	    }
 	    this.isactive=false;
