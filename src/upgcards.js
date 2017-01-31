@@ -3347,8 +3347,10 @@ var UPGRADES= [
 			    return false;
 			}).unwrapper("endactivationphase");
 		    } else {
-			t.log("+2 ion tokens next turn [%0]",self.name);
+			t.log("+1 %HIT%, +2 ion tokens next turn [%0]",self.name);
 			t.wrap_after("beginplanningphase",this,function(l) {
+				this.resolvehit(1); 
+				this.checkdead(); 
 			    this.log("+2 ion tokens [%0]",self.name);
 			    this.addiontoken();
 			    this.addiontoken();

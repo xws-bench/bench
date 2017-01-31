@@ -308,7 +308,7 @@ IAUnit.prototype= {
 
     showattack: function() {
 	//$("#attackdial").empty();
-	this.log("showattack");
+	//this.log("showattack");
     },
 
     doattack: function(weaponlist,enemies) {
