@@ -1852,8 +1852,17 @@ Unit.prototype = {
 		sectors[k].hover(function() { sectors[k].attr({opacity:0.4}); }, function() { sectors[k].attr({opacity:0.1}); });
 		sectors[k].click(function() { 
 		    self.setarcrotate(k);
+			/*if ( k==0 ) self.shipimg="lancer-f.png";
+			if ( k==1 ) self.shipimg="lancer-r.png";
+			if ( k==2 ) self.shipimg="lancer-b.png";
+			if ( k==3 ) self.shipimg="lancer-l.png";
+			self.img=s.image("png/"+self.shipimg,-50*self.scale,-50*self.scale,100*self.scale,100*self.scale).transform();
+			log(self.g[2]);*/
+			if ( k==0 ) self.log("Mobile firing arc rotated to front");
+			if ( k==1 ) self.log("Mobile firing arc rotated to right side");
+			if ( k==2 ) self.log("Mobile firing arc rotated to back");
+			if ( k==3 ) self.log("Mobile firing arc rotated to left side");
 		    self.movelog("R-"+k);
-		    self.log("Moving firing arc rotated");
 		    for (var j=0; j<4; j++) {
 			sectors[j].attr({display:"none"});
 		    }
