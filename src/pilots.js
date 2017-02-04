@@ -1242,6 +1242,7 @@ var PILOTS = [
     {
         name: "Kir Kanos",
         faction:EMPIRE,
+		shipimg:"tie-interceptor-1.png",
 	pilotid:65,
         init:  function() {
 	    this.adddicemodifier(ATTACK_M,ADD_M,ATTACK_M,this,{
