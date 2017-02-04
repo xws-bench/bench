@@ -1204,6 +1204,7 @@ var PILOTS = [
     {
         name: "Royal Guard Pilot",
         faction:EMPIRE,
+		shipimg:"tie-interceptor-1.png",
         done:true,
 	pilotid:63,
         unit: "TIE Interceptor",
@@ -1288,6 +1289,7 @@ var PILOTS = [
         unique: true,
 	done:true,
         unit: "TIE Interceptor",
+		shipimg:"tie-interceptor-1.png",
         skill: 8,
         points: 26,
         upgrades: [ELITE],

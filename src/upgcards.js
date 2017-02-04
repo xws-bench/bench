@@ -4223,6 +4223,7 @@ var UPGRADES= [
     {
 	name:"Attanni Mindlink",
 	type:ELITE,
+	faction:SCUM,
 	points:1,
 	done:true,
 	init: function(sh) {
