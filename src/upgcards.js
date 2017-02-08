@@ -1417,7 +1417,7 @@ var UPGRADES= [
 		    targetunit.log("+1 %STRESS% [%0]",self.name);
 		}
 	    });
-	},
+	}
     },
     {
         name: "R2-D2",
@@ -1446,7 +1446,7 @@ var UPGRADES= [
 		    } 
 		}
 	    });
-	},
+	}
     },
     {
         name: "C-3PO",
@@ -1467,7 +1467,7 @@ var UPGRADES= [
 		}.bind(this));
 		return lock.promise();
 	    });
-	},
+	}
     },
     {
         name: "R3-A2",
