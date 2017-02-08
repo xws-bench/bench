@@ -4169,7 +4169,7 @@ var PILOTS = [
      done:true,
      pilotid:215,
      faction:REBEL,
-     upgrades:[ELITE,TORPEDO,ASTROMECH,TECH],
+     upgrades:[TORPEDO,ASTROMECH,TECH],
      points:25,
      skill:3,
      init: function() {
