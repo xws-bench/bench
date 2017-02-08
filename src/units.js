@@ -16,7 +16,7 @@ var MPOS={ F0:[0,3],F1:[1,3],F2:[2,3],F3:[3,3],F4:[4,3],F5:[5,3],
 	   TL1:[1,1],TL2:[2,1],TL3:[3,1],
 	   BR1:[1,4],BR2:[2,4],BR3:[3,4],
 	   TR1:[1,5],TR2:[2,5],TR3:[3,5],
-	   K1:[1,6],K2:[2,6],K3:[3,6],K4:[4,6],K5:[5,6],
+	   K1:[1,7],K2:[2,7],K3:[3,7],K4:[4,7],K5:[5,7],
 	   SL2:[2,0],SL3:[3,0],
 	   SR2:[2,6],SR3:[3,6],
 	   TRL3:[3,0],TRR3:[3,6],
@@ -684,7 +684,7 @@ Unit.prototype = {
 	var str="";
 	for (j=0; j<=5; j++) {
 	    m[j]=[];
-	    for (k=0; k<=6; k++) m[j][k]="<td></td>";
+	    for (k=0; k<=7; k++) m[j][k]="<td></td>";
 	}
 	var gd=this.getdial();
 	for (j=0; j<gd.length; j++) {
@@ -695,7 +695,7 @@ Unit.prototype = {
 	for (j=5; j>=0; j--) {
 	    str+="<tr>";
 	    if (j>0&&j<5) str+="<td>"+j+"</td>"; else str+="<td></td>";
-	    for (k=0; k<=6; k++) str+=m[j][k];
+	    for (k=0; k<=7; k++) str+=m[j][k];
 	    str+="</tr>\n";
 	}
 	return str;
@@ -709,7 +709,7 @@ Unit.prototype = {
 	if (phase==PLANNING_PHASE||phase==SELECT_PHASE||phase==CREATION_PHASE) {
 	    for (i=0; i<=5; i++) {
 		m[i]=[];
-		for (j=0; j<=6; j++) m[i][j]="<td></td>";
+		for (j=0; j<=7; j++) m[i][j]="<td></td>";
 	    }
 	    var ship=$("#select"+this.id).val();
 	    for (i=0; i<gd.length; i++) {
@@ -729,7 +729,7 @@ Unit.prototype = {
 	    for (i=5; i>=0; i--) {
 		str+="<tr>";
 		if (i>0&&i<5) str+="<td>"+i+"</td>"; else str+="<td></td>";
-		for (j=0; j<=6; j++) str+=m[i][j];
+		for (j=0; j<=7; j++) str+=m[i][j];
 		str+="</tr>\n";
 	    }
 	    if (phase==SELECT_PHASE||phase==CREATION_PHASE) $("#dial"+this.id).html(str);

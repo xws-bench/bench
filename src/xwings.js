@@ -6,7 +6,7 @@ var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.9.6";
+var VERSION="v0.10.0";
 var LANG="en";
 var ENGAGED=false;
 var FILTER="none";

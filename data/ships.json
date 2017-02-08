@@ -1174,5 +1174,36 @@
 	    {"move":"K4","difficulty":"RED"}
 	],
 	"actionList":[ "FOCUS","TARGET"]
+    },
+     "TIE Striker":{
+	"firesnd":"tie_fire",
+	"flysnd":"tie2_fly",
+	"scale":1.2,
+	"img":["tie-striker.png"],
+	"faction":["EMPIRE"],
+	"weapon_type":"Laser",
+	"fire": 3,
+	"evade": 2,
+	"hull": 4,
+	"shield": 0,
+	"dial": [
+	    {"move":"TL1","difficulty":"WHITE"},
+	    {"move":"BL1","difficulty":"GREEN"},
+	    {"move":"F1","difficulty":"GREEN"},
+	    {"move":"BR1","difficulty":"GREEN"},
+	    {"move":"TR1","difficulty":"WHITE"},
+	    {"move":"TL2","difficulty":"WHITE"},
+	    {"move":"BL2","difficulty":"WHITE"},
+	    {"move":"F2","difficulty":"GREEN"},
+	    {"move":"BR2","difficulty":"WHITE"},
+	    {"move":"TR2","difficulty":"WHITE"},
+	    {"move":"SL2","difficulty":"RED"},
+	    {"move":"K2","difficulty":"RED"},
+	    {"move":"SR2","difficulty":"RED"},
+	    {"move":"BL3","difficulty":"WHITE"},
+	    {"move":"F3","difficulty":"GREEN"},
+	    {"move":"BR3","difficulty":"WHITE"}
+	],
+	"actionList":[ "FOCUS","ROLL","EVADE"]
     }
 }

@@ -4199,6 +4199,37 @@ var PILOTS = [
       faction:REBEL,
       upgrades:[MISSILE,CREW,CREW],
       points:38
+    },
+    {
+    name: "Black Squadron Scout",
+	done:true,
+	pilotid:217,
+    unit: "TIE Striker",
+    faction:EMPIRE,
+    skill: 4,
+    points: 20,
+    upgrades: [ELITE],
+    },
+    {
+    name: "Scarif Defender",
+	done:true,
+	pilotid:218,
+    unit: "TIE Striker",
+    faction:EMPIRE,
+    skill: 3,
+    points: 18,
+    upgrades: [],
+    },
+    {
+    name: "Imperial Trainee",
+	done:true,
+	pilotid:219,
+    unit: "TIE Striker",
+    faction:EMPIRE,
+    skill: 1,
+    points: 17,
+    upgrades: [],
     }
+
     
 ];

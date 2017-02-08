@@ -51,9 +51,11 @@ function loadrock(s,str) {
 	do {
 	    var ok=true;
 	    coord[i]=[Math.random()*400+300-PX[i],Math.random()*400+300-PY[i],Math.random()*45];
+		//coord[i]=[PX[i],PY[i],Math.random()*45];
 	    for (j=0; j<i; j++) {
 		var dx=coord[i][0]-coord[j][0]+PX[i]-PX[j];
 		var dy=coord[i][0]-coord[j][0]+PY[i]-PY[j];
+		//log("Obstacle "+i+" dx="+dx+" dy="+dy);
 		if (dx*dx+dy*dy<15000) { ok=false;break; }
 	    } 
 	} while (!ok);
