@@ -166,7 +166,7 @@ var UPGRADES= [
 	      }.bind(this), A[ASTROMECH.toUpperCase()].key, $("<div>").attr({class:"symbols"}));
 	      return this.activationdial;
 	  });
-      },
+      }
     },
     { name: "BB-8",
       unique:true,
@@ -190,7 +190,7 @@ var UPGRADES= [
 		      $("<div>").attr({class:"symbols",title:self.name}));
 	      return this.activationdial;
 	  })
-      },
+      }
     },
     {name:"Integrated Astromech",
      points:0,
@@ -218,7 +218,7 @@ var UPGRADES= [
 	     return pp.promise();
 	 };
 	 sh.wrap_after("deal",this,newdeal);
-     },
+     }
     },
     {name:"Weapons Guidance",
      points:2,
@@ -379,7 +379,7 @@ var UPGRADES= [
 		self.log("no lower skilled pilot within range 2 [%0]",this.name);
 		self.endaction(n,"ELITE");
 	    }
-	},
+	}
     },
     {
         name: "Expert Handling",
@@ -1562,8 +1562,7 @@ var UPGRADES= [
 		this.log("-1 stress -> +1 %FOCUS% [%0]",self.name);
 		this.addfocustoken();
 	    });
-	},
-        
+	}   
     },
     {
         name: "Jan Ors",
