@@ -1205,5 +1205,35 @@
 	    {"move":"BR3","difficulty":"WHITE"}
 	],
 	"actionList":[ "FOCUS","ROLL","EVADE"]
+    },
+    "U-wing":{
+	"firesnd":"falcon_fire",
+	"flysnd":"falcon_fly",
+	"faction":["REBEL"],
+	"scale":1.0,
+	"img":["u-wing.png"],
+	"weapon_type":"Laser",
+	"islarge":true,
+	"fire": 3,
+	"evade": 1,
+	"hull": 4,
+	"shield": 4,
+	"dial": [
+	    {"move":"F0","difficulty":"RED"},
+	    {"move":"BL1","difficulty":"GREEN"},
+	    {"move":"F1","difficulty":"GREEN"},
+	    {"move":"BR1","difficulty":"GREEN"},
+	    {"move":"TL2","difficulty":"WHITE"},
+	    {"move":"BL2","difficulty":"GREEN"},
+	    {"move":"F2","difficulty":"GREEN"},
+	    {"move":"BR2","difficulty":"GREEN"},
+	    {"move":"TR2","difficulty":"WHITE"},
+	    {"move":"BL3","difficulty":"WHITE"},
+	    {"move":"F3","difficulty":"WHITE"},
+	    {"move":"BR3","difficulty":"WHITE"},
+		{"move":"F4","difficulty":"WHITE"}
+	],
+	"actionList":[ "FOCUS","TARGET"]
     }
+
 }

@@ -4229,7 +4229,18 @@ var PILOTS = [
     skill: 1,
     points: 17,
     upgrades: [],
+    },
+    { name:"Blue Squadron Pathfinder",
+      unit:"U-wing",
+      skill:2,
+      done:true,
+      unique:false,
+      pilotid:220,
+      faction:REBEL,
+      upgrades:[SYSTEM,TORPEDO,CREW,CREW],
+      points:23
     }
+
 
     
 ];
