@@ -16,7 +16,7 @@ var UPGRADES= [
 	    target.log("+%1 %HIT%, +1 ion token [%0]",this.name,1);
 	    target.addiontoken();
 	},
-	range: [1,2],
+	range: [1,2]
     },
     {
 	name: "Proton Torpedoes",
@@ -47,7 +47,7 @@ var UPGRADES= [
 		    a.priority+=10;
 	    });
 	},        
-        range: [2,3],
+        range: [2,3]
     },
     {
         name: "R2 Astromech",
@@ -75,7 +75,7 @@ var UPGRADES= [
 		sh.getdial.unwrap(this);
 	},
         type: ASTROMECH,
-        points: 1,
+        points: 1
     },
     {
         name: "R2-D2",
@@ -91,7 +91,7 @@ var UPGRADES= [
 	},
         unique: true,
         type: ASTROMECH,
-        points: 4,
+        points: 4
     },
     {
         name: "R2-F2",
@@ -111,7 +111,7 @@ var UPGRADES= [
 	},
         unique: true,
         type: ASTROMECH,
-        points: 3,
+        points: 3
     },
     {
         name: "R5-D8",
@@ -142,7 +142,7 @@ var UPGRADES= [
 	},
         unique: true,
         type: ASTROMECH,
-        points: 3,
+        points: 3
     },
     { name: "R5-X3",
       unique:true,
@@ -259,7 +259,7 @@ var UPGRADES= [
 	done:true,
         unique: true,
         type: ASTROMECH,
-        points: 2,
+        points: 2
     },
     {
         name: "R5 Astromech",
@@ -285,7 +285,7 @@ var UPGRADES= [
 	    });
 	},
         type: ASTROMECH,
-        points: 1,
+        points: 1
     },
     {
         name: "Determination",
@@ -306,7 +306,7 @@ var UPGRADES= [
 	    sh.wrap_after("deal",this,newdeal);
 	},
         type: ELITE,
-        points: 1,
+        points: 1
     },
     {
         name: "Swarm Tactics",
@@ -397,7 +397,7 @@ var UPGRADES= [
 	},        
         type: ELITE,
 	done:true,
-        points: 2,
+        points: 2
     },
     {
         name: "Marksmanship",
@@ -428,7 +428,7 @@ var UPGRADES= [
 	},
         done:true,
         type: ELITE,
-        points: 3,
+        points: 3
     },
     {
         name: "Concussion Missiles",
@@ -456,7 +456,7 @@ var UPGRADES= [
 	    });
 
 	},
-        range: [2,3],
+        range: [2,3]
     },
     {
         name: "Cluster Missiles",
@@ -479,7 +479,7 @@ var UPGRADES= [
 		    a.priority+=10;
 	    });
 	},
-        range: [1,2],
+        range: [1,2]
     },
     {
         name: "Daredevil",
@@ -507,7 +507,7 @@ var UPGRADES= [
 		},true,true);
 	},
         type: ELITE,
-        points: 3,
+        points: 3
     },
     {
         name: "Elusiveness",
@@ -535,7 +535,7 @@ var UPGRADES= [
 		}.bind(this),str:"critical"});
 	},
         type: ELITE,
-        points:2,
+        points:2
     },
     {
         name: "Homing Missiles",
@@ -559,7 +559,7 @@ var UPGRADES= [
 	    });
 
 	},
-        points: 5,
+        points: 5
     },
     {
         name: "Push the Limit",
@@ -578,7 +578,7 @@ var UPGRADES= [
 	},
 	done:true,
         type: ELITE,
-        points: 3,
+        points: 3
     },
     {
         name: "Deadeye",
@@ -591,7 +591,7 @@ var UPGRADES= [
 	},
 	done:true,
         type: ELITE,
-        points: 1,
+        points: 1
     },
     {
         name: "Expose",
@@ -611,7 +611,7 @@ var UPGRADES= [
 	},
 	done:true,
         type: ELITE,
-        points: 4,
+        points: 4
     },
     {
         name: "Gunner",
@@ -628,7 +628,7 @@ var UPGRADES= [
 	    });
 	},
         type: CREW,
-        points: 5,
+        points: 5
     },
     {
         name: "Ion Cannon",
@@ -644,7 +644,7 @@ var UPGRADES= [
 	},
         points: 3,
         attack: 3,
-        range: [1,3],
+        range: [1,3]
     },
     {
         name: "Heavy Laser Cannon",
@@ -661,7 +661,7 @@ var UPGRADES= [
 	},
         points: 7,
         attack: 4,
-        range: [2,3],
+        range: [2,3]
     },
     {
         name: "Seismic Charges",
@@ -684,7 +684,7 @@ var UPGRADES= [
 	    }
 	},
         type: BOMB,
-        points: 2,
+        points: 2
     },    
 
     {
@@ -704,7 +704,7 @@ var UPGRADES= [
 	},
 	done:true,
         type: CREW,
-        points: 2,
+        points: 2
     },
     {
         name: "Assault Missiles",
@@ -733,7 +733,7 @@ var UPGRADES= [
 	},
         points: 5,
         attack: 4,
-        range: [2,3],
+        range: [2,3]
     },
     {
         name: "Veteran Instincts",
@@ -751,7 +751,7 @@ var UPGRADES= [
 
 	},
         type: ELITE,
-        points: 1,
+        points: 1
     },
     {
         name: "Proximity Mines",
@@ -799,7 +799,7 @@ var UPGRADES= [
 	    return {s:s,p:this.op};
 	},
         type: BOMB,
-        points: 3,
+        points: 3
     },
     {
         name: "Weapons Engineer",
@@ -845,7 +845,7 @@ var UPGRADES= [
 	}, 
 	done:true,
         type: ELITE,
-        points: 1,
+        points: 1
     },
     {
         name: "Luke Skywalker",
@@ -877,7 +877,7 @@ var UPGRADES= [
 		},str:"focus"});
 	},
         type: CREW,
-        points: 7,
+        points: 7
     },
     {
         name: "Nien Nunb",
@@ -898,7 +898,7 @@ var UPGRADES= [
 	},
         unique: true,
         type: CREW,
-        points: 1,
+        points: 1
     },
     {
         name: "Chewbacca",
@@ -923,7 +923,7 @@ var UPGRADES= [
 	    };
 	    sh.wrap_after("deal",this,newdeal);
 	},
-        points: 4,
+        points: 4
     },
     {
         name: "Advanced Proton Torpedoes",
@@ -956,7 +956,7 @@ var UPGRADES= [
 	    });
 
 	},        
-        points: 6,
+        points: 6
     },
     {
         name: "Autoblaster",
@@ -973,7 +973,7 @@ var UPGRADES= [
 	    return Weapon.prototype.declareattack.call(this,target);
 	},
         range: [1,1],
-        points: 5,
+        points: 5
     },
     {
         name: "Fire-Control System",
@@ -990,7 +990,7 @@ var UPGRADES= [
 	    });
 	},
         type: SYSTEM,
-        points: 2,
+        points: 2
     },
     {
         name: "Blaster Turret",
@@ -1001,7 +1001,7 @@ var UPGRADES= [
 	consumes:true,
         points: 4,
         attack: 3,
-        range: [1,2],
+        range: [1,2]
     },
     {
         name: "Recon Specialist",
@@ -1014,7 +1014,7 @@ var UPGRADES= [
 	},
 	done:true,
         type: CREW,
-        points: 3,
+        points: 3
     },
     {
         name: "Saboteur",
@@ -1044,7 +1044,7 @@ var UPGRADES= [
 		}.bind(this.unit));
 	    } else this.unit.endaction(n,"CREW");
 	},
-        points: 2,
+        points: 2
     },
     {
         name: "Intelligence Agent",
@@ -1061,7 +1061,7 @@ var UPGRADES= [
 	    });
 	},
         type: CREW,
-        points: 1,
+        points: 1
     },
     {
         name: "Proton Bombs",
@@ -1082,7 +1082,7 @@ var UPGRADES= [
 	    }
 	},
         type: BOMB,
-        points: 5,
+        points: 5
     },
     {
         name: "Adrenaline Rush",
@@ -1109,7 +1109,7 @@ var UPGRADES= [
 	    })
 	},        
         type: ELITE,
-        points: 1,
+        points: 1
     },
     {
         name: "Advanced Sensors",
@@ -1124,7 +1124,7 @@ var UPGRADES= [
 	    });
 	},
         type: SYSTEM,
-        points: 3,
+        points: 3
     },
     {
         name: "Sensor Jammer",
@@ -1146,7 +1146,7 @@ var UPGRADES= [
 	},
 	done:true,
         type: SYSTEM,
-        points: 4,
+        points: 4
     },
     {
         name: "Darth Vader",
@@ -1170,7 +1170,7 @@ var UPGRADES= [
 	    });
 	},
         type: CREW,
-        points: 3,
+        points: 3
     },
     {
         name: "Rebel Captive",
@@ -1189,7 +1189,7 @@ var UPGRADES= [
 	},
         unique: true,
         type: CREW,
-        points: 3,
+        points: 3
     },
     {
         name: "Flight Instructor",
@@ -1207,7 +1207,7 @@ var UPGRADES= [
 	},
 	done:true,
         type: CREW,
-        points: 4,
+        points: 4
     },
     {
         name: "Navigator",
@@ -1228,7 +1228,7 @@ var UPGRADES= [
 	},
 	done:true,
         type: CREW,
-        points: 3,
+        points: 3
     },
     {
         name: "Opportunist",
@@ -1248,7 +1248,7 @@ var UPGRADES= [
 	    });
 	},
         type: ELITE,
-        points: 4,
+        points: 4
     },
     {
         name: "Ion Pulse Missiles",
@@ -1273,7 +1273,7 @@ var UPGRADES= [
 	},
         points: 3,
         attack: 3,
-        range: [2,3],
+        range: [2,3]
     },
     {
         name: "Wingman",
@@ -1289,7 +1289,7 @@ var UPGRADES= [
 	    });
 	},
         type: ELITE,
-        points: 2,
+        points: 2
     },
     {
         name: "Decoy",
@@ -1310,7 +1310,7 @@ var UPGRADES= [
 	},
 	done:true,
         type: ELITE,
-        points: 2,
+        points: 2
     },
     {
         name: "Outmaneuver",
@@ -1328,7 +1328,7 @@ var UPGRADES= [
 	    });
 	},
         type: ELITE,
-        points: 3,
+        points: 3
     },
     {
         name: "Predator",
@@ -1344,7 +1344,7 @@ var UPGRADES= [
 		}.bind(sh)});
 	},
         type: ELITE,
-        points: 3,
+        points: 3
     },
     {
         name: "Flechette Torpedoes",
@@ -1366,7 +1366,7 @@ var UPGRADES= [
 	},
         points: 2,
         attack: 3,
-        range: [2,3],
+        range: [2,3]
     },
     {
         name: "R7 Astromech",
@@ -1401,7 +1401,7 @@ var UPGRADES= [
 	done:true,
         unique: true,
         type: ASTROMECH,
-        points: 3,
+        points: 3
     },
     {
         name: "Tactician",
@@ -1488,7 +1488,7 @@ var UPGRADES= [
 	},
         unique: true,
         type: ASTROMECH,
-        points: 2,
+        points: 2
     },
     {
         name: "R2-D6",
@@ -1498,7 +1498,7 @@ var UPGRADES= [
 	done:true,
         unique: true,
         type: ASTROMECH,
-        points: 1,
+        points: 1
     },
     {
         name: "Enhanced Scopes",
@@ -1513,7 +1513,7 @@ var UPGRADES= [
 	    });
 	},
         type: SYSTEM,
-        points: 1,
+        points: 1
     },
     {
         name: "Chardaan Refit",
@@ -1547,7 +1547,7 @@ var UPGRADES= [
 	    });
 
 	},
-        range: [1,1],
+        range: [1,1]
     },
     {
         name: "Kyle Katarn",
@@ -1588,7 +1588,7 @@ var UPGRADES= [
 			"",false);
 		}
 	    })
-	},
+	}
     },
 
     {
@@ -1610,7 +1610,7 @@ var UPGRADES= [
 	done:true,
         unique: true,
         type: ASTROMECH,
-        points: 1,
+        points: 1
     },
     {
         name: "R5-P9",
@@ -1627,7 +1627,7 @@ var UPGRADES= [
 	},        
         unique: true,
         type: ASTROMECH,
-        points: 3,
+        points: 3
     },
     {
         name: "Han Solo",
@@ -1651,7 +1651,7 @@ var UPGRADES= [
         type: CREW,
         unique: true,
         done:true,
-        points: 2,
+        points: 2
     },
     { 
         name: "Leia Organa",
@@ -1679,14 +1679,14 @@ var UPGRADES= [
 	    })
 	},
 
-        points: 4,
+        points: 4
     },
     {
         name: "Targeting Coordinator",
         type: CREW,
         limited: true,
 	done:true,
-        points: 4,
+        points: 4
     },
 
     {
@@ -1712,7 +1712,7 @@ var UPGRADES= [
 		}.bind(this.unit));
 	    else this.unit.endaction(n,"CREW");
 	},
-        points: 3,
+        points: 3
     },
     {
         name: "Mara Jade",
@@ -1731,7 +1731,7 @@ var UPGRADES= [
 		    }
 	    });
 	},
-        points: 3,
+        points: 3
     },
     {
         name: "Fleet Officer",
@@ -1770,7 +1770,7 @@ var UPGRADES= [
 		}
 	    } else this.unit.endaction(n,CREW);
 	},
-        points: 3,
+        points: 3
     },
     {
         name: "Stay On Target",
@@ -1793,7 +1793,7 @@ var UPGRADES= [
 		}
 		return p;
 	    });
-	},
+	}
     },
     {
         name: "Dash Rendar",
@@ -1805,7 +1805,7 @@ var UPGRADES= [
 	    sh.wrap_after("getobstructiondef",this,function() { return 0; });
 	},
         type: CREW,
-        points: 2,
+        points: 2
         
     },
     {
@@ -1836,7 +1836,7 @@ var UPGRADES= [
 	},
         unique: true,
         type: ELITE,
-        points: 2,
+        points: 2
     },
     {
         name: "'Leebo'",
@@ -1851,7 +1851,7 @@ var UPGRADES= [
 	},
 	done:true,
         type: CREW,
-        points: 2,
+        points: 2
         
     },
     {
@@ -1871,7 +1871,7 @@ var UPGRADES= [
 		    p[k].checkdead();
 		},["select unit [%0]",self.name],false);
 	    });
-	},
+	}
     },
     {
         name: "Intimidation",
@@ -1889,7 +1889,7 @@ var UPGRADES= [
 	    });
 	},
         type: ELITE,
-        points: 2,
+        points: 2
     },
     {
         name: "Ysanne Isard",
@@ -1907,7 +1907,7 @@ var UPGRADES= [
 	},
 	done:true,
         type: CREW,
-        points: 4,
+        points: 4
         
     },
     {
@@ -1939,7 +1939,7 @@ var UPGRADES= [
 		return pp.promise();
 	    }
 	    sh.wrap_after("deal",this,newdeal);
-	},
+	}
     },
     {
         name: "Ion Torpedoes",
@@ -1965,7 +1965,7 @@ var UPGRADES= [
 	},
         points: 5,
         attack: 4,
-        range: [2,3],
+        range: [2,3]
     },
     {
         name: "Bodyguard",
@@ -1985,7 +1985,7 @@ var UPGRADES= [
 	    });
 	},
         type: ELITE,
-        points: 2,
+        points: 2
         
     },
     {
@@ -2012,7 +2012,7 @@ var UPGRADES= [
 		}.bind(sh),str:"focus"});
 	},   
         type: ELITE,
-        points: 1,
+        points: 1
     },
     {
         name: "Accuracy Corrector",
@@ -2036,7 +2036,7 @@ var UPGRADES= [
 	},                
 	done:true,
         type: SYSTEM,
-        points: 3,
+        points: 3
     },
     {
         name: "Inertial Dampeners",
@@ -2058,7 +2058,7 @@ var UPGRADES= [
 	    });
 	},
         type: ILLICIT,
-        points: 1,
+        points: 1
     },
     { name:"Tractor Beam",
       type:CANNON,
@@ -2088,7 +2088,7 @@ var UPGRADES= [
 	},
         points: 2,
         attack: 3,
-        range: [1,3],
+        range: [1,3]
     },
     {
         name: "'Mangler' Cannon",
@@ -2115,7 +2115,7 @@ var UPGRADES= [
 		    return m;
 		}.bind(sh),str:"hit"});
 	},
-        range: [1,3],
+        range: [1,3]
     },
     {
         name: "Dead Man's Switch",
@@ -2131,7 +2131,7 @@ var UPGRADES= [
 	    });
 	},
         type: ILLICIT,
-        points: 2,
+        points: 2
     },
     {
         name: "Feedback Array",
@@ -2159,7 +2159,7 @@ var UPGRADES= [
 	    var self=this;
 	    this.toString=Upgrade.prototype.toString;
 	},
-        points: 2,
+        points: 2
     },
     {
         name: "'Hot Shot' Blaster",
@@ -2171,7 +2171,7 @@ var UPGRADES= [
 	firesnd:"xwing_fire",
         points: 3,
         attack: 3,
-        range: [1,2],
+        range: [1,2]
     },
     {
         name: "Greedo",
@@ -2209,7 +2209,7 @@ var UPGRADES= [
 		    }).unwrapper("endbeingattacked");
 	    });
 	},
-        points: 1,
+        points: 1
     },
     {
         name: "Salvaged Astromech",   
@@ -2231,7 +2231,7 @@ var UPGRADES= [
 		return pp.promise();
 	    };
 	    sh.wrap_after("deal",this,newdeal);
-	},
+	}
     },
     {
         name: "Bomb Loadout",
@@ -2242,7 +2242,7 @@ var UPGRADES= [
         limited: true,
         type: TORPEDO,
         points: 0,
-        ship: "Y-Wing",
+        ship: "Y-Wing"
     },
     {
         name: "'Genius'",
@@ -2265,7 +2265,7 @@ var UPGRADES= [
 	    });
 	},
         type: SALVAGED,
-        points: 0,
+        points: 0
     },
     {
         name: "Unhinged Astromech",
@@ -2294,7 +2294,7 @@ var UPGRADES= [
 	    if (typeof sh.getdial.unwrap=="function")
 		sh.getdial.unwrap(this);
 	},
-        points: 1,
+        points: 1
     },
     {
         name: "R4-B11",
@@ -2322,7 +2322,7 @@ var UPGRADES= [
 		    }
 		    return m;
 		}.bind(sh),str:"target"});
-	},
+	}
     },
     {
         name: "Autoblaster Turret",
@@ -2339,7 +2339,7 @@ var UPGRADES= [
 	    }).unwrapper("afterdefenseeffect");
 	    return Weapon.prototype.declareattack.call(this,target);
 	},
-        range: [1,1],
+        range: [1,1]
     },
     {
         name: "R4 Agromech",
@@ -2367,7 +2367,7 @@ var UPGRADES= [
 	    });
 	},
         type: SALVAGED,
-        points: 2,
+        points: 2
     },
     {
         name: "K4 Security Droid",
@@ -2384,7 +2384,7 @@ var UPGRADES= [
 		    },["select unit (or self to cancel) [%0]",self.name],true);
 	    });
 	},
-        points: 3,
+        points: 3
     },
     {
         name: "Outlaw Tech",
@@ -2402,7 +2402,7 @@ var UPGRADES= [
 		}
 	    });
 	},
-        points: 2,
+        points: 2
     },
     {
         name: "Advanced Targeting Computer",
@@ -2450,7 +2450,7 @@ var UPGRADES= [
 		this.show();
 	    })
 	},
-        points: 3,
+        points: 3
     },
     {
         name: "Shield Upgrade",
@@ -2465,14 +2465,14 @@ var UPGRADES= [
 	    sh.shield--; sh.ship.shield--;
 	    sh.showstats();
 	},*/
-        points: 4,
+        points: 4
     },
     {
         name: "Engine Upgrade",
 	type:MOD,
 	done:true,
 	addedaction:"Boost",
-        points: 4,
+        points: 4
     },
     {
         name: "Anti-Pursuit Lasers",
@@ -2499,7 +2499,7 @@ var UPGRADES= [
 	type:MOD,
 	done:true,
 	addedaction:"Target",
-        points: 2,
+        points: 2
     },
     {
         name: "Hull Upgrade",
@@ -2514,7 +2514,7 @@ var UPGRADES= [
 	    sh.hull--; sh.ship.hull--;
 	    sh.showstats();
 	},*/
-        points: 3,
+        points: 3
     },
     {
         name: "Munitions Failsafe",
@@ -2530,7 +2530,7 @@ var UPGRADES= [
 	    })
 	},
 	done:true,
-        points: 1,
+        points: 1
     },
     {
         name: "Stygium Particle Accelerator",
@@ -2550,7 +2550,7 @@ var UPGRADES= [
 				  "Stygium P.A.: +1 %EVADE%");
 	    })
 	},
-        points: 2,
+        points: 2
     }, 
     {
         name: "Advanced Cloaking Device",
@@ -2565,7 +2565,7 @@ var UPGRADES= [
 		}
 	    });
 	},
-        ship: "TIE Phantom",
+        ship: "TIE Phantom"
     },
     {
         name: "B-Wing/E2",
@@ -2579,7 +2579,7 @@ var UPGRADES= [
 	},
 	uninstall: function(sh) {
 	    sh.shipimg="b-wing-2.png";
-	},
+	}
     },
     {
         name: "Countermeasures",
@@ -2605,7 +2605,7 @@ var UPGRADES= [
 		    }.bind(this),type:mod.type.toUpperCase(),name:mod.name}],"",true);
 	    });
 	},
-        points: 3,
+        points: 3
     },
     {
         name: "Experimental Interface",
@@ -2681,7 +2681,7 @@ var UPGRADES= [
         points: 0,
 	done:true,
         ship: "Firespray-31",
-	upgrades:[TORPEDO],
+	upgrades:[TORPEDO]
     },
     {
         name: "Millennium Falcon",
@@ -2690,7 +2690,7 @@ var UPGRADES= [
 	addedaction:"Evade",
         unique: true,
         points: 1,
-        ship: "YT-1300",
+        ship: "YT-1300"
     },
     {
         name: "Moldy Crow",
@@ -2705,7 +2705,7 @@ var UPGRADES= [
         unique: true,
 	done:true,
         points: 3,
-        ship: "HWK-290",
+        ship: "HWK-290"
     },
     {
         name: "ST-321",
@@ -2722,7 +2722,7 @@ var UPGRADES= [
 	},
         unique: true,
         points: 3,
-        ship: "Lambda-Class Shuttle",
+        ship: "Lambda-Class Shuttle"
     },
     {
         name: "Royal Guard TIE",
@@ -2737,7 +2737,7 @@ var UPGRADES= [
 	uninstall: function(sh) {
 	    sh.shipimg="tie-interceptor-2.png";
 	},
-        ship: "TIE Interceptor",
+        ship: "TIE Interceptor"
     },
     {
         name: "A-Wing Test Pilot",
@@ -2753,7 +2753,7 @@ var UPGRADES= [
 	},
 	uninstall:function(sh) {
 	    sh.shipimg="a-wing-2.png";
-	},
+	}
     },
     {
         name: "Outrider",
@@ -2773,7 +2773,7 @@ var UPGRADES= [
 	},
         unique: true,
         points: 5,
-        ship: "YT-2400",
+        ship: "YT-2400"
     },
     {
         name: "Dauntless",
@@ -2792,7 +2792,7 @@ var UPGRADES= [
 	},
         unique: true,
         points: 2,
-        ship: "VT-49 Decimator",
+        ship: "VT-49 Decimator"
     },
     {
         name: "Virago",
@@ -2802,7 +2802,7 @@ var UPGRADES= [
         unique: true,
         points: 1,
 	skillmin:4,
-        ship: "StarViper",
+        ship: "StarViper"
     },
     {
         name: "'Heavy Scyk' Interceptor",
@@ -2816,7 +2816,7 @@ var UPGRADES= [
 	},     
 
         points: 2,
-        ship: "M3-A Interceptor",
+        ship: "M3-A Interceptor"
 
     },
     {
@@ -2835,7 +2835,7 @@ var UPGRADES= [
 	    }
 	},
         points: 0,
-        ship: "Aggressor",
+        ship: "Aggressor"
     },
     {
         name: "BTL-A4 Y-Wing",
@@ -2861,7 +2861,7 @@ var UPGRADES= [
 	    },self,turret); 
 	},
         points: 0,
-        ship: "Y-Wing",
+        ship: "Y-Wing"
     },
     {
         name: "Andrasta",
@@ -2870,7 +2870,7 @@ var UPGRADES= [
         upgrades:[BOMB,BOMB],
         unique: true,
         points: 0,
-        ship: "Firespray-31",
+        ship: "Firespray-31"
     },
     {
         name: "TIE/x1",
@@ -2879,7 +2879,7 @@ var UPGRADES= [
         upgrades:[SYSTEM],
 	pointsupg:-4,
         points: 0,
-        ship: "TIE Advanced",
+        ship: "TIE Advanced"
     },
     {
         name: "Emperor Palpatine",
@@ -2964,7 +2964,7 @@ var UPGRADES= [
 		var u=sh.upgrades[i];
 		if (u.type.match(/Missile|Torpedo|Bomb/)) u.ordnance=true;
 	    }
-	},
+	}
     },
     {
         name: "Cluster Mines",
@@ -3040,7 +3040,7 @@ var UPGRADES= [
 	    s+="Z";
 	    return {s:s,p:this.op};
 	},
-        points: 4,
+        points: 4
     },
     {
         name: "Glitterstim",
@@ -3093,7 +3093,7 @@ var UPGRADES= [
 		    }
 		    return m;
 		}.bind(sh),str:"focus",noreroll:"focus"});
-	},
+	}
     },
     {
         name: "Cloaking Device",
@@ -3118,7 +3118,7 @@ var UPGRADES= [
 		    self.desactivate();
 		} else this.log("%0 still working",self.name);
 	    });
-	},
+	}
     },
     
     {
@@ -3141,7 +3141,7 @@ var UPGRADES= [
 		}
 		return b;
 	    });
-	},
+	}
     },
     { name:"Wired",
       type: ELITE,
@@ -3163,7 +3163,7 @@ var UPGRADES= [
 	      req:req});
       },
       done:true,
-      points:1,
+      points:1
     },
     { name:"Cool Hand",
       type: ELITE,
@@ -3188,7 +3188,7 @@ var UPGRADES= [
 			      "Add %EVADE% or %FOCUS% instead of %STRESS% token",
 			      true);
 	  });
-      },
+      }
     },
     { name:"Juke",
       type: ELITE,
@@ -3230,7 +3230,7 @@ var UPGRADES= [
 		};
 	    });
 	},
-	islarge:false,
+	islarge:false
     },
     {
 	name: "Twin Laser Turret",
@@ -3373,7 +3373,7 @@ var UPGRADES= [
 		Bomb.prototype.detonate.call(this,immediate);
 	    }
 	},       
-	points: 4,
+	points: 4
     },
     {
 	name: "Bombardier",
@@ -3385,7 +3385,7 @@ var UPGRADES= [
 		if (d.indexOf("F1")>-1) return d.concat("F2");
 		return d;
 	    })
-	},
+	}
     },
     {name:"Agent Kallus",
      type:CREW,
@@ -3473,7 +3473,7 @@ var UPGRADES= [
 		if (a.type=="TARGET"&&self.isactive&&this.candotarget()) 
 		    a.priority+=10;
 	    });
-	},
+	}
     },
     {
 	name: "Advanced SLAM",
@@ -3639,7 +3639,7 @@ var UPGRADES= [
 		}
 		return r;
 	    });
-	},
+	}
     },
     {
 	name: "Dorsal Turret",
@@ -3728,7 +3728,7 @@ var UPGRADES= [
 		  }
 		  return m;
 	      }.bind(this),str:"focus"});
-      },
+      }
     },
     { name:"Kanan Jarrus",
       type:CREW,
@@ -3890,7 +3890,7 @@ var UPGRADES= [
 		     this.addtarget(p[k]);
 		 },["select target or self to cancel [%0]",self.name],true);
 	 });
-     },
+     }
     },
     {name:"TIE/x7",
      points:-2,
@@ -4038,7 +4038,7 @@ var UPGRADES= [
 		 }
 		 return m;
 	     },str:"evade"});
-     },
+     }
     },
     {name:"4-LOM",
      faction:SCUM,
@@ -4094,19 +4094,19 @@ var UPGRADES= [
 		 break; 
 	     }
 	 }
-     },
+     }
     },
     {
 	name:"Adaptability(+1)",
 	type:ELITE,
 	points:0,
-	invisible:true,
+	invisible:true
     },
     {
 	name:"Adaptability(-1)",
 	type:ELITE,
 	points:0,
-	invisible:true,
+	invisible:true
     },
     { 
 	name:"Dengar",
@@ -4299,7 +4299,7 @@ var UPGRADES= [
 	    if (typeof sh.weapons[0].getattack.unwrap=="function") 
 		sh.weapons[0].getattack.unwrap(this);
 	    sh.showstats();
-	},
+	}
     },
     {name:"Long-Range Scanners",
      type:MOD,
@@ -4389,7 +4389,7 @@ var UPGRADES= [
 	    }
 	},
         type: BOMB,
-        points: 3,
+        points: 3
     },
     {
         name: "Ion Projector",
@@ -4429,7 +4429,7 @@ var UPGRADES= [
 	    });
 	    this.switch();
 	    sh.showskill();
-	},
+	}
     },
     {
 	name:"Systems Officer",
@@ -4542,7 +4542,7 @@ var UPGRADES= [
 	done:true,
 	islarge:false,
 	addedaction:"Roll",
-        points: 2,
+        points: 2
     },
     {
         name: "Tail Gunner",
@@ -4879,7 +4879,7 @@ var UPGRADES= [
      done:true,
      type:TITLE,
      upgrades:[CREW,ILLICIT],
-     points:1,
+     points:1
     },
     {name:"Millennium Falcon(HoR)",
      faction:REBEL,
@@ -4915,7 +4915,7 @@ var UPGRADES= [
      done:true,
      points:0,
      upgrades:[MOD,ILLICIT],
-     maxupg:3,
+     maxupg:3
     },
     {name:"Burnout Slam",
      islarge:true,
@@ -5052,10 +5052,10 @@ var UPGRADES= [
     {name:"M9-G8",
      type:ASTROMECH,
      points:3,
-     unique:true,
+     unique:true
     },
     {name:"Pattern Analyzer",
      type:TECH,
-     points:2,
+     points:2
     }
 ];
