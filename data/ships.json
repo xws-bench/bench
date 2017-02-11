@@ -1234,6 +1234,39 @@
 		{"move":"F4","difficulty":"WHITE"}
 	],
 	"actionList":[ "FOCUS","TARGET"]
+    },
+    "Upsilon-Class Shuttle":{
+	"firesnd":"tie_fire",
+	"flysnd":"isd_fly",
+	"faction":["EMPIRE"],
+	"scale":1.2,
+	"img":["upsilon-shuttle.png"],
+	"weapon_type":"Laser",
+	"islarge":true,
+	"fire": 4,
+	"evade": 1,
+	"hull": 6,
+	"shield": 6,
+	"dial": [
+	    {"move":"F0","difficulty":"RED"},
+	    {"move":"TL1","difficulty":"RED"},
+	    {"move":"BL1","difficulty":"WHITE"},
+	    {"move":"F1","difficulty":"GREEN"},
+	    {"move":"BR1","difficulty":"WHITE"},
+	    {"move":"TR1","difficulty":"RED"},
+	    {"move":"TL2","difficulty":"WHITE"},
+	    {"move":"BL2","difficulty":"GREEN"},
+	    {"move":"F2","difficulty":"GREEN"},
+	    {"move":"BR2","difficulty":"GREEN"},
+	    {"move":"TR2","difficulty":"WHITE"},
+	    {"move":"TL3","difficulty":"RED"},
+	    {"move":"BL3","difficulty":"WHITE"},
+	    {"move":"F3","difficulty":"WHITE"},
+	    {"move":"BR3","difficulty":"WHITE"},
+	    {"move":"TR3","difficulty":"RED"}
+	],
+	"actionList":[ "FOCUS","TARGET"]
     }
+
 
 }

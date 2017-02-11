@@ -4239,7 +4239,18 @@ var PILOTS = [
       faction:REBEL,
       upgrades:[SYSTEM,TORPEDO,CREW,CREW],
       points:23
+    },
+    {
+    name: "Starkiller Base Pilot",
+	done:true,
+	pilotid:221,
+    unit: "Upsilon-Class Shuttle",
+    faction:EMPIRE,
+    skill: 2,
+    points: 30,
+    upgrades: [SYSTEM,CREW,CREW,TECH,TECH],
     }
+
 
 
     
