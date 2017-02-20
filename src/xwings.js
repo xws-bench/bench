@@ -6,7 +6,7 @@ var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.10.2";
+var VERSION="v0.10.3";
 var LANG="en";
 var ENGAGED=false;
 var FILTER="none";
@@ -183,7 +183,7 @@ var mk2split = function(t) {
 }
 var save=function() {
     movelog("W");
-    var url="http://xws-bench.github.io/bench/?"+permalink(false);
+    var url="http://ynot6517.github.io/bench/?"+permalink(false);
     $(".social").html(Mustache.render(TEMPLATES["social"],{ 
 	url:url,
 	name:"save this link",

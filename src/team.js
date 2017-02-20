@@ -318,7 +318,7 @@ Team.prototype = {
 	s.points=pts;
 	// update also the number of points
 	this.points=pts;
-	s.vendor={xwsbenchmark:{builder:"X-Wings Squadron Benchmark",builder_url:"http://xws-bench.github.io/bench/"}};
+	s.vendor={xwsbenchmark:{builder:"Ynot Squadron Benchmark",builder_url:"http://ynot6517.github.io/bench/"}};
 	s.version="0.3.0";
 	return s;
     },
