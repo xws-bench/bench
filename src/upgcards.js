@@ -741,7 +741,7 @@ var UPGRADES= [
         install: function(sh) {
 	    sh.installed=true;
 	    sh.wrap_after("getskill",this,function(s) {
-		return s+2;
+		return s+3;
 	    });
 	    sh.showskill();
 	},
@@ -1905,7 +1905,6 @@ var UPGRADES= [
 		}
 	    });
 	},
-	done:true,
         type: CREW,
         points: 4
         
