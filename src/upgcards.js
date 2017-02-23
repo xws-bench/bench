@@ -741,7 +741,7 @@ var UPGRADES= [
         install: function(sh) {
 	    sh.installed=true;
 	    sh.wrap_after("getskill",this,function(s) {
-		return s+3;
+		return s+2;
 	    });
 	    sh.showskill();
 	},
