@@ -660,7 +660,7 @@ Unit.prototype = {
 		str+="<button num="+j+" class='upgrades "+(this.upgradetype[j]).replace(/\|/g,"")+"'>+</button>";
 	return str;
     },
-    showskill: function() {
+    showskill_old: function() {
 	$("#unit"+this.id+" .statskill").html(this.getskill());
     },
     showupgradeadd:function() {
