@@ -1905,7 +1905,6 @@ var UPGRADES= [
 		}
 	    });
 	},
-	done:true,
         type: CREW,
         points: 4
         

@@ -660,7 +660,7 @@ Unit.prototype = {
 		str+="<button num="+j+" class='upgrades "+(this.upgradetype[j]).replace(/\|/g,"")+"'>+</button>";
 	return str;
     },
-    showskill: function() {
+    showskill_old: function() {
 	$("#unit"+this.id+" .statskill").html(this.getskill());
     },
     showupgradeadd:function() {
@@ -3627,23 +3627,26 @@ Unit.prototype = {
 	var a=-ro[mini].x*dy+ro[mini].y*dx; //(x-x0)*dy-(y-y0)*dx>0
 	if (OBSTACLES.length>0) {
 	    for (k=0; k<OBSTACLES.length; k++) {
-		if (OBSTACLES[k].type==NONE) continue;
-		var op=OBSTACLES[k].getOutlineString().p;
-		// The object is not yet intialized. Should not be here...
-		if (op.length==0||OBSTACLES[k].type==BOMB) break;
-		var s=op[0].x*dy-op[0].y*dx+a;
-		var v=s;
-		for (i=1; i<op.length; i++) {
-		    if (dist(rsh[minj],op[i])<1.2*min&&
-			dist(ro[mini],op[i])<1.2*min) {
-			v=op[i].x*dy-op[i].y*dx+a;
-			if (v*s<0) break; 
-		    }
-		}
-		if (v*s<0) break;
+			if (OBSTACLES[k].type==NONE) continue;
+			var op=OBSTACLES[k].getOutlineString().p;
+			// The object is not yet intialized. Should not be here...
+			if (op.length==0||OBSTACLES[k].type==BOMB) break;
+			var s=op[0].x*dy-op[0].y*dx+a;
+			var v=s;
+			for (i=1; i<op.length; i++) {
+				if (dist(rsh[minj],op[i])<1.2*min&&
+				dist(ro[mini],op[i])<1.2*min) {
+					v=op[i].x*dy-op[i].y*dx+a;
+					if (v*s<0) break;
+				}
+			}
+			if (v*s<0) {
+				obs=true;
+				break;
+			}
+
 	    }
 	}
-	if (k<OBSTACLES.length) obs=true;
 	if (min<=10000) {return {d:1,o:obs}; }
 	if (min<=40000) { return {d:2,o:obs}; }
 	return {d:3,o:obs};
