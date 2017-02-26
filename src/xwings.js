@@ -6,7 +6,7 @@ var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.9.1";
+var VERSION="v0.10.3";
 var LANG="en";
 var ENGAGED=false;
 var FILTER="none";
@@ -183,7 +183,7 @@ var mk2split = function(t) {
 }
 var save=function() {
     movelog("W");
-    var url="http://xws-bench.github.io/bench/?"+permalink(false);
+    var url="http://ynot6517.github.io/bench/?"+permalink(false);
     $(".social").html(Mustache.render(TEMPLATES["social"],{ 
 	url:url,
 	name:"save this link",
@@ -411,6 +411,10 @@ function nextunit(cando, changeturn,changephase,activenext) {
 }
 function endphase() {
     for (var i in squadron) squadron[i].endphase();
+		 //if (TEAMS[1].checkdead()&&TEAMS[2].checkdead()) win(0);
+		 //if (TEAMS[1].checkdead()) win(1);
+		 //if (TEAMS[2].checkdead())  win(2);
+
 }
 function nextcombat() {
     nextunit(function(t) { return t.canfire(); },
@@ -422,9 +426,9 @@ function nextcombat() {
 		     if (u.canbedestroyed(skillturn))
 			 if (u.checkdead()) dead=true;
 		 }
-		 if (dead&&TEAMS[1].checkdead()&&TEAMS[2].checkdead()) win(0);
-		 if (dead&&TEAMS[1].checkdead()) win(1);
-		 if (dead&&TEAMS[2].checkdead())  win(2);
+		 if (TEAMS[1].checkdead()&&TEAMS[2].checkdead()) win(0);
+		 if (TEAMS[1].checkdead()) win(1);
+		 if (TEAMS[2].checkdead())  win(2);
 	     },
 	     function() {
 		 $("#attackdial").hide();
@@ -829,6 +833,7 @@ function enablenextphase() {
 }
 
 function win(destroyed) {
+	log("Team "+destroyed+" was destroyed!");
     movelog("W");
     var title="m-draw";
     var i;
@@ -841,7 +846,7 @@ function win(destroyed) {
 	if (!u.dead&&u.team==1) saved1=true;
 	if (!u.dead&&u.team==2) saved2=true;
 	if (u.dead||(u.islarge&&u.shield+u.hull<(u.ship.hull+u.ship.shield)/2)) {
-	    var p=u.dead?u.points:(u.points/2);
+	    var p=parseInt(u.dead?u.points:(u.points/2));
 	    if (u.team==1) {
 		s2+="<tr><td>"+u.name+(!u.dead?" (1/2 points)":"")+"</td><td>"+p+"</td></tr>";
 		score2+=p;
@@ -872,8 +877,14 @@ function win(destroyed) {
 //    str+="<div style='font-size:smaller'>Average <span class='hit'></span>/die:"+meanhit+" (norm:0.375)</div><div>Average <span class='critical'></span>:"+meancrit+" (norm: 0.125)</div>/die</td>";
     $(".victory-table").append("<tr><th class='m-squad2'></th><th>"+score2+"</th></tr>");
     $(".victory-table").append(s2);
-    if ((d>0&&WINCOND<0)||(destroyed==2&&(WINCOND>round||WINCOND==0))) title="m-1win";
-    else if ((d<0&&WINCOND<0)||(destroyed==1&&(WINCOND>round||WINCOND==0))) title="m-2win";
+    if ((d>0&&WINCOND<0)||(destroyed==2&&(WINCOND<round||WINCOND==0))) {
+	title="m-1win";
+	log("Team 1 wins! "+score1+" to "+score2);
+	}
+    else if ((d<0&&WINCOND<0)||(destroyed==1&&(WINCOND<round||WINCOND==0))) {
+	title="m-2win";
+	log("Team 2 wins! "+score2+" to "+score1);
+	}
     
     $(".victory").attr("class",title);
     var titl = (TEAMS[1].isia?"Computer":"Human")+":"+score1+" "+(TEAMS[2].isia?"Computer":"Human")+":"+score2;
@@ -883,7 +894,7 @@ function win(destroyed) {
     note=note.replace(/ \+ /g,"*");
     note=note.replace(/ /g,"_");
     //console.log("note:"+encodeURI(note));
-    var url=encodeURI("http://xws-bench.github.io/bench/index.html?"+permalink(false));
+    var url=encodeURI("https://ynot6517.github.io/bench/index.html?"+permalink(false));
     $("#submission").contents().find('#entry_209965003').val(titl);
     $('#submission').contents().find('#entry_390767903').val(note);
     $('#submission').contents().find('#entry_245821581').val("no short url");
@@ -1549,8 +1560,9 @@ function nextphase() {
     case SETUP_PHASE: 
 	if ($("#player1 option:checked").val()=="human") 
 	    TEAMS[1].isia=false; else TEAMS[1].isia=true;
-	if ($("#player2 option:checked").val()=="human") 
-	    TEAMS[2].isia=false; else TEAMS[2].isia=true;
+	TEAMS[2].isia=true
+	if ($("#player2 option:checked").val()=="computer") 
+	    TEAMS[2].isia=true; else TEAMS[2].isia=false;
 	if (TEAMS[1].isia==true) TEAMS[1].setia();
 	if (TEAMS[2].isia==true) TEAMS[2].setia();
 	ZONE[0].attr({fillOpacity:0});
@@ -1635,10 +1647,11 @@ function setphase(cannotreplay) {
 	}
 	var name=localStorage.name;
 	if (typeof name=="undefined"||name==null) name=UI_translation["human"];
+	TEAMS[2].isia=true
 	$("#player1").html("<option selected value='human'>"+name+"</option>");
 	$("#player1").append("<option value='computer'>"+UI_translation["computer"]+"</option>");
-	$("#player2").html("<option selected value='human'>"+name+"</option>");
-	$("#player2").append("<option value='computer'>"+UI_translation["computer"]+"</option>");
+	$("#player2").html("<option selected value='computer'>"+UI_translation["computer"]+"</option>");
+	$("#player2").append("<option value='human'>"+name+"</option>");
 	$("#player1").change(function() {
 	    TEAMS[1].isia=!TEAMS[1].isia;
 	    displayplayertype(1);

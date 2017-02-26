@@ -1204,6 +1204,7 @@ var PILOTS = [
     {
         name: "Royal Guard Pilot",
         faction:EMPIRE,
+		shipimg:"tie-interceptor-1.png",
         done:true,
 	pilotid:63,
         unit: "TIE Interceptor",
@@ -1241,6 +1242,7 @@ var PILOTS = [
     {
         name: "Kir Kanos",
         faction:EMPIRE,
+		shipimg:"tie-interceptor-1.png",
 	pilotid:65,
         init:  function() {
 	    this.adddicemodifier(ATTACK_M,ADD_M,ATTACK_M,this,{
@@ -1288,6 +1290,7 @@ var PILOTS = [
         unique: true,
 	done:true,
         unit: "TIE Interceptor",
+		shipimg:"tie-interceptor-1.png",
         skill: 8,
         points: 26,
         upgrades: [ELITE],
@@ -3090,7 +3093,6 @@ var PILOTS = [
 	unit:"VCX-100",
 	skill:7,
 	pilotid:162,
-	ambiguous:true,
 	edition:"VCX-100",
 	points:40,
 	done:true,
@@ -4167,7 +4169,7 @@ var PILOTS = [
      done:true,
      pilotid:215,
      faction:REBEL,
-     upgrades:[ELITE,TORPEDO,ASTROMECH,TECH],
+     upgrades:[TORPEDO,ASTROMECH,TECH],
      points:25,
      skill:3,
      init: function() {
@@ -4187,5 +4189,69 @@ var PILOTS = [
 	 });
      }
     },
+    { name:"Resistance Sympathizer",
+      unit:"YT-1300",
+      skill:3,
+      done:true,
+      unique:false,
+      edition:"HoR",
+      pilotid:216,
+      faction:REBEL,
+      upgrades:[MISSILE,CREW,CREW],
+      points:38
+    },
+    {
+    name: "Black Squadron Scout",
+	done:true,
+	pilotid:217,
+    unit: "TIE Striker",
+    faction:EMPIRE,
+    skill: 4,
+    points: 20,
+    upgrades: [ELITE],
+    },
+    {
+    name: "Scarif Defender",
+	done:true,
+	pilotid:218,
+    unit: "TIE Striker",
+    faction:EMPIRE,
+    skill: 3,
+    points: 18,
+    upgrades: [],
+    },
+    {
+    name: "Imperial Trainee",
+	done:true,
+	pilotid:219,
+    unit: "TIE Striker",
+    faction:EMPIRE,
+    skill: 1,
+    points: 17,
+    upgrades: [],
+    },
+    { name:"Blue Squadron Pathfinder",
+      unit:"U-wing",
+      skill:2,
+      done:true,
+      unique:false,
+      pilotid:220,
+      faction:REBEL,
+      upgrades:[SYSTEM,TORPEDO,CREW,CREW],
+      points:23
+    },
+    {
+    name: "Starkiller Base Pilot",
+	done:true,
+	pilotid:221,
+    unit: "Upsilon-Class Shuttle",
+    faction:EMPIRE,
+    skill: 2,
+    points: 30,
+    upgrades: [SYSTEM,CREW,CREW,TECH,TECH],
+    }
+
+
+
     
 ];

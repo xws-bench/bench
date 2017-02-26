@@ -318,7 +318,7 @@ Team.prototype = {
 	s.points=pts;
 	// update also the number of points
 	this.points=pts;
-	s.vendor={xwsbenchmark:{builder:"X-Wings Squadron Benchmark",builder_url:"http://xws-bench.github.io/bench/"}};
+	s.vendor={xwsbenchmark:{builder:"Ynot Squadron Benchmark",builder_url:"http://ynot6517.github.io/bench/"}};
 	s.version="0.3.0";
 	return s;
     },
@@ -388,24 +388,34 @@ Team.prototype = {
 	    var p=new Unit(this.team,pid);
 	    p.upg=[];
 	    for (j=0; j<10; j++) p.upg[j]=-1;
-	    var authupg=[MOD,TITLE].concat(PILOTS[p.pilotid].upgrades);
+	    var authupg=[TITLE,MOD].concat(PILOTS[p.pilotid].upgrades);
 	    for (j=1; j<pstr.length; j++) {
 		for (k=0; k<UPGRADES.length; k++) {
 		    if ((translated==true&&translate(UPGRADES[k].name).replace(/\'/g,"").replace(/\(Crew\)/g,"")==pstr[j])
 			||(UPGRADES[k].name.replace(/\'/g,"")==pstr[j])) {
-			if (authupg.indexOf(UPGRADES[k].type)>-1) {
-			    if (typeof UPGRADES[k].upgrades!="undefined") 
-				if (UPGRADES[k].upgrades[0]=="Cannon|Torpedo|Missile")
-				    authupg=authupg.concat(["Cannon","Torpedo","Missile"]);
-			    else authupg=authupg.concat(UPGRADES[k].upgrades);
-			    break;
-			} 
-		    }
-		    if (k==UPGRADES.length) log("UPGRADE undefined: "+pstr[j]);
-		}
+				if (authupg.indexOf(UPGRADES[k].type)>-1) {
+			    	if (typeof UPGRADES[k].upgrades!="undefined") 
+						if (UPGRADES[k].upgrades[0]=="Cannon|Torpedo|Missile") {
+				    		authupg=authupg.concat(["Cannon","Torpedo","Missile"]);
+							p.upgradetype=p.upgradetype.concat(["Cannon","Torpedo","Missile"]);
+			   			}
+						else  {
+							authupg=authupg.concat(UPGRADES[k].upgrades);
+							if (typeof UPGRADES[k].upgrades!="") {
+								p.upgradetype=p.upgradetype.concat(UPGRADES[k].upgrades); }
+						}
+					break;
+		    	}
+		    	if (k==UPGRADES.length) log("UPGRADE undefined: "+pstr[j]);
+			}
 	    }
+		}
 	    //for (j=0; j<p.upgradetype.length; j++)
-	//	p.log("found type "+p.upgradetype[j]);
+		//p.log("found type "+p.upgradetype[j]);
+		//p.log("authupg "+authupg);
+		//p.log("pstr "+pstr);
+		//p.log("p.upgradetype.length "+p.upgradetype.length);
+		//p.log("p.upgradetype "+p.upgradetype);
 	    for (j=1; j<pstr.length; j++) {
 		for (k=0; k<UPGRADES.length; k++) {
 		    if ((translated==true&&translate(UPGRADES[k].name).replace(/\'/g,"").replace(/\(Crew\)/g,"")==pstr[j])

@@ -2,7 +2,7 @@
 <html>
   <head>
     <link href="favicon.ico" rel="icon" type="image/x-icon"/>
-    <title>Squad Benchmark: combat trainer and squad builder for X-Wing Miniatures game</title>
+    <title>Ynot Squad Benchmark: combat trainer and squad builder for X-Wing Miniatures game</title>
     <meta name="description" content="Web app for X-Wing Miniatures game">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -16,7 +16,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="iOS Squadron Benchmark">
+    <meta name="apple-mobile-web-app-title" content="iOS Ynot Squad Benchmark">
     <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" href="css/xwings.css"/>
     <link rel="stylesheet" href="css/jquery.dataTables.min.css"/>
@@ -28,7 +28,7 @@
 
     <nav>
       <div>
-	<span class="h2"><span class="xwing"></span><span class="title">Squadron Benchmark</span>
+	<span class="h2"><span class="xwing"></span><span class="title">Ynot Squad Benchmark</span>
 	  <span class="ver"></span>
 	  <select id="langselect" onchange="changelanguage($(this).val())">
 	    <option value="en">English</option>
@@ -52,10 +52,10 @@
 	  <span class="menu" ><span class="symbols" style="padding:5px;vertical-align:bottom;color:white;font-size:larger;">&#xE2;</span>
 	    <ul>
 	      <li><a class="m-about" href="#about"></a></li>
-	      <li><a class="m-help" href="http://xws-benchmark.blogspot.fr/p/how-to-play.html" target="_blank"></a></li>
+	      <li><a class="m-help" href="https://ynotsquadbenchmark.blogspot.com/" target="_blank"></a></li>
 	      <li><a class="m-proba" href="#proba" id="showproba"></a></li>
 	      <li><a class="m-kb" href="#kb"></a></li>
-	      <li><a class="m-blog" href="http://xws-benchmark.blogspot.fr/"></a></li>
+	      <li><a class="m-blog" href="https://ynotsquadbenchmark.blogspot.com/" target="_blank"></a></li>
 	      <li><a class="m-donate" href="#donate"></a></li>
 	      <li><a class="m-credits" href="#credit"></a></li>
 	      <li><a href="#licence">Licence</a></li>
@@ -74,7 +74,7 @@
     </aside>
 
     <aside id="rightpanel" class="rightpanel">
-      <image id="player2img" style="background:#e2e2e4;width:2em;vertical-align:middle" src="css/human.png" alt=""><select class="bigbutton2 playertype" id="player2" style="width:calc( 100% - 2em )"></select>
+      <image id="player2img" style="background:#e2e2e4;width:2em;vertical-align:middle" src="css/computer.png" alt=""><select class="bigbutton2 playertype" id="player2" style="width:calc( 100% - 2em )"></select>
       <button class="bigbutton m-asteroids" onclick="location='#asteroid';TEAMS[2].selectrocks();"></button>
       <section id="team2" class="team">
 	<h2 style='display:none'>List of units</h2>
@@ -249,7 +249,7 @@
 	 <span class="SCUM m-scum" onclick="stype='SCUM';SQUADLIST.draw();" ></span>
 	 <span class="EMPIRE m-empire" onclick="stype='EMPIRE';SQUADLIST.draw();"></span>
 	 <span class="Prebuilt"  onclick="stype='PREBUILT';SQUADLIST.draw();"><code style="font-size:larger" class="symbols">ì</code></span>
-	 <span class="m-top" onclick="stype='ELITE';SQUADLIST.draw();"><span style="font-size:larger;color:orange" class="symbols">ï</span></span><span style='position:relative;left:-1.5em;'><sup><a href="http://xwing.miniranker.com/" style="color:white;text-decoration:none">(*)</a></sup></span>
+	 <span class="m-top" onclick="stype='ELITE';SQUADLIST.draw();"><span style="font-size:larger;color:orange" class="symbols">ï</span></span>
 	 <span class="Mybuilds" onclick="stype='USER';SQUADLIST.draw();"></span>
        </div>
        <table id="squadlist" class="compact stripe hover order-column row-border">
@@ -371,10 +371,10 @@
           <h2><span class="m-about"></span><a href="#" title="Close" class="close">&#10060;</a>
           </h2>
           <div>
-This is short introduction of Squadron Benchmark. Read <a href="http://xws-benchmark.blogspot.fr/">the blog</a> dedicated to the app for a more exhaustive description, for a manual and for news. 
+This is short introduction of Ynot Squad Benchmark. Read <a href="http://ynotsquadbenchmark.blogspot.com/">the blog</a> dedicated to the app for a more exhaustive description, for a manual and for news. 
 <br/>
 
-Squadron Benchmark is a web app for
+Ynot Squad Benchmark is a web app for
  testing squadrons built for the X-Wing Miniatures game. You can design
  your squads and simulate a battle between them. Both sides can be
  controlled either by the player or by a simple AI. The player moves
@@ -393,7 +393,7 @@ against squads you can find in competitions, test new units or
 
 The app is not really a game since the player plays both sides or against an AI, there is no multi-player version of the app and there will not be. This is in no way a substitute for the real game but is a complementary tool.
 <br/>
- The app is (c) Denis Wings 2015-2016 (deniswings@free.fr). MIT license. <br>
+ The app is (c) Ynot 2017 (tb6517@gmail.com) and versions before 0.9.2 (c) Denis Wings 2015-2016 (deniswings@free.fr). MIT license. <br>
 	    <div class="ack"><button onclick="window.location='#'">Ok</button></div>
 </div>
 
@@ -406,18 +406,18 @@ The app is not really a game since the player plays both sides or against an AI,
           </h2>
           <div>
 <br>
-            If you like this web app and find it useful, if you want to encourage further developments, feel free to donate ! 
+            If you like this web app and find it useful, if you want to encourage further development, feel free to donate ! 
 <br>
             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
               <input type="hidden" name="cmd" value="_s-xclick">
-              <input type="hidden" name="hosted_button_id" value="NYM7QUG8UKGE2">
+              <input type="hidden" name="hosted_button_id" value="JML2JPJ39YGKA">
               <input type="image" src="png/btn_donateCC_LG.png" name="submit" alt="PayPal - The safer, easier way to pay online!">
             </form>
 <br>        The app will stay free to use for all, with no advertisement. 
             Feel free to provide feed back, report bugs or suggest improvements on the blog. All comments are welcome !
 <br>Thank you for your support !
 <br>
---Denis Wings
+--Ynot
 	    <div class="ack"><button onclick="window.location='#'">Ok</button></div>
           </div>
 
@@ -430,7 +430,7 @@ The app is not really a game since the player plays both sides or against an AI,
 	  </h2>
 	  <div>
 	    <p><b>Licence and copyright</b></p>
-	    <p>The app is (c) Denis Wings 2015-2016 (deniswings@free.fr). The code has an <a href="https://opensource.org/licenses/MIT">MIT license</a>. </p>
+	    <p>The app is (c) Ynot 2017 (tb6517@gmail.com) (c) Denis Wings 2015-2016 (deniswings@free.fr). The code has an <a href="https://opensource.org/licenses/MIT">MIT license</a>. </p>
 
 	    The code of the app relies on the following external fonts and libraries. See their website for their license: <a href="https://github.com/geordanr/xwing-miniatures-font">Xwing-miniatures-font</a>, <a href="https://github.com/geordanr/xwing">Yet Another Squad Builder</a> and <a href="https://github.com/elistevens/xws-spec">JSON
 	  format of X-Wing squadrons</a> for card translations, 

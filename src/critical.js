@@ -427,18 +427,23 @@ var CRITICAL_DECK=[
 	faceup: function() {
 	    var self=this;
 	    this.log();
+	    this.isactive=true;
 	    this.unit.wrap_after("handledifficulty",this,function(d) {
 		if (d=="WHITE") this.addstress();
 	    });
 	},
 	facedown: function() {
 	    if (this.isactive) {
-		this.unit.unwrap("handledifficulty",this);
+		this.unit.handledifficulty.unwrap(this);
 		this.unit.log("%0 repaired",this.name);
 	    }
 	    this.isactive=false;
 	},
-	version:[V2],
+	action: function(n) {
+	    this.facedown();
+	    this.unit.endaction(n,"CRITICAL");
+	},
+	version:[V2]
     },
     {
 	name:"Major Explosion",

@@ -16,7 +16,7 @@ var MPOS={ F0:[0,3],F1:[1,3],F2:[2,3],F3:[3,3],F4:[4,3],F5:[5,3],
 	   TL1:[1,1],TL2:[2,1],TL3:[3,1],
 	   BR1:[1,4],BR2:[2,4],BR3:[3,4],
 	   TR1:[1,5],TR2:[2,5],TR3:[3,5],
-	   K1:[1,6],K2:[2,6],K3:[3,6],K4:[4,6],K5:[5,6],
+	   K1:[1,7],K2:[2,7],K3:[3,7],K4:[4,7],K5:[5,7],
 	   SL2:[2,0],SL3:[3,0],
 	   SR2:[2,6],SR3:[3,6],
 	   TRL3:[3,0],TRR3:[3,6],
@@ -660,7 +660,7 @@ Unit.prototype = {
 		str+="<button num="+j+" class='upgrades "+(this.upgradetype[j]).replace(/\|/g,"")+"'>+</button>";
 	return str;
     },
-    showskill: function() {
+    showskill_old: function() {
 	$("#unit"+this.id+" .statskill").html(this.getskill());
     },
     showupgradeadd:function() {
@@ -684,7 +684,7 @@ Unit.prototype = {
 	var str="";
 	for (j=0; j<=5; j++) {
 	    m[j]=[];
-	    for (k=0; k<=6; k++) m[j][k]="<td></td>";
+	    for (k=0; k<=7; k++) m[j][k]="<td></td>";
 	}
 	var gd=this.getdial();
 	for (j=0; j<gd.length; j++) {
@@ -695,7 +695,7 @@ Unit.prototype = {
 	for (j=5; j>=0; j--) {
 	    str+="<tr>";
 	    if (j>0&&j<5) str+="<td>"+j+"</td>"; else str+="<td></td>";
-	    for (k=0; k<=6; k++) str+=m[j][k];
+	    for (k=0; k<=7; k++) str+=m[j][k];
 	    str+="</tr>\n";
 	}
 	return str;
@@ -709,7 +709,7 @@ Unit.prototype = {
 	if (phase==PLANNING_PHASE||phase==SELECT_PHASE||phase==CREATION_PHASE) {
 	    for (i=0; i<=5; i++) {
 		m[i]=[];
-		for (j=0; j<=6; j++) m[i][j]="<td></td>";
+		for (j=0; j<=7; j++) m[i][j]="<td></td>";
 	    }
 	    var ship=$("#select"+this.id).val();
 	    for (i=0; i<gd.length; i++) {
@@ -729,7 +729,7 @@ Unit.prototype = {
 	    for (i=5; i>=0; i--) {
 		str+="<tr>";
 		if (i>0&&i<5) str+="<td>"+i+"</td>"; else str+="<td></td>";
-		for (j=0; j<=6; j++) str+=m[i][j];
+		for (j=0; j<=7; j++) str+=m[i][j];
 		str+="</tr>\n";
 	    }
 	    if (phase==SELECT_PHASE||phase==CREATION_PHASE) $("#dial"+this.id).html(str);
@@ -1852,8 +1852,17 @@ Unit.prototype = {
 		sectors[k].hover(function() { sectors[k].attr({opacity:0.4}); }, function() { sectors[k].attr({opacity:0.1}); });
 		sectors[k].click(function() { 
 		    self.setarcrotate(k);
+			/*if ( k==0 ) self.shipimg="lancer-f.png";
+			if ( k==1 ) self.shipimg="lancer-r.png";
+			if ( k==2 ) self.shipimg="lancer-b.png";
+			if ( k==3 ) self.shipimg="lancer-l.png";
+			self.img=s.image("png/"+self.shipimg,-50*self.scale,-50*self.scale,100*self.scale,100*self.scale).transform();
+			log(self.g[2]);*/
+			if ( k==0 ) self.log("Mobile firing arc rotated to front");
+			if ( k==1 ) self.log("Mobile firing arc rotated to right side");
+			if ( k==2 ) self.log("Mobile firing arc rotated to back");
+			if ( k==3 ) self.log("Mobile firing arc rotated to left side");
 		    self.movelog("R-"+k);
-		    self.log("Moving firing arc rotated");
 		    for (var j=0; j<4; j++) {
 			sectors[j].attr({display:"none"});
 		    }
@@ -1975,6 +1984,12 @@ Unit.prototype = {
 	    var b=true;
 	    if (typeof f=="function") b=f(s,t);
 	    return s.isally(t)&&s!=t&&b; });
+    },
+    selectnearbyallyandself: function(n,f) {
+	return this.selectnearbyunits(n,function(s,t) {
+	    var b=true;
+	    if (typeof f=="function") b=f(s,t);
+	    return s.isally(t)&&b; });
     },
     selectnearbyenemy: function(n,f) {
 	return this.selectnearbyunits(n,function(s,t) {
@@ -2410,7 +2425,6 @@ Unit.prototype = {
     },
     resolvemaneuver: function() {
 	$("#activationdial").empty();
-	// -1: No maneuver
 	if (this.maneuver<0) return;
 	var p=[],q=[];
 	var ml=this.getmaneuverlist();
@@ -2422,9 +2436,11 @@ Unit.prototype = {
 		    p.push(gtr[j]);
 		    if (j>0) q.push(ml[i]);
 		}
-	    } else if (ml[i].halfturn==true&&!ml[i].move.match(/K\d|SR\d|SL\d/))
+	    } else if (ml[i].halfturn==true&&!ml[i].move.match(/K\d|SR\d|SL\d/)) {
 		p.push(this.getpathmatrix(this.m,ml[i].move).rotate(180,0,0));
-	    else p.push(this.getpathmatrix(this.m,ml[i].move));
+		}
+	    else { p.push(this.getpathmatrix(this.m,ml[i].move));
+		}
 	}
 	this.resolveactionmove(p,function(t,k) {
 	    if (k==-1) k=0;
@@ -3611,23 +3627,26 @@ Unit.prototype = {
 	var a=-ro[mini].x*dy+ro[mini].y*dx; //(x-x0)*dy-(y-y0)*dx>0
 	if (OBSTACLES.length>0) {
 	    for (k=0; k<OBSTACLES.length; k++) {
-		if (OBSTACLES[k].type==NONE) continue;
-		var op=OBSTACLES[k].getOutlineString().p;
-		// The object is not yet intialized. Should not be here...
-		if (op.length==0||OBSTACLES[k].type==BOMB) break;
-		var s=op[0].x*dy-op[0].y*dx+a;
-		var v=s;
-		for (i=1; i<op.length; i++) {
-		    if (dist(rsh[minj],op[i])<1.2*min&&
-			dist(ro[mini],op[i])<1.2*min) {
-			v=op[i].x*dy-op[i].y*dx+a;
-			if (v*s<0) break; 
-		    }
-		}
-		if (v*s<0) break;
+			if (OBSTACLES[k].type==NONE) continue;
+			var op=OBSTACLES[k].getOutlineString().p;
+			// The object is not yet intialized. Should not be here...
+			if (op.length==0||OBSTACLES[k].type==BOMB) break;
+			var s=op[0].x*dy-op[0].y*dx+a;
+			var v=s;
+			for (i=1; i<op.length; i++) {
+				if (dist(rsh[minj],op[i])<1.2*min&&
+				dist(ro[mini],op[i])<1.2*min) {
+					v=op[i].x*dy-op[i].y*dx+a;
+					if (v*s<0) break;
+				}
+			}
+			if (v*s<0) {
+				obs=true;
+				break;
+			}
+
 	    }
 	}
-	if (k<OBSTACLES.length) obs=true;
 	if (min<=10000) {return {d:1,o:obs}; }
 	if (min<=40000) { return {d:2,o:obs}; }
 	return {d:3,o:obs};
