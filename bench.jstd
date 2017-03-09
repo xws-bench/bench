@@ -1,0 +1,20 @@
+load:
+  - test/helpers/*.js
+  - js/all.min.js
+  - src/obstacles.js
+  - src/critical.js
+  - src/units.js
+  - src/iaunits.js
+  - src/pilots.js
+  - src/upgrades.js
+  - src/upgcards.js
+  - src/team.js
+  - src/resample.js
+  - src/avatar.js
+  - src/proba.js
+  - src/replay.js
+#  - src/xwings.js
+  - src/util.js
+
+test:
+  - test/*.js
