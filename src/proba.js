@@ -158,7 +158,7 @@ function defendwithreroll(tokensD,dt,defense) {
     return p;
 }
 
-function tohitproba(attacker,weapon,defender,at,dt,attack,defense) {
+function tohitproba(attacker,weapon,defender,at,dt,attack,defense,double) {
     var p=[];
     var k=[];
     var f,h,c,d,fd,e,i,j,hit,evade;
@@ -166,17 +166,17 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense) {
     var tot=0,mean=0,meanc=0;
     var ATable=at;
     var DTable=dt;
+    var max=attack;
     var rr=attacker.reroll;
-    var dt=(defense==0)?[]:dt;
+    dt=(defense==0)?[]:dt;
     for (h=0; h<=attack; h++) {
 	for (c=0; c<=attack-h; c++) {
 	    i=h+10*c;
 	    p[i]=0;
 	}
     }
-    
+    if (typeof double=="undefined") double=false;
     if (typeof ATable=="undefined") return {proba:[],tohit:0,meanhit:0,meancritical:0,tokill:0};
-    ATable=attackwithreroll(attacker,at,attack);
     //log("Attack "+attack+" Defense "+defense);
     if (defense>0) DTable=defendwithreroll(defender,dt,defense);
     //for (j=0; j<=20; j++) { k[j]=0; }
@@ -187,10 +187,15 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense) {
 		var fa,ca,ha,ff,ef;
 		var focusa=attacker.focus;
 		var savedreroll=attacker.reroll;
+		if (typeof attacker.attackrerolls!="undefined") 
+		    attacker.reroll=Math.max(attacker.attackrerolls(weapon,defender),attacker.reroll);
+		ATable=attackwithreroll(attacker,at,attack);
 
 		var a=ATable[FCH_FOCUS*f+FCH_HIT*h+FCH_CRIT*c]; // attack index
-		if (typeof weapon.modifyattackroll!="undefined") n=weapon.modifyattackroll(n,attack,defender);
-		if (typeof attacker.modifyattackroll!="undefined") n=attacker.modifyattackroll(n,attack,defender);
+		n=weapon.modifyattackroll(n,attack,defender);
+		if (typeof attacker.modifyattackroll!="undefined") {
+		    n=attacker.modifyattackroll(n,attack,defender);
+		}
 		fa=FCH_focus(n);
 		ca=FCH_crit(n);
 		hit=FCH_hit(n);
@@ -203,48 +208,56 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense) {
 			var evade=defender.evade;
 			var savedevade=defender.evade;
 			var savedfocus=defender.focus;
-			var m=FE_FOCUS*ff+FE_EVADE*ef
-			if (typeof defender.modifydefenseroll!="undefined") 
-			    m=defender.modifydefenseroll(attacker,m,defense);
-			fd=FE_focus(m)
+			var m=FE_FOCUS*ff+FE_EVADE*ef;
+			if (defense==0) d=1; else d=DTable[m];
+			if (typeof attacker.modifydefenseroll!="undefined") 
+			    m=attacker.modifydefenseroll(attacker,m,defense);
+			fd=FE_focus(m);
 			evade=FE_evade(m);
-			if (defense==0) d=1; else d=DTable[m]
 			i=0;
 			if (defender.focus>0&&fd>0&&evade<hit+ca) { evade+=fd;defender.focus--; }
 			if (defender.evade>0&&evade<hit+ca) { evade+=1;defender.evade--; }
-			if (hit>evade) { i = FCH_HIT*(hit-evade); evade=0; } 
-			else { evade=evade-hit; }
-			if (ca>evade) { i+= FCH_CRIT*(ca-evade); }
+			if (typeof defender.cancelhit!="undefined") {
+			    var ch=defender.cancelhit({ch:hit*FCH_HIT+ca*FCH_CRIT,e:evade},targetunit);
+			    ch=defender.cancelcritical(ch,targetunit);
+
+			    evade=ch.e;
+			    i=ch.ch;
+			} else {
+			    if (hit>evade) { i = FCH_HIT*(hit-evade); evade=0; } 
+			    else { evade=evade-hit; }
+			    if (ca>evade) { i+= FCH_CRIT*(ca-evade); }
+			}
 			if (typeof weapon.modifyhit=="function"&&i>0) i=weapon.modifyhit(i);
+
 			attacker.reroll=0;
 			/*if (typeof attacker.postattack=="function") {
 			    attacker.postattack(i);
 			}*/
-			
-			if (typeof weapon.immediateattack!="undefined"
-			    &&weapon.immediateattack.pred(i)
-			    &&typeof attacker.iar=="undefined") {
-			    attacker.iar=true;
-			    var w=weapon.immediateattack.weapon();
-			    var r=attacker.gethitrange(w,defender);
+			if (typeof weapon.followupattack=="function"
+			    &&double==false) {
+			    //var w=weapon.immediateattack.weapon();
+			    //var r=attacker.gethitrange(w,defender);
 			    // No prerequisite checked.
-			    if (r<=3&&r>0) {
+			    //if (r<=3&&r>0) {
 				//console.log("immediate attack:"+weapon.name+"->"+attacker.weapons[w].name+" "+attacker.reroll+" "+attacker.name)
-				var attack2=attacker.getattackstrength(w,defender);
-				var defense2=defender.getdefensestrength(w,attacker);
-				var thp= tohitproba(attacker,attacker.weapons[w],defender,
-						    attacker.getattacktable(attack2),
-						    defender.getdefensetable(defense2),
-						    attack2,
-						    defense2);
+			//	var attack2=attacker.getattackstrength(w,defender);
+			//	var defense2=defender.getdefensestrength(w,attacker);
+			    var thp= tohitproba(attacker,weapon,defender,at,dt,attack,defense,true); 
+			    //attacker,attacker.weapons[w],defender,
+			    //			    attacker.getattacktable(attack2),
+			    //defender.getdefensetable(defense2),
+			    //attack2,
+			    //defense2);
 				//console.log(attacker.name+" after call "+n+"/"+m+" ("+attack2+"/"+defense2+"/"+attacker.weapons[w].name+"):"+p[0]+" + "+thp.proba[0]+" * "+(a*d));
-				for (var j in thp.proba) {
-				    var k=i+j*1;
-				    if (typeof p[k]=="undefined") p[k]=0;
-				    p[k]+=thp.proba[j]*a*d;
-				}
-			    } else p[i]+=a*d;
-			    delete attacker.iar;
+			    max=2*attack;
+			    for (j in thp.proba) {
+				var kk=i+j*1;
+				if (typeof p[kk]=="undefined") p[kk]=0;
+				p[kk]+=thp.proba[j]*a*d;
+			    }
+			    //} else p[i]+=a*d;
+			    //delete attacker.iar;
 			} else {
 			    p[i]+=a*d;
 			}
@@ -258,10 +271,10 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense) {
 	}
     }
     //console.log("missed "+missed+"/"+p[0]+" "+attacker.name+" "+weapon.iar);
-    for (h=0; h<=attack; h++) {
-	for (c=0; c<=attack-h; c++) {
+    for (h=0; h<=max; h++) {
+	for (c=0; c<=max-h; c++) {
 	    i=FCH_HIT*h+FCH_CRIT*c;
-	    if (i>0) tot+=p[i];
+	    if (i>0&&typeof p[i]!="undefined") tot+=p[i];
 	    mean+=h*p[i];
 	    meanc+=c*p[i];
 	    // Max 3 criticals leading to 2 damages each...Proba too low anyway after that.

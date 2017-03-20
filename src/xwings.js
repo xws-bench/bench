@@ -1,16 +1,14 @@
-/* 
-   * Wes Janson FAQ
-*/
 var phase=1;
 var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.9.1";
+var VERSION="v0.99";
 var LANG="en";
 var ENGAGED=false;
 var FILTER="none";
 var DECLOAK_PHASE=1;
+var WEBSITE="http://xws-bench.github.io/bench/index.html";
 var DICES=["focusred","hitred","criticalred","blankred","focusgreen","evadegreen","blankgreen"];
 var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6,XP_PHASE=7;
 var BOMBS=[];
@@ -18,19 +16,18 @@ var ROCKDATA="";
 var WINCOND=0;
 var INREPLAY=false;
 var allunits=[];
-var PILOT_translation,SHIP_translation,CRIT_translation,UI_translation,UPGRADE_translation,PILOT_dict,UPGRADE_dict;
+var PILOT_translation,SHIP_translation,CRIT_translation,UI_translation,UPGRADE_translation,PILOT_dict,UPGRADE_dict,RATINGS_upgrades,RATINGS_ships,RATING_pilots,TOP_squads;
 var actionr=[];
 var actionrlock;
 var HISTORY=[];
 var replayid=0;
 var dice=1;
-var ATTACK=[]
-var DEFENSE=[]
+var ATTACK=[];
+var DEFENSE=[];
 var SEARCHINGSQUAD;
 var FACTIONS={"rebel":"REBEL","empire":"EMPIRE","scum":"SCUM"};
-var SQUADLIST,SQUADBATTLE;
-var COMBATLIST;
-var TEAMS=[new Team(0),new Team(1),new Team(2)];
+var SQUADLIST,SCENARIOLIST;
+var TEAMS=[new Team(0),new Team(1),new Team(2),new Team(3)];
 var currentteam=TEAMS[0];
 var teamtarget=0;
 var VIEWPORT;
@@ -38,9 +35,21 @@ var ANIM="";
 var SETUP;
 var SHOWDIAL=[];
 var TRACE=false;
-var TEMPLATES={"bomb":"","upgrade":"","weapon":"","social":""};
-//var sl;
-//var increment=1;
+var TEMPLATES={};
+var FE_EVADE=1;
+var FE_FOCUS=10;
+var FCH_HIT=1;
+var FCH_FOCUS=100;
+var FCH_CRIT=10;
+var HEADER="";
+var SCENARIOTITLE="";
+var WAVEFILTER="0";
+var UNITFILTER={};
+var ACTIONFILTER={};
+var MOVEFILTER={};
+var TEXTFILTER="";
+var COSTFILTER=50;
+
 var UNIQUE=[];
 var stype="";
 var REPLAY="";
@@ -61,43 +70,103 @@ var PERMALINK="";
 <script src="src/proba.js"></script>
     <script src="src/xwings.js"></script>
 
-		 <button onclick='$("#replay")[0].contentWindow.stopreplay();'>Stop</button>
 
 */
-//jQuery.event.props.push('dataTransfer');
-
-/*window.onerror = function(message, source, lineno, colno, error) {
-    log("<b>ERROR: "+error+"</b>");
- };
-*/
-var SETUPS={
-    "playzone":"M 0 0 L 900 0 900 900 0 900 Z",
-    "zone1":"M 0 0 L 100 0 100 900 0 900 Z",
-    "zone2":"M 800 0 L 900 0 900 900 800 900 Z",
-    "asteroids":6,
-     "Classic Map": {
-	"name":"Classic",
-	"background":"css/playmat10.jpg",
+var SCENARIOS= {
+    "Battle of Yavin, the final":{
+	text:"Here you are, Red 5, in the trench leading to the exhaust port. Destroy it ! Beware of the Imperial squad on your tail and of the ionization turrets. You have less than 12 turns.",
+	link:"GQVgNAjA7AbAXBATFCZEA4AsYC0BOABgG5wDJYF0U1lcJ1jTz4II9EwQBmbYxcCCCiQuwvBDi1EXGGEJF+kISLETFXLmXm0Q6JcIii5EqOAzh58ZDGzI9+YsGAAzAIYAbAM4BTYABcAJwBXXwARb1c-AAtPP1cApwAhSL93bwACAHtndIBNVwA3AEsAOzB06IznUo9gAAlvAIyAT0yg9PjvcoAlbwATdPB00oqojMDvEoBjKPS01z7SgHMKzNGM7wAPKNcg2PSAB0yAvwA6dPDYgMzm4b90gEJ0xO8Ad06snMr0gEkAWwOjSKHnSngAjkEFlkSulWkEAhVXEV3B0SgNsuthpkSkUAF6RIrYirwpp+TznXJtdI7AoZNKeTyjVwwpDEgIlcnpACyrlu32cxymGQARhlXkVorCqQ9gEggA",
+	wincond:12
     },
-    "Cloud City Map": {
-	"name":"Cloud City",
-	"background":"css/playmat6.jpg",
+    "A secret trench":{
+	text:"A new death star has been built! There's a secret trench that leads to an exhaust port. You must destroy it before turn 10, take your best pilot with an agile ship.",
+	link:"GQVgNAjALAHAXAZgAwCYwJWgnEg3OaeEKANjBCTAFod9JY4B2GRsKLa2ghhV2GMF3rwIJNIyisqUELhJwYINIrQ08wYADMAhgBsAzgFNgAFwBOAV2MARQ9pMALfSe1mUGgIIACIwGMzhiZe5oYAdr4OwN6hhgDuXgAmdo4+LmZeDtr6XgBGhmG5FgCWuiYAhF4AKg6GAQDk2do+hv6BwQHhDsGZQbp2CdkmAPZe2qFehgAemRbOXgAOQ2YmAHReAJpDFl4AtrNBSc5mQwCeXkVBeZpLhsEWZuMcwdoA1rcnW+l5c-MlQ0GxC5dMajADmJVu+gcRXmawAstozo5btczL5bnkvICUh9tmVgBAkEA",
+	wincond:10
     },
-    "Blue Sky Map": {
-	"name":"Blue Sky",
-	"background":"css/playmat13.jpg",
+    "The Pirate Magic Roundabout":{
+	link:"GQRgTAzANCAsAcMAMEBcBWJBOKmDsUAtCBOgNzjRyIgqoRYhQNhSzmUwLJrvQR4kULEgqQuNOuybowOQiLLAIYWMxVtWo2INy6sOeGVkF0cGDjDGAbAVhJryKNbIQSbLFUewysLIjlDHHRgADMAQwAbAGcAU2AAFwAnAFd4gBFY0NiAOwATWKTgYAAVAAtYgAIABQBLJPCEqoBZcIBzWoBjSoAlAHsU-PCAIwGE4ABBUKakyvDKyL6ctsqywYSoSoBPAcrQ2pyoyK29gfzKhIrKgAd6xqqc2OiEgDpKzOekvpPL2IBbOaRSIAQkqACFYgB3cJJKp9UIXK7hZ6FPq1PLRF7AJBAA",
+	text:"After a long hunt, you finally find the pirate nest. Destroy all of them!",
+	wincond:0
     },
-    "Blue Planet Map": {
-	"name":"Blue Planet",
-	"background":"css/playmat11.jpg",
-    },
-    "Mars Map": {
-	"name":"Mars",
-	"background":"css/playmat14.jpg",
+    "Asteroid Field":{
+	link:"GQFgHANCAMEEwHYBcYFwgZgKwEYIFoBOaAbnClkRThHkMIOLMhnmTBqh3SNODlR1a+AGy1SGaJA4iCI9CJJYQ6BGFn4wtOEpwIo9AoLAkBsEdB4h9cHErhYIOMBgJYb0YADMAhgBsAZwBTYAAXACcAVxCAYT8fAICASwBjAEJgYABBANCg8IB7JIATAAIvJKC-YuAYqICAC1LQhqSA0oAHSIA7AE9S8KCAIyrygvCUoIA6UoAVBqD+1uKg0qTu5oXShLzCktKhyNDSgBlxsoA1HxXw0oB3H27Q9u6C0qCADxTI4IzoIA",
+	text:"Crush this puny rebel force. They hide in the asteroid but Lord Vader wants no excuse!",
+	wincond:0
     }
+};
+var SETUPS={
+     "Classic": {
+	"background":"css/playmat10.jpg",
+	 "zone1":"M 0 0 L 100 0 100 900 0 900 Z",
+	 "zone2":"M 800 0 L 900 0 900 900 800 900 Z",
+	 "playzone1":"M 0 0 L 900 0 900 900 0 900 Z",
+         "asteroids":6
+    },
+    "Cloud City": {
+	"background":"css/playmat6.jpg",
+	"zone1":"M 0 0 L 100 0 100 900 0 900 Z",
+	"zone2":"M 800 0 L 900 0 900 900 800 900 Z",
+	"playzone1":"M 0 0 L 900 0 900 900 0 900 Z",
+        "asteroids":6
+    },
+    "Blue Sky": {
+	"background":"css/playmat13.jpg",
+	"zone1":"M 0 0 L 100 0 100 900 0 900 Z",
+	"zone2":"M 800 0 L 900 0 900 900 800 900 Z",
+	"playzone1":"M 0 0 L 900 0 900 900 0 900 Z",
+        "asteroids":0
+    },
+    "Blue Planet": {
+	"background":"css/playmat11.jpg",
+	"zone1":"M 0 0 L 100 0 100 900 0 900 Z",
+	"zone2":"M 800 0 L 900 0 900 900 800 900 Z",
+	"playzone1":"M 0 0 L 900 0 900 900 0 900 Z",
+        "asteroids":6
+    },
+    "Mars": {
+	"background":"css/playmat14.jpg",
+	"zone1":"M 0 0 L 100 0 100 900 0 900 Z",
+	"zone2":"M 800 0 L 900 0 900 900 800 900 Z",
+	"playzone1":"M 0 0 L 900 0 900 900 0 900 Z",
+        "asteroids":6
+    },
+    "Defender":{
+        "playzone1":"M 0 0 L 900 0 900 900 0 900 Z",
+        "playzone2":"M340,450a110,110 0 1,0 220,0a110,110 0 1,0 -220,0",//"M280,450a170,170 0 1,0 340,0a170,170 0 1,0 -340,0",
+        "background":"css/playmat10.jpg",
+        "zone2":"M340,450a110,110 0 1,0 220,0a110,110 0 1,0 -220,0",//"M280,450a170,170 0 1,0 340,0a170,170 0 1,0 -340,0",
+        "zone1":"M 0 0 L 100 0 100 900 0 900 Z",
+        "asteroids":12
+    },
+    "Deathstar":{
+        "playzone1":"M 0 200 L 1300 200 1300 400 1800 400 1800 200 2800 200 2800 360 1960 360 1960 560 1100 560 1100 360 0 360 Z",
+        "background":"css/deathstar.png",
+        "pattern":"css/deathstar2.png",
+        "zone2":"M 0 200 L 100 200 100 360 0 360 Z",
+        "zone1":"M 500 200 L 600  200 600 360 500 360 Z",
+        "asteroids":0
+    },
+    "Deathstar2":{
+	"playzone1":"M 12.241 24.907 L 803.813 24.907 C 861.372 36.696 884.737 73.238 873.908 134.534 C 867.964 168.18 604.249 421.618 188.337 459.88 C 57.346 471.931 307.368 724.082 701.233 804.672 C 746.071 813.845 823.307 826.148 873.908 822.354 C 883.509 821.635 888.068 844.03 887.586 889.544 C 887.569 891.228 727.43 885.923 407.173 873.629 C 243.345 867.341 68.391 771.86 15.662 523.532 C -7.502 414.436 60.669 277.644 241.335 293.67 C 518.775 318.28 758.698 119.655 747.395 113.317 C 747.395 113.317 509.751 112.728 34.467 111.549 C 6.27 111.48 -1.138 82.599 12.241 24.907 Z",
+        "background":"css/deathstar.png",
+        "pattern":"css/deathstar2.png",
+        "zone1":"M 12 24 L 140 24 140 110 12 110 Z",
+        "zone2":"M 0 0",
+        "asteroids":0
+    },
+
 }
 
-
+function setSetup(n) {
+    if (typeof SETUPS[n]!="undefined") {
+	SETUP=SETUPS[n];
+	SETUP.name=n;
+    } else {
+	SETUP=SETUPS["Classic"];
+	SETUP.name="Classic";
+    }
+    if (typeof SETUP.playzone2=="undefined") SETUP.playzone2=SETUP.playzone1;
+}
 function sleep(milliseconds) {
   var start = new Date().getTime();
   for (var i = 0; i < 1e7; i++) {
@@ -119,7 +188,6 @@ function changeimage(input) {
 	reader.readAsDataURL(input.files[0]);
     }
 }
-//?GwdgXAHAjANAnAVngBgNxQEwygFgmECbBJONTGYJKAZmrwKRuBXTxho9kxrAxYhYyqAGQ0QlfBBCcSSALTDcRGtwycZkHLAwT5UCGhBwO2Chiw5kkKEkEnFaERgg4OJGPolocbjLEVsNBpkSk8DP1R5CA1wlxhyDygJBAkoNHl+GH4HWjsRADMAQwAbAGcAU0LSypEAYRKisrKASwBjESA#
 function center() {
     var bbox=activeunit.g.getBBox();
     var xx=(bbox.x+bbox.width/2);
@@ -158,15 +226,14 @@ var AIstats = function(error,options, response) {
 		var scoreco=0;
 		var scoreh=0;
 		if (type2!=type1) {
-		    if (type2=="Human") scoreh+=parseInt(score2,10);
+		    if (type2=="Player") scoreh+=parseInt(score2,10);
 		    else scoreco+=parseInt(score2,10);
-		    if (type1=="Human") scoreh+=parseInt(score1,10);
+		    if (type1=="Player") scoreh+=parseInt(score1,10);
 		    else scoreco+=parseInt(score1,10);
 		    median+=Math.floor((scoreco)/(scoreco+scoreh)*100);
 		    n++;
 		}
 	    }
-	    console.log(median/n);
 	}
     }
 }
@@ -183,12 +250,14 @@ var mk2split = function(t) {
 }
 var save=function() {
     movelog("W");
-    var url="http://xws-bench.github.io/bench/?"+permalink(false);
+    var url=WEBSITE+"?"+permalink(false);
     $(".social").html(Mustache.render(TEMPLATES["social"],{ 
 	url:url,
 	name:"save this link",
 	encodedurl:encodeURI(url)}));
-    if (typeof gapi!="undefined"&&typeof gapi.client.urlshortener!="undefined") {
+    if (typeof gapi!="undefined"
+	&&typeof gapi.client!="undefined"
+	&&typeof gapi.client.urlshortener!="undefined") {
 	var request = gapi.client.urlshortener.url.insert({
             'longUrl': url
 	});    
@@ -209,34 +278,26 @@ var save=function() {
 	$('#submission').contents().find("#ss-form").submit();
     }
 }
-var myCallback = function (error, options, response) {
-   if (response!=null&&typeof response.rows!="undefined") {
-       ga('send','event', {
-	   eventCategory: 'interaction',
-	   eventAction: 'battlelog',
-	   eventLabel: 'battlelog',
-	   eventValue:response.rows.length
-       });
 
-	//console.log("found "+response.rows.length);
-	var t=SEARCHINGSQUAD,t1="",s1="";
-	var tt=mk2split(t);
-	for (var i=0; i<tt.length; i++) {
-	    t1+=tt[i].replace(/\*/g," + ").replace(/_/g," ")+"<br>";
-	    s1+=tt[i].replace(/\*/g," + ").replace(/_/g," ")+"\n";
-	}
-	stype="";
-	TEAMS[1].parseJuggler(s1,false);
+var myCallbacksl = function (error, options, response) {
+    if (response!=null&&typeof response.rows!="undefined") {
+	//console.log("found "+response.rows.length+" answers");
 	for (var i=1; i<response.rows.length; i++) {
-	    myTemplate(i,response.rows[i].cellsArray,null,null);
+	    try {
+		//console.log(response.rows[i].cellsArray);
+		myTemplatesl(i,response.rows[i].cellsArray,null,null);
+	    } catch(e) {
+	    }
 	}
-	SQUADBATTLE.columns.adjust().draw();
+	//SQUADLIST.table.columns.adjust().draw();
     }
 };
 
-var myTemplate = function(num,cells,cellarrays,labels) {
+var myTemplate = function(o) { //num,cells,cellarrays,labels) {
+    var cells = o.cellsArray;
     var s="";
     var t=cells[0].split(" ");
+    if (t.length<2) return;
     var ts1=t[0].split(":");
     var type1=ts1[0];
     var score1=ts1[1];
@@ -247,16 +308,26 @@ var myTemplate = function(num,cells,cellarrays,labels) {
     var tt=squad.split("VS");
     var team1=mk2split(tt[0]);
     var team2=mk2split(tt[1]);
-    var t1="",s1="";
-
-    if (tt[0]==SEARCHINGSQUAD) { var sc=score2,ts=type2; team1=team2; score2=score1; type2=type1; score1=sc; type1=ts; }
+    var t1="",s1="",t2="",s2="";
+    if (tt[0]==SEARCHINGSQUAD) { 
+	var sc=score2,ts=type2,tteam=team1;
+	team1=team2; team2=tteam; score2=score1; type2=type1; score1=sc; type1=ts; 
+    }
     for (var j=0; j<team1.length-1; j++) {
 	s1+=team1[j].replace(/\*/g," + ").replace(/_/g," ")+"\n";
 	t1+=team1[j].replace(/\*/g," + ").replace(/_/g," ")+"<br>";
     }
+    for (var j=0; j<team2.length-1; j++) {
+	s2+=team2[j].replace(/\*/g," + ").replace(/_/g," ")+"\n";
+	t2+=team2[j].replace(/\*/g," + ").replace(/_/g," ")+"<br>";
+    }
     TEAMS[2].parseJuggler(s1,false);
     if (LANG!="en") {
 	t1=TEAMS[2].toJuggler(true).replace(/\n/g,"<br>");
+    }
+    TEAMS[1].parseJuggler(s2,false);
+    if (LANG!="en") {
+	t2=TEAMS[1].toJuggler(true).replace(/\n/g,"<br>");
     }
     score1=""+score1;
     score2=""+score2;
@@ -264,11 +335,29 @@ var myTemplate = function(num,cells,cellarrays,labels) {
 	if (score1.length<3) score1="0"+score1;
 	if (score2.length<3) score2="0"+score2;
     }
-    if (type2=="Human") score2="<b>"+score2+"</b>";
-    if (type1=="Human") score1="<b>"+score1+"</b>";
-
-    SQUADBATTLE.row.add([score2+"-"+score1,"<span onclick='$(\".replay\").attr(\"src\",\""+cells[2]+"\")'>"+t1+"</span>"]).draw(false);
+    if (type2=="Player") score2="<b>"+score2+"</b>";
+    if (type1=="Player") score1="<b>"+score1+"</b>";
+    var xx=cells[2].split("?");
+    var arg=LZString.decompressFromEncodedURIComponent(decodeURI(xx[1]));
+    var args=[];
+    args= arg.split('&');
+    //HEADER="";
+    //SCENARIOTITLE="";
+    if (args[6].split(-1)!="W")  {
+	arg="";
+	// A MODIFIER 
+	//args[6]+="_-W";
+	for (var i=0; i<args.length; i++) 
+	    arg+=((i>0)?"&":"")+args[i];
+	xx[0]="file:///Users/denis/Documents/bench/index.html";
+	src=xx[0]+"?"+LZString.compressToEncodedURIComponent(arg);
+    } else src=cells[2];
+    //SQUADBATTLE.row.add([score2+"-"+score1,"<span onclick='$(\".replay\").attr(\"src\",\""+src+"\")'>"+t1+cells[3]+"</span>"]).draw(false);
+    $("#squadbattlediv").html(Mustache.render(TEMPLATES["combat-display"],{s1:t1,s2:t2,score:score2+" - "+score1}));
+    $("#replay").attr("src",src);
+    return "";
 }
+
 var computeurl=function(error, options,response) {
     //console.log(error,options,response);
     var scoreh=0;
@@ -287,7 +376,7 @@ var computeurl=function(error, options,response) {
 		s1+=team1[j].replace(/\*/g," + ").replace(/_/g," ")+"\n";
 	    }
 	    try {
-	    TEAMS[1].parseJuggler(s1,false);
+		TEAMS[1].parseJuggler(s1,false);
 	    for (var j=0; j<team2.length-1; j++) 
 	    	s2+=team2[j].replace(/\*/g," + ").replace(/_/g," ")+"\n";
 	    TEAMS[2].parseJuggler(s2,false);
@@ -298,14 +387,6 @@ var computeurl=function(error, options,response) {
 		    histogram[generics[j].pilotid]=0;
 		histogram[generics[j].pilotid]++;
 	    }
-	    //console.log(TEAMS[1].toKey());
-
-	    //var longurl = response.rows[i].cellsArray[2];
-	    //var curl=longurl.split("?")[1];
-	    //var arg=LZString.decompressFromEncodedURIComponent(decodeURI(curl));
-	    //var args=[];
-	    //args= arg.split('&');
-	    //log(LZString.compressToEncodedURIComponent(TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+args[2]+"&"+args[3]+"&"+args[4]+"&"+args[5]+"&"+args[6]));
 	}
     }
     for (var i in histogram) {
@@ -364,26 +445,23 @@ function formatstring(s) {
         .replace(/%TALONRIGHT%/g,"<code class='symbols'>:</code>")
         .replace(/%ASTROMECH%/g,"<code class='symbols'>A</code>")
 	.replace(/%CREW%/g,"<code class='symbols'>W</code>")
+	.replace(/%MOD%/g,"<code class='symbols'>m</code>")
 	.replace(/%SLAM%/g,"<code class='symbols'>s</code>")
     ;
 }
 function displayplayertype(team,img) {
-    var himg=localStorage["image"];
-    var pimg=localStorage["imageplayer"];
     var hname=localStorage["name"];
-    var name=localStorage["playername"];
-    if (typeof name!="undefined") hname=name;
-    if (typeof img!="undefined") himg=img; 
-    if (typeof pimg!="undefined") himg=pimg; 
-    if (typeof himg=="undefined") himg="css/human.png";
+    //var name=localStorage["playername"];
+    //if (typeof name!="undefined") hname=name;
+    var t={"REBEL":"x","EMPIRE":"y","SCUM":"z"};
     if (!TEAMS[team].isia) {
 	$("#player"+team+" option[value='human']").prop("selected",true); 
-	$("#player"+team+"img").attr("src",himg);
-	$("#player"+team+" option[value='human']").text(hname);
+	$("#player"+team+" option[value='human']").text(UI_translation["human"]);
     } else {
-	$("#player"+team+" option[value='computer']").prop("selected",true); 
-	$("#player"+team+"img").attr("src","css/computer.png");
+	$("#player"+team+" option[value='computer']").prop("selected",true);	$("#player"+team+" option[value='computer']").text(UI_translation["computer"]);
+ 
     } 
+    $("#playerteam"+team).text(t[TEAMS[team].faction]);
 }
 function nextunit(cando, changeturn,changephase,activenext) {
     var i,sk=false,last=0;
@@ -405,12 +483,15 @@ function nextunit(cando, changeturn,changephase,activenext) {
     if (skillturn<0||skillturn>12||last==-1) return changephase();
     barrier(function() {
 	active=last; 
+	
 	tabskill[skillturn][last].select();
 	activenext();
     });
 }
 function endphase() {
-    for (var i in squadron) squadron[i].endphase();
+    var i;
+    for (i in squadron) squadron[i].endphase();
+    for (i in OBSTACLES) if (typeof OBSTACLES[i].endphase!="undefined") OBSTACLES[i].endphase();
 }
 function nextcombat() {
     nextunit(function(t) { return t.canfire(); },
@@ -422,15 +503,15 @@ function nextcombat() {
 		     if (u.canbedestroyed(skillturn))
 			 if (u.checkdead()) dead=true;
 		 }
-		 if (dead&&TEAMS[1].checkdead()&&TEAMS[2].checkdead()) win(0);
-		 if (dead&&TEAMS[1].checkdead()) win(1);
-		 if (dead&&TEAMS[2].checkdead())  win(2);
+		 if (dead) {
+		     var t1=TEAMS[1].checkdead();
+		     var t2=TEAMS[2].checkdead();
+		     if (t1&&t2) win(0);
+		     else if (t1) win(1);
+		     else if (t2) win(2);
+		 }
 	     },
 	     function() {
-		 $("#attackdial").hide();
-		 for (var i in squadron) squadron[i].endcombatphase();
-		 log(UI_translation["No more firing units, ready to end phase."]);
-		 barrier(endphase);
 		 return enablenextphase();
 	     },
 	     function() {
@@ -445,7 +526,6 @@ function nextactivation() {
 		 //barrier(endphase); 
 		 return enablenextphase(); },
 	     function() {    
-		 //activeunit.log("next activation");
 		 activeunit.beginactivation();
 		 activeunit.doactivation();
 	     });
@@ -546,8 +626,9 @@ function displayattacktokens2(u,f) {
 	$("#atokens").append(am);
 	$("#atokens").append($("<button>").addClass("m-done").click(function() {
 	    $("#atokens").empty();
-	    f();}.bind(u)));
-    } else f();
+	    this.endmodifyattackstep();
+	    f(this);}.bind(u)));
+    } else f(u);
 }
 function displaydefensetokens(u,f) {
     $("#dtokens").empty();
@@ -574,6 +655,7 @@ function displaydefensetokens2(u,f) {
 	$("#dtokens").append($("<button>").addClass("m-fire").click(function() {
 	    //$("#combatdial").hide();
 	    //f();
+	    this.endmodifydefensestep();
 	    displaycompareresults(activeunit,f);
 	}.bind(u)));
     }
@@ -582,7 +664,7 @@ function displaycompareresults(u,f) {
     if (typeof f!="function") f=u.lastdf;
     u.lastdf=f;
     $("#dtokens").empty();
-    dm=u.getresultmodifiers(targetunit.dr,targetunit.dd,ATTACKCOMPARE_M,DEFENSE_M);
+    dm=targetunit.getresultmodifiers(targetunit.dr,targetunit.dd,ATTACKCOMPARE_M,DEFENSE_M);
     am=u.getresultmodifiers(u.ar,u.ad,ATTACKCOMPARE_M,ATTACK_M);
     if (FAST||(dm.length==0&&am.length==0)) {
 	$("#combatdial").hide();
@@ -617,16 +699,16 @@ function FCH_crit(r) {
 function FCH_blank(r,n) {
     return n-FCH_crit(r)-FCH_focus(r) - FCH_hit(r);
 }
-var FE_EVADE=1;
-var FE_FOCUS=10;
-var FCH_HIT=1;
-var FCH_FOCUS=100;
-var FCH_CRIT=10;
 
-var UNITFILTER={};
-var ACTIONFILTER={};
-var MOVEFILTER={};
-var TEXTFILTER="";
+function costfilter(s) {
+    if (typeof s=="undefined") COSTFILTER=10;
+    else COSTFILTER=parseInt(s,10);
+    displayfactionunits(true);
+}
+function wavefilter(s) {
+    WAVEFILTER=s;
+    displayfactionunits(true);
+}
 function unitfilter(s) {
     var i,j;
     if (typeof UNITFILTER[s]!="undefined") delete UNITFILTER[s];
@@ -641,7 +723,6 @@ function actionfilter(s) {
 }
 function textfilter(s) {
     TEXTFILTER=s;
-    log(TEXTFILTER);
     displayfactionunits(true);
 }
 
@@ -787,17 +868,17 @@ function enablenextphase() {
 
     switch(phase) {
     case SELECT_PHASE:
-	var n1=$("#squad1").attr("data-name");
-	var n2=$("#squad2").attr("data-name");
-	if (typeof n1=="undefined"||typeof n2=="undefined") {
+	var n1=$("#squad1points").text()
+	var n2=$("#squad2points").text()
+	if (parseInt(n1,10)==0||parseInt(n2,10)==0) {
 	    ready=false;
-	    $(".nextphase").prop("disabled",true);
+	    $(".nextphase").addClass("disabled");
 	}
 	break;
     case PLANNING_PHASE:
 	for (i in squadron)
 	    if (squadron[i].maneuver<0&&!squadron[i].isdocked) { ready=false; break; }
-	if (ready&&$(".nextphase").prop("disabled")) log(UI_translation["All units have planned a maneuver, ready to end phase"]);
+	if (ready&&$(".nextphase").hasClass("disabled")) log(UI_translation["All units have planned a maneuver, ready to end phase"]);
 	break;
     case ACTIVATION_PHASE:
 	if (subphase!=ACTIVATION_PHASE) {
@@ -809,11 +890,21 @@ function enablenextphase() {
 	} else {
 	    for (i in squadron)
 		if (squadron[i].maneuver>-1&&!squadron[i].isdocked) { ready=false; break; }
-	    if (ready&&$(".nextphase").prop("disabled")) log(UI_translation["All units have been activated, ready to end phase"]);
+	    if (ready&&$(".nextphase").hasClass("disabled")) log(UI_translation["All units have been activated, ready to end phase"]);
 	}
-	break;	
+	break;
+    case COMBAT_PHASE: 
+	if (skillturn<0) {
+	    $("#attackdial").hide();
+	    for (var i in squadron) squadron[i].endcombatphase();
+	    log(UI_translation["No more firing units, ready to end phase."]);
+	    barrier(endphase);
+	    ready=true; 
+	} else ready=false;
+	break;
     }
-    if (ready) $(".nextphase").prop("disabled",false);
+    
+    if (ready) $(".nextphase").removeClass("disabled");
     //log("ready "+ready);
     if (ready&&FAST&&phase>=SETUP_PHASE) 
 	return nextphase();
@@ -829,6 +920,7 @@ function enablenextphase() {
 }
 
 function win(destroyed) {
+    log("Team %0 was destroyed!",destroyed);
     movelog("W");
     var title="m-draw";
     var i;
@@ -875,15 +967,14 @@ function win(destroyed) {
     if ((d>0&&WINCOND<0)||(destroyed==2&&(WINCOND>round||WINCOND==0))) title="m-1win";
     else if ((d<0&&WINCOND<0)||(destroyed==1&&(WINCOND>round||WINCOND==0))) title="m-2win";
     
-    $(".victory").attr("class",title);
-    var titl = (TEAMS[1].isia?"Computer":"Human")+":"+score1+" "+(TEAMS[2].isia?"Computer":"Human")+":"+score2;
+    $(".victory").addClass(title);
+    var titl = (TEAMS[1].isia?"Computer":"Player")+":"+score1+" "+(TEAMS[2].isia?"Computer":"Player")+":"+score2;
     var note=TEAMS[1].toJuggler(false);
     note+="VS"+TEAMS[2].toJuggler(false);
     note=note.replace(/\n/g,".");
     note=note.replace(/ \+ /g,"*");
     note=note.replace(/ /g,"_");
-    //console.log("note:"+encodeURI(note));
-    var url=encodeURI("http://xws-bench.github.io/bench/index.html?"+permalink(false));
+    var url=encodeURI(WEBSITE+"?"+permalink(false));
     $("#submission").contents().find('#entry_209965003').val(titl);
     $('#submission').contents().find('#entry_390767903').val(note);
     $('#submission').contents().find('#entry_245821581').val("no short url");
@@ -925,33 +1016,26 @@ function win(destroyed) {
     //makePath(val2,'blue');
     window.location="#modal";
 }
-document.addEventListener("win",win,false);
+//document.addEventListener("win",win,false);
 
-function battlelog(t) {
-    var row=SQUADLIST.row(t.parents("tr"));
-    var data = row.data()[3];
-    if (LANG!="en") TEAMS[0].parseJuggler(data,false);
-    else TEAMS[0].parseJuggler(data,false);
-    data=TEAMS[0].toJuggler(false);
-    displaycombats(data);
-    window.location="#battlelog";
-}
-function createsquad() {
+function createsquad(f) {
+    var faction=currentteam.faction;
+    if (typeof f!="undefined") faction=f;
     $(".activeunit").prop("disabled",true);
-    $("#selectphase").hide();
-    $("#addcomment").hide();
-    ga('send','event', {
+    //$("#selectphase").hide();
+    //$("#addcomment").hide();
+    /*ga('send','event', {
 	eventCategory: 'interaction',
 	eventAction: 'create',
 	eventLabel: 'create'
-    });
-    phase=CREATION_PHASE;
-    $("footer").hide();
+    });*/
+    //phase=CREATION_PHASE;
+    //$("footer").hide();
     $('#consolecb').removeAttr('Checked');
-    $(".nextphase").prop("disabled",false);
-    currentteam.changefaction("REBEL");
-    $(".factionselect selected").val("REBEL");
-    $("#creation").show();
+    //$(".nextphase").prop("disabled",false);
+    currentteam.changefaction(faction);
+    $(".factionselect selected").val(faction);
+    //$("#creation").show();
     var u={};
     u.getdial=function() {
 	return 	[
@@ -976,8 +1060,8 @@ function createsquad() {
     };
     //$(".m-create").hide();
     //$(".title").html("Squad Building");
-    $("#dialfilter").html(Unit.prototype.getdialstring.call(u));
-    $("#dialfilter td[move]").click(function() { 
+    $(".dialfilter").html(Unit.prototype.getdialstring.call(u));
+    $(".dialfilter td[move]").click(function() { 
 	var m=$(this).attr("move"); 
 	if (typeof MOVEFILTER[m]!="undefined") {
 	    delete MOVEFILTER[m];
@@ -988,19 +1072,11 @@ function createsquad() {
 	}
 	displayfactionunits(true);
     });
+    displayfactionunits(false);
     for (var i in generics) {
 	var u=generics[i];
-	if (u.team==targetteam) {
-	    currentteam.faction=u.faction;
-	    break;
-	}
-    }
-    displayfactionunits();
-    for (var i in generics) {
-	var u=generics[i];
-	if (u.team==targetteam) {
-	    currentteam.faction=u.faction;
-	    addunit(u.pilotid,u);
+	if (u.team==currentteam.team) {
+	    addunit(u.pilotid,currentteam.faction,u);
 	    for (var j=0; j<u.upgradetype.length; j++) {
 		var upg=u.upg[j];
 		if (upg>-1) {
@@ -1070,36 +1146,32 @@ function recomputeurl() {
 	labels:["ascii","short","long"]
     }); 
 }
-function displaycombats(t) {
+/* Unused ? */
+function displaysquads(t) {
     var s1=t;
     t=t.replace(/\n/g,".");
     t=t.replace(/ \+ /g,"*");
-    //t=t.replace(/-/g,"\\-");
     t=t.replace(/ /g,"_");
-    $(".replay").attr("src","");
-
-    if (t.slice(-1)!=".") t=t+".";
     SEARCHINGSQUAD=t;
-    //console.log("asking for "+t);
-
     var t1="";
+    /*
     if (LANG!="en") {
 	TEAMS[0].parseJuggler(s1,false);
 	s1=TEAMS[0].toJuggler(true);
-    }
+    }*/
     t1=s1.replace(/\n/g,"<br>");
 
-    $("#battlingsquad").html(t1);
-    SQUADBATTLE.clear().draw();;
+    //$("#squadlist").html(t1);
+    //SQUADLIST.table.clear().draw();;
  
     for (var i=0; i<mySpreadsheets.length; i++) {
-	$('#squadbattlediv').sheetrock({
+	$('#squadlistdiv').sheetrock({
 	    url: mySpreadsheets[i],
-	    query:"select B,C,E where C contains '"+t+"'",
-	    callback:myCallback,
-	    fetchSize:100,
+	    query:"select C where C contains '"+t+"'",
+	    callback:myCallbacksl,
+	    fetchSize:2,
 	    rowTemplate:function () { return "";},
-	    labels:["Score","Squadlist","URL"]
+	    labels:["","Type","Pts","Units","",""]
 	});
     }   
 }
@@ -1119,103 +1191,12 @@ function dial2JSON(dial) {
     }
     return m;
 }
-function displayfactionunits(noreset) {
-    var count=0;
-    var n=0;
-    var i,j,k;
-    var faction=currentteam.faction;
-    var p={};
-    var t={};
-    var uu=[];
-    if (phase!=CREATION_PHASE) return;
 
-    if (faction=="REBEL") $("#dialfilter td[move='SL3']").text(P['TRL3'].key).attr("move","TRL3"); else  $("#dialfilter td[move='TRL3']").text(P['SL3'].key).attr("move","SL3");
-
-    for (i in unitlist) if (unitlist[i].faction.indexOf(faction)>-1) count++;
-
-    //var tz = Math.round( ( 186 / 2 ) / Math.tan( Math.PI / count ) );
-    if (noreset==true) $("#caroussel").html(""); else $(".caroussel").html("");
-    //increment = 360. / count;
-    var str;
-    for (i=0; i<PILOTS.length; i++) {
-	var u=PILOTS[i].unit;
-	if (PILOTS[i].faction==faction) {
-	    if (typeof p[u]=="undefined") p[u]=[];
-	    /* should go elsewhere */
-	    if (PILOTS[i].upgrades.indexOf(ELITE)>-1) PILOTS[i].haselite=true;
-	    var text=getpilottexttranslation(PILOTS[i],faction);
-	    if (text!="")
-		text+=(PILOTS[i].done==true?"":"<div><strong class='m-notimplemented'></strong></div>");
-	    PILOTS[i].tooltip=text;
-	    PILOTS[i].trname=translate(PILOTS[i].name);
-	    p[u].push(PILOTS[i]);
-	    //PILOTS[i].pilotid=i;
-	}
-    }
-    for (u in p) p[u].sort(function(a,b) { return a.points - b.points; });
-    for (i in unitlist) 
-	if (unitlist[i].faction.indexOf(faction)>-1) { 
-	    unitlist[i].trname=SHIP_translation[i]; 
-	    unitlist[i].name=i;
-	    if (typeof unitlist[i].trname=="undefined") unitlist[i].trname=i;
-	    uu.push(unitlist[i]);
-	}
-    uu.sort(function(a,b) { return a.trname > b.trname; });
-    for (i=0; i<uu.length; i++) {
-	str="";
-	n++;
-	var u=uu[i];
-	var q=p[u.name];
-	var filter=p[u.name][0].upgrades;
-	var filtered=true;
-	for (j in UNITFILTER)
-	    if (filter.indexOf(j)==-1) filtered=false;
-	for (j in ACTIONFILTER) 
-	    if (u.actionList.indexOf(j)==-1) filtered=false;
-	if (TEXTFILTER!="") {
-	    q=[];
-	    for (k in p[u.name]) {
-		var v=p[u.name][k];
-		var ttext=getpilottexttranslation(v,faction);
-		var tname=translate(v.name);
-		var r=new RegExp(TEXTFILTER,'i');
-		if (ttext.match(r)||tname.match(r)) q.push(v);
-	    }
-	    if (q.length==0) filtered=false;
-	}
-	for (j in MOVEFILTER) {
-	    var found=false;
-	    for (k=0; k<u.dial.length; k++)
-		if (u.dial[k].move==j) found=true;
-	    if (!found) filtered=false;
-	}
-	if (filtered) {
-	    var rendered=Mustache.render(TEMPLATES["faction"], {
-		shipimg:u.img[0],
-		fire:repeat('u',u.fire),
-		evade:repeat('u',u.evade),
-		hull:repeat('u',u.hull),
-		shield:repeat('u',u.shield),
-		diallist:dial2JSON(u.dial),
-		shipname:u.trname,
-		actionlist:function() {
-		    var al=[];
-		    for (j=0; j<u.actionList.length; j++) al[j]=A[u.actionList[j]].key;
-		    return al;
-		},
-	hastitle:u.hastitle,
-		shipupgrades:p[u.name][0].upgrades,
-		pilots:q
-	    });
-	    $("#caroussel").append("<li>"+rendered+"</li>");	    
-	}
-    }
-}
 function selectweapon(weapons) {
     $("#attackdial").html(Mustache.render(TEMPLATES["selectweapon"],weapons)).show();
 }
 function getpilottexttranslation(u,faction) {
-    var idxn=u.name+(faction=="SCUM"?" (Scum)":"");
+    var idxn=u.name+(faction==SCUM?" (Scum)":"");
     if (typeof u.edition!="undefined") {
 	var i=u.name+"("+u.edition+")";
 	if (typeof PILOT_translation[i]!="undefined"&&typeof PILOT_translation[i].text!="undefined") return formatstring(PILOT_translation[i].text);
@@ -1232,230 +1213,15 @@ function getupgtxttranslation(name,type) {
     }
     return "";
 }
-function addunique(name) {
-    UNIQUE[name]=true;
-    for (var i=0; i<PILOTS.length; i++) {
-	if (name==PILOTS[i].name) $(".pilots button[pilotid="+PILOTS[i].pilotid+"]").prop("disabled",true);
-    }
-    for (var i=0; i<UPGRADES.length; i++) {
-	if (name==UPGRADES[i].name) $(".upglist button[data="+i+"]").prop("disabled",true);
-    }
-}
-function removeunique(name) {
-    UNIQUE[name]=false;
-    for (var i=0; i<PILOTS.length; i++) {
-	if (name==PILOTS[i].name) $(".pilots button[pilotid="+PILOTS[i].pilotid+"]").prop("disabled",false);
-    }
-    for (var i=0; i<UPGRADES.length; i++) {
-	if (name==UPGRADES[i].name) $(".upglist button[data="+i+"]").prop("disabled",false);
-    }
-}
-function addlimited(u,data) {
-    $("#unit"+u.id+" .upglist button[data="+data+"]").prop("disabled",true);
-}
-function removelimited(u,data) {
-    $("#unit"+u.id+" .upglist button[data="+data+"]").prop("disabled",false);
-}
-function addupgradeaddhandler(u) {
-    $("#unit"+u.id+" button.upgrades").click(function(e) {
-	var org=e.currentTarget.getAttribute("class").split(" ")[1];
-	var num=e.currentTarget./*parentElement.*/getAttribute("num");
-	var p=this.getupgradelist(org);
-	$("#unit"+this.id+" .upgs .upgavail").hide();
-	$("#unit"+this.id+" .upgs .upg").hide();
-	//$("#unit"+this.id+" .upglist").append("<tr><td></td><td colspan='3'><input class='textfilter' type='search'></td></tr>");
 
-	if (typeof this.upgbonus[org]=="undefined") this.upgbonus[org]=0;
-
-	var q=[];
-	for (var i=0; i<p.length; i++) {
-	    var upg=UPGRADES[p[i]];
-	    var disabled;
-	    var attacks=[];
-	    if (upg.invisible) continue;
-	    disabled=(UNIQUE[upg.name]==true)
-		||((upg.limited==true||this.exclupg[upg.type]==true)&&$("#unit"+this.id+" .upg tr[data="+p[i]+"]").length>0);
-	    var pts=upg.points+this.upgbonus[org];
-	    if (upg.points>0&&pts<0) pts=0;
-	    var text=formatstring(getupgtxttranslation(upg.name,upg.type));
-	    if (upg.done!=true) text+="<div><strong class='m-notimplemented'></strong></div>";
-	    if (typeof upg.attack!="undefined") attacks=[{attack:upg.attack,lrange:upg.range[0],hrange:upg.range[1]}];
-	    //log(pts+" "+text+" disabled"+disabled+" num"+num+" data"+p[i]+" name"+translate(upg.name)+" attacks"+attacks[0].attack);
-	    q.push({
-		pts:pts,
-		tooltip:[text],
-		text:text,
-		isdisabled:disabled,
-		num:num,
-		data:p[i],
-		name:translate(upg.name).replace(/\(Crew\)/g,""),
-		attacks:attacks
-	    });
-	}
-	$("#unit"+this.id+" .upglist").html(Mustache.render(TEMPLATES["upglist-creation"],{upglist:q}));
-
-	$("#unit"+this.id+" .upglist button").click(function(e) {
-	    var data=e.currentTarget.getAttribute("data");
-	    var num=e.currentTarget.getAttribute("num");
-	    $("#unit"+this.id+" .upgs .upgavail").show();
-	    $("#unit"+this.id+" .upgs .upg").show();
-	    addupgrade(this,data,num);
-	}.bind(this));
-    }.bind(u));
-}
-function addunit(n,u) {
-    if (typeof u=="undefined") var u=new Unit(currentteam.team,n);
-    $("#listunits").append("<li id='unit"+u.id+"'></li>");
-    u.show();
-    $("li#unit"+u.id).hover(function() { $(".highlighted").removeClass("highlighted"); 
-					 $(this).addClass("highlighted"); },
-			 function() { });
-    if (u.unique==true) addunique(u.name);
-    $("#unit"+u.id+" .close").click(function() {
-	var data=$(this).attr("data");
-	var u=generics["u"+data];
-	$("#unit"+data+" .upg tr[data]").each(function() {
-	    var d=$(this).attr("data");
-	    if (UPGRADES[d].unique==true) removeunique(UPGRADES[d].name);
-	});
-	if (PILOTS[u.pilotid].unique==true) removeunique(u.name);
-	$("#unit"+data).remove();
-	delete generics["u"+data];
-	currentteam.updatepoints();
-    });
-    $("#unit"+u.id+" .duplicate").click(function() {
-	var data=$(this).attr("data");
-	var u=generics["u"+data];
-	var self=addunit(u.pilotid);
-	$("#unit"+data+" .upg tr[data]").each(function() {
-	    var d=$(this).attr("data");
-	    var num=$(this).attr("num");
-	    if (UPGRADES[d].unique!=true&&u.upgnocopy!=d) addupgrade(self,d,num);
-	});
-    });
-    currentteam.updatepoints();
-    addupgradeaddhandler(u);
-    return u;
-}
-function addupgrade(self,data,num,noremove) {
-    var org=UPGRADES[data];
-    $("#unit"+self.id+" .upglist").empty();
-    if (typeof org=="undefined") return;
-    //log("upgrade identified");
-    if (org.unique==true) addunique(org.name);
-    if (org.limited==true) addlimited(self,data);
-    $("#unit"+self.id+" .upgavail span[num="+num+"]").css("display","none");
-    var text=translate(org.name).replace(/\(Crew\)/g,"").replace(/\'/g,"");
-    if (typeof self.upgbonus[org.type]=="undefined") self.upgbonus[org.type]=0;
-    var pts=org.points+self.upgbonus[org.type];
-    if (org.points>=0&&pts<0) pts=0;
-    var tt="";
-    var tttext=formatstring(getupgtxttranslation(org.name,org.type));
-    if (tttext!="") tt="<div class='tooltip'>"+tttext+(org.done==true?"":"<div><strong class='m-notimplemented'></strong></div></div>");
-    //log("adding to unit "+self.id);
-    $("#unit"+self.id+" .upg").append("<tr data="+data+" num="+num+"><td><code class='upgrades "+org.type+"'></code></td><td>"+text+tt+"</td><td class='pts'>"+pts+"<button>-</button></td></tr>");
-    //alert("is shown ?");
-    self.upg[num]=data;
-    Upgrade.prototype.install.call(org,self);
-    if (typeof org.install!="undefined") org.install(self);
-    $("#unit"+self.id+" .shipdial").html("<table>"+self.getdialstring()+"</table>");
-
-    self.showupgradeadd();
-    self.showactionlist();
-    self.showstats();
-    currentteam.updatepoints();
-    if (typeof noremove=="undefined") { 
-	$("#unit"+self.id+" .upg tr[num="+num+"] button").click(function(e) {
-	    var num=e.currentTarget.parentElement.parentElement.getAttribute("num");
-	    var data=e.currentTarget.parentElement.parentElement.getAttribute("data");
-	    $("#unit"+self.id+" .upglist").empty();
-	    removeupgrade(self,num,data);
-	}.bind(self));
-    } else self.upgnocopy=data;
-
-}
-function removeupgrade(self,num,data) {
-    var org=UPGRADES[data];
-    $("#unit"+self.id+" .upgavail span[num="+num+"]").css("display","block");
-    $("#unit"+self.id+" .upg tr[num="+num+"]").remove();
-    if (org.unique==true) removeunique(org.name);
-    if (org.limited==true) removelimited(self,data);
-    self.upg[num]=-1;
-    if (typeof org.uninstall!="undefined") {
-	org.uninstall(self);
-    }
-    Upgrade.prototype.uninstall.call(org,self);
-    $("#unit"+self.id+" .shipdial").html("<table>"+self.getdialstring()+"</table>");
-
-    self.showupgradeadd();
-    self.showactionlist();
-    self.showstats();
-    currentteam.updatepoints();
-}
-function setselectedunit(n,td) {
-    var jug=td; 
-    currentteam=TEAMS[n];
-    try {
-	currentteam.parseJuggler(jug,true);
-    } catch(e) {
-	currentteam.parseJuggler(jug,false);
-    }
-    currentteam.name=currentteam.toASCII();
-    currentteam.toJSON(); // Just for score
-    addrow(n,currentteam.name,currentteam.points,currentteam.faction,currentteam.toJuggler(true));
-}
-function addrow(team,name,pts,faction,jug,fill,isselection) {
-    if (team==1) {$("#squad1").val(jug); $("#squad1points").html(pts); $("#squad1").attr("data-name",name);}
-    if (team==2) {$("#squad2").val(jug); $("#squad2points").html(pts); $("#squad2").attr("data-name",name);}
-    if (isselection!=true) enablenextphase();
-    var n=faction.toUpperCase();
-    if (typeof localStorage[name]=="undefined"||fill==true)
-	SQUADLIST.row.add(["",n,""+pts,jug,name,"",""]).draw(false);
-}
-//function addrowcombat(link,team1,team2,n) {
-    //var clicks="https://api-ssl.bitly.com/v3/link/clicks?access_token=ceb626e1d1831b8830f707af14556fc4e4e1cb4c&link="+encodeURI(link);
-    //$.when($.ajax(clicks)).done(function(result1) {
-//    COMBATLIST.row.add(["",link,n,team1,team2]).draw(false);
-    //});
-//}
-
-function endselection() {
-    var team;
-    $("#creation").hide();
-    //$(".title").html("Squadron Benchmark");
-    $("#selectphase").show();
-    currentteam.name="SQUAD."+currentteam.toASCII();
-    currentteam.toJSON();// Just for points
-    var jug=currentteam.toJuggler(false);
-    TEAMS[targetteam].parseJuggler(jug,false);
-    if (typeof localStorage[currentteam.name]=="undefined") {
-	localStorage[currentteam.name]=JSON.stringify({"pts":currentteam.points,"faction":currentteam.faction,"jug":jug,"rocks":currentteam.rocks});
-    }
-    addrow(targetteam,currentteam.name,currentteam.points,currentteam.faction,currentteam.toJuggler(true),true);
-}
-function removerow(t) {
-    var row = SQUADLIST.row(t.parents("tr"));
-    var data = row.data()[4];
-    delete localStorage[data];
-    row.remove().draw(false);
-}
-
-function checkrow(n,t) {
-   var row=SQUADLIST.row(t.parents("tr"));
-    var data = row.data()[3];
-    var name=row.data()[4];
-    if (name.match("SQUAD")) {
-	TEAMS[n].setrocks($.parseJSON(localStorage[name]).rocks);
-    }
-    setselectedunit(n,data);
-}
 function importsquad(t) {
     currentteam.parseJSON($("#squad"+t).val(),true);
     currentteam.name="SQUAD."+currentteam.toASCII();
     var jug=currentteam.toJuggler(true);
     currentteam.toJSON(); // just for points
+    $("#squad"+t+"points").html(currentteam.points);
     localStorage[currentteam.name]=JSON.stringify({"pts":currentteam.points,"faction":currentteam.faction,"jug":currentteam.toJuggler(false)});
-    addrow(t,currentteam.name,currentteam.points,currentteam.faction,jug);
+    SQUADLIST.addrow(t,currentteam.name,currentteam.points,currentteam.faction,jug);
 }
 function findsquad(t) {
     currentteam.parseJSON($("#squad"+t).val(),true);
@@ -1509,19 +1275,20 @@ function endsetupphase() {
     $(".buttonbar .share-buttons").hide();
     $("#leftpanel").show();
     $(".bigbutton").hide();
-    $(".bigbutton2").prop("disabled",true);
-    ZONE[1].remove();
+    $(".playertype").prop("disabled",true);
     ZONE[2].remove();
+    ZONE[3].remove();
     TEAMS[1].endsetup();
     TEAMS[2].endsetup();
     PERMALINK=permalink(true);
     $("#turnselector").append("<option value='0'>"+UI_translation["phase"+SETUP_PHASE]+"</option>");
     $(".playerselect").remove();
-    $(".nextphase").prop("disabled",true);
+    $(".nextphase").addClass("disabled");
     $(".unit").css("cursor","pointer");
     $("#positiondial").hide();
     for (var i=0; i<OBSTACLES.length; i++) OBSTACLES[i].unDrag();
     HISTORY=[];
+    for (var i in squadron) squadron[i].endsetupphase();
 }
 function nextphase() {
     var i;
@@ -1532,28 +1299,32 @@ function nextphase() {
     window.location="#";
     switch(phase) {
     case SELECT_PHASE:
+	$(".permalink").show();
 	$(".mainbutton").hide();
+	$(".mainarticle").hide();
+	$("article.headlines").hide();
+	$("article.features").hide();
+	$("nav").show();
 	$("#game").show();
-	$("#selectphase").hide();
-	$("#creation").hide();
 	//$(".title").html("Squadron Benchmark");
 	$("#rightpanel").show();
 	$("#leftpanel").show();
-	//for (var i in squadron) console.log("--squadron["+i+"]:"+squadron[i].name+" "+squadron[i].id);
 	
  	break;
-    case CREATION_PHASE:
-	endselection();
-	phase=SELECT_PHASE;
-	return;
-    case SETUP_PHASE: 
+    case SETUP_PHASE:
+	if (mode==SCENARIOCREATOR) {
+	    phase=SELECT_PHASE-1;
+	    SCENARIOLIST.addrow(SCENARIOTITLE,HEADER,WINCOND,permalink(true));
+	    break;
+	}
 	if ($("#player1 option:checked").val()=="human") 
 	    TEAMS[1].isia=false; else TEAMS[1].isia=true;
 	if ($("#player2 option:checked").val()=="human") 
 	    TEAMS[2].isia=false; else TEAMS[2].isia=true;
 	if (TEAMS[1].isia==true) TEAMS[1].setia();
 	if (TEAMS[2].isia==true) TEAMS[2].setia();
-	ZONE[0].attr({fillOpacity:0});
+	/*ZONE[0].attr({fillOpacity:0});*/
+	/*ZONE[1].attr({fillOpacity:0});*/
 	$(".imagebg").hide();
 	endsetupphase();
 	/*
@@ -1567,6 +1338,9 @@ function nextphase() {
 	break;
     case PLANNING_PHASE:
 	$("#maneuverdial").hide();
+	for (i in squadron) {
+	    squadron[i].endplanningphase();
+	}
 	break;
     case ACTIVATION_PHASE:
 	$("#activationdial").hide();
@@ -1586,6 +1360,7 @@ function nextphase() {
 	for (i in squadron) squadron[i].endround();
 	$("#turnselector").append("<option value='"+round+"'>"+UI_translation["turn #"]+round+"</option>");
 	round++;
+	console.log("win cond:"+WINCOND);
 	if (WINCOND<round&&WINCOND>0) win(0);
 	if (-WINCOND<round&&WINCOND<0) win(0);
 	break;
@@ -1599,17 +1374,17 @@ function nextphase() {
     //if (phase>SELECT_PHASE) for (i in squadron) {squadron[i].unselect();}
     // Init new phase
 
-    $(".nextphase").prop("disabled",false);
+    $(".nextphase").removeClass("disabled");
     setphase();
 }
 function setphase(cannotreplay) {
     $(".imagebg").hide();
 
-    //log("setphase "+phase+" "+cannotreplay);
     switch(phase) {
     case SELECT_PHASE:
+	HEADER="";
+	SCENARIOTITLE="";
 	$("#addcomment").hide();
-	$(".mainbutton").show();
 	$(".buttonbar .share-buttons").hide();
 	$(".h2 .share-buttons").show();
 	$(".permalink").hide();
@@ -1617,28 +1392,31 @@ function setphase(cannotreplay) {
 	$("#rightpanel").hide();
 	$("#leftpanel").hide();
 	$("#game").hide();
-	$("#selectphase").show();
-	$("#creation").hide();
+	$("nav").hide();
+	$(".mainarticle").show();
+	$(".headlines").show();
+	$(".features").show();
 	//$(".title").html("Squadron Benchmark");
 	currentteam.setfaction("REBEL");
-	$(".nextphase").prop("disabled",true);
+	$(".nextphase").addClass("disabled");
+	createsquad();
 	//window.location="#creation";
 	break;
     case SETUP_PHASE:
 	$(".imagebg").show();
 	$("#addcomment").show();
 
-	var t=["bomb","weapon","upgrade","social"];
+	var t=["bomb","weapon","upgrade","social","condition","squad-display"];
 	for (var i=0;i<t.length; i++) {
 	    TEMPLATES[t[i]]=$("#"+t[i]).html();
 	    Mustache.parse(TEMPLATES[t[i]]);
 	}
-	var name=localStorage.name;
-	if (typeof name=="undefined"||name==null) name=UI_translation["human"];
+	var name=UI_translation["human"];
+	var computer=UI_translation["computer"];
 	$("#player1").html("<option selected value='human'>"+name+"</option>");
-	$("#player1").append("<option value='computer'>"+UI_translation["computer"]+"</option>");
+	$("#player1").append("<option value='computer'>"+computer+"</option>");
 	$("#player2").html("<option selected value='human'>"+name+"</option>");
-	$("#player2").append("<option value='computer'>"+UI_translation["computer"]+"</option>");
+	$("#player2").append("<option value='computer'>"+computer+"</option>");
 	$("#player1").change(function() {
 	    TEAMS[1].isia=!TEAMS[1].isia;
 	    displayplayertype(1);
@@ -1647,7 +1425,9 @@ function setphase(cannotreplay) {
 	    TEAMS[2].isia=!TEAMS[2].isia;
 	    displayplayertype(2);
 	});
+	TEAMS[1].isia=false;
 	displayplayertype(1);
+	TEAMS[2].isia=true;
 	displayplayertype(2);
 	$(".bigbutton").show();
 	$(".bigbutton2").prop("disabled",false);
@@ -1657,37 +1437,58 @@ function setphase(cannotreplay) {
 	$("#team1").css("top",$("nav").height()+2);
 	$(".ctrl").css("display","block");
 	
-	ZONE[0]=s.path(SETUPS.playzone).attr({
+	ZONE[0]=s.path(SETUP.playzone1).attr({
 		strokeWidth: 6,
 		stroke:halftone(WHITE),
 		strokeDasharray:"20,10,5,5,5,10",
-		id:'ZONE',
+		id:'ZONE1',
+	        fillOpacity:1,
+	    filter: "drop-shadow( 5px 5px 5px #000 )",
+		pointerEvents:"none"
+	    });
+	if (SETUP.playzone1!=SETUP.playzone2) { 
+	    ZONE[1]=s.path(SETUP.playzone2).attr({
+		strokeWidth: 6,
+		stroke:halftone(WHITE),
+		strokeDasharray:"20,10,5,5,5,10",
+		id:'ZONE2',
 	        fillOpacity:0,
 		pointerEvents:"none"
 	    });
+	    ZONE[1].appendTo(VIEWPORT);
+	} else ZONE[1]=ZONE[0];
 	$("#imagebg").change(function() {
 	    changeimage(this);
 	});
 	if (SETUP.background!="") $(".playmat").css({background:"url("+SETUP.background+") no-repeat",backgroundSize:"100% 100%"});
+	if (SETUP.pattern=="") ZONE[0].attr("fillOpacity",0);
+	else {
+            var pattern = s.image(SETUP.pattern,0,0,360,360).pattern(0,0,360,360);
+            ZONE[0].attr("fill",pattern);
+        }
 	ZONE[0].appendTo(VIEWPORT);
-	ZONE[1]=s.path(SETUPS.zone1).attr({
+	ZONE[2]=s.path(SETUP.zone1).attr({
 		fill: TEAMS[1].color,
 		strokeWidth: 2,
 		opacity: 0.3,
 		pointerEvents:"none"
 	    });
-	ZONE[1].appendTo(VIEWPORT);
-	ZONE[2]=s.path(SETUPS.zone2).attr({
+	ZONE[2].appendTo(VIEWPORT);
+	ZONE[3]=s.path(SETUP.zone2).attr({
 		fill: TEAMS[2].color,
 		strokeWidth: 2,
 		opacity: 0.3,
 		pointerEvents:"none"
 	    });
-	ZONE[2].appendTo(VIEWPORT);
+	ZONE[3].appendTo(VIEWPORT);
 	TEAMS[1].endselection(s);
 	TEAMS[2].endselection(s);
 	loadsound();
 
+	if (HEADER!=""&&round<2) {
+	    $("#titlecontent").html("<h1>"+SCENARIOTITLE+"</h1>"+HEADER);
+	    $("footer").hide();
+	}
 	if (TEAMS[1].points>TEAMS[2].points) TEAMS[2].initiative=true;
 	else if (TEAMS[2].points>TEAMS[1].points) TEAMS[1].initiative=true;
 	else TEAMS[1].initiative=true;
@@ -1700,6 +1501,11 @@ function setphase(cannotreplay) {
 	activeunit=squadron[i];
 	activeunit.select();
 	activeunit.show();
+
+	jwerty.key("f",function() {
+	    console.log("SETUP:"+SETUP.name);
+	});
+
 
 	var zoom=function(centerx,centery,z) {
 	    var w=$("#svgout").width();
@@ -1737,7 +1543,11 @@ function setphase(cannotreplay) {
 
 	/* By-passes */
 	jwerty.key("alt+p",function() {
-	    activeunit.showpossiblepositions();
+	    activeunit.showpositions(activeunit.getdial());
+	},{});
+	jwerty.key("alt+g",function() {
+	    if (TEAMS[activeunit.team].isia) activeunit.showgrouppositions();
+	    else console.log("not an IA");
 	},{});
 	jwerty.key("alt+m",function() {
 	    activeunit.showmeanposition();
@@ -1757,11 +1567,6 @@ function setphase(cannotreplay) {
 	jwerty.key("alt+shift+4", function() { if (activeunit.stress>0) activeunit.removestresstoken();activeunit.show();});
 	jwerty.key("alt+shift+5", function() { if (activeunit.ionized>0) activeunit.removeiontoken();});
 	jwerty.key("alt+shift+6", function() { if (activeunit.tractorbeam>0) activeunit.removetractorbeamtoken();});
-	jwerty.key("alt+f",function() { 
-	    var s=""; 
-	    for(i in activeunit.actionsdone) s+=activeunit.actionsdone[i]+" ";
-	    activeunit.log("actions done:"+s);
-	});
 	jwerty.key("alt+d",function() { activeunit.resolvehit(1);});
 	jwerty.key("alt+c",function() { activeunit.resolvecritical(1);});
 	jwerty.key("alt+shift+d",function() { 
@@ -1770,16 +1575,21 @@ function setphase(cannotreplay) {
 	    activeunit.show();
 	});
 
-	if (SETUPS.asteroids>0) {
+	if (SETUP.asteroids>0) {
 	    loadrock(s,ROCKDATA);
 	}
 
 	log("<div>["+UI_translation["turn #"]+round+"]"+UI_translation["phase"+phase]+"</div>");
+	$("footer").show();
 	$(".unit").css("cursor","move");
 	$("#positiondial").show();
 	$(".permalink").show();
 	$("#savebtn").hide();
 	if (cannotreplay!=true) startreplayall();
+	else for (i in squadron) {
+	    /* TODO: bug to correct */
+	    squadron[i].beginsetupphase();
+	}
 	break;
     case PLANNING_PHASE: 
 	active=0;
@@ -1788,7 +1598,7 @@ function setphase(cannotreplay) {
 	/* For phase */
 	actionrlock=$.Deferred().resolve();
 	log("<div>["+UI_translation["turn #"]+round+"]"+UI_translation["phase"+phase]+"</div>");
-	$(".nextphase").prop("disabled",true);
+	$(".nextphase").addClass("disabled");
 	$("#maneuverdial").show();
 	skillturn=0;
 	filltabskill();
@@ -1801,7 +1611,7 @@ function setphase(cannotreplay) {
 	break;
     case ACTIVATION_PHASE:
 	log("<div>["+UI_translation["turn #"]+round+"]"+UI_translation["phase"+phase]+"</div>");
-	$(".nextphase").prop("disabled",true);
+	$(".nextphase").addClass("disabled");
 	$("#activationdial").show();
 	for (i in squadron) squadron[i].beginactivationphase().done(nextdecloak);
 	
@@ -1814,6 +1624,7 @@ function setphase(cannotreplay) {
 	log("<div>["+UI_translation["turn #"]+round+"]"+UI_translation["phase"+phase]+"</div>");
 	$("#attackdial").show();
 	skillturn=12;
+	$(".nextphase").addClass("disabled");
 
 	for (i in squadron) squadron[i].begincombatphase().done(nextcombat);
 	barrier(nextcombat);
@@ -1832,11 +1643,10 @@ function log(str) {
 function permalink(reset) {
     var r="";
     if (!reset) { /*if (REPLAY!="") r=REPLAY; else*/ r=ANIM; } 
-    var himg=localStorage["image"];
-    var name=localStorage["name"];
-    if (typeof himg=="undefined") himg="";
-    if (typeof name=="undefined") name="";
-    return LZString.compressToEncodedURIComponent(TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock()+"&"+TEAMS[1].isia+"&"+TEAMS[2].isia+"&"+SETUP.name+"&"+r+"&"+himg+"&"+name);
+    return LZString.compressToEncodedURIComponent(TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock()+"&"+TEAMS[1].isia+"&"+TEAMS[2].isia+"&"+SETUP.name+(MOVING_ASTER?"!":"")+"&"+r+"&"+SCENARIOTITLE+"&"+HEADER+"&"+WINCOND);
+}
+function savesquad() {
+    return LZString.compressToEncodedURIComponent(TEAMS[3].toASCII()+"&&");
 }
 function resetlink(home,setup,round) {
     switch (phase) {
@@ -1850,11 +1660,6 @@ function resetlink(home,setup,round) {
 	}
 	location.reload();
 	break;
-    case CREATION_PHASE: 
-	phase=0; 
-	document.location.search=""; 
-	nextphase(); 
-	break; 
     default: 
 	if (home==true) {
 	    if (document.location.search!="") document.location.search="";
@@ -1881,6 +1686,9 @@ function resetlink(home,setup,round) {
 	    args=arg.split("&");
 	    args[2]=saverock();
 	    args[6]=ANIM;
+	    args[7]=SCENARIOTITLE;
+	    args[8]=HEADER;
+	    args[9]=WINCOND;
 	    arg=args.join("&");
 	    document.location.search="?"+LZString.compressToEncodedURIComponent(arg);
 	}
@@ -1916,7 +1724,7 @@ function probatable(attacker,defender) {
 	for (j=0; j<=5; j++) {
 	    var k=j;
 	    if (defender.adddice>0) k+=defender.adddice;
-	    var th=tohitproba(attacker,{},defender,ATTACK[i],DEFENSE[k],i,k);
+	    var th=tohitproba(attacker,{modifyattackroll:function(n,a,d) { return n;}},defender,ATTACK[i],DEFENSE[k],i,k);
 	    str+="<td class='probacell' style='background:hsl("+(1.2*(100-th.tohit))+",100%,80%)'>";
 	    str+="<div>"+th.tohit+"%</div><div><code class='symbols'>d</code>"+th.meanhit+"</div><div><code class='symbols'>c</code>"+th.meancritical+"</div></td>";
 	}
@@ -2033,13 +1841,14 @@ var changelanguage= function(l) {
 }
 $(document).ready(function() {
     var i;
-    s= Snap("#svgout")
+    s= Snap("#svgout");
 
     VIEWPORT = s.g().attr({id:"viewport"});
     VIEWPORT.m=new Snap.Matrix();
     FILTER = s.filter(Snap.filter.blur(5,5));
     P = { F0:{path:s.path("M 0 0 L 0 0"), speed: 0, key:"5"},
 	  F1:{path:s.path("M 0 0 L 0 -80"), speed: 1, key:"8"},
+	  RF1:{path:s.path("M 0 0 L 0 -80"), speed: 1, key:"|"},
 	  F2:{path:s.path("M 0 0 L 0 -120"), speed: 2, key:"8"},
 	  F3:{path:s.path("M 0 0 L 0 -160"), speed: 3, key:"8"},
 	  F4:{path:s.path("M 0 0 L 0 -200"), speed: 4, key:"8"},
@@ -2058,12 +1867,14 @@ $(document).ready(function() {
 	  TRL3:{path:s.path("M0 0 C 0 -60 -45 -105 -105 -105"), speed:3, key:":"}, // -85 -85
 	  // Bank right
 	  BR1:{path:s.path("M0 0 C 0 -20 18 -72 38 -92"), speed:1, key:"9"}, // 24 -58 (+/-14.14)
+	  RL1:{path:s.path("M0 0 C 0 -20 18 -72 38 -92"), speed:1, key:"}"}, // 24 -58 (+/-14.14)
 	  BR2:{path:s.path("M0 0 C 0 -30 24 -96 54 -126"), speed:2, key:"9"}, // 40 -92 (+/-14.14)
 	  SR2:{path:s.path("M0 0 C 0 -30 24 -96 54 -126"), speed:2, key:"3"}, // 40 -92 (+/-14.14)
 	  BR3:{path:s.path("M0 0 C 0 -40 29 -120 69 -160"), speed:3, key:"9"}, // 55 -126 (+/-14.14)
 	  SR3:{path:s.path("M0 0 C 0 -40 29 -120 69 -160"), speed:3, key:"3"}, // 55 -126 (+/-14.14)
 	  // Bank left
 	  BL1:{path:s.path("M0 0 C 0 -20 -18 -72 -38 -92"), speed:1, key:"7"}, // 24 -58 (+/-14.14)
+	  RR1:{path:s.path("M0 0 C 0 -20 -18 -72 -38 -92"), speed:1, key:"{"}, // 24 -58 (+/-14.14)
 	  BL2:{path:s.path("M0 0 C 0 -30 -24 -96 -54 -126"), speed:2, key:"7"}, // 40 -92 (+/-14.14)
 	  SL2:{path:s.path("M0 0 C 0 -30 -24 -96 -54 -126"), speed:2, key:"1"}, // 40 -92 (+/-14.14)
 	  BL3:{path:s.path("M0 0 C 0 -40 -29 -120 -69 -160"), speed:3, key:"7"}, // 55 -126 (+/-14.14)
@@ -2082,12 +1893,23 @@ $(document).ready(function() {
     }).mouseout(function() {
 	$('nav ul').css({display:'none',visibility:'hidden'})
     });
+    $("footer").hide();
 
     var initgapi=function() {
         gapi.client.setApiKey('AIzaSyBN2T9d2ZuWaT0Vj6EanYb5IgWzLlhy7Zo');
         gapi.client.load('urlshortener', 'v1');
     }
     if (typeof gapi!="undefined") gapi.load('client', initgapi);
+
+    $("#squad1").on("paste",function() {
+	setTimeout(function(){
+	    currentteam=TEAMS[1];importsquad(1);}, 4);
+    });
+    $("#squad2").on("paste",function() {
+	setTimeout(function(){
+	    currentteam=TEAMS[2];importsquad(2);}, 4);
+    });
+
     /*
     jwerty.key("alt+i",function() {
 	hello('google').login()
@@ -2139,8 +1961,14 @@ $(document).ready(function() {
 	}}),
 	$.ajax("data/strings.en.json",{error:function(xhr,status,error) {
 	    console.log("**Error loading strings."+LANG+".json\n"+status+" "+error);
+	}}),
+	$.ajax("data/ratings.json",{error:function(xhr,status,error) {
+	    console.log("**Error loading ratings.json\n"+status+" "+error);
+	}}),
+	$.ajax("data/full4b.json",{error:function(xhr,status,error) {
+	    console.log("**Error loading full4b.json\n"+status+" "+error);
 	}})
-    ).done(function(result1,result2,result3,r4) {
+    ).done(function(result1,result2,result3,r4,r5,r6) {
 	var process=setInterval(function() {
 	    ATTACK[dice]=attackproba(dice);
 	    DEFENSE[dice]=defenseproba(dice);
@@ -2157,6 +1985,10 @@ $(document).ready(function() {
 	SHIP_translation=result2[0].ships;
 	PILOT_translation=result2[0].pilots;
 	UPGRADE_translation=result2[0].upgrades;
+	RATINGS_upgrades=r5[0].upgrades;
+	RATINGS_ships=r5[0].ships;
+	RATINGS_pilots=r5[0].pilots;
+	TOP_squads=r6[0].data;
 	UI_translation=result2[0].ui;
 	CRIT_translation=result2[0].criticals;
 	var css_translation=result2[0].css;
@@ -2196,7 +2028,6 @@ $(document).ready(function() {
 	for (i=0; i<UPGRADES.length; i++) {
 	    var u=UPGRADES[i];
 	    if (u.type==TITLE) {
-		//log("ship titled "+u.ship);
 		unitlist[u.ship].hastitle=true;
 	    }
 	}
@@ -2220,8 +2051,6 @@ $(document).ready(function() {
 	squadron=[];
 
 	s.attr({width:"100%",height:"100%",viewBox:"0 0 900 900"});
-	TEAMS[1].setfaction("REBEL");
-	TEAMS[2].setfaction("EMPIRE");
 	//TEAMS[1].selectrocks();
 	//TEAMS[2].selectrocks();
 	/*UPGRADES.sort(function(a,b) {
@@ -2248,8 +2077,9 @@ $(document).ready(function() {
 		str+=PILOTS[i].name; 
 	    }
 	}
-	log(n+"/"+PILOTS.length+" pilots with full effect");
-	if (str!="") log("Pilots NOT implemented"+str);
+	console.log(n+"/"+PILOTS.length+" pilots with full effect");
+	log(n+"/"+PILOTS.length+" pilots with full effect<br/>");
+	if (str!="") log("Pilots NOT working yet:"+str+"<br/>");
 	n=0;
 	str="";
 	for (i=0; i<UPGRADES.length; i++) {
@@ -2259,38 +2089,33 @@ $(document).ready(function() {
 	    ntot++;
 	}
 	$(".ver").html(VERSION);
-	log(n+"/"+ntot+" upgrades with full effect");
-	log("Upgrades NOT working yet:"+str);
+	console.log(n+"/"+ntot+" upgrades with full effect");
+	log(n+"/"+ntot+" upgrades with full effect<br/>");
+	if (str!="") log("Upgrades NOT working yet:"+str+"<br/>");
 	$("#showproba").prop("disabled",true);
 	var d=new Date();
 
+
 	if (typeof localStorage.volume=="undefined") localStorage.volume=0.8;
 	if (typeof localStorage.image!="undefined") $("#profile-avatar").attr("src",localStorage.image);
-	if (typeof localStorage.name!="undefined") $("#nameinput").val(localStorage.name); else $("#nameinput").val("Human");
+	if (typeof localStorage.name!="undefined") $("#nameinput").val(localStorage.name); else $("#nameinput").val("Player");
 
-	Howler.volume(localStorage.volume);
-	$("#vol").val(localStorage.volume*100);
+	//Howler.volume(localStorage.volume);
+	//$("#vol").val(localStorage.volume*100);
 
 	var mc= new Hammer(document.getElementById('svgout'));
 	mc.get("pinch").set({enable:true});
 	mc.get('pan').set({direction:Hammer.DIRECTION_ALL});
 	mc.on("panleft panright panup pandown",function(ev) {
-	    if (ev.target.id!="svgout") {return;}
+	    if (ev.target.id!="svgout") return;
 	    if (activeunit.dragged==true) return;
-	    viewport_translate(-ev.velocityX*50,-ev.velocityY*50);
+	    viewport_translate(ev.velocityX*50,ev.velocityY*50);
 	});
-
-
-	TEMPLATES["unit-creation"]=$("#unit-creation").html();
-	Mustache.parse(TEMPLATES["unit-creation"]);  
-	TEMPLATES["upglist-creation"]=$("#upglist-creation").html();
-	Mustache.parse(TEMPLATES["upglist-creation"]);  
-	TEMPLATES["faction"]=$("#faction").html();
-	Mustache.parse(TEMPLATES["faction"]);  
-	TEMPLATES["usabletokens"]=$("#usabletokens").html();
-	Mustache.parse(TEMPLATES["usabletokens"]);  
-	TEMPLATES["selectweapon"]=$("#selectweapon").html();
-	Mustache.parse(TEMPLATES["selectweapon"]);  
+	var tmpl = ["unit-creation","combat-display","unit-printable","unit-combat","upglist-creation","faction","usabletokens","selectweapon"];
+	for (i in tmpl) {
+	    TEMPLATES[tmpl[i]]=$("#"+tmpl[i]).html();
+	    Mustache.parse(TEMPLATES[tmpl[i]]);  
+	}
 
 	$('body').on('mousedown', 'footer', function() {
             $(this).addClass('draggable').parents().on('mousemove', function(e) {
@@ -2321,172 +2146,82 @@ $(document).ready(function() {
 	});
 	$("aside").on("scroll touchmove touchstart mousewheel", scrolloverflow);
 
-    $("#squadbattle").html("<thead><tr><th><span class='m-score'></span></th><th><span class='m-opponent'></span></th></tr></thead>");
-    SQUADBATTLE=$("#squadbattle").DataTable({
-	"language": {
-	    "search":UI_translation["Search"],
-	    "lengthMenu": UI_translation["Display _MENU_ records per page"],
-	    "zeroRecords": UI_translation["Nothing found - sorry"],
-	    "info": UI_translation["Showing page _PAGE_ of _PAGES_"],
-	    "infoEmpty": UI_translation["No records available"],
-	    "infoFiltered": UI_translation["(filtered from _MAX_ total records)"]
-	},
-	"autoWidth": true,
-	"scrollY": "20em",
-	"scrollX":true,
-	"deferRender": true,
-	"scrollCollapse": true,
-	"ordering":true,
-	"processing":true,
-	"info":true,
-	"paging":         true});
-
-	$('#squadbattle tbody').on('click','tr', function () {
-            if ( $(this).hasClass('selected') ) {
-		$(this).removeClass('selected');
-            }
-            else {
-		$("#squadbattle tr.selected").removeClass("selected");
-		$(this).addClass('selected');
-            }
-	} );
+	scenariomode(FREECOMBAT);	
 
 	var arg=LZString.decompressFromEncodedURIComponent(decodeURI(window.location.search.substr(1)));
 	var args=[];
 	if (arg!=null) args= arg.split('&');
+
 	if (args.length>1) {
 	    log("Loading permalink...");
 	    ROCKDATA=args[2];
-	    phase=CREATION_PHASE;
+	    //phase=CREATION_PHASE;
 	    TEAMS[1].parseASCII(args[0]);
 	    TEAMS[1].toJSON(); // Just for points
-	    TEAMS[2].parseASCII(args[1]);
-	    TEAMS[2].toJSON(); // Just for points
-	    TEAMS[1].isia=false;
-	    TEAMS[2].isia=false;
-	    //console.log("player name and image:"+args[8]+"<>"+args[7]+"<>");
-	    if (args[3]=="true") TEAMS[1].isia=true;	
-	    else { 
-		localStorage["imageplayer"]=args[7];
-		localStorage["playername"]=args[8];
-	    }
-	    if (args[4]=="true") TEAMS[2].isia=true;
-	    else { 
-		localStorage["imageplayer"]=args[7];
-		localStorage["playername"]=args[8];
-	    }
-	    SETUP=SETUPS[args[5]+" Map"];
-	    phase=SELECT_PHASE;
-	    if (args.length>6&args[6]!="") { REPLAY=args[6]; }
-	    PERMALINK=LZString.compressToEncodedURIComponent(TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock()+"&"+TEAMS[1].isia+"&"+TEAMS[2].isia+"&"+args[5]);
-	    return nextphase();
-	} else {
-	    delete localStorage["imageplayer"];
-	    delete localStorage["playername"];
-	    phase=0;
-	    nextphase();
-	    if (localStorage.getItem("import")) {
-		log("Importing from another Squad Builder...");
-		if ($("#squad1").val()=="") currentteam=TEAMS[1];
-		else currentteam=TEAMS[2];
-		currentteam.parseJSON(sessionStorage.getItem("import"));
-		sessionStorage.clear();
-		endselection();
-	    }
-
-	    SETUP = SETUPS["Classic Map"];
-
-	    $("#squadlist").html("<thead><tr><th></th><th>"+UI_translation["type"]+"</th><th><span class='m-points'></span></th><th><span class='m-units'></span></th><th></th><th></th><th></th></tr></thead>");
-	    $.fn.dataTable.ext.search.push(
-		function( settings, data, dataIndex ) {
-		    return data[1].search(stype)>-1;
-		}
-	    );
-	    var first=0;
-	    SQUADLIST=$("#squadlist").DataTable({
-		"language": {
-		    "search":UI_translation["Search"],
-		    "lengthMenu": UI_translation["Display _MENU_ records per page"],
-		    "zeroRecords": UI_translation["Nothing found - sorry"],
-		    "info": UI_translation["Showing page _PAGE_ of _PAGES_"],
-		    "infoEmpty": UI_translation["No records available"],
-		    "infoFiltered": UI_translation["(filtered from _MAX_ total records)"]
-		},
-		"autoWidth": true,
-		"columnDefs": [
-		    { "targets": [0],
-		      "render":function() {
-			  return "<span class='closemiddle' onclick='removerow($(this))'>&times;</span> "
-		      },
-		      "sortable":false
-		    },
-		    { "targets":[6],
-		      "width":"2em",
-		      "render":function() {
-			  return "<span class='squadtop'><span class='squadmiddle' onclick='checkrow(1,$(this))'>1</span>&nbsp;<span class='squadmiddle right' onclick='checkrow(2,$(this))'>2</span></span>";
-		      },
-		      "sortable":false
-		    },
-		    { "targets":[5],
-		      "render":function(d,c,row) {
-			  return "<span class='logmiddle symbols' onclick='battlelog($(this));'>&#xE9;</span>";
-		      },
-		      "sortable":false
-		    },
-		    { "targets":[1],
-		      "sortable":false,
-		      "render":function(data,type,row) {
-			  if (row[4].search("SQUAD")>-1)
-			      return "<span style='display:none'>"+data+" USER</span><span class='"+data+"'></span>";
-			  else if (row[4]=="ELITE") 
-			      return "<span style='display:none'>"+data+" ELITE</span><span class='"+data+"'></span><span style='font-size:larger'></span><code style='color:orange' class='symbols'>ï</code>";
-			  return "<span style='display:none'>"+data+" PREBUILT</span><span class='"+data+"'></span><code style='font-size:larger' class='symbols'>ì</code>";
-			  
-		      }
-		    },
-		    {
-			"targets": [ 4 ],
-			"visible": false,
-			"searchable": false
-		    },
-		    {   "targets":[3],
-			"render": function ( data, type, row ) {
-			    if (LANG!="en"&&phase==SELECT_PHASE) 
-				if (row[4].search("SQUAD")==-1) {
-				    TEAMS[0].parseJuggler(data,false);
-				    data=TEAMS[0].toJuggler(true);
-				}
-			    return data.replace(/\n/g,"<br>");
-			}
-		    }],   
-		"ajax": "data/full4b.json",
-		"scrollY":        "20em",
-		"scrollCollapse": true,
-		"deferRender": true,
-		"ordering":true,
-		"info":true,
-		"paging":         true});
-
-	    for (i in localStorage) {
-		if (typeof localStorage[i]=="string"&&i.match(/SQUAD.*/)) {
-		    //delete localStorage[i];
-		    
-		    var l=$.parseJSON(localStorage[i]);
-		    if (typeof l.jug=="undefined"||typeof l.pts=="undefined")
-			delete localStorage[i]
-		    else {
-			if (LANG!="en") { 
-			    TEAMS[0].parseJuggler(l.jug,false); 
-			    addrow(0,i,l.pts,l.faction,TEAMS[0].toJuggler(true),true); 
-			} else {
-			    addrow(0,i,l.pts,l.faction,l.jug,true);
-			}
+	    if (args[1]=="") {
+		TEAMS[3].parseASCII(args[0]);
+		currentteam=TEAMS[3];
+		currentteam.team=3;
+		console.log(currentteam.toJuggler(false));
+		createsquad(currentteam.faction);
+		for (var j in generics) {
+		    var u=generics[j];
+		    if (u.team==3) {
+			for (var i in metaUnit.prototype) u[i]=metaUnit.prototype[i];
 		    }
 		}
+		document.location="#creation";
+	    } else {
+		TEAMS[2].parseASCII(args[1]);
+		TEAMS[2].toJSON(); // Just for points
+		TEAMS[1].isia=false;
+		TEAMS[2].isia=false;
+		//console.log("player name and image:"+args[8]+"<>"+args[7]+"<>");
+		if (args[3]=="true") TEAMS[1].isia=true;	
+		else { 
+		    //localStorage["playername"]=args[8];
+		}
+		if (args[4]=="true") TEAMS[2].isia=true;
+		else { 
+		    //localStorage["playername"]=args[8];
+		}
+		MOVING_ASTER=false;
+		if (typeof args[5]!="undefined") {
+		    var name=args[5];
+		    if (name.substr(-1,1)=="!") {
+			MOVING_ASTER=true;
+			name=name.substr(0,name.len-1);
+		    }
+		    setSetup(name);
+		}
+		phase=SELECT_PHASE;
+		HEADERS="";SCENARIOTITLE="";
+		if (args.length>6&args[6]!="") { REPLAY=args[6]; }
+		if (args.length>8) { HEADER=args[8]; SCENARIOTITLE=args[7]; }
+		if (args.length>9) WINCOND=parseInt(args[9],10);
+		else WINCOND=0;
+		PERMALINK=LZString.compressToEncodedURIComponent(TEAMS[1].toASCII()+"&"+TEAMS[2].toASCII()+"&"+saverock()+"&"+TEAMS[1].isia+"&"+TEAMS[2].isia+"&"+args[5]+"&&"+SCENARIOTITLE+"&"+HEADERS+"&"+WINCOND);
+		return nextphase();
 	    }
-	    $("#squadlist tr:first-child .squadtop").attr("data-intro","Select squad").attr("data-position","bottom");
-	    $("#squadlist tr:first-child .logmiddle").attr("data-intro",'Battle log').attr("data-position",'left'); 
 	}
+	delete localStorage["imageplayer"];
+	delete localStorage["playername"];
+	phase=0;
+	nextphase();
+	
+	setSetup("Classic");
+
+	SQUADLIST = new Squadlist("#squadlist");
+	SQUADLIST.user();
+	SCENARIOLIST = new Scenariolist("#scenariolist");
+	SCENARIOLIST.user();
+	for (i in squadron) {
+	    delete squadron[i];
+	}
+	squadron=[];
+	generics=[];
+	console.log(TEAMS[3].toJuggler());
+	TEAMS[3].changefaction(REBEL);
 	var pilots=[];
 	for (i=0; i<PILOTS.length; i++) {
 	    var n=i;
@@ -2504,3 +2239,27 @@ $(document).ready(function() {
 	$(".squadbg > textarea").asuggest(upgrades, { 'delimiters': '+', 'cycleOnTab':true});
     });
 });
+function printunits() {
+    var str="";
+    var alltot=0;
+    for (var i in generics) {
+	var u=generics[i];
+	if (u.team==currentteam.team) {
+	    var tot=0;
+	    for (var j in u.upgrades) {
+		var upg=u.upgrades[j];
+		if (typeof upg.points=="undefined") {
+		    upg.points=u.points;
+		    upg.name="Ship:"+u.ship.name;
+		}
+		tot+=parseInt(upg.points,10);
+	    }
+	    u.totpoints=tot;
+	    alltot+=tot;
+	    str+=Mustache.render(TEMPLATES["unit-printable"],u);
+	}
+    }
+    $("#factionname").addClass(currentteam.faction.toUpperCase());
+    $("#pointsname").html(alltot);
+    $("#printunits").html(str);
+}

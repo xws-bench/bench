@@ -6,23 +6,29 @@ function Team(team) {
     this.isia=false;
     this.initiative=false;
     this.units=[];
+    this.conditions={};
+    this.captain=null;
+    this.faction="REBEL";
     this.allhits=this.allcrits=this.allevade=this.allred=this.allgreen=0;
 }
 Team.prototype = {
     setia: function() {
-	for (i in squadron) {
-	    u=squadron[i];
-	    if (squadron[i].team==this.team)
-		for (j in IAUnit.prototype) 
+	for (var i in squadron) {
+	    var u=squadron[i];
+	    if (squadron[i].team==this.team) {
+		for (var j in IAUnit.prototype) {
 		    squadron[i][j]=IAUnit.prototype[j];
+		}
+		squadron[i].IAinit();
+	    }
 	}
 	this.ia=true;
     },
     setplayer: function() {
-	for (i in squadron) {
-	    u=squadron[i];
+	for (var i in squadron) {
+	    var u=squadron[i];
 	    if (squadron[i].team==this.team)
-		for (j in IAUnit.prototype) 
+		for (var j in IAUnit.prototype) 
 		    if (typeof Unit.prototype[j]!="undefined") squadron[i][j]=Unit.prototype[j];
 	}
 	this.ia=false;
@@ -143,10 +149,10 @@ Team.prototype = {
 	    $(this).find(".pts").each(function() {
 		s+=parseInt($(this).text());
 	    });
-	    $(this).find(".upts").html(s);
+	    $(this).find(".upts span:first-child").html(s);
 	    tot+=s;
 	});
-	$("#totalpts").html(tot);
+	$(".upts span:nth-child(2)").html(tot);
     },
     addunit:function(n) {
 	if (n==-1) {
@@ -165,6 +171,7 @@ Team.prototype = {
 	var id=0;
 	for (var i in generics) 
 	    if (generics[i].team==1) team1++;
+	this.captain=null;
 	//log("found team1:"+team1);
 	for (var i=0; i<sortable.length; i++) {
 	    if (this.team==sortable[i].team) {
@@ -318,7 +325,7 @@ Team.prototype = {
 	s.points=pts;
 	// update also the number of points
 	this.points=pts;
-	s.vendor={xwsbenchmark:{builder:"X-Wings Squadron Benchmark",builder_url:"http://xws-bench.github.io/bench/"}};
+	s.vendor={xwsbenchmark:{builder:"Squadron Benchmark",builder_url:"http://xws-bench.github.io/bench/"}};
 	s.version="0.3.0";
 	return s;
     },
@@ -361,7 +368,6 @@ Team.prototype = {
 	}
 	if ((f&1)==1) this.faction="REBEL"; else if ((f&2)==2) this.faction="SCUM"; else this.faction="EMPIRE";
 	this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
-
 	for (i=0; i<pilots.length; i++) {
 	    pid=-1;
 	    var pstr=pilots[i].split(/\s+\+\s+/);
@@ -388,16 +394,24 @@ Team.prototype = {
 	    var p=new Unit(this.team,pid);
 	    p.upg=[];
 	    for (j=0; j<10; j++) p.upg[j]=-1;
-	    var authupg=[MOD,TITLE].concat(PILOTS[p.pilotid].upgrades);
+	    if (typeof p.pilotid=="undefined") {
+		console.log(pid+" "+p.name+" "+p.pilotid);
+	    }
+	    var authupg=[TITLE,MOD].concat(PILOTS[p.pilotid].upgrades);
 	    for (j=1; j<pstr.length; j++) {
 		for (k=0; k<UPGRADES.length; k++) {
 		    if ((translated==true&&translate(UPGRADES[k].name).replace(/\'/g,"").replace(/\(Crew\)/g,"")==pstr[j])
 			||(UPGRADES[k].name.replace(/\'/g,"")==pstr[j])) {
 			if (authupg.indexOf(UPGRADES[k].type)>-1) {
 			    if (typeof UPGRADES[k].upgrades!="undefined") 
-				if (UPGRADES[k].upgrades[0]=="Cannon|Torpedo|Missile")
-				    authupg=authupg.concat(["Cannon","Torpedo","Missile"]);
-			    else authupg=authupg.concat(UPGRADES[k].upgrades);
+				if (UPGRADES[k].upgrades[0]=="Cannon|Torpedo|Missile") {
+				    authupg=authupg.concat([CANNON,TORPEDO,MISSILE]);
+				    p.upgradetype=p.upgradetype.concat([CANNON,TORPEDO,MISSILE]);
+				}
+			    else { 
+				authupg=authupg.concat(UPGRADES[k].upgrades);
+				p.upgradetype=p.upgradetype.concat(UPGRADES[k].upgrades);
+			    }
 			    break;
 			} 
 		    }
@@ -405,7 +419,7 @@ Team.prototype = {
 		}
 	    }
 	    //for (j=0; j<p.upgradetype.length; j++)
-	//	p.log("found type "+p.upgradetype[j]);
+	    //	p.log("found type "+p.upgradetype[j]);
 	    for (j=1; j<pstr.length; j++) {
 		for (k=0; k<UPGRADES.length; k++) {
 		    if ((translated==true&&translate(UPGRADES[k].name).replace(/\'/g,"").replace(/\(Crew\)/g,"")==pstr[j])
@@ -442,7 +456,16 @@ Team.prototype = {
 	    for (var j=1; j<updstr.length; j++) {
 		var n=parseInt(updstr[j],10);
 		for (var f=0; f<p.upgradetype.length; f++)
-		    if (p.upgradetype[f]==UPGRADES[n].type&&p.upg[f]==-1) { p.upg[f]=n; break; }
+		    if (p.upgradetype[f]==UPGRADES[n].type&&p.upg[f]==-1) { 
+			p.upg[f]=n; 
+			break; 
+		    } 
+		if (p.upg[f]==n&&typeof UPGRADES[n].upgrades!="undefined") {
+		    if (UPGRADES[n].upgrades[0]=="Cannon|Torpedo|Missile") 
+			p.upgradetype=p.upgradetype.concat([CANNON,TORPEDO,MISSILE]);
+		    else
+			p.upgradetype=p.upgradetype.concat(UPGRADES[n].upgrades);
+		}
 	        //if (typeof UPGRADES[n].install!="undefined") UPGRADES[n].install(p);
 	    }
 	    if (coord.length>1) {

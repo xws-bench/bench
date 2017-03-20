@@ -1,12 +1,58 @@
 var IACOMPUTING=0;
+var JOUSTER=0,ALONE=1;
 function IAUnit() {
-}
-/* TODO: getmaneuverlist instead of getdial */
-IAUnit.prototype= {
-    confirm: function(a) {
-	return true;
+};
+IAUnit.prototype = {
+    /* TODO: getmaneuverlist instead of getdial */
+    IAinit:function() {
+	// create environment
+	this.init={
+	    shield:this.shield,
+	    hull:this.hull,
+	    m:this.m
+	};
     },
-    guessevades: function(roll,promise) {
+	/*
+	 if (this.team==1) return;
+	     this.env = {};
+	     this.env.getNumStates = function() { return OBSTACLES.length*2+squadron.length*3; }
+	     this.env.getMaxNumActions = function() { return this.getdial().length; }.bind(this);
+	     
+	// create the agent, yay!
+	     this.spec={ update : 'qlearn', // qlearn | sarsa
+	     gamma : 0.9, // discount factor, [0, 1)
+	     epsilon : 0.2, // initial epsilon for epsilon-greedy policy, [0, 1)
+	     alpha : 0.01, // value function learning rate
+	     experience_add_every : 10, // number of time steps before we add another experience to replay memory
+	     experience_size : 5000, // size of experience replay memory
+	     learning_steps_per_iteration : 20,
+	     tderror_clamp : 1.0, // for robustness
+	     num_hidden_units : 100 // number of neurons in hidden layer
+	     }
+	     this.agent = new RL.DQNAgent(this.env, this.spec); 
+	     var self=this;
+	     this.wrap_before("applydamage",this,function(n) {
+	     console.log("reward -"+n);
+	     this.reward-=n;
+	     });
+	this.wrap_before("applycritical",this,function(n) {
+	     console.log("reward -"+n);
+	     this.reward-=n;
+	     });
+	     this.wrap_after("hashit",this,function(t,b) {
+	     if (b) {
+	     this.reward+=this.hitresolved*2+this.criticalresolved*4;
+	     console.log("reward +"+(this.hitresolved*2+this.criticalresolved*4));
+	     }
+	     return b;
+	});
+	     this.wrap_before("endround",this,function(c,h,t) {
+	     console.log("learn: "+this.reward);
+	     this.agent.learn(this.reward);
+	     });
+	*/
+    confirm(a) { return true;},
+    guessevades(roll,promise) {
 	if (this.rand(roll.dice+1)==FE_evade(roll.roll)) {
 	    this.log("guessed correctly the number of evades ! +1 %EVADE% [%0]",self.name);
 	    roll.roll+=FE_EVADE;
@@ -14,9 +60,128 @@ IAUnit.prototype= {
 	}
 	promise.resolve(roll);
     },
-    computemaneuver: function() {
+    findpositions(gd) {
+	var q=[],c,j,i;
+	// Find all possible moves, with no collision and with units in range 
+	var COLOR=[GREEN,WHITE,YELLOW,RED];
+	//log("find positions with color "+c);
+	for (i=0; i<gd.length; i++) {
+	    var d=gd[i];
+	    if (d.color==BLACK) continue;
+	    var mm=this.getpathmatrix(this.m,gd[i].move);
+	    var n=24-8*COLOR.indexOf(d.color);
+	    if (d.color==RED) n-=20;
+	    if (d.color==BLACK) n=-100;
+	    var n0=n;
+	    var oldm=this.m;
+	    this.m=mm;
+	    var ep=this.evaluateposition();
+	    n+=ep.self-ep.enemy-ep.dist;
+	    if (d.difficulty=="RED") n=n-1.5;
+	    //this.log(d.move+" "+d.color+" "+n);
+	    this.m=oldm;
+	    //this.log(d.move+":"+n+"/"+n0+" "+d.color);
+	    q.push({n:n,m:i});
+	}
+	return q;
+    },
+    findallpositions(gd) {
+	var i,j,n=0,q=[];
+	var COLOR=[GREEN,WHITE,YELLOW,RED,BLACK];
+
+	for (j=0;j<gd.length; j++) {
+	    var d=gd[j];
+	    n=0;
+	    n=24-8*COLOR.indexOf(d.color);
+	    if (d.color==WHITE) n+=8;
+	    if (d.color==RED) n-=20;
+	    if (d.color==BLACK) n=-100;
+	    if (d.difficulty=="RED") n=n-1.5;
+	    //var nn=0;
+	    //var nnn=0;
+	    n=n*this.squad.length;
+	    for (i=0; i<this.squad.length; i++) {
+		var u=this.squad[i];
+		var mm=u.getpathmatrix(u.m,gd[j].move);
+		var oldm=u.m;
+		u.m=mm;
+		var ep=u.evaluateposition();
+		n+=ep.self-1.1*ep.enemy-ep.dist;// TODO: enemy attacks all members of a team...
+		//nn+=ep.dist;
+		//nnn+=ep.self-ep.enemy;
+		u.m=oldm;
+	    }
+	    //console.log(gd[j].move+"->"+n+" "+d.color+" dist:"+nn+" "+nnn);
+	    q.push({n:n,m:j});
+	}
+	return q;
+    },
+    computeallmaneuvers() {
 	var i,j,k,d=0;
 	var q=[],possible=-1;
+	var COLOR=[GREEN,WHITE,YELLOW,RED,BLACK];
+	var gd=this.getdial();
+	var s=this.getskill();
+	for (i in squadron) {
+	    var u=squadron[i];
+	    var us=u.getskill();
+	    u.oldm=u.m;
+	    if (us<s) {
+		if (u.team!=this.team) {
+		    if (u.meanmround!=round) u.evaluatemoves(false,false);
+		    u.m=u.meanm;
+		} else {
+		    //Be safe
+		    if (typeof u.futurem=="undefined") u.futurem=u.m;
+		    u.m=u.futurem;
+		}
+	    }
+	}
+	this.evaluategroupmoves();
+	q=this.findallpositions(this.captaingd);
+	k=0;
+	// Restore position
+	for (i in squadron) squadron[i].m=squadron[i].oldm;
+	if (q.length>0) {
+	    q.sort(function(a,b) { return b.n-a.n; });
+	    var mm=this.captaingd[q[0].m].idx;
+	    var move=this.captaingd[q[0].m].move;
+	    for (i=0; i<mm.length; i++) {
+		u=this.squad[i];
+		u.lastmaneuver=u.maneuver;
+		u.maneuver=mm[i];
+		u.futurem=u.getpathmatrix(u.m,move);
+	    }
+	    nextplanning();
+	} else {
+	    console.log("(q=vide) UNDEFINED GD FOR "+this.name);
+	}
+	this.log("Group maneuver set");//+":"+d+"/"+q.length+" possible?"+possible+"->"+gd[d].move);
+    },
+    computemaneuver() {
+	var i,j,k,d=0;
+	var q=[],possible=-1;
+	/*if (this.team==2) {
+	    var mm=this.m.split();
+	    var s=[mm.dx,mm.dy,mm.rotate];
+	    for (i in squadron) {
+		if (squadron[i]==this) continue;
+		var m=squadron[i].m;
+		var mm=m.split();
+		s.push(mm.dx);
+		s.push(mm.dy);
+		s.push(mm.rotate);
+	    }
+	    for (i=0; i<OBSTACLES.length; i++) {
+		s.push(OBSTACLES[i].x);
+		s.push(OBSTACLES[i].y);
+	    }
+	    this.reward=0;
+	    var action = this.agent.act(s); // s is an array of length 15
+	    console.log("action chosen: "+action);
+	    return action;
+	 } */	
+	var COLOR=[GREEN,WHITE,YELLOW,RED,BLACK];
 	var gd=this.getdial();
 	//var enemies=[];
 	var s=this.getskill();
@@ -36,11 +201,13 @@ IAUnit.prototype= {
 		}
 	    }
 	}
+
 	this.evaluatemoves(true,true);
+	q=this.findpositions(gd);
 	//console.log(this.name+"end evaluates move");
 	//log("computing all enemy positions");
 	// Find all possible future positions of enemies
-	var k=0;
+	k=0;
 	/*for (i in squadron) {
 	    var u=squadron[i];
 	    if (u.team!=this.team) {
@@ -50,31 +217,6 @@ IAUnit.prototype= {
 		enemies.push(u);
 	    }
 	}*/
-	var findpositions=function(gd) {
-	    var q=[],c,j,i;
-	// Find all possible moves, with no collision and with units in range 
-	    var COLOR=[GREEN,WHITE,YELLOW,RED];
-	    //log("find positions with color "+c);
-	    for (i=0; i<gd.length; i++) {
-		var d=gd[i];
-		if (d.color==BLACK) continue;
-		var mm=this.getpathmatrix(this.m,gd[i].move);
-		var n=24-8*COLOR.indexOf(d.color);
-		if (d.color==RED) n-=20;
-		if (d.color==BLACK) n=-100;
-		var n0=n;
-		var oldm=this.m;
-		this.m=mm;
-		n+=this.evaluateposition();
-		if (d.difficulty=="RED") n=n-1.5;
-		//this.log(d.move+" "+d.color+" "+n);
-		this.m=oldm;
-		//this.log(d.move+":"+n+"/"+n0+" "+d.color);
-		q.push({n:n,m:i});
-	    }
-	    return q;
-	}.bind(this);
-	q=findpositions(gd);
 	// Restore position
 	for (i in squadron) squadron[i].m=squadron[i].oldm;
 	if (q.length>0) {
@@ -93,10 +235,10 @@ IAUnit.prototype= {
 	this.log("Maneuver set");//+":"+d+"/"+q.length+" possible?"+possible+"->"+gd[d].move);
 	return d;
     },
-    resolveactionselection: function(units,cleanup) {
+    resolveactionselection(units,cleanup) {
 	cleanup(0);
     },
-    selectcritical: function(crits,endselect) {
+    selectcritical(crits,endselect) {
 	for (var i=0; i<crits.length; i++) {
 	    if (CRITICAL_DECK[crits[i]].lethal==false) {
 		endselect(crits[i]); return;
@@ -104,7 +246,7 @@ IAUnit.prototype= {
 	}
 	endselect(crits[0]);
     },
-    resolveactionmove: function(moves,cleanup,automove,possible,scoring) {
+    resolveactionmove(moves,cleanup,automove,possible,scoring) {
 	var i;
 	var ready=false;
 	var score=-1000;
@@ -118,7 +260,9 @@ IAUnit.prototype= {
 		if (typeof scoring=="array") e=scoring[i];  
 		else {
 		    this.m=moves[i];
-		    e=this.evaluateposition();
+		    var ep=this.evaluateposition();
+		    e=ep.self-ep.enemy-ep.dist;
+		    //e=this.evaluateposition();
 		}
 		if (score<e) { score=e; scorei=i; }
 	    }
@@ -149,27 +293,75 @@ IAUnit.prototype= {
 	}
 	else { this.m=old; cleanup(this,-1); }
     },
-    doplan: function() {
+    doplan() {
 	$("#move").css({display:"none"});
 	$("#maneuverdial").empty();
-	if (phase==PLANNING_PHASE&&this.maneuver==-1) {
-	    IACOMPUTING++;
-	    if  (IACOMPUTING==1) {
-		$("#npimg").html("<img style='width:10px' src='png/waiting.gif'/>");
+	this.squad=[];
+	if (this.behavior==JOUSTER) {
+	    for (var i in this.squad) {
+		this.captain=null;
+		this.squad=[];
 	    }
-	    var p;
-	    p=setInterval(function() {
-		var m=this.computemaneuver(); 
-		IACOMPUTING--;
-		if (IACOMPUTING==0) $("#npimg").html("&gt;");
-		this.newm=this.getpathmatrix(this.m,this.getdial()[m].move);
-		this.setmaneuver(m);
-		clearInterval(p);
-	    }.bind(this),0);
+	    this.electcaptain(); // reelects a new captain each turn
 	}
+	/*if (this.group==-1) {
+	    this.group=TEAMS[this.team].groups++;
+	    p=this.selectnearbyally(1,function(s,t) {
+		if (s.group>-1||s.group<t.group) t.group=s.group;
+	    });
+	}*/
+	if (this.behavior==JOUSTER) {
+	    if (this==this.captain) {
+		console.log("captain for team "+this.team+" is:"+this.name);
+		console.log("surrounded by "+this.selectnearbyally(3).length+" units");
+		IACOMPUTING++;
+		if (IACOMPUTING==1) {
+		    $("#npimg").hide();
+		    $("#npimgwait").show();
+		}
+		var p;
+		p=setInterval(function() {
+		    this.computeallmaneuvers();
+		    IACOMPUTING--;
+		    if (IACOMPUTING==0) {
+			$("#npimg").show();
+			$("#npimgwait").hide();
+		    }
+		    clearInterval(p);
+		}.bind(this),0);
+	    } else {
+		if (this.maneuver==-1) this.maneuver=0;
+		nextplanning();
+	    }
+	}else {
+	/* Not for captain management. */
+	    if (phase==PLANNING_PHASE&&this.maneuver==-1) {
+		IACOMPUTING++;
+		if  (IACOMPUTING==1) {
+		    $("#npimg").hide();
+		    $("#npimgwait").show();
+		}
+		var p;
+		p=setInterval(function() {
+		    var m=this.computemaneuver(); 
+		    IACOMPUTING--;
+		    if (IACOMPUTING==0) {
+			$("#npimg").show();
+			$("#npimgwait").hide();
+		    }
+		    this.newm=this.getpathmatrix(this.m,this.getdial()[m].move);
+		    this.setmaneuver(m);
+		    clearInterval(p);
+		}.bind(this),0);
+	    }
+	}
+	    /*else { 
+	    if (this.maneuver==-1) this.maneuver=0;
+	    nextplanning();
+	}*/
 	return this.deferred;
     },
-    showdial: function() { 	
+    showdial() { 	
 	$("#maneuverdial").empty();
 	if (phase>=PLANNING_PHASE) {
 	    if (this.maneuver==-1||this.hasmoved) {
@@ -178,14 +370,15 @@ IAUnit.prototype= {
 	    };
 	}
     },
-    resolvedecloak: function() {
+    resolvedecloak() {
 	var p=this.getdecloakmatrix(this.m);
 	var move=this.getdial()[this.maneuver].move;
 	var scoring=[];
 	var old=this.m;
 	for (var i=0; i<p.length; i++) {
 	    this.m=this.getpathmatrix(p[i],move);
-	    scoring[i]=this.evaluateposition();
+	    var ep=this.evaluateposition();
+	    scoring[i]=ep.self-ep.enemy-ep.dist;
 	}
 	this.m=old;
 	this.resolveactionmove(p,
@@ -197,19 +390,19 @@ IAUnit.prototype= {
 				   this.hasdecloaked=true;
 			       }.bind(this),true,scoring);
     },
-    showactivation: function() {
+    showactivation() {
     },
-    timetoshowmaneuver: function() {
+    timetoshowmaneuver() {
 	return this.maneuver>-1&&skillturn>=this.getskill()&&phase==ACTIVATION_PHASE&&subphase==ACTIVATION_PHASE;
     },
-    doactivation: function() {
+    doactivation() {
 	var ad=this.updateactivationdial();
 	if (this.timeformaneuver()) {
 	    //this.log("resolvemaneuver");
 	    this.resolvemaneuver();
 	} //else this.log("no resolvemaneuver");
     },
-    showaction: function() {
+    showaction() {
 	$("#actiondial").empty();
 	if (this.action>-1&&this.action<this.actionList.length) {
 	    var a = this.actionList[this.action];
@@ -217,7 +410,7 @@ IAUnit.prototype= {
 	    this.actionicon.attr({fill:((this==activeunit)?c:halftone(c))});
 	} else this.actionicon.attr({text:""});	
     },
-    donoaction:function(list,str) {
+    donoaction(list,str) {
 	var cmp=function(a,b) {
 	    if (a.type=="CRITICAL") return -1;
 	    if (b.type=="CRITICAL") return 1;
@@ -226,7 +419,7 @@ IAUnit.prototype= {
 	    if (a.type=="FOCUS") return -1;
 	    if (b.type=="FOCUS") return 1;
 	    return 0;
-	}
+	};
 	list.sort(cmp);
 	return this.enqueueaction(function(n) {
 		this.select();
@@ -247,9 +440,9 @@ IAUnit.prototype= {
 		this.resolvenoaction(a,n);
 	    }.bind(this),"donoaction ia");
     },
-    doaction: function(list,str,cando) {
+    doaction(list,str,cando) {
 	var i;
-	var cmp=function(a,b) { return b.priority-a.priority; }
+	var cmp=function(a,b) { return b.priority-a.priority; };
 	if (typeof cando=="undefined") cando=this.candoaction;
 
 	for (i=0; i<list.length; i++) {
@@ -289,13 +482,13 @@ IAUnit.prototype= {
 	    }
 	}.bind(this),"doaction ia");
     },
-    showattack: function() {
+    showattack() {
 	//$("#attackdial").empty();
     },
-    doattack: function(weaponlist,enemies) {
-	//this.log("ia/attack?"+this.id+" forced:"+forced+" turn:"+(skillturn==this.skill));
-	var power=0,t=null;
+    doattack(weaponlist,enemies) {
+	var power=0,tp=null;
 	var i,w;
+	var wp=null;
 	//this.log(this.id+" readytofire?"+this.canfire());
 	NOLOG=true;
 	if (typeof weaponlist=="undefined") weaponlist=this.weapons;
@@ -303,30 +496,27 @@ IAUnit.prototype= {
 	var r=this.getenemiesinrange(weaponlist,enemies);
 	for (w=0; w<weaponlist.length; w++) {
 	    var el=r[w];
-	    var wp=this.weapons.indexOf(weaponlist[w]);
+	    wp=this.weapons.indexOf(weaponlist[w]);
 	    for (i=0;i<el.length; i++) {
 		var p=this.evaluatetohit(wp,el[i]).tohit;
 		//this.log("power "+p+" "+el[i].name);
 		if (p>power&&!el[i].isdocked) {
-		    t=el[i]; power=p; this.activeweapon=wp; 
+		    tp=el[i]; power=p; this.activeweapon=wp; 
 		}
 	    }
 	}
 	NOLOG=false;
-	//this.log("ia/wn:"+this.activeweapon+" "+power);
 	//if (t!=null) this.log("ia/doattack "+this.id+":"+this.weapons[this.activeweapon].name+" "+t.name);
-      	if (t!=null) return this.selecttargetforattack(this.activeweapon,[t]);
+      	if (tp!=null) return this.selecttargetforattack(this.activeweapon,[tp]);
 	//this.log("ia/doattack:canfire but no target");
 	//this.log("ia/doattack "+this.id+":cannot fire");
 	this.addhasfired(); 
 	this.cleanupattack();
-	//this.log("noattack");
 	return false;
     },
-    getresultmodifiers: function(m,n,from,to) {
+    getresultmodifiers(m,n,from,to) {
 	var mods=this.getdicemodifiers(); 
 	var lm=[];
-	var mm;
 	NOLOG=false;
 	for (var i=0; i<mods.length; i++) {
 	    var d=mods[i];
