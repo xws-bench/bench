@@ -71,26 +71,26 @@ $namecolor:rgba(200,200,200,0.3);
     /*.title,.ver { display:none; }*/
     html,body {	font-size:12px; }
     @include mediawidth(120px);
-    .news {
-	-webkit-column-count: 2; /* Chrome, Safari, Opera */
-	-moz-column-count: 2; /* Firefox */
+    /*.news {
+	-webkit-column-count: 2;
+	-moz-column-count: 2; 
 	column-count: 2;
-	-webkit-column-gap: 1em; /* Chrome, Safari, Opera */
-	-moz-column-gap: 1em; /* Firefox */
+	-webkit-column-gap: 1em;
+	-moz-column-gap: 1em; 
 	column-gap: 1em;
-    }
+    }*/
 }
 
 @media screen and (min-width:800px) {
     @include mediawidth(170px);
-    .news {
-	-webkit-column-gap: 1em; /* Chrome, Safari, Opera */
-	-moz-column-gap: 1em; /* Firefox */
+    /*.news {
+	-webkit-column-gap: 1em;
+	-moz-column-gap: 1em; 
 	column-gap: 1em;
-	-webkit-column-count: 3; /* Chrome, Safari, Opera */
-	-moz-column-count: 3; /* Firefox */
+	-webkit-column-count: 3; 
+	-moz-column-count: 3; 
 	column-count: 3;
-    }
+    }*/
 }
 @media screen and (min-height:800px) {
     ul#caroussel {
@@ -151,11 +151,11 @@ display:none
 	left:0;
 	position:fixed
     }
-    .news {
-	-webkit-column-count: 1; /* Chrome, Safari, Opera */
-	-moz-column-count: 1; /* Firefox */
+ /*   .news {
+	-webkit-column-count: 1;
+	-moz-column-count: 1;
 	column-count: 1;
-    }
+    }*/
 }
 
 .headunits {
@@ -388,7 +388,7 @@ display:none;
 	    font-size:0.5em;
 	    letter-spacing:0;
 	}
-	button,select {
+	button {
 	    background:rgba(0,0,0,0);
 	    border:0;
 	    color:white;
@@ -472,7 +472,7 @@ display:none;
     width:100%;
     overflow-y:auto;
     overflow-x:hidden;
-    h1 { opacity:0.5;
+    h1 { opacity:0.15;
 	 font-size:3em;
 	 position:absolute;
 	 top:0;left:0;
@@ -818,13 +818,6 @@ background-position: top center, 1px 1px, 0px 0px, top center;
 	border-radius:0 15px 15px 0;
 	color:#FFF;
 	text-align:center;
-	select {
-	    background:rgba(0,0,0,0);
-	    border:0;
-	    color:white;
-	    font-size:1em;
-	    -webkit-appearance: none;
-	}
 	.GREEN {
 	    font-size:larger;
 	}
@@ -1393,7 +1386,7 @@ color:#fff;
 .replay {
 background:#fff;
 opacity:1;
-margin:2em;
+/*margin:2em;*/
 max-width:400px;
 max-height:400px;
 width:40vw;
@@ -1876,9 +1869,9 @@ cursor:default
     td:nth-child(2), th:nth-child(2) { min-width: 40em; }
     td:nth-child(3), th:nth-child(3) { min-width: 5em; }
 }*/
-#squadstats {
+/*#squadstats {
     width:100%;
-}
+}*/
 .leftpanel,.rightpanel {
 /*top:4ex;*/
 top:0;
@@ -2387,7 +2380,7 @@ top:3.2ex
     padding-right:2ex;
     list-style-type:none;
     li,li#phase {
-	display:inline;
+	display:inline-block;
 	border-left:1px solid lightgrey;
 	border-bottom:1px solid lightgrey;
 	padding-left:5px;

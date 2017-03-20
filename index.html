@@ -111,6 +111,7 @@
 <div style="padding:1em;font-size:larger">A web app for players of X-Wing Miniature game. Build and test your squadlists in your browser.
 </div>      
       <div class="news">
+	<span style="float:left;width:30%;padding-right:1em;">
 	<h2 class="squadbg"><span>!</span> Squad Building</h2>
 	<div>Build your squad in a few clicks:
 	<ul>
@@ -121,7 +122,7 @@
 	  <li>Move map: Shows where the pilot can go with one maneuver and one action from action bar.</li>
 	  <li>Save your list as a weblink, print them.</li>
 	  <li>All your squads are saved in your browser. Edit, re-edit your lists and test them in the simulator.</li>
-	</ul></div>
+	</ul></div></span><span style="float:left;width:30%;padding-right:1em">
 	<h2 class="squadbg"><span>$</span> Combat Simulation</h2>
 	Play in 15 min a combat between chosen squads:
 	<ul>
@@ -131,7 +132,7 @@
 	  <li>Save your combat at any turn, export it as an URL.</li> 
 	  <li>Share the combats you have played on Facebook, Tweeter, email to your friends and to forums.</li> 
 	</ul>
-
+</span><span style="float:left; width:30%;">
 	<h2 class="squadbg"><span>W</span> Hangar</h2>
 	Direct access to squad lists, ready to be played:
 	<ul>
@@ -140,7 +141,7 @@
 	  <li>The 20 most recently played lists by players in Squadron Benchmark.</li>
 	</ul>
 	All lists can be reedited, printed and played. 
-      </div>
+      </div></span>
     </article>
 
     <aside class="leftpanel" id="leftpanel">
@@ -242,7 +243,6 @@
 	<li class="factions REBEL m-rebel selected" onclick="$('.factions').removeClass('selected'); $(this).addClass('selected');TEAMS[3].changefaction('REBEL')"></li>
 	<li class="factions SCUM m-scum" onclick="$('.factions').removeClass('selected'); $(this).addClass('selected'); TEAMS[3].changefaction('SCUM')"></li>
 	<li class="factions EMPIRE m-empire" onclick="$('.factions').removeClass('selected'); $(this).addClass('selected');TEAMS[3].changefaction('EMPIRE')"></li>
-
 	<li class="symbols" onclick="$('#linklist').text(WEBSITE+'?'+savesquad()); $('#xwsjsonlist').text(JSON.stringify(TEAMS[3].toJSON())); $('#jugglerlist').text(TEAMS[3].toJuggler(true)); document.location='#export'">&#xB9;</li>
 	<li class="symbols" onclick="printunits(); window.print()">&#xB6;</li>
 	<li onclick="document.location='#selectphase';prepareforcombat(TEAMS[3].toJuggler(true),1)"><span class="squadmiddle">1</span></li>
@@ -310,7 +310,7 @@
 	<li class="m-reset" onclick="document.location='#headlines'" >&lt;&lt; </li>
 	<li onclick="$('.modes').removeClass('selected'); $(this).addClass('selected'); scenariomode(FREECOMBAT);" class="modes selected">Free Combat</li>
 	<li onclick="$('.modes').removeClass('selected'); $(this).addClass('selected'); scenariomode(SCENARIO);" class="modes">Scenarios</li>
-	<li onclick="$('.modes').removeClass('selected'); $(this).addClass('selected'); scenariomode(SCENARIOCREATOR);" class="modes">Scenario Creator</li>
+	<li onclick="$('.modes').removeClass('selected'); $(this).addClass('selected'); scenariomode(SCENARIOCREATOR);" class="modes">Creator</li>
 
       </ul>
       <h1 class="m-simulation"></h1>
@@ -435,30 +435,26 @@
       <ul class="buttonbar">
 	<li class="m-reset" onclick="document.location='#headlines'" >&lt;&lt; </li>
 	<li onclick="$('.lists').removeClass('selected'); $(this).addClass('selected');SQUADLIST.latest()" class="lists">Latest</li>
-	<li class="lists m-top" onclick="$('.lists').removeClass('selected'); $(this).addClass('selected');SQUADLIST.toplist()"><span style="font-size:larger;color:orange" class="symbols">ÿ</span><sup><a style="text-decoration:underline;color:#fff" href="http://miniranker.xwingjunkies.com/">Miniranker</a></sup> </li>
+	<li class="lists m-top" onclick="$('.lists').removeClass('selected'); $(this).addClass('selected');SQUADLIST.toplist()"><span style="font-size:larger;color:orange" class="symbols">ÿ</span><sup><a style="text-decoration:underline;color:#fff" href="http://miniranker.xwingjunkies.com/">*</a></sup> </li>
 	<li class="lists Mybuilds selected" onclick="$('.lists').removeClass('selected'); $(this).addClass('selected');SQUADLIST.user()"></li>
       </ul>
-      <table style="width:100%;padding-top:1em;">
-	<tr>
-	  <td rowspan="2">
-	    <iframe id="replay" class="replay" src="blank.html"></iframe>
-	    <div id="squadbattlediv"></div>
-	    <div style="display:none">
-	      <button class="mainbutton" onclick='location.replace($("#replay").attr("src"))'><span class="symbols">&#xFB;</span></button>
-	    </div>
 
-	  </td>
-	  <td style="width:calc( 100% - 420px)">
+      <div style="float:left;padding-top:4em;">
 	    <div id="squadstats">
 	      <label for="squadfilter" style="font-size:larger;background:transparent">&#x1F50D;</label>
 	      <input type="text" id="squadfilter" onchange="console.log('filtering with '+$(this).val()); SQUADLIST.filter($(this).val())">
 	      <table id="squadlist" style="height:100%" class="compact stripe hover order-column row-border">
 	      </table>
 	    </div>
-	  </td>
-	</tr>
+      </div>
+      <div style="float:left;width:400px;">
+	    <iframe id="replay" class="replay" src="blank.html"></iframe>
+	    <div id="squadbattlediv"></div>
+	    <div style="display:none">
+	      <button class="mainbutton" onclick='location.replace($("#replay").attr("src"))'><span class="symbols">&#xFB;</span></button>
+	    </div>
 
-      </table>
+      </div>
     </article>
 
     <section id="asteroid" class="modalDialog">
