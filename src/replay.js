@@ -1,7 +1,10 @@
 var cmd=[];
 var startreplayall=function() {
-    if (REPLAY.length==0) return; 
-    if (REPLAY.substr(-1)=="W") FAST=false; else FAST=true;
+    if (REPLAY.length==0) return;
+    try {
+	FAST= (REPLAY.substr(-1)!="W")&&(window.self == window.top);
+	if (window.self != window.top) console.log("REPLAY in FRAME: "+FAST);
+    } catch(e) { FAST=false; }
     ANIM=REPLAY;
     var arg=LZString.decompressFromEncodedURIComponent(decodeURI(window.location.search.substr(1)));
     var args=arg.split("&");
