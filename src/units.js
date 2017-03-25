@@ -943,7 +943,7 @@ Unit.prototype = {
     },
     getOutlineString: function(m) {
 	var p=this.getOutlinePoints(m);
-	return {s:"M "+p[0].x+" "+p[0].y+" L "+p[1].x+" "+p[1].y+" "+p[2].x+" "+p[2].y+" "+p[3].x+" "+p[3].y+" Z",p:p};  
+	return {s:"M "+p[0].x+" "+p[0].y+" L "+p[1].x+" "+p[1].y+" "+p[2].x+" "+p[2].y+" "+p[3].x+" "+p[3].y+" Z",p:p};
     },
     getOutline: function(m) {
 	var w=(this.islarge)?40:20;
@@ -3608,48 +3608,8 @@ Unit.prototype = {
     },
     // Returns the range separating both units and if an obstacle is inbetween
     getoutlinerange:function(m,sh) {
-	var ro=this.getOutlinePoints(m);
-	var rsh = sh.getOutlinePoints(sh.m);
-	var min=90001;
-	var i,j,k;
-	var str="";
-	var obs=false;
-	var minobs=false,mini,minj;
-	for (i=0; i<4; i++) {
-	    for (j=0; j<4; j++) {
-		var d=dist(rsh[j],ro[i]);
-		if (d<min) { min=d; mini=i; minj=j;}
-	    }
-	}
-	if (min>90000) return {d:4,o:false};
-	var dx=rsh[minj].x-ro[mini].x;
-	var dy=rsh[minj].y-ro[mini].y;
-	var a=-ro[mini].x*dy+ro[mini].y*dx; //(x-x0)*dy-(y-y0)*dx>0
-	if (OBSTACLES.length>0) {
-	    for (k=0; k<OBSTACLES.length; k++) {
-			if (OBSTACLES[k].type==NONE) continue;
-			var op=OBSTACLES[k].getOutlineString().p;
-			// The object is not yet intialized. Should not be here...
-			if (op.length==0||OBSTACLES[k].type==BOMB) break;
-			var s=op[0].x*dy-op[0].y*dx+a;
-			var v=s;
-			for (i=1; i<op.length; i++) {
-				if (dist(rsh[minj],op[i])<1.2*min&&
-				dist(ro[mini],op[i])<1.2*min) {
-					v=op[i].x*dy-op[i].y*dx+a;
-					if (v*s<0) break;
-				}
-			}
-			if (v*s<0) {
-				obs=true;
-				break;
-			}
-
-	    }
-	}
-	if (min<=10000) {return {d:1,o:obs}; }
-	if (min<=40000) { return {d:2,o:obs}; }
-	return {d:3,o:obs};
+		var result = util.getOutlineRange(this, sh, OBSTACLES);
+		return{d:result.distance,o:result.obstructed};
     },
 
     getrangeallunits: function() {
