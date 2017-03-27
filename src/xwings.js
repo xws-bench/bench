@@ -1364,8 +1364,8 @@ function endsetupphase() {
 }
 function nextphase() {
     var i;
-    $("#savebtn").hide();
-    log("phase current "+phase+" mode "+mode+"/"+SCENARIOCREATOR);
+    //$("#savebtn").hide();
+    //log("phase current "+phase+" mode "+mode+"/"+SCENARIOCREATOR);
     // End of phases
     //if (!enablenextphase()) return;
     window.location="#";

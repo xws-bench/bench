@@ -4889,7 +4889,6 @@ window.UPGRADES= [
       action: function(n) {
 	  var self=this.unit;
 	  var m=self.getpathmatrix(self.m.clone().rotate(180,0,0),"F1").translate(40,-20).split();
-	  console.log(">>"+m.dx+" "+m.dy+" "+m.rotate);
 	  var ob=new Rock(MAXROCKS+9,[m.dx,m.dy,m.rotate+90],self.team,OBSTACLES.length);
 	  OBSTACLES.push(ob);
 	  this.desactivate();
@@ -5565,7 +5564,7 @@ window.UPGRADES= [
 			 &&u.isactive==false) { this.log("%0 active again [%1]",u.name,self.name); u.isactive=true; break; }
 		 }
 		 var r=sh.rollattackdie(1);
-		 if (r[0]=="blank") self.isactive=false;
+		 if (r[0]=="blank") self.desactivate();
 	     }
 
 	 });
@@ -5916,5 +5915,27 @@ window.UPGRADES= [
      unique:true,
      faction:"SCUM",
      points:0
+    },
+    {name:"Jabba The Hutt",
+     unique:true,
+     done:true,
+     takesdouble:true,
+     type:CREW,
+     faction:"SCUM",
+     points:5,
+     init: function(sh) {
+	 var self=this;
+	 for (var j in squadron) {
+	     if (squadron[j].team==sh.team) {
+		 var u=squadron[j];
+		 for (var i in u.upgrades) {
+		     if (u.upgrades[i].type==ILLICIT) {
+			 u.log("x2 %0 [%1]",u.upgrades[i].name,self.name);
+			 u.upgrades[i].ordnance=true;
+		     }
+		 }
+	     }
+	 }
+     },
     }
 ];

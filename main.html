@@ -27,12 +27,12 @@
   <body>
     <nav>
       <ul class="buttonbar">
-	<li class="m-reset" onclick="resetlink(true,true); page_select();" >&lt;&lt; </li>
+	<li class="symbols" onclick="resetlink(true,true); page_select();" >&#xFE;</li>
 	<li><select id="turnselector" onchange="resetlink(false,false,true);"><option value="-1">&lt; Back</option></select></li>
 	<li><label for="imagebg" class="imagebg">Import setup image</label>
 	  <input type="file" id="imagebg">
-	<span id="savebtn" onclick="document.location='#save'; save()" >Permalink</span></li>
-	<li onclick="document.location='#kb'">?</li>
+	<span id="savebtn" class="symbols" onclick="document.location='#save'; save()" >&#x101;</span></li>
+	<li onclick="document.location='#kb'" class="symbols">&#x100;</li>
 	<li class="symbols" onclick="window.location='#settings'">ü</li>
 	<li id="phase"></li>
 	<li class="nextphase" onclick="if (!$(this).hasClass('disabled')) nextphase()"><span class='np'></span> <span id="npimg">&gt;</span><img src="png/waiting.gif" id="npimgwait"></li>
@@ -170,8 +170,9 @@
 	  <span class="victory">Share and save this combat</span>
 	  <a href="#" title="Close" class="close">&#10060;</a>
 	</h2>
+	<br/>
 	<div>
-	  <span>Copy/paste the link below to save your combat, or share it with your friends.</span>
+	  <div>Copy/paste the link below to save your combat, or share it with your friends.</div>
 	  <div class="share-button social"></div>
 	</div>
       </div>
@@ -180,10 +181,10 @@
     <article id="creation" class="mainarticle">
       <div class="bg filter"></div>
       <ul class="buttonbar">
-	<li class="m-reset" onclick="page_main();" >&lt;&lt; </li>
+	<li class="symbols" onclick="page_main();" >&#xFE;</li>
 	<li class="symbols" onclick="$('#linklist').text(WEBSITE+'?'+savesquad()); $('#xwsjsonlist').text(JSON.stringify(TEAMS[3].toJSON())); $('#jugglerlist').text(TEAMS[3].toJuggler(true)); document.location='#export'">&#xB9;</li>
 	<li class="symbols" onclick="printunits(); window.print()">&#xB6;</li>
-	<li onclick="$('#unitfilter').toggle();">&#x1F50D;</li>
+	<li onclick="$('#unitfilter').toggle();" class="symbols">&#x102;</li>
 	<li onclick="page_select();prepareforcombat(TEAMS[3].toJuggler(true),1)"><span class="squadmiddle">1</span></li>
 	<li onclick="page_select();prepareforcombat(TEAMS[3].toJuggler(true),2)"><span class="squadmiddle right">2</span></li>
       </ul>
@@ -191,7 +192,7 @@
 
 
       <div id="unitfilter" class="selector"  contextmenu="popup-menu">
-	<label for="textfilter" style="font-size:larger;background:transparent">&#x1F50D;</label><input style="width:calc(100% - 2em)" type="search" id="textfilter" class="textfilter" onchange="textfilter($(this).val())">
+	<label for="textfilter" class="symbols" style="font-size:larger;background:transparent">&#x102;</label><input style="width:calc(100% - 2em)" type="search" id="textfilter" class="textfilter" onchange="textfilter($(this).val())">
 	<div class="m-wave"></div>
 	<div><select id="wave" onchange="wavefilter($('#wave option:selected').val())">
 	    <option value="0">1-10</option>
@@ -256,7 +257,7 @@
 
     <article id="selectphase" class="mainarticle">
       <ul class="buttonbar">
-	<li class="m-reset" onclick="page_main();" >&lt;&lt; </li>
+	<li class="symbols" onclick="page_main();" >&#xFE;</li>
 	<li onclick="$('.modes').removeClass('selected'); $(this).addClass('selected'); scenariomode(FREECOMBAT);" class="modes selected">Free Combat</li>
 	<li onclick="$('.modes').removeClass('selected'); $(this).addClass('selected'); scenariomode(SCENARIO);" class="modes">Scenarios</li>
 	<li onclick="window.location='#setup'" class="modes">Setup</li>
@@ -317,7 +318,7 @@
       </table>
 
       <div id="squadstats">
-	<label for="squadfilter" style="font-size:larger;background:transparent">&#x1F50D;</label>
+	<label for="squadfilter" class="symbols" style="font-size:larger;background:transparent">&#x102;</label>
 	<input type="text" id="squadfilter" onchange="console.log('filtering with '+$(this).val()); SQUADLIST.filter($(this).val())">
 	<button onclick="$('.lists').removeClass('selected'); $(this).addClass('selected');SQUADLIST.latest()" class="lists smallbutton"><span style="font-size:larger;color:orange" class="symbols">ÿ</span>Latest</button>
 	<button class="lists Mybuilds selected smallbutton" onclick="$('.lists').removeClass('selected'); $(this).addClass('selected');SQUADLIST.user()"></button>
@@ -419,14 +420,6 @@
       </div>
     </section>
 
-    <section id="bug" class="modalDialog">
-      <div>
-	<h2><span class="m-submitabug"></span><a href="#" title="Close" class="close">&#10060;</a></h2>
-	<div>
-	</div>
-      </div>
-    </section>
-
     <section id="proba" class="modalDialog">
       <div>
         <h2><span class="m-proba"></span><a href="#" title="Close" class="close">&#10060;</a>
@@ -483,112 +476,8 @@
 	</div>
       </div>
     </section>
-    
-    <section id="about" class="modalDialog">
-      <div draggable="true">
-        <h2><span class="m-about"></span><a href="#" title="Close" class="close">&#10060;</a>
-        </h2>
-        <div>
-	  This is short introduction of Squadron Benchmark. Read <a href="http://xws-benchmark.blogspot.fr/">the blog</a> dedicated to the app for a more exhaustive description, for a manual and for news. 
-	  <br/>
 
-	  Squadron Benchmark is a web app for
-	  testing squadrons built for the X-Wing Miniatures game. You can design
-	  your squads and simulate a battle between them. Both sides can be
-	  controlled either by the player or by a simple AI. The player moves
-	  the different units and can test new strategies, squadron compositions,
-	  maneuvers and initial placements. It can be used to build scenarios, to benchmark
-	  Against squads you can find in competitions, test new units or
-	  upgrades...  The app offers the following features:
-	  <ul>
-	    <li>Import your squads using JSON format or text format</li>
-	    <li>Move units and perform their actions as in the real game.</li>
-	    <li>Detection of collisions with other ships and asteroids, automatic handling of stress, action and combat effects, rolling hit dice for possible hits and criticals.</li>
-	    <li>Automatic handling of a number of card effects (pilots, upgrades, ...). Biggs for instance is the unique possible target when in range of a ennemy. Howlrunner effect is automatically taken into account. A console provides feed back on what happens and which effect is triggered.</li>
-	    <li>Combat rules: Select the weapon to fire, the target unit, see the results of rolled dice and apply effects. Damages and criticals are delivered automatically, shields are used, ...</li> 
-	    <li>A simple AI ! It can move the units around and tries to fire at your units. It is simple to outmaneuver it but still, be careful not to be too confident :-) </li>
-	  </ul>
 
-	  The app is not really a game since the player plays both sides or against an AI, there is no multi-player version of the app and there will not be. This is in no way a substitute for the real game but is a complementary tool.
-	  <br/>
-	  The main author of the app is Denis Wings (deniswings@free.fr). MIT license. <br>
-	</div>
-
-      </div>
-    </section>
-
-    <section id="donate" class="modalDialog">
-      <div>
-        <h2><span class="m-donate"></span><a href="#" title="Close" class="close">&#10060;</a>
-        </h2>
-        <div>
-	  <br>
-          If you like this web app and find it useful, if you want to encourage further developments, feel free to donate ! 
-	  <br>
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick">
-            <input type="hidden" name="hosted_button_id" value="NYM7QUG8UKGE2">
-            <input type="image" src="png/btn_donateCC_LG.png" name="submit" alt="PayPal - The safer, easier way to pay online!">
-          </form>
-	  <br>        The app will stay free to use for all, with no advertisement. 
-          Feel free to provide feed back, report bugs or suggest improvements on the blog. All comments are welcome !
-	  <br>Thank you for your support !
-	  <br>
-	  --Denis Wings
-        </div>
-
-      </div>
-    </section>
-
-    <section id="licence" class="modalDialog">
-      <div draggable="true">
-	<h2><span>Licence</span><a href="#" title="Close" class="close">&#10060;</a>
-	</h2>
-	<div>
-	  <p><b>Licence and copyright</b></p>
-	  <p>The main contributor of the app is Denis Wings (deniswings@free.fr). The code has an <a href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
-
-	  The code of the app relies on the following external fonts and libraries. See their website for their license: <a href="https://github.com/geordanr/xwing-miniatures-font">Xwing-miniatures-font</a>, <a href="https://github.com/geordanr/xwing">Yet Another Squad Builder</a> and <a href="https://github.com/elistevens/xws-spec">JSON
-	    format of X-Wing squadrons</a> for card translations, 
-	  <a href="http://snapsvg.io/">Snap</a>,
-	  <a href="https://jquery.com/">jQuery</a>, 
-	  <a href="https://github.com/janl/mustache.js">Mustache</a>,
-	  <a href="https://github.com/keithamus/jwerty">Jwerty</a>,
-	  <a href="http://goldfirestudios.com/blog/104/howler.js-Modern-Web-Audio-Javascript-Library">Howler</a>,
-	  <a href="http://imankulov.github.io/asuggest/">Asuggest</a>,
-	  <a href="http://pieroxy.net/blog/pages/lz-string/index.html">lz-string</a>,
-	  <a href="http://hammerjs.github.io/">Hammer</a>,
-	  <a href="https://github.com/chriszarate/sheetrock">Sheetrock</a>.
-      </div></div>
-    </section>
-
-    <section id="credit" class="modalDialog">
-      <div draggable="true">
-	<h2><span class="m-credits"></span><a href="#" title="Close" class="close">&#10060;</a>
-	</h2>
-	<div>
-	  Many thanks to supporters and patrons ! In particular to:<br/>
-	  <em>James Ramsay, Club165 Ventures, Lorenz Thor, Edward Coxwell-Rodgers, 宜軒 詹, Carlo Casalini, Bryan Gagen, James Berry, Lucas Haeser, Josh Chamot, Erich Leopold, Christian Linnig.</em>
-	  <br/>
-	  
-	  Thanks also for all of the contributors reporting bugs and proposing features. In particular thanks to Ynot and the direct contributors to Squadron Benchmark code.<br/>  
-	  The Italian translation comes from Fab's squad builder web site. The sounds of space ships, lasers and explosions come from <a href="http://www.sa-matra.net/sounds/starwars/">Sa-Matra</a> website. Thanks !<br/>
-
-	  <h4>Disclaimer</h4>
-	  X-Wing: The Miniatures Game is a trademark of Fantasy
-	  Flight Games. This site is not endorsed by Fantasy Flight
-	  Games, Lucasfilm Ltd. or Twentieth Century Fox and is
-	  intended for entertainment and information purposes
-	  only. Star Wars, the Star Wars logo, all names and
-	  pictures of Star Wars characters, vehicles and any other
-	  Star Wars related items are registered trademarks and/or
-	  copyrights of Lucasfilm Ltd., or their respective
-	  trademark and copyright holders. This site in no way
-	  constitutes a threat to any trademark or intellectual
-	  property. This web app is not-for-profit and is only
-	  intended for use by fans of the game line.
-      </div></div>
-    </section>
 
     <iframe style="position:absolute;left:0;bottom:0;display:none;" id="submission" src="form.html">
     </iframe>

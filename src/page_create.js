@@ -232,7 +232,6 @@ function addunit(n,faction,u) {
     if (typeof u.init!="undefined") {
 	u.init();
     }
-    console.log("currentteam:"+currentteam.team);
     if (currentteam.team==3) { 
 	$("#listunits").append("<li id='unit"+u.id+"'></li>");
 	u.show();

@@ -247,7 +247,7 @@ Weapon.prototype = {
     isBomb() { return false; },
     isWeapon() { return true; },
     desactivate() {
-	if (this.ordnance&&this.type.match(/Torpedo|Missile/)) {
+	if (this.ordnance&&this.type.match(/Torpedo|Missile|Illicit/)) {
 	    this.ordnance=false;
 	} else { this.isactive=false; /*this.unit.movelog("D-"+this.unit.upgrades.indexOf(this)); this.unit.show();*/ }
     },
@@ -421,6 +421,7 @@ function Upgrade (sh,i) {
     this.isactive=true;
     this.unit=sh;
     this.wrapping=[];
+    this.ordnance=false;
     /*
      var addedaction=this.addedaction;
      if (typeof addedaction!="undefined") {
@@ -453,7 +454,7 @@ Upgrade.prototype = {
     },
     endround() {},
     desactivate() {
-	if (this.ordnance&&this.type.match(/Torpedo|Missile/)) {
+	if (this.ordnance&&this.type.match(/Torpedo|Missile|Illicit/)) {
 	    this.ordnance=false;
 	} else { this.isactive=false; this.unit.movelog("D-"+this.unit.upgrades.indexOf(this)); this.unit.show(); }
     },
