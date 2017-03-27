@@ -5910,5 +5910,11 @@ window.UPGRADES= [
      attack:4,
      canbeswitched:function() { return false; },
      points:2
+    },
+    {name:"Cikatro Vizago",
+     type:CREW,
+     unique:true,
+     faction:"SCUM",
+     points:0
     }
 ];

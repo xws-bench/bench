@@ -27,16 +27,16 @@
   <body>
     <nav>
       <ul class="buttonbar">
-	<li class="m-reset" onclick="window.location='#selectphase'; page_select();" >&lt;&lt; </li>
+	<li class="m-reset" onclick="resetlink(true,true); page_select();" >&lt;&lt; </li>
 	<li><select id="turnselector" onchange="resetlink(false,false,true);"><option value="-1">&lt; Back</option></select></li>
 	<li><label for="imagebg" class="imagebg">Import setup image</label>
 	  <input type="file" id="imagebg">
-	  <span id="savebtn" onclick="document.location='#save'; save()" >Permalink</span></li>
+	<span id="savebtn" onclick="document.location='#save'; save()" >Permalink</span></li>
+	<li onclick="document.location='#kb'">?</li>
 	<li class="symbols" onclick="window.location='#settings'">ü</li>
 	<li id="phase"></li>
 	<li class="nextphase" onclick="if (!$(this).hasClass('disabled')) nextphase()"><span class='np'></span> <span id="npimg">&gt;</span><img src="png/waiting.gif" id="npimgwait"></li>
       </ul>
-
     </nav>
 
       <section id="settings"  class="modalDialog">
@@ -66,6 +66,16 @@
 	  <td class="m-trace"></td>
 	  <td>
 	    <input type="checkbox" onclick="TRACE=!TRACE;$('.trace').toggle()"/>
+	  </td>
+	</tr>
+	<tr>
+	  <td>AI strategy</td>
+	  <td>
+	    <input type="radio" id="ia1" value="2" checked name="ias" onclick="changeia(JOUSTER);"/>
+	    <label for="ia1">Move in formation</label><br/>
+	    
+	    <input type="radio" id="ia2" value="1" name="ias" onclick="changeia(ALONE);"/>
+	    <label for="ia2">Move individually</label><br/>
 	  </td>
 	</tr>
 	<tr>
@@ -602,7 +612,9 @@
       <div class="log" id="log"></div>
     </footer>
 
-<script src="js/all.min.js" async ></script>
+<script src="js/all.min.js" async></script>
+ 
+
 
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
