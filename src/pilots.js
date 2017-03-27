@@ -960,7 +960,7 @@ window.PILOTS = [
 	faction:REBEL,
         skill: 4,
         points: 24,
-        upgrades: [SYSTEM,CANNON,TORPEDO,TORPEDO],
+        upgrades: [SYSTEM,CANNON,TORPEDO,TORPEDO]
     },
     {
         name: "Blue Squadron Pilot",
@@ -971,7 +971,7 @@ window.PILOTS = [
         skill: 2,
 	pilotid:49,
         points: 22,
-        upgrades: [SYSTEM,CANNON,TORPEDO,TORPEDO],
+        upgrades: [SYSTEM,CANNON,TORPEDO,TORPEDO]
     },
     {
         name: "Rebel Operative",
@@ -981,7 +981,7 @@ window.PILOTS = [
         skill: 2,
 	pilotid:50,
         points: 16,
-        upgrades: [TURRET,CREW],
+        upgrades: [TURRET,CREW]
     },
     {
         name: "Roark Garnet",
@@ -1004,7 +1004,7 @@ window.PILOTS = [
 	},     
 	done:true,
         points: 19,
-        upgrades: [TURRET,CREW],
+        upgrades: [TURRET,CREW]
     },
     {
         name: "Kyle Katarn",
@@ -1028,7 +1028,7 @@ window.PILOTS = [
 		return l;
 	    });
 	},
-        upgrades: [ELITE,TURRET,CREW],
+        upgrades: [ELITE,TURRET,CREW]
     },
     {
         name: "Jan Ors",
@@ -1057,7 +1057,7 @@ window.PILOTS = [
 		},str:"hit"});
 	},
         points: 25,
-        upgrades: [ELITE,TURRET,CREW],
+        upgrades: [ELITE,TURRET,CREW]
     },
     {
         name: "Scimitar Squadron Pilot",
@@ -1077,7 +1077,7 @@ window.PILOTS = [
         faction:EMPIRE,
         skill: 4,
         points: 18,
-        upgrades: [TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB],
+        upgrades: [TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB]
     },
     {
         name: "Captain Jonus",
@@ -1104,7 +1104,7 @@ window.PILOTS = [
         unit: "TIE Bomber",
         skill: 6,
         points: 22,
-        upgrades: [ELITE,TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB],
+        upgrades: [ELITE,TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB]
     },
     {
         name: "Major Rhymer",
@@ -1128,7 +1128,7 @@ window.PILOTS = [
         unit: "TIE Bomber",
         skill: 7,
         points: 26,
-        upgrades: [ELITE,TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB],
+        upgrades: [ELITE,TORPEDO,TORPEDO,MISSILE,MISSILE,BOMB]
     },
     {
         name: "Captain Kagi",
@@ -1195,7 +1195,7 @@ window.PILOTS = [
 	    });
 	},
         points: 24,
-        upgrades: [SYSTEM,CANNON,CREW,CREW],
+        upgrades: [SYSTEM,CANNON,CREW,CREW]
     },
     {
         name: "Omicron Group Pilot",
@@ -1205,7 +1205,7 @@ window.PILOTS = [
         skill: 2,
 	pilotid:61,
         points: 21,
-        upgrades: [SYSTEM,CANNON,CREW,CREW],
+        upgrades: [SYSTEM,CANNON,CREW,CREW]
     },
     {
         name: "Lieutenant Lorrir",
@@ -1301,7 +1301,7 @@ window.PILOTS = [
         unit: "TIE Interceptor",
         skill: 6,
         points: 24,
-        upgrades: [ ],
+        upgrades: [ ]
     },
     {
         name: "Carnor Jax",
@@ -1312,7 +1312,7 @@ window.PILOTS = [
 	    var unit=this;
 	    Unit.prototype.wrap_after("canusefocus",this,function(b) {
 		if (this.getrange(unit)==1&&this.isenemy(unit)&&!unit.dead) return false;
-		return b
+		return b;
 	    });
 	    Unit.prototype.wrap_after("canuseevade",this,function(b) {
 		// Am I attacking Carnor Jax?
@@ -1333,7 +1333,7 @@ window.PILOTS = [
         unit: "TIE Interceptor",
         skill: 8,
         points: 26,
-        upgrades: [ELITE],
+        upgrades: [ELITE]
     },
     {
         name: "Bandit Squadron Pilot",
@@ -1343,7 +1343,7 @@ window.PILOTS = [
         unit: "Z-95 Headhunter",
         skill: 2,
         points: 12,
-        upgrades: [MISSILE],
+        upgrades: [MISSILE]
     },
     {
         name: "Tala Squadron Pilot",
@@ -1353,7 +1353,7 @@ window.PILOTS = [
         unit: "Z-95 Headhunter",
         skill: 4,
         points: 13,
-        upgrades: [MISSILE],
+        upgrades: [MISSILE]
     },
     {
         name: "Lieutenant Blount",
@@ -1371,7 +1371,7 @@ window.PILOTS = [
         unit: "Z-95 Headhunter",
         skill: 6,
         points: 17,
-        upgrades: [ELITE,MISSILE],
+        upgrades: [ELITE,MISSILE]
     },
     {
         name: "Airen Cracken",
@@ -1405,7 +1405,7 @@ window.PILOTS = [
         unit: "Z-95 Headhunter",
         skill: 8,
         points: 19,
-        upgrades: [ELITE,MISSILE],
+        upgrades: [ELITE,MISSILE]
     },
     {
         name: "Delta Squadron Pilot",
@@ -1415,7 +1415,7 @@ window.PILOTS = [
         unit: "TIE Defender",
         skill: 1,
         points: 30,
-        upgrades: [CANNON,MISSILE],
+        upgrades: [CANNON,MISSILE]
     },
     {
         name: "Glaive Squadron Pilot",
@@ -1437,7 +1437,7 @@ window.PILOTS = [
         unit: "TIE Defender",
         skill: 3,
         points: 32,
-        upgrades: [CANNON,MISSILE],
+        upgrades: [CANNON,MISSILE]
     },
     {
         name: "Colonel Vessery",
@@ -1457,7 +1457,7 @@ window.PILOTS = [
         unit: "TIE Defender",
         skill: 6,
         points: 35,
-        upgrades: [ELITE,CANNON,MISSILE],
+        upgrades: [ELITE,CANNON,MISSILE]
     },
     {
         name: "Rexler Brath",
@@ -1487,7 +1487,7 @@ window.PILOTS = [
         skill: 8,
 	wave:["aces"],
         points: 37,
-        upgrades: [ELITE,CANNON,MISSILE],
+        upgrades: [ELITE,CANNON,MISSILE]
     },
     {
         name: "Knave Squadron Pilot",
@@ -1507,7 +1507,7 @@ window.PILOTS = [
         unit: "E-Wing",
         skill: 3,
         points: 29,
-        upgrades: [SYSTEM,TORPEDO,ASTROMECH],
+        upgrades: [SYSTEM,TORPEDO,ASTROMECH]
     },
     {
         name: "Etahn A'baht",
@@ -1533,7 +1533,7 @@ window.PILOTS = [
         unit: "E-Wing",
         skill: 5,
         points: 32,
-        upgrades: [ELITE,SYSTEM,TORPEDO,ASTROMECH],
+        upgrades: [ELITE,SYSTEM,TORPEDO,ASTROMECH]
     },
     {
         name: "Corran Horn",
@@ -1553,7 +1553,7 @@ window.PILOTS = [
         unit: "E-Wing",
         skill: 8,
         points: 35,
-        upgrades: [ELITE,SYSTEM,TORPEDO,ASTROMECH],
+        upgrades: [ELITE,SYSTEM,TORPEDO,ASTROMECH]
     },
     {
         name: "Sigma Squadron Pilot",
@@ -1564,7 +1564,7 @@ window.PILOTS = [
         unit: "TIE Phantom",
         skill: 3,
         points: 25,
-        upgrades: [SYSTEM,CREW],
+        upgrades: [SYSTEM,CREW]
     },
     {
         name: "Shadow Squadron Pilot",
@@ -1574,7 +1574,7 @@ window.PILOTS = [
         unit: "TIE Phantom",
         skill: 5,
         points: 27,
-        upgrades: [SYSTEM,CREW],
+        upgrades: [SYSTEM,CREW]
     },
     {
         name: "'Echo'",
@@ -1600,7 +1600,7 @@ window.PILOTS = [
         unit: "TIE Phantom",
         skill: 6,
         points: 30,
-        upgrades: [ELITE,SYSTEM,CREW],
+        upgrades: [ELITE,SYSTEM,CREW]
     },
     {
         name: "'Whisper'",
@@ -1620,7 +1620,7 @@ window.PILOTS = [
         unit: "TIE Phantom",
         skill: 7,
         points: 32,
-        upgrades: [ELITE,SYSTEM,CREW],
+        upgrades: [ELITE,SYSTEM,CREW]
     },
     {
         name: "Wes Janson",
@@ -1646,7 +1646,7 @@ window.PILOTS = [
         unit: "X-Wing",
         skill: 8,
         points: 29,
-        upgrades: [ELITE,TORPEDO,ASTROMECH],
+        upgrades: [ELITE,TORPEDO,ASTROMECH]
     },
     {
         name: "Jek Porkins",
@@ -1667,7 +1667,7 @@ window.PILOTS = [
         unit: "X-Wing",
         skill: 7,
         points: 26,
-        upgrades: [ELITE,TORPEDO,ASTROMECH],
+        upgrades: [ELITE,TORPEDO,ASTROMECH]
     },
     {
         name: "'Hobbie' Klivian",
@@ -1693,7 +1693,7 @@ window.PILOTS = [
         unit: "X-Wing",
         skill: 5,
         points: 25,
-        upgrades: [TORPEDO,ASTROMECH],
+        upgrades: [TORPEDO,ASTROMECH]
     },
     {
         name: "Tarn Mison",
@@ -1713,7 +1713,7 @@ window.PILOTS = [
         unit: "X-Wing",
         skill: 3,
         points: 23,
-        upgrades: [TORPEDO,ASTROMECH],
+        upgrades: [TORPEDO,ASTROMECH]
     },
     {
         name: "Jake Farrell",
@@ -1738,7 +1738,7 @@ window.PILOTS = [
         unit: "A-Wing",
         skill: 7,
         points: 24,
-        upgrades: [ELITE,MISSILE],
+        upgrades: [ELITE,MISSILE]
     },
     {
         name: "Gemmer Sojan",
@@ -1759,7 +1759,7 @@ window.PILOTS = [
         unit: "A-Wing",
         skill: 5,
         points: 22,
-        upgrades: [MISSILE],
+        upgrades: [MISSILE]
     },
     {
         name: "Keyan Farlander",
@@ -1796,7 +1796,7 @@ window.PILOTS = [
         unit: "B-Wing",
         skill: 7,
         points: 29,
-        upgrades: [ELITE,SYSTEM,CANNON,TORPEDO,TORPEDO],
+        upgrades: [ELITE,SYSTEM,CANNON,TORPEDO,TORPEDO]
     },
     {
         name: "Nera Dantels",
@@ -1816,7 +1816,7 @@ window.PILOTS = [
         unit: "B-Wing",
         skill: 5,
         points: 26,
-        upgrades: [ELITE,SYSTEM,CANNON,TORPEDO,TORPEDO],
+        upgrades: [ELITE,SYSTEM,CANNON,TORPEDO,TORPEDO]
     },
 
     {
@@ -1827,7 +1827,7 @@ window.PILOTS = [
         unit: "YT-2400",
         skill: 2,
         points: 30,
-        upgrades: [CANNON,MISSILE,CREW],
+        upgrades: [CANNON,MISSILE,CREW]
     },
     {
         name: "Eaden Vrill",
@@ -1847,7 +1847,7 @@ window.PILOTS = [
         unique: true,
         skill: 3,
         points: 32,
-        upgrades: [CANNON,MISSILE,CREW],
+        upgrades: [CANNON,MISSILE,CREW]
     },
     {
         name: "'Leebo'",
@@ -1878,7 +1878,7 @@ window.PILOTS = [
         unique: true,
         skill: 5,
         points: 34,
-        upgrades: [ELITE,CANNON,MISSILE,CREW],
+        upgrades: [ELITE,CANNON,MISSILE,CREW]
     },
     {
         name: "Dash Rendar",
@@ -1897,7 +1897,7 @@ window.PILOTS = [
 	    });
 	},
         points: 36,
-        upgrades: [ELITE,CANNON,MISSILE,CREW],
+        upgrades: [ELITE,CANNON,MISSILE,CREW]
     },
     {
         name: "Patrol Leader",
@@ -1907,7 +1907,7 @@ window.PILOTS = [
         unit: "VT-49 Decimator",
         skill: 3,
         points: 40,
-        upgrades: [TORPEDO,CREW,CREW,CREW,BOMB],
+        upgrades: [TORPEDO,CREW,CREW,CREW,BOMB]
     },
     {
         name: "Captain Oicunn",
@@ -1930,7 +1930,7 @@ window.PILOTS = [
 		}
 	    })
 	},
-        upgrades: [ELITE,TORPEDO,CREW,CREW,CREW,BOMB],
+        upgrades: [ELITE,TORPEDO,CREW,CREW,CREW,BOMB]
     },
     {
         name: "Commander Kenkirk",
@@ -1947,7 +1947,7 @@ window.PILOTS = [
         skill: 6,
         points: 44,
         unique: true,
-        upgrades: [ELITE,TORPEDO,CREW,CREW,CREW,BOMB],
+        upgrades: [ELITE,TORPEDO,CREW,CREW,CREW,BOMB]
     },
     {
         name: "Rear Admiral Chiraneau",
@@ -1980,7 +1980,7 @@ window.PILOTS = [
         points: 46,
 	done:true,
         unique: true,
-        upgrades: [ELITE,TORPEDO,CREW,CREW,CREW,BOMB],
+        upgrades: [ELITE,TORPEDO,CREW,CREW,CREW,BOMB]
     },
     {
         name: "Prince Xizor",
@@ -2016,7 +2016,7 @@ window.PILOTS = [
         unit: "StarViper",
         skill: 7,
         points: 31,
-        upgrades: [ELITE,TORPEDO],
+        upgrades: [ELITE,TORPEDO]
     },
     {
         name: "Guri",
@@ -2042,7 +2042,7 @@ window.PILOTS = [
         unit: "StarViper",
         skill: 5,
         points: 30,
-        upgrades: [ELITE,TORPEDO],
+        upgrades: [ELITE,TORPEDO]
     },
     {
         name: "Black Sun Vigo",
@@ -2052,7 +2052,7 @@ window.PILOTS = [
         unit: "StarViper",
         skill: 3,
         points: 27,
-        upgrades: [TORPEDO],
+        upgrades: [TORPEDO]
     },
     {
         name: "Black Sun Enforcer",
@@ -2062,7 +2062,7 @@ window.PILOTS = [
         unit: "StarViper",
         skill: 1,
         points: 25,
-        upgrades: [TORPEDO],
+        upgrades: [TORPEDO]
     },
     {
         name: "Serissu",
@@ -2090,7 +2090,7 @@ window.PILOTS = [
         skill: 8,
         points: 20,
         unique: true,
-        upgrades: [ELITE],
+        upgrades: [ELITE]
     },
     {
         name: "Laetin A'shera",
@@ -2109,7 +2109,7 @@ window.PILOTS = [
         skill: 6,
         points: 18,
         unique: true,
-        upgrades: [ ],
+        upgrades: [ ]
     },
     {
         name: "Tansarii Point Veteran",
@@ -2119,7 +2119,7 @@ window.PILOTS = [
         unit: "M3-A Interceptor",
         skill: 5,
         points: 17,
-        upgrades: [ELITE],
+        upgrades: [ELITE]
     },
     {
         name: "Cartel Spacer",
@@ -2129,7 +2129,7 @@ window.PILOTS = [
         unit: "M3-A Interceptor",
         skill: 2,
         points: 14,
-        upgrades: [ ],
+        upgrades: [ ]
     },
     {
         name: "IG-88A",
@@ -2150,7 +2150,7 @@ window.PILOTS = [
 	    });
 	},
 	done:true,
-        upgrades: [ELITE,SYSTEM,CANNON,CANNON,BOMB,ILLICIT],
+        upgrades: [ELITE,SYSTEM,CANNON,CANNON,BOMB,ILLICIT]
     },
     {
         name: "IG-88B",
@@ -2179,7 +2179,7 @@ window.PILOTS = [
         unit: "Aggressor",
         skill: 6,
         points: 36,
-        upgrades: [ELITE,SYSTEM,CANNON,CANNON,BOMB,ILLICIT],
+        upgrades: [ELITE,SYSTEM,CANNON,CANNON,BOMB,ILLICIT]
     },
     {
         name: "IG-88C",
@@ -2729,7 +2729,7 @@ window.PILOTS = [
 		return a+sh.weapons[i].getrangedefensebonus(this);
 	    });
 	},
-        points: 28,
+        points: 28
     },
     {
         name: "Graz the Hunter",
@@ -2984,7 +2984,7 @@ window.PILOTS = [
 			  save[i]={move:move,difficulty:d};
 		      }
 		  if (this.stress==0) return save; else return gd;
-	      })
+	      });
 	  },
 	  upgrades: [ELITE,TORPEDO,ASTROMECH,TECH],
 	  points: 30
@@ -3169,7 +3169,7 @@ window.PILOTS = [
 			    if (mods[i].from!=ATTACK_M) p.push(mods[i]);
 			return mods;
 		    }).unwrapper("endattack");
-	    })
+	    });
 	    this.wrap_before("resolveattack",this,function(w,t) {
 		if (this.targeting.indexOf(t)>-1) 
 		    t.wrap_after("getdicemodifiers",this,function(mods) {
@@ -3207,7 +3207,7 @@ window.PILOTS = [
 		if (w.type==TORPEDO) {
 		    w.auxiliary=AUXILIARY,
 		    w.subauxiliary=SUBAUXILIARY
-		}
+		};
 	    }
 	}
    },
@@ -4605,7 +4605,7 @@ window.PILOTS = [
      faction:EMPIRE,
      pilotid:231,
      unique:true,
-     unit:"Upsilon-class Shuttle",
+     unit:"Upsilon-Class Shuttle",
      skill:6,
      done:true,
      upgrades:[ELITE,SYSTEM,CREW,CREW,TECH,TECH],
@@ -4625,7 +4625,7 @@ window.PILOTS = [
      pilotid:232,
      unique:true,
      done:true,
-     unit:"Upsilon-class Shuttle",
+     unit:"Upsilon-Class Shuttle",
      skill:4,
      upgrades:[SYSTEM,CREW,CREW,TECH,TECH],
      points:32,
@@ -4643,7 +4643,7 @@ window.PILOTS = [
      pilotid:233,
     unique:true,
     done:true,
-     unit:"Upsilon-class Shuttle",
+     unit:"Upsilon-Class Shuttle",
      skill:3,
      upgrades:[SYSTEM,CREW,CREW,TECH,TECH],
      points:31
@@ -4652,7 +4652,7 @@ window.PILOTS = [
      faction:EMPIRE,
      pilotid:234,
     done:true,
-     unit:"Upsilon-class Shuttle",
+     unit:"Upsilon-Class Shuttle",
      skill:2,
      upgrades:[SYSTEM,CREW,CREW,TECH,TECH],
      points:30

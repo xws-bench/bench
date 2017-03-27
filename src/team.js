@@ -39,11 +39,11 @@ Team.prototype = {
 	$("#"+faction+"select").prop("checked",true);
 	this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;	
     },
-    changefaction: function(faction) {
+    changefaction: function(faction,force) {
 	$("#rocks").hide();
 	$("#debris").hide();
 	$("#caroussel").show();
-	if (this.faction!=faction) {
+	if (this.faction!=faction||force==true) {
 	    for (var i in generics) {
 		if (generics[i].team==this.team) {
 		    delete generics[i];
@@ -329,12 +329,12 @@ Team.prototype = {
 	s.version="0.3.0";
 	return s;
     },
-    toJuggler:function(translated) {
+    toJuggler:function(translated,improved) {
 	var s="";
 	var f={REBEL:"rebels",SCUM:"scum",EMPIRE:"empire"};
 	var sortable = this.sortedgenerics();
 	for (var i=0; i<sortable.length; i++) 
-	    s+=sortable[i].toJuggler(translated)+"\n";
+	    s+=sortable[i].toJuggler(translated,improved)+"\n";
 	return s;
     },
     parseJuggler : function(str,translated) {
@@ -396,6 +396,7 @@ Team.prototype = {
 	    for (j=0; j<10; j++) p.upg[j]=-1;
 	    if (typeof p.pilotid=="undefined") {
 		console.log(pid+" "+p.name+" "+p.pilotid);
+		console.trace();
 	    }
 	    var authupg=[TITLE,MOD].concat(PILOTS[p.pilotid].upgrades);
 	    for (j=1; j<pstr.length; j++) {
@@ -430,7 +431,7 @@ Team.prototype = {
 				if (p.upgradetype[f]==UPGRADES[k].type&&p.upg[f]==-1) { p.upg[f]=k; break; }
 			    }
 			    break;
-			} else log("** "+pstr[j]+" UPGRADE not listed: "+UPGRADES[k].type+" in "+p.name);
+			} else log("** "+pstr[j]+" UPGRADE not listed: "+UPGRADES[k].type+" in "+p.name+"/"+str);
 		    }
 		}
 	    }
@@ -481,7 +482,8 @@ Team.prototype = {
 	var s;
 	var f={"rebel":REBEL,"scum":SCUM,"imperial":EMPIRE};
 	try {
-	    s=$.parseJSON(str);
+	    if (typeof str=="string") s=$.parseJSON(str);
+	    else s=str;
 	    ga('send','event', {
 		eventCategory: 'social',
 		eventAction: 'receive',
@@ -501,6 +503,10 @@ Team.prototype = {
 	    var p;
 	    var pid=-1;
 	    pilot.team=this.team;
+	    if (pilot.name.match(/-/)!=null) {
+	   	pilot.name=pilot.name.split("-")[0];
+	    }
+	    
 	    for (j=0; j<PILOTS.length; j++) {
 		if (PILOTS[j].faction==this.faction&&
 		   PILOTS[j].unit==PILOT_dict[pilot.ship]) {
@@ -508,7 +514,7 @@ Team.prototype = {
 		    if (va==PILOT_dict[pilot.name]) { pid=j; break; }
 		}
 	    }
-	    if (pid==-1) throw("pid undefined:"+PILOT_dict[pilot.name]);
+	    if (pid==-1) throw("pid undefined:"+PILOT_dict[pilot.name]+"-"+pilot.name+"/"+this.faction+"/"+PILOT_dict[pilot.ship]);
 
 	    p=new Unit(this.team,pid);
 	    p.upg=[];

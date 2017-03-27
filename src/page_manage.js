@@ -1,4 +1,5 @@
-
+/*<span class="smallbutton" onclick="SQUADLIST.displaycombats({{nrows}})">Replay</span>*/
+var JUGGLERWEBSITE="http://lists.starwarsclubhouse.com/api/v1/";
 function Squadlist(id) {
     this.id=id;
     TEMPLATES["row-manage"]=$("#row-manage").html();
@@ -32,18 +33,22 @@ Squadlist.prototype = {
 	}
 
     },
-    addrow: function(team,name,pts,faction,jug,fill,isselection) {
-	if (isselection!=true) enablenextphase();
+    import:function(t) {
+    },
+    addrow: function(team,name,pts,faction,jug,fill,tournament) {
 	var n=faction.toUpperCase();
 	if (typeof localStorage[name]=="undefined"||fill==true) {
 	    this.rows[this.nrows]=jug;
+	    TEAMS[0].parseJuggler(jug,true);
+	    var jjug = TEAMS[0].toJuggler(true,true);
 	    $(this.id +" tbody").append(
 		Mustache.render(TEMPLATES["row-manage"],{
 		    nrows:this.nrows,
 		    faction:n,
 		    pts:pts,
 		    name:name,
-		    jug:jug//.replace(/\n/g,"<br>")
+		    tournament:tournament,
+		    jug:jjug//.replace(/\n/g,"<br>")
 		}));
 	    this.nrows++;
 	}
@@ -66,9 +71,7 @@ Squadlist.prototype = {
 		for (var i in metaUnit.prototype) u[i]=metaUnit.prototype[i];
 	    }
 	}
-
-	document.location="#creation";
-	//displayfactionunits(true);
+		//displayfactionunits(true);
     },
     toplist: function() {
 	var i;
@@ -96,7 +99,7 @@ Squadlist.prototype = {
 		
 		var l=$.parseJSON(localStorage[i]);
 		if (typeof l.jug=="undefined"||typeof l.pts=="undefined"||typeof l.faction=="undefined")
-		    delete localStorage[i]
+		    delete localStorage[i];
 		else {
 		    if (LANG!="en") { 
 			TEAMS[0].parseJuggler(l.jug,false); 
@@ -108,7 +111,94 @@ Squadlist.prototype = {
 	    }
 	}
     },
+    addtournamentlists:function(latest) {
+	var req = new XMLHttpRequest();
+	req.open('GET', JUGGLERWEBSITE+"tournament/"+latest, true);
+	req.onreadystatechange = function() {
+	    if (req.readyState === 4) {
+		if (req.status >= 200 && req.status < 400) {
+		    var t=$.parseJSON(req.responseText);
+		    var cc="us";
+		    if (typeof CC[t.tournament.venue.country]=="undefined") {
+			console.log("No country:"+t.tournament.venue.country);
+		    } else cc=CC[t.tournament.venue.country].toLowerCase();
+		    var event={
+			cc:cc,
+			country:t.tournament.venue.country,
+			type:t.tournament.type,
+			format:t.tournament.format.replace(/Standard -/,""),
+			date:t.tournament.date};
+		    var list=[];
+		    for (var i in t.tournament.players) {
+			var p=t.tournament.players[i];
+			if (typeof p.list!="undefined") {
+			    console.log(p.list);
+			    TEAMS[0].parseJSON(p.list);
+			    TEAMS[0].toJSON();
+			    var key=TEAMS[0].toKey();
+			    if (this.allresults[key]!=true) {
+				var jug=TEAMS[0].toJuggler(true);
+				list.push({points:TEAMS[0].points,faction:TEAMS[0].faction,jug:jug});
+				this.addrow(0,"COMPETITION"+key,TEAMS[0].points,TEAMS[0].faction,jug,false,event); 
+				this.allresults[key]=true;
+			    }
+			}
+		    }
+		    localStorage["_TOURNAMENT"+latest]=JSON.stringify({"list":list,"event":event});
+		} else console.log("no tournament "+latest+" (status:"+req.status+")"); 
+	    } 
+	}.bind(this);
+	req.send();
+    },
     latest: function() {
+	var req = new XMLHttpRequest();
+	var i;
+	this.allresults={};
+	this.rows=[];
+	this.nrows=0;
+	$(this.id+" tbody").html("");
+	this.log={};
+	// Feature detection for CORS
+	req.open('GET', JUGGLERWEBSITE+"tournaments", true);
+	// Just like regular ol' XHR
+	req.onreadystatechange = function() {
+            if (req.readyState === 4) {
+		if (req.status >= 200 && req.status < 400) {
+		    var resp=$.parseJSON(req.responseText);
+		    resp.tournaments.sort(function(a,b) {
+			return parseInt(a,10)-parseInt(b,10);
+		    });
+		    var p=[];
+		    for (i=0; i<5; i++) {
+			var latest=resp.tournaments[resp.tournaments.length-1-i];
+			if (typeof localStorage["_TOURNAMENT"+latest]=="undefined") {
+			    this.addtournamentlists(latest);
+			} else {
+			    var tt=$.parseJSON(localStorage["_TOURNAMENT"+latest]);
+			    for (var j in tt.list) {
+				var l=tt.list[j];
+				this.addrow(0,"COMPETITION0",l.points,l.faction,l.jug,false,tt.event);
+			    }
+			    console.log("tournament "+latest+" in cache");
+			}
+			p[i]=parseInt(latest,10);
+		    }
+		    for (i in localStorage) {
+			if (i.match(/_TOURNAMENT/)!=null) {
+			    var k=parseInt(i.replace(/_TOURNAMENT([0-9]*)/,"$1"),10);
+			    if (p.indexOf(k)==-1) {
+				console.log("removing old tournament "+i);
+				delete localStorage[i];
+			    }
+			}
+		    }
+		} else console.log("tournaments not loaded (status:"+req.status+")");
+            }
+	}.bind(this);
+    req.send();
+	
+    },
+    latest2: function() {
 	this.rows=[];
 	this.nrows=0;
 	$(this.id+" tbody").html("");
@@ -119,7 +209,7 @@ Squadlist.prototype = {
 		query:"select C order by A desc",
 		//callback:myCallbacksl,
 		fetchSize:40,
-		rowTemplate:this.myTemplatesl,//function () { return "";},
+		rowTemplate:this.myTemplatesl//function () { return "";},
 	    });
 	}  
     },

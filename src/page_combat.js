@@ -33,8 +33,8 @@ function scenariomode(b) {
 	$(".duelmode").hide();
 	$(".scenariomode").hide();
 	$(".scenariocreator").show();
-	
     }
+    enablenextphase();
 }
 
 function Scenariolist(id) {
@@ -70,6 +70,7 @@ Scenariolist.prototype = {
 	return ((typeof this.rows!="undefined")&&(this.rows.indexOf(t)>-1)); 
     },
     addrow: function(title,text,wincond,link) {
+	console.log("adding scenario "+title);
 	this.rows[this.nrows]={title:title,text:text,link:link,wincond:wincond};
 	var arg=LZString.decompressFromEncodedURIComponent(link);
 	var args=arg.split('&');
@@ -93,7 +94,6 @@ Scenariolist.prototype = {
     },
     user: function() {
 	var i;
-
 	$(this.id+" tbody").html("");
 	for (i in localStorage) {
 	    if (typeof localStorage[i]=="string"&&i.match(/SCENARIO.*/)) {
