@@ -1266,40 +1266,5 @@
 	    {"move":"TR3","difficulty":"RED"}
 	],
 	"actionList":[ "FOCUS","TARGET"]
-    },
-     "Quadjumper":{
-	"firesnd":"xwing_fire",
-	"flysnd":"xwing_fly",
-	"scale":1,
-	"img":["quadjumper"],
-	"faction":["SCUM"],
-	"weapon_type":"Laser",
-	"code":"A",
-	 "wave":10,
-	"fire": 2,
-	"evade": 2,
-	"hull": 5,
-	"shield": 0,
-	"dial": [
-	    {"move":"RL1","difficulty":"RED"},
-	    {"move":"RF1","difficulty":"RED"},
-	    {"move":"RR1","difficulty":"RED"},
-	    {"move":"TL1","difficulty":"WHITE"},
-	    {"move":"F1","difficulty":"WHITE"},	    
-	    {"move":"TR1","difficulty":"WHITE"},
-	    {"move":"TL2","difficulty":"WHITE"},
-	    {"move":"SL2","difficulty":"RED"},
-	    {"move":"BL2","difficulty":"GREEN"},
-	    {"move":"F2","difficulty":"GREEN"},
-	    {"move":"BR2","difficulty":"GREEN"},
-	    {"move":"TR2","difficulty":"WHITE"},
-	    {"move":"SR2","difficulty":"RED"},
-	    {"move":"BL3","difficulty":"WHITE"},
-	    {"move":"F3","difficulty":"GREEN"},
-	    {"move":"BR3","difficulty":"WHITE"}
-	],
-	"actionList":[ "FOCUS","ROLL"]
     }
-
-
 }
