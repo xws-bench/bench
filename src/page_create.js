@@ -137,13 +137,14 @@ function displayfactionunits(noreset) {
     }
 }
 function addunique(name) {
+    var i;
     UNIQUE[name]=true;
-    for (var i=0; i<PILOTS.length; i++) {
+    for (i=0; i<PILOTS.length; i++) {
 	if (name==PILOTS[i].name) {
 	    $(".pilots button[pilotid="+PILOTS[i].pilotid+"]").prop("disabled",true);
 	}
     }
-    for (var i=0; i<UPGRADES.length; i++) {
+    for (i=0; i<UPGRADES.length; i++) {
 	if (name==UPGRADES[i].name) $(".upglist button[data="+i+"]").prop("disabled",true);
     }
 }
@@ -231,6 +232,7 @@ function addunit(n,faction,u) {
     if (typeof u.init!="undefined") {
 	u.init();
     }
+    console.log("currentteam:"+currentteam.team);
     if (currentteam.team==3) { 
 	$("#listunits").append("<li id='unit"+u.id+"'></li>");
 	u.show();

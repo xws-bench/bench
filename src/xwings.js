@@ -10,13 +10,13 @@ var FILTER="none";
 var DECLOAK_PHASE=1;
 var WEBSITE="http://xws-bench.github.io/bench/index.html";
 var DICES=["focusred","hitred","criticalred","blankred","focusgreen","evadegreen","blankgreen"];
-var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6,XP_PHASE=7;
+var SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6,XP_PHASE=7,MAIN_PHASE=0;
 var BOMBS=[];
 var ROCKDATA="";
 var WINCOND=0;
 var INREPLAY=false;
 var allunits=[];
-var PILOT_translation,SHIP_translation,CRIT_translation,UI_translation,UPGRADE_translation,PILOT_dict,UPGRADE_dict,RATINGS_upgrades,RATINGS_ships,RATING_pilots,TOP_squads;
+var PILOT_translation,SHIP_translation,CRIT_translation,UI_translation,UPGRADE_translation,PILOT_dict,UPGRADE_dict,RATINGS_upgrades,RATINGS_ships,RATING_pilots,TOP_squads,CC;
 var actionr=[];
 var actionrlock;
 var HISTORY=[];
@@ -57,11 +57,45 @@ var PERMALINK="";
 /*
 
 
+	<span style="float:left;width:30%;padding-right:1em;">
+	<h2 class="squadbg"><span>!</span> Squad Building</h2>
+	<div>Build your squad in a few clicks:
+	<ul>
+	  <li>All units to Wave 10</li>
+	  <li>Integrated <a href="https://community.fantasyflightgames.com/topic/196321-x-wing-beginners-guide/">Beginner Strategy Guide v4.5</a> from Flipperoverlord with advices on upgrades and units.</li>
+	  <li>Pilot filter by upgrade type, wave, action type, cost or search for keywords in the pilot text.</li>
+	  <li>Pilot Hitmap:  Displays the % to hit for your best weapon, first shoot to an Academy Pilot after one maneuver and one action.</li>
+	  <li>Move map: Shows where the pilot can go with one maneuver and one action from action bar.</li>
+	  <li>Save your list as a weblink, print them.</li>
+	  <li>All your squads are saved in your browser. Edit, re-edit your lists and test them in the simulator.</li>
+	</ul></div></span><span style="float:left;width:30%;padding-right:1em">
+	<h2 class="squadbg"><span>$</span> Combat Simulation</h2>
+	Play in 15 min a combat between chosen squads:
+	<ul>
+	  <li>The simulator handles collisions, triggered actions and effects, and most of the rules. </li>
+	  <li>Take takes both sides or against an AI.</li>
+	  <li>Play scenarios or make a free combat. Play the Battle of Yavin, test your maneuverability, play with moving obstacles !</li>
+	  <li>Save your combat at any turn, export it as an URL.</li> 
+	  <li>Share the combats you have played on Facebook, Tweeter, email to your friends and to forums.</li> 
+	</ul>
+</span><span style="float:left; width:30%;">
+	<h2 class="squadbg"><span>W</span> Hangar</h2>
+	Direct access to squad lists, ready to be played:
+	<ul>
+	  <li>All your builds,</li>
+	  <li>The <a href="http://miniranker.xwingjunkies.com/">Top 10 lists</a> in used in recent competitions.</li>
+	  <li>The 20 most recently played lists by players in Squadron Benchmark.</li>
+	</ul>
+	All lists can be reedited, printed and played. 
+      </div></span>
+
+
 
     <script src="src/obstacles.js"></script>
-    <script src="src/team.js"></script>
+    <script src="src/team.js"></script>  
     <script src="src/units.js"></script>
-    <script src="src/upgrades.js"></script>
+    <script src="src/metaunits.js"></script>
+  <script src="src/upgrades.js"></script>
     <script src="src/upgcards.js"></script>
     <script src="src/critical.js"></script>
     <script src="src/pilots.js"></script>
@@ -69,6 +103,9 @@ var PERMALINK="";
 <script src="src/replay.js"></script>
 <script src="src/proba.js"></script>
     <script src="src/xwings.js"></script>
+<script src="src/page_create.js"></script>
+<script src="src/page_manage.js"></script>
+<script src="src/page_combat.js"></script>
 
 
 */
@@ -349,7 +386,7 @@ var myTemplate = function(o) { //num,cells,cellarrays,labels) {
 	//args[6]+="_-W";
 	for (var i=0; i<args.length; i++) 
 	    arg+=((i>0)?"&":"")+args[i];
-	xx[0]="file:///Users/denis/Documents/bench/index.html";
+	xx[0]=WEBSITE;
 	src=xx[0]+"?"+LZString.compressToEncodedURIComponent(arg);
     } else src=cells[2];
     //SQUADBATTLE.row.add([score2+"-"+score1,"<span onclick='$(\".replay\").attr(\"src\",\""+src+"\")'>"+t1+cells[3]+"</span>"]).draw(false);
@@ -865,15 +902,16 @@ function next_replay() {
 function enablenextphase() {
     var i;
     var ready=true;
-
     switch(phase) {
-    case SELECT_PHASE:
-	var n1=$("#squad1points").text()
-	var n2=$("#squad2points").text()
-	if (parseInt(n1,10)==0||parseInt(n2,10)==0) {
-	    ready=false;
-	    $(".nextphase").addClass("disabled");
-	}
+     case SELECT_PHASE:
+	var n1=parseInt($("#squad1points").text(),10);
+	var n2=parseInt($("#squad2points").text(),10);
+	if ((mode==FREECOMBAT&&(n1==0||n2==0))
+	    ||(mode==SCENARIO&&(n1==0||$("#scenariolist tr.selected").length==0))
+	    ||(mode==SCENARIOCREATOR&&(n2==0||SCENARIOTITLE==""||HEADER==""))) {
+		ready=false;
+		$(".nextphase").addClass("disabled");
+	    }
 	break;
     case PLANNING_PHASE:
 	for (i in squadron)
@@ -905,7 +943,6 @@ function enablenextphase() {
     }
     
     if (ready) $(".nextphase").removeClass("disabled");
-    //log("ready "+ready);
     if (ready&&FAST&&phase>=SETUP_PHASE) 
 	return nextphase();
     // Replay
@@ -1018,7 +1055,41 @@ function win(destroyed) {
 }
 //document.addEventListener("win",win,false);
 
+function page_creation() {
+    $("#selectphase").hide();
+    $(".headlines").hide();
+    $("#creation").show();
+}
+function page_main() {
+    $("#addcomment").hide();
+    $(".buttonbar .share-buttons").hide();
+    $(".h2 .share-buttons").show();
+    $(".permalink").hide();
+    $(".activeunit").prop("disabled",true);
+    $("#rightpanel").hide();
+    $("#leftpanel").hide();
+    $("#game").hide();
+    $("nav").hide();
+    $(".mainarticle").hide();
+    $(".headlines").show();
+    HEADER="";
+    SCENARIOTITLE="";
+    currentteam.setfaction("REBEL");
+    window.location="index.html";
+}
+function page_select() {
+    $("#creation").hide();
+    $("nav").hide();
+    $("#game").hide();
+    $("#rightpanel").hide();
+    $("#leftpanel").hide();
+    $("#selectphase").show();
+    $(".nextphase").addClass("disabled");
+    enablenextphase();
+    phase=SELECT_PHASE;
+}
 function createsquad(f) {
+    page_creation();
     var faction=currentteam.faction;
     if (typeof f!="undefined") faction=f;
     $(".activeunit").prop("disabled",true);
@@ -1213,7 +1284,7 @@ function getupgtxttranslation(name,type) {
     }
     return "";
 }
-
+/* Still used ?yes */
 function importsquad(t) {
     currentteam.parseJSON($("#squad"+t).val(),true);
     currentteam.name="SQUAD."+currentteam.toASCII();
@@ -1222,6 +1293,7 @@ function importsquad(t) {
     $("#squad"+t+"points").html(currentteam.points);
     localStorage[currentteam.name]=JSON.stringify({"pts":currentteam.points,"faction":currentteam.faction,"jug":currentteam.toJuggler(false)});
     SQUADLIST.addrow(t,currentteam.name,currentteam.points,currentteam.faction,jug);
+    enablenextphase();
 }
 function findsquad(t) {
     currentteam.parseJSON($("#squad"+t).val(),true);
@@ -1293,23 +1365,18 @@ function endsetupphase() {
 function nextphase() {
     var i;
     $("#savebtn").hide();
-    //log("nextphase "+phase);
+    log("phase current "+phase+" mode "+mode+"/"+SCENARIOCREATOR);
     // End of phases
     //if (!enablenextphase()) return;
     window.location="#";
     switch(phase) {
     case SELECT_PHASE:
-	$(".permalink").show();
-	$(".mainbutton").hide();
 	$(".mainarticle").hide();
-	$("article.headlines").hide();
-	$("article.features").hide();
+	$(".permalink").show();
 	$("nav").show();
 	$("#game").show();
-	//$(".title").html("Squadron Benchmark");
 	$("#rightpanel").show();
 	$("#leftpanel").show();
-	
  	break;
     case SETUP_PHASE:
 	if (mode==SCENARIOCREATOR) {
@@ -1360,48 +1427,36 @@ function nextphase() {
 	for (i in squadron) squadron[i].endround();
 	$("#turnselector").append("<option value='"+round+"'>"+UI_translation["turn #"]+round+"</option>");
 	round++;
-	console.log("win cond:"+WINCOND);
 	if (WINCOND<round&&WINCOND>0) win(0);
 	if (-WINCOND<round&&WINCOND<0) win(0);
 	break;
     }
-    phase=(phase==COMBAT_PHASE)?PLANNING_PHASE:phase+1;
-    movelog("P-"+round+"-"+(phase));
-    if (phase==1) $("#phase").empty();
-    else if (phase<3) $("#phase").html(UI_translation["phase"+phase]);
-    else $("#phase").html(UI_translation["turn #"]+round+" "+UI_translation["phase"+phase]);
-    $("#combatdial").hide();
-    //if (phase>SELECT_PHASE) for (i in squadron) {squadron[i].unselect();}
-    // Init new phase
-
-    $(".nextphase").removeClass("disabled");
+    if (phase>=SELECT_PHASE) {
+	phase=(phase==COMBAT_PHASE)?PLANNING_PHASE:phase+1;
+	movelog("P-"+round+"-"+(phase));
+	if (phase<=1) $("#phase").empty();
+	else if (phase<3) $("#phase").html(UI_translation["phase"+phase]);
+	else $("#phase").html(UI_translation["turn #"]+round+" "+UI_translation["phase"+phase]);
+	$("#combatdial").hide();
+	//if (phase>SELECT_PHASE) for (i in squadron) {squadron[i].unselect();}
+	// Init new phase
+	
+	$(".nextphase").removeClass("disabled");
+    }
     setphase();
 }
+
 function setphase(cannotreplay) {
     $(".imagebg").hide();
 
     switch(phase) {
     case SELECT_PHASE:
-	HEADER="";
-	SCENARIOTITLE="";
-	$("#addcomment").hide();
-	$(".buttonbar .share-buttons").hide();
-	$(".h2 .share-buttons").show();
-	$(".permalink").hide();
-	$(".activeunit").prop("disabled",true);
-	$("#rightpanel").hide();
-	$("#leftpanel").hide();
-	$("#game").hide();
-	$("nav").hide();
-	$(".mainarticle").show();
-	$(".headlines").show();
-	$(".features").show();
-	//$(".title").html("Squadron Benchmark");
-	currentteam.setfaction("REBEL");
+	page_select();
 	$(".nextphase").addClass("disabled");
-	createsquad();
-	//window.location="#creation";
 	break;
+	//$(".title").html("Squadron Benchmark");
+	//createsquad();
+	//window.location="#creation";
     case SETUP_PHASE:
 	$(".imagebg").show();
 	$("#addcomment").show();
@@ -1702,7 +1757,7 @@ function record(id,val,str) {
 function history_toASCII() {
     var str="";
     for (var i=0; i<HISTORY.length; i++) 
-	str+=HISTORY[i].s+"_"+HISTORY[i].id+";"
+	str+=HISTORY[i].s+"_"+HISTORY[i].id+";";
     return str;
 }
 function select(id) {
@@ -1738,7 +1793,7 @@ function fillprobatable() {
     var defender={focus:$("#focusD").prop("checked")?1:0,
 		  evade:$("#evadeD").prop("checked")?1:0,
 		  adddice:$("#cloakD").prop("checked")?2:0,
-		  reroll:0}
+		  reroll:0};
     //log("REROLL1:"+attacker.reroll);
     var ra;
     ra=parseInt($("#rerollA").val(),10);
@@ -1776,7 +1831,7 @@ var viewport_translate=function(dx,dy) {
     VIEWPORT.m=MT(dx,dy).add(VIEWPORT.m);
     $(".phasepanel").hide();
     VIEWPORT.transform(VIEWPORT.m);
-}
+};
     var viewport_zoom=function(z) {
 	var w=$("#svgout").width();
 	var h=$("#svgout").height();
@@ -1789,7 +1844,7 @@ var viewport_translate=function(dx,dy) {
 	VIEWPORT.m.translate(x,y).scale(z).translate(-x,-y);
 	VIEWPORT.transform(VIEWPORT.m);
 	activeunit.show();
-    }
+    };
 	var dragmove=function(event) {
 	    if (activeunit.dragged==true) return;
 	    var e = event; // old IE support
@@ -1805,7 +1860,7 @@ var viewport_translate=function(dx,dy) {
 		$(".phasepanel").hide();
 		VIEWPORT.transform(VIEWPORT.dragMatrix);
 	    }
-	}
+	};
 var dragstart=function(event) { 
     var e = event; // old IE support
     VIEWPORT.dragged=true;
@@ -1889,17 +1944,17 @@ $(document).ready(function() {
     for (i in P)
 	P[i].path.attr({display:"none"});
     $(".menu").mouseover(function() {
-	$(".menu ul").css({display:'block',visibility:'visible'})
+	$(".menu ul").css({display:'block',visibility:'visible'});
     }).mouseout(function() {
-	$('nav ul').css({display:'none',visibility:'hidden'})
+	$('nav ul').css({display:'none',visibility:'hidden'});
     });
     $("footer").hide();
 
     var initgapi=function() {
         gapi.client.setApiKey('AIzaSyBN2T9d2ZuWaT0Vj6EanYb5IgWzLlhy7Zo');
         gapi.client.load('urlshortener', 'v1');
-    }
-    if (typeof gapi!="undefined") gapi.load('client', initgapi);
+    };
+    //if (typeof gapi!="undefined") gapi.load('client', initgapi);
 
     $("#squad1").on("paste",function() {
 	setTimeout(function(){
@@ -1938,6 +1993,9 @@ $(document).ready(function() {
     });
 */
     // Load unit data
+
+
+
     var availlanguages=["en","fr","de","es","it","pl"];
     LANG = localStorage['LANG'] || window.navigator.userLanguage || window.navigator.language;
     LANG=LANG.substring(0,2);
@@ -1947,6 +2005,7 @@ $(document).ready(function() {
 	},
 	isLocal:true
     });
+    log("loading jsons");
     if (availlanguages.indexOf(LANG)==-1) LANG="en";
     $("#langselect").val(LANG);
     $.when(
@@ -1965,8 +2024,8 @@ $(document).ready(function() {
 	$.ajax("data/ratings.json",{error:function(xhr,status,error) {
 	    console.log("**Error loading ratings.json\n"+status+" "+error);
 	}}),
-	$.ajax("data/full4b.json",{error:function(xhr,status,error) {
-	    console.log("**Error loading full4b.json\n"+status+" "+error);
+	$.ajax("data/countrycodes.json",{error:function(xhr,status,error) {
+	    console.log("**Error loading countrycodes.json\n"+status+" "+error);
 	}})
     ).done(function(result1,result2,result3,r4,r5,r6) {
 	var process=setInterval(function() {
@@ -1978,6 +2037,7 @@ $(document).ready(function() {
 		$("#showproba").prop("disabled",false);
 		clearInterval(process);}
 	},500);
+	
 	unitlist=result1[0];
 	ENSHIP_translation=r4[0].ships;
 	ENPILOT_translation=r4[0].pilots;
@@ -1988,7 +2048,8 @@ $(document).ready(function() {
 	RATINGS_upgrades=r5[0].upgrades;
 	RATINGS_ships=r5[0].ships;
 	RATINGS_pilots=r5[0].pilots;
-	TOP_squads=r6[0].data;
+	CC = r6[0];
+
 	UI_translation=result2[0].ui;
 	CRIT_translation=result2[0].criticals;
 	var css_translation=result2[0].css;
@@ -2011,7 +2072,7 @@ $(document).ready(function() {
 	    }
 	}
 
-	for (var i in css_translation) {
+	for (i in css_translation) {
 	    str+="."+i+"::after { content:\""+css_translation[i]+"\";}\n";
 	}
 	$("#localstrings").html(str);
@@ -2019,35 +2080,34 @@ $(document).ready(function() {
 	UPGRADE_dict=result3[0].upgrades;
 	PILOT_dict=result3[0].pilots;
 
-	for (var j in PILOT_dict) {
-	    for (var i=0; i<PILOTS.length; i++) 
+	for (j in PILOT_dict) {
+	    for (i=0; i<PILOTS.length; i++) 
 		if (PILOTS[i].name==PILOT_dict[j]) PILOTS[i].dict=j;
-	    for (var i in unitlist) 
+	    for (i in unitlist) 
 		if (i==PILOT_dict[j]) unitlist[i].dict=j;
 	}
 	for (i=0; i<UPGRADES.length; i++) {
-	    var u=UPGRADES[i];
+	    u=UPGRADES[i];
 	    if (u.type==TITLE) {
 		unitlist[u.ship].hastitle=true;
 	    }
 	}
 
 	/*Sanity check */
-	
-	for (var i=0; i<PILOTS.length; i++) {
+	for (i=0; i<PILOTS.length; i++) {
 	    var found=false;
 	    for (var j in PILOT_dict) 
 		if (PILOTS[i].name==PILOT_dict[j]) { found=true; break; }
 	    if (!found) log("no xws translation for "+PILOTS[i].name);
 	}
-	for (var i=0; i<UPGRADES.length; i++) {
-	    var found=false;
+	for (i=0; i<UPGRADES.length; i++) {
+	    found=false;
 	    for (var j in UPGRADE_dict) 
 		if (UPGRADES[i].name==UPGRADE_dict[j]) { found=true; break; }
 	    if (!found) log("no xws translation for "+UPGRADES[i].name);
 	}
 
-	var r=0,e=0,i;
+	var r=0,e=0;
 	squadron=[];
 
 	s.attr({width:"100%",height:"100%",viewBox:"0 0 900 900"});
@@ -2097,8 +2157,6 @@ $(document).ready(function() {
 
 
 	if (typeof localStorage.volume=="undefined") localStorage.volume=0.8;
-	if (typeof localStorage.image!="undefined") $("#profile-avatar").attr("src",localStorage.image);
-	if (typeof localStorage.name!="undefined") $("#nameinput").val(localStorage.name); else $("#nameinput").val("Player");
 
 	//Howler.volume(localStorage.volume);
 	//$("#vol").val(localStorage.volume*100);
@@ -2147,7 +2205,12 @@ $(document).ready(function() {
 	$("aside").on("scroll touchmove touchstart mousewheel", scrolloverflow);
 
 	scenariomode(FREECOMBAT);	
-
+	if (localStorage['mode']=="CREATION") {
+	    delete localStorage['mode'];
+	    page_creation();
+	} else {
+	    page_select();
+	}
 	var arg=LZString.decompressFromEncodedURIComponent(decodeURI(window.location.search.substr(1)));
 	var args=[];
 	if (arg!=null) args= arg.split('&');
@@ -2162,7 +2225,6 @@ $(document).ready(function() {
 		TEAMS[3].parseASCII(args[0]);
 		currentteam=TEAMS[3];
 		currentteam.team=3;
-		console.log(currentteam.toJuggler(false));
 		createsquad(currentteam.faction);
 		for (var j in generics) {
 		    var u=generics[j];
@@ -2170,7 +2232,6 @@ $(document).ready(function() {
 			for (var i in metaUnit.prototype) u[i]=metaUnit.prototype[i];
 		    }
 		}
-		document.location="#creation";
 	    } else {
 		TEAMS[2].parseASCII(args[1]);
 		TEAMS[2].toJSON(); // Just for points
@@ -2206,22 +2267,24 @@ $(document).ready(function() {
 	}
 	delete localStorage["imageplayer"];
 	delete localStorage["playername"];
-	phase=0;
-	nextphase();
+	phase=SELECT_PHASE;
+	//nextphase();
 	
 	setSetup("Classic");
 
 	SQUADLIST = new Squadlist("#squadlist");
-	SQUADLIST.user();
+	SQUADLIST.latest();
 	SCENARIOLIST = new Scenariolist("#scenariolist");
 	SCENARIOLIST.user();
 	for (i in squadron) {
 	    delete squadron[i];
 	}
+	$("#caroussel").hover(function() {
+	    $(this).scrollLeft(10);
+	});
 	squadron=[];
 	generics=[];
-	console.log(TEAMS[3].toJuggler());
-	TEAMS[3].changefaction(REBEL);
+	TEAMS[3].changefaction(REBEL,true);
 	var pilots=[];
 	for (i=0; i<PILOTS.length; i++) {
 	    var n=i;
@@ -2237,6 +2300,7 @@ $(document).ready(function() {
 	}
 	$(".squadbg > textarea").asuggest(pilots, { 'delimiters': '^\n', 'cycleOnTab': true });
 	$(".squadbg > textarea").asuggest(upgrades, { 'delimiters': '+', 'cycleOnTab':true});
+	return true;
     });
 });
 function printunits() {

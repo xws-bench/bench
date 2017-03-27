@@ -223,6 +223,7 @@ function Unit(team,pilotid) {
 	flysnd:u.flysnd,
 	name:PILOTS[pilotid].unit,
 	hastitle:u.hastitle,
+	code:u.code
     };
     if (typeof PILOTS[pilotid].shipimg=="undefined") {
 	var t=u.faction.indexOf(this.faction);
@@ -568,19 +569,23 @@ Unit.prototype = {
 	s.upgrades=upgpt;
 	return s;
     },
-    toJuggler: function(translated) {
+    toJuggler: function(translated,improved) {
 	var s=this.name;
 	if (translated==true) s=translate(this.name);
 	s=s.replace(/\'/g,""); 
 	if (PILOTS[this.pilotid].ambiguous==true
-	    &&typeof PILOTS[this.pilotid].edition!="undefined") 
+	    &&typeof PILOTS[this.pilotid].edition!="undefined"
+	    &&improved!=true) 
 	    s=s+"("+PILOTS[this.pilotid].edition+")";
+	if (improved&&typeof this.ship.code!="undefined") s="<span class='ship'>"+this.ship.code+"</span> <span class='"+(this.faction==REBEL?"HALFRED":(this.faction==EMPIRE?"HALFGREEN":"HALFYELLOW"))+"'>"+s+"</span>";
 	for (var i=0; i<this.upg.length; i++) {
 	    var upg=this.upg[i];
 	    if (upg>-1) {
 		var v=UPGRADES[upg].name;
 		if (translated==true) v=translate(UPGRADES[upg].name);
-		s += " + "+v.replace(/\(Crew\)/g,"").replace(/\'/g,"");		
+		if (improved) s += " <span class='"+UPGRADES[upg].type+"'></span> ";
+		else s += " + ";
+		s += v.replace(/\(Crew\)/g,"").replace(/\'/g,"");		
 	    }
 	}
 	return s;
@@ -626,9 +631,9 @@ Unit.prototype = {
     }, 
     getstatstring:function() {
 	var str="";
-	str+="<div class='xsymbols RED'>"+repeat('u',this.weapons[0].getattack())+"</div>"
-	str+="<div class='xsymbols GREEN'>"+repeat('u',this.getagility())+"</div>"
-	str+="<div class='xsymbols YELLOW'>"+repeat('u',this.hull)+"</div>"
+	str+="<div class='xsymbols RED'>"+repeat('u',this.weapons[0].getattack())+"</div>";
+	str+="<div class='xsymbols GREEN'>"+repeat('u',this.getagility())+"</div>";
+	str+="<div class='xsymbols YELLOW'>"+repeat('u',this.hull)+"</div>";
 	str+="<div class='xsymbols BLUE'>"+repeat('u',this.shield)+"</div>";
 	return str;
     },

@@ -59,11 +59,11 @@ metaUnit.prototype= {
     addtarget: function(sh) {
 	for (var i=0; i<this.moves.length; i++) {
 	    this.moves[i].targeting=[targetunit];
-	    this.moves[i].reroll=9;
 	}
 	this.targeting=[targetunit];
     },
     removetarget: function(t) {
+	console.log("removetarget meta");
 	var n=this.targeting.indexOf(t);
 	if (n>-1) this.targeting.splice(n,1);
     },
@@ -149,7 +149,7 @@ metaUnit.prototype= {
 		for (var j=0; j<bl.length; j++) { 
 		    bl[j].BOOST=true;
 		    bl[j].ROLL=m.ROLL;
-		    bl[j].reroll=m.reroll;
+		    bl[j].reroll=0;
 		    bl[j].stress=m.stress;
 		    bl[j].focus=m.focus;
 		    bl[j].evade=m.evade;
@@ -171,7 +171,7 @@ metaUnit.prototype= {
 	    p[i].move=this.moves[i].move;
 	    p[i].evade=this.moves[i].evade;
 	    p[i].targeting=this.targeting;
-	    if (p[i].targeting.length>0) p[i].reroll=9; else p[i].reroll=0;
+	    p[i].reroll=0;
 	    p[i].focus=1;
 	}
 	this.moves=p;
@@ -184,7 +184,7 @@ metaUnit.prototype= {
 	    p[i].stress=this.moves[i].stress;
 	    p[i].move=this.moves[i].move;
 	    p[i].targeting=this.targeting;
-	    if (p[i].targeting.length>0) p[i].reroll=9; else p[i].reroll=0;
+	    p[i].reroll=0;
 	    p[i].focus=this.moves[i].evade;
 	    p[i].evade=1;
 	}
@@ -199,7 +199,7 @@ metaUnit.prototype= {
 	    p[i].targeting=[targetunit];
 	    p[i].focus=this.moves[i].focus;
 	    p[i].evade=this.moves[i].evade;
-	    p[i].reroll=9;
+	    p[i].reroll=0;
 	    p[i].stress=this.moves[i].stress;
 	}
 	this.moves=p;
@@ -222,7 +222,7 @@ metaUnit.prototype= {
 		for (var j=0; j<bl.length; j++) {
 		    bl[j].ROLL=true;
 		    bl[j].BOOST=m.BOOST;
-		    bl[j].reroll=m.reroll;
+		    bl[j].reroll=0;
 		    bl[j].focus=m.focus;
 		    bl[j].evade=m.evade;
 		    bl[j].stress=m.stress;
@@ -347,11 +347,15 @@ metaUnit.prototype= {
 	//console.log(w.name+" "+w.canfire(targetunit)+" "+w.getrange(targetunit));
 
 	if (w.getrange(targetunit)==0) return null;
+
+	w.declareattack(targetunit);
+
 	this.resolveattack(w,targetunit);
 	var a=this.getattackstrength(j,targetunit);
 	var defense=targetunit.getdefensestrength(j,this);
 	var ad = this.modifyattackdefense(a,defense,targetunit,j);
 	a=ad.a;
+	console.log("attack:"+ad.a+" "+ad.d);
 	defense=ad.d;
 	if (this.targeting.length>0) this.reroll=9; else this.reroll=config%10;
 	var thp= tohitproba(this,w,targetunit,ATTACK[a],DEFENSE[defense],a,defense);

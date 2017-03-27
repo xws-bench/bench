@@ -1,653 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link href="favicon.ico" rel="icon" type="image/x-icon"/>
-    <title>Squad Benchmark: combat trainer and squad builder for X-Wing Miniatures game</title>
-    <meta name="description" content="Web app for X-Wing Miniatures game">
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <link rel="apple-touch-icon" href="squadronbenchmark-60x60.png"/>
-    <link rel="apple-touch-icon" sizes="76x76" href="squadronbenchmark-76x76.png"/>
-    <link rel="apple-touch-icon" sizes="120x120" href="squadronbenchmark-120x120.png"/>
-    <link rel="apple-touch-icon" sizes="152x152" href="squadronbenchmark-152x152.png"/>
 
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="iOS Squadron Benchmark">
-    <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="css/xwing.css"/>
-    <style type="text/css" id="localstrings"></style>
-  </head>
+<head>
 
-  <body>
-    <nav>
-      <ul class="buttonbar">
-	<li class="m-reset" onclick="resetlink(true,false)" >&lt;&lt; </li>
-	<li><select id="turnselector" onchange="resetlink(false,false,true);"><option value="-1">&lt; Back</option></select></li>
-	<li><label for="imagebg" class="imagebg">Import setup image</label>
-	  <input type="file" id="imagebg">
-	  <span id="savebtn" onclick="document.location='#save'; save()" >Permalink</span></li>
-	<li class="symbols" onclick="window.location='#settings'">ü</li>
-	<li id="phase"></li>
-	<li class="nextphase" onclick="if (!$(this).hasClass('disabled')) nextphase()"><span class='np'></span> <span id="npimg">&gt;</span><img src="png/waiting.gif" id="npimgwait"></li>
-      </ul>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
+    <title>Squadron Benchmark</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/landing-page.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/flags.min.css"/>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                    <li>
+                        <a href="http://xws-benchmark.blogspot.fr/">Blog</a>
+                    </li>
+                    <li>
+                      <a data-toggle="modal" href="#licence">Licence</a>
+                    </li>
+                    <li>
+                      <a data-toggle="modal" href="#credits">Credits</a>
+                    </li>
+                    <li>
+                      <a data-toggle="modal" href="#donate">Donate</a>
+                    </li>
+		    <li class="dropdown">
+		      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Language<span class="caret"></span></a>
+		      <ul class="dropdown-menu">
+			<li><a href="#" onclick="setlanguage('en');"><span class="flag flag-gb"> </span> English</a></li>
+			<li><a href="#" onclick="setlanguage('fr');"><span class="flag flag-fr">  </span> Français</a></li>
+			<li><a href="#" onclick="setlanguage('de');"><span class="flag flag-de">  </span> Deutsch</a></li>
+			<li><a href="#" onclick="setlanguage('es');"><span class="flag flag-es">  </span> Español</a></li>
+			<li><a href="#" onclick="setlanguage('it');"><span class="flag flag-it">  </span> Italiano</a></li>
+			<li><a href="#" onclick="setlanguage('pl');"><span class="flag flag-pl">  </span> Polski</a></li>
+		      </ul>
+		    </li>
+                </ul>
+
+           </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
     </nav>
 
-      <section id="settings"  class="modalDialog">
-      <div>
-	<h2>
-	  <span>Settings</span>
-	  <a href="#" title="Close" class="close">&#10060;</a>
-	</h2>
-	<div>
-      <table>
-	<tr>
-	  <td class="m-console"></td>
-	  <td>
-	    <input type="checkbox" checked value="1" id="consolecb" onclick="$('footer').toggle()"/>
-	  </td>
-	</tr>
-	<tr>
-	  <td>Console color</td>
-	  <td>
-	    <input type="radio" id="cb1" value="2" checked name="colorconsole" onclick="$('footer').css('filter','none');"/>
-	    <label for="cb1" class="m-sbintern">Black</label><br/>
+
+    <!-- Header -->
+    <a name="head"></a>
+    <div class="intro-header">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <h1>Squadron Benchmark<span style="font-size:0.3em">v0.99.1</span></h1>
+                        <h3>Build and test squads for X-Wing Miniature Game</h3>
+                        <hr class="intro-divider">
+                        <ul class="list-inline intro-social-buttons">
+                            <li>
+                                <a href="main.html#creation"  onclick="localStorage['mode']='CREATION';" class="btn btn-default btn-lg"><span class="network-name">&nbsp;&nbsp;Build&nbsp;&nbsp;</span></a>
+                            </li>
+                            <li>
+                                <a href="main.html#selectphase" class="btn btn-default btn-lg"><span class="network-name">Combat</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.intro-header -->
+
+    <div class="modal fade" id="licence" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+	<div class="modal-content">
+	  <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h5 class="modal-title">Licence</h5>
+	  </div>
+	  <div class="modal-body" style="font-weight:normal">
+	    <p>The main contributor of the app is Denis Wings (deniswings@free.fr). The code has an <a href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
 	    
-	    <input type="radio" id="cb2" value="1" name="colorconsole" onclick="$('footer').css('filter','invert(100%)');"/>
-	    <label for="cb2" class="m-sbintern">White</label><br/>
-	  </td>
-	</tr><tr>
-	  <td class="m-trace"></td>
-	  <td>
-	    <input type="checkbox" onclick="TRACE=!TRACE;$('.trace').toggle()"/>
-	  </td>
-	</tr>
-	<tr>
-	  <td class="m-volume"></td>
-	  <td>
-	    <span class="symbols" style="font-size:larger">&#xFA;</span>
-	    <input type="range" min="0" max="100" id="vol" value="80" oninput="var vol=parseInt(value,10)/100.; localStorage.volume=vol; Howler.volume(vol);"/>
-	    <span class="symbols" style="font-size:larger">û</span>
-	  </td>
-	</tr>
-      </table>
-      </div></div>
-      </section>
-
-    <article class="headlines" id="headlines">
-      <div class="headlinetext">
-	<ul class="buttonbar">
-	  <li onclick="document.location='#creation'" class="m-new"></li>  
-	  <li onclick="document.location='#selectphase'" class="m-simulation"></li> 
-	  <li onclick="document.location='#manage'" class="m-manage"></li> 
-	  
-	  <li><select id="langselect" onchange="changelanguage($(this).val())">
-	      <option value="en">English</option>
-	      <option value="en">Français</option>
-	      <option value="en">Deutsch</option>
-	      <option value="en">Español</option>
-	      <option value="en">Italiano</option>
-	      <option value="en">Polski</option>
-	  </select></li>
-	</ul>
-	<h1>
-	  <span class="xwing"></span>
-	  <span class="title">Squadron Benchmark </span>
-	  <span class="ver"></span>
-	</h1>
-	<p><span class="m-shorttitle"></span> <a href="https://www.fantasyflightgames.com/en/products/x-wing/"><em>X-Wing Miniature Games</em></a></p>	
-	<div class="menubar">
-	  <a class="m-help" href="http://xws-benchmark.blogspot.fr/p/how-to-play.html" target="_blank"></a> 
-	  | <a class="m-blog" href="http://xws-benchmark.blogspot.fr/"></a> 
-	  | <a class="m-proba" href="#proba"></a> 
-	  | <a class="m-donate" href="#donate"></a>	
-	  | <a class="m-credits" href="#credit"></a> 
-	  | <a href="#licence">Licence</a>
-	  &nbsp;
-	</div>
-      </div>
-<div style="padding:1em;font-size:larger">A web app for players of X-Wing Miniature game. Build and test your squadlists in your browser.
-</div>      
-      <div class="news">
-	<span style="float:left;width:30%;padding-right:1em;">
-	<h2 class="squadbg"><span>!</span> Squad Building</h2>
-	<div>Build your squad in a few clicks:
-	<ul>
-	  <li>All units to Wave 10</li>
-	  <li>Integrated <a href="https://community.fantasyflightgames.com/topic/196321-x-wing-beginners-guide/">Beginner Strategy Guide v4.5</a> from Flipperoverlord with advices on upgrades and units.</li>
-	  <li>Pilot filter by upgrade type, wave, action type, cost or search for keywords in the pilot text.</li>
-	  <li>Pilot Hitmap:  Displays the % to hit for your best weapon, first shoot to an Academy Pilot after one maneuver and one action.</li>
-	  <li>Move map: Shows where the pilot can go with one maneuver and one action from action bar.</li>
-	  <li>Save your list as a weblink, print them.</li>
-	  <li>All your squads are saved in your browser. Edit, re-edit your lists and test them in the simulator.</li>
-	</ul></div></span><span style="float:left;width:30%;padding-right:1em">
-	<h2 class="squadbg"><span>$</span> Combat Simulation</h2>
-	Play in 15 min a combat between chosen squads:
-	<ul>
-	  <li>The simulator handles collisions, triggered actions and effects, and most of the rules. </li>
-	  <li>Take takes both sides or against an AI.</li>
-	  <li>Play scenarios or make a free combat. Play the Battle of Yavin, test your maneuverability, play with moving obstacles !</li>
-	  <li>Save your combat at any turn, export it as an URL.</li> 
-	  <li>Share the combats you have played on Facebook, Tweeter, email to your friends and to forums.</li> 
-	</ul>
-</span><span style="float:left; width:30%;">
-	<h2 class="squadbg"><span>W</span> Hangar</h2>
-	Direct access to squad lists, ready to be played:
-	<ul>
-	  <li>All your builds,</li>
-	  <li>The <a href="http://miniranker.xwingjunkies.com/">Top 10 lists</a> in used in recent competitions.</li>
-	  <li>The 20 most recently played lists by players in Squadron Benchmark.</li>
-	</ul>
-	All lists can be reedited, printed and played. 
-      </div></span>
-    </article>
-
-    <aside class="leftpanel" id="leftpanel">
-      <span class="playerteam" id="playerteam1"></span><select class="playertype" id="player1"></select>
-      <section id="team1" class="team">
-	<h2 style='display:none'>List of units</h2>
-      </section>
-    </aside>
-
-    <aside id="rightpanel" class="rightpanel">
-      <span class="playerteam" id="playerteam2"></span><select class="playertype" id="player2"></select>
-      <section id="team2" class="team">
-	<h2 style='display:none'>List of units</h2>
-      </section>
-    </aside>
-    
-    <article id="game" class="main">
-      <h2 style='display:none'>Main panel</h2>
-      <section class="phasepanel">
-	<h2 style='display:none'>Main panel</h2>
-	<div id="positiondial">
-	  <div>
-	    <span onclick="activeunit.turn(-45)" title="key: <T>" class="symbols">4</span>
-	    <span onclick="activeunit.turn(45)" title="key: <t>" class="symbols">6</span>
+	    The code of the app relies on the following external fonts and libraries. See their website for their license: <a href="https://github.com/geordanr/xwing-miniatures-font">Xwing-miniatures-font</a>, <a href="https://github.com/geordanr/xwing">Yet Another Squad Builder</a> and <a href="https://github.com/elistevens/xws-spec">JSON
+	      format of X-Wing squadrons</a> for card translations, 
+	    <a href="http://snapsvg.io/">Snap</a>,
+	    <a href="https://jquery.com/">jQuery</a>, 
+	    <a href="https://github.com/janl/mustache.js">Mustache</a>,
+	    <a href="https://github.com/keithamus/jwerty">Jwerty</a>,
+	    <a href="http://goldfirestudios.com/blog/104/howler.js-Modern-Web-Audio-Javascript-Library">Howler</a>,
+	    <a href="http://imankulov.github.io/asuggest/">Asuggest</a>,
+	    <a href="http://pieroxy.net/blog/pages/lz-string/index.html">lz-string</a>,
+	    <a href="http://hammerjs.github.io/">Hammer</a>,
+	    <a href="https://github.com/chriszarate/sheetrock">Sheetrock</a>.
 	  </div>
-	  <div>
-	    <span onclick="activeunit.turn(-5)" title="key: <B>" class="symbols">7</span>
-	    <span onclick="activeunit.turn(5)" title="key: <b>" class="symbols">9</span>
-	  </div>
-	  <div><button onclick="document.location='#asteroid'; activeunit.selectrocks();">Change</button></div>
-	</div>
-	<table id="maneuverdial"></table>
-	<div id="activationdial"></div>
-	<div id="actiondial"></div>
-	<div id="attackdial"></div>
-	<div id="combatdial">
-	  <table style='width:100%'>
-	    <tr style='width:100%' id="attack"><td></td></tr>
-	    <tr style='width:100%' id="defense"><td></td></tr>
-	  </table>
-	  <div id="atokens"></div>
-	  <div id="dtokens"></div>
-	</div>
-      </section>
-      
-      <section class="playmat">
-	<h2 style='display:none'>Game area</h2>
-	<svg id="svgout"></svg>
-      </section>
-      
-      <section class="info">
-	<h2 style='display:none'>Info panel</h2>
-      </section>
-      
-      <section id="titles">
-	<div id="titlecontent"></div>
-      </section>
-
-    </article>
-
-    <section id="modal" class="modalDialog">
-      <div>
-	<h2>
-	  <span class="victory"></span>
-	  <a href="#" title="Close" class="close">&#10060;</a>
-	</h2>
-	<div>
-	  <table class="victory-table"></table>
-	  <div class="replays">Share combat: 
-	    <a href="#" class="victory-link m-replay"></a>
-	    <span class="share-button">
-	      <a class="symbols tweet" href="#" target="_blank">&#xF8;</a>
-	      <a class="facebook symbols" href="#" target="_blank">&#xF9;</a>
-	      <a class="googlep symbols" href="#" target="_blank">&#xF7;</a>
-	      <a class="email" href="#" title="Share by Email">&#xF6;</a>
-	    </span>
+	  <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
 	  </div>
 	</div>
       </div>
-    </section>
+    </div>
     
-    <section id="save" class="modalDialog">
-      <div>
-	<h2>
-	  <span class="victory">Share and save this combat</span>
-	  <a href="#" title="Close" class="close">&#10060;</a>
-	</h2>
-	<div>
-	  <span>Copy/paste the link below to save your combat, or share it with your friends.</span>
-	  <div class="share-button social"></div>
-	</div>
-      </div>
-    </section>
-    
-    <article id="creation" class="mainarticle">
-      <div class="bg filter"></div>
-      <ul class="buttonbar">
-	<li class="m-reset" onclick="document.location='#headlines'" >&lt;&lt; </li>
-	<li class="factions REBEL m-rebel selected" onclick="$('.factions').removeClass('selected'); $(this).addClass('selected');TEAMS[3].changefaction('REBEL')"></li>
-	<li class="factions SCUM m-scum" onclick="$('.factions').removeClass('selected'); $(this).addClass('selected'); TEAMS[3].changefaction('SCUM')"></li>
-	<li class="factions EMPIRE m-empire" onclick="$('.factions').removeClass('selected'); $(this).addClass('selected');TEAMS[3].changefaction('EMPIRE')"></li>
-	<li class="symbols" onclick="$('#linklist').text(WEBSITE+'?'+savesquad()); $('#xwsjsonlist').text(JSON.stringify(TEAMS[3].toJSON())); $('#jugglerlist').text(TEAMS[3].toJuggler(true)); document.location='#export'">&#xB9;</li>
-	<li class="symbols" onclick="printunits(); window.print()">&#xB6;</li>
-	<li onclick="document.location='#selectphase';prepareforcombat(TEAMS[3].toJuggler(true),1)"><span class="squadmiddle">1</span></li>
-	  <li onclick="document.location='#selectphase';prepareforcombat(TEAMS[3].toJuggler(true),2)"><span class="squadmiddle right">2</span></li>
-      </ul>
-      <h1 class="m-new"></h1>
-      <div id="unitfilter" class="selector">
-	<label for="textfilter" style="font-size:larger;background:transparent">&#x1F50D;</label><input style="width:calc(100% - 2em)" type="search" id="textfilter" class="textfilter" onchange="textfilter($(this).val())">
-	<div class="m-wave"></div>
-	<div><select id="wave" onchange="wavefilter($('#wave option:selected').val())">
-	    <option value="0">1-10</option>
-	    <option value="epic">Epic</option>
-	    <option value="aces">Aces</option>
-	    <option value="1">1</option>
-	    <option value="2">2</option>
-	    <option value="3">3</option>
-	    <option value="4">4</option>
-	    <option value="5">5</option>
-	    <option value="6">6</option>
-	    <option value="7">7</option>
-	    <option value="8">8</option>
-	    <option value="9">9</option>
-	    <option value="10">10</option>
-	    </select>
-	</div>
-	<div class="m-upgrades"></div>
-	<div><input type="checkbox" id="fturret" onclick="unitfilter(TURRET)"><label for="fturret" class="upgrades Turret"></label>
-	  <input type="checkbox" id="fcrew" onclick="unitfilter(CREW)"><label for="fcrew" class="upgrades Crew"></label></div>
-	<div><input type="checkbox" id="fastromech" onclick="unitfilter(ASTROMECH)"><label for="fastromech" class="upgrades Astromech"></label>
-	  <input type="checkbox" id="fsalvaged" onclick="unitfilter(SALVAGED)"><label for="fsalvaged" class="upgrades Salvaged"></label></div>
-	<div><input type="checkbox" id="fsystem" onclick="unitfilter(SYSTEM)"><label for="fsystem" class="upgrades System"></label>
-	  <input type="checkbox" id="fcannon" onclick="unitfilter(CANNON)"><label for="fcannon" class="upgrades Cannon"></label></div>
-	<div><input type="checkbox" id="ftorpedo" onclick="unitfilter(TORPEDO)"><label for="ftorpedo" class="upgrades Torpedo"></label>
-	  <input type="checkbox" id="fmissile" onclick="unitfilter(MISSILE)"><label for="fmissile" class="upgrades Missile"></label></div>
-	<div><input type="checkbox" id="fbomb" onclick="unitfilter(BOMB)"><label for="fbomb" class="upgrades Bomb"></label>
-	  <input type="checkbox" id="fillicit" onclick="unitfilter(ILLICIT)"><label for="fillicit" class="upgrades Illicit"></label></div>
-	<div><input type="checkbox" id="ftech" onclick="unitfilter(TECH)"><label for="ftech" class="upgrades Tech"></label></div>
-	<div class="m-actions"></div>
-	<div><input type="checkbox" id="ffocus" onclick="actionfilter('FOCUS')"><label for="ffocus" class="symbols GREEN">f</label>
-	  <input type="checkbox" id="fevade" onclick="actionfilter('EVADE')"><label for="fevade" class="symbols GREEN">e</label></div>
-	<div><input type="checkbox" id="froll" onclick="actionfilter('ROLL')"><label for="froll" class="symbols GREEN">r</label>
-	  <input type="checkbox" id="ftarget" onclick="actionfilter('TARGET')"><label for="ftarget" class="symbols GREEN">l</label></div>
-	<div><input type="checkbox" id="fboost" onclick="actionfilter('BOOST')"><label for="fboost" class="symbols GREEN">b</label>
-	  <input type="checkbox" id="fcloak" onclick="actionfilter('CLOAK')"><label for="fcloak" class="symbols GREEN">k</label></div>
-	<div><input type="checkbox" id="fslam" onclick="actionfilter('SLAM')"><label for="fslam" class="symbols GREEN">s</label>
-	  <input type="checkbox" id="farc" onclick="actionfilter('ARCROTATE')"><label for="farc" class="symbols GREEN">R</label></div>
-	<div><input type="checkbox" id="fcoord" onclick="actionfilter('COORDINATE')"><label for="fcoord" class="symbols GREEN">o</label></div>
-	<div class="m-maneuvers"></div>
-	<table class="dialfilter"></table>
-	<div class="cost"><span class="m-maxpts"></span><output for="costmax" id="costval">50</output>
-	  <input type="range" min="10" value="50" max="50" width="20px" id="costmax" oninput="$('#costval').val(value);"  onchange="$('#costval').val(value);" onmouseup="costfilter(value)">
-	</div>
-      </div>
-
-      <div class="unitlist">
-	<ul id="listunits" class="caroussel"></ul>
-      </div>
-      <div class="unitlist">
-	<ul id="caroussel" class="caroussel"></ul>
-      </div>
-    </article>
-
-    <article id="selectphase" class="mainarticle">
-      <ul class="buttonbar">
-	<li class="m-reset" onclick="document.location='#headlines'" >&lt;&lt; </li>
-	<li onclick="$('.modes').removeClass('selected'); $(this).addClass('selected'); scenariomode(FREECOMBAT);" class="modes selected">Free Combat</li>
-	<li onclick="$('.modes').removeClass('selected'); $(this).addClass('selected'); scenariomode(SCENARIO);" class="modes">Scenarios</li>
-	<li onclick="$('.modes').removeClass('selected'); $(this).addClass('selected'); scenariomode(SCENARIOCREATOR);" class="modes">Creator</li>
-
-      </ul>
-      <h1 class="m-simulation"></h1>
-      <div class="bg filter"></div>
-
-      <table class="squadlists">
-	<tr class="scenariocreator">
-	  <td colspan=2 class="squadbg">	
-	    <p><b>Scenario Creation</b><br/>
-	      <span style="font-size:smaller">Type a title, short description of the objectives, define the squad that will be played by the AI and check the victory conditions. When ready, press 'Setup'.</span></p>
-	    Title<br/>
-	    <input maxlength="30" size="30" type="text" onchange="SCENARIOTITLE=$(this).val();"><br/>
-	    Description of the objectives of the combat (no more than 250 characters)<br/>
-	    <textarea  class="squadtext pre" rows="2" maxlength="250"  placeholder="In a galaxy far, far away..." onchange="HEADER=$(this).val();"></textarea><br/>
-	  </td>
-	</tr>
-
-	<tr class="duelmode scenariomode">
-	  <td colspan=2>
-	    <div class="right">
-	      <span id="squad1points">0</span><span class="m-points"></span>
-	    </div>
-	    <div class="m-squad1"></div>
- 	  </td>
-	</tr>
-	<tr class="duelmode scenariomode">
-	  <td class="squadbg" colspan=2>
-	    <div>1</div>
-	    <textarea onchange="currentteam=TEAMS[1];importsquad(1);" id="squad1" class="squadtext pre" rows="8"></textarea>
-	  </td>
-	</tr>
-	<tr class="duelmode scenariocreator">
-	  <td colspan=2>
-	    <div class="right">
-	      <span id="squad2points">0</span><span class="m-points"></span>
-	    </div>
-	    <div class="m-squad2"></div>
-	  </td>
-	</tr>
-	<tr class="duelmode scenariocreator">
-	  <td class="squadbg" colspan=2>
-	    <div class="right">2</div>
-	    <textarea  onchange="currentteam=TEAMS[2];importsquad(2);" id="squad2" class="squadtext" rows="8" ></textarea>
-	  </td>
-	</tr>
-	<tr class="scenariomode">
-	  <td colspan=2>
-	    <div>Scenario list</div>
- 	  </td>
-	</tr>
-	<tr class="scenariomode">
-	  <td colspan=2>
-	    <table id="scenariolist"></table>
-	  </td>
-	</tr>
-
-	<tr class="squadbg duelmode scenariocreator">
-	  <td class="m-victorycond">Victory conditions</td>
-	  <td>
-	    <input checked type="radio" id="vc1" name="wincond" value="2" onclick="WINCOND=0;"/>
-	    <label for="vc1">Death match</label><br/>
-	    <input checked type="radio" id="vc2" name="wincond" value="2" onclick="WINCOND=parseInt($('#turnvc option:selected').text(),10)"/>
-	    <label for="vc2">Destroy all units before Turn</label><select id="turnvc" onchange="$('#vc2').trigger('click');"><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option selected >15</option></select><br/>
-	    <input type="radio" id="vc3" name="wincond" value="3" onclick="WINCOND=-parseInt($('#highvc option:selected').text(),10)"/>
-	    <label for="vc3">Highest score after</label><select id="highvc" onchange="$('#vc3').trigger('click');"><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option></select> Turns
-	</td></tr>
-	<tr class="squadbg duelmode scenariocreator">
-	  <td class="m-deckversion"></td>
-	  <td>
-	    <input type="radio" id="ver1" name="deckversion" value="1" onclick="CURRENT_DECK=1"/>
-	    <label for="ver1" class="m-ver1"></label><br/>
-	    <input type="radio" id="ver2" checked name="deckversion" value="2" onclick="CURRENT_DECK=2"/>
-	    <label for="ver2" class="m-ver2"></label>
-	  </td>
-	</tr>
-	
-	<tr class="squadbg scenariocreator">
-	  <td>Moving asteroids<sup>&beta;</sup></td>
-	  <td>
-	    <input type="radio" id="ma1" name="mamove" value="1" onclick="MOVING_ASTER=true"/>
-	    <label for="ma1">Yes</label><br/>
-	    <input type="radio" id="ma2" checked name="mamove" value="2" onclick="MOVING_ASTER=false"/>
-	    <label for="ma2">No</label>
-	  </td>
-	</tr>
-	
-	
-	<tr class="squadbg duelmode scenariocreator">
-	  <td class="m-normalmap"></td>
-	  <td>
-	    <img alt="classic" class="selected" src="css/mini10.jpg" onclick="$('.squadbg img').removeClass('selected'); $(this).addClass('selected');setSetup('Classic')">
-	    <img alt="blue planet" src="css/mini11.jpg" onclick="$('.squadbg img').removeClass('selected'); $(this).addClass('selected');setSetup('Blue Planet')">
-	    <img alt="blue sky" src="css/mini13.jpg" onclick="$('.squadbg img').removeClass('selected'); $(this).addClass('selected');setSetup('Blue Sky')">
-	    <img alt="mars" src="css/mini14.jpg" onclick="$('.squadbg img').removeClass('selected'); $(this).addClass('selected'); setSetup('Mars')">
-	    <img alt="cloud city" src="css/mini6.jpg" onclick="$('.squadbg img').removeClass('selected'); $(this).addClass('selected');setSetup('Cloud City')">
-	    <img alt="defender" class="scenariocreator" src="css/minicircle.jpg" onclick="$('.squadbg img').removeClass('selected'); $(this).addClass('selected');setSetup('Defender')">
-	    <img class="scenariocreator" alt="deathstar" src="css/minids.png" onclick="$('.squadbg img').removeClass('selected'); $(this).addClass('selected');setSetup('Deathstar')">
-	    <img class="scenariocreator" alt="deathstar2" src="css/minids.png" onclick="$('.squadbg img').removeClass('selected'); $(this).addClass('selected');setSetup('Deathstar2')">
-	  </td>
-	</tr>
-	<tr>
-	  <td colspan=2>	    
-	    <ul class="buttonbar duelmode scenariocreator">
-	      <li class="nextphase" onclick="nextphase()">Go !</li>
-	    </ul>
-	  </td>
-	</tr>
-
-      </table>
-      <table id="setuplist" style="display:none" class="setupselector">
-	<tr><td><select onchange="changesetup()"></select></td><td><span></span></td><td></td></tr>
-
-
-
-      </table>
-    </article>
-
-
-    <article id="manage" class="mainarticle">
-      <div class="bg filter"></div>
-      <h1 class="m-manage"></h1>
-      <ul class="buttonbar">
-	<li class="m-reset" onclick="document.location='#headlines'" >&lt;&lt; </li>
-	<li onclick="$('.lists').removeClass('selected'); $(this).addClass('selected');SQUADLIST.latest()" class="lists">Latest</li>
-	<li class="lists m-top" onclick="$('.lists').removeClass('selected'); $(this).addClass('selected');SQUADLIST.toplist()"><span style="font-size:larger;color:orange" class="symbols">ÿ</span><sup><a style="text-decoration:underline;color:#fff" href="http://miniranker.xwingjunkies.com/">*</a></sup> </li>
-	<li class="lists Mybuilds selected" onclick="$('.lists').removeClass('selected'); $(this).addClass('selected');SQUADLIST.user()"></li>
-      </ul>
-
-      <div style="float:left;padding-top:4em;">
-	    <div id="squadstats">
-	      <label for="squadfilter" style="font-size:larger;background:transparent">&#x1F50D;</label>
-	      <input type="text" id="squadfilter" onchange="console.log('filtering with '+$(this).val()); SQUADLIST.filter($(this).val())">
-	      <table id="squadlist" style="height:100%" class="compact stripe hover order-column row-border">
-	      </table>
-	    </div>
-      </div>
-      <div style="float:left;width:400px;">
-	    <iframe id="replay" class="replay" src="blank.html"></iframe>
-	    <div id="squadbattlediv"></div>
-	    <div style="display:none">
-	      <button class="mainbutton" onclick='location.replace($("#replay").attr("src"))'><span class="symbols">&#xFB;</span></button>
-	    </div>
-
-      </div>
-    </article>
-
-    <section id="asteroid" class="modalDialog">
-      <div>
-	<h2><span class="m-obstacles"></span><a href="#" title="Close" class="close">&#10060;</a></h2>
-	<div>
-	<svg class="aster"></svg>
-
-	</div>
-      </div>
-    </section>
-
-    <section id="iaparameter" class="modalDialog">
-      <div>
-	<h2><span class="m-parameter">Parameters</span><a href="#" title="Close" class="close">&#10060;</a></h2>
-	<div>
-	  blablabla
-	</div>
-      </div>
-    </section>
-
-    <section id="export" class="modalDialog">
-      <div>
-	<h2><span class="modaltitle">Export squad</span><a href="#" title="Close" class="close">&#10060;</a></h2>
-	<div>
-	  <p>Link to copy/paste</p>
-	  <textarea id="linklist"></textarea>
-	  <br/>
-	  <p>XWS Json Format</p>
-	  <textarea id="xwsjsonlist"></textarea>
-	  <p>Plain List Format</p>
-	  <textarea id="jugglerlist"></textarea>
-
-	</div>
-      </div>
-    </section>
-
-    <section id="bug" class="modalDialog">
-      <div>
-	<h2><span class="m-submitabug"></span><a href="#" title="Close" class="close">&#10060;</a></h2>
-	<div>
-	</div>
-      </div>
-    </section>
-
-    <section id="proba" class="modalDialog">
-      <div>
-        <h2><span class="m-proba"></span><a href="#" title="Close" class="close">&#10060;</a>
-        </h2>
-        <div>
-          <p>
-            This table gives the % of chance to hit for an attacker. In rows, the number of dice for the attacker, and in column the number of dice of the defender. You can set the tokens or rerolls for both units. Each cell gives the % of chance for the attacker to hit the defender, the mean number of hits (<code class="hit"></code>) and criticals (<code class="critical"></code>) given. 
-          </p>
-          <table>
-            <tr><td>Attacker</td><td>Defender</td></tr>
-            <tr>
-              <td><input type="checkbox" onclick="fillprobatable()" id="focusA" value="focus">
-                <label for="focusA" class="xfocustoken"></label>
-                <input type="checkbox" onclick="fillprobatable()" id="targetA" value="target">
-                <label for="targetA" class="xtargettoken"></label>
-                <input type="number" min=0 max=5 step=1 style="width:2em" onchange="fillprobatable()" id="rerollA" value="0">rerolls
-              </td>
-              <td><input type="checkbox" onclick="fillprobatable()" id="focusD" value="focus">
-                <label for="focusD" class="xfocustoken"></label>
-                <input type="checkbox" onclick="fillprobatable()" id="evadeD" value="evade">
-                <label for="evadeD" class="xevadetoken"></label>
-                <input type="checkbox" onclick="fillprobatable()" id="cloakD" value="0">
-                <label for="cloakD" class="xcloaktoken"></label>
-                <input type="number" min=0 max=5 step=1 style="width:2em" onchange="fillprobatable()"  id="rerollD" value="0">rerolls
-              </td>
-            </tr>
-          </table>
-          <table id="probatable">  
-          </table>
-
-        </div>
-      </div>
-    </section>
-
-    <section id="kb" class="modalDialog">
-      <div draggable="true">
-        <h2><span class="m-kb"></span><a href="#" title="Close" class="close">&#10060;</a>
-        </h2>
-        <div>
-	  <table>
-	    <tr><th class="m-key">Keys</th><th class="m-action">Action</th></tr>
-	    <tr><td><code>ESC</code></td><td>Go to next phase</td></tr>
-	    <tr class="odd"><td><code>alt+p/alt+shift+p</code></td><td>Show/Hide possible moves for unit.<br/>RED:goes out of board (this turn or the next), YELLOW:collides with obstacle, <br/>WHITE:collides with unit, GREEN:ok</td></tr>
-	    <tr><td><code>alt+m</code></td><td>Show average move, using only GREEN and WHITE moves, no K-/Tallon turns. <br/>Use shift+p to hide.</td></tr>
-	    <tr class="odd"><td><code>alt+1/alt+shift+1</code></td><td>Add/Remove <code class="xfocustoken"></code> to selected unit</td></tr>
-	    <tr><td><code>alt+2/alt+shift+2</code></td><td>Add/Remove <code class="xevadetoken"></code> to selected unit</td></tr>
-	    <tr class="odd"><td><code>alt+3/alt+shift+3</code></td><td>Add/Remove <code class="xcloaktoken"></code> to selected unit</td></tr>
-	    <tr><td><code>alt+4/alt+shift+4</code></td><td>Add/Remove <code class="xstresstoken"></code> to selected unit</td></tr>
-	    <tr class="odd"><td><code>alt+5/alt+shift+5</code></td><td>Add/Remove <code class="xionizedtoken"></code> (ionization token) to selected unit</td></tr>
-	    <tr class="odd"><td><code>alt+6/alt+shift+6</code></td><td>Add/Remove <code class="xtractorbeamtoken"></code> (tractor beam token) to selected unit</td></tr>
-	    <tr><td><code>alt+d/alt+shift+d</code></td><td>Add/Remove <code class="hit"></code> to selected unit</td></tr>
-	    <tr class="odd"><td><code>alt+c</code></td><td>Add random <code class="critical"></code> to selected unit</td></tr>
-	  </table>
-	</div>
-      </div>
-    </section>
-    
-    <section id="about" class="modalDialog">
-      <div draggable="true">
-        <h2><span class="m-about"></span><a href="#" title="Close" class="close">&#10060;</a>
-        </h2>
-        <div>
-	  This is short introduction of Squadron Benchmark. Read <a href="http://xws-benchmark.blogspot.fr/">the blog</a> dedicated to the app for a more exhaustive description, for a manual and for news. 
-	  <br/>
-
-	  Squadron Benchmark is a web app for
-	  testing squadrons built for the X-Wing Miniatures game. You can design
-	  your squads and simulate a battle between them. Both sides can be
-	  controlled either by the player or by a simple AI. The player moves
-	  the different units and can test new strategies, squadron compositions,
-	  maneuvers and initial placements. It can be used to build scenarios, to benchmark
-	  against squads you can find in competitions, test new units or
-	  upgrades...  The app offers the following features:
-	  <ul>
-	    <li>Import your squads using JSON format or text format</li>
-	    <li>Move units and perform their actions as in the real game.</li>
-	    <li>Detection of collisions with other ships and asteroids, automatic handling of stress, action and combat effects, rolling hit dice for possible hits and criticals.</li>
-	    <li>Automatic handling of a number of card effects (pilots, upgrades, ...). Biggs for instance is the unique possible target when in range of a ennemy. Howlrunner effect is automatically taken into account. A console provides feed back on what happens and which effect is triggered.</li>
-	    <li>Combat rules: Select the weapon to fire, the target unit, see the results of rolled dice and apply effects. Damages and criticals are delivered automatically, shields are used, ...</li> 
-	    <li>A simple AI ! It can move the units around and tries to fire at your units. It is simple to outmaneuver it but still, be careful not to be too confident :-) </li>
-	  </ul>
-
-	  The app is not really a game since the player plays both sides or against an AI, there is no multi-player version of the app and there will not be. This is in no way a substitute for the real game but is a complementary tool.
-	  <br/>
-	  The main author of the app is Denis Wings (deniswings@free.fr). MIT license. <br>
-	</div>
-
-      </div>
-    </section>
-
-    <section id="donate" class="modalDialog">
-      <div>
-        <h2><span class="m-donate"></span><a href="#" title="Close" class="close">&#10060;</a>
-        </h2>
-        <div>
-	  <br>
-          If you like this web app and find it useful, if you want to encourage further developments, feel free to donate ! 
-	  <br>
-          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick">
-            <input type="hidden" name="hosted_button_id" value="NYM7QUG8UKGE2">
-            <input type="image" src="png/btn_donateCC_LG.png" name="submit" alt="PayPal - The safer, easier way to pay online!">
-          </form>
-	  <br>        The app will stay free to use for all, with no advertisement. 
-          Feel free to provide feed back, report bugs or suggest improvements on the blog. All comments are welcome !
-	  <br>Thank you for your support !
-	  <br>
-	  --Denis Wings
-        </div>
-
-      </div>
-    </section>
-
-    <section id="licence" class="modalDialog">
-      <div draggable="true">
-	<h2><span>Licence</span><a href="#" title="Close" class="close">&#10060;</a>
-	</h2>
-	<div>
-	  <p><b>Licence and copyright</b></p>
-	  <p>The main contributor of the app is Denis Wings (deniswings@free.fr). The code has an <a href="https://opensource.org/licenses/MIT">MIT license</a>.</p>
-
-	  The code of the app relies on the following external fonts and libraries. See their website for their license: <a href="https://github.com/geordanr/xwing-miniatures-font">Xwing-miniatures-font</a>, <a href="https://github.com/geordanr/xwing">Yet Another Squad Builder</a> and <a href="https://github.com/elistevens/xws-spec">JSON
-	    format of X-Wing squadrons</a> for card translations, 
-	  <a href="http://snapsvg.io/">Snap</a>,
-	  <a href="https://jquery.com/">jQuery</a>, 
-	  <a href="https://github.com/janl/mustache.js">Mustache</a>,
-	  <a href="https://github.com/keithamus/jwerty">Jwerty</a>,
-	  <a href="http://goldfirestudios.com/blog/104/howler.js-Modern-Web-Audio-Javascript-Library">Howler</a>,
-	  <a href="http://imankulov.github.io/asuggest/">Asuggest</a>,
-	  <a href="http://pieroxy.net/blog/pages/lz-string/index.html">lz-string</a>,
-	  <a href="http://hammerjs.github.io/">Hammer</a>,
-	  <a href="https://github.com/chriszarate/sheetrock">Sheetrock</a>.
-      </div></div>
-    </section>
-
-    <section id="credit" class="modalDialog">
-      <div draggable="true">
-	<h2><span class="m-credits"></span><a href="#" title="Close" class="close">&#10060;</a>
-	</h2>
-	<div>
+    <div class="modal fade" id="credits" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+	<div class="modal-content">
+	  <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h5 class="modal-title">Credits</h5>
+	  </div>
+	  <div class="modal-body">
 	  Many thanks to supporters and patrons ! In particular to:<br/>
-	  <em>James Ramsay, Club165 Ventures, Lorenz Thor, Edward Coxwell-Rodgers, 宜軒 詹, Carlo Casalini, Bryan Gagen, James Berry, Lucas Haeser, Josh Chamot, Erich Leopold, Christian Linnig.</em>
+	  <em>Brian Tetrick, Alex Orr, James Ramsay, Club165 Ventures, Lorenz Thor, Edward Coxwell-Rodgers, 宜軒 詹, Carlo Casalini, Bryan Gagen, James Berry, Lucas Haeser, Josh Chamot, Erich Leopold, Christian Linnig.</em>
 	  <br/>
 	  
-	  Thanks also for all of the contributors reporting bugs and proposing features. In particular thanks to Ynot and the direct contributors to Squadron Benchmark code.<br/>  
-	  The Italian translation comes from Fab's squad builder web site. The sounds of space ships, lasers and explosions come from <a href="http://www.sa-matra.net/sounds/starwars/">Sa-Matra</a> website. Thanks !<br/>
+	  Thanks also for all of the contributors reporting bugs and proposing features. In particular thanks to <i>Ynot</i> and the direct contributors to Squadron Benchmark code.<br/>  
+	  The Italian translation comes from Fab's squad builder web site. The sounds of space ships, lasers and explosions come from <a href="http://www.sa-matra.net/sounds/starwars/">Sa-Matra</a> website. The <a href="https://community.fantasyflightgames.com/topic/196321-x-wing-beginners-guide/">X-Wing Beginner's Guide</a> is Flipperoverlord. The tournament archive comes from <a href="http://lists.starwarsclubhouse.com/">X-Wing List Juggler</a>. Thanks !<br/>
 
-	  <h4>Disclaimer</h4>
+	  <h5><b>Disclaimer</b></h5>
 	  X-Wing: The Miniatures Game is a trademark of Fantasy
 	  Flight Games. This site is not endorsed by Fantasy Flight
 	  Games, Lucasfilm Ltd. or Twentieth Century Fox and is
@@ -660,417 +162,199 @@
 	  constitutes a threat to any trademark or intellectual
 	  property. This web app is not-for-profit and is only
 	  intended for use by fans of the game line.
-      </div></div>
-    </section>
-
-    <iframe style="position:absolute;left:0;bottom:0;display:none;" id="submission" src="form.html">
-    </iframe>
-
-    <article class="printable">
-      <div style="float:right">
-	<img style="width:5em;" src="logo.png">
-	<table  id="printinfo" style="transform:rotate(90deg);position:fixed;right:-8em;top:20em;width:20em">
-	  <tr><td>Name:</td><td>_______________</td><td>Faction:</td><td id="factionname"></td></tr>
-	  <tr><td>Event:</td><td>_______________</td><td>Total points:</td><td id="pointsname"></td></tr>
-	</table>
+	  </div>
+	  <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+	  </div>
+	</div>
       </div>
-      <div id="printunits">
+    </div>
+    
+    <div class="modal fade" id="donate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+	<div class="modal-content">
+	  <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h5 class="modal-title">Donate</h5>
+	  </div>
+	  <div class="modal-body" style="font-weight:normal">
+          <p>If you like this web app and find it useful, if you want to encourage further developments, feel free to donate ! </p>
+          <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="NYM7QUG8UKGE2">
+            <input type="image" src="png/btn_donateCC_LG.png" name="submit" alt="PayPal - The safer, easier way to pay online!">
+          </form>
+	  <p>        The app will stay free to use for all, with no advertisement. 
+          Feel free to provide feed back, report bugs or suggest improvements on the blog. All comments are welcome !
+	  <br>Thank you for your support !
+	  <br>
+	  --Denis Wings	</p>
+	  </div>
+	  <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+	  </div>
+	</div>
       </div>
-      <div style="position:absolute;bottom:0">Visit Squadron Benchmark - http://xws-bench.github.io/bench &nbsp;<img src="css/qr_code.jpg" style="width:4em"></div>
-    </article>
+    </div>
+    
 
-    <footer draggable="true">
-      <a href="#" onclick="$('#consolecb').removeAttr('Checked'); $('footer').hide()" title="Close" class="close">&#xd7;</a>
 
-      <div class="log" id="log"></div>
+
+    <!-- Page Content -->
+
+	<a  name="about"></a>
+    <div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Build and test squad lists</h2>
+                    <p class="lead">
+		      Squadron Benchmark is a web app</p>
+		    <p style="font-weight:normal">Test new strategies, squadron
+	  compositions, maneuvers and initial placements, or simply
+	  test new pilots and upgrades, all in your browser.
+		    </p>
+		    <p class="lead">Combat simulator</p>
+		    <p  style="font-weight:normal">Play against a simple AI, or play both sides. Squadron Benchmark knows the rules, checks for collisions, computes range, manages the different counters, rolls dice and criticals and handles the automatic effects coming from pilots and upgrades: Usually, it requires 1-2 minutes to play a round.</p> 
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive" src="img/play.png" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Squad building</h2>
+                    <p class="lead">All cards from wave 1 to 10.</p><p  style="font-weight:normal">Select your faction and browse the available pilots in a caroussel, with all information available in one sight.</p>
+		    <p  style="font-weight:normal">Find a pilot with its upgrades, actions, cost, or text.</p>
+		    <p class="lead">Import, export and save in your browser</p>
+		    <p  style="font-weight:normal">No registration. Import/export/print your lists, save them as URLs and share them.</p>
+		    <p class="lead">Hitmaps</p>
+		    <p  style="font-weight:normal">Pilot hitmaps display in one graph how far a pilot can shoot in one round and one shot, and its probability to hit a basic ship (Academy Pilot). </p>
+                </div>
+                <div class="col-lg-3 col-sm-pull-4  col-sm-4">  
+                    <img class="img-responsive" src="img/hitmap.png" alt="">
+              </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-b -->
+
+    <div class="content-section-a">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Integrated manual, guide,<br>tournament lists</h2>
+                    <p class="lead">Integrated Strategy Beginner's Guide.</p><p  style="font-weight:normal">Find advice for pilots and upgrades, and stars associated to them. Feel free to experiment combos with outsiders though.</p><p class="lead">Tournament lists</p><p  style="font-weight:normal">Tweek or build your lists knowing the meta-game. Play against lists from the latest tournaments entered in Juggler lists.</p><p  style="font-weight:normal">Automatically updated and listed in Squadron Benchmark.</p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <img class="img-responsive" src="img/champion.png" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+	<a  name="contact"></a>
+    <div class="banner">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>Start Playing:</h2>
+                </div>
+                <div class="col-lg-6">
+                    <ul class="list-inline banner-social-buttons">
+                        <li>
+                            <a href="main.html" onclick="localStorage['mode']='CREATION';" class="btn btn-default btn-lg"><span class="network-name">&nbsp;&nbsp;Build&nbsp;&nbsp;</span></a>
+                        </li>
+                        <li>
+                            <a href="main.html" class="btn btn-default btn-lg"> <span class="network-name">Combat</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.banner -->
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline">
+                   <li>
+                        <a href="#about">About</a>
+                    </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                    <li>
+                        <a href="http://xws-benchmark.blogspot.fr/">Blog</a>
+                    </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                    <li>
+                      <a data-toggle="modal" href="#licence">Licence</a>
+                    </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                    <li>
+                      <a data-toggle="modal" href="#credits">Credits</a>
+                    </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                    <li>
+                      <a data-toggle="modal" href="#donate">Donate</a>
+                    </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="https://github.com/xws-bench/bench/tree/master">GitHub</a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted small">Copyright &copy; Denis Wings 2015-2017.</p>
+                </div>
+            </div>
+        </div>
     </footer>
 
-<script src="js/all.min.js" async></script>
 
 
+    <!-- jQuery -->
+    <script src="js/jquery-3.1.1.min.js"></script>
 
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
     <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      
-      ga('create', 'UA-63149795-1', 'auto');
-      ga('send', 'pageview');
+      var setlanguage=function(str) {
+         localStorage['LANG']=str;
+      };
     </script>
+</body>
 
-    <script id="unit-printable" type="text/template">
-      <table class="printtable">
-	<tr class="unitname"><th class="unitname" colspan="2">{{name}}</th></tr>
-	{{#upgrades}}
-	<tr><td>{{name}}</td><td>{{points}}</td></tr>
-	{{/upgrades}}
-	<tr><th>Total</th><th>{{totpoints}}</th></tr>
-      </table>
-    </script>
-
-    <script id="unit-creation" type="text/template">
-      <div>
-	<div class="iconpanel">
-	  <div class="close" data={{id}} title="Remove">&#xd7;</div>
-	  {{#isunique}}
-	  <div class="duplicate symbols" data="{{id}}" title="Duplicate">&#xb8;</div>
-	  {{/isunique}}
-	</div>
-	<div class="statpanel">
-	  <div class="statskill">{{getskill}}</div>
-	  <div class="statfire"><span class="symbols">%</span><span class="val">{{fire}}</span></div>
-	  <div class="statevade"><span class="symbols">^</span><span class="val">{{getagility}}</span></div>
-	  <div class="stathull"><span class="chull"></span><span class="val">{{hull}}</span></div>
-	  <div class="statshield"><span class="cshield"></span><span class="val">{{shield}}</span></div>
-	</div>
-	<img class="headimg" alt="" src="png/{{faction}}/{{imgname}}.png">
-      </div>
-      <div>
-	<div class="pilotname">{{translatedname}}<span style="display:none" class="pts">{{points}}</span></div>
-	<div class="shipname">{{shipname}}</div>
-	<div class="actionlist">{{{getactionstring}}}</div>
-      </div>
-      <div>
-	<div class="tabpanel">
-	  <span class="upgradelists m-upgrades" data="{{id}}"></span>
-	  <span class="statistics m-stats" data="{{id}}"></span>
-	  <span class="moves m-moves" data="{{id}}"></span>
-	  <span class="dialopen m-dial" data={{id}} title="Show dial"></span>
-	</div>
-	<div class="upts"><span>{{points}}</span>/<span></span></div>
-	<table class="upgs">
-	  <tr>
-	    <td class="upgavail">{{{getupgradeaddstring}}}</td>
-	  </tr>
-	</table>
-	<table class="upgs">
-	  <tbody class="upg"></tbody>
-	  <tbody class="upglist"></tbody>
-	  <tbody class="statlist">
-	    <tr><td><svg class="statisticsvg" viewbox="-375 -550 1000 1000"></svg></td></tr>
-	  </tbody>
-	  <tbody class="movelist">
-	    <tr><td><svg class="movesvg" viewbox="-175 -300 650 650"></svg></td></tr>
-	  </tbody>
-	  <tbody class="shipdial">
-	    {{#diallist}}
-	    <tr>
-	      {{#item}}<td>{{.}}</td>{{/item}}
-	      {{#moves}}
-	      <td><span class="symbols {{difficulty}}">{{key}}</span></td>
-	      {{/moves}}
-	    </tr>
-	    {{/diallist}}
-	  </tbody>
-	</table>
-      </div>
-    </script>
-    
-    <script id="faction" type="text/template">
-      <table>
-	<tr>
-	  <td  rowspan="3">
-	    <div onclick="switchdialimg(true)" class="shipimg"  style="background-image:url(png/{{shipimg}}.png)">
-	      <div class="xsymbols RED">{{fire}}</div>
-	      <div class="xsymbols GREEN">{{evade}}</div>
-	      <div class="xsymbols YELLOW">{{hull}}</div>
-	      <div class="xsymbols BLUE">{{shield}}</div>
-	    </div>
-	    <div class="shipdial"  onclick="switchdialimg(false)"> 
-	      <table>
-		{{#diallist}}
-		<tr>
-		  {{#item}}<td>{{.}}</td>{{/item}}
-		  {{#moves}}
-		  <td><span class="symbols {{difficulty}}">{{key}}</span></td>
-		  {{/moves}}
-		</tr>
-		{{/diallist}}
-	      </table>
-	    </div>
-	  </td>
-	  <td>{{shipname}}</td>
-	</tr><tr>
-	  <td class="actionlist">
-	    <span class="{{primary}}"></span>
-	    {{#actionlist}}
-	    <code class="GREEN symbols">{{.}}</code>
-	    {{/actionlist}}
-	  </td>
-	</tr><tr>
-	  <td class="shipupgrades">
-	    {{#shipupgrades}}
-	    <code class="upgrades {{.}}"></code>
-	    {{/shipupgrades}}
-	    {{#hastitle}}<code class="upgrades Title"></code>{{/hastitle}}
-	    <code class="upgrades Mod"></code>
-	  </td>
-	</tr>
-      </table>
-      <table class="pilots">
-	{{#pilots}}
-	<tr data="{{pilotid}}">
-	  <td><button class="pilot" id="pilot-{{pilotid}}" pilotid="{{pilotid}}" onclick="addunit({{pilotid}},{{faction}})">{{trname}}</button></td>
-	  <td class="pts"><label for="pilot-{{pilotid}}"><span class="symbols" style="color:gold;font-size:0.5em">{{rating}}</span>{{points}}</label></td>
-	  <td class="statskill"><label for="pilot-{{pilotid}}">{{skill}}</label></td>
-	  <td>{{#haselite}}<label for="pilot-{{pilotid}}"><code class="upgrades Elite"></code></label>{{/haselite}}</td>
-	  {{#tooltip}}<td class="tooltip">{{{.}}}</td>{{/tooltip}}
-	  {{^tooltip}}<td></td>{{/tooltip}}
-	</tr>
-	{{/pilots}}
-      </table>
-    </script>
-
-    <script id="unit-combat" type="text/template">
-      <div {{#isdead}}class="dead"{{/isdead}}{{^isdead}}{{#isdocked}}class="docked"{{/isdocked}}{{/isdead}}>
-	<div>
-	  <div class="statskill">{{getskill}}</div>
-	  <div class="name">
-	    {{#tooltip}}<div class="tooltip outoverflow">{{{.}}}</div>{{/tooltip}}
-	    <div>{{name}}</div>
-	  </div>
-	  <div>
-	    <div style="font-size:smaller">
-	      <span class="{{faction}}"></span>
-	      &nbsp;{{shipname}}
-	    </div>
-	  </div>
-	  <div class="outoverflow stat">
-	    <div class="hull">{{{hullpts}}}</div>
-	    <div class="shield">{{{shieldpts}}}</div>
-	  </div>
-	  <div class="outoverflow stat2">
-	    <div class="hull">{{hullpts2}}</div>
-	    <div class="shield">{{shieldpts2}}</div>
-	  </div>
-	  <div class="outoverflow stat3">
-	    <div class="hull">{{hullpts3}}</div>
-	    <div class="shield">{{shieldpts3}}</div>
-	  </div>
-	</div>
-	<div>
-	  <div>
-	    <div class="usabletokens" style="width:100%">{{{getusabletokens}}}</div>
-	  </div>
-	</div>
-	<table class="details" style="width:100%">
-	  <tr>
-	    {{#isinleft}}
-	    <td></td>
-	    {{/isinleft}}
-	    <td>
-	      <button class="statevade" onclick="if (!squadron[{{id}}].dead&&!squadron[{{id}}].isdocked) squadron[{{id}}].togglerange();"><span class="val">{{getagility}}</span><span class="symbols">^</span></button>
-	    </td>
-	    {{^isinleft}}
-	    <td></td>
-	    {{/isinleft}}
-	  </tr>
-	  {{#upgrades}}{{{.}}}{{/upgrades}}
-	  {{#criticals}}{{{.}}}{{/criticals}}
-	  {{#conds}}{{{.}}}{{/conds}}
-	</table>
-      </div>
-    </script>
-
-    <script id="bomb" type="text/template">
-      <tr {{^isactive}} class="inactive"{{/isactive}}>
-	<td style="display:{{#left}}none{{/left}}{{^left}}block{{/left}}"><code class="{{type}} upgrades"></code></td>
-	<td class="tdstat">
-	  <span>
-	    {{{trname}}}{{#ordnance}}<sup class="ordnance">x2</sup>{{/ordnance}}
-	  </span>
-	</td>
-	<td style="display:{{#left}}block{{/left}}{{^left}}none{{/left}}"><code class="{{type}} upgrades"></code></td>
-	{{#tooltip}}
-	<td class="tooltip outoverflow">
-	  <span>{{{.}}}</span>
-	</td>
-	{{/tooltip}}
-	{{^tooltip}}<td></td>{{/tooltip}}
-      </tr>
-    </script>
-
-    <script id="condition" type="text/template">
-      <tr>
-	<td style="display:{{#left}}none{{/left}}{{^left}}block{{/left}}"><code class="{{type}} upgrades"></code></td>
-	<td class="tdstat">
-	  <span style="font-size:smaller">
-	    {{{trname}}}
-	  </span>
-	</td>
-	<td style="display:{{#left}}block{{/left}}{{^left}}none{{/left}}"><code class="{{type}} upgrades"></code></td>
-	{{#tooltip}}
-	<td class="tooltip outoverflow">
-	  <span>{{{.}}}</span>
-	</td>
-	{{/tooltip}}
-	{{^tooltip}}<td></td>{{/tooltip}}
-      </tr>
-    </script>
-
-    <script id="weapon" type="text/template">
-      <tr class="{{^isactive}}inactive{{/isactive}} {{#nofire}}nofire{{/nofire}}">
-	<td style="display:{{#left}}none{{/left}}{{^left}}table-cell{{/left}}">
-	  <button class="statfire" onclick="if (!squadron[{{uid}}].isdocked) squadron[{{uid}}].togglehitsector({{rank}})">
-	    <span class="val">{{getattack}}</span><span class="symbols">{{attackkey}}</span>
-	  </button>
-	</td>
-	<td class="tdstat">
-	  <span>
-	    {{{trname}}}{{#ordnance}}<sup class="ordnance">x2</sup>{{/ordnance}}
-	    <span style="font-size:smaller">
-	      {{#req}}<span class="symbols">{{.}}</span>{{/req}}[{{getlowrange}}-{{gethighrange}}]
-	    </span>
-	  </span>
-	</td>
-	<td style="display:{{^left}}none{{/left}}{{#left}}table-cell{{/left}}">
-	  <button class="statfire" onclick="if (!squadron[{{uid}}].isdocked) squadron[{{uid}}].togglehitsector({{rank}})">
-	    {{getattack}}<span class="symbols">{{attackkey}}</span>
-	  </button>
-	</td>
-	{{#tooltip}}
-	<td class="tooltip outoverflow">
-	  <span>{{{.}}}</span>
-	</td>
-	{{/tooltip}}
-	{{^tooltip}}<td></td>{{/tooltip}}
-      </tr>
-    </script>
-
-    <script id="upgrade" type="text/template">
-      <tr {{^isactive}} class="inactive"{{/isactive}}>
-	<td style="display:{{#left}}none{{/left}}{{^left}}table-cell{{/left}}">
-	  <code class="{{type}} upgrades"></code>
-	</td>
-	<td class="tdstat">
-	  <span>
-	    {{{trname}}}{{#ordnance}}<sup class="ordnance">x2</sup>{{/ordnance}}{{#hasshield}}<code class="cshield" title="{{shield}} shield(s)"></code><sup class="ordnance">x{{shield}}</sup>{{/hasshield}}{{#hasfocus}}<code class="xfocustoken" title="{{focus}}"></code><sup class="ordnance">x{{focus}}</sup>{{/hasfocus}}{{#variant}} ({{.}}){{/variant}}{{#hasswitch}}<code class="smallbutton symbols" onclick="if (!squadron[{{uid}}].isdocked) squadron[{{uid}}].upgrades[{{uuid}}].switch();">/</code>{{/hasswitch}}
-	  </span>
-	</td>
-	<td style="display:{{^left}}none{{/left}}{{#left}}table-cell{{/left}}">
-	  <code class="{{type}} upgrades"></code>
-	</td>
-	{{#tooltip}}
-	<td class="tooltip outoverflow">
-	  <span>{{{.}}}</span>
-	</td>
-	{{/tooltip}}
-	{{^tooltip}}<td></td>{{/tooltip}}
-      </tr>
-    </script>
-    
-    <script id="usabletokens" type="text/template">
-      {{#focus}}<span class="xfocustoken"></span>{{/focus}}{{#focuses}}<sup class="counttoken">x{{.}}</sup>{{/focuses}}
-      {{#evade}}<span class="xevadetoken"></span>{{/evade}}{{#evades}}<sup class="counttoken">x{{.}}</sup>{{/evades}}
-      {{#targetingname}}<span class="xtargettoken" title="targeting {{.}}"></span>{{/targetingname}}
-      {{#targetedname}}<span class="xtargetedtoken" title="targeted by {{.}}"></span>{{/targetedname}}
-      {{#iscloaked}}<span class='xcloaktoken'></span>{{/iscloaked}}
-      {{#stress}}<span class="xstresstoken"></span>{{/stress}}{{#stresses}}<sup class="counttoken">x{{.}}</sup>{{/stresses}}
-      {{#ionized}}<span class="xionizedtoken"></span>{{/ionized}}{{#ionizedes}}<sup class="counttoken">x{{.}}</sup>{{/ionizedes}}
-      {{#tractorbeam}}<span class="xtractorbeamtoken"></span>{{/tractorbeam}}{{#tractorbeames}}<sup class="counttoken">x{{.}}</sup>{{/tractorbeames}}
-      {{#nomoreattack}}<span class="xnomoreattacktoken"></span>{{/nomoreattack}}
-    </script>
-
-    <script id="selectweapon" type="text/template">
-      {{#weapons}}<div class="symbols {{color}}" onclick="activeunit.selecttargetforattack({{id}})">{{key}}</div>{{/weapons}}
-    </script>
-
-    <script id="social" type="text/template">
-      <div>
-	<a href="{{url}}" class="victory-link">{{name}}</a>
-	<a class="symbols tweet" href="https://twitter.com/intent/tweet?url={{encodedurl}}&text=A%20Squad%20Benchmark%20combat" target="_blank"><span width="30px">&#xF8;</span></a>
-	<a class="facebook symbols" href="https://www.facebook.com/sharer/sharer.php?u={{endodedurl}}" target="_blank"><span width="30px" class="symbols">&#xF9;</span></a>
-	<a class="googlep symbols" href="https://plus.google.com/share?url={{encodedurl}}" target="_blank"><span width="30px" class="symbols">&#xF7;</span></a>
-	<a class="email" href="mailto:?body={{encodedurl}}" title="Share by Email"><span width="30px" class="symbols">&#xF6;</span></a>
-      </div>
-      <table><tr><td>
-	    <iframe src="{{url}}" class="replay"></iframe>
-	  </td><td>
-	    To include the combat replay on the left on your web pages, copy/paste the following lines:
-	    <br/>
-	    <textarea style="font-family:courrier;color:black;background:lightgray;font-size:smaller;width:80%">
-	      &lt;iframe style="width:40vw;height:40vw;max-width:400px;max-height:400px" src="{{url}}"&gt;&lt;/iframe&gt;
-	    </textarea>
-      </td></tr></table>
-    </script>
-
-    <script id="upglist-creation" type="text/template">
-      <tr>
-	<td><button class='m-none'></button></td><td></td><td></td>
-      </tr>
-      {{#upglist}}
-      <tr>
-	<td><button {{#isdisabled}}disabled{{/isdisabled}} num="{{num}}" data="{{data}}">{{name}}<span class="symbols" style="float:right;text-align:right;color:gold;font-size:0.5em">{{rating}}</span></button></td>
-	<td>{{pts}}</td>
-	<td>{{#attacks}}<span class='statfire'>{{attack}}</span></td><td>[{{lrange}}-{{hrange}}]{{/attacks}}{{^attacks}}</td><td>{{/attacks}}</td>
-	{{#tooltip}}<td class="tooltip">{{{.}}}</td>{{/tooltip}}
-	{{^tooltip}}<td></td>{{/tooltip}}
-      </tr>
-      {{/upglist}}
-    </script>
-    
-    <script id="combat-display" type="text/template">
-      <div><span><b>Score:</b>{{score}}</span><button style="float:right" onclick="SQUADLIST.displaycombats()">Next</button></div>
-      <table style="font-size:smaller;width:100%"><tr><td>{{{s1}}}</td><td>{{{s2}}}</td></tr></table>
-    </script>
-
-    <script id="squad-display" type="text/template">
-      <tr>
-	<td>{{cells.Faction}}</td>
-	<td>{{cells.Pts}}</td>
-	<td>{{cells.Units}}</td>
-      </tr>
-    </script>
-
-    <script id="header-manage" type="text/template">
-      <thead>
-	<tr>
-	  <td class='typesq'>{{translation}}</td>
-	  <td><span class='m-points'></span></td>
-	  <td><span class='m-units'></span></td>
-	  <td  style='display:none'></td>
-	  <td></td>
-	</tr>
-      </thead>
-      <tbody></tbody>
-    </script>
-
-    <script id="scenario-header-manage" type="text/template">
-      <tbody></tbody>
-    </script>
-
-
-    <script id="scenario-row-manage" type="text/template">
-      <tr id="sc{{nrows}}">
-	<td><span class="closemiddle" onclick="SCENARIOLIST.remove({{nrows}})">&#10060;</span></td>
-	<td>
-	  <b>{{title}}</b><br/>
-	  {{text}}<br/>
-	  Opponent:<span class="{{faction}}"></span> Victory:{{wincond}}
-	</td>
-	<td><span class="smallbutton" onclick="SCENARIOLIST.checkrow({{nrows}});">Play</span></td>
-      </tr>
-    </script>
-
-    <script id="row-manage" type="text/template">
-      <tr id="r{{nrows}}">
-	<td class="{{faction}}"></td>
-	<td>{{pts}}</td>
-	<td class="pre">{{jug}}</td>
-	<td style="display:none">{{name}}</td>
-	<td>
-	  <span class="squadtop">
-	    <span class="smallbutton m-edit" onclick="SQUADLIST.createfromrow({{nrows}})"></span>
-	    <span class="smallbutton" onclick="SQUADLIST.displaycombats({{nrows}})">Replay</span>
-	    <span class="smallbutton symbols" onclick="SQUADLIST.printfromrow({{nrows}})">¶</span>
-	    <span class="squadmiddle" onclick="SQUADLIST.checkrow(1,{{nrows}}); window.location='#selectphase';">1</span>
-	    <span class="squadmiddle right" onclick="SQUADLIST.checkrow(2,{{nrows}}); window.location='#selectphase';">2</span>
-	  </span>
-	</td>
-      </tr>
-    </script>
-
-  </body>
 </html>
-

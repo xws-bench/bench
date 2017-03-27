@@ -304,7 +304,7 @@ Weapon.prototype = {
 	    if (s.match(this.getrequirements())&&this.unit.canusetarget(sh))
 		return true;
 	    s="Focus";
-	    if (s.match(this.getrequirements())&&this.unit.canusefocus(sh)) return true;
+	    if (s.match(this.getrequirements())&&this.unit.canusefocus()) return true;
 	    return false;
 	}
 	return true;
@@ -323,11 +323,12 @@ Weapon.prototype = {
 	if (typeof this.getrequirements()!="undefined") {
 	    var s="Target";
 	    var u="Focus";
-	    if (s.match(this.getrequirements())&&this.consumes==true&&this.unit.canusetarget(sh))
+	    if (s.match(this.getrequirements())&&this.consumes==true&&this.unit.canusetarget(sh)) {
 		this.unit.removetarget(sh);
-	    else if (u.match(this.getrequirements())&&this.consumes==true&&this.unit.canusefocus(sh)) 
+		
+	    } else if (u.match(this.getrequirements())&&this.consumes==true&&this.unit.canusefocus(sh)) 
 		this.unit.removefocustoken();
-	    this.unit.show();
+	    //this.unit.show();
 	}
 	return true;
     },

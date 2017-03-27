@@ -5335,7 +5335,7 @@ window.UPGRADES= [
     { name:"Kylo Ren's Shuttle",
       type:TITLE,
       points:2,
-      ship:"Upsilon-class Shuttle",
+      ship:"Upsilon-Class Shuttle",
       unique:true,
       done:true,
       init: function(sh) {
