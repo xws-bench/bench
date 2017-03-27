@@ -4709,21 +4709,56 @@ window.PILOTS = [
      faction:SCUM,
      pilotid:238,
      unique:true,
+     done:true,
      unit:"M3-A Interceptor",
      skill:3,
      wave:["epic"],
      upgrades:[ELITE],
-     points:15
+     points:15,
+     init: function() {
+	 this.adddicemodifier(ATTACK_M,REROLL_M,ATTACK_M,this,{
+	     dice:["blank","focus"],
+	     n:function() { return 9; },
+	     req:function(attack,w,defender) {
+		 if (this.shield>0) return true;
+		 return false;
+	     }.bind(this),
+	     side:function() {
+		 this.removeshield();
+	     }.bind(this)
+	 });
+	 this.adddicemodifier(DEFENSE_M,REROLL_M,DEFENSE_M,this,{
+	     dice:["blank","focus"],
+	     n:function() { return 9; },
+	     req:function(attack,w,defender) {
+		 if (this.shield>0) return true;
+		 return false;
+	     }.bind(this),
+	     side:function() {
+		 this.removeshield();
+	     }.bind(this)
+	 });
+     }
    },
    { name:"Genesis Red",
      faction:SCUM,
      pilotid:239,
      unique:true,
+     done:true,
      unit:"M3-A Interceptor",
      skill:7,
      wave:["epic"],
      upgrades:[ELITE],
-     points:19
+     points:19,
+     init: function() {
+	 this.wrap_after("addtarget",this,function(t) {
+	     var df=t.focus-this.focus;
+	     var de=t.evade-this.evade;
+	     if (df>0||de>0) this.log("balance %FOCUS% and %EVADE% with %0",t.name);
+	     if (t.focus>this.focus) while (t.focus>this.focus) this.addfocustoken();
+	     if (t.evade>this.evade) while (t.evade>this.evade) this.addevadetoken();
+	 });
+     }
    },
    { name:"Sunny Bounder",
      faction:SCUM,
@@ -4743,7 +4778,7 @@ window.PILOTS = [
      unit:"M3-A Interceptor",
      skill:6,
      upgrades:[ELITE],
-     points:18
+     points:18,
    },
 
 ];

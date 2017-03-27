@@ -178,6 +178,11 @@ function repeat(pattern, count) {
 function dist(p1,p2) {
     return (p1.x-p2.x)*(p1.x-p2.x)+(p1.y-p2.y)*(p1.y-p2.y);
 }
+function changeia(v) {
+    for (var i in squadron) {
+	squadron[i].behavior=v;
+    }
+}
 function Unit(team,pilotid) {
     var i;
     this.behavior=JOUSTER;
@@ -2362,9 +2367,11 @@ Unit.prototype = {
 	    var n=a.n();
 	    var s="R"+n;
 	    var cl="tokens";
+	    var f;
 	    if (a.str) { cl="x"+a.str+"token"; s=""; }
+	    if (typeof a.side!="undefined") f=a.side; else f=function() {}; 
 	    var e=$("<span>").addClass(cl).attr({id:"reroll"+i,title:n+" rerolls["+a.org.name+"]"}).html(s);
-	    e.click(function() { reroll(n,from,to,a,i); });
+	    e.click(function() { f(); reroll(n,from,to,a,i); });
 	    return e;
 	};
 	var mods=this.getdicemodifiers(); 
@@ -3524,7 +3531,7 @@ Unit.prototype = {
     getauxiliarysector: function(sh,m,sa,a) {
 	var i;
 	if (typeof m=="undefined") m=this.m;
-	if (typeof sa=="undefined") { sa=this.subauxiliary; a=this.auxiliary; }
+	if (typeof sa=="undefined") { sa=this.weapons[0].subauxiliary; a=this.weapons[0].auxiliary; }
 	var n=this.getoutlinerange(m,sh).d;
 	for (i=n; i<=n+1&&i<=3; i++) 
 	    if (this.isinsector(m,i,sh,sa,a)) return i;

@@ -45,7 +45,7 @@ var CONDITIONS={
 		CRITICAL_DECK[m].count--;
 		t.darkside=new Critical(t,m);
 		var name=CRITICAL_DECK[m].name;
-		if (typeof CRIT_translation[name].name!="undefined") name=CRIT_translation[n].name;
+		if (typeof CRIT_translation[name].name!="undefined") name=CRIT_translation[name].name;
 		
 		self.name+=" ["+name+"]";
 	    });

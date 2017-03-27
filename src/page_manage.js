@@ -22,7 +22,6 @@ Squadlist.prototype = {
 	return ((typeof this.rows!="undefined")&&(this.rows.indexOf(t)>-1)); 
     },
     filter: function(f) {
-	console.log("matching with "+f);
 	for (var i in this.rows) {
 	    if (!this.rows[i].match(f)) {
 		$("#r"+i).hide();
@@ -132,7 +131,6 @@ Squadlist.prototype = {
 		    for (var i in t.tournament.players) {
 			var p=t.tournament.players[i];
 			if (typeof p.list!="undefined") {
-			    console.log(p.list);
 			    TEAMS[0].parseJSON(p.list);
 			    TEAMS[0].toJSON();
 			    var key=TEAMS[0].toKey();
