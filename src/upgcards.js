@@ -4790,7 +4790,7 @@ window.UPGRADES= [
       done:true,
       firesnd:"missile",
       isWeapon: function() { return false; },
-      candoaction: function() { return this.isactive; },
+      candoaction: function() { return this.isactive&&this.unit.selectnearbyobstacle(2).length>0; },
       action: function(n) {
 	  var self=this.unit;
 	  var p=self.selectnearbyobstacle(2);
@@ -4804,7 +4804,7 @@ window.UPGRADES= [
 		      if (u.getdist(u.m,p[k])<=10000) {
 			  var roll=u.rollattackdie(1,self,"critical")[0];
 			  if (roll=="hit") {
-			      u.log("+1 %HIT% [%0]",this.name)
+			      u.log("+1 %HIT% [%0]",this.name);
 			      u.resolvehit(1); 
 			      u.checkdead();
 			  } else if (roll=="critical") {

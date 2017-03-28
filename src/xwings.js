@@ -1371,6 +1371,11 @@ function nextphase() {
     window.location="#";
     switch(phase) {
     case SELECT_PHASE:
+	if (mode==SCENARIO) {
+	    var id=$("#scenariolist tr.selected").attr("id");
+	    var row=parseInt(id.replace(/sc([0-9]+)/,"$1"),10);
+	    SCENARIOLIST.checkrow(row);
+	}
 	$(".mainarticle").hide();
 	$(".permalink").show();
 	$("nav").show();
@@ -1541,8 +1546,8 @@ function setphase(cannotreplay) {
 	loadsound();
 
 	if (HEADER!=""&&round<2) {
-	    $("#titlecontent").html("<h1>"+SCENARIOTITLE+"</h1>"+HEADER);
 	    $("footer").hide();
+	    $("#titlecontent").html("<h1>"+SCENARIOTITLE+"</h1>"+HEADER);
 	}
 	if (TEAMS[1].points>TEAMS[2].points) TEAMS[2].initiative=true;
 	else if (TEAMS[2].points>TEAMS[1].points) TEAMS[1].initiative=true;
