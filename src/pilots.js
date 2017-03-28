@@ -4779,6 +4779,21 @@ window.PILOTS = [
      skill:6,
      upgrades:[ELITE],
      points:18,
+     done:true,
+     init: function() {
+	 this.wrap_before("begincombatphase",this,function() {
+	     this.donoaction([{action:function(n) {
+		 this.noattack=round;
+		 for (var i in this.upgrades) {
+		     var u=this.upgrades[i];
+		     if ((u.type==TORPEDO||u.type==MISSILE)&&u.isactive==false) {
+			 u.isactive=true;
+		     }
+		 }
+		 this.endnoaction(n,"");
+	     }.bind(this),type:"TORPEDO",name:this.name}],"",true);
+	    });
+     }
    },
 
 ];

@@ -2600,7 +2600,7 @@ ul#caroussel {
     }
     &:hover {
 	li:not(:hover) {
-	    transform:rotateY(45deg)translateX(-80px);
+	    transform:rotateY(45deg)translateX(-120px);
 	}
 	li:hover ~ li {
 	    transform:rotateY(-45deg) translateX(120px);
