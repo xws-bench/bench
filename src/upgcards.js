@@ -65,7 +65,7 @@ window.UPGRADES= [
 	    var save=[];
 	    sh.installed=true;
 	    sh.wrap_after("getdial",this,function(gd) {
-		if (save.length==0) { 
+		if (save.length===0) { 
 		    for (i=0; i<gd.length; i++) {
 			var s=P[gd[i].move].speed;
 			var d=gd[i].difficulty;
@@ -126,7 +126,7 @@ window.UPGRADES= [
         candoaction: function() {
 	    if (!this.isactive) return false;
 	    for (var i=0; i<this.unit.criticals.length; i++) 
-		if (this.unit.criticals[i].isactive==false) return true;
+		if (this.unit.criticals[i].isactive===false) return true;
 	    return false;
 	},
 	action: function(n) {
@@ -135,7 +135,7 @@ window.UPGRADES= [
 		this.unit.defenseroll(1).done(function(roll) {
 		    if (FE_evade(roll.roll)+FE_focus(roll.roll)>0) {
 			for (var i=0; i<this.criticals.length; i++)
-			    if (this.criticals[i].isactive==false) {
+			    if (this.criticals[i].isactive===false) {
 				this.log("-1 %HIT% [%0]",self.name);
 				this.criticals.slice(i,1);
 				this.addhull(1);
@@ -196,7 +196,7 @@ window.UPGRADES= [
 		      A[ASTROMECH.toUpperCase()].key, 
 		      $("<div>").attr({class:"symbols",title:self.name}));
 	      return this.activationdial;
-	  })
+	  });
       },
     },
     {name:"Integrated Astromech",
@@ -210,7 +210,7 @@ window.UPGRADES= [
 	     var k=-1;
 	     for (var i in this.upgrades) {
 		 var u=this.upgrades[i];
-		 if (u.type==ASTROMECH&&u.isactive==true) { k=i; break; }
+		 if (u.type==ASTROMECH&&u.isactive===true) { k=i; break; }
 	     }
 	     if (k==-1||!self.isactive) return p;
 	     var pp=$.Deferred();
@@ -234,7 +234,7 @@ window.UPGRADES= [
      init: function(sh) {
 	 var self=this;
 	 sh.wrap_after("modifyattackroll",this,function(m,n,d,mm) {
-	     if (FCH_focus(mm)==0&&FCH_blank(mm,n)>0&&this.canusefocus()) mm+=FCH_HIT;
+	     if (FCH_focus(mm)===0&&FCH_blank(mm,n)>0&&this.canusefocus()) mm+=FCH_HIT;
 	     return mm;
 	 });
 	 sh.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
@@ -328,7 +328,7 @@ window.UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    if (typeof Unit.prototype.getswarm=="undefined")
-		Unit.prototype.getswarm=function() { return [[],[],[]]; }
+		Unit.prototype.getswarm=function() { return [[],[],[]]; };
 	    Unit.prototype.wrap_after("getswarm",this,function(p) {
 		p[self.unit.team]=p[self.unit.team].concat(self.unit);
 		return p;
@@ -339,29 +339,30 @@ window.UPGRADES= [
 		var uu=this;
 		if (this!=p[0]) return; // Only one handles all Swarm chain
 		var m=p.length;
-		for (var i=0; i<m; i++) {
-		    this.doselection(function(n) {
-			p.sort(function(a,b) {
-			    if (a.getskill()>b.getskill()) return 1;
-			    if (a.getskill()<b.getskill()) return -1;
-			    return 0;
-			});
-			var u=p.pop();
-			var q=u.selectnearbyally(1,function(a,b) {
-			    return a.getskill()>b.getskill();
-			});
-			u.select();
-			var sk=u.getskill();
-			if (q.length==0) uu.endnoaction(n,"SELECT");
-			else u.resolveactionselection(q,function(k) {
-			    q[k].wrap_after("getskill",self,function(s) {
-				return sk;
-			    }).unwrapper("endcombatphase");
-			    q[k].log("PS set to %1 [%0]",self.name,sk);
-			    q[k].showskill();
-			    uu.endnoaction(n,"SELECT");
-			});
+		var fct=function(n) {
+		    p.sort(function(a,b) {
+			if (a.getskill()>b.getskill()) return 1;
+			if (a.getskill()<b.getskill()) return -1;
+			return 0;
 		    });
+		    var u=p.pop();
+		    var q=u.selectnearbyally(1,function(a,b) {
+			return a.getskill()>b.getskill();
+		    });
+		    u.select();
+		    var sk=u.getskill();
+		    if (q.length===0) uu.endnoaction(n,"SELECT");
+		    else u.resolveactionselection(q,function(k) {
+			q[k].wrap_after("getskill",self,function(s) {
+			    return sk;
+			}).unwrapper("endcombatphase");
+			q[k].log("PS set to %1 [%0]",self.name,sk);
+			q[k].showskill();
+			uu.endnoaction(n,"SELECT");
+		    });
+		};
+		for (var i=0; i<m; i++) {
+		    this.doselection(fct);
 		}
 	    });
 	}
@@ -543,7 +544,7 @@ window.UPGRADES= [
 	    var self=this;
 	    sh.adddicemodifier(DEFENSE_M,MOD_M,ATTACK_M,this,{
 		req:function() {
-		    return this.stress==0&&targetunit==this&&self.isactive;
+		    return this.stress===0&&targetunit==this&&self.isactive;
 		}.bind(sh),
 		aiactivate: function(m,n) {
 		    sh.log("activate elusiveness "+FCH_crit(m)+" "+FCH_hit(m));
@@ -594,10 +595,10 @@ window.UPGRADES= [
 	    var ptl=this;
 	    ptl.r=-1;
 	    sh.wrap_before("endaction",this,function(n,type) {
-		if (ptl.r!=round&&this.candoaction()&&type!=null) {
+		if (ptl.r!=round&&this.candoaction()&&type!==null) {
 		    ptl.r=round;
 		    this.doaction(this.getactionbarlist(),"+1 free action (Skip to cancel) ["+ptl.name+"]").done(function(type2) {
-			if (type2==null) ptl.r=-1; 
+			if (type2===null) ptl.r=-1; 
 			else this.addafteractions(function() { this.addstress(); }.bind(this));
 		    }.bind(this));
 		}
@@ -648,9 +649,9 @@ window.UPGRADES= [
 	done:true,
         init: function(sh) {
 	    for (var i in sh.weapons) 
-		sh.weapons[i].immediateattack={pred:function(k) { return k==0; },weapon:function() { return 0;}};
+		sh.weapons[i].immediateattack={pred:function(k) { return k===0; },weapon:function() { return 0;}};
 	    sh.addattack(function(c,h) { 
-		return this.weapons[0].isactive&&c+h==0; 
+		return this.weapons[0].isactive&&c+h===0; 
 	    },this,[sh.weapons[0]],function() {	
 		this.noattack=round; 
 	    },function() { 
@@ -827,7 +828,7 @@ window.UPGRADES= [
 		    y:this.size*Math.cos(2*i*Math.PI/N)});
 		this.op.push(p);
 		s+=p.x+" "+p.y+" ";
-		if (i==0) s+="L ";
+		if (i===0) s+="L ";
 	    }
 	    s+="Z";
 	    return {s:s,p:this.op};
@@ -850,7 +851,7 @@ window.UPGRADES= [
 		return false;
 	    };
 	    sh.wrap_after("addtarget",this,function(u) {
-		if (this.second==true) this.second=false;
+		if (this.second===true) this.second=false;
 		else this.doselection(function(n) {
 		    this.second=true;
 		    this.log("select target to lock [%0]",self.name);
@@ -869,13 +870,13 @@ window.UPGRADES= [
 		if (!self.unit.dead&&self.isactive
 		    &&c>0&&(self.unit in this.selectnearbyally(1))){
 		    this.selectunit([this,sh],function(p,k) {
-			if (k==0) { self.ea.call(this,1); }
+			if (k===0) { self.ea.call(this,1); }
 			else { self.ea.call(sh,1);}
 		    },["select unit [%0]",self.name],false);
 		    self.ea.call(this,c-1);
 		} else self.ea.call(this,c);
 		return c;
-	    }
+	    };
 	}, 
 	done:true,
         type: ELITE,
@@ -889,9 +890,9 @@ window.UPGRADES= [
         init: function(sh) {
 	    var self=this;
 	    for (var i in sh.weapons) 
-		sh.weapons[i].immediateattack={pred:function(i) { return i==0; },weapon:function() { return 0;}};
+		sh.weapons[i].immediateattack={pred:function(i) { return i===0; },weapon:function() { return 0;}};
 	    sh.addattack(function(c,h) { 
-		return this.weapons[0].isactive&&c+h==0; 
+		return this.weapons[0].isactive&&c+h===0; 
 	    },this,[sh.weapons[0]],function() {	
 		this.noattack=round; 
 	    },function() { 
@@ -1072,7 +1073,7 @@ window.UPGRADES= [
 		this.unit.resolveactionselection(p,function(k) {
 		    var i,q=[];
 		    for (i=0; i<p[k].criticals.length; i++) 
-			if (p[k].criticals[i].isactive==false) q.push(i);
+			if (p[k].criticals[i].isactive===false) q.push(i);
 		    if (q.length>0) {
 			var r=p[k].rand(q.length);
 			p[k].log("turn faceup one damage card [%0]",self.name);
@@ -1146,7 +1147,7 @@ window.UPGRADES= [
 		    this.show();
 		}.bind(this), A[ELITE.toUpperCase()].key, $("<div>").attr({class:"symbols"}));
 		return this.activationdial;
-	    })
+	    });
 	},        
         type: ELITE,
         points: 1,
@@ -1159,8 +1160,8 @@ window.UPGRADES= [
 	    sh.wrap_before("beginactivation",this,function() {
 		if (this.candoaction()&&!this.hasionizationeffect()) 
 		    this.doaction(this.getactionlist(),"").done(function(r) {
-			if (r!=null) this.wrap_after("candoendmaneuveraction",self,function() { return false;}).unwrapper("endactivationphase");
-		    }.bind(this))
+			if (r!==null) this.wrap_after("candoendmaneuveraction",self,function() { return false;}).unwrapper("endactivationphase");
+		    }.bind(this));
 	    });
 	},
         type: SYSTEM,
@@ -1261,7 +1262,7 @@ window.UPGRADES= [
 		    for (j=0; j<gd.length; j++) 
 			if (gd[j].move.match(bearing)
 			    &&typeof p[gd[j].move]=="undefined"
-			    &&(gd[j].difficulty!="RED"||this.stress==0)) p[gd[j].move]=gd[j];
+			    &&(gd[j].difficulty!="RED"||this.stress===0)) p[gd[j].move]=gd[j];
 		}
 		return p;
 	    });
@@ -1277,7 +1278,7 @@ window.UPGRADES= [
         init: function(sh) {
 	    var self=this;
 	    sh.wrap_after("preattackroll",this,function(w,t) {
-		if (t.focus+t.evade==0&&this.stress==0) 
+		if (t.focus+t.evade===0&&this.stress===0) 
 		    this.donoaction([{org:this,name:this.name,type:"ELITE",action:function(n) {
 			this.wrap_after("getattackstrength",self,function(i,t,a) {
 			    return a+1;
@@ -1479,12 +1480,12 @@ window.UPGRADES= [
 		var c=this.criticals;
 		for (var i=0; i<c.length; i++) 
 		    if (!c[i].isactive) p.push(c[i]);
-		if (this.shield==0&&this.ship.shield>0) {
+		if (this.shield===0&&this.ship.shield>0) {
 		    this.log("+1 %SHIELD% [%0]",x.name);
 		    this.addshield(1);
 		    this.show();
 		    if (p.length>0) {
-			var crit=p[this.rand(p.length)]
+			var crit=p[this.rand(p.length)];
 			if (FCH_hit(this.attackroll(1))>0) {
 			    this.log("+1 %CRIT% [%0]",this.name);
 			    crit.faceup();
@@ -1530,7 +1531,7 @@ window.UPGRADES= [
 			this.endnoaction(n,"ASTROMECH");
 		    }.bind(this)}],"",true);
 		}
-	    })
+	    });
 	},
         unique: true,
         type: ASTROMECH,
@@ -1623,7 +1624,7 @@ window.UPGRADES= [
 	    var self=this;
 	    Unit.prototype.wrap_after("addfocustoken",this,function() {
 		if (!self.unit.dead&&this.getrange(sh)<=3&&this.isally(sh)&&self.jan<round) {
-		    this.log("select %FOCUS% or %EVADE% token [%0]",self.name)
+		    this.log("select %FOCUS% or %EVADE% token [%0]",self.name);
 		    this.donoaction(
 			[{name:self.name,org:self,type:"FOCUS",action:function(n) { 
 			    this.endnoaction(n,"FOCUS"); }.bind(this)},
@@ -1634,7 +1635,7 @@ window.UPGRADES= [
 			     this.endnoaction(n,"EVADE"); }.bind(this)}],
 			"",false);
 		}
-	    })
+	    });
 	},
     },
 
@@ -1645,14 +1646,14 @@ window.UPGRADES= [
 	    sh.wrap_after("cancelhit",this,function(r,org,r2) {
 		var h=FCH_hit(r2.ch);
 		if (h>=3) {
-		    sh.log("cancelling %0 hits [%1]",h-2,self)
+		    sh.log("cancelling %0 hits [%1]",h-2,self);
 		    var d=h-2;
 		    var ch=r2.ch-d*FCH_HIT;
 		    for (var i=0; i<d; i++) sh.addstress();
 		    return {ch:ch,e:r2.e};
 		}
 		return r2;
-	    })
+	    });
 	},
 	done:true,
         unique: true,
@@ -1731,7 +1732,7 @@ window.UPGRADES= [
 		    }
 		    this.endnoaction(n,"CREW");
 		}.bind(this)}],"",true);
-	    })
+	    });
 	},
 
         points: 4,
@@ -1759,11 +1760,12 @@ window.UPGRADES= [
 		this.unit.defenseroll(2).done(function(roll) {
 		    var f=FE_focus(roll.roll);
 		    var e=FE_evade(roll.roll);
-		    for (var i=0; i<f; i++) this.addfocustoken(); 
+		    var i;
+		    for (i=0; i<f; i++) this.addfocustoken(); 
 		    if (f>0) str+=" +"+f+" %FOCUS%"; 
-		    for (var i=0; i<e; i++) this.addevadetoken(); 
+		    for (i=0; i<e; i++) this.addevadetoken(); 
 		    if (e>0) str+=" +"+e+" %EVADE%"; 
-		    if (str=="") this.log("no effect [%0]",self.name); else this.log(str+" [%0]",self.name);
+		    if (str==="") this.log("no effect [%0]",self.name); else this.log(str+" [%0]",self.name);
 		    this.endaction(n,"CREW");
 		}.bind(this.unit));
 	    else this.unit.endaction(n,"CREW");
@@ -1781,7 +1783,7 @@ window.UPGRADES= [
 	    sh.wrap_before("endcombatphase",this,function() {
 		var p=this.gettargetableunits(1);
 		for (var i=0; i<p.length; i++) 
-		    if (p[i].stress==0) {
+		    if (p[i].stress===0) {
 			p[i].log("+1 %STRESS% [%0]",self.name);
 			p[i].addstress();
 		    }
@@ -1822,7 +1824,7 @@ window.UPGRADES= [
 				this.endaction(n,CREW);
 			    }.bind(this));
 			else this.endaction(n,CREW);
-		    }.bind(this.unit))
+		    }.bind(this.unit));
 		}
 	    } else this.unit.endaction(n,CREW);
 	},
@@ -1842,8 +1844,7 @@ window.UPGRADES= [
 		for (var i in list) {
 		    var speed=list[i].move.substr(-1);
 		    for (var j=0; j<gd.length; j++) 
-			if (gd[j].move.substr(-1)==speed
-			    &&typeof p[gd[j].move]=="undefined") { 
+			if (gd[j].move.substr(-1)==speed&&typeof p[gd[j].move]=="undefined") { 
 			    p[gd[j].move]={move:gd[j].move,difficulty:"RED",halfturn:false};
 			}
 		}
@@ -1875,20 +1876,20 @@ window.UPGRADES= [
 		n:function() { return 1;},
 		req:function(a,w,defender) {
 		    var p=this.unit.selectnearbyally(2,function(s,t) { return s!=t; });
-		    if (p.length==0&&self.isactive) {
+		    if (p.length===0&&self.isactive) {
 			this.unit.log("+1 blank reroll [%0]",self.name);
 		    }
-		    return p.length==0&&self.isactive; 
+		    return p.length===0&&self.isactive; 
 		}.bind(this)});
 	    sh.adddicemodifier(DEFENSE_M,REROLL_M,DEFENSE_M,this,{
 		dice:["blank"],
 		n:function() { return 1;},
 		req:function(attacker,w,defender) {
 		    var p=this.unit.selectnearbyally(2,function(s,t) { return s!=t; });
-		    if (p.length==0&&self.isactive) {
+		    if (p.length===0&&self.isactive) {
 			this.unit.log("+1 blank reroll [%0]",self.name);
 		    }
-		    return p.length==0&&self.isactive; 
+		    return p.length===0&&self.isactive; 
 		}.bind(this)});
 	},
         unique: true,
@@ -1920,7 +1921,7 @@ window.UPGRADES= [
         init: function(sh) {
 	    var self=this;
 	    sh.addafterattackeffect(this,function(c,h) {
-		if (c+h==0) return;
+		if (c+h===0) return;
 		var p=targetunit.selectnearbyunits(1,function(t,o) { return o != targetunit; });
 		this.selectunit(p,function(p,k) {
 		    p[k].log("+%1 %HIT% [%0]",self.name,1);
@@ -1992,9 +1993,10 @@ window.UPGRADES= [
 			pp.resolve({crit:cf.crit,face:FACEDOWN});
 			return false;
 		    } else pp.resolve(cf);
+		    return true;
 		}.bind(this));
 		return pp.promise();
-	    }
+	    };
 	    sh.wrap_after("deal",this,newdeal);
 	},
     },
@@ -2154,7 +2156,7 @@ window.UPGRADES= [
 	    this.unit.hitresolved=1;
 	    this.unit.criticalresolved=0;
 	    t.log("+1 %HIT%, +1 %STRESS% [%0]",this.name);
-	    if (t.stress==0) t.addstress();
+	    if (t.stress===0) t.addstress();
 	},
         points: 2,
         attack: 3,
@@ -2351,7 +2353,7 @@ window.UPGRADES= [
 	    var self=this;
 	    sh.installed=true;
 	    sh.wrap_after("getdial",this,function(gd) {
-		if (save.length==0) {
+		if (save.length===0) {
 		    for (var i=0; i<gd.length; i++) {
 			var d=gd[i].difficulty;
 			var move=gd[i].move;
@@ -2487,7 +2489,7 @@ window.UPGRADES= [
 	    var self=this;/* TODO */
 	    sh.adddicemodifier(ATTACK_M,ADD_M,ATTACK_M,this,{
 		req:function(m,n) { 
-		    return this.targeting.indexOf(targetunit)>-1&&self.isactive==true; 
+		    return this.targeting.indexOf(targetunit)>-1&&self.isactive===true; 
 		}.bind(sh),
 		f:function(m,n) {
 		    if (this.targeting.indexOf(targetunit)>-1) {
@@ -2516,14 +2518,14 @@ window.UPGRADES= [
 	},
 	init: function(sh) {
 	    var upg=this;
-	    sh.log("+1 agility [%0]",upg.name)
+	    sh.log("+1 agility [%0]",upg.name);
 	    sh.wrap_before("resolveishit",this,function(t) {
 		if (!upg.isactive) return;
 		upg.uninstall(this);
 		upg.desactivate(); 
 		this.log("%0 is hit => destroyed",upg.name);
 		this.show();
-	    })
+	    });
 	},
         points: 3,
     },
@@ -2561,7 +2563,7 @@ window.UPGRADES= [
 		if (upg.isactive&&t.isenemy(this)) {
 		    var roll=this.rollattackdie(1,upg,"hit")[0];
 		    if (roll=="hit"||roll=="critical") {
-			t.log("+%1 %HIT% [%0]",upg.name,1) 
+			t.log("+%1 %HIT% [%0]",upg.name,1); 
 			t.resolvehit(1);
 			t.checkdead();
 		    } else t.log("no effect [%0]",upg.name);
@@ -2597,12 +2599,12 @@ window.UPGRADES= [
         init: function(sh) {
 	    var self=this;
 	    sh.addafterattackeffect(this,function(c,h) {
-		if (!this.weapons[this.activeweapon].isprimary&&(c+h==0)) {
+		if (!this.weapons[this.activeweapon].isprimary&&(c+h===0)) {
 		    this.log("%0 still active [%1]",this.weapons[this.activeweapon].name,self.name);
 		    this.weapons[this.activeweapon].isactive=true;
 		    this.show();
 		}
-	    })
+	    });
 	},
 	done:true,
         points: 1,
@@ -2623,7 +2625,7 @@ window.UPGRADES= [
 		if (this.candoevade()) 
 		    this.doaction([this.newaction(this.addevade,"EVADE")],
 				  "Stygium P.A.: +1 %EVADE%");
-	    })
+	    });
 	},
         points: 2,
     }, 
@@ -2691,10 +2693,10 @@ window.UPGRADES= [
 	    var upg=this;
 	    upg.r=-1;
 	    sh.wrap_before("endaction",this,function(n,type) {
-		if (upg.r!=round&&this.candoaction()&&type!=null) {
+		if (upg.r!=round&&this.candoaction()&&type!==null) {
 		    upg.r=round;
 		    this.doaction(this.getupgactionlist(),"+1 free action (Skip to cancel)").done(function(type2) {
-			if (type2==null) upg.r=-1;
+			if (type2===null) upg.r=-1;
 			else this.addafteractions(function() { this.addstress(); }.bind(this));
 		    }.bind(this));
 		}
@@ -2711,11 +2713,11 @@ window.UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    Unit.prototype.wrap_after("getobstructiondef",this,function(t,ob) {
-		if (!self.unit.dead&&this.isenemy(sh)&&ob==0) {
+		if (!self.unit.dead&&this.isenemy(sh)&&ob===0) {
 		    OBSTACLES.push(sh);
 		    ob=this.getoutlinerange(this.m,t).o?1:0;
 		    OBSTACLES.splice(OBSTACLES.indexOf(sh),1);
-		    if (ob==1) this.log("fire obstructed by %0",sh.name)
+		    if (ob==1) this.log("fire obstructed by %0",sh.name);
 		}
 		return ob;
 	    });
@@ -2790,6 +2792,7 @@ window.UPGRADES= [
 	    var self=this;
 	    sh.wrap_after("gettargetableunits",this,function(n) {
 		var p=[];
+		var i;
 		for (i in squadron) 
 		    if (squadron[i].isenemy(this)) p.push(squadron[i]);
 		return p;
@@ -2866,7 +2869,7 @@ window.UPGRADES= [
 		if (this.candoaction()&&this.collision) {
 		    this.log("+1 free action [%0]",self.name);
 		    this.doaction(this.getactionlist(),"").done(function(t) {
-			if (t!=null) this.addstress();
+			if (t!==null) this.addstress();
 		    }.bind(this));
 		}
 	    });
@@ -2914,7 +2917,7 @@ window.UPGRADES= [
 	init: function(sh) {
 	    for (var i in squadron) {
 		var u=squadron[i];
-		if (u!=sh&&u.ig2000==true&&u.isally(sh)) {
+		if (u!=sh&&u.ig2000===true&&u.isally(sh)) {
 		    sh.log("copying %0 abilities [%1]",u.name,this.name);
 		    u.init.call(sh,u);
 		}
@@ -2932,12 +2935,12 @@ window.UPGRADES= [
 	    var self=this;
 	    for (var i=0; i<sh.weapons.length; i++) {
 		var w=sh.weapons[i];
-		if (w.type==TURRET&&w.isprimary==false) {
+		if (w.type==TURRET&&w.isprimary===false) {
 		    turret.push(w);
 		    w.wrap_after("isTurret",self,function() { return false; });
 		}
 	    }
-	    if (turret.length==0) return;
+	    if (turret.length===0) return;
 	    sh.wrap_after("isTurret",this,function(w,b) {
 		return false;
 	    });
@@ -3074,7 +3077,7 @@ window.UPGRADES= [
 		    y:this.size*Math.cos(2*i*Math.PI/N)});
 		this.op.push(p);
 		s+=p.x+" "+p.y+" ";
-		if (i==0) s+="L ";
+		if (i===0) s+="L ";
 	    }
 	    s+="Z";
 	    return {s:s,p:this.op};
@@ -3121,7 +3124,7 @@ window.UPGRADES= [
 		var p=transformPoint(m,this.op0[i]);
 		this.op.push(p);
 		s+=p.x+" "+p.y+" ";
-		if (i==0) s+="L ";
+		if (i===0) s+="L ";
 	    }
 	    s+="Z";
 	    return {s:s,p:this.op};
@@ -3139,7 +3142,7 @@ window.UPGRADES= [
 	    sh.glitter=-1;
 	    sh.wrap_after("modifyattackroll",this,function(m,n,d,mm) {
 		var f=FCH_focus(mm);
-		if (f>0 && this.stress==0) {
+		if (f>0 && this.stress===0) {
 		    /*this.addstress();*/
 		    mm+=(FCH_HIT-FCH_FOCUS)*f;
 		}
@@ -3206,7 +3209,7 @@ window.UPGRADES= [
 	    sh.wrap_after("endphase",this,function() {
 		if (!self.isactive) return;
 		var roll=this.rollattackdie(1,self,"blank")[0];
-		if (roll=="focus"&&this.iscloaked&&self.isactive==true) {
+		if (roll=="focus"&&this.iscloaked&&self.isactive===true) {
 		    this.log("%0 failed -> decloaking",self.name);
 		    this.resolvedecloak(true);
 		    self.desactivate();
@@ -3227,7 +3230,7 @@ window.UPGRADES= [
 	    sh.wrap_after("hashit",this,function(t,b) {
 		if (!b) {
 		    this.log("+1 stress, +1 %FOCUS%, +1 %TARGET% [%0]",self.name);
-		    if (this.stress==0) this.addstress();
+		    if (this.stress===0) this.addstress();
 		    if (this.gettargetableunits(3).indexOf(t)>-1) 
 			this.addtarget(t);
 		    else this.log("no valid target [%0]",self.name);
@@ -3307,7 +3310,7 @@ window.UPGRADES= [
 		  return m;
 	      },str:"evade"});
 	  sh.wrap_after("setpriority",this,function(a) {
-	      if (a.type=="EVADE"&&this.evade==0) a.priority=10;
+	      if (a.type=="EVADE"&&this.evade===0) a.priority=10;
 	  });
       }
     },
@@ -3426,7 +3429,7 @@ window.UPGRADES= [
 		var p=transformPoint(m,this.op0[i]);
 		this.op.push(p);
 		s+=p.x+" "+p.y+" ";
-		if (i==0) s+="L ";
+		if (i===0) s+="L ";
 	    }
 	    s+="Z";
 	    return {s:s,p:this.op};
@@ -3601,7 +3604,7 @@ window.UPGRADES= [
 	    var save=[];
 	    sh.installed=true;
 	    sh.wrap_after("getdial",this,function(gd) {
-		if (save.length==0) 
+		if (save.length===0) 
 		    for (var i=0; i<gd.length; i++) {
 			var move=gd[i].move;
 			var d=gd[i].difficulty;
@@ -3776,7 +3779,7 @@ window.UPGRADES= [
 	      return true;
 	  });
 	  sh.wrap_before("endaction",this,function(n,type) {
-	      if (type!=null&&this.stress>0) {
+	      if (type!==null&&this.stress>0) {
 		  this.log("%STRESS% -> +1 %HIT% [%0]",this.name);
 		  this.resolvehit(1);
 		  this.checkdead();
@@ -3883,7 +3886,7 @@ window.UPGRADES= [
 		  if (this.unit.isenemy(u)&&this.getrange(u)==1) p.push(u); 
 	      }
 	      this.unit.selectunit(p,function(p,k) {
-		  if (k==0||self.rd==round) return;
+		  if (k===0||self.rd==round) return;
 		  p[k].log("+1 %HIT% [%0]",self.name);
 		  p[k].resolvehit(1);
 		  self.rd=round;
@@ -3923,7 +3926,7 @@ window.UPGRADES= [
 	    }
 	    if (phantom!=-1) {
 		var u=squadron[phantom];
-		if (TEAMS[sh.team].isia==true) u=$.extend(u,IAUnit.prototype);
+		if (TEAMS[sh.team].isia===true) u=$.extend(u,IAUnit.prototype);
 		u.dock(sh);
 		sh.weapons[0].auxiliary=AUXILIARY,
 		sh.weapons[0].subauxiliary=SUBAUXILIARY
@@ -4014,7 +4017,7 @@ window.UPGRADES= [
      init: function(sh) {
 	 var self=this;/* FAQ v4.3 */
 	 sh.wrap_before("endmaneuver",this,function() {
-	     if (this.getdial()[this.maneuver].move.match(/[345]/)&&this.ocollision.overlap==-1&&this.touching.length==0&&this.candoevade()) {
+	     if (this.getdial()[this.maneuver].move.match(/[345]/)&&this.ocollision.overlap==-1&&this.touching.length===0&&this.candoevade()) {
 		 this.log("+1 %EVADE% [%0]",self.name);
 		 this.doselection(function(n) { this.addevade(n); }.bind(this));
 	     }
@@ -4055,6 +4058,7 @@ window.UPGRADES= [
      done:true,
      init: function(sh) {
 	 var self=this;
+	 var i;
 	 for (i in sh.weapons) {
 	     var t=FCH_HIT;
 	     var w=sh.weapons[i];
@@ -4118,10 +4122,10 @@ window.UPGRADES= [
 	 var self=this;
 	 /* TODO : not a modifier, but rerolls.  */
 	 sh.adddicemodifier(ATTACK_M,MOD_M,DEFENSE_M,this,{
-	     req: function(m,n) { return self.isactive&&sh.stress==0; },
+	     req: function(m,n) { return self.isactive&&sh.stress===0; },
 	     f:function(m,n) {
 		 var f=FE_focus(m);
-		 if (f>0&&sh.stress==0) {
+		 if (f>0&&sh.stress===0) {
 		     targetunit.log("Reroll %0 %FOCUS% [%1]",f,self.name);
 		     sh.log("+%0 %STRESS% [%1]",f,self.name);
 		     var roll=sh.rolldefensedie(f,self,"evade");
@@ -4135,10 +4139,10 @@ window.UPGRADES= [
 		 return m;
 	     },str:"focus"});
 	 sh.adddicemodifier(ATTACK_M,MOD_M,DEFENSE_M,this,{
-	     req: function(m,n) { return self.isactive&&sh.stress==0; },
+	     req: function(m,n) { return self.isactive&&sh.stress===0; },
 	     f:function(m,n) {
 		 var f=FE_evade(m);
-		 if (f>0&&sh.stress==0) {
+		 if (f>0&&sh.stress===0) {
 		     targetunit.log("Reroll %0 %EVADE% [%1]",f,self.name);
 		     sh.log("+%0 %STRESS% [%1]",f,self.name);
 		     var roll=sh.rolldefensedie(f,self,"evade");
@@ -4231,7 +4235,7 @@ window.UPGRADES= [
 	init: function(sh) {
 	    sh.adddicemodifier(ATTACK_M,REROLL_M,ATTACK_M,this,{
 		dice:["blank","focus"],
-		n:function() { return (targetunit.unique==true)?2:1; },
+		n:function() { return (targetunit.unique===true)?2:1; },
 		req:function(attacker,w,defender) {
 		    return this.isactive;
 		}.bind(this)
@@ -4350,7 +4354,7 @@ window.UPGRADES= [
 		if (this.dead||!self.isactive) return;
 		var p=this.getattanni();
 		for (var i in p) if (p[i]!=this&&p[i].isally(this)
-				     &&p[i].focus==0) {
+				     &&p[i].focus===0) {
 		    p[i].addfocustoken();
 		    p[i].log("+1 %FOCUS% [%0]",self.name);
 		}
@@ -4359,7 +4363,7 @@ window.UPGRADES= [
 		if (this.dead||!self.isactive) return;
 		var p=this.getattanni();
 		for (var i in p) if (p[i]!=this&&p[i].isally(this)
-				     &&p[i].stress==0) {
+				     &&p[i].stress===0) {
 		    p[i].addstress();
 		    p[i].log("+1 %STRESS% [%0]",self.name);
 		}
@@ -4620,7 +4624,7 @@ window.UPGRADES= [
 		req:function(m,n) {
 		    return self.isactive&&this.canusefocus();
 		}.bind(sh),
-		aiactivate: function(m,n) { return FE_blank(m,n)>0&&FE_focus(m)==0;},
+		aiactivate: function(m,n) { return FE_blank(m,n)>0&&FE_focus(m)===0;},
 		f:function(m,n) {	
 		    if (this.canusefocus()>0&&FE_blank(m,n)>0) {
 			this.removefocustoken();
@@ -4873,7 +4877,7 @@ window.UPGRADES= [
       init: function(sh) {
 	  for (var i in squadron) {
 	      var u=squadron[i];
-	      if (u!=sh&&u.ig2000==true&&u.isally(sh)) {
+	      if (u!=sh&&u.ig2000===true&&u.isally(sh)) {
 		  sh.log("copying %0 abilities [%1]",u.name,this.name);
 		  u.init.call(sh,u);
 	      }
@@ -5043,7 +5047,7 @@ window.UPGRADES= [
 	     return p;
 	 });
 	 sh.wrap_before("completemaneuver",this,function(dial,d,h) {
-	     if (dial.match(/BR3|BL3/)&&h==true) this.addstress();
+	     if (dial.match(/BR3|BL3/)&&h===true) this.addstress();
 	 });
      }
     },
@@ -5189,7 +5193,7 @@ window.UPGRADES= [
 		     self.unit.select();
 		     self.unit.wrap_before("selecttargetforattack",self,function() {
 			 self.unit.endnoaction(n,"ATTACK");
-		     }).unwrapper("selecttargetforattack");
+		     }).unwrapper("cleanupattack");
 		     self.unit.wrap_after("getdicemodifiers",self,function() {
 			 return [];
 		     }).unwrapper("cleanupattack");
@@ -5316,7 +5320,7 @@ window.UPGRADES= [
      init: function(sh) {
 	 var self=this;
 	 Unit.prototype.wrap_after("endattack",self,function(c,h,t) {
-	     if (self.isactive&&this.isally(self.unit)&&this.getrange(self.unit)<=2&&c+h==0) {
+	     if (self.isactive&&this.isally(self.unit)&&this.getrange(self.unit)<=2&&c+h===0) {
 		 var p=this.selectnearbyally(3);
 		 if (p.length>0) {
 		     console.log(self.name+" "+this.name);
@@ -5340,11 +5344,11 @@ window.UPGRADES= [
       init: function(sh) {
 	  sh.wrap_after("endcombatphase",this,function() {
 	      var p=this.selectnearbyenemy(2,function(s,t) {
-		  return t.stress==0;
+		  return t.stress===0;
 	      });
 	      if (p.length>0) {
 		  var q=p[0].selectnearbyally(3,function(s,t) {
-		      return t.getrange(sh)<=2&&t.stress==0;
+		      return t.getrange(sh)<=2&&t.stress===0;
 		  });
 		  if (q.length>0) {
 		      p[0].doselection(function(n) {
@@ -5497,6 +5501,7 @@ window.UPGRADES= [
       },
       declareattack: function(target) {
 	  if (!this.isactive) return false;
+	  var i;
 	  var p=this.unit.selectnearbyunits(1,function(a,b) { return a!=b; });
 	  for (i in p) {
 	      p[i].addiontoken();
@@ -5522,15 +5527,29 @@ window.UPGRADES= [
       init: function(sh) {
 	  var self=this;
 	  var hasattacked=false;
+	  var conddesactivate=function() {
+	      var n=0;
+	      for (var i in squadron) {
+		  if (squadron[i].team==this.team) n++;
+	      } 
+	      if (n==1) self.desactivate();
+	  };
 	  sh.wrap_after("declareattack",function(t,b) {
 	      if (b) hasattacked=true;
 	      return b;
 	  });
+	  sh.wrap_after("endsetupphase",this,conddesactivate);
+	  Unit.prototype.wrap_before("dies",this,conddesactivate);
 	  sh.wrap_after("isenemy",this,function(t,b) {
-	      return b||(!hasattacked&&t.getskill()<this.getskill()&&self.isactive);
+	      var bb;
+	      if (self.isactive) {
+		  bb=b&&!(!hasattacked&&(this.getskill()>t.getskill())); 
+	      } else bb=b;
+	      return bb;
 	  });
+	  
       }
-    },/* A TESTER*/
+    },
     {name:"Spacetug Tractor Array",
      type:MOD,
      ship:"Quadjumper",
@@ -5561,7 +5580,7 @@ window.UPGRADES= [
 		     if ((u.type==TORPEDO||u.type==MISSILE
 			  ||u.type==BOMB||u.type==CANNON
 			  ||u.type==TURRET||u.type==MOD)
-			 &&u.isactive==false) { this.log("%0 active again [%1]",u.name,self.name); u.isactive=true; break; }
+			 &&u.isactive===false) { this.log("%0 active again [%1]",u.name,self.name); u.isactive=true; break; }
 		 }
 		 var r=sh.rollattackdie(1);
 		 if (r[0]=="blank") self.desactivate();
@@ -5593,7 +5612,7 @@ window.UPGRADES= [
      init: function(sh) {
 	 var self=this;
 	 sh.addattack(function(c,h) { 
-	     return this.weapons[0].isactive&&c+h==0; 
+	     return this.weapons[0].isactive&&c+h===0; 
 	 },this,[sh.weapons[0]],function() {	
 	     this.noattack=round; 
 	 },function() { 
@@ -5639,7 +5658,7 @@ window.UPGRADES= [
 	 if (this.faceup) {
 	     if (typeof u.getagility.unwrap!="undefined") u.getagility.unwrap(this);
 	     u.wrap_after("getmaneuverlist",this,function(p) {
-		 if (typeof p.F0!="undefined") p["F0r"]={move:p.F0.move,difficulty:p.F0.difficulty,halfturn:true};
+		 if (typeof p.F0!="undefined") p.F0r={move:p.F0.move,difficulty:p.F0.difficulty,halfturn:true};
 		 return p;
 	     });
 	     this.variant="Landing";
@@ -5781,7 +5800,7 @@ window.UPGRADES= [
 	var save=[];
 	sh.installed=true;
 	sh.wrap_after("getdial",this,function(gd) {
-	    if (save.length==0) 
+	    if (save.length===0) 
 		for (var i=0; i<gd.length; i++) {
 		    var move=gd[i].move;
 		    var d=gd[i].difficulty;
@@ -5864,12 +5883,12 @@ window.UPGRADES= [
      done:true,
      init:function(sh) {
 	 sh.wrap_after("modifyattackroll",this,function(m,n,d,mm) {
-	     if (this.stress==0&&FCH_focus(mm)) mm+=(FCH_HIT-FCH_FOCUS)*FCH_focus(mm);
+	     if (this.stress===0&&FCH_focus(mm)) mm+=(FCH_HIT-FCH_FOCUS)*FCH_focus(mm);
 	     return mm;
 	 });
 	 sh.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
 		req:function(m,n) {
-		    return (sh.stress==0);
+		    return (sh.stress===0);
 		}.bind(this),
 		aiactivate: function(m,n) { return FCH_focus(m)>0;},
 		f:function(m,n) {

@@ -9,6 +9,7 @@ TODO: collision with two maneuvers (ailerons)
  */
 var FAST=false;
 var s;
+var ENGAGED=false;
 var BLACK="#111",GREEN="#0F0",RED="#F00",WHITE="#FFF",BLUE="#0AF",YELLOW="#FF0",GREY="#888";
 var HALFBLACK="#222",HALFGREEN="#080",HALFRED="#800",HALFWHITE="#888",HALFBLUE="#058",HALFYELLOW="#880",HALFGREY="#444";
 var TIMEANIM=FAST?0:1000;
@@ -123,6 +124,94 @@ function halftone(c) {
     return c;
 }
 
+var  wrap_after= function (name,org,after,unwrap) {
+    var self=this;
+    var save=self[name];
+    if (typeof self[name].save=="undefined"&&this!=Bomb.prototype&&this!=Unit.prototype&&this!=Weapon.prototype) self[name].save=self.__proto__[name];
+    if (typeof save=="undefined") console.log("name"+name+" undefined");
+    var f=function () {
+        var args = Array.prototype.slice.call(arguments),result;
+	result=save.apply( this, args);
+        result=after.apply( this, args.concat([result]));
+	return result;
+    }
+    f.save=save;
+    f.org=org;
+    if (typeof org.wrapping=="undefined") org.wrapping=[];
+    org.wrapping.push({name:name,wrap:this});
+    if (typeof save.vanilla!="undefined") f.vanilla=save.vanilla;
+    else f.vanilla=save;
+    f.unwrapper=function(name2) {
+	var uw=self.wrap_before(name2,org,function(a) {
+	    f.unwrap(org);
+	    uw.unwrap(org);
+	    self.show();
+	    return a;
+	});
+    }
+    save.next=f;
+    f.unwrap=function(o) {
+	if (f.org==o) {
+	    f.save.next=f.next;
+	    if (typeof f.next=="undefined") self[name]=f.save;
+	    if (name=="getskill") {
+		filltabskill();
+	    }
+	    self.show();
+	    return f.save;
+	} else if (typeof f.save.unwrap=="function") {
+	    f.save=f.save.unwrap(o);
+	}
+	self.show();
+	return f;
+    }
+    this[name]=f;
+    if (name=="getskill") {
+	filltabskill();
+    }
+    return f;
+};
+var wrap_before= function(name,org,before,unwrap) {
+    var self=this;
+    var save=self[name];
+    if (typeof self[name].save=="undefined"&&this!=Bomb.prototype&&this!=Unit.prototype&&this!=Weapon.prototype) self[name].save=self.__proto__[name];
+    if (typeof save=="undefined") console.log("name"+name+" undefined");
+    var f=function () {
+        var args = Array.prototype.slice.call(arguments),
+            result;
+        before.apply( this, args);
+        result = save.apply( this, args);
+	return result;
+    }
+    f.save=save;
+    f.org=org;
+    if (typeof save=="undefined") console.error("org:"+org.name+" "+name);
+    if (typeof org.wrapping=="undefined") org.wrapping=[];
+    org.wrapping.push({name:name,wrap:this});
+    if (typeof save.vanilla!="undefined") f.vanilla=save.vanilla;
+    else f.vanilla=save;
+    f.unwrapper=function(name2) {
+	var uw=self.wrap_before(name2,org,function() {
+	    f.unwrap(org);
+	    uw.unwrap(org);
+	    self.show();
+	});
+    }
+    save.next=f;
+    f.unwrap=function(o) {
+	if (f.org==o) {
+	    f.save.next=f.next;
+	    if (typeof f.next=="undefined") self[name]=f.save;
+	    self.show();
+	    return f.save;
+	} else if (typeof f.save.unwrap=="function") f.save=f.save.unwrap(o);
+	return f;
+    }
+    this[name]=f;
+    return f;
+};
+
+
 var MS = function(x,y) { return (new Snap.Matrix().scale(x,y));};
 var MT = function(x,y) { return (new Snap.Matrix()).translate(x,y); };
 var MR = function(a,x,y) { return (new Snap.Matrix()).rotate(a,x,y); };
@@ -185,7 +274,7 @@ function changeia(v) {
 }
 function Unit(team,pilotid) {
     var i;
-    this.behavior=JOUSTER;
+    this.behavior=ALONE;
     this.dead=false;
     this.isdocked=false;
     this.ship={};
@@ -251,7 +340,8 @@ function Unit(team,pilotid) {
     this.conditions={};
     this.bombs=[];
     this.lastdrop=-1;
-    Laser(this,u.weapon_type,u.fire);
+
+    Weapon.Laser(this,u.weapon_type,u.fire);
 
     this.name=PILOTS[pilotid].name;
     this.pilotid=pilotid;
@@ -302,12 +392,24 @@ function Unit(team,pilotid) {
 	this.oldoverlap=-1;
 	this.ocollision={overlap:-1,template:[],mine:[]};
 
-
+    /*for (i in this) {
+	if (typeof this[i] =="function") {
+	    (function(t,u) {
+		t[u].wrap_before = function(org,g) {
+		    console.log("wrap called for "+u);
+		    return t.wrap_before(u,org,g);
+		};
+	    })(this,i);
+	}
+    }*/
+    /*this.install.wrap(this,function() { console.log("calling install for "+this.name+"!"); });*/
     this.install(this);
     if (this.team>=0&&this.team<3) TEAMS[this.team].updatepoints();
     if (typeof this.init!="undefined") this.init();
 }
 Unit.prototype = {
+    wrap_before:wrap_before,
+    wrap_after:wrap_after,
     tosquadron: function(s) {
 	var i,j;
 	var upgs=this.upg;
@@ -445,53 +547,6 @@ Unit.prototype = {
 	y+=p.top+startY;
 	return $(".info").css({left:x,top:y}).attr({pointerEvents:"none"}).html(formatstring(info)).appendTo("body").show();
     },
-    wrap_after: function (name,org,after,unwrap) {
-	var self=this;
-	var save=self[name];
-	if (typeof self[name].save=="undefined"&&this!=Bomb.prototype&&this!=Unit.prototype&&this!=Weapon.prototype) self[name].save=self.__proto__[name];
-	if (typeof save=="undefined") console.log("name"+name+" undefined");
-	var f=function () {
-            var args = Array.prototype.slice.call(arguments),result;
-	    result=save.apply( this, args);
-            result=after.apply( this, args.concat([result]));
-	    return result;
-	}
-	f.save=save;
-	f.org=org;
-	if (typeof org.wrapping=="undefined") org.wrapping=[];
-	org.wrapping.push({name:name,wrap:this});
-	if (typeof save.vanilla!="undefined") f.vanilla=save.vanilla;
-	else f.vanilla=save;
-	f.unwrapper=function(name2) {
-	    var uw=self.wrap_before(name2,org,function(a) {
-		f.unwrap(org);
-		uw.unwrap(org);
-		self.show();
-		return a;
-	    });
-	}
-	save.next=f;
-	f.unwrap=function(o) {
-	    if (f.org==o) {
-		f.save.next=f.next;
-		if (typeof f.next=="undefined") self[name]=f.save;
-		if (name=="getskill") {
-		    filltabskill();
-		}
-		self.show();
-		return f.save;
-	    } else if (typeof f.save.unwrap=="function") {
-		f.save=f.save.unwrap(o);
-	    }
-	    self.show();
-	    return f;
-	}
-	this[name]=f;
-	if (name=="getskill") {
-	    filltabskill();
-	}
-	return f;
-    },
     desactivate:function() {
 	for (var i in this.wrapping) {
 	    var w=this.wrapping[i];
@@ -500,45 +555,6 @@ Unit.prototype = {
 	    }
 	}
 	this.isactive=false; 
-    },
-    wrap_before: function(name,org,before,unwrap) {
-	var self=this;
-	var save=self[name];
-	if (typeof self[name].save=="undefined"&&this!=Bomb.prototype&&this!=Unit.prototype&&this!=Weapon.prototype) self[name].save=self.__proto__[name];
-	if (typeof save=="undefined") console.log("name"+name+" undefined");
-	var f=function () {
-            var args = Array.prototype.slice.call(arguments),
-            result;
-            before.apply( this, args);
-            result = save.apply( this, args);
-	    return result;
-	}
-	f.save=save;
-	f.org=org;
-	if (typeof save=="undefined") console.error("org:"+org.name+" "+name);
-	if (typeof org.wrapping=="undefined") org.wrapping=[];
-	org.wrapping.push({name:name,wrap:this});
-	if (typeof save.vanilla!="undefined") f.vanilla=save.vanilla;
-	else f.vanilla=save;
-	f.unwrapper=function(name2) {
-	    var uw=self.wrap_before(name2,org,function() {
-		f.unwrap(org);
-		uw.unwrap(org);
-		self.show();
-	    });
-	}
-	save.next=f;
-	f.unwrap=function(o) {
-	    if (f.org==o) {
-		f.save.next=f.next;
-		if (typeof f.next=="undefined") self[name]=f.save;
-		self.show();
-		return f.save;
-	    } else if (typeof f.save.unwrap=="function") f.save=f.save.unwrap(o);
-	    return f;
-	}
-	this[name]=f;
-	return f;
     },
     toJSON: function() {
 	var s={};
@@ -2440,6 +2456,7 @@ Unit.prototype = {
 	displaydefenseroll(dr,dd);
 	displaydefensetokens(this,function() {
 	    this.resolvedamage();
+	    console.log("resolvedamage done");
 	    this.endnoaction(n,"in combat");
 	}.bind(squadron[me]));
     },
@@ -2601,7 +2618,7 @@ Unit.prototype = {
 		    this.resolveocollision(this.ocollision.overlap,this.ocollision.template);
 		if (this.ocollision.mine.length>0) 
 		    for (i=0; i<this.ocollision.mine.length; i++) {
-			this.ocollision.mine[i].detonate(this,false)
+			this.ocollision.mine[i].detonate(this,false);
 		    }
 		if (this.collision) this.resolvecollision();
 		this.endmaneuver();
@@ -2693,7 +2710,8 @@ Unit.prototype = {
 	var obj=global?Unit.prototype:this;
 	obj.wrap_after(wrapper,org,function(c,h) {
 	    var anyactiveweapon=false;
-	    //var attacker = getattacker.call();
+	    var i;
+	    var attacker; // = getattacker.call();
 	    if (wrapper=="removeshield"||wrapper=="endattack"||wrapper=="warndeath") attacker=activeunit;
 	    else if (typeof attacker=="undefined") attacker=this;
 	    for (i in weaponlist) if (weaponlist[i].isactive) {
@@ -2868,7 +2886,7 @@ Unit.prototype = {
 		d.append($("<div>").attr({"class":"symbols "+ww.color})
 			 .html(widx.key)
 			 .click(function() {
-			 self.selecttargetforattack(ww,enemylist)
+			 self.selecttargetforattack(ww,enemylist);
 			 }));
 	    })(wn[i]);
 	}
@@ -2903,7 +2921,7 @@ Unit.prototype = {
     actionbarrier:function() {
 	actionrlock=$.Deferred();
 	if (this.areactionspending()) {
-	    actionrlock.done(function() { this.unlock() }.bind(this));
+	    actionrlock.done(function() { this.unlock(); }.bind(this));
 	} else {
 	    actionrlock.resolve();
 	    this.unlock();
