@@ -2492,7 +2492,7 @@ window.PILOTS = [
 	done:true,
         skill: 5,
         points: 20,
-        upgrades: [ELITE,TURRET,CREW,ILLICIT],
+        upgrades: [ELITE,TURRET,CREW,ILLICIT]
     },
     {
         name: "Torkil Mux",
@@ -4795,6 +4795,31 @@ window.PILOTS = [
 	    });
      }
    },
+    {
+	name:"Senator's Shuttle",
+	faction:REBEL,
+	pilotid:242,
+	unit:"Corellian Star Shuttle",
+	skill:0,
+	upgrades:[],
+	points:2,
+	done:true,
+	init:function() {
+	    this.wrap_before("begincombatphase",this,function() {
+		this.noattack=round;
+	    });
+	    for (var i in squadron) {
+		var u=squadron[i];
+		if (u.team==this.team) {
+		    /*
+		    u.wrap_after("getupgactionlist",this,function(l) {
+			l.push({org:this,action:
+			return l;
+		    };*/
+		}
+	    }
+	}
+    }
 
 ];
 

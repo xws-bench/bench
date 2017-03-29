@@ -1,16 +1,16 @@
-var V1="v1",V2="v2";
+/* jshint esversion: 6 */
+const V1="v1",V2="v2";
 var CURRENT_DECK=V2;
-function Critical(sh,i) {
-    this.lethal=false;
-    $.extend(this,CRITICAL_DECK[i]);
-    this.no=this.name+i;
-    sh.criticals.push(this);
-    this.isactive=false;
-    this.unit=sh;
-}
-
-Critical.prototype= {
-    toString: function() {
+class Critical {
+    constructor(sh,i) {
+	this.lethal=false;
+	$.extend(this,CRITICAL_DECK[i]);
+	this.no=this.name+i;
+	sh.criticals.push(this);
+	this.isactive=false;
+	this.unit=sh;
+    }
+    toString() {
 	var a,b,str="";
 	var c="";
 	if (!this.isactive) return "";
@@ -24,8 +24,8 @@ Critical.prototype= {
 	if (this.unit.team==1)  
 	    return "<tr "+c+">"+b+a+d+"</tr>"; 
 	else return "<tr "+c+">"+a+b+d+"</tr>";
-    },
-    log: function() {
+    }
+    log() {
 	this.unit.log("Critical: %0",this.name);
 	var n="";
 	if (typeof CRIT_translation[this.name].text!="undefined") {
@@ -104,7 +104,7 @@ var CRITICAL_DECK=[
 	    this.isactive=true;
 	    var save=[];
 	    this.unit.wrap_after("getdial",this,function(a) {
-		if (save.length==0) {
+		if (save.length===0) {
 		    for (var i=0; i<a.length; i++) {
 			save[i]={move:a[i].move,difficulty:a[i].difficulty};
 			if (a[i].move.match(/TL\d|TR\d/)) save[i].difficulty="RED";
@@ -291,7 +291,7 @@ var CRITICAL_DECK=[
 		if (this.unit.weapons[i].issecondary) m.push(this.unit.weapons[i]);
 	    }
 	    this.isactive=false;
-	    if (m.length==0) return;
+	    if (m.length===0) return;
 	    var w=this.unit.rand(m.length);
 	    this.wp=m[w];
 	    this.wp.isactive=false;
@@ -521,7 +521,7 @@ var CRITICAL_DECK=[
 	    var save=[];
 	    var self=this;
 	    this.unit.wrap_after("getdial",this,function(a) {
-		if (save.length==0) {
+		if (save.length===0) {
 		    for (var i=0; i<a.length; i++) {
 			if (!a[i].move.match(/F1|F2|F3|F4|F5/)) 
 			    save.push({move:a[i].move,difficulty:a[i].difficulty});
@@ -563,6 +563,6 @@ var CRITICAL_DECK=[
 	    } else this.unit.log("%0 not repaired",this.name);
 	    this.unit.endaction(n,"CRITICAL");
 	},
-	version:[V2],
+	version:[V2]
     }
 ];

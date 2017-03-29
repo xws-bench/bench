@@ -1348,5 +1348,25 @@
 	    {"move":"TR3","difficulty":"RED"}
 	],
 	"actionList":["FOCUS","TARGET","COORDINATE"]
+    },
+    "Corellian Star Shuttle":{
+	"scale":1,
+	"firesnd":"tie_fire",
+	"flysnd":"isd_fly",
+	"img":["corellian"],
+	"faction":["REBEL"],
+	"weapon_type":"Laser",
+	"code":"l",
+	"wave":10,
+	"fire":0,
+	"evade":2,
+	"hull":6,
+	"shield":6,
+	"dial":[
+	    {"move":"BL1","difficulty":"WHITE"},
+	    {"move":"BR1","difficulty":"WHITE"},
+	    {"move":"F2","difficulty":"WHITE"}
+	],
+	"actionList":["FOCUS"]
     }
 }
