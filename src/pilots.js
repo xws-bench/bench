@@ -4293,9 +4293,8 @@ var PILOTS = [
 	done:true,
         unit: "TIE Fighter",
         skill: 4,
-	wave:["10"],
         upgrades: [ELITE],
-	points:14,
+	points:14
 	/*init: function() {
 	    this.wrap_after("endattack",this,function(c,h,t) {
 		c=new Condition(t,this,"Suppressive Fire");
