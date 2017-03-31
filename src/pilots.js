@@ -4296,11 +4296,11 @@ var PILOTS = [
 	wave:["10"],
         upgrades: [ELITE],
 	points:14,
-	init: function() {
+	/*init: function() {
 	    this.wrap_after("endattack",this,function(c,h,t) {
 		c=new Condition(t,this,"Suppressive Fire");
 	    });
-	}
+	}*/
     },  
     { name:"Heff Tobber",
       faction:REBEL,
