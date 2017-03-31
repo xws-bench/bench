@@ -4004,7 +4004,10 @@ var UPGRADES= [
 	 var self=this;
 	 /* TODO : not a modifier, but rerolls.  */
 	 sh.adddicemodifier(ATTACK_M,MOD_M,DEFENSE_M,this,{
-	     req: function(m,n) { return true; },
+		req:function(m,n) {
+		    return (sh.stress==0);
+		}.bind(this),
+	     /*req: function(m,n) { return true; },*/
 	     f:function(m,n) {
 		 var f=FE_focus(m);
 		 if (f>0) {
@@ -4021,7 +4024,10 @@ var UPGRADES= [
 		 return m;
 	     },str:"focus"});
 	 sh.adddicemodifier(ATTACK_M,MOD_M,DEFENSE_M,this,{
-	     req: function(m,n) { return true; },
+		req:function(m,n) {
+		    return (sh.stress==0);
+		}.bind(this),
+	     /*req: function(m,n) { return true; },*/
 	     f:function(m,n) {
 		 var f=FE_evade(m);
 		 if (f>0) {
@@ -5032,29 +5038,719 @@ var UPGRADES= [
 	 });
      }
     },
-    {name:"Snap Shot",
+    /*{name:"Snap Shot",
      points:2,
      type:ELITE,
-     /*
+     done:true,
      init: function(sh) {
 	 var self=this;
-	 sh.addattack(
-	     function(c,h,t) { return !t.isally(self.unit); },
-	     self,sh.weapons,
-	     function() { 
-		 self.unit.log("no dice modifiers, no other attack this round [%0]",self.name);
-		 self.unit.noattack=round;
-	     },function() { return [activeunit]; },
-	     "endmaneuver",true);
-     }*/
-    },
+	 Unit.prototype.wrap_after("doendmaneuveraction",self,function() {
+	     var wpl=[];
+	     for (var i in self.unit.weapons)
+		 if (self.unit.weapons[i].getrange(this)>0)
+		     wpl.push(self.unit.weapons[i]);
+	     
+	     if (wpl.length>0) {
+		 sh.doselection(function(n) {
+		     self.unit.select();
+		     self.unit.wrap_before("selecttargetforattack",self,function() {
+			 self.unit.endnoaction(n,"ATTACK");
+		     }).unwrapper("selecttargetforattack");
+		     self.unit.wrap_after("getdicemodifiers",self,function() {
+			 return [];
+		     }).unwrapper("cleanupattack");
+		     self.unit.wrap_before("cancelattack",self,function() {
+			 self.unit.maxfired++;
+			 $("#attackdial").hide();
+			 self.unit.endnoaction(n,"ATTACK");
+		     }).unwrapper("cleanupattack");
+		     self.unit.doattack(wpl,[this]);
+		 }.bind(this));
+	     }
+	 });
+     }
+    },*/
     {name:"M9-G8",
      type:ASTROMECH,
      points:3,
-     unique:true
+     unique:true,
+     done:true,
+     init: function(sh) {
+	 var self=this;
+	 sh.wrap_after("gettargetableunits",this,function(n,l) {
+	     return this.selectnearbyunits(n);
+	 });
+	 Unit.prototype.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
+	     req:function() {
+		 return self.isactive&&!self.unit.isally(this);
+	     }, 
+	     f:function(m,n) {
+		 if (FCH_crit(m)>0) {
+		     this.log("1 %CRIT% rerolled [%0]",this.name);
+		     m=m-FCH_CRIT+activeunit.attackroll(1);
+		 } else if (FCH_hit(m)>0) {
+		     this.log("1 %HIT% rerolled [%0]",this.name);
+		     m=m-FCH_HIT+activeunit.attackroll(1);
+		 }
+		 return m;
+	     },str:"critical"});
+	 Unit.prototype.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
+	     req:function() {
+		 return self.isactive&&self.unit.isally(this);
+	     },
+	     f:function(m,n) {
+		 if (FCH_blank(m)>0) {
+		     this.log("1 blank rerolled [%0]",this.name);
+		     m=m+activeunit.attackroll(1);
+		 } else if (FCH_focus(m)>0&&!this.canusefocus()) {
+		     this.log("1 %FOCUS% rerolled [%0]",this.name);
+		     m=m-FCH_FOCUS+activeunit.attackroll(1);
+		 }
+		 return m;
+	     },str:"blank"});
+
+     }
     },
     {name:"Pattern Analyzer",
      type:TECH,
      points:2
+    },
+    {name:"General Hux",
+     type:CREW,
+     faction:EMPIRE,
+     points:5,
+     unique:true,
+     done:true,
+     candoaction: function() { return true; },
+     action: function(n) {
+	 var self=this.unit;
+	 var p = self.selectnearbyally(2);
+	 if (p.length>0) {
+	     if (p.length==1) {
+		 var c=new Condition(p[0],self,"Fanatical Devotion");
+		 p[0].addfocustoken();
+		 self.endaction(n,CREW);
+	     }else if (p.length>=2) {
+		 p.push(self);
+		 self.log("select up to 3 units (self to cancel) [%0]",self.name);
+		 self.resolveactionselection(p,function(k) {
+		     if (p[k]==this) this.endaction(n,CREW);
+		     var c=new Condition(p[k],self,"Fanatical Devotion");
+		     p[k].addfocustoken();
+		     p.splice(k,1);
+		     if (p.length>1) 
+			 this.resolveactionselection(p,function(l) {
+			     if (p[l]==this) this.endaction(n,CREW);
+			     p[l].addfocustoken();
+			     p.splice(l,1);
+			     if (p.length>1) 
+				 this.resolveactionselection(p,function(h) {
+				     if (p[h]==this) this.endaction(n,CREW);
+				     p[h].addfocustoken();
+				     this.endaction(n,CREW);
+				 }.bind(this));
+			     else this.endaction(n,CREW);
+			 }.bind(this))
+		     else this.endaction(n,CREW);
+		 }.bind(self));
+	    } else self.endaction(n,CREW);
+	     self.addstress();
+	 } else self.endaction(n,CREW);
+     },
+    },
+    {name:"Kylo Ren",
+     type:CREW,
+     faction:EMPIRE,
+     points:3,
+     unique:true,
+     done:true,
+     candoaction: function() { return this.unit.selectnearbyenemy(3).length>0; },
+     action: function(n) {
+	 var self=this.unit;
+	 var p=self.selectnearbyenemy(3);
+	 this.resolveactionselect(p,function(k) {
+	     var c=new Condition(p[k],self,"I'll Show You The Dark Side");
+	 }.bind(this));
+     }
+     
+    },
+    {name:"Operations Specialist",
+     type:CREW,
+     points:3,
+     limited:true,
+     done:true,
+     init: function(sh) {
+	 var self=this;
+	 Unit.prototype.wrap_after("endattack",self,function(c,h,t) {
+	     if (self.isactive&&this.isally(self.unit)&&this.getrange(self.unit)<=2&&c+h==0) {
+		 var p=this.selectnearbyally(3);
+		 if (p.length>0) {
+		     console.log(self.name+" "+this.name);
+		     this.doselection(function(n) {
+			 this.resolveactionselect(p,function(k) {
+			     p[k].addfocustoken();
+			     this.endnoaction(n,"OP");
+			 }.bind(this));
+		     }.bind(this));
+		 }
+	     }
+	 });
+     }
+    },
+    /*{ name:"Kylo Ren's Shuttle",
+      type:TITLE,
+      points:2,
+      ship:"Upsilon-class Shuttle",
+      unique:true,
+      done:true,
+      init: function(sh) {
+	  sh.wrap_after("endcombatphase",this,function() {
+	      var p=this.selectnearbyenemy(2,function(s,t) {
+		  return t.stress==0;
+	      });
+	      if (p.length>0) {
+		  var q=p[0].selectnearbyally(3,function(s,t) {
+		      return t.getrange(sh)<=2&&t.stress==0;
+		  });
+		  if (q.length>0) {
+		      p[0].doselection(function(n) {
+			  this.resolveactionselect(p,function(k) {
+			      p[k].addstress();
+			      p[0].endnoaction(n,TITLE);
+			  });
+		      });
+		  }
+	      }
+	  });
+      }
+    },*/
+    { name:"Targeting Synchronizer",
+      type:TECH,
+      points:3,
+      done:true,
+      init: function(sh) {
+	  var self=this;
+	  
+	  Unit.prototype.wrap_after("canusetarget",self,function(sh,r) {
+	      if (self.unit!=this&&self.unit.isally(this)) {
+		  if (self.unit.getrange(this)<=2
+		  &&self.unit.targeting.indexOf(sh)>-1) {
+		  return true;
+		  }
+	      }
+	      return r;
+	  });
+	  Unit.prototype.wrap_before("removetarget",self,function(t) {
+	      if (self.unit!=this&&self.unit.isally(this)) {
+		  if (self.unit.getrange(this)<=2
+		      &&this.targeting.indexOf(t)==-1
+		      &&self.unit.targeting.indexOf(t)>-1) {
+		      self.unit.removetarget(t);
+		  }
+	      }
+	  });
+      }
+    },
+    { name:"Hyperwave Comm Scanner",
+      type:TECH,
+      done:true,
+      points:1,
+      init: function(sh) {
+	  var self=this;
+	  sh.wrap_after("endsetupphase",this,function() {
+	      var p=this.selectnearbyunit(2);
+	      if (!self.isactive) return;
+	      for (var i in p) {
+		  var u=p[i];
+		  u.donoaction([{type:"FOCUS",name:self.name,org:self,
+				 action:function(n) {
+				     this.addfocustoken();
+				     this.endnoaction(n,"TECH");
+				 }.bind(u)},
+				{type:"EVADE",name:self.name,org:self,
+				 action:function(n) {
+				     self.desactivate();
+				     this.addevadetoken();
+				     this.endnoaction(n,"TECH");
+				 }.bind(u)}],
+			       "+1 %EVADE% / %FOCUS%",
+			       true);
+	      }	      
+	  });
+      }
+    },
+    /*{ name:"A Score To Settle",
+      type:ELITE,
+      points:0,
+      done:true,
+      init: function(sh) {
+	  var self=this;
+	  sh.ascoretosettle=self;
+	  sh.wrap_after("endsetupphase",this,function() {
+	      var p=[];
+	      for (var i in squadron)
+		  if (squadron[i].team!=this.team) p.push(squadron[i]);
+	      if (p.length>0) {
+		  this.log("select unit for condition [%0]",self.name);
+		  //this.doselection(function(n) {
+		      this.resolveactionselection(p,function(k) {
+			  var c=new Condition(p[k],this,"A Debt To Pay");
+			  //this.endnoaction(n,"CONDITION");
+		      }.bind(this));
+		  //}.bind(this));
+		  this.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,self,{
+		      req:function(m,n) {
+			  if (typeof targetunit.adebttopay!="undefined")
+			      return targetunit.adebttopay.isactive;
+			  return false;
+		      },
+		      f:function(m,n) {
+			  this.log("1 %FOCUS% -> 1 %CRIT% [%0]",self.name);
+			  m = m - FCH_FOCUS + FCH_CRIT;
+			  return m;
+		      }.bind(this),str:"focus"});
+	      }
+	  });
+      }
+    },*/
+    { name:"Cassian Andor",
+      type:CREW,
+      points:2,
+      faction:REBEL,
+      unique:true,
+      init: function(sh) {
+	  sh.wrap_after("endplanningphase",this,function() {
+	      var p = this.selectnearbyenemy(2);
+	      if (p>0) 
+	      this.doselection(function(n) {
+		  this.resolveactionselect(p,function(k) {
+		      this.guessmove(p[k].maneuver);
+		  }.bind(this));
+	      }.bind(this));
+	  });
+      }
+    },
+    { name:"Captain Rex",
+      type:CREW,
+      points:2,
+      faction:REBEL,
+      unique:true,
+      done:true,
+      init: function(sh) {
+	  var self=this;
+	  sh.wrap_after("hashit",this,function(t,b) {
+	      if (!b) {
+		  this.log("+1 stress, +1 %FOCUS% [%0]",self.name);
+		  this.addfocustoken();
+	      }
+	      return b;
+	  });
+
+      }
+    },
+    { name:"EMP Device",
+      unique:true,
+      type:ILLICIT,
+      points:2,
+      range:[1,1],
+      done:true,
+      isTurret:function() { return true; },
+      issecondary:false,
+      firesnd:"missile",
+      isWeapon:function() { return true; },
+      getenemiesinrange: function() {
+	  return [this.unit];
+      },
+      declareattack: function(target) {
+	  if (!this.isactive) return false;
+	  var p=this.unit.selectnearbyunits(1,function(a,b) { return a!=b; });
+	  for (i in p) {
+	      p[i].addiontoken();
+	      p[i].addiontoken();
+	      p[i].log("+2 %ION% [%0]",this.name);
+	  }
+	  this.isactive=false;
+	  this.unit.cancelattack();
+	  return false;
+      },
+      init: function(sh) {
+	  var self=this;
+	  this.toString=Upgrade.prototype.toString;
+      },
+    },
+    { name:"Captured TIE",
+      unique:true,
+      type:MOD,
+      ship:"TIE Fighter",
+      faction:REBEL,
+      points:1,
+      done:true,
+      init: function(sh) {
+	  var self=this;
+	  var hasattacked=false;
+	  sh.wrap_after("declareattack",function(t,b) {
+	      if (b) hasattacked=true;
+	      return b;
+	  });
+	  sh.wrap_after("isenemy",this,function(t,b) {
+	      return b||(!hasattacked&&t.getskill()<this.getskill()&&self.isactive);
+	  });
+      }
+    },
+    /*{name:"Spacetug Tractor Array",
+     type:MOD,
+     ship:"Quadjumper",
+     points:2,
+     done:true,
+     candoaction: function()  { return this.isactive; },
+     action: function(n) {
+	 var self=this.unit;
+	 var p=self.selectnearbyunits(1,function(s,t) { return s!=t&&s.isinfiringarc(t);});
+	 if (p.length>0) {
+	     self.resolveactionselection(p,function(k) {
+		 p[k].addtractorbeam(this);
+		 this.unit.endaction(n,"MOD");
+	     });
+	 } else self.endaction(n,"MOD");
+     }
+    },
+    {name:"Scavenger Crane",
+     type:ILLICIT,
+     points:2,
+     done:true,
+     init: function(sh) {
+	 var self=this;
+	 Unit.prototype.wrap_before("dies",this,function() {
+	     if (this!=sh&&self.isactive&&sh.getrange(this)<=2) {
+		 for (var i in sh.upgrades) {
+		     var u=sh.upgrades[i];
+		     if ((u.type==TORPEDO||u.type==MISSILE
+			  ||u.type==BOMB||u.type==CANNON
+			  ||u.type==TURRET||u.type==MOD)
+			 &&u.isactive==false) { this.log("%0 active again [%1]",u.name,self.name); u.isactive=true; break; }
+		 }
+		 var r=sh.rollattackdie(1);
+		 if (r[0]=="blank") self.isactive=false;
+	     }
+
+	 });
+     }
+    },*/
+    {name:"Inspiring Recruit",
+     type:CREW,
+     points:1,
+     done:true,
+     init: function(sh) {
+	 var self=this;
+	 Unit.prototype.wrap_after("removestresstoken",this,function() {
+	     if (this.isally(sh)&&this.getrange(sh)<=2&&this.stress>0) {
+		 this.log("-1 stress token [%0]",self.name);
+		 this.removestresstoken.vanilla.call(this);
+	     }
+	 });
+     }
+    },
+    {name:"Baze Malbus",
+     type:CREW,
+     points:3,
+     unique:true,
+     done:true,
+     faction:REBEL,
+     init: function(sh) {
+	 var self=this;
+	 sh.addattack(function(c,h) { 
+	     return this.weapons[0].isactive&&c+h==0; 
+	 },this,[sh.weapons[0]],function() {	
+	     this.noattack=round; 
+	 },function() { 
+	     this.log("+1 attack [%0]",self.name);	     
+	     return this.selectnearbyenemy(3,function(t,s) {
+		 return s!=targetunit;
+	     });
+	 });
+     }
+    },
+    {name:"Bodhi Rook",
+     type:CREW,
+     points:1,
+     unique:true,
+     faction:REBEL,
+     done:true,
+     init: function(sh) {
+	 var self=this;
+	 sh.wrap_after("gettargetableunits",this,function(r,nouse) {
+	     var t=[];
+	     for (var i in squadron) {
+		 var u=squadron[i];
+		 if (u.isally(this)) 
+		     t=t.concat(Unit.prototype.gettargetableunits.vanilla.call(t,3));
+	     }
+	     return t;
+	 });
+     }
+    },
+    /*{name:"Pivot Wing",
+     type:TITLE,
+     points:0,
+     ship:"U-Wing",
+     canbeswitched:false,
+     done:true,
+     canswitch: function() {
+	 return this.canbeswitched;
+     },
+     switch: function() {
+	 var self=this;
+	 var u=this.unit;
+	 this.canbeswitched=false;
+	 if (this.faceup) {
+	     if (typeof u.getagility.unwrap!="undefined") u.getagility.unwrap(this);
+	     u.wrap_after("getmaneuverlist",this,function(p) {
+		 if (typeof p.F0!="undefined") p["F0r"]={move:p.F0.move,difficulty:p.F0.difficulty,halfturn:true};
+		 return p;
+	     });
+	     this.variant="Landing";
+	 } else {
+	     if (typeof u.getmaneuverlist.unwrap!="undefined") u.getmaneuverlist.unwrap(this);
+	     u.wrap_after("getagility",this,function(a) {
+		 return a+1;
+	     });
+	     this.variant="Attack";
+	 }
+	 this.faceup=!this.faceup;    
+     },
+     init: function(sh) {
+	 var self=this;
+	 this.switch();
+	 this.unit.wrap_before("endmaneuver",this,function() {
+	     self.canbeswitched=true;
+	 });
+     }
+    },*/
+    {name:"Adaptive Ailerons",
+     type:TITLE,
+     points:0,
+     ship:"TIE Striker",
+     done:true,
+     init: function(sh) {
+	 var self=this;
+	 sh.adaptive=-1;
+	 
+	 if (typeof sh.facultativeailerons=="undefined") 
+	     sh.facultativeailerons=false;
+	 
+	 sh.wrap_after("premove",this,function() {
+	     var T = ["F1","BR1","BL1"];
+	     var p=this.moves[0];
+	     if (!this.facultativeailerons) this.moves=[];
+	     this.moves=this.moves.concat([this.getpathmatrix(p,T[0]),
+					   this.getpathmatrix(p,T[1]),
+					   this.getpathmatrix(p,T[2])]);
+	 });
+     
+	 sh.wrap_before("beginactivation",this,function() {
+	     var old=this.maneuver;
+	     var gd=this.getdial();
+	     var p=[];
+	     var q=[];
+	     for (var i=0; i<gd.length; i++) 
+		 if (gd[i].move.match(/F1|BL1|BR1/)) { 
+		     p.push(this.getpathmatrix(this.m,gd[i].move));
+		     q.push(i);
+		 }
+	     
+	     if (this.adaptive<round) {
+		 this.adaptive=round;
+	     this.donoaction([{org:self,type:"TITLE",name:self.name,action:function(n) {
+		 this.wrap_after("candoendmaneuveraction",this,function() {
+		     return false;
+		 }).unwrapper("cleanupmaneuver");
+		 this.wrap_after("getdial",this,function(gd) {
+		     var p=[];
+		     for (var i=0; i<gd.length; i++) {
+			 p[i]={move:gd[i].move,difficulty:"WHITE"};
+		     }
+		     return p;
+		 }).unwrapper("endmaneuver");
+
+		 this.wrap_before("cleanupmaneuver",self,function() {
+		     this.maneuver=old;		 
+		     this.cleanupmaneuver.unwrap(self);
+		     this.endnoaction(n,"TITLE");
+
+		     //this.doselection(function(nn) {
+			 this.hasmoved=false;
+		     this.newlock().done(function() {
+			 this.newlock().done(nextactivation);
+			 nextactivation();
+		     }.bind(this));
+		 });
+		 this.resolveactionmove(p,function(t,k) {
+		     this.maneuver=q[k];
+		     this.resolvemaneuver();
+		 }.bind(this),false,true);
+	     }.bind(this)}],"",this.facultativeailerons);
+	    }
+	 });
+     }
+    },
+    {name:"Swarm Leader",
+     unique:true,
+     points:3,
+     type:ELITE,
+     done:true,
+     init: function(sh) {
+	 var self=this;
+	 sh.wrap_after("preattackroll",this,function(w,t) {
+	     var p=this.selectnearbyally(3,function(me,s) {
+		 if (s.canuseevade()&&s.isinfiringarc(t)) return true;
+		 return false;
+	     });
+	     var bonus=0;
+	     if (p.length>0) { bonus++; p[0].removeevadetoken();}
+	     if (p.length>1) { bonus++; p[1].removeevadetoken();}
+	     this.log("+%1 attack die [%0]",bonus,self.name);
+	     this.wrap_after("getattackstrength",this,function(i,sh,a){
+		 return a+bonus;
+	     }).unwrapper("attackroll");
+	 });
+     }
+    },
+    {name:"Lightweight Frame",
+     type:MOD,
+     points:2,
+     agilitymax:3,
+     ship:"TIE",
+     done:true,
+     init: function(sh) {
+	 var self=this;
+	 sh.wrap_after("predefenseroll",this,function(w,a) {
+	     if (getattackdice()>getdefensedice()) {
+		 this.log("+1 defense roll [%0]",self.name);
+		 this.wrap_after("getagility",self,function(d) {
+		     return d+1;
+		 }).unwrapper("dodefenseroll");
+	     }
+	 });
+     }
+    },
+   {name:"'Light Scyk' Interceptor",
+    type:TITLE,
+    points:-2,
+    ship: "M3-A Interceptor",
+    lostupgrades:[MOD],
+    done:true,
+    init: function(sh) {
+	this.deal=function(crit,face) {
+	    var dd=$.Deferred();
+	    return dd.resolve({crit:crit,face:FACEUP});
+	};
+	var save=[];
+	sh.installed=true;
+	sh.wrap_after("getdial",this,function(gd) {
+	    if (save.length==0) 
+		for (var i=0; i<gd.length; i++) {
+		    var move=gd[i].move;
+		    var d=gd[i].difficulty;
+		    if (move.match(/BL\d|BR\d/)) d="GREEN";
+		    save[i]={move:move,difficulty:d};
+		}
+	    return save;
+	});
     }
+   },
+    {name:"Hotshot Co-Pilot",
+     type:CREW,
+     points:4,
+     done:true,
+     init: function(sh) {
+	 var self=this;
+	 var removeall=function() {
+	     if (this.canusefocus()) { 
+		 this.log("- %0 %FOCUS% [%1]",this.focus,self.name); 
+		 for (var i=0; i<this.focus; i++) 
+		     this.removefocustoken();
+	     }
+	 }
+	 sh.wrap_before("resolveattack",this,function(w,t) {
+	     if (this.weapons[w].isprimary) t.wrap_before("endmodifydefensestep",self,removeall);
+	 });
+	 sh.wrap_before("isattackedby",this,function(w,t) {
+	     t.wrap_before("endmodifyattackstep",self,removeall);
+	 });
+     }
+    },
+    {name:"Trick Shot",
+     type:ELITE,
+     points:0,
+     done:true,
+     init: function(sh) {
+	 var self=this;
+	 sh.wrap_after("getattackstrength",this,function(i,t,a) {
+	     var obstacledef=this.getobstructiondef(t);
+	     if (obstacledef>0) {
+		 this.log("obstructed attack => +1 die [%0]",self.name);
+		 a=a+1;
+	     }
+	     return a;
+	 });
+     }
+    },
+    {name:"Bistan",
+     type:CREW,
+     points:2,
+     unique:true,
+     done:true,
+     faction:REBEL,
+     
+      init:function(sh) {
+	  sh.wrap_after("modifyattackroll",this,function(m,n,d,mm) {
+	      if (this.getrange(targetunit)<=2) mm=mm+FCH_CRIT-FCH_HIT;
+	      return mm;
+	  });
+	 sh.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
+		req:function(m,n) {
+		    return (sh.getrange(targetunit)<=2);
+		}.bind(this),
+		aiactivate: function(m,n) { return true;},
+		f:function(m,n) {
+		    var h=FCH_hit(m);
+		    if (h>0) {
+			this.unit.log("%HIT% -> %CRIT% [%0]",this.name);
+			m=m+FCH_CRIT-FCH_HIT;
+		    }
+		    return m;
+		}.bind(this),str:"hit"});
+     }
+    
+    },
+    {name:"Expertise",
+     type:ELITE,
+     rating:2,
+     points:4,
+     done:true,
+     init:function(sh) {
+	 sh.wrap_after("modifyattackroll",this,function(m,n,d,mm) {
+	     if (this.stress==0&&FCH_focus(mm)) mm+=(FCH_HIT-FCH_FOCUS)*FCH_focus(mm);
+	     return mm;
+	 });
+	 sh.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
+		req:function(m,n) {
+		    return (sh.stress==0);
+		}.bind(this),
+		aiactivate: function(m,n) { return FCH_focus(m)>0;},
+		f:function(m,n) {
+		    var f=FCH_focus(m);
+		    if (f>0) {
+			this.unit.log("%FOCUS% -> %HIT% [%0]",this.name);
+			m=m+FCH_focus(m)*(FCH_HIT-FCH_FOCUS);
+		    }
+		    return m;
+		}.bind(this),str:"focus"});
+     }
+     },
+    {name:"BoShek",
+     type:CREW,
+     points:2
+    }
+
 ];

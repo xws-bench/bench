@@ -9,6 +9,13 @@ var sabine_fct=function() {
 	this.doaction(p,"free %BOOST% or %ROLL% action");
     }
 }
+var zeb_fct = function(r,t) {
+    // first, cancel criticals
+    this.log("cancel %CRIT% first");
+    r=this.cancelcritical(r,t);
+    r=Unit.prototype.cancelhit(r,t);
+    return r;
+}
 var maarek_fct = function() {
     var unit=this;
     var newdeal=function(c,f,p) {
@@ -3516,7 +3523,7 @@ var PILOTS = [
 	init: function() {
 	    var self=this;
 	    this.wrap_before("begincombatphase",this,function() {
-		this.selectunit(this.selectnearbyally(4),function(p,k) {
+		this.selectunit(this.selectnearbyally(1),function(p,k) {
 		    var f=this.focus,e=this.evade
 		    for (var i=0; i<f; i++) {
 			this.removefocustoken();
@@ -4249,7 +4256,236 @@ var PILOTS = [
     skill: 2,
     points: 30,
     upgrades: [SYSTEM,CREW,CREW,TECH,TECH],
+    },
+    {
+        name: "Ahsoka Tano",
+        faction: REBEL,
+	pilotid:222,
+	unique:true,
+        unit: "TIE Fighter",
+        skill: 7,
+        upgrades: [ELITE],
+	points:17,
+	wave:["10"],
+	done:true,
+	init: function() {
+	    var self=this;
+	    this.wrap_before("begincombatphase",this,function() {
+		if (this.canusefocus()) {
+		    var p=this.selectnearbyally(1);
+		    p.push(this);
+		    this.selectunit(p,function(p,k) {
+			if (p[k]!=self) {
+			    self.removefocustoken();
+			    p[k].log("+1 free action [%0]",self.name);
+			    p[k].doaction(p[k].getactionlist(),"");
+			}
+		    },["select unit, self to cancel [%0]",self.name],false);
+		}
+	    });
+	}
+    },    
+    {
+        name: "Captain Rex",
+        faction: REBEL,
+	pilotid:223,
+	unique:true,
+	done:true,
+        unit: "TIE Fighter",
+        skill: 4,
+	wave:["10"],
+        upgrades: [ELITE],
+	points:14,
+	init: function() {
+	    this.wrap_after("endattack",this,function(c,h,t) {
+		c=new Condition(t,this,"Suppressive Fire");
+	    });
+	}
+    },  
+    { name:"Heff Tobber",
+      faction:REBEL,
+      pilotid:224,
+      unique:true,
+      unit:"U-wing",
+      skill:3,
+      upgrades:[SYSTEM,TORPEDO,CREW,CREW],
+      points:24,
+      done:true,
+      init:function() {
+	  this.wrap_after("collidedby",this,function(u) {
+	      this.doaction(this.getactionlist(),"");
+	  });
+      }
+    },
+    { name:"Bodhi Rook",
+      faction:REBEL,
+      unique:true,
+      pilotid:225,
+      unit:"U-wing",
+      skill:4,
+      done:true,
+      upgrades:[SYSTEM,TORPEDO,CREW,CREW],
+      points:25,
+      init: function() {
+	  var self=this;
+	  Unit.prototype.wrap_after("gettargetableunits",this,function(r,t) {
+	      if (self.isally(this)) {
+		  var p=[];
+		  for (var i in squadron) {
+		      var u=squadron[i];
+		      if (u.isally(self)) p=p.concat(Unit.prototype.gettargetableunits.vanilla.call(u,3));
+		  }
+		  return p;
+	      } 
+	      return t;
+	  });
+      }
+    },
+    { name:"'Duchess'",
+      faction:EMPIRE,
+      unique:true,
+      done:true,
+      pilotid:226,
+      unit:"TIE Striker",
+      skill:8,
+      upgrades:[ELITE],
+      points:23,
+      init: function() {
+	  this.facultativeailerons=true;
+      }
+    },
+    { name:"'Countdown'",
+      faction:EMPIRE,
+      unique:true,
+      pilotid:227,
+      unit:"TIE Striker",
+      skill:5,
+      upgrades:[],
+      done:true,
+      points:20,
+      init: function() {
+	    this.adddicemodifier(ATTACKCOMPARE_M,ADD_M,DEFENSE_M,this,{
+		req:function(m,n) { return this.stress==0&&n>0; }.bind(this),
+		f:function(m,n) {
+		    if (this.stress==0) {
+			this.log("cancel all dice results");
+			this.applydamage(1);
+			this.endattack(); /* Not the end of the attack, just no dice */
+			this.addstress();
+			return {m:0,n:0};
+		    } else return {m:m,n:n};
+		}.bind(this),str:"hit"});
+
+      }
+    },
+    { name:"'Pure Sabacc'",
+      faction:EMPIRE,
+      unique:true,
+      pilotid:228,
+      unit:"TIE Striker",
+      skill:6,
+      upgrades:[ELITE],
+      points:22,
+      done:true,
+      init: function() {
+	  this.wrap_after("getattackstrength",this,function(i,t,a) {
+	      if (this.criticals.length<=1) a=a+1;
+	      return a;
+	  });
+      }
+    },
+    { name:"Cassian Andor",
+      faction:REBEL,
+      pilotid:229,
+      unit:"U-wing",
+      skill:6,
+      unique:true,
+      done:true,
+      upgrades:[ELITE,SYSTEM,TORPEDO,CREW,CREW],
+      points:27,
+      init: function() {
+	  var self=this;
+	  this.wrap_after("beginactivationphase",this,function(l) {
+	      var p=this.selectnearbyally(2,function(s,t) {
+		  if (t.stress>0) return true; else return false; 
+	      });
+	      if (p.length>0) {
+		  this.doselection(function(n) {
+		      this.log("select unit for -1 stress");
+		      this.resolveactionselection(p,function(k) {
+			  p[k].removestresstoken();
+			  self.endnoaction(n);
+		      });
+		  }.bind(this));
+	      }
+	      return l;
+	  });
+      }
+    },
+    {name:"Kylo Ren",
+     faction:EMPIRE,
+     pilotid:230,
+     unique:true,
+     unit:"Upsilon-Class Shuttle",
+     skill:6,
+     done:true,
+     upgrades:[ELITE,SYSTEM,CREW,CREW,TECH,TECH],
+     points:34,
+     init: function() {
+	 this.firstroundhit=-1;
+	 this.wrap_after("resolveishit",this,function(t) {
+	     if (this.firstroundhit<round) {
+		 this.firstroundhit=round;
+		 c=new Condition(t,this,"I'll Show You The Dark Side");
+	     }
+	 });
+     }
+    },
+    {name:"Major Stridan",
+     faction:EMPIRE,
+     pilotid:231,
+     unique:true,
+     done:true,
+     unit:"Upsilon-Class Shuttle",
+     skill:4,
+     upgrades:[SYSTEM,CREW,CREW,TECH,TECH],
+     points:32,
+     init: function() {
+	 this.wrap_after("selectnearbyally",this,function(r,f,t) {
+	     if (typeof t=="undefined") { t=f; f=undefined; }
+	     if (r>1) return t;
+	     var t2 = Unit.prototype.selectnearbyally.call(this,3,f);
+	     return t2;
+	 });
+     }
+    },
+   {name:"Lieutenant Dormitz",
+     faction:EMPIRE,
+     pilotid:232,
+    unique:true,
+    done:true,
+     unit:"Upsilon-Class Shuttle",
+     skill:3,
+     upgrades:[SYSTEM,CREW,CREW,TECH,TECH],
+     points:31
+    },
+    {
+        name: "'Zeb' Orrelios",
+        faction: REBEL,
+	pilotid:233,
+	unique:true,
+	done:true,
+	ambiguous:true,
+	edition:"TIE Fighter",
+        unit: "TIE Fighter",
+        skill: 3,
+	wave:["10"],
+        upgrades: [],
+	points:13,
+	cancelhit:zeb_fct
     }
+ 
+
 
 
 

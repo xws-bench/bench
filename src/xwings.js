@@ -6,7 +6,7 @@ var subphase=0;
 var round=1;
 var skillturn=0;
 var tabskill;
-var VERSION="v0.10.3";
+var VERSION="v0.10.4";
 var LANG="en";
 var ENGAGED=false;
 var FILTER="none";
@@ -894,7 +894,7 @@ function win(destroyed) {
     note=note.replace(/ \+ /g,"*");
     note=note.replace(/ /g,"_");
     //console.log("note:"+encodeURI(note));
-    var url=encodeURI("https://ynot6517.github.io/bench/index.html?"+permalink(false));
+    /*var url=encodeURI("https://ynot6517.github.io/bench/index.html?"+permalink(false));
     $("#submission").contents().find('#entry_209965003').val(titl);
     $('#submission').contents().find('#entry_390767903').val(note);
     $('#submission').contents().find('#entry_245821581').val("no short url");
