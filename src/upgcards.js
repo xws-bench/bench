@@ -5530,8 +5530,8 @@ var UPGRADES= [
      type:TITLE,
      points:0,
      ship:"TIE Striker",
-     done:true,
-     init: function(sh) {
+     done:false,
+     /*init: function(sh) {
 	 var self=this;
 	 sh.adaptive=-1;
 	 
@@ -5591,7 +5591,7 @@ var UPGRADES= [
 	     }.bind(this)}],"",this.facultativeailerons);
 	    }
 	 });
-     }
+     }*/
     },
     {name:"Swarm Leader",
      unique:true,
