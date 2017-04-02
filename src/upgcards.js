@@ -5623,12 +5623,12 @@ var UPGRADES= [
      done:true,
      init: function(sh) {
 	 var self=this;
-	 sh.wrap_after("predefenseroll",this,function(w,a) {
+	 sh.wrap_before("defenseroll",this,function(w,a) {
 	     if (getattackdice()>getdefensedice()) {
 		 this.log("+1 defense roll [%0]",self.name);
 		 this.wrap_after("getagility",self,function(d) {
 		     return d+1;
-		 }).unwrapper("dodefenseroll");
+		 }).unwrapper("defenseroll");
 	     }
 	 });
      }
