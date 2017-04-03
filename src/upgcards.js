@@ -4082,7 +4082,7 @@ var UPGRADES= [
     {name:"Mist Hunter",
      type:TITLE,
      points:0,
-     addedaction:"Roll",
+     //addedaction:"Roll",
      done:true,
      ship:"G-1A Starfighter",
      unique:true,
@@ -4090,6 +4090,11 @@ var UPGRADES= [
      install: function(sh) {
 	 var j,tb;
 	 sh.installed=true;
+	    var aa="ROLL";
+	    sh["addedaction"+this.id]=sh.shipactionList.length;
+	    sh.shipactionList.push(aa);
+	    sh.showactionlist();
+
 	 // Search for TB
 	 for (tb=0; tb<UPGRADES.length; tb++) if (UPGRADES[tb].name=="Tractor Beam") break;
 	 if (tb==UPGRADES.length) return;
