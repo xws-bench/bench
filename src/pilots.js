@@ -4293,7 +4293,7 @@ var PILOTS = [
 	done:true,
         unit: "TIE Fighter",
         skill: 4,
-        upgrades: [ELITE],
+        upgrades: [],
 	points:14
 	/*init: function() {
 	    this.wrap_after("endattack",this,function(c,h,t) {
