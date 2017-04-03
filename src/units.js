@@ -756,6 +756,8 @@ Unit.prototype = {
 		&& this.islarge!=u.islarge) continue;
 	    if (typeof u.skillmin != "undefined" 
 		&& this.getskill()<u.skillmin) continue;
+	    if (typeof u.agilitymax != "undefined"
+		&& this.getagility()>=u.agilitymax) continue;
 	    if (typeof u.noupgrades != "undefined" 
 		&& this.upgradetype.indexOf(u.noupgrades)>-1) continue;
 	    if (typeof u.actionrequired != "undefined"
