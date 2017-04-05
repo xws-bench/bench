@@ -2901,14 +2901,16 @@ window.PILOTS = [
 	    done:true,
 	    init: function() {
 		this.wrap_after("getbombposition",this,function(lm,size,p) {
-		    for (var i=0; i<lm.length; i++)
-			p.push(this.getpathmatrix(this.m.clone(),lm[i]).translate(0,-size+20));
+		    this.log("positions:"+p.length);
+		    for (var i=0; i<lm.length; i++) {
+			p.push(this.getpathmatrix(this.m.clone().translate(0,20-size),lm[i]));
+		    }
 		    return p;
 		});
 		this.wrap_after("bombdropped",this,function() {
 		    if (this.candoroll()&&this.candoaction()) {
 			$("#activationdial").hide();
-			this.doaction([this.newaction(this.resolveroll,"ROLL")],"free %ROLL% action")
+			this.doaction([this.newaction(this.resolveroll,"ROLL")],"free %ROLL% action");
 		    }
 		});
 	    },
@@ -4803,7 +4805,6 @@ window.PILOTS = [
 	skill:0,
 	upgrades:[],
 	points:2,
-	done:true,
 	init:function() {
 	    this.wrap_before("begincombatphase",this,function() {
 		this.noattack=round;

@@ -10,8 +10,8 @@ const UPGRADE_TYPES={
 function AUXILIARY(i,m) { return this.getPrimarySectorString(i,m.clone().rotate(this.arcrotation,0,0));}
 function SUBAUXILIARY(i,j,m) { return this.getPrimarySubSectorString(i,j,m.clone().rotate(this.arcrotation,0,0)); }
 
-class Bomb{
-    constructor(sh,bdesc) {
+
+function Bomb(sh,bdesc) {
 	$.extend(this,bdesc);
 	sh.upgrades.push(this);
 	this.isactive=true;
@@ -20,29 +20,30 @@ class Bomb{
 	sh.bombs.push(this);
 	this.exploded=false;
 	//if (this.init != undefined) this.init(sh);
-    }
-    wrap_before(name,org,before,unwrap) { return wrap_before.call(this,name,org,before,unwrap); }
-    wrap_after(name,org,after,unwrap) { return wrap_after.call(this,name,org,after,unwrap); }
-    isWeapon() { return false; }
-    isBomb() { return true; }
-    canbedropped() { return this.isactive&&!this.unit.hasmoved&&this.unit.lastdrop!=round; }
-    desactivate() { this.isactive=false;this.unit.movelog("D-"+this.unit.upgrades.indexOf(this)); }
+};
+Bomb.prototype = { 
+   wrap_before:wrap_before,
+    wrap_after:wrap_after,
+    isWeapon() { return false; },
+    isBomb() { return true; },
+    canbedropped() { return this.isactive&&!this.unit.hasmoved&&this.unit.lastdrop!=round; },
+    desactivate() { this.isactive=false;this.unit.movelog("D-"+this.unit.upgrades.indexOf(this)); },
     getBall() {
 	var b=this.g.getBBox();
 	return {x:b.x+b.width/2,y:b.y+b.height/2,diam:Math.max(b.width/2,b.height/2)};
-    }
+    },
     actiondrop(n) {
 	this.unit.lastdrop=round;
 	$(".bombs").remove(); 
 	this.drop(this.unit.getbomblocation(),n);
 	//this.unit.showactivation();
-    }
+    },
     toString() {
 	this.tooltip = formatstring(getupgtxttranslation(this.name,this.type));
 	this.trname=translate(this.name).replace(/\'/g,"&#39;");
 	this.left=(this.unit.team==1);
 	return Mustache.render(TEMPLATES.bomb, this);
-    }
+    },
     getrangeallunits() { 
 	var range=[[],[],[],[],[]],i;
 	for (i in squadron) {
@@ -51,7 +52,7 @@ class Bomb{
 	    if (k>0) range[k].push({unit:i});
 	}
 	return range;
-    }
+    },
     getcollisions() {
 	var ob=this.getOutlineString();
 	var p=[];
@@ -68,7 +69,7 @@ class Bomb{
 
 	}
 	return p;
-    }
+    },
     getrange(sh) { 
 	var ro=this.getOutlineString(this.m).p;
 	var rsh = sh.getOutlinePoints(sh.m);
@@ -85,34 +86,34 @@ class Bomb{
 	if (min<=10000) return 1; 
 	if (min<=40000) return 2;
 	return 3;
-    }
+    },
     resolveactionmove(moves,cleanup) {
 	var i;
 	this.pos=[];
 	var ready=false;
 	var resolve=function(m,k,f) {
-	    for (i=0; i<moves.length; i++) this.pos[i].remove();
 	    this.m=m;
+	    for (i=0; i<moves.length; i++) this.pos[i].remove();
 	    f(this,k);
 	}.bind(this);
 	if (moves.length==1) {
 	    this.pos[0]=this.getOutline(moves[0]).attr({fill:this.unit.color,opacity:0.7});
 	    resolve(moves[0],0,cleanup);
 	} else {
-	    var fct=function(k) {
+	    for (i=0; i<moves.length; i++) {
+	    (function(k) {
+		this.pos[k]=this.getOutline(moves[k]).attr({fill:this.unit.color,opacity:0.7});
 		this.pos[k].hover(
 		    function() {this.pos[k].attr({stroke:this.unit.color,strokeWidth:"4px"});}.bind(this),
 		    function() {this.pos[k].attr({strokeWidth:"0"});}.bind(this));
 		
 		this.pos[k].click(
 		    function() { resolve(moves[k],k,cleanup); });
-	    };
-	    for (i=0; i<moves.length; i++) {
-		this.pos[i]=this.getOutline(moves[i]).attr({fill:this.unit.color,opacity:0.7});
-		fct.call(this,i);
+	    }.bind(this))(i);
+
 	    }
 	}
-    }
+    },
     drop(lm,n) {
 	var dropped=this;
 	if (this.ordnance) { 
@@ -125,7 +126,7 @@ class Bomb{
 	    //this.unit.log("endaction dropped "+n);
 	    if (typeof n!="undefined") this.unit.endnoaction(n,"DROP");
 	}.bind(dropped),false,true);
-    }
+    },
     display(x,y) {
 	if (x!==0||y!==0) this.m=this.m.clone().translate(x,y);
 	this.img1=s.image("png/"+this.img,-this.width/2,-this.height/2,this.width,this.height);
@@ -166,10 +167,10 @@ class Bomb{
 		this.detonate(p[k],true);
 	    }.bind(this));
 	}
-    }
+    },
     getOutline(m) {
 	return s.path(this.getOutlineString(m).s).appendTo(VIEWPORT);
-    }
+    },
     getOutlineString(m) {
 	var w=15;
 	if (typeof m=="undefined") m=this.m;
@@ -180,24 +181,23 @@ class Bomb{
 	this.op=[p1,p2,p3,p4];
 	var p=this.op;
 	return {s:"M "+p[0].x+" "+p[0].y+" L "+p[1].x+" "+p[1].y+" "+p[2].x+" "+p[2].y+" "+p[3].x+" "+p[3].y+" Z",p:p}; 
-    }
+    },
     explode_base() {
 	this.exploded=true;
 	this.unit.log("%0 explodes",this.name);
 	SOUNDS[this.snd].play();
 	this.g.remove();
 	BOMBS.splice(BOMBS.indexOf(this),1);
-    }
-    explode() { this.explode_base(); }
+    },
+    explode() { this.explode_base(); },
     detonate(t,immediate) {
 	OBSTACLES.splice(OBSTACLES.indexOf(this),1);
 	this.explode_base();
-    }
-    endround() {}
-    show() {}
+    },
+    endround() {},
+    show() {},
 }
-class Weapon{
-    constructor(sh,wdesc) {
+function Weapon(sh,wdesc) {
 	this.isprimary=false;
 	this.issecondary=true;
 	$.extend(this,wdesc);
@@ -207,45 +207,45 @@ class Weapon{
 	//log("Installing weapon "+this.name+" ["+this.type+"]");
 	this.isactive=true;
 	this.unit=sh;
-	this.wrap_before=wrap_before;
-	this.wrap_after=wrap_after;
+
 	sh.weapons.push(this);
-    }
+}
 
-    static Laser(u,type,fire) {
-	let t={
-	    type: type,
-	    name:"Laser",
-	    isactive:true,
-	    attack: fire,
-	    range: [1,3],
-	    isprimary: true,
-	    issecondary:false
-	};
-	switch(type) {
-	case "Bilaser":
-	case "Mobilelaser":
-	    t.auxiliary=AUXILIARY;
-	    t.subauxiliary=SUBAUXILIARY;
-	    break;
-	case "Laser180":
-	    t.auxiliary = function(i,m) { return this.getHalfRangeString(i,m); };
-	    t.subauxiliary = function(i,j,m)  { return this.getHalfSubRangeString(i,j,m); };
-	    break;
-	default: break;
-	}
-	return new Weapon(u,t);
-    }
-    wrap_before(name,org,before,unwrap) { return wrap_before.call(this,name,org,before,unwrap); }
-    wrap_after(name,org,after,unwrap) { return wrap_after.call(this,name,org,after,unwrap); }
+function Laser(u,type,fire) {
+    var t={
+	type: type,
+	name:"Laser",
+	isactive:true,
+	attack: fire,
+	range: [1,3],
+	isprimary: true,
+	issecondary:false
+    };
+    switch(type) {
+    case "Bilaser":
+    case "Mobilelaser":
+	t.auxiliary=AUXILIARY;
+	t.subauxiliary=SUBAUXILIARY;
+	break;
+    case "Laser180":
+	t.auxiliary = function(i,m) { return this.getHalfRangeString(i,m); };
+	t.subauxiliary = function(i,j,m)  { return this.getHalfSubRangeString(i,j,m); };
+	break;
+    default: break;
+    };
+    return new Weapon(u,t);
+}
 
-    isBomb() { return false; }
-    isWeapon() { return true; }
+Weapon.prototype={
+    wrap_before:wrap_before,
+    wrap_after:wrap_after,
+    isBomb() { return false; },
+    isWeapon() { return true; },
     desactivate() {
 	if (this.ordnance&&this.type.match(/Torpedo|Missile|Illicit/)) {
 	    this.ordnance=false;
 	} else { this.isactive=false; /*this.unit.movelog("D-"+this.unit.upgrades.indexOf(this)); this.unit.show();*/ }
-    }
+    },
     toString() {
 	this.tooltip = formatstring(getupgtxttranslation(this.name,this.type));
 	this.trname=translate(this.name).replace(/\'/g,"&#39;");
@@ -264,30 +264,30 @@ class Weapon{
 	this.uid = squadron.indexOf(this.unit);
 	this.rank=this.unit.upgrades.indexOf(this);
 	return Mustache.render(TEMPLATES.weapon, this);
-    }
-    prehit(t,c,h) {}
-    posthit(t,c,h) {}
+    },
+    prehit(t,c,h) {},
+    posthit(t,c,h) {},
     getrequirements() {
 	return this.requires;
-    }
+    },
     getattack() {
 	return this.attack;
-    }
+    },
     isTurret() {
 	return this.type==TURRET;
-    }
+    },
     getlowrange() {
 	return this.range[0];
-    }
+    },
     gethighrange() {
 	return this.range[1];
-    }
+    },
     isinrange(r) {
 	return (r>=this.getlowrange()&&r<=this.gethighrange());
-    }
-    modifydamagegiven(ch) { return ch; }
-    modifyattackroll(ch,n,d) { return ch; }
-    modifydamageassigned(ch,t) { return ch; }
+    },
+    modifydamagegiven(ch) { return ch; },
+    modifyattackroll(ch,n,d) { return ch; },
+    modifydamageassigned(ch,t) { return ch; },
     canfire(sh) {
 	if (typeof sh=="undefined") {
 	    return true;
@@ -303,7 +303,7 @@ class Weapon{
 	    return false;
 	}
 	return true;
-    }
+    },
     getrangeattackbonus(sh) {
 	if (this.isprimary) {
 	    var r=this.getrange(sh);
@@ -313,7 +313,7 @@ class Weapon{
 	    }
 	}
 	return 0;
-    }
+    },
     declareattack(sh) { 
 	if (typeof this.getrequirements()!="undefined") {
 	    var s="Target";
@@ -325,7 +325,7 @@ class Weapon{
 		this.unit.removefocustoken();
 	}
 	return true;
-    }
+    },
     getrangedefensebonus(sh) {
 	if (this.isprimary) {
 	    var r=this.getrange(sh);
@@ -335,23 +335,23 @@ class Weapon{
 	    }
 	}
 	return 0;
-    }
+    },
     getauxiliarysector(sh) {
 	var m=this.unit.m;
 	if (typeof this.auxiliary=="undefined") return 4;
 	return this.unit.getauxiliarysector(sh,m,this.subauxiliary,this.auxiliary);
-    }
+    },
     getprimarysector(sh) {
 	var m=this.unit.m;
 	return this.unit.getprimarysector(sh,m);
-    }
+    },
     getsector(sh) {
 	var m=this.unit.m;
 	var r=this.unit.getprimarysector(sh,m);
 	if (r<4) return r;
 	if (typeof this.auxiliary=="undefined") return 4;
 	return this.unit.getauxiliarysector(sh,m);
-    }
+    },
     getrange(sh) {
 	var i;
 	if (!this.canfire(sh)) return 0;
@@ -363,18 +363,18 @@ class Weapon{
 	var ghs=this.getsector(sh);
 	if (ghs>=this.getlowrange()&&ghs<=this.gethighrange()) return ghs;
 	return 0;
-    }
+    },
     endattack(c,h) {
 	if (this.type.match(/Torpedo|Missile/)) this.desactivate();
-    }
-    hasdoubleattack() { return false; }
+    },
+    hasdoubleattack() { return false; },
     hasenemiesinrange() {
 	for (var i in squadron) {
 	    var sh=squadron[i];
 	    if (this.unit.isenemy(sh)&&this.getrange(sh)>0) return true;
 	}
 	return false;
-    }
+    },
     getenemiesinrange(enemylist) {
 	var r=[];
 	if (typeof enemylist=="undefined") enemylist=squadron;
@@ -383,7 +383,7 @@ class Weapon{
 	    if (sh.isenemy(this.unit)&&this.getrange(sh)>0) r.push(sh);
 	}
 	return r;
-    }
+    },
     getrangeallunits() {
 	var i;
 	var r=[];
@@ -392,9 +392,9 @@ class Weapon{
 	    if ((this.unit!=sh)&&(this.getrange(sh)>0)) r.push(sh);
 	}
 	return r;
-    }
-    endround() {}
-    show() {}
+    },
+    endround() {},
+    show() {},
 }
 function Upgradefromid(sh,i) {
     var upg=UPGRADES[i];
@@ -408,8 +408,7 @@ function Upgradefromid(sh,i) {
     return new Upgrade(sh,i);
 }
 
-class Upgrade {
-    constructor(sh,i) {
+function Upgrade(sh,i) {
 	$.extend(this,UPGRADES[i]);
 	sh.upgrades.push(this);
 	this.isactive=true;
@@ -427,8 +426,9 @@ class Upgrade {
 	 */
 	//if (typeof this.init != "undefined") this.init(sh);
     }
-    wrap_before(name,org,before,unwrap) { return wrap_before.call(this,name,org,before,unwrap); }
-    wrap_after(name,org,after,unwrap) { return wrap_after.call(this,name,org,after,unwrap); }
+Upgrade.prototype={
+    wrap_before: wrap_before,
+    wrap_after: wrap_after,
     toString() {
 	this.tooltip = formatstring(getupgtxttranslation(this.name,this.type));
 	this.trname=translate(this.name).replace(/\'/g,"&#39;");
@@ -440,22 +440,22 @@ class Upgrade {
 	    this.hasswitch={uid:this.unit.id,uuid:j};
 	} else this.hasswitch=false;
 	return Mustache.render(TEMPLATES.upgrade, this);
-    }
-    isWeapon() { return false; }
-    isBomb() { return false; }
+    },
+    isWeapon() { return false; },
+    isBomb() { return false; },
     getlowrange() {
 	return this.range[0];
-    }
+    },
     gethighrange() {
 	return this.range[1];
-    }
-    endround() {}
+    },
+    endround() {},
     desactivate() {
 	if (this.ordnance&&this.type.match(/Torpedo|Missile|Illicit/)) {
 	    this.ordnance=false;
 	} else { this.isactive=false; this.unit.movelog("D-"+this.unit.upgrades.indexOf(this)); this.unit.show(); }
-    }
-    show() {}
+    },
+    show() {},
     install(sh) {
 	if (typeof this.addedaction!="undefined") {
 	    var aa=this.addedaction.toUpperCase();
@@ -501,7 +501,7 @@ class Upgrade {
 	    }
 	    sh.showupgradeadd();
 	}
-    }
+    },
     uninstall(sh) {
 	var i;
 	//sh.log("removing upgrade "+this.name);

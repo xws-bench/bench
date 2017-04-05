@@ -4,8 +4,10 @@ var mode=FREECOMBAT;
 function prepareforcombat(t,n) {
     $("#squad"+n).html(t);
     TEAMS[n].parseJuggler(t);
+    console.log(t);
     TEAMS[n].name="SQUAD."+TEAMS[n].toASCII();
-    TEAMS[n].toJSON();// Just for points
+    var js=TEAMS[n].toJSON();// Just for points
+    console.log(js);
     if (typeof localStorage[TEAMS[n].name]=="undefined") {
 	localStorage[TEAMS[n].name]=JSON.stringify({"pts":TEAMS[n].points,"faction":TEAMS[n].faction,"jug":t});
     }

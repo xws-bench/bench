@@ -341,7 +341,7 @@ function Unit(team,pilotid) {
     this.bombs=[];
     this.lastdrop=-1;
 
-    Weapon.Laser(this,u.weapon_type,u.fire);
+    Laser(this,u.weapon_type,u.fire);
 
     this.name=PILOTS[pilotid].name;
     this.pilotid=pilotid;
@@ -408,8 +408,8 @@ function Unit(team,pilotid) {
     if (typeof this.init!="undefined") this.init();
 }
 Unit.prototype = {
-    wrap_before:wrap_before,
-    wrap_after:wrap_after,
+    wrap_before:function(name,org,before,unwrap) { return wrap_before.call(this,name,org,before,unwrap); },
+    wrap_after:function(name,org,after,unwrap) { return wrap_after.call(this,name,org,after,unwrap); },
     tosquadron: function(s) {
 	var i,j;
 	var upgs=this.upg;
@@ -2952,7 +2952,7 @@ Unit.prototype = {
     getbombposition: function(lm,size) {
 	var p=[];
 	for (var i=0; i<lm.length; i++) {
-	    p.push(this.getpathmatrix(this.m.clone().rotate(180,0,0),lm[i]).translate(0,(this.islarge?40:20)-size))
+	    p.push(this.getpathmatrix(this.m.clone().rotate(180,0,0).translate(0,(this.islarge?40:20)-size),lm[i]));
 	}
 	return p;
     },
@@ -3327,7 +3327,7 @@ Unit.prototype = {
 	var mm=m.split();
 	var d=mm.scalex;
 	$(".phasepanel").css({left:x+d*(this.islarge?40:20),top:y}).show();
-	//$("#positiondial button").hide();
+	$("#positiondial button").hide();
     },
     timeformaneuver: function() {
 	return  (this==activeunit&&this.maneuver>-1&&!this.hasmoved&&this.getskill()==skillturn&&phase==ACTIVATION_PHASE&&subphase==ACTIVATION_PHASE);

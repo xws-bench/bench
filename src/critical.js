@@ -1,15 +1,15 @@
 /* jshint esversion: 6 */
 const V1="v1",V2="v2";
 var CURRENT_DECK=V2;
-class Critical {
-    constructor(sh,i) {
+function Critical(sh,i) {
 	this.lethal=false;
 	$.extend(this,CRITICAL_DECK[i]);
 	this.no=this.name+i;
 	sh.criticals.push(this);
 	this.isactive=false;
 	this.unit=sh;
-    }
+    };
+Critical.prototype = {
     toString() {
 	var a,b,str="";
 	var c="";
@@ -24,7 +24,7 @@ class Critical {
 	if (this.unit.team==1)  
 	    return "<tr "+c+">"+b+a+d+"</tr>"; 
 	else return "<tr "+c+">"+a+b+d+"</tr>";
-    }
+    },
     log() {
 	this.unit.log("Critical: %0",this.name);
 	var n="";
@@ -33,7 +33,7 @@ class Critical {
 	    log("<ul><li>"+n+"</li></ul>");
 	} else log("no translation:"+this.name);
     }
-}
+};
 var CRITICAL_DECK=[
     {
 	type:"ship",

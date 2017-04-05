@@ -501,8 +501,7 @@
       <div class="log" id="log"></div>
     </footer>
 
-<script src="js/all.min.js" async ></script>
-
+<script src="js/all.min.js" ></script>
 
 
     <script>
@@ -557,19 +556,22 @@
 	<div class="upts"><span>{{points}}</span>/<span></span></div>
 	<table class="upgs">
 	  <tr>
-	    <td class="upgavail">{{{getupgradeaddstring}}}</td>
+	    <td class="upgavail" colspan=4>{{{getupgradeaddstring}}}</td>
 	  </tr>
-	</table>
-	<div class="upgs">
-	  <table class="upg"></table>
-	  <table class="upglist"></table>
-	  <div class="statlist">
+	  <tbody class="upg"></tbody>
+	  <tbody class="upglist"></tbody>
+	  <tbody class="statlist">
+	    <tr><td colspan=4>
 	    <svg class="statisticsvg" viewbox="-375 -550 1000 1000"></svg>
-	  </div>
-	  <div class="movelist">
+	    </td></tr>
+	  </tbody>
+	  <tbody class="movelist">
+	    <tr><td colspan=4>
 	    <svg class="movesvg" viewbox="-175 -300 650 650"></svg>
-	  </div>
-	  <table class="shipdial">
+	    </td></tr>
+	  </tbody>
+	  <tbody class="shipdial">
+	    <tr><td colspan=4><table>
 	    {{#diallist}}
 	    <tr>
 	      {{#item}}<td>{{.}}</td>{{/item}}
@@ -579,7 +581,8 @@
 	    </tr>
 	    {{/diallist}}
 	  </table>
-	</div>
+	  </td></tr></tbody>
+	</table>
       </div>
     </script>
     
