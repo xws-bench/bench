@@ -247,6 +247,7 @@ var A = {
     SYSTEM:{key:"S",color:YELLOW},
     ILLICIT:{key:"I",color:YELLOW},
     LASER:{key:"%",color:RED},
+    REINFORCE:{key:"i",color:GREEN},
     TURRETLASER:{key:"$",color:RED},
     BILASER:{key:"<",color:RED},
     MOBILELASER:{key:"<",color:RED},
@@ -254,7 +255,7 @@ var A = {
     NOTHING:{key:"&nbsp;",color:WHITE},
     HIT:{key:"d",color:WHITE},
     SHIELD:{key:"v",color:YELLOW},
-    TECH:{key:"X",color:WHITE},
+    TECH:{key:"X",color:WHITE}
 };
 var AINDEX = ["ROLL","FOCUS","TARGET","EVADE","BOOST","STRESS","CLOAK","ISTARGETED","ASTRO","CANNON","CREW","MISSILE","TORPEDO","ELITE","TURRET","UPGRADE","CRITICAL","NOTHING"];
 
