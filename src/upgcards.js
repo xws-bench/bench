@@ -3116,12 +3116,13 @@ window.UPGRADES= [
 	    }
 	},
 	getOutlineString: function(m) {
-	    var N=60;
 	    var s="M ";
+	    var N=this.op0.length;
 	    this.op=[];
 	    if (typeof m=="undefined") m=this.m;
 	    for (var i=0; i<N; i++){ 
-		var p=transformPoint(m,this.op0[i]);
+		var p={x:this.op0[i].x,y:this.op0[i].y};
+		p=transformPoint(m,p);
 		this.op.push(p);
 		s+=p.x+" "+p.y+" ";
 		if (i===0) s+="L ";
@@ -3421,12 +3422,13 @@ window.UPGRADES= [
 	    }
 	},
 	getOutlineString: function(m) {
-	    var N=60;
+	    var N=this.op0.length;
 	    var s="M ";
 	    this.op=[];
 	    if (typeof m=="undefined") m=this.m;
 	    for (var i=0; i<N; i++){ 
-		var p=transformPoint(m,this.op0[i]);
+		var p={x:this.op0[i].x,y:this.op0[i].y};
+		p=transformPoint(m,p);
 		this.op.push(p);
 		s+=p.x+" "+p.y+" ";
 		if (i===0) s+="L ";
@@ -5534,7 +5536,7 @@ window.UPGRADES= [
 	      } 
 	      if (n==1) self.desactivate();
 	  };
-	  sh.wrap_after("declareattack",function(t,b) {
+	  sh.wrap_after("declareattack",this,function(w,t,b) {
 	      if (b) hasattacked=true;
 	      return b;
 	  });

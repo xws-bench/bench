@@ -217,7 +217,7 @@ class Rock {
 	for (var k=1; k<4; k++) 
 	    this.o[k].transform(this.dragMatrix).attr({display:"block"}).appendTo(VIEWPORT);
 	this.g.transform(this.dragMatrix);
-	this.g.appendTo(VIEWPORT);
+	//this.g.appendTo(VIEWPORT);
     };
     showhitsector() {};
     dragstop(a) { 
