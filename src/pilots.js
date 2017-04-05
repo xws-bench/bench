@@ -4820,7 +4820,7 @@ window.PILOTS = [
 			    l.push({org:self,action:function(n) {
 				self.addevadetoken();
 				this.endaction(n);
-			    },type:"EVADE",name:"Protect/2"});
+			    },type:"REINFORCE",name:"Protect"});
 			}
 			return l;
 		    });	
