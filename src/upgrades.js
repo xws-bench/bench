@@ -2,10 +2,11 @@
 /* 31/06/15: XW FAQ with Garven Dreis 
 TODO: desactivate  and unwrapping.
 Unit.prototype for old pilots and upgrades
+
 */
 
 const UPGRADE_TYPES={
-    Elite:"ept",Torpedo:TORPEDO,Astromech:"amd",Turret:"turret",Missile:"missile",Crew:"crew",Cannon:"cannon",Bomb:"bomb",Title:"title",Mod:"mod",System:"system",Illicit:"illicit",Salvaged:"salvaged",Tech:"tech"
+    Elite:"ept",Torpedo:"torpedo",Astromech:"amd",Turret:"turret",Missile:"missile",Crew:"crew",Cannon:"cannon",Bomb:"bomb",Title:"title",Mod:"mod",System:"system",Illicit:"illicit",Salvaged:"salvaged",Tech:"tech"
 };
 function AUXILIARY(i,m) { return this.getPrimarySectorString(i,m.clone().rotate(this.arcrotation,0,0));}
 function SUBAUXILIARY(i,j,m) { return this.getPrimarySubSectorString(i,j,m.clone().rotate(this.arcrotation,0,0)); }
