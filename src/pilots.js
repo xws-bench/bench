@@ -4803,20 +4803,27 @@ window.PILOTS = [
 	pilotid:242,
 	unit:"Corellian Star Shuttle",
 	skill:0,
+	done:true,
 	upgrades:[],
 	points:2,
 	init:function() {
 	    this.wrap_before("begincombatphase",this,function() {
 		this.noattack=round;
 	    });
+	    var self=this;
 	    for (var i in squadron) {
 		var u=squadron[i];
-		if (u.team==this.team) {
-		    /*
+		if (u.team==this.team&&this.getrange(u)==1) {
 		    u.wrap_after("getupgactionlist",this,function(l) {
-			l.push({org:this,action:
+			var p=this.selectnearbyally(1);
+			if (!self.dead&&p.indexOf(self)>-1) {
+			    l.push({org:self,action:function(n) {
+				self.addevadetoken();
+				this.endaction(n);
+			    },type:"EVADE",name:"Protect/2"});
+			}
 			return l;
-		    };*/
+		    });	
 		}
 	    }
 	}
