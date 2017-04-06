@@ -5,7 +5,7 @@
     <title>Squad Benchmark: combat trainer and squad builder for X-Wing Miniatures game</title>
     <meta name="description" content="Web app for X-Wing Miniatures game">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="manifest.json">
 
     <link rel="apple-touch-icon" href="squadronbenchmark-60x60.png"/>
@@ -35,7 +35,7 @@
 	<li onclick="document.location='#kb'" class="symbols">&#x100;</li>
 	<li class="symbols" onclick="window.location='#settings'">ü</li>
 	<li id="phase"></li>
-	<li class="nextphase" onclick="if (!$(this).hasClass('disabled')) nextphase()"><span class='np'></span> <span id="npimg">&gt;</span><img src="png/waiting.gif" id="npimgwait"></li>
+	<li class="nextphase" onclick="if (!$(this).hasClass('disabled')) nextphase()"><span class='np'></span> <span id="npimg">&gt;</span><img alt="" src="png/waiting.gif" id="npimgwait"></li>
       </ul>
     </nav>
 
@@ -143,7 +143,7 @@
       </section>
       
       <section id="titles">
-	<div id="titlecontent"></div>
+	<h6 id="titlecontent"></h6>
       </section>
 
     </article>
@@ -191,7 +191,7 @@
       <h1 class="m-new"></h1>
 
 
-      <div id="unitfilter" class="selector"  contextmenu="popup-menu">
+      <div id="unitfilter" class="selector" >
 	<label for="textfilter" class="symbols" style="font-size:larger;background:transparent">&#x102;</label><input style="width:calc(100% - 2em)" type="search" id="textfilter" class="textfilter" onchange="textfilter($(this).val())">
 	<div class="m-wave"></div>
 	<div><select id="wave" onchange="wavefilter($('#wave option:selected').val())">
@@ -239,7 +239,7 @@
 	<div class="m-maneuvers"></div>
 	<table class="dialfilter"></table>
 	<div class="cost"><span class="m-maxpts"></span><output for="costmax" id="costval">50</output>
-	  <input type="range" min="10" value="50" max="50" width="20px" id="costmax" oninput="$('#costval').val(value);"  onchange="$('#costval').val(value);" onmouseup="costfilter(value)">
+	  <input type="range" min="10" value="50" max="50" id="costmax" oninput="$('#costval').val(value);"  onchange="$('#costval').val(value);" onmouseup="costfilter(value)">
 	</div>
       </div>
       <div style="text-align:center;padding-top:5em;text-decoration:underline">
@@ -258,8 +258,8 @@
     <article id="selectphase" class="mainarticle">
       <ul class="buttonbar">
 	<li class="symbols" onclick="page_main();" >&#xFE;</li>
-	<li onclick="$('.modes').removeClass('selected'); $(this).addClass('selected'); scenariomode(FREECOMBAT);" class="modes selected">Free Combat</li>
-	<li onclick="$('.modes').removeClass('selected'); $(this).addClass('selected'); scenariomode(SCENARIO);" class="modes">Scenarios</li>
+	<li onclick="$('.modes').removeClass('selected'); $(this).addClass('selected'); scenariomode(FREECOMBAT);" class="modes selected m-combat"></li>
+	<li onclick="$('.modes').removeClass('selected'); $(this).addClass('selected'); scenariomode(SCENARIO);" class="modes m-scenario"></li>
 	<li onclick="window.location='#setup'" class="modes symbols">ü</li>
       </ul>
       <h1 class="m-simulation"></h1>
@@ -268,40 +268,40 @@
       <table class="squadlists">
 	<tr>
 	  <td>
-	  <div class="scenariocreator squadbg">	
-	    <p><b>Scenario Creation</b><br/>
-	      </p>
-	    Title:<input maxlength="30" size="30" type="text" onchange="SCENARIOTITLE=$(this).val();"><br/>
-	    Description of the objectives of the combat<br/>
-	    <textarea  class="squadtext pre" rows="2" maxlength="250"  placeholder="In a galaxy far, far away..." onchange="HEADER=$(this).val();"></textarea><br/>
-	  </div>
-	<div class="duelmode scenariomode">
-	    <span class="m-squad1"></span>
-	    <span><button onclick="createsquad('REBEL')" class="smallbutton m-create"></button></span>
-	    <span id="squad1points">0</span><span class="m-points">&nbsp;</span>
-	  <div class="squadbg">
-	    <div>1</div>
-	    <textarea onchange="currentteam=TEAMS[1];importsquad(1);" id="squad1" class="squadtext pre" rows="8"></textarea>
-	  </div>
-	</td>
-	<td>
-	  <div class="duelmode scenariocreator">
-	    <span class="m-squad2"></span>
-	    <span><button onclick="createsquad('EMPIRE')" class="smallbutton m-create"></button></span>
-	    <span id="squad2points">0</span><span class="m-points">&nbsp;</span>
-	    <div class="squadbg">
-	      <div class="right">2</div>
-	      <textarea  onchange="currentteam=TEAMS[2];importsquad(2);" id="squad2" class="squadtext pre" rows="8" ></textarea>
+	    <div class="scenariocreator squadbg">	
+	      <p><b>Scenario Creation</b></p><br/>
+	      Title:<input maxlength="30" size="30" type="text" onchange="SCENARIOTITLE=$(this).val();"><br/>
+	      Description of the objectives of the combat<br/>
+	      <textarea  class="squadtext pre" rows="2" maxlength="250"  placeholder="In a galaxy far, far away..." onchange="HEADER=$(this).val();"></textarea><br/>
 	    </div>
+	    <div class="duelmode scenariomode">
+	      <span class="m-squad1"></span>
+	      <span><button onclick="createsquad('REBEL')" class="smallbutton m-create"></button></span>
+	      <span id="squad1points">0</span><span class="m-points">&nbsp;</span>
+	      <div class="squadbg">
+		<div>1</div>
+		<textarea onchange="currentteam=TEAMS[1];importsquad(1);" id="squad1" class="squadtext pre" rows="8"></textarea>
+	      </div>
 	    </div>
-	  <div class="scenariomode">
-	    <div>
-	    <span>Scenario list</span>
-	    <span><button onclick="$('.modes').removeClass('selected'); $(this).addClass('selected'); scenariomode(SCENARIOCREATOR);" class="smallbutton m-create"></button></span>
+	  </td>
+	  <td>
+	    <div class="duelmode scenariocreator">
+	      <span class="m-squad2"></span>
+	      <span><button onclick="createsquad('EMPIRE')" class="smallbutton m-create"></button></span>
+	      <span id="squad2points">0</span><span class="m-points">&nbsp;</span>
+	      <div class="squadbg">
+		<div class="right">2</div>
+		<textarea  onchange="currentteam=TEAMS[2];importsquad(2);" id="squad2" class="squadtext pre" rows="8" ></textarea>
+	      </div>
 	    </div>
-	    <table id="scenariolist"></table>
-	  </div>
-	</td>
+	    <div class="scenariomode">
+	      <div>
+		<span>Scenario list</span>
+		<span><button onclick="$('.modes').removeClass('selected'); $(this).addClass('selected'); scenariomode(SCENARIOCREATOR);" class="smallbutton m-create"></button></span>
+	      </div>
+	      <table id="scenariolist"></table>
+	    </div>
+	  </td>
 	</tr>
 	<tr>
 	  <td colspan=2>	    
@@ -320,7 +320,7 @@
       <div id="squadstats">
 	<label for="squadfilter" class="symbols" style="font-size:larger;background:transparent">&#x102;</label>
 	<input type="text" id="squadfilter" onchange="console.log('filtering with '+$(this).val()); SQUADLIST.filter($(this).val())">
-	<button onclick="$('.lists').removeClass('selected'); $(this).addClass('selected');SQUADLIST.latest()" class="lists smallbutton"><span style="font-size:larger;color:orange" class="symbols">ÿ</span>Latest</button>
+	<button onclick="$('.lists').removeClass('selected'); $(this).addClass('selected');SQUADLIST.latest()" class="lists smallbutton m-latest"><span style="font-size:larger;color:orange" class="symbols">ÿ</span></button>
 	<button class="lists Mybuilds selected smallbutton" onclick="$('.lists').removeClass('selected'); $(this).addClass('selected');SQUADLIST.user()"></button>
       </div>
 	<table id="squadlist" style="height:100%" >
@@ -406,14 +406,14 @@
 
     <section id="export" class="modalDialog">
       <div>
-	<h2><span class="modaltitle">Export squad</span><a href="#" title="Close" class="close">&#10060;</a></h2>
+	<h2><span class="modaltitle m-export"></span><a href="#" title="Close" class="close">&#10060;</a></h2>
 	<div>
-	  <p>Link to copy/paste</p>
+	  <p class="m-linkformat"></p>
 	  <textarea id="linklist"></textarea>
 	  <br/>
-	  <p>XWS Json Format</p>
+	  <p class="m-xwsformat"></p>
 	  <textarea id="xwsjsonlist"></textarea>
-	  <p>Plain List Format</p>
+	  <p class="m-plainformat"></p>
 	  <textarea id="jugglerlist"></textarea>
 
 	</div>
@@ -484,7 +484,7 @@
 
     <article class="printable">
       <div style="float:right">
-	<img style="width:5em;" src="logo.png">
+	<img alt="" style="width:5em;" src="logo.png">
 	<table  id="printinfo" style="transform:rotate(90deg);position:fixed;right:-8em;top:20em;width:20em">
 	  <tr><td>Name:</td><td>_______________</td><td>Faction:</td><td id="factionname"></td></tr>
 	  <tr><td>Event:</td><td>_______________</td><td>Total points:</td><td id="pointsname"></td></tr>
@@ -492,7 +492,7 @@
       </div>
       <div id="printunits">
       </div>
-      <div style="position:absolute;bottom:0">Visit Squadron Benchmark - http://xws-bench.github.io/bench &nbsp;<img src="css/qr_code.jpg" style="width:4em"></div>
+      <div style="position:absolute;bottom:0">Visit Squadron Benchmark - http://xws-bench.github.io/bench &nbsp;<img alt="" src="css/qr_code.jpg" style="width:4em"></div>
     </article>
 
     <footer draggable="true">
