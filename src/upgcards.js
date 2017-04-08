@@ -5079,8 +5079,8 @@ var UPGRADES= [
      type:ASTROMECH,
      points:3,
      unique:true,
-     done:true,
-     init: function(sh) {
+     done:false
+     /*init: function(sh) {
 	 var self=this;
 	 sh.wrap_after("gettargetableunits",this,function(n,l) {
 	     return this.selectnearbyunits(n);
@@ -5114,7 +5114,7 @@ var UPGRADES= [
 		 return m;
 	     },str:"blank"});
 
-     }
+     }*/
     },
     {name:"Pattern Analyzer",
      type:TECH,
