@@ -55,6 +55,22 @@ var REPLAY="";
 var PERMALINK="";
 /*
 
+<script src="src/condition.js"></script>
+<script src="src/critical.js"></script>
+<script src="src/obstacles.js"></script>
+<script src="src/units.js"></script>
+<script src="src/iaunits.js"></script>
+<script src="src/metaunits.js"></script>
+<script src="src/pilots.js"></script>
+<script src="src/proba.js"></script>
+<script src="src/replay.js"></script>
+<script src="src/team.js"></script>
+<script src="src/upgrades.js"></script>
+<script src="src/upgcards.js"></script>
+<script src="src/xwings.js"></script>
+<script src="src/page_combat.js"></script>
+<script src="src/page_create.js"></script>
+<script src="src/page_manage.js"></script>
 
 	<span style="float:left;width:30%;padding-right:1em;">
 	<h2 class="squadbg"><span>!</span> Squad Building</h2>
@@ -512,7 +528,7 @@ function displaydefensetokens(u,f) {
 	//$("#dtokens td").click(function() { displaydefensetokens(u,f); });
 	$("#dtokens").append($("<button>").addClass("m-done").click(function() {
 	    displaydefensetokens2(u,f);
-	}))
+	}));
     } else displaydefensetokens2(u,f);
 }
 function displaydefensetokens2(u,f) {

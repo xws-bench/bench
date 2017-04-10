@@ -650,7 +650,7 @@ window.PILOTS = [
 		if (this.candoboost()) 
 		    p.push(this.newaction(this.resolveboost,"BOOST"));
 		if (this.candoroll()) 
-		    p.push(this.newaction(this.resolveroll,"ROLL"))
+		    p.push(this.newaction(this.resolveroll,"ROLL"));
 		this.doaction(p,"free %BOOST% or %ROLL% action");
 	    });
 	},
@@ -4148,24 +4148,24 @@ window.PILOTS = [
 	points:28,
 	init: function() {
 	    var self=this;
-	  Unit.prototype.wrap_after("canusetarget",self,function(sh,r) {
-	      if (self!=this&&self.isally(this)) {
-		  if (self.getrange(this)<=2
-		  &&self.targeting.indexOf(sh)>-1) {
-		  return true;/* TODO incorrect */
-		  }
-	      }
-	      return r;
-	  });
-	  Unit.prototype.wrap_before("removetarget",self,function(t) {
-	      if (self!=this&&self.isally(this)) {
-		  if (self.getrange(this)<=2
-		      &&this.targeting.indexOf(t)==-1
-		      &&self.targeting.indexOf(t)>-1) {
-		      self.removetarget(t);
-		  }
-	      }
-	  });
+	    Unit.prototype.wrap_after("declareattack",self,function(w,target,b) {
+		if (b&&self!=this&&self.isally(this)) {
+		    this.wrap_after("canusetarget",self,function(sh,r) {
+			if (self.getrange(this)<=2&&self.targeting.indexOf(sh)>-1) {
+			    return true;
+			}
+			return r;
+		    }).unwrap("cleanupattack");
+		    this.wrap_before("removetarget",self,function(t) {
+			if (self.getrange(this)<=2
+			    &&this.targeting.indexOf(t)==-1
+			    &&self.targeting.indexOf(t)>-1) {
+			    self.removetarget(t);
+			}
+		    }).unwrap("cleanupattack");
+		}
+		return b;
+	    });
 	}
     },
     {
@@ -4382,7 +4382,7 @@ window.PILOTS = [
         unit: "TIE Fighter",
         skill: 4,
 	wave:["10"],
-        upgrades: [ELITE],
+        upgrades: [],
 	points:14,
 	init: function() {
 	    this.wrap_after("endattack",this,function(c,h,t) {

@@ -39,7 +39,7 @@ Squadlist.prototype = {
 	if (typeof localStorage[name]=="undefined"||fill==true) {
 	    this.rows[this.nrows]=jug;
 	    TEAMS[0].parseJuggler(jug,false);//true);
-	    var jjug = TEAMS[0].toJuggler(false/*true*/,true);
+	    var jjug = TEAMS[0].toJuggler(true,true);
 	    $(this.id +" tbody").append(
 		Mustache.render(TEMPLATES["row-manage"],{
 		    nrows:this.nrows,
