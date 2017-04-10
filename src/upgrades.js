@@ -23,8 +23,8 @@ function Bomb(sh,bdesc) {
 	//if (this.init != undefined) this.init(sh);
 };
 Bomb.prototype = { 
-   wrap_before:wrap_before,
-    wrap_after:wrap_after,
+   wrap_before:Unit.prototype.wrap_before,
+    wrap_after:Unit.prototype.wrap_after,
     isWeapon() { return false; },
     isBomb() { return true; },
     canbedropped() { return this.isactive&&!this.unit.hasmoved&&this.unit.lastdrop!=round; },
@@ -238,8 +238,8 @@ function Laser(u,type,fire) {
 }
 
 Weapon.prototype={
-    wrap_before:wrap_before,
-    wrap_after:wrap_after,
+    wrap_before:Unit.prototype.wrap_before,
+    wrap_after:Unit.prototype.wrap_after,
     isBomb() { return false; },
     isWeapon() { return true; },
     desactivate() {
@@ -416,8 +416,8 @@ function Upgrade(sh,i) {
 	this.unit=sh;
 	this.wrapping=[];
 	this.ordnance=false;
-	this.wrap_after=wrap_after;
-	this.wrap_before=wrap_before;
+	this.wrap_after=Unit.prototype.wrap_after;
+	this.wrap_before=Unit.prototype.wrap_before;
 	/*
 	 var addedaction=this.addedaction;
 	 if (typeof addedaction!="undefined") {
@@ -428,8 +428,8 @@ function Upgrade(sh,i) {
 	//if (typeof this.init != "undefined") this.init(sh);
     }
 Upgrade.prototype={
-    wrap_before: wrap_before,
-    wrap_after: wrap_after,
+    wrap_before: Unit.prototype.wrap_before,
+    wrap_after: Unit.prototype.wrap_after,
     toString() {
 	this.tooltip = formatstring(getupgtxttranslation(this.name,this.type));
 	this.trname=translate(this.name).replace(/\'/g,"&#39;");

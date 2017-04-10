@@ -1413,7 +1413,7 @@ window.UPGRADES= [
 	},
         points: 2,
         attack: 3,
-        range: [2,3],
+        range: [2,3]
     },
     { /* TODO: Does not spend the target roll */
         name: "R7 Astromech",
@@ -1425,7 +1425,7 @@ window.UPGRADES= [
 		dice:["critical","hit","focus"],
 		n:function() { return 9; },
 		req: function() { return this.targeting.indexOf(activeunit)>-1; }.bind(sh),
-		mustreroll:true,
+		mustreroll:true
 	    });
 	}
     },
@@ -5697,9 +5697,10 @@ window.UPGRADES= [
 	     var T = ["F1","BR1","BL1"];
 	     var p=this.moves[0];
 	     if (!this.facultativeailerons) this.moves=[];
-	     this.moves=this.moves.concat([this.getpathmatrix(p,T[0]),
-					   this.getpathmatrix(p,T[1]),
-					   this.getpathmatrix(p,T[2])]);
+	     if (this.stress==0) 
+		 this.moves=this.moves.concat([this.getpathmatrix(p,T[0]),
+					       this.getpathmatrix(p,T[1]),
+					       this.getpathmatrix(p,T[2])]);
 	 });
      
 	 sh.wrap_before("beginactivation",this,function() {
@@ -5713,7 +5714,7 @@ window.UPGRADES= [
 		     q.push(i);
 		 }
 	     
-	     if (this.adaptive<round) {
+	     if (this.adaptive<round&&this.stress==0) {
 		 this.adaptive=round;
 	     this.donoaction([{org:self,type:"TITLE",name:self.name,action:function(n) {
 		 this.wrap_after("candoendmaneuveraction",this,function() {
@@ -5778,13 +5779,12 @@ window.UPGRADES= [
      done:true,
      init: function(sh) {
 	 var self=this;
-	 sh.wrap_after("predefenseroll",this,function(w,a) {
-	     if (getattackdice()>getdefensedice()) {
+	 sh.wrap_after("getdefensestrength",this,function(w,t,dd) {
+	     if (getattackdice()>dd&&ENGAGED) {
 		 this.log("+1 defense roll [%0]",self.name);
-		 this.wrap_after("getagility",self,function(d) {
-		     return d+1;
-		 }).unwrapper("dodefenseroll");
+		 dd=dd+1;
 	     }
+	     return dd;
 	 });
      }
     },

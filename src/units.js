@@ -2457,7 +2457,6 @@ Unit.prototype = {
 	displaydefenseroll(dr,dd);
 	displaydefensetokens(this,function() {
 	    this.resolvedamage();
-	    console.log("resolvedamage done");
 	    this.endnoaction(n,"in combat");
 	}.bind(squadron[me]));
     },
