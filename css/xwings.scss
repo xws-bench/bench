@@ -49,7 +49,7 @@ $namecolor:rgba(200,200,200,0.3);
     #printinfo {
 	    display:block;
     }
-    body {
+    /*body {
 	-webkit-print-color-adjust: exact;
 	printer-friendly-colors: auto;
 	printer-color-adjust: auto;
@@ -57,7 +57,7 @@ $namecolor:rgba(200,200,200,0.3);
 	color-adjust: exact;
 	conserve-ink: auto ;
 	expensive-colors: exact;
-    }
+    }*/
 }
 @media screen {
     .printable {
@@ -834,7 +834,7 @@ color:red
 }
 .close {
 position:absolute;
-right:0;
+right:0.5ex;
 text-decoration:none;
 cursor:pointer;
 }
