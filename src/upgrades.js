@@ -416,8 +416,6 @@ function Upgrade(sh,i) {
 	this.unit=sh;
 	this.wrapping=[];
 	this.ordnance=false;
-	this.wrap_after=Unit.prototype.wrap_after;
-	this.wrap_before=Unit.prototype.wrap_before;
 	/*
 	 var addedaction=this.addedaction;
 	 if (typeof addedaction!="undefined") {
