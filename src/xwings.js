@@ -810,7 +810,7 @@ function enablenextphase() {
 }
 
 function win(destroyed) {
-    log("Team %0 was destroyed!",destroyed);
+    log("Squad "+destroyed+" is destroyed!");
     movelog("W");
     var title="m-draw";
     var i;
@@ -1154,6 +1154,9 @@ function nextphase() {
 	    SCENARIOLIST.addrow(SCENARIOTITLE,HEADER,WINCOND,permalink(true));
 	    break;
 	}
+	var ending=true;
+	for (var i in squadron) if  (squadron[i].areactionspending()) ending=false;
+	if (ending==false) return;
 	if ($("#player1 option:checked").val()=="human") 
 	    TEAMS[1].isia=false; else TEAMS[1].isia=true;
 	if ($("#player2 option:checked").val()=="human") 
@@ -1411,11 +1414,8 @@ function setphase(cannotreplay) {
 	$("#positiondial").show();
 	$(".permalink").show();
 	$("#savebtn").hide();
+	for (i in squadron) squadron[i].beginsetupphase();
 	if (cannotreplay!=true) startreplayall();
-	else for (i in squadron) {
-	    /* TODO: bug to correct */
-	    squadron[i].beginsetupphase();
-	}
 	break;
     case PLANNING_PHASE: 
 	active=0;

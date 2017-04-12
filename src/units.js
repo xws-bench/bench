@@ -2161,6 +2161,7 @@ Unit.prototype = {
     },
     selectnearbyunits: function(n,f) {
 	var p=[];
+	if (typeof f=="undefined") f=function() { return true; };
 	for (var i in squadron) {
 	    if (f(this,squadron[i])&&(this.getrange(squadron[i])<=n)) p.push(squadron[i]);
 	}
@@ -3135,8 +3136,10 @@ Unit.prototype = {
     endcombatphase:function() { $(".fireline").remove(); },
     endphase: function() { },
     beginsetupphase: function() {
+	return this.newlock();
     },
     endsetupphase: function() {
+	//this.actionbarrier();
     },
     beginplanningphase: function() {
 	this.actionsdone=[];
