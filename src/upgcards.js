@@ -4975,7 +4975,7 @@ window.UPGRADES= [
       action: function(n) {
 	  var self=this.unit;
 	  var p=self.selectnearbyally(2);
-	  p=p.push(self);
+	  p.push(self);
 	  var e=self.selectnearbyenemy(3,function(s,t) {
 	      return s.isinfiringarc(t);
 	  });
@@ -5398,7 +5398,7 @@ window.UPGRADES= [
       init: function(sh) {
 	  var self=this;
 	  sh.wrap_after("endsetupphase",this,function() {
-	      var p=this.selectnearbyunit(2);
+	      var p=this.selectnearbyally(2);
 	      if (!self.isactive) return;
 	      for (var i in p) {
 		  var u=p[i];
