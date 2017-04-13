@@ -2134,6 +2134,7 @@ window.UPGRADES= [
     },
     { name:"Tractor Beam",
       type:CANNON,
+      firesnd:"slave_fire",
       points:1,
       attack:3,
       done:true,
