@@ -4213,7 +4213,7 @@ window.UPGRADES= [
 		 break; 
 	     }
 	 }
-     },
+     }
     },
 { /* not used anymore */
 	name:"Adaptability(+1)",
