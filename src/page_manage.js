@@ -53,10 +53,12 @@ Squadlist.prototype = {
 	}
     },
     removerow:function(t) {
-	var row = this.table.row(t.parents("tr"));
-	var data = row.data()[4];
-	delete localStorage[data];
-	row.remove().draw(false);
+	var u=this.rows[t];
+	TEAMS[0].parseJuggler(u,false);
+	var name="SQUAD."+TEAMS[0].toASCII();
+	$("#r"+t).remove();
+	delete this.rows[t];
+	if (typeof localStorage[name]!="undefined") delete localStorage[name];
     },
     createfromrow:function(t) {
 	var data = this.rows[t];
@@ -80,10 +82,7 @@ Squadlist.prototype = {
 	this.log={};
 	for (i=0; i< TOP_squads.length; i++) {
 	    TEAMS[0].parseJuggler(TOP_squads[i],false); 
-	    if (LANG!="en")
-		this.addrow(0,i,TEAMS[0].points,TEAMS[0].faction,TEAMS[0].toJuggler(true),true); 
-	    else
-		this.addrow(0,i,TEAMS[0].points,TEAMS[0].faction,TEAMS[0].toJuggler(false),true);
+	    this.addrow(0,i,TEAMS[0].points,TEAMS[0].faction,TEAMS[0].toJuggler(false),true); 
 	}
     },
     user: function() {
@@ -94,18 +93,11 @@ Squadlist.prototype = {
 	this.log={};
 	for (i in localStorage) {
 	    if (typeof localStorage[i]=="string"&&i.match(/SQUAD.*/)) {
-		//delete localStorage[i];
-		
 		var l=$.parseJSON(localStorage[i]);
 		if (typeof l.jug=="undefined"||typeof l.pts=="undefined"||typeof l.faction=="undefined")
 		    delete localStorage[i];
 		else {
-		    if (LANG!="en") { 
-			TEAMS[0].parseJuggler(l.jug,false); 
-			this.addrow(0,i,l.pts,l.faction,TEAMS[0].toJuggler(true),true); 
-		    } else {
-			this.addrow(0,i,l.pts,l.faction,l.jug,true);
-		    }
+		    this.addrow(0,i,l.pts,l.faction,l.jug,true); 
 		}
 	    }
 	}
@@ -135,7 +127,7 @@ Squadlist.prototype = {
 			    TEAMS[0].toJSON();
 			    var key=TEAMS[0].toKey();
 			    if (this.allresults[key]!=true) {
-				var jug=TEAMS[0].toJuggler(true);
+				var jug=TEAMS[0].toJuggler(false);
 				list.push({points:TEAMS[0].points,faction:TEAMS[0].faction,jug:jug});
 				this.addrow(0,"COMPETITION"+key,TEAMS[0].points,TEAMS[0].faction,jug,false,event); 
 				this.allresults[key]=true;
@@ -172,6 +164,7 @@ Squadlist.prototype = {
 			if (typeof localStorage["_TOURNAMENT"+latest]=="undefined") {
 			    this.addtournamentlists(latest);
 			} else {
+			    
 			    var tt=$.parseJSON(localStorage["_TOURNAMENT"+latest]);
 			    for (var j in tt.list) {
 				var l=tt.list[j];

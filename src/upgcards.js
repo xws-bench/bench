@@ -5000,9 +5000,11 @@ window.UPGRADES= [
       unique:true,
       init: function(sh) {
 	  var self=this;
-	  sh.unkar=-1;
+	  sh.unkar=-1;/* one maneuver per round */
 	  sh.wrap_after("getcollidingunits",this,function(m,c) {
-	      if (c.length>0&&this.unkar<round) {
+	      var p=[];
+	      for (var i=0; i<c.length; i++) if (this.isenemy(c[i])) p.push(c[i]);
+	      if (p.length>0&&this.unkar<round) {
 		  this.unkar=round;
 		  this.donoaction([{org:self,type:"CREW",name:self.name,action:function(n) {
 		      self.unit.log("+1 %HIT%, +1 free action [%0]",self.name);

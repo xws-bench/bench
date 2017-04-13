@@ -1118,7 +1118,7 @@ Unit.prototype = {
     guessmove: function(t) {
 	var resolve = function(k) {
 	    if (k==t) console.log(">> guess correctly!");
-	}
+	};
 	var gd=t.getdial();
 	for (var i in gd) {
 	    (function(k) {

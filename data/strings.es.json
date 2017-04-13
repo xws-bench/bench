@@ -549,7 +549,7 @@
 	"m-scum":"Escoria y Villanos",
 	"Prebuilt":"Prebuilt",
 	"Mybuilds":"My builds",
-	"m-notimplemented":"Not implemented yet.",
+	"m-notimplemented":"Aun no implementado.",
 	"m-none":"none",
 	"m-new":"Building",
 	"m-upgrades":"Upgrades",
@@ -560,8 +560,10 @@
 	"m-wave":"Waves",
 	"search":"Search",
 	"m-maxpts":"Max Pts:",
-	"m-maneuvers":"Maneuvers"
-    },
+	"m-maneuvers":"Maniobras",
+	"m-latest":"Torneos",
+	"m-combat":"Batalla Libre",
+	"m-scenario":"Guiones"    },
     "ui":{
 	"selects":"Select a squad",
 	"selectu":"Select unit",
@@ -584,12 +586,6 @@
 "Cumulated damage":"Cumulated damage",
 "No more firing units, ready to end phase.":"No more firing units, ready to end phase.",
 "All units have planned a maneuver, ready to end phase":"All units have planned a maneuver, ready to end phase",
-"All units have been activated, ready to end phase":"All units have been activated, ready to end phase",
-"Search":"Search:",
-"Display _MENU_ records per page":"Display _MENU_ records per page",
-"Nothing found - sorry":"No records available",
-"Showing page _PAGE_ of _PAGES_":"Showing page _PAGE_ of _PAGES_",
-"No records available":"No records available",
-"(filtered from _MAX_ total records)":"(filtered from _MAX_ total records)"
+"All units have been activated, ready to end phase":"All units have been activated, ready to end phase"
     }
 }
