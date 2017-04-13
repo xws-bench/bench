@@ -5313,7 +5313,7 @@ window.UPGRADES= [
 	 }.bind(this));
      }
      
-    },/*TODO: bug to correct */
+    },
     {name:"Operations Specialist",
      type:CREW,
      points:3,
@@ -5325,9 +5325,8 @@ window.UPGRADES= [
 	     if (self.isactive&&this.isally(self.unit)&&this.getrange(self.unit)<=2&&c+h===0) {
 		 var p=this.selectnearbyally(3);
 		 if (p.length>0) {
-		     console.log(self.name+" "+this.name);
 		     this.doselection(function(n) {
-			 this.resolveactionselect(p,function(k) {
+			 this.resolveactionselection(p,function(k) {
 			     p[k].addfocustoken();
 			     this.endnoaction(n,"OP");
 			 }.bind(this));
@@ -5354,7 +5353,7 @@ window.UPGRADES= [
 		  });
 		  if (q.length>0) {
 		      p[0].doselection(function(n) {
-			  this.resolveactionselect(p,function(k) {
+			  this.resolveactionselection(p,function(k) {
 			      p[k].addstress();
 			      p[0].endnoaction(n,TITLE);
 			  });
@@ -5463,7 +5462,7 @@ window.UPGRADES= [
 	      var p = this.selectnearbyenemy(2);
 	      if (p>0) 
 	      this.doselection(function(n) {
-		  this.resolveactionselect(p,function(k) {
+		  this.resolveactionselection(p,function(k) {
 		      this.guessmove(p[k].maneuver);
 		  }.bind(this));
 	      }.bind(this));
