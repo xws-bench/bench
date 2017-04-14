@@ -5312,7 +5312,7 @@ window.UPGRADES= [
      action: function(n) {
 	 var self=this.unit;
 	 var p=self.selectnearbyenemy(3);
-	 this.resolveactionselect(p,function(k) {
+	 this.resolveactionselection(p,function(k) {
 	     var c=new Condition(p[k],self,"I'll Show You The Dark Side");
 	 }.bind(this));
      }
