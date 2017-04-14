@@ -2745,6 +2745,7 @@ Unit.prototype = {
 			return;
 		    }
 		    this.log("+1 attack [%0]",org.name);
+		    this.select();
 		    if (typeof effect=="function") 
 			this.wrap_before("resolveattack",this,function() {
 			    effect.call(this);
