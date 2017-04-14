@@ -1531,6 +1531,7 @@ window.UPGRADES= [
 			this.endnoaction(n,"ASTROMECH");
 		    }.bind(this)}],"",true);
 		}
+		return b;
 	    });
 	},
         unique: true,
