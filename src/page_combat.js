@@ -5,7 +5,7 @@ function prepareforcombat(t,n) {
     TEAMS[n].parseJuggler(t,true);
     $("#squad"+n).html(TEAMS[n].toJuggler(true));
     TEAMS[n].name="SQUAD."+TEAMS[n].toASCII();
-    var js=TEAMS[n].toJSON();// Just for points
+    TEAMS[n].toJSON();// Just for points
     
     if (typeof localStorage[TEAMS[n].name]=="undefined") {
 	localStorage[TEAMS[n].name]=JSON.stringify({"pts":TEAMS[n].points,"faction":TEAMS[n].faction,"jug":t});
@@ -45,7 +45,6 @@ function Scenariolist(id) {
     Mustache.parse(TEMPLATES["scenario-header-manage"]);  
     
     $(id).html(Mustache.render(TEMPLATES["scenario-header-manage"],{}));
-    var self=this;
 
     $(id+" tbody").on( 'click', 'tr', function () {
         $(id+" .selected").removeClass('selected');

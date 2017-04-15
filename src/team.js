@@ -1,5 +1,10 @@
 var allunits=[];
-
+var Unit = window.Unit || {};
+var Upgrade = window.Upgrade || {};
+var IAUnit = window.IAUnit || {};
+var Snap = window.Snap || {};
+var PILOTS = window.PILOTS || {};
+var UPGRADES = window.UPGRADES || {};
 function Team(team) {
     this.team=team;
     this.isdead=false;
@@ -8,7 +13,7 @@ function Team(team) {
     this.units=[];
     this.conditions={};
     this.captain=null;
-    this.faction="REBEL";
+    this.faction=Unit.REBEL;
     this.allhits=this.allcrits=this.allevade=this.allred=this.allgreen=0;
 }
 Team.prototype = {
@@ -37,7 +42,7 @@ Team.prototype = {
 	$(".listunits .generic").remove();
 	this.faction=faction;
 	$("#"+faction+"select").prop("checked",true);
-	this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;	
+	this.color=(this.faction==Unit.REBEL)?RED:(this.faction==Unit.EMPIRE)?GREEN:YELLOW;	
     },
     changefaction: function(faction,force) {
 	$("#rocks").hide();
@@ -164,12 +169,11 @@ Team.prototype = {
     },
     tosquadron:function(s) {
 	var team=this.team;
-	var sortable = [];
 	var i,j;
 	var sortable = this.sortedgenerics();
 	var team1=0;
 	var id=0;
-	for (var i in generics) 
+	for (i in generics) 
 	    if (generics[i].team==1) team1++;
 	this.captain=null;
 	//log("found team1:"+team1);
@@ -254,7 +258,7 @@ Team.prototype = {
 	
 	$("#team"+team).empty();
 	$("#importexport"+team).remove();
-	sq=this.tosquadron(s);
+	var sq=this.tosquadron(s);
 	for (i=0; i<sq.length; i++) {
 	    if (team==1) {
 		if (sq[i].tx<=0||sq[i].ty<=0) {
@@ -342,8 +346,8 @@ Team.prototype = {
 	var f,i,j,k;
 	var pid=-1;
 	var getf=function(f) {
-	    if (f=="REBEL") return 1;
-	    if (f=="SCUM") return 2;
+	    if (f==Unit.REBEL) return 1;
+	    if (f==Unit.SCUM) return 2;
 	    return 4;
 	};
 	var f=7;
@@ -367,8 +371,8 @@ Team.prototype = {
 	    }
 	    f=f&lf;
 	}
-	if ((f&1)==1) this.faction="REBEL"; else if ((f&2)==2) this.faction="SCUM"; else this.faction="EMPIRE";
-	this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
+	if ((f&1)==1) this.faction=Unit.REBEL; else if ((f&2)==2) this.faction=Unit.SCUM; else this.faction=Unit.EMPIRE;
+	this.color=(this.faction==Unit.REBEL)?RED:(this.faction==Unit.EMPIRE)?GREEN:YELLOW;
 	for (i=0; i<pilots.length; i++) {
 	    pid=-1;
 	    var pstr=pilots[i].split(/\s+\+\s+/);
@@ -448,7 +452,7 @@ Team.prototype = {
 	    var updstr=coord[0].split(",");
 	    var pid=parseInt(updstr[0],10);
 	    this.faction=PILOTS[pid].faction;
-	    this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
+	    this.color=(this.faction==Unit.REBEL)?RED:(this.faction==Unit.EMPIRE)?GREEN:YELLOW;
 	    if (pid==-1) {
 		log("unknown ASCII pilot "+pilots[i]);
 	    }
@@ -481,7 +485,7 @@ Team.prototype = {
     },
     parseJSON:function(str,translated) {
 	var s;
-	var f={"rebel":REBEL,"scum":SCUM,"imperial":EMPIRE};
+	var f={"rebel":Unit.REBEL,"scum":Unit.SCUM,"imperial":Unit.EMPIRE};
 	try {
 	    if (typeof str=="string") s=$.parseJSON(str);
 	    else s=str;
@@ -497,7 +501,7 @@ Team.prototype = {
 	this.name=s.name;
 	this.points=s.points;
 	this.faction=f[s.faction];
-	this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
+	this.color=(this.faction==Unit.REBEL)?RED:(this.faction==Unit.REBEL)?GREEN:YELLOW;
 	for (i in generics) if (generics[i].team==this.team) delete generics[i];
 	for (i=0; i<s.pilots.length; i++) {
 	    var pilot=s.pilots[i];
@@ -511,7 +515,7 @@ Team.prototype = {
 	    for (j=0; j<PILOTS.length; j++) {
 		if (PILOTS[j].faction==this.faction&&
 		   PILOTS[j].unit==PILOT_dict[pilot.ship]) {
-		    va=PILOTS[j].name;
+		    var va=PILOTS[j].name;
 		    if (va==PILOT_dict[pilot.name]) { pid=j; break; }
 		}
 	    }

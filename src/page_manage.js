@@ -1,5 +1,17 @@
 /*<span class="smallbutton" onclick="SQUADLIST.displaycombats({{nrows}})">Replay</span>*/
 var JUGGLERWEBSITE="http://lists.starwarsclubhouse.com/api/v1/";
+
+var mk2split = function(t) {
+    var tt=t.split("\.");
+    var r=[];
+    var missing=false;
+    for (var i=1; i<tt.length; i++) {
+	if (tt[i].match(/_II.*/)) { r.push(tt[i-1]+"."+tt[i]); tt[i]=null; missing=false;} 
+	else { if (tt[i-1]) r.push(tt[i-1]); missing=true; }
+    }
+    if (missing) r.push(tt[tt.length-1]);
+    return r;
+}
 function Squadlist(id) {
     this.id=id;
     TEMPLATES["row-manage"]=$("#row-manage").html();

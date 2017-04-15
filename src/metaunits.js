@@ -2,7 +2,7 @@
 Espilon ace rule
 Chopper crew (was working like Chopper pilot)
 */
-
+var Critical=window.Critical || {};
 function metaUnit() {
     this.ordnance=false;
     this.touching=[];
@@ -18,7 +18,7 @@ metaUnit.prototype= {
     },
     selectcritical: function(crits,endselect) {
 	for (var i=0; i<crits.length; i++) {
-	    if (CRITICAL_DECK[crits[i]].lethal==false) {
+	    if (Critical.CRITICAL_DECK[crits[i]].lethal==false) {
 		endselect(crits[i]); return;
 	    }
 	}
@@ -249,7 +249,6 @@ metaUnit.prototype= {
     doaction: function(list,str,cando) {
 	var nostress=[];
 	var stressed=[];
-	var org=[];
 	var k=0,h=0;
 	var p=[],i;
 	for (i=0; i<this.moves.length; i++) {
@@ -324,9 +323,6 @@ metaUnit.prototype= {
     },
     doselection: function() {},
     setinfo: function(info,event) {
-	var w=$("#unit"+this.id+" .statisticsvg").width();
-	var h=$("#unit"+this.id+" .statisticsvg").height();	
-	var p=$("#unit"+this.id+" .statisticsvg").offset();
 	var x=event.pageX+20;
 	var y=event.pageY;
 	return $(".info").css({left:x,top:y}).html(formatstring(info)).appendTo("body").show();
@@ -355,7 +351,6 @@ metaUnit.prototype= {
 	var defense=targetunit.getdefensestrength(j,this);
 	var ad = this.modifyattackdefense(a,defense,targetunit,j);
 	a=ad.a;
-	console.log("attack:"+ad.a+" "+ad.d);
 	defense=ad.d;
 	if (this.targeting.length>0) this.reroll=9; else this.reroll=config%10;
 	var thp= tohitproba(this,w,targetunit,ATTACK[a],DEFENSE[defense],a,defense);
@@ -377,11 +372,8 @@ metaUnit.prototype= {
 	    for (k=0; k<p.length; k++) {
 		var r=(8*p[k].evade+4*p[k].stress+2*p[k].focus+(p[k].targeting.length>0?1:0))*10+p[k].reroll;
 		configs[r]=[];
-		//console.log(p[k].move+" stress:"+p[k].stress+" focus:"+p[k].focus+" targ:"+p[k].targeting.length+" reroll:"+p[k].reroll);
-
 	    }
 
-	    var ff=this.focus;
 	    for (var j=0; j<weaponlist.length; j++) {
 		var w=weaponlist[j];
 		var f;
@@ -445,7 +437,7 @@ metaUnit.prototype= {
 	    //if (hh<60) color="rgb(255,"+Math.round(hh/60*255)+",0)";
 	    //else color="rgb("+Math.round((120-hh)/60*255)+",255,0)";
 	    pw.parent=this;
-	    var p=s.path(pw.f.call(this,pw.range-1,pw.range,pw.m)).hover(function(event) {
+	    s.path(pw.f.call(this,pw.range-1,pw.range,pw.m)).hover(function(event) {
 		$(".info").show(); 
 		var mm=this.m.move;
 		var speed=P[mm].speed;

@@ -20,7 +20,7 @@ var startreplayall=function() {
     if (TEAMS[2].isia==true) TEAMS[2].setia();
     //endsetupphase();
     subphase=ACTIVATION_PHASE;
-    for (i in squadron) {
+    for (var i in squadron) {
 	squadron[i].hasmoved=false; 
 	squadron[i].maneuver=-1;
 	squadron[i].hasdecloaked=false;
@@ -107,7 +107,7 @@ var replayall=function() {
     case "W":/* do nothing */ break;
     case "P": 
 	var p=phase;
-	r=parseInt(c[2],10);
+	var r=parseInt(c[2],10);
 	phase=parseInt(c[3],10);
 	if (round!=r) {
 	    $("#turnselector").append("<option value='"+round+"'>"+UI_translation["turn #"]+round+"</option>");

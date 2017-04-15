@@ -4,6 +4,8 @@ TODO: desactivate  and unwrapping.
 Unit.prototype for old pilots and upgrades
 
 */
+var Unit=window.Unit || {};
+var Mustache=window.Mustache || {};
 
 const UPGRADE_TYPES={
     Elite:"ept",Torpedo:"torpedo",Astromech:"amd",Turret:"turret",Missile:"missile",Crew:"crew",Cannon:"cannon",Bomb:"bomb",Title:"title",Mod:"mod",System:"system",Illicit:"illicit",Salvaged:"salvaged",Tech:"tech"
@@ -91,7 +93,6 @@ Bomb.prototype = {
     resolveactionmove(moves,cleanup) {
 	var i;
 	this.pos=[];
-	var ready=false;
 	var resolve=function(m,k,f) {
 	    this.m=m;
 	    for (i=0; i<moves.length; i++) this.pos[i].remove();
@@ -146,7 +147,6 @@ Bomb.prototype = {
 	    
 	    var bbox=this.g.getBBox();
 	    var p=$("#svgout").position();
-	    var min=Math.min($("#playmat").width(),$("#playmat").height());
 	    var x=m.x(bbox.x,bbox.y-20)/max;
 	    x+=p.left+startX;
 	    var y=m.y(bbox.x,bbox.y-20)/max;
@@ -400,7 +400,7 @@ Weapon.prototype={
 function Upgradefromid(sh,i) {
     var upg=UPGRADES[i];
     upg.id=i;
-    if (upg.type==BOMB) return new Bomb(sh,upg);
+    if (upg.type==Unit.BOMB) return new Bomb(sh,upg);
     if (typeof upg.isWeapon != "undefined") { 
 	if (upg.isWeapon()) return new Weapon(sh,upg);
 	else return new Upgrade(sh,i);

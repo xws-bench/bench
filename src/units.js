@@ -7,6 +7,9 @@ TODO: collision with two maneuvers (ailerons)
  Removed footer comment so far.
       <input type="text" id="addcomment" placeholder="Add comment for active unit" onchange="activeunit.movelog('L-%%'+encodeURIComponent($(this).val())+'%%');$(this).val('');">
  */
+
+var Mustache = window.Mustache || {};
+var Critical = window.Critical || {};
 var FAST=false;
 var s;
 var ENGAGED=false;
@@ -27,14 +30,10 @@ var MPOS={ F0:[0,3],RL1:[0,2],RR1:[0,4],RF1:[0,3],F1:[1,3],F2:[2,3],F3:[3,3],F4:
 	   TRL3:[3,0],TRR3:[3,6],
 	   TRL2:[2,0],TRR2:[2,6]
 	 };
-var REBEL="REBEL",EMPIRE="EMPIRE",SCUM="SCUM";
 var ILLICIT="Illicit",ELITE="Elite",TURRET="Turret",MISSILE="Missile",ASTROMECH="Astromech",TORPEDO="Torpedo",CANNON="Cannon",BOMB="Bomb",TECH="Tech",CREW="Crew",SYSTEM="System",SALVAGED="Salvaged",MOD="Mod",TITLE="Title",ROCK="Rock",DEBRIS="Debris",NONE="None",CONDITION="Condition";
 var NOLOG=false;
 var generics=[];
 var gid=0;
-var REROLL_M=0,ADD_M=1,MOD_M=2;
-var ATTACK_M=0,DEFENSE_M=1,ATTACKCOMPARE_M=2;
-var FACEUP=1,FACEDOWN=2,DISCARD=0;
 var xws_lookup=function(s) {
     for (var i in PILOT_dict) {
 	if (PILOT_dict[i]==s) return i;
@@ -353,9 +352,9 @@ function Unit(team,pilotid) {
     var up=PILOTS[pilotid].upgrades;
     this.upg=[];
     this.upgbonus=[];
-    for (j=0; j<10; j++) {this.upg[j]=-1};
+    for (var j=0; j<10; j++) {this.upg[j]=-1};
     this.upgradetype=[];
-    for (k=0; k<up.length; k++) this.upgradetype[k]=up[k];
+    for (var k=0; k<up.length; k++) this.upgradetype[k]=up[k];
     this.upgradetype[k++]=MOD;
     if (unitlist[this.ship.name].hastitle) {
 	this.upgradetype[k++]=TITLE;
@@ -408,6 +407,52 @@ function Unit(team,pilotid) {
     if (this.team>=0&&this.team<3) TEAMS[this.team].updatepoints();
     if (typeof this.init!="undefined") this.init();
 }
+
+
+/* Static variables */
+
+Unit.FCH_HIT=1;
+Unit.FCH_FOCUS=100;
+Unit.FCH_CRIT=10;
+Unit.FE_EVADE=1;
+Unit.FE_FOCUS=10;
+Unit.FE_focus=(r) => Math.floor(r/10)%10; 
+Unit.FE_evade=(r) => r%10;
+Unit.FE_blank=(r,n) => n-Unit.FE_evade(r)-Unit.FE_focus(r);
+Unit.FCH_hit=(r) => r%10;
+Unit.FCH_focus=(r) => Math.floor(r/100)%10;
+Unit.FCH_crit=(r) => Math.floor(r/10)%10;
+Unit.FCH_blank=(r,n) => n-Unit.FCH_crit(r)-Unit.FCH_focus(r) - Unit.FCH_hit(r);
+Unit.ILLICIT="Illicit";
+Unit.ELITE="Elite";
+Unit.TURRET="Turret";
+Unit.MISSILE="Missile";
+Unit.ASTROMECH="Astromech";
+Unit.TORPEDO="Torpedo";
+Unit.CANNON="Cannon";
+Unit.BOMB="Bomb";
+Unit.TECH="Tech";
+Unit.CREW="Crew";
+Unit.SYSTEM="System";
+Unit.SALVAGED="Salvaged";
+Unit.MOD="Mod";
+Unit.TITLE="Title";
+Unit.ROCK="Rock";
+Unit.DEBRIS="Debris";
+Unit.NONE="None";
+Unit.CONDITION="Condition";
+Unit.REROLL_M=0;
+Unit.ADD_M=1;
+Unit.MOD_M=2;
+Unit.ATTACK_M=0;
+Unit.DEFENSE_M=1;
+Unit.ATTACKCOMPARE_M=2;
+Unit.REBEL="REBEL";
+Unit.EMPIRE="EMPIRE";
+Unit.SCUM="SCUM";
+
+
+/* Class */
 Unit.prototype = {
     wrap_before:function(name,org,before,unwrap) { return wrap_before.call(this,name,org,before,unwrap); },
     wrap_after:function(name,org,after,unwrap) { return wrap_after.call(this,name,org,after,unwrap); },
@@ -417,7 +462,7 @@ Unit.prototype = {
 
 	var uu=[];
 	for (j in upgs) if (upgs[j]>-1) uu.push(Upgradefromid(this,upgs[j]));
-	this.color=(this.faction=="REBEL")?RED:(this.faction=="EMPIRE")?GREEN:YELLOW;
+	this.color=(this.faction==Unit.REBEL)?RED:(this.faction==Unit.EMPIRE)?GREEN:YELLOW;
 	var img=this.shipimg;
 
 	if (!(this.islarge)) {
@@ -425,7 +470,7 @@ Unit.prototype = {
 		img=this.shipimg;
 	    }
 	    if (typeof img=="undefined") 
-		this.img=s.text(-10,10,this.ship.code).transform('r -90 0 0 '+((this.faction=="EMPIRE"||this.faction==SCUM)?'r -1 1':'')).attr({
+		this.img=s.text(-10,10,this.ship.code).transform('r -90 0 0 '+((this.faction==Unit.EMPIRE||this.faction==Unit.SCUM)?'r -1 1':'')).attr({
 		class:"xwingship",
 	    }); else 	    this.img=s.image("png/"+img+".png",-20*this.scale,-20*this.scale,40*this.scale,40*this.scale).transform('r 90 0 0').attr({ pointerEvents:"none"});
 
@@ -434,7 +479,7 @@ Unit.prototype = {
 	    this.imgflame=s.image("png/out.gif",-15,-40,20,40).transform('r 180 0 0').attr({display:"none"});
 	} else {
 	    if (typeof img=="undefined") 
-	    this.img=s.text(0,0,this.ship.code).transform('r -90 0 0 '+((this.faction=="EMPIRE"||this.faction==SCUM)?'s 2 -2':'s 2 2')+'t -15 5').attr({
+	    this.img=s.text(0,0,this.ship.code).transform('r -90 0 0 '+((this.faction==Unit.EMPIRE||this.faction==Unit.SCUM)?'s 2 -2':'s 2 2')+'t -15 5').attr({
 		class:"xwingship",
 	    });
 	    else this.img=s.image("png/"+this.shipimg+".png",-50*this.scale,-50*this.scale,100*this.scale,100*this.scale).transform('r 90 0 0');
@@ -599,7 +644,7 @@ Unit.prototype = {
 	    &&typeof PILOTS[this.pilotid].edition!="undefined"
 	    &&improved!=true) 
 	    s=s+"("+PILOTS[this.pilotid].edition+")";
-	if (improved&&typeof this.ship.code!="undefined") s="<span class='ship'>"+this.ship.code+"</span> <span class='"+(this.faction==REBEL?"HALFRED":(this.faction==EMPIRE?"HALFGREEN":"HALFYELLOW"))+"'>"+s+"</span>";
+	if (improved&&typeof this.ship.code!="undefined") s="<span class='ship'>"+this.ship.code+"</span> <span class='"+(this.faction==Unit.REBEL?"HALFRED":(this.faction==Unit.EMPIRE?"HALFGREEN":"HALFYELLOW"))+"'>"+s+"</span>";
 	for (var i=0; i<this.upg.length; i++) {
 	    var upg=this.upg[i];
 	    if (upg>-1) {
@@ -818,9 +863,9 @@ Unit.prototype = {
 	for (f=0; f<=n; f++) {
 	    for (h=0; h<=n-f; h++) {
 		for (c=0; c<=n-f-h; c++) {
-		    i=f*FCH_FOCUS+h+FCH_CRIT*c;
+		    i=f*Unit.FCH_FOCUS+h+Unit.FCH_CRIT*c;
 		    ptot+=P[i];
-		    if (ptot>r) return FCH_FOCUS*f+c*FCH_CRIT+h;
+		    if (ptot>r) return Unit.FCH_FOCUS*f+c*Unit.FCH_CRIT+h;
 		}
 	    }
 	}
@@ -843,24 +888,24 @@ Unit.prototype = {
 	}
 	for (f=0; f<=n; f++) {
 	    for (e=0; e<=n-f; e++) {
-		i=f*FE_FOCUS+e*FE_EVADE;
+		i=f*Unit.FE_FOCUS+e*Unit.FE_EVADE;
 		ptot+=P[i];
-		if (ptot>r) return lock.resolve({dice:n,roll:FE_FOCUS*f+e*FE_EVADE}).promise();
+		if (ptot>r) return lock.resolve({dice:n,roll:Unit.FE_FOCUS*f+e*Unit.FE_EVADE}).promise();
 	    }
 	}
 	return lock.resolve({dice:n,roll:0}).promise();
     },
     getdicemodifiers: function() {
-	return [{from:ATTACK_M,type:MOD_M,to:ATTACK_M,org:this,
+	return [{from:Unit.ATTACK_M,type:Unit.MOD_M,to:Unit.ATTACK_M,org:this,
 		 req:function() {return this.canusefocus();}.bind(this),
-		 aiactivate: function(m,n) { return FCH_focus(m)>0; },
+		 aiactivate: function(m,n) { return Unit.FCH_focus(m)>0; },
 		 f:function(m,n) {
 		     this.removefocustoken();
-		     var f=FCH_focus(m);
-		     if (f>0)  m=m-FCH_FOCUS*f+FCH_HIT*f;
+		     var f=Unit.FCH_focus(m);
+		     if (f>0)  m=m-Unit.FCH_FOCUS*f+Unit.FCH_HIT*f;
 		     return m;    
 		 }.bind(this),str:"focus",token:true,noreroll:"focus"},
-		{from:ATTACK_M,type:REROLL_M,to:ATTACK_M,org:this,
+		{from:Unit.ATTACK_M,type:Unit.REROLL_M,to:Unit.ATTACK_M,org:this,
 		 req:function(a,w,t) {return this.canusetarget(t);}.bind(this),
 		 n:function() { return 9; },
 		 dice:["blank","focus"],
@@ -868,27 +913,27 @@ Unit.prototype = {
 		     activeunit.removetarget(targetunit);
 		 },
 		 str:"target",token:true},
-		{from:DEFENSE_M,type:MOD_M,to:DEFENSE_M,org:this,
+		{from:Unit.DEFENSE_M,type:Unit.MOD_M,to:Unit.DEFENSE_M,org:this,
 		 req:function() {return this.canusefocus();}.bind(this),
 		 aiactivate:function(m,n) { 
 		     mm=getattackvalue();
-		     return FE_focus(m)>0&&FCH_hit(mm)+FCH_crit(mm)>FE_evade(m); 
+		     return Unit.FE_focus(m)>0&&Unit.FCH_hit(mm)+Unit.FCH_crit(mm)>Unit.FE_evade(m); 
 		 },
 		 f:function(m,n) {
 		     this.removefocustoken();
-		     var f=FE_focus(m);
-		     if (f>0)  m=m-FE_FOCUS*f+FE_EVADE*f;
+		     var f=Unit.FE_focus(m);
+		     if (f>0)  m=m-Unit.FE_FOCUS*f+Unit.FE_EVADE*f;
 		     return m;    
 		 }.bind(this),str:"focus",token:true},
-		{from:DEFENSE_M,type:ADD_M,to:DEFENSE_M,org:this,
+		{from:Unit.DEFENSE_M,type:Unit.ADD_M,to:Unit.DEFENSE_M,org:this,
 		 req:function() {return this.canuseevade(); }.bind(this),
 		 aiactivate:function(m,n) { 
 		     mm=getattackvalue();
-		     return (FCH_hit(mm)+FCH_crit(mm)>FE_evade(m));
+		     return (Unit.FCH_hit(mm)+Unit.FCH_crit(mm)>Unit.FE_evade(m));
 		 },
 		 f: function(m,n) {	    
 		     this.removeevadetoken(); 
-		     return {m:m+FE_EVADE,n:n+1} 
+		     return {m:m+Unit.FE_EVADE,n:n+1} 
 		 }.bind(this),str:"evade",token:true,noreroll:"focus"},
 	       ];
     },
@@ -1096,9 +1141,9 @@ Unit.prototype = {
     /* TODO: remove from unit? */
     guessevades: function(roll,lock) {
 	var resolve=function(k) {
-	    if (k==FE_evade(roll.roll)) {
+	    if (k==Unit.FE_evade(roll.roll)) {
 		this.log("guessed correctly ! +1 %EVADE% [%0]",self.name);
-		roll.roll+=FE_EVADE;
+		roll.roll+=Unit.FE_EVADE;
 		roll.dice+=1;
 	    }
 	    $("#actiondial").empty();
@@ -1507,14 +1552,14 @@ Unit.prototype = {
     },
     // TODO: should be only for defense dice, not evades
     cancelhit:function(r,sh){
-	var h=FCH_hit(r.ch);
-	if (h>=r.e) return {ch:r.ch-r.e*FCH_HIT,e:0}; 
-	else return {ch:r.ch-h*FCH_HIT, e:r.e-h};
+	var h=Unit.FCH_hit(r.ch);
+	if (h>=r.e) return {ch:r.ch-r.e*Unit.FCH_HIT,e:0}; 
+	else return {ch:r.ch-h*Unit.FCH_HIT, e:r.e-h};
     }, 
     cancelcritical:function(r,sh) {
-	var c=FCH_crit(r.ch);
-	if (c>=r.e) return {ch:r.ch-r.e*FCH_CRIT,e:0}; 
-	else return {ch:r.ch-c*FCH_CRIT, e:r.e-c};
+	var c=Unit.FCH_crit(r.ch);
+	if (c>=r.e) return {ch:r.ch-r.e*Unit.FCH_CRIT,e:0}; 
+	else return {ch:r.ch-c*Unit.FCH_CRIT, e:r.e-c};
     },
     attackrerolls:function(w,t) {
 	return 0;
@@ -1555,11 +1600,11 @@ Unit.prototype = {
 	ch=targetunit.modifydamageassigned(ch,this);
 	TEAMS[this.team].allred+=getattackdice();
 	TEAMS[targetunit.team].allgreen+=getdefensedice();
-	TEAMS[this.team].allhits+=FCH_hit(ch);
-	TEAMS[this.team].allcrits+=FCH_crit(ch);
-	TEAMS[targetunit.team].allevade+=FE_evade(getdefenseresult());
-	var c=FCH_crit(ch);
-	var h=FCH_hit(ch);
+	TEAMS[this.team].allhits+=Unit.FCH_hit(ch);
+	TEAMS[this.team].allcrits+=Unit.FCH_crit(ch);
+	TEAMS[targetunit.team].allevade+=Unit.FE_evade(getdefenseresult());
+	var c=Unit.FCH_crit(ch);
+	var h=Unit.FCH_hit(ch);
 	this.hasdamaged=true;
 	this.hitresolved=h;
 	this.criticalresolved=c;
@@ -2356,7 +2401,7 @@ Unit.prototype = {
 	for (var i=0; i<mods.length; i++) {
 	    var d=mods[i];
 	    if (d.from==from&&d.to==to)
-		if (d.type==MOD_M&&d.req(m,n)&&d.noreroll==modtype) return true;
+		if (d.type==Unit.MOD_M&&d.req(m,n)&&d.noreroll==modtype) return true;
 	}
 	return false;
     },
@@ -2366,7 +2411,7 @@ Unit.prototype = {
 	/* TODO: n,m should be removed */
 
 	var getmod=function(a,i) {
-	    var cl=a.str+(from==DEFENSE_M?"modtokend":"modtokena");
+	    var cl=a.str+(from==Unit.DEFENSE_M?"modtokend":"modtokena");
 	    if (typeof a.token!="undefined") cl="x"+a.str+"token";
 	    var e=$("<span>").addClass(cl).attr({id:"mod"+i,title:"modify roll ["+a.org.name+"]"}).html("");
 		// should be from /to instead of just to.
@@ -2374,7 +2419,7 @@ Unit.prototype = {
 	    return e;
 	};
 	var getadd=function(a,i) {
-	    var cl=a.str+(from==DEFENSE_M?"modtokend":"modtokena");
+	    var cl=a.str+(from==Unit.DEFENSE_M?"modtokend":"modtokena");
 	    if (typeof a.token!="undefined") cl="x"+a.str+"token";
 	    var e=$("<span>").addClass(cl).attr({id:"mod"+i,title:"add result ["+a.org.name+"]"}).html("");
 		// should be from /to instead of just to.
@@ -2397,10 +2442,10 @@ Unit.prototype = {
 	for (var i=0; i<mods.length; i++) {
 	    var d=mods[i];
 	    if (d.from==from&&d.to==to) {
-		if (d.type==MOD_M&&d.req.call(this,m,n)) lm.push(getmod(d,i));
-		if (d.type==ADD_M&&d.req.call(this,m,n)) lm.push(getadd(d,i)); 
+		if (d.type==Unit.MOD_M&&d.req.call(this,m,n)) lm.push(getmod(d,i));
+		if (d.type==Unit.ADD_M&&d.req.call(this,m,n)) lm.push(getadd(d,i)); 
 		// should be from /to instead of just to.
-		if (d.type==REROLL_M&&d.req.call(this,activeunit,activeunit.weapons[activeunit.activeweapon],targetunit)) lm.push(getreroll(d,i)); 
+		if (d.type==Unit.REROLL_M&&d.req.call(this,activeunit,activeunit.weapons[activeunit.activeweapon],targetunit)) lm.push(getreroll(d,i)); 
 	    }
 	}
 	return lm;
@@ -3681,7 +3726,7 @@ Unit.prototype = {
 	if (this.shield>n) this.removeshield(n);
 	else {
 	    s=n-this.shield;
-	    this.removeshield(this.shield);
+	    if (this.shield>0) this.removeshield(this.shield);
 	    if (s>0) this.applydamage(s);
 	}	    
 	this.show();
@@ -3693,7 +3738,7 @@ Unit.prototype = {
 	if (this.shield>n) this.removeshield(n);
 	else {
 	    var s=n-this.shield;
-	    this.removeshield(this.shield)
+	    if (this.shield>0) this.removeshield(this.shield);
 	    if (s>0) this.applycritical(s);
 	}
 	this.show();
@@ -3736,7 +3781,7 @@ Unit.prototype = {
 	    $("#actiondial").empty();
 	    for (var i=0; i<crits.length; i++) {
 		(function(k) {
-		    var e=$("<button>").text(CRITICAL_DECK[crits[k]].name)
+		    var e=$("<button>").text(Critical.CRITICAL_DECK[crits[k]].name)
 			.click(function() { resolve(crits[k],n);}.bind(this));
 		    $("#actiondial").append(e);
 		}.bind(this))(i);
@@ -3773,14 +3818,14 @@ Unit.prototype = {
 
     selectdamage: function() {
 	var i,s=0,m,j;
-	for (i=0; i<CRITICAL_DECK.length; i++) 
-	    if (CRITICAL_DECK[i].version.indexOf(CURRENT_DECK)>-1)
-		s+=CRITICAL_DECK[i].count;
+	for (i=0; i<Critical.CRITICAL_DECK.length; i++) 
+	    if (Critical.CRITICAL_DECK[i].version.indexOf(CURRENT_DECK)>-1)
+		s+=Critical.CRITICAL_DECK[i].count;
 	var r=this.rand(s);
 	m=0;
-	for (i=0; i<CRITICAL_DECK.length; i++) {
-	    if (CRITICAL_DECK[i].version.indexOf(CURRENT_DECK)>-1){
-		m+=CRITICAL_DECK[i].count;
+	for (i=0; i<Critical.CRITICAL_DECK.length; i++) {
+	    if (Critical.CRITICAL_DECK[i].version.indexOf(CURRENT_DECK)>-1){
+		m+=Critical.CRITICAL_DECK[i].count;
 		if (m>r) return i;
 	    }
 	}
@@ -3790,15 +3835,15 @@ Unit.prototype = {
 	var s,j;
 	for (j=0; j<n; j++) {
 	    s=this.selectdamage();
-	    CRITICAL_DECK[s].count--;
+	    Critical.CRITICAL_DECK[s].count--;
 	    var cr=new Critical(this,s);
-	    this.deal(cr,FACEDOWN).done(function(c) {
+	    this.deal(cr,Critical.FACEDOWN).done(function(c) {
 		switch(c.face) {
-		case FACEUP: c.crit.faceup(); this.movelog("c-"+s);
-		case FACEDOWN: this.removehull(1); 
+		case Critical.FACEUP: c.crit.faceup(); this.movelog("c-"+s);
+		case Critical.FACEDOWN: this.removehull(1); 
 		    this.checkdead(); 
 		    break;
-		case DISCARD: this.criticals.slice(this.criticals.indexOf(cr),1);
+		case Critical.DISCARD: this.criticals.slice(this.criticals.indexOf(cr),1);
 		}
 		this.show();
 	    }.bind(this));
@@ -3808,13 +3853,13 @@ Unit.prototype = {
 	var s,j;
 	for (j=0; j<n; j++) {
 	    s=this.selectdamage();
-	    CRITICAL_DECK[s].count--;
+	    Critical.CRITICAL_DECK[s].count--;
 	    var cr=new Critical(this,s);
-	    this.deal(cr,FACEUP).done(function(c) {
+	    this.deal(cr,Critical.FACEUP).done(function(c) {
 		switch(c.face) {
-		case FACEUP: c.crit.faceup(); this.movelog("c-"+s);
-		case FACEDOWN: this.removehull(1); break;
-		case DISCARD: this.criticals.slice(this.criticals.indexOf(cr),1);
+		case Critical.FACEUP: c.crit.faceup(); this.movelog("c-"+s);
+		case Critical.FACEDOWN: this.removehull(1); break;
+		case Critical.DISCARD: this.criticals.slice(this.criticals.indexOf(cr),1);
 		}
 		this.show();
 	    }.bind(this));

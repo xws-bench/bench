@@ -1,5 +1,6 @@
 const ROCKIMG="png/asteroid3.jpeg";
 const DEBRISIMG="png/debris.png";
+
 var OBSTACLES=[];
 var PX=[300,500,300,500,300,500];
 var PY=[250,250,400,400,550,550];
@@ -258,11 +259,8 @@ class Rock {
 	var g=[];
 	var rocks=TEAMS[this.team].rocks;
 	var viewport=sa.g();
-	var maxw=0,maxh=0;
 	var k=0;
-	var h=$(".aster").height();
-	var w=$(".aster").width();
-	var s=0.27; //h/2/600;
+	var s;
 	var m1;
 	var hh=0,kk=0;
 	var self=this;

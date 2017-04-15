@@ -1,3 +1,7 @@
+var Unit = window.Unit || {};
+var PILOTS = window.PILOTS || {};
+var UPGRADES = window.UPGRADES || {};
+var Mustache = window.Mustache || {};
 function displayfactionunits(noreset) {
     var count=0;
     var n=0;
@@ -29,11 +33,11 @@ function displayfactionunits(noreset) {
 	if (PILOTS[i].faction==faction) {
 	    if (typeof p[u]=="undefined") p[u]=[];
 	    /* should go elsewhere */
-	    if (PILOTS[i].upgrades.indexOf(ELITE)>-1) PILOTS[i].haselite=true;
+	    if (PILOTS[i].upgrades.indexOf(Unit.ELITE)>-1) PILOTS[i].haselite=true;
 	    var text=getpilottexttranslation(PILOTS[i],faction);
 	    if (text!="")
 		text+=(PILOTS[i].done==true?"":"<div><strong class='m-notimplemented'></strong></div>");
-	    if (PILOTS[i].faction==SCUM) name+="(SCUM)";
+	    if (PILOTS[i].faction==Unit.SCUM) name+="(SCUM)";
 	    if (typeof PILOTS[i].edition!="undefined") name+=" ("+PILOTS[i].edition+")";
 	    if (typeof RATINGS_pilots[name]!="undefined") {
 		text=text+"<hr/><p class='strategy'>"+RATINGS_pilots[name].text+"</p>";

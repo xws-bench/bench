@@ -9,9 +9,14 @@ function Critical(sh,i) {
 	this.isactive=false;
 	this.unit=sh;
     };
+Critical.FACEUP=1;
+Critical.FACEDOWN=2;
+Critical.DISCARD=0;
+Critical.V1="v1";
+Critical.V2="v2";
 Critical.prototype = {
     toString() {
-	var a,b,str="";
+	var a,b,d;
 	var c="";
 	if (!this.isactive) return "";
 	var n=this.name;
@@ -287,7 +292,7 @@ var CRITICAL_DECK=[
 	faceup: function() {
 	    this.log();
 	    var m=[];
-	    for (i=0; i<this.unit.weapons.length; i++) {
+	    for (var i=0; i<this.unit.weapons.length; i++) {
 		if (this.unit.weapons[i].issecondary) m.push(this.unit.weapons[i]);
 	    }
 	    this.isactive=false;
@@ -495,7 +500,7 @@ var CRITICAL_DECK=[
 		if (round==myround) return p;
 		var dd=$.Deferred();
 		p.done(function(c) {
-		    c.face=FACEUP;
+		    c.face=Critical.FACEUP;
 		    dd.resolve(c);
 		});
 		return dd.promise();
@@ -566,3 +571,4 @@ var CRITICAL_DECK=[
 	version:[V2]
     }
 ];
+Critical.CRITICAL_DECK=CRITICAL_DECK;

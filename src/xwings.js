@@ -35,11 +35,7 @@ var SETUP;
 var SHOWDIAL=[];
 var TRACE=false;
 var TEMPLATES={};
-const FE_EVADE=1;
-const FE_FOCUS=10;
-const FCH_HIT=1;
-const FCH_FOCUS=100;
-const FCH_CRIT=10;
+
 var HEADER="";
 var SCENARIOTITLE="";
 var WAVEFILTER="0";
@@ -53,6 +49,12 @@ var UNIQUE=[];
 var stype="";
 var REPLAY="";
 var PERMALINK="";
+
+var Unit=window.Unit || {};
+var metaUnit=window.metaUnit || {};
+var PILOTS = window.PILOTS || {};
+var UPGRADES = window.UPGRADES || {};
+var Mustache = window.Mustache || {};
 /*
 
 <script src="src/condition.js"></script>
@@ -232,7 +234,6 @@ function center() {
     var min=Math.min(w/900.,h/900.);
     var x=startX+VIEWPORT.m.x(xx,yy)*min;
     var y=startY+VIEWPORT.m.y(xx,yy)*min
-    var mm=VIEWPORT.m.invert();
     if (x<0||x>w) VIEWPORT.m=MT((-x+w/2-startX)/min,0).add(VIEWPORT.m);
     if (y<0||y>h) VIEWPORT.m=MT(0,(-y+h/2-startY)/min).add(VIEWPORT.m);
 
@@ -240,17 +241,7 @@ function center() {
     activeunit.show();
 }
 
-var mk2split = function(t) {
-    var tt=t.split("\.");
-    var r=[];
-    var missing=false;
-    for (var i=1; i<tt.length; i++) {
-	if (tt[i].match(/_II.*/)) { r.push(tt[i-1]+"."+tt[i]); tt[i]=null; missing=false;} 
-	else { if (tt[i-1]) r.push(tt[i-1]); missing=true; }
-    }
-    if (missing) r.push(tt[tt.length-1]);
-    return r;
-}
+
 var save=function() {
     movelog("W");
     var url=WEBSITE+"?"+permalink(false);
@@ -373,7 +364,7 @@ function nextunit(cando, changeturn,changephase,activenext) {
     } 
     if (skillturn<0||skillturn>12||last==-1) return changephase();
     barrier(function() {
-	active=last; 
+	//active=last; 
 	tabskill[skillturn][last].select();
 	activenext();
     });
@@ -438,7 +429,7 @@ function nextplanning() {
 function getattackresult() {
     var h=$(".hitreddice").length;
     var c=$(".criticalreddice").length;
-    return FCH_CRIT*c+FCH_HIT*h;
+    return Unit.FCH_CRIT*c+Unit.FCH_HIT*h;
 }
 function getdefenseresult() {
     return $(".evadegreendice").length+$(".evadegreen").length;
@@ -455,7 +446,7 @@ function getattackdice() {
     return $(".focusreddice").length+$(".criticalreddice").length+$(".hitreddice").length+$(".blankreddice").length;
 }
 function getattackvalue() {
-    return $(".focusreddice").length*FCH_FOCUS+$(".criticalreddice").length*FCH_CRIT+$(".hitreddice").length*FCH_HIT;
+    return $(".focusreddice").length*Unit.FCH_FOCUS+$(".criticalreddice").length*Unit.FCH_CRIT+$(".hitreddice").length*Unit.FCH_HIT;
 }
 function getdefensedice() {
     return $(".focusgreendice").length+$(".blankgreendice").length+$(".evadegreendice").length; 
@@ -499,7 +490,7 @@ function displayattackroll(m,n) {
 }
 function displayattacktokens(u,f) {
     $("#atokens").empty();
-    var dm=targetunit.getresultmodifiers(u.ar,u.ad,DEFENSE_M,ATTACK_M);
+    var dm=targetunit.getresultmodifiers(u.ar,u.ad,Unit.DEFENSE_M,Unit.ATTACK_M);
     if (dm.length>0) {
 	$("#atokens").append(dm);
 	$("#atokens").append($("<button>").addClass("m-done").click(function() {
@@ -511,7 +502,7 @@ function displayattacktokens2(u,f) {
     if (typeof f!="function") f=u.lastaf;
     else u.lastaf=f;
     $("#atokens").empty();
-    var am=u.getresultmodifiers(u.ar,u.ad,ATTACK_M,ATTACK_M);
+    var am=u.getresultmodifiers(u.ar,u.ad,Unit.ATTACK_M,Unit.ATTACK_M);
     if (am.length>0) {
 	$("#atokens").append(am);
 	$("#atokens").append($("<button>").addClass("m-done").click(function() {
@@ -522,7 +513,7 @@ function displayattacktokens2(u,f) {
 }
 function displaydefensetokens(u,f) {
     $("#dtokens").empty();
-    var dm=activeunit.getresultmodifiers(u.dr,u.dd,ATTACK_M,DEFENSE_M);
+    var dm=activeunit.getresultmodifiers(u.dr,u.dd,Unit.ATTACK_M,Unit.DEFENSE_M);
     if (dm.length>0) {
 	$("#dtokens").append(dm);
 	//$("#dtokens td").click(function() { displaydefensetokens(u,f); });
@@ -535,7 +526,7 @@ function displaydefensetokens2(u,f) {
     if (typeof f!="function") f=u.lastdf;
     u.lastdf=f;
     $("#dtokens").empty();
-    var dm=u.getresultmodifiers(u.dr,u.dd,DEFENSE_M,DEFENSE_M);
+    var dm=u.getresultmodifiers(u.dr,u.dd,Unit.DEFENSE_M,Unit.DEFENSE_M);
     if (FAST) { 	    
 	//$("#combatdial").hide(); 
 	displaycompareresults(u,f);
@@ -554,8 +545,8 @@ function displaycompareresults(u,f) {
     if (typeof f!="function") f=u.lastdf;
     u.lastdf=f;
     $("#dtokens").empty();
-    dm=targetunit.getresultmodifiers(targetunit.dr,targetunit.dd,ATTACKCOMPARE_M,DEFENSE_M);
-    am=u.getresultmodifiers(u.ar,u.ad,ATTACKCOMPARE_M,ATTACK_M);
+    var dm=targetunit.getresultmodifiers(targetunit.dr,targetunit.dd,Unit.ATTACKCOMPARE_M,Unit.DEFENSE_M);
+    var am=u.getresultmodifiers(u.ar,u.ad,Unit.ATTACKCOMPARE_M,Unit.ATTACK_M);
     if (FAST||(dm.length==0&&am.length==0)) {
 	$("#combatdial").hide();
 	//log("hiding combat dial compare");
@@ -567,27 +558,6 @@ function displaycompareresults(u,f) {
 	    //log("hiding combat dial finally");
 	    f();}.bind(u)));
     }
-}
-function FE_focus(r) {
-    return Math.floor(r/10)%10;
-}
-function FE_evade(r) {
-    return r%10;
-}
-function FE_blank(r,n) {
-    return n-FE_evade(r)-FE_focus(r);
-}
-function FCH_hit(r) {
-    return r%10;
-}
-function FCH_focus(r) {
-    return Math.floor(r/100)%10;
-}
-function FCH_crit(r) {
-    return Math.floor(r/10)%10;
-}
-function FCH_blank(r,n) {
-    return n-FCH_crit(r)-FCH_focus(r) - FCH_hit(r);
 }
 
 function costfilter(s) {
@@ -617,7 +587,7 @@ function textfilter(s) {
 }
 
 function addroll(f,id,to) {
-    if (to==DEFENSE_M) return addrolld(f,id);
+    if (to==Unit.DEFENSE_M) return addrolld(f,id);
     var n=getattackdice();
     var foc=$(".focusreddice").length;
     var h=$(".hitreddice").length;
@@ -635,7 +605,7 @@ function addrolld(f,id) {
     $("#dtokens #mod"+id).remove();
 }
 function modroll(f,id,to) {
-    if (to==DEFENSE_M) return modrolld(f,id);
+    if (to==Unit.DEFENSE_M) return modrolld(f,id);
     var n=getattackdice();
     var foc=$(".focusreddice").length;
     var h=$(".hitreddice").length;
@@ -685,7 +655,7 @@ function reroll(n,from,to,a,id) {
     var defenseroll=["blank","focus","evade"];
     if (typeof a.f=="function") a.f();
     var str="";
-    if (to==ATTACK_M) {
+    if (to==Unit.ATTACK_M) {
 	for (i=0; i<4; i++) {
 	    // Do not reroll focus
 	    if (activeunit.hasnorerollmodifiers(from,to,getattackvalue(),getattackdice(),"focus")&&typeof a.mustreroll=="undefined"&&attackroll[i]=="focus") continue;
@@ -736,11 +706,11 @@ function reroll(n,from,to,a,id) {
 	$("#dtokens #reroll"+id).remove();
 	activeunit.defenseroll(m).done(function(r) {
 	    var i;
-	    for (i=0; i<FE_evade(r.roll); i++)
+	    for (i=0; i<Unit.FE_evade(r.roll); i++)
 		$("#defense").append("<td class='evadegreendice'></td>");
-	    for (i=0; i<FE_focus(r.roll); i++)
+	    for (i=0; i<Unit.FE_focus(r.roll); i++)
 		$("#defense").append("<td class='focusgreendice'></td>");
-	    for (i=0; i<FE_blank(r.roll,r.dice); i++)
+	    for (i=0; i<Unit.FE_blank(r.roll,r.dice); i++)
 		$("#defense").append("<td class='blankgreendice'></td>");
 	    addgreenclickchange();
 	});
@@ -927,7 +897,7 @@ function page_main() {
     $(".headlines").show();
     HEADER="";
     SCENARIOTITLE="";
-    currentteam.setfaction("REBEL");
+    currentteam.setfaction(Unit.REBEL);
     window.location="index.html";
 }
 function page_select() {
@@ -1043,7 +1013,7 @@ function dial2JSON(dial) {
     var j,k;
     for (j=0; j<=5; j++) m[j]={item:"",moves:null};
     for (j=0; j<dial.length; j++) {
-	d=dial[j];
+	var d=dial[j];
 	var cx=MPOS[d.move][0],cy=MPOS[d.move][1];
 	m[5-cx].item=cx;
 	if (m[5-cx].moves==null) {
@@ -1059,7 +1029,7 @@ function selectweapon(weapons) {
     $("#attackdial").html(Mustache.render(TEMPLATES["selectweapon"],weapons)).show();
 }
 function getpilottexttranslation(u,faction) {
-    var idxn=u.name+(faction==SCUM?" (Scum)":"");
+    var idxn=u.name+(faction==Unit.SCUM?" (Scum)":"");
     if (typeof u.edition!="undefined") {
 	var i=u.name+"("+u.edition+")";
 	if (typeof PILOT_translation[i]!="undefined"&&typeof PILOT_translation[i].text!="undefined") return formatstring(PILOT_translation[i].text);
@@ -1076,7 +1046,6 @@ function getupgtxttranslation(name,type) {
     }
     return "";
 }
-/* Still used ?yes */
 function importsquad(t) {
     currentteam.parseJSON($("#squad"+t).val(),true);
     currentteam.name="SQUAD."+currentteam.toASCII();
@@ -1332,7 +1301,7 @@ function setphase(cannotreplay) {
 	activeunit.show();
 
 	jwerty.key("f",function() {
-	    console.log("SETUP:"+SETUP.name);
+	    //console.log("SETUP:"+SETUP.name);
 	});
 
 
@@ -1604,8 +1573,6 @@ var viewport_translate=function(dx,dy) {
     VIEWPORT.transform(VIEWPORT.m);
 };
     var viewport_zoom=function(z) {
-	var w=$("#svgout").width();
-	var h=$("#svgout").height();
 	var offsetX=activeunit.m.x(0,0);
 	var offsetY=activeunit.m.y(0,0);
 	var vm=VIEWPORT.m.clone().invert();
@@ -1619,7 +1586,6 @@ var viewport_translate=function(dx,dy) {
 	var dragmove=function(event) {
 	    if (activeunit.dragged==true) return;
 	    var e = event; // old IE support
-	    var x=e.offsetX,y=e.offsetY;
 	    if (VIEWPORT.dragged) {
 		var w=$("#svgout").width();
 		var h=$("#svgout").height();
@@ -1830,13 +1796,17 @@ $(document).ready(function() {
 		var u=ENUPGRADE_translation[i];
 		var v=UPGRADE_translation[i];
 		var t=u.text;
-		if (typeof v=="undefined") UPGRADE_translation[i]=u;
+		if (typeof v=="undefined") {
+		    //console.log("no translation for "+i);
+		    UPGRADE_translation[i]=u;
+		}
 	    }
 	    for (i in ENPILOT_translation) {
 		var u=ENPILOT_translation[i];
 		var v=PILOT_translation[i];
 		var t=u.text;
 		if (typeof v=="undefined") {
+		    //console.log("no translation for "+i);
 		    PILOT_translation[i]=u;
 		}
 	    }
@@ -1858,7 +1828,7 @@ $(document).ready(function() {
 	}
 	for (i=0; i<UPGRADES.length; i++) {
 	    u=UPGRADES[i];
-	    if (u.type==TITLE) {
+	    if (u.type==Unit.TITLE) {
 		unitlist[u.ship].hastitle=true;
 	    }
 	}
@@ -1877,7 +1847,7 @@ $(document).ready(function() {
 	    if (!found) log("no xws translation for "+UPGRADES[i].name);
 	}
 
-	var r=0,e=0;
+	var e=0;
 	squadron=[];
 
 	s.attr({width:"100%",height:"100%",viewBox:"0 0 900 900"});
@@ -1923,7 +1893,7 @@ $(document).ready(function() {
 	log(n+"/"+ntot+" upgrades with full effect<br/>");
 	if (str!="") log("Upgrades NOT working yet:"+str+"<br/>");
 	$("#showproba").prop("disabled",true);
-	var d=new Date();
+	new Date();
 
 
 	if (typeof localStorage.volume=="undefined") localStorage.volume=0.8;
@@ -2054,7 +2024,7 @@ $(document).ready(function() {
 	});
 	squadron=[];
 	generics=[];
-	TEAMS[3].changefaction(REBEL,true);
+	TEAMS[3].changefaction(Unit.REBEL,true);
 	var pilots=[];
 	for (i=0; i<PILOTS.length; i++) {
 	    var n=i;

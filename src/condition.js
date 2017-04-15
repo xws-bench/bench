@@ -1,3 +1,7 @@
+var Unit=window.Unit || {};
+var Mustache = window.Mustache || {};
+var Critical = window.Critical || {};
+
 function Condition(sh,org,n) {
     this.name=n;
     this.org=org;
@@ -36,21 +40,21 @@ var CONDITIONS={
 	assign: function(t) {
 	    var self=this;
 	    var sc=[];
-	    for (var i=0; i<CRITICAL_DECK.length; i++) {
-		if (CRITICAL_DECK[i].version.indexOf(CURRENT_DECK)>-1
-		    &&CRITICAL_DECK[i].type=="pilot"&&CRITICAL_DECK[i].count>0) 
+	    for (var i=0; i<Critical.CRITICAL_DECK.length; i++) {
+		if (Critical.CRITICAL_DECK[i].version.indexOf(CURRENT_DECK)>-1
+		    &&Critical.CRITICAL_DECK[i].type=="pilot"&&Critical.CRITICAL_DECK[i].count>0) 
 		    sc.push(i);
 	    }
 	    this.org.selectcritical(sc,function(m) {
-		CRITICAL_DECK[m].count--;
+		Critical.CRITICAL_DECK[m].count--;
 		t.darkside=new Critical(t,m);
-		var name=CRITICAL_DECK[m].name;
+		var name=Critical.CRITICAL_DECK[m].name;
 		if (typeof CRIT_translation[name].name!="undefined") name=CRIT_translation[name].name;
 		
 		self.name+=" ["+name+"]";
 	    });
 	    t.wrap_after("deal",this,function(cr,f,dd) {
-		if (f==FACEUP) {
+		if (f==Critical.FACEUP) {
 		    var ddd=$.Deferred();
 		    self.remove();
 		    return ddd.resolve({crit:this.darkside,face:f});
@@ -81,7 +85,7 @@ var CONDITIONS={
 	assign: function(t) {
 	    var self=this;
 	    t.adebttopay=self;
-	    t.adddicemodifier(ATTACK_M,MOD_M,ATTACK_M,this,{
+	    t.adddicemodifier(Unit.ATTACK_M,Unit.MOD_M,Unit.ATTACK_M,this,{
 		req:function(m,n) {
 		    if (typeof targetunit.ascoretosettle!="undefined")
 			return targetunit.ascoretosettle.isactive;
@@ -89,7 +93,7 @@ var CONDITIONS={
 		},
 	     f:function(m,n) {
 		 this.log("1 %FOCUS% -> 1 %CRIT% [%0]",self.name);
-		 m = m - FCH_FOCUS + FCH_CRIT;
+		 m = m - Unit.FCH_FOCUS + Unit.FCH_CRIT;
 		 return m;
 	     }.bind(t),str:"elite"});
 
@@ -106,9 +110,8 @@ var CONDITIONS={
 	    });
 	    t.wrap_after("declareattack",this,function(w,target,b) {
 		if (b) this.wrap_after("removefocustoken",self,function() {
-		    var u=this;
 		    Unit.prototype.wrap_after("cancelcritical",self,function(r,sh,s) {
-			return {ch:s.ch+FCH_HIT,e:s.e}; 
+			return {ch:s.ch+Unit.FCH_HIT,e:s.e}; 
 		    }).unwrap("endbeingattacked");
 		}).unwrap("endattack");
 		return b;

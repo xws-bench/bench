@@ -53,9 +53,9 @@ IAUnit.prototype = {
 	*/
     confirm(a) { return true;},
     guessevades(roll,promise) {
-	if (this.rand(roll.dice+1)==FE_evade(roll.roll)) {
+	if (this.rand(roll.dice+1)==Unit.FE_evade(roll.roll)) {
 	    this.log("guessed correctly the number of evades ! +1 %EVADE% [%0]",self.name);
-	    roll.roll+=FE_EVADE;
+	    roll.roll+=Unit.FE_EVADE;
 	    roll.dice+=1;
 	}
 	promise.resolve(roll);
@@ -72,7 +72,6 @@ IAUnit.prototype = {
 	    var n=24-8*COLOR.indexOf(d.color);
 	    if (d.color==RED) n-=20;
 	    if (d.color==BLACK) n=-100;
-	    var n0=n;
 	    var oldm=this.m;
 	    this.m=mm;
 	    var ep=this.evaluateposition();
@@ -86,12 +85,11 @@ IAUnit.prototype = {
 	return q;
     },
     findallpositions(gd) {
-	var i,j,n=0,q=[];
+	var i,j,n,q=[];
 	var COLOR=[GREEN,WHITE,YELLOW,RED,BLACK];
 
 	for (j=0;j<gd.length; j++) {
 	    var d=gd[j];
-	    n=0;
 	    n=24-8*COLOR.indexOf(d.color);
 	    if (d.color==WHITE) n+=8;
 	    if (d.color==RED) n-=20;
@@ -119,8 +117,6 @@ IAUnit.prototype = {
     computeallmaneuvers() {
 	var i,j,k,d=0;
 	var q=[],possible=-1;
-	var COLOR=[GREEN,WHITE,YELLOW,RED,BLACK];
-	var gd=this.getdial();
 	var s=this.getskill();
 	for (i in squadron) {
 	    var u=squadron[i];
@@ -139,7 +135,6 @@ IAUnit.prototype = {
 	}
 	this.evaluategroupmoves();
 	q=this.findallpositions(this.captaingd);
-	k=0;
 	// Restore position
 	for (i in squadron) squadron[i].m=squadron[i].oldm;
 	if (q.length>0) {
@@ -159,37 +154,13 @@ IAUnit.prototype = {
 	this.log("Group maneuver set");//+":"+d+"/"+q.length+" possible?"+possible+"->"+gd[d].move);
     },
     computemaneuver() {
-	var i,j,k,d=0;
-	var q=[],possible=-1;
-	/*if (this.team==2) {
-	    var mm=this.m.split();
-	    var s=[mm.dx,mm.dy,mm.rotate];
-	    for (i in squadron) {
-		if (squadron[i]==this) continue;
-		var m=squadron[i].m;
-		var mm=m.split();
-		s.push(mm.dx);
-		s.push(mm.dy);
-		s.push(mm.rotate);
-	    }
-	    for (i=0; i<OBSTACLES.length; i++) {
-		s.push(OBSTACLES[i].x);
-		s.push(OBSTACLES[i].y);
-	    }
-	    this.reward=0;
-	    var action = this.agent.act(s); // s is an array of length 15
-	    console.log("action chosen: "+action);
-	    return action;
-	 } */	
-	var COLOR=[GREEN,WHITE,YELLOW,RED,BLACK];
+	var i,j;
 	var gd=this.getdial();
-	//var enemies=[];
 	var s=this.getskill();
 	for (i in squadron) {
 	    var u=squadron[i];
 	    var us=u.getskill();
 	    u.oldm=u.m;
-	    //console.log("setting oldm");
 	    if (us<s) {
 		if (u.team!=this.team) {
 		    if (u.meanmround!=round) u.evaluatemoves(false,false);
@@ -203,33 +174,18 @@ IAUnit.prototype = {
 	}
 
 	this.evaluatemoves(true,true);
-	q=this.findpositions(gd);
-	//console.log(this.name+"end evaluates move");
-	//log("computing all enemy positions");
+	var q=this.findpositions(gd);
 	// Find all possible future positions of enemies
-	k=0;
-	/*for (i in squadron) {
-	    var u=squadron[i];
-	    if (u.team!=this.team) {
-		if (u.meanmround!=round) u.evaluatemoves(false,false);
-		u.oldm=u.m;
-		u.m=u.meanm;
-		enemies.push(u);
-	    }
-	}*/
+	var d;
 	// Restore position
 	for (i in squadron) squadron[i].m=squadron[i].oldm;
 	if (q.length>0) {
 	    q.sort(function(a,b) { return b.n-a.n; });
-	    //for (i=0; i<q.length; i++) this.log(">"+q[i].n+" "+gd[q[i].m].move);
 	    d=q[0].m;
-	    //if (typeof gd[d] == "undefined") log("GD NON DEFINI POUR "+this.name+" "+gd.length+" "+d);	    
 	} else {
 	    for (i=0; i<gd.length; i++) 
 		if (gd[i].difficulty!="RED"||gd[i].move.match(/F\d/)) break;
 	    d=i;
-	    //if (typeof gd[d] == "undefined") log("(q=vide) UNDEFINED GD FOR "+this.name+" "+gd.length+" "+possible);
-
 	}
 	this.futurem=this.getpathmatrix(this.m,gd[d].move);
 	this.log("Maneuver set");//+":"+d+"/"+q.length+" possible?"+possible+"->"+gd[d].move);
@@ -298,9 +254,10 @@ IAUnit.prototype = {
 	$("#maneuverdial").empty();
 	this.squad=[];
 	if (this.behavior==JOUSTER) {
-	    for (var i in this.squad) {
-		this.captain=null;
-		this.squad=[];
+	    var sq=this.squad;
+	    for (var i in sq) {
+		sq[i].captain=null;
+		sq[i].squad=[];
 	    }
 	    this.electcaptain(); // reelects a new captain each turn
 	}
@@ -425,7 +382,7 @@ IAUnit.prototype = {
 		this.select();
 		if (typeof str!="undefined"&&str!="") this.log(str);
 		var a=null;
-		for (i=0; i<list.length; i++) {
+		for (var i=0; i<list.length; i++) {
 		    if (list[i].type=="CRITICAL") { a=list[i]; break; }
 		    else if (list[i].type=="EVADE"&&this.candoevade()) {
 			var noone=true;
@@ -488,7 +445,7 @@ IAUnit.prototype = {
     doattack(weaponlist,enemies) {
 	var power=0,tp=null;
 	var i,w;
-	var wp=null;
+	var wp;
 	//this.log(this.id+" readytofire?"+this.canfire());
 	NOLOG=true;
 	if (typeof weaponlist=="undefined") weaponlist=this.weapons;

@@ -327,7 +327,6 @@
         "Juke": {"text": "When attacking, if you have an evade token, you may change 1 of the defender's %EVADE% results into a %FOCUS% result."},
         "Comm Relay": {"text": "You cannot have more than 1 evade token.During the End phase, do not remove an unused evade token from your ship."},
         "Dual Laser Turret": {"text": "<strong>Attack (energy):</strong> Spend 1 energy from this card to perform this attack against 1 ship (even a ship outside your firing arc)."},
-        "Broadcast Array": {"text": "Your action bar gains the %JAM% action icon."},
         "Rear Admiral Chiraneau": {"text": " <strong>Action:</strong> Execute a white (%STRAIGHT% 1) maneuver."},
         "Ordnance Experts": {"text": "Once per round, when a friendly ship at Range 1-3 performs an attack with a %TORPEDO% or %MISSILE% secondary weapon, it may change 1 of its blank results to a %HIT% result."},
         "Docking Clamps": {"text": "You may attach 4 up to TIE fighters, TIE interceptors, TIE bombers, or TIE Advanced to this ship.  All attached ships must have the same ship type."},
@@ -481,6 +480,7 @@
 	"m-2win":"Squad #2 wins!",
 	"m-draw":"Draw!",
 	"m-nocasualty":"No enemy unit destroyed",
+	"m-edit":"Edite",
 	"m-proba":"Probabilities",
 	"np":"Next",
 	"m-export":"Export",
@@ -519,7 +519,8 @@
 	"m-maneuvers":"Maneuvers",
 	"m-latest":"Tournaments",
 	"m-combat":"Free Combat",
-	"m-scenario":"Scenarios"
+	"m-scenario":"Scenarios",
+	"m-simulation":"Combat"
     },
     "ui":{
 	"selects":"Select a squad",

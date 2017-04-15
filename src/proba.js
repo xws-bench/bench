@@ -114,7 +114,7 @@ function attackwithreroll(tokensA,at,attack) {
 			for (h2=0; h2<=r-f2; h2++)
 			    for (c2=0; c2<=r-f2-h2; c2++) {
 				j=100*f2+h2+10*c2;
-				k=100*(newf+f2)+h+h2+10*(c+c2);
+				var k=100*(newf+f2)+h+h2+10*(c+c2);
 				p[k]+=at[i]*ATTACK[r][j];
 //				if (tokensA.reroll>0) log(attack+" at["+f+" "+h+" "+c+"]:"+at[i]+"*A["+r+"]["+f2+" "+h2+" "+c2+"]:"+ATTACK[r][j]);
 			    }
@@ -183,7 +183,7 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense,double) {
     for (f=0; f<=attack; f++) {
 	for (h=0; h<=attack-f; h++) {
 	    for (c=0; c<=attack-h-f; c++) {
-		var n=FCH_FOCUS*f+FCH_CRIT*c+FCH_HIT*h;
+		var n=Unit.FCH_FOCUS*f+Unit.FCH_CRIT*c+Unit.FCH_HIT*h;
 		var fa,ca,ha,ff,ef;
 		var focusa=attacker.focus;
 		var savedreroll=attacker.reroll;
@@ -191,14 +191,14 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense,double) {
 		    attacker.reroll=Math.max(attacker.attackrerolls(weapon,defender),attacker.reroll);
 		ATable=attackwithreroll(attacker,at,attack);
 
-		var a=ATable[FCH_FOCUS*f+FCH_HIT*h+FCH_CRIT*c]; // attack index
+		var a=ATable[Unit.FCH_FOCUS*f+Unit.FCH_HIT*h+Unit.FCH_CRIT*c]; // attack index
 		n=weapon.modifyattackroll(n,attack,defender);
 		if (typeof attacker.modifyattackroll!="undefined") {
 		    n=attacker.modifyattackroll(n,attack,defender);
 		}
-		fa=FCH_focus(n);
-		ca=FCH_crit(n);
-		hit=FCH_hit(n);
+		fa=Unit.FCH_focus(n);
+		ca=Unit.FCH_crit(n);
+		hit=Unit.FCH_hit(n);
 		if (attacker.focus>0&&fa>0) { hit+=fa;attacker.focus--; }
 
 		for (ff=0; ff<=defense; ff++) {
@@ -208,25 +208,25 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense,double) {
 			var evade=defender.evade;
 			var savedevade=defender.evade;
 			var savedfocus=defender.focus;
-			var m=FE_FOCUS*ff+FE_EVADE*ef;
+			var m=Unit.FE_FOCUS*ff+Unit.FE_EVADE*ef;
 			if (defense==0) d=1; else d=DTable[m];
 			if (typeof attacker.modifydefenseroll!="undefined") 
 			    m=attacker.modifydefenseroll(attacker,m,defense);
-			fd=FE_focus(m);
-			evade=FE_evade(m);
+			fd=Unit.FE_focus(m);
+			evade=Unit.FE_evade(m);
 			i=0;
 			if (defender.focus>0&&fd>0&&evade<hit+ca) { evade+=fd;defender.focus--; }
 			if (defender.evade>0&&evade<hit+ca) { evade+=1;defender.evade--; }
 			if (typeof defender.cancelhit!="undefined") {
-			    var ch=defender.cancelhit({ch:hit*FCH_HIT+ca*FCH_CRIT,e:evade},targetunit);
+			    var ch=defender.cancelhit({ch:hit*Unit.FCH_HIT+ca*Unit.FCH_CRIT,e:evade},targetunit);
 			    ch=defender.cancelcritical(ch,targetunit);
 
 			    evade=ch.e;
 			    i=ch.ch;
 			} else {
-			    if (hit>evade) { i = FCH_HIT*(hit-evade); evade=0; } 
+			    if (hit>evade) { i = Unit.FCH_HIT*(hit-evade); evade=0; } 
 			    else { evade=evade-hit; }
-			    if (ca>evade) { i+= FCH_CRIT*(ca-evade); }
+			    if (ca>evade) { i+= Unit.FCH_CRIT*(ca-evade); }
 			}
 			if (typeof weapon.modifyhit=="function"&&i>0) i=weapon.modifyhit(i);
 
@@ -273,7 +273,7 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense,double) {
     //console.log("missed "+missed+"/"+p[0]+" "+attacker.name+" "+weapon.iar);
     for (h=0; h<=max; h++) {
 	for (c=0; c<=max-h; c++) {
-	    i=FCH_HIT*h+FCH_CRIT*c;
+	    i=Unit.FCH_HIT*h+Unit.FCH_CRIT*c;
 	    if (i>0&&typeof p[i]!="undefined") tot+=p[i];
 	    mean+=h*p[i];
 	    meanc+=c*p[i];
