@@ -451,7 +451,7 @@ Unit.REBEL="REBEL";
 Unit.EMPIRE="EMPIRE";
 Unit.SCUM="SCUM";
 
-
+var REBEL="REBEL",EMPIRE="EMPIRE",SCUM="SCUM";
 /* Class */
 Unit.prototype = {
     wrap_before:function(name,org,before,unwrap) { return wrap_before.call(this,name,org,before,unwrap); },
