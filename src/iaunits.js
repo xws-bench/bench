@@ -478,13 +478,13 @@ IAUnit.prototype = {
 	for (var i=0; i<mods.length; i++) {
 	    var d=mods[i];
 	    if (d.from==from&&d.to==to) {
-		if (d.type==MOD_M&&d.req(m,n)) {
+		if (d.type==Unit.MOD_M&&d.req(m,n)) {
 		    if (typeof d.aiactivate!="function"||d.aiactivate(m,n)==true) 
 			modroll(d.f,i,to);
-		} if (d.type==ADD_M&&d.req(m,n)) {
+		} if (d.type==Unit.ADD_M&&d.req(m,n)) {
 		    if (typeof d.aiactivate!="function"||d.aiactivate(m,n)==true) 
 			addroll(d.f,i,to);
-		} if (d.type==REROLL_M&&d.req(activeunit,activeunit.weapons[activeunit.activeweapon],targetunit)) {
+		} if (d.type==Unit.REROLL_M&&d.req(activeunit,activeunit.weapons[activeunit.activeweapon],targetunit)) {
 		    if (typeof d.aiactivate!="function"||d.aiactivate(m,n)==true) {
 			if (typeof d.f=="function") d.f();
 			reroll(n,from,to,d,i);
