@@ -212,17 +212,17 @@
 	</div>
 	<div class="m-upgrades"></div>
 	<div class="upgradefilter">
-	  <span><input type="checkbox" id="fturret" onclick="unitfilter(TURRET)"><label for="fturret" class="upgrades Turret"></label></span>
-	  <span><input type="checkbox" id="fcrew" onclick="unitfilter(CREW)"><label for="fcrew" class="upgrades Crew"></label></span>
-	  <span><input type="checkbox" id="fastromech" onclick="unitfilter(ASTROMECH)"><label for="fastromech" class="upgrades Astromech"></label></span>
-	  <span><input type="checkbox" id="fsalvaged" onclick="unitfilter(SALVAGED)"><label for="fsalvaged" class="upgrades Salvaged"></label></span>
-	  <span><input type="checkbox" id="fsystem" onclick="unitfilter(SYSTEM)"><label for="fsystem" class="upgrades System"></label></span>
-	  <span><input type="checkbox" id="fcannon" onclick="unitfilter(CANNON)"><label for="fcannon" class="upgrades Cannon"></label></span>
-	  <span><input type="checkbox" id="ftorpedo" onclick="unitfilter(TORPEDO)"><label for="ftorpedo" class="upgrades Torpedo"></label></span>
-	  <span><input type="checkbox" id="fmissile" onclick="unitfilter(MISSILE)"><label for="fmissile" class="upgrades Missile"></label></span>
-	  <span><input type="checkbox" id="fbomb" onclick="unitfilter(BOMB)"><label for="fbomb" class="upgrades Bomb"></label></span>
-	  <span><input type="checkbox" id="fillicit" onclick="unitfilter(ILLICIT)"><label for="fillicit" class="upgrades Illicit"></label></span>
-	  <span><input type="checkbox" id="ftech" onclick="unitfilter(TECH)"><label for="ftech" class="upgrades Tech"></label></span>
+	  <span><input type="checkbox" id="fturret" onclick="unitfilter(Unit.TURRET)"><label for="fturret" class="upgrades Turret"></label></span>
+	  <span><input type="checkbox" id="fcrew" onclick="unitfilter(Unit.CREW)"><label for="fcrew" class="upgrades Crew"></label></span>
+	  <span><input type="checkbox" id="fastromech" onclick="unitfilter(Unit.ASTROMECH)"><label for="fastromech" class="upgrades Astromech"></label></span>
+	  <span><input type="checkbox" id="fsalvaged" onclick="unitfilter(Unit.SALVAGED)"><label for="fsalvaged" class="upgrades Salvaged"></label></span>
+	  <span><input type="checkbox" id="fsystem" onclick="unitfilter(Unit.SYSTEM)"><label for="fsystem" class="upgrades System"></label></span>
+	  <span><input type="checkbox" id="fcannon" onclick="unitfilter(Unit.CANNON)"><label for="fcannon" class="upgrades Cannon"></label></span>
+	  <span><input type="checkbox" id="ftorpedo" onclick="unitfilter(Unit.TORPEDO)"><label for="ftorpedo" class="upgrades Torpedo"></label></span>
+	  <span><input type="checkbox" id="fmissile" onclick="unitfilter(Unit.MISSILE)"><label for="fmissile" class="upgrades Missile"></label></span>
+	  <span><input type="checkbox" id="fbomb" onclick="unitfilter(Unit.BOMB)"><label for="fbomb" class="upgrades Bomb"></label></span>
+	  <span><input type="checkbox" id="fillicit" onclick="unitfilter(Unit.ILLICIT)"><label for="fillicit" class="upgrades Illicit"></label></span>
+	  <span><input type="checkbox" id="ftech" onclick="unitfilter(Unit.TECH)"><label for="ftech" class="upgrades Tech"></label></span>
 	</div>
 	<div class="m-actions"></div>
 	<div class="actionfilter">
@@ -629,7 +629,7 @@
       <table class="pilots">
 	{{#pilots}}
 	<tr data="{{pilotid}}">
-	  <td><button class="pilot" id="pilot-{{pilotid}}" pilotid="{{pilotid}}" onclick="addunit({{pilotid}},{{faction}})">{{trname}}</button></td>
+	  <td><button class="pilot" id="pilot-{{pilotid}}" pilotid="{{pilotid}}" onclick="addunit({{pilotid}},Unit.{{faction}})">{{trname}}</button></td>
 	  <td class="pts"><label for="pilot-{{pilotid}}"><span class="symbols" style="color:gold;font-size:0.5em">{{rating}}</span>{{points}}</label></td>
 	  <td class="statskill"><label for="pilot-{{pilotid}}">{{skill}}</label></td>
 	  <td>{{#haselite}}<label for="pilot-{{pilotid}}"><code class="upgrades Elite"></code></label>{{/haselite}}</td>
