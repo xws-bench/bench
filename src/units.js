@@ -2758,7 +2758,7 @@ Unit.prototype = {
 	    var anyactiveweapon=false;
 	    var i;
 	    var attacker; // = getattacker.call();
-	    if (wrapper=="removeshield"||wrapper=="endattack"||wrapper=="warndeath") attacker=activeunit;
+	    if (wrapper=="removeshield"||wrapper=="endattack"||wrapper=="endbeingattacked"||wrapper=="warndeath") attacker=activeunit;
 	    else if (typeof attacker=="undefined") attacker=this;
 	    for (i in weaponlist) if (weaponlist[i].isactive) {
 		anyactiveweapon=true; break;
