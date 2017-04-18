@@ -3580,7 +3580,6 @@ window.PILOTS = [
 	    this.addattack(function(c,h,t) { 
 		// Side effect ! 
 		this.retaliationtarget=t;
-		console.log("dengar:"+self.dengarattack+" "+(t!=self)+" "+self.isinprimaryfiringarc(t));
 		return self.dengarattack<round&&t!=self
 		    &&self.isinprimaryfiringarc(t); 
 	    }, this,this.weapons,function() {
