@@ -112,9 +112,7 @@ window.PILOTS = [
 	init: function() {
 	    this.wrap_before("resolveattack",this,function(w,target) {
 		target.log("-1 defense [%0]",this.name);
-		target.wrap_after("getagility",this,function(a) {
-		    return (a>0)?a-1:a; 
-		}).unwrapper("cleanupattack");
+		target.wrap_after("getagility",this,(a) => (a>0)?a-1:a).unwrapper("cleanupattack");
 		target.showstats();
 	    });
 	},
@@ -242,10 +240,8 @@ window.PILOTS = [
 	faction:Unit.REBEL,
 	init: function() {
 	    this.adddicemodifier(Unit.DEFENSE_M,Unit.MOD_M,Unit.DEFENSE_M,this,{
-		req: function(m,n) { return true; },
-		aiactivate:function(m,n) { 
-		    return Unit.FE_focus(m)>0;
-		},
+		req: (m,n) => true,
+		aiactivate:(m,n) => Unit.FE_focus(m)>0,
 		f:function(m,n) {
 		    if (Unit.FE_focus(m)>0) {
 			this.log("1 %FOCUS% -> 1 %EVADE%");
@@ -304,7 +300,7 @@ window.PILOTS = [
 	init: function() {
 	    this.adddicemodifier(Unit.ATTACK_M,Unit.REROLL_M,Unit.ATTACK_M,this,{
 		dice:["blank"],
-		n:function() { return 9; },
+		n:() => 9,
 		req:function(attack,w,defender) {
 		    var r=this.getrange(defender);
 		    if (r>=2&&r<=3) {
@@ -392,9 +388,7 @@ window.PILOTS = [
 		req:function(m,n) { 
 		    return (this.getrange(targetunit)==1);
 		}.bind(this),
-		aiactivate: function(m,n) {
-		    return Unit.FCH_hit(m)>0;
-		},
+		aiactivate: (m,n) => Unit.FCH_hit(m)>0,
 		f:function(m,n) {
 		    if (Unit.FCH_hit(m)>0) {
 			this.log("1 %HIT% -> 1 %CRIT%");
@@ -457,8 +451,8 @@ window.PILOTS = [
 	init: function() {
 	    var self=this;
 	    this.wrap_after("isattackedby",this,function(w,a) {
-		a.wrap_after("canusefocus",self,function() { return false; }).unwrapper("afterdefenseeffect");
-		a.wrap_after("canusetarget",self,function(t) { return false; }).unwrapper("afterdefenseeffect");
+		a.wrap_after("canusefocus",self,() => false).unwrapper("afterdefenseeffect");
+		a.wrap_after("canusetarget",self,() => false).unwrapper("afterdefenseeffect");
 		a.wrap_after("getdicemodifiers",self,function(mods) {
 		    var p=[];
 		    for (var i=0; i<mods.length; i++)
@@ -503,7 +497,7 @@ window.PILOTS = [
 	init: function() {
 	    Unit.prototype.adddicemodifier(Unit.ATTACK_M,Unit.REROLL_M,Unit.ATTACK_M,this,{
 		dice:["blank","focus"],
-		n:function() { return 1; },
+		n:() => 1,
 		req:function(attacker,w,defender) {
 		    // Howlrunner dead ? 
 		    if (attacker!=this&&!this.dead

@@ -275,7 +275,7 @@ Weapon.prototype={
 	return this.attack;
     },
     isTurret() {
-	return this.type==TURRET;
+	return this.type==Unit.TURRET;
     },
     getlowrange() {
 	return this.range[0];

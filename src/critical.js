@@ -390,7 +390,7 @@ var CRITICAL_DECK=[
 	    this.isactive=true;
 	    for (i=0; i<this.unit.upgrades.length; i++) {
 		var upg=this.unit.upgrades[i];
-		if (upg.type==ELITE) upg.desactivate();
+		if (upg.type==Unit.ELITE) upg.desactivate();
 	    }
 	    this.unit.desactivate();
 	    this.unit.show();
@@ -401,7 +401,7 @@ var CRITICAL_DECK=[
 		if (typeof this.unit.init!="undefined") this.unit.init();
 		for (i=0; i<this.unit.upgrades.length; i++) {
 		    var upg=this.unit.upgrades[i];
-		    if (upg.type==ELITE) {
+		    if (upg.type==Unit.ELITE) {
 			upg.isactive=true;
 			if (typeof upg.init!="undefined") upg.init(this.unit);
 		    }

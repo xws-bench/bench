@@ -30,7 +30,7 @@ var MPOS={ F0:[0,3],RL1:[0,2],RR1:[0,4],RF1:[0,3],F1:[1,3],F2:[2,3],F3:[3,3],F4:
 	   TRL3:[3,0],TRR3:[3,6],
 	   TRL2:[2,0],TRR2:[2,6]
 	 };
-var ILLICIT="Illicit",ELITE="Elite",TURRET="Turret",MISSILE="Missile",ASTROMECH="Astromech",TORPEDO="Torpedo",CANNON="Cannon",BOMB="Bomb",TECH="Tech",CREW="Crew",SYSTEM="System",SALVAGED="Salvaged",MOD="Mod",TITLE="Title",ROCK="Rock",DEBRIS="Debris",NONE="None",CONDITION="Condition";
+/*var ILLICIT="Illicit",ELITE="Elite",TURRET="Turret",MISSILE="Missile",ASTROMECH="Astromech",TORPEDO="Torpedo",CANNON="Cannon",BOMB="Bomb",TECH="Tech",CREW="Crew",SYSTEM="System",SALVAGED="Salvaged",MOD="Mod",TITLE="Title",ROCK="Rock",DEBRIS="Debris",NONE="None",CONDITION="Condition";*/
 var NOLOG=false;
 var generics=[];
 var gid=0;
@@ -355,9 +355,9 @@ function Unit(team,pilotid) {
     for (var j=0; j<10; j++) {this.upg[j]=-1};
     this.upgradetype=[];
     for (var k=0; k<up.length; k++) this.upgradetype[k]=up[k];
-    this.upgradetype[k++]=MOD;
+    this.upgradetype[k++]=Unit.MOD;
     if (unitlist[this.ship.name].hastitle) {
-	this.upgradetype[k++]=TITLE;
+	this.upgradetype[k++]=Unit.TITLE;
     }
     this.upgradesno=k;
     this.points=PILOTS[pilotid].points;
@@ -450,8 +450,8 @@ Unit.ATTACKCOMPARE_M=2;
 Unit.REBEL="REBEL";
 Unit.EMPIRE="EMPIRE";
 Unit.SCUM="SCUM";
-
-var REBEL="REBEL",EMPIRE="EMPIRE",SCUM="SCUM";
+var ROCK="Rock",DEBRIS="Debris",NONE="None";
+/*var REBEL="REBEL",EMPIRE="EMPIRE",SCUM="SCUM";*/
 /* Class */
 Unit.prototype = {
     wrap_before:function(name,org,before,unwrap) { return wrap_before.call(this,name,org,before,unwrap); },
@@ -1125,7 +1125,7 @@ Unit.prototype = {
 	for (k=0; k<OBSTACLES.length; k++){
 	    if (OBSTACLES[k].type==NONE) continue;
 	    var ob=OBSTACLES[k].getOutlineString();
-	    if (OBSTACLES[k].type==BOMB
+	    if (OBSTACLES[k].type==Unit.BOMB
 		&&(Snap.path.intersection(ob.s,os).length>0 
 		||this.isPointInside(ob.s,op)
 		||this.isPointInside(os,ob.p))) {
@@ -1200,8 +1200,8 @@ Unit.prototype = {
 	//    s.circle(pp[i].x,pp[i].y,2).attr({fill:"#fff"});
 	//s.circle(tb.x,tb.y,tb.diam).attr({fill:"#f00"});
 	for (k=0; k<OBSTACLES.length; k++){
-	    if (OBSTACLES[k].type==BOMB) continue;
-	    if (OBSTACLES[k].type==NONE) continue;
+	    if (OBSTACLES[k].type==Unit.BOMB) continue;
+	    if (OBSTACLES[k].type==Unit.NONE) continue;
 	    var b=OBSTACLES[k].getBall();
 	    var D=b.diam+tb.diam;
 	    //s.circle(b.x,b.y,b.diam).attr({fill:"#fff"});
@@ -1228,7 +1228,7 @@ Unit.prototype = {
 		||this.isPointInside(ob.s,op)
 		||this.isPointInside(os,ob.p)) {
 		if (this.oldoverlap!=k) {
-		    if (o.type!=BOMB) collision.overlap=k; 
+		    if (o.type!=Unit.BOMB) collision.overlap=k; 
 		    else collision.mine.push(o);
 		} 
 	    }
@@ -1249,7 +1249,7 @@ Unit.prototype = {
 			    var dx=(o2[i].x-pathpts[j].x);
 			    var dy=(o2[i].y-pathpts[j].y);
 			    if (dx*dx+dy*dy<=100) { 
-				if (o.type!=BOMB) collision.template.push(k); 
+				if (o.type!=Unit.BOMB) collision.template.push(k); 
 				else collision.mine.push(OBSTACLES[k]);
 				break;
 			    } 
@@ -2020,7 +2020,7 @@ Unit.prototype = {
 	    if (mine.length>0) 
 		for (i=0; i<mine.length; i++) {
 		    var o=OBSTACLES[mine[i]];
-		    if (o.type==BOMB&&typeof o.detonate=="function") 
+		    if (o.type==Unit.BOMB&&typeof o.detonate=="function") 
 			o.detonate(this,false)
 		    else {
 			this.ocollision.overlap=i;
@@ -2841,7 +2841,7 @@ Unit.prototype = {
 			(function(k,h) {
 			    var e=$("<div>").addClass("symbols").text(A[k.type].key)
 				.click(function () { this.resolveaction(k,n); }.bind(this));
-			    if (k.type=="BOMB") e.addClass("bombs");
+			    if (k.type==Unit.BOMB) e.addClass("bombs");
 			    e.attr("title",list[i].name);
 			    if (list[i].name.slice(-2)=="/2") {
 				e.css("color","yellow");
@@ -3926,7 +3926,7 @@ Unit.prototype = {
 		if (OBSTACLES[k].type==NONE) continue;
 		var op=OBSTACLES[k].getOutlineString().p;
 		// The object is not yet intialized. Should not be here...
-		if (op.length==0||OBSTACLES[k].type==BOMB) break;
+		if (op.length==0||OBSTACLES[k].type==Unit.BOMB) break;
 		var s=op[0].x*dy-op[0].y*dx+a;
 		var v=s;
 		for (i=1; i<op.length; i++) {

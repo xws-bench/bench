@@ -194,7 +194,7 @@ function addupgradeaddhandler(u) {
 	    //log(pts+" "+text+" disabled"+disabled+" num"+num+" data"+p[i]+" name"+translate(upg.name)+" attacks"+attacks[0].attack);
 	    var rating=0;
 	    var comment="";
-	    var v=upg.name+(upg.type==CREW?"(Crew)":"");
+	    var v=upg.name+(upg.type==Unit.CREW?"(Crew)":"");
 	    if (typeof RATINGS_upgrades[v]!="undefined"
 		&&typeof RATINGS_upgrades[v].rating!="undefined") {
 		rating=RATINGS_upgrades[v].rating;

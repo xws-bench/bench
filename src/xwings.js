@@ -1038,7 +1038,7 @@ function getpilottexttranslation(u,faction) {
     return "";
 }
 function getupgtxttranslation(name,type) {
-    var v=name+(type==CREW?"(Crew)":"");
+    var v=name+(type==Unit.CREW?"(Crew)":"");
     if (typeof UPGRADE_translation[v]!="undefined") {
 	/*var faq=UPGRADE_translation[v].faq;
 	if (typeof faq=="undefined") faq=""; else faq="<div style='color:grey'><strong>FAQ:</strong>"+faq+"</div>";*/

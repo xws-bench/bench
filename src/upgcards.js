@@ -5565,8 +5565,8 @@ var UPGRADES=window.UPGRADES= [
 	 var p=self.selectnearbyunits(1,function(s,t) { return s!=t&&s.isinfiringarc(t);});
 	 if (p.length>0) {
 	     self.resolveactionselection(p,function(k) {
-		 p[k].addtractorbeam(this);
-		 this.unit.endaction(n,"MOD");
+		 p[k].addtractorbeam(self);
+		 self.endaction(n,"MOD");
 	     });
 	 } else self.endaction(n,"MOD");
      }

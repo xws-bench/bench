@@ -403,7 +403,7 @@ Team.prototype = {
 		console.log(pid+" "+p.name+" "+p.pilotid);
 		console.trace();
 	    }
-	    var authupg=[TITLE,MOD].concat(PILOTS[p.pilotid].upgrades);
+	    var authupg=[Unit.TITLE,Unit.MOD].concat(PILOTS[p.pilotid].upgrades);
 	    for (j=1; j<pstr.length; j++) {
 		for (k=0; k<UPGRADES.length; k++) {
 		    if ((translated==true&&translate(UPGRADES[k].name).replace(/\'/g,"").replace(/\(Crew\)/g,"")==pstr[j])
@@ -411,8 +411,8 @@ Team.prototype = {
 			if (authupg.indexOf(UPGRADES[k].type)>-1) {
 			    if (typeof UPGRADES[k].upgrades!="undefined") 
 				if (UPGRADES[k].upgrades[0]=="Cannon|Torpedo|Missile") {
-				    authupg=authupg.concat([CANNON,TORPEDO,MISSILE]);
-				    p.upgradetype=p.upgradetype.concat([CANNON,TORPEDO,MISSILE]);
+				    authupg=authupg.concat([Unit.CANNON,Unit.TORPEDO,Unit.MISSILE]);
+				    p.upgradetype=p.upgradetype.concat([Unit.CANNON,Unit.TORPEDO,Unit.MISSILE]);
 				}
 			    else { 
 				authupg=authupg.concat(UPGRADES[k].upgrades);
@@ -468,7 +468,7 @@ Team.prototype = {
 		    } 
 		if (p.upg[f]==n&&typeof UPGRADES[n].upgrades!="undefined") {
 		    if (UPGRADES[n].upgrades[0]=="Cannon|Torpedo|Missile") 
-			p.upgradetype=p.upgradetype.concat([CANNON,TORPEDO,MISSILE]);
+			p.upgradetype=p.upgradetype.concat([Unit.CANNON,Unit.TORPEDO,Unit.MISSILE]);
 		    else
 			p.upgradetype=p.upgradetype.concat(UPGRADES[n].upgrades);
 		}
