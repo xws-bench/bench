@@ -1618,7 +1618,8 @@ var   dragstop= function(e) {
     VIEWPORT.dragged=false;
 }
 var scrolloverflow=function(event) {
-    var id=event.target.id;
+    //var id=event.target.id;
+    var id=event.currentTarget.id;
     $("#"+id+" .outoverflow").each(function(index) { 
 	if ($(this).css("top")!="auto") {
 	    $(this).css("top",$(this).parent().offset().top+"px");
