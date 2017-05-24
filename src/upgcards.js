@@ -5639,7 +5639,7 @@ var UPGRADES=window.UPGRADES= [
 	     for (var i in squadron) {
 		 var u=squadron[i];
 		 if (u.isally(this)) 
-		     t=t.concat(Unit.prototype.gettargetableunits.vanilla.call(t,3));
+		     t=t.concat(Unit.prototype.gettargetableunits.call(u,3));
 	     }
 	     return t;
 	 });
