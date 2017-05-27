@@ -4718,7 +4718,15 @@ var UPGRADES=window.UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    sh.wrap_after("modifyattackroll",this,function(m,n,d,mm) {
-		if (this.weapons[activeweapon].getauxiliarysector(targetunit)<4) 
+		var i = 0;
+                var activeweapon = 0;
+                for (i; i < this.weapons.length; i++){
+                    if (this.weapons[i].isactive){
+                        activeweapon = i;
+                        break;
+                    }
+                }
+                if (this.weapons[activeweapon].getauxiliarysector(targetunit)<4) 
 		    if (Unit.FCH_focus(mm)>0) mm+=Unit.FCH_CRIT-Unit.FCH_FOCUS;
 		return mm;
 	    });
