@@ -4851,7 +4851,7 @@ var UPGRADES=window.UPGRADES= [
 		aiactivate: function(m,n) { return activeunit.stress>0;},
 		f:function(m,n) {
 		    if (activeunit.stress>0) {
-			activeunit.log("-1 stress from %0, +1 %EVADE% for %1 [%2]",activeunit.name,self.unit.name,self.name);
+			activeunit.log("-1 stress, +1 %EVADE% for %0 [%1]",self.unit,self.name);
 			activeunit.removestresstoken();
 			return {m:m+Unit.FE_EVADE, n:n+1};
 		    } else return {m:m,n:n};
