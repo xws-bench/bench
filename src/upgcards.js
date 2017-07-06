@@ -135,7 +135,7 @@ var UPGRADES=window.UPGRADES= [
 	},
 	action: function(n) {
 	    var self=this;
-	    if (!this.isactive) {
+	    if (this.isactive) {
 		this.unit.defenseroll(1).done(function(roll) {
 		    if (Unit.FE_evade(roll.roll)+Unit.FE_focus(roll.roll)>0) {
 			for (var i=0; i<this.criticals.length; i++)
@@ -5194,12 +5194,19 @@ var UPGRADES=window.UPGRADES= [
      points:2,
      type:Unit.ELITE,
      done:true,
+     // Snap Shot *is* a Secondary Weapon
+     isWeapon: function() { return true;},
+     // Snap Shot can only fire once per *phase*
+     // Not sure how to enact that part, though.
+     endattack: function(c,h) { this.unit.addhasfired(); },
+     attack: 2,
+     range: [1,1],
      init: function(sh) {
 	 var self=this;
 	 Unit.prototype.wrap_after("doendmaneuveraction",self,function() {
 	     var wpl=[];
 	     for (var i in self.unit.weapons)
-		 if (self.unit.weapons[i].getrange(this)>0)
+		 if (self.unit.weapons[i].name == "Snap Shot")
 		     wpl.push(self.unit.weapons[i]);
 	     
 	     if (wpl.length>0) {
@@ -5212,11 +5219,17 @@ var UPGRADES=window.UPGRADES= [
 			 return [];
 		     }).unwrapper("cleanupattack");
 		     self.unit.wrap_before("cancelattack",self,function() {
-			 self.unit.maxfired++;
+			 //self.unit.maxfired++;
 			 $("#attackdial").hide();
 			 self.unit.endnoaction(n,"ATTACK");
 		     }).unwrapper("cleanupattack");
-		     self.unit.doattack(wpl,[this]);
+                     // Check if this != this.isally(self.unit)?
+                     // In this context, self.unit is Snap Shot host
+                     // this is any ship
+                     if(!this.isally(self.unit) && 
+                             this.getrange(self.unit)<=wpl[0].gethighrange()){
+                        self.unit.doattack(wpl,[this]);
+                    } else self.unit.endnoaction(n,"ELITE");
 		 }.bind(this));
 	     }
 	 });
@@ -5335,7 +5348,8 @@ var UPGRADES=window.UPGRADES= [
 	 var self=this;
 	 Unit.prototype.wrap_after("endattack",self,function(c,h,t) {
 	     if (self.isactive&&this.isally(self.unit)&&this.getrange(self.unit)<=2&&c+h===0) {
-		 var p=this.selectnearbyally(3);
+		 
+                 var p=this.selectnearbyally(3);
 		 if (p.length>0) {
 		     this.doselection(function(n) {
 			 this.resolveactionselection(p,function(k) {
