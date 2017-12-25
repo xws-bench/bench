@@ -3588,7 +3588,7 @@ window.PILOTS = [
 		return [this.retaliationtarget];
 	    },"endbeingattacked");
 	},
-	upgrades:[Unit.ELITE,Unit.TORPEDO,Unit.TORPEDO,Unit.CREW,Unit.SALVAGED,Unit.ILLICIT]
+	upgrades:[Unit.ELITE,Unit.CREW,Unit.ILLICIT]
     },
     {
 	name:"Tel Trevura",
@@ -3613,7 +3613,7 @@ window.PILOTS = [
 		}
 	    });
 	},
-	upgrades:[Unit.ELITE,Unit.TORPEDO,Unit.TORPEDO,Unit.CREW,Unit.SALVAGED,Unit.ILLICIT]
+	upgrades:[Unit.ELITE,Unit.CREW,Unit.ILLICIT]
     },
     {
 	name:"Manaroo",
@@ -3652,7 +3652,7 @@ window.PILOTS = [
 		},["select unit (or self to cancel) [%0]",this.name],true);
 	    });
 	},
-	upgrades:[Unit.ELITE,Unit.TORPEDO,Unit.TORPEDO,Unit.CREW,Unit.SALVAGED,Unit.ILLICIT]
+	upgrades:[Unit.ELITE,Unit.CREW,Unit.ILLICIT]
     },
     { name:"Tomax Bren",
       faction:Unit.EMPIRE,
@@ -4821,7 +4821,18 @@ window.PILOTS = [
 		}
 	    }
 	}
-    }
+    },
+	{
+		name: "Lieutenant Kestal",
+		faction: Unit.EMPIRE,
+		unique: true,
+		done: false,
+		pilotid: 243,
+		unit: "TIE Aggressor",
+		skill: 7,
+		points: 22,
+		upgrades: [Unit.ELITE, Unit.TURRET, Unit.MISSILE, Unit.MISSILE]
+	}
 
 ];
 
