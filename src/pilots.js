@@ -100,7 +100,7 @@ window.PILOTS = [
 	unit:"JumpMaster 5000",
 	skill:3,
 	points:25,
-	upgrades:[Unit.ELITE,Unit.TORPEDO,Unit.TORPEDO,Unit.CREW,Unit.SALVAGED,Unit.ILLICIT]
+	upgrades:[Unit.ELITE,Unit.CREW,Unit.ILLICIT]
     },
     {
         name: "Wedge Antilles",    
