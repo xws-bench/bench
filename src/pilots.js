@@ -12,6 +12,33 @@
 	this.doaction(p,"free %BOOST% or %ROLL% action");
     }
 }
+var kylo_fct = function() {
+	this.firstroundhit=-1;
+	this.wrap_after("resolveishit",this,function(t) {
+		if (this.firstroundhit<round) {
+			this.firstroundhit=round;
+			new Condition(t,this,"I'll Show You The Dark Side");
+		}
+	});
+}
+
+var ezra_fct = function() {
+    this.adddicemodifier(Unit.DEFENSE_M,Unit.MOD_M,Unit.DEFENSE_M,this,{
+	req:function(m,n) {
+	    return this.stress>0;
+	}.bind(this), 
+	f:function(m,n) {
+	    var f=Unit.FE_focus(m);
+	    if (f>2) f=2;
+	    if (f>0) {
+		this.log("%0 %FOCUS% -> %0 %EVADE%",f);
+		return m-f*Unit.FE_FOCUS+f*Unit.FE_EVADE;
+	    } 
+	    return m;
+	}.bind(this),str:"focus"});
+}
+
+
 var zeb_fct = function(r,t) {
     // first, cancel criticals
     this.log("cancel %CRIT% first");
@@ -3242,25 +3269,12 @@ window.PILOTS = [
 	unique:true,
 	done:true,
 	pilotid:164,
-	unit:"Attack Shuttle",
+	ambiguous:true,
+	edition:"Attack Shuttle",
+        unit:"Attack Shuttle",
 	skill:4,
 	points:20,
-	init: function() {
-	    this.adddicemodifier(Unit.DEFENSE_M,Unit.MOD_M,Unit.DEFENSE_M,this,{
-		req:function(m,n) {
-		    return this.stress>0;
-		}.bind(this), 
-		f:function(m,n) {
-		    var f=Unit.FE_focus(m);
-		    if (f>2) f=2;
-		    if (f>0) {
-			this.log("%0 %FOCUS% -> %0 %EVADE%",f);
-			return m-f*Unit.FE_FOCUS+f*Unit.FE_EVADE;
-		    } 
-		    return m;
-		}.bind(this),str:"focus"});
-
-	},        
+	init: ezra_fct,        
 	upgrades:[Unit.ELITE,Unit.TURRET,Unit.CREW]
     },
     {
@@ -4606,15 +4620,7 @@ window.PILOTS = [
      done:true,
      upgrades:[Unit.ELITE,Unit.SYSTEM,Unit.CREW,Unit.CREW,Unit.TECH,Unit.TECH],
      points:34,
-     init: function() {
-	 this.firstroundhit=-1;
-	 this.wrap_after("resolveishit",this,function(t) {
-	     if (this.firstroundhit<round) {
-		 this.firstroundhit=round;
-		 new Condition(t,this,"I'll Show You The Dark Side");
-	     }
-	 });
-     }
+     init: kylo_fct
     },
     {name:"Major Stridan",
      faction:Unit.EMPIRE,
@@ -5019,6 +5025,231 @@ window.PILOTS = [
         	upgrades: [Unit.ELITE,Unit.MISSILE,Unit.ILLICIT],
 		points: 24
         },
+	{
+        	name: "Major Vynder",
+	        faction:Unit.EMPIRE,
+	        unique: true,
+		done:false,
+		pilotid:261,
+	        unit: "Alpha-class Star Wing",
+	        skill: 7,
+	        points: 26,
+	        upgrades: [Unit.ELITE,Unit.TORPEDO,Unit.MISSILE]
+	},
+	{
+        	name: "Lieutenant Karsabi",
+	        faction:Unit.EMPIRE,
+	        unique: true,
+		done:false,
+		pilotid:262,
+	        unit: "Alpha-class Star Wing",
+	        skill: 5,
+	        points: 24,
+	        upgrades: [Unit.ELITE,Unit.TORPEDO,Unit.MISSILE]
+	},
+	{
+        	name: "Rho Squadron Veteran",
+	        faction:Unit.EMPIRE,
+		done:true,
+		pilotid:263,
+	        unit: "Alpha-class Star Wing",
+	        skill: 4,
+	        points: 21,
+	        upgrades: [Unit.ELITE,Unit.TORPEDO,Unit.MISSILE]
+	},
+	{
+        	name: "Nu Squadron Veteran",
+	        faction:Unit.EMPIRE,
+		done:true,
+		pilotid:264,
+	        unit: "Alpha-class Star Wing",
+	        skill: 2,
+	        points: 18,
+	        upgrades: [Unit.TORPEDO,Unit.MISSILE]
+	},
+	{
+	       name:"Torani Kulda",
+	       faction:Unit.SCUM,
+	       pilotid:265,
+	       unique:true,
+	       done:false,
+	       unit:"M12-L Kimogila Fighter",
+	       skill:8,
+	       points:27,
+	       upgrades:[Unit.ELITE,Unit.TORPEDO,Unit.MISSILE,Unit.SALVAGED,Unit.ILLICIT]
+	},
+	{
+	       name:"Dalan Oberos (Kimogila)",
+	       faction:Unit.SCUM,
+	       pilotid:266,
+	       unique:true,
+	       done:false,
+	       unit:"M12-L Kimogila Fighter",
+	       skill:7,
+	       points:25,
+	       upgrades:[Unit.ELITE,Unit.TORPEDO,Unit.MISSILE,Unit.SALVAGED,Unit.ILLICIT]
+	},
+	{
+	       name:"Cartel Executioner",
+	       faction:Unit.SCUM,
+	       pilotid:267,
+	       unique:false,
+	       done:false,
+	       unit:"M12-L Kimogila Fighter",
+	       skill:5,
+	       points:24,
+	       upgrades:[Unit.ELITE,Unit.TORPEDO,Unit.MISSILE,Unit.SALVAGED,Unit.ILLICIT]
+	},
+	{
+	       name:"Cartel Brute",
+	       faction:Unit.SCUM,
+	       pilotid:268,
+	       unique:false,
+	       done:false,
+	       unit:"M12-L Kimogila Fighter",
+	       skill:3,
+	       points:22,
+	       upgrades:[Unit.TORPEDO,Unit.MISSILE,Unit.SALVAGED,Unit.ILLICIT]
+	},
+	{
+		name:"Fenn Rau (Rebel)",
+		faction:Unit.REBEL,
+		unique:true,
+    	    	unit:"Sheathipede-class Shuttle",
+    	    	skill:9,
+		pilotid:269,
+		points:20,
+		done:false,
+		upgrades:[Unit.ELITE,Unit.CREW,Unit.ASTROMECH]
+	},
+	{
+		name:"Ezra Bridger",
+		faction:Unit.REBEL,
+		unique:true,
+		ambiguous:true,
+		edition:"Sheathipede-class Shuttle",
+    	    	unit:"Sheathipede-class Shuttle",
+    	    	skill:5,
+		pilotid:270,
+		points:17,
+		done:true,
+		init: ezra_fct,        
+		upgrades:[Unit.ELITE,Unit.CREW,Unit.ASTROMECH]
+	},
+	{
+		name:"'Zeb' Orrelios",
+		faction:Unit.REBEL,
+		unique:true,
+		ambiguous:true,
+		edition:"Sheathipede-class Shuttle",
+		unit:"Sheathipede-class Shuttle",
+    	    	skill:3,
+		pilotid:271,
+		points:16,
+		done:true,
+		cancelhit:zeb_fct,
+		upgrades:[Unit.CREW,Unit.ASTROMECH]
+	},
+	{
+		name:"AP-5",
+		faction:Unit.REBEL,
+		unique:true,
+    	    	unit:"Sheathipede-class Shuttle",
+    	    	skill:1,
+		pilotid:272,
+		points:15,
+		done:false,
+		upgrades:[Unit.CREW,Unit.ASTROMECH]
+	},
+	{
+		name:"Kylo Ren (TIE Silencer)",
+		faction:Unit.EMPIRE,
+		pilotid:273,
+		unique:true,
+		unit:"TIE Silencer",
+		skill:9,
+		done:true,
+		upgrades:[Unit.ELITE,Unit.SYSTEM,Unit.TECH],
+		points:35,
+		init: kylo_fct
+	},
+	{
+		name:"Test Pilot 'Blackout'",
+		faction:Unit.EMPIRE,
+		pilotid:274,
+		unique:true,
+		unit:"TIE Silencer",
+		skill:7,
+		done:false,
+		upgrades:[Unit.ELITE,Unit.SYSTEM,Unit.TECH],
+		points:31
+	},
+	{
+		name:"First Order Test Pilot",
+		faction:Unit.EMPIRE,
+		pilotid:275,
+		unique:false,
+		unit:"TIE Silencer",
+		skill:6,
+		done:true,
+		upgrades:[Unit.ELITE,Unit.SYSTEM,Unit.TECH],
+		points:29
+	},
+	{
+		name:"Sienar-Jaemus Analyst",
+		faction:Unit.EMPIRE,
+		pilotid:276,
+		unique:false,
+		unit:"TIE Silencer",
+		skill:4,
+		done:true,
+		upgrades:[Unit.SYSTEM,Unit.TECH],
+		points:26
+	},
+	{
+		name:"'Crimson Leader'",
+		faction:Unit.REBEL,
+		pilotid:277,
+		unit:"B/SF-17 Bomber",
+		skill:7,
+		unique:true,
+		done:false,
+		upgrades:[Unit.SYSTEM,Unit.BOMB,Unit.BOMB,Unit.TECH],
+		points:29
+	},
+	{
+		name:"'Cobalt Leader'",
+		faction:Unit.REBEL,
+		pilotid:278,
+		unit:"B/SF-17 Bomber",
+		skill:6,
+		unique:true,
+		done:false,
+		upgrades:[Unit.SYSTEM,Unit.BOMB,Unit.BOMB,Unit.TECH],
+		points:28
+	},
+	{
+		name:"'Crimson Specialist'",
+		faction:Unit.REBEL,
+		pilotid:279,
+		unit:"B/SF-17 Bomber",
+		skill:4,
+		unique:true,
+		done:false,
+		upgrades:[Unit.SYSTEM,Unit.BOMB,Unit.BOMB,Unit.TECH],
+		points:27
+	},
+	{
+		name:"Crimson Squadron Pilot",
+		faction:Unit.REBEL,
+		pilotid:280,
+		unit:"B/SF-17 Bomber",
+		skill:1,
+		unique:false,
+		done:true,
+		upgrades:[Unit.SYSTEM,Unit.BOMB,Unit.BOMB,Unit.TECH],
+		points:25
+	}
 ];
 
 })();
