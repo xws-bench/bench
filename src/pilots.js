@@ -4875,7 +4875,7 @@ window.PILOTS = [
 		unit: "Auzituck Gunship",
 		skill: 7,
 		points: 30,
-		upgrades: [Unit.ELITE,Unite.CREW,Unite.CREW]
+		upgrades: [Unit.ELITE,Unit.CREW,Unit.CREW]
 	},
 	{
 		name: "Lowhhrick",
@@ -4886,7 +4886,7 @@ window.PILOTS = [
 		unit: "Auzituck Gunship",
 		skill: 5,
 		points: 28,
-		upgrades: [Unit.ELITE,Unite.CREW,Unite.CREW]
+		upgrades: [Unit.ELITE,Unit.CREW,Unit.CREW]
 	},
 	{
 		name: "Wookiee Liberator",
@@ -4897,7 +4897,7 @@ window.PILOTS = [
 		unit: "Auzituck Gunship",
 		skill: 3,
 		points: 26,
-		upgrades: [Unit.ELITE,Unite.CREW,Unite.CREW]
+		upgrades: [Unit.ELITE,Unit.CREW,Unit.CREW]
 	},
 	{
 		name: "Kashyyyk Defender",
@@ -4908,7 +4908,7 @@ window.PILOTS = [
 		unit: "Auzituck Gunship",
 		skill: 1,
 		points: 24,
-		upgrades: [Unite.CREW,Unite.CREW]
+		upgrades: [Unit.CREW,Unit.CREW]
 	},
 ];
 
