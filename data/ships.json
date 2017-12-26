@@ -1500,7 +1500,7 @@
 	    {"move":"TR3","difficulty":"WHITE"},
 	    {"move":"F4","difficulty":"RED"}
 	],
-	"actionList":[ "FOCUS","TARGET", "SLAM"]
+	"actionList":["FOCUS","TARGET","SLAM"]
     },
     "M12-L Kimogila Fighter":{
 	"firesnd":"slave_fire",
@@ -1534,7 +1534,7 @@
 	    {"move":"TR3","difficulty":"WHITE"},
 	    {"move":"K4","difficulty":"RED"}
 	],
-	"actionList":["FOCUS", "TARGET", "ROLL"]
+	"actionList":["FOCUS","TARGET","ROLL"]
     },
     "Sheathipede-class Shuttle": {
 	"wave":12,
@@ -1565,7 +1565,7 @@
 	    {"move":"K3","difficulty":"RED"},
 	    {"move":"F4","difficulty":"RED"}
 	],
-	"actionList":["FOCUS","LOCK","COORDINATE"]
+	"actionList":["FOCUS","TARGET","COORDINATE"]
     },
     "TIE Silencer":{
 	"wave":13,
@@ -1599,7 +1599,7 @@
 	    {"move":"K4","difficulty":"RED"},
 	    {"move":"F5","difficulty":"GREEN"}
 	],
-	"actionList":["FOCUS","LOCK","ROLL","BOOST"]
+	"actionList":["FOCUS","TARGET","ROLL","BOOST"]
     },
     "B/SF-17 Bomber":{
 	"firesnd":"xwing_fire",
