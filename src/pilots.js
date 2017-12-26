@@ -4964,7 +4964,61 @@ window.PILOTS = [
 		skill: 8,
 		points: 30,
 		upgrades: [Unit.ELITE,Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
-	},	
+	},
+	{
+        	name: "Dalan Oberos",
+	        faction:Unit.SCUM,
+	        done:false,
+		unique:true,
+		pilotid:256,
+	        unit: "StarViper",
+	        skill: 6,
+	        points: 30,
+	        upgrades: [Unit.ELITE,Unit.TORPEDO]
+	},
+	{
+        	name: "Thweek",
+	        faction:Unit.SCUM,
+	        done:false,
+		unique:true,
+		pilotid:257,
+	        unit: "StarViper",
+	        skill: 4,
+	        points: 28,
+	        upgrades: [Unit.TORPEDO]
+	},
+	{
+        	name: "Black Sun Assassin",
+	        faction:Unit.SCUM,
+	        done:true,
+		pilotid:258,
+	        unit: "StarViper",
+	        skill: 5,
+	        points: 28,
+	        upgrades: [Unit.ELITE,Unit.TORPEDO]
+	},
+	{
+        	name: "Viktor Hel",
+		unique:true,
+	        faction: Unit.SCUM,
+		pilotid:259,
+	        unit: "Kihraxz Fighter",
+		done:false,
+	        skill: 7,
+        	upgrades: [Unit.ELITE,Unit.MISSILE,Unit.ILLICIT],
+		points: 25
+        },
+	{
+        	name: "Captain Jostero",
+		unique:true,
+	        faction: Unit.SCUM,
+		pilotid:260,
+	        unit: "Kihraxz Fighter",
+		done:false,
+	        skill: 4,
+        	upgrades: [Unit.ELITE,Unit.MISSILE,Unit.ILLICIT],
+		points: 24
+        },
 ];
 
 })();
