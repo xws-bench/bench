@@ -1562,6 +1562,7 @@
 	    {"move":"BL3","difficulty":"WHITE"},
 	    {"move":"F3","difficulty":"GREEN"},
 	    {"move":"BR3","difficulty":"WHITE"},
+	    {"move":"TR3","difficulty":"RED"},
 	    {"move":"K3","difficulty":"RED"},
 	    {"move":"F4","difficulty":"RED"}
 	],
@@ -1604,7 +1605,7 @@
     "B/SF-17 Bomber":{
 	"firesnd":"xwing_fire",
 	"flysnd":"ywing_fly",
-	"scale":2.2,
+	"scale":1.8,
 	"img":["resistance-bomber"],
 	"faction":["REBEL"],
 	"weapon_type":"Laser",
