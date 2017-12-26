@@ -1401,5 +1401,37 @@
 	    {"move":"K4","difficulty":"RED"}
 	],
 	"actionList":["FOCUS","TARGET","ROLL"]
-    }
-}
+    },
+    "Auzituck Gunship":{
+	"firesnd":"falcon_fire",
+	"flysnd":"yt2400_fly",	    
+	"scale":1,
+	"islarge":false,
+	"img":["auzituck"],
+	"faction":["REBEL"],
+	"weapon_type":"Laser",
+	"code":"AUZ",
+	"wave":11,
+	"fire": 3,
+	"evade": 1,
+	"hull": 6,
+	"shield": 3,
+	"dial": [
+	    {"move":"BL1","difficulty":"GREEN"},
+	    {"move":"F1","difficulty":"GREEN"},	    
+	    {"move":"BR1","difficulty":"GREEN"},
+	    {"move":"TL2","difficulty":"WHITE"},
+	    {"move":"BL2","difficulty":"WHITE"},
+	    {"move":"F2","difficulty":"GREEN"},
+	    {"move":"BR2","difficulty":"WHITE"},
+	    {"move":"TR2","difficulty":"WHITE"},
+	    {"move":"TL3","difficulty":"WHITE"},
+	    {"move":"BL3","difficulty":"WHITE"},
+	    {"move":"F3","difficulty":"GREEN"},
+	    {"move":"BR3","difficulty":"WHITE"},
+	    {"move":"TR3","difficulty":"WHITE"},
+	    {"move":"F4","difficulty":"WHITE"},
+	    {"move":"F5","difficulty":"RED"}
+	],
+	"actionList":["FOCUS"]
+    }}

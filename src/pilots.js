@@ -4832,8 +4832,84 @@ window.PILOTS = [
 		skill: 7,
 		points: 22,
 		upgrades: [Unit.ELITE, Unit.TURRET, Unit.MISSILE, Unit.MISSILE]
-	}
-
+	},
+	{
+		name: "'Double Edge'",
+		faction: Unit.EMPIRE,
+		unique: true,
+		done: false,
+		pilotid: 244,
+		unit: "TIE Aggressor",
+		skill: 4,
+		points: 19,
+		upgrades: [Unit.ELITE, Unit.TURRET, Unit.MISSILE, Unit.MISSILE]
+	},
+	{
+		name: "Onyx Squadron Escort",
+		faction: Unit.EMPIRE,
+		unique: false,
+		done: true,
+		pilotid: 245,
+		unit: "TIE Aggressor",
+		skill: 5,
+		points: 19,
+		upgrades: [Unit.TURRET, Unit.MISSILE, Unit.MISSILE]
+	},
+	{
+		name: "Sienar Specialist",
+		faction: Unit.EMPIRE,
+		unique: false,
+		done: true,
+		pilotid: 246,
+		unit: "TIE Aggressor",
+		skill: 2,
+		points: 17,
+		upgrades: [Unit.TURRET, Unit.MISSILE, Unit.MISSILE]
+	},
+	{
+		name: "Wullffwarro",
+		faction: Unit.REBEL,
+		unique: true,
+		done: false,
+		pilotid: 248,
+		unit: "Auzituck Gunship",
+		skill: 7,
+		points: 30,
+		upgrades: [Unit.ELITE,Unite.CREW,Unite.CREW]
+	},
+	{
+		name: "Lowhhrick",
+		faction: Unit.REBEL,
+		unique: true,
+		done: false,
+		pilotid: 249,
+		unit: "Auzituck Gunship",
+		skill: 5,
+		points: 28,
+		upgrades: [Unit.ELITE,Unite.CREW,Unite.CREW]
+	},
+	{
+		name: "Wookiee Liberator",
+		faction: Unit.REBEL,
+		unique: false,
+		done: false,
+		pilotid: 250,
+		unit: "Auzituck Gunship",
+		skill: 3,
+		points: 26,
+		upgrades: [Unit.ELITE,Unite.CREW,Unite.CREW]
+	},
+	{
+		name: "Kashyyyk Defender",
+		faction: Unit.REBEL,
+		unique: false,
+		done: false,
+		pilotid: 251,
+		unit: "Auzituck Gunship",
+		skill: 1,
+		points: 24,
+		upgrades: [Unite.CREW,Unite.CREW]
+	},
 ];
 
 })();
