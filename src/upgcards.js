@@ -5958,5 +5958,31 @@ var UPGRADES=window.UPGRADES= [
 	     }
 	 }
      },
-    }
+
+    },
+
+	{
+		name:"Advanced Optics",
+		points: 2,
+		type:Unit.TECH,
+		done:true,
+		init: function(sh) {
+			var self=this;
+			sh.wrap_after("addfocustoken",this,function() {
+				if (this.focus>1) {
+					this.log("1 %FOCUS% max [%0]",self.name);
+					this.focus=1;
+			}
+			this.showinfo();
+		});
+		sh.wrap_after("resetfocus",this,function() {
+			var r=0;
+			if (this.focus>0) {
+				this.log("keep 1 %FOCUS% token [%0]",self.name);
+				r=1;
+			}
+			return r;
+		});
+	},
+    },
 ];
