@@ -4909,7 +4909,7 @@ window.PILOTS = [
 		skill: 1,
 		points: 24,
 		upgrades: [Unit.CREW,Unit.CREW]
-	},
+	}
 ];
 
 })();
