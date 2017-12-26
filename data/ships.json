@@ -1405,7 +1405,7 @@
     "Auzituck Gunship":{
 	"firesnd":"falcon_fire",
 	"flysnd":"yt2400_fly",	    
-	"scale":1,
+	"scale":1.2,
 	"islarge":false,
 	"img":["auzituck"],
 	"faction":["REBEL"],
@@ -1434,4 +1434,40 @@
 	    {"move":"F5","difficulty":"RED"}
 	],
 	"actionList":["FOCUS"]
-    }}
+    },
+    "Scurrg H-6 Bomber":{
+	"firesnd":"slave_fire",
+	"flysnd":"slave_fly",
+	"scale":2.2,
+	"islarge":false,
+	"img":["scurrg"],
+	"faction":["SCUM", "REBEL"],
+	"weapon_type":"Laser",
+	"code":"H",
+	"wave":11,
+	"fire": 3,
+	"evade": 1,
+	"hull": 5,
+	"shield": 5,
+	"dial": [
+	    {"move":"BL1","difficulty":"WHITE"},
+	    {"move":"F1","difficulty":"GREEN"},	    
+	    {"move":"BR1","difficulty":"WHITE"},
+	    {"move":"TL2","difficulty":"WHITE"},
+	    {"move":"BL2","difficulty":"GREEN"},
+	    {"move":"F2","difficulty":"GREEN"},
+	    {"move":"BR2","difficulty":"GREEN"},
+	    {"move":"TR2","difficulty":"WHITE"},
+	    {"move":"TL3","difficulty":"RED"},
+	    {"move":"TRL3","difficulty":"RED"},
+	    {"move":"BL3","difficulty":"WHITE"},
+	    {"move":"F3","difficulty":"GREEN"},
+	    {"move":"BR3","difficulty":"WHITE"},
+	    {"move":"TR3","difficulty":"RED"},
+	    {"move":"TRR3","difficulty":"RED"},
+	    {"move":"F4","difficulty":"WHITE"},
+	    {"move":"F5","difficulty":"RED"}
+	],
+	"actionList":["FOCUS", "TARGET", "ROLL"]
+    }
+}

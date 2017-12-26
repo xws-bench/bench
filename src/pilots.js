@@ -4909,7 +4909,62 @@ window.PILOTS = [
 		skill: 1,
 		points: 24,
 		upgrades: [Unit.CREW,Unit.CREW]
-	}
+	},
+	{
+		name: "Captain Nym",
+		faction: Unit.SCUM,
+		unique: true,
+		done: false,
+		pilotid: 251,
+		unit: "Scurrg H-6 Bomber",
+		skill: 8,
+		points: 30,
+		upgrades: [Unit.ELITE,Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
+	},
+	{
+		name: "Sol Sixxa",
+		faction: Unit.SCUM,
+		unique: true,
+		done: false,
+		pilotid: 252,
+		unit: "Scurrg H-6 Bomber",
+		skill: 6,
+		points: 28,
+		upgrades: [Unit.ELITE,Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
+	},
+	{
+		name: "Lok Revenant",
+		faction: Unit.SCUM,
+		unique: false,
+		done: false,
+		pilotid: 253,
+		unit: "Scurrg H-6 Bomber",
+		skill: 3,
+		points: 26,
+		upgrades: [Unit.ELITE,Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
+	},
+	{
+		name: "Karthakk Pirate",
+		faction: Unit.SCUM,
+		unique: false,
+		done: false,
+		pilotid: 254,
+		unit: "Scurrg H-6 Bomber",
+		skill: 1,
+		points: 24,
+		upgrades: [Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
+	},
+	{
+		name: "Captain Nym",
+		faction: Unit.REBEL,
+		unique: true,
+		done: false,
+		pilotid: 255,
+		unit: "Scurrg H-6 Bomber",
+		skill: 8,
+		points: 30,
+		upgrades: [Unit.ELITE,Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
+	},	
 ];
 
 })();
