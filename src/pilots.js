@@ -4991,7 +4991,21 @@ window.PILOTS = [
 	        unit: "StarViper",
 	        skill: 4,
 	        points: 28,
-	        upgrades: [Unit.TORPEDO]
+	        upgrades: [Unit.TORPEDO],
+		init: function() {
+			var self=this;
+			this.wrap_after("endsetupphase",this,function() {
+				var p=[];
+				for (var i in squadron)
+					if (squadron[i].team!=this.team) p.push(squadron[i]);
+				if (p.length>0) {
+					this.log("select unit for condition [%0]","Shadowed");
+					this.resolveactionselection(p,function(k) {
+						new Condition(p[k],this,"Shadowed");
+					}.bind(this));
+	      			}
+			});
+      		}
 	},
 	{
         	name: "Black Sun Assassin",

@@ -117,5 +117,13 @@ var CONDITIONS={
 		return b;
 	    }).unwrap("endattack");
 	}
-    }
+    },
+    "Shadowed":{
+	assign: function(target) {
+		this.org.wrap_after("getskill",this,function(s) {
+			return target.getskill(target.skill);
+		});
+		this.org.showskill();
+	},
+    },
 }
