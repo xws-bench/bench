@@ -1287,8 +1287,8 @@ function setphase(cannotreplay) {
 	    $("footer").hide();
 	    $("#titlecontent").html("<h1>"+SCENARIOTITLE+"</h1>"+HEADER);
 	}
-	if (TEAMS[1].points>TEAMS[2].points) TEAMS[2].initiative=true;
-	else if (TEAMS[2].points>TEAMS[1].points) TEAMS[1].initiative=true;
+	if (TEAMS[1].points<TEAMS[2].points) TEAMS[2].initiative=true;
+	else if (TEAMS[2].points<TEAMS[1].points) TEAMS[1].initiative=true;
 	else TEAMS[1].initiative=true;
 	if (TEAMS[1].initiative==true) log("TEAM #1 has initiative");
 	else log("TEAM #2 has initiative");
