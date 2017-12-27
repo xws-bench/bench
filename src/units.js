@@ -254,9 +254,10 @@ var A = {
     NOTHING:{key:"&nbsp;",color:WHITE},
     HIT:{key:"d",color:WHITE},
     SHIELD:{key:"v",color:YELLOW},
-    TECH:{key:"X",color:WHITE}
+    TECH:{key:"X",color:WHITE},
+    RELOAD:{key:"/",color:YELLOW}
 };
-var AINDEX = ["ROLL","FOCUS","TARGET","EVADE","BOOST","STRESS","CLOAK","ISTARGETED","ASTRO","CANNON","CREW","MISSILE","TORPEDO","ELITE","TURRET","UPGRADE","CRITICAL","NOTHING"];
+var AINDEX = ["ROLL","FOCUS","TARGET","EVADE","BOOST","STRESS","CLOAK","ISTARGETED","ASTRO","CANNON","CREW","MISSILE","TORPEDO","ELITE","TURRET","RELOAD","UPGRADE","CRITICAL","NOTHING"];
 
 function repeat(pattern, count) {
     var result = '';
@@ -1352,6 +1353,7 @@ Unit.prototype = {
 	return b;
     },
     candocoordinate: function() { return this.selectnearbyally(2).length>0; },
+    candoreload: function() { return true; }, // TODO add some condition
     newaction:function(a,str) {
 	return {action:a,org:this,type:str,name:str};
     },
@@ -1378,9 +1380,12 @@ Unit.prototype = {
 			al.push(this.newaction(this.resolveboost,"BOOST"));break;
 		    case "ROLL":if (this.candoroll()) 
 			al.push(this.newaction(this.resolveroll,"ROLL"));break;
-		    case "SLAM":if (isendmaneuver) al.push(this.newaction(this.resolveslam,"SLAM"));break;
+		    case "SLAM":if (isendmaneuver) 
+			al.push(this.newaction(this.resolveslam,"SLAM"));break;
 		    case "COORDINATE": if (this.candocoordinate()) 
-		    al.push(this.newaction(this.resolvecoordinate,"COORDINATE"));break;
+		    	al.push(this.newaction(this.resolvecoordinate,"COORDINATE"));break;
+		    case "RELOAD": if(this.candoreload())
+			al.push(this.newaction(this.resolvereload,"RELOAD"));break;
 		}
 	    }
 	}
@@ -2096,6 +2101,16 @@ Unit.prototype = {
 		this.endaction(n,"COORDINATE");
 	    });
 	}
+    },
+    resolvereload: function(n) {
+	for (var i=0; i<this.upgrades.length;i++) {
+	        if (this.upgrades[i].type.match(/Torpedo|Missile/)) {
+			this.upgrades[i].isactive=true;
+		}
+	}
+ 	this.noattack=round;
+	this.showstats();
+	this.endaction(n,"RELOAD");
     },
     candoarcrotate: function() { return this.hasmobilearc; },
     setarcrotate: function(r) { this.arcrotation=90*r; },
