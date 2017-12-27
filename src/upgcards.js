@@ -5972,17 +5972,41 @@ var UPGRADES=window.UPGRADES= [
 				if (this.focus>1) {
 					this.log("1 %FOCUS% max [%0]",self.name);
 					this.focus=1;
-			}
-			this.showinfo();
-		});
-		sh.wrap_after("resetfocus",this,function() {
-			var r=0;
-			if (this.focus>0) {
-				this.log("keep 1 %FOCUS% token [%0]",self.name);
-				r=1;
-			}
-			return r;
-		});
+				}
+				this.showinfo();
+			});
+			sh.wrap_after("resetfocus",this,function() {
+				var r=0;
+				if (this.focus>0) {
+					this.log("keep 1 %FOCUS% token [%0]",self.name);
+					r=1;
+				}
+				return r;
+			});
+		},
 	},
-    },
+
+	{
+		name:"StarViper Mk. II",
+		done:true,
+		points:-3,
+		type:Unit.TITLE,
+		ship:"StarViper",
+		upgrades:[Unit.TITLE],
+		init: function(sh) {
+			sh.getrollmatrix = function(m) {
+				var i=0;
+				var p=[m];
+				for (i=-20; i<=20; i+=20) {
+					var mm=m.clone().translate(0,i).rotate(90,0,0);
+					var mn=m.clone().translate(0,i).rotate(-90,0,0);
+					p=p.concat([this.getpathmatrix(mm,"BL1").rotate(-90,0,0),
+						this.getpathmatrix(mm,"BR1").rotate(-90,0,0),
+						this.getpathmatrix(mn,"BL1").rotate(90,0,0),
+						this.getpathmatrix(mn,"BR1").rotate(90,0,0)]);
+				}
+				return p;
+			};
+		}
+	},
 ];
