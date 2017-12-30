@@ -7,7 +7,7 @@ const VERSION="v0.99.2";
 var LANG="en";
 var FILTER="none";
 var DECLOAK_PHASE=1;
-const WEBSITE="http://xws-bench.github.io/bench/index.html";
+const WEBSITE="http://baranidlo.github.io/bench/index.html";
 const DICES=["focusred","hitred","criticalred","blankred","focusgreen","evadegreen","blankgreen"];
 const SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6,XP_PHASE=7,MAIN_PHASE=0;
 var BOMBS=[];
@@ -1720,7 +1720,7 @@ $(document).ready(function() {
 	facebook: "1615235965440706",
 	windows: "",
 	google: "896425822430-lv5gd4lk9c88hc47cp5eeigsb1h8rbio.apps.googleusercontent.com"
-    }, {redirect_uri: 'http://xws-bench.github.io/bench/index.html'});
+    }, {redirect_uri: 'http://baranidlo.github.io/bench/index.html'});
     */    
     /*hello('facebook').api('me').then(function(r) {
 	console.log("my name is (facebook) "+r.name);
