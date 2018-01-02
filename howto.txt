@@ -8,3 +8,65 @@ png/xy.png
 
 src/pilots.js
 
+----------------
+Debugging from source instead of all.min.js:
+
+	1) Replace line in main.html: 
+
+		<script src="js/all.min.js" ></script>
+
+	   with:
+
+		<!-- "Compiled version" 
+		<script src="js/all.min.js" ></script>
+		-->
+		<!-- "Sourcefile version" -->
+		<script src="js/api.js"></script>
+		<script src="js/snap.svg-min-0.4.1.js"></script>
+		<script src="js/jwerty.min.js"></script>
+		<script src="js/mustache.min.js"></script>
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script src="js/jquery.a-tools-1.4.1.js"></script>
+		<script src="js/jquery.asuggest.js"></script>
+		<script src="js/lz-string.min.js"></script>
+		<script src="js/howler2.0.2.min.js"></script>
+		<script src="js/hammer2.0.8.min.js"></script>
+		<script src="js/sheetrock.min.js"></script>
+
+		<script src="src/obstacles.js"></script>
+		<script src="src/critical.js"></script>
+		<script src="src/condition.js"></script>
+		<script src="src/units.js"></script>
+		<script src="src/upgrades.js"></script>
+		<script src="src/iaunits.js"></script>
+		<script src="src/metaunits.js"></script>
+		<script src="src/pilots.js"></script>
+		<script src="src/upgcards.js"></script>
+		<script src="src/team.js"></script>
+		<script src="src/proba.js"></script>
+		<script src="src/replay.js"></script>
+		<script src="src/xwings.js"></script>
+		<script src="src/page_manage.js"></script>
+		<script src="src/page_create.js"></script>
+		<script src="src/page_combat.js"></script>
+
+		<!-- api.js snap.svg-min-0.4.1.js jwerty.min.js mustache.min.js jquery-3.1.1.min.js 
+		jquery.a-tools-1.4.1.js jquery.asuggest.js lz-string.min.js howler2.0.2.min.js 
+		hammer2.0.8.min.js sheetrock.min.js
+		-->
+
+	2) After recompiling all.min.js, switch back and forth between
+compiled code and source code by switching commented-out blocks (e.g. switch
+
+		<!-- "Compiled version"
+			<script src="js/all.min.js" ></script>
+                -->
+
+	  with:
+
+		<!-- "Compiled version" -->
+			<script src="js/all.min.js" ></script>
+                
+	  and do the reverse for the Sourcefile section.)
+
+	3) Do *not* check this version of main.html in to production branch!
