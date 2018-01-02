@@ -135,7 +135,7 @@ var UPGRADES=window.UPGRADES= [
 	},
 	action: function(n) {
 	    var self=this;
-	    if (!this.isactive) {
+	    if (this.isactive) {
 		this.unit.defenseroll(1).done(function(roll) {
 		    if (Unit.FE_evade(roll.roll)+Unit.FE_focus(roll.roll)>0) {
 			for (var i=0; i<this.criticals.length; i++)
@@ -2427,6 +2427,16 @@ var UPGRADES=window.UPGRADES= [
         init: function(sh) {
 	    var self=this;
 	    this.spendfocus=false;
+            /* Notes for myself:
+             * On init, a modifier is added to the ship carrying R4:
+             *      Attack m(?), Mod m, Attack m, R4 card, array as:
+             *          anonymous function returning R4's spendfocus bool,
+             *          anonymous function that does... something ('this' in context
+             *              should be sh)
+             * 
+             * Additionally, a wrapper is added before the unit's resolve attack step.
+             * This may be the source of the   
+            */ 
 	    sh.adddicemodifier(Unit.ATTACK_M,Unit.MOD_M,Unit.ATTACK_M,this,{
 		req:function(m,n) { return self.spendfocus; }.bind(sh),
 		f:function(m,n) { 
@@ -2436,18 +2446,18 @@ var UPGRADES=window.UPGRADES= [
 		    displayattacktokens2(this);
 		    return m; 
 		}.bind(sh),str:"target"});
-	    sh.wrap_before("resolveattack",this,function(w,target) {
+            sh.wrap_before("resolveattack",sh,function(w,target) {
 		self.spendfocus=false;
 		this.wrap_before("removefocustoken",self,function() {
 		    self.spendfocus=true;
 		    //this.addtarget(target);
 		    displayattacktokens2(this);
-		    this.log("+1 %TARGET% / %1 [%0]",self.name,target.name);
+                    this.log("+1 %TARGET% / %1 [%0]",self.name,target.name);
 		}).unwrapper("endattack");
 	    });
 	},
         type: Unit.SALVAGED,
-        points: 2,
+        points: 2
     },
     {
         name: "K4 Security Droid",
@@ -4718,6 +4728,14 @@ var UPGRADES=window.UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    sh.wrap_after("modifyattackroll",this,function(m,n,d,mm) {
+                var i = 0;
+                var activeweapon = 0;
+                for (i; i < this.weapons.length; i++){
+                    if (this.weapons[i].isactive){
+                        activeweapon = i;
+                        break;
+                    }
+                }
 		if (this.weapons[activeweapon].getauxiliarysector(targetunit)<4) 
 		    if (Unit.FCH_focus(mm)>0) mm+=Unit.FCH_CRIT-Unit.FCH_FOCUS;
 		return mm;
@@ -4843,8 +4861,8 @@ var UPGRADES=window.UPGRADES= [
 		aiactivate: function(m,n) { return activeunit.stress>0;},
 		f:function(m,n) {
 		    if (activeunit.stress>0) {
-			activeunit.log("-1 stress, +1 %EVADE% for %0 [%1]",self.unit,self.name);
-			activeunit.removestresstoken();
+			activeunit.log("-1 stress from %0, +1 %EVADE% for %1 [%2]",activeunit.name,self.unit.name,self.name);
+                        activeunit.removestresstoken();
 			return {m:m+Unit.FE_EVADE, n:n+1};
 		    } else return {m:m,n:n};
 		},str:"evade"});
@@ -5639,7 +5657,7 @@ var UPGRADES=window.UPGRADES= [
 	     for (var i in squadron) {
 		 var u=squadron[i];
 		 if (u.isally(this)) 
-		     t=t.concat(Unit.prototype.gettargetableunits.vanilla.call(t,3));
+		     t=t.concat(Unit.prototype.gettargetableunits.call(u,3));
 	     }
 	     return t;
 	 });
