@@ -1681,7 +1681,7 @@ window.PILOTS = [
 		this.removestresstoken();
 		var roll=this.rollattackdie(1,this,"blank")[0];
 		this.log("-1 %STRESS%, roll 1 attack dice")
-		if (roll=="hit") { this.applyhit(1); this.checkdead(); }
+		if (roll=="hit") { this.applydamage(1); this.checkdead(); }
 	    });
 	},
 	faction:Unit.REBEL,
@@ -3899,7 +3899,7 @@ window.PILOTS = [
 	points:27,
 	init: function() {
 	    this.wrap_after("modifyattackroll",this,function(m,n,d,mm) {
-		if (this.weapons[0].getauxiliarysector(targetunit)<=3) 
+		 if (this.weapons[0].getauxiliarysector(d)<=3)  
 		    mm+=Unit.FCH_CRIT;
 		return mm;
 	    });
