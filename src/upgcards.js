@@ -501,6 +501,7 @@ var UPGRADES=window.UPGRADES= [
 	    return this.twinattack;
 	},
 	init: function(sh) {
+            var self=this;
 	    this.twinattack=false;
 	    sh.wrap_after("setpriority",this,function(a) {
 		if (a.type=="TARGET"&&self.isactive&&this.candotarget()) 
