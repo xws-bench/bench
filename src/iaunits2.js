@@ -178,7 +178,7 @@ IAUnit.prototype= {
 	this.shield=this.init.shield;
 	this.criticals=[];
 	this.dead=false;
-	this.geffect.attr({"display","none"});
+	this.geffect.attr({"display":"none"});
 	console.log("restarting");
 	for (var s=0; s<CRITICAL_DECK.length; s++) {
 	    CRITICAL_DECK[s].count=CRITICAL_DECK[s].init;
