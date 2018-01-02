@@ -137,9 +137,9 @@ const SCENARIOS= {
 const SETUPS={
      "Classic": {
 	"background":"css/playmat10.jpg",
-	 "zone1":"M 0 0 L 100 0 100 900 0 900 Z",
-	 "zone2":"M 800 0 L 900 0 900 900 800 900 Z",
-	 "playzone1":"M 0 0 L 900 0 900 900 0 900 Z",
+	 "zone1":"M 0 0 L 100 0 100 914.4 0 914.4 Z",
+	 "zone2":"M 814.4 0 L 914.4 0 914.4 914.4 814.4 914.4 Z",
+	 "playzone1":"M 0 0 L 914.4 0 914.4 914.4 0 914.4 Z",
          "asteroids":6
     },
     "Cloud City": {
