@@ -353,7 +353,7 @@ function Unit(team,pilotid) {
     var up=PILOTS[pilotid].upgrades;
     this.upg=[];
     this.upgbonus=[];
-    for (var j=0; j<10; j++) {this.upg[j]=-1};
+    for (var j=0; j<20; j++) {this.upg[j]=-1};
     this.upgradetype=[];
     for (var k=0; k<up.length; k++) this.upgradetype[k]=up[k];
     this.upgradetype[k++]=Unit.MOD;
