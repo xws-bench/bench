@@ -743,7 +743,11 @@
 	"Pulse Ray Shield":{"text":"During the End phase, you may receive 1 ion token to recover 1 shield (up to your shield value). You can equip this upgrade only if your shield value is '1'."},
 	"Advanced Optics":{"text":"You cannot have more than 1 focus token. During the End phase, do not remove an unused focus token from your ship."},
 	"StarViper Mk. II":{"text":"STARVIPER ONLY. TITLE. You may equip up to 2 different Title upgrades. When performing a barrel roll action, you must use the [Bank Left 1] or [Bank Right 1] template instead of the [Straight 1] template."},
-	"Shadowed":{"text":"'Thweek' is treated as having the pilot skill value you had after setup phase. The pilot skill value of 'Thweek' does not change if your pilot skill value changes or you are destroyed. "}
+	"Shadowed":{"text":"'Thweek' is treated as having the pilot skill value you had after setup phase. The pilot skill value of 'Thweek' does not change if your pilot skill value changes or you are destroyed. "},
+	"Harpoon Missiles":{"text":"ATTACK (TARGET LOCK): Discard this card to perform this attack. If this attack hits, after the attack resolves, assign the 'Harpooned!' condition to the defender. "},
+	"Harpooned!":{"text":"When you are hit by an attack if there is at least 1 uncanceled critical result, each other ship at Range 1 suffers 1 damage. Then discard this card and receive 1 facedown Damage card. When you are destroyed, each ship at Range 1 suffers 1 damage. Action: Discard this card. Then roll 1 attack die. On a hit or critical result, suffer 1 damage."},
+	"Havoc":{"text":"SCURRG H-6 BOMBER ONLY. TITLE. Your upgrade bar gains the (System) and (Salvaged Astromech) upgrade icons and loses the (Crew) upgrade icon. You cannot equip non-unique (Salvaged Astromech) Upgrade cards."}
+
 },
     "criticals":{
 	"Weapons Failure":{"text":"When attacking, roll 1 fewer attack die. %ACTION% Roll 1 attack die. On a %HIT% or %CRIT% result, flip this card facedown."},

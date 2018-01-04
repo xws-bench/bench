@@ -118,12 +118,32 @@ var CONDITIONS={
 	    }).unwrap("endattack");
 	}
     },
-    "Shadowed":{
-	assign: function(target) {
-		this.org.wrap_after("getskill",this,function(s) {
-			return target.getskill(target.skill);
-		});
-		this.org.showskill();
+
+	"Shadowed":{
+		assign: function(target) {
+			this.org.skill = target.getskill(target.skill);
+			this.org.show();
+		},
 	},
-    },
+	"Harpooned!": {
+		assign: function(target) {
+			var self=this;
+
+//			this.org.wrap_before("resolveishit", this, function(t,c,h) {
+//				self.remove();
+//			},
+
+			target.wrap_before("dies",this,function() {
+				var r=target.getrangeallunits();
+				for (var i=0; i<r[1].length; i++) {
+					var u=squadron[r[1][i].unit];
+					if (u!=target) {
+						squadron[r[1][i].unit].log("Harpooned! deals 1 %HIT% to [%0]",u.name);
+						squadron[r[1][i].unit].resolvehit(1);
+					}
+				}
+				self.remove();
+			});
+		}
+	}
 }

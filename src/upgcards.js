@@ -6010,6 +6010,7 @@ var UPGRADES=window.UPGRADES= [
 		done:true,
 		points:-3,
 		type:Unit.TITLE,
+		limited:true,
 		ship:"StarViper",
 		upgrades:[Unit.TITLE],
 		init: function(sh) {
@@ -6028,4 +6029,55 @@ var UPGRADES=window.UPGRADES= [
 			};
 		}
 	},
+	{
+		name:"Havoc",
+		done:false, // FIXME: squad builder will accept salvaged, but not the game
+		points:0,
+		type:Unit.TITLE,
+		unique:true,
+		ship:"Scurrg H-6 Bomber",
+		lostupgrades:[Unit.CREW],
+	        upgrades:[Unit.SYSTEM,Unit.SALVAGED],
+		init: function(sh) {
+			sh.getupgradelist = function(type) {
+				var upgradeList = Unit.prototype.getupgradelist.call(sh, type);
+				if (type == Unit.SALVAGED) {
+					var uniqueList = [];
+					for (var i=0; i<upgradeList.length; i++) {
+						if (UPGRADES[upgradeList[i]].unique) {
+							uniqueList.push(upgradeList[i]);
+						}
+					}
+					return uniqueList;
+					
+				}
+
+				return upgradeList;
+			};
+		}
+		
+	},
+	{
+		name: "Harpoon Missiles",
+		requires:"Target",
+		consumes:false,
+		type: Unit.MISSILE,
+		firesnd:"missile",
+		attack: 4,
+		range: [2,3],
+		done:false, // FIXME: only 1 condition is assigned to target unit currently even if hit by 2 harpoons -> would require major condition handling refactoring
+		points: 4,
+		posthit: function(targetunit, crit, hit) {
+			new Condition(targetunit,this.unit,"Harpooned!");
+		},
+/*		init: function(sh) {
+			var self=this;
+			sh.wrap_after("setpriority",this,function(a) {
+				if (a.type=="TARGET"&&self.isactive&&this.candotarget()) 
+				a.priority+=10;
+			});
+		},
+*/		
+	}
+
 ];
