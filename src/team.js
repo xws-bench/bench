@@ -398,7 +398,7 @@ Team.prototype = {
 	    }
 	    var p=new Unit(this.team,pid);
 	    p.upg=[];
-	    for (j=0; j<10; j++) p.upg[j]=-1;
+	    for (j=0; j<20; j++) p.upg[j]=-1;
 	    if (typeof p.pilotid=="undefined") {
 		console.log(pid+" "+p.name+" "+p.pilotid);
 		console.trace();
