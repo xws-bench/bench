@@ -70,3 +70,23 @@ compiled code and source code by switching commented-out blocks (e.g. switch
 	  and do the reverse for the Sourcefile section.)
 
 	3) Do *not* check this version of main.html in to production branch!
+
+
+----------------
+
+Setting up makefile compilation environment on Windows using Cygwin:
+
+XWS-Bench Windows make env prereqs:
+
+1) This repo itself
+2) Cygwin
+3) gcc + mingw64-[i686 | x64]-gcc*(from Cygwin setup util)
+4) GNU make (from Cygwin setup util)
+5) Ruby-devel (from Cygwin setup util)
+6) libffi-devel, libffi-debuginfo, mingw64-i686-libffi tool (from Cygwin setup util)
+7) rubygems (https://rubygems.org/rubygems/rubygems-2.7.4.tgz), install with 'ruby setup.rb install' from within unpacked dir
+8) Compass for Sass support (from rubygems), install with 'gem install compass'
+9) Java JRE or JDK, with java in bash path (see https://stackoverflow.com/questions/4918830/how-can-i-set-my-cygwin-path-to-find-javac)
+10) git (from Cygwin setup util)
+
+For each step, test that the installation succeeded and that the tools have been installed before proceeding to the next step.
