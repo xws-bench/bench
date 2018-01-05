@@ -259,6 +259,7 @@ Team.prototype = {
 	$("#team"+team).empty();
 	$("#importexport"+team).remove();
 	var sq=this.tosquadron(s);
+        // Init ship positions at beginning of game
 	for (i=0; i<sq.length; i++) {
 	    if (team==1) {
 		if (sq[i].tx<=0||sq[i].ty<=0) {
@@ -269,7 +270,7 @@ Team.prototype = {
 		$("#team1").append("<div id=\""+sq[i].id+"\" onclick='select($(this).attr(\"id\"))'>"+sq[i]+"</div>");
 	    } else {
 		if (sq[i].tx<=0||sq[i].ty<=0) {
-		    sq[i].tx=820+(sq[i].islarge?20:0);
+		    sq[i].tx=(GW - 80)+(sq[i].islarge?20:0);
 		    sq[i].ty=70+82*i;
 		    sq[i].alpha=-90;
 		}

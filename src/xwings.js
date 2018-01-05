@@ -144,38 +144,38 @@ const SETUPS={
     },
     "Cloud City": {
 	"background":"css/playmat6.jpg",
-	"zone1":"M 0 0 L 100 0 100 900 0 900 Z",
-	"zone2":"M 800 0 L 900 0 900 900 800 900 Z",
-	"playzone1":"M 0 0 L 900 0 900 900 0 900 Z",
+	"zone1":"M 0 0 L 100 0 100 914.4 0 914.4 Z",
+	"zone2":"M 814.4 0 L 914.4 0 914.4 914.4 814.4 914.4 Z",
+	"playzone1":"M 0 0 L 914.4 0 914.4 914.4 0 914.4 Z",
         "asteroids":6
     },
     "Blue Sky": {
 	"background":"css/playmat13.jpg",
-	"zone1":"M 0 0 L 100 0 100 900 0 900 Z",
-	"zone2":"M 800 0 L 900 0 900 900 800 900 Z",
-	"playzone1":"M 0 0 L 900 0 900 900 0 900 Z",
+	"zone1":"M 0 0 L 100 0 100 914.4 0 914.4 Z",
+	"zone2":"M 814.4 0 L 914.4 0 914.4 914.4 814.4 914.4 Z",
+	"playzone1":"M 0 0 L 914.4 0 914.4 914.4 0 914.4 Z",
         "asteroids":0
     },
     "Blue Planet": {
 	"background":"css/playmat11.jpg",
-	"zone1":"M 0 0 L 100 0 100 900 0 900 Z",
-	"zone2":"M 800 0 L 900 0 900 900 800 900 Z",
-	"playzone1":"M 0 0 L 900 0 900 900 0 900 Z",
+	"zone1":"M 0 0 L 100 0 100 914.4 0 914.4 Z",
+	"zone2":"M 814.4 0 L 914.4 0 914.4 914.4 814.4 914.4 Z",
+	"playzone1":"M 0 0 L 914.4 0 914.4 914.4 0 914.4 Z",
         "asteroids":6
     },
     "Mars": {
 	"background":"css/playmat14.jpg",
-	"zone1":"M 0 0 L 100 0 100 900 0 900 Z",
-	"zone2":"M 800 0 L 900 0 900 900 800 900 Z",
-	"playzone1":"M 0 0 L 900 0 900 900 0 900 Z",
+	"zone1":"M 0 0 L 100 0 100 914.4 0 914.4 Z",
+	"zone2":"M 814.4 0 L 914.4 0 914.4 914.4 814.4 914.4 Z",
+	"playzone1":"M 0 0 L 914.4 0 914.4 914.4 0 914.4 Z",
         "asteroids":6
     },
     "Defender":{
-        "playzone1":"M 0 0 L 900 0 900 900 0 900 Z",
+        "playzone1":"M 0 0 L 914.4 0 914.4 914.4 0 914.4 Z",
         "playzone2":"M340,450a110,110 0 1,0 220,0a110,110 0 1,0 -220,0",//"M280,450a170,170 0 1,0 340,0a170,170 0 1,0 -340,0",
         "background":"css/playmat10.jpg",
         "zone2":"M340,450a110,110 0 1,0 220,0a110,110 0 1,0 -220,0",//"M280,450a170,170 0 1,0 340,0a170,170 0 1,0 -340,0",
-        "zone1":"M 0 0 L 100 0 100 900 0 900 Z",
+        "zone1":"M 0 0 L 100 0 100 914.4 0 914.4 Z",
         "asteroids":12
     },
     "Deathstar":{
@@ -231,7 +231,7 @@ function center() {
     var startY=0;
     if (h>w) startY=(h-w)/2;
     else startX=(w-h)/2;
-    var min=Math.min(w/900.,h/900.);
+    var min=Math.min(w/GW,h/GH);
     var x=startX+VIEWPORT.m.x(xx,yy)*min;
     var y=startY+VIEWPORT.m.y(xx,yy)*min
     if (x<0||x>w) VIEWPORT.m=MT((-x+w/2-startX)/min,0).add(VIEWPORT.m);
@@ -1312,7 +1312,7 @@ function setphase(cannotreplay) {
 	    var startY=0;
 	    if (h>w) startY=(h-w)/2;
 	    else startX=(w-h)/2;
-	    var max=Math.max(900./w,900./h);
+	    var max=Math.max(GW/w,GH/h);
 	    var offsetX=(centerx-startX)*max;
 	    var offsetY=(centery-startY)*max;
 	    var vm=VIEWPORT.m.clone().invert();
@@ -1589,7 +1589,7 @@ var viewport_translate=function(dx,dy) {
 	    if (VIEWPORT.dragged) {
 		var w=$("#svgout").width();
 		var h=$("#svgout").height();
-		var max=Math.max(900./w,900./h);
+		var max=Math.max(GW/w,GH/h);
 		var ddx=(e.offsetX-VIEWPORT.x0)*max;
 		var ddy=(e.offsetY-VIEWPORT.y0)*max;
 		VIEWPORT.dragMatrix=MT(ddx,ddy).add(VIEWPORT.m);
@@ -1632,6 +1632,8 @@ var changelanguage= function(l) {
     //log("reloading "+l);
     location.reload();
 }
+
+// This function actually initializes everything, once the page is loaded
 $(document).ready(function() {
     var i;
     s= Snap("#svgout");
@@ -1851,7 +1853,7 @@ $(document).ready(function() {
 	var e=0;
 	squadron=[];
 
-	s.attr({width:"100%",height:"100%",viewBox:"0 0 900 900"});
+	s.attr({width:"100%",height:"100%",viewBox:"0 0 914.4 914.4"});
 	//TEAMS[1].selectrocks();
 	//TEAMS[2].selectrocks();
 	/*UPGRADES.sort(function(a,b) {
