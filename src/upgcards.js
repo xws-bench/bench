@@ -6065,19 +6065,20 @@ var UPGRADES=window.UPGRADES= [
 		firesnd:"missile",
 		attack: 4,
 		range: [2,3],
-		done:false, // FIXME: only 1 condition is assigned to target unit currently even if hit by 2 harpoons -> would require major condition handling refactoring
+		done:true,
 		points: 4,
 		posthit: function(targetunit, crit, hit) {
 			new Condition(targetunit,this.unit,"Harpooned!");
-		},
-/*		init: function(sh) {
-			var self=this;
-			sh.wrap_after("setpriority",this,function(a) {
-				if (a.type=="TARGET"&&self.isactive&&this.candotarget()) 
-				a.priority+=10;
-			});
-		},
-*/		
-	}
+		}
+	},
+	{
+		name: "Cad Bane",
+		type:Unit.CREW,
+		points:2,
+		upgrades:[Unit.BOMB],
+		faction:Unit.SCUM,
+		unique:true,
+		done:false
+      	}
 
 ];
