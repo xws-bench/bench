@@ -143,7 +143,7 @@ Bomb.prototype = {
 	    var startY=0;
 	    if (h>w) startY=(h-w)/2;
 	    else startX=(w-h)/2;
-	    var max=Math.max(900.0/w,900.0/h);
+	    var max=Math.max(GW/w,GH/h);
 	    
 	    var bbox=this.g.getBBox();
 	    var p=$("#svgout").position();
