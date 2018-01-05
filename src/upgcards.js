@@ -6070,6 +6070,15 @@ var UPGRADES=window.UPGRADES= [
 		posthit: function(targetunit, crit, hit) {
 			new Condition(targetunit,this.unit,"Harpooned!");
 		}
-	}
+	},
+	{
+		name: "Cad Bane",
+		type:Unit.CREW,
+		points:2,
+		upgrades:[Unit.BOMB],
+		faction:Unit.SCUM,
+		unique:true,
+		done:false
+      	}
 
 ];
