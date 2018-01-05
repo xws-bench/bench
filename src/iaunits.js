@@ -426,7 +426,12 @@ IAUnit.prototype = {
 			    if (grlu[i].length>0) { noone=false; break; }
 			if (noone) { */
 			    a=list[i]; break; //}
-		    } else if (list[i].type=="FOCUS") {
+		    }
+                    else if (list[i].type=="TARGET"&&this.candotarget()) {
+                        a=list[i];
+                        break;
+                    }
+                    else if (list[i].type=="FOCUS") {
 			if (this.candofocus()) { a=list[i]; break; }
 		    } else { a = list[i]; break }
 		}
