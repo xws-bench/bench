@@ -5,13 +5,17 @@ var Critical = window.Critical || {};
 function Condition(sh,org,n) {
     this.name=n;
     this.org=org;
-    if (n in  TEAMS[sh.team].conditions) {
-	TEAMS[sh.team].conditions[n].remove();
+    var cond = null;
+    for (var i=0; i<CONDITIONS.length; i++) {
+	if (CONDITIONS[i].name == n) {
+		cond = CONDITIONS[i];
+		break;
+	}
     }
-    $.extend(this,CONDITIONS[n]);
+    $.extend(this,cond);
     console.log("new condition: "+n+" to "+sh.name+" from "+this.org.name);
-    sh.conditions[n]=this;
-    TEAMS[sh.team].conditions[n]=this;
+    sh.conditions.push(this);
+    TEAMS[sh.team].conditions.push(this);
     this.unit=sh;
     this.isactive=true;
     this.assign(sh);
@@ -30,13 +34,14 @@ Condition.prototype = {
     remove: function() {
 	var u=this.unit;
 	Unit.prototype.desactivate.call(this);
-	delete u.conditions[this.name];
-	delete TEAMS[u.team].conditions[this.name];
+	u.conditions.pop[this];
+	TEAMS[u.team].conditions.pop[this];
 	u.show();
     }
 } 
-var CONDITIONS={
-    "I'll Show You The Dark Side": {
+var CONDITIONS=[
+  {
+    	name: "I'll Show You The Dark Side",
 	assign: function(t) {
 	    var self=this;
 	    var sc=[];
@@ -61,8 +66,9 @@ var CONDITIONS={
 		} else return dd;
 	    }).unwrapper("deal");
 	}
-    },
-    "Suppressive Fire":{
+  },
+  {
+    	name: "Suppressive Fire",
 	assign: function(target) {
 	    var self=this;
 	    target.wrap_after("getattackstrength",this,function(i,t,d) {
@@ -80,8 +86,9 @@ var CONDITIONS={
 		if (this.hasfired==0) self.remove();
 	    });
 	}
-    },
-    "A Debt To Pay":{
+  },
+  {
+    	name: "A Debt To Pay",
 	assign: function(t) {
 	    var self=this;
 	    t.adebttopay=self;
@@ -98,8 +105,9 @@ var CONDITIONS={
 	     }.bind(t),str:"elite"});
 
 	},
-    },
-    "Fanatical Devotion":{
+  },
+  {
+    	name: "Fanatical Devotion",
 	assign: function(t) {
 	    var self=this;
 	    t.wrap_before("isattackedby",this,function() {
@@ -117,33 +125,59 @@ var CONDITIONS={
 		return b;
 	    }).unwrap("endattack");
 	}
-    },
-
-	"Shadowed":{
-		assign: function(target) {
-			this.org.skill = target.getskill(target.skill);
-			this.org.show();
-		},
+  },
+  {
+	name: "Shadowed",
+	assign: function(target) {
+		this.org.skill = target.getskill(target.skill);
+		this.org.show();
 	},
-	"Harpooned!": {
-		assign: function(target) {
-			var self=this;
+  },
+  {
+	name: "Harpooned!",
+	assign: function(target) {
+		var self=this;
+		target.wrap_before("dies",this,function() {
+			var r=target.getrangeallunits();
+			for (var i=0; i<r[1].length; i++) {
+				var u=squadron[r[1][i].unit];
+				if (u!=target) {
+					squadron[r[1][i].unit].log("Harpooned! deals 1 %HIT%");
+					squadron[r[1][i].unit].resolvehit(1);
+				}
+			}
+			self.remove();
+		});
 
-//			this.org.wrap_before("resolveishit", this, function(t,c,h) {
-//				self.remove();
-//			},
-
-			target.wrap_before("dies",this,function() {
+		target.wrap_after("resolveishit",this,function(sh) {
+			if (sh.criticalresolved > 0) {
 				var r=target.getrangeallunits();
 				for (var i=0; i<r[1].length; i++) {
 					var u=squadron[r[1][i].unit];
 					if (u!=target) {
-						squadron[r[1][i].unit].log("Harpooned! deals 1 %HIT% to [%0]",u.name);
+						squadron[r[1][i].unit].log("Harpooned! deals 1 %HIT%");
 						squadron[r[1][i].unit].resolvehit(1);
 					}
 				}
+				target.log("Harpooned! deals 1 damage card");
+				target.applydamage(1);
 				self.remove();
-			});
+				target.show();
+			}
+		});
+	},
+	candoaction: function() { return this.isactive },
+	action: function(n) {
+		var self=this;
+		var roll=this.unit.rollattackdie(1,this.unit,"hit")[0];
+		this.unit.log("roll 1 attack dice [%0]",self.name);
+		this.unit.log("Rolled: %HIT% [%1]",roll,self.name)
+		if (roll=="hit"||roll=="critical") { 
+			this.unit.resolvehit(1); 
+			this.unit.checkdead(); 
 		}
+		self.remove();
+		this.unit.endaction(n)
 	}
-}
+  }
+];

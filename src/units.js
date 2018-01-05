@@ -218,7 +218,7 @@ var C = { GREEN:"#0F0",RED:"#F00",WHITE:"#FFF" };
 var P;
 // Table of actions
 var A = {
-    CONDITION:{key:"R",color:YELLOW}, /* TODO */
+    CONDITION:{key:"t",color:YELLOW}, /* TODO */
     ARCROTATE:{key:"R",color:GREEN},
     ROLL:{key:"r",color:GREEN},
     SLAM:{key:"s",color:BLUE},
@@ -298,7 +298,7 @@ function Unit(team,pilotid) {
     this.upgradesno=0;
     this.upgrades=[];
     this.criticals=[];
-    this.conditions={};
+    this.conditions=[];
     this.DEFENSEREROLLD=[];
     this.ATTACKREROLLA=[];
     this.ATTACKMODA=[];
@@ -338,7 +338,7 @@ function Unit(team,pilotid) {
     this.weapons=[];
     this.upgrades=[];
     this.criticals=[];
-    this.conditions={};
+    this.conditions=[];
     this.bombs=[];
     this.lastdrop=-1;
 
@@ -1417,11 +1417,23 @@ Unit.prototype = {
 	}
 	return al;
     },
+    getcondactionlist: function() {
+	    var i,al=[];
+	    for (i=0; i<this.conditions.length; i++) {
+		    var cond = this.conditions[i];
+		    if ((!this.isactiondone(cond.name)) && cond.isactive 
+			    && typeof cond.action == "function" && cond.candoaction()) {
+				    al.push({org:cond,action:cond.action,type:Unit.CONDITION.toUpperCase(),name:cond.name});
+		    }
+	    }
+	    return al;
+    },
     getactionlist: function(isendmaneuver) {
 	var sal=this.getactionbarlist(isendmaneuver);
 	var ual=this.getupgactionlist();
 	var cal=this.getcritactionlist();
-	return sal.concat(ual).concat(cal);
+	var condal=this.getcondactionlist();
+	return sal.concat(ual).concat(cal).concat(condal);
     },
     addevadetoken: function() {
 	this.evade++;
