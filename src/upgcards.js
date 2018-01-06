@@ -2445,22 +2445,26 @@ var UPGRADES=window.UPGRADES= [
 		    self.spendfocus=false;
 		    this.addtarget(targetunit); 
 		    this.log("+1 %TARGET% / %1 [%0]",self.name,targetunit.name);
-		    //displayattacktokens2(this);
+                    if (!this.ia){
+                        displayattacktokens2(this);
+                    }
 		    return m; 
 		}.bind(sh),str:"target"});
             sh.wrap_before("resolveattack",sh,function(w,target) {
 		self.spendfocus=false;
 		this.wrap_before("removefocustoken",self,function() {
-		    if(!self.already_executing){ // Safety wrapper
-                        self.already_executing = true;
+//		    if(!self.already_executing){ // Safety wrapper
+//                        self.already_executing = true;
                         self.spendfocus=true;
-                        displayattacktokens2(this);
-                    }
+                        if (!this.ia){
+                            displayattacktokens2(this);
+                        }
+//                    }
 		}).unwrapper("endattack");
 	    });
-            sh.wrap_after("resolveattack", sh, function(){
-                self.already_executing = false;
-            });
+//            sh.wrap_after("resolveattack", sh, function(){
+//                self.already_executing = false;
+//            });
 	},
         type: Unit.SALVAGED,
         points: 2
