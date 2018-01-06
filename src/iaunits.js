@@ -491,8 +491,10 @@ IAUnit.prototype = {
 			addroll(d.f,i,to);
 		} if (d.type==Unit.REROLL_M&&d.req(activeunit,activeunit.weapons[activeunit.activeweapon],targetunit)) {
 		    if (typeof d.aiactivate!="function"||d.aiactivate(m,n)==true) {
-			if (typeof d.f=="function") d.f();
-			reroll(n,from,to,d,i);
+                        if( $(".blankreddice").length > 0 || ($(".focusreddice").length > 0 && this.focuses.length == 0 )){ // Attempt to make TL-spending smarter
+                            if (typeof d.f=="function") d.f();
+                            reroll(n,from,to,d,i);
+                        }
 		    }
 		}
 	    }
