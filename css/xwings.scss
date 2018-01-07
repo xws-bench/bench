@@ -1456,7 +1456,7 @@ text-shadow:-2px -2px 5px #000,-2px 2px 5px #000,2px -2px 5px #000,2px 2px 5px #
 			    ("ionized",".Ion",".RED"),
 			    ("tractorbeam",".Tractor",".RED"),
 		            ("nomoreattack",".Noattack",".RED"),
-		            ("mod",".Mod",".YELLOW")
+		            ("mod",".Mod",".YELLOW"),
 			   ) {
     .x#{$name}token {
 	@extend .xtoken;

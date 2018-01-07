@@ -6079,6 +6079,27 @@ var UPGRADES=window.UPGRADES= [
 		faction:Unit.SCUM,
 		unique:true,
 		done:false
-      	}
+      	},
+	{
+		name: "Cruise Missiles",
+		requires:"Target",
+		consumes:false,
+		type: Unit.MISSILE,
+		firesnd:"missile",
+		attack: 1,
+		range: [2,3],
+		done:true,
+		points: 3,
+		getattack: function() {
+			var a=this.attack;
+			var speed = this.unit.getdial().move.substr(-1);
+			if (speed <= 4) {
+			       	a+=speed;
+			} else {
+				a+=4;
+			}
+			return a;
+		},
+	},
 
 ];
