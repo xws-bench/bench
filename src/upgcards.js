@@ -2429,16 +2429,7 @@ var UPGRADES=window.UPGRADES= [
 	    var self=this;
             self.already_executing = false;
 	    this.spendfocus=false;
-            /* Notes for myself:
-             * On init, a modifier is added to the ship carrying R4:
-             *      Attack m(?), Mod m, Attack m, R4 card, array as:
-             *          anonymous function returning R4's spendfocus bool,
-             *          anonymous function that does... something ('this' in context
-             *              should be sh)
-             * 
-             * Additionally, a wrapper is added before the unit's resolve attack step.
-             * This may be the source of the   
-            */ 
+
 	    sh.adddicemodifier(Unit.ATTACK_M,Unit.MOD_M,Unit.ATTACK_M,this,{
 		req:function(m,n) { return self.spendfocus; }.bind(sh),
 		f:function(m,n) { 
@@ -2453,18 +2444,13 @@ var UPGRADES=window.UPGRADES= [
             sh.wrap_before("resolveattack",sh,function(w,target) {
 		self.spendfocus=false;
 		this.wrap_before("removefocustoken",self,function() {
-//		    if(!self.already_executing){ // Safety wrapper
-//                        self.already_executing = true;
+
                         self.spendfocus=true;
                         if (!this.ia){
                             displayattacktokens2(this);
                         }
-//                    }
 		}).unwrapper("endattack");
 	    });
-//            sh.wrap_after("resolveattack", sh, function(){
-//                self.already_executing = false;
-//            });
 	},
         type: Unit.SALVAGED,
         points: 2
@@ -5210,16 +5196,23 @@ var UPGRADES=window.UPGRADES= [
 	 });
      }
     },
-    {name:"Snap Shot",
+     {name:"Snap Shot",
      points:2,
      type:Unit.ELITE,
      done:true,
+     // Snap Shot *is* a Secondary Weapon
+     isWeapon: function() { return true;},
+     // Snap Shot can only fire once per *phase*
+     // Not sure how to enact that part, though.
+     endattack: function(c,h) { this.unit.addhasfired(); },
+     attack: 2,
+     range: [1,1],
      init: function(sh) {
 	 var self=this;
 	 Unit.prototype.wrap_after("doendmaneuveraction",self,function() {
 	     var wpl=[];
 	     for (var i in self.unit.weapons)
-		 if (self.unit.weapons[i].getrange(this)>0)
+		 if (self.unit.weapons[i].name == "Snap Shot")
 		     wpl.push(self.unit.weapons[i]);
 	     
 	     if (wpl.length>0) {
@@ -5232,11 +5225,17 @@ var UPGRADES=window.UPGRADES= [
 			 return [];
 		     }).unwrapper("cleanupattack");
 		     self.unit.wrap_before("cancelattack",self,function() {
-			 self.unit.maxfired++;
+			 //self.unit.maxfired++;
 			 $("#attackdial").hide();
 			 self.unit.endnoaction(n,"ATTACK");
 		     }).unwrapper("cleanupattack");
-		     self.unit.doattack(wpl,[this]);
+                     // Check if this != this.isally(self.unit)?
+                     // In this context, self.unit is Snap Shot host
+                     // this is any ship
+                     if(!this.isally(self.unit) && 
+                             this.getrange(self.unit)<=wpl[0].gethighrange()){
+                        self.unit.doattack(wpl,[this]);
+                    } else self.unit.endnoaction(n,"ELITE");
 		 }.bind(this));
 	     }
 	 });
