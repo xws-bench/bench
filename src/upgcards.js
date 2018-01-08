@@ -2427,6 +2427,7 @@ var UPGRADES=window.UPGRADES= [
 	done:true,
         init: function(sh) {
 	    var self=this;
+            self.already_executing = false;
 	    this.spendfocus=false;
             /* Notes for myself:
              * On init, a modifier is added to the ship carrying R4:
@@ -2444,18 +2445,26 @@ var UPGRADES=window.UPGRADES= [
 		    self.spendfocus=false;
 		    this.addtarget(targetunit); 
 		    this.log("+1 %TARGET% / %1 [%0]",self.name,targetunit.name);
-		    displayattacktokens2(this);
+                    if (!this.ia){
+                        displayattacktokens2(this);
+                    }
 		    return m; 
 		}.bind(sh),str:"target"});
             sh.wrap_before("resolveattack",sh,function(w,target) {
 		self.spendfocus=false;
 		this.wrap_before("removefocustoken",self,function() {
-		    self.spendfocus=true;
-		    //this.addtarget(target);
-		    displayattacktokens2(this);
-                    this.log("+1 %TARGET% / %1 [%0]",self.name,target.name);
+//		    if(!self.already_executing){ // Safety wrapper
+//                        self.already_executing = true;
+                        self.spendfocus=true;
+                        if (!this.ia){
+                            displayattacktokens2(this);
+                        }
+//                    }
 		}).unwrapper("endattack");
 	    });
+//            sh.wrap_after("resolveattack", sh, function(){
+//                self.already_executing = false;
+//            });
 	},
         type: Unit.SALVAGED,
         points: 2

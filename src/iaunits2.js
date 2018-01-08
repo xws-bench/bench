@@ -10,6 +10,7 @@ IAUnit.prototype= {
 	    hull:this.hull,
 	    m:this.m
 	};
+        this.ia = true;
 	/*
 	if (this.team==1) return;
 	this.env = {};
