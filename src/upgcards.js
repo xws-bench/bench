@@ -6092,11 +6092,15 @@ var UPGRADES=window.UPGRADES= [
 		points: 3,
 		getattack: function() {
 			var a=this.attack;
-			var speed = this.unit.getdial().move.substr(-1);
-			if (speed <= 4) {
-			       	a+=speed;
-			} else {
-				a+=4;
+			var maneuver = this.unit.lastmaneuver;
+			var dial = this.unit.dial;
+			if (maneuver != -1) {
+				var speed = parseInt(dial[maneuver].move.substr(-1));
+				if (speed <= 4) {
+				       	a+=speed;
+				} else {
+					a+=4;
+				}
 			}
 			return a;
 		},
