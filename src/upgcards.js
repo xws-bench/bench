@@ -2470,7 +2470,7 @@ var UPGRADES=window.UPGRADES= [
 		    },["select unit (or self to cancel) [%0]",self.name],true);
 	    });
 	},
-        points: 3,
+        points: 3
     },
     {
         name: "Outlaw Tech",
@@ -3539,6 +3539,23 @@ var UPGRADES=window.UPGRADES= [
      }
     },
     {
+        /* Start of Crack Shot fix:
+         * Problem: Crack Shot was firing when the carrying ship was being shot *at*,
+         * as well as automatically going off whenever the carrying ship fired (but without
+         * removing the upgrade card).
+         * Fix (part 1): Remove wrapping after modifydefenseroll on the carrying ship;
+         *               Change the unit that gets the Crack Shot modifier from the carrier
+         *               to the target (since the timing means Crack Shot gets applied during the
+         *               target's Modifier application checks anyhow).
+         * Fix (part 2): Need to provide a way for the user to interact with the modifier
+         *               activation process, which is running within the context of the target's
+         *               Modifier check loop.
+         * New problem:  donoaction() gets enqueued and handled after the attack ends, and further
+         *               if the user can't choose to use Crack Shot, no modifier from Crack Shot
+         *               is applied and the UI skips drawing the attack and defense rolls again,
+         *               jumping straight to the next attack!     
+         *               
+        */
         name: "'Crack Shot'",
         type: Unit.ELITE,
         points: 1,
@@ -3546,25 +3563,63 @@ var UPGRADES=window.UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    var self=this;
-	    sh.wrap_after("modifydefenseroll",this,function(a,m,n,mm) {
-		if (Unit.FE_evade(mm)>0) mm=mm-Unit.FE_EVADE;
-		return mm;
-	    });
-	    sh.adddicemodifier(Unit.ATTACKCOMPARE_M,Unit.MOD_M,Unit.DEFENSE_M,this,{
-		req:function() {
-		    return this.isinfiringarc(targetunit)&&self.isactive;
-		}.bind(sh),
-		aiactivate:function(m,n) {
-		    return Unit.FE_evade(m)>0;
-		},
-		f:function(m,n) {
-		    self.desactivate();
-		    if (Unit.FE_evade(m)>0) {
-			sh.log("-1 %EVADE% [%0]",self.name);
-			m=m-Unit.FE_EVADE;
-		    } 
-		    return m;
-		},str:"evade"});
+//	    sh.wrap_after("modifydefenseroll",this,function(a,m,n,mm) {
+//		if (Unit.FE_evade(mm)>0) mm=mm-Unit.FE_EVADE;
+//		return mm;
+//	    });
+            sh.wrap_after("declareattack", this, function(w,t,b) {
+                //w == Weapon, t == Target, b == boolean?
+                t.adddicemodifier(Unit.ATTACKCOMPARE_M,Unit.MOD_M,Unit.DEFENSE_M,self,{
+                    // Modifier should only be used by *target* units.
+                    req:function() {
+                        return (activeunit === this) && this.isinfiringarc(targetunit)&&self.isactive;
+                    }.bind(sh),
+                    // Most targets will be iaunits, so aiactivate is necessary
+                    aiactivate:function(m,n) { // Will almost always activate
+                        if(activeunit.ia){  // Currently, iaunits will use on first chance
+                            activeunit.log("[%0] chose to use [%1]", activeunit.name, self.name );
+                            return Unit.FE_evade(m)>0;
+                        }
+                        else{  // But we need the UI if the firing unit is a human-controlled ship
+//                            var expend = false;
+//                            activeunit.donoaction([{name:self.name,org:self,type:"ELITE",action:function(n) {
+//                                expend = true;
+//                                activeunit.endnoaction(0,"CS");
+//                            }.bind(this)}],"CS",false, function(){expend = false});
+//                            
+//                            return expend;
+//                        //end
+                        // Need some user interaction option, but for now, do intelligent thing
+                            return Unit.FE_evade(m)>0 && Unit.FE_evade(m) <= (Unit.FCH_crit(n) + Unit.FCH_hit(n));
+                        }
+                    },
+                    f:function(m,n) {
+                        self.desactivate();
+                        if (Unit.FE_evade(m)>0) {
+                            sh.log("-1 %EVADE% [%0]",self.name);
+                            m=m-Unit.FE_EVADE;
+                        } 
+                        return m;
+                    },
+                    str:"evade"});
+                return b;
+	  }).unwrapper("afterdefenseeffect");
+//	    sh.adddicemodifier(Unit.ATTACKCOMPARE_M,Unit.MOD_M,Unit.DEFENSE_M,this,{
+//		req:function() {
+//		    return (activeunit === this) && this.isinfiringarc(targetunit)&&self.isactive;
+//		}.bind(sh),
+//		aiactivate:function(m,n) {
+//		    return Unit.FE_evade(m)>0;
+//		},
+//		f:function(m,n) {
+//		    self.desactivate();
+//		    if (Unit.FE_evade(m)>0) {
+//			sh.log("-1 %EVADE% [%0]",self.name);
+//			m=m-Unit.FE_EVADE;
+//		    } 
+//		    return m;
+//		},
+//                str:"evade"});
 	}
     },
     {
@@ -4327,19 +4382,24 @@ var UPGRADES=window.UPGRADES= [
 	    sh.addafterdefenseeffect(this,function(c,h,t) {
 		if (self.r5p8==round) return;
 		self.r5p8=round;
-		this.donoaction([{name:this.name,org:this,type:"HIT",action:function(n) {
+		this.donoaction([{name:self.name,org:self,type:"HIT",action:function(n) {
 		    var roll=this.rollattackdie(1,self,"hit")[0];
 		    this.log("roll 1 attack dice [%0]",self.name);
 		    if (roll=="hit"||roll=="critical") { 
 			t.log("+1 %HIT% [%1]",self.name)
 			t.resolvehit(1); 
 			t.checkdead(); 
+                     
+                        if (roll=="critical") {
+                            this.log("+1 %HIT% [%1]",self.name)
+                            this.resolvehit(1);
+                            this.checkdead();
+                        }
 		    }
-		    if (roll=="critical") {
-			this.log("+1 %HIT% [%1]",self.name)
-			this.resolvehit(1);
-			this.checkdead();
-		    }
+                    else{
+                        this.log("No effect [%0]", self.name);
+                    }
+		  
 		    this.endnoaction(n,"");
 		}.bind(this)}],"",true);
 
