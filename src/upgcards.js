@@ -3563,64 +3563,22 @@ var UPGRADES=window.UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    var self=this;
-//	    sh.wrap_after("modifydefenseroll",this,function(a,m,n,mm) {
-//		if (Unit.FE_evade(mm)>0) mm=mm-Unit.FE_EVADE;
-//		return mm;
-//	    });
-            sh.wrap_after("declareattack", this, function(w,t,b) {
-                //w == Weapon, t == Target, b == boolean?
-                t.adddicemodifier(Unit.ATTACKCOMPARE_M,Unit.MOD_M,Unit.DEFENSE_M,self,{
-                    // Modifier should only be used by *target* units.
-                    req:function() {
-                        return (activeunit === this) && this.isinfiringarc(targetunit)&&self.isactive;
-                    }.bind(sh),
-                    // Most targets will be iaunits, so aiactivate is necessary
-                    aiactivate:function(m,n) { // Will almost always activate
-                        if(activeunit.ia){  // Currently, iaunits will use on first chance
-                            activeunit.log("[%0] chose to use [%1]", activeunit.name, self.name );
-                            return Unit.FE_evade(m)>0;
-                        }
-                        else{  // But we need the UI if the firing unit is a human-controlled ship
-//                            var expend = false;
-//                            activeunit.donoaction([{name:self.name,org:self,type:"ELITE",action:function(n) {
-//                                expend = true;
-//                                activeunit.endnoaction(0,"CS");
-//                            }.bind(this)}],"CS",false, function(){expend = false});
-//                            
-//                            return expend;
-//                        //end
-                        // Need some user interaction option, but for now, do intelligent thing
-                            return Unit.FE_evade(m)>0 && Unit.FE_evade(m) <= (Unit.FCH_crit(n) + Unit.FCH_hit(n));
-                        }
-                    },
-                    f:function(m,n) {
-                        self.desactivate();
-                        if (Unit.FE_evade(m)>0) {
-                            sh.log("-1 %EVADE% [%0]",self.name);
-                            m=m-Unit.FE_EVADE;
-                        } 
-                        return m;
-                    },
-                    str:"evade"});
-                return b;
-	  }).unwrapper("afterdefenseeffect");
-//	    sh.adddicemodifier(Unit.ATTACKCOMPARE_M,Unit.MOD_M,Unit.DEFENSE_M,this,{
-//		req:function() {
-//		    return (activeunit === this) && this.isinfiringarc(targetunit)&&self.isactive;
-//		}.bind(sh),
-//		aiactivate:function(m,n) {
-//		    return Unit.FE_evade(m)>0;
-//		},
-//		f:function(m,n) {
-//		    self.desactivate();
-//		    if (Unit.FE_evade(m)>0) {
-//			sh.log("-1 %EVADE% [%0]",self.name);
-//			m=m-Unit.FE_EVADE;
-//		    } 
-//		    return m;
-//		},
-//                str:"evade"});
-	}
+            sh.wrap_after("endmodifydefensestep",this,function(t,m,n,mm) {
+                if (Unit.FE_evade(mm)>0) mm=mm-Unit.FE_EVADE;
+                self.desactivate();
+                return mm;
+            });
+            sh.adddicemodifier(Unit.ATTACK_M,Unit.MOD_M,Unit.DEFENSE_M,this,{
+                req:function() { return self.isactive; },
+                f:function(m,n) {
+                    if (Unit.FE_evade(m)>0 && Unit.FE_evade(m) <= (Unit.FCH_crit(n) + Unit.FCH_hit(n))) {
+                        targetunit.log("%EVADE% removed [%0]",self.name); 
+                        m=m-Unit.FE_EVADE;
+                    }
+                    self.desactivate();
+                    return m;
+                },str:"evade"});
+        }
     },
     {
         name: "Advanced Homing Missiles",
