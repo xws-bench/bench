@@ -56,8 +56,6 @@ function loadrock(s,str) {
 	    var ok=true;
 	    coord[i]=[Math.random()*450+175,Math.random()*450+175,Math.random()*45];
 	    for (j=0; j<i; j++) {
-		  var px=PX[i]-PX[j];
-		  var py=PY[i]-PY[j];
 		  var dx=coord[i][0]-coord[j][0];
 		  var dy=coord[i][1]-coord[j][1];
 		  var delta = dx*dx + dy*dy;
