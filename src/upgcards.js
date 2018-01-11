@@ -3563,19 +3563,26 @@ var UPGRADES=window.UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    var self=this;
-            sh.wrap_after("endmodifydefensestep",this,function(t,m,n,mm) {
-                if (Unit.FE_evade(mm)>0) mm=mm-Unit.FE_EVADE;
-                self.desactivate();
+            sh.wrap_after("modifydefenseroll",this,function(t,m,n,mm) {
+                if (t != self.unit && self.isactive && Unit.FE_evade(mm)>0){ 
+                    mm=mm-Unit.FE_EVADE;
+                    self.desactivate();
+                }
                 return mm;
             });
             sh.adddicemodifier(Unit.ATTACK_M,Unit.MOD_M,Unit.DEFENSE_M,this,{
                 req:function() { return self.isactive; },
                 f:function(m,n) {
-                    if (Unit.FE_evade(m)>0 && Unit.FE_evade(m) <= (Unit.FCH_crit(n) + Unit.FCH_hit(n))) {
-                        targetunit.log("%EVADE% removed [%0]",self.name); 
-                        m=m-Unit.FE_EVADE;
+                    if(activeunit.ia){
+                        if (Unit.FE_evade(m)>0 && Unit.FE_evade(m) <= (Unit.FCH_crit(n) + Unit.FCH_hit(n))) {
+                            targetunit.log("%EVADE% removed [%0]",self.name); 
+                            m=m-Unit.FE_EVADE;
+                            self.desactivate();
+                        }
                     }
-                    self.desactivate();
+                    else{
+                        self.desactivate();
+                    }
                     return m;
                 },str:"evade"});
         }
