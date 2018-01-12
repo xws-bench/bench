@@ -3547,23 +3547,6 @@ var UPGRADES=window.UPGRADES= [
      }
     },
     {
-        /* Start of Crack Shot fix:
-         * Problem: Crack Shot was firing when the carrying ship was being shot *at*,
-         * as well as automatically going off whenever the carrying ship fired (but without
-         * removing the upgrade card).
-         * Fix (part 1): Remove wrapping after modifydefenseroll on the carrying ship;
-         *               Change the unit that gets the Crack Shot modifier from the carrier
-         *               to the target (since the timing means Crack Shot gets applied during the
-         *               target's Modifier application checks anyhow).
-         * Fix (part 2): Need to provide a way for the user to interact with the modifier
-         *               activation process, which is running within the context of the target's
-         *               Modifier check loop.
-         * New problem:  donoaction() gets enqueued and handled after the attack ends, and further
-         *               if the user can't choose to use Crack Shot, no modifier from Crack Shot
-         *               is applied and the UI skips drawing the attack and defense rolls again,
-         *               jumping straight to the next attack!     
-         *               
-        */
         name: "'Crack Shot'",
         type: Unit.ELITE,
         points: 1,
