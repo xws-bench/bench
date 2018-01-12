@@ -3379,13 +3379,26 @@ window.PILOTS = [
 	init: function() {
 	    this.adddicemodifier(Unit.ATTACKCOMPARE_M,Unit.ADD_M,Unit.ATTACK_M,this,{
 		req:function(m,n) { return n>0; },
-		f:function(m,n) {
-		    this.log("cancel all dice");
-		    if (Unit.FCH_crit(m)>0) {
-			targetunit.log("+1 damage card [%0]",this.name);
-			targetunit.applydamage(1);
-		    }
-		    return {m:0,n:0};
+		f:function(m,n) { // AI section needs to save original values
+                    if(activeunit.ia){
+                        var om = m;
+                        var on = n;
+                        if (Unit.FCH_crit(m)>0) {
+                            this.log("cancel all dice");
+                            targetunit.log("+1 damage card [%0]",this.name);
+                            targetunit.applydamage(1);
+                            return {m:0,n:0};
+                        }
+                        else return {m:om,n:on};
+                    }
+                    else{
+                        this.log("cancel all dice");
+                        if (Unit.FCH_crit(m)>0) {
+                            targetunit.log("+1 damage card [%0]",this.name);
+                            targetunit.applydamage(1);
+                        }
+                        return {m:0,n:0};
+                    }
 		}.bind(this),str:"critical"});
 	},
 	upgrades:[]

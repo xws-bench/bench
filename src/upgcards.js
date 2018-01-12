@@ -3571,14 +3571,7 @@ var UPGRADES=window.UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    var self=this;
-            sh.wrap_after("modifydefenseroll",this,function(t,m,n,mm) {
-                if (t != self.unit && self.isactive && Unit.FE_evade(mm)>0){ 
-                    mm=mm-Unit.FE_EVADE;
-                    self.desactivate();
-                }
-                return mm;
-            });
-            sh.adddicemodifier(Unit.ATTACK_M,Unit.MOD_M,Unit.DEFENSE_M,this,{
+            sh.adddicemodifier(Unit.DEFENDCOMPARE_M,Unit.MOD_M,Unit.DEFENSE_M,this,{
                 req:function() { return self.isactive; },
                 f:function(m,n) {
                     if(activeunit.ia){
@@ -3589,6 +3582,8 @@ var UPGRADES=window.UPGRADES= [
                         }
                     }
                     else{
+                        targetunit.log("%EVADE% removed [%0]",self.name); 
+                        m=m-Unit.FE_EVADE;
                         self.desactivate();
                     }
                     return m;
