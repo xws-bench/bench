@@ -5223,6 +5223,7 @@ var UPGRADES=window.UPGRADES= [
         this.lastphase = this.phase;
         this.phase = phase;
      },
+     firesnd:"",
      attack: 2,
      range: [1,1],
      lastphase: -1,
@@ -5231,14 +5232,24 @@ var UPGRADES=window.UPGRADES= [
      index: -1,
      init: function(sh) {
 	 var self=this;
+         self.firesnd=self.unit.ship.firesnd;
          for (var i in self.unit.weapons){
              if (self.unit.weapons[i] == self){
                  this.index = i;
                  break;
              }
          }
-         
-	 Unit.prototype.wrap_after("doendmaneuveraction",self,function() {
+         sh.wrap_after("resolveattack", self, function(){
+             if(phase != COMBAT_PHASE){
+                 sh.hasfired = 0;
+             }
+         });
+         sh.wrap_after("cancelattack", self, function(){
+             if(phase != COMBAT_PHASE){
+                 sh.hasfired = 0;
+             }
+         });
+	 Unit.prototype.wrap_before("doendmaneuveraction",self,function() {
              // There are some restrictions on Snap Shot that should be checked prior
              // to adding any functionality to the holder (self.unit):
              // 1) activeunit is not self.unit                          check
