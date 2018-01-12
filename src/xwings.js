@@ -545,14 +545,25 @@ function displaycompareresults(u,f) {
     if (typeof f!="function") f=u.lastdf;
     u.lastdf=f;
     $("#dtokens").empty();
-    var dm=targetunit.getresultmodifiers(targetunit.dr,targetunit.dd,Unit.ATTACKCOMPARE_M,Unit.DEFENSE_M);
-    var am=u.getresultmodifiers(u.ar,u.ad,Unit.ATTACKCOMPARE_M,Unit.ATTACK_M);
-    if (FAST||(dm.length==0&&am.length==0)) {
+
+    // Post-comparison mods: 
+    // 1) Defender mods Attacker's Dice (Countdown);
+    // 2) Attacker mods Attacker's Dice (Wampa);
+    // 3) Attacker mods Defender's Dice (Crack Shot);
+    // 4) Defender mods Defender's Dice (NA currently);
+    
+    var dam=targetunit.getresultmodifiers(u.ar, u.ad, Unit.ATTACKCOMPARE_M, Unit.DEFENSE_M);
+    var aam=u.getresultmodifiers(u.ar,u.ad,Unit.ATTACKCOMPARE_M,Unit.ATTACK_M);
+    
+    var adm=u.getresultmodifiers(targetunit.dr,targetunit.dd,Unit.DEFENDCOMPARE_M,Unit.DEFENSE_M);
+    var ddm=targetunit.getresultmodifiers(targetunit.dr,targetunit.dd,Unit.DEFENDCOMPARE_M,Unit.DEFENSE_M);
+
+    if (FAST||(dam.length==0&&aam.length==0&&adm.length==0&&ddm.length==0)) {
 	$("#combatdial").hide();
 	//log("hiding combat dial compare");
 	f();
     } else {
-	$("#dtokens").append(dm).append(am);
+	$("#dtokens").append(dam).append(aam).append(adm).append(ddm);
 	$("#dtokens").append($("<button>").addClass("m-fire").click(function() {
 	    $("#combatdial").hide();
 	    //log("hiding combat dial finally");

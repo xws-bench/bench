@@ -2429,16 +2429,7 @@ var UPGRADES=window.UPGRADES= [
 	    var self=this;
             self.already_executing = false;
 	    this.spendfocus=false;
-            /* Notes for myself:
-             * On init, a modifier is added to the ship carrying R4:
-             *      Attack m(?), Mod m, Attack m, R4 card, array as:
-             *          anonymous function returning R4's spendfocus bool,
-             *          anonymous function that does... something ('this' in context
-             *              should be sh)
-             * 
-             * Additionally, a wrapper is added before the unit's resolve attack step.
-             * This may be the source of the   
-            */ 
+
 	    sh.adddicemodifier(Unit.ATTACK_M,Unit.MOD_M,Unit.ATTACK_M,this,{
 		req:function(m,n) { return self.spendfocus; }.bind(sh),
 		f:function(m,n) { 
@@ -2453,18 +2444,13 @@ var UPGRADES=window.UPGRADES= [
             sh.wrap_before("resolveattack",sh,function(w,target) {
 		self.spendfocus=false;
 		this.wrap_before("removefocustoken",self,function() {
-//		    if(!self.already_executing){ // Safety wrapper
-//                        self.already_executing = true;
+
                         self.spendfocus=true;
                         if (!this.ia){
                             displayattacktokens2(this);
                         }
-//                    }
 		}).unwrapper("endattack");
 	    });
-//            sh.wrap_after("resolveattack", sh, function(){
-//                self.already_executing = false;
-//            });
 	},
         type: Unit.SALVAGED,
         points: 2
@@ -2484,7 +2470,7 @@ var UPGRADES=window.UPGRADES= [
 		    },["select unit (or self to cancel) [%0]",self.name],true);
 	    });
 	},
-        points: 3,
+        points: 3
     },
     {
         name: "Outlaw Tech",
@@ -2556,13 +2542,21 @@ var UPGRADES=window.UPGRADES= [
         name: "Shield Upgrade",
 	type:Unit.MOD,    
 	done:true,
+        hadshields:true,
 	install: function(sh) {
 	    sh.installed=true;
+            if(sh.shield<0 && sh.ship.shield<0){
+                this.hadshields = false;
+                sh.shield = sh.ship.shield = 0;
+            }
 	    sh.shield++; sh.ship.shield++;
 	    sh.showstats();
 	},
 	uninstall:function(sh) {
 	    sh.shield--; sh.ship.shield--;
+            if(!this.hadshields){
+                sh.shield = sh.ship.shield = -1;
+            }
 	    sh.showstats();
 	},
         points: 4,
@@ -3560,26 +3554,24 @@ var UPGRADES=window.UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    var self=this;
-	    sh.wrap_after("modifydefenseroll",this,function(a,m,n,mm) {
-		if (Unit.FE_evade(mm)>0) mm=mm-Unit.FE_EVADE;
-		return mm;
-	    });
-	    sh.adddicemodifier(Unit.ATTACKCOMPARE_M,Unit.MOD_M,Unit.DEFENSE_M,this,{
-		req:function() {
-		    return this.isinfiringarc(targetunit)&&self.isactive;
-		}.bind(sh),
-		aiactivate:function(m,n) {
-		    return Unit.FE_evade(m)>0;
-		},
-		f:function(m,n) {
-		    self.desactivate();
-		    if (Unit.FE_evade(m)>0) {
-			sh.log("-1 %EVADE% [%0]",self.name);
-			m=m-Unit.FE_EVADE;
-		    } 
-		    return m;
-		},str:"evade"});
-	}
+            sh.adddicemodifier(Unit.DEFENDCOMPARE_M,Unit.MOD_M,Unit.DEFENSE_M,this,{
+                req:function() { return self.isactive; },
+                f:function(m,n) {
+                    if(activeunit.ia){
+                        if (Unit.FE_evade(m)>0 && Unit.FE_evade(m) <= (Unit.FCH_crit(n) + Unit.FCH_hit(n))) {
+                            targetunit.log("%EVADE% removed [%0]",self.name); 
+                            m=m-Unit.FE_EVADE;
+                            self.desactivate();
+                        }
+                    }
+                    else{
+                        targetunit.log("%EVADE% removed [%0]",self.name); 
+                        m=m-Unit.FE_EVADE;
+                        self.desactivate();
+                    }
+                    return m;
+                },str:"evade"});
+        }
     },
     {
         name: "Advanced Homing Missiles",
@@ -4341,19 +4333,24 @@ var UPGRADES=window.UPGRADES= [
 	    sh.addafterdefenseeffect(this,function(c,h,t) {
 		if (self.r5p8==round) return;
 		self.r5p8=round;
-		this.donoaction([{name:this.name,org:this,type:"HIT",action:function(n) {
+		this.donoaction([{name:self.name,org:self,type:"HIT",action:function(n) {
 		    var roll=this.rollattackdie(1,self,"hit")[0];
 		    this.log("roll 1 attack dice [%0]",self.name);
 		    if (roll=="hit"||roll=="critical") { 
 			t.log("+1 %HIT% [%1]",self.name)
 			t.resolvehit(1); 
 			t.checkdead(); 
+                     
+                        if (roll=="critical") {
+                            this.log("+1 %HIT% [%1]",self.name)
+                            this.resolvehit(1);
+                            this.checkdead();
+                        }
 		    }
-		    if (roll=="critical") {
-			this.log("+1 %HIT% [%1]",self.name)
-			this.resolvehit(1);
-			this.checkdead();
-		    }
+                    else{
+                        this.log("No effect [%0]", self.name);
+                    }
+		  
 		    this.endnoaction(n,"");
 		}.bind(this)}],"",true);
 
@@ -5210,16 +5207,23 @@ var UPGRADES=window.UPGRADES= [
 	 });
      }
     },
-    {name:"Snap Shot",
+     {name:"Snap Shot",
      points:2,
      type:Unit.ELITE,
      done:true,
+     // Snap Shot *is* a Secondary Weapon
+     isWeapon: function() { return true;},
+     // Snap Shot can only fire once per *phase*
+     // Not sure how to enact that part, though.
+     endattack: function(c,h) { this.unit.addhasfired(); },
+     attack: 2,
+     range: [1,1],
      init: function(sh) {
 	 var self=this;
 	 Unit.prototype.wrap_after("doendmaneuveraction",self,function() {
 	     var wpl=[];
 	     for (var i in self.unit.weapons)
-		 if (self.unit.weapons[i].getrange(this)>0)
+		 if (self.unit.weapons[i].name == "Snap Shot")
 		     wpl.push(self.unit.weapons[i]);
 	     
 	     if (wpl.length>0) {
@@ -5232,11 +5236,17 @@ var UPGRADES=window.UPGRADES= [
 			 return [];
 		     }).unwrapper("cleanupattack");
 		     self.unit.wrap_before("cancelattack",self,function() {
-			 self.unit.maxfired++;
+			 //self.unit.maxfired++;
 			 $("#attackdial").hide();
 			 self.unit.endnoaction(n,"ATTACK");
 		     }).unwrapper("cleanupattack");
-		     self.unit.doattack(wpl,[this]);
+                     // Check if this != this.isally(self.unit)?
+                     // In this context, self.unit is Snap Shot host
+                     // this is any ship
+                     if(!this.isally(self.unit) && 
+                             this.getrange(self.unit)<=wpl[0].gethighrange()){
+                        self.unit.doattack(wpl,[this]);
+                    } else self.unit.endnoaction(n,"ELITE");
 		 }.bind(this));
 	     }
 	 });
