@@ -5213,44 +5213,66 @@ var UPGRADES=window.UPGRADES= [
      done:true,
      // Snap Shot *is* a Secondary Weapon
      isWeapon: function() { return true;},
+     isTurret: function() { return false;},
      // Snap Shot can only fire once per *phase*
      // Not sure how to enact that part, though.
-     endattack: function(c,h) { this.unit.addhasfired(); },
+     endattack: function(c,h) {
+        if(phase == COMBAT_PHASE){
+            this.unit.addhasfired();
+        }
+        this.lastphase = this.phase;
+        this.phase = phase;
+     },
      attack: 2,
      range: [1,1],
+     lastphase: -1,
+     phase: -1,
+     firing: false,
+     index: -1,
      init: function(sh) {
 	 var self=this;
+         for (var i in self.unit.weapons){
+             if (self.unit.weapons[i] == self){
+                 this.index = i;
+                 break;
+             }
+         }
+         
 	 Unit.prototype.wrap_after("doendmaneuveraction",self,function() {
-	     var wpl=[];
-	     for (var i in self.unit.weapons)
-		 if (self.unit.weapons[i].name == "Snap Shot")
-		     wpl.push(self.unit.weapons[i]);
-	     
-	     if (wpl.length>0) {
-		 sh.doselection(function(n) {
-		     self.unit.select();
-		     self.unit.wrap_before("selecttargetforattack",self,function() {
-			 self.unit.endnoaction(n,"ATTACK");
-		     }).unwrapper("cleanupattack");
-		     self.unit.wrap_after("getdicemodifiers",self,function() {
-			 return [];
-		     }).unwrapper("cleanupattack");
-		     self.unit.wrap_before("cancelattack",self,function() {
-			 //self.unit.maxfired++;
-			 $("#attackdial").hide();
-			 self.unit.endnoaction(n,"ATTACK");
-		     }).unwrapper("cleanupattack");
-                     // Check if this != this.isally(self.unit)?
-                     // In this context, self.unit is Snap Shot host
-                     // this is any ship
-                     if(!this.isally(self.unit) && 
-                             this.getrange(self.unit)<=wpl[0].gethighrange()){
-                        self.unit.doattack(wpl,[this]);
-                    } else self.unit.endnoaction(n,"ELITE");
-		 }.bind(this));
-	     }
+             // There are some restrictions on Snap Shot that should be checked prior
+             // to adding any functionality to the holder (self.unit):
+             // 1) activeunit is not self.unit                          check
+             // 2) activeunit is not ally of self.unit                  check
+             // 3) activeunit is within this weapon's range             check
+             // 4) weapon has not fired this *phase*
+             // 5) weapon has not been activated for another target.
+            if(activeunit!=self.unit && (!activeunit.isally(self.unit)) &&
+                this.getrange(self.unit)<=self.unit.weapons[self.index].gethighrange())
+            {
+                if(self.phase < phase){
+                   sh.doselection(function(n) {
+                       self.unit.select();
+                       self.unit.wrap_before("selecttargetforattack",self,function() {
+                           self.unit.endnoaction(n,"ATTACK");
+                       }).unwrapper("cleanupattack");
+                       self.unit.wrap_after("getdicemodifiers",self,function() {
+                           return [];
+                       }).unwrapper("cleanupattack");
+                       self.unit.wrap_before("cancelattack",self,function() {
+                           //self.unit.maxfired++;
+                           self.phase = self.lastphase;
+                           $("#attackdial").hide();
+                           self.unit.endnoaction(n,"ATTACK");
+                       }).unwrapper("cleanupattack");
+                       // Check if this != this.isally(self.unit)?
+                       // In this context, self.unit is Snap Shot host
+                       // this is any ship
+                        self.unit.doattack([self.unit.weapons[self.index]],[this]);
+                   }.bind(this));
+                }
+            }
 	 });
-     }
+        }
     },
     {name:"M9-G8",
      type:Unit.ASTROMECH,
