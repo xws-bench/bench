@@ -2542,13 +2542,21 @@ var UPGRADES=window.UPGRADES= [
         name: "Shield Upgrade",
 	type:Unit.MOD,    
 	done:true,
+        hadshields:true,
 	install: function(sh) {
 	    sh.installed=true;
+            if(sh.shield<0 && sh.ship.shield<0){
+                this.hadshields = false;
+                sh.shield = sh.ship.shield = 0;
+            }
 	    sh.shield++; sh.ship.shield++;
 	    sh.showstats();
 	},
 	uninstall:function(sh) {
 	    sh.shield--; sh.ship.shield--;
+            if(!this.hadshields){
+                sh.shield = sh.ship.shield = -1;
+            }
 	    sh.showstats();
 	},
         points: 4,
