@@ -5218,7 +5218,6 @@ var UPGRADES=window.UPGRADES= [
      isWeapon: function() { return true;},
      isTurret: function() { return false;},
      // Snap Shot can only fire once per *phase*
-     // Not sure how to enact that part, though.
      endattack: function(c,h) {
         this.lastphase = this.phase;
         this.phase = phase;
@@ -5262,7 +5261,7 @@ var UPGRADES=window.UPGRADES= [
             {
                 if(self.phase < phase){
                    sh.doselection(function(n) {
-                       //self.unit.select();
+                       self.unit.select();
                        self.unit.wrap_before("selecttargetforattack",self,function() {
                            self.unit.endnoaction(n,"ATTACK");
                        }).unwrapper("cleanupattack");
@@ -5292,7 +5291,7 @@ var UPGRADES=window.UPGRADES= [
                        // In this context, self.unit is Snap Shot host
                        // this is any ship
                         self.unit.doattack([self.unit.weapons[self.index]],[this]);
-                   }.bind(this));
+                   }.bind(this), this);
                 }
             }
 	 });
