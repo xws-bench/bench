@@ -558,7 +558,7 @@ function displaycompareresults(u,f) {
     var adm=u.getresultmodifiers(targetunit.dr,targetunit.dd,Unit.DEFENDCOMPARE_M,Unit.DEFENSE_M);
     var ddm=targetunit.getresultmodifiers(targetunit.dr,targetunit.dd,Unit.DEFENDCOMPARE_M,Unit.DEFENSE_M);
 
-    if (FAST||(dam.length==0&&aam.length==0&&adm.length==0&&ddm.length==0)) {
+    if (FAST||u.ia||(dam.length==0&&aam.length==0&&adm.length==0&&ddm.length==0)) {
 	$("#combatdial").hide();
 	//log("hiding combat dial compare");
 	f();
@@ -567,7 +567,8 @@ function displaycompareresults(u,f) {
 	$("#dtokens").append($("<button>").addClass("m-fire").click(function() {
 	    $("#combatdial").hide();
 	    //log("hiding combat dial finally");
-	    f();}.bind(u)));
+	    f();
+        }.bind(u)));
     }
 }
 

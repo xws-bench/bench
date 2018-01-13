@@ -3554,22 +3554,25 @@ var UPGRADES=window.UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    var self=this;
-            sh.adddicemodifier(Unit.DEFENDCOMPARE_M,Unit.MOD_M,Unit.DEFENSE_M,this,{
-                req:function() { return self.isactive; },
+            sh.adddicemodifier(Unit.DEFENDCOMPARE_M,Unit.ADD_M,Unit.DEFENSE_M,this,{
+                req:function() { return (self.isactive); },
                 f:function(m,n) {
-                    if(activeunit.ia){
-                        if (Unit.FE_evade(m)>0 && Unit.FE_evade(m) <= (Unit.FCH_crit(n) + Unit.FCH_hit(n))) {
+                    if( targetunit != self.unit){
+                        if(activeunit.ia){
+                            if (Unit.FE_evade(m)>0 && 
+                                    Unit.FE_evade(m) <= ($(".hitreddice").length + $(".criticalreddice").length)) {
+                                targetunit.log("%EVADE% removed [%0]",self.name); 
+                                m=m-Unit.FE_EVADE;
+                                self.desactivate();
+                            }
+                        }
+                        else{
                             targetunit.log("%EVADE% removed [%0]",self.name); 
                             m=m-Unit.FE_EVADE;
                             self.desactivate();
                         }
                     }
-                    else{
-                        targetunit.log("%EVADE% removed [%0]",self.name); 
-                        m=m-Unit.FE_EVADE;
-                        self.desactivate();
-                    }
-                    return m;
+                    return {'m':m,'n':n};
                 },str:"evade"});
         }
     },
@@ -5217,9 +5220,6 @@ var UPGRADES=window.UPGRADES= [
      // Snap Shot can only fire once per *phase*
      // Not sure how to enact that part, though.
      endattack: function(c,h) {
-        if(phase == COMBAT_PHASE){
-            this.unit.addhasfired();
-        }
         this.lastphase = this.phase;
         this.phase = phase;
      },
@@ -5255,9 +5255,9 @@ var UPGRADES=window.UPGRADES= [
              // 1) activeunit is not self.unit                          check
              // 2) activeunit is not ally of self.unit                  check
              // 3) activeunit is within this weapon's range             check
-             // 4) weapon has not fired this *phase*
-             // 5) weapon has not been activated for another target.
-            if(activeunit!=self.unit && (!activeunit.isally(self.unit)) &&
+             // 4) weapon has not fired this *phase*                    check
+             // 5) weapon has not been activated for another target.    N/A
+            if(this!=self.unit && (!this.isally(self.unit)) &&
                 this.getrange(self.unit)<=self.unit.weapons[self.index].gethighrange())
             {
                 if(self.phase < phase){
@@ -5267,7 +5267,20 @@ var UPGRADES=window.UPGRADES= [
                            self.unit.endnoaction(n,"ATTACK");
                        }).unwrapper("cleanupattack");
                        self.unit.wrap_after("getdicemodifiers",self,function() {
-                           return [];
+                           // Iterate back through arguments (all mods available to self.unit
+                           // and remove any that Mod or Reroll the Attack Dice 
+                            var i = arguments[0].length;
+                            var newargs = arguments[0].slice();
+                            var nextarg;
+                            while (i--) {
+                                nextarg = newargs[i];
+                                if(nextarg.to == Unit.ATTACK_M || nextarg.from == Unit.ATTACK_M){
+                                    if (newargs[i].type==Unit.MOD_M || newargs[i].type==Unit.REROLL_M) { 
+                                        newargs.splice(i, 1);
+                                    } 
+                                }
+                            }
+                            return newargs;
                        }).unwrapper("cleanupattack");
                        self.unit.wrap_before("cancelattack",self,function() {
                            //self.unit.maxfired++;
