@@ -5249,7 +5249,7 @@ var UPGRADES=window.UPGRADES= [
                  sh.hasfired = 0;
              }
          });
-	 Unit.prototype.wrap_before("doendmaneuveraction",self,function() {
+	 Unit.prototype.wrap_before("endmaneuver",self,function() {
              // There are some restrictions on Snap Shot that should be checked prior
              // to adding any functionality to the holder (self.unit):
              // 1) activeunit is not self.unit                          check
@@ -5262,7 +5262,7 @@ var UPGRADES=window.UPGRADES= [
             {
                 if(self.phase < phase){
                    sh.doselection(function(n) {
-                       self.unit.select();
+                       //self.unit.select();
                        self.unit.wrap_before("selecttargetforattack",self,function() {
                            self.unit.endnoaction(n,"ATTACK");
                        }).unwrapper("cleanupattack");
