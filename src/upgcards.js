@@ -6159,6 +6159,7 @@ var UPGRADES=window.UPGRADES= [
 			dropped.resolveactionmove(this.unit.getbombposition(lm,this.size), function(k) {
 			    this.display(0,0);
 			    this.unit.bombdropped(this);
+			    if (typeof n!="undefined") this.unit.endnoaction(n,"DROP");
 			}.bind(dropped),false,true);
 		},
 		type: Unit.BOMB,
