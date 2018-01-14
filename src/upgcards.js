@@ -6170,6 +6170,18 @@ var UPGRADES=window.UPGRADES= [
 		},
 	},
 	{
+	name: "Trajectory Simulator",
+	type: Unit.SYSTEM,
+	points: 1,
+	done:true,
+	init:function(sh) {
+	    sh.wrap_after("getbomblocation",this,function(d) {
+		if (d.indexOf("F1")>-1) return d.concat("RF5");
+		return d;
+	    })
+	},
+        },
+	{
 		name: "Bomblet Generator",
 		done:true,
 		img:"seismic.png",
