@@ -19,7 +19,7 @@ var TIMEANIM=FAST?0:1000;
 var FACE=["focus","hit","critical","evade","blank"];
 var ATTACKDICE= [0,0,1,1,1,2,4,4];
 var DEFENSEDICE=[0,0,3,3,3,4,4,4];
-var MPOS={ F0:[0,3],RL1:[0,2],RR1:[0,4],RF1:[0,3],F1:[1,3],F2:[2,3],F3:[3,3],F4:[4,3],F5:[5,3],	
+var MPOS={ F0:[0,3],RL1:[0,2],RR1:[0,4],RF1:[0,3],RF5:[0,3],F1:[1,3],F2:[2,3],F3:[3,3],F4:[4,3],F5:[5,3],	
 	   BL1:[1,2],BL2:[2,2],BL3:[3,2],
 	   TL1:[1,1],TL2:[2,1],TL3:[3,1],
 	   BR1:[1,4],BR2:[2,4],BR3:[3,4],
@@ -1290,12 +1290,12 @@ Unit.prototype = {
 	var len=path.getTotalLength();
 	if (this.islarge) len+=40;
 	var m0=m.clone();
-	if (maneuver.match(/RF1|RR1|RL1/)) m0=m0.rotate(180,0,0);
+	if (maneuver.match(/RF1|RF5|RR1|RL1/)) m0=m0.rotate(180,0,0);
 	var mm=this.getmatrixwithmove(m0, path, len);
 	if (maneuver.match(/K\d|SR\d|SL\d/)||halfturn==true) mm.rotate(180,0,0);
 	if (maneuver.match(/TRL\d/)) mm.rotate(-90,0,0);
 	if (maneuver.match(/TRR\d/)) mm.rotate(90,0,0);
-	if (maneuver.match(/RF1|RR1|RL1/)) mm.rotate(180,0,0);
+	if (maneuver.match(/RF1|RF5|RR1|RL1/)) mm.rotate(180,0,0);
 	path.remove();
 	return mm;
     },
@@ -2606,7 +2606,7 @@ Unit.prototype = {
 	var m,oldm;
 	var lenC = path.getTotalLength();
 	var m0=this.m.clone();
-	if (dial.match(/RF1|RR1|RL1/)) m0=m0.rotate(180,0,0);
+	if (dial.match(/RF1|RF5|RR1|RL1/)) m0=m0.rotate(180,0,0);
 	if (this.islarge) lenC+=40;
 
 	this.moves=[this.getmatrixwithmove(m0,path,lenC)];
@@ -2663,13 +2663,13 @@ Unit.prototype = {
 	    if (!FAST) SOUNDS[this.ship.flysnd].play();
 	    Snap.animate(0, lenC, function( value ) {
 		m = this.getmatrixwithmove(m0,path,value);
-		if (dial.match(/RF1|RR1|RL1/)) m.rotate(180,0,0);
+		if (dial.match(/RF1|RF5|RR1|RL1/)) m.rotate(180,0,0);
 		this.g.transform(m);
 		this.geffect.transform(m);
 	    }.bind(this), TIMEANIM*lenC/200,mina.linear, function(){
 		if (!this.collision) { 
 		    // Special handling of K turns: half turn at end of movement. Straight line if collision.
-		    if (dial.match(/K\d|SR\d|SL\d|RF1|RR1|RL1/)||halfturn==true) {
+		    if (dial.match(/K\d|SR\d|SL\d|RF1|RF5|RR1|RL1/)||halfturn==true) {
 			this.m.rotate(180,0,0);
 			turn=180;
 		    } else if (dial.match(/TRL\d/)) {
