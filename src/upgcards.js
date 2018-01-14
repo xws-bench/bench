@@ -3554,22 +3554,25 @@ var UPGRADES=window.UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    var self=this;
-            sh.adddicemodifier(Unit.DEFENDCOMPARE_M,Unit.MOD_M,Unit.DEFENSE_M,this,{
-                req:function() { return self.isactive; },
+            sh.adddicemodifier(Unit.DEFENDCOMPARE_M,Unit.ADD_M,Unit.DEFENSE_M,this,{
+                req:function() { return (self.isactive); },
                 f:function(m,n) {
-                    if(activeunit.ia){
-                        if (Unit.FE_evade(m)>0 && Unit.FE_evade(m) <= (Unit.FCH_crit(n) + Unit.FCH_hit(n))) {
+                    if( targetunit != self.unit){
+                        if(activeunit.ia){
+                            if (Unit.FE_evade(m)>0 && 
+                                    Unit.FE_evade(m) <= ($(".hitreddice").length + $(".criticalreddice").length)) {
+                                targetunit.log("%EVADE% removed [%0]",self.name); 
+                                m=m-Unit.FE_EVADE;
+                                self.desactivate();
+                            }
+                        }
+                        else{
                             targetunit.log("%EVADE% removed [%0]",self.name); 
                             m=m-Unit.FE_EVADE;
                             self.desactivate();
                         }
                     }
-                    else{
-                        targetunit.log("%EVADE% removed [%0]",self.name); 
-                        m=m-Unit.FE_EVADE;
-                        self.desactivate();
-                    }
-                    return m;
+                    return {'m':m,'n':n};
                 },str:"evade"});
         }
     },
@@ -5213,44 +5216,86 @@ var UPGRADES=window.UPGRADES= [
      done:true,
      // Snap Shot *is* a Secondary Weapon
      isWeapon: function() { return true;},
+     isTurret: function() { return false;},
      // Snap Shot can only fire once per *phase*
-     // Not sure how to enact that part, though.
-     endattack: function(c,h) { this.unit.addhasfired(); },
+     endattack: function(c,h) {
+        this.lastphase = this.phase;
+        this.phase = phase;
+     },
+     firesnd:"",
      attack: 2,
      range: [1,1],
+     lastphase: -1,
+     phase: -1,
+     firing: false,
+     index: -1,
      init: function(sh) {
 	 var self=this;
-	 Unit.prototype.wrap_after("doendmaneuveraction",self,function() {
-	     var wpl=[];
-	     for (var i in self.unit.weapons)
-		 if (self.unit.weapons[i].name == "Snap Shot")
-		     wpl.push(self.unit.weapons[i]);
-	     
-	     if (wpl.length>0) {
-		 sh.doselection(function(n) {
-		     self.unit.select();
-		     self.unit.wrap_before("selecttargetforattack",self,function() {
-			 self.unit.endnoaction(n,"ATTACK");
-		     }).unwrapper("cleanupattack");
-		     self.unit.wrap_after("getdicemodifiers",self,function() {
-			 return [];
-		     }).unwrapper("cleanupattack");
-		     self.unit.wrap_before("cancelattack",self,function() {
-			 //self.unit.maxfired++;
-			 $("#attackdial").hide();
-			 self.unit.endnoaction(n,"ATTACK");
-		     }).unwrapper("cleanupattack");
-                     // Check if this != this.isally(self.unit)?
-                     // In this context, self.unit is Snap Shot host
-                     // this is any ship
-                     if(!this.isally(self.unit) && 
-                             this.getrange(self.unit)<=wpl[0].gethighrange()){
-                        self.unit.doattack(wpl,[this]);
-                    } else self.unit.endnoaction(n,"ELITE");
-		 }.bind(this));
-	     }
+         self.firesnd=self.unit.ship.firesnd;
+         for (var i in self.unit.weapons){
+             if (self.unit.weapons[i] == self){
+                 this.index = i;
+                 break;
+             }
+         }
+         sh.wrap_after("resolveattack", self, function(){
+             if(phase != COMBAT_PHASE){
+                 sh.hasfired = 0;
+             }
+         });
+         sh.wrap_after("cancelattack", self, function(){
+             if(phase != COMBAT_PHASE){
+                 sh.hasfired = 0;
+             }
+         });
+	 Unit.prototype.wrap_before("endmaneuver",self,function() {
+             // There are some restrictions on Snap Shot that should be checked prior
+             // to adding any functionality to the holder (self.unit):
+             // 1) activeunit is not self.unit                          check
+             // 2) activeunit is not ally of self.unit                  check
+             // 3) activeunit is within this weapon's range             check
+             // 4) weapon has not fired this *phase*                    check
+             // 5) weapon has not been activated for another target.    N/A
+            if(this!=self.unit && (!this.isally(self.unit)) &&
+                this.getrange(self.unit)<=self.unit.weapons[self.index].gethighrange())
+            {
+                if(self.phase < phase){
+                   sh.doselection(function(n) {
+                       self.unit.select();
+                       self.unit.wrap_before("selecttargetforattack",self,function() {
+                           self.unit.endnoaction(n,"ATTACK");
+                       }).unwrapper("cleanupattack");
+                       self.unit.wrap_after("getdicemodifiers",self,function() {
+                           // Iterate back through arguments (all mods available to self.unit
+                           // and remove any that Mod or Reroll the Attack Dice 
+                            var i = arguments[0].length;
+                            var newargs = arguments[0].slice();
+                            var nextarg;
+                            while (i--) {
+                                nextarg = newargs[i];
+                                if(nextarg.to == Unit.ATTACK_M || nextarg.from == Unit.ATTACK_M){
+                                    if (newargs[i].type==Unit.MOD_M || newargs[i].type==Unit.REROLL_M) { 
+                                        newargs.splice(i, 1);
+                                    } 
+                                }
+                            }
+                            return newargs;
+                       }).unwrapper("cleanupattack");
+                       self.unit.wrap_before("cancelattack",self,function() {
+                           //self.unit.maxfired++;
+                           self.phase = self.lastphase;
+                           $("#attackdial").hide();
+                           self.unit.endnoaction(n,"ATTACK");
+                       }).unwrapper("cleanupattack");
+                       // Check if this != this.isally(self.unit)?
+                       // In this context, self.unit is Snap Shot host
+                       // this is any ship
+                        self.unit.doattack([self.unit.weapons[self.index]],[this]);
+                   }.bind(this), this);
+                }
+            }
 	 });
-     }
+        }
     },
     {name:"M9-G8",
      type:Unit.ASTROMECH,
