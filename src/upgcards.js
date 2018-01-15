@@ -1681,7 +1681,10 @@ var UPGRADES=window.UPGRADES= [
                     var hd = $(".hitreddice").length;
                     var th = hd + $(".criticalreddice").length;
                     var ge = $(".evadegreendice").length;
-                    return self.isactive && (hd-ge >= 3) && (th > ge);
+                    return self.unit === targetunit && 
+                            self.isactive && 
+                            (hd-ge >= 3) && 
+                            (th > ge);
                 },
                 f:function(m,n) { 
                     // Presumed to be 3+ more hits than evades

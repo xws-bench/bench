@@ -1567,7 +1567,7 @@ window.PILOTS = [
 			   this,this.weapons,
 			   function() { 
 			       this.log("no attack next round"); 
-			       this.noattack=round+1; },
+			       this.noattack=round+1; }.bind(this),
 			   null,
 			   "endcombatphase");
 	},
