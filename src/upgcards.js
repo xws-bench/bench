@@ -1675,7 +1675,7 @@ var UPGRADES=window.UPGRADES= [
 		return r2;
 	    });
             // The actual work has to happen here.
-            sh.adddicemodifier(Unit.ATTACKCOMPARE_M,Unit.ADD_M,Unit.DEFENSE_M,this,{
+            sh.adddicemodifier(Unit.ATTACKCOMPARE_M,Unit.ADD_M,Unit.ATTACK_M,this,{
                 req:function(m, n) { 
                     // Must be hit *and* have 3+ uncancelled hits
                     var hd = $(".hitreddice").length;
@@ -1686,13 +1686,13 @@ var UPGRADES=window.UPGRADES= [
                 f:function(m,n) { 
                     // Presumed to be 3+ more hits than evades
                     var roll=m;
-                    var hits = $(".hitreddice").length;
+                    var hits = Unit.FCH_hit(m);
                     var evades = $(".evadegreendice").length;
                     var diff = hits - evades >= 3 ? hits - evades : 0;
                     for(var i = 0; i < (diff-2); i++){
                         sh.addstress();
                     };
-                    return {'m':roll-(diff*FCH_HIT),'n':n};
+                    return {'m':roll-((diff-2)*Unit.FCH_HIT),'n':n};
             },str:"stress"});
 	},
     },

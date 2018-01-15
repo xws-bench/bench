@@ -552,7 +552,7 @@ function displaycompareresults(u,f) {
     // 3) Attacker mods Defender's Dice (Crack Shot);
     // 4) Defender mods Defender's Dice (NA currently);
     
-    var dam=targetunit.getresultmodifiers(u.ar, u.ad, Unit.ATTACKCOMPARE_M, Unit.DEFENSE_M);
+    var dam=targetunit.getresultmodifiers(u.ar, u.ad, Unit.ATTACKCOMPARE_M, Unit.ATTACK_M);
     var aam=u.getresultmodifiers(u.ar,u.ad,Unit.ATTACKCOMPARE_M,Unit.ATTACK_M);
     
     var adm=u.getresultmodifiers(targetunit.dr,targetunit.dd,Unit.DEFENDCOMPARE_M,Unit.DEFENSE_M);

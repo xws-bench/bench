@@ -4541,7 +4541,7 @@ window.PILOTS = [
       done:true,
       points:20,
       init: function() {
-	    this.adddicemodifier(Unit.ATTACKCOMPARE_M,Unit.ADD_M,Unit.DEFENSE_M,this,{
+	    this.adddicemodifier(Unit.ATTACKCOMPARE_M,Unit.ADD_M,Unit.ATTACK_M,this,{
 		req:function(m,n) { return this.stress==0&&n>0; }.bind(this),
 		f:function(m,n) {
 		    if (this.stress==0) {
