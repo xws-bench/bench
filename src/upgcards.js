@@ -1625,46 +1625,76 @@ var UPGRADES=window.UPGRADES= [
         type: Unit.CREW,
         points: 2,
 	done:true,
+        endround: function () { this.jan = null; },
 	init: function(sh) {
-	    this.jan=-1;
+	    this.jan=null;
 	    var self=this;
-	    Unit.prototype.wrap_after("addfocustoken",this,function() {
-		if (!self.unit.dead&&this.getrange(sh)<=3&&this.isally(sh)&&self.jan<round) {
+            // Jan Ors needs to *intercept* Focus allocation, rather than *wrap* it.
+            Unit.prototype.realaddfocustoken=Unit.prototype.addfocustoken;
+            Unit.prototype.addfocustoken=function(){ return; };
+	    Unit.prototype.wrap_before("addfocustoken",this,function() {
+		if (!self.unit.dead&&this.isally(sh)&&self.jan===null&&this.getrange(sh)<=3) {
 		    this.log("select %FOCUS% or %EVADE% token [%0]",self.name);
 		    this.donoaction(
 			[{name:self.name,org:self,type:"FOCUS",action:function(n) { 
-			    this.endnoaction(n,"FOCUS"); }.bind(this)},
+			    this.realaddfocustoken();
+                            this.endnoaction(n,"FOCUS"); }.bind(this)},
 			 {name:self.name,org:self,type:"EVADE",action:function(n) { 
-			     self.jan=round;
-			     this.focus--; /* fix for bug with Garven */
+			     self.jan=this;
+                             //this.focus--; /* fix for bug with Garven */
 			     this.addevadetoken(); 
 			     this.endnoaction(n,"EVADE"); }.bind(this)}],
 			"",false);
 		}
+                else{
+                    this.realaddfocustoken();
+                }
 	    });
 	},
     },
-
     {
         name: "R4-D6",
+        done:true,
+        unique: true,
+        type: Unit.ASTROMECH,
+        points: 1,
         init: function(sh) {
-	    var self=this;
+	    var self=this;    
+            // This will be called many many times by tohitproba(), so we can't
+            // allow any state-changing calls to be made here.  But this is probably
+            // necessary for conmputing probability for IAUnit ships.
 	    sh.wrap_after("cancelhit",this,function(r,org,r2) {
 		var h=Unit.FCH_hit(r2.ch);
 		if (h>=3) {
 		    sh.log("cancelling %0 hits [%1]",h-2,self);
 		    var d=h-2;
 		    var ch=r2.ch-d*Unit.FCH_HIT;
-		    for (var i=0; i<d; i++) sh.addstress();
+		    //for (var i=0; i<d; i++) sh.addstress();
 		    return {ch:ch,e:r2.e};
 		}
 		return r2;
 	    });
+            // The actual work has to happen here.
+            sh.adddicemodifier(Unit.ATTACKCOMPARE_M,Unit.ADD_M,Unit.ATTACK_M,this,{
+                req:function(m, n) { 
+                    // Must be hit *and* have 3+ uncancelled hits
+                    var hd = $(".hitreddice").length;
+                    var th = hd + $(".criticalreddice").length;
+                    var ge = $(".evadegreendice").length;
+                    return self.isactive && (hd-ge >= 3) && (th > ge);
+                },
+                f:function(m,n) { 
+                    // Presumed to be 3+ more hits than evades
+                    var roll=m;
+                    var hits = Unit.FCH_hit(m);
+                    var evades = $(".evadegreendice").length;
+                    var diff = hits - evades >= 3 ? hits - evades : 0;
+                    for(var i = 0; i < (diff-2); i++){
+                        sh.addstress();
+                    };
+                    return {'m':roll-((diff-2)*Unit.FCH_HIT),'n':n};
+            },str:"stress"});
 	},
-	done:true,
-        unique: true,
-        type: Unit.ASTROMECH,
-        points: 1,
     },
     {
         name: "R5-P9",
@@ -2054,6 +2084,11 @@ var UPGRADES=window.UPGRADES= [
         
     },
     {
+        // It is ill-advised to use wrap_after("modifyattackroll") with functions
+        // that test or manipulate focus values, because other effects may depend on
+        // these.  Specifically, Calculation + Garven Dreis causes multiple Focus
+        // tokens to be handed out due to tohitproba() repeatedly calling modifyattackroll()
+        // during testing attack success values in variations of a given attack.
         name: "Calculation",
 	done:true,
 	rating:1,
@@ -2061,7 +2096,8 @@ var UPGRADES=window.UPGRADES= [
 	    var self=this;
 	    sh.wrap_after("modifyattackroll",this,function(m,n,d,mm) {
 		if (this.canusefocus()&&Unit.FCH_focus(mm)>0) {
-		    this.removefocustoken();
+		    this.focus--; // This does not trigger Garven
+                    //this.removefocustoken();
 		    mm=mm-Unit.FCH_FOCUS+Unit.FCH_CRIT;
 		}
 		return mm;
@@ -2074,14 +2110,16 @@ var UPGRADES=window.UPGRADES= [
 		    return Unit.FCH_focus(m);
 		},
 		f:function(m,n) {
-		    var f=Unit.FCH_focus(m);
-		    this.removefocustoken();
-		    displayattacktokens(this);
-		    if (f>0) {
-			this.log("1 %FOCUS% -> 1 %CRIT% [%0]",self.name);
-			return m-Unit.FCH_FOCUS+Unit.FCH_CRIT;
-		    }
-		    return m;
+                    
+                    var f=Unit.FCH_focus(m);
+                    this.removefocustoken();
+                    displayattacktokens(this);
+                    if (f>0) {
+                        this.log("1 %FOCUS% -> 1 %CRIT% [%0]",self.name);
+                        return m-Unit.FCH_FOCUS+Unit.FCH_CRIT;
+                    }
+                    return m;
+
 		}.bind(sh),str:"focus"});
 	},   
         type: Unit.ELITE,
@@ -6044,30 +6082,30 @@ var UPGRADES=window.UPGRADES= [
 
     },
 
-	{
-		name:"Advanced Optics",
-		points: 2,
-		type:Unit.TECH,
-		done:true,
-		init: function(sh) {
-			var self=this;
-			sh.wrap_after("addfocustoken",this,function() {
-				if (this.focus>1) {
-					this.log("1 %FOCUS% max [%0]",self.name);
-					this.focus=1;
-				}
-				this.showinfo();
-			});
-			sh.wrap_after("resetfocus",this,function() {
-				var r=0;
-				if (this.focus>0) {
-					this.log("keep 1 %FOCUS% token [%0]",self.name);
-					r=1;
-				}
-				return r;
-			});
-		},
-	},
+    {
+        name:"Advanced Optics",
+        points: 2,
+        type:Unit.TECH,
+        done:true,
+        init: function(sh) {
+            var self=this;
+            sh.wrap_after("addfocustoken",this,function() {
+                if (this.focus>1) {
+                    this.log("1 %FOCUS% max [%0]",self.name);
+                    this.focus=1;
+                }
+                this.showinfo();
+            });
+            sh.wrap_after("resetfocus",this,function() {
+                var r=0;
+                if (this.focus>0) {
+                    this.log("keep 1 %FOCUS% token [%0]",self.name);
+                    r=1;
+                }
+                return r;
+            });
+        },
+    },
 
 	{
 		name:"StarViper Mk. II",

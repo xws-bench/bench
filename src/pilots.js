@@ -155,10 +155,10 @@ window.PILOTS = [
         unit: "X-Wing",
 	init: function() {
 	    this.wrap_after("removefocustoken",this,function() {
-		this.selectunit(this.selectnearbyally(2),function (p,k) { 
-		    p[k].log("+1 %FOCUS%");
-		    p[k].addfocustoken();
-		}.bind(this),["select unit for free %FOCUS%"],false);
+                this.selectunit(this.selectnearbyally(2),function (p,k) { 
+                    p[k].log("+1 %FOCUS%");
+                    p[k].addfocustoken();
+                }.bind(this),["select unit for free %FOCUS%"],false);
 	    });
 	},
 	pilotid:2,
@@ -1651,16 +1651,18 @@ window.PILOTS = [
 	pilotid:84,
 	init: function() {
 	    this.wrap_before("cleanupattack",this,function() {
-		if (targetunit.targeting.length>0) {
-		    targetunit.log("-1 %TARGET% [%0]",this.name);
-		    targetunit.removetarget(targetunit.targeting[0]);
-		} else if (targetunit.focus>0) {
-		    targetunit.log("-1 %FOCUS% [%0]",this.name);
-		    targetunit.removefocustoken();
-		} else if (targetunit.evade>0) {
-		    targetunit.log("-1 %EVADE% [%0]",this.name);
-		    targetunit.removeevadetoken();
-		}
+                if(targetunit !== undefined){
+                    if (targetunit.targeting.length>0) {
+                        targetunit.log("-1 %TARGET% [%0]",this.name);
+                        targetunit.removetarget(targetunit.targeting[0]);
+                    } else if (targetunit.focus>0) {
+                        targetunit.log("-1 %FOCUS% [%0]",this.name);
+                        targetunit.removefocustoken();
+                    } else if (targetunit.evade>0) {
+                        targetunit.log("-1 %EVADE% [%0]",this.name);
+                        targetunit.removeevadetoken();
+                    }
+                }
 	    });
 	},
 	faction:Unit.REBEL,
@@ -4539,7 +4541,7 @@ window.PILOTS = [
       done:true,
       points:20,
       init: function() {
-	    this.adddicemodifier(Unit.ATTACKCOMPARE_M,Unit.ADD_M,Unit.DEFENSE_M,this,{
+	    this.adddicemodifier(Unit.ATTACKCOMPARE_M,Unit.ADD_M,Unit.ATTACK_M,this,{
 		req:function(m,n) { return this.stress==0&&n>0; }.bind(this),
 		f:function(m,n) {
 		    if (this.stress==0) {
