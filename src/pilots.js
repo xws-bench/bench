@@ -1651,16 +1651,18 @@ window.PILOTS = [
 	pilotid:84,
 	init: function() {
 	    this.wrap_before("cleanupattack",this,function() {
-		if (targetunit.targeting.length>0) {
-		    targetunit.log("-1 %TARGET% [%0]",this.name);
-		    targetunit.removetarget(targetunit.targeting[0]);
-		} else if (targetunit.focus>0) {
-		    targetunit.log("-1 %FOCUS% [%0]",this.name);
-		    targetunit.removefocustoken();
-		} else if (targetunit.evade>0) {
-		    targetunit.log("-1 %EVADE% [%0]",this.name);
-		    targetunit.removeevadetoken();
-		}
+                if(targetunit !== undefined){
+                    if (targetunit.targeting.length>0) {
+                        targetunit.log("-1 %TARGET% [%0]",this.name);
+                        targetunit.removetarget(targetunit.targeting[0]);
+                    } else if (targetunit.focus>0) {
+                        targetunit.log("-1 %FOCUS% [%0]",this.name);
+                        targetunit.removefocustoken();
+                    } else if (targetunit.evade>0) {
+                        targetunit.log("-1 %EVADE% [%0]",this.name);
+                        targetunit.removeevadetoken();
+                    }
+                }
 	    });
 	},
 	faction:Unit.REBEL,

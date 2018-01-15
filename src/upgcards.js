@@ -1652,27 +1652,49 @@ var UPGRADES=window.UPGRADES= [
 	    });
 	},
     },
-
     {
         name: "R4-D6",
+        done:true,
+        unique: true,
+        type: Unit.ASTROMECH,
+        points: 1,
         init: function(sh) {
-	    var self=this;
+	    var self=this;    
+            // This will be called many many times by tohitproba(), so we can't
+            // allow any state-changing calls to be made here.  But this is probably
+            // necessary for conmputing probability for IAUnit ships.
 	    sh.wrap_after("cancelhit",this,function(r,org,r2) {
 		var h=Unit.FCH_hit(r2.ch);
 		if (h>=3) {
 		    sh.log("cancelling %0 hits [%1]",h-2,self);
 		    var d=h-2;
 		    var ch=r2.ch-d*Unit.FCH_HIT;
-		    for (var i=0; i<d; i++) sh.addstress();
+		    //for (var i=0; i<d; i++) sh.addstress();
 		    return {ch:ch,e:r2.e};
 		}
 		return r2;
 	    });
+            // The actual work has to happen here.
+            sh.adddicemodifier(Unit.ATTACKCOMPARE_M,Unit.ADD_M,Unit.DEFENSE_M,this,{
+                req:function(m, n) { 
+                    // Must be hit *and* have 3+ uncancelled hits
+                    var hd = $(".hitreddice").length;
+                    var th = hd + $(".criticalreddice").length;
+                    var ge = $(".evadegreendice").length;
+                    return self.isactive && (hd-ge >= 3) && (th > ge);
+                },
+                f:function(m,n) { 
+                    // Presumed to be 3+ more hits than evades
+                    var roll=m;
+                    var hits = $(".hitreddice").length;
+                    var evades = $(".evadegreendice").length;
+                    var diff = hits - evades >= 3 ? hits - evades : 0;
+                    for(var i = 0; i < (diff-2); i++){
+                        sh.addstress();
+                    };
+                    return {'m':roll-(diff*FCH_HIT),'n':n};
+            },str:"stress"});
 	},
-	done:true,
-        unique: true,
-        type: Unit.ASTROMECH,
-        points: 1,
     },
     {
         name: "R5-P9",
