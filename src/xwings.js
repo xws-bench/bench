@@ -1660,6 +1660,7 @@ $(document).ready(function() {
 	  F3:{path:s.path("M 0 0 L 0 -160"), speed: 3, key:"8"},
 	  F4:{path:s.path("M 0 0 L 0 -200"), speed: 4, key:"8"},
 	  F5:{path:s.path("M 0 0 L 0 -240"), speed: 5, key: "8" },
+	  RF5:{path:s.path("M 0 0 L 0 -240"), speed: 5, key:"|"},
 	  // Turn right
 	  TR1:{path:s.path("M0 0 C 0 -40 15 -55 55 -55"), speed: 1, key:"6"},// 35 -35
 	  TR2:{path:s.path("M0 0 C 0 -50 33 -83 83 -83"), speed:2, key:"6"},// 63 -63
