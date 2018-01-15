@@ -388,9 +388,10 @@ IAUnit.prototype = {
 		    else if (list[i].type=="EVADE"&&this.candoevade()) {
 			var noone=true;
 			var grlu=this.getenemiesinrange();
-			for (i=0; i<grlu.length; i++) 
-			    if (grlu[i].length>0) { noone=false; break; }
+			for (j=0; j<grlu.length; j++) 
+			    if (grlu[j].length>0) { noone=false; break; }
 			if (noone) { a=list[i]; break; }
+                        else if(this.focus>=1) { a=list[i]; break;}
 		    } else if (list[i].type=="FOCUS") {
 			if (this.candofocus()) { a=list[i]; break; }
 		    } else { a = list[i]; break }

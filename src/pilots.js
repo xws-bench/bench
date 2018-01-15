@@ -155,10 +155,10 @@ window.PILOTS = [
         unit: "X-Wing",
 	init: function() {
 	    this.wrap_after("removefocustoken",this,function() {
-		this.selectunit(this.selectnearbyally(2),function (p,k) { 
-		    p[k].log("+1 %FOCUS%");
-		    p[k].addfocustoken();
-		}.bind(this),["select unit for free %FOCUS%"],false);
+                this.selectunit(this.selectnearbyally(2),function (p,k) { 
+                    p[k].log("+1 %FOCUS%");
+                    p[k].addfocustoken();
+                }.bind(this),["select unit for free %FOCUS%"],false);
 	    });
 	},
 	pilotid:2,
