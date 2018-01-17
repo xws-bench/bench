@@ -4998,29 +4998,46 @@ window.PILOTS = [
 	        upgrades: [Unit.ELITE,Unit.TORPEDO]
 	},
 	{
-        	name: "Thweek",
-	        faction:Unit.SCUM,
-	        done:false,
-		unique:true,
-		pilotid:257,
-	        unit: "StarViper",
-	        skill: 4,
-	        points: 28,
-	        upgrades: [Unit.TORPEDO],
-		init: function() {
-			var self=this;
-			this.wrap_after("endsetupphase",this,function() {
-				var p=[];
-				for (var i in squadron)
-					if (squadron[i].team!=this.team) p.push(squadron[i]);
-				if (p.length>0) {
-					this.log("select unit for condition [%0]","Shadowed");
-					this.resolveactionselection(p,function(k) {
-						new Condition(p[k],this,"Shadowed");
-					}.bind(this));
-	      			}
-			});
-      		}
+            name: "Thweek",
+            faction:Unit.SCUM,
+            done:false,
+            unique:true,
+            pilotid:257,
+            unit: "StarViper",
+            skill: 4,
+            points: 28,
+            upgrades: [Unit.TORPEDO],
+            init: function() {
+                var self=this;
+                this.wrap_after("endsetupphase",this,function() {
+                    var p=[];
+                    for (var i in squadron){
+                        if (squadron[i].team!=this.team) 
+                            p.push(squadron[i]);
+                    };
+                    var lock=$.Deferred();
+                    this.selectunit( //Gives us skip functionality
+                        p,
+			function(p,k) {
+                            this.log("select unit for condition [%0]","Shadowed");
+                            new Condition(p[k],this,"Shadowed");
+                            lock.resolve();
+                        }.bind(this),
+                        ["select unit for condition (or self to cancel) [%0]",self.name],
+                        true); //somehow, "noskip" == allow skip
+                });
+//                this.wrap_after("endsetupphase",this,function() {
+//                    var p=[];
+//                    for (var i in squadron)
+//                        if (squadron[i].team!=this.team) p.push(squadron[i]);
+//                    if (p.length>0) {
+//                        this.log("select unit for condition [%0]","Shadowed");
+//                        this.resolveactionselection(p,function(k) {
+//                            new Condition(p[k],this,"Shadowed");
+//                        }.bind(this));
+//                    }
+//                });
+            }
 	},
 	{
         	name: "Black Sun Assassin",
