@@ -526,6 +526,14 @@ var CRITICAL_DECK=[
 	    var save=[];
 	    var self=this;
 	    this.unit.wrap_after("getdial",this,function(a) {
+                // Special handling for Ionized; see FAQ
+                // N.B. hasionizationeffect() forces dial to just White F1;
+                // without an escape here, this combo returns a blank dial
+                // and causes an infinite loop for the effected ship's planning phase
+                if(this.hasionizationeffect()){
+                    return a;
+                }
+                
 		if (save.length===0) {
 		    for (var i=0; i<a.length; i++) {
 			if (!a[i].move.match(/F1|F2|F3|F4|F5/)) 
