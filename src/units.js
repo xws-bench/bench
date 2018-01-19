@@ -54,6 +54,7 @@ var squadron=[];
 var active=0;
 var globalid=1;
 var targetunit;
+var attackunit;
 var PATTERN;
 var SOUND_DIR="ogg/";
 var SOUND_FILES=[
@@ -1101,6 +1102,9 @@ Unit.prototype = {
 	    ||(phase==ACTIVATION_PHASE)
 	    ||(phase==COMBAT_PHASE)) {
 	    var old=activeunit;
+            if(phase==COMBAT_PHASE){
+                attackunit=old;
+            }
 	    activeunit=this;
 	    if (old!=this) old.unselect();
 	    $("#"+this.id).addClass("selected");

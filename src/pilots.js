@@ -52,7 +52,7 @@ var maarek_fct = function() {
 	var pp=$.Deferred();
 	p.then(function(cf) {
 	    var crit=cf.crit;
-	    if (cf.face==Critical.FACEUP&&activeunit==unit&&targetunit==this) {
+	    if (cf.face==Critical.FACEUP&&attackunit==unit&&targetunit==this) {
 		var s1=this.selectdamage();
 		Critical.CRITICAL_DECK[s1].count--;
 		var s2=this.selectdamage();
