@@ -2522,6 +2522,7 @@ Unit.prototype = {
     },
     doattackroll: function(ar,ad,w,me,n) {
 	ar=this.weapons[w].modifydamagegiven(ar);
+	this.weapons[w].lastattackroll=ar;
 	displayattackroll(ar,ad);
 	//this.log("target:"+targetunit.name+" "+defense+" "+ar+" "+ad+" "+defense+" "+n+" me:"+squadron[me].name);
 	this.ar=ar;this.ad=ad;

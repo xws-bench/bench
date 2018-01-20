@@ -6284,4 +6284,27 @@ var UPGRADES=window.UPGRADES= [
 		points: 3,
 		takesdouble: true
     },    
+    { 
+		name:"Wookiee Commandos",
+		type:Unit.CREW,
+		points:1,
+		faction:Unit.REBEL,
+		done:true,
+		takesdouble: true,
+		init: function(sh) {
+			sh.adddicemodifier(Unit.ATTACK_M,Unit.REROLL_M,Unit.ATTACK_M,this,{
+				dice:["focus"],
+				n:function() { 
+					if (sh.activeweapon >= 0) {
+						return Math.floor(sh.weapons[sh.activeweapon].lastattackroll/Unit.FCH_FOCUS);
+					} else {
+						return 0;
+					}
+				},
+				req:function(attacker,w,defender) {
+					return this.isactive;
+				}.bind(this)
+	    		});
+	}
+    },
 ];
