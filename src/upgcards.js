@@ -603,7 +603,7 @@ var UPGRADES=window.UPGRADES= [
 		if (ptl.r!=round&&this.candoaction()&&type!==null) {
 		    ptl.r=round;
 		    this.doaction(this.getactionbarlist(),"+1 free action (Skip to cancel) ["+ptl.name+"]").done(function(type2) {
-			if (type2===null) ptl.r=-1; 
+			if (type2===null || typeof type2 === "undefined") ptl.r=-1; 
 			else this.addafteractions(function() { this.addstress(); }.bind(this));
 		    }.bind(this));
 		}
@@ -1681,7 +1681,10 @@ var UPGRADES=window.UPGRADES= [
                     var hd = $(".hitreddice").length;
                     var th = hd + $(".criticalreddice").length;
                     var ge = $(".evadegreendice").length;
-                    return self.isactive && (hd-ge >= 3) && (th > ge);
+                    return self.unit === targetunit && 
+                            self.isactive && 
+                            (hd-ge >= 3) && 
+                            (th > ge);
                 },
                 f:function(m,n) { 
                     // Presumed to be 3+ more hits than evades
@@ -2751,7 +2754,7 @@ var UPGRADES=window.UPGRADES= [
 		if (upg.r!=round&&this.candoaction()&&type!==null) {
 		    upg.r=round;
 		    this.doaction(this.getupgactionlist(),"+1 free action (Skip to cancel)").done(function(type2) {
-			if (type2===null) upg.r=-1;
+			if (type2===null || typeof type2 === "undefined") upg.r=-1;
 			else this.addafteractions(function() { this.addstress(); }.bind(this));
 		    }.bind(this));
 		}
@@ -4959,12 +4962,32 @@ var UPGRADES=window.UPGRADES= [
       islarge:true,
       points:1,
       done:true,
-      candoaction: function() { return this.isactive; },
+      candoaction: function() { 
+          return this.isactive; 
+      },
       action: function(n) {
 	  var self=this.unit;
+          var index;
+          var victim;
+          var victims = [];
+          var collision;
+          
 	  var m=self.getpathmatrix(self.m.clone().rotate(180,0,0),"F1").translate(40,-20).split();
 	  var ob=new Rock(MAXROCKS+9,[m.dx,m.dy,m.rotate+90],self.team,OBSTACLES.length);
 	  OBSTACLES.push(ob);
+          index = OBSTACLES.length - 1;
+          // Loop over squadron ships and check if they collided with ob
+          for (var i in squadron){
+              victim = squadron[i];
+              collision = victim.getocollisions(victim.m, victim.m); // Check for 0-path-length collisions
+              if (collision.overlap != -1) victims.push(victim);              
+          };
+          // For each victim, resolveocollision and set oldoverlap = index
+          for (var j in victims){
+              victims[j].resolveocollision(index,[]);
+              victims[j].oldoverlap=index;
+          }
+          
 	  this.desactivate();
 	  self.endaction(n,Unit.ILLICIT);
       }

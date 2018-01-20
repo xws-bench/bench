@@ -54,6 +54,7 @@ var squadron=[];
 var active=0;
 var globalid=1;
 var targetunit;
+var attackunit;
 var PATTERN;
 var SOUND_DIR="ogg/";
 var SOUND_FILES=[
@@ -1101,6 +1102,9 @@ Unit.prototype = {
 	    ||(phase==ACTIVATION_PHASE)
 	    ||(phase==COMBAT_PHASE)) {
 	    var old=activeunit;
+            if(phase==COMBAT_PHASE){
+                attackunit=old;
+            }
 	    activeunit=this;
 	    if (old!=this) old.unselect();
 	    $("#"+this.id).addClass("selected");
@@ -1218,7 +1222,8 @@ Unit.prototype = {
 	var k,i,j;
 	var pathpts=[],os=[],op=[];
 	var collision={overlap:-1,template:[],mine:[]};
-	// Overlapping obstacle ? 
+	// Overlapping obstacle at landing point? 
+        var curOutlStr=this.getOutlineString(mbegin).s;
 	var so=this.getOutlineString(mend);
 	os=so.s;
 	op=so.p;
@@ -1242,22 +1247,24 @@ Unit.prototype = {
 		pathpts[k]={x:mbegin.x(p.x,p.y),y:mbegin.y(p.x,p.y)};
 	    }
 	    for (j=0; j<pathpts.length; j++) {
-		for (k=0; k<OBSTACLES.length; k++) {
-		    var o=OBSTACLES[k];
-		    if (o.type==NONE) continue;
-		    if (k!=collision.overlap&&k!=this.oldoverlap&&collision.template.indexOf(k)==-1&&collision.mine.indexOf(o)==-1) { // Do not count overlapped obstacle twice
-			var o2=o.getOutlineString().p;
-			for(i=0; i<o2.length; i++) {
-			    var dx=(o2[i].x-pathpts[j].x);
-			    var dy=(o2[i].y-pathpts[j].y);
-			    if (dx*dx+dy*dy<=100) { 
-				if (o.type!=Unit.BOMB) collision.template.push(k); 
-				else collision.mine.push(OBSTACLES[k]);
-				break;
-			    } 
-			}
-		    }
-		}
+                if(!(this.isPointInside(curOutlStr,[pathpts[j]]) || this.isPointInside(os,[pathpts[j]]))){ // ignore pathpts inside this's base
+                    for (k=0; k<OBSTACLES.length; k++) {
+                        var o=OBSTACLES[k];
+                        if (o.type==NONE) continue;
+                        if (k!=collision.overlap&&collision.template.indexOf(k)==-1&&collision.mine.indexOf(o)==-1) { // Do not count overlapped obstacle twice
+                            var o2=o.getOutlineString().p;
+                            for(i=0; i<o2.length; i++) {
+                                var dx=(o2[i].x-pathpts[j].x);
+                                var dy=(o2[i].y-pathpts[j].y);
+                                if (dx*dx+dy*dy<=100) { 
+                                    if (o.type!=Unit.BOMB) collision.template.push(k); 
+                                    else collision.mine.push(OBSTACLES[k]);
+                                    break;
+                                } 
+                            }
+                        }
+                    }
+                }
 	    }
 	}	   
 	return collision;
