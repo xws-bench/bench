@@ -6307,4 +6307,51 @@ var UPGRADES=window.UPGRADES= [
 	    		});
 	}
     },
+	{
+		name: "Xg-1 Assault Configuration",
+		type:Unit.TITLE,
+		done:false,
+		upgrades:[Unit.CANNON, Unit.CANNON],
+		points: 1,
+		ship: "Alpha-class Star Wing",
+		init: function(sh) {
+			var cannons2pt = [];
+			for (var i=0; i<sh.weapons.length; i++) {
+				var w = sh.weapons[i];
+				if (w.type==Unit.CANNON&&w.points<=2) {
+					cannons2pt.push(i);
+				}
+			}
+			sh.canfire = function() {
+				var b=(this.noattack<round || cannons2pt.length>0)
+					&&(this.hasfired<this.maxfired)
+					&&!this.iscloaked
+					&&!this.isfireobstructed();
+			        return b;
+			}.bind(sh);
+
+// TODO			
+/*			
+			sh.doattack = function(weaponlist, enemies) {
+				if (this.noattack<round) {
+					this.activeweapons=weaponlist;
+					this.activeenemies=enemies;
+					this.showattack(weaponlist,enemies);
+				} else {
+					this.activeweapons=cannons2pt;
+					this.activeenemies=enemies;
+					this.showattack(cannons2pt,enemies);				}
+			}.bind(sh);
+*/
+		}
+	},
+	{
+		name: "Os-1 Arsenal Loadout",
+		type:Unit.TITLE,
+		done:false,
+		upgrades:[Unit.TORPEDO, Unit.MISSILE],
+		points: 2,
+		ship: "Alpha-class Star Wing",
+		// TODO
+	}
 ];
