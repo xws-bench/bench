@@ -208,6 +208,7 @@ function Weapon(sh,wdesc) {
 	//log("Installing weapon "+this.name+" ["+this.type+"]");
 	this.isactive=true;
 	this.unit=sh;
+	this.lastattackroll = -1;
 
 	sh.weapons.push(this);
 }
