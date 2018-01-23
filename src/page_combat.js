@@ -2,18 +2,20 @@ var FREECOMBAT=0,SCENARIO=1,SCENARIOCREATOR=2;
 var mode=FREECOMBAT;
 
 function prepareforcombat(t,n) {
-    TEAMS[n].parseJuggler(t,true);
-    $("#squad"+n).html(TEAMS[n].toJuggler(true));
-    TEAMS[n].name="SQUAD."+TEAMS[n].toASCII();
-    TEAMS[n].toJSON();// Just for points
-    
-    if (typeof localStorage[TEAMS[n].name]=="undefined") {
-	localStorage[TEAMS[n].name]=JSON.stringify({"pts":TEAMS[n].points,"faction":TEAMS[n].faction,"jug":t});
+    if (t !== "" && typeof t !== "undefined"){
+        TEAMS[n].parseJuggler(t,true);
+        $("#squad"+n).html(TEAMS[n].toJuggler(true));
+        TEAMS[n].name="SQUAD."+TEAMS[n].toASCII();
+        TEAMS[n].toJSON();// Just for points
+
+        if (typeof localStorage[TEAMS[n].name]=="undefined") {
+            localStorage[TEAMS[n].name]=JSON.stringify({"pts":TEAMS[n].points,"faction":TEAMS[n].faction,"jug":t});
+        }
+        if (!SQUADLIST.isinrow(t)) {
+            SQUADLIST.addrow(0,TEAMS[n].name,TEAMS[n].points,TEAMS[n].faction,TEAMS[n].toJuggler(true),true);
+        }
+        $("#squad"+n+"points").html(TEAMS[n].points);
     }
-    if (!SQUADLIST.isinrow(t)) {
-	SQUADLIST.addrow(0,TEAMS[n].name,TEAMS[n].points,TEAMS[n].faction,TEAMS[n].toJuggler(true),true);
-    }
-    $("#squad"+n+"points").html(TEAMS[n].points);
     enablenextphase();
 }
 function scenariomode(b) {
