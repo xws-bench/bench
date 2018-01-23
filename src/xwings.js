@@ -7,7 +7,7 @@ const VERSION="v0.99.2";
 var LANG="en";
 var FILTER="none";
 var DECLOAK_PHASE=1;
-const WEBSITE="http://baranidlo.github.io/bench/main.html";
+const WEBSITE="https://baranidlo.github.io/bench/main.html";
 const DICES=["focusred","hitred","criticalred","blankred","focusgreen","evadegreen","blankgreen"];
 const SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6,XP_PHASE=7,MAIN_PHASE=0;
 var BOMBS=[];
