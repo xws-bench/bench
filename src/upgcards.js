@@ -5878,13 +5878,14 @@ var UPGRADES=window.UPGRADES= [
 		     this.endnoaction(n,"TITLE");
 
 		     //this.doselection(function(nn) {
-			 this.hasmoved=false;
+                     this.hasmoved=false;
 		     this.newlock().done(function() {
 			 this.newlock().done(nextactivation);
 			 nextactivation();
 		     }.bind(this));
 		 });
 		 this.resolveactionmove(p,function(t,k) {
+                     if (k === -1) k=0;
 		     this.maneuver=q[k];
 		     this.resolvemaneuver();
 		 }.bind(this),false,true);
