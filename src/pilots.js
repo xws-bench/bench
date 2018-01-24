@@ -5213,6 +5213,8 @@ window.PILOTS = [
 		pilotid:273,
 		unique:true,
 		unit:"TIE Silencer",
+                edition:"TIE Silencer",
+                ambiguous:true,
 		skill:9,
 		done:true,
 		upgrades:[Unit.ELITE,Unit.SYSTEM,Unit.TECH],
