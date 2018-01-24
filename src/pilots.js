@@ -5208,7 +5208,7 @@ window.PILOTS = [
 		upgrades:[Unit.CREW,Unit.ASTROMECH]
 	},
 	{
-		name:"Kylo Ren (TIE Silencer)",
+		name:"Kylo Ren",
 		faction:Unit.EMPIRE,
 		pilotid:273,
 		unique:true,
