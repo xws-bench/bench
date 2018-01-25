@@ -5158,11 +5158,13 @@ window.PILOTS = [
 	       upgrades:[Unit.TORPEDO,Unit.MISSILE,Unit.SALVAGED,Unit.ILLICIT]
 	},
 	{
-		name:"Fenn Rau (Rebel)",
+		name:"Fenn Rau",
 		faction:Unit.REBEL,
 		unique:true,
     	    	unit:"Sheathipede-class Shuttle",
     	    	skill:9,
+                edition:"Sheathipede",
+                ambiguous:true,
 		pilotid:269,
 		points:20,
 		done:false,
