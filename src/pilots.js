@@ -5104,7 +5104,7 @@ window.PILOTS = [
 	        upgrades: [Unit.ELITE,Unit.TORPEDO,Unit.MISSILE]
 	},
 	{
-        	name: "Nu Squadron Veteran",
+        	name: "Nu Squadron Pilot",
 	        faction:Unit.EMPIRE,
 		done:true,
 		pilotid:264,
