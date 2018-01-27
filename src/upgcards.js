@@ -3974,12 +3974,16 @@ var UPGRADES=window.UPGRADES= [
 	init: function(sh) {
 	    var phantom=-1;
 	    var self=this;
+            var upg;
 	    for (var i in squadron) {
 		var u=squadron[i];
 		if (u.isally(sh)&&sh!=u) {
 		    for (var j=0; j<u.upgrades.length; j++) {
-			var upg=u.upgrades[j];
-			if (upg.name=="Phantom") { phantom=i; break; }
+			upg=u.upgrades[j];
+			if (upg.name=="Phantom" || upg.name=="Phantom II") { 
+                            phantom=i; 
+                            break; 
+                        }
 		    }
 		}
 		if (phantom!=-1) break;
@@ -4003,20 +4007,28 @@ var UPGRADES=window.UPGRADES= [
 			}.bind(this)}],"",true);
 		    }
 		});
-		
-		sh.wrap_after("endcombatphase",this,function() {
-		    if (this.docked) 
-			for (var i=0; i<this.weapons.length; i++) {
-			    var u=this.weapons[i];
-			    if (u.type==Unit.TURRET&&u.isactive&&this.noattack<round) {
-				this.log("+1 attack with %1 [%0]",self.name,u.name);
-				// added attack
-				this.noattack=round;
-				this.selecttargetforattack(i);
-				break;
-			    }
-			}	
-		});
+		if(upg.name=="Phantom"){
+                    sh.wrap_after("endcombatphase",this,function() {
+                        if (this.docked) 
+                            for (var i=0; i<this.weapons.length; i++) {
+                                var u=this.weapons[i];
+                                if (u.type==Unit.TURRET&&u.isactive&&this.noattack<round) {
+                                    this.log("+1 attack with %1 [%0]",self.name,u.name);
+                                    // added attack
+                                    this.noattack=round;
+                                    this.selecttargetforattack(i);
+                                    break;
+                                }
+                            }	
+                    });
+                }
+                else { // experimental Ghost + Phantom II
+                    sh.wrap_after("endactivationphase",this,function() {
+                        if(this.docked && this.candocoordinate()){
+                            this.doaction([this.newaction(this.resolvecoordinate, "COORDINATE")],"Select unit to Coordinate");
+                        }
+                    }.bind(sh));
+                }
 		sh.wrap_after("dies",this,function() {
 		    if (this.docked) {
 			this.docked.noattack=round;
@@ -4039,6 +4051,13 @@ var UPGRADES=window.UPGRADES= [
      unique:true,
      done:true,
      ship:"Attack Shuttle"
+    },
+    {name:"Phantom II",
+     type:Unit.TITLE,
+     points:0,
+     unique:true,
+     done:false,
+     ship:"Sheathipede-class Shuttle"
     },
     {name:"Reinforced Deflectors",
      points:3,

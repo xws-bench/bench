@@ -5104,7 +5104,7 @@ window.PILOTS = [
 	        upgrades: [Unit.ELITE,Unit.TORPEDO,Unit.MISSILE]
 	},
 	{
-        	name: "Nu Squadron Veteran",
+        	name: "Nu Squadron Pilot",
 	        faction:Unit.EMPIRE,
 		done:true,
 		pilotid:264,
@@ -5158,11 +5158,13 @@ window.PILOTS = [
 	       upgrades:[Unit.TORPEDO,Unit.MISSILE,Unit.SALVAGED,Unit.ILLICIT]
 	},
 	{
-		name:"Fenn Rau (Rebel)",
+		name:"Fenn Rau",
 		faction:Unit.REBEL,
 		unique:true,
     	    	unit:"Sheathipede-class Shuttle",
     	    	skill:9,
+                edition:"Sheathipede",
+                ambiguous:true,
 		pilotid:269,
 		points:20,
 		done:false,
@@ -5208,11 +5210,13 @@ window.PILOTS = [
 		upgrades:[Unit.CREW,Unit.ASTROMECH]
 	},
 	{
-		name:"Kylo Ren (TIE Silencer)",
+		name:"Kylo Ren",
 		faction:Unit.EMPIRE,
 		pilotid:273,
 		unique:true,
 		unit:"TIE Silencer",
+                edition:"TIE Silencer",
+                ambiguous:true,
 		skill:9,
 		done:true,
 		upgrades:[Unit.ELITE,Unit.SYSTEM,Unit.TECH],
