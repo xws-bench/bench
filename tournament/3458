@@ -1,0 +1,434 @@
+{
+  "tournament": {
+    "date": "2017-09-23", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3458, 
+    "name": "Maul's Fall Q3 Event", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 578, 
+        "name": "Will Hime", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 559, 
+        "name": "Ben Fowler", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 480, 
+        "name": "Keith Holt", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 535, 
+        "name": "Jason Cole", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "oldteroch", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "kadsolus", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ]
+              }
+            }, 
+            {
+              "name": "kaatoleeachos", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 447, 
+        "name": "Jason Campbell", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 414, 
+        "name": "Scott Marlar", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 400, 
+        "name": "Justin Battenberg", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 376, 
+        "name": "Ryan Sliwoski", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 343, 
+        "name": "LJ Mares", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 250, 
+        "name": "Aaron Jones", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 231, 
+        "name": "Brett Renko", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 87, 
+        "name": "Phillip", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 0, 
+        "sos": "0.38"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Ryan Sliwoski", 
+            "player1points": 100, 
+            "player2": "Brett Renko", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Campbell", 
+            "player1points": 28, 
+            "player2": "Keith Holt", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "LJ Mares", 
+            "player1points": 100, 
+            "player2": "Phillip", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron Jones", 
+            "player1points": 49, 
+            "player2": "Scott Marlar", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Will Hime", 
+            "player1points": 100, 
+            "player2": "Jason Cole", 
+            "player2points": 78, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ben Fowler", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Ben Fowler", 
+            "player1points": 100, 
+            "player2": "Scott Marlar", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Will Hime", 
+            "player1points": 100, 
+            "player2": "Keith Holt", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Sliwoski", 
+            "player1points": 100, 
+            "player2": "LJ Mares", 
+            "player2points": 43, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Cole", 
+            "player1points": 100, 
+            "player2": "Brett Renko", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Phillip", 
+            "player1points": 56, 
+            "player2": "Aaron Jones", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Campbell", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Will Hime", 
+            "player1points": 100, 
+            "player2": "Ben Fowler", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Sliwoski", 
+            "player1points": 50, 
+            "player2": "Scott Marlar", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Campbell", 
+            "player1points": 69, 
+            "player2": "LJ Mares", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron Jones", 
+            "player1points": 57, 
+            "player2": "Keith Holt", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Cole", 
+            "player1points": 100, 
+            "player2": "Phillip", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Battenberg", 
+            "player1points": 100, 
+            "player2": "Brett Renko", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Will Hime", 
+            "player1points": 100, 
+            "player2": "Scott Marlar", 
+            "player2points": 88, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ben Fowler", 
+            "player1points": 100, 
+            "player2": "Ryan Sliwoski", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Cole", 
+            "player1points": 57, 
+            "player2": "Keith Holt", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "LJ Mares", 
+            "player1points": 0, 
+            "player2": "Justin Battenberg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Campbell", 
+            "player1points": 100, 
+            "player2": "Aaron Jones", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brett Renko", 
+            "player1points": 100, 
+            "player2": "Phillip", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Knoxville", 
+      "country": "United States of America", 
+      "lat": "35.960394800000", 
+      "lon": "-83.921026000000", 
+      "name": "", 
+      "state": "Tennessee"
+    }
+  }
+}

@@ -1,0 +1,802 @@
+{
+  "tournament": {
+    "date": "2017-04-02", 
+    "format": "Pick your poison", 
+    "id": 2746, 
+    "name": "X-Wing Liga III. Fordul", 
+    "players": [
+      {
+        "mov": 827, 
+        "name": "Kenessey Mrton", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 5, 
+        "sos": "0.60"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "majorrhymer", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "crew": [
+                  "operationsspecialist", 
+                  "tactician"
+                ], 
+                "ept": [
+                  "snapshot"
+                ], 
+                "title": [
+                  "tieshuttle"
+                ]
+              }
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "backdraft", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "swarmleader"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "scourge", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "snapshot"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 803, 
+        "name": "Dervadelin Zoltn", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 4, 
+        "sos": "0.52"
+      }, 
+      {
+        "mov": 723, 
+        "name": "Hruska Dvid", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 4, 
+        "sos": "0.40"
+      }, 
+      {
+        "mov": 656, 
+        "name": "Takcs Istvn", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 650, 
+        "name": "Simon Zoltn", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 4, 
+        "sos": "0.64"
+      }, 
+      {
+        "mov": 664, 
+        "name": "Sebk Richrd", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 3, 
+        "sos": "0.52"
+      }, 
+      {
+        "mov": 623, 
+        "name": "Kovcs Imre", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 3, 
+        "sos": "0.36"
+      }, 
+      {
+        "mov": 597, 
+        "name": "Farkas Gergely", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 3, 
+        "sos": "0.52"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "burnoutslam"
+                ], 
+                "mod": [
+                  "countermeasures", 
+                  "smugglingcompartment"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 545, 
+        "name": "Rafay Jnos", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 3, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 537, 
+        "name": "Esze Gerg", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 3, 
+        "sos": "0.52"
+      }, 
+      {
+        "mov": 520, 
+        "name": "goston Tibor", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 3, 
+        "sos": "0.48"
+      }, 
+      {
+        "mov": 440, 
+        "name": "Gyrfy Gerg", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 3, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 622, 
+        "name": "Lczy Zoli", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 2, 
+        "sos": "0.48"
+      }, 
+      {
+        "mov": 541, 
+        "name": "Bir Zoltn", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 2, 
+        "sos": "0.28"
+      }, 
+      {
+        "mov": 529, 
+        "name": "Horvth Jnos", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 2, 
+        "sos": "0.64"
+      }, 
+      {
+        "mov": 483, 
+        "name": "Trh Gbor", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 2, 
+        "sos": "0.48"
+      }, 
+      {
+        "mov": 418, 
+        "name": "Tth Benjmin", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 2, 
+        "sos": "0.40"
+      }, 
+      {
+        "mov": 407, 
+        "name": "Szab Andrs", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 2, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 374, 
+        "name": "Varga Marcell", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 2, 
+        "sos": "0.36"
+      }, 
+      {
+        "mov": 289, 
+        "name": "Br Gbor", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 257, 
+        "name": "Patks Feri", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 1, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 257, 
+        "name": "Sipos Kristf", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 1, 
+        "sos": "0.48"
+      }, 
+      {
+        "mov": 223, 
+        "name": "Caniz", 
+        "rank": {
+          "swiss": 23
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 15, 
+        "name": "Budai Balzs", 
+        "rank": {
+          "swiss": 24
+        }, 
+        "score": 0, 
+        "sos": "0.48"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Horvth Jnos", 
+            "player1points": 100, 
+            "player2": "Hruska Dvid", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Br Gbor", 
+            "player1points": 0, 
+            "player2": "Takcs Istvn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Budai Balzs", 
+            "player1points": 0, 
+            "player2": "Dervadelin Zoltn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Esze Gerg", 
+            "player1points": 72, 
+            "player2": "goston Tibor", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lczy Zoli", 
+            "player1points": 36, 
+            "player2": "Gyrfy Gerg", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Farkas Gergely", 
+            "player1points": 100, 
+            "player2": "Caniz", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tth Benjmin", 
+            "player1points": 59, 
+            "player2": "Patks Feri", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Varga Marcell", 
+            "player1points": 28, 
+            "player2": "Sebk Richrd", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kenessey Mrton", 
+            "player1points": 100, 
+            "player2": "Trh Gbor", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafay Jnos", 
+            "player1points": 26, 
+            "player2": "Simon Zoltn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kovcs Imre", 
+            "player1points": 64, 
+            "player2": "Szab Andrs", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bir Zoltn", 
+            "player1points": 30, 
+            "player2": "Sipos Kristf", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Patks Feri", 
+            "player1points": 15, 
+            "player2": "Kenessey Mrton", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sipos Kristf", 
+            "player1points": 27, 
+            "player2": "Horvth Jnos", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gyrfy Gerg", 
+            "player1points": 40, 
+            "player2": "Farkas Gergely", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Takcs Istvn", 
+            "player1points": 58, 
+            "player2": "Esze Gerg", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simon Zoltn", 
+            "player1points": 100, 
+            "player2": "Sebk Richrd", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Szab Andrs", 
+            "player1points": 59, 
+            "player2": "Dervadelin Zoltn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "goston Tibor", 
+            "player1points": 100, 
+            "player2": "Caniz", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tth Benjmin", 
+            "player1points": 66, 
+            "player2": "Bir Zoltn", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kovcs Imre", 
+            "player1points": 100, 
+            "player2": "Budai Balzs", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Hruska Dvid", 
+            "player1points": 100, 
+            "player2": "Br Gbor", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lczy Zoli", 
+            "player1points": 100, 
+            "player2": "Varga Marcell", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Trh Gbor", 
+            "player1points": 0, 
+            "player2": "Rafay Jnos", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Takcs Istvn", 
+            "player1points": 65, 
+            "player2": "Horvth Jnos", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simon Zoltn", 
+            "player1points": 17, 
+            "player2": "Kenessey Mrton", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gyrfy Gerg", 
+            "player1points": 0, 
+            "player2": "Dervadelin Zoltn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tth Benjmin", 
+            "player1points": 48, 
+            "player2": "Esze Gerg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "goston Tibor", 
+            "player1points": 64, 
+            "player2": "Szab Andrs", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Hruska Dvid", 
+            "player1points": 100, 
+            "player2": "Patks Feri", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sipos Kristf", 
+            "player1points": 22, 
+            "player2": "Kovcs Imre", 
+            "player2points": 88, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sebk Richrd", 
+            "player1points": 33, 
+            "player2": "Farkas Gergely", 
+            "player2points": 82, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lczy Zoli", 
+            "player1points": 29, 
+            "player2": "Rafay Jnos", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bir Zoltn", 
+            "player1points": 100, 
+            "player2": "Br Gbor", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Varga Marcell", 
+            "player1points": 100, 
+            "player2": "Budai Balzs", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Caniz", 
+            "player1points": 0, 
+            "player2": "Trh Gbor", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Dervadelin Zoltn", 
+            "player1points": 77, 
+            "player2": "Kenessey Mrton", 
+            "player2points": 88, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Takcs Istvn", 
+            "player1points": 100, 
+            "player2": "Farkas Gergely", 
+            "player2points": 13, 
+            "result": "win"
+          }, 
+          {
+            "player1": "goston Tibor", 
+            "player1points": 0, 
+            "player2": "Simon Zoltn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kovcs Imre", 
+            "player1points": 64, 
+            "player2": "Horvth Jnos", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Esze Gerg", 
+            "player1points": 29, 
+            "player2": "Rafay Jnos", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gyrfy Gerg", 
+            "player1points": 29, 
+            "player2": "Hruska Dvid", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lczy Zoli", 
+            "player1points": 100, 
+            "player2": "Sipos Kristf", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Varga Marcell", 
+            "player1points": 100, 
+            "player2": "Patks Feri", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sebk Richrd", 
+            "player1points": 100, 
+            "player2": "Tth Benjmin", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bir Zoltn", 
+            "player1points": 64, 
+            "player2": "Szab Andrs", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Trh Gbor", 
+            "player1points": 100, 
+            "player2": "Budai Balzs", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Caniz", 
+            "player1points": 100, 
+            "player2": "Br Gbor", 
+            "player2points": 35, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Takcs Istvn", 
+            "player1points": 23, 
+            "player2": "Kenessey Mrton", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Hruska Dvid", 
+            "player1points": 100, 
+            "player2": "Kovcs Imre", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafay Jnos", 
+            "player1points": 27, 
+            "player2": "Dervadelin Zoltn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simon Zoltn", 
+            "player1points": 100, 
+            "player2": "Horvth Jnos", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "goston Tibor", 
+            "player1points": 75, 
+            "player2": "Lczy Zoli", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gyrfy Gerg", 
+            "player1points": 100, 
+            "player2": "Varga Marcell", 
+            "player2points": 14, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Farkas Gergely", 
+            "player1points": 100, 
+            "player2": "Trh Gbor", 
+            "player2points": 54, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sebk Richrd", 
+            "player1points": 100, 
+            "player2": "Szab Andrs", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Esze Gerg", 
+            "player1points": 100, 
+            "player2": "Sipos Kristf", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tth Benjmin", 
+            "player1points": 100, 
+            "player2": "Caniz", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bir Zoltn", 
+            "player1points": 100, 
+            "player2": "Patks Feri", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Budai Balzs", 
+            "player1points": 0, 
+            "player2": "Br Gbor", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Budapest", 
+      "country": "Hungary", 
+      "lat": "47.498381500000", 
+      "lon": "19.040470700000", 
+      "name": "", 
+      "state": "Budapest"
+    }
+  }
+}

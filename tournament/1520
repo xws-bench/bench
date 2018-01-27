@@ -1,0 +1,258 @@
+{
+  "tournament": {
+    "date": "2016-04-13", 
+    "format": "Epic Play - 150 points", 
+    "id": 1520, 
+    "name": "Dalaran Epico em duplas de 150pts", 
+    "players": [
+      {
+        "mov": 578, 
+        "name": "Giulliano e Dennis", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 11, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing"
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing"
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing"
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 554, 
+        "name": "Gustavo e Jade", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 11, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 485, 
+        "name": "Albano e Bil", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "flechettecannon", 
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "flechettecannon", 
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "wired"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 447, 
+        "name": "Robertinho e Luiz", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 411, 
+        "name": "Tunico e Malena", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Robertinho e Luiz", 
+            "player1points": 25, 
+            "player2": "Gustavo e Jade", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tunico e Malena", 
+            "player1points": 50, 
+            "player2": "Albano e Bil", 
+            "player2points": 107, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giulliano e Dennis", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Gustavo e Jade", 
+            "player1points": 125, 
+            "player2": "Albano e Bil", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giulliano e Dennis", 
+            "player1points": 125, 
+            "player2": "Robertinho e Luiz", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tunico e Malena", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Gustavo e Jade", 
+            "player1points": 75, 
+            "player2": "Giulliano e Dennis", 
+            "player2points": 75, 
+            "result": "draw"
+          }, 
+          {
+            "player1": "Tunico e Malena", 
+            "player1points": 50, 
+            "player2": "Albano e Bil", 
+            "player2points": 107, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robertinho e Luiz", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Joinville", 
+      "country": "Brazil", 
+      "lat": "-26.304489700000", 
+      "lon": "-48.848672500000", 
+      "name": "Dalaran", 
+      "state": "Santa Catarina"
+    }
+  }
+}

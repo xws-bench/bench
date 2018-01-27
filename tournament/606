@@ -1,0 +1,362 @@
+{
+  "tournament": {
+    "date": "2015-08-22", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 606, 
+    "name": "X-wing Event 2.0", 
+    "players": [
+      {
+        "mov": 891, 
+        "name": "Cadan", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 25, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 808, 
+        "name": "Ben Lee", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "kathscarlet", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "cartelspacer", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "flechettecannon"
+                ]
+              }
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 631, 
+        "name": "James Kelly", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 466, 
+        "name": "Craig Harrison", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 542, 
+        "name": "Jon Chadrock", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 433, 
+        "name": "Stephen Ashton", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 360, 
+        "name": "Kieran Street", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 327, 
+        "name": "Breccan Kendall", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 318, 
+        "name": "Sam Page", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 224, 
+        "name": "Don Shields", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Don Shields", 
+            "player1points": 30, 
+            "player2": "Cadan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephen Ashton", 
+            "player1points": 100, 
+            "player2": "Jon Chadrock", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James Kelly", 
+            "player1points": 59, 
+            "player2": "Craig Harrison", 
+            "player2points": 82, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kieran Street", 
+            "player1points": 30, 
+            "player2": "Breccan Kendall", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sam Page", 
+            "player1points": 0, 
+            "player2": "Ben Lee", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Breccan Kendall", 
+            "player1points": 100, 
+            "player2": "Stephen Ashton", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cadan", 
+            "player1points": 51, 
+            "player2": "Ben Lee", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Don Shields", 
+            "player1points": 42, 
+            "player2": "James Kelly", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Craig Harrison", 
+            "player1points": 100, 
+            "player2": "Jon Chadrock", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sam Page", 
+            "player1points": 0, 
+            "player2": "Kieran Street", 
+            "player2points": 69, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Sam Page", 
+            "player1points": 54, 
+            "player2": "Don Shields", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James Kelly", 
+            "player1points": 32, 
+            "player2": "Stephen Ashton", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cadan", 
+            "player1points": 100, 
+            "player2": "Breccan Kendall", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kieran Street", 
+            "player1points": 49, 
+            "player2": "Jon Chadrock", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ben Lee", 
+            "player1points": 59, 
+            "player2": "Craig Harrison", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Stephen Ashton", 
+            "player1points": 30, 
+            "player2": "Cadan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James Kelly", 
+            "player1points": 100, 
+            "player2": "Breccan Kendall", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sam Page", 
+            "player1points": 0, 
+            "player2": "Jon Chadrock", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kieran Street", 
+            "player1points": 0, 
+            "player2": "Ben Lee", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Don Shields", 
+            "player1points": 39, 
+            "player2": "Craig Harrison", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Cadan", 
+            "player1points": 100, 
+            "player2": "Craig Harrison", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sam Page", 
+            "player1points": 100, 
+            "player2": "Breccan Kendall", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ben Lee", 
+            "player1points": 100, 
+            "player2": "Stephen Ashton", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James Kelly", 
+            "player1points": 100, 
+            "player2": "Kieran Street", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Don Shields", 
+            "player1points": 0, 
+            "player2": "Jon Chadrock", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "East Grinstead", 
+      "country": "United Kingdom", 
+      "lat": "51.132217900000", 
+      "lon": "-0.011766000000", 
+      "name": "Dorset Arms", 
+      "state": "England"
+    }
+  }
+}

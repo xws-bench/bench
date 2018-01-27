@@ -1,0 +1,53 @@
+{
+  "tournament": {
+    "date": "2015-06-03", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 459, 
+    "name": "R1", 
+    "players": [
+      {
+        "mov": 102, 
+        "name": "P1", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 98, 
+        "name": "F1", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "P1", 
+            "player1points": 6, 
+            "player2": "F1", 
+            "player2points": 4, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Saint Peter Port", 
+      "country": "United Kingdom", 
+      "lat": null, 
+      "lon": null, 
+      "name": "Stanley Road", 
+      "state": "Bailiwick of Guernsey"
+    }
+  }
+}

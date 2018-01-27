@@ -1,0 +1,157 @@
+{
+  "tournament": {
+    "date": "2016-11-27", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2348, 
+    "name": "Iksy Tricity S4T2b", 
+    "players": [
+      {
+        "mov": 499, 
+        "name": "Marcin Sprawka", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 432, 
+        "name": "Off Jenkins", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 390, 
+        "name": "Adam Adamski", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 218, 
+        "name": "Patryk Gesiak", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 194, 
+        "name": "Karol Drynda", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 67, 
+        "name": "Grzegorz Zimmermann", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Adam Adamski", 
+            "player1points": 100, 
+            "player2": "Grzegorz Zimmermann", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patryk Gesiak", 
+            "player1points": 0, 
+            "player2": "Marcin Sprawka", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Off Jenkins", 
+            "player1points": 100, 
+            "player2": "Karol Drynda", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Patryk Gesiak", 
+            "player1points": 18, 
+            "player2": "Off Jenkins", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Adamski", 
+            "player1points": 51, 
+            "player2": "Marcin Sprawka", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grzegorz Zimmermann", 
+            "player1points": 36, 
+            "player2": "Karol Drynda", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Off Jenkins", 
+            "player1points": 50, 
+            "player2": "Marcin Sprawka", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Adamski", 
+            "player1points": 100, 
+            "player2": "Karol Drynda", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patryk Gesiak", 
+            "player1points": 100, 
+            "player2": "Grzegorz Zimmermann", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Gdansk", 
+      "country": "Poland", 
+      "lat": "54.348225900000", 
+      "lon": "18.654288800000", 
+      "name": "Shockland", 
+      "state": "Pomorskie"
+    }
+  }
+}

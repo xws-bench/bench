@@ -1,0 +1,5590 @@
+{
+  "tournament": {
+    "date": "2017-01-07", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2456, 
+    "name": "X-Wing Regionals Uppsala 2016", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "wardensquadronpilot", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines", 
+                  "seismiccharges"
+                ], 
+                "crew": [
+                  "chopper"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "wardensquadronpilot", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines", 
+                  "seismiccharges"
+                ], 
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "wardensquadronpilot", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 401, 
+        "name": "Ola Juhlin", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "samd": [
+                  "r5p8"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "zuckuss", 
+                  "dengar", 
+                  "4lom"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 1030, 
+        "name": "Elis Frolen", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 1
+        }, 
+        "score": 6, 
+        "sos": "0.78"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "glaivesquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "glaivesquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 965, 
+        "name": "Johan Nilsson", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 2
+        }, 
+        "score": 5, 
+        "sos": "0.67"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "deltasquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 955, 
+        "name": "Christoffer Wahlsten", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 3
+        }, 
+        "score": 5, 
+        "sos": "0.58"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "lightningreflexes"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "collisiondetector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 881, 
+        "name": "Teddy Lindmon", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 4
+        }, 
+        "score": 5, 
+        "sos": "0.58"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "tactician", 
+                  "reconspecialist"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "crew": [
+                  "chopper"
+                ], 
+                "title": [
+                  "phantom"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 871, 
+        "name": "Tobias Sundin", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.64"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 833, 
+        "name": "Guido Kessels", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "0.53"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "kavil", 
+              "ship": "ywing", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 817, 
+        "name": "Christofer Papinski", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "0.61"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist", 
+                  "finn"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "countermeasures", 
+                  "smugglingcompartment"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 766, 
+        "name": "Joakim Andersson Franke", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 8
+        }, 
+        "score": 5, 
+        "sos": "0.61"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "wardensquadronpilot", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges", 
+                  "proximitymines", 
+                  "clustermines"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "protonbombs", 
+                  "connernet"
+                ], 
+                "crew": [
+                  "c3po"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 856, 
+        "name": "Emil Nielsen", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 4, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "teltrevura", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }, 
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "dengar", 
+                  "4lom", 
+                  "zuckuss"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 842, 
+        "name": "Olle Bohman", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 4, 
+        "sos": "0.58"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "gonk"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "samd": [
+                  "r5p8"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "zuckuss"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 796, 
+        "name": "Victor Pluntky", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 4, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "glaivesquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "glaivesquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 779, 
+        "name": "Archibald Zimonyi", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 4, 
+        "sos": "0.61"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 743, 
+        "name": "Roger Matsson", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 4, 
+        "sos": "0.61"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "tomaxbren", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "crew": [
+                  "hotshotcopilot", 
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "title": [
+                  "tieshuttle"
+                ]
+              }
+            }, 
+            {
+              "name": "rexlerbrath", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 732, 
+        "name": "Johan Hofverberg", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 4, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "lattsrazzi"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "burnoutslam", 
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "shadowcaster"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 720, 
+        "name": "Peder Harty", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 4, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "kavil", 
+              "ship": "ywing", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 696, 
+        "name": "Patrik Andersson", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 4, 
+        "sos": "0.53"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }, 
+            {
+              "name": "glaivesquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }, 
+            {
+              "name": "zetaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 695, 
+        "name": "Hans Konigsson", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 4, 
+        "sos": "0.64"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 679, 
+        "name": "Jonathan Holmgren", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 4, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "dengar"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "title": [
+                  "shadowcaster"
+                ]
+              }
+            }, 
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "riggedcargochute"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "tansariipointveteran", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "title": [
+                  "heavyscykinterceptor"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 644, 
+        "name": "Tom Batsford", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 4, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "agentkallus"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 642, 
+        "name": "Gustav Andersson", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 4, 
+        "sos": "0.58"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "connernet", 
+                  "ionbombs"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 617, 
+        "name": "Johan Larsson", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 4, 
+        "sos": "0.69"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "talonbanecobra", 
+              "ship": "kihraxzfighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "illicit": [
+                  "cloakingdevice"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 617, 
+        "name": "Johan Selin", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "oldteroch", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "kavil", 
+              "ship": "ywing", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 744, 
+        "name": "Marc Harrison", 
+        "rank": {
+          "swiss": 23
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 674, 
+        "name": "Marten Isaksson", 
+        "rank": {
+          "swiss": 24
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 665, 
+        "name": "Roine Gothberg", 
+        "rank": {
+          "swiss": 25
+        }, 
+        "score": 3, 
+        "sos": "0.61"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 661, 
+        "name": "Simon Engmalm", 
+        "rank": {
+          "swiss": 26
+        }, 
+        "score": 3, 
+        "sos": "0.53"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "drawtheirfire"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "tomaxbren", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "bomb": [
+                  "thermaldetonators"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 656, 
+        "name": "David Ryberg", 
+        "rank": {
+          "swiss": 27
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine", 
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "ionprojector"
+                ]
+              }
+            }, 
+            {
+              "name": "echo", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "agentkallus"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 649, 
+        "name": "Bobbo Norberg", 
+        "rank": {
+          "swiss": 28
+        }, 
+        "score": 3, 
+        "sos": "0.39"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "gunner", 
+                  "hotshotcopilot", 
+                  "darthvader"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "maarekstele", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 640, 
+        "name": "David Lessing", 
+        "rank": {
+          "swiss": 29
+        }, 
+        "score": 3, 
+        "sos": "0.47"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 634, 
+        "name": "Carl Cedergren", 
+        "rank": {
+          "swiss": 30
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "kananjarrus", 
+                  "finn"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "burnoutslam"
+                ], 
+                "mod": [
+                  "countermeasures", 
+                  "smugglingcompartment"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "sensorcluster"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 627, 
+        "name": "Rolf Hilleberg", 
+        "rank": {
+          "swiss": 31
+        }, 
+        "score": 3, 
+        "sos": "0.36"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "palobgodalhi", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "zuckuss"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "illicit": [
+                  "blackmarketslicertools"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 616, 
+        "name": "Tobias Vallin", 
+        "rank": {
+          "swiss": 32
+        }, 
+        "score": 3, 
+        "sos": "0.39"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "4lom", 
+                  "zuckuss", 
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "bomb": [
+                  "thermaldetonators"
+                ], 
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "slavei"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 615, 
+        "name": "Robin Mellberg", 
+        "rank": {
+          "swiss": 33
+        }, 
+        "score": 3, 
+        "sos": "0.53"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine", 
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 596, 
+        "name": "Bjorn Kamijo", 
+        "rank": {
+          "swiss": 34
+        }, 
+        "score": 3, 
+        "sos": "0.61"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "glaivesquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 583, 
+        "name": "Theo Bodin", 
+        "rank": {
+          "swiss": 35
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "crackshot", 
+                  "snapshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "crackshot", 
+                  "snapshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "crackshot", 
+                  "snapshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "crackshot", 
+                  "snapshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "crackshot", 
+                  "snapshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 560, 
+        "name": "Johan Malmstrom", 
+        "rank": {
+          "swiss": 36
+        }, 
+        "score": 3, 
+        "sos": "0.47"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "kathscarlet", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "slavei"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 559, 
+        "name": "Patrik Hedlund", 
+        "rank": {
+          "swiss": 37
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "electronicbaffle"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 551, 
+        "name": "Simon Wiippola", 
+        "rank": {
+          "swiss": 38
+        }, 
+        "score": 3, 
+        "sos": "0.47"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "protonbombs", 
+                  "connernet"
+                ], 
+                "crew": [
+                  "c3po"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "esegetuketu", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "protonbombs", 
+                  "connernet"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 534, 
+        "name": "Victoria Tornkvist", 
+        "rank": {
+          "swiss": 39
+        }, 
+        "score": 3, 
+        "sos": "0.39"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "shieldupgrade"
+                ], 
+                "system": [
+                  "electronicbaffle"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "electronicbaffle"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 486, 
+        "name": "Dan Stafstedt", 
+        "rank": {
+          "swiss": 40
+        }, 
+        "score": 3, 
+        "sos": "0.58"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "collisiondetector"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 485, 
+        "name": "Martin Isaksson", 
+        "rank": {
+          "swiss": 41
+        }, 
+        "score": 3, 
+        "sos": "0.39"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "blackmarketslicertools"
+                ]
+              }
+            }, 
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "blackmarketslicertools"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 480, 
+        "name": "Jimi Olsen", 
+        "rank": {
+          "swiss": 42
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "rey", 
+                  "herasyndulla"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 564, 
+        "name": "Peter Kraft", 
+        "rank": {
+          "swiss": 43
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 559, 
+        "name": "Fredrik Karumo", 
+        "rank": {
+          "swiss": 44
+        }, 
+        "score": 2, 
+        "sos": "0.36"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "shieldupgrade"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 550, 
+        "name": "Nils Bohman", 
+        "rank": {
+          "swiss": 45
+        }, 
+        "score": 2, 
+        "sos": "0.53"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "marajade"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "ionprojector"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "wampa", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 540, 
+        "name": "Ola Hallin", 
+        "rank": {
+          "swiss": 46
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "fearlessness"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "oldteroch", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "fearlessness"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "blackmarketslicertools"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 524, 
+        "name": "Thomas Sorlin", 
+        "rank": {
+          "swiss": 47
+        }, 
+        "score": 2, 
+        "sos": "0.42"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "moraloeval", 
+              "ship": "yv666", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "lattsrazzi", 
+                  "dengar", 
+                  "tactician"
+                ], 
+                "illicit": [
+                  "riggedcargochute"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "cartelspacer", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "title": [
+                  "heavyscykinterceptor"
+                ]
+              }
+            }, 
+            {
+              "name": "cartelspacer", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "title": [
+                  "heavyscykinterceptor"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 481, 
+        "name": "Erik Lindqvist", 
+        "rank": {
+          "swiss": 48
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "mod": [
+                  "bwinge2"
+                ], 
+                "system": [
+                  "collisiondetector"
+                ]
+              }
+            }, 
+            {
+              "name": "norrawexley", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "crew": [
+                  "c3po"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 480, 
+        "name": "Fredrik Edman", 
+        "rank": {
+          "swiss": 49
+        }, 
+        "score": 2, 
+        "sos": "0.47"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "wardensquadronpilot", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "connernet", 
+                  "proximitymines"
+                ], 
+                "crew": [
+                  "bombardier"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "wardensquadronpilot", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "wardensquadronpilot", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines"
+                ], 
+                "crew": [
+                  "bombardier"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 474, 
+        "name": "Per Heilborn", 
+        "rank": {
+          "swiss": 50
+        }, 
+        "score": 2, 
+        "sos": "0.42"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "samd": [
+                  "r5p8"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }, 
+            {
+              "name": "guri", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "illicit": [
+                  "cloakingdevice"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "virago"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 462, 
+        "name": "Noah Spahr", 
+        "rank": {
+          "swiss": 51
+        }, 
+        "score": 2, 
+        "sos": "0.47"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 462, 
+        "name": "Daniel Spahr", 
+        "rank": {
+          "swiss": 52
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "oldteroch", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 461, 
+        "name": "Karl Blad", 
+        "rank": {
+          "swiss": 53
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronnovice", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronnovice", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronnovice", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronnovice", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 437, 
+        "name": "Johanna Nybelius", 
+        "rank": {
+          "swiss": 54
+        }, 
+        "score": 2, 
+        "sos": "0.39"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "c3po"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 432, 
+        "name": "Niklas Ljungberg", 
+        "rank": {
+          "swiss": 55
+        }, 
+        "score": 2, 
+        "sos": "0.42"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "wardensquadronpilot", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges", 
+                  "connernet", 
+                  "clustermines"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "kananjarrus", 
+                  "finn"
+                ], 
+                "ept": [
+                  "outmaneuver"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 426, 
+        "name": "Johan Kvick", 
+        "rank": {
+          "swiss": 56
+        }, 
+        "score": 2, 
+        "sos": "0.47"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "darthvader", 
+                  "hotshotcopilot", 
+                  "gunner"
+                ], 
+                "ept": [
+                  "predator"
+                ]
+              }
+            }, 
+            {
+              "name": "echo", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "agentkallus"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 385, 
+        "name": "Magnus Wendel", 
+        "rank": {
+          "swiss": 57
+        }, 
+        "score": 2, 
+        "sos": "0.53"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla", 
+                  "c3po"
+                ], 
+                "ept": [
+                  "wired"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "smugglingcompartment"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }, 
+            {
+              "name": "daggersquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 374, 
+        "name": "Emilio Miranda", 
+        "rank": {
+          "swiss": 58
+        }, 
+        "score": 1, 
+        "sos": "0.42"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "braylenstramm", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "bomb": [
+                  "clustermines"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "bomb": [
+                  "clustermines"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "bombloadout"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "bomb": [
+                  "clustermines"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "bombloadout"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 352, 
+        "name": "Hector Krona", 
+        "rank": {
+          "swiss": 59
+        }, 
+        "score": 1, 
+        "sos": "0.31"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "chopper"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 343, 
+        "name": "Rasmus Vallin", 
+        "rank": {
+          "swiss": 60
+        }, 
+        "score": 1, 
+        "sos": "0.39"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "squadleader"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "deathfire", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "torpedo": [
+                  "flechettetorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "deathrain", 
+              "ship": "tiepunisher", 
+              "upgrades": {
+                "bomb": [
+                  "ionbombs", 
+                  "proximitymines"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 293, 
+        "name": "Felix Castellanos", 
+        "rank": {
+          "swiss": 61
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "deltasquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "deltasquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 219, 
+        "name": "Vincent Landberg-Wallin", 
+        "rank": {
+          "swiss": 62
+        }, 
+        "score": 1, 
+        "sos": "0.36"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "swarmtactics"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "blackone"
+                ], 
+                "torpedo": [
+                  "protontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "elloasty", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 187, 
+        "name": "Emil Frojdhammar", 
+        "rank": {
+          "swiss": 63
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "deathfire", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "seismictorpedo"
+                ]
+              }
+            }, 
+            {
+              "name": "tomaxbren", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines"
+                ], 
+                "ept": [
+                  "adrenalinerush"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 253, 
+        "name": "Niclas Krona", 
+        "rank": {
+          "swiss": 64
+        }, 
+        "score": 0, 
+        "sos": "0.33"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Tom Batsford", 
+            "player1points": 49, 
+            "player2": "Robin Mellberg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Emil Frojdhammar", 
+            "player1points": 17, 
+            "player2": "Christofer Papinski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan Larsson", 
+            "player1points": 29, 
+            "player2": "Rolf Hilleberg", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Hans Konigsson", 
+            "player1points": 63, 
+            "player2": "David Lessing", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan Malmstrom", 
+            "player1points": 15, 
+            "player2": "Roger Matsson", 
+            "player2points": 80, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Olle Bohman", 
+            "player1points": 100, 
+            "player2": "Karl Blad", 
+            "player2points": 18, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrik Andersson", 
+            "player1points": 0, 
+            "player2": "Archibald Zimonyi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Teddy Lindmon", 
+            "player1points": 100, 
+            "player2": "Rasmus Vallin", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nils Bohman", 
+            "player1points": 67, 
+            "player2": "Felix Castellanos", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Peter Kraft", 
+            "player1points": 100, 
+            "player2": "Per Heilborn", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Victoria Tornkvist", 
+            "player1points": 0, 
+            "player2": "Roine Gothberg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan Holmgren", 
+            "player1points": 100, 
+            "player2": "Martin Isaksson", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Magnus Wendel", 
+            "player1points": 100, 
+            "player2": "Tobias Vallin", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan Selin", 
+            "player1points": 75, 
+            "player2": "Emilio Miranda", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marten Isaksson", 
+            "player1points": 50, 
+            "player2": "Fredrik Karumo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dan Stafstedt", 
+            "player1points": 100, 
+            "player2": "Johan Kvick", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bobbo Norberg", 
+            "player1points": 25, 
+            "player2": "Carl Cedergren", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Peder Harty", 
+            "player1points": 64, 
+            "player2": "Fredrik Edman", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Emil Nielsen", 
+            "player1points": 100, 
+            "player2": "Noah Spahr", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Niklas Ljungberg", 
+            "player1points": 100, 
+            "player2": "Hector Krona", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ola Juhlin", 
+            "player1points": 100, 
+            "player2": "Gustav Andersson", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Sorlin", 
+            "player1points": 50, 
+            "player2": "Simon Engmalm", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ola Hallin", 
+            "player1points": 66, 
+            "player2": "Jimi Olsen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joakim Andersson Franke", 
+            "player1points": 100, 
+            "player2": "David Ryberg", 
+            "player2points": 41, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Niclas Krona", 
+            "player1points": 0, 
+            "player2": "Johan Hofverberg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johanna Nybelius", 
+            "player1points": 0, 
+            "player2": "Christoffer Wahlsten", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Spahr", 
+            "player1points": 0, 
+            "player2": "Marc Harrison", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bjorn Kamijo", 
+            "player1points": 100, 
+            "player2": "Vincent Landberg-Wallin", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erik Lindqvist", 
+            "player1points": 0, 
+            "player2": "Theo Bodin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tobias Sundin", 
+            "player1points": 34, 
+            "player2": "Elis Frolen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Guido Kessels", 
+            "player1points": 0, 
+            "player2": "Johan Nilsson", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Victor Pluntky", 
+            "player1points": 100, 
+            "player2": "Simon Wiippola", 
+            "player2points": 41, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrik Hedlund", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Roine Gothberg", 
+            "player1points": 66, 
+            "player2": "Christofer Papinski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Victor Pluntky", 
+            "player1points": 66, 
+            "player2": "Archibald Zimonyi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Peter Kraft", 
+            "player1points": 70, 
+            "player2": "Joakim Andersson Franke", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carl Cedergren", 
+            "player1points": 35, 
+            "player2": "Christoffer Wahlsten", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan Selin", 
+            "player1points": 100, 
+            "player2": "Magnus Wendel", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bjorn Kamijo", 
+            "player1points": 100, 
+            "player2": "Ola Juhlin", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fredrik Karumo", 
+            "player1points": 47, 
+            "player2": "Robin Mellberg", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Emil Nielsen", 
+            "player1points": 75, 
+            "player2": "Patrik Hedlund", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Elis Frolen", 
+            "player1points": 100, 
+            "player2": "Roger Matsson", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simon Engmalm", 
+            "player1points": 64, 
+            "player2": "Teddy Lindmon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan Nilsson", 
+            "player1points": 100, 
+            "player2": "Marc Harrison", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jimi Olsen", 
+            "player1points": 54, 
+            "player2": "Dan Stafstedt", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan Larsson", 
+            "player1points": 100, 
+            "player2": "Olle Bohman", 
+            "player2points": 76, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erik Lindqvist", 
+            "player1points": 37, 
+            "player2": "Johan Hofverberg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Peder Harty", 
+            "player1points": 40, 
+            "player2": "Hans Konigsson", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan Holmgren", 
+            "player1points": 57, 
+            "player2": "Niklas Ljungberg", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nils Bohman", 
+            "player1points": 33, 
+            "player2": "Gustav Andersson", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Theo Bodin", 
+            "player1points": 100, 
+            "player2": "Hector Krona", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Sorlin", 
+            "player1points": 31, 
+            "player2": "David Lessing", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrik Andersson", 
+            "player1points": 100, 
+            "player2": "Emilio Miranda", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fredrik Edman", 
+            "player1points": 100, 
+            "player2": "Vincent Landberg-Wallin", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rasmus Vallin", 
+            "player1points": 56, 
+            "player2": "Emil Frojdhammar", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marten Isaksson", 
+            "player1points": 29, 
+            "player2": "Tobias Sundin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Spahr", 
+            "player1points": 100, 
+            "player2": "Johanna Nybelius", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin Isaksson", 
+            "player1points": 0, 
+            "player2": "David Ryberg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan Malmstrom", 
+            "player1points": 64, 
+            "player2": "Karl Blad", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Felix Castellanos", 
+            "player1points": 35, 
+            "player2": "Niclas Krona", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ola Hallin", 
+            "player1points": 29, 
+            "player2": "Guido Kessels", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tom Batsford", 
+            "player1points": 100, 
+            "player2": "Tobias Vallin", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bobbo Norberg", 
+            "player1points": 65, 
+            "player2": "Simon Wiippola", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rolf Hilleberg", 
+            "player1points": 68, 
+            "player2": "Per Heilborn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Noah Spahr", 
+            "player1points": 61, 
+            "player2": "Johan Kvick", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Victoria Tornkvist", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Tobias Sundin", 
+            "player1points": 29, 
+            "player2": "Guido Kessels", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Robin Mellberg", 
+            "player1points": 33, 
+            "player2": "Archibald Zimonyi", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christofer Papinski", 
+            "player1points": 100, 
+            "player2": "Theo Bodin", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Teddy Lindmon", 
+            "player1points": 100, 
+            "player2": "Patrik Hedlund", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan Hofverberg", 
+            "player1points": 32, 
+            "player2": "Bjorn Kamijo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Hans Konigsson", 
+            "player1points": 17, 
+            "player2": "Elis Frolen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan Holmgren", 
+            "player1points": 0, 
+            "player2": "Johan Larsson", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan Nilsson", 
+            "player1points": 100, 
+            "player2": "Christoffer Wahlsten", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan Selin", 
+            "player1points": 70, 
+            "player2": "Joakim Andersson Franke", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dan Stafstedt", 
+            "player1points": 16, 
+            "player2": "Tom Batsford", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Olle Bohman", 
+            "player1points": 100, 
+            "player2": "Niklas Ljungberg", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fredrik Edman", 
+            "player1points": 75, 
+            "player2": "Fredrik Karumo", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simon Engmalm", 
+            "player1points": 100, 
+            "player2": "Peter Kraft", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Victoria Tornkvist", 
+            "player1points": 0, 
+            "player2": "Tobias Sundin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Magnus Wendel", 
+            "player1points": 100, 
+            "player2": "Per Heilborn", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Victor Pluntky", 
+            "player1points": 32, 
+            "player2": "Patrik Andersson", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Lessing", 
+            "player1points": 25, 
+            "player2": "Carl Cedergren", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marc Harrison", 
+            "player1points": 47, 
+            "player2": "Jimi Olsen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gustav Andersson", 
+            "player1points": 100, 
+            "player2": "Peder Harty", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simon Wiippola", 
+            "player1points": 100, 
+            "player2": "Emil Frojdhammar", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Roine Gothberg", 
+            "player1points": 100, 
+            "player2": "David Ryberg", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Emil Nielsen", 
+            "player1points": 100, 
+            "player2": "Nils Bohman", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan Kvick", 
+            "player1points": 29, 
+            "player2": "Guido Kessels", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan Malmstrom", 
+            "player1points": 61, 
+            "player2": "Felix Castellanos", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Spahr", 
+            "player1points": 33, 
+            "player2": "Ola Juhlin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Roger Matsson", 
+            "player1points": 100, 
+            "player2": "Rasmus Vallin", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vincent Landberg-Wallin", 
+            "player1points": 100, 
+            "player2": "Niclas Krona", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johanna Nybelius", 
+            "player1points": 100, 
+            "player2": "Hector Krona", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bobbo Norberg", 
+            "player1points": 100, 
+            "player2": "Tobias Vallin", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Sorlin", 
+            "player1points": 100, 
+            "player2": "Emilio Miranda", 
+            "player2points": 19, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ola Hallin", 
+            "player1points": 100, 
+            "player2": "Erik Lindqvist", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marten Isaksson", 
+            "player1points": 59, 
+            "player2": "Rolf Hilleberg", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Noah Spahr", 
+            "player1points": 100, 
+            "player2": "Karl Blad", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin Isaksson", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Teddy Lindmon", 
+            "player1points": 68, 
+            "player2": "Elis Frolen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan Larsson", 
+            "player1points": 66, 
+            "player2": "Archibald Zimonyi", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christofer Papinski", 
+            "player1points": 34, 
+            "player2": "Johan Nilsson", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bjorn Kamijo", 
+            "player1points": 41, 
+            "player2": "Joakim Andersson Franke", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan Hofverberg", 
+            "player1points": 0, 
+            "player2": "Christoffer Wahlsten", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simon Engmalm", 
+            "player1points": 35, 
+            "player2": "Guido Kessels", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrik Andersson", 
+            "player1points": 100, 
+            "player2": "Magnus Wendel", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Roine Gothberg", 
+            "player1points": 100, 
+            "player2": "Carl Cedergren", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Roger Matsson", 
+            "player1points": 100, 
+            "player2": "Patrik Hedlund", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan Holmgren", 
+            "player1points": 17, 
+            "player2": "Johan Selin", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tom Batsford", 
+            "player1points": 23, 
+            "player2": "Olle Bohman", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robin Mellberg", 
+            "player1points": 39, 
+            "player2": "Jimi Olsen", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Emil Nielsen", 
+            "player1points": 25, 
+            "player2": "Tobias Sundin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fredrik Edman", 
+            "player1points": 15, 
+            "player2": "Dan Stafstedt", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gustav Andersson", 
+            "player1points": 80, 
+            "player2": "Johan Malmstrom", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simon Wiippola", 
+            "player1points": 0, 
+            "player2": "Hans Konigsson", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Theo Bodin", 
+            "player1points": 100, 
+            "player2": "Victoria Tornkvist", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bobbo Norberg", 
+            "player1points": 0, 
+            "player2": "Nils Bohman", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Per Heilborn", 
+            "player1points": 75, 
+            "player2": "Fredrik Karumo", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin Isaksson", 
+            "player1points": 100, 
+            "player2": "Vincent Landberg-Wallin", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Ryberg", 
+            "player1points": 100, 
+            "player2": "Daniel Spahr", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Noah Spahr", 
+            "player1points": 0, 
+            "player2": "Victor Pluntky", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marc Harrison", 
+            "player1points": 100, 
+            "player2": "Felix Castellanos", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ola Hallin", 
+            "player1points": 50, 
+            "player2": "Peder Harty", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Niklas Ljungberg", 
+            "player1points": 0, 
+            "player2": "Marten Isaksson", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Emil Frojdhammar", 
+            "player1points": 0, 
+            "player2": "Peter Kraft", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Lessing", 
+            "player1points": 100, 
+            "player2": "Johan Kvick", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johanna Nybelius", 
+            "player1points": 49, 
+            "player2": "Thomas Sorlin", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erik Lindqvist", 
+            "player1points": 52, 
+            "player2": "Karl Blad", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rolf Hilleberg", 
+            "player1points": 100, 
+            "player2": "Niclas Krona", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Emilio Miranda", 
+            "player1points": 100, 
+            "player2": "Rasmus Vallin", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Hector Krona", 
+            "player1points": 28, 
+            "player2": "Tobias Vallin", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Joakim Andersson Franke", 
+            "player1points": 29, 
+            "player2": "Tobias Sundin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Guido Kessels", 
+            "player1points": 67, 
+            "player2": "Johan Nilsson", 
+            "player2points": 29, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Elis Frolen", 
+            "player1points": 100, 
+            "player2": "Joakim Andersson Franke", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christofer Papinski", 
+            "player1points": 100, 
+            "player2": "Johan Larsson", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dan Stafstedt", 
+            "player1points": 0, 
+            "player2": "Christoffer Wahlsten", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Roine Gothberg", 
+            "player1points": 42, 
+            "player2": "Gustav Andersson", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bjorn Kamijo", 
+            "player1points": 50, 
+            "player2": "Patrik Andersson", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Teddy Lindmon", 
+            "player1points": 100, 
+            "player2": "Johan Selin", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tobias Sundin", 
+            "player1points": 100, 
+            "player2": "Theo Bodin", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jimi Olsen", 
+            "player1points": 0, 
+            "player2": "Johan Nilsson", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Roger Matsson", 
+            "player1points": 60, 
+            "player2": "Hans Konigsson", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Archibald Zimonyi", 
+            "player1points": 23, 
+            "player2": "Olle Bohman", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Guido Kessels", 
+            "player1points": 34, 
+            "player2": "Marc Harrison", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Per Heilborn", 
+            "player1points": 60, 
+            "player2": "Johan Malmstrom", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simon Wiippola", 
+            "player1points": 35, 
+            "player2": "David Ryberg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrik Hedlund", 
+            "player1points": 100, 
+            "player2": "Simon Engmalm", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tom Batsford", 
+            "player1points": 33, 
+            "player2": "Nils Bohman", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Peter Kraft", 
+            "player1points": 41, 
+            "player2": "Victor Pluntky", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Lessing", 
+            "player1points": 31, 
+            "player2": "Johan Hofverberg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Sorlin", 
+            "player1points": 76, 
+            "player2": "Robin Mellberg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marten Isaksson", 
+            "player1points": 100, 
+            "player2": "Magnus Wendel", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carl Cedergren", 
+            "player1points": 24, 
+            "player2": "Peder Harty", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin Isaksson", 
+            "player1points": 0, 
+            "player2": "Emil Nielsen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan Holmgren", 
+            "player1points": 64, 
+            "player2": "Fredrik Edman", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Karl Blad", 
+            "player1points": 100, 
+            "player2": "Fredrik Karumo", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan Kvick", 
+            "player1points": 100, 
+            "player2": "Emilio Miranda", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Niklas Ljungberg", 
+            "player1points": 0, 
+            "player2": "Noah Spahr", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ola Hallin", 
+            "player1points": 100, 
+            "player2": "Felix Castellanos", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rolf Hilleberg", 
+            "player1points": 100, 
+            "player2": "Daniel Spahr", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tobias Vallin", 
+            "player1points": 100, 
+            "player2": "Johanna Nybelius", 
+            "player2points": 13, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vincent Landberg-Wallin", 
+            "player1points": 0, 
+            "player2": "Bobbo Norberg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Emil Frojdhammar", 
+            "player1points": 0, 
+            "player2": "Victoria Tornkvist", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Hector Krona", 
+            "player1points": 60, 
+            "player2": "Rasmus Vallin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erik Lindqvist", 
+            "player1points": 100, 
+            "player2": "Niclas Krona", 
+            "player2points": 46, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Gustav Andersson", 
+            "player1points": 0, 
+            "player2": "Teddy Lindmon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christofer Papinski", 
+            "player1points": 17, 
+            "player2": "Elis Frolen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrik Andersson", 
+            "player1points": 14, 
+            "player2": "Guido Kessels", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tobias Sundin", 
+            "player1points": 100, 
+            "player2": "Olle Bohman", 
+            "player2points": 80, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joakim Andersson Franke", 
+            "player1points": 100, 
+            "player2": "Johan Larsson", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christoffer Wahlsten", 
+            "player1points": 60, 
+            "player2": "Roger Matsson", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan Nilsson", 
+            "player1points": 100, 
+            "player2": "Dan Stafstedt", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robin Mellberg", 
+            "player1points": 60, 
+            "player2": "Hans Konigsson", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tom Batsford", 
+            "player1points": 65, 
+            "player2": "Marten Isaksson", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Ryberg", 
+            "player1points": 0, 
+            "player2": "Archibald Zimonyi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan Hofverberg", 
+            "player1points": 100, 
+            "player2": "Roine Gothberg", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Theo Bodin", 
+            "player1points": 20, 
+            "player2": "Victor Pluntky", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bjorn Kamijo", 
+            "player1points": 0, 
+            "player2": "Emil Nielsen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jimi Olsen", 
+            "player1points": 12, 
+            "player2": "Peder Harty", 
+            "player2points": 81, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan Selin", 
+            "player1points": 40, 
+            "player2": "Johan Malmstrom", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrik Hedlund", 
+            "player1points": 62, 
+            "player2": "Jonathan Holmgren", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carl Cedergren", 
+            "player1points": 100, 
+            "player2": "Karl Blad", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan Kvick", 
+            "player1points": 66, 
+            "player2": "Tobias Vallin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ola Hallin", 
+            "player1points": 59, 
+            "player2": "Rolf Hilleberg", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Sorlin", 
+            "player1points": 30, 
+            "player2": "Simon Wiippola", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin Isaksson", 
+            "player1points": 100, 
+            "player2": "Magnus Wendel", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Victoria Tornkvist", 
+            "player1points": 100, 
+            "player2": "Nils Bohman", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bobbo Norberg", 
+            "player1points": 100, 
+            "player2": "Per Heilborn", 
+            "player2points": 41, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Lessing", 
+            "player1points": 100, 
+            "player2": "Fredrik Edman", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Peter Kraft", 
+            "player1points": 32, 
+            "player2": "Marc Harrison", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Noah Spahr", 
+            "player1points": 0, 
+            "player2": "Simon Engmalm", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erik Lindqvist", 
+            "player1points": 100, 
+            "player2": "Emil Frojdhammar", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Spahr", 
+            "player1points": 100, 
+            "player2": "Vincent Landberg-Wallin", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rasmus Vallin", 
+            "player1points": 28, 
+            "player2": "Niklas Ljungberg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fredrik Karumo", 
+            "player1points": 100, 
+            "player2": "Felix Castellanos", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johanna Nybelius", 
+            "player1points": 100, 
+            "player2": "Emilio Miranda", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Hector Krona", 
+            "player1points": 100, 
+            "player2": "Niclas Krona", 
+            "player2points": 38, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 6, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Elis Frolen", 
+            "player1points": 70, 
+            "player2": "Joakim Andersson Franke", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Teddy Lindmon", 
+            "player1points": 25, 
+            "player2": "Tobias Sundin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christoffer Wahlsten", 
+            "player1points": 29, 
+            "player2": "Guido Kessels", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan Nilsson", 
+            "player1points": 100, 
+            "player2": "Christofer Papinski", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 8, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Regional", 
+    "venue": {
+      "city": "Uppsala", 
+      "country": "Sweden", 
+      "lat": "59.859412600000", 
+      "lon": "17.641120000000", 
+      "name": "Grand", 
+      "state": "Uppsala"
+    }
+  }
+}

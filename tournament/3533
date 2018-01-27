@@ -1,0 +1,98 @@
+{
+  "tournament": {
+    "date": "2017-10-15", 
+    "format": "Epic Play - 300 points", 
+    "id": 3533, 
+    "name": "Epic Tournament at MrField Kashiwa Japan", 
+    "players": [
+      {
+        "mov": 1014, 
+        "name": "Yannis", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 2, 
+        "sos": "0.25"
+      }, 
+      {
+        "mov": 639, 
+        "name": "Ryo", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 1, 
+        "sos": "0.25"
+      }, 
+      {
+        "mov": 437, 
+        "name": "Mat", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 1, 
+        "sos": "0.75"
+      }, 
+      {
+        "mov": 310, 
+        "name": "Marek", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 0, 
+        "sos": "0.75"
+      }
+    ], 
+    "round_length": 150, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Marek", 
+            "player1points": 52, 
+            "player2": "Yannis", 
+            "player2points": 300, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryo", 
+            "player1points": 67, 
+            "player2": "Mat", 
+            "player2points": 70, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Mat", 
+            "player1points": 134, 
+            "player2": "Yannis", 
+            "player2points": 300, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marek", 
+            "player1points": 86, 
+            "player2": "Ryo", 
+            "player2points": 128, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Kashiwa", 
+      "country": "Japan", 
+      "lat": "35.861212000000", 
+      "lon": "139.970550000000", 
+      "name": "MrField", 
+      "state": "Chiba"
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "tournament": {
+    "date": "2015-06-14", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 486, 
+    "name": "Da Boys", 
+    "players": [
+      {
+        "mov": 0, 
+        "name": "Larry", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Jack", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Jon", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Larry", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Jack", 
+            "player1points": 0, 
+            "player2": "Jon", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jack", 
+            "player1points": 0, 
+            "player2": "Larry", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Larry", 
+            "player1points": 0, 
+            "player2": "Jack", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Vassal play", 
+    "venue": {
+      "city": "Wells", 
+      "country": "United States", 
+      "lat": "43.322030100000", 
+      "lon": "-70.580886600000", 
+      "name": "48 Nottingham Dr", 
+      "state": "ME"
+    }
+  }
+}

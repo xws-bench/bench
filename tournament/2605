@@ -1,0 +1,521 @@
+{
+  "tournament": {
+    "date": "2017-02-12", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2605, 
+    "name": "X-Wing liga Wroclaw s01e02", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "hullupgrade", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "drawtheirfire"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "targetingsynchronizer"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "tomaxbren", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "missile": [
+                  "ionpulsemissiles", 
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 654, 
+        "name": "Golon", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "corranhorn", 
+              "ship": "ewing"
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 600, 
+        "name": "Marys", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "duchess", 
+              "ship": "tiestriker", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "targetingcomputer"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "starkillerbasepilot", 
+              "ship": "upsilonclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 506, 
+        "name": "Keller", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "norrawexley", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "crew": [
+                  "c3po"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }, 
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "smugglingcompartment"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 397, 
+        "name": "Bartek", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 390, 
+        "name": "Czarny", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 353, 
+        "name": "Albert", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 311, 
+        "name": "Maciek", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 286, 
+        "name": "Adam", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 279, 
+        "name": "Tomek", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 224, 
+        "name": "Martyna", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Golon", 
+            "player1points": 100, 
+            "player2": "Marys", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Keller", 
+            "player1points": 100, 
+            "player2": "Martyna", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam", 
+            "player1points": 100, 
+            "player2": "Bartek", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Czarny", 
+            "player1points": 0, 
+            "player2": "Maciek", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Albert", 
+            "player1points": 100, 
+            "player2": "Tomek", 
+            "player2points": 57, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Albert", 
+            "player1points": 0, 
+            "player2": "Golon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Keller", 
+            "player1points": 100, 
+            "player2": "Adam", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maciek", 
+            "player1points": 0, 
+            "player2": "Martyna", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bartek", 
+            "player1points": 0, 
+            "player2": "Marys", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tomek", 
+            "player1points": 33, 
+            "player2": "Czarny", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Keller", 
+            "player1points": 100, 
+            "player2": "Golon", 
+            "player2points": 54, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam", 
+            "player1points": 44, 
+            "player2": "Czarny", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Albert", 
+            "player1points": 36, 
+            "player2": "Maciek", 
+            "player2points": 78, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martyna", 
+            "player1points": 0, 
+            "player2": "Marys", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bartek", 
+            "player1points": 100, 
+            "player2": "Tomek", 
+            "player2points": 29, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Keller", 
+            "player1points": 0, 
+            "player2": "Marys", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Czarny", 
+            "player1points": 0, 
+            "player2": "Golon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maciek", 
+            "player1points": 0, 
+            "player2": "Bartek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Albert", 
+            "player1points": 100, 
+            "player2": "Adam", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martyna", 
+            "player1points": 40, 
+            "player2": "Tomek", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Wroclaw", 
+      "country": "Poland", 
+      "lat": null, 
+      "lon": null, 
+      "name": "Hex Wroclaw", 
+      "state": "Dolnoslaskie"
+    }
+  }
+}

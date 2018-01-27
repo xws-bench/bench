@@ -1,0 +1,607 @@
+{
+  "tournament": {
+    "date": "2016-09-10", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2055, 
+    "name": "Iksy Tricity S3T4a", 
+    "players": [
+      {
+        "mov": 585, 
+        "name": "Karol Pietrowicz", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 514, 
+        "name": "Rafal Mika", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ndrusuhlak", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "4lom", 
+                  "zuckuss", 
+                  "dengar"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 499, 
+        "name": "Jan Zieniewicz", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "maarekstele", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 403, 
+        "name": "Jaroslaw Grabczynski", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "zuckuss"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 454, 
+        "name": "Maciej Balinski", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "kylekatarn", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "chewbacca"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r4d6"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "tennumb", 
+              "ship": "bwing", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 449, 
+        "name": "Krzysztof Mludzik", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 395, 
+        "name": "Lukasz Luczynski", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "zuckuss"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "gonk"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "samd": [
+                  "r5p8"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 354, 
+        "name": "Pawel Chajecki", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 368, 
+        "name": "Piotr Romasiuk", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 352, 
+        "name": "Adam Adamski", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 332, 
+        "name": "Grzegorz Potrykus", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.25"
+      }, 
+      {
+        "mov": 95, 
+        "name": "Michal Turski", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 0, 
+        "sos": "0.56"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Jan Zieniewicz", 
+            "player1points": 100, 
+            "player2": "Pawel Chajecki", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Piotr Romasiuk", 
+            "player1points": 100, 
+            "player2": "Grzegorz Potrykus", 
+            "player2points": 55, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jaroslaw Grabczynski", 
+            "player1points": 100, 
+            "player2": "Lukasz Luczynski", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maciej Balinski", 
+            "player1points": 100, 
+            "player2": "Adam Adamski", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Karol Pietrowicz", 
+            "player1points": 100, 
+            "player2": "Michal Turski", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafal Mika", 
+            "player1points": 100, 
+            "player2": "Krzysztof Mludzik", 
+            "player2points": 71, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Karol Pietrowicz", 
+            "player1points": 78, 
+            "player2": "Maciej Balinski", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jan Zieniewicz", 
+            "player1points": 73, 
+            "player2": "Piotr Romasiuk", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jaroslaw Grabczynski", 
+            "player1points": 0, 
+            "player2": "Rafal Mika", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pawel Chajecki", 
+            "player1points": 100, 
+            "player2": "Adam Adamski", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michal Turski", 
+            "player1points": 26, 
+            "player2": "Krzysztof Mludzik", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grzegorz Potrykus", 
+            "player1points": 81, 
+            "player2": "Lukasz Luczynski", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jan Zieniewicz", 
+            "player1points": 100, 
+            "player2": "Rafal Mika", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Karol Pietrowicz", 
+            "player1points": 100, 
+            "player2": "Lukasz Luczynski", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Krzysztof Mludzik", 
+            "player1points": 100, 
+            "player2": "Piotr Romasiuk", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jaroslaw Grabczynski", 
+            "player1points": 100, 
+            "player2": "Maciej Balinski", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pawel Chajecki", 
+            "player1points": 100, 
+            "player2": "Michal Turski", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grzegorz Potrykus", 
+            "player1points": 21, 
+            "player2": "Adam Adamski", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Karol Pietrowicz", 
+            "player1points": 100, 
+            "player2": "Jan Zieniewicz", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafal Mika", 
+            "player1points": 100, 
+            "player2": "Pawel Chajecki", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jaroslaw Grabczynski", 
+            "player1points": 100, 
+            "player2": "Krzysztof Mludzik", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lukasz Luczynski", 
+            "player1points": 100, 
+            "player2": "Adam Adamski", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Piotr Romasiuk", 
+            "player1points": 69, 
+            "player2": "Maciej Balinski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grzegorz Potrykus", 
+            "player1points": 100, 
+            "player2": "Michal Turski", 
+            "player2points": 25, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Gdansk", 
+      "country": "Poland", 
+      "lat": "54.348225900000", 
+      "lon": "18.654288800000", 
+      "name": "", 
+      "state": "Pomorskie"
+    }
+  }
+}

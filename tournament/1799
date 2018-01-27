@@ -1,0 +1,413 @@
+{
+  "tournament": {
+    "date": "2016-06-18", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1799, 
+    "name": "OLM 2016 Dzien 1", 
+    "players": [
+      {
+        "mov": 650, 
+        "name": "Krysiak", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive", 
+                  "emperorpalpatine"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 546, 
+        "name": "Handlarz Mirek", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 466, 
+        "name": "Olek", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 454, 
+        "name": "Yapa", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 463, 
+        "name": "Enzeru", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ]
+              }
+            }, 
+            {
+              "name": "wampa", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 436, 
+        "name": "Sinnert", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 288, 
+        "name": "Rupert", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 260, 
+        "name": "Yavhil", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 237, 
+        "name": "Berlo", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Yapa", 
+            "player1points": 100, 
+            "player2": "Yavhil", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Berlo", 
+            "player1points": 29, 
+            "player2": "Sinnert", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rupert", 
+            "player1points": 17, 
+            "player2": "Krysiak", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Olek", 
+            "player1points": 100, 
+            "player2": "Enzeru", 
+            "player2points": 55, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Handlarz Mirek", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Sinnert", 
+            "player1points": 32, 
+            "player2": "Handlarz Mirek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Yapa", 
+            "player1points": 100, 
+            "player2": "Olek", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Krysiak", 
+            "player1points": 100, 
+            "player2": "Berlo", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Yavhil", 
+            "player1points": 0, 
+            "player2": "Enzeru", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rupert", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Yapa", 
+            "player1points": 39, 
+            "player2": "Handlarz Mirek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Krysiak", 
+            "player1points": 100, 
+            "player2": "Enzeru", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rupert", 
+            "player1points": 54, 
+            "player2": "Olek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sinnert", 
+            "player1points": 100, 
+            "player2": "Yavhil", 
+            "player2points": 43, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Berlo", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Handlarz Mirek", 
+            "player1points": 67, 
+            "player2": "Krysiak", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Olek", 
+            "player1points": 100, 
+            "player2": "Sinnert", 
+            "player2points": 76, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Yapa", 
+            "player1points": 100, 
+            "player2": "Rupert", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Berlo", 
+            "player1points": 25, 
+            "player2": "Enzeru", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Yavhil", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Lodz", 
+      "country": "Poland", 
+      "lat": "51.768749000000", 
+      "lon": "19.456981700000", 
+      "name": "Gralnia", 
+      "state": "Lodzkie"
+    }
+  }
+}

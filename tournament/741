@@ -1,0 +1,280 @@
+{
+  "tournament": {
+    "date": "2016-10-17", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 741, 
+    "name": "Legacy", 
+    "players": [
+      {
+        "mov": 668, 
+        "name": "J.D.", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 1
+        }, 
+        "score": 16, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 525, 
+        "name": "Cody", 
+        "rank": {
+          "elimination": 3, 
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 496, 
+        "name": "Shifty", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 550, 
+        "name": "Phil", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 4
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 237, 
+        "name": "That Guy", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 446, 
+        "name": "Buddy", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 7, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 346, 
+        "name": "Gabriel", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 294, 
+        "name": "Nolan", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 239, 
+        "name": "Traci", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 199, 
+        "name": "Watts", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Shifty", 
+            "player1points": 100, 
+            "player2": "Phil", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "J.D.", 
+            "player1points": 98, 
+            "player2": "Gabriel", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Traci", 
+            "player1points": 0, 
+            "player2": "That Guy", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Buddy", 
+            "player1points": 50, 
+            "player2": "Watts", 
+            "player2points": 50, 
+            "result": "draw"
+          }, 
+          {
+            "player1": "Cody", 
+            "player1points": 99, 
+            "player2": "Nolan", 
+            "player2points": 29, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Phil", 
+            "player1points": 49, 
+            "player2": "Nolan", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cody", 
+            "player1points": 100, 
+            "player2": "Shifty", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Traci", 
+            "player1points": 51, 
+            "player2": "Gabriel", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Watts", 
+            "player1points": 33, 
+            "player2": "That Guy", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "J.D.", 
+            "player1points": 50, 
+            "player2": "Buddy", 
+            "player2points": 50, 
+            "result": "draw"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Buddy", 
+            "player1points": 46, 
+            "player2": "Shifty", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "That Guy", 
+            "player1points": 0, 
+            "player2": "Cody", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nolan", 
+            "player1points": 43, 
+            "player2": "Gabriel", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Phil", 
+            "player1points": 100, 
+            "player2": "Watts", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Traci", 
+            "player1points": 0, 
+            "player2": "J.D.", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Traci", 
+            "player1points": 0, 
+            "player2": "Buddy", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "That Guy", 
+            "player1points": 0, 
+            "player2": "Phil", 
+            "player2points": 76, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gabriel", 
+            "player1points": 100, 
+            "player2": "Watts", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cody", 
+            "player1points": 16, 
+            "player2": "J.D.", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shifty", 
+            "player1points": 49, 
+            "player2": "Nolan", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Victoria", 
+      "country": "United States", 
+      "lat": "28.829713500000", 
+      "lon": "-96.972536922297", 
+      "name": "Town and Country Center", 
+      "state": "TX"
+    }
+  }
+}

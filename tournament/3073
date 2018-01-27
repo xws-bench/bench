@@ -1,0 +1,585 @@
+{
+  "tournament": {
+    "date": "2017-07-01", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3073, 
+    "name": "Dice Saloon 40th Anniversary Event", 
+    "players": [
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "dengar", 
+                  "greedo", 
+                  "bobafett"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "4lom"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 691, 
+        "name": "Greg Strutt", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "inspiringrecruit", 
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "rage"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }, 
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 541, 
+        "name": "Adam Elleston", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "braylenstramm", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "crew": [
+                  "lukeskywalker"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 463, 
+        "name": "Ben Cooper", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 440, 
+        "name": "Alex Hoppen", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 486, 
+        "name": "Scott Something", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 447, 
+        "name": "Luke Sheldon", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 441, 
+        "name": "Robert Haigh", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 421, 
+        "name": "Nathan Philips", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 399, 
+        "name": "Omer Ibrahim", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 397, 
+        "name": "OJ Hemmings", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "wildspacefringer", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "gunner"
+                ]
+              }
+            }, 
+            {
+              "name": "kylekatarn", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "jakefarrell", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts", 
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 341, 
+        "name": "James Humphrey", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 266, 
+        "name": "Pete Rose", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 235, 
+        "name": "James Waller", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 32, 
+        "name": "Iain Lee", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 0, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Alex Hoppen", 
+            "player1points": 42, 
+            "player2": "James Humphrey", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Greg Strutt", 
+            "player1points": 88, 
+            "player2": "Omer Ibrahim", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robert Haigh", 
+            "player1points": 100, 
+            "player2": "Iain Lee", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Philips", 
+            "player1points": 56, 
+            "player2": "Ben Cooper", 
+            "player2points": 77, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pete Rose", 
+            "player1points": 36, 
+            "player2": "OJ Hemmings", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luke Sheldon", 
+            "player1points": 0, 
+            "player2": "Scott Something", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James Waller", 
+            "player1points": 0, 
+            "player2": "Adam Elleston", 
+            "player2points": 61, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "OJ Hemmings", 
+            "player1points": 100, 
+            "player2": "Scott Something", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex Hoppen", 
+            "player1points": 0, 
+            "player2": "Greg Strutt", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Omer Ibrahim", 
+            "player1points": 100, 
+            "player2": "Iain Lee", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robert Haigh", 
+            "player1points": 34, 
+            "player2": "Luke Sheldon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pete Rose", 
+            "player1points": 100, 
+            "player2": "James Waller", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ben Cooper", 
+            "player1points": 51, 
+            "player2": "Adam Elleston", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James Humphrey", 
+            "player1points": 49, 
+            "player2": "Nathan Philips", 
+            "player2points": 58, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Greg Strutt", 
+            "player1points": 100, 
+            "player2": "OJ Hemmings", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ben Cooper", 
+            "player1points": 69, 
+            "player2": "Alex Hoppen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Iain Lee", 
+            "player1points": 0, 
+            "player2": "Nathan Philips", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robert Haigh", 
+            "player1points": 100, 
+            "player2": "Omer Ibrahim", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luke Sheldon", 
+            "player1points": 100, 
+            "player2": "Pete Rose", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Elleston", 
+            "player1points": 100, 
+            "player2": "Scott Something", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James Waller", 
+            "player1points": 76, 
+            "player2": "James Humphrey", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Greg Strutt", 
+            "player1points": 100, 
+            "player2": "Luke Sheldon", 
+            "player2points": 81, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ben Cooper", 
+            "player1points": 100, 
+            "player2": "Robert Haigh", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Iain Lee", 
+            "player1points": 32, 
+            "player2": "James Humphrey", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Elleston", 
+            "player1points": 70, 
+            "player2": "OJ Hemmings", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Omer Ibrahim", 
+            "player1points": 100, 
+            "player2": "Pete Rose", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James Waller", 
+            "player1points": 0, 
+            "player2": "Scott Something", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex Hoppen", 
+            "player1points": 100, 
+            "player2": "Nathan Philips", 
+            "player2points": 33, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Brighton", 
+      "country": "United Kingdom", 
+      "lat": "50.908600000000", 
+      "lon": "0.249400000000", 
+      "name": "Dice Saloon", 
+      "state": "East Sussex"
+    }
+  }
+}

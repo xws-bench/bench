@@ -1,0 +1,132 @@
+{
+  "tournament": {
+    "date": "2015-11-22", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 873, 
+    "name": "Company Of Dice", 
+    "players": [
+      {
+        "mov": 473, 
+        "name": "Joe", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 328, 
+        "name": "Joe3", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 6, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 259, 
+        "name": "Joe 1", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 140, 
+        "name": "Joe4", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 1, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Joe4", 
+            "player1points": 0, 
+            "player2": "Joe", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joe 1", 
+            "player1points": 57, 
+            "player2": "Joe3", 
+            "player2points": 25, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Joe 1", 
+            "player1points": 25, 
+            "player2": "Joe", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joe4", 
+            "player1points": 50, 
+            "player2": "Joe3", 
+            "player2points": 50, 
+            "result": "draw"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Joe", 
+            "player1points": 70, 
+            "player2": "Joe 1", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joe4", 
+            "player1points": 20, 
+            "player2": "Joe3", 
+            "player2points": 80, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Joe3", 
+            "player1points": 51, 
+            "player2": "Joe", 
+            "player2points": 49, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Sydney", 
+      "country": "Australia", 
+      "lat": "-33.854815600000", 
+      "lon": "151.216453900000", 
+      "name": "Sydney NSW", 
+      "state": "NSW"
+    }
+  }
+}

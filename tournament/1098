@@ -1,0 +1,298 @@
+{
+  "tournament": {
+    "date": "2016-01-31", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1098, 
+    "name": "Lycksele X-Wing", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darkcurse", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "mod": [
+                  "twinionenginemkii"
+                ]
+              }
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 430, 
+        "name": "Vader", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }, 
+            {
+              "name": "prototypepilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "missile": [
+                  "chardaanrefit"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 339, 
+        "name": "Krister Jonsson", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 315, 
+        "name": "Mille Bjrkman", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 285, 
+        "name": "Oskar Skarin", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 271, 
+        "name": "Oskar Sandstrm", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 160, 
+        "name": "TIE Bomber", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "TIE Bomber", 
+            "player1points": 25, 
+            "player2": "Krister Jonsson", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Oskar Sandstrm", 
+            "player1points": 50, 
+            "player2": "Mille Bjrkman", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Oskar Skarin", 
+            "player1points": 0, 
+            "player2": "Vader", 
+            "player2points": 48, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Krister Jonsson", 
+            "player1points": 41, 
+            "player2": "Vader", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mille Bjrkman", 
+            "player1points": 48, 
+            "player2": "Oskar Skarin", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "TIE Bomber", 
+            "player1points": 44, 
+            "player2": "Oskar Sandstrm", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Mille Bjrkman", 
+            "player1points": 42, 
+            "player2": "Vader", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Krister Jonsson", 
+            "player1points": 100, 
+            "player2": "Oskar Sandstrm", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "TIE Bomber", 
+            "player1points": 16, 
+            "player2": "Oskar Skarin", 
+            "player2points": 72, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Lycksele", 
+      "country": "Sweden", 
+      "lat": "64.595861700000", 
+      "lon": "18.677755900000", 
+      "name": "Missionskyrkan", 
+      "state": "Vasterbottens"
+    }
+  }
+}

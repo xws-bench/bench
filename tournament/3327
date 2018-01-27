@@ -1,0 +1,366 @@
+{
+  "tournament": {
+    "date": "2017-08-19", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3327, 
+    "name": "Boomerang Comics Tournament Kit", 
+    "players": [
+      {
+        "mov": 574, 
+        "name": "Bobby Atchinson", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 542, 
+        "name": "Dave Parsons", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.69"
+      }, 
+      {
+        "mov": 507, 
+        "name": "Mike Easton", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 456, 
+        "name": "David Whiting", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 528, 
+        "name": "Jason Hoang", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 410, 
+        "name": "Trevor Gale", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "intensity"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ], 
+                "title": [
+                  "blackone"
+                ], 
+                "torpedo": [
+                  "seismictorpedo"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 324, 
+        "name": "Alex Easton", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "rexlerbrath", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "trickshot"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 266, 
+        "name": "Phillip Easton", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.58"
+      }, 
+      {
+        "mov": 193, 
+        "name": "Phillip Overpeck", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "David Whiting", 
+            "player1points": 0, 
+            "player2": "Dave Parsons", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex Easton", 
+            "player1points": 39, 
+            "player2": "Jason Hoang", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Trevor Gale", 
+            "player1points": 100, 
+            "player2": "Phillip Easton", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Phillip Overpeck", 
+            "player1points": 0, 
+            "player2": "Bobby Atchinson", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Easton", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Mike Easton", 
+            "player1points": 100, 
+            "player2": "Bobby Atchinson", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex Easton", 
+            "player1points": 29, 
+            "player2": "Dave Parsons", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Trevor Gale", 
+            "player1points": 20, 
+            "player2": "Jason Hoang", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Whiting", 
+            "player1points": 100, 
+            "player2": "Phillip Easton", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Phillip Overpeck", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Dave Parsons", 
+            "player1points": 100, 
+            "player2": "Mike Easton", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Whiting", 
+            "player1points": 50, 
+            "player2": "Jason Hoang", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex Easton", 
+            "player1points": 100, 
+            "player2": "Phillip Overpeck", 
+            "player2points": 43, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bobby Atchinson", 
+            "player1points": 100, 
+            "player2": "Trevor Gale", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Phillip Easton", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Dave Parsons", 
+            "player1points": 0, 
+            "player2": "Bobby Atchinson", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Easton", 
+            "player1points": 100, 
+            "player2": "Alex Easton", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Whiting", 
+            "player1points": 100, 
+            "player2": "Phillip Overpeck", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Phillip Easton", 
+            "player1points": 39, 
+            "player2": "Jason Hoang", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Trevor Gale", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Lewisville", 
+      "country": "United States of America", 
+      "lat": "33.046233000000", 
+      "lon": "-96.994174000000", 
+      "name": "Boomerang Comics", 
+      "state": "Texas"
+    }
+  }
+}

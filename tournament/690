@@ -1,0 +1,766 @@
+{
+  "tournament": {
+    "date": "2015-09-20", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 690, 
+    "name": "Games Academy Arezzo - Summer Kit", 
+    "players": [
+      {
+        "mov": 623, 
+        "name": "Marco Peloni", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 1
+        }, 
+        "score": 16, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 517, 
+        "name": "Matteo Bennati", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 2
+        }, 
+        "score": 16, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 526, 
+        "name": "Michele Buono", 
+        "rank": {
+          "elimination": 3, 
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "st321"
+                ]
+              }
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "wingman"
+                ]
+              }
+            }, 
+            {
+              "name": "majorrhymer", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "ept": [
+                  "ruthlessness"
+                ], 
+                "missile": [
+                  "clustermissiles", 
+                  "advhomingmissiles"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "advprotontorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 514, 
+        "name": "Patrick Partesotti", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "predator", 
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "predator", 
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "predator", 
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "predator", 
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 437, 
+        "name": "Lorenzo Valcelli", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 11, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "r4agromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "r4agromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 502, 
+        "name": "Francesco Castellari", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 472, 
+        "name": "Matteo Brasanti", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "royalguardpilot", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 330, 
+        "name": "Fiorenzo Delle Rupi", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 359, 
+        "name": "Daniele Stabile", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 325, 
+        "name": "Lucio Rosadini", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 6, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "tempestsquadronpilot", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "tempestsquadronpilot", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "tempestsquadronpilot", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 385, 
+        "name": "Tommaso Castagnoli", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 298, 
+        "name": "Riccardo Gragnola", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "cartelspacer", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ]
+              }
+            }, 
+            {
+              "name": "cartelspacer", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ]
+              }
+            }, 
+            {
+              "name": "cartelspacer", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ]
+              }
+            }, 
+            {
+              "name": "cartelspacer", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ]
+              }
+            }, 
+            {
+              "name": "cartelspacer", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 171, 
+        "name": "Giacomo Pazzaglia", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 141, 
+        "name": "Dario Vazzana", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Lorenzo Valcelli", 
+            "player1points": 50, 
+            "player2": "Lucio Rosadini", 
+            "player2points": 50, 
+            "result": "draw"
+          }, 
+          {
+            "player1": "Francesco Castellari", 
+            "player1points": 0, 
+            "player2": "Michele Buono", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Peloni", 
+            "player1points": 68, 
+            "player2": "Fiorenzo Delle Rupi", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tommaso Castagnoli", 
+            "player1points": 0, 
+            "player2": "Matteo Bennati", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giacomo Pazzaglia", 
+            "player1points": 100, 
+            "player2": "Matteo Brasanti", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniele Stabile", 
+            "player1points": 51, 
+            "player2": "Dario Vazzana", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick Partesotti", 
+            "player1points": 100, 
+            "player2": "Riccardo Gragnola", 
+            "player2points": 65, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Marco Peloni", 
+            "player1points": 100, 
+            "player2": "Giacomo Pazzaglia", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick Partesotti", 
+            "player1points": 100, 
+            "player2": "Michele Buono", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matteo Bennati", 
+            "player1points": 46, 
+            "player2": "Daniele Stabile", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lucio Rosadini", 
+            "player1points": 100, 
+            "player2": "Dario Vazzana", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lorenzo Valcelli", 
+            "player1points": 21, 
+            "player2": "Tommaso Castagnoli", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francesco Castellari", 
+            "player1points": 0, 
+            "player2": "Riccardo Gragnola", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matteo Brasanti", 
+            "player1points": 31, 
+            "player2": "Fiorenzo Delle Rupi", 
+            "player2points": 60, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Marco Peloni", 
+            "player1points": 54, 
+            "player2": "Matteo Bennati", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Marco Peloni", 
+            "player1points": 100, 
+            "player2": "Patrick Partesotti", 
+            "player2points": 45, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matteo Bennati", 
+            "player1points": 50, 
+            "player2": "Lucio Rosadini", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lorenzo Valcelli", 
+            "player1points": 75, 
+            "player2": "Riccardo Gragnola", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fiorenzo Delle Rupi", 
+            "player1points": 100, 
+            "player2": "Giacomo Pazzaglia", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michele Buono", 
+            "player1points": 100, 
+            "player2": "Daniele Stabile", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tommaso Castagnoli", 
+            "player1points": 48, 
+            "player2": "Francesco Castellari", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matteo Brasanti", 
+            "player1points": 100, 
+            "player2": "Dario Vazzana", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Marco Peloni", 
+            "player1points": 0, 
+            "player2": "Matteo Bennati", 
+            "player2points": 0, 
+            "result": "draw"
+          }, 
+          {
+            "player1": "Lorenzo Valcelli", 
+            "player1points": 16, 
+            "player2": "Patrick Partesotti", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fiorenzo Delle Rupi", 
+            "player1points": 0, 
+            "player2": "Michele Buono", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Riccardo Gragnola", 
+            "player1points": 32, 
+            "player2": "Matteo Brasanti", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lucio Rosadini", 
+            "player1points": 0, 
+            "player2": "Francesco Castellari", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giacomo Pazzaglia", 
+            "player1points": 0, 
+            "player2": "Daniele Stabile", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tommaso Castagnoli", 
+            "player1points": 100, 
+            "player2": "Dario Vazzana", 
+            "player2points": 21, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Marco Peloni", 
+            "player1points": 100, 
+            "player2": "Patrick Partesotti", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matteo Bennati", 
+            "player1points": 42, 
+            "player2": "Michele Buono", 
+            "player2points": 27, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Arezzo", 
+      "country": "Italy", 
+      "lat": "43.464024600000", 
+      "lon": "11.860461878339", 
+      "name": "Games Academy", 
+      "state": "Toscana"
+    }
+  }
+}

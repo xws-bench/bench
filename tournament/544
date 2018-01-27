@@ -1,0 +1,697 @@
+{
+  "tournament": {
+    "date": "2015-07-10", 
+    "format": "60 Point Dogfight", 
+    "id": 544, 
+    "name": "Sector Patrol Spring Tourney", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "leebo", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "r2d2-swx22"
+                ], 
+                "ept": [
+                  "determination"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 396, 
+        "name": "Auston L", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "shieldupgrade"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 348, 
+        "name": "Paul S", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "navigator"
+                ], 
+                "ept": [
+                  "determination"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 312, 
+        "name": "Tim H", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "swarmtactics"
+                ], 
+                "mod": [
+                  "shieldupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 288, 
+        "name": "Bill R", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "gunner"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ]
+              }
+            }, 
+            {
+              "name": "cartelspacer", 
+              "ship": "m3ainterceptor"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 284, 
+        "name": "Julian", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "wedgeantilles", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "shieldupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "prototypepilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "missile": [
+                  "protonrockets"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 264, 
+        "name": "Charles Z", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "maulermithel", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }, 
+            {
+              "name": "backstabber", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "royalguardpilot", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 245, 
+        "name": "Josh E (Ringer)", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r5k6"
+                ], 
+                "ept": [
+                  "determination"
+                ]
+              }
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5astromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 220, 
+        "name": "Brandon A", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "knavesquadronpilot", 
+              "ship": "ewing", 
+              "upgrades": {
+                "mod": [
+                  "shieldupgrade"
+                ], 
+                "torpedo": [
+                  "protontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "determination"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "munitionsfailsafe"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 157, 
+        "name": "Paulo N", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "navigator"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }, 
+            {
+              "name": "nightbeast", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 136, 
+        "name": "Topher", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "majorrhymer", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "assaultmissiles"
+                ], 
+                "torpedo": [
+                  "protontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "maulermithel", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "marksmanship"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 100, 
+        "name": "Jacob K", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "wingman"
+                ]
+              }
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 130, 
+        "name": "Shawn M", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 3, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Paul S", 
+            "player1points": 60, 
+            "player2": "Topher", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brandon A", 
+            "player1points": 48, 
+            "player2": "Bill R", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Charles Z", 
+            "player1points": 60, 
+            "player2": "Jacob K", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Auston L", 
+            "player1points": 60, 
+            "player2": "Julian", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tim H", 
+            "player1points": 60, 
+            "player2": "Paulo N", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh E (Ringer)", 
+            "player1points": 20, 
+            "player2": "Shawn M", 
+            "player2points": 25, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Paul S", 
+            "player1points": 60, 
+            "player2": "Charles Z", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tim H", 
+            "player1points": 12, 
+            "player2": "Auston L", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brandon A", 
+            "player1points": 60, 
+            "player2": "Shawn M", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh E (Ringer)", 
+            "player1points": 0, 
+            "player2": "Julian", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bill R", 
+            "player1points": 60, 
+            "player2": "Paulo N", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Topher", 
+            "player1points": 0, 
+            "player2": "Jacob K", 
+            "player2points": 15, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Paul S", 
+            "player1points": 48, 
+            "player2": "Auston L", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brandon A", 
+            "player1points": 0, 
+            "player2": "Charles Z", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Julian", 
+            "player1points": 46, 
+            "player2": "Tim H", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bill R", 
+            "player1points": 60, 
+            "player2": "Jacob K", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paulo N", 
+            "player1points": 0, 
+            "player2": "Josh E (Ringer)", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shawn M", 
+            "player1points": 43, 
+            "player2": "Topher", 
+            "player2points": 60, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Auston L", 
+            "player1points": 60, 
+            "player2": "Charles Z", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul S", 
+            "player1points": 24, 
+            "player2": "Bill R", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brandon A", 
+            "player1points": 14, 
+            "player2": "Tim H", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Julian", 
+            "player1points": 60, 
+            "player2": "Topher", 
+            "player2points": 14, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh E (Ringer)", 
+            "player1points": 60, 
+            "player2": "Jacob K", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shawn M", 
+            "player1points": 0, 
+            "player2": "Paulo N", 
+            "player2points": 60, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Victorville", 
+      "country": "United States of America", 
+      "lat": "34.536106700000", 
+      "lon": "-117.291156400000", 
+      "name": "LineBreakers", 
+      "state": "California"
+    }
+  }
+}

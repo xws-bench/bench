@@ -1,0 +1,187 @@
+{
+  "tournament": {
+    "date": "2017-05-27", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2923, 
+    "name": "3 Torneio x-wing Dalaran", 
+    "players": [
+      {
+        "mov": 459, 
+        "name": "Luis Fernando Carvalho", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 429, 
+        "name": "Jade", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 420, 
+        "name": "Roberto", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 300, 
+        "name": "Giulliano", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 250, 
+        "name": "wilson", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 208, 
+        "name": "Dennis", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 184, 
+        "name": "Bil", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 90, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Luis Fernando Carvalho", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Jade", 
+            "player1points": 48, 
+            "player2": "Giulliano", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dennis", 
+            "player1points": 24, 
+            "player2": "wilson", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Roberto", 
+            "player1points": 100, 
+            "player2": "Bil", 
+            "player2points": 17, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Roberto", 
+            "player1points": 100, 
+            "player2": "Giulliano", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luis Fernando Carvalho", 
+            "player1points": 100, 
+            "player2": "wilson", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dennis", 
+            "player1points": 34, 
+            "player2": "Jade", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bil", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Roberto", 
+            "player1points": 37, 
+            "player2": "Luis Fernando Carvalho", 
+            "player2points": 83, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giulliano", 
+            "player1points": 100, 
+            "player2": "wilson", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jade", 
+            "player1points": 100, 
+            "player2": "Bil", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dennis", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Joinville", 
+      "country": "Brazil", 
+      "lat": "-26.304489700000", 
+      "lon": "-48.848672500000", 
+      "name": "Dalaran", 
+      "state": "Santa Catarina"
+    }
+  }
+}

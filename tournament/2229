@@ -1,0 +1,235 @@
+{
+  "tournament": {
+    "date": "2016-10-24", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2229, 
+    "name": "Good Games Cannington X-Wing Scenario League - Round 4", 
+    "players": [
+      {
+        "mov": 460, 
+        "name": "Nate", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 401, 
+        "name": "Rob", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 358, 
+        "name": "Gregg", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 322, 
+        "name": "Vlad", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 303, 
+        "name": "Ash", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 325, 
+        "name": "Andrew", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 276, 
+        "name": "Vincent", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 264, 
+        "name": "Scott", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 180, 
+        "name": "Mark", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 111, 
+        "name": "Sean", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 0, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Vincent", 
+            "player1points": 30, 
+            "player2": "Scott", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nate", 
+            "player1points": 79, 
+            "player2": "Andrew", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ash", 
+            "player1points": 0, 
+            "player2": "Rob", 
+            "player2points": 88, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gregg", 
+            "player1points": 120, 
+            "player2": "Mark", 
+            "player2points": 10, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean", 
+            "player1points": 31, 
+            "player2": "Vlad", 
+            "player2points": 110, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Vincent", 
+            "player1points": 15, 
+            "player2": "Vlad", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nate", 
+            "player1points": 78, 
+            "player2": "Gregg", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rob", 
+            "player1points": 0, 
+            "player2": "Scott", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ash", 
+            "player1points": 59, 
+            "player2": "Andrew", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark", 
+            "player1points": 40, 
+            "player2": "Sean", 
+            "player2points": 10, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Nate", 
+            "player1points": 120, 
+            "player2": "Vlad", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott", 
+            "player1points": 20, 
+            "player2": "Ash", 
+            "player2points": 82, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gregg", 
+            "player1points": 26, 
+            "player2": "Vincent", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark", 
+            "player1points": 50, 
+            "player2": "Rob", 
+            "player2points": 90, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew", 
+            "player1points": 130, 
+            "player2": "Sean", 
+            "player2points": 50, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Cannington", 
+      "country": "Australia", 
+      "lat": "-32.013728700000", 
+      "lon": "115.945170400000", 
+      "name": "Good Games Cannington", 
+      "state": "Western Australia"
+    }
+  }
+}

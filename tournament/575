@@ -1,0 +1,301 @@
+{
+  "tournament": {
+    "date": "2015-07-25", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 575, 
+    "name": "1o Torneio X-Wing - DrunkWings Ribeirao Preto/SP", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "hortonsalm", 
+              "ship": "ywing"
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing"
+            }, 
+            {
+              "name": "wedgeantilles", 
+              "ship": "xwing", 
+              "upgrades": {
+                "ept": [
+                  "expose"
+                ]
+              }
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 497, 
+        "name": "Marcos Soares", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ]
+              }
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 426, 
+        "name": "Marlus Silva", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "hortonsalm", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "hansolo", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "lukeskywalker", 
+                  "weaponsengineer"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 312, 
+        "name": "Leandro Valle", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 258, 
+        "name": "Joo Vitor Aquino", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing"
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing"
+            }, 
+            {
+              "name": "garvendreis", 
+              "ship": "xwing"
+            }, 
+            {
+              "name": "dutchvander", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 212, 
+        "name": "Pedro Gloeden", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 95, 
+        "name": "Marco Manzano", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Leandro Valle", 
+            "player1points": 56, 
+            "player2": "Joo Vitor Aquino", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcos Soares", 
+            "player1points": 100, 
+            "player2": "Marco Manzano", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marlus Silva", 
+            "player1points": 100, 
+            "player2": "Pedro Gloeden", 
+            "player2points": 24, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Marlus Silva", 
+            "player1points": 100, 
+            "player2": "Leandro Valle", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcos Soares", 
+            "player1points": 100, 
+            "player2": "Joo Vitor Aquino", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Manzano", 
+            "player1points": 46, 
+            "player2": "Pedro Gloeden", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Marcos Soares", 
+            "player1points": 76, 
+            "player2": "Marlus Silva", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pedro Gloeden", 
+            "player1points": 34, 
+            "player2": "Leandro Valle", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joo Vitor Aquino", 
+            "player1points": 100, 
+            "player2": "Marco Manzano", 
+            "player2points": 20, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Ribeiro Preto", 
+      "country": "Brazil", 
+      "lat": "-20.613499900000", 
+      "lon": "-48.918837619298", 
+      "name": "Centurion RPG Cardgames", 
+      "state": "Sao Paulo"
+    }
+  }
+}

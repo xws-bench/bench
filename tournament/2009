@@ -1,0 +1,196 @@
+{
+  "tournament": {
+    "date": "2016-08-23", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2009, 
+    "name": "Blakfyre-2016-08", 
+    "players": [
+      {
+        "mov": 600, 
+        "name": "Curtis Liddard", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 338, 
+        "name": "Tom Ercanbrack", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 336, 
+        "name": "Eric Myers", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 226, 
+        "name": "Tyson Jones", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 336, 
+        "name": "Grant Echols", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 315, 
+        "name": "Bryson Murray", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 233, 
+        "name": "Dave Larkin", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 16, 
+        "name": "Brett Duffany", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "0.56"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Tom Ercanbrack", 
+            "player1points": 76, 
+            "player2": "Grant Echols", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bryson Murray", 
+            "player1points": 65, 
+            "player2": "Tyson Jones", 
+            "player2points": 82, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Curtis Liddard", 
+            "player1points": 100, 
+            "player2": "Brett Duffany", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dave Larkin", 
+            "player1points": 33, 
+            "player2": "Eric Myers", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Tom Ercanbrack", 
+            "player1points": 31, 
+            "player2": "Eric Myers", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Curtis Liddard", 
+            "player1points": 100, 
+            "player2": "Tyson Jones", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bryson Murray", 
+            "player1points": 48, 
+            "player2": "Grant Echols", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dave Larkin", 
+            "player1points": 100, 
+            "player2": "Brett Duffany", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Curtis Liddard", 
+            "player1points": 100, 
+            "player2": "Eric Myers", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dave Larkin", 
+            "player1points": 0, 
+            "player2": "Tom Ercanbrack", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grant Echols", 
+            "player1points": 65, 
+            "player2": "Tyson Jones", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brett Duffany", 
+            "player1points": 16, 
+            "player2": "Bryson Murray", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Pleasant Grove", 
+      "country": "United States of America", 
+      "lat": "40.364118400000", 
+      "lon": "-111.738539900000", 
+      "name": "Blakfyre Games", 
+      "state": "Utah"
+    }
+  }
+}

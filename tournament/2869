@@ -1,0 +1,2424 @@
+{
+  "tournament": {
+    "date": "2017-05-20", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2869, 
+    "name": "GamesU SC 2017", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 74, 
+        "name": "Shawn Walker", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.42"
+      }, 
+      {
+        "mov": 101, 
+        "name": "EJ Bannerman", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.54"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 975, 
+        "name": "Jon Bushman", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 1
+        }, 
+        "score": 6, 
+        "sos": "0.53"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "protontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 986, 
+        "name": "Christopher Little", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 2
+        }, 
+        "score": 5, 
+        "sos": "0.58"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "majorstridan", 
+              "ship": "upsilonclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "systemsofficer", 
+                  "generalhux"
+                ], 
+                "system": [
+                  "collisiondetector"
+                ], 
+                "tech": [
+                  "hyperwavecommscanner"
+                ]
+              }
+            }, 
+            {
+              "name": "sienartestpilot", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "sienartestpilot", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "sienartestpilot", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 930, 
+        "name": "Zee", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 3
+        }, 
+        "score": 5, 
+        "sos": "0.47"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "jesspava", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d6"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ]
+              }
+            }, 
+            {
+              "name": "braylenstramm", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "crew": [
+                  "gunner"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r4d6"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "captainrex", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 830, 
+        "name": "John Grasser", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 4
+        }, 
+        "score": 5, 
+        "sos": "0.53"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ketsuonyo", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "burnoutslam"
+                ], 
+                "mod": [
+                  "gyroscopictargeting"
+                ], 
+                "title": [
+                  "shadowcaster"
+                ]
+              }
+            }, 
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "mercenarycopilot", 
+                  "dengar", 
+                  "4lom"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 776, 
+        "name": "Luke Munoz", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.53"
+      }, 
+      {
+        "mov": 673, 
+        "name": "Chris Ogino", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "0.67"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "kaatoleeachos", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 858, 
+        "name": "Alex Farley", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 7
+        }, 
+        "score": 4, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 834, 
+        "name": "Gabriel Salomon", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 8
+        }, 
+        "score": 4, 
+        "sos": "0.53"
+      }, 
+      {
+        "mov": 821, 
+        "name": "Daniel Poppe", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 4, 
+        "sos": "0.69"
+      }, 
+      {
+        "mov": 818, 
+        "name": "Scott Bertoglio", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 4, 
+        "sos": "0.61"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "lattsrazzi"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "riggedcargochute", 
+                  "riggedcargochute"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "riggedcargochute"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 814, 
+        "name": "Scott Forster", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 4, 
+        "sos": "0.39"
+      }, 
+      {
+        "mov": 772, 
+        "name": "Chris Molina", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 4, 
+        "sos": "0.47"
+      }, 
+      {
+        "mov": 769, 
+        "name": "Hart Shafer", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 4, 
+        "sos": "0.72"
+      }, 
+      {
+        "mov": 707, 
+        "name": "Grumpy Yubs", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 4, 
+        "sos": "0.61"
+      }, 
+      {
+        "mov": 671, 
+        "name": "Aaron Estrada", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 4, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 659, 
+        "name": "Jared Talor", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 4, 
+        "sos": "0.53"
+      }, 
+      {
+        "mov": 659, 
+        "name": "Sean McGlaughlin", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 4, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 638, 
+        "name": "Matt Bucher", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 4, 
+        "sos": "0.36"
+      }, 
+      {
+        "mov": 822, 
+        "name": "Brad Payne", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 3, 
+        "sos": "0.53"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "teltrevura", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 678, 
+        "name": "Paul Kim", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 3, 
+        "sos": "0.47"
+      }, 
+      {
+        "mov": 646, 
+        "name": "Albert Zhang", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 642, 
+        "name": "Robert Wilkins", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "kyloren", 
+              "ship": "upsilonclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "trickshot"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "kylorensshuttle"
+                ]
+              }
+            }, 
+            {
+              "name": "backdraft", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 605, 
+        "name": "Justin Chmura", 
+        "rank": {
+          "swiss": 23
+        }, 
+        "score": 3, 
+        "sos": "0.47"
+      }, 
+      {
+        "mov": 598, 
+        "name": "Ernestina Murillo", 
+        "rank": {
+          "swiss": 24
+        }, 
+        "score": 3, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 583, 
+        "name": "Jon Jensen", 
+        "rank": {
+          "swiss": 25
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "fearlessness"
+                ], 
+                "illicit": [
+                  "scavengercrane"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 580, 
+        "name": "Michael Roberts", 
+        "rank": {
+          "swiss": 26
+        }, 
+        "score": 3, 
+        "sos": "0.61"
+      }, 
+      {
+        "mov": 566, 
+        "name": "Jenny Esman", 
+        "rank": {
+          "swiss": 27
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 565, 
+        "name": "Riley Estes", 
+        "rank": {
+          "swiss": 28
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 546, 
+        "name": "Mongo (Travis White)", 
+        "rank": {
+          "swiss": 29
+        }, 
+        "score": 3, 
+        "sos": "0.69"
+      }, 
+      {
+        "mov": 545, 
+        "name": "Jeremy Greenfield", 
+        "rank": {
+          "swiss": 30
+        }, 
+        "score": 3, 
+        "sos": "0.47"
+      }, 
+      {
+        "mov": 532, 
+        "name": "Kiel Fullmer", 
+        "rank": {
+          "swiss": 31
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 520, 
+        "name": "Hesly Guerrero", 
+        "rank": {
+          "swiss": 32
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 448, 
+        "name": "Ron Olson", 
+        "rank": {
+          "swiss": 33
+        }, 
+        "score": 3, 
+        "sos": "0.53"
+      }, 
+      {
+        "mov": 432, 
+        "name": "Nathan Smith", 
+        "rank": {
+          "swiss": 34
+        }, 
+        "score": 3, 
+        "sos": "0.64"
+      }, 
+      {
+        "mov": 612, 
+        "name": "Chaise Lushia", 
+        "rank": {
+          "swiss": 35
+        }, 
+        "score": 2, 
+        "sos": "0.47"
+      }, 
+      {
+        "mov": 599, 
+        "name": "Keith Baum", 
+        "rank": {
+          "swiss": 36
+        }, 
+        "score": 2, 
+        "sos": "0.47"
+      }, 
+      {
+        "mov": 566, 
+        "name": "Lee Coles", 
+        "rank": {
+          "swiss": 37
+        }, 
+        "score": 2, 
+        "sos": "0.39"
+      }, 
+      {
+        "mov": 558, 
+        "name": "Daniel Mahony", 
+        "rank": {
+          "swiss": 38
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 553, 
+        "name": "Devyn Diaz", 
+        "rank": {
+          "swiss": 39
+        }, 
+        "score": 2, 
+        "sos": "0.39"
+      }, 
+      {
+        "mov": 496, 
+        "name": "Brandon Koenig", 
+        "rank": {
+          "swiss": 40
+        }, 
+        "score": 2, 
+        "sos": "0.53"
+      }, 
+      {
+        "mov": 496, 
+        "name": "Don Childers", 
+        "rank": {
+          "swiss": 41
+        }, 
+        "score": 2, 
+        "sos": "0.47"
+      }, 
+      {
+        "mov": 493, 
+        "name": "Daniel Morehouse", 
+        "rank": {
+          "swiss": 42
+        }, 
+        "score": 2, 
+        "sos": "0.36"
+      }, 
+      {
+        "mov": 420, 
+        "name": "Nathan Wilens", 
+        "rank": {
+          "swiss": 43
+        }, 
+        "score": 2, 
+        "sos": "0.36"
+      }, 
+      {
+        "mov": 406, 
+        "name": "Travis Wood", 
+        "rank": {
+          "swiss": 44
+        }, 
+        "score": 2, 
+        "sos": "0.39"
+      }, 
+      {
+        "mov": 327, 
+        "name": "Joshua Holyoak", 
+        "rank": {
+          "swiss": 45
+        }, 
+        "score": 2, 
+        "sos": "0.58"
+      }, 
+      {
+        "mov": 382, 
+        "name": "Jennifer Rojewski", 
+        "rank": {
+          "swiss": 46
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 378, 
+        "name": "Alan Smith", 
+        "rank": {
+          "swiss": 47
+        }, 
+        "score": 1, 
+        "sos": "0.53"
+      }, 
+      {
+        "mov": 294, 
+        "name": "Devon Bouton", 
+        "rank": {
+          "swiss": 48
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 287, 
+        "name": "Michael DeAlba Art", 
+        "rank": {
+          "swiss": 49
+        }, 
+        "score": 1, 
+        "sos": "0.53"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rexlerbrath", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "outmaneuver"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "wired"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 260, 
+        "name": "Patrick Hegarty", 
+        "rank": {
+          "swiss": 50
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Chaise Lushia", 
+            "player1points": 100, 
+            "player2": "Nathan Wilens", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron Estrada", 
+            "player1points": 0, 
+            "player2": "Daniel Poppe", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Ogino", 
+            "player1points": 100, 
+            "player2": "Lee Coles", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott Bertoglio", 
+            "player1points": 64, 
+            "player2": "Jeremy Greenfield", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jared Talor", 
+            "player1points": 25, 
+            "player2": "Luke Munoz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ernestina Murillo", 
+            "player1points": 26, 
+            "player2": "Alan Smith", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mongo (Travis White)", 
+            "player1points": 82, 
+            "player2": "Keith Baum", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Don Childers", 
+            "player1points": 51, 
+            "player2": "Gabriel Salomon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick Hegarty", 
+            "player1points": 0, 
+            "player2": "Devyn Diaz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon Jensen", 
+            "player1points": 24, 
+            "player2": "Joshua Holyoak", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul Kim", 
+            "player1points": 100, 
+            "player2": "Jenny Esman", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shawn Walker", 
+            "player1points": 0, 
+            "player2": "Travis Wood", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael DeAlba Art", 
+            "player1points": 16, 
+            "player2": "Alex Farley", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt Bucher", 
+            "player1points": 0, 
+            "player2": "Daniel Mahony", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Smith", 
+            "player1points": 100, 
+            "player2": "Scott Forster", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robert Wilkins", 
+            "player1points": 78, 
+            "player2": "Hesly Guerrero", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brad Payne", 
+            "player1points": 26, 
+            "player2": "John Grasser", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Morehouse", 
+            "player1points": 64, 
+            "player2": "Ron Olson", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kiel Fullmer", 
+            "player1points": 50, 
+            "player2": "Michael Roberts", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Albert Zhang", 
+            "player1points": 16, 
+            "player2": "Christopher Little", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean McGlaughlin", 
+            "player1points": 0, 
+            "player2": "Hart Shafer", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Zee", 
+            "player1points": 100, 
+            "player2": "EJ Bannerman", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon Bushman", 
+            "player1points": 100, 
+            "player2": "Devon Bouton", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Molina", 
+            "player1points": 100, 
+            "player2": "Justin Chmura", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brandon Koenig", 
+            "player1points": 76, 
+            "player2": "Jennifer Rojewski", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grumpy Yubs", 
+            "player1points": 100, 
+            "player2": "Riley Estes", 
+            "player2points": 40, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Alex Farley", 
+            "player1points": 100, 
+            "player2": "Scott Bertoglio", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Grasser", 
+            "player1points": 28, 
+            "player2": "Daniel Poppe", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Ogino", 
+            "player1points": 78, 
+            "player2": "Hart Shafer", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chaise Lushia", 
+            "player1points": 50, 
+            "player2": "Luke Munoz", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Smith", 
+            "player1points": 74, 
+            "player2": "Chris Molina", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Travis Wood", 
+            "player1points": 32, 
+            "player2": "Brandon Koenig", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christopher Little", 
+            "player1points": 100, 
+            "player2": "Robert Wilkins", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Zee", 
+            "player1points": 100, 
+            "player2": "Alan Smith", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mongo (Travis White)", 
+            "player1points": 100, 
+            "player2": "Gabriel Salomon", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Devyn Diaz", 
+            "player1points": 23, 
+            "player2": "Michael Roberts", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul Kim", 
+            "player1points": 78, 
+            "player2": "Grumpy Yubs", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Mahony", 
+            "player1points": 32, 
+            "player2": "Ron Olson", 
+            "player2points": 86, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joshua Holyoak", 
+            "player1points": 25, 
+            "player2": "Jon Bushman", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Devon Bouton", 
+            "player1points": 24, 
+            "player2": "Riley Estes", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shawn Walker", 
+            "player1points": 0, 
+            "player2": "Scott Forster", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Chmura", 
+            "player1points": 100, 
+            "player2": "Matt Bucher", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Keith Baum", 
+            "player1points": 100, 
+            "player2": "Nathan Wilens", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kiel Fullmer", 
+            "player1points": 52, 
+            "player2": "Brad Payne", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "EJ Bannerman", 
+            "player1points": 0, 
+            "player2": "Aaron Estrada", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon Jensen", 
+            "player1points": 100, 
+            "player2": "Ernestina Murillo", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick Hegarty", 
+            "player1points": 67, 
+            "player2": "Jenny Esman", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean McGlaughlin", 
+            "player1points": 100, 
+            "player2": "Don Childers", 
+            "player2points": 79, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael DeAlba Art", 
+            "player1points": 100, 
+            "player2": "Daniel Morehouse", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeremy Greenfield", 
+            "player1points": 100, 
+            "player2": "Albert Zhang", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jared Talor", 
+            "player1points": 100, 
+            "player2": "Jennifer Rojewski", 
+            "player2points": 41, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lee Coles", 
+            "player1points": 29, 
+            "player2": "Hesly Guerrero", 
+            "player2points": 64, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "John Grasser", 
+            "player1points": 66, 
+            "player2": "Christopher Little", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Zee", 
+            "player1points": 100, 
+            "player2": "Brandon Koenig", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Smith", 
+            "player1points": 0, 
+            "player2": "Alex Farley", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grumpy Yubs", 
+            "player1points": 33, 
+            "player2": "Chris Ogino", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Roberts", 
+            "player1points": 0, 
+            "player2": "Christopher Little", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mongo (Travis White)", 
+            "player1points": 25, 
+            "player2": "Jon Bushman", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Poppe", 
+            "player1points": 100, 
+            "player2": "Ron Olson", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luke Munoz", 
+            "player1points": 100, 
+            "player2": "Keith Baum", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon Jensen", 
+            "player1points": 81, 
+            "player2": "Devyn Diaz", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott Forster", 
+            "player1points": 20, 
+            "player2": "Hart Shafer", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Travis Wood", 
+            "player1points": 68, 
+            "player2": "Jeremy Greenfield", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joshua Holyoak", 
+            "player1points": 0, 
+            "player2": "John Grasser", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott Bertoglio", 
+            "player1points": 100, 
+            "player2": "Justin Chmura", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jared Talor", 
+            "player1points": 100, 
+            "player2": "Chris Molina", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kiel Fullmer", 
+            "player1points": 100, 
+            "player2": "Alan Smith", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul Kim", 
+            "player1points": 77, 
+            "player2": "Riley Estes", 
+            "player2points": 80, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chaise Lushia", 
+            "player1points": 33, 
+            "player2": "Hesly Guerrero", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robert Wilkins", 
+            "player1points": 100, 
+            "player2": "Daniel Mahony", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gabriel Salomon", 
+            "player1points": 100, 
+            "player2": "Sean McGlaughlin", 
+            "player2points": 83, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron Estrada", 
+            "player1points": 100, 
+            "player2": "Michael DeAlba Art", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jenny Esman", 
+            "player1points": 100, 
+            "player2": "Shawn Walker", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Albert Zhang", 
+            "player1points": 100, 
+            "player2": "Ernestina Murillo", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brad Payne", 
+            "player1points": 100, 
+            "player2": "Daniel Morehouse", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Don Childers", 
+            "player1points": 100, 
+            "player2": "Devon Bouton", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lee Coles", 
+            "player1points": 74, 
+            "player2": "Nathan Wilens", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt Bucher", 
+            "player1points": 100, 
+            "player2": "Jennifer Rojewski", 
+            "player2points": 81, 
+            "result": "win"
+          }, 
+          {
+            "player1": "EJ Bannerman", 
+            "player1points": 26, 
+            "player2": "Patrick Hegarty", 
+            "player2points": 65, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Chris Ogino", 
+            "player1points": 82, 
+            "player2": "Christopher Little", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex Farley", 
+            "player1points": 100, 
+            "player2": "Luke Munoz", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Poppe", 
+            "player1points": 75, 
+            "player2": "Jon Bushman", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Zee", 
+            "player1points": 100, 
+            "player2": "Michael Roberts", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brandon Koenig", 
+            "player1points": 70, 
+            "player2": "Jared Talor", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jenny Esman", 
+            "player1points": 100, 
+            "player2": "Riley Estes", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grumpy Yubs", 
+            "player1points": 100, 
+            "player2": "Robert Wilkins", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Smith", 
+            "player1points": 100, 
+            "player2": "Travis Wood", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kiel Fullmer", 
+            "player1points": 26, 
+            "player2": "Scott Bertoglio", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gabriel Salomon", 
+            "player1points": 78, 
+            "player2": "Hart Shafer", 
+            "player2points": 83, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Grasser", 
+            "player1points": 100, 
+            "player2": "Ron Olson", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mongo (Travis White)", 
+            "player1points": 100, 
+            "player2": "Aaron Estrada", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon Jensen", 
+            "player1points": 37, 
+            "player2": "Hesly Guerrero", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt Bucher", 
+            "player1points": 100, 
+            "player2": "Michael DeAlba Art", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott Forster", 
+            "player1points": 100, 
+            "player2": "Patrick Hegarty", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Molina", 
+            "player1points": 100, 
+            "player2": "Alan Smith", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean McGlaughlin", 
+            "player1points": 100, 
+            "player2": "Daniel Mahony", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Albert Zhang", 
+            "player1points": 100, 
+            "player2": "Nathan Wilens", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Devyn Diaz", 
+            "player1points": 0, 
+            "player2": "Chaise Lushia", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brad Payne", 
+            "player1points": 100, 
+            "player2": "Joshua Holyoak", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeremy Greenfield", 
+            "player1points": 100, 
+            "player2": "Keith Baum", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Chmura", 
+            "player1points": 76, 
+            "player2": "Don Childers", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul Kim", 
+            "player1points": 100, 
+            "player2": "Jennifer Rojewski", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Morehouse", 
+            "player1points": 100, 
+            "player2": "Lee Coles", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Devon Bouton", 
+            "player1points": 100, 
+            "player2": "Shawn Walker", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "EJ Bannerman", 
+            "player1points": 0, 
+            "player2": "Ernestina Murillo", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Gabriel Salomon", 
+            "player1points": 40, 
+            "player2": "John Grasser", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Zee", 
+            "player1points": 48, 
+            "player2": "Christopher Little", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jon Bushman", 
+            "player1points": 100, 
+            "player2": "Alex Farley", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Ogino", 
+            "player1points": 0, 
+            "player2": "Zee", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Grasser", 
+            "player1points": 100, 
+            "player2": "Jenny Esman", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Hart Shafer", 
+            "player1points": 100, 
+            "player2": "Jared Talor", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Smith", 
+            "player1points": 25, 
+            "player2": "Luke Munoz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Poppe", 
+            "player1points": 0, 
+            "player2": "Scott Bertoglio", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christopher Little", 
+            "player1points": 100, 
+            "player2": "Mongo (Travis White)", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grumpy Yubs", 
+            "player1points": 100, 
+            "player2": "Hesly Guerrero", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ron Olson", 
+            "player1points": 0, 
+            "player2": "Gabriel Salomon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon Jensen", 
+            "player1points": 29, 
+            "player2": "Sean McGlaughlin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Don Childers", 
+            "player1points": 25, 
+            "player2": "Devyn Diaz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Roberts", 
+            "player1points": 100, 
+            "player2": "Riley Estes", 
+            "player2points": 45, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kiel Fullmer", 
+            "player1points": 0, 
+            "player2": "Chris Molina", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt Bucher", 
+            "player1points": 100, 
+            "player2": "Jeremy Greenfield", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron Estrada", 
+            "player1points": 100, 
+            "player2": "Brandon Koenig", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott Forster", 
+            "player1points": 100, 
+            "player2": "Robert Wilkins", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Albert Zhang", 
+            "player1points": 0, 
+            "player2": "Brad Payne", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul Kim", 
+            "player1points": 100, 
+            "player2": "Travis Wood", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Wilens", 
+            "player1points": 100, 
+            "player2": "Alan Smith", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael DeAlba Art", 
+            "player1points": 12, 
+            "player2": "Keith Baum", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Devon Bouton", 
+            "player1points": 20, 
+            "player2": "Justin Chmura", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick Hegarty", 
+            "player1points": 0, 
+            "player2": "Daniel Morehouse", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joshua Holyoak", 
+            "player1points": 0, 
+            "player2": "Ernestina Murillo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Mahony", 
+            "player1points": 100, 
+            "player2": "Chaise Lushia", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jennifer Rojewski", 
+            "player1points": 32, 
+            "player2": "Lee Coles", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Zee", 
+            "player1points": 50, 
+            "player2": "Jon Bushman", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luke Munoz", 
+            "player1points": 100, 
+            "player2": "Hart Shafer", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex Farley", 
+            "player1points": 72, 
+            "player2": "John Grasser", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott Bertoglio", 
+            "player1points": 16, 
+            "player2": "Chris Ogino", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grumpy Yubs", 
+            "player1points": 32, 
+            "player2": "Christopher Little", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Poppe", 
+            "player1points": 100, 
+            "player2": "Hesly Guerrero", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jenny Esman", 
+            "player1points": 35, 
+            "player2": "Matt Bucher", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brad Payne", 
+            "player1points": 26, 
+            "player2": "Chris Molina", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jared Talor", 
+            "player1points": 78, 
+            "player2": "Mongo (Travis White)", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gabriel Salomon", 
+            "player1points": 100, 
+            "player2": "Nathan Smith", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul Kim", 
+            "player1points": 50, 
+            "player2": "Scott Forster", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean McGlaughlin", 
+            "player1points": 100, 
+            "player2": "Michael Roberts", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron Estrada", 
+            "player1points": 100, 
+            "player2": "Daniel Mahony", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Travis Wood", 
+            "player1points": 32, 
+            "player2": "Robert Wilkins", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ernestina Murillo", 
+            "player1points": 100, 
+            "player2": "Keith Baum", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Albert Zhang", 
+            "player1points": 100, 
+            "player2": "Daniel Morehouse", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Wilens", 
+            "player1points": 26, 
+            "player2": "Justin Chmura", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ron Olson", 
+            "player1points": 100, 
+            "player2": "Devyn Diaz", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Riley Estes", 
+            "player1points": 100, 
+            "player2": "Don Childers", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeremy Greenfield", 
+            "player1points": 100, 
+            "player2": "Chaise Lushia", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon Jensen", 
+            "player1points": 100, 
+            "player2": "Brandon Koenig", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kiel Fullmer", 
+            "player1points": 100, 
+            "player2": "Michael DeAlba Art", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alan Smith", 
+            "player1points": 74, 
+            "player2": "Joshua Holyoak", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Devon Bouton", 
+            "player1points": 0, 
+            "player2": "Lee Coles", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick Hegarty", 
+            "player1points": 54, 
+            "player2": "Jennifer Rojewski", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 6, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jon Bushman", 
+            "player1points": 49, 
+            "player2": "Gabriel Salomon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Grasser", 
+            "player1points": 100, 
+            "player2": "Luke Munoz", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Zee", 
+            "player1points": 100, 
+            "player2": "Chris Ogino", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christopher Little", 
+            "player1points": 100, 
+            "player2": "Alex Farley", 
+            "player2points": 33, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 8, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Gilbert", 
+      "country": "United States of America", 
+      "lat": "33.294207000000", 
+      "lon": "-111.737946518640", 
+      "name": "GamesU", 
+      "state": "Arizona"
+    }
+  }
+}

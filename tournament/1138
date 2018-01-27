@@ -1,0 +1,313 @@
+{
+  "tournament": {
+    "date": "2016-02-06", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1138, 
+    "name": "GG Maitland Store Champs", 
+    "players": [
+      {
+        "mov": 689, 
+        "name": "Jordan Madgwick", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 589, 
+        "name": "Paul Thornton", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 491, 
+        "name": "Grant O'Dwyer", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 444, 
+        "name": "Casey Millwood", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 432, 
+        "name": "Adam Gibson", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 407, 
+        "name": "Luke Sunol", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 302, 
+        "name": "Josh Parkes", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 366, 
+        "name": "Jason Gemmell", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 172, 
+        "name": "Brad Delforce", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 108, 
+        "name": "Tristan Chapman", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Luke Sunol", 
+            "player1points": 100, 
+            "player2": "Casey Millwood", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Gibson", 
+            "player1points": 100, 
+            "player2": "Jason Gemmell", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Parkes", 
+            "player1points": 0, 
+            "player2": "Paul Thornton", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jordan Madgwick", 
+            "player1points": 100, 
+            "player2": "Grant O'Dwyer", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brad Delforce", 
+            "player1points": 100, 
+            "player2": "Tristan Chapman", 
+            "player2points": 28, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Paul Thornton", 
+            "player1points": 100, 
+            "player2": "Brad Delforce", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Gibson", 
+            "player1points": 100, 
+            "player2": "Luke Sunol", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jordan Madgwick", 
+            "player1points": 100, 
+            "player2": "Casey Millwood", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grant O'Dwyer", 
+            "player1points": 62, 
+            "player2": "Jason Gemmell", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tristan Chapman", 
+            "player1points": 49, 
+            "player2": "Josh Parkes", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Casey Millwood", 
+            "player1points": 100, 
+            "player2": "Grant O'Dwyer", 
+            "player2points": 25, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Paul Thornton", 
+            "player1points": 100, 
+            "player2": "Adam Gibson", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jordan Madgwick", 
+            "player1points": 100, 
+            "player2": "Luke Sunol", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brad Delforce", 
+            "player1points": 0, 
+            "player2": "Grant O'Dwyer", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Parkes", 
+            "player1points": 100, 
+            "player2": "Jason Gemmell", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tristan Chapman", 
+            "player1points": 0, 
+            "player2": "Casey Millwood", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Paul Thornton", 
+            "player1points": 49, 
+            "player2": "Jordan Madgwick", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grant O'Dwyer", 
+            "player1points": 61, 
+            "player2": "Adam Gibson", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Parkes", 
+            "player1points": 25, 
+            "player2": "Casey Millwood", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luke Sunol", 
+            "player1points": 100, 
+            "player2": "Brad Delforce", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Gemmell", 
+            "player1points": 100, 
+            "player2": "Tristan Chapman", 
+            "player2points": 31, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jordan Madgwick", 
+            "player1points": 49, 
+            "player2": "Casey Millwood", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul Thornton", 
+            "player1points": 44, 
+            "player2": "Grant O'Dwyer", 
+            "player2points": 60, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Maitland", 
+      "country": "Italy", 
+      "lat": "41.655200000000", 
+      "lon": "12.989600000000", 
+      "name": "Good Games Maitland", 
+      "state": "Lazio"
+    }
+  }
+}

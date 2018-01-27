@@ -1,0 +1,53 @@
+{
+  "tournament": {
+    "date": "2016-12-28", 
+    "format": "Epic Play - 300 points", 
+    "id": 964, 
+    "name": "Jace Vs Michael", 
+    "players": [
+      {
+        "mov": 0, 
+        "name": "Michael", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Jace", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Jace", 
+            "player1points": 0, 
+            "player2": "Michael", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Sierra Vista", 
+      "country": "United States", 
+      "lat": "31.554540100000", 
+      "lon": "-110.303692800000", 
+      "name": "Ascension Comics & Games", 
+      "state": "AZ"
+    }
+  }
+}

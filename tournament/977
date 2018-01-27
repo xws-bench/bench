@@ -1,0 +1,164 @@
+{
+  "tournament": {
+    "date": "2015-05-15", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 977, 
+    "name": "Test", 
+    "players": [
+      {
+        "mov": 490, 
+        "name": "Brad", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 1
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 400, 
+        "name": "Chris", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 400, 
+        "name": "Kyle", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 310, 
+        "name": "Mark", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 200, 
+        "name": "Eugene", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Nate", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Kyle", 
+            "player1points": 100, 
+            "player2": "Nate", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brad", 
+            "player1points": 100, 
+            "player2": "Eugene", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark", 
+            "player1points": 100, 
+            "player2": "Chris", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Mark", 
+            "player1points": 55, 
+            "player2": "Brad", 
+            "player2points": 45, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eugene", 
+            "player1points": 100, 
+            "player2": "Kyle", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris", 
+            "player1points": 100, 
+            "player2": "Nate", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Kyle", 
+            "player1points": 100, 
+            "player2": "Nate", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brad", 
+            "player1points": 100, 
+            "player2": "Mark", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris", 
+            "player1points": 100, 
+            "player2": "Eugene", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Kalgoorlie ", 
+      "country": "Australia", 
+      "lat": "59.329300000000", 
+      "lon": "18.068600000000", 
+      "name": "Boulder Bowling Club", 
+      "state": "Western Australia"
+    }
+  }
+}

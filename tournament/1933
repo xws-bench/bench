@@ -1,0 +1,118 @@
+{
+  "tournament": {
+    "date": "2016-08-06", 
+    "format": "Highlander", 
+    "id": 1933, 
+    "name": "MJ August 2016 - Wasilla, Alaska", 
+    "players": [
+      {
+        "mov": 404, 
+        "name": "Luke", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 383, 
+        "name": "Ken", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 323, 
+        "name": "Brian", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 90, 
+        "name": "Gary", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Ken", 
+            "player1points": 120, 
+            "player2": "Brian", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gary", 
+            "player1points": 30, 
+            "player2": "Luke", 
+            "player2points": 92, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Luke", 
+            "player1points": 120, 
+            "player2": "Ken", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gary", 
+            "player1points": 78, 
+            "player2": "Brian", 
+            "player2points": 120, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Luke", 
+            "player1points": 72, 
+            "player2": "Brian", 
+            "player2points": 120, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ken", 
+            "player1points": 120, 
+            "player2": "Gary", 
+            "player2points": 14, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Wasilla", 
+      "country": "United States of America", 
+      "lat": "61.582823400000", 
+      "lon": "-149.438098400000", 
+      "name": "MJ Cards and Comics", 
+      "state": "Alaska"
+    }
+  }
+}

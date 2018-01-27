@@ -1,0 +1,184 @@
+{
+  "tournament": {
+    "date": "2015-10-31", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 580, 
+    "name": "All Hallow's Wing", 
+    "players": [
+      {
+        "mov": 586, 
+        "name": "Jason Crossen", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 462, 
+        "name": "Andrew Finke", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 390, 
+        "name": "Paul Appel", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 315, 
+        "name": "Thom Hennen", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 350, 
+        "name": "Eric Appel", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 297, 
+        "name": "Billy Appel", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Billy Appel", 
+            "player1points": 24, 
+            "player2": "Eric Appel", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Crossen", 
+            "player1points": 88, 
+            "player2": "Paul Appel", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew Finke", 
+            "player1points": 100, 
+            "player2": "Thom Hennen", 
+            "player2points": 53, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Billy Appel", 
+            "player1points": 54, 
+            "player2": "Thom Hennen", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew Finke", 
+            "player1points": 100, 
+            "player2": "Paul Appel", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Crossen", 
+            "player1points": 100, 
+            "player2": "Eric Appel", 
+            "player2points": 22, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Paul Appel", 
+            "player1points": 100, 
+            "player2": "Thom Hennen", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew Finke", 
+            "player1points": 74, 
+            "player2": "Eric Appel", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Crossen", 
+            "player1points": 100, 
+            "player2": "Billy Appel", 
+            "player2points": 23, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Andrew Finke", 
+            "player1points": 57, 
+            "player2": "Jason Crossen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul Appel", 
+            "player1points": 59, 
+            "player2": "Billy Appel", 
+            "player2points": 87, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric Appel", 
+            "player1points": 54, 
+            "player2": "Thom Hennen", 
+            "player2points": 74, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Kalgoorlie ", 
+      "country": "Australia", 
+      "lat": "59.329300000000", 
+      "lon": "18.068600000000", 
+      "name": "Boulder Bowling Club", 
+      "state": "Western Australia"
+    }
+  }
+}

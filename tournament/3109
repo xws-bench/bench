@@ -1,0 +1,960 @@
+{
+  "tournament": {
+    "date": "2017-07-09", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3109, 
+    "name": "Store Championship - Hoorn - NL", 
+    "players": [
+      {
+        "mov": 547, 
+        "name": "Vincent van der Steen", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "deathfire", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 638, 
+        "name": "Jeppe Nybo Jorgensen", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "chopper", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "rey"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "phantom"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r4d6"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 551, 
+        "name": "Niels Vos", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.38"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "lattsrazzi"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "riggedcargochute"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 536, 
+        "name": "Jelte de Boer", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 520, 
+        "name": "Pim Streukens", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 499, 
+        "name": "Stjepan Pavuna", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine", 
+                  "kyloren"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 407, 
+        "name": "Ronald", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 518, 
+        "name": "Franxis Wedema", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 442, 
+        "name": "Bas Rietveld", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "riggedcargochute"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "lattsrazzi"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "blackmarketslicertools"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 427, 
+        "name": "Erik B", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 421, 
+        "name": "Jonathan Kok", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 400, 
+        "name": "Jasper Kok", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 2, 
+        "sos": "0.25"
+      }, 
+      {
+        "mov": 390, 
+        "name": "Leo Hartog", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 366, 
+        "name": "Charlie ter Horst", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 359, 
+        "name": "Alexander Buisman", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 339, 
+        "name": "John Heins", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 374, 
+        "name": "Philo Sluijsmans", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 1, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 315, 
+        "name": "Richard Vlaar", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 258, 
+        "name": "Sander Neeft", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 227, 
+        "name": "Martin Bergman", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "serissu", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "pulsedrayshield"
+                ]
+              }
+            }, 
+            {
+              "name": "tansariipointveteran", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "title": [
+                  "lightscykinterceptor"
+                ]
+              }
+            }, 
+            {
+              "name": "inaldra", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "pulsedrayshield"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 134, 
+        "name": "Klaas Harm Wiggerman", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 0, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 132, 
+        "name": "Frank van Pul", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 0, 
+        "sos": "0.50"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "John Heins", 
+            "player1points": 0, 
+            "player2": "Jeppe Nybo Jorgensen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pim Streukens", 
+            "player1points": 74, 
+            "player2": "Leo Hartog", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan Kok", 
+            "player1points": 26, 
+            "player2": "Charlie ter Horst", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vincent van der Steen", 
+            "player1points": 100, 
+            "player2": "Bas Rietveld", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jasper Kok", 
+            "player1points": 52, 
+            "player2": "Sander Neeft", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Klaas Harm Wiggerman", 
+            "player1points": 26, 
+            "player2": "Niels Vos", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ronald", 
+            "player1points": 100, 
+            "player2": "Alexander Buisman", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Philo Sluijsmans", 
+            "player1points": 36, 
+            "player2": "Martin Bergman", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stjepan Pavuna", 
+            "player1points": 100, 
+            "player2": "Richard Vlaar", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erik B", 
+            "player1points": 23, 
+            "player2": "Franxis Wedema", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jelte de Boer", 
+            "player1points": 100, 
+            "player2": "Frank van Pul", 
+            "player2points": 20, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jonathan Kok", 
+            "player1points": 28, 
+            "player2": "Jelte de Boer", 
+            "player2points": 55, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin Bergman", 
+            "player1points": 0, 
+            "player2": "Vincent van der Steen", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sander Neeft", 
+            "player1points": 26, 
+            "player2": "Niels Vos", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erik B", 
+            "player1points": 59, 
+            "player2": "Stjepan Pavuna", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ronald", 
+            "player1points": 100, 
+            "player2": "Jeppe Nybo Jorgensen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pim Streukens", 
+            "player1points": 54, 
+            "player2": "Charlie ter Horst", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Klaas Harm Wiggerman", 
+            "player1points": 27, 
+            "player2": "Alexander Buisman", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jasper Kok", 
+            "player1points": 100, 
+            "player2": "Frank van Pul", 
+            "player2points": 19, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Richard Vlaar", 
+            "player1points": 47, 
+            "player2": "Franxis Wedema", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Leo Hartog", 
+            "player1points": 100, 
+            "player2": "John Heins", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bas Rietveld", 
+            "player1points": 100, 
+            "player2": "Philo Sluijsmans", 
+            "player2points": 26, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Vincent van der Steen", 
+            "player1points": 100, 
+            "player2": "Niels Vos", 
+            "player2points": 20, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Stjepan Pavuna", 
+            "player1points": 40, 
+            "player2": "Vincent van der Steen", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Niels Vos", 
+            "player1points": 52, 
+            "player2": "Jelte de Boer", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ronald", 
+            "player1points": 25, 
+            "player2": "Pim Streukens", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Leo Hartog", 
+            "player1points": 39, 
+            "player2": "Jeppe Nybo Jorgensen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Charlie ter Horst", 
+            "player1points": 13, 
+            "player2": "Erik B", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan Kok", 
+            "player1points": 100, 
+            "player2": "Jasper Kok", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin Bergman", 
+            "player1points": 0, 
+            "player2": "Franxis Wedema", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sander Neeft", 
+            "player1points": 58, 
+            "player2": "Bas Rietveld", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alexander Buisman", 
+            "player1points": 100, 
+            "player2": "Frank van Pul", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Richard Vlaar", 
+            "player1points": 100, 
+            "player2": "Klaas Harm Wiggerman", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Heins", 
+            "player1points": 51, 
+            "player2": "Philo Sluijsmans", 
+            "player2points": 34, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Vincent van der Steen", 
+            "player1points": 46, 
+            "player2": "Jelte de Boer", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pim Streukens", 
+            "player1points": 26, 
+            "player2": "Bas Rietveld", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan Kok", 
+            "player1points": 49, 
+            "player2": "Niels Vos", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ronald", 
+            "player1points": 73, 
+            "player2": "Franxis Wedema", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stjepan Pavuna", 
+            "player1points": 100, 
+            "player2": "Alexander Buisman", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erik B", 
+            "player1points": 23, 
+            "player2": "Jeppe Nybo Jorgensen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Richard Vlaar", 
+            "player1points": 34, 
+            "player2": "Jasper Kok", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sander Neeft", 
+            "player1points": 26, 
+            "player2": "Charlie ter Horst", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Leo Hartog", 
+            "player1points": 100, 
+            "player2": "Martin Bergman", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Heins", 
+            "player1points": 100, 
+            "player2": "Klaas Harm Wiggerman", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Philo Sluijsmans", 
+            "player1points": 100, 
+            "player2": "Frank van Pul", 
+            "player2points": 20, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Vincent van der Steen", 
+            "player1points": 60, 
+            "player2": "Jelte de Boer", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeppe Nybo Jorgensen", 
+            "player1points": 82, 
+            "player2": "Niels Vos", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Hoorn", 
+      "country": "Netherlands", 
+      "lat": "52.622545450000", 
+      "lon": "5.067726588148", 
+      "name": "", 
+      "state": "Noord-Holland"
+    }
+  }
+}

@@ -1,0 +1,639 @@
+{
+  "tournament": {
+    "date": "2017-06-17", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2995, 
+    "name": "Gamenight.Net Store Championship  2017", 
+    "players": [
+      {
+        "mov": 98, 
+        "name": "Mike Gemme", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 103, 
+        "name": "Matt S", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 644, 
+        "name": "Erich R", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "starkillerbasepilot", 
+              "ship": "upsilonclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "electronicbaffle"
+                ], 
+                "title": [
+                  "kylorensshuttle"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 561, 
+        "name": "Bryan Lovely", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 554, 
+        "name": "Matt LeClaire", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 547, 
+        "name": "Richard Goulart", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 528, 
+        "name": "Brian Frost", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 3, 
+        "sos": "0.69"
+      }, 
+      {
+        "mov": 528, 
+        "name": "Mike W", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 3, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 419, 
+        "name": "Parker Berg", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 386, 
+        "name": "Max Wirka", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.81"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "teltrevura", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "illicit": [
+                  "scavengercrane"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 367, 
+        "name": "Travis Gardner", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 362, 
+        "name": "Andrew Mayers", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 351, 
+        "name": "Billy Gravelle", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rebeloperative", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "mod": [
+                  "munitionsfailsafe"
+                ]
+              }
+            }, 
+            {
+              "name": "rebeloperative", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "mod": [
+                  "munitionsfailsafe"
+                ]
+              }
+            }, 
+            {
+              "name": "rebeloperative", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "mod": [
+                  "munitionsfailsafe"
+                ]
+              }
+            }, 
+            {
+              "name": "rebeloperative", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "mod": [
+                  "munitionsfailsafe"
+                ]
+              }
+            }, 
+            {
+              "name": "rebeloperative", 
+              "ship": "hwk290"
+            }, 
+            {
+              "name": "rebeloperative", 
+              "ship": "hwk290"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 274, 
+        "name": "Adam Gadreau", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 295, 
+        "name": "Brian Steele", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 1, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 294, 
+        "name": "Jon Scott", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 289, 
+        "name": "Keith Milde", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 1, 
+        "sos": "0.63"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Brian Steele", 
+            "player1points": 52, 
+            "player2": "Keith Milde", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon Scott", 
+            "player1points": 100, 
+            "player2": "Matt S", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Max Wirka", 
+            "player1points": 100, 
+            "player2": "Mike W", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Gadreau", 
+            "player1points": 100, 
+            "player2": "Travis Gardner", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew Mayers", 
+            "player1points": 26, 
+            "player2": "Erich R", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Billy Gravelle", 
+            "player1points": 100, 
+            "player2": "Mike Gemme", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian Frost", 
+            "player1points": 100, 
+            "player2": "Bryan Lovely", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Richard Goulart", 
+            "player1points": 20, 
+            "player2": "Matt LeClaire", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Parker Berg", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Brian Frost", 
+            "player1points": 100, 
+            "player2": "Billy Gravelle", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Max Wirka", 
+            "player1points": 100, 
+            "player2": "Matt LeClaire", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erich R", 
+            "player1points": 100, 
+            "player2": "Keith Milde", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon Scott", 
+            "player1points": 28, 
+            "player2": "Adam Gadreau", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Parker Berg", 
+            "player1points": 21, 
+            "player2": "Bryan Lovely", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian Steele", 
+            "player1points": 67, 
+            "player2": "Mike W", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew Mayers", 
+            "player1points": 100, 
+            "player2": "Mike Gemme", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt S", 
+            "player1points": 78, 
+            "player2": "Travis Gardner", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Richard Goulart", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Erich R", 
+            "player1points": 74, 
+            "player2": "Bryan Lovely", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Adam Gadreau", 
+            "player1points": 0, 
+            "player2": "Brian Frost", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erich R", 
+            "player1points": 100, 
+            "player2": "Max Wirka", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew Mayers", 
+            "player1points": 52, 
+            "player2": "Parker Berg", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bryan Lovely", 
+            "player1points": 100, 
+            "player2": "Travis Gardner", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike W", 
+            "player1points": 100, 
+            "player2": "Jon Scott", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Richard Goulart", 
+            "player1points": 100, 
+            "player2": "Billy Gravelle", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt LeClaire", 
+            "player1points": 100, 
+            "player2": "Keith Milde", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian Steele", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Brian Frost", 
+            "player1points": 26, 
+            "player2": "Erich R", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Richard Goulart", 
+            "player1points": 100, 
+            "player2": "Max Wirka", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Gadreau", 
+            "player1points": 20, 
+            "player2": "Matt LeClaire", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew Mayers", 
+            "player1points": 37, 
+            "player2": "Mike W", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bryan Lovely", 
+            "player1points": 100, 
+            "player2": "Jon Scott", 
+            "player2points": 41, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Parker Berg", 
+            "player1points": 100, 
+            "player2": "Brian Steele", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Travis Gardner", 
+            "player1points": 100, 
+            "player2": "Keith Milde", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Billy Gravelle", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Erich R", 
+            "player1points": 100, 
+            "player2": "Richard Goulart", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bryan Lovely", 
+            "player1points": 100, 
+            "player2": "Matt LeClaire", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "W. Barnstable", 
+      "country": "United States of America", 
+      "lat": "41.705664400000", 
+      "lon": "-70.374468700000", 
+      "name": "Gamenight.net", 
+      "state": "Massachusetts"
+    }
+  }
+}

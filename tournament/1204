@@ -1,0 +1,79 @@
+{
+  "tournament": {
+    "date": "2016-02-21", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1204, 
+    "name": "Parents House", 
+    "players": [
+      {
+        "mov": 390, 
+        "name": "Dad", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 210, 
+        "name": "Jason", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Dad", 
+            "player1points": 100, 
+            "player2": "Jason", 
+            "player2points": 10, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Dad", 
+            "player1points": 90, 
+            "player2": "Jason", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Dad", 
+            "player1points": 100, 
+            "player2": "Jason", 
+            "player2points": 90, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Farmer City", 
+      "country": "United States", 
+      "lat": "40.243367600000", 
+      "lon": "-88.642566700000", 
+      "name": "204 W Clinton Ave", 
+      "state": "IL"
+    }
+  }
+}

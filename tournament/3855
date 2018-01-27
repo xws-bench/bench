@@ -1,0 +1,1632 @@
+{
+  "tournament": {
+    "date": "2018-01-14", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3855, 
+    "name": "X-Wing '18 I. Fordul", 
+    "players": [
+      {
+        "mov": 62, 
+        "name": "Kovcs Sndor", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.75"
+      }, 
+      {
+        "mov": 680, 
+        "name": "Viktor Kuzmin", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "intensity"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "backdraft", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "sensorcluster"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 608, 
+        "name": "Br Gbor", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 4, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 625, 
+        "name": "Lczy Zoltn", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rhosquadronveteran", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "cannon": [
+                  "linkedbattery", 
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "title": [
+                  "xg1assaultconfiguration"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "rhosquadronveteran", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "cannon": [
+                  "linkedbattery", 
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "title": [
+                  "xg1assaultconfiguration"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 596, 
+        "name": "Szab Andrs", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "riggedcargochute"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ]
+              }
+            }, 
+            {
+              "name": "thweek", 
+              "ship": "starviper", 
+              "upgrades": {
+                "illicit": [
+                  "contrabandcybernetics"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "virago", 
+                  "starvipermkii"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "viktorhel", 
+              "ship": "kihraxzfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "cloakingdevice"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "pulsedrayshield", 
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "vaksai"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 512, 
+        "name": "Rafy", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 501, 
+        "name": "Tth dm", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "maul", 
+                  "rey"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "ezrabridger", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "ept": [
+                  "selflessness"
+                ], 
+                "title": [
+                  "phantom"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "flightassistastromech"
+                ], 
+                "crew": [
+                  "hotshotcopilot"
+                ], 
+                "ept": [
+                  "adaptability"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 498, 
+        "name": "Greiner Tams", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "4lom", 
+                  "zuckuss", 
+                  "dengar"
+                ], 
+                "illicit": [
+                  "burnoutslam"
+                ]
+              }
+            }, 
+            {
+              "name": "concorddawnveteran", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "inaldra", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "pulsedrayshield"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 495, 
+        "name": "Sipos Kristf", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 468, 
+        "name": "Dek Zsfi", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "jesspava", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "m9g8"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "rey", 
+                  "janors"
+                ], 
+                "ept": [
+                  "selflessness"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 459, 
+        "name": "Br Zoltn", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 457, 
+        "name": "Balogh Balzs", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 452, 
+        "name": "Gyrfy Gerg", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 422, 
+        "name": "Takcs Istvn", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "riggedcargochute"
+                ], 
+                "mod": [
+                  "smugglingcompartment"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ], 
+                "system": [
+                  "reinforceddeflectors"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 412, 
+        "name": "Kovcs Imre", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 2, 
+        "sos": "0.69"
+      }, 
+      {
+        "mov": 410, 
+        "name": "Harangoz Andris", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "chopper", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "maul", 
+                  "leebo"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ], 
+                "system": [
+                  "enhancedscopes"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "ezrabridger", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "crew": [
+                  "gunner"
+                ], 
+                "ept": [
+                  "trickshot"
+                ]
+              }
+            }, 
+            {
+              "name": "herasyndulla", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "crew": [
+                  "cassianandor"
+                ], 
+                "ept": [
+                  "trickshot"
+                ], 
+                "title": [
+                  "phantom"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 393, 
+        "name": "Tth Bendzsi", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "mod": [
+                  "countermeasures", 
+                  "smugglingcompartment"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 369, 
+        "name": "Sebk Richrd", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "illicit": [
+                  "scavengercrane"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 361, 
+        "name": "Timk Attila", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines", 
+                  "thermaldetonators"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 340, 
+        "name": "Leto 'Sai' Laszlo", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 2, 
+        "sos": "0.69"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 327, 
+        "name": "Papp Martin", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 336, 
+        "name": "Havasi ron", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "kyloren", 
+                  "emperorpalpatine"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "majorvynder", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "protonrockets", 
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "title": [
+                  "os1arsenalloadout"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 326, 
+        "name": "Dervadelin Zoltn", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "wullffwarro", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "breachspecialist", 
+                  "c3po"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 291, 
+        "name": "Szab Gerg", 
+        "rank": {
+          "swiss": 23
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 283, 
+        "name": "Esze Gerg", 
+        "rank": {
+          "swiss": 24
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "niennunb", 
+                  "bodhirook"
+                ], 
+                "ept": [
+                  "trickshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "smugglingcompartment", 
+                  "countermeasures"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }, 
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla", 
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "ascoretosettle"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "smugglingcompartment", 
+                  "antipursuitlasers"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 265, 
+        "name": "Caniz", 
+        "rank": {
+          "swiss": 25
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 184, 
+        "name": "Zilahi Sndor", 
+        "rank": {
+          "swiss": 26
+        }, 
+        "score": 1, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 173, 
+        "name": "Szentandrssy Dniel", 
+        "rank": {
+          "swiss": 27
+        }, 
+        "score": 0, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 45, 
+        "name": "Bencze Tams", 
+        "rank": {
+          "swiss": 28
+        }, 
+        "score": 0, 
+        "sos": "0.31"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Timk Attila", 
+            "player1points": 25, 
+            "player2": "Viktor Kuzmin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Caniz", 
+            "player1points": 0, 
+            "player2": "Gyrfy Gerg", 
+            "player2points": 77, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Zilahi Sndor", 
+            "player1points": 0, 
+            "player2": "Takcs Istvn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Greiner Tams", 
+            "player1points": 100, 
+            "player2": "Tth Bendzsi", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bencze Tams", 
+            "player1points": 0, 
+            "player2": "Harangoz Andris", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kovcs Sndor", 
+            "player1points": 62, 
+            "player2": "Tth dm", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dervadelin Zoltn", 
+            "player1points": 77, 
+            "player2": "Sipos Kristf", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kovcs Imre", 
+            "player1points": 100, 
+            "player2": "Rafy", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Papp Martin", 
+            "player1points": 47, 
+            "player2": "Leto 'Sai' Laszlo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Balogh Balzs", 
+            "player1points": 100, 
+            "player2": "Havasi ron", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dek Zsfi", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Br Zoltn", 
+            "player1points": 50, 
+            "player2": "Lczy Zoltn", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Szab Andrs", 
+            "player1points": 64, 
+            "player2": "Esze Gerg", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Br Gbor", 
+            "player1points": 100, 
+            "player2": "Szentandrssy Dniel", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Szab Gerg", 
+            "player1points": 55, 
+            "player2": "Sebk Richrd", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Harangoz Andris", 
+            "player1points": 25, 
+            "player2": "Viktor Kuzmin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Br Gbor", 
+            "player1points": 100, 
+            "player2": "Leto 'Sai' Laszlo", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Takcs Istvn", 
+            "player1points": 29, 
+            "player2": "Gyrfy Gerg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Br Zoltn", 
+            "player1points": 0, 
+            "player2": "Sebk Richrd", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sipos Kristf", 
+            "player1points": 40, 
+            "player2": "Dek Zsfi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Greiner Tams", 
+            "player1points": 100, 
+            "player2": "Balogh Balzs", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kovcs Imre", 
+            "player1points": 36, 
+            "player2": "Szab Andrs", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tth dm", 
+            "player1points": 100, 
+            "player2": "Havasi ron", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafy", 
+            "player1points": 100, 
+            "player2": "Timk Attila", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Caniz", 
+            "player1points": 100, 
+            "player2": "Szentandrssy Dniel", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bencze Tams", 
+            "player1points": 0, 
+            "player2": "Dervadelin Zoltn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Zilahi Sndor", 
+            "player1points": 0, 
+            "player2": "Tth Bendzsi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lczy Zoltn", 
+            "player1points": 100, 
+            "player2": "Papp Martin", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Esze Gerg", 
+            "player1points": 58, 
+            "player2": "Szab Gerg", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Szab Andrs", 
+            "player1points": 64, 
+            "player2": "Dek Zsfi", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gyrfy Gerg", 
+            "player1points": 0, 
+            "player2": "Br Gbor", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tth dm", 
+            "player1points": 100, 
+            "player2": "Greiner Tams", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Viktor Kuzmin", 
+            "player1points": 55, 
+            "player2": "Sebk Richrd", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kovcs Imre", 
+            "player1points": 100, 
+            "player2": "Harangoz Andris", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dervadelin Zoltn", 
+            "player1points": 0, 
+            "player2": "Balogh Balzs", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Szab Gerg", 
+            "player1points": 35, 
+            "player2": "Sipos Kristf", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Caniz", 
+            "player1points": 0, 
+            "player2": "Lczy Zoltn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tth Bendzsi", 
+            "player1points": 17, 
+            "player2": "Rafy", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Leto 'Sai' Laszlo", 
+            "player1points": 100, 
+            "player2": "Takcs Istvn", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Br Zoltn", 
+            "player1points": 64, 
+            "player2": "Esze Gerg", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Papp Martin", 
+            "player1points": 100, 
+            "player2": "Zilahi Sndor", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Havasi ron", 
+            "player1points": 100, 
+            "player2": "Bencze Tams", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Timk Attila", 
+            "player1points": 100, 
+            "player2": "Szentandrssy Dniel", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Br Gbor", 
+            "player1points": 76, 
+            "player2": "Dek Zsfi", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Viktor Kuzmin", 
+            "player1points": 100, 
+            "player2": "Tth dm", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sipos Kristf", 
+            "player1points": 100, 
+            "player2": "Gyrfy Gerg", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sebk Richrd", 
+            "player1points": 25, 
+            "player2": "Lczy Zoltn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Leto 'Sai' Laszlo", 
+            "player1points": 0, 
+            "player2": "Szab Andrs", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Balogh Balzs", 
+            "player1points": 31, 
+            "player2": "Rafy", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Greiner Tams", 
+            "player1points": 100, 
+            "player2": "Kovcs Imre", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Havasi ron", 
+            "player1points": 68, 
+            "player2": "Harangoz Andris", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dervadelin Zoltn", 
+            "player1points": 49, 
+            "player2": "Tth Bendzsi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Timk Attila", 
+            "player1points": 77, 
+            "player2": "Caniz", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Esze Gerg", 
+            "player1points": 54, 
+            "player2": "Takcs Istvn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Szab Gerg", 
+            "player1points": 29, 
+            "player2": "Br Zoltn", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Papp Martin", 
+            "player1points": 67, 
+            "player2": "Szentandrssy Dniel", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Zilahi Sndor", 
+            "player1points": 100, 
+            "player2": "Bencze Tams", 
+            "player2points": 45, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Budapest", 
+      "country": "Hungary", 
+      "lat": "47.498381500000", 
+      "lon": "19.040470700000", 
+      "name": "HUNGEXPO", 
+      "state": "Budapest"
+    }
+  }
+}

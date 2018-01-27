@@ -1,0 +1,863 @@
+{
+  "tournament": {
+    "date": "2017-03-25", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2709, 
+    "name": "N&T Q1 tournament", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "tempestsquadronpilot", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "tempestsquadronpilot", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "tempestsquadronpilot", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "swarmleader"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 481, 
+        "name": "Tapani Kuusela", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 3, 
+        "sos": "0.38"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "xx23sthreadtracers"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "xx23sthreadtracers"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 601, 
+        "name": "Jussi Koskimki", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "janors", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "chewbacca"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 655, 
+        "name": "Marko Tammelin", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "backdraft", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 486, 
+        "name": "Krista Blom", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "m9g8"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "crew": [
+                  "chopper"
+                ], 
+                "title": [
+                  "phantom"
+                ]
+              }
+            }, 
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "rey"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 473, 
+        "name": "Anton Patrikainen", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.69"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 488, 
+        "name": "Jesse Laanti", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 442, 
+        "name": "Marko Korjus", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 375, 
+        "name": "Erno Tammelin", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 356, 
+        "name": "Sami Hannula", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 350, 
+        "name": "Jami Pulkkinen", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "bountyhunter", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "agentkallus"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "title": [
+                  "slavei"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 332, 
+        "name": "Aleksi Koskinen", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 407, 
+        "name": "Mikko Malmari", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 338, 
+        "name": "Antti Haapaniemi", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 244, 
+        "name": "Antti Halonen", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 238, 
+        "name": "Tatu Purhonen", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 134, 
+        "name": "Ian Ylnen", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 0, 
+        "sos": "0.38"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Jami Pulkkinen", 
+            "player1points": 100, 
+            "player2": "Tapani Kuusela", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marko Tammelin", 
+            "player1points": 100, 
+            "player2": "Antti Halonen", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marko Korjus", 
+            "player1points": 100, 
+            "player2": "Tatu Purhonen", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Krista Blom", 
+            "player1points": 100, 
+            "player2": "Erno Tammelin", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mikko Malmari", 
+            "player1points": 100, 
+            "player2": "Antti Haapaniemi", 
+            "player2points": 19, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sami Hannula", 
+            "player1points": 55, 
+            "player2": "Anton Patrikainen", 
+            "player2points": 85, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jesse Laanti", 
+            "player1points": 100, 
+            "player2": "Ian Ylnen", 
+            "player2points": 19, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jussi Koskimki", 
+            "player1points": 67, 
+            "player2": "Aleksi Koskinen", 
+            "player2points": 25, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Mikko Malmari", 
+            "player1points": 31, 
+            "player2": "Krista Blom", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anton Patrikainen", 
+            "player1points": 100, 
+            "player2": "Jami Pulkkinen", 
+            "player2points": 55, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jesse Laanti", 
+            "player1points": 38, 
+            "player2": "Jussi Koskimki", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marko Tammelin", 
+            "player1points": 100, 
+            "player2": "Marko Korjus", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ian Ylnen", 
+            "player1points": 35, 
+            "player2": "Antti Halonen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sami Hannula", 
+            "player1points": 100, 
+            "player2": "Aleksi Koskinen", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erno Tammelin", 
+            "player1points": 0, 
+            "player2": "Antti Haapaniemi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tatu Purhonen", 
+            "player1points": 63, 
+            "player2": "Tapani Kuusela", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jussi Koskimki", 
+            "player1points": 100, 
+            "player2": "Marko Tammelin", 
+            "player2points": 25, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Marko Tammelin", 
+            "player1points": 55, 
+            "player2": "Anton Patrikainen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jussi Koskimki", 
+            "player1points": 100, 
+            "player2": "Krista Blom", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sami Hannula", 
+            "player1points": 0, 
+            "player2": "Jesse Laanti", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tapani Kuusela", 
+            "player1points": 100, 
+            "player2": "Antti Halonen", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mikko Malmari", 
+            "player1points": 78, 
+            "player2": "Jami Pulkkinen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marko Korjus", 
+            "player1points": 100, 
+            "player2": "Antti Haapaniemi", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tatu Purhonen", 
+            "player1points": 0, 
+            "player2": "Erno Tammelin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aleksi Koskinen", 
+            "player1points": 62, 
+            "player2": "Ian Ylnen", 
+            "player2points": 17, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Anton Patrikainen", 
+            "player1points": 25, 
+            "player2": "Jussi Koskimki", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marko Tammelin", 
+            "player1points": 100, 
+            "player2": "Jami Pulkkinen", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tapani Kuusela", 
+            "player1points": 80, 
+            "player2": "Marko Korjus", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jesse Laanti", 
+            "player1points": 33, 
+            "player2": "Krista Blom", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Antti Haapaniemi", 
+            "player1points": 30, 
+            "player2": "Sami Hannula", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Antti Halonen", 
+            "player1points": 58, 
+            "player2": "Erno Tammelin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mikko Malmari", 
+            "player1points": 17, 
+            "player2": "Aleksi Koskinen", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ian Ylnen", 
+            "player1points": 25, 
+            "player2": "Tatu Purhonen", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jussi Koskimki", 
+            "player1points": 100, 
+            "player2": "Anton Patrikainen", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marko Tammelin", 
+            "player1points": 100, 
+            "player2": "Krista Blom", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Helsinki", 
+      "country": "Finland", 
+      "lat": null, 
+      "lon": null, 
+      "name": "N&T club room, Pihkatie 6", 
+      "state": "Etela-Suomen Laani"
+    }
+  }
+}

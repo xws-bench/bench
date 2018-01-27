@@ -1,0 +1,676 @@
+{
+  "tournament": {
+    "date": "2015-07-25", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 561, 
+    "name": "Knoxville local", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "janors", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "shieldupgrade"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "blasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "chewbacca"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 720, 
+        "name": "Scott", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "gunner", 
+                  "ysanneisard", 
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 565, 
+        "name": "Justin", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender"
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "ionpulsemissiles"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 550, 
+        "name": "Kacey", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 470, 
+        "name": "Preston", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "kavil", 
+              "ship": "ywing", 
+              "upgrades": {
+                "ept": [
+                  "opportunist"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "turret": [
+                  "blasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "torkilmux", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "greedo"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "palobgodalhi", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "opportunist"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "blasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 478, 
+        "name": "Bryan", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 434, 
+        "name": "Marcus", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 280, 
+        "name": "Ryan", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "dashrendar", 
+                  "c3po"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 332, 
+        "name": "Jessie", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "mod": [
+                  "shieldupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing"
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing"
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing"
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 304, 
+        "name": "will", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 286, 
+        "name": "Jeff", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 224, 
+        "name": "Spencer", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "blacksunsoldier", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "blacksunsoldier", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "kavil", 
+              "ship": "ywing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "blasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "princexizor", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "virago"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 157, 
+        "name": "Jedediah", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "will", 
+            "player1points": 100, 
+            "player2": "Jedediah", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Preston", 
+            "player1points": 40, 
+            "player2": "Scott", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcus", 
+            "player1points": 100, 
+            "player2": "Spencer", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeff", 
+            "player1points": 61, 
+            "player2": "Bryan", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kacey", 
+            "player1points": 100, 
+            "player2": "Jessie", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan", 
+            "player1points": 0, 
+            "player2": "Justin", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Kacey", 
+            "player1points": 0, 
+            "player2": "Marcus", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin", 
+            "player1points": 100, 
+            "player2": "will", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott", 
+            "player1points": 100, 
+            "player2": "Jeff", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bryan", 
+            "player1points": 54, 
+            "player2": "Preston", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jedediah", 
+            "player1points": 0, 
+            "player2": "Spencer", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan", 
+            "player1points": 75, 
+            "player2": "Jessie", 
+            "player2points": 67, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Scott", 
+            "player1points": 35, 
+            "player2": "Justin", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Marcus", 
+            "player1points": 0, 
+            "player2": "Justin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott", 
+            "player1points": 100, 
+            "player2": "will", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Spencer", 
+            "player1points": 0, 
+            "player2": "Kacey", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Preston", 
+            "player1points": 64, 
+            "player2": "Jeff", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan", 
+            "player1points": 39, 
+            "player2": "Bryan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jessie", 
+            "player1points": 64, 
+            "player2": "Jedediah", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Justin", 
+            "player1points": 0, 
+            "player2": "Scott", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcus", 
+            "player1points": 34, 
+            "player2": "Preston", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jedediah", 
+            "player1points": 0, 
+            "player2": "Bryan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kacey", 
+            "player1points": 100, 
+            "player2": "will", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeff", 
+            "player1points": 67, 
+            "player2": "Ryan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Spencer", 
+            "player1points": 24, 
+            "player2": "Jessie", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Scott", 
+            "player1points": 100, 
+            "player2": "Preston", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin", 
+            "player1points": 100, 
+            "player2": "Kacey", 
+            "player2points": 35, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "102", 
+      "country": "Afghanistan", 
+      "lat": "35.960394800000", 
+      "lon": "-83.921026000000", 
+      "name": "102", 
+      "state": "Badghis"
+    }
+  }
+}

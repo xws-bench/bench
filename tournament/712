@@ -1,0 +1,157 @@
+{
+  "tournament": {
+    "date": "2015-11-04", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 712, 
+    "name": "Battle wizards X-Wing", 
+    "players": [
+      {
+        "mov": 440, 
+        "name": "Danie", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 378, 
+        "name": "Attie", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 345, 
+        "name": "Piet", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 9, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 215, 
+        "name": "Gert", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 205, 
+        "name": "Jan", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 217, 
+        "name": "Koos", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 1, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Jan", 
+            "player1points": 15, 
+            "player2": "Danie", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Piet", 
+            "player1points": 78, 
+            "player2": "Koos", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Attie", 
+            "player1points": 100, 
+            "player2": "Gert", 
+            "player2points": 45, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Piet", 
+            "player1points": 50, 
+            "player2": "Koos", 
+            "player2points": 50, 
+            "result": "draw"
+          }, 
+          {
+            "player1": "Gert", 
+            "player1points": 12, 
+            "player2": "Jan", 
+            "player2points": 82, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Danie", 
+            "player1points": 90, 
+            "player2": "Attie", 
+            "player2points": 33, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Piet", 
+            "player1points": 27, 
+            "player2": "Danie", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Koos", 
+            "player1points": 60, 
+            "player2": "Gert", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Attie", 
+            "player1points": 100, 
+            "player2": "Jan", 
+            "player2points": 20, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Kalgoorlie ", 
+      "country": "Australia", 
+      "lat": "59.329300000000", 
+      "lon": "18.068600000000", 
+      "name": "Boulder Bowling Club", 
+      "state": "Western Australia"
+    }
+  }
+}

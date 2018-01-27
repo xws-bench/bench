@@ -1,0 +1,787 @@
+{
+  "tournament": {
+    "date": "2017-11-04", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3597, 
+    "name": "Kavil classic", 
+    "players": [
+      {
+        "mov": 650, 
+        "name": "Ben Rampley", 
+        "rank": {
+          "elimination": 3, 
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "breachspecialist", 
+                  "tactician"
+                ], 
+                "ept": [
+                  "expertise"
+                ]
+              }
+            }, 
+            {
+              "name": "wookieeliberator", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "breachspecialist", 
+                  "tactician"
+                ], 
+                "ept": [
+                  "expertise"
+                ]
+              }
+            }, 
+            {
+              "name": "jesspava", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "m9g8"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 626, 
+        "name": "Josh Mattison", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 542, 
+        "name": "Chris Brown", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "ketsuonyo", 
+                  "dengar", 
+                  "4lom"
+                ], 
+                "ept": [
+                  "ascoretosettle"
+                ], 
+                "illicit": [
+                  "burnoutslam"
+                ], 
+                "title": [
+                  "houndstooth"
+                ]
+              }
+            }, 
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "lattsrazzi"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "gyroscopictargeting"
+                ], 
+                "title": [
+                  "shadowcaster"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 522, 
+        "name": "Justin Brown", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 481, 
+        "name": "Justin Clapper", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "kavil", 
+              "ship": "ywing", 
+              "upgrades": {
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }, 
+            {
+              "name": "dalanoberos", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "virago", 
+                  "starvipermkii"
+                ]
+              }
+            }, 
+            {
+              "name": "guri", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "starvipermkii"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 411, 
+        "name": "Jimi Dickey", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "tactician", 
+                  "c3po"
+                ], 
+                "ept": [
+                  "predator"
+                ]
+              }
+            }, 
+            {
+              "name": "norrawexley", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 392, 
+        "name": "Izzy Gambliel", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ], 
+                "ept": [
+                  "selflessness"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r4d6"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "crew": [
+                  "rey"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 365, 
+        "name": "Jeremy Button", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.69"
+      }, 
+      {
+        "mov": 340, 
+        "name": "Eric Blue", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "ascoretosettle"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "weaponsengineer", 
+                  "rebelcaptive"
+                ], 
+                "title": [
+                  "st321"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 337, 
+        "name": "Kyle Smith", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 337, 
+        "name": "Mike Riehl", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 232, 
+        "name": "Geoff (G-money)", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "guri", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "virago"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunassassin", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "starvipermkii"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunassassin", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "starvipermkii"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 217, 
+        "name": "Robert Cardwell", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 1, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 148, 
+        "name": "Ty Broady", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 0, 
+        "sos": "0.50"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Ben Rampley", 
+            "player1points": 100, 
+            "player2": "Justin Brown", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Mattison", 
+            "player1points": 56, 
+            "player2": "Jeremy Button", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jimi Dickey", 
+            "player1points": 100, 
+            "player2": "Eric Blue", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ty Broady", 
+            "player1points": 0, 
+            "player2": "Mike Riehl", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Izzy Gambliel", 
+            "player1points": 70, 
+            "player2": "Robert Cardwell", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Clapper", 
+            "player1points": 42, 
+            "player2": "Chris Brown", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kyle Smith", 
+            "player1points": 100, 
+            "player2": "Geoff (G-money)", 
+            "player2points": 34, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Chris Brown", 
+            "player1points": 100, 
+            "player2": "Mike Riehl", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeremy Button", 
+            "player1points": 53, 
+            "player2": "Ben Rampley", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kyle Smith", 
+            "player1points": 0, 
+            "player2": "Izzy Gambliel", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jimi Dickey", 
+            "player1points": 51, 
+            "player2": "Justin Brown", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robert Cardwell", 
+            "player1points": 57, 
+            "player2": "Eric Blue", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Mattison", 
+            "player1points": 100, 
+            "player2": "Ty Broady", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Clapper", 
+            "player1points": 33, 
+            "player2": "Geoff (G-money)", 
+            "player2points": 65, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Justin Brown", 
+            "player1points": 100, 
+            "player2": "Josh Mattison", 
+            "player2points": 74, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Ben Rampley", 
+            "player1points": 75, 
+            "player2": "Izzy Gambliel", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Brown", 
+            "player1points": 100, 
+            "player2": "Geoff (G-money)", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeremy Button", 
+            "player1points": 100, 
+            "player2": "Jimi Dickey", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Brown", 
+            "player1points": 100, 
+            "player2": "Mike Riehl", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kyle Smith", 
+            "player1points": 30, 
+            "player2": "Josh Mattison", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric Blue", 
+            "player1points": 100, 
+            "player2": "Ty Broady", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Clapper", 
+            "player1points": 100, 
+            "player2": "Robert Cardwell", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Ben Rampley", 
+            "player1points": 100, 
+            "player2": "Chris Brown", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Izzy Gambliel", 
+            "player1points": 35, 
+            "player2": "Josh Mattison", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Brown", 
+            "player1points": 100, 
+            "player2": "Eric Blue", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeremy Button", 
+            "player1points": 29, 
+            "player2": "Justin Clapper", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kyle Smith", 
+            "player1points": 69, 
+            "player2": "Mike Riehl", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jimi Dickey", 
+            "player1points": 100, 
+            "player2": "Geoff (G-money)", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robert Cardwell", 
+            "player1points": 35, 
+            "player2": "Ty Broady", 
+            "player2points": 30, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Ben Rampley", 
+            "player1points": 53, 
+            "player2": "Justin Brown", 
+            "player2points": 54, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Mattison", 
+            "player1points": 100, 
+            "player2": "Chris Brown", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Silverdale", 
+      "country": "United States of America", 
+      "lat": "47.659409100000", 
+      "lon": "-122.676631700000", 
+      "name": "", 
+      "state": "Washington"
+    }
+  }
+}

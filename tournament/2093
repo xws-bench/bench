@@ -1,0 +1,235 @@
+{
+  "tournament": {
+    "date": "2016-09-18", 
+    "format": "100 pts with 50 pts reinforcements ", 
+    "id": 2093, 
+    "name": "Reinforcements Have Arrived", 
+    "players": [
+      {
+        "mov": 610, 
+        "name": "Marty", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 544, 
+        "name": "Nick", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 527, 
+        "name": "Brad", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 527, 
+        "name": "Pete", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 508, 
+        "name": "Adrian", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.78"
+      }, 
+      {
+        "mov": 511, 
+        "name": "Adam", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 415, 
+        "name": "Jarrad", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 1, 
+        "sos": "0.22"
+      }, 
+      {
+        "mov": 376, 
+        "name": "Juliet", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 237, 
+        "name": "Mark", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 245, 
+        "name": "Phillip", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 0, 
+        "sos": "0.67"
+      }
+    ], 
+    "round_length": 85, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Jarrad", 
+            "player1points": 116, 
+            "player2": "Mark", 
+            "player2points": 125, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nick", 
+            "player1points": 52, 
+            "player2": "Brad", 
+            "player2points": 95, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pete", 
+            "player1points": 50, 
+            "player2": "Adrian", 
+            "player2points": 150, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Phillip", 
+            "player1points": 41, 
+            "player2": "Marty", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juliet", 
+            "player1points": 25, 
+            "player2": "Adam", 
+            "player2points": 125, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Adrian", 
+            "player1points": 116, 
+            "player2": "Brad", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marty", 
+            "player1points": 122, 
+            "player2": "Mark", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam", 
+            "player1points": 123, 
+            "player2": "Pete", 
+            "player2points": 150, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juliet", 
+            "player1points": 150, 
+            "player2": "Jarrad", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Phillip", 
+            "player1points": 25, 
+            "player2": "Nick", 
+            "player2points": 150, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Marty", 
+            "player1points": 100, 
+            "player2": "Adrian", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam", 
+            "player1points": 75, 
+            "player2": "Nick", 
+            "player2points": 87, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brad", 
+            "player1points": 150, 
+            "player2": "Juliet", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pete", 
+            "player1points": 150, 
+            "player2": "Mark", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Phillip", 
+            "player1points": 100, 
+            "player2": "Jarrad", 
+            "player2points": 150, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Adelaide", 
+      "country": "Australia", 
+      "lat": "-34.927428300000", 
+      "lon": "138.599899000000", 
+      "name": "Infinity Games", 
+      "state": "South Australia"
+    }
+  }
+}

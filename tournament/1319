@@ -1,0 +1,582 @@
+{
+  "tournament": {
+    "date": "2016-03-12", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1319, 
+    "name": "A Fistful of Dice - Store Championship 2016", 
+    "players": [
+      {
+        "mov": 662, 
+        "name": "Julian Hood", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 617, 
+        "name": "Scott Wallbank", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 2
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 557, 
+        "name": "Tom Duncan", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 539, 
+        "name": "Phil Rawles", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 524, 
+        "name": "Cadan Jones", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 478, 
+        "name": "Don Shields", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "gunner", 
+                  "bossk", 
+                  "tactician"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 487, 
+        "name": "Will Jones", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 463, 
+        "name": "Ben Cooper", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 401, 
+        "name": "Daniel Martin-Corben", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 354, 
+        "name": "Stephen Halman", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 352, 
+        "name": "Andrew Bailey", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 349, 
+        "name": "James Lunn", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 292, 
+        "name": "PJ Martin-Corben", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 328, 
+        "name": "Steve Churchett", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 311, 
+        "name": "Mike Richardson", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 299, 
+        "name": "Chris Cooper", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 295, 
+        "name": "James Robinson", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 271, 
+        "name": "Elvis Fisher", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 221, 
+        "name": "Stuart Robinson", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Scott Wallbank", 
+            "player1points": 100, 
+            "player2": "Stuart Robinson", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cadan Jones", 
+            "player1points": 100, 
+            "player2": "Steve Churchett", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tom Duncan", 
+            "player1points": 100, 
+            "player2": "James Lunn", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Will Jones", 
+            "player1points": 48, 
+            "player2": "Phil Rawles", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ben Cooper", 
+            "player1points": 100, 
+            "player2": "Daniel Martin-Corben", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Richardson", 
+            "player1points": 100, 
+            "player2": "PJ Martin-Corben", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Don Shields", 
+            "player1points": 100, 
+            "player2": "James Robinson", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Julian Hood", 
+            "player1points": 100, 
+            "player2": "Stephen Halman", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Cooper", 
+            "player1points": 15, 
+            "player2": "Elvis Fisher", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew Bailey", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Tom Duncan", 
+            "player1points": 100, 
+            "player2": "Mike Richardson", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Don Shields", 
+            "player1points": 100, 
+            "player2": "Andrew Bailey", 
+            "player2points": 41, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Elvis Fisher", 
+            "player1points": 26, 
+            "player2": "Cadan Jones", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott Wallbank", 
+            "player1points": 100, 
+            "player2": "Ben Cooper", 
+            "player2points": 43, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Phil Rawles", 
+            "player1points": 63, 
+            "player2": "Julian Hood", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stuart Robinson", 
+            "player1points": 100, 
+            "player2": "Stephen Halman", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Martin-Corben", 
+            "player1points": 36, 
+            "player2": "Will Jones", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Cooper", 
+            "player1points": 100, 
+            "player2": "Steve Churchett", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James Lunn", 
+            "player1points": 100, 
+            "player2": "James Robinson", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "PJ Martin-Corben", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Tom Duncan", 
+            "player1points": 100, 
+            "player2": "Scott Wallbank", 
+            "player2points": 50, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Scott Wallbank", 
+            "player1points": 100, 
+            "player2": "Don Shields", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cadan Jones", 
+            "player1points": 38, 
+            "player2": "Julian Hood", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tom Duncan", 
+            "player1points": 100, 
+            "player2": "PJ Martin-Corben", 
+            "player2points": 19, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Cooper", 
+            "player1points": 63, 
+            "player2": "Andrew Bailey", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James Lunn", 
+            "player1points": 100, 
+            "player2": "Will Jones", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stuart Robinson", 
+            "player1points": 0, 
+            "player2": "Ben Cooper", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Phil Rawles", 
+            "player1points": 100, 
+            "player2": "Mike Richardson", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Elvis Fisher", 
+            "player1points": 34, 
+            "player2": "Daniel Martin-Corben", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James Robinson", 
+            "player1points": 61, 
+            "player2": "Steve Churchett", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephen Halman", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Scott Wallbank", 
+            "player1points": 84, 
+            "player2": "Tom Duncan", 
+            "player2points": 43, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Julian Hood", 
+            "player1points": 100, 
+            "player2": "James Lunn", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Phil Rawles", 
+            "player1points": 100, 
+            "player2": "Andrew Bailey", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ben Cooper", 
+            "player1points": 70, 
+            "player2": "Don Shields", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cadan Jones", 
+            "player1points": 100, 
+            "player2": "Stuart Robinson", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Martin-Corben", 
+            "player1points": 100, 
+            "player2": "Mike Richardson", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Will Jones", 
+            "player1points": 100, 
+            "player2": "Elvis Fisher", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephen Halman", 
+            "player1points": 100, 
+            "player2": "Chris Cooper", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "PJ Martin-Corben", 
+            "player1points": 100, 
+            "player2": "Steve Churchett", 
+            "player2points": 77, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James Robinson", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Julian Hood", 
+            "player1points": 34, 
+            "player2": "Tom Duncan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott Wallbank", 
+            "player1points": 100, 
+            "player2": "Phil Rawles", 
+            "player2points": 41, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Portsmouth", 
+      "country": "United Kingdom", 
+      "lat": "50.803683100000", 
+      "lon": "-1.075613900000", 
+      "name": "A Fistful of Dice", 
+      "state": "Hampshire"
+    }
+  }
+}

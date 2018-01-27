@@ -1,0 +1,723 @@
+{
+  "tournament": {
+    "date": "2016-02-20", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1220, 
+    "name": "Deck Factory Store Championship", 
+    "players": [
+      {
+        "mov": 660, 
+        "name": "Tom Buis", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 637, 
+        "name": "Andrew Stirriatt", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 608, 
+        "name": "Jessie Allred", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "tech": [
+                  "weaponsguidance"
+                ]
+              }
+            }, 
+            {
+              "name": "keyanfarlander", 
+              "ship": "bwing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 602, 
+        "name": "Anthony Pierloussi", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 486, 
+        "name": "Zach Bart", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine", 
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "agentkallus"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 460, 
+        "name": "Chris 'Chico' Brown", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 435, 
+        "name": "Nick Ruivo", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 488, 
+        "name": "Dustin Parks", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 438, 
+        "name": "Kaleb Streets", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 481, 
+        "name": "Anthony Jones", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 477, 
+        "name": "Luke Carrington", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 468, 
+        "name": "Bryan Lerg", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 465, 
+        "name": "Ramon Jamili", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 406, 
+        "name": "Chad Gay", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 323, 
+        "name": "Hank Borton", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 305, 
+        "name": "Eric Crump", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 298, 
+        "name": "Jonathan Jenkins", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 290, 
+        "name": "Ethan Bearman", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 288, 
+        "name": "Chris Basey", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 256, 
+        "name": "Ted Haughan", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 226, 
+        "name": "Justin Neff", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 191, 
+        "name": "Nathan Comment", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 112, 
+        "name": "Ethan Stangland", 
+        "rank": {
+          "swiss": 23
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Tom Buis", 
+            "player1points": 100, 
+            "player2": "Ethan Stangland", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dustin Parks", 
+            "player1points": 44, 
+            "player2": "Jessie Allred", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luke Carrington", 
+            "player1points": 52, 
+            "player2": "Anthony Jones", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ted Haughan", 
+            "player1points": 15, 
+            "player2": "Zach Bart", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan Jenkins", 
+            "player1points": 100, 
+            "player2": "Ramon Jamili", 
+            "player2points": 45, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Neff", 
+            "player1points": 100, 
+            "player2": "Hank Borton", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kaleb Streets", 
+            "player1points": 100, 
+            "player2": "Nathan Comment", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nick Ruivo", 
+            "player1points": 100, 
+            "player2": "Ethan Bearman", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew Stirriatt", 
+            "player1points": 100, 
+            "player2": "Chris Basey", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bryan Lerg", 
+            "player1points": 70, 
+            "player2": "Chris 'Chico' Brown", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anthony Pierloussi", 
+            "player1points": 99, 
+            "player2": "Eric Crump", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chad Gay", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Chris 'Chico' Brown", 
+            "player1points": 100, 
+            "player2": "Anthony Jones", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Neff", 
+            "player1points": 0, 
+            "player2": "Andrew Stirriatt", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Zach Bart", 
+            "player1points": 100, 
+            "player2": "Anthony Pierloussi", 
+            "player2points": 55, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan Jenkins", 
+            "player1points": 57, 
+            "player2": "Tom Buis", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nick Ruivo", 
+            "player1points": 100, 
+            "player2": "Chad Gay", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kaleb Streets", 
+            "player1points": 68, 
+            "player2": "Dustin Parks", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ted Haughan", 
+            "player1points": 99, 
+            "player2": "Eric Crump", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jessie Allred", 
+            "player1points": 100, 
+            "player2": "Ethan Stangland", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Comment", 
+            "player1points": 26, 
+            "player2": "Chris Basey", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luke Carrington", 
+            "player1points": 100, 
+            "player2": "Ramon Jamili", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ethan Bearman", 
+            "player1points": 14, 
+            "player2": "Bryan Lerg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Hank Borton", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Tom Buis", 
+            "player1points": 24, 
+            "player2": "Andrew Stirriatt", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Chris 'Chico' Brown", 
+            "player1points": 100, 
+            "player2": "Nick Ruivo", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tom Buis", 
+            "player1points": 100, 
+            "player2": "Zach Bart", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew Stirriatt", 
+            "player1points": 100, 
+            "player2": "Kaleb Streets", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bryan Lerg", 
+            "player1points": 26, 
+            "player2": "Anthony Pierloussi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jessie Allred", 
+            "player1points": 100, 
+            "player2": "Jonathan Jenkins", 
+            "player2points": 18, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chad Gay", 
+            "player1points": 20, 
+            "player2": "Luke Carrington", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anthony Jones", 
+            "player1points": 100, 
+            "player2": "Justin Neff", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Hank Borton", 
+            "player1points": 100, 
+            "player2": "Ted Haughan", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Basey", 
+            "player1points": 12, 
+            "player2": "Dustin Parks", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ethan Stangland", 
+            "player1points": 32, 
+            "player2": "Ethan Bearman", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Comment", 
+            "player1points": 0, 
+            "player2": "Ramon Jamili", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric Crump", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Tom Buis", 
+            "player1points": 100, 
+            "player2": "Andrew Stirriatt", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris 'Chico' Brown", 
+            "player1points": 0, 
+            "player2": "Anthony Pierloussi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nick Ruivo", 
+            "player1points": 100, 
+            "player2": "Luke Carrington", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anthony Jones", 
+            "player1points": 75, 
+            "player2": "Zach Bart", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jessie Allred", 
+            "player1points": 100, 
+            "player2": "Hank Borton", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dustin Parks", 
+            "player1points": 100, 
+            "player2": "Jonathan Jenkins", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Basey", 
+            "player1points": 65, 
+            "player2": "Kaleb Streets", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bryan Lerg", 
+            "player1points": 100, 
+            "player2": "Justin Neff", 
+            "player2points": 14, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric Crump", 
+            "player1points": 98, 
+            "player2": "Ethan Bearman", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ramon Jamili", 
+            "player1points": 100, 
+            "player2": "Ted Haughan", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chad Gay", 
+            "player1points": 100, 
+            "player2": "Ethan Stangland", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Comment", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Tom Buis", 
+            "player1points": 100, 
+            "player2": "Anthony Pierloussi", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew Stirriatt", 
+            "player1points": 100, 
+            "player2": "Jessie Allred", 
+            "player2points": 60, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Fort Wayne", 
+      "country": "United States of America", 
+      "lat": "41.119099000000", 
+      "lon": "-85.124572000000", 
+      "name": "Deck Factory", 
+      "state": "Indiana"
+    }
+  }
+}

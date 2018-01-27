@@ -1,0 +1,977 @@
+{
+  "tournament": {
+    "date": "2016-03-19", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1390, 
+    "name": "Armored Gopher - Store Championship 2016", 
+    "players": [
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666"
+            }, 
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 58, 
+        "name": "Allan", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 107, 
+        "name": "Geri", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 657, 
+        "name": "Fred", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 629, 
+        "name": "Patrick", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit", 
+                  "wired"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit", 
+                  "wired"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 600, 
+        "name": "Rob", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "accuracycorrector"
+                ]
+              }
+            }, 
+            {
+              "name": "wardensquadronpilot", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "prototypepilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "missile": [
+                  "protonrockets"
+                ]
+              }
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2f2"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 512, 
+        "name": "Jeremy", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 497, 
+        "name": "David", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 442, 
+        "name": "Kanji", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "herasyndulla", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "niennunb", 
+                  "intelligenceagent"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 437, 
+        "name": "Joel", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 469, 
+        "name": "Doug", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 466, 
+        "name": "Sean", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "graysquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r4d6"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle"
+            }, 
+            {
+              "name": "herasyndulla", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent", 
+                  "niennunb"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 464, 
+        "name": "Paul", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 449, 
+        "name": "Alex", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "r4agromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "guri", 
+              "ship": "starviper"
+            }, 
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid", 
+                  "outlawtech"
+                ], 
+                "ept": [
+                  "calculation"
+                ], 
+                "illicit": [
+                  "hotshotblaster"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 422, 
+        "name": "Owen", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "crew": [
+                  "tactician", 
+                  "gunner", 
+                  "bossk"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "ionprojector"
+                ]
+              }
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "illicit": [
+                  "deadmansswitch"
+                ]
+              }
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "illicit": [
+                  "deadmansswitch"
+                ]
+              }
+            }, 
+            {
+              "name": "palobgodalhi", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "greedo"
+                ], 
+                "ept": [
+                  "determination"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 352, 
+        "name": "Anthony", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "emonazzameen", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges", 
+                  "proximitymines", 
+                  "clustermines"
+                ], 
+                "crew": [
+                  "bombardier"
+                ], 
+                "title": [
+                  "andrasta"
+                ]
+              }
+            }, 
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 300, 
+        "name": "Josh", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 288, 
+        "name": "Marty", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 230, 
+        "name": "Christopher", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 200, 
+        "name": "Cory", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 171, 
+        "name": "Stuart", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Jeremy", 
+            "player1points": 29, 
+            "player2": "Rob", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cory", 
+            "player1points": 0, 
+            "player2": "Kanji", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stuart", 
+            "player1points": 100, 
+            "player2": "Josh", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fred", 
+            "player1points": 65, 
+            "player2": "Christopher", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marty", 
+            "player1points": 25, 
+            "player2": "Sean", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Geri", 
+            "player1points": 0, 
+            "player2": "Alex", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anthony", 
+            "player1points": 100, 
+            "player2": "Owen", 
+            "player2points": 78, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Allan", 
+            "player1points": 0, 
+            "player2": "Paul", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Doug", 
+            "player1points": 42, 
+            "player2": "Joel", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David", 
+            "player1points": 25, 
+            "player2": "Patrick", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Anthony", 
+            "player1points": 100, 
+            "player2": "Alex", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fred", 
+            "player1points": 50, 
+            "player2": "Patrick", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stuart", 
+            "player1points": 21, 
+            "player2": "Rob", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean", 
+            "player1points": 70, 
+            "player2": "Kanji", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul", 
+            "player1points": 0, 
+            "player2": "Joel", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh", 
+            "player1points": 24, 
+            "player2": "Doug", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David", 
+            "player1points": 100, 
+            "player2": "Cory", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Geri", 
+            "player1points": 0, 
+            "player2": "Jeremy", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Owen", 
+            "player1points": 100, 
+            "player2": "Marty", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Allan", 
+            "player1points": 58, 
+            "player2": "Christopher", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Anthony", 
+            "player1points": 29, 
+            "player2": "Fred", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rob", 
+            "player1points": 71, 
+            "player2": "Joel", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kanji", 
+            "player1points": 24, 
+            "player2": "Jeremy", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean", 
+            "player1points": 100, 
+            "player2": "Doug", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stuart", 
+            "player1points": 0, 
+            "player2": "Alex", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christopher", 
+            "player1points": 30, 
+            "player2": "Owen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul", 
+            "player1points": 64, 
+            "player2": "David", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick", 
+            "player1points": 100, 
+            "player2": "Josh", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Geri", 
+            "player1points": 0, 
+            "player2": "Cory", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marty", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Fred", 
+            "player1points": 100, 
+            "player2": "Joel", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David", 
+            "player1points": 100, 
+            "player2": "Anthony", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Owen", 
+            "player1points": 0, 
+            "player2": "Patrick", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rob", 
+            "player1points": 100, 
+            "player2": "Sean", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeremy", 
+            "player1points": 100, 
+            "player2": "Alex", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kanji", 
+            "player1points": 50, 
+            "player2": "Marty", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stuart", 
+            "player1points": 24, 
+            "player2": "Doug", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul", 
+            "player1points": 100, 
+            "player2": "Cory", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christopher", 
+            "player1points": 23, 
+            "player2": "Josh", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Urbana", 
+      "country": "United States of America", 
+      "lat": "40.116420500000", 
+      "lon": "-88.243382800000", 
+      "name": "Armored Gopher", 
+      "state": "Illinois"
+    }
+  }
+}

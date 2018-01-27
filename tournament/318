@@ -1,0 +1,343 @@
+{
+  "tournament": {
+    "date": "2015-03-22", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 318, 
+    "name": "Dogs of War - March Store Tournament", 
+    "players": [
+      {
+        "mov": 425, 
+        "name": "Michael Tremarche", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 610, 
+        "name": "Josh Newell", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 567, 
+        "name": "Tony Albert", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 472, 
+        "name": "Kenny Fichter", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 451, 
+        "name": "John Frank", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 4
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 420, 
+        "name": "Adam Deardoff", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 389, 
+        "name": "Josh Wood", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 344, 
+        "name": "Eric Hall", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 305, 
+        "name": "Demian Watson", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 228, 
+        "name": "Fernando Cannaverde", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 239, 
+        "name": "Brian Hague", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Michael Tremarche", 
+            "player1points": 100, 
+            "player2": "Brian Hague", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Deardoff", 
+            "player1points": 100, 
+            "player2": "Fernando Cannaverde", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Newell", 
+            "player1points": 100, 
+            "player2": "Kenny Fichter", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Frank", 
+            "player1points": 63, 
+            "player2": "Eric Hall", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Wood", 
+            "player1points": 72, 
+            "player2": "Demian Watson", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tony Albert", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Adam Deardoff", 
+            "player1points": 25, 
+            "player2": "Josh Newell", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tony Albert", 
+            "player1points": 100, 
+            "player2": "Josh Wood", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Tremarche", 
+            "player1points": 100, 
+            "player2": "John Frank", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric Hall", 
+            "player1points": 41, 
+            "player2": "Brian Hague", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Demian Watson", 
+            "player1points": 46, 
+            "player2": "Fernando Cannaverde", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kenny Fichter", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "John Frank", 
+            "player1points": 100, 
+            "player2": "Kenny Fichter", 
+            "player2points": 40, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Josh Newell", 
+            "player1points": 60, 
+            "player2": "Tony Albert", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Tremarche", 
+            "player1points": 100, 
+            "player2": "Adam Deardoff", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric Hall", 
+            "player1points": 100, 
+            "player2": "Fernando Cannaverde", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kenny Fichter", 
+            "player1points": 100, 
+            "player2": "Josh Wood", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Frank", 
+            "player1points": 100, 
+            "player2": "Brian Hague", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Demian Watson", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Eric Hall", 
+            "player1points": 25, 
+            "player2": "Josh Newell", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tony Albert", 
+            "player1points": 57, 
+            "player2": "John Frank", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fernando Cannaverde", 
+            "player1points": 0, 
+            "player2": "Josh Wood", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kenny Fichter", 
+            "player1points": 100, 
+            "player2": "Demian Watson", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Deardoff", 
+            "player1points": 100, 
+            "player2": "Brian Hague", 
+            "player2points": 80, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Josh Newell", 
+            "player1points": 0, 
+            "player2": "John Frank", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tony Albert", 
+            "player1points": 0, 
+            "player2": "Kenny Fichter", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Melbourne", 
+      "country": "United States of America", 
+      "lat": "28.083626900000", 
+      "lon": "-80.608108800000", 
+      "name": "Dogs of War Gaming", 
+      "state": "Florida"
+    }
+  }
+}

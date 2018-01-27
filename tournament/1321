@@ -1,0 +1,933 @@
+{
+  "tournament": {
+    "date": "2016-03-05", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1321, 
+    "name": "Gnom Store Championship", 
+    "players": [
+      {
+        "mov": 734, 
+        "name": "Lukasz Golonka", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "crew": [
+                  "emperorpalpatine", 
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "experthandling"
+                ], 
+                "mod": [
+                  "ionprojector"
+                ], 
+                "title": [
+                  "dauntless"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 588, 
+        "name": "Daniel Kuzma", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 558, 
+        "name": "Kuba Zych", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 538, 
+        "name": "Andrzej Rodziewicz", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 531, 
+        "name": "Radoslaw Godzimirski", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "kathscarlet", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "k4securitydroid", 
+                  "weaponsengineer", 
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 468, 
+        "name": "Grzegorz Ociepka", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 405, 
+        "name": "Artur S Artur", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "darthvader", 
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 439, 
+        "name": "Jacek Radomski", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 408, 
+        "name": "Lukasz Wojcik", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "shieldupgrade"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 397, 
+        "name": "Jaroslaw Kwartnik", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 380, 
+        "name": "Krzysztof Zebrowski", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 373, 
+        "name": "Jerzy Michalek", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 385, 
+        "name": "Marcin Telego", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 347, 
+        "name": "Dariusz Madry", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "torpedo": [
+                  "flechettetorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 316, 
+        "name": "Mikolaj Szczotka", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 259, 
+        "name": "Lukasz Stawowy", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 236, 
+        "name": "Marcin Kruczek", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 227, 
+        "name": "Fabian Wandas", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "hansolo", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "mercenarycopilot", 
+                  "c3po"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "outmaneuver"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "weaponsguidance"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 211, 
+        "name": "Monika Zebrowska", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Jacek Radomski", 
+            "player1points": 100, 
+            "player2": "Monika Zebrowska", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dariusz Madry", 
+            "player1points": 37, 
+            "player2": "Jerzy Michalek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej Rodziewicz", 
+            "player1points": 25, 
+            "player2": "Kuba Zych", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin Telego", 
+            "player1points": 50, 
+            "player2": "Grzegorz Ociepka", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Radoslaw Godzimirski", 
+            "player1points": 100, 
+            "player2": "Mikolaj Szczotka", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lukasz Stawowy", 
+            "player1points": 100, 
+            "player2": "Krzysztof Zebrowski", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fabian Wandas", 
+            "player1points": 18, 
+            "player2": "Lukasz Golonka", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Kuzma", 
+            "player1points": 100, 
+            "player2": "Lukasz Wojcik", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jaroslaw Kwartnik", 
+            "player1points": 12, 
+            "player2": "Artur S Artur", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin Kruczek", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Lukasz Stawowy", 
+            "player1points": 0, 
+            "player2": "Lukasz Golonka", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kuba Zych", 
+            "player1points": 100, 
+            "player2": "Jacek Radomski", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Kuzma", 
+            "player1points": 100, 
+            "player2": "Jerzy Michalek", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grzegorz Ociepka", 
+            "player1points": 100, 
+            "player2": "Marcin Kruczek", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Artur S Artur", 
+            "player1points": 25, 
+            "player2": "Radoslaw Godzimirski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mikolaj Szczotka", 
+            "player1points": 30, 
+            "player2": "Jaroslaw Kwartnik", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin Telego", 
+            "player1points": 74, 
+            "player2": "Dariusz Madry", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lukasz Wojcik", 
+            "player1points": 100, 
+            "player2": "Monika Zebrowska", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej Rodziewicz", 
+            "player1points": 100, 
+            "player2": "Fabian Wandas", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Krzysztof Zebrowski", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Andrzej Rodziewicz", 
+            "player1points": 100, 
+            "player2": "Kuba Zych", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Kuba Zych", 
+            "player1points": 100, 
+            "player2": "Daniel Kuzma", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lukasz Golonka", 
+            "player1points": 100, 
+            "player2": "Grzegorz Ociepka", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Radoslaw Godzimirski", 
+            "player1points": 100, 
+            "player2": "Jaroslaw Kwartnik", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lukasz Stawowy", 
+            "player1points": 26, 
+            "player2": "Lukasz Wojcik", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej Rodziewicz", 
+            "player1points": 100, 
+            "player2": "Marcin Kruczek", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jacek Radomski", 
+            "player1points": 58, 
+            "player2": "Artur S Artur", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jerzy Michalek", 
+            "player1points": 100, 
+            "player2": "Krzysztof Zebrowski", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Monika Zebrowska", 
+            "player1points": 100, 
+            "player2": "Dariusz Madry", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin Telego", 
+            "player1points": 50, 
+            "player2": "Mikolaj Szczotka", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fabian Wandas", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Lukasz Golonka", 
+            "player1points": 100, 
+            "player2": "Kuba Zych", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Radoslaw Godzimirski", 
+            "player1points": 31, 
+            "player2": "Daniel Kuzma", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lukasz Wojcik", 
+            "player1points": 29, 
+            "player2": "Andrzej Rodziewicz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grzegorz Ociepka", 
+            "player1points": 100, 
+            "player2": "Jerzy Michalek", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fabian Wandas", 
+            "player1points": 30, 
+            "player2": "Jacek Radomski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Artur S Artur", 
+            "player1points": 100, 
+            "player2": "Mikolaj Szczotka", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lukasz Stawowy", 
+            "player1points": 33, 
+            "player2": "Jaroslaw Kwartnik", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Krzysztof Zebrowski", 
+            "player1points": 100, 
+            "player2": "Marcin Kruczek", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Monika Zebrowska", 
+            "player1points": 26, 
+            "player2": "Marcin Telego", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dariusz Madry", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Lukasz Golonka", 
+            "player1points": 0, 
+            "player2": "Andrzej Rodziewicz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Kuzma", 
+            "player1points": 0, 
+            "player2": "Kuba Zych", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Bielsko-Biala", 
+      "country": "Poland", 
+      "lat": "49.822118000000", 
+      "lon": "19.044893600000", 
+      "name": "", 
+      "state": "Slaskie"
+    }
+  }
+}

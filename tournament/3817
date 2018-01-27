@@ -1,0 +1,1768 @@
+{
+  "tournament": {
+    "date": "2018-01-06", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3817, 
+    "name": "X-wing Regionals, Dice and Legends", 
+    "players": [
+      {
+        "mov": 149, 
+        "name": "Stephan", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.35"
+      }, 
+      {
+        "mov": 229, 
+        "name": "Friso", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.60"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "kyloren", 
+                  "rebelcaptive", 
+                  "gunner"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 701, 
+        "name": "Frans", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 1
+        }, 
+        "score": 5, 
+        "sos": "0.57"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "bistan", 
+                  "c3po"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "illicit": [
+                  "riggedcargochute"
+                ], 
+                "mod": [
+                  "smugglingcompartment", 
+                  "countermeasures"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "intensity"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 724, 
+        "name": "Mark Z", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 2
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "samd": [
+                  "r5p8"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines", 
+                  "thermaldetonators"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 713, 
+        "name": "Rick N", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 3
+        }, 
+        "score": 4, 
+        "sos": "0.48"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "chopper", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "tactician", 
+                  "rey"
+                ], 
+                "mod": [
+                  "ionprojector"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "title": [
+                  "phantom"
+                ]
+              }
+            }, 
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "drawtheirfire"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 698, 
+        "name": "Niek B", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 4
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "targetingsynchronizer"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "rhosquadronveteran", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 680, 
+        "name": "Arnaud", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 5
+        }, 
+        "score": 4, 
+        "sos": "0.60"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "ept": [
+                  "adaptability"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 655, 
+        "name": "Rick P", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 6
+        }, 
+        "score": 4, 
+        "sos": "0.68"
+      }, 
+      {
+        "mov": 634, 
+        "name": "Ashok", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 7
+        }, 
+        "score": 4, 
+        "sos": "0.65"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "wedgeantilles", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "flightassistastromech"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 615, 
+        "name": "Jonathan K", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 8
+        }, 
+        "score": 3, 
+        "sos": "0.60"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "rey"
+                ], 
+                "ept": [
+                  "drawtheirfire"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "jesspava", 
+              "ship": "t70xwing"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 613, 
+        "name": "Faan", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon", 
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "riggedcargochute"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "bomb": [
+                  "ionbombs"
+                ], 
+                "cannon": [
+                  "ioncannon", 
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "riggedcargochute"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 585, 
+        "name": "Niels V", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 3, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 581, 
+        "name": "Jimmy", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 3, 
+        "sos": "0.53"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "nusquadronpilot", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ]
+              }
+            }, 
+            {
+              "name": "nusquadronpilot", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ]
+              }
+            }, 
+            {
+              "name": "nusquadronpilot", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 556, 
+        "name": "Mankit", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 3, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 553, 
+        "name": "Frank", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 3, 
+        "sos": "0.60"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "nusquadronpilot", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "title": [
+                  "os1arsenalloadout"
+                ]
+              }
+            }, 
+            {
+              "name": "nusquadronpilot", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "title": [
+                  "os1arsenalloadout"
+                ]
+              }
+            }, 
+            {
+              "name": "kyloren", 
+              "ship": "tiesilencer", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ], 
+                "title": [
+                  "firstordervanguard"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 548, 
+        "name": "Bastiaan", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 3, 
+        "sos": "0.52"
+      }, 
+      {
+        "mov": 527, 
+        "name": "Josh", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 509, 
+        "name": "Raphael", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 3, 
+        "sos": "0.48"
+      }, 
+      {
+        "mov": 501, 
+        "name": "Martijn S", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 3, 
+        "sos": "0.65"
+      }, 
+      {
+        "mov": 496, 
+        "name": "Marden", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 3, 
+        "sos": "0.32"
+      }, 
+      {
+        "mov": 465, 
+        "name": "Wouter", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 565, 
+        "name": "Charlie", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 2, 
+        "sos": "0.36"
+      }, 
+      {
+        "mov": 545, 
+        "name": "Joost", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 2, 
+        "sos": "0.48"
+      }, 
+      {
+        "mov": 526, 
+        "name": "Rob M", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 2, 
+        "sos": "0.52"
+      }, 
+      {
+        "mov": 526, 
+        "name": "Erik B", 
+        "rank": {
+          "swiss": 23
+        }, 
+        "score": 2, 
+        "sos": "0.32"
+      }, 
+      {
+        "mov": 453, 
+        "name": "Kim", 
+        "rank": {
+          "swiss": 24
+        }, 
+        "score": 2, 
+        "sos": "0.36"
+      }, 
+      {
+        "mov": 436, 
+        "name": "Rob P", 
+        "rank": {
+          "swiss": 25
+        }, 
+        "score": 2, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 430, 
+        "name": "Jonathan V", 
+        "rank": {
+          "swiss": 26
+        }, 
+        "score": 2, 
+        "sos": "0.48"
+      }, 
+      {
+        "mov": 429, 
+        "name": "Mas", 
+        "rank": {
+          "swiss": 27
+        }, 
+        "score": 2, 
+        "sos": "0.49"
+      }, 
+      {
+        "mov": 379, 
+        "name": "Jacob", 
+        "rank": {
+          "swiss": 28
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 377, 
+        "name": "Oliver", 
+        "rank": {
+          "swiss": 29
+        }, 
+        "score": 2, 
+        "sos": "0.65"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "captainrex", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "intensity"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 351, 
+        "name": "Thomas", 
+        "rank": {
+          "swiss": 30
+        }, 
+        "score": 2, 
+        "sos": "0.49"
+      }, 
+      {
+        "mov": 374, 
+        "name": "Niek G", 
+        "rank": {
+          "swiss": 31
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 356, 
+        "name": "Leo", 
+        "rank": {
+          "swiss": 32
+        }, 
+        "score": 1, 
+        "sos": "0.40"
+      }, 
+      {
+        "mov": 206, 
+        "name": "Klaas Harm", 
+        "rank": {
+          "swiss": 33
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 315, 
+        "name": "Francis", 
+        "rank": {
+          "swiss": 34
+        }, 
+        "score": 0, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Arnaud", 
+            "player1points": 100, 
+            "player2": "Thomas", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bastiaan", 
+            "player1points": 29, 
+            "player2": "Raphael", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Charlie", 
+            "player1points": 24, 
+            "player2": "Jacob", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erik B", 
+            "player1points": 44, 
+            "player2": "Mankit", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Faan", 
+            "player1points": 44, 
+            "player2": "Joost", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francis", 
+            "player1points": 41, 
+            "player2": "Frank", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Frans", 
+            "player1points": 100, 
+            "player2": "Rob M", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Friso", 
+            "player1points": 100, 
+            "player2": "Mas", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jimmy", 
+            "player1points": 0, 
+            "player2": "Rick N", 
+            "player2points": 55, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan K", 
+            "player1points": 25, 
+            "player2": "Jonathan V", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh", 
+            "player1points": 25, 
+            "player2": "Niek B", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kim", 
+            "player1points": 27, 
+            "player2": "Wouter", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Klaas Harm", 
+            "player1points": 0, 
+            "player2": "Mark Z", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marden", 
+            "player1points": 36, 
+            "player2": "Rob P", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Niek G", 
+            "player1points": 54, 
+            "player2": "Stephan", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rick P", 
+            "player1points": 0, 
+            "player2": "Leo", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ashok", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Martijn S", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Niels V", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Oliver", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Martijn S", 
+            "player1points": 41, 
+            "player2": "Ashok", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Arnaud", 
+            "player1points": 0, 
+            "player2": "Rick P", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rob P", 
+            "player1points": 100, 
+            "player2": "Niek G", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wouter", 
+            "player1points": 51, 
+            "player2": "Frank", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Oliver", 
+            "player1points": 100, 
+            "player2": "Bastiaan", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Niels V", 
+            "player1points": 31, 
+            "player2": "Jonathan K", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Faan", 
+            "player1points": 28, 
+            "player2": "Mark Z", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Friso", 
+            "player1points": 33, 
+            "player2": "Frans", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rick N", 
+            "player1points": 44, 
+            "player2": "Mankit", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Niek B", 
+            "player1points": 100, 
+            "player2": "Jacob", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas", 
+            "player1points": 0, 
+            "player2": "Rob M", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephan", 
+            "player1points": 0, 
+            "player2": "Joost", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erik B", 
+            "player1points": 14, 
+            "player2": "Raphael", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kim", 
+            "player1points": 47, 
+            "player2": "Francis", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mas", 
+            "player1points": 100, 
+            "player2": "Charlie", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marden", 
+            "player1points": 51, 
+            "player2": "Jonathan V", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh", 
+            "player1points": 27, 
+            "player2": "Jimmy", 
+            "player2points": 76, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Leo", 
+            "player1points": 22, 
+            "player2": "Klaas Harm", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Frans", 
+            "player1points": 70, 
+            "player2": "Mark Z", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Mark Z", 
+            "player1points": 100, 
+            "player2": "Mankit", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rick P", 
+            "player1points": 31, 
+            "player2": "Jonathan K", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rob P", 
+            "player1points": 21, 
+            "player2": "Ashok", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Frans", 
+            "player1points": 0, 
+            "player2": "Frank", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Oliver", 
+            "player1points": 56, 
+            "player2": "Niek B", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joost", 
+            "player1points": 0, 
+            "player2": "Arnaud", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Raphael", 
+            "player1points": 31, 
+            "player2": "Niek G", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kim", 
+            "player1points": 58, 
+            "player2": "Martijn S", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jacob", 
+            "player1points": 100, 
+            "player2": "Jonathan V", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Friso", 
+            "player1points": 45, 
+            "player2": "Jimmy", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bastiaan", 
+            "player1points": 82, 
+            "player2": "Rob M", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rick N", 
+            "player1points": 100, 
+            "player2": "Klaas Harm", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wouter", 
+            "player1points": 25, 
+            "player2": "Niels V", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Faan", 
+            "player1points": 0, 
+            "player2": "Mas", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erik B", 
+            "player1points": 49, 
+            "player2": "Thomas", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephan", 
+            "player1points": 16, 
+            "player2": "Charlie", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh", 
+            "player1points": 100, 
+            "player2": "Francis", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Leo", 
+            "player1points": 22, 
+            "player2": "Marden", 
+            "player2points": 37, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Frans", 
+            "player1points": 100, 
+            "player2": "Ashok", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark Z", 
+            "player1points": 21, 
+            "player2": "Rick P", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Niek B", 
+            "player1points": 100, 
+            "player2": "Bastiaan", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mankit", 
+            "player1points": 0, 
+            "player2": "Martijn S", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Frank", 
+            "player1points": 60, 
+            "player2": "Arnaud", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jimmy", 
+            "player1points": 31, 
+            "player2": "Jonathan K", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mas", 
+            "player1points": 29, 
+            "player2": "Raphael", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Niels V", 
+            "player1points": 100, 
+            "player2": "Oliver", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rick N", 
+            "player1points": 64, 
+            "player2": "Rob P", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jacob", 
+            "player1points": 50, 
+            "player2": "Josh", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rob M", 
+            "player1points": 56, 
+            "player2": "Jonathan V", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas", 
+            "player1points": 100, 
+            "player2": "Friso", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wouter", 
+            "player1points": 39, 
+            "player2": "Niek G", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joost", 
+            "player1points": 33, 
+            "player2": "Marden", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Faan", 
+            "player1points": 100, 
+            "player2": "Klaas Harm", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kim", 
+            "player1points": 16, 
+            "player2": "Charlie", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephan", 
+            "player1points": 56, 
+            "player2": "Erik B", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Leo", 
+            "player1points": 75, 
+            "player2": "Francis", 
+            "player2points": 61, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Frans", 
+            "player1points": 100, 
+            "player2": "Niek B", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rick P", 
+            "player1points": 0, 
+            "player2": "Mark Z", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Frans", 
+            "player1points": 100, 
+            "player2": "Rick P", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Niek B", 
+            "player1points": 60, 
+            "player2": "Arnaud", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Raphael", 
+            "player1points": 28, 
+            "player2": "Mark Z", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rick N", 
+            "player1points": 100, 
+            "player2": "Martijn S", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ashok", 
+            "player1points": 76, 
+            "player2": "Niels V", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan K", 
+            "player1points": 47, 
+            "player2": "Frank", 
+            "player2points": 57, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan V", 
+            "player1points": 0, 
+            "player2": "Joost", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Charlie", 
+            "player1points": 55, 
+            "player2": "Wouter", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mankit", 
+            "player1points": 100, 
+            "player2": "Mas", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jimmy", 
+            "player1points": 100, 
+            "player2": "Jacob", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rob P", 
+            "player1points": 26, 
+            "player2": "Josh", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas", 
+            "player1points": 0, 
+            "player2": "Bastiaan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Faan", 
+            "player1points": 100, 
+            "player2": "Oliver", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Leo", 
+            "player1points": 0, 
+            "player2": "Kim", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marden", 
+            "player1points": 100, 
+            "player2": "Niek G", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Klaas Harm", 
+            "player1points": 28, 
+            "player2": "Rob M", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erik B", 
+            "player1points": 100, 
+            "player2": "Francis", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Frans", 
+            "player1points": 100, 
+            "player2": "Jonathan K", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Niek B", 
+            "player1points": 100, 
+            "player2": "Arnaud", 
+            "player2points": 82, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rick N", 
+            "player1points": 62, 
+            "player2": "Rick P", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark Z", 
+            "player1points": 59, 
+            "player2": "Ashok", 
+            "player2points": 28, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 8, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Regional", 
+    "venue": {
+      "city": "Amersfoort", 
+      "country": "Netherlands", 
+      "lat": "52.163773900000", 
+      "lon": "5.396587949352", 
+      "name": "", 
+      "state": "Utrecht"
+    }
+  }
+}

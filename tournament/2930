@@ -1,0 +1,877 @@
+{
+  "tournament": {
+    "date": "2017-06-03", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2930, 
+    "name": "Dice & Legends Q1/Q2", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "puresabacc", 
+              "ship": "tiestriker", 
+              "upgrades": {
+                "ept": [
+                  "trickshot"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "decoy"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 706, 
+        "name": "Martijn S.", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "jesspava", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "m9g8"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 549, 
+        "name": "Rens S.", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "lattsrazzi"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ]
+              }
+            }, 
+            {
+              "name": "palobgodalhi", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 546, 
+        "name": "Frank", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "lattsrazzi"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ]
+              }
+            }, 
+            {
+              "name": "palobgodalhi", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 534, 
+        "name": "Stjepan", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "resistancesympathizer", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist", 
+                  "janors"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ]
+              }
+            }, 
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "lukeskywalker"
+                ], 
+                "ept": [
+                  "ascoretosettle"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 526, 
+        "name": "Bjorn", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "puresabacc", 
+              "ship": "tiestriker", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "decoy"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 487, 
+        "name": "Richard", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "talonbanecobra", 
+              "ship": "kihraxzfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "scavengercrane"
+                ], 
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "ionprojector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 419, 
+        "name": "Joep", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 413, 
+        "name": "Erik B", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 413, 
+        "name": "Marden", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 326, 
+        "name": "Toon", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 288, 
+        "name": "Klaas Harm", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 343, 
+        "name": "Friso", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 281, 
+        "name": "Peter", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 1, 
+        "sos": "0.31"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "tomaxbren", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "protontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 230, 
+        "name": "Erwin S.", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 1, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 189, 
+        "name": "Rob", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges", 
+                  "clustermines"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "herasyndulla", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist", 
+                  "janors"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 150, 
+        "name": "Silvie", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 0, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Rob", 
+            "player1points": 27, 
+            "player2": "Frank", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stjepan", 
+            "player1points": 100, 
+            "player2": "Erwin S.", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erik B", 
+            "player1points": 100, 
+            "player2": "Klaas Harm", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joep", 
+            "player1points": 64, 
+            "player2": "Peter", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marden", 
+            "player1points": 100, 
+            "player2": "Toon", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Richard", 
+            "player1points": 100, 
+            "player2": "Silvie", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martijn S.", 
+            "player1points": 100, 
+            "player2": "Friso", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rens S.", 
+            "player1points": 100, 
+            "player2": "Bjorn", 
+            "player2points": 26, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Erik B", 
+            "player1points": 26, 
+            "player2": "Rens S.", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Richard", 
+            "player1points": 59, 
+            "player2": "Martijn S.", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Frank", 
+            "player1points": 100, 
+            "player2": "Marden", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stjepan", 
+            "player1points": 100, 
+            "player2": "Joep", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Friso", 
+            "player1points": 76, 
+            "player2": "Klaas Harm", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Peter", 
+            "player1points": 26, 
+            "player2": "Toon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bjorn", 
+            "player1points": 100, 
+            "player2": "Silvie", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rob", 
+            "player1points": 100, 
+            "player2": "Erwin S.", 
+            "player2points": 53, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Stjepan", 
+            "player1points": 0, 
+            "player2": "Martijn S.", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Frank", 
+            "player1points": 100, 
+            "player2": "Rens S.", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Klaas Harm", 
+            "player1points": 100, 
+            "player2": "Joep", 
+            "player2points": 76, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erik B", 
+            "player1points": 100, 
+            "player2": "Rob", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marden", 
+            "player1points": 45, 
+            "player2": "Bjorn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Toon", 
+            "player1points": 100, 
+            "player2": "Richard", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Silvie", 
+            "player1points": 66, 
+            "player2": "Erwin S.", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Friso", 
+            "player1points": 100, 
+            "player2": "Peter", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Martijn S.", 
+            "player1points": 100, 
+            "player2": "Frank", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stjepan", 
+            "player1points": 100, 
+            "player2": "Klaas Harm", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rens S.", 
+            "player1points": 100, 
+            "player2": "Toon", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bjorn", 
+            "player1points": 100, 
+            "player2": "Erik B", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Friso", 
+            "player1points": 32, 
+            "player2": "Marden", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Richard", 
+            "player1points": 100, 
+            "player2": "Erwin S.", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rob", 
+            "player1points": 15, 
+            "player2": "Joep", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Silvie", 
+            "player1points": 33, 
+            "player2": "Peter", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Amersfoort", 
+      "country": "Netherlands", 
+      "lat": "52.163773900000", 
+      "lon": "5.396587949352", 
+      "name": "", 
+      "state": "Utrecht"
+    }
+  }
+}

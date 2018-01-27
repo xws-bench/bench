@@ -1,0 +1,1192 @@
+{
+  "tournament": {
+    "date": "2015-11-29", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 899, 
+    "name": "Imaginaire casual tourney", 
+    "players": [
+      {
+        "mov": 806, 
+        "name": "Jonathan Maisonneuve", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 23, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 855, 
+        "name": "Francois Beaumont", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "jakefarrell", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "hortonsalm", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 742, 
+        "name": "Peter Lavoie Massicotte", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 623, 
+        "name": "Kevin Berthiaume", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 563, 
+        "name": "Louka Dube", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ndrusuhlak", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88a", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 555, 
+        "name": "Michael Juneau", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "landocalrissian"
+                ], 
+                "ept": [
+                  "wired"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 554, 
+        "name": "Jimmy Tremblay", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "targetingcomputer", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ], 
+                "system": [
+                  "enhancedscopes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 592, 
+        "name": "Steve Coulterman", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "ysanneisard", 
+                  "gunner", 
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 463, 
+        "name": "Chris Fortier", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "hortonsalm", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "blueace", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 512, 
+        "name": "Pierrick Bilodeau", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2f2"
+                ]
+              }
+            }, 
+            {
+              "name": "janors", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "ept": [
+                  "wingman"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "hortonsalm", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r2d6"
+                ], 
+                "ept": [
+                  "expose"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 455, 
+        "name": "Vincent Hamelin", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "tychocelchu", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "munitionsfailsafe"
+                ]
+              }
+            }, 
+            {
+              "name": "wedgeantilles", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "outmaneuver"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "dutchvander", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 398, 
+        "name": "Sylvie Lacroix", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "talonbanecobra", 
+              "ship": "kihraxzfighter", 
+              "upgrades": {
+                "ept": [
+                  "swarmtactics"
+                ], 
+                "missile": [
+                  "advhomingmissiles"
+                ], 
+                "mod": [
+                  "shieldupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "hiredgun", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "r4agromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "kavil", 
+              "ship": "ywing", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 397, 
+        "name": "Gab Dub", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 391, 
+        "name": "Julie F Hamelin", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit", 
+                  "wired"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "daggersquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "keyanfarlander", 
+              "ship": "bwing", 
+              "upgrades": {
+                "ept": [
+                  "stayontarget"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ]
+              }
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 399, 
+        "name": "Michel Mony", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "lieutenantcolzet", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "junoeclipse", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 267, 
+        "name": "Steven Mckibbin", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "turrphennir", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "targetingcomputer"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "targetingcomputer"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "tetrancowall", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "targetingcomputer"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 178, 
+        "name": "Alexandre Dias", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Alexandre Dias", 
+            "player1points": 0, 
+            "player2": "Jonathan Maisonneuve", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gab Dub", 
+            "player1points": 100, 
+            "player2": "Michel Mony", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Fortier", 
+            "player1points": 100, 
+            "player2": "Peter Lavoie Massicotte", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Louka Dube", 
+            "player1points": 16, 
+            "player2": "Steve Coulterman", 
+            "player2points": 88, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francois Beaumont", 
+            "player1points": 100, 
+            "player2": "Jimmy Tremblay", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vincent Hamelin", 
+            "player1points": 27, 
+            "player2": "Julie F Hamelin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pierrick Bilodeau", 
+            "player1points": 100, 
+            "player2": "Sylvie Lacroix", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Berthiaume", 
+            "player1points": 50, 
+            "player2": "Michael Juneau", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steven Mckibbin", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Michael Juneau", 
+            "player1points": 100, 
+            "player2": "Steven Mckibbin", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Julie F Hamelin", 
+            "player1points": 32, 
+            "player2": "Chris Fortier", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gab Dub", 
+            "player1points": 0, 
+            "player2": "Francois Beaumont", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steve Coulterman", 
+            "player1points": 100, 
+            "player2": "Pierrick Bilodeau", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan Maisonneuve", 
+            "player1points": 100, 
+            "player2": "Sylvie Lacroix", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michel Mony", 
+            "player1points": 31, 
+            "player2": "Peter Lavoie Massicotte", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Louka Dube", 
+            "player1points": 100, 
+            "player2": "Alexandre Dias", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jimmy Tremblay", 
+            "player1points": 50, 
+            "player2": "Kevin Berthiaume", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vincent Hamelin", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Francois Beaumont", 
+            "player1points": 100, 
+            "player2": "Steve Coulterman", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Fortier", 
+            "player1points": 0, 
+            "player2": "Michael Juneau", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan Maisonneuve", 
+            "player1points": 100, 
+            "player2": "Julie F Hamelin", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Berthiaume", 
+            "player1points": 100, 
+            "player2": "Pierrick Bilodeau", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Peter Lavoie Massicotte", 
+            "player1points": 100, 
+            "player2": "Gab Dub", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vincent Hamelin", 
+            "player1points": 100, 
+            "player2": "Steven Mckibbin", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Louka Dube", 
+            "player1points": 51, 
+            "player2": "Michel Mony", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alexandre Dias", 
+            "player1points": 0, 
+            "player2": "Jimmy Tremblay", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sylvie Lacroix", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Michael Juneau", 
+            "player1points": 0, 
+            "player2": "Francois Beaumont", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan Maisonneuve", 
+            "player1points": 65, 
+            "player2": "Steve Coulterman", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Berthiaume", 
+            "player1points": 100, 
+            "player2": "Vincent Hamelin", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Louka Dube", 
+            "player1points": 68, 
+            "player2": "Chris Fortier", 
+            "player2points": 78, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Peter Lavoie Massicotte", 
+            "player1points": 100, 
+            "player2": "Steven Mckibbin", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gab Dub", 
+            "player1points": 26, 
+            "player2": "Jimmy Tremblay", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Julie F Hamelin", 
+            "player1points": 49, 
+            "player2": "Sylvie Lacroix", 
+            "player2points": 78, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pierrick Bilodeau", 
+            "player1points": 100, 
+            "player2": "Alexandre Dias", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michel Mony", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Francois Beaumont", 
+            "player1points": 44, 
+            "player2": "Jonathan Maisonneuve", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Peter Lavoie Massicotte", 
+            "player1points": 100, 
+            "player2": "Michael Juneau", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Berthiaume", 
+            "player1points": 100, 
+            "player2": "Chris Fortier", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vincent Hamelin", 
+            "player1points": 56, 
+            "player2": "Louka Dube", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steve Coulterman", 
+            "player1points": 52, 
+            "player2": "Sylvie Lacroix", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jimmy Tremblay", 
+            "player1points": 64, 
+            "player2": "Pierrick Bilodeau", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Julie F Hamelin", 
+            "player1points": 42, 
+            "player2": "Michel Mony", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steven Mckibbin", 
+            "player1points": 33, 
+            "player2": "Gab Dub", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alexandre Dias", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Quebec City", 
+      "country": "Canada", 
+      "lat": "46.769114000000", 
+      "lon": "-71.284930000000", 
+      "name": "L'Imaginaire", 
+      "state": "Quebec"
+    }
+  }
+}

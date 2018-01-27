@@ -1,0 +1,132 @@
+{
+  "tournament": {
+    "date": "2016-03-06", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1282, 
+    "name": "", 
+    "players": [
+      {
+        "mov": 383, 
+        "name": "Corellia's Best", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 325, 
+        "name": "Black Dog", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 323, 
+        "name": "Dash A to Z", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 169, 
+        "name": "Vader's Best", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Corellia's Best", 
+            "player1points": 73, 
+            "player2": "Black Dog", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dash A to Z", 
+            "player1points": 100, 
+            "player2": "Vader's Best", 
+            "player2points": 34, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Corellia's Best", 
+            "player1points": 100, 
+            "player2": "Dash A to Z", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Black Dog", 
+            "player1points": 75, 
+            "player2": "Vader's Best", 
+            "player2points": 35, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Black Dog", 
+            "player1points": 100, 
+            "player2": "Vader's Best", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Corellia's Best", 
+            "player1points": 45, 
+            "player2": "Dash A to Z", 
+            "player2points": 46, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Corellia's Best", 
+            "player1points": 56, 
+            "player2": "Black Dog", 
+            "player2points": 55, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Kalgoorlie ", 
+      "country": "Australia", 
+      "lat": "59.329300000000", 
+      "lon": "18.068600000000", 
+      "name": "Boulder Bowling Club", 
+      "state": "Western Australia"
+    }
+  }
+}

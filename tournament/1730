@@ -1,0 +1,184 @@
+{
+  "tournament": {
+    "date": "2016-06-04", 
+    "format": "Escalation", 
+    "id": 1730, 
+    "name": "Black Moon June Escalation Tournament", 
+    "players": [
+      {
+        "mov": 565, 
+        "name": "Josh Westbrook", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 527, 
+        "name": "Drew Brown", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 498, 
+        "name": "J-Wheezy", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 497, 
+        "name": "Tony Vanderberg", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 279, 
+        "name": "Fritz", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 154, 
+        "name": "Dan Beard", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 90, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Dan Beard", 
+            "player1points": 15, 
+            "player2": "J-Wheezy", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tony Vanderberg", 
+            "player1points": 19, 
+            "player2": "Josh Westbrook", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Drew Brown", 
+            "player1points": 60, 
+            "player2": "Fritz", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Drew Brown", 
+            "player1points": 46, 
+            "player2": "Josh Westbrook", 
+            "player2points": 90, 
+            "result": "win"
+          }, 
+          {
+            "player1": "J-Wheezy", 
+            "player1points": 90, 
+            "player2": "Tony Vanderberg", 
+            "player2points": 41, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dan Beard", 
+            "player1points": 31, 
+            "player2": "Fritz", 
+            "player2points": 90, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "J-Wheezy", 
+            "player1points": 90, 
+            "player2": "Drew Brown", 
+            "player2points": 120, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Westbrook", 
+            "player1points": 120, 
+            "player2": "Fritz", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tony Vanderberg", 
+            "player1points": 120, 
+            "player2": "Dan Beard", 
+            "player2points": 19, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Josh Westbrook", 
+            "player1points": 105, 
+            "player2": "J-Wheezy", 
+            "player2points": 119, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Drew Brown", 
+            "player1points": 150, 
+            "player2": "Dan Beard", 
+            "player2points": 89, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fritz", 
+            "player1points": 84, 
+            "player2": "Tony Vanderberg", 
+            "player2points": 150, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Lebanon ", 
+      "country": "United States of America", 
+      "lat": "43.642538100000", 
+      "lon": "-72.251382900000", 
+      "name": "Black Moon Games", 
+      "state": "New Hampshire"
+    }
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "tournament": {
+    "date": "2017-06-10", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3066, 
+    "name": "GNK X-wing Tournament", 
+    "players": [
+      {
+        "mov": 568, 
+        "name": "daniel bryan", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 400, 
+        "name": "gavin i", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.78"
+      }, 
+      {
+        "mov": 312, 
+        "name": "keith graves", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 298, 
+        "name": "richard h", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.22"
+      }, 
+      {
+        "mov": 287, 
+        "name": "brad pate", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 249, 
+        "name": "keith pres", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 170, 
+        "name": "david", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 0, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 116, 
+        "name": "kirk", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "0.78"
+      }
+    ], 
+    "round_length": 65, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "gavin i", 
+            "player1points": 100, 
+            "player2": "keith graves", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "brad pate", 
+            "player1points": 100, 
+            "player2": "keith pres", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "richard h", 
+            "player1points": 100, 
+            "player2": "david", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "daniel bryan", 
+            "player1points": 100, 
+            "player2": "kirk", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "daniel bryan", 
+            "player1points": 100, 
+            "player2": "brad pate", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "richard h", 
+            "player1points": 0, 
+            "player2": "gavin i", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "kirk", 
+            "player1points": 44, 
+            "player2": "keith graves", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "david", 
+            "player1points": 27, 
+            "player2": "keith pres", 
+            "player2points": 32, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "daniel bryan", 
+            "player1points": 100, 
+            "player2": "gavin i", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "kirk", 
+            "player1points": 55, 
+            "player2": "richard h", 
+            "player2points": 83, 
+            "result": "win"
+          }, 
+          {
+            "player1": "keith pres", 
+            "player1points": 44, 
+            "player2": "keith graves", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "brad pate", 
+            "player1points": 100, 
+            "player2": "david", 
+            "player2points": 45, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Las Vegas", 
+      "country": "United States of America", 
+      "lat": "36.166285900000", 
+      "lon": "-115.149224900000", 
+      "name": "Power 9 Games", 
+      "state": "Nevada"
+    }
+  }
+}
