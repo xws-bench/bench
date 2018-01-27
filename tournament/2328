@@ -1,0 +1,2409 @@
+{
+  "tournament": {
+    "date": "2016-11-19", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2328, 
+    "name": "Regional Sued - Germany", 
+    "players": [
+      {
+        "mov": 89, 
+        "name": "Daniel Wahl", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 166, 
+        "name": "Rene Klarsen", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 122, 
+        "name": "Rene Liebisch", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 801, 
+        "name": "Stefan Lochner", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 5, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 873, 
+        "name": "Richard Stephan", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 5, 
+        "sos": "0.61"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "palobgodalhi", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "cloakingdevice"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 1120, 
+        "name": "Matthias Freisl", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 1
+        }, 
+        "score": 6, 
+        "sos": "0.61"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 952, 
+        "name": "Danijel Vukic", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 2
+        }, 
+        "score": 5, 
+        "sos": "0.61"
+      }, 
+      {
+        "mov": 916, 
+        "name": "Andreas Osterroth", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 3
+        }, 
+        "score": 5, 
+        "sos": "0.69"
+      }, 
+      {
+        "mov": 886, 
+        "name": "Stephan Lancier", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 4
+        }, 
+        "score": 5, 
+        "sos": "0.61"
+      }, 
+      {
+        "mov": 878, 
+        "name": "Palph Pfeufer", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 896, 
+        "name": "Felix Stein", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 6
+        }, 
+        "score": 4, 
+        "sos": "0.58"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 760, 
+        "name": "Markus Rothmann", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 7
+        }, 
+        "score": 4, 
+        "sos": "0.64"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 744, 
+        "name": "Johanna Reichert", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 8
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 742, 
+        "name": "Stefan ffler", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 4, 
+        "sos": "0.53"
+      }, 
+      {
+        "mov": 741, 
+        "name": "Boris Gavric", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 4, 
+        "sos": "0.58"
+      }, 
+      {
+        "mov": 737, 
+        "name": "Sebastian Sprl", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 4, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 718, 
+        "name": "Daniel Behrendt", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 4, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "rexlerbrath", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 717, 
+        "name": "Manuel Olynuk", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 4, 
+        "sos": "0.47"
+      }, 
+      {
+        "mov": 680, 
+        "name": "Heiko Colan", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 660, 
+        "name": "Martin Frisch", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 4, 
+        "sos": "0.53"
+      }, 
+      {
+        "mov": 650, 
+        "name": "Frederico Martin Martin", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 4, 
+        "sos": "0.53"
+      }, 
+      {
+        "mov": 609, 
+        "name": "Christian Kowal", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 4, 
+        "sos": "0.64"
+      }, 
+      {
+        "mov": 590, 
+        "name": "Christoph Kubler", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 4, 
+        "sos": "0.58"
+      }, 
+      {
+        "mov": 536, 
+        "name": "Matthais Konrad", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 4, 
+        "sos": "0.69"
+      }, 
+      {
+        "mov": 780, 
+        "name": "Benedikt Summer", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 3, 
+        "sos": "0.36"
+      }, 
+      {
+        "mov": 744, 
+        "name": "Michael Schnhammer", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 714, 
+        "name": "Andreas Pargner", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 3, 
+        "sos": "0.47"
+      }, 
+      {
+        "mov": 685, 
+        "name": "Nicolas Epple", 
+        "rank": {
+          "swiss": 23
+        }, 
+        "score": 3, 
+        "sos": "0.42"
+      }, 
+      {
+        "mov": 665, 
+        "name": "Steffen Khler", 
+        "rank": {
+          "swiss": 24
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 659, 
+        "name": "Sascha Glitsch", 
+        "rank": {
+          "swiss": 25
+        }, 
+        "score": 3, 
+        "sos": "0.47"
+      }, 
+      {
+        "mov": 654, 
+        "name": "Michael Geringer", 
+        "rank": {
+          "swiss": 26
+        }, 
+        "score": 3, 
+        "sos": "0.42"
+      }, 
+      {
+        "mov": 643, 
+        "name": "Franz Schwenck", 
+        "rank": {
+          "swiss": 27
+        }, 
+        "score": 3, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 631, 
+        "name": "Kevin Verweyen", 
+        "rank": {
+          "swiss": 28
+        }, 
+        "score": 3, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 631, 
+        "name": "Manish Bagga", 
+        "rank": {
+          "swiss": 29
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 616, 
+        "name": "Alexander Hagel", 
+        "rank": {
+          "swiss": 30
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 614, 
+        "name": "Nils Groe Budde", 
+        "rank": {
+          "swiss": 31
+        }, 
+        "score": 3, 
+        "sos": "0.58"
+      }, 
+      {
+        "mov": 609, 
+        "name": "Robert Hien", 
+        "rank": {
+          "swiss": 32
+        }, 
+        "score": 3, 
+        "sos": "0.61"
+      }, 
+      {
+        "mov": 597, 
+        "name": "Michael Altweger", 
+        "rank": {
+          "swiss": 33
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 589, 
+        "name": "Sascha Rossol", 
+        "rank": {
+          "swiss": 34
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 560, 
+        "name": "Rudi Schn", 
+        "rank": {
+          "swiss": 35
+        }, 
+        "score": 3, 
+        "sos": "0.47"
+      }, 
+      {
+        "mov": 555, 
+        "name": "Till Simon", 
+        "rank": {
+          "swiss": 36
+        }, 
+        "score": 3, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 526, 
+        "name": "Fritz Peters", 
+        "rank": {
+          "swiss": 37
+        }, 
+        "score": 3, 
+        "sos": "0.61"
+      }, 
+      {
+        "mov": 447, 
+        "name": "Arthur Lorenz", 
+        "rank": {
+          "swiss": 38
+        }, 
+        "score": 3, 
+        "sos": "0.47"
+      }, 
+      {
+        "mov": 532, 
+        "name": "Kendy Petermann", 
+        "rank": {
+          "swiss": 39
+        }, 
+        "score": 2, 
+        "sos": "0.42"
+      }, 
+      {
+        "mov": 495, 
+        "name": "Paul Bracko", 
+        "rank": {
+          "swiss": 40
+        }, 
+        "score": 2, 
+        "sos": "0.53"
+      }, 
+      {
+        "mov": 480, 
+        "name": "Erol Ceylan", 
+        "rank": {
+          "swiss": 41
+        }, 
+        "score": 2, 
+        "sos": "0.47"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "norrawexley", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "crew": [
+                  "c3po"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }, 
+            {
+              "name": "janors", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "niennunb"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "thanekyrell", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "crew": [
+                  "chopper"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 466, 
+        "name": "Michael Schndt", 
+        "rank": {
+          "swiss": 42
+        }, 
+        "score": 2, 
+        "sos": "0.47"
+      }, 
+      {
+        "mov": 455, 
+        "name": "Philipp Seidel", 
+        "rank": {
+          "swiss": 43
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 436, 
+        "name": "Carsten Wolff", 
+        "rank": {
+          "swiss": 44
+        }, 
+        "score": 2, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 431, 
+        "name": "Holger Leuthe", 
+        "rank": {
+          "swiss": 45
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 408, 
+        "name": "Lara Santiago", 
+        "rank": {
+          "swiss": 46
+        }, 
+        "score": 2, 
+        "sos": "0.25"
+      }, 
+      {
+        "mov": 391, 
+        "name": "Stephan Pfenninger", 
+        "rank": {
+          "swiss": 47
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 379, 
+        "name": "Moritz Altweger", 
+        "rank": {
+          "swiss": 48
+        }, 
+        "score": 2, 
+        "sos": "0.42"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "kathscarlet", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "dengar"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "cannon": [
+                  "autoblaster"
+                ], 
+                "crew": [
+                  "gonk"
+                ], 
+                "ept": [
+                  "fearlessness"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "slavei"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 377, 
+        "name": "Rainer Grnwald", 
+        "rank": {
+          "swiss": 49
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 339, 
+        "name": "Sebastian Pansegrau", 
+        "rank": {
+          "swiss": 50
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 386, 
+        "name": "Marcus Wittmann", 
+        "rank": {
+          "swiss": 51
+        }, 
+        "score": 1, 
+        "sos": "0.42"
+      }, 
+      {
+        "mov": 381, 
+        "name": "Till Husemann", 
+        "rank": {
+          "swiss": 52
+        }, 
+        "score": 1, 
+        "sos": "0.39"
+      }, 
+      {
+        "mov": 369, 
+        "name": "Christian Friedel", 
+        "rank": {
+          "swiss": 53
+        }, 
+        "score": 1, 
+        "sos": "0.42"
+      }, 
+      {
+        "mov": 252, 
+        "name": "Oliver Bandov", 
+        "rank": {
+          "swiss": 54
+        }, 
+        "score": 1, 
+        "sos": "0.47"
+      }, 
+      {
+        "mov": 221, 
+        "name": "Johannes Helgert", 
+        "rank": {
+          "swiss": 55
+        }, 
+        "score": 1, 
+        "sos": "0.53"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Arthur Lorenz", 
+            "player1points": 26, 
+            "player2": "Sebastian Sprl", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alexander Hagel", 
+            "player1points": 0, 
+            "player2": "Steffen Khler", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Geringer", 
+            "player1points": 30, 
+            "player2": "Michael Altweger", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Manuel Olynuk", 
+            "player1points": 100, 
+            "player2": "Daniel Wahl", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephan Lancier", 
+            "player1points": 100, 
+            "player2": "Christoph Kubler", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Manish Bagga", 
+            "player1points": 64, 
+            "player2": "Benedikt Summer", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nicolas Epple", 
+            "player1points": 100, 
+            "player2": "Christian Friedel", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Oliver Bandov", 
+            "player1points": 100, 
+            "player2": "Philipp Seidel", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sebastian Pansegrau", 
+            "player1points": 0, 
+            "player2": "Felix Stein", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stefan ffler", 
+            "player1points": 37, 
+            "player2": "Martin Frisch", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Moritz Altweger", 
+            "player1points": 0, 
+            "player2": "Andreas Osterroth", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carsten Wolff", 
+            "player1points": 0, 
+            "player2": "Nils Groe Budde", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kendy Petermann", 
+            "player1points": 0, 
+            "player2": "Christian Kowal", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matthias Freisl", 
+            "player1points": 100, 
+            "player2": "Paul Bracko", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephan Pfenninger", 
+            "player1points": 57, 
+            "player2": "Boris Gavric", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Heiko Colan", 
+            "player1points": 16, 
+            "player2": "Danijel Vukic", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rene Klarsen", 
+            "player1points": 49, 
+            "player2": "Frederico Martin Martin", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erol Ceylan", 
+            "player1points": 19, 
+            "player2": "Fritz Peters", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Verweyen", 
+            "player1points": 100, 
+            "player2": "Rainer Grnwald", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rene Liebisch", 
+            "player1points": 50, 
+            "player2": "Johanna Reichert", 
+            "player2points": 77, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robert Hien", 
+            "player1points": 100, 
+            "player2": "Daniel Behrendt", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stefan Lochner", 
+            "player1points": 100, 
+            "player2": "Till Husemann", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Till Simon", 
+            "player1points": 75, 
+            "player2": "Johannes Helgert", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Palph Pfeufer", 
+            "player1points": 100, 
+            "player2": "Michael Schndt", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sascha Glitsch", 
+            "player1points": 100, 
+            "player2": "Holger Leuthe", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Markus Rothmann", 
+            "player1points": 100, 
+            "player2": "Rudi Schn", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matthais Konrad", 
+            "player1points": 29, 
+            "player2": "Andreas Pargner", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lara Santiago", 
+            "player1points": 0, 
+            "player2": "Marcus Wittmann", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sascha Rossol", 
+            "player1points": 34, 
+            "player2": "Richard Stephan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Schnhammer", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Franz Schwenck", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Fritz Peters", 
+            "player1points": 0, 
+            "player2": "Markus Rothmann", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johanna Reichert", 
+            "player1points": 100, 
+            "player2": "Sebastian Sprl", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nils Groe Budde", 
+            "player1points": 33, 
+            "player2": "Andreas Osterroth", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nicolas Epple", 
+            "player1points": 32, 
+            "player2": "Richard Stephan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Franz Schwenck", 
+            "player1points": 15, 
+            "player2": "Michael Schnhammer", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Oliver Bandov", 
+            "player1points": 0, 
+            "player2": "Michael Altweger", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Palph Pfeufer", 
+            "player1points": 49, 
+            "player2": "Matthais Konrad", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sascha Glitsch", 
+            "player1points": 16, 
+            "player2": "Matthias Freisl", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin Frisch", 
+            "player1points": 49, 
+            "player2": "Christian Kowal", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johannes Helgert", 
+            "player1points": 28, 
+            "player2": "Manish Bagga", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Boris Gavric", 
+            "player1points": 29, 
+            "player2": "Felix Stein", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Frederico Martin Martin", 
+            "player1points": 100, 
+            "player2": "Manuel Olynuk", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Danijel Vukic", 
+            "player1points": 100, 
+            "player2": "Steffen Khler", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stefan Lochner", 
+            "player1points": 14, 
+            "player2": "Kevin Verweyen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcus Wittmann", 
+            "player1points": 0, 
+            "player2": "Stephan Lancier", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robert Hien", 
+            "player1points": 100, 
+            "player2": "Christian Friedel", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Till Simon", 
+            "player1points": 65, 
+            "player2": "Benedikt Summer", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rene Liebisch", 
+            "player1points": 26, 
+            "player2": "Philipp Seidel", 
+            "player2points": 77, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alexander Hagel", 
+            "player1points": 100, 
+            "player2": "Michael Geringer", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sascha Rossol", 
+            "player1points": 100, 
+            "player2": "Daniel Wahl", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Holger Leuthe", 
+            "player1points": 50, 
+            "player2": "Till Husemann", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christoph Kubler", 
+            "player1points": 100, 
+            "player2": "Erol Ceylan", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Heiko Colan", 
+            "player1points": 100, 
+            "player2": "Rudi Schn", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kendy Petermann", 
+            "player1points": 100, 
+            "player2": "Michael Schndt", 
+            "player2points": 19, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rainer Grnwald", 
+            "player1points": 100, 
+            "player2": "Moritz Altweger", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephan Pfenninger", 
+            "player1points": 25, 
+            "player2": "Stefan ffler", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul Bracko", 
+            "player1points": 0, 
+            "player2": "Daniel Behrendt", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lara Santiago", 
+            "player1points": 69, 
+            "player2": "Sebastian Pansegrau", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Arthur Lorenz", 
+            "player1points": 100, 
+            "player2": "Rene Klarsen", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andreas Pargner", 
+            "player1points": 38, 
+            "player2": "Carsten Wolff", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Matthias Freisl", 
+            "player1points": 100, 
+            "player2": "Danijel Vukic", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Frederico Martin Martin", 
+            "player1points": 49, 
+            "player2": "Richard Stephan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Altweger", 
+            "player1points": 32, 
+            "player2": "Stephan Lancier", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Verweyen", 
+            "player1points": 100, 
+            "player2": "Manish Bagga", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Markus Rothmann", 
+            "player1points": 75, 
+            "player2": "Johanna Reichert", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Franz Schwenck", 
+            "player1points": 49, 
+            "player2": "Matthais Konrad", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Danijel Vukic", 
+            "player1points": 0, 
+            "player2": "Andreas Osterroth", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robert Hien", 
+            "player1points": 16, 
+            "player2": "Matthias Freisl", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christian Kowal", 
+            "player1points": 64, 
+            "player2": "Felix Stein", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sascha Rossol", 
+            "player1points": 61, 
+            "player2": "Nicolas Epple", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Oliver Bandov", 
+            "player1points": 29, 
+            "player2": "Stefan Lochner", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcus Wittmann", 
+            "player1points": 53, 
+            "player2": "Rainer Grnwald", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Behrendt", 
+            "player1points": 100, 
+            "player2": "Holger Leuthe", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sebastian Sprl", 
+            "player1points": 100, 
+            "player2": "Philipp Seidel", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Arthur Lorenz", 
+            "player1points": 71, 
+            "player2": "Andreas Pargner", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sascha Glitsch", 
+            "player1points": 43, 
+            "player2": "Fritz Peters", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Boris Gavric", 
+            "player1points": 100, 
+            "player2": "Heiko Colan", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sebastian Pansegrau", 
+            "player1points": 58, 
+            "player2": "Christoph Kubler", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin Frisch", 
+            "player1points": 64, 
+            "player2": "Michael Schnhammer", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alexander Hagel", 
+            "player1points": 25, 
+            "player2": "Stefan ffler", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steffen Khler", 
+            "player1points": 100, 
+            "player2": "Johannes Helgert", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Manuel Olynuk", 
+            "player1points": 22, 
+            "player2": "Palph Pfeufer", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kendy Petermann", 
+            "player1points": 28, 
+            "player2": "Nils Groe Budde", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Till Simon", 
+            "player1points": 100, 
+            "player2": "Rene Klarsen", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christian Friedel", 
+            "player1points": 58, 
+            "player2": "Paul Bracko", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Schndt", 
+            "player1points": 38, 
+            "player2": "Carsten Wolff", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lara Santiago", 
+            "player1points": 32, 
+            "player2": "Rudi Schn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Wahl", 
+            "player1points": 29, 
+            "player2": "Benedikt Summer", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Till Husemann", 
+            "player1points": 0, 
+            "player2": "Michael Geringer", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Moritz Altweger", 
+            "player1points": 34, 
+            "player2": "Erol Ceylan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephan Pfenninger", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Kevin Verweyen", 
+            "player1points": 0, 
+            "player2": "Richard Stephan", 
+            "player2points": 55, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephan Lancier", 
+            "player1points": 68, 
+            "player2": "Markus Rothmann", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matthais Konrad", 
+            "player1points": 34, 
+            "player2": "Andreas Osterroth", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matthias Freisl", 
+            "player1points": 100, 
+            "player2": "Christian Kowal", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johanna Reichert", 
+            "player1points": 100, 
+            "player2": "Sascha Rossol", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sebastian Sprl", 
+            "player1points": 14, 
+            "player2": "Felix Stein", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christoph Kubler", 
+            "player1points": 100, 
+            "player2": "Michael Altweger", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Till Simon", 
+            "player1points": 27, 
+            "player2": "Robert Hien", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Manish Bagga", 
+            "player1points": 25, 
+            "player2": "Frederico Martin Martin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Boris Gavric", 
+            "player1points": 100, 
+            "player2": "Arthur Lorenz", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Danijel Vukic", 
+            "player1points": 100, 
+            "player2": "Nils Groe Budde", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steffen Khler", 
+            "player1points": 29, 
+            "player2": "Stefan Lochner", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Behrendt", 
+            "player1points": 0, 
+            "player2": "Franz Schwenck", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stefan ffler", 
+            "player1points": 100, 
+            "player2": "Rainer Grnwald", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin Frisch", 
+            "player1points": 38, 
+            "player2": "Fritz Peters", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Palph Pfeufer", 
+            "player1points": 100, 
+            "player2": "Johannes Helgert", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul Bracko", 
+            "player1points": 58, 
+            "player2": "Heiko Colan", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erol Ceylan", 
+            "player1points": 100, 
+            "player2": "Kendy Petermann", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andreas Pargner", 
+            "player1points": 100, 
+            "player2": "Sascha Glitsch", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sebastian Pansegrau", 
+            "player1points": 0, 
+            "player2": "Michael Geringer", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephan Pfenninger", 
+            "player1points": 100, 
+            "player2": "Nicolas Epple", 
+            "player2points": 41, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benedikt Summer", 
+            "player1points": 41, 
+            "player2": "Alexander Hagel", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rudi Schn", 
+            "player1points": 29, 
+            "player2": "Michael Schnhammer", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Oliver Bandov", 
+            "player1points": 0, 
+            "player2": "Michael Schndt", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Holger Leuthe", 
+            "player1points": 64, 
+            "player2": "Manuel Olynuk", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcus Wittmann", 
+            "player1points": 0, 
+            "player2": "Philipp Seidel", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carsten Wolff", 
+            "player1points": 0, 
+            "player2": "Christian Friedel", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lara Santiago", 
+            "player1points": 50, 
+            "player2": "Moritz Altweger", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Till Husemann", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Matthias Freisl", 
+            "player1points": 72, 
+            "player2": "Palph Pfeufer", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andreas Osterroth", 
+            "player1points": 33, 
+            "player2": "Danijel Vukic", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Richard Stephan", 
+            "player1points": 33, 
+            "player2": "Andreas Osterroth", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matthias Freisl", 
+            "player1points": 100, 
+            "player2": "Stephan Lancier", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Verweyen", 
+            "player1points": 0, 
+            "player2": "Danijel Vukic", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Felix Stein", 
+            "player1points": 17, 
+            "player2": "Matthais Konrad", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Markus Rothmann", 
+            "player1points": 29, 
+            "player2": "Stefan Lochner", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christian Kowal", 
+            "player1points": 58, 
+            "player2": "Christoph Kubler", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Franz Schwenck", 
+            "player1points": 75, 
+            "player2": "Stefan ffler", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fritz Peters", 
+            "player1points": 0, 
+            "player2": "Palph Pfeufer", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Boris Gavric", 
+            "player1points": 100, 
+            "player2": "Robert Hien", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johanna Reichert", 
+            "player1points": 100, 
+            "player2": "Frederico Martin Martin", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Geringer", 
+            "player1points": 24, 
+            "player2": "Heiko Colan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andreas Pargner", 
+            "player1points": 24, 
+            "player2": "Nils Groe Budde", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Manuel Olynuk", 
+            "player1points": 100, 
+            "player2": "Arthur Lorenz", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Till Simon", 
+            "player1points": 58, 
+            "player2": "Philipp Seidel", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Schndt", 
+            "player1points": 37, 
+            "player2": "Martin Frisch", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sascha Rossol", 
+            "player1points": 100, 
+            "player2": "Rainer Grnwald", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Altweger", 
+            "player1points": 71, 
+            "player2": "Manish Bagga", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Behrendt", 
+            "player1points": 50, 
+            "player2": "Michael Schnhammer", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sebastian Sprl", 
+            "player1points": 100, 
+            "player2": "Stephan Pfenninger", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steffen Khler", 
+            "player1points": 100, 
+            "player2": "Erol Ceylan", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alexander Hagel", 
+            "player1points": 100, 
+            "player2": "Christian Friedel", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kendy Petermann", 
+            "player1points": 29, 
+            "player2": "Benedikt Summer", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcus Wittmann", 
+            "player1points": 58, 
+            "player2": "Paul Bracko", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sebastian Pansegrau", 
+            "player1points": 0, 
+            "player2": "Sascha Glitsch", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Oliver Bandov", 
+            "player1points": 50, 
+            "player2": "Moritz Altweger", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johannes Helgert", 
+            "player1points": 0, 
+            "player2": "Nicolas Epple", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rudi Schn", 
+            "player1points": 100, 
+            "player2": "Holger Leuthe", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Till Husemann", 
+            "player1points": 38, 
+            "player2": "Carsten Wolff", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lara Santiago", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Andreas Osterroth", 
+            "player1points": 16, 
+            "player2": "Matthias Freisl", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Richard Stephan", 
+            "player1points": 100, 
+            "player2": "Christoph Kubler", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Danijel Vukic", 
+            "player1points": 100, 
+            "player2": "Matthais Konrad", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johanna Reichert", 
+            "player1points": 22, 
+            "player2": "Stephan Lancier", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Palph Pfeufer", 
+            "player1points": 100, 
+            "player2": "Stefan ffler", 
+            "player2points": 55, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Boris Gavric", 
+            "player1points": 29, 
+            "player2": "Stefan Lochner", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Felix Stein", 
+            "player1points": 100, 
+            "player2": "Franz Schwenck", 
+            "player2points": 14, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Behrendt", 
+            "player1points": 100, 
+            "player2": "Michael Altweger", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fritz Peters", 
+            "player1points": 26, 
+            "player2": "Manuel Olynuk", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Frederico Martin Martin", 
+            "player1points": 60, 
+            "player2": "Sascha Rossol", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Verweyen", 
+            "player1points": 29, 
+            "player2": "Markus Rothmann", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christian Kowal", 
+            "player1points": 100, 
+            "player2": "Alexander Hagel", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin Frisch", 
+            "player1points": 69, 
+            "player2": "Steffen Khler", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nils Groe Budde", 
+            "player1points": 33, 
+            "player2": "Heiko Colan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robert Hien", 
+            "player1points": 26, 
+            "player2": "Sebastian Sprl", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Till Simon", 
+            "player1points": 26, 
+            "player2": "Nicolas Epple", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Arthur Lorenz", 
+            "player1points": 58, 
+            "player2": "Paul Bracko", 
+            "player2points": 54, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andreas Pargner", 
+            "player1points": 100, 
+            "player2": "Philipp Seidel", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Geringer", 
+            "player1points": 100, 
+            "player2": "Rainer Grnwald", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Schndt", 
+            "player1points": 0, 
+            "player2": "Rudi Schn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Schnhammer", 
+            "player1points": 100, 
+            "player2": "Erol Ceylan", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benedikt Summer", 
+            "player1points": 100, 
+            "player2": "Moritz Altweger", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephan Pfenninger", 
+            "player1points": 0, 
+            "player2": "Manish Bagga", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sascha Glitsch", 
+            "player1points": 100, 
+            "player2": "Oliver Bandov", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carsten Wolff", 
+            "player1points": 100, 
+            "player2": "Johannes Helgert", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christian Friedel", 
+            "player1points": 0, 
+            "player2": "Kendy Petermann", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcus Wittmann", 
+            "player1points": 75, 
+            "player2": "Holger Leuthe", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Till Husemann", 
+            "player1points": 68, 
+            "player2": "Lara Santiago", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sebastian Pansegrau", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 6, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Matthias Freisl", 
+            "player1points": 100, 
+            "player2": "Johanna Reichert", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephan Lancier", 
+            "player1points": 55, 
+            "player2": "Palph Pfeufer", 
+            "player2points": 77, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andreas Osterroth", 
+            "player1points": 100, 
+            "player2": "Felix Stein", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Danijel Vukic", 
+            "player1points": 100, 
+            "player2": "Markus Rothmann", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 8, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Regional", 
+    "venue": {
+      "city": "Ulm", 
+      "country": "Germany", 
+      "lat": "48.397394400000", 
+      "lon": "9.993275500000", 
+      "name": "Spielespatz", 
+      "state": "Baden-Wuerttemberg"
+    }
+  }
+}

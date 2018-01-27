@@ -1,0 +1,157 @@
+{
+  "tournament": {
+    "date": "2015-01-24", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 112, 
+    "name": "Fort Wayne Winter Tournament", 
+    "players": [
+      {
+        "mov": 484, 
+        "name": "Chris", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 393, 
+        "name": "Neff", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 294, 
+        "name": "Josh", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 292, 
+        "name": "Chad", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 218, 
+        "name": "Robert", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 119, 
+        "name": "Jesse", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Chris", 
+            "player1points": 100, 
+            "player2": "Robert", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jesse", 
+            "player1points": 0, 
+            "player2": "Chad", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Neff", 
+            "player1points": 100, 
+            "player2": "Josh", 
+            "player2points": 23, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Chris", 
+            "player1points": 100, 
+            "player2": "Chad", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Neff", 
+            "player1points": 100, 
+            "player2": "Robert", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh", 
+            "player1points": 42, 
+            "player2": "Jesse", 
+            "player2points": 29, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Neff", 
+            "player1points": 16, 
+            "player2": "Chris", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chad", 
+            "player1points": 42, 
+            "player2": "Josh", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jesse", 
+            "player1points": 32, 
+            "player2": "Robert", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Fort Wayne", 
+      "country": "United States of America", 
+      "lat": "41.073589000000", 
+      "lon": "-85.202323000000", 
+      "name": "The Game Annex", 
+      "state": "Indiana"
+    }
+  }
+}

@@ -1,0 +1,913 @@
+{
+  "tournament": {
+    "date": "2016-04-09", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1459, 
+    "name": "Iksy Tricity S2T3a", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "targetingcomputer"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "bountyhunter", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 587, 
+        "name": "Andrzej Szypulski", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 18, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 630, 
+        "name": "Patryk Gesiak", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "chopper", 
+                  "reconspecialist"
+                ], 
+                "system": [
+                  "reinforceddeflectors"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }, 
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle"
+            }, 
+            {
+              "name": "kylekatarn", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 574, 
+        "name": "Wojciech Dziorawiec", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 502, 
+        "name": "Off Jenkins", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r4d6"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "herasyndulla", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ], 
+                "title": [
+                  "phantom"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "chopper"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 460, 
+        "name": "Krzysztof Mludzik", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 481, 
+        "name": "Andrzej Kleczkowski", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 511, 
+        "name": "Lukasz Jagalski", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 399, 
+        "name": "Andrzej Sosnowski", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "chopper", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "zeborrelios", 
+                  "intelligenceagent"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }, 
+            {
+              "name": "herasyndulla", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "dashrendar", 
+                  "niennunb"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 376, 
+        "name": "Samuel Kmita", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "chopper", 
+                  "zeborrelios"
+                ], 
+                "system": [
+                  "enhancedscopes"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 365, 
+        "name": "Adam Kalwarczyk", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 363, 
+        "name": "Konrad Czubak", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "jakefarrell", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts", 
+                  "wired"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "crew": [
+                  "c3po"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 334, 
+        "name": "Krystian Skrzyszewski", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 370, 
+        "name": "Jan Zieniewicz", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 342, 
+        "name": "Piotr Romasiuk", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "4lom", 
+                  "reconspecialist", 
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "calculation"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 317, 
+        "name": "Radoslaw Sieminski", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 239, 
+        "name": "Marcin Lipecki", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }, 
+            {
+              "name": "krassistrelix", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines"
+                ], 
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "weaponsengineer"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "slavei"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 150, 
+        "name": "Pawel Banaszyk", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Krzysztof Mludzik", 
+            "player1points": 0, 
+            "player2": "Lukasz Jagalski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej Sosnowski", 
+            "player1points": 0, 
+            "player2": "Andrzej Kleczkowski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patryk Gesiak", 
+            "player1points": 100, 
+            "player2": "Piotr Romasiuk", 
+            "player2points": 43, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin Lipecki", 
+            "player1points": 100, 
+            "player2": "Pawel Banaszyk", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Radoslaw Sieminski", 
+            "player1points": 74, 
+            "player2": "Samuel Kmita", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jan Zieniewicz", 
+            "player1points": 44, 
+            "player2": "Off Jenkins", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Krystian Skrzyszewski", 
+            "player1points": 42, 
+            "player2": "Adam Kalwarczyk", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Konrad Czubak", 
+            "player1points": 0, 
+            "player2": "Wojciech Dziorawiec", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej Szypulski", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Wojciech Dziorawiec", 
+            "player1points": 48, 
+            "player2": "Andrzej Szypulski", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patryk Gesiak", 
+            "player1points": 100, 
+            "player2": "Marcin Lipecki", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Off Jenkins", 
+            "player1points": 100, 
+            "player2": "Adam Kalwarczyk", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Samuel Kmita", 
+            "player1points": 100, 
+            "player2": "Lukasz Jagalski", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej Kleczkowski", 
+            "player1points": 83, 
+            "player2": "Jan Zieniewicz", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Konrad Czubak", 
+            "player1points": 75, 
+            "player2": "Andrzej Sosnowski", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Piotr Romasiuk", 
+            "player1points": 38, 
+            "player2": "Krystian Skrzyszewski", 
+            "player2points": 54, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Radoslaw Sieminski", 
+            "player1points": 60, 
+            "player2": "Krzysztof Mludzik", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pawel Banaszyk", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Samuel Kmita", 
+            "player1points": 44, 
+            "player2": "Off Jenkins", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patryk Gesiak", 
+            "player1points": 66, 
+            "player2": "Andrzej Kleczkowski", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej Szypulski", 
+            "player1points": 100, 
+            "player2": "Krystian Skrzyszewski", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin Lipecki", 
+            "player1points": 0, 
+            "player2": "Krzysztof Mludzik", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pawel Banaszyk", 
+            "player1points": 0, 
+            "player2": "Konrad Czubak", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wojciech Dziorawiec", 
+            "player1points": 100, 
+            "player2": "Lukasz Jagalski", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Kalwarczyk", 
+            "player1points": 100, 
+            "player2": "Piotr Romasiuk", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jan Zieniewicz", 
+            "player1points": 100, 
+            "player2": "Radoslaw Sieminski", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej Sosnowski", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Off Jenkins", 
+            "player1points": 34, 
+            "player2": "Andrzej Szypulski", 
+            "player2points": 78, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej Kleczkowski", 
+            "player1points": 58, 
+            "player2": "Wojciech Dziorawiec", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patryk Gesiak", 
+            "player1points": 100, 
+            "player2": "Konrad Czubak", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Samuel Kmita", 
+            "player1points": 80, 
+            "player2": "Krzysztof Mludzik", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Kalwarczyk", 
+            "player1points": 21, 
+            "player2": "Lukasz Jagalski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Krystian Skrzyszewski", 
+            "player1points": 83, 
+            "player2": "Jan Zieniewicz", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej Sosnowski", 
+            "player1points": 100, 
+            "player2": "Pawel Banaszyk", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin Lipecki", 
+            "player1points": 27, 
+            "player2": "Piotr Romasiuk", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Radoslaw Sieminski", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Gdansk", 
+      "country": "Poland", 
+      "lat": "54.348225900000", 
+      "lon": "18.654288800000", 
+      "name": "Centrum Hobbystyczne \"Orc &amp;amp; Goblin\"", 
+      "state": "Pomorskie"
+    }
+  }
+}

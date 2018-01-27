@@ -1,0 +1,815 @@
+{
+  "tournament": {
+    "date": "2017-11-25", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3667, 
+    "name": "Iksy Tricity S8T1", 
+    "players": [
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "thweek", 
+              "ship": "starviper", 
+              "upgrades": {
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "starvipermkii"
+                ]
+              }
+            }, 
+            {
+              "name": "lokrevenant", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "lokrevenant", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 595, 
+        "name": "Jan Zieniewicz", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "jesspava", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "rey", 
+                  "tactician"
+                ], 
+                "ept": [
+                  "trickshot"
+                ]
+              }
+            }, 
+            {
+              "name": "norrawexley", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "crew": [
+                  "c3po"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 643, 
+        "name": "Lukasz Jagalski", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "dengar"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "slavei"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 559, 
+        "name": "Krzysztof Kaczorowski", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 499, 
+        "name": "Marcin Filanski", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "targetingsynchronizer"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "gammasquadronveteran", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 531, 
+        "name": "Pawel Morawski", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "lokrevenant", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "crew": [
+                  "outlawtech"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "lokrevenant", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "crew": [
+                  "outlawtech"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "intimidation"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 460, 
+        "name": "Krzysztof Piszcz", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 394, 
+        "name": "Maciej Balinski", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 385, 
+        "name": "Michal Lewandowski", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.69"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ketsuonyo", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "glitterstim", 
+                  "glitterstim"
+                ], 
+                "title": [
+                  "shadowcaster"
+                ]
+              }
+            }, 
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "jabbathehutt", 
+                  "dengar"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "hotshotblaster"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 358, 
+        "name": "Lukasz Luczynski", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 303, 
+        "name": "Rafal Mika", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 287, 
+        "name": "Jedrzej Jackiewicz", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "scimitarsquadronpilot", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 262, 
+        "name": "Adam Sieminski", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 1, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 258, 
+        "name": "Grzegorz Werner", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 1, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 66, 
+        "name": "Patryk Wysocki", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 0, 
+        "sos": "0.56"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Maciej Balinski", 
+            "player1points": 0, 
+            "player2": "Michal Lewandowski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafal Mika", 
+            "player1points": 0, 
+            "player2": "Krzysztof Kaczorowski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grzegorz Werner", 
+            "player1points": 28, 
+            "player2": "Jedrzej Jackiewicz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patryk Wysocki", 
+            "player1points": 35, 
+            "player2": "Jan Zieniewicz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Sieminski", 
+            "player1points": 0, 
+            "player2": "Lukasz Jagalski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Krzysztof Piszcz", 
+            "player1points": 56, 
+            "player2": "Marcin Filanski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lukasz Luczynski", 
+            "player1points": 0, 
+            "player2": "Pawel Morawski", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jan Zieniewicz", 
+            "player1points": 100, 
+            "player2": "Lukasz Jagalski", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin Filanski", 
+            "player1points": 67, 
+            "player2": "Michal Lewandowski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jedrzej Jackiewicz", 
+            "player1points": 51, 
+            "player2": "Krzysztof Kaczorowski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pawel Morawski", 
+            "player1points": 100, 
+            "player2": "Grzegorz Werner", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maciej Balinski", 
+            "player1points": 60, 
+            "player2": "Adam Sieminski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patryk Wysocki", 
+            "player1points": 31, 
+            "player2": "Rafal Mika", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lukasz Luczynski", 
+            "player1points": 100, 
+            "player2": "Krzysztof Piszcz", 
+            "player2points": 49, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Krzysztof Kaczorowski", 
+            "player1points": 100, 
+            "player2": "Michal Lewandowski", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jan Zieniewicz", 
+            "player1points": 100, 
+            "player2": "Pawel Morawski", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lukasz Luczynski", 
+            "player1points": 100, 
+            "player2": "Jedrzej Jackiewicz", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafal Mika", 
+            "player1points": 0, 
+            "player2": "Lukasz Jagalski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Sieminski", 
+            "player1points": 56, 
+            "player2": "Marcin Filanski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maciej Balinski", 
+            "player1points": 100, 
+            "player2": "Patryk Wysocki", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Krzysztof Piszcz", 
+            "player1points": 100, 
+            "player2": "Grzegorz Werner", 
+            "player2points": 30, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jan Zieniewicz", 
+            "player1points": 100, 
+            "player2": "Krzysztof Kaczorowski", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lukasz Jagalski", 
+            "player1points": 100, 
+            "player2": "Michal Lewandowski", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lukasz Luczynski", 
+            "player1points": 56, 
+            "player2": "Marcin Filanski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pawel Morawski", 
+            "player1points": 66, 
+            "player2": "Maciej Balinski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafal Mika", 
+            "player1points": 100, 
+            "player2": "Adam Sieminski", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jedrzej Jackiewicz", 
+            "player1points": 15, 
+            "player2": "Krzysztof Piszcz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grzegorz Werner", 
+            "player1points": 100, 
+            "player2": "Patryk Wysocki", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Gdansk", 
+      "country": "Poland", 
+      "lat": "54.348225900000", 
+      "lon": "18.654288800000", 
+      "name": "Shockland", 
+      "state": "Pomorskie"
+    }
+  }
+}

@@ -1,0 +1,366 @@
+{
+  "tournament": {
+    "date": "2017-06-20", 
+    "format": "65 Point / 45 Minute Rounds / Generic", 
+    "id": 3022, 
+    "name": "MIdgard's 65 Point Mini-Tourney", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "redsquadronveteran", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "targetingastromech"
+                ], 
+                "ept": [
+                  "coolhand"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "torpedo": [
+                  "protontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "redsquadronveteran", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 387, 
+        "name": "Mark Brazil", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 370, 
+        "name": "Geoff Smith", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegaspecialist", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "glaivesquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 362, 
+        "name": "Stuart Blackbourn", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 320, 
+        "name": "Jack Warren", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 311, 
+        "name": "Gavin Sparkes", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 235, 
+        "name": "Matthew Tucker", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.69"
+      }, 
+      {
+        "mov": 221, 
+        "name": "Curtis Philpot", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 161, 
+        "name": "Shannon Porter", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.69"
+      }, 
+      {
+        "mov": 136, 
+        "name": "Ian Burnable", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 97, 
+        "name": "Mark Downey", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 0, 
+        "sos": "0.50"
+      }
+    ], 
+    "round_length": 45, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Mark Downey", 
+            "player1points": 26, 
+            "player2": "Jack Warren", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Geoff Smith", 
+            "player1points": 65, 
+            "player2": "Shannon Porter", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stuart Blackbourn", 
+            "player1points": 39, 
+            "player2": "Gavin Sparkes", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Curtis Philpot", 
+            "player1points": 0, 
+            "player2": "Matthew Tucker", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark Brazil", 
+            "player1points": 65, 
+            "player2": "Ian Burnable", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Mark Brazil", 
+            "player1points": 65, 
+            "player2": "Jack Warren", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matthew Tucker", 
+            "player1points": 36, 
+            "player2": "Geoff Smith", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stuart Blackbourn", 
+            "player1points": 31, 
+            "player2": "Curtis Philpot", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gavin Sparkes", 
+            "player1points": 31, 
+            "player2": "Shannon Porter", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ian Burnable", 
+            "player1points": 65, 
+            "player2": "Mark Downey", 
+            "player2points": 32, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Matthew Tucker", 
+            "player1points": 0, 
+            "player2": "Mark Brazil", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Geoff Smith", 
+            "player1points": 65, 
+            "player2": "Curtis Philpot", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shannon Porter", 
+            "player1points": 0, 
+            "player2": "Stuart Blackbourn", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jack Warren", 
+            "player1points": 65, 
+            "player2": "Ian Burnable", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gavin Sparkes", 
+            "player1points": 65, 
+            "player2": "Mark Downey", 
+            "player2points": 39, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Mark Brazil", 
+            "player1points": 29, 
+            "player2": "Geoff Smith", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stuart Blackbourn", 
+            "player1points": 65, 
+            "player2": "Matthew Tucker", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jack Warren", 
+            "player1points": 65, 
+            "player2": "Shannon Porter", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ian Burnable", 
+            "player1points": 0, 
+            "player2": "Gavin Sparkes", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Curtis Philpot", 
+            "player1points": 65, 
+            "player2": "Mark Downey", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "St. John's", 
+      "country": "Canada", 
+      "lat": "47.561701000000", 
+      "lon": "-52.715149000000", 
+      "name": "Midgard Gaming", 
+      "state": "Newfoundland"
+    }
+  }
+}

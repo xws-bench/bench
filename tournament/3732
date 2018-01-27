@@ -1,0 +1,157 @@
+{
+  "tournament": {
+    "date": "2017-12-09", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3732, 
+    "name": "Outpost Gent Q4 tournament", 
+    "players": [
+      {
+        "mov": 600, 
+        "name": "Michel Melis", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 264, 
+        "name": "Bert D'Huyvetter", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 245, 
+        "name": "Sebastian Van Uytfange", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 308, 
+        "name": "Nick Verbiest", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 250, 
+        "name": "Raf Noppen", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 133, 
+        "name": "Simon Haesaerts", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Bert D'Huyvetter", 
+            "player1points": 45, 
+            "player2": "Nick Verbiest", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sebastian Van Uytfange", 
+            "player1points": 0, 
+            "player2": "Michel Melis", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simon Haesaerts", 
+            "player1points": 34, 
+            "player2": "Raf Noppen", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Michel Melis", 
+            "player1points": 100, 
+            "player2": "Raf Noppen", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bert D'Huyvetter", 
+            "player1points": 46, 
+            "player2": "Simon Haesaerts", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nick Verbiest", 
+            "player1points": 0, 
+            "player2": "Sebastian Van Uytfange", 
+            "player2points": 29, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Bert D'Huyvetter", 
+            "player1points": 0, 
+            "player2": "Michel Melis", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Raf Noppen", 
+            "player1points": 18, 
+            "player2": "Sebastian Van Uytfange", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simon Haesaerts", 
+            "player1points": 45, 
+            "player2": "Nick Verbiest", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Gent", 
+      "country": "Belgium", 
+      "lat": "51.053828600000", 
+      "lon": "3.725012100000", 
+      "name": "", 
+      "state": "Oost-Vlaanderen"
+    }
+  }
+}

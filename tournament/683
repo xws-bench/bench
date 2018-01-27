@@ -1,0 +1,148 @@
+{
+  "tournament": {
+    "date": "2015-09-21", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 683, 
+    "name": "Good Games Cannington League", 
+    "players": [
+      {
+        "mov": 395, 
+        "name": "Nate ", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 446, 
+        "name": "Vlad", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 429, 
+        "name": "Vincent", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 200, 
+        "name": "Jason", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 180, 
+        "name": "Rob", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Vincent", 
+            "player1points": 15, 
+            "player2": "Nate ", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vlad", 
+            "player1points": 100, 
+            "player2": "Rob", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Vlad", 
+            "player1points": 46, 
+            "player2": "Nate ", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason", 
+            "player1points": 0, 
+            "player2": "Vincent", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rob", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Vincent", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Nate ", 
+            "player1points": 100, 
+            "player2": "Rob", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vlad", 
+            "player1points": 100, 
+            "player2": "Jason", 
+            "player2points": 50, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Kalgoorlie ", 
+      "country": "Australia", 
+      "lat": "59.329300000000", 
+      "lon": "18.068600000000", 
+      "name": "Boulder Bowling Club", 
+      "state": "Western Australia"
+    }
+  }
+}

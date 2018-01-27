@@ -1,0 +1,690 @@
+{
+  "tournament": {
+    "date": "2016-07-30", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1911, 
+    "name": "Spring Kit II", 
+    "players": [
+      {
+        "mov": 567, 
+        "name": "Adrian Gawel", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.69"
+      }, 
+      {
+        "mov": 505, 
+        "name": "Dawid Mrowczynski", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "wampa", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "xx23sthreadtracers"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 496, 
+        "name": "Wojtek", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 444, 
+        "name": "Marcin Zak", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rexlerbrath", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent", 
+                  "marajade"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ], 
+                "system": [
+                  "electronicbaffle"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 430, 
+        "name": "Happyman", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 489, 
+        "name": "Bobi", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 431, 
+        "name": "Boniak", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 425, 
+        "name": "Uti", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing", 
+              "upgrades": {
+                "torpedo": [
+                  "protontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing", 
+              "upgrades": {
+                "torpedo": [
+                  "protontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing", 
+              "upgrades": {
+                "torpedo": [
+                  "protontorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 399, 
+        "name": "Artur Bonik", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "deathrain", 
+              "ship": "tiepunisher", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges", 
+                  "connernet"
+                ], 
+                "system": [
+                  "enhancedscopes"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 415, 
+        "name": "Klemens", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 339, 
+        "name": "Szyszka", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "tomaxbren", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive", 
+                  "fleetofficer"
+                ], 
+                "ept": [
+                  "coolhand"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tieshuttle"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 279, 
+        "name": "Niuniek", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 1, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 203, 
+        "name": "House", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 1, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 178, 
+        "name": "Kuba", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Marcin Zak", 
+            "player1points": 100, 
+            "player2": "Adrian Gawel", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dawid Mrowczynski", 
+            "player1points": 75, 
+            "player2": "Boniak", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wojtek", 
+            "player1points": 100, 
+            "player2": "Artur Bonik", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "House", 
+            "player1points": 63, 
+            "player2": "Kuba", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Uti", 
+            "player1points": 67, 
+            "player2": "Niuniek", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bobi", 
+            "player1points": 100, 
+            "player2": "Szyszka", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Klemens", 
+            "player1points": 27, 
+            "player2": "Happyman", 
+            "player2points": 72, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Uti", 
+            "player1points": 17, 
+            "player2": "Dawid Mrowczynski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kuba", 
+            "player1points": 16, 
+            "player2": "Marcin Zak", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bobi", 
+            "player1points": 29, 
+            "player2": "Wojtek", 
+            "player2points": 41, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Happyman", 
+            "player1points": 0, 
+            "player2": "Adrian Gawel", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Niuniek", 
+            "player1points": 25, 
+            "player2": "Boniak", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Klemens", 
+            "player1points": 61, 
+            "player2": "Artur Bonik", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Szyszka", 
+            "player1points": 100, 
+            "player2": "House", 
+            "player2points": 23, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Wojtek", 
+            "player1points": 100, 
+            "player2": "Marcin Zak", 
+            "player2points": 18, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dawid Mrowczynski", 
+            "player1points": 30, 
+            "player2": "Adrian Gawel", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Artur Bonik", 
+            "player1points": 100, 
+            "player2": "Szyszka", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bobi", 
+            "player1points": 100, 
+            "player2": "Uti", 
+            "player2points": 41, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Boniak", 
+            "player1points": 27, 
+            "player2": "Happyman", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kuba", 
+            "player1points": 0, 
+            "player2": "Klemens", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Niuniek", 
+            "player1points": 50, 
+            "player2": "House", 
+            "player2points": 67, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Wojtek", 
+            "player1points": 17, 
+            "player2": "Dawid Mrowczynski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Artur Bonik", 
+            "player1points": 69, 
+            "player2": "Adrian Gawel", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bobi", 
+            "player1points": 33, 
+            "player2": "Marcin Zak", 
+            "player2points": 41, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Happyman", 
+            "player1points": 77, 
+            "player2": "Szyszka", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Boniak", 
+            "player1points": 100, 
+            "player2": "Kuba", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Uti", 
+            "player1points": 100, 
+            "player2": "House", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Klemens", 
+            "player1points": 21, 
+            "player2": "Niuniek", 
+            "player2points": 22, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Zielona Gra", 
+      "country": "Poland", 
+      "lat": null, 
+      "lon": null, 
+      "name": "", 
+      "state": "Lubuskie"
+    }
+  }
+}

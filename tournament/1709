@@ -1,0 +1,118 @@
+{
+  "tournament": {
+    "date": "2016-05-29", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1709, 
+    "name": "May Dog Fight", 
+    "players": [
+      {
+        "mov": 344, 
+        "name": "Mario", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 264, 
+        "name": "James", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 325, 
+        "name": "Cody", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 267, 
+        "name": "Jeff L", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Cody", 
+            "player1points": 100, 
+            "player2": "Mario", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James", 
+            "player1points": 50, 
+            "player2": "Jeff L", 
+            "player2points": 26, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Mario", 
+            "player1points": 100, 
+            "player2": "Jeff L", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James", 
+            "player1points": 72, 
+            "player2": "Cody", 
+            "player2points": 66, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jeff L", 
+            "player1points": 100, 
+            "player2": "Cody", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mario", 
+            "player1points": 99, 
+            "player2": "James", 
+            "player2points": 34, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Bakersfield", 
+      "country": "United States", 
+      "lat": "35.373871200000", 
+      "lon": "-119.019463800000", 
+      "name": "Otto's Video Games & More", 
+      "state": "CA"
+    }
+  }
+}

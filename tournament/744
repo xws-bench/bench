@@ -1,0 +1,132 @@
+{
+  "tournament": {
+    "date": "2015-10-18", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 744, 
+    "name": "Gil", 
+    "players": [
+      {
+        "mov": 486, 
+        "name": "Dd", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 329, 
+        "name": "Ddjdjd", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 300, 
+        "name": "G", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 85, 
+        "name": "Gg", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "G", 
+            "player1points": 20, 
+            "player2": "Ddjdjd", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dd", 
+            "player1points": 90, 
+            "player2": "Gg", 
+            "player2points": 5, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Dd", 
+            "player1points": 55, 
+            "player2": "Ddjdjd", 
+            "player2points": 4, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gg", 
+            "player1points": 0, 
+            "player2": "G", 
+            "player2points": 80, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "G", 
+            "player1points": 0, 
+            "player2": "Dd", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ddjdjd", 
+            "player1points": 50, 
+            "player2": "Gg", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Ddjdjd", 
+            "player1points": 0, 
+            "player2": "Dd", 
+            "player2points": 50, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Parkes", 
+      "country": "Australia", 
+      "lat": "-33.136806600000", 
+      "lon": "148.175482300000", 
+      "name": "4 Glengowrie Close", 
+      "state": "NSW"
+    }
+  }
+}

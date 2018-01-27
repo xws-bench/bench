@@ -1,0 +1,331 @@
+{
+  "tournament": {
+    "date": "2016-10-02", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2161, 
+    "name": "+1 Monthly: October Mk 1", 
+    "players": [
+      {
+        "mov": 0, 
+        "name": "Todd Rotolo", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 652, 
+        "name": "Seth Dunlap", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "blacksunsoldier", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "illicit": [
+                  "blackmarketslicertools"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "ketsuonyo", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "dengar"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "riggedcargochute", 
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "shadowcaster"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 451, 
+        "name": "Garrett Platner", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 415, 
+        "name": "Kevin Shipp", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 493, 
+        "name": "Jakob Prewitt", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 458, 
+        "name": "Ryan Fisher", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 448, 
+        "name": "Jason Mayo", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 414, 
+        "name": "Kevin Giroir", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 315, 
+        "name": "Gregg Caruso", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 204, 
+        "name": "Jake Madison", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Jakob Prewitt", 
+            "player1points": 100, 
+            "player2": "Ryan Fisher", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Seth Dunlap", 
+            "player1points": 56, 
+            "player2": "Gregg Caruso", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Todd Rotolo", 
+            "player1points": 0, 
+            "player2": "Kevin Giroir", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Mayo", 
+            "player1points": 100, 
+            "player2": "Kevin Shipp", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Garrett Platner", 
+            "player1points": 100, 
+            "player2": "Jake Madison", 
+            "player2points": 25, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Garrett Platner", 
+            "player1points": 100, 
+            "player2": "Jakob Prewitt", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Seth Dunlap", 
+            "player1points": 100, 
+            "player2": "Kevin Giroir", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Mayo", 
+            "player1points": 100, 
+            "player2": "Gregg Caruso", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Shipp", 
+            "player1points": 64, 
+            "player2": "Ryan Fisher", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jake Madison", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Seth Dunlap", 
+            "player1points": 100, 
+            "player2": "Garrett Platner", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Mayo", 
+            "player1points": 76, 
+            "player2": "Kevin Giroir", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Shipp", 
+            "player1points": 79, 
+            "player2": "Jakob Prewitt", 
+            "player2points": 78, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jake Madison", 
+            "player1points": 0, 
+            "player2": "Ryan Fisher", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gregg Caruso", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Seth Dunlap", 
+            "player1points": 100, 
+            "player2": "Jason Mayo", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Shipp", 
+            "player1points": 100, 
+            "player2": "Kevin Giroir", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Garrett Platner", 
+            "player1points": 79, 
+            "player2": "Gregg Caruso", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jake Madison", 
+            "player1points": 29, 
+            "player2": "Jakob Prewitt", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Fisher", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Metairie", 
+      "country": "United States of America", 
+      "lat": "30.001852000000", 
+      "lon": "-90.176714815989", 
+      "name": "+1 Gaming", 
+      "state": "Louisiana"
+    }
+  }
+}

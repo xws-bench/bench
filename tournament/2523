@@ -1,0 +1,162 @@
+{
+  "tournament": {
+    "date": "2017-01-27", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2523, 
+    "name": "1 shop League", 
+    "players": [
+      {
+        "mov": 200, 
+        "name": "Szczepan Kalisiak", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 200, 
+        "name": "Maciej Bogusawski", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 154, 
+        "name": "Mateusz Mdel", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 132, 
+        "name": "Piotr Karlicki", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 68, 
+        "name": "Bartosz Bedynski", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 0, 
+        "sos": "0.25"
+      }, 
+      {
+        "mov": 46, 
+        "name": "Piotr Pilch", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.25"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Jarek Smoa", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 0, 
+        "sos": "0.25"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Przemek Stec", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "0.25"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Piotr Pilch", 
+            "player1points": 46, 
+            "player2": "Mateusz Mdel", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Przemek Stec", 
+            "player1points": 0, 
+            "player2": "Szczepan Kalisiak", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maciej Bogusawski", 
+            "player1points": 100, 
+            "player2": "Jarek Smoa", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bartosz Bedynski", 
+            "player1points": 68, 
+            "player2": "Piotr Karlicki", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Bartosz Bedynski", 
+            "player1points": 0, 
+            "player2": "Jarek Smoa", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maciej Bogusawski", 
+            "player1points": 0, 
+            "player2": "Szczepan Kalisiak", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Piotr Karlicki", 
+            "player1points": 0, 
+            "player2": "Mateusz Mdel", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Przemek Stec", 
+            "player1points": 0, 
+            "player2": "Piotr Pilch", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Pruszkw", 
+      "country": "Poland", 
+      "lat": null, 
+      "lon": null, 
+      "name": "Merfolk", 
+      "state": "Mazowieckie"
+    }
+  }
+}

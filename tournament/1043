@@ -1,0 +1,126 @@
+{
+  "tournament": {
+    "date": "2016-01-25", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1043, 
+    "name": "Mage's Test", 
+    "players": [
+      {
+        "mov": 307, 
+        "name": "6", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 220, 
+        "name": "2", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 206, 
+        "name": "3", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 197, 
+        "name": "1", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 170, 
+        "name": "4", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "6", 
+            "player1points": 99, 
+            "player2": "1", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "4", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "3", 
+            "player1points": 56, 
+            "player2": "2", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "4", 
+            "player1points": 20, 
+            "player2": "6", 
+            "player2points": 99, 
+            "result": "win"
+          }, 
+          {
+            "player1": "1", 
+            "player1points": 99, 
+            "player2": "2", 
+            "player2points": 76, 
+            "result": "win"
+          }, 
+          {
+            "player1": "3", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Austin", 
+      "country": "United States", 
+      "lat": "30.271128600000", 
+      "lon": "-97.743699400000", 
+      "name": "Mage's Sanctum", 
+      "state": "TX"
+    }
+  }
+}

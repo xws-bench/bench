@@ -1,0 +1,309 @@
+{
+  "tournament": {
+    "date": "2017-05-21", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2887, 
+    "name": "Szolnoki X-Wing Miniatures verseny 2017/03", 
+    "players": [
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "concorddawnveteran", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ], 
+                "torpedo": [
+                  "protontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 554, 
+        "name": "Ngyesi Jnos", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 548, 
+        "name": "Balogh Balzs", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 468, 
+        "name": "Harangoz Andrs", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "collisiondetector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 429, 
+        "name": "Kovcs Imre", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 358, 
+        "name": "Rafay Jnos", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 43, 
+        "name": "Marsi Lukcs", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.56"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Harangoz Andrs", 
+            "player1points": 40, 
+            "player2": "Balogh Balzs", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ngyesi Jnos", 
+            "player1points": 100, 
+            "player2": "Rafay Jnos", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marsi Lukcs", 
+            "player1points": 0, 
+            "player2": "Kovcs Imre", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Harangoz Andrs", 
+            "player1points": 100, 
+            "player2": "Ngyesi Jnos", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kovcs Imre", 
+            "player1points": 45, 
+            "player2": "Balogh Balzs", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marsi Lukcs", 
+            "player1points": 0, 
+            "player2": "Rafay Jnos", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Harangoz Andrs", 
+            "player1points": 36, 
+            "player2": "Kovcs Imre", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Balogh Balzs", 
+            "player1points": 70, 
+            "player2": "Rafay Jnos", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ngyesi Jnos", 
+            "player1points": 100, 
+            "player2": "Marsi Lukcs", 
+            "player2points": 17, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Kovcs Imre", 
+            "player1points": 30, 
+            "player2": "Ngyesi Jnos", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Harangoz Andrs", 
+            "player1points": 100, 
+            "player2": "Rafay Jnos", 
+            "player2points": 76, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Balogh Balzs", 
+            "player1points": 100, 
+            "player2": "Marsi Lukcs", 
+            "player2points": 26, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Szolnok", 
+      "country": "Hungary", 
+      "lat": "47.175423000000", 
+      "lon": "20.195420900000", 
+      "name": "", 
+      "state": "Jasz-Nagykun-Szolnok"
+    }
+  }
+}

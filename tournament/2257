@@ -1,0 +1,160 @@
+{
+  "tournament": {
+    "date": "2016-11-05", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2257, 
+    "name": "DELETE ME -- 3 Amigos - MJ October 2016  - Wasilla, Alaska", 
+    "players": [
+      {
+        "mov": 516, 
+        "name": "Sterling R", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 341, 
+        "name": "Gary S", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 129, 
+        "name": "Brian L", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.78"
+      }, 
+      {
+        "mov": 25, 
+        "name": "Colin W", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "0.67"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Brian L", 
+            "player1points": 71, 
+            "player2": "Brian L", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sterling R", 
+            "player1points": 100, 
+            "player2": "Gary S", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian L", 
+            "player1points": 100, 
+            "player2": "Colin W", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sterling R", 
+            "player1points": 100, 
+            "player2": "Sterling R", 
+            "player2points": 23, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Brian L", 
+            "player1points": 0, 
+            "player2": "Sterling R", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sterling R", 
+            "player1points": 62, 
+            "player2": "Brian L", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Colin W", 
+            "player1points": 25, 
+            "player2": "Gary S", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sterling R", 
+            "player1points": 72, 
+            "player2": "Brian L", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Sterling R", 
+            "player1points": 100, 
+            "player2": "Brian L", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian L", 
+            "player1points": 60, 
+            "player2": "Gary S", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian L", 
+            "player1points": 53, 
+            "player2": "Sterling R", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sterling R", 
+            "player1points": 100, 
+            "player2": "Colin W", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Wasilla", 
+      "country": "United States of America", 
+      "lat": "61.582823400000", 
+      "lon": "-149.438098400000", 
+      "name": "MJ Cards and Comics", 
+      "state": "Alaska"
+    }
+  }
+}

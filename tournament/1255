@@ -1,0 +1,1256 @@
+{
+  "tournament": {
+    "date": "2016-02-28", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1255, 
+    "name": "+1 Gaming Store Championship 2016", 
+    "players": [
+      {
+        "mov": 61, 
+        "name": "Jack Christman", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 170, 
+        "name": "Mike Livaccari", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 178, 
+        "name": "Josh Meister", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 164, 
+        "name": "Justin Bennett", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 302, 
+        "name": "Jason Mayo", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "echo", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "agentkallus"
+                ], 
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "stygiumparticleaccelerator"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 865, 
+        "name": "Seth Dunlap", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 1
+        }, 
+        "score": 25, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "jakefarrell", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts", 
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }, 
+            {
+              "name": "tarnmison", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r7astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 805, 
+        "name": "Jason Guidry", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 2
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 727, 
+        "name": "Kevin Giroir", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 3
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 704, 
+        "name": "Eddie Beshoner", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 4
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "prototypepilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "missile": [
+                  "chardaanrefit"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 676, 
+        "name": "Garrett Platner", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 628, 
+        "name": "Bill Willis", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 626, 
+        "name": "T-Bob Hebert", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 569, 
+        "name": "Tristen Pertuit", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 563, 
+        "name": "Ryan Fisher", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "lukeskywalker"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 559, 
+        "name": "Clint Hoffman", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 493, 
+        "name": "Matthew Spicazza", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 366, 
+        "name": "Gregg Caruso", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 470, 
+        "name": "Tyler Leben", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 11, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "redace", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "elloasty", 
+              "ship": "t70xwing"
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 529, 
+        "name": "Omar Khalid", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "intelligenceagent", 
+                  "k4securitydroid", 
+                  "outlawtech"
+                ], 
+                "ept": [
+                  "marksmanship"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "talonbanecobra", 
+              "ship": "kihraxzfighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 510, 
+        "name": "John Hudson", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 441, 
+        "name": "Daniel Zimmerman", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "echo", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ]
+              }
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor"
+            }, 
+            {
+              "name": "wampa", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 406, 
+        "name": "Kevin Vader", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "ysanneisard"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 388, 
+        "name": "Jakob Prewitt", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 367, 
+        "name": "Craig Mulchay", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 273, 
+        "name": "Michael Steinmetz", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 10, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 303, 
+        "name": "Chris McNeil", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 6, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 411, 
+        "name": "Cody Culpepper", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 263, 
+        "name": "Ryan Robinson", 
+        "rank": {
+          "swiss": 23
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 433, 
+        "name": "Joey Konyha", 
+        "rank": {
+          "swiss": 24
+        }, 
+        "score": 3, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Garrett Platner", 
+            "player1points": 100, 
+            "player2": "Josh Meister", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matthew Spicazza", 
+            "player1points": 100, 
+            "player2": "John Hudson", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Clint Hoffman", 
+            "player1points": 100, 
+            "player2": "Bill Willis", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tyler Leben", 
+            "player1points": 44, 
+            "player2": "Kevin Vader", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Zimmerman", 
+            "player1points": 76, 
+            "player2": "Joey Konyha", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Guidry", 
+            "player1points": 100, 
+            "player2": "Justin Bennett", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cody Culpepper", 
+            "player1points": 34, 
+            "player2": "Eddie Beshoner", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Mayo", 
+            "player1points": 0, 
+            "player2": "Omar Khalid", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "T-Bob Hebert", 
+            "player1points": 100, 
+            "player2": "Jack Christman", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Giroir", 
+            "player1points": 100, 
+            "player2": "Jakob Prewitt", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Livaccari", 
+            "player1points": 34, 
+            "player2": "Chris McNeil", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Seth Dunlap", 
+            "player1points": 100, 
+            "player2": "Ryan Fisher", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Craig Mulchay", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Omar Khalid", 
+            "player1points": 0, 
+            "player2": "Kevin Giroir", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matthew Spicazza", 
+            "player1points": 22, 
+            "player2": "Jason Guidry", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "T-Bob Hebert", 
+            "player1points": 26, 
+            "player2": "Seth Dunlap", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Craig Mulchay", 
+            "player1points": 0, 
+            "player2": "Daniel Zimmerman", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Clint Hoffman", 
+            "player1points": 15, 
+            "player2": "Garrett Platner", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eddie Beshoner", 
+            "player1points": 100, 
+            "player2": "Chris McNeil", 
+            "player2points": 11, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tyler Leben", 
+            "player1points": 68, 
+            "player2": "Joey Konyha", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Bennett", 
+            "player1points": 0, 
+            "player2": "John Hudson", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Meister", 
+            "player1points": 0, 
+            "player2": "Ryan Fisher", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cody Culpepper", 
+            "player1points": 48, 
+            "player2": "Jason Mayo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gregg Caruso", 
+            "player1points": 62, 
+            "player2": "Jack Christman", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Robinson", 
+            "player1points": 100, 
+            "player2": "Michael Steinmetz", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bill Willis", 
+            "player1points": 100, 
+            "player2": "Jakob Prewitt", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Vader", 
+            "player1points": 39, 
+            "player2": "Mike Livaccari", 
+            "player2points": 14, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tristen Pertuit", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Seth Dunlap", 
+            "player1points": 25, 
+            "player2": "Jason Guidry", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Garrett Platner", 
+            "player1points": 72, 
+            "player2": "Jason Guidry", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Giroir", 
+            "player1points": 0, 
+            "player2": "Seth Dunlap", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eddie Beshoner", 
+            "player1points": 100, 
+            "player2": "Daniel Zimmerman", 
+            "player2points": 85, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tyler Leben", 
+            "player1points": 33, 
+            "player2": "Bill Willis", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tristen Pertuit", 
+            "player1points": 100, 
+            "player2": "Ryan Robinson", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Omar Khalid", 
+            "player1points": 62, 
+            "player2": "Matthew Spicazza", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Hudson", 
+            "player1points": 100, 
+            "player2": "Craig Mulchay", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gregg Caruso", 
+            "player1points": 0, 
+            "player2": "T-Bob Hebert", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Vader", 
+            "player1points": 50, 
+            "player2": "Jason Mayo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Clint Hoffman", 
+            "player1points": 74, 
+            "player2": "Ryan Fisher", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris McNeil", 
+            "player1points": 45, 
+            "player2": "Joey Konyha", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Steinmetz", 
+            "player1points": 0, 
+            "player2": "Jakob Prewitt", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Livaccari", 
+            "player1points": 0, 
+            "player2": "Cody Culpepper", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Meister", 
+            "player1points": 0, 
+            "player2": "Justin Bennett", 
+            "player2points": 36, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Seth Dunlap", 
+            "player1points": 100, 
+            "player2": "Garrett Platner", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eddie Beshoner", 
+            "player1points": 100, 
+            "player2": "Ryan Fisher", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "T-Bob Hebert", 
+            "player1points": 0, 
+            "player2": "Jason Guidry", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Hudson", 
+            "player1points": 0, 
+            "player2": "Bill Willis", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matthew Spicazza", 
+            "player1points": 33, 
+            "player2": "Tristen Pertuit", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Giroir", 
+            "player1points": 100, 
+            "player2": "Daniel Zimmerman", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris McNeil", 
+            "player1points": 0, 
+            "player2": "Tyler Leben", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Craig Mulchay", 
+            "player1points": 100, 
+            "player2": "Ryan Robinson", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gregg Caruso", 
+            "player1points": 30, 
+            "player2": "Omar Khalid", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cody Culpepper", 
+            "player1points": 70, 
+            "player2": "Jakob Prewitt", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Clint Hoffman", 
+            "player1points": 100, 
+            "player2": "Kevin Vader", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Meister", 
+            "player1points": 31, 
+            "player2": "Joey Konyha", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Steinmetz", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Seth Dunlap", 
+            "player1points": 100, 
+            "player2": "Eddie Beshoner", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Guidry", 
+            "player1points": 100, 
+            "player2": "Kevin Giroir", 
+            "player2points": 55, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Eddie Beshoner", 
+            "player1points": 38, 
+            "player2": "Seth Dunlap", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tristen Pertuit", 
+            "player1points": 52, 
+            "player2": "Garrett Platner", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Giroir", 
+            "player1points": 100, 
+            "player2": "Bill Willis", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Guidry", 
+            "player1points": 100, 
+            "player2": "Tyler Leben", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jakob Prewitt", 
+            "player1points": 0, 
+            "player2": "T-Bob Hebert", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Zimmerman", 
+            "player1points": 0, 
+            "player2": "Ryan Fisher", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matthew Spicazza", 
+            "player1points": 100, 
+            "player2": "Craig Mulchay", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Clint Hoffman", 
+            "player1points": 100, 
+            "player2": "John Hudson", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gregg Caruso", 
+            "player1points": 70, 
+            "player2": "Chris McNeil", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Omar Khalid", 
+            "player1points": 100, 
+            "player2": "Ryan Robinson", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cody Culpepper", 
+            "player1points": 59, 
+            "player2": "Kevin Vader", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Steinmetz", 
+            "player1points": 23, 
+            "player2": "Joey Konyha", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Metairie", 
+      "country": "United States of America", 
+      "lat": "30.001852000000", 
+      "lon": "-90.176714815989", 
+      "name": "+1 Gaming", 
+      "state": "Louisiana"
+    }
+  }
+}

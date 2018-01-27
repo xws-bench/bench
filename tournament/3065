@@ -1,0 +1,187 @@
+{
+  "tournament": {
+    "date": "2017-06-06", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3065, 
+    "name": "Tuesday Night Flights", 
+    "players": [
+      {
+        "mov": 498, 
+        "name": "Mike N", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 397, 
+        "name": "Gavin I", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 332, 
+        "name": "Keith P", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 322, 
+        "name": "Josh G", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 240, 
+        "name": "Danny B", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 233, 
+        "name": "Keith G", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 1, 
+        "sos": "0.78"
+      }, 
+      {
+        "mov": 228, 
+        "name": "John B", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 65, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Josh G", 
+            "player1points": 0, 
+            "player2": "Mike N", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Keith P", 
+            "player1points": 32, 
+            "player2": "Keith G", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gavin I", 
+            "player1points": 100, 
+            "player2": "Danny B", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John B", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Gavin I", 
+            "player1points": 100, 
+            "player2": "John B", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Keith G", 
+            "player1points": 37, 
+            "player2": "Mike N", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Danny B", 
+            "player1points": 57, 
+            "player2": "Keith P", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh G", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Mike N", 
+            "player1points": 100, 
+            "player2": "Gavin I", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John B", 
+            "player1points": 43, 
+            "player2": "Keith P", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh G", 
+            "player1points": 100, 
+            "player2": "Keith G", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Danny B", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Las Vegas", 
+      "country": "United States of America", 
+      "lat": "36.166285900000", 
+      "lon": "-115.149224900000", 
+      "name": "Power 9 Games", 
+      "state": "Nevada"
+    }
+  }
+}

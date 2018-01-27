@@ -1,0 +1,187 @@
+{
+  "tournament": {
+    "date": "2015-09-17", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 676, 
+    "name": "Friday Night X-wing", 
+    "players": [
+      {
+        "mov": 362, 
+        "name": "Scott B", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 414, 
+        "name": "Robert", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 378, 
+        "name": "Scott Gagne", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 337, 
+        "name": "John", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 338, 
+        "name": "Nathan", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 296, 
+        "name": "Nate", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 175, 
+        "name": "DJ", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Robert", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Scott Gagne", 
+            "player1points": 51, 
+            "player2": "John", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "DJ", 
+            "player1points": 13, 
+            "player2": "Nathan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott B", 
+            "player1points": 53, 
+            "player2": "Nate", 
+            "player2points": 36, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "DJ", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Scott B", 
+            "player1points": 49, 
+            "player2": "Scott Gagne", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nate", 
+            "player1points": 14, 
+            "player2": "John", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan", 
+            "player1points": 35, 
+            "player2": "Robert", 
+            "player2points": 68, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Nate", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "DJ", 
+            "player1points": 12, 
+            "player2": "Scott Gagne", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John", 
+            "player1points": 51, 
+            "player2": "Nathan", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robert", 
+            "player1points": 10, 
+            "player2": "Scott B", 
+            "player2points": 29, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Bossier City", 
+      "country": "United States", 
+      "lat": "32.549942500000", 
+      "lon": "-93.700959245221", 
+      "name": "1314 Airline Dr", 
+      "state": "LA"
+    }
+  }
+}

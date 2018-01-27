@@ -1,0 +1,937 @@
+{
+  "tournament": {
+    "date": "2018-01-07", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3838, 
+    "name": "January Jank Tournament", 
+    "players": [
+      {
+        "mov": 102, 
+        "name": "Bradely Ho", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.42"
+      }, 
+      {
+        "mov": 150, 
+        "name": "Erik Dudgeon", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.75"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rhosquadronveteran", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "ept": [
+                  "adrenalinerush"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "title": [
+                  "os1arsenalloadout"
+                ]
+              }
+            }, 
+            {
+              "name": "lieutenantkarsabi", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "ept": [
+                  "adrenalinerush"
+                ], 
+                "missile": [
+                  "cruisemissiles", 
+                  "ionpulsemissiles"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "title": [
+                  "os1arsenalloadout"
+                ]
+              }
+            }, 
+            {
+              "name": "majorvynder", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "ept": [
+                  "adrenalinerush"
+                ], 
+                "missile": [
+                  "cruisemissiles", 
+                  "scramblermissiles"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "title": [
+                  "os1arsenalloadout"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 243, 
+        "name": "Joe Fiala", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "herasyndulla", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "ezrabridger", 
+                  "maul"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ghost-swx72"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "crew": [
+                  "chopper"
+                ], 
+                "title": [
+                  "phantom"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "flightassistastromech"
+                ], 
+                "crew": [
+                  "captainrex"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 609, 
+        "name": "Paul Vogl", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.58"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "solsixxa", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "protonbombs", 
+                  "thermaldetonators"
+                ], 
+                "ept": [
+                  "fearlessness"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "unkarplutt", 
+              "ship": "quadjumper", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "crew": [
+                  "cadbane"
+                ], 
+                "illicit": [
+                  "empdevice"
+                ], 
+                "mod": [
+                  "spacetugtractorarray"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ]
+              }
+            }, 
+            {
+              "name": "thweek", 
+              "ship": "starviper", 
+              "upgrades": {
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "virago", 
+                  "starvipermkii"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 601, 
+        "name": "Tim Pansch", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "threattracker"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "bomb": [
+                  "ionbombs"
+                ], 
+                "crew": [
+                  "emperorpalpatine", 
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "experthandling"
+                ], 
+                "mod": [
+                  "ionprojector"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 570, 
+        "name": "Andrew Bunn", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.69"
+      }, 
+      {
+        "mov": 552, 
+        "name": "Ryan Moore", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.38"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "snapwexley", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "hansolo-swx57", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "leebo"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "illicit": [
+                  "scavengercrane"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "smugglingcompartment", 
+                  "countermeasures"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 530, 
+        "name": "Doug Stone-Weaver", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "crimsonsquadronpilot", 
+              "ship": "bsf17bomber", 
+              "upgrades": {
+                "bomb": [
+                  "protonbombs", 
+                  "ordnancesilos"
+                ], 
+                "mod": [
+                  "deflectiveplating"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ]
+              }
+            }, 
+            {
+              "name": "crimsonsquadronpilot", 
+              "ship": "bsf17bomber", 
+              "upgrades": {
+                "bomb": [
+                  "protonbombs", 
+                  "ordnancesilos"
+                ], 
+                "mod": [
+                  "deflectiveplating"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpathfinder", 
+              "ship": "uwing", 
+              "upgrades": {
+                "bomb": [
+                  "thermaldetonators"
+                ], 
+                "crew": [
+                  "sabinewren", 
+                  "herasyndulla"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ], 
+                "title": [
+                  "pivotwing"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 438, 
+        "name": "Carson Hopper", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 396, 
+        "name": "Chris Norris", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "starkillerbasepilot", 
+              "ship": "upsilonclassshuttle", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "hyperwavecommscanner"
+                ]
+              }
+            }, 
+            {
+              "name": "lieutenantdormitz", 
+              "ship": "upsilonclassshuttle", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "hyperwavecommscanner"
+                ]
+              }
+            }, 
+            {
+              "name": "starkillerbasepilot", 
+              "ship": "upsilonclassshuttle", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "hyperwavecommscanner"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 339, 
+        "name": "Dylan Emde", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 321, 
+        "name": "Evan Paul", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.61"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "jakkugunrunner", 
+              "ship": "quadjumper", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "mod": [
+                  "spacetugtractorarray"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ]
+              }
+            }, 
+            {
+              "name": "jakkugunrunner", 
+              "ship": "quadjumper", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "mod": [
+                  "spacetugtractorarray"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ]
+              }
+            }, 
+            {
+              "name": "jakkugunrunner", 
+              "ship": "quadjumper", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "mod": [
+                  "spacetugtractorarray"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ]
+              }
+            }, 
+            {
+              "name": "unkarplutt", 
+              "ship": "quadjumper", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "mod": [
+                  "spacetugtractorarray"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 336, 
+        "name": "Izzy Gambliel", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 290, 
+        "name": "Greg Paul", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "majorstridan", 
+              "ship": "upsilonclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "fleetofficer"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "targetingsynchronizer"
+                ]
+              }
+            }, 
+            {
+              "name": "scimitarsquadronpilot", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "scimitarsquadronpilot", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "scimitarsquadronpilot", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 223, 
+        "name": "Ben Gaetke", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Chris Norris", 
+            "player1points": 21, 
+            "player2": "Izzy Gambliel", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul Vogl", 
+            "player1points": 100, 
+            "player2": "Joe Fiala", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ben Gaetke", 
+            "player1points": 0, 
+            "player2": "Doug Stone-Weaver", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bradely Ho", 
+            "player1points": 38, 
+            "player2": "Greg Paul", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erik Dudgeon", 
+            "player1points": 0, 
+            "player2": "Tim Pansch", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew Bunn", 
+            "player1points": 100, 
+            "player2": "Carson Hopper", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Moore", 
+            "player1points": 51, 
+            "player2": "Dylan Emde", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Evan Paul", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Greg Paul", 
+            "player1points": 28, 
+            "player2": "Tim Pansch", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew Bunn", 
+            "player1points": 100, 
+            "player2": "Evan Paul", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dylan Emde", 
+            "player1points": 52, 
+            "player2": "Paul Vogl", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Izzy Gambliel", 
+            "player1points": 30, 
+            "player2": "Doug Stone-Weaver", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joe Fiala", 
+            "player1points": 100, 
+            "player2": "Carson Hopper", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Norris", 
+            "player1points": 78, 
+            "player2": "Bradely Ho", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ben Gaetke", 
+            "player1points": 27, 
+            "player2": "Ryan Moore", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erik Dudgeon", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Andrew Bunn", 
+            "player1points": 100, 
+            "player2": "Tim Pansch", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul Vogl", 
+            "player1points": 100, 
+            "player2": "Doug Stone-Weaver", 
+            "player2points": 82, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Norris", 
+            "player1points": 100, 
+            "player2": "Dylan Emde", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Moore", 
+            "player1points": 100, 
+            "player2": "Izzy Gambliel", 
+            "player2points": 45, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joe Fiala", 
+            "player1points": 49, 
+            "player2": "Evan Paul", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Greg Paul", 
+            "player1points": 20, 
+            "player2": "Ben Gaetke", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carson Hopper", 
+            "player1points": 100, 
+            "player2": "Bradely Ho", 
+            "player2points": 17, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Andrew Bunn", 
+            "player1points": 28, 
+            "player2": "Paul Vogl", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Moore", 
+            "player1points": 100, 
+            "player2": "Evan Paul", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Norris", 
+            "player1points": 0, 
+            "player2": "Tim Pansch", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Doug Stone-Weaver", 
+            "player1points": 81, 
+            "player2": "Greg Paul", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ben Gaetke", 
+            "player1points": 16, 
+            "player2": "Carson Hopper", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dylan Emde", 
+            "player1points": 79, 
+            "player2": "Izzy Gambliel", 
+            "player2points": 66, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Seattle", 
+      "country": "United States of America", 
+      "lat": "47.603832100000", 
+      "lon": "-122.330062400000", 
+      "name": "Meeples Games", 
+      "state": "Washington"
+    }
+  }
+}

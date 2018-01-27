@@ -1,0 +1,283 @@
+{
+  "tournament": {
+    "date": "2017-06-03", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3104, 
+    "name": "PMG June 017", 
+    "players": [
+      {
+        "mov": 517, 
+        "name": "Eric H", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.33"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 478, 
+        "name": "Kyle", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 373, 
+        "name": "CJ", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 347, 
+        "name": "Derrick", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 299, 
+        "name": "Scott C", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 241, 
+        "name": "Ben D", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 241, 
+        "name": "Alex B", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 186, 
+        "name": "Eric G", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.22"
+      }, 
+      {
+        "mov": 168, 
+        "name": "\"Tho\" and \"Mas\"", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Alex B", 
+            "player1points": 30, 
+            "player2": "CJ", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Derrick", 
+            "player1points": 46, 
+            "player2": "Kyle", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric G", 
+            "player1points": 24, 
+            "player2": "Ben D", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "\"Tho\" and \"Mas\"", 
+            "player1points": 100, 
+            "player2": "Scott C", 
+            "player2points": 77, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric H", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "CJ", 
+            "player1points": 100, 
+            "player2": "\"Tho\" and \"Mas\"", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric H", 
+            "player1points": 100, 
+            "player2": "Ben D", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kyle", 
+            "player1points": 100, 
+            "player2": "Alex B", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Derrick", 
+            "player1points": 100, 
+            "player2": "Scott C", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric G", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "CJ", 
+            "player1points": 33, 
+            "player2": "Eric H", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kyle", 
+            "player1points": 100, 
+            "player2": "\"Tho\" and \"Mas\"", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Derrick", 
+            "player1points": 100, 
+            "player2": "Ben D", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric G", 
+            "player1points": 12, 
+            "player2": "Scott C", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex B", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Gaithersburg", 
+      "country": "United States of America", 
+      "lat": "39.143440600000", 
+      "lon": "-77.201370400000", 
+      "name": "Play More Games", 
+      "state": "Maryland"
+    }
+  }
+}

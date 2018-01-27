@@ -1,0 +1,439 @@
+{
+  "tournament": {
+    "date": "2017-11-25", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3673, 
+    "name": "Bolter - Od Kita do Kita", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "ascoretosettle"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "duchess", 
+              "ship": "tiestriker", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "title": [
+                  "adaptiveailerons"
+                ]
+              }
+            }, 
+            {
+              "name": "puresabacc", 
+              "ship": "tiestriker", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "title": [
+                  "adaptiveailerons"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "collisiondetector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 707, 
+        "name": "Golonka", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 599, 
+        "name": "Pluto", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 525, 
+        "name": "Pikulska", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.75"
+      }, 
+      {
+        "mov": 443, 
+        "name": "Maria", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "niennunb", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "ept": [
+                  "snapshot"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "jesspava", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d6"
+                ], 
+                "ept": [
+                  "drawtheirfire"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 448, 
+        "name": "Kuna", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 380, 
+        "name": "Will Frost", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 336, 
+        "name": "Tomasz", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 333, 
+        "name": "Przemek", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 326, 
+        "name": "Sebastian", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 275, 
+        "name": "Jarek", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 228, 
+        "name": "Adzio Wpadzio", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.31"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Adzio Wpadzio", 
+            "player1points": 0, 
+            "player2": "Will Frost", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jarek", 
+            "player1points": 100, 
+            "player2": "Sebastian", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tomasz", 
+            "player1points": 0, 
+            "player2": "Golonka", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pikulska", 
+            "player1points": 100, 
+            "player2": "Maria", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pluto", 
+            "player1points": 100, 
+            "player2": "Przemek", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kuna", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Golonka", 
+            "player1points": 100, 
+            "player2": "Will Frost", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jarek", 
+            "player1points": 55, 
+            "player2": "Pluto", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pikulska", 
+            "player1points": 100, 
+            "player2": "Kuna", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adzio Wpadzio", 
+            "player1points": 0, 
+            "player2": "Sebastian", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Przemek", 
+            "player1points": 47, 
+            "player2": "Maria", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tomasz", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Pluto", 
+            "player1points": 54, 
+            "player2": "Pikulska", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Golonka", 
+            "player1points": 100, 
+            "player2": "Sebastian", 
+            "player2points": 14, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Will Frost", 
+            "player1points": 100, 
+            "player2": "Kuna", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jarek", 
+            "player1points": 50, 
+            "player2": "Maria", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tomasz", 
+            "player1points": 64, 
+            "player2": "Przemek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adzio Wpadzio", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Pikulska", 
+            "player1points": 50, 
+            "player2": "Golonka", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pluto", 
+            "player1points": 100, 
+            "player2": "Will Frost", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sebastian", 
+            "player1points": 47, 
+            "player2": "Maria", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adzio Wpadzio", 
+            "player1points": 36, 
+            "player2": "Tomasz", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jarek", 
+            "player1points": 0, 
+            "player2": "Kuna", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Przemek", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Wroclaw", 
+      "country": "Poland", 
+      "lat": "51.108977600000", 
+      "lon": "17.032668900000", 
+      "name": "Sklep Bolter", 
+      "state": "Dolnoslaskie"
+    }
+  }
+}

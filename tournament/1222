@@ -1,0 +1,162 @@
+{
+  "tournament": {
+    "date": "2016-01-30", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1222, 
+    "name": "Test", 
+    "players": [
+      {
+        "mov": 200, 
+        "name": "Jane Doe", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 120, 
+        "name": "Joe Smith", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 120, 
+        "name": "Smith Joe", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 112, 
+        "name": "Jon Acton", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 88, 
+        "name": "Smith Jane", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 80, 
+        "name": "Jane Smith", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 80, 
+        "name": "Joe Doe", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Player 8", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Jane Doe", 
+            "player1points": 100, 
+            "player2": "Player 8", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon Acton", 
+            "player1points": 32, 
+            "player2": "Smith Jane", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jane Smith", 
+            "player1points": 65, 
+            "player2": "Smith Joe", 
+            "player2points": 85, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joe Doe", 
+            "player1points": 32, 
+            "player2": "Joe Smith", 
+            "player2points": 52, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jane Doe", 
+            "player1points": 0, 
+            "player2": "Joe Smith", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon Acton", 
+            "player1points": 0, 
+            "player2": "Smith Joe", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Player 8", 
+            "player1points": 0, 
+            "player2": "Jane Smith", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Smith Jane", 
+            "player1points": 0, 
+            "player2": "Joe Doe", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Durham", 
+      "country": "United States", 
+      "lat": "35.994032900000", 
+      "lon": "-78.898618900000", 
+      "name": "Atomic Empire", 
+      "state": "NC"
+    }
+  }
+}

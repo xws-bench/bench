@@ -1,0 +1,209 @@
+{
+  "tournament": {
+    "date": "2017-12-17", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3809, 
+    "name": "OEJ December OP", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "tomaxbren", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "missile": [
+                  "unguidedrockets"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "imperialtrainee", 
+              "ship": "tiestriker", 
+              "upgrades": {
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "title": [
+                  "adaptiveailerons"
+                ]
+              }
+            }, 
+            {
+              "name": "kyloren", 
+              "ship": "tiesilencer", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "threattracker"
+                ], 
+                "title": [
+                  "firstordervanguard"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 451, 
+        "name": "Alex Taylor", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 361, 
+        "name": "John Ives", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 350, 
+        "name": "Lee Reid", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 269, 
+        "name": "Chuck Stocky", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 219, 
+        "name": "Nick LaPietra", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Nick LaPietra", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Lee Reid", 
+            "player1points": 100, 
+            "player2": "Chuck Stocky", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Ives", 
+            "player1points": 52, 
+            "player2": "Alex Taylor", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Alex Taylor", 
+            "player1points": 100, 
+            "player2": "Lee Reid", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nick LaPietra", 
+            "player1points": 28, 
+            "player2": "Chuck Stocky", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Ives", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "John Ives", 
+            "player1points": 100, 
+            "player2": "Nick LaPietra", 
+            "player2points": 41, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chuck Stocky", 
+            "player1points": 45, 
+            "player2": "Alex Taylor", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lee Reid", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Richmond", 
+      "country": "United States of America", 
+      "lat": "37.538508700000", 
+      "lon": "-77.434280000000", 
+      "name": "", 
+      "state": "Virginia"
+    }
+  }
+}

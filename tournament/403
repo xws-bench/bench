@@ -1,0 +1,157 @@
+{
+  "tournament": {
+    "date": "2015-05-03", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 403, 
+    "name": "Table's Edge", 
+    "players": [
+      {
+        "mov": 466, 
+        "name": "Travis Champion", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 400, 
+        "name": "Brandon Newburg", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 350, 
+        "name": "Ethan Pearson", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 334, 
+        "name": "Evan Whitlow", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 150, 
+        "name": "Tackett McClenny", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Aaron Rojas", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Evan Whitlow", 
+            "player1points": 85, 
+            "player2": "Travis Champion", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brandon Newburg", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Tackett McClenny", 
+            "player1points": 0, 
+            "player2": "Ethan Pearson", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Tackett McClenny", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Ethan Pearson", 
+            "player1points": 0, 
+            "player2": "Travis Champion", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Evan Whitlow", 
+            "player1points": 100, 
+            "player2": "Brandon Newburg", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Travis Champion", 
+            "player1points": 100, 
+            "player2": "Evan Whitlow", 
+            "player2points": 14, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ethan Pearson", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Tackett McClenny", 
+            "player1points": 0, 
+            "player2": "Brandon Newburg", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Amarillo", 
+      "country": "United States", 
+      "lat": "35.207218500000", 
+      "lon": "-101.833824500000", 
+      "name": "The Table's Edge", 
+      "state": "TX"
+    }
+  }
+}

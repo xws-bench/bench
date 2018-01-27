@@ -1,0 +1,7035 @@
+{
+  "tournament": {
+    "date": "2016-09-03", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2047, 
+    "name": "Nationals Italia", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "chopper"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 528, 
+        "name": "Filippo Chionsini", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 2, 
+        "sos": "0.57"
+      }, 
+      {
+        "mov": 453, 
+        "name": "Federico Bostrenghi", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 3, 
+        "sos": "0.73"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "darthvader", 
+                  "rebelcaptive", 
+                  "gunner"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 326, 
+        "name": "Matteo Baranzoni", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.51"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "kathscarlet", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "dengar"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "4lom"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "slavei"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 347, 
+        "name": "Luca Pecchi", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 2, 
+        "sos": "0.61"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "darthvader", 
+                  "gunner"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 359, 
+        "name": "Daniele Patruno", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "esegetuketu", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "protonbombs", 
+                  "connernet"
+                ], 
+                "crew": [
+                  "c3po"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "protonbombs", 
+                  "connernet"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 568, 
+        "name": "Michele Alfredo Zanco", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 3, 
+        "sos": "0.70"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "zuckuss"
+                ], 
+                "ept": [
+                  "wired"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "protontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "4lom"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "iontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 319, 
+        "name": "Daniele Prejan", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "dengar", 
+                  "4lom", 
+                  "zuckuss"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 983, 
+        "name": "Francesco Castellari", 
+        "rank": {
+          "elimination": 16, 
+          "swiss": 1
+        }, 
+        "score": 6, 
+        "sos": "0.58"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "4lom"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "zuckuss"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 876, 
+        "name": "Alessandro Marmorini", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 2
+        }, 
+        "score": 6, 
+        "sos": "0.64"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "4lom"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 899, 
+        "name": "Tom Reed", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 3
+        }, 
+        "score": 5, 
+        "sos": "0.48"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "4lom", 
+                  "dengar", 
+                  "zuckuss"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 869, 
+        "name": "Marco Turchiano", 
+        "rank": {
+          "elimination": 16, 
+          "swiss": 4
+        }, 
+        "score": 5, 
+        "sos": "0.67"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine", 
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 860, 
+        "name": "Alex Ceccaroni", 
+        "rank": {
+          "elimination": 16, 
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.60"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "tomaxbren", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive", 
+                  "ysanneisard"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ], 
+                "title": [
+                  "tieshuttle"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 846, 
+        "name": "Roberto Savino", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "0.65"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "4lom", 
+                  "dengar", 
+                  "zuckuss"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 815, 
+        "name": "Marcello Beccati", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "0.66"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "wesjanson", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r4d6"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 766, 
+        "name": "Lorenzo Marasca", 
+        "rank": {
+          "elimination": 16, 
+          "swiss": 8
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "4lom", 
+                  "zuckuss", 
+                  "dengar"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 647, 
+        "name": "Marco Monti", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 9
+        }, 
+        "score": 5, 
+        "sos": "0.57"
+      }, 
+      {
+        "mov": 923, 
+        "name": "Alessandro Sapone", 
+        "rank": {
+          "elimination": 16, 
+          "swiss": 10
+        }, 
+        "score": 4, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegasquadronpilot", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "omegasquadronpilot", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 899, 
+        "name": "Fabio Gasparini", 
+        "rank": {
+          "elimination": 16, 
+          "swiss": 11
+        }, 
+        "score": 4, 
+        "sos": "0.52"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "gonk"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r5p8"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "zuckuss"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 881, 
+        "name": "Dante Stefanucci", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 12
+        }, 
+        "score": 4, 
+        "sos": "0.45"
+      }, 
+      {
+        "mov": 871, 
+        "name": "Paolo Zaninoni", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 13
+        }, 
+        "score": 4, 
+        "sos": "0.54"
+      }, 
+      {
+        "mov": 863, 
+        "name": "Marco Peloni", 
+        "rank": {
+          "elimination": 16, 
+          "swiss": 14
+        }, 
+        "score": 4, 
+        "sos": "0.54"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "zuckuss"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 825, 
+        "name": "Mirco Petriconi", 
+        "rank": {
+          "elimination": 16, 
+          "swiss": 15
+        }, 
+        "score": 4, 
+        "sos": "0.47"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "protontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 814, 
+        "name": "Scott Reed", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 16
+        }, 
+        "score": 4, 
+        "sos": "0.53"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ]
+              }
+            }, 
+            {
+              "name": "maarekstele", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "rexlerbrath", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 811, 
+        "name": "Marco Resta", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 4, 
+        "sos": "0.61"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "4lom"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 799, 
+        "name": "Alvise Gaspari", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "dengar", 
+                  "4lom", 
+                  "zuckuss"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 787, 
+        "name": "Fabio Cortini", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 4, 
+        "sos": "0.46"
+      }, 
+      {
+        "mov": 784, 
+        "name": "Roberto Passera", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 4, 
+        "sos": "0.46"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "dengar", 
+                  "4lom", 
+                  "zuckuss"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 756, 
+        "name": "Craig Reed", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 4, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "4lom", 
+                  "dengar", 
+                  "zuckuss"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 752, 
+        "name": "Michele Bruni", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 4, 
+        "sos": "0.53"
+      }, 
+      {
+        "mov": 742, 
+        "name": "Matteo Brasanti", 
+        "rank": {
+          "swiss": 23
+        }, 
+        "score": 4, 
+        "sos": "0.51"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "sabinewren", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "tychocelchu", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit", 
+                  "rage"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "jakefarrell", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts", 
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 740, 
+        "name": "Federico Sirri", 
+        "rank": {
+          "swiss": 24
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 722, 
+        "name": "Riccardo Gragnola", 
+        "rank": {
+          "swiss": 25
+        }, 
+        "score": 4, 
+        "sos": "0.34"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "airencracken", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 721, 
+        "name": "Dario Calandra", 
+        "rank": {
+          "swiss": 26
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "4lom"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "iontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 706, 
+        "name": "Tony Petriconi", 
+        "rank": {
+          "swiss": 27
+        }, 
+        "score": 4, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 702, 
+        "name": "Francesco Longo", 
+        "rank": {
+          "swiss": 28
+        }, 
+        "score": 4, 
+        "sos": "0.42"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 686, 
+        "name": "Simone Provenzano", 
+        "rank": {
+          "swiss": 29
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 631, 
+        "name": "Giulio Taddei", 
+        "rank": {
+          "swiss": 30
+        }, 
+        "score": 4, 
+        "sos": "0.54"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "4lom", 
+                  "zuckuss", 
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "adaptability"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 613, 
+        "name": "Daniele Pellegrino", 
+        "rank": {
+          "swiss": 31
+        }, 
+        "score": 4, 
+        "sos": "0.58"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "wampa", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "zetaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "wired"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 526, 
+        "name": "Mirko Bonazza", 
+        "rank": {
+          "swiss": 32
+        }, 
+        "score": 4, 
+        "sos": "0.57"
+      }, 
+      {
+        "mov": 766, 
+        "name": "Marco Bonato", 
+        "rank": {
+          "swiss": 33
+        }, 
+        "score": 3, 
+        "sos": "0.48"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "greedo"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "4lom"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 714, 
+        "name": "Vittorio Artom Celli", 
+        "rank": {
+          "swiss": 34
+        }, 
+        "score": 3, 
+        "sos": "0.61"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 667, 
+        "name": "Tommaso Castagnoli", 
+        "rank": {
+          "swiss": 35
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 666, 
+        "name": "Stefano Terminiello", 
+        "rank": {
+          "swiss": 36
+        }, 
+        "score": 3, 
+        "sos": "0.58"
+      }, 
+      {
+        "mov": 663, 
+        "name": "Luca Sghedoni", 
+        "rank": {
+          "swiss": 37
+        }, 
+        "score": 3, 
+        "sos": "0.42"
+      }, 
+      {
+        "mov": 662, 
+        "name": "Gianluca Targhini", 
+        "rank": {
+          "swiss": 38
+        }, 
+        "score": 3, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 648, 
+        "name": "Giacomo Arosio", 
+        "rank": {
+          "swiss": 39
+        }, 
+        "score": 3, 
+        "sos": "0.42"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "gonk"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "zuckuss"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 627, 
+        "name": "Marco Crivaro", 
+        "rank": {
+          "swiss": 40
+        }, 
+        "score": 3, 
+        "sos": "0.58"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 612, 
+        "name": "Giuseppe Catanesi", 
+        "rank": {
+          "swiss": 41
+        }, 
+        "score": 3, 
+        "sos": "0.57"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit", 
+                  "juke"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "ezrabridger", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "title": [
+                  "phantom"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist", 
+                  "reconspecialist"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 603, 
+        "name": "Alessandro Baccheschi", 
+        "rank": {
+          "swiss": 42
+        }, 
+        "score": 3, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 598, 
+        "name": "Maurizio Cignoni", 
+        "rank": {
+          "swiss": 43
+        }, 
+        "score": 3, 
+        "sos": "0.72"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine", 
+                  "moffjerjerrod"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 597, 
+        "name": "Matteo Colombo", 
+        "rank": {
+          "swiss": 44
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 594, 
+        "name": "Nick Barker", 
+        "rank": {
+          "swiss": 45
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "adaptability", 
+                  "crackshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "adaptability", 
+                  "crackshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "adaptability", 
+                  "crackshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "adaptability", 
+                  "crackshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "adaptability", 
+                  "crackshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 586, 
+        "name": "Micaela Raiteri", 
+        "rank": {
+          "swiss": 46
+        }, 
+        "score": 3, 
+        "sos": "0.36"
+      }, 
+      {
+        "mov": 583, 
+        "name": "Michele Buono", 
+        "rank": {
+          "swiss": 47
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ]
+              }
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 580, 
+        "name": "Fiorenzo Delle Rupi", 
+        "rank": {
+          "swiss": 48
+        }, 
+        "score": 3, 
+        "sos": "0.53"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ndrusuhlak", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "kavil", 
+              "ship": "ywing", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "4lom", 
+                  "bobafett", 
+                  "greedo"
+                ], 
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 573, 
+        "name": "Manuel Bellotto", 
+        "rank": {
+          "swiss": 49
+        }, 
+        "score": 3, 
+        "sos": "0.49"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "crew": [
+                  "darthvader", 
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "expose"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }, 
+            {
+              "name": "captainyorr", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 562, 
+        "name": "Patrick Partesotti", 
+        "rank": {
+          "swiss": 50
+        }, 
+        "score": 3, 
+        "sos": "0.46"
+      }, 
+      {
+        "mov": 557, 
+        "name": "Giulio Vezzani", 
+        "rank": {
+          "swiss": 51
+        }, 
+        "score": 3, 
+        "sos": "0.53"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "4lom", 
+                  "tactician", 
+                  "gunner"
+                ]
+              }
+            }, 
+            {
+              "name": "princexizor", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ], 
+                "title": [
+                  "virago"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 553, 
+        "name": "Eugenio Cascone", 
+        "rank": {
+          "swiss": 52
+        }, 
+        "score": 3, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "tomaxbren", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 539, 
+        "name": "Ettore Capozza", 
+        "rank": {
+          "swiss": 53
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "tychocelchu", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "rage", 
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "jakefarrell", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts", 
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "wesjanson", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 535, 
+        "name": "Matteo Bennati", 
+        "rank": {
+          "swiss": 54
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon", 
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon", 
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 529, 
+        "name": "Thomas Galbulli", 
+        "rank": {
+          "swiss": 55
+        }, 
+        "score": 3, 
+        "sos": "0.47"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "hiredgun", 
+              "ship": "ywing", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "torpedo": [
+                  "bombloadout"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }, 
+            {
+              "name": "hiredgun", 
+              "ship": "ywing", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "torpedo": [
+                  "bombloadout"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }, 
+            {
+              "name": "hiredgun", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }, 
+            {
+              "name": "hiredgun", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 529, 
+        "name": "Alessandro Raiteri", 
+        "rank": {
+          "swiss": 56
+        }, 
+        "score": 3, 
+        "sos": "0.39"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit", 
+                  "juke"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "sabinewren", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "crew": [
+                  "niennunb"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "title": [
+                  "phantom"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist", 
+                  "reconspecialist"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 512, 
+        "name": "Mattia Galazzi", 
+        "rank": {
+          "swiss": 57
+        }, 
+        "score": 3, 
+        "sos": "0.37"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "tomaxbren", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "omegasquadronpilot", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 476, 
+        "name": "Adriano Grassi", 
+        "rank": {
+          "swiss": 58
+        }, 
+        "score": 3, 
+        "sos": "0.53"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine", 
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "experthandling"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 643, 
+        "name": "Andrea Puglia", 
+        "rank": {
+          "swiss": 59
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla", 
+                  "chopper"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "hansolo", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 578, 
+        "name": "Francesco Bellman", 
+        "rank": {
+          "swiss": 60
+        }, 
+        "score": 2, 
+        "sos": "0.42"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing"
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing"
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 563, 
+        "name": "Francesca Gatti", 
+        "rank": {
+          "swiss": 61
+        }, 
+        "score": 2, 
+        "sos": "0.42"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "tennumb", 
+              "ship": "bwing", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "lukeskywalker", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ]
+              }
+            }, 
+            {
+              "name": "hortonsalm", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 554, 
+        "name": "Iolanda Paolini", 
+        "rank": {
+          "swiss": 62
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "dengar", 
+                  "4lom", 
+                  "zuckuss"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "iontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 547, 
+        "name": "Andrea di Iorio", 
+        "rank": {
+          "swiss": 63
+        }, 
+        "score": 2, 
+        "sos": "0.53"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla", 
+                  "leebo"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 509, 
+        "name": "Nicola Panizzieri", 
+        "rank": {
+          "swiss": 64
+        }, 
+        "score": 2, 
+        "sos": "0.31"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }, 
+            {
+              "name": "jakefarrell", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts", 
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "airencracken", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 506, 
+        "name": "Federico Mignardi", 
+        "rank": {
+          "swiss": 65
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "4lom"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 491, 
+        "name": "Rob Darbyshire", 
+        "rank": {
+          "swiss": 66
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "teltrevura", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r5p8"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "outmaneuver"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 469, 
+        "name": "Federico Martelli", 
+        "rank": {
+          "swiss": 67
+        }, 
+        "score": 2, 
+        "sos": "0.64"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "gonk"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r5p8"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "zuckuss"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 436, 
+        "name": "Leonidas Pasios", 
+        "rank": {
+          "swiss": 68
+        }, 
+        "score": 2, 
+        "sos": "0.47"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "glaivesquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 427, 
+        "name": "Edoardo Marmorini", 
+        "rank": {
+          "swiss": 69
+        }, 
+        "score": 2, 
+        "sos": "0.43"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "ezrabridger", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "crew": [
+                  "niennunb"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "title": [
+                  "phantom"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r4d6"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist", 
+                  "herasyndulla"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 414, 
+        "name": "Gianluigi Basta", 
+        "rank": {
+          "swiss": 70
+        }, 
+        "score": 2, 
+        "sos": "0.47"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "tomaxbren", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 410, 
+        "name": "Giacomo Giusti", 
+        "rank": {
+          "swiss": 71
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "royalguardpilot", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "maarekstele", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 403, 
+        "name": "Maurizio Bettinelli", 
+        "rank": {
+          "swiss": 72
+        }, 
+        "score": 2, 
+        "sos": "0.42"
+      }, 
+      {
+        "mov": 400, 
+        "name": "Carolus Citra", 
+        "rank": {
+          "swiss": 73
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "outmaneuver"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "hullupgrade", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 395, 
+        "name": "Sara Soriani", 
+        "rank": {
+          "swiss": 74
+        }, 
+        "score": 2, 
+        "sos": "0.64"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "echo", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "stygiumparticleaccelerator"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 368, 
+        "name": "Giancarlo Basile", 
+        "rank": {
+          "swiss": 75
+        }, 
+        "score": 2, 
+        "sos": "0.25"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "zertikstrom", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "wingman"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "targetingcomputer"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "squadleader"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 350, 
+        "name": "Matteo Ruffilli", 
+        "rank": {
+          "swiss": 76
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "4lom", 
+                  "zuckuss", 
+                  "dengar"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "iontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 379, 
+        "name": "Marco Morucci", 
+        "rank": {
+          "swiss": 77
+        }, 
+        "score": 1, 
+        "sos": "0.42"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit", 
+                  "juke"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "crew": [
+                  "c3po"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 359, 
+        "name": "Sara Tirelli", 
+        "rank": {
+          "swiss": 78
+        }, 
+        "score": 1, 
+        "sos": "0.34"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "gammasquadronpilot", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "gammasquadronpilot", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "gammasquadronpilot", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "captainjonus", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "missile": [
+                  "xx23sthreadtracers"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 341, 
+        "name": "Victoria Raiteri", 
+        "rank": {
+          "swiss": 79
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "lieutenantblount", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "assaultmissiles"
+                ], 
+                "mod": [
+                  "munitionsfailsafe"
+                ]
+              }
+            }, 
+            {
+              "name": "hansolo", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 305, 
+        "name": "Lorenzo Basile", 
+        "rank": {
+          "swiss": 80
+        }, 
+        "score": 1, 
+        "sos": "0.42"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "sigmasquadronpilot", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "mod": [
+                  "stygiumparticleaccelerator"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }, 
+            {
+              "name": "sigmasquadronpilot", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive"
+                ], 
+                "mod": [
+                  "stygiumparticleaccelerator"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }, 
+            {
+              "name": "sigmasquadronpilot", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "marajade"
+                ], 
+                "mod": [
+                  "stygiumparticleaccelerator"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 281, 
+        "name": "Luca Grimaldi", 
+        "rank": {
+          "swiss": 81
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "backstabber", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "ruthlessness"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 255, 
+        "name": "Dario Bocchetti", 
+        "rank": {
+          "swiss": 82
+        }, 
+        "score": 1, 
+        "sos": "0.39"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "prototypepilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "missile": [
+                  "chardaanrefit"
+                ]
+              }
+            }, 
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "keyanfarlander", 
+              "ship": "bwing", 
+              "upgrades": {
+                "cannon": [
+                  "autoblaster"
+                ], 
+                "crew": [
+                  "janors"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 170, 
+        "name": "Nicol Signoretto", 
+        "rank": {
+          "swiss": 83
+        }, 
+        "score": 1, 
+        "sos": "0.39"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegaace", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ]
+              }
+            }, 
+            {
+              "name": "kirkanos", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "mod": [
+                  "shieldupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "epsilonsquadronpilot", 
+              "ship": "tiefofighter"
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 251, 
+        "name": "Fabio Quadraruopolo", 
+        "rank": {
+          "swiss": 84
+        }, 
+        "score": 0, 
+        "sos": "0.39"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Dante Stefanucci", 
+            "player1points": 100, 
+            "player2": "Iolanda Paolini", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Federico Martelli", 
+            "player1points": 100, 
+            "player2": "Luca Sghedoni", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott Reed", 
+            "player1points": 67, 
+            "player2": "Giuseppe Catanesi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alessandro Raiteri", 
+            "player1points": 50, 
+            "player2": "Marco Turchiano", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luca Grimaldi", 
+            "player1points": 0, 
+            "player2": "Matteo Colombo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex Ceccaroni", 
+            "player1points": 100, 
+            "player2": "Michele Buono", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrea Puglia", 
+            "player1points": 100, 
+            "player2": "Giancarlo Basile", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nicol Signoretto", 
+            "player1points": 0, 
+            "player2": "Federico Sirri", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michele Bruni", 
+            "player1points": 100, 
+            "player2": "Francesco Bellman", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Federico Bostrenghi", 
+            "player1points": 65, 
+            "player2": "Fabio Cortini", 
+            "player2points": 43, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lorenzo Basile", 
+            "player1points": 0, 
+            "player2": "Dario Bocchetti", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stefano Terminiello", 
+            "player1points": 100, 
+            "player2": "Carolus Citra", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matteo Ruffilli", 
+            "player1points": 16, 
+            "player2": "Rob Darbyshire", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matteo Brasanti", 
+            "player1points": 100, 
+            "player2": "Daniele Prejan", 
+            "player2points": 57, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Victoria Raiteri", 
+            "player1points": 33, 
+            "player2": "Matteo Bennati", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mirco Petriconi", 
+            "player1points": 100, 
+            "player2": "Federico Mignardi", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Roberto Savino", 
+            "player1points": 100, 
+            "player2": "Daniele Patruno", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matteo Baranzoni", 
+            "player1points": 33, 
+            "player2": "Alvise Gaspari", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Roberto Passera", 
+            "player1points": 58, 
+            "player2": "Giulio Taddei", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michele Alfredo Zanco", 
+            "player1points": 100, 
+            "player2": "Mirko Bonazza", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alessandro Sapone", 
+            "player1points": 28, 
+            "player2": "Fiorenzo Delle Rupi", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maurizio Cignoni", 
+            "player1points": 100, 
+            "player2": "Tom Reed", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adriano Grassi", 
+            "player1points": 44, 
+            "player2": "Daniele Pellegrino", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francesco Castellari", 
+            "player1points": 100, 
+            "player2": "Luca Pecchi", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Manuel Bellotto", 
+            "player1points": 100, 
+            "player2": "Craig Reed", 
+            "player2points": 76, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giulio Vezzani", 
+            "player1points": 34, 
+            "player2": "Marco Resta", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Morucci", 
+            "player1points": 32, 
+            "player2": "Paolo Zaninoni", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fabio Gasparini", 
+            "player1points": 100, 
+            "player2": "Maurizio Bettinelli", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcello Beccati", 
+            "player1points": 100, 
+            "player2": "Tommaso Castagnoli", 
+            "player2points": 19, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Micaela Raiteri", 
+            "player1points": 20, 
+            "player2": "Nick Barker", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Edoardo Marmorini", 
+            "player1points": 60, 
+            "player2": "Gianluigi Basta", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Riccardo Gragnola", 
+            "player1points": 29, 
+            "player2": "Marco Peloni", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Galbulli", 
+            "player1points": 100, 
+            "player2": "Andrea di Iorio", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sara Soriani", 
+            "player1points": 100, 
+            "player2": "Dario Calandra", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick Partesotti", 
+            "player1points": 16, 
+            "player2": "Alessandro Marmorini", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simone Provenzano", 
+            "player1points": 66, 
+            "player2": "Francesca Gatti", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nicola Panizzieri", 
+            "player1points": 57, 
+            "player2": "Leonidas Pasios", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francesco Longo", 
+            "player1points": 100, 
+            "player2": "Fabio Quadraruopolo", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giacomo Giusti", 
+            "player1points": 38, 
+            "player2": "Sara Tirelli", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Monti", 
+            "player1points": 100, 
+            "player2": "Filippo Chionsini", 
+            "player2points": 84, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Bonato", 
+            "player1points": 65, 
+            "player2": "Ettore Capozza", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vittorio Artom Celli", 
+            "player1points": 100, 
+            "player2": "Mattia Galazzi", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giacomo Arosio", 
+            "player1points": 27, 
+            "player2": "Marco Crivaro", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alessandro Baccheschi", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Eugenio Cascone", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Gianluca Targhini", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Lorenzo Marasca", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Tony Petriconi", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Dante Stefanucci", 
+            "player1points": 33, 
+            "player2": "Tom Reed", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Matteo Brasanti", 
+            "player1points": 100, 
+            "player2": "Manuel Bellotto", 
+            "player2points": 41, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giuseppe Catanesi", 
+            "player1points": 44, 
+            "player2": "Daniele Pellegrino", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Federico Bostrenghi", 
+            "player1points": 100, 
+            "player2": "Alex Ceccaroni", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eugenio Cascone", 
+            "player1points": 34, 
+            "player2": "Gianluca Targhini", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paolo Zaninoni", 
+            "player1points": 84, 
+            "player2": "Marco Monti", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matteo Bennati", 
+            "player1points": 100, 
+            "player2": "Giacomo Giusti", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dante Stefanucci", 
+            "player1points": 32, 
+            "player2": "Alvise Gaspari", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Galbulli", 
+            "player1points": 0, 
+            "player2": "Federico Sirri", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rob Darbyshire", 
+            "player1points": 15, 
+            "player2": "Marco Resta", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nick Barker", 
+            "player1points": 29, 
+            "player2": "Roberto Savino", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrea Puglia", 
+            "player1points": 77, 
+            "player2": "Michele Bruni", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alessandro Marmorini", 
+            "player1points": 100, 
+            "player2": "Ettore Capozza", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alessandro Baccheschi", 
+            "player1points": 33, 
+            "player2": "Vittorio Artom Celli", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francesco Castellari", 
+            "player1points": 100, 
+            "player2": "Federico Martelli", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tony Petriconi", 
+            "player1points": 100, 
+            "player2": "Fiorenzo Delle Rupi", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Turchiano", 
+            "player1points": 100, 
+            "player2": "Simone Provenzano", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lorenzo Marasca", 
+            "player1points": 100, 
+            "player2": "Leonidas Pasios", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Peloni", 
+            "player1points": 50, 
+            "player2": "Stefano Terminiello", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mirco Petriconi", 
+            "player1points": 31, 
+            "player2": "Maurizio Cignoni", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gianluigi Basta", 
+            "player1points": 84, 
+            "player2": "Dario Bocchetti", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michele Alfredo Zanco", 
+            "player1points": 100, 
+            "player2": "Francesco Longo", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matteo Colombo", 
+            "player1points": 25, 
+            "player2": "Dario Calandra", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giulio Taddei", 
+            "player1points": 27, 
+            "player2": "Marco Crivaro", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcello Beccati", 
+            "player1points": 100, 
+            "player2": "Fabio Gasparini", 
+            "player2points": 82, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giancarlo Basile", 
+            "player1points": 0, 
+            "player2": "Lorenzo Basile", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniele Patruno", 
+            "player1points": 100, 
+            "player2": "Roberto Passera", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Federico Mignardi", 
+            "player1points": 100, 
+            "player2": "Maurizio Bettinelli", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michele Buono", 
+            "player1points": 62, 
+            "player2": "Sara Tirelli", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Craig Reed", 
+            "player1points": 100, 
+            "player2": "Giulio Vezzani", 
+            "player2points": 83, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mirko Bonazza", 
+            "player1points": 70, 
+            "player2": "Francesco Bellman", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tom Reed", 
+            "player1points": 100, 
+            "player2": "Daniele Prejan", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Filippo Chionsini", 
+            "player1points": 67, 
+            "player2": "Edoardo Marmorini", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Micaela Raiteri", 
+            "player1points": 33, 
+            "player2": "Matteo Ruffilli", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adriano Grassi", 
+            "player1points": 68, 
+            "player2": "Iolanda Paolini", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luca Sghedoni", 
+            "player1points": 100, 
+            "player2": "Patrick Partesotti", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sara Soriani", 
+            "player1points": 100, 
+            "player2": "Riccardo Gragnola", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carolus Citra", 
+            "player1points": 77, 
+            "player2": "Fabio Quadraruopolo", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrea di Iorio", 
+            "player1points": 100, 
+            "player2": "Francesca Gatti", 
+            "player2points": 83, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Bonato", 
+            "player1points": 73, 
+            "player2": "Luca Pecchi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Victoria Raiteri", 
+            "player1points": 0, 
+            "player2": "Alessandro Sapone", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giacomo Arosio", 
+            "player1points": 100, 
+            "player2": "Luca Grimaldi", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nicola Panizzieri", 
+            "player1points": 67, 
+            "player2": "Matteo Baranzoni", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Morucci", 
+            "player1points": 84, 
+            "player2": "Fabio Cortini", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott Reed", 
+            "player1points": 100, 
+            "player2": "Mattia Galazzi", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tommaso Castagnoli", 
+            "player1points": 100, 
+            "player2": "Alessandro Raiteri", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nicol Signoretto", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Lorenzo Marasca", 
+            "player1points": 66, 
+            "player2": "Vittorio Artom Celli", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Turchiano", 
+            "player1points": 100, 
+            "player2": "Sara Soriani", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tony Petriconi", 
+            "player1points": 100, 
+            "player2": "Matteo Brasanti", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcello Beccati", 
+            "player1points": 100, 
+            "player2": "Federico Bostrenghi", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Resta", 
+            "player1points": 100, 
+            "player2": "Marco Monti", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michele Alfredo Zanco", 
+            "player1points": 69, 
+            "player2": "Eugenio Cascone", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gianluigi Basta", 
+            "player1points": 25, 
+            "player2": "Stefano Terminiello", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alessandro Marmorini", 
+            "player1points": 100, 
+            "player2": "Alvise Gaspari", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Roberto Savino", 
+            "player1points": 100, 
+            "player2": "Daniele Pellegrino", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matteo Bennati", 
+            "player1points": 35, 
+            "player2": "Federico Sirri", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maurizio Cignoni", 
+            "player1points": 34, 
+            "player2": "Francesco Castellari", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Crivaro", 
+            "player1points": 17, 
+            "player2": "Michele Bruni", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Manuel Bellotto", 
+            "player1points": 58, 
+            "player2": "Giulio Taddei", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrea di Iorio", 
+            "player1points": 100, 
+            "player2": "Carolus Citra", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luca Pecchi", 
+            "player1points": 100, 
+            "player2": "Matteo Baranzoni", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alessandro Baccheschi", 
+            "player1points": 21, 
+            "player2": "Federico Martelli", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ettore Capozza", 
+            "player1points": 19, 
+            "player2": "Mirco Petriconi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott Reed", 
+            "player1points": 100, 
+            "player2": "Matteo Ruffilli", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giacomo Giusti", 
+            "player1points": 0, 
+            "player2": "Alessandro Sapone", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giuseppe Catanesi", 
+            "player1points": 100, 
+            "player2": "Daniele Patruno", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dante Stefanucci", 
+            "player1points": 83, 
+            "player2": "Craig Reed", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paolo Zaninoni", 
+            "player1points": 100, 
+            "player2": "Edoardo Marmorini", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Galbulli", 
+            "player1points": 29, 
+            "player2": "Dario Calandra", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Leonidas Pasios", 
+            "player1points": 28, 
+            "player2": "Fiorenzo Delle Rupi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giacomo Arosio", 
+            "player1points": 29, 
+            "player2": "Marco Peloni", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nicol Signoretto", 
+            "player1points": 0, 
+            "player2": "Fabio Cortini", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dario Bocchetti", 
+            "player1points": 0, 
+            "player2": "Simone Provenzano", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luca Sghedoni", 
+            "player1points": 100, 
+            "player2": "Andrea Puglia", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adriano Grassi", 
+            "player1points": 65, 
+            "player2": "Tommaso Castagnoli", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fabio Gasparini", 
+            "player1points": 100, 
+            "player2": "Matteo Colombo", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Federico Mignardi", 
+            "player1points": 66, 
+            "player2": "Michele Buono", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francesco Longo", 
+            "player1points": 40, 
+            "player2": "Alex Ceccaroni", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gianluca Targhini", 
+            "player1points": 64, 
+            "player2": "Mirko Bonazza", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tom Reed", 
+            "player1points": 100, 
+            "player2": "Rob Darbyshire", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nick Barker", 
+            "player1points": 100, 
+            "player2": "Lorenzo Basile", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sara Tirelli", 
+            "player1points": 0, 
+            "player2": "Daniele Prejan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Filippo Chionsini", 
+            "player1points": 100, 
+            "player2": "Patrick Partesotti", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Micaela Raiteri", 
+            "player1points": 100, 
+            "player2": "Marco Morucci", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Riccardo Gragnola", 
+            "player1points": 100, 
+            "player2": "Fabio Quadraruopolo", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maurizio Bettinelli", 
+            "player1points": 70, 
+            "player2": "Francesco Bellman", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alessandro Raiteri", 
+            "player1points": 53, 
+            "player2": "Victoria Raiteri", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Roberto Passera", 
+            "player1points": 100, 
+            "player2": "Nicola Panizzieri", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Bonato", 
+            "player1points": 100, 
+            "player2": "Iolanda Paolini", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giulio Vezzani", 
+            "player1points": 69, 
+            "player2": "Giancarlo Basile", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francesca Gatti", 
+            "player1points": 100, 
+            "player2": "Luca Grimaldi", 
+            "player2points": 54, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mattia Galazzi", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Michele Alfredo Zanco", 
+            "player1points": 17, 
+            "player2": "Francesco Castellari", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Federico Sirri", 
+            "player1points": 32, 
+            "player2": "Marcello Beccati", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stefano Terminiello", 
+            "player1points": 58, 
+            "player2": "Lorenzo Marasca", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Roberto Savino", 
+            "player1points": 100, 
+            "player2": "Michele Bruni", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alessandro Marmorini", 
+            "player1points": 100, 
+            "player2": "Tony Petriconi", 
+            "player2points": 81, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Resta", 
+            "player1points": 32, 
+            "player2": "Marco Turchiano", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fiorenzo Delle Rupi", 
+            "player1points": 34, 
+            "player2": "Vittorio Artom Celli", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Craig Reed", 
+            "player1points": 100, 
+            "player2": "Matteo Brasanti", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Peloni", 
+            "player1points": 71, 
+            "player2": "Dario Calandra", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tom Reed", 
+            "player1points": 100, 
+            "player2": "Adriano Grassi", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alessandro Sapone", 
+            "player1points": 100, 
+            "player2": "Gianluigi Basta", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nick Barker", 
+            "player1points": 16, 
+            "player2": "Fabio Cortini", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alvise Gaspari", 
+            "player1points": 65, 
+            "player2": "Matteo Bennati", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michele Buono", 
+            "player1points": 100, 
+            "player2": "Sara Soriani", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luca Pecchi", 
+            "player1points": 58, 
+            "player2": "Giulio Taddei", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mirco Petriconi", 
+            "player1points": 35, 
+            "player2": "Simone Provenzano", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eugenio Cascone", 
+            "player1points": 100, 
+            "player2": "Giuseppe Catanesi", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrea di Iorio", 
+            "player1points": 99, 
+            "player2": "Marco Monti", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Federico Bostrenghi", 
+            "player1points": 63, 
+            "player2": "Fabio Gasparini", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex Ceccaroni", 
+            "player1points": 100, 
+            "player2": "Daniele Pellegrino", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maurizio Cignoni", 
+            "player1points": 0, 
+            "player2": "Mirko Bonazza", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paolo Zaninoni", 
+            "player1points": 100, 
+            "player2": "Marco Crivaro", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott Reed", 
+            "player1points": 100, 
+            "player2": "Federico Martelli", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luca Sghedoni", 
+            "player1points": 33, 
+            "player2": "Matteo Ruffilli", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tommaso Castagnoli", 
+            "player1points": 100, 
+            "player2": "Federico Mignardi", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrea Puglia", 
+            "player1points": 49, 
+            "player2": "Giulio Vezzani", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maurizio Bettinelli", 
+            "player1points": 25, 
+            "player2": "Alessandro Baccheschi", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carolus Citra", 
+            "player1points": 20, 
+            "player2": "Micaela Raiteri", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Galbulli", 
+            "player1points": 0, 
+            "player2": "Marco Bonato", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Roberto Passera", 
+            "player1points": 100, 
+            "player2": "Giacomo Giusti", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francesca Gatti", 
+            "player1points": 28, 
+            "player2": "Riccardo Gragnola", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dario Bocchetti", 
+            "player1points": 34, 
+            "player2": "Ettore Capozza", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lorenzo Basile", 
+            "player1points": 0, 
+            "player2": "Francesco Longo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dante Stefanucci", 
+            "player1points": 100, 
+            "player2": "Matteo Baranzoni", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Victoria Raiteri", 
+            "player1points": 33, 
+            "player2": "Edoardo Marmorini", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Leonidas Pasios", 
+            "player1points": 31, 
+            "player2": "Matteo Colombo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniele Patruno", 
+            "player1points": 100, 
+            "player2": "Manuel Bellotto", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gianluca Targhini", 
+            "player1points": 100, 
+            "player2": "Daniele Prejan", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mattia Galazzi", 
+            "player1points": 40, 
+            "player2": "Filippo Chionsini", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rob Darbyshire", 
+            "player1points": 100, 
+            "player2": "Nicol Signoretto", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giacomo Arosio", 
+            "player1points": 81, 
+            "player2": "Patrick Partesotti", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sara Tirelli", 
+            "player1points": 74, 
+            "player2": "Alessandro Raiteri", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giancarlo Basile", 
+            "player1points": 0, 
+            "player2": "Iolanda Paolini", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fabio Quadraruopolo", 
+            "player1points": 42, 
+            "player2": "Nicola Panizzieri", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francesco Bellman", 
+            "player1points": 100, 
+            "player2": "Marco Morucci", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luca Grimaldi", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Marco Monti", 
+            "player1points": 70, 
+            "player2": "Dante Stefanucci", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tom Reed", 
+            "player1points": 100, 
+            "player2": "Alessandro Marmorini", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Roberto Savino", 
+            "player1points": 31, 
+            "player2": "Alessandro Marmorini", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lorenzo Marasca", 
+            "player1points": 17, 
+            "player2": "Francesco Castellari", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcello Beccati", 
+            "player1points": 82, 
+            "player2": "Marco Turchiano", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Monti", 
+            "player1points": 79, 
+            "player2": "Alessandro Sapone", 
+            "player2points": 77, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michele Alfredo Zanco", 
+            "player1points": 32, 
+            "player2": "Paolo Zaninoni", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Craig Reed", 
+            "player1points": 100, 
+            "player2": "Federico Bostrenghi", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex Ceccaroni", 
+            "player1points": 100, 
+            "player2": "Eugenio Cascone", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vittorio Artom Celli", 
+            "player1points": 67, 
+            "player2": "Scott Reed", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michele Bruni", 
+            "player1points": 65, 
+            "player2": "Tony Petriconi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stefano Terminiello", 
+            "player1points": 32, 
+            "player2": "Federico Sirri", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simone Provenzano", 
+            "player1points": 0, 
+            "player2": "Tom Reed", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fabio Cortini", 
+            "player1points": 100, 
+            "player2": "Michele Buono", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Resta", 
+            "player1points": 71, 
+            "player2": "Dario Calandra", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mirko Bonazza", 
+            "player1points": 100, 
+            "player2": "Giulio Taddei", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matteo Bennati", 
+            "player1points": 31, 
+            "player2": "Matteo Colombo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Peloni", 
+            "player1points": 100, 
+            "player2": "Luca Pecchi", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matteo Ruffilli", 
+            "player1points": 0, 
+            "player2": "Daniele Pellegrino", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrea di Iorio", 
+            "player1points": 57, 
+            "player2": "Mirco Petriconi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Crivaro", 
+            "player1points": 19, 
+            "player2": "Roberto Passera", 
+            "player2points": 55, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Bonato", 
+            "player1points": 81, 
+            "player2": "Adriano Grassi", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francesco Longo", 
+            "player1points": 100, 
+            "player2": "Daniele Patruno", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Micaela Raiteri", 
+            "player1points": 33, 
+            "player2": "Giulio Vezzani", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dante Stefanucci", 
+            "player1points": 100, 
+            "player2": "Sara Soriani", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nick Barker", 
+            "player1points": 0, 
+            "player2": "Giuseppe Catanesi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gianluca Targhini", 
+            "player1points": 0, 
+            "player2": "Tommaso Castagnoli", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Riccardo Gragnola", 
+            "player1points": 100, 
+            "player2": "Filippo Chionsini", 
+            "player2points": 57, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fabio Gasparini", 
+            "player1points": 100, 
+            "player2": "Federico Martelli", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ettore Capozza", 
+            "player1points": 100, 
+            "player2": "Edoardo Marmorini", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alessandro Baccheschi", 
+            "player1points": 0, 
+            "player2": "Maurizio Cignoni", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fiorenzo Delle Rupi", 
+            "player1points": 0, 
+            "player2": "Matteo Brasanti", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alvise Gaspari", 
+            "player1points": 100, 
+            "player2": "Gianluigi Basta", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luca Sghedoni", 
+            "player1points": 100, 
+            "player2": "Rob Darbyshire", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alessandro Raiteri", 
+            "player1points": 100, 
+            "player2": "Iolanda Paolini", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick Partesotti", 
+            "player1points": 100, 
+            "player2": "Lorenzo Basile", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francesca Gatti", 
+            "player1points": 100, 
+            "player2": "Daniele Prejan", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matteo Baranzoni", 
+            "player1points": 54, 
+            "player2": "Manuel Bellotto", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nicola Panizzieri", 
+            "player1points": 100, 
+            "player2": "Luca Grimaldi", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Galbulli", 
+            "player1points": 100, 
+            "player2": "Andrea Puglia", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dario Bocchetti", 
+            "player1points": 0, 
+            "player2": "Leonidas Pasios", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giacomo Arosio", 
+            "player1points": 100, 
+            "player2": "Maurizio Bettinelli", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Victoria Raiteri", 
+            "player1points": 51, 
+            "player2": "Carolus Citra", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mattia Galazzi", 
+            "player1points": 70, 
+            "player2": "Francesco Bellman", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nicol Signoretto", 
+            "player1points": 20, 
+            "player2": "Federico Mignardi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giacomo Giusti", 
+            "player1points": 100, 
+            "player2": "Marco Morucci", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fabio Quadraruopolo", 
+            "player1points": 24, 
+            "player2": "Sara Tirelli", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giancarlo Basile", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Marco Turchiano", 
+            "player1points": 83, 
+            "player2": "Francesco Castellari", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alessandro Marmorini", 
+            "player1points": 100, 
+            "player2": "Scott Reed", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcello Beccati", 
+            "player1points": 83, 
+            "player2": "Paolo Zaninoni", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tony Petriconi", 
+            "player1points": 34, 
+            "player2": "Tom Reed", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Federico Sirri", 
+            "player1points": 0, 
+            "player2": "Alex Ceccaroni", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Roberto Savino", 
+            "player1points": 68, 
+            "player2": "Craig Reed", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mirko Bonazza", 
+            "player1points": 17, 
+            "player2": "Marco Monti", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fabio Cortini", 
+            "player1points": 26, 
+            "player2": "Lorenzo Marasca", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dario Calandra", 
+            "player1points": 82, 
+            "player2": "Alvise Gaspari", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniele Pellegrino", 
+            "player1points": 100, 
+            "player2": "Vittorio Artom Celli", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dante Stefanucci", 
+            "player1points": 100, 
+            "player2": "Matteo Bennati", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michele Buono", 
+            "player1points": 0, 
+            "player2": "Roberto Passera", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alessandro Sapone", 
+            "player1points": 100, 
+            "player2": "Matteo Colombo", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stefano Terminiello", 
+            "player1points": 50, 
+            "player2": "Francesco Longo", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eugenio Cascone", 
+            "player1points": 0, 
+            "player2": "Michele Bruni", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Peloni", 
+            "player1points": 100, 
+            "player2": "Maurizio Cignoni", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giulio Taddei", 
+            "player1points": 100, 
+            "player2": "Giulio Vezzani", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fabio Gasparini", 
+            "player1points": 73, 
+            "player2": "Marco Bonato", 
+            "player2points": 18, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tommaso Castagnoli", 
+            "player1points": 0, 
+            "player2": "Simone Provenzano", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giuseppe Catanesi", 
+            "player1points": 0, 
+            "player2": "Mirco Petriconi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matteo Brasanti", 
+            "player1points": 100, 
+            "player2": "Luca Sghedoni", 
+            "player2points": 57, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ettore Capozza", 
+            "player1points": 14, 
+            "player2": "Marco Resta", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Riccardo Gragnola", 
+            "player1points": 100, 
+            "player2": "Matteo Ruffilli", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carolus Citra", 
+            "player1points": 19, 
+            "player2": "Adriano Grassi", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Crivaro", 
+            "player1points": 100, 
+            "player2": "Gianluigi Basta", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rob Darbyshire", 
+            "player1points": 50, 
+            "player2": "Alessandro Raiteri", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Federico Mignardi", 
+            "player1points": 24, 
+            "player2": "Mattia Galazzi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francesca Gatti", 
+            "player1points": 26, 
+            "player2": "Giacomo Arosio", 
+            "player2points": 87, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nicola Panizzieri", 
+            "player1points": 14, 
+            "player2": "Fiorenzo Delle Rupi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Manuel Bellotto", 
+            "player1points": 100, 
+            "player2": "Giacomo Giusti", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Micaela Raiteri", 
+            "player1points": 100, 
+            "player2": "Federico Martelli", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Galbulli", 
+            "player1points": 100, 
+            "player2": "Edoardo Marmorini", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrea di Iorio", 
+            "player1points": 41, 
+            "player2": "Nick Barker", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alessandro Baccheschi", 
+            "player1points": 100, 
+            "player2": "Sara Soriani", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Leonidas Pasios", 
+            "player1points": 34, 
+            "player2": "Gianluca Targhini", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick Partesotti", 
+            "player1points": 100, 
+            "player2": "Sara Tirelli", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nicol Signoretto", 
+            "player1points": 0, 
+            "player2": "Iolanda Paolini", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giancarlo Basile", 
+            "player1points": 54, 
+            "player2": "Victoria Raiteri", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrea Puglia", 
+            "player1points": 100, 
+            "player2": "Lorenzo Basile", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maurizio Bettinelli", 
+            "player1points": 100, 
+            "player2": "Dario Bocchetti", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francesco Bellman", 
+            "player1points": 100, 
+            "player2": "Luca Grimaldi", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Morucci", 
+            "player1points": 100, 
+            "player2": "Fabio Quadraruopolo", 
+            "player2points": 17, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 6, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Scott Reed", 
+            "player1points": 68, 
+            "player2": "Marco Monti", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dante Stefanucci", 
+            "player1points": 100, 
+            "player2": "Paolo Zaninoni", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tom Reed", 
+            "player1points": 100, 
+            "player2": "Roberto Savino", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcello Beccati", 
+            "player1points": 0, 
+            "player2": "Alessandro Marmorini", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 8, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Francesco Castellari", 
+            "player1points": 0, 
+            "player2": "Scott Reed", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lorenzo Marasca", 
+            "player1points": 0, 
+            "player2": "Marco Monti", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex Ceccaroni", 
+            "player1points": 0, 
+            "player2": "Dante Stefanucci", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Turchiano", 
+            "player1points": 66, 
+            "player2": "Paolo Zaninoni", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tom Reed", 
+            "player1points": 100, 
+            "player2": "Marco Peloni", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Roberto Savino", 
+            "player1points": 100, 
+            "player2": "Fabio Gasparini", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcello Beccati", 
+            "player1points": 100, 
+            "player2": "Alessandro Sapone", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alessandro Marmorini", 
+            "player1points": 100, 
+            "player2": "Mirco Petriconi", 
+            "player2points": 31, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 16, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Regional", 
+    "venue": {
+      "city": "Modena", 
+      "country": "Italy", 
+      "lat": "44.645888500000", 
+      "lon": "10.925570700000", 
+      "name": "", 
+      "state": "Emilia-Romagna"
+    }
+  }
+}

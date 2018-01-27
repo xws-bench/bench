@@ -1,0 +1,313 @@
+{
+  "tournament": {
+    "date": "2015-05-16", 
+    "format": "Escalation", 
+    "id": 426, 
+    "name": "Crazy Squirrel Spring Tournament", 
+    "players": [
+      {
+        "mov": 792, 
+        "name": "Garrett Jost", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 602, 
+        "name": "Ken Serpa", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 431, 
+        "name": "Wyatt Hill", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 525, 
+        "name": "Clay Gilpin", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 452, 
+        "name": "Alexander Pedranti", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 411, 
+        "name": "Ryan Durham", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 384, 
+        "name": "Elida De La Torre", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 379, 
+        "name": "Matt Bartel", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 379, 
+        "name": "John Snyder", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 270, 
+        "name": "Robert Ramon", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 235, 
+        "name": "Neil Pamandanan", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Robert Ramon", 
+            "player1points": 0, 
+            "player2": "Matt Bartel", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Garrett Jost", 
+            "player1points": 53, 
+            "player2": "John Snyder", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wyatt Hill", 
+            "player1points": 60, 
+            "player2": "Ryan Durham", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ken Serpa", 
+            "player1points": 60, 
+            "player2": "Neil Pamandanan", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Elida De La Torre", 
+            "player1points": 24, 
+            "player2": "Alexander Pedranti", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Clay Gilpin", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Garrett Jost", 
+            "player1points": 90, 
+            "player2": "Ken Serpa", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Durham", 
+            "player1points": 90, 
+            "player2": "Alexander Pedranti", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robert Ramon", 
+            "player1points": 89, 
+            "player2": "Neil Pamandanan", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt Bartel", 
+            "player1points": 88, 
+            "player2": "Elida De La Torre", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Clay Gilpin", 
+            "player1points": 43, 
+            "player2": "Wyatt Hill", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Snyder", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Clay Gilpin", 
+            "player1points": 67, 
+            "player2": "Ryan Durham", 
+            "player2points": 119, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ken Serpa", 
+            "player1points": 105, 
+            "player2": "Elida De La Torre", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robert Ramon", 
+            "player1points": 46, 
+            "player2": "Wyatt Hill", 
+            "player2points": 110, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Garrett Jost", 
+            "player1points": 119, 
+            "player2": "Matt Bartel", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alexander Pedranti", 
+            "player1points": 120, 
+            "player2": "John Snyder", 
+            "player2points": 18, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Neil Pamandanan", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Elida De La Torre", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Alexander Pedranti", 
+            "player1points": 150, 
+            "player2": "Matt Bartel", 
+            "player2points": 106, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robert Ramon", 
+            "player1points": 74, 
+            "player2": "John Snyder", 
+            "player2points": 150, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ken Serpa", 
+            "player1points": 150, 
+            "player2": "Ryan Durham", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Clay Gilpin", 
+            "player1points": 149, 
+            "player2": "Neil Pamandanan", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wyatt Hill", 
+            "player1points": 0, 
+            "player2": "Garrett Jost", 
+            "player2points": 150, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Fresno", 
+      "country": "United States", 
+      "lat": "36.739442100000", 
+      "lon": "-119.784830600000", 
+      "name": "436 E Bullard Ave", 
+      "state": "CA"
+    }
+  }
+}

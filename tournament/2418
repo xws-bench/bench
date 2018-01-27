@@ -1,0 +1,451 @@
+{
+  "tournament": {
+    "date": "2016-12-18", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2418, 
+    "name": "Mistrzostwa Podbeskidzia", 
+    "players": [
+      {
+        "mov": 541, 
+        "name": "Alan", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 635, 
+        "name": "Admiral Kuna", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 610, 
+        "name": "Agata Kaur Pikulska", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 534, 
+        "name": "Piotr Krzempek", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 437, 
+        "name": "Boreas", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 496, 
+        "name": "Swietlik", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 443, 
+        "name": "Spawn", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 423, 
+        "name": "Toudi", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.69"
+      }, 
+      {
+        "mov": 401, 
+        "name": "Maciej Kusz", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 391, 
+        "name": "Gobei", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 390, 
+        "name": "Bartek", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 347, 
+        "name": "Zbigniew Krzempek", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 1, 
+        "sos": "0.69"
+      }, 
+      {
+        "mov": 252, 
+        "name": "Dzuki", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 1, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 221, 
+        "name": "Monika Lipowska", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 181, 
+        "name": "Tomasz Olech", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 98, 
+        "name": "Darek", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 0, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Tomasz Olech", 
+            "player1points": 0, 
+            "player2": "Piotr Krzempek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Boreas", 
+            "player1points": 100, 
+            "player2": "Maciej Kusz", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Spawn", 
+            "player1points": 57, 
+            "player2": "Zbigniew Krzempek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gobei", 
+            "player1points": 20, 
+            "player2": "Agata Kaur Pikulska", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Swietlik", 
+            "player1points": 38, 
+            "player2": "Alan", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dzuki", 
+            "player1points": 58, 
+            "player2": "Monika Lipowska", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Toudi", 
+            "player1points": 100, 
+            "player2": "Bartek", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Admiral Kuna", 
+            "player1points": 100, 
+            "player2": "Darek", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Zbigniew Krzempek", 
+            "player1points": 14, 
+            "player2": "Alan", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Agata Kaur Pikulska", 
+            "player1points": 100, 
+            "player2": "Monika Lipowska", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Toudi", 
+            "player1points": 100, 
+            "player2": "Admiral Kuna", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Boreas", 
+            "player1points": 52, 
+            "player2": "Piotr Krzempek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gobei", 
+            "player1points": 100, 
+            "player2": "Tomasz Olech", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Swietlik", 
+            "player1points": 35, 
+            "player2": "Maciej Kusz", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bartek", 
+            "player1points": 100, 
+            "player2": "Dzuki", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Spawn", 
+            "player1points": 100, 
+            "player2": "Darek", 
+            "player2points": 50, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Piotr Krzempek", 
+            "player1points": 100, 
+            "player2": "Agata Kaur Pikulska", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Toudi", 
+            "player1points": 32, 
+            "player2": "Agata Kaur Pikulska", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alan", 
+            "player1points": 80, 
+            "player2": "Piotr Krzempek", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gobei", 
+            "player1points": 0, 
+            "player2": "Admiral Kuna", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maciej Kusz", 
+            "player1points": 52, 
+            "player2": "Bartek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Spawn", 
+            "player1points": 100, 
+            "player2": "Monika Lipowska", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Zbigniew Krzempek", 
+            "player1points": 25, 
+            "player2": "Boreas", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Swietlik", 
+            "player1points": 100, 
+            "player2": "Dzuki", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Darek", 
+            "player1points": 19, 
+            "player2": "Tomasz Olech", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Agata Kaur Pikulska", 
+            "player1points": 62, 
+            "player2": "Alan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Spawn", 
+            "player1points": 86, 
+            "player2": "Piotr Krzempek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Toudi", 
+            "player1points": 25, 
+            "player2": "Boreas", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Admiral Kuna", 
+            "player1points": 100, 
+            "player2": "Bartek", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gobei", 
+            "player1points": 100, 
+            "player2": "Monika Lipowska", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Zbigniew Krzempek", 
+            "player1points": 59, 
+            "player2": "Swietlik", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tomasz Olech", 
+            "player1points": 0, 
+            "player2": "Maciej Kusz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Darek", 
+            "player1points": 29, 
+            "player2": "Dzuki", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Alan", 
+            "player1points": 0, 
+            "player2": "Piotr Krzempek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Admiral Kuna", 
+            "player1points": 0, 
+            "player2": "Agata Kaur Pikulska", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Bielsko", 
+      "country": "Poland", 
+      "lat": "49.822118000000", 
+      "lon": "19.044893600000", 
+      "name": "", 
+      "state": "Slaskie"
+    }
+  }
+}

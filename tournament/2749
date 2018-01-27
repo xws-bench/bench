@@ -1,0 +1,267 @@
+{
+  "tournament": {
+    "date": "2017-04-01", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2749, 
+    "name": "X-Wing March 2017", 
+    "players": [
+      {
+        "mov": 677, 
+        "name": "Fernando Santos", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 593, 
+        "name": "Joao Vaz", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 426, 
+        "name": "Daniel Castanho", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 420, 
+        "name": "Daniel Almeida", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 393, 
+        "name": "Pedro Pinto", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 371, 
+        "name": "Paulo Castanho", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 353, 
+        "name": "Paulo Rocha", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 313, 
+        "name": "Jose Oliveira", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 254, 
+        "name": "Ricardo Coelho", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Fernando Santos", 
+            "player1points": 100, 
+            "player2": "Paulo Castanho", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Castanho", 
+            "player1points": 61, 
+            "player2": "Paulo Rocha", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jose Oliveira", 
+            "player1points": 22, 
+            "player2": "Daniel Almeida", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pedro Pinto", 
+            "player1points": 52, 
+            "player2": "Joao Vaz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ricardo Coelho", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Fernando Santos", 
+            "player1points": 100, 
+            "player2": "Ricardo Coelho", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joao Vaz", 
+            "player1points": 49, 
+            "player2": "Daniel Almeida", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paulo Rocha", 
+            "player1points": 76, 
+            "player2": "Jose Oliveira", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pedro Pinto", 
+            "player1points": 50, 
+            "player2": "Daniel Castanho", 
+            "player2points": 86, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paulo Castanho", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Paulo Rocha", 
+            "player1points": 27, 
+            "player2": "Daniel Almeida", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fernando Santos", 
+            "player1points": 77, 
+            "player2": "Daniel Castanho", 
+            "player2points": 83, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joao Vaz", 
+            "player1points": 100, 
+            "player2": "Paulo Castanho", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ricardo Coelho", 
+            "player1points": 33, 
+            "player2": "Pedro Pinto", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jose Oliveira", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Daniel Almeida", 
+            "player1points": 17, 
+            "player2": "Fernando Santos", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joao Vaz", 
+            "player1points": 100, 
+            "player2": "Paulo Rocha", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Castanho", 
+            "player1points": 100, 
+            "player2": "Jose Oliveira", 
+            "player2points": 77, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ricardo Coelho", 
+            "player1points": 31, 
+            "player2": "Paulo Castanho", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pedro Pinto", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Lisbon", 
+      "country": "Portugal", 
+      "lat": "38.707792600000", 
+      "lon": "-9.136506900000", 
+      "name": "Kult Games", 
+      "state": "Lisboa"
+    }
+  }
+}

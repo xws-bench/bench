@@ -1,0 +1,130 @@
+{
+  "tournament": {
+    "date": "2017-01-21", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2521, 
+    "name": "Strat test", 
+    "players": [
+      {
+        "mov": 235, 
+        "name": "Matt Goodman/ Matthew McConnell", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 183, 
+        "name": "Craig Tannock/Joshua Corcoran", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 175, 
+        "name": "Sam Day-Davies/Jack Leicester", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 25, 
+        "name": "Ryan Dennis/Sean Sutton", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 0, 
+        "sos": "0.25"
+      }, 
+      {
+        "mov": 17, 
+        "name": "Daniel Ross/Ursula Gorrie", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 0, 
+        "sos": "0.25"
+      }, 
+      {
+        "mov": -35, 
+        "name": "Nathan Davies/Alex Sandoval", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.25"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Daniel Ross/Ursula Gorrie", 
+            "player1points": 38, 
+            "player2": "Craig Tannock/Joshua Corcoran", 
+            "player2points": 121, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Dennis/Sean Sutton", 
+            "player1points": 75, 
+            "player2": "Sam Day-Davies/Jack Leicester", 
+            "player2points": 150, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Davies/Alex Sandoval", 
+            "player1points": 15, 
+            "player2": "Matt Goodman/ Matthew McConnell", 
+            "player2points": 150, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Craig Tannock/Joshua Corcoran", 
+            "player1points": 0, 
+            "player2": "Matt Goodman/ Matthew McConnell", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sam Day-Davies/Jack Leicester", 
+            "player1points": 0, 
+            "player2": "Daniel Ross/Ursula Gorrie", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Dennis/Sean Sutton", 
+            "player1points": 0, 
+            "player2": "Nathan Davies/Alex Sandoval", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Regional", 
+    "venue": {
+      "city": "Perth", 
+      "country": "Australia", 
+      "lat": "-31.952712000000", 
+      "lon": "115.860479600000", 
+      "name": "None", 
+      "state": "Western Australia"
+    }
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "tournament": {
+    "date": "2016-08-21", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2159, 
+    "name": "Vahallas", 
+    "players": [
+      {
+        "mov": 472, 
+        "name": "Doug Howe", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 376, 
+        "name": "Peter", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 324, 
+        "name": "Kevin", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 291, 
+        "name": "Matt Farmer", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 344, 
+        "name": "Tony", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 249, 
+        "name": "Logan", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 202, 
+        "name": "Riley", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 142, 
+        "name": "Taylor Holliman", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Logan", 
+            "player1points": 51, 
+            "player2": "Doug Howe", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Taylor Holliman", 
+            "player1points": 50, 
+            "player2": "Matt Farmer", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tony", 
+            "player1points": 46, 
+            "player2": "Riley", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Peter", 
+            "player1points": 100, 
+            "player2": "Kevin", 
+            "player2points": 21, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Taylor Holliman", 
+            "player1points": 64, 
+            "player2": "Kevin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt Farmer", 
+            "player1points": 29, 
+            "player2": "Peter", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Doug Howe", 
+            "player1points": 100, 
+            "player2": "Riley", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tony", 
+            "player1points": 100, 
+            "player2": "Logan", 
+            "player2points": 26, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Matt Farmer", 
+            "player1points": 62, 
+            "player2": "Tony", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Peter", 
+            "player1points": 26, 
+            "player2": "Doug Howe", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin", 
+            "player1points": 100, 
+            "player2": "Riley", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Taylor Holliman", 
+            "player1points": 28, 
+            "player2": "Logan", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Gatineau", 
+      "country": "Canada", 
+      "lat": "45.456305200000", 
+      "lon": "-75.722882700000", 
+      "name": "Boutique FDB", 
+      "state": "Quebec"
+    }
+  }
+}

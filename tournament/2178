@@ -1,0 +1,659 @@
+{
+  "tournament": {
+    "date": "2016-10-09", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2178, 
+    "name": "Nexus Fall Tournament Series #2", 
+    "players": [
+      {
+        "mov": 726, 
+        "name": "Birgir", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "palobgodalhi", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "dengar"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "cloakingdevice"
+                ], 
+                "turret": [
+                  "blasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "blackmarketslicertools"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 506, 
+        "name": "Siggi", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.69"
+      }, 
+      {
+        "mov": 372, 
+        "name": "Egill", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "palobgodalhi", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "cloakingdevice"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "blasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }, 
+            {
+              "name": "concorddawnveteran", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 441, 
+        "name": "Freyr", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "dengar", 
+                  "4lom", 
+                  "zuckuss"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 428, 
+        "name": "Andri", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 415, 
+        "name": "Helgi", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.31"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "captainyorr", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "enhancedscopes"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 397, 
+        "name": "Stefan", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.69"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 388, 
+        "name": "Gisli", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 382, 
+        "name": "Halldor", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 266, 
+        "name": "Gudbrandur", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 264, 
+        "name": "Oli Mar", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 215, 
+        "name": "Sigfus", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 0, 
+        "sos": "0.38"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Freyr", 
+            "player1points": 29, 
+            "player2": "Halldor", 
+            "player2points": 78, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Siggi", 
+            "player1points": 100, 
+            "player2": "Gisli", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stefan", 
+            "player1points": 17, 
+            "player2": "Egill", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Oli Mar", 
+            "player1points": 0, 
+            "player2": "Helgi", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gudbrandur", 
+            "player1points": 29, 
+            "player2": "Birgir", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andri", 
+            "player1points": 100, 
+            "player2": "Sigfus", 
+            "player2points": 50, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Siggi", 
+            "player1points": 16, 
+            "player2": "Birgir", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andri", 
+            "player1points": 100, 
+            "player2": "Helgi", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Egill", 
+            "player1points": 71, 
+            "player2": "Halldor", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Freyr", 
+            "player1points": 31, 
+            "player2": "Gudbrandur", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Oli Mar", 
+            "player1points": 100, 
+            "player2": "Sigfus", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gisli", 
+            "player1points": 17, 
+            "player2": "Stefan", 
+            "player2points": 29, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Birgir", 
+            "player1points": 100, 
+            "player2": "Andri", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Egill", 
+            "player1points": 18, 
+            "player2": "Siggi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stefan", 
+            "player1points": 100, 
+            "player2": "Halldor", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Freyr", 
+            "player1points": 55, 
+            "player2": "Helgi", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Oli Mar", 
+            "player1points": 29, 
+            "player2": "Gisli", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sigfus", 
+            "player1points": 30, 
+            "player2": "Gudbrandur", 
+            "player2points": 65, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Birgir", 
+            "player1points": 100, 
+            "player2": "Stefan", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Siggi", 
+            "player1points": 74, 
+            "player2": "Freyr", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andri", 
+            "player1points": 33, 
+            "player2": "Egill", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gisli", 
+            "player1points": 100, 
+            "player2": "Gudbrandur", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Oli Mar", 
+            "player1points": 29, 
+            "player2": "Halldor", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Helgi", 
+            "player1points": 60, 
+            "player2": "Sigfus", 
+            "player2points": 31, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Reykjavk", 
+      "country": "Iceland", 
+      "lat": "64.146000000000", 
+      "lon": "-21.942236600000", 
+      "name": "Nexus", 
+      "state": "Reykjavik"
+    }
+  }
+}

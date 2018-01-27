@@ -1,0 +1,230 @@
+{
+  "tournament": {
+    "date": "2016-03-06", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1280, 
+    "name": "Terra Di Confine", 
+    "players": [
+      {
+        "mov": 677, 
+        "name": "Giulio", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 18, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 445, 
+        "name": "Zoppo", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 356, 
+        "name": "Nico", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 450, 
+        "name": "Rino", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 436, 
+        "name": "Andrea", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 374, 
+        "name": "Dario", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 272, 
+        "name": "Federico", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 190, 
+        "name": "Lorenzo", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Lorenzo", 
+            "player1points": 25, 
+            "player2": "Federico", 
+            "player2points": 99, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dario", 
+            "player1points": 12, 
+            "player2": "Nico", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Zoppo", 
+            "player1points": 59, 
+            "player2": "Rino", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giulio", 
+            "player1points": 52, 
+            "player2": "Andrea", 
+            "player2points": 50, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Zoppo", 
+            "player1points": 99, 
+            "player2": "Federico", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nico", 
+            "player1points": 0, 
+            "player2": "Giulio", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrea", 
+            "player1points": 13, 
+            "player2": "Dario", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rino", 
+            "player1points": 33, 
+            "player2": "Lorenzo", 
+            "player2points": 18, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Andrea", 
+            "player1points": 100, 
+            "player2": "Federico", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rino", 
+            "player1points": 0, 
+            "player2": "Nico", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Zoppo", 
+            "player1points": 25, 
+            "player2": "Giulio", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dario", 
+            "player1points": 100, 
+            "player2": "Lorenzo", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Giulio", 
+            "player1points": 100, 
+            "player2": "Dario", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrea", 
+            "player1points": 25, 
+            "player2": "Zoppo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lorenzo", 
+            "player1points": 12, 
+            "player2": "Nico", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rino", 
+            "player1points": 100, 
+            "player2": "Federico", 
+            "player2points": 22, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Kalgoorlie ", 
+      "country": "Australia", 
+      "lat": "59.329300000000", 
+      "lon": "18.068600000000", 
+      "name": "Boulder Bowling Club", 
+      "state": "Western Australia"
+    }
+  }
+}

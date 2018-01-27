@@ -1,0 +1,118 @@
+{
+  "tournament": {
+    "date": "2016-01-04", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 976, 
+    "name": "1", 
+    "players": [
+      {
+        "mov": 418, 
+        "name": "Scott", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 395, 
+        "name": "Cole", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 265, 
+        "name": "Dylan", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 122, 
+        "name": "Chris", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Cole", 
+            "player1points": 38, 
+            "player2": "Dylan", 
+            "player2points": 55, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris", 
+            "player1points": 22, 
+            "player2": "Scott", 
+            "player2points": 88, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Cole", 
+            "player1points": 72, 
+            "player2": "Chris", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dylan", 
+            "player1points": 86, 
+            "player2": "Scott", 
+            "player2points": 83, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Cole", 
+            "player1points": 100, 
+            "player2": "Chris", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott", 
+            "player1points": 60, 
+            "player2": "Dylan", 
+            "player2points": 5, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Kennesaw", 
+      "country": "United States", 
+      "lat": "34.023433700000", 
+      "lon": "-84.615489600000", 
+      "name": "Hobbytown USA", 
+      "state": "GA"
+    }
+  }
+}

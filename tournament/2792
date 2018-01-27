@@ -1,0 +1,157 @@
+{
+  "tournament": {
+    "date": "2017-04-23", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2792, 
+    "name": "IV Kielecki Turniej Ligowy", 
+    "players": [
+      {
+        "mov": 464, 
+        "name": "Sargo", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 403, 
+        "name": "Kozi", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 306, 
+        "name": "Myphos", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 253, 
+        "name": "Filip", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 237, 
+        "name": "Emilian Korzeniowski", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 137, 
+        "name": "Monika", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.67"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Sargo", 
+            "player1points": 71, 
+            "player2": "Filip", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kozi", 
+            "player1points": 100, 
+            "player2": "Emilian Korzeniowski", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Myphos", 
+            "player1points": 100, 
+            "player2": "Monika", 
+            "player2points": 26, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Kozi", 
+            "player1points": 100, 
+            "player2": "Myphos", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Emilian Korzeniowski", 
+            "player1points": 29, 
+            "player2": "Filip", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sargo", 
+            "player1points": 100, 
+            "player2": "Monika", 
+            "player2points": 37, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Kozi", 
+            "player1points": 53, 
+            "player2": "Sargo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Filip", 
+            "player1points": 26, 
+            "player2": "Myphos", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Emilian Korzeniowski", 
+            "player1points": 50, 
+            "player2": "Monika", 
+            "player2points": 24, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Kielce", 
+      "country": "Poland", 
+      "lat": "50.871788300000", 
+      "lon": "20.630835400000", 
+      "name": "", 
+      "state": "Swietokrzyskie"
+    }
+  }
+}

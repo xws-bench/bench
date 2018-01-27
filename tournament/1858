@@ -1,0 +1,1676 @@
+{
+  "tournament": {
+    "date": "2016-07-09", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1858, 
+    "name": "Spring into Summer Tournament", 
+    "players": [
+      {
+        "mov": 0, 
+        "name": "Bill Bryant", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 842, 
+        "name": "Justin Battenberg", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 1
+        }, 
+        "score": 25, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d6"
+                ], 
+                "ept": [
+                  "swarmtactics"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "wedgeantilles", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r4d6"
+                ], 
+                "ept": [
+                  "swarmtactics"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 742, 
+        "name": "Ritchie Gibbs", 
+        "rank": {
+          "elimination": 3, 
+          "swiss": 2
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "zuckuss"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "gonk"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 730, 
+        "name": "Richard Hsu", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 3
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 668, 
+        "name": "Ben Fowler", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 4
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 620, 
+        "name": "Bryan Ballard", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 18, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 672, 
+        "name": "Ryan Shipp", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 16, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "darthvader", 
+                  "gunner"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "agentkallus"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 604, 
+        "name": "Eric Maynard", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 16, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 684, 
+        "name": "Andy Sellers", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 661, 
+        "name": "Eric Smits", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "zuckuss", 
+              "ship": "g1astarfighter", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "title": [
+                  "misthunter"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 630, 
+        "name": "Seneca Pressley", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 610, 
+        "name": "Dustin Harvey", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 577, 
+        "name": "Howie Hill", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "patrolleader", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "darthvader"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "gammasquadronveteran", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 554, 
+        "name": "Ryan Sliwoski", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88d", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 471, 
+        "name": "Keith Holt", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 469, 
+        "name": "John Michael Gorman", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "elloasty", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "blueace", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 552, 
+        "name": "Bruce Hall", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 524, 
+        "name": "Scott Marler", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 477, 
+        "name": "Will Hime", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 462, 
+        "name": "David Clark", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 457, 
+        "name": "Reuben Farrey", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 435, 
+        "name": "Jake Gordon", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 415, 
+        "name": "Tim Hannon", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ]
+              }
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "swarmtactics"
+                ]
+              }
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 350, 
+        "name": "Justin Farrey", 
+        "rank": {
+          "swiss": 23
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "princexizor", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "cloakingdevice"
+                ], 
+                "mod": [
+                  "stygiumparticleaccelerator"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "virago"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r5p8"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "protontorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 317, 
+        "name": "Jed Dahl", 
+        "rank": {
+          "swiss": 24
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 335, 
+        "name": "Zach Warren", 
+        "rank": {
+          "swiss": 25
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 331, 
+        "name": "Nathan Farrey", 
+        "rank": {
+          "swiss": 26
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "torpedo": [
+                  "bombloadout", 
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "torpedo": [
+                  "bombloadout", 
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "emonazzameen", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines"
+                ], 
+                "crew": [
+                  "gunner"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 288, 
+        "name": "Jude Farrey", 
+        "rank": {
+          "swiss": 27
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 239, 
+        "name": "Cody Hall", 
+        "rank": {
+          "swiss": 28
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 227, 
+        "name": "Jeff Woodruff", 
+        "rank": {
+          "swiss": 29
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 207, 
+        "name": "Josh Rouse", 
+        "rank": {
+          "swiss": 30
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Jed Dahl", 
+            "player1points": 0, 
+            "player2": "Bruce Hall", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Michael Gorman", 
+            "player1points": 100, 
+            "player2": "Seneca Pressley", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Clark", 
+            "player1points": 100, 
+            "player2": "Justin Farrey", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Richard Hsu", 
+            "player1points": 0, 
+            "player2": "Dustin Harvey", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Zach Warren", 
+            "player1points": 100, 
+            "player2": "Jeff Woodruff", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bill Bryant", 
+            "player1points": 0, 
+            "player2": "Scott Marler", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andy Sellers", 
+            "player1points": 100, 
+            "player2": "Jude Farrey", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Sliwoski", 
+            "player1points": 44, 
+            "player2": "Ritchie Gibbs", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jake Gordon", 
+            "player1points": 31, 
+            "player2": "Justin Battenberg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bryan Ballard", 
+            "player1points": 64, 
+            "player2": "Eric Smits", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Rouse", 
+            "player1points": 29, 
+            "player2": "Eric Maynard", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cody Hall", 
+            "player1points": 18, 
+            "player2": "Howie Hill", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tim Hannon", 
+            "player1points": 100, 
+            "player2": "Will Hime", 
+            "player2points": 76, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Farrey", 
+            "player1points": 20, 
+            "player2": "Ryan Shipp", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Keith Holt", 
+            "player1points": 100, 
+            "player2": "Reuben Farrey", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ben Fowler", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "David Clark", 
+            "player1points": 100, 
+            "player2": "Tim Hannon", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andy Sellers", 
+            "player1points": 100, 
+            "player2": "Ryan Shipp", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruce Hall", 
+            "player1points": 46, 
+            "player2": "John Michael Gorman", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dustin Harvey", 
+            "player1points": 100, 
+            "player2": "Zach Warren", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Howie Hill", 
+            "player1points": 50, 
+            "player2": "Keith Holt", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric Maynard", 
+            "player1points": 100, 
+            "player2": "Ritchie Gibbs", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Battenberg", 
+            "player1points": 100, 
+            "player2": "Ben Fowler", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott Marler", 
+            "player1points": 63, 
+            "player2": "Bryan Ballard", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jude Farrey", 
+            "player1points": 100, 
+            "player2": "Josh Rouse", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Reuben Farrey", 
+            "player1points": 100, 
+            "player2": "Seneca Pressley", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric Smits", 
+            "player1points": 100, 
+            "player2": "Nathan Farrey", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Sliwoski", 
+            "player1points": 100, 
+            "player2": "Cody Hall", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeff Woodruff", 
+            "player1points": 69, 
+            "player2": "Jed Dahl", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Richard Hsu", 
+            "player1points": 100, 
+            "player2": "Justin Farrey", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Will Hime", 
+            "player1points": 100, 
+            "player2": "Jake Gordon", 
+            "player2points": 27, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Ben Fowler", 
+            "player1points": 0, 
+            "player2": "Richard Hsu", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Dustin Harvey", 
+            "player1points": 75, 
+            "player2": "Keith Holt", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Clark", 
+            "player1points": 0, 
+            "player2": "Justin Battenberg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Michael Gorman", 
+            "player1points": 100, 
+            "player2": "Andy Sellers", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric Maynard", 
+            "player1points": 49, 
+            "player2": "Bryan Ballard", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ben Fowler", 
+            "player1points": 100, 
+            "player2": "Eric Smits", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott Marler", 
+            "player1points": 30, 
+            "player2": "Richard Hsu", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Reuben Farrey", 
+            "player1points": 50, 
+            "player2": "Will Hime", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Zach Warren", 
+            "player1points": 60, 
+            "player2": "Jed Dahl", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ritchie Gibbs", 
+            "player1points": 100, 
+            "player2": "Jude Farrey", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Howie Hill", 
+            "player1points": 100, 
+            "player2": "Ryan Sliwoski", 
+            "player2points": 55, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tim Hannon", 
+            "player1points": 0, 
+            "player2": "Bruce Hall", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Shipp", 
+            "player1points": 100, 
+            "player2": "Cody Hall", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Farrey", 
+            "player1points": 55, 
+            "player2": "Josh Rouse", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeff Woodruff", 
+            "player1points": 22, 
+            "player2": "Jake Gordon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Farrey", 
+            "player1points": 66, 
+            "player2": "Seneca Pressley", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Keith Holt", 
+            "player1points": 31, 
+            "player2": "Justin Battenberg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Michael Gorman", 
+            "player1points": 34, 
+            "player2": "Bryan Ballard", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ben Fowler", 
+            "player1points": 100, 
+            "player2": "Dustin Harvey", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Clark", 
+            "player1points": 58, 
+            "player2": "Eric Maynard", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Richard Hsu", 
+            "player1points": 100, 
+            "player2": "Howie Hill", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andy Sellers", 
+            "player1points": 100, 
+            "player2": "Jed Dahl", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Shipp", 
+            "player1points": 100, 
+            "player2": "Bruce Hall", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Will Hime", 
+            "player1points": 44, 
+            "player2": "Ritchie Gibbs", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Seneca Pressley", 
+            "player1points": 100, 
+            "player2": "Zach Warren", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric Smits", 
+            "player1points": 100, 
+            "player2": "Reuben Farrey", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jude Farrey", 
+            "player1points": 0, 
+            "player2": "Scott Marler", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tim Hannon", 
+            "player1points": 56, 
+            "player2": "Justin Farrey", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Sliwoski", 
+            "player1points": 100, 
+            "player2": "Jake Gordon", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Rouse", 
+            "player1points": 64, 
+            "player2": "Jeff Woodruff", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Farrey", 
+            "player1points": 80, 
+            "player2": "Cody Hall", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Justin Battenberg", 
+            "player1points": 0, 
+            "player2": "Ben Fowler", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ritchie Gibbs", 
+            "player1points": 0, 
+            "player2": "Richard Hsu", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Justin Battenberg", 
+            "player1points": 100, 
+            "player2": "Bryan Ballard", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric Maynard", 
+            "player1points": 100, 
+            "player2": "Ryan Shipp", 
+            "player2points": 100, 
+            "result": "draw"
+          }, 
+          {
+            "player1": "Keith Holt", 
+            "player1points": 40, 
+            "player2": "Richard Hsu", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andy Sellers", 
+            "player1points": 65, 
+            "player2": "Ben Fowler", 
+            "player2points": 78, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Michael Gorman", 
+            "player1points": 28, 
+            "player2": "Ritchie Gibbs", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Seneca Pressley", 
+            "player1points": 100, 
+            "player2": "Will Hime", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jed Dahl", 
+            "player1points": 46, 
+            "player2": "Ryan Sliwoski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Clark", 
+            "player1points": 35, 
+            "player2": "Bruce Hall", 
+            "player2points": 41, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Farrey", 
+            "player1points": 32, 
+            "player2": "Eric Smits", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott Marler", 
+            "player1points": 31, 
+            "player2": "Dustin Harvey", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Howie Hill", 
+            "player1points": 100, 
+            "player2": "Jeff Woodruff", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cody Hall", 
+            "player1points": 25, 
+            "player2": "Reuben Farrey", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Zach Warren", 
+            "player1points": 24, 
+            "player2": "Tim Hannon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jude Farrey", 
+            "player1points": 54, 
+            "player2": "Jake Gordon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Rouse", 
+            "player1points": 35, 
+            "player2": "Nathan Farrey", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Knoxville", 
+      "country": "United States of America", 
+      "lat": "35.960394800000", 
+      "lon": "-83.921026000000", 
+      "name": "", 
+      "state": "Tennessee"
+    }
+  }
+}

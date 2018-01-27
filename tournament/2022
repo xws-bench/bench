@@ -1,0 +1,70 @@
+{
+  "tournament": {
+    "date": "2016-08-27", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2022, 
+    "name": "Comix in Piazza & Mak'Gora", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "coloneljendon", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "systemsofficer", 
+                  "reconspecialist"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "st321"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 0, 
+        "name": "Player 1", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Player 2", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [], 
+    "type": "Other", 
+    "venue": {
+      "city": "Piombino", 
+      "country": "Italy", 
+      "lat": "42.934824000000", 
+      "lon": "10.522120000000", 
+      "name": "Mak'Gora", 
+      "state": "Toscana"
+    }
+  }
+}

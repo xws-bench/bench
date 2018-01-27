@@ -1,0 +1,727 @@
+{
+  "tournament": {
+    "date": "2017-11-01", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3598, 
+    "name": "Campeonato Imperio Jogos - Taubate", 
+    "players": [
+      {
+        "mov": 50, 
+        "name": "Luan", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.42"
+      }, 
+      {
+        "mov": 200, 
+        "name": "Murilo Santos", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.58"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 250, 
+        "name": "Diego Rangel", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "m9g8"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "captainrex", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "chewbacca-swx57", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "rey"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 638, 
+        "name": "Marcelo Xaion", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.46"
+      }, 
+      {
+        "mov": 600, 
+        "name": "Guilherme Jr", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.46"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "janors"
+                ], 
+                "ept": [
+                  "trickshot"
+                ]
+              }
+            }, 
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "title": [
+                  "phantom"
+                ]
+              }
+            }, 
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "rey", 
+                  "reconspecialist"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 545, 
+        "name": "Milton", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 514, 
+        "name": "Renan Ivo", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "kyloren", 
+                  "hotshotcopilot", 
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 497, 
+        "name": "Cepinho", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 3, 
+        "sos": "0.27"
+      }, 
+      {
+        "mov": 466, 
+        "name": "Guilherme", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 461, 
+        "name": "Leandro Zanella", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.65"
+      }, 
+      {
+        "mov": 305, 
+        "name": "Shagrat", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "jakefarrell", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit", 
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "hansolo", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "lukeskywalker"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 279, 
+        "name": "Diego Ferolla", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.75"
+      }, 
+      {
+        "mov": 258, 
+        "name": "Rafael Godoi", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 237, 
+        "name": "Tauil", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Guilherme Jr", 
+            "player1points": 100, 
+            "player2": "Rafael Godoi", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Milton", 
+            "player1points": 100, 
+            "player2": "Tauil", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Guilherme", 
+            "player1points": 100, 
+            "player2": "Diego Ferolla", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Diego Rangel", 
+            "player1points": 0, 
+            "player2": "Leandro Zanella", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shagrat", 
+            "player1points": 0, 
+            "player2": "Renan Ivo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Murilo Santos", 
+            "player1points": 0, 
+            "player2": "Marcelo Xaion", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cepinho", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Cepinho", 
+            "player1points": 32, 
+            "player2": "Diego Ferolla", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Leandro Zanella", 
+            "player1points": 100, 
+            "player2": "Renan Ivo", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcelo Xaion", 
+            "player1points": 100, 
+            "player2": "Guilherme", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Milton", 
+            "player1points": 100, 
+            "player2": "Guilherme Jr", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shagrat", 
+            "player1points": 100, 
+            "player2": "Rafael Godoi", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tauil", 
+            "player1points": 0, 
+            "player2": "Diego Rangel", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luan", 
+            "player1points": 0, 
+            "player2": "Murilo Santos", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Leandro Zanella", 
+            "player1points": 26, 
+            "player2": "Milton", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcelo Xaion", 
+            "player1points": 100, 
+            "player2": "Diego Ferolla", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Guilherme", 
+            "player1points": 0, 
+            "player2": "Renan Ivo", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafael Godoi", 
+            "player1points": 100, 
+            "player2": "Tauil", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cepinho", 
+            "player1points": 100, 
+            "player2": "Diego Rangel", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Guilherme Jr", 
+            "player1points": 100, 
+            "player2": "Murilo Santos", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luan", 
+            "player1points": 50, 
+            "player2": "Shagrat", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Milton", 
+            "player1points": 49, 
+            "player2": "Marcelo Xaion", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cepinho", 
+            "player1points": 100, 
+            "player2": "Leandro Zanella", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shagrat", 
+            "player1points": 26, 
+            "player2": "Guilherme Jr", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Renan Ivo", 
+            "player1points": 100, 
+            "player2": "Diego Ferolla", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Guilherme", 
+            "player1points": 100, 
+            "player2": "Rafael Godoi", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tauil", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Taubate", 
+      "country": "Brazil", 
+      "lat": null, 
+      "lon": null, 
+      "name": "Imperio Jogos", 
+      "state": "Sao Paulo"
+    }
+  }
+}

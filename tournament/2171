@@ -1,0 +1,2413 @@
+{
+  "tournament": {
+    "date": "2016-09-24", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2171, 
+    "name": "South African Nationals", 
+    "players": [
+      {
+        "mov": 0, 
+        "name": "Steve Kitley", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 190, 
+        "name": "Alastair Fenner", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.40"
+      }, 
+      {
+        "mov": 236, 
+        "name": "Warren Raaff", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.35"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "deltasquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 798, 
+        "name": "Quintin Ludick", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 1
+        }, 
+        "score": 5, 
+        "sos": "0.48"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 806, 
+        "name": "Peter Hayward", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 2
+        }, 
+        "score": 4, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "wedgeantilles", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "lukeskywalker", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "protontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2f2"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 798, 
+        "name": "Shaun Rushmer", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 3
+        }, 
+        "score": 4, 
+        "sos": "0.48"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "hansolo", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 790, 
+        "name": "Douw Pretorius", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 4
+        }, 
+        "score": 4, 
+        "sos": "0.48"
+      }, 
+      {
+        "mov": 713, 
+        "name": "Ronald Grobler", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 5
+        }, 
+        "score": 4, 
+        "sos": "0.60"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "commanderalozen", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 710, 
+        "name": "Daniel Hallinan", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 6
+        }, 
+        "score": 4, 
+        "sos": "0.60"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "gunner", 
+                  "emperorpalpatine"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 672, 
+        "name": "Damian Wadsworth", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 7
+        }, 
+        "score": 4, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 661, 
+        "name": "John Irvine", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 8
+        }, 
+        "score": 4, 
+        "sos": "0.48"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "gammasquadronveteran", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "maarekstele", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 654, 
+        "name": "Cedric Jacques", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "zuckuss"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "protontorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 670, 
+        "name": "Frank Malan", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 3, 
+        "sos": "0.36"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "zuckuss"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "advprotontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 663, 
+        "name": "Jan Gutter", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 3, 
+        "sos": "0.48"
+      }, 
+      {
+        "mov": 652, 
+        "name": "Jannie Maritz", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 3, 
+        "sos": "0.40"
+      }, 
+      {
+        "mov": 648, 
+        "name": "Reuben Cronj", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 3, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 613, 
+        "name": "Peter van Dyk", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 3, 
+        "sos": "0.64"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "missile": [
+                  "ionpulsemissiles"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 590, 
+        "name": "Ryan Young", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 3, 
+        "sos": "0.51"
+      }, 
+      {
+        "mov": 576, 
+        "name": "Gregory Walker", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 3, 
+        "sos": "0.40"
+      }, 
+      {
+        "mov": 560, 
+        "name": "Gerhardus Jacobus Klopper", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 3, 
+        "sos": "0.60"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "connernet"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 500, 
+        "name": "Pierre Lopes", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 3, 
+        "sos": "0.64"
+      }, 
+      {
+        "mov": 425, 
+        "name": "Sarah Jane McGibbon", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 3, 
+        "sos": "0.61"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "zuckuss", 
+              "ship": "g1astarfighter", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "crew": [
+                  "dengar"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "misthunter"
+                ]
+              }
+            }, 
+            {
+              "name": "kavil", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "r4agromech"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 540, 
+        "name": "Shaun Mason", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 2, 
+        "sos": "0.40"
+      }, 
+      {
+        "mov": 513, 
+        "name": "JP Naude", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 2, 
+        "sos": "0.60"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ruthlessfreelancer", 
+              "ship": "g1astarfighter", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "crew": [
+                  "gonk"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "system": [
+                  "electronicbaffle"
+                ], 
+                "title": [
+                  "misthunter"
+                ]
+              }
+            }, 
+            {
+              "name": "ruthlessfreelancer", 
+              "ship": "g1astarfighter", 
+              "upgrades": {
+                "crew": [
+                  "dengar"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "system": [
+                  "electronicbaffle"
+                ]
+              }
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "illicit": [
+                  "feedbackarray"
+                ]
+              }
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "illicit": [
+                  "feedbackarray"
+                ]
+              }
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "illicit": [
+                  "feedbackarray"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 502, 
+        "name": "Jonathan Goldstein", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 2, 
+        "sos": "0.53"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaace", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "swarmtactics"
+                ]
+              }
+            }, 
+            {
+              "name": "epsilonsquadronpilot", 
+              "ship": "tiefofighter"
+            }, 
+            {
+              "name": "epsilonsquadronpilot", 
+              "ship": "tiefofighter"
+            }, 
+            {
+              "name": "epsilonsquadronpilot", 
+              "ship": "tiefofighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 456, 
+        "name": "Christopher Bates", 
+        "rank": {
+          "swiss": 23
+        }, 
+        "score": 2, 
+        "sos": "0.36"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "echo", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 448, 
+        "name": "Warren Kristiansen", 
+        "rank": {
+          "swiss": 24
+        }, 
+        "score": 2, 
+        "sos": "0.60"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "elloasty", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "blueace", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "targetingastromech"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "torpedo": [
+                  "flechettetorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r7t1"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "flechettetorpedoes"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 433, 
+        "name": "Troy Campbell", 
+        "rank": {
+          "swiss": 25
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 426, 
+        "name": "Keagan Wollenschlaeger", 
+        "rank": {
+          "swiss": 26
+        }, 
+        "score": 2, 
+        "sos": "0.48"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla", 
+                  "niennunb"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 412, 
+        "name": "Graham Turner", 
+        "rank": {
+          "swiss": 27
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 400, 
+        "name": "Brenna Rong", 
+        "rank": {
+          "swiss": 28
+        }, 
+        "score": 2, 
+        "sos": "0.52"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "teltrevura", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "coolhand"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "iontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "gandfindsman", 
+              "ship": "g1astarfighter", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "misthunter"
+                ]
+              }
+            }, 
+            {
+              "name": "zuckuss", 
+              "ship": "g1astarfighter", 
+              "upgrades": {
+                "ept": [
+                  "swarmtactics"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 373, 
+        "name": "Jaap van Beest van Andel", 
+        "rank": {
+          "swiss": 29
+        }, 
+        "score": 2, 
+        "sos": "0.52"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "4lom"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "advprotontorpedoes", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "r4agromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "zuckuss"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "advprotontorpedoes", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 329, 
+        "name": "Francois van Rooyen", 
+        "rank": {
+          "swiss": 30
+        }, 
+        "score": 2, 
+        "sos": "0.48"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "drearenthal", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "4lom", 
+                  "dengar", 
+                  "zuckuss"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 327, 
+        "name": "Lee McAlister", 
+        "rank": {
+          "swiss": 31
+        }, 
+        "score": 2, 
+        "sos": "0.40"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "ysanneisard", 
+                  "marajade"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "echo", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 298, 
+        "name": "Victor Mackay", 
+        "rank": {
+          "swiss": 32
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 285, 
+        "name": "Sean Arnall", 
+        "rank": {
+          "swiss": 33
+        }, 
+        "score": 1, 
+        "sos": "0.52"
+      }, 
+      {
+        "mov": 285, 
+        "name": "Gregg Barlow", 
+        "rank": {
+          "swiss": 34
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "protontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "4lom", 
+                  "zuckuss", 
+                  "dengar"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 222, 
+        "name": "Jaco Gerber", 
+        "rank": {
+          "swiss": 35
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "wedgeantilles", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "blueace", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2f2"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 194, 
+        "name": "Albert van Niekerk", 
+        "rank": {
+          "swiss": 36
+        }, 
+        "score": 1, 
+        "sos": "0.43"
+      }, 
+      {
+        "mov": 282, 
+        "name": "Pedro Alves", 
+        "rank": {
+          "swiss": 37
+        }, 
+        "score": 0, 
+        "sos": "0.29"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Cedric Jacques", 
+            "player1points": 85, 
+            "player2": "Peter van Dyk", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sarah Jane McGibbon", 
+            "player1points": 100, 
+            "player2": "Warren Raaff", 
+            "player2points": 54, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pedro Alves", 
+            "player1points": 0, 
+            "player2": "Brenna Rong", 
+            "player2points": 96, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christopher Bates", 
+            "player1points": 0, 
+            "player2": "Frank Malan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gerhardus Jacobus Klopper", 
+            "player1points": 100, 
+            "player2": "Jannie Maritz", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pierre Lopes", 
+            "player1points": 100, 
+            "player2": "Ryan Young", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shaun Mason", 
+            "player1points": 60, 
+            "player2": "Victor Mackay", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jaap van Beest van Andel", 
+            "player1points": 33, 
+            "player2": "Damian Wadsworth", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean Arnall", 
+            "player1points": 0, 
+            "player2": "Ronald Grobler", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Albert van Niekerk", 
+            "player1points": 0, 
+            "player2": "Douw Pretorius", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "JP Naude", 
+            "player1points": 100, 
+            "player2": "Alastair Fenner", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gregory Walker", 
+            "player1points": 28, 
+            "player2": "Jonathan Goldstein", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shaun Rushmer", 
+            "player1points": 54, 
+            "player2": "Warren Kristiansen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Reuben Cronj", 
+            "player1points": 82, 
+            "player2": "John Irvine", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jan Gutter", 
+            "player1points": 100, 
+            "player2": "Keagan Wollenschlaeger", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Troy Campbell", 
+            "player1points": 67, 
+            "player2": "Jaco Gerber", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francois van Rooyen", 
+            "player1points": 100, 
+            "player2": "Gregg Barlow", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Hallinan", 
+            "player1points": 100, 
+            "player2": "Lee McAlister", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Quintin Ludick", 
+            "player1points": 100, 
+            "player2": "Steve Kitley", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Graham Turner", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Peter Hayward", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Troy Campbell", 
+            "player1points": 0, 
+            "player2": "Peter Hayward", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Damian Wadsworth", 
+            "player1points": 100, 
+            "player2": "Cedric Jacques", 
+            "player2points": 77, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Douw Pretorius", 
+            "player1points": 100, 
+            "player2": "Warren Kristiansen", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Reuben Cronj", 
+            "player1points": 100, 
+            "player2": "Victor Mackay", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Quintin Ludick", 
+            "player1points": 100, 
+            "player2": "JP Naude", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ronald Grobler", 
+            "player1points": 100, 
+            "player2": "Francois van Rooyen", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Hallinan", 
+            "player1points": 100, 
+            "player2": "Pierre Lopes", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Frank Malan", 
+            "player1points": 29, 
+            "player2": "Brenna Rong", 
+            "player2points": 43, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gerhardus Jacobus Klopper", 
+            "player1points": 100, 
+            "player2": "Jonathan Goldstein", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Graham Turner", 
+            "player1points": 67, 
+            "player2": "Sarah Jane McGibbon", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jan Gutter", 
+            "player1points": 100, 
+            "player2": "Steve Kitley", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shaun Mason", 
+            "player1points": 100, 
+            "player2": "Keagan Wollenschlaeger", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Albert van Niekerk", 
+            "player1points": 25, 
+            "player2": "Gregory Walker", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jannie Maritz", 
+            "player1points": 48, 
+            "player2": "Peter van Dyk", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gregg Barlow", 
+            "player1points": 15, 
+            "player2": "John Irvine", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jaap van Beest van Andel", 
+            "player1points": 30, 
+            "player2": "Christopher Bates", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shaun Rushmer", 
+            "player1points": 100, 
+            "player2": "Jaco Gerber", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Warren Raaff", 
+            "player1points": 96, 
+            "player2": "Pedro Alves", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lee McAlister", 
+            "player1points": 32, 
+            "player2": "Sean Arnall", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alastair Fenner", 
+            "player1points": 37, 
+            "player2": "Ryan Young", 
+            "player2points": 99, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Quintin Ludick", 
+            "player1points": 63, 
+            "player2": "Peter Hayward", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Ronald Grobler", 
+            "player1points": 28, 
+            "player2": "Gerhardus Jacobus Klopper", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Douw Pretorius", 
+            "player1points": 100, 
+            "player2": "Jan Gutter", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Damian Wadsworth", 
+            "player1points": 15, 
+            "player2": "Peter Hayward", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Hallinan", 
+            "player1points": 68, 
+            "player2": "Brenna Rong", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sarah Jane McGibbon", 
+            "player1points": 78, 
+            "player2": "Reuben Cronj", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Quintin Ludick", 
+            "player1points": 100, 
+            "player2": "Pierre Lopes", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shaun Rushmer", 
+            "player1points": 100, 
+            "player2": "Victor Mackay", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Warren Kristiansen", 
+            "player1points": 100, 
+            "player2": "Shaun Mason", 
+            "player2points": 54, 
+            "result": "win"
+          }, 
+          {
+            "player1": "JP Naude", 
+            "player1points": 100, 
+            "player2": "Warren Raaff", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Frank Malan", 
+            "player1points": 69, 
+            "player2": "Graham Turner", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jaap van Beest van Andel", 
+            "player1points": 48, 
+            "player2": "John Irvine", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cedric Jacques", 
+            "player1points": 100, 
+            "player2": "Troy Campbell", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Peter van Dyk", 
+            "player1points": 100, 
+            "player2": "Gregory Walker", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Young", 
+            "player1points": 100, 
+            "player2": "Jonathan Goldstein", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francois van Rooyen", 
+            "player1points": 68, 
+            "player2": "Sean Arnall", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christopher Bates", 
+            "player1points": 100, 
+            "player2": "Steve Kitley", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alastair Fenner", 
+            "player1points": 100, 
+            "player2": "Albert van Niekerk", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gregg Barlow", 
+            "player1points": 0, 
+            "player2": "Jannie Maritz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Keagan Wollenschlaeger", 
+            "player1points": 100, 
+            "player2": "Lee McAlister", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pedro Alves", 
+            "player1points": 47, 
+            "player2": "Jaco Gerber", 
+            "player2points": 65, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Sarah Jane McGibbon", 
+            "player1points": 35, 
+            "player2": "Quintin Ludick", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ronald Grobler", 
+            "player1points": 29, 
+            "player2": "Peter Hayward", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Douw Pretorius", 
+            "player1points": 29, 
+            "player2": "Daniel Hallinan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jan Gutter", 
+            "player1points": 100, 
+            "player2": "Francois van Rooyen", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Irvine", 
+            "player1points": 100, 
+            "player2": "Gerhardus Jacobus Klopper", 
+            "player2points": 18, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brenna Rong", 
+            "player1points": 0, 
+            "player2": "Reuben Cronj", 
+            "player2points": 98, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Damian Wadsworth", 
+            "player1points": 100, 
+            "player2": "Graham Turner", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Peter van Dyk", 
+            "player1points": 28, 
+            "player2": "Shaun Rushmer", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Young", 
+            "player1points": 98, 
+            "player2": "Warren Kristiansen", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cedric Jacques", 
+            "player1points": 64, 
+            "player2": "JP Naude", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jaco Gerber", 
+            "player1points": 0, 
+            "player2": "Frank Malan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Keagan Wollenschlaeger", 
+            "player1points": 100, 
+            "player2": "Victor Mackay", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shaun Mason", 
+            "player1points": 71, 
+            "player2": "Pierre Lopes", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jannie Maritz", 
+            "player1points": 100, 
+            "player2": "Sean Arnall", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christopher Bates", 
+            "player1points": 0, 
+            "player2": "Gregory Walker", 
+            "player2points": 99, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jaap van Beest van Andel", 
+            "player1points": 0, 
+            "player2": "Troy Campbell", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan Goldstein", 
+            "player1points": 100, 
+            "player2": "Warren Raaff", 
+            "player2points": 14, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lee McAlister", 
+            "player1points": 100, 
+            "player2": "Gregg Barlow", 
+            "player2points": 83, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Albert van Niekerk", 
+            "player1points": 96, 
+            "player2": "Pedro Alves", 
+            "player2points": 90, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Quintin Ludick", 
+            "player1points": 100, 
+            "player2": "Ronald Grobler", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Hallinan", 
+            "player1points": 64, 
+            "player2": "Peter Hayward", 
+            "player2points": 66, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Quintin Ludick", 
+            "player1points": 29, 
+            "player2": "Ronald Grobler", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Hallinan", 
+            "player1points": 0, 
+            "player2": "Shaun Rushmer", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Damian Wadsworth", 
+            "player1points": 100, 
+            "player2": "Sarah Jane McGibbon", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Reuben Cronj", 
+            "player1points": 29, 
+            "player2": "Peter Hayward", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Irvine", 
+            "player1points": 37, 
+            "player2": "Ryan Young", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jan Gutter", 
+            "player1points": 63, 
+            "player2": "Cedric Jacques", 
+            "player2points": 80, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Douw Pretorius", 
+            "player1points": 100, 
+            "player2": "Graham Turner", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Peter van Dyk", 
+            "player1points": 100, 
+            "player2": "JP Naude", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gregory Walker", 
+            "player1points": 69, 
+            "player2": "Brenna Rong", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Frank Malan", 
+            "player1points": 86, 
+            "player2": "Jonathan Goldstein", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pierre Lopes", 
+            "player1points": 100, 
+            "player2": "Keagan Wollenschlaeger", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gerhardus Jacobus Klopper", 
+            "player1points": 70, 
+            "player2": "Troy Campbell", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jannie Maritz", 
+            "player1points": 100, 
+            "player2": "Francois van Rooyen", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Warren Kristiansen", 
+            "player1points": 83, 
+            "player2": "Lee McAlister", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shaun Mason", 
+            "player1points": 100, 
+            "player2": "Sean Arnall", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jaco Gerber", 
+            "player1points": 71, 
+            "player2": "Jaap van Beest van Andel", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Albert van Niekerk", 
+            "player1points": 15, 
+            "player2": "Christopher Bates", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Victor Mackay", 
+            "player1points": 100, 
+            "player2": "Pedro Alves", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gregg Barlow", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Quintin Ludick", 
+            "player1points": 100, 
+            "player2": "John Irvine", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Douw Pretorius", 
+            "player1points": 0, 
+            "player2": "Ronald Grobler", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shaun Rushmer", 
+            "player1points": 37, 
+            "player2": "Daniel Hallinan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Peter Hayward", 
+            "player1points": 100, 
+            "player2": "Damian Wadsworth", 
+            "player2points": 29, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 8, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Nationals", 
+    "venue": {
+      "city": "Johannesburg", 
+      "country": "South Africa", 
+      "lat": "-26.204999900000", 
+      "lon": "28.049722200000", 
+      "name": "Threeplus Wargaming Club, Roosevelt Park, Northcliff.", 
+      "state": "Gauteng"
+    }
+  }
+}

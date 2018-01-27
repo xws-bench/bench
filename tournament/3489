@@ -1,0 +1,413 @@
+{
+  "tournament": {
+    "date": "2017-09-30", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3489, 
+    "name": "Q3 Kit Tourney", 
+    "players": [
+      {
+        "mov": 246, 
+        "name": "Kyle Mann", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 292, 
+        "name": "Moe Val", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "gunner", 
+                  "hotshotcopilot", 
+                  "kyloren"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 633, 
+        "name": "Brandon Brown", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.58"
+      }, 
+      {
+        "mov": 537, 
+        "name": "Jason Hall", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 504, 
+        "name": "Michael Blackwell", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 511, 
+        "name": "Benjamin Whatley", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaspecialist", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "backdraft", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "ascoretosettle"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 472, 
+        "name": "Brian Buhler", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 360, 
+        "name": "Tom Allen", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.52"
+      }, 
+      {
+        "mov": 332, 
+        "name": "Chris McNally", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 255, 
+        "name": "Brian Hagan", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 150, 
+        "name": "JD Wilfawn", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 108, 
+        "name": "Brian Hess", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 0, 
+        "sos": "0.28"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Michael Blackwell", 
+            "player1points": 73, 
+            "player2": "Kyle Mann", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian Hess", 
+            "player1points": 33, 
+            "player2": "Moe Val", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian Hagan", 
+            "player1points": 61, 
+            "player2": "Brian Buhler", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benjamin Whatley", 
+            "player1points": 51, 
+            "player2": "Tom Allen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris McNally", 
+            "player1points": 100, 
+            "player2": "JD Wilfawn", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Hall", 
+            "player1points": 31, 
+            "player2": "Brandon Brown", 
+            "player2points": 69, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Moe Val", 
+            "player1points": 31, 
+            "player2": "Brandon Brown", 
+            "player2points": 57, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Blackwell", 
+            "player1points": 100, 
+            "player2": "Chris McNally", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tom Allen", 
+            "player1points": 0, 
+            "player2": "Brian Buhler", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kyle Mann", 
+            "player1points": 100, 
+            "player2": "Brian Hagan", 
+            "player2points": 19, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benjamin Whatley", 
+            "player1points": 35, 
+            "player2": "Jason Hall", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian Hess", 
+            "player1points": 0, 
+            "player2": "JD Wilfawn", 
+            "player2points": 50, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Brandon Brown", 
+            "player1points": 100, 
+            "player2": "Michael Blackwell", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian Buhler", 
+            "player1points": 68, 
+            "player2": "Chris McNally", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "JD Wilfawn", 
+            "player1points": 0, 
+            "player2": "Jason Hall", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Moe Val", 
+            "player1points": 51, 
+            "player2": "Tom Allen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benjamin Whatley", 
+            "player1points": 100, 
+            "player2": "Brian Hagan", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Brandon Brown", 
+            "player1points": 100, 
+            "player2": "Chris McNally", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Hall", 
+            "player1points": 100, 
+            "player2": "Brian Buhler", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Blackwell", 
+            "player1points": 100, 
+            "player2": "Tom Allen", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benjamin Whatley", 
+            "player1points": 100, 
+            "player2": "JD Wilfawn", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian Hess", 
+            "player1points": 25, 
+            "player2": "Brian Hagan", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Crestview", 
+      "country": "United States of America", 
+      "lat": "30.762132600000", 
+      "lon": "-86.570508400000", 
+      "name": "", 
+      "state": "Florida"
+    }
+  }
+}

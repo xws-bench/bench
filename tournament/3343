@@ -1,0 +1,669 @@
+{
+  "tournament": {
+    "date": "2017-08-26", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3343, 
+    "name": "INCORRECT", 
+    "players": [
+      {
+        "mov": 59, 
+        "name": "Alistar Carver", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 84, 
+        "name": "Jan Gutter", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 127, 
+        "name": "Peter Hayward", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 150, 
+        "name": "Pierre Lopez", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 260, 
+        "name": "Jonathan Kenyon", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegaspecialist", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "glaivesquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "royalguardpilot", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 496, 
+        "name": "Dieter Engelke", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 404, 
+        "name": "Shaun Mason", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "concorddawnace", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "lokrevenant", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "thermaldetonators"
+                ], 
+                "ept": [
+                  "wired"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 380, 
+        "name": "Kevin Pedersen", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 321, 
+        "name": "Carl Visagie", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "redsquadronveteran", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5astromech"
+                ], 
+                "ept": [
+                  "determination"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronnovice", 
+              "ship": "t70xwing"
+            }, 
+            {
+              "name": "redsquadronpilot", 
+              "ship": "xwing"
+            }, 
+            {
+              "name": "bluesquadronpathfinder", 
+              "ship": "uwing", 
+              "upgrades": {
+                "title": [
+                  "pivotwing"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 313, 
+        "name": "Shaun Rushmer", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "onyxsquadronescort", 
+              "ship": "tieaggressor", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaspecialist", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "glaivesquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 275, 
+        "name": "Shandon", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 240, 
+        "name": "Alastair Fenner", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 223, 
+        "name": "Gerhard Pretorius", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 207, 
+        "name": "Francois Ackerman", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "flechettetorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "lokrevenant", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines", 
+                  "clustermines"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "jakkugunrunner", 
+              "ship": "quadjumper", 
+              "upgrades": {
+                "mod": [
+                  "spacetugtractorarray"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 137, 
+        "name": "Mark Fletcher", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.17"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100"
+            }, 
+            {
+              "name": "resistancesympathizer", 
+              "ship": "yt1300"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 161, 
+        "name": "Alain Rogers", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 0, 
+        "sos": "0.42"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "hiredgun", 
+              "ship": "ywing"
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing"
+            }, 
+            {
+              "name": "blacksunvigo", 
+              "ship": "starviper"
+            }, 
+            {
+              "name": "blacksunenforcer", 
+              "ship": "starviper"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 113, 
+        "name": "Gemma Fletcher", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 0, 
+        "sos": "0.50"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Peter Hayward", 
+            "player1points": 100, 
+            "player2": "Alain Rogers", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shandon", 
+            "player1points": 100, 
+            "player2": "Mark Fletcher", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gemma Fletcher", 
+            "player1points": 53, 
+            "player2": "Carl Visagie", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dieter Engelke", 
+            "player1points": 100, 
+            "player2": "Kevin Pedersen", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alastair Fenner", 
+            "player1points": 100, 
+            "player2": "Alistar Carver", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shaun Rushmer", 
+            "player1points": 100, 
+            "player2": "Gerhard Pretorius", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jan Gutter", 
+            "player1points": 66, 
+            "player2": "Shaun Mason", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francois Ackerman", 
+            "player1points": 43, 
+            "player2": "Jonathan Kenyon", 
+            "player2points": 76, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Shaun Mason", 
+            "player1points": 100, 
+            "player2": "Peter Hayward", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alastair Fenner", 
+            "player1points": 73, 
+            "player2": "Jonathan Kenyon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shaun Rushmer", 
+            "player1points": 100, 
+            "player2": "Shandon", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dieter Engelke", 
+            "player1points": 100, 
+            "player2": "Carl Visagie", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Pedersen", 
+            "player1points": 100, 
+            "player2": "Jan Gutter", 
+            "player2points": 18, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alain Rogers", 
+            "player1points": 37, 
+            "player2": "Mark Fletcher", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gemma Fletcher", 
+            "player1points": 34, 
+            "player2": "Francois Ackerman", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gerhard Pretorius", 
+            "player1points": 100, 
+            "player2": "Alistar Carver", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pierre Lopez", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Shaun Mason", 
+            "player1points": 70, 
+            "player2": "Dieter Engelke", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shaun Rushmer", 
+            "player1points": 0, 
+            "player2": "Mark Fletcher", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carl Visagie", 
+            "player1points": 100, 
+            "player2": "Gerhard Pretorius", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francois Ackerman", 
+            "player1points": 1, 
+            "player2": "Alastair Fenner", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shandon", 
+            "player1points": 36, 
+            "player2": "Kevin Pedersen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gemma Fletcher", 
+            "player1points": 0, 
+            "player2": "Alain Rogers", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Cape Town", 
+      "country": "South Africa", 
+      "lat": "-33.928904800000", 
+      "lon": "18.417248500000", 
+      "name": "Quantum Gaming", 
+      "state": "Western Cape"
+    }
+  }
+}

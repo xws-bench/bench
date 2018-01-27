@@ -1,5 +1,6 @@
 /*<span class="smallbutton" onclick="SQUADLIST.displaycombats({{nrows}})">Replay</span>*/
-var JUGGLERWEBSITE="http://lists.starwarsclubhouse.com/api/v1/";
+//var JUGGLERWEBSITE="http://lists.starwarsclubhouse.com/api/v1/";
+var JUGGLERWEBSITE="";
 
 var mk2split = function(t) {
     var tt=t.split("\.");
@@ -116,6 +117,7 @@ Squadlist.prototype = {
     },
     addtournamentlists:function(latest) {
 	var req = new XMLHttpRequest();
+        req.overrideMimeType("application/json");  // For local juggler file loading
 	req.open('GET', JUGGLERWEBSITE+"tournament/"+latest, true);
 	req.onreadystatechange = function() {
 	    if (req.readyState === 4) {
@@ -154,6 +156,7 @@ Squadlist.prototype = {
     },
     latest: function() {
 	var req = new XMLHttpRequest();
+        req.overrideMimeType("application/json");
 	var i;
 	this.allresults={};
 	this.rows=[];
@@ -161,7 +164,7 @@ Squadlist.prototype = {
 	$(this.id+" tbody").html("");
 	this.log={};
 	// Feature detection for CORS
-	req.open('GET', JUGGLERWEBSITE+"tournaments", true);
+	req.open('GET', JUGGLERWEBSITE+"tournament/tournaments", true);
 	// Just like regular ol' XHR
 	req.onreadystatechange = function() {
             if (req.readyState === 4) {
@@ -173,17 +176,19 @@ Squadlist.prototype = {
 		    var p=[];
 		    for (i=0; i<5; i++) {
 			var latest=resp.tournaments[resp.tournaments.length-1-i];
-			if (typeof localStorage["_TOURNAMENT"+latest]=="undefined") {
-			    this.addtournamentlists(latest);
-			} else {
-			    
-			    var tt=$.parseJSON(localStorage["_TOURNAMENT"+latest]);
-			    for (var j in tt.list) {
-				var l=tt.list[j];
-				this.addrow(0,"COMPETITION0",l.points,l.faction,l.jug,false,tt.event);
-			    }
-			    console.log("tournament "+latest+" in cache");
-			}
+                        this.addtournamentlists(latest); 
+                        // caching only works if we can mark older versions as "dirty", so disabled.
+//			if (typeof localStorage["_TOURNAMENT"+latest]=="undefined") {
+//			    this.addtournamentlists(latest);
+//			} else {
+//			    
+//			    var tt=$.parseJSON(localStorage["_TOURNAMENT"+latest]);
+//			    for (var j in tt.list) {
+//				var l=tt.list[j];
+//				this.addrow(0,"COMPETITION0",l.points,l.faction,l.jug,false,tt.event);
+//			    }
+//			    console.log("tournament "+latest+" in cache");
+//			}
 			p[i]=parseInt(latest,10);
 		    }
 		    for (i in localStorage) {

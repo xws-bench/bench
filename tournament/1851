@@ -1,0 +1,593 @@
+{
+  "tournament": {
+    "date": "2016-07-09", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1851, 
+    "name": "Iksy Tricity S3T2a", 
+    "players": [
+      {
+        "mov": 543, 
+        "name": "Piotr Romasiuk", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 534, 
+        "name": "Jaroslaw Grabczynski", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 450, 
+        "name": "Jan Zieniewicz", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 448, 
+        "name": "Rafal Czerski", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 502, 
+        "name": "Bartosz Koscielak", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 407, 
+        "name": "Rafal Mika", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "baronoftheempire", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 376, 
+        "name": "Andrzej Sosnowski", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 375, 
+        "name": "Maciej Balinski", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 358, 
+        "name": "Adam Sieminski", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 356, 
+        "name": "Adam Adamski", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "echo", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 261, 
+        "name": "Pawel Chajecki", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 190, 
+        "name": "Radoslaw Sieminski", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Radoslaw Sieminski", 
+            "player1points": 39, 
+            "player2": "Jaroslaw Grabczynski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bartosz Koscielak", 
+            "player1points": 71, 
+            "player2": "Rafal Czerski", 
+            "player2points": 78, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pawel Chajecki", 
+            "player1points": 100, 
+            "player2": "Maciej Balinski", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Piotr Romasiuk", 
+            "player1points": 100, 
+            "player2": "Jan Zieniewicz", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Sieminski", 
+            "player1points": 39, 
+            "player2": "Andrzej Sosnowski", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafal Mika", 
+            "player1points": 100, 
+            "player2": "Adam Adamski", 
+            "player2points": 60, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Pawel Chajecki", 
+            "player1points": 20, 
+            "player2": "Rafal Mika", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jaroslaw Grabczynski", 
+            "player1points": 100, 
+            "player2": "Piotr Romasiuk", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Sieminski", 
+            "player1points": 18, 
+            "player2": "Rafal Czerski", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maciej Balinski", 
+            "player1points": 77, 
+            "player2": "Adam Adamski", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Radoslaw Sieminski", 
+            "player1points": 61, 
+            "player2": "Andrzej Sosnowski", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jan Zieniewicz", 
+            "player1points": 100, 
+            "player2": "Bartosz Koscielak", 
+            "player2points": 50, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jaroslaw Grabczynski", 
+            "player1points": 100, 
+            "player2": "Rafal Mika", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafal Czerski", 
+            "player1points": 28, 
+            "player2": "Piotr Romasiuk", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jan Zieniewicz", 
+            "player1points": 100, 
+            "player2": "Pawel Chajecki", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej Sosnowski", 
+            "player1points": 100, 
+            "player2": "Maciej Balinski", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Sieminski", 
+            "player1points": 0, 
+            "player2": "Adam Adamski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bartosz Koscielak", 
+            "player1points": 100, 
+            "player2": "Radoslaw Sieminski", 
+            "player2points": 41, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jaroslaw Grabczynski", 
+            "player1points": 50, 
+            "player2": "Jan Zieniewicz", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej Sosnowski", 
+            "player1points": 28, 
+            "player2": "Piotr Romasiuk", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafal Mika", 
+            "player1points": 34, 
+            "player2": "Rafal Czerski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bartosz Koscielak", 
+            "player1points": 100, 
+            "player2": "Adam Adamski", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pawel Chajecki", 
+            "player1points": 0, 
+            "player2": "Adam Sieminski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maciej Balinski", 
+            "player1points": 100, 
+            "player2": "Radoslaw Sieminski", 
+            "player2points": 24, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Gdansk", 
+      "country": "Poland", 
+      "lat": "54.348225900000", 
+      "lon": "18.654288800000", 
+      "name": "", 
+      "state": "Pomorskie"
+    }
+  }
+}

@@ -1,0 +1,326 @@
+{
+  "tournament": {
+    "date": "2016-03-26", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1421, 
+    "name": "Wave 8 Tournament", 
+    "players": [
+      {
+        "mov": 667, 
+        "name": "Chris Chilcote", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 564, 
+        "name": "Jess Debnam", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 515, 
+        "name": "Carlos Ramirez", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 432, 
+        "name": "Kenney FIchter", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 386, 
+        "name": "Anthony Albert", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 367, 
+        "name": "Dred Loke", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 335, 
+        "name": "Todd", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 267, 
+        "name": "Bryan", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 243, 
+        "name": "Adam", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "sabinewren", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "crew": [
+                  "ezrabridger"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "title": [
+                  "phantom"
+                ]
+              }
+            }, 
+            {
+              "name": "herasyndulla", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "zeborrelios"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 224, 
+        "name": "Jonathan Tiede", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Kenney FIchter", 
+            "player1points": 100, 
+            "player2": "Dred Loke", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carlos Ramirez", 
+            "player1points": 73, 
+            "player2": "Jonathan Tiede", 
+            "player2points": 45, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anthony Albert", 
+            "player1points": 100, 
+            "player2": "Todd", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Chilcote", 
+            "player1points": 100, 
+            "player2": "Jess Debnam", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bryan", 
+            "player1points": 80, 
+            "player2": "Adam", 
+            "player2points": 26, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Bryan", 
+            "player1points": 62, 
+            "player2": "Kenney FIchter", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anthony Albert", 
+            "player1points": 72, 
+            "player2": "Carlos Ramirez", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Chilcote", 
+            "player1points": 100, 
+            "player2": "Jonathan Tiede", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jess Debnam", 
+            "player1points": 100, 
+            "player2": "Todd", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dred Loke", 
+            "player1points": 100, 
+            "player2": "Adam", 
+            "player2points": 65, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Chris Chilcote", 
+            "player1points": 100, 
+            "player2": "Bryan", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anthony Albert", 
+            "player1points": 36, 
+            "player2": "Dred Loke", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carlos Ramirez", 
+            "player1points": 53, 
+            "player2": "Kenney FIchter", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jess Debnam", 
+            "player1points": 52, 
+            "player2": "Adam", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan Tiede", 
+            "player1points": 37, 
+            "player2": "Todd", 
+            "player2points": 61, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Bryan", 
+            "player1points": 0, 
+            "player2": "Jess Debnam", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Chilcote", 
+            "player1points": 100, 
+            "player2": "Kenney FIchter", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dred Loke", 
+            "player1points": 22, 
+            "player2": "Carlos Ramirez", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anthony Albert", 
+            "player1points": 100, 
+            "player2": "Jonathan Tiede", 
+            "player2points": 76, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam", 
+            "player1points": 0, 
+            "player2": "Todd", 
+            "player2points": 49, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Melbourne", 
+      "country": "United States of America", 
+      "lat": "28.083626900000", 
+      "lon": "-80.608108800000", 
+      "name": "Get Your Fun On", 
+      "state": "Florida"
+    }
+  }
+}

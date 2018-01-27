@@ -1,0 +1,1404 @@
+{
+  "tournament": {
+    "date": "2016-09-24", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2168, 
+    "name": "Utah Cup", 
+    "players": [
+      {
+        "mov": 836, 
+        "name": "Curtis L", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 1
+        }, 
+        "score": 5, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 726, 
+        "name": "Stu Strange", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 2
+        }, 
+        "score": 4, 
+        "sos": "0.52"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "gammasquadronveteran", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 717, 
+        "name": "Chris N.", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 3
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "connernet", 
+                  "protonbombs"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist", 
+                  "dashrendar"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 666, 
+        "name": "Jaron Janson", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 4
+        }, 
+        "score": 4, 
+        "sos": "0.52"
+      }, 
+      {
+        "mov": 654, 
+        "name": "Paul D", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 4, 
+        "sos": "0.68"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "zuckuss"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }, 
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "samd": [
+                  "r5p8"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 613, 
+        "name": "Eric Tater", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 4, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 629, 
+        "name": "Tom E", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 618, 
+        "name": "Joshua Miles", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 3, 
+        "sos": "0.49"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla", 
+                  "gunner"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 613, 
+        "name": "Steven Butler", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 3, 
+        "sos": "0.40"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rexlerbrath", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "deltasquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 609, 
+        "name": "Dennis R", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 3, 
+        "sos": "0.40"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "glaivesquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "glaivesquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "glaivesquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 596, 
+        "name": "Caleb Flanagan", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine", 
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 570, 
+        "name": "KENNY B", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 3, 
+        "sos": "0.52"
+      }, 
+      {
+        "mov": 554, 
+        "name": "Ben Edwards", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 3, 
+        "sos": "0.40"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ]
+              }
+            }, 
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "4lom", 
+                  "dengar", 
+                  "zuckuss"
+                ]
+              }
+            }, 
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 519, 
+        "name": "Brody S", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 539, 
+        "name": "Landon C", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 2, 
+        "sos": "0.68"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 520, 
+        "name": "Brandon K", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "bomb": [
+                  "thermaldetonators"
+                ], 
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "dengar"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "samd": [
+                  "r5p8"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 517, 
+        "name": "Daniel Butler", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 2, 
+        "sos": "0.48"
+      }, 
+      {
+        "mov": 477, 
+        "name": "Scott", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 2, 
+        "sos": "0.61"
+      }, 
+      {
+        "mov": 462, 
+        "name": "Donny S", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 2, 
+        "sos": "0.36"
+      }, 
+      {
+        "mov": 442, 
+        "name": "Sky, Captain", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 2, 
+        "sos": "0.53"
+      }, 
+      {
+        "mov": 439, 
+        "name": "Aaron W", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 2, 
+        "sos": "0.52"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines"
+                ], 
+                "crew": [
+                  "emperorpalpatine", 
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 418, 
+        "name": "Tanner C", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 2, 
+        "sos": "0.48"
+      }, 
+      {
+        "mov": 387, 
+        "name": "Wade W", 
+        "rank": {
+          "swiss": 23
+        }, 
+        "score": 2, 
+        "sos": "0.64"
+      }, 
+      {
+        "mov": 291, 
+        "name": "Grant", 
+        "rank": {
+          "swiss": 24
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 269, 
+        "name": "Travis R", 
+        "rank": {
+          "swiss": 25
+        }, 
+        "score": 1, 
+        "sos": "0.48"
+      }, 
+      {
+        "mov": 261, 
+        "name": "Matthew Gibbons", 
+        "rank": {
+          "swiss": 26
+        }, 
+        "score": 1, 
+        "sos": "0.37"
+      }, 
+      {
+        "mov": 256, 
+        "name": "David Tyler", 
+        "rank": {
+          "swiss": 27
+        }, 
+        "score": 1, 
+        "sos": "0.40"
+      }, 
+      {
+        "mov": 240, 
+        "name": "Luther K", 
+        "rank": {
+          "swiss": 28
+        }, 
+        "score": 1, 
+        "sos": "0.40"
+      }, 
+      {
+        "mov": 162, 
+        "name": "Reece Hanzon", 
+        "rank": {
+          "swiss": 29
+        }, 
+        "score": 1, 
+        "sos": "0.48"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Matthew Gibbons", 
+            "player1points": 76, 
+            "player2": "Ben Edwards", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stu Strange", 
+            "player1points": 100, 
+            "player2": "Travis R", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brandon K", 
+            "player1points": 42, 
+            "player2": "Eric Tater", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Butler", 
+            "player1points": 100, 
+            "player2": "Tom E", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joshua Miles", 
+            "player1points": 29, 
+            "player2": "Scott", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tanner C", 
+            "player1points": 16, 
+            "player2": "Aaron W", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sky, Captain", 
+            "player1points": 100, 
+            "player2": "Steven Butler", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Landon C", 
+            "player1points": 100, 
+            "player2": "Dennis R", 
+            "player2points": 14, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grant", 
+            "player1points": 0, 
+            "player2": "Caleb Flanagan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brody S", 
+            "player1points": 100, 
+            "player2": "Donny S", 
+            "player2points": 83, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris N.", 
+            "player1points": 42, 
+            "player2": "Paul D", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jaron Janson", 
+            "player1points": 100, 
+            "player2": "David Tyler", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wade W", 
+            "player1points": 100, 
+            "player2": "KENNY B", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Reece Hanzon", 
+            "player1points": 12, 
+            "player2": "Curtis L", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Paul D", 
+            "player1points": 100, 
+            "player2": "Sky, Captain", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stu Strange", 
+            "player1points": 100, 
+            "player2": "Aaron W", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brody S", 
+            "player1points": 100, 
+            "player2": "Scott", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Butler", 
+            "player1points": 66, 
+            "player2": "Caleb Flanagan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wade W", 
+            "player1points": 25, 
+            "player2": "Jaron Janson", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Landon C", 
+            "player1points": 100, 
+            "player2": "Ben Edwards", 
+            "player2points": 14, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Curtis L", 
+            "player1points": 100, 
+            "player2": "Eric Tater", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "KENNY B", 
+            "player1points": 100, 
+            "player2": "Reece Hanzon", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Donny S", 
+            "player1points": 33, 
+            "player2": "Tanner C", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Tyler", 
+            "player1points": 0, 
+            "player2": "Tom E", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joshua Miles", 
+            "player1points": 100, 
+            "player2": "Steven Butler", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matthew Gibbons", 
+            "player1points": 0, 
+            "player2": "Luther K", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brandon K", 
+            "player1points": 63, 
+            "player2": "Chris N.", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dennis R", 
+            "player1points": 100, 
+            "player2": "Travis R", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grant", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Curtis L", 
+            "player1points": 100, 
+            "player2": "Chris N.", 
+            "player2points": 12, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jaron Janson", 
+            "player1points": 66, 
+            "player2": "Brody S", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Landon C", 
+            "player1points": 50, 
+            "player2": "Paul D", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stu Strange", 
+            "player1points": 100, 
+            "player2": "Caleb Flanagan", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Curtis L", 
+            "player1points": 100, 
+            "player2": "Scott", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric Tater", 
+            "player1points": 100, 
+            "player2": "Tom E", 
+            "player2points": 54, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grant", 
+            "player1points": 74, 
+            "player2": "Sky, Captain", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "KENNY B", 
+            "player1points": 100, 
+            "player2": "Dennis R", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Butler", 
+            "player1points": 76, 
+            "player2": "Wade W", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luther K", 
+            "player1points": 0, 
+            "player2": "Joshua Miles", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron W", 
+            "player1points": 54, 
+            "player2": "Ben Edwards", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tanner C", 
+            "player1points": 0, 
+            "player2": "Chris N.", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matthew Gibbons", 
+            "player1points": 25, 
+            "player2": "Brandon K", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Travis R", 
+            "player1points": 23, 
+            "player2": "Steven Butler", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Donny S", 
+            "player1points": 100, 
+            "player2": "David Tyler", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Reece Hanzon", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Paul D", 
+            "player1points": 100, 
+            "player2": "Jaron Janson", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stu Strange", 
+            "player1points": 26, 
+            "player2": "Curtis L", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grant", 
+            "player1points": 0, 
+            "player2": "Joshua Miles", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wade W", 
+            "player1points": 33, 
+            "player2": "Caleb Flanagan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ben Edwards", 
+            "player1points": 70, 
+            "player2": "KENNY B", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Landon C", 
+            "player1points": 75, 
+            "player2": "Eric Tater", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris N.", 
+            "player1points": 100, 
+            "player2": "Brody S", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steven Butler", 
+            "player1points": 100, 
+            "player2": "Scott", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brandon K", 
+            "player1points": 100, 
+            "player2": "Donny S", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sky, Captain", 
+            "player1points": 100, 
+            "player2": "Luther K", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tom E", 
+            "player1points": 100, 
+            "player2": "Aaron W", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dennis R", 
+            "player1points": 100, 
+            "player2": "Tanner C", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Butler", 
+            "player1points": 100, 
+            "player2": "Reece Hanzon", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matthew Gibbons", 
+            "player1points": 100, 
+            "player2": "David Tyler", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Travis R", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Curtis L", 
+            "player1points": 100, 
+            "player2": "Jaron Janson", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stu Strange", 
+            "player1points": 64, 
+            "player2": "Chris N.", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Paul D", 
+            "player1points": 38, 
+            "player2": "Curtis L", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Caleb Flanagan", 
+            "player1points": 62, 
+            "player2": "Chris N.", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joshua Miles", 
+            "player1points": 25, 
+            "player2": "Jaron Janson", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric Tater", 
+            "player1points": 100, 
+            "player2": "KENNY B", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stu Strange", 
+            "player1points": 100, 
+            "player2": "Wade W", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Landon C", 
+            "player1points": 42, 
+            "player2": "Steven Butler", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sky, Captain", 
+            "player1points": 50, 
+            "player2": "Tom E", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grant", 
+            "player1points": 0, 
+            "player2": "Dennis R", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ben Edwards", 
+            "player1points": 100, 
+            "player2": "Daniel Butler", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brody S", 
+            "player1points": 100, 
+            "player2": "Brandon K", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron W", 
+            "player1points": 100, 
+            "player2": "Matthew Gibbons", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luther K", 
+            "player1points": 0, 
+            "player2": "Scott", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Travis R", 
+            "player1points": 62, 
+            "player2": "Donny S", 
+            "player2points": 83, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Reece Hanzon", 
+            "player1points": 0, 
+            "player2": "Tanner C", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Tyler", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Provo", 
+      "country": "United States of America", 
+      "lat": "40.233843800000", 
+      "lon": "-111.658533600000", 
+      "name": "", 
+      "state": "Utah"
+    }
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "tournament": {
+    "date": "2016-11-03", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2251, 
+    "name": "Kobe-Champi's", 
+    "players": [
+      {
+        "mov": 55, 
+        "name": "eugine", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 574, 
+        "name": "david", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 556, 
+        "name": "Juan Pascual", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 461, 
+        "name": "chris", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 440, 
+        "name": "Jo", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 214, 
+        "name": "neil", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "neil", 
+            "player1points": 34, 
+            "player2": "david", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "eugine", 
+            "player1points": 40, 
+            "player2": "Juan Pascual", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "chris", 
+            "player1points": 100, 
+            "player2": "Jo", 
+            "player2points": 25, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "chris", 
+            "player1points": 66, 
+            "player2": "david", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juan Pascual", 
+            "player1points": 100, 
+            "player2": "neil", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "eugine", 
+            "player1points": 15, 
+            "player2": "Jo", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Juan Pascual", 
+            "player1points": 66, 
+            "player2": "david", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jo", 
+            "player1points": 100, 
+            "player2": "neil", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "chris", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "david", 
+            "player1points": 100, 
+            "player2": "Jo", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "chris", 
+            "player1points": 70, 
+            "player2": "Juan Pascual", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "neil", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Kobe", 
+      "country": "Japan", 
+      "lat": "34.693237900000", 
+      "lon": "135.194376400000", 
+      "name": "", 
+      "state": "Hyogo"
+    }
+  }
+}
