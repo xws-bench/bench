@@ -382,6 +382,7 @@ function Unit(team,pilotid) {
 	this.istargeted=[];
 	this.targeting=[];
 	this.stress=0;
+	this.checkpilotstress=true;
 	this.ionized=0;
 	//this.removeionized=false;
 	this.evade=0;
@@ -2599,10 +2600,12 @@ Unit.prototype = {
 	}
     },
     handledifficulty: function(difficulty) {
-	if (difficulty=="RED") {
-	    this.addstress();
-	} else if (difficulty=="GREEN" && this.stress>0) {
-	    this.removestresstoken();
+	if(this.checkpilotstress) {
+		if (difficulty=="RED") {
+			this.addstress();
+		} else if (difficulty=="GREEN" && this.stress>0) {
+			this.removestresstoken();
+		}
 	}
     },
     premove:function() {
@@ -3001,13 +3004,15 @@ Unit.prototype = {
     addactivationdial: function(pred,action,html,elt) {
 	this.activationdial.push({pred:pred,action:action,html:html,elt:elt});
     },
+	endactivate:function() {},
     actionbarrier:function() {
 	actionrlock=$.Deferred();
 	if (this.areactionspending()) {
-	    actionrlock.done(function() { this.unlock(); }.bind(this));
+	    actionrlock.done(function() { this.unlock(); if(phase==ACTIVATION_PHASE) this.endactivate(); }.bind(this));
 	} else {
 	    actionrlock.resolve();
 	    this.unlock();
+		if(phase==ACTIVATION_PHASE) this.endactivate();
 	}
     },
     addafteractions: function(f) {

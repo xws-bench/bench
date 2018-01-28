@@ -5420,7 +5420,21 @@ var UPGRADES=window.UPGRADES= [
     },
     {name:"Pattern Analyzer",
      type:Unit.TECH,
-     points:2
+     points:2,
+	 done:true,
+     init: function(sh) {
+		sh.wrap_before("resolvemaneuver",this,function() {
+			if(this.stress==0) this.checkpilotstress = false;
+		});
+		sh.wrap_before("endactivate",this,function() {
+			if(!this.checkpilotstress) {
+				this.addafteractions(function() {
+					this.checkpilotstress = true;
+					this.handledifficulty(this.maneuverdifficulty);
+				}.bind(this));
+			}
+		}).unwrapper("endactivate");
+	 },
     },
     {name:"General Hux",
      type:Unit.CREW,
@@ -6373,5 +6387,39 @@ var UPGRADES=window.UPGRADES= [
 		points: 2,
 		ship: "Alpha-class Star Wing",
 		// TODO
+	},
+	{
+		name: "Flight-Assist Astromech",
+		type:Unit.ASTROMECH,
+		done:true,
+		points: 1,
+		init: function(sh) {
+			sh.wrap_before("endmaneuver",this,function() {
+				if(this.candoaction() && !this.collision && !this.hascollidedobstacle()) {
+					var enemies = this.getenemiesinrange(this.weapons, this.selectnearbyenemy(3))[0];
+					if(enemies.length == 0) {
+						var p=[];
+						if (this.candoboost())
+						p.push(this.newaction(this.resolveboost,"BOOST"));
+						if (this.candoroll())
+						p.push(this.newaction(this.resolveroll,"ROLL"));
+						this.doaction(p,"free %BOOST% or %ROLL% action");
+					}
+				}
+			});
+			var turret=[];
+			var self=this;
+			for (var i=0; i<sh.weapons.length; i++) {
+				var w=sh.weapons[i];
+				if (w.type==Unit.TURRET&&w.isprimary===false) {
+					turret.push(w);
+					w.wrap_after("isTurret",self,function() { return false; });
+				}
+			}
+			if (turret.length===0) return;
+			sh.wrap_after("isTurret",this,function(w,b) {
+				return false;
+			});
+		}
 	}
 ];
