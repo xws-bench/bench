@@ -1,0 +1,588 @@
+{
+  "tournament": {
+    "date": "2016-02-13", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1155, 
+    "name": "Torneio X-Wing BC", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "hansolo", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "niennunb", 
+                  "janors"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 461, 
+        "name": "Diogo", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "weaponsguidance"
+                ]
+              }
+            }, 
+            {
+              "name": "hansolo", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "gunner", 
+                  "janors"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 377, 
+        "name": "Jonatan", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "wardensquadronpilot", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "connernet", 
+                  "proximitymines"
+                ], 
+                "crew": [
+                  "bombardier"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "flechettetorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 363, 
+        "name": "Marcelo", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "hortonsalm", 
+              "ship": "ywing", 
+              "upgrades": {
+                "title": [
+                  "btla4ywing"
+                ], 
+                "torpedo": [
+                  "iontorpedoes"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "weaponsguidance"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 404, 
+        "name": "Gustavo", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon", 
+                  "autoblaster"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 292, 
+        "name": "Vinicios", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "maulermithel", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 228, 
+        "name": "Lauro", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "epsilonleader", 
+              "ship": "tiefofighter"
+            }, 
+            {
+              "name": "zetaace", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "tech": [
+                  "weaponsguidance"
+                ]
+              }
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 168, 
+        "name": "Denis", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon", 
+                  "manglercannon"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon", 
+                  "manglercannon"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 107, 
+        "name": "Bil", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Vinicios", 
+            "player1points": 35, 
+            "player2": "Gustavo", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcelo", 
+            "player1points": 100, 
+            "player2": "Bil", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Denis", 
+            "player1points": 0, 
+            "player2": "Diogo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonatan", 
+            "player1points": 55, 
+            "player2": "Lauro", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Lauro", 
+            "player1points": 46, 
+            "player2": "Diogo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcelo", 
+            "player1points": 0, 
+            "player2": "Gustavo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vinicios", 
+            "player1points": 75, 
+            "player2": "Bil", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonatan", 
+            "player1points": 100, 
+            "player2": "Denis", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Diogo", 
+            "player1points": 60, 
+            "player2": "Gustavo", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lauro", 
+            "player1points": 37, 
+            "player2": "Marcelo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vinicios", 
+            "player1points": 28, 
+            "player2": "Jonatan", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Denis", 
+            "player1points": 100, 
+            "player2": "Bil", 
+            "player2points": 32, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Balneario Camboriu", 
+      "country": "Brazil", 
+      "lat": "-26.992439400000", 
+      "lon": "-48.633978100000", 
+      "name": "5a Avenida", 
+      "state": "Santa Catarina"
+    }
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "tournament": {
+    "date": "2016-09-25", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2130, 
+    "name": "X-Wing Soth SC Head's UP IV", 
+    "players": [
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "palobgodalhi", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "bossk"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "ndrusuhlak", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 131, 
+        "name": "Eduardo E. Maciel", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "zetaace", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "wired"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaace", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "tech": [
+                  "weaponsguidance"
+                ]
+              }
+            }, 
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 69, 
+        "name": "Fabio Inacio", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Fabio Inacio", 
+            "player1points": 24, 
+            "player2": "Eduardo E. Maciel", 
+            "player2points": 55, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Criciuma", 
+      "country": "Brazil", 
+      "lat": "-28.678994000000", 
+      "lon": "-49.369562600000", 
+      "name": "", 
+      "state": "Santa Catarina"
+    }
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "tournament": {
+    "date": "2016-05-16", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1650, 
+    "name": "Ruhrpott Wars", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "accuracycorrector"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "accuracycorrector"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "accuracycorrector"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "accuracycorrector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 508, 
+        "name": "Luke Schuwalker", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 333, 
+        "name": "Darth Herbert", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "kavil", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "r4b11"
+                ], 
+                "torpedo": [
+                  "protontorpedoes"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunace", 
+              "ship": "kihraxzfighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ]
+              }
+            }, 
+            {
+              "name": "moraloeval", 
+              "ship": "yv666", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "zuckuss"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 209, 
+        "name": "Boba Wolf", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Darth Herbert", 
+            "player1points": 0, 
+            "player2": "Luke Schuwalker", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Boba Wolf", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Luke Schuwalker", 
+            "player1points": 100, 
+            "player2": "Boba Wolf", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Darth Herbert", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Darth Herbert", 
+            "player1points": 59, 
+            "player2": "Boba Wolf", 
+            "player2points": 18, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luke Schuwalker", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Muelheim", 
+      "country": "Germany", 
+      "lat": null, 
+      "lon": null, 
+      "name": "Speldorf", 
+      "state": "Nordrhein-Westfalen"
+    }
+  }
+}

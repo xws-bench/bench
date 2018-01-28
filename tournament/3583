@@ -1,0 +1,936 @@
+{
+  "tournament": {
+    "date": "2017-10-28", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3583, 
+    "name": "Point de Victoire", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "crew": [
+                  "tactician"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "crew": [
+                  "tactician"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "crew": [
+                  "tactician"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 150, 
+        "name": "Louis-Philippe Berube", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.75"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "lattsrazzi"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "palobgodalhi", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 693, 
+        "name": "Remi Dumais", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "rey", 
+                  "janors"
+                ], 
+                "ept": [
+                  "trickshot"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r4d6"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "thanekyrell", 
+              "ship": "arc170", 
+              "upgrades": {
+                "crew": [
+                  "jynerso"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }, 
+            {
+              "name": "captainrex", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 576, 
+        "name": "Oliver Karadjian", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "leebo", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "trickshot"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "kylekatarn", 
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 562, 
+        "name": "Matt Shepherd", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.31"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 542, 
+        "name": "Ludger Tousignant", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "collisiondetector"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines"
+                ], 
+                "samd": [
+                  "r4e1"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "bombloadout"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "bombloadout"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 416, 
+        "name": "Philippe Painchaud", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "sabinewren", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "crew": [
+                  "chopper"
+                ], 
+                "ept": [
+                  "intensity"
+                ], 
+                "title": [
+                  "phantom"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d6"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "herasyndulla", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "navigator", 
+                  "intelligenceagent"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 380, 
+        "name": "Nicolas Daneau", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "lieutenantdormitz", 
+              "ship": "upsilonclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "system": [
+                  "electronicbaffle"
+                ], 
+                "tech": [
+                  "hyperwavecommscanner"
+                ], 
+                "title": [
+                  "kylorensshuttle"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "tech": [
+                  "hyperwavecommscanner"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "hyperwavecommscanner"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 303, 
+        "name": "Fabrizio De Marchi", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "intensity"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "sienarspecialist", 
+              "ship": "tieaggressor", 
+              "upgrades": {
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 261, 
+        "name": "Francis Roia", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "doubleedge", 
+              "ship": "tieaggressor", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "backdraft", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "outmaneuver"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "sensorcluster"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 240, 
+        "name": "Michael William Hamer", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "jakefarrell", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts", 
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "hansolo", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "rey", 
+                  "c3po"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "scavengercrane"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "countermeasures", 
+                  "smugglingcompartment"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 177, 
+        "name": "Alex Arsenault-Ouellet", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 0, 
+        "sos": "0.50"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Nicolas Daneau", 
+            "player1points": 20, 
+            "player2": "Remi Dumais", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fabrizio De Marchi", 
+            "player1points": 100, 
+            "player2": "Matt Shepherd", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ludger Tousignant", 
+            "player1points": 100, 
+            "player2": "Louis-Philippe Berube", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex Arsenault-Ouellet", 
+            "player1points": 70, 
+            "player2": "Michael William Hamer", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Philippe Painchaud", 
+            "player1points": 14, 
+            "player2": "Oliver Karadjian", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francis Roia", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Remi Dumais", 
+            "player1points": 100, 
+            "player2": "Francis Roia", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fabrizio De Marchi", 
+            "player1points": 0, 
+            "player2": "Oliver Karadjian", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ludger Tousignant", 
+            "player1points": 100, 
+            "player2": "Michael William Hamer", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Philippe Painchaud", 
+            "player1points": 100, 
+            "player2": "Nicolas Daneau", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt Shepherd", 
+            "player1points": 100, 
+            "player2": "Alex Arsenault-Ouellet", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Louis-Philippe Berube", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Ludger Tousignant", 
+            "player1points": 0, 
+            "player2": "Remi Dumais", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Oliver Karadjian", 
+            "player1points": 100, 
+            "player2": "Michael William Hamer", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt Shepherd", 
+            "player1points": 100, 
+            "player2": "Philippe Painchaud", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fabrizio De Marchi", 
+            "player1points": 75, 
+            "player2": "Francis Roia", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nicolas Daneau", 
+            "player1points": 100, 
+            "player2": "Alex Arsenault-Ouellet", 
+            "player2points": 50, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Oliver Karadjian", 
+            "player1points": 27, 
+            "player2": "Remi Dumais", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fabrizio De Marchi", 
+            "player1points": 0, 
+            "player2": "Ludger Tousignant", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt Shepherd", 
+            "player1points": 100, 
+            "player2": "Michael William Hamer", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francis Roia", 
+            "player1points": 50, 
+            "player2": "Nicolas Daneau", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Philippe Painchaud", 
+            "player1points": 100, 
+            "player2": "Alex Arsenault-Ouellet", 
+            "player2points": 31, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Montreal", 
+      "country": "Canada", 
+      "lat": "45.497122500000", 
+      "lon": "-73.611488500000", 
+      "name": "", 
+      "state": "Quebec"
+    }
+  }
+}

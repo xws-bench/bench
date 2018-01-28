@@ -1,0 +1,522 @@
+{
+  "tournament": {
+    "date": "2016-12-20", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2434, 
+    "name": "Tuesday Night X-Wing", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "majorrhymer", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "crew": [
+                  "tactician", 
+                  "fleetofficer"
+                ], 
+                "ept": [
+                  "snapshot"
+                ], 
+                "title": [
+                  "tieshuttle"
+                ]
+              }
+            }, 
+            {
+              "name": "countdown", 
+              "ship": "tiestriker", 
+              "upgrades": {
+                "mod": [
+                  "stealthdevice"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 466, 
+        "name": "Ned A", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 460, 
+        "name": "Tim No", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 410, 
+        "name": "Ben K", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "kaatoleeachos", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "dengar"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "riggedcargochute"
+                ], 
+                "mod": [
+                  "gyroscopictargeting"
+                ], 
+                "title": [
+                  "shadowcaster"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 400, 
+        "name": "Clayton W", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 392, 
+        "name": "Miguel J", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 355, 
+        "name": "Craig F", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 351, 
+        "name": "Robert H", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 317, 
+        "name": "Alan S", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "puresabacc", 
+              "ship": "tiestriker", 
+              "upgrades": {
+                "ept": [
+                  "swarmleader"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 315, 
+        "name": "Dae J", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 267, 
+        "name": "Trent H", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit", 
+                  "juke"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit", 
+                  "juke"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit", 
+                  "juke"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "jesspava", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d6"
+                ], 
+                "ept": [
+                  "swarmleader"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 257, 
+        "name": "Derek T", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 192, 
+        "name": "John B", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 182, 
+        "name": "James M", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 130, 
+        "name": "Charles H", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 106, 
+        "name": "John H", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "maulermithel", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ]
+              }
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ]
+              }
+            }, 
+            {
+              "name": "puresabacc", 
+              "ship": "tiestriker", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ]
+              }
+            }, 
+            {
+              "name": "tomaxbren", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "crew": [
+                  "fleetofficer", 
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "coolhand"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "title": [
+                  "tieshuttle"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 0, 
+        "name": "David G", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }
+    ], 
+    "round_length": 65, 
+    "rounds": [], 
+    "type": "Other", 
+    "venue": {
+      "city": "Springfield", 
+      "country": "United States of America", 
+      "lat": "38.789052200000", 
+      "lon": "-77.187036700000", 
+      "name": "<a target=\"_blank\" href=\"/venue?venue_id=1266\"></a><a target=\"_blank\" href=\"/venue?venue_id=1266\"></a><a target=\"_blank\" href=\"/", 
+      "state": "Virginia"
+    }
+  }
+}

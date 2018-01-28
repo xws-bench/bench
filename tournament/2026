@@ -1,0 +1,876 @@
+{
+  "tournament": {
+    "date": "2016-08-06", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2026, 
+    "name": "Casual Ludus in Tabula 06rd August 2016", 
+    "players": [
+      {
+        "mov": 484, 
+        "name": "Juan Manuel Reinol", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.67"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }, 
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid", 
+                  "4lom", 
+                  "zuckuss"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 479, 
+        "name": "Samuel Romero", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "4lom"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "slavei"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 421, 
+        "name": "Jorge Vinuela", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "palobgodalhi", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "juke"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "blasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "mandalorianmercenary", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "greedo", 
+                  "4lom"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 343, 
+        "name": "Ivan Molia", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist", 
+                  "janors"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }, 
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "hansolo", 
+                  "herasyndulla"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 338, 
+        "name": "Pablo Fernandez", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "gunner", 
+                  "darthvader", 
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "lonewolf"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 326, 
+        "name": "Jesus Galvez \"Eko\"", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 299, 
+        "name": "Julio Femenia", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "herasyndulla", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "niennunb", 
+                  "intelligenceagent"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ], 
+                "system": [
+                  "reinforceddeflectors"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "sabinewren", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "title": [
+                  "phantom"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 316, 
+        "name": "Jose Manzano \"Chato Rojo\"", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "gunner", 
+                  "darthvader", 
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "expose"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 292, 
+        "name": "Maria Jose Diez \"Adarka\"", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "navigator"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "echo", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "navigator"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "omegasquadronpilot", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 243, 
+        "name": "Manuel Lopez \"Lolo\"", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "hansolo", 
+                  "herasyndulla"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 207, 
+        "name": "Aaron Romero", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 157, 
+        "name": "Devi Perez", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "hansolo", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "gunner", 
+                  "c3po"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }, 
+            {
+              "name": "wedgeantilles", 
+              "ship": "xwing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "advprotontorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 145, 
+        "name": "Fran Moreno", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 0, 
+        "sos": "0.56"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Julio Femenia", 
+            "player1points": 68, 
+            "player2": "Fran Moreno", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron Romero", 
+            "player1points": 29, 
+            "player2": "Jose Manzano \"Chato Rojo\"", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jesus Galvez \"Eko\"", 
+            "player1points": 100, 
+            "player2": "Devi Perez", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juan Manuel Reinol", 
+            "player1points": 100, 
+            "player2": "Pablo Fernandez", 
+            "player2points": 55, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ivan Molia", 
+            "player1points": 100, 
+            "player2": "Maria Jose Diez \"Adarka\"", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Manuel Lopez \"Lolo\"", 
+            "player1points": 29, 
+            "player2": "Samuel Romero", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jorge Vinuela", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Ivan Molia", 
+            "player1points": 100, 
+            "player2": "Jose Manzano \"Chato Rojo\"", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jorge Vinuela", 
+            "player1points": 71, 
+            "player2": "Samuel Romero", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jesus Galvez \"Eko\"", 
+            "player1points": 22, 
+            "player2": "Juan Manuel Reinol", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Julio Femenia", 
+            "player1points": 72, 
+            "player2": "Aaron Romero", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Devi Perez", 
+            "player1points": 100, 
+            "player2": "Maria Jose Diez \"Adarka\"", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pablo Fernandez", 
+            "player1points": 100, 
+            "player2": "Fran Moreno", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Manuel Lopez \"Lolo\"", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Juan Manuel Reinol", 
+            "player1points": 83, 
+            "player2": "Ivan Molia", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Samuel Romero", 
+            "player1points": 100, 
+            "player2": "Julio Femenia", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pablo Fernandez", 
+            "player1points": 49, 
+            "player2": "Jose Manzano \"Chato Rojo\"", 
+            "player2points": 45, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jorge Vinuela", 
+            "player1points": 100, 
+            "player2": "Devi Perez", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Manuel Lopez \"Lolo\"", 
+            "player1points": 64, 
+            "player2": "Jesus Galvez \"Eko\"", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fran Moreno", 
+            "player1points": 30, 
+            "player2": "Maria Jose Diez \"Adarka\"", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron Romero", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Badajoz", 
+      "country": "Spain", 
+      "lat": "38.878206400000", 
+      "lon": "-6.970157300000", 
+      "name": "Ludus in Tabula", 
+      "state": "Extremadura"
+    }
+  }
+}

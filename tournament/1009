@@ -1,0 +1,777 @@
+{
+  "tournament": {
+    "date": "2016-01-16", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1009, 
+    "name": "Matt's Cavalcade 2016 Winter Tournament", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "agentkallus"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine", 
+                  "ysanneisard"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "ionprojector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 579, 
+        "name": "Patrick", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "mod": [
+                  "bwinge2"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 557, 
+        "name": "Dave", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "crew": [
+                  "janors"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "elloasty", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "airencracken", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 541, 
+        "name": "Troy", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "wedgeantilles", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2f2"
+                ], 
+                "ept": [
+                  "wired"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ]
+              }
+            }, 
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 458, 
+        "name": "Rufino", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "crew": [
+                  "c3po"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 403, 
+        "name": "Beau", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "gemmersojan", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "redace", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 376, 
+        "name": "Derek", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 328, 
+        "name": "Jeff", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "connernet", 
+                  "proximitymines"
+                ], 
+                "crew": [
+                  "bombardier"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "prototypepilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "missile": [
+                  "chardaanrefit"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 331, 
+        "name": "Karl", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ]
+              }
+            }, 
+            {
+              "name": "echo", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 297, 
+        "name": "Taylor", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "keyanfarlander", 
+              "ship": "bwing", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "ibtisam", 
+              "ship": "bwing", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 130, 
+        "name": "Peter", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Beau", 
+            "player1points": 100, 
+            "player2": "Karl", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Taylor", 
+            "player1points": 100, 
+            "player2": "Derek", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dave", 
+            "player1points": 100, 
+            "player2": "Jeff", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick", 
+            "player1points": 38, 
+            "player2": "Rufino", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Peter", 
+            "player1points": 41, 
+            "player2": "Troy", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Beau", 
+            "player1points": 51, 
+            "player2": "Dave", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Taylor", 
+            "player1points": 22, 
+            "player2": "Troy", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rufino", 
+            "player1points": 100, 
+            "player2": "Peter", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick", 
+            "player1points": 100, 
+            "player2": "Derek", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeff", 
+            "player1points": 51, 
+            "player2": "Karl", 
+            "player2points": 48, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Troy", 
+            "player1points": 100, 
+            "player2": "Rufino", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dave", 
+            "player1points": 59, 
+            "player2": "Patrick", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Beau", 
+            "player1points": 100, 
+            "player2": "Taylor", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Derek", 
+            "player1points": 100, 
+            "player2": "Karl", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeff", 
+            "player1points": 100, 
+            "player2": "Peter", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Patrick", 
+            "player1points": 100, 
+            "player2": "Beau", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Troy", 
+            "player1points": 27, 
+            "player2": "Dave", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Derek", 
+            "player1points": 100, 
+            "player2": "Jeff", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Taylor", 
+            "player1points": 62, 
+            "player2": "Rufino", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Karl", 
+            "player1points": 100, 
+            "player2": "Peter", 
+            "player2points": 51, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Corvallis", 
+      "country": "United States of America", 
+      "lat": "44.564565900000", 
+      "lon": "-123.262043400000", 
+      "name": "Matt's Cavalcade of Comics and Games", 
+      "state": "Oregon"
+    }
+  }
+}

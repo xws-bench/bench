@@ -1,0 +1,230 @@
+{
+  "tournament": {
+    "date": "2016-08-20", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1965, 
+    "name": "Long time ago in far away Gnome", 
+    "players": [
+      {
+        "mov": 658, 
+        "name": "Pepe Pan Dziobak", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 565, 
+        "name": "Swietlik", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 600, 
+        "name": "Zbyszek K", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 455, 
+        "name": "Krzysztof Gobei Zebrowski", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 297, 
+        "name": "Piotr Janeta", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 254, 
+        "name": "Mooniak", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 228, 
+        "name": "Darek Madry", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 143, 
+        "name": "Spawn", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Spawn", 
+            "player1points": 75, 
+            "player2": "Piotr Janeta", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Swietlik", 
+            "player1points": 29, 
+            "player2": "Zbyszek K", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pepe Pan Dziobak", 
+            "player1points": 100, 
+            "player2": "Darek Madry", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Krzysztof Gobei Zebrowski", 
+            "player1points": 100, 
+            "player2": "Mooniak", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Krzysztof Gobei Zebrowski", 
+            "player1points": 29, 
+            "player2": "Zbyszek K", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Spawn", 
+            "player1points": 0, 
+            "player2": "Pepe Pan Dziobak", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Swietlik", 
+            "player1points": 100, 
+            "player2": "Piotr Janeta", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Darek Madry", 
+            "player1points": 70, 
+            "player2": "Mooniak", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Zbyszek K", 
+            "player1points": 58, 
+            "player2": "Pepe Pan Dziobak", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Spawn", 
+            "player1points": 0, 
+            "player2": "Swietlik", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Krzysztof Gobei Zebrowski", 
+            "player1points": 100, 
+            "player2": "Darek Madry", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mooniak", 
+            "player1points": 50, 
+            "player2": "Piotr Janeta", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Pepe Pan Dziobak", 
+            "player1points": 100, 
+            "player2": "Krzysztof Gobei Zebrowski", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Zbyszek K", 
+            "player1points": 100, 
+            "player2": "Piotr Janeta", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Swietlik", 
+            "player1points": 100, 
+            "player2": "Darek Madry", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Spawn", 
+            "player1points": 0, 
+            "player2": "Mooniak", 
+            "player2points": 74, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "BIELSKO-BIAA", 
+      "country": "Poland", 
+      "lat": null, 
+      "lon": null, 
+      "name": "", 
+      "state": "Slaskie"
+    }
+  }
+}

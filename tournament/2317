@@ -1,0 +1,149 @@
+{
+  "tournament": {
+    "date": "2016-11-20", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2317, 
+    "name": "HoH", 
+    "players": [
+      {
+        "mov": 541, 
+        "name": "James", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 340, 
+        "name": "Glenn", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 321, 
+        "name": "Michael", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 233, 
+        "name": "Mason", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 228, 
+        "name": "Jai", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 137, 
+        "name": "Turner", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Mason", 
+            "player1points": 100, 
+            "player2": "Glenn", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Turner", 
+            "player1points": 30, 
+            "player2": "Michael", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jai", 
+            "player1points": 0, 
+            "player2": "James", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jai", 
+            "player1points": 58, 
+            "player2": "Glenn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Turner", 
+            "player1points": 0, 
+            "player2": "Michael", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mason", 
+            "player1points": 31, 
+            "player2": "James", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Glenn", 
+            "player1points": 100, 
+            "player2": "Mason", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael", 
+            "player1points": 28, 
+            "player2": "James", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Turner", 
+            "player1points": 30, 
+            "player2": "Jai", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Store Championship"
+  }
+}

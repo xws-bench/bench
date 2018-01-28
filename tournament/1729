@@ -1,0 +1,768 @@
+{
+  "tournament": {
+    "date": "2016-06-04", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1729, 
+    "name": "Winter 2015 kit", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "roarkgarnet", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "landocalrissian"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "crew": [
+                  "c3po"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "wardensquadronpilot", 
+              "ship": "kwing", 
+              "upgrades": {
+                "crew": [
+                  "janors"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 789, 
+        "name": "Gennady", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "lieutenantcolzet", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "tempestsquadronpilot", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 667, 
+        "name": "Linas", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 611, 
+        "name": "Kaspars", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "tychocelchu", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit", 
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "jakefarrell", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit", 
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "wedgeantilles", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 601, 
+        "name": "Janis Goldmanis", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 488, 
+        "name": "Janis Presis", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "hansolo", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "lukeskywalker"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 431, 
+        "name": "Janis Pelss", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 528, 
+        "name": "Dmitrijs", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive", 
+                  "emperorpalpatine"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 362, 
+        "name": "Ivars", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "torkilmux", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "mod": [
+                  "shieldupgrade"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "blasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "guri", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "outmaneuver"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "virago"
+                ]
+              }
+            }, 
+            {
+              "name": "hiredgun", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "r4agromech"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 269, 
+        "name": "Anatolijs", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "redsquadronpilot", 
+              "ship": "xwing"
+            }, 
+            {
+              "name": "redsquadronpilot", 
+              "ship": "xwing"
+            }, 
+            {
+              "name": "redsquadronpilot", 
+              "ship": "xwing"
+            }, 
+            {
+              "name": "kylekatarn", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "blasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 254, 
+        "name": "Anete", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Kaspars", 
+            "player1points": 38, 
+            "player2": "Ivars", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anatolijs", 
+            "player1points": 69, 
+            "player2": "Janis Pelss", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dmitrijs", 
+            "player1points": 68, 
+            "player2": "Janis Goldmanis", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Janis Presis", 
+            "player1points": 0, 
+            "player2": "Linas", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gennady", 
+            "player1points": 100, 
+            "player2": "Anete", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Janis Pelss", 
+            "player1points": 0, 
+            "player2": "Janis Goldmanis", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Linas", 
+            "player1points": 100, 
+            "player2": "Gennady", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ivars", 
+            "player1points": 0, 
+            "player2": "Dmitrijs", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Janis Presis", 
+            "player1points": 100, 
+            "player2": "Kaspars", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anatolijs", 
+            "player1points": 0, 
+            "player2": "Anete", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Gennady", 
+            "player1points": 100, 
+            "player2": "Linas", 
+            "player2points": 68, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Janis Goldmanis", 
+            "player1points": 0, 
+            "player2": "Linas", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Janis Presis", 
+            "player1points": 37, 
+            "player2": "Janis Pelss", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dmitrijs", 
+            "player1points": 100, 
+            "player2": "Anete", 
+            "player2points": 54, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gennady", 
+            "player1points": 100, 
+            "player2": "Ivars", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kaspars", 
+            "player1points": 100, 
+            "player2": "Anatolijs", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Linas", 
+            "player1points": 63, 
+            "player2": "Janis Pelss", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gennady", 
+            "player1points": 31, 
+            "player2": "Janis Goldmanis", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dmitrijs", 
+            "player1points": 38, 
+            "player2": "Kaspars", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ivars", 
+            "player1points": 100, 
+            "player2": "Anete", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Janis Presis", 
+            "player1points": 100, 
+            "player2": "Anatolijs", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Linas", 
+            "player1points": 62, 
+            "player2": "Kaspars", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gennady", 
+            "player1points": 100, 
+            "player2": "Janis Pelss", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dmitrijs", 
+            "player1points": 76, 
+            "player2": "Janis Presis", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Janis Goldmanis", 
+            "player1points": 100, 
+            "player2": "Anete", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ivars", 
+            "player1points": 0, 
+            "player2": "Anatolijs", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Riga", 
+      "country": "Latvia", 
+      "lat": "56.949397700000", 
+      "lon": "24.105184600000", 
+      "name": "Stabu street 63", 
+      "state": "Riga"
+    }
+  }
+}

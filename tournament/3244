@@ -1,0 +1,681 @@
+{
+  "tournament": {
+    "date": "2017-07-15", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3244, 
+    "name": "Fair Game Store Championship", 
+    "players": [
+      {
+        "mov": 0, 
+        "name": "Kyle Adams", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Francois Moret", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 4, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "James Jones", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Pat Donnelly", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Nate Moore", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 3, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "bombloadout"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "ahsokatano", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "bomb": [
+                  "thermaldetonators"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "scavengercrane"
+                ], 
+                "mod": [
+                  "capturedtie"
+                ], 
+                "title": [
+                  "sabinesmasterpiece"
+                ]
+              }
+            }, 
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "collisiondetector"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 0, 
+        "name": "Ryan Bell", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 3, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla", 
+                  "ezrabridger"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "rey", 
+                  "reconspecialist"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 0, 
+        "name": "Marcel Manzano", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 3, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Nick Palermo", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 3, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Joe Mann", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 3, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "John Hull", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 2, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "sensorcluster"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 0, 
+        "name": "Joshua Stechschulte", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 2, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Ryan Hickey", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 2, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Jacob L'Russa", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 2, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Brandon Prokos", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 2, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "sienarspecialist", 
+              "ship": "tieaggressor", 
+              "upgrades": {
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "sienarspecialist", 
+              "ship": "tieaggressor", 
+              "upgrades": {
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "determination"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 0, 
+        "name": "Eric Tissot", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 2, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "oldteroch", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "talonbanecobra", 
+              "ship": "kihraxzfighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "xx23sthreadtracers"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 0, 
+        "name": "Dan McGinn", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 2, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator", 
+                  "clustermines"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 0, 
+        "name": "Ben Chacko", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 2, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Allie Willis", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 2, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Tyler Shaw", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 2, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "David Allen Kivi Jr. ", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 2, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Rob Ross", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "David Patton", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Andrew Burgoni", 
+        "rank": {
+          "swiss": 23
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Alex Dorf", 
+        "rank": {
+          "swiss": 24
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "puresabacc", 
+              "ship": "tiestriker", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "title": [
+                  "adaptiveailerons"
+                ]
+              }
+            }, 
+            {
+              "name": "wampa", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "omegaace", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ]
+              }
+            }, 
+            {
+              "name": "scourge", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }, 
+            {
+              "name": "maulermithel", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": null, 
+        "name": "Pete Blumenstein", 
+        "rank": {
+          "swiss": 25
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Jon Hanek", 
+        "rank": {
+          "swiss": 26
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Lencho Rubio", 
+        "rank": {
+          "swiss": 27
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Sean Huynh", 
+        "rank": {
+          "swiss": 28
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Player 29", 
+        "rank": {
+          "swiss": 29
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Downers Grove", 
+      "country": "United States of America", 
+      "lat": null, 
+      "lon": null, 
+      "name": "Fair Game", 
+      "state": "Illinois"
+    }
+  }
+}

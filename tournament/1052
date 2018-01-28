@@ -1,0 +1,125 @@
+{
+  "tournament": {
+    "date": "2016-01-29", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1052, 
+    "name": "Test ", 
+    "players": [
+      {
+        "mov": 150, 
+        "name": "Fabrizio Furch", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 5, 
+        "sos": "5.00"
+      }, 
+      {
+        "mov": 140, 
+        "name": "Davide Nalin", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 5, 
+        "sos": "5.00"
+      }, 
+      {
+        "mov": 140, 
+        "name": "Stefano Rondolino", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 5, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 60, 
+        "name": "Antonello Roccazzella", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 0, 
+        "sos": "10.00"
+      }, 
+      {
+        "mov": 60, 
+        "name": "Gianni Albanese", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 0, 
+        "sos": "5.00"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "final_salvo": false, 
+            "player1": "Gianni Albanese", 
+            "player1points": 25, 
+            "player2": "Stefano Rondolino", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fabrizio Furch", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Davide Nalin", 
+            "player1points": 85, 
+            "player2": "Antonello Roccazzella", 
+            "player2points": 45, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "final_salvo": false, 
+            "player1": "Davide Nalin", 
+            "player1points": 0, 
+            "player2": "Fabrizio Furch", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gianni Albanese", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Stefano Rondolino", 
+            "player1points": 0, 
+            "player2": "Antonello Roccazzella", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Store Championship", 
+    "venue": {
+      "city": "Torino", 
+      "country": "Italia", 
+      "lat": "45.070920100000", 
+      "lon": "7.685972000000", 
+      "name": "Torino", 
+      "state": "Piemonte"
+    }
+  }
+}

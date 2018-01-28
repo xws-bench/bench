@@ -1,0 +1,291 @@
+{
+  "tournament": {
+    "date": "2016-05-28", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1701, 
+    "name": "May X-Wing Tournament at Gamers Grove", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "adaptability", 
+                  "crackshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "adaptability", 
+                  "crackshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "adaptability", 
+                  "crackshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "adaptability", 
+                  "crackshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "adaptability", 
+                  "crackshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 390, 
+        "name": "Gerry R.", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 415, 
+        "name": "Austin N.", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 366, 
+        "name": "Robert H.", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 335, 
+        "name": "Devin O.", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 295, 
+        "name": "Justin S.", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 237, 
+        "name": "James L.", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 212, 
+        "name": "Ryan N.", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Gerry R.", 
+            "player1points": 44, 
+            "player2": "Austin N.", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin S.", 
+            "player1points": 0, 
+            "player2": "James L.", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robert H.", 
+            "player1points": 100, 
+            "player2": "Devin O.", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan N.", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Robert H.", 
+            "player1points": 100, 
+            "player2": "Ryan N.", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James L.", 
+            "player1points": 40, 
+            "player2": "Gerry R.", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Austin N.", 
+            "player1points": 46, 
+            "player2": "Justin S.", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Devin O.", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Robert H.", 
+            "player1points": 40, 
+            "player2": "Gerry R.", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Austin N.", 
+            "player1points": 100, 
+            "player2": "Ryan N.", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James L.", 
+            "player1points": 26, 
+            "player2": "Devin O.", 
+            "player2points": 99, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin S.", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Huntsville", 
+      "country": "United States of America", 
+      "lat": "30.723526300000", 
+      "lon": "-95.550777000000", 
+      "name": "Gamers Grove", 
+      "state": "Texas"
+    }
+  }
+}

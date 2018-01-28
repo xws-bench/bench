@@ -1,0 +1,258 @@
+{
+  "tournament": {
+    "date": "2015-08-02", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 569, 
+    "name": "MTG Brasil", 
+    "players": [
+      {
+        "mov": 595, 
+        "name": "Daniel Huamani", 
+        "rank": {
+          "elimination": 3, 
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 591, 
+        "name": "Thomaz Marra", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 466, 
+        "name": "Phelipe Tornich", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 398, 
+        "name": "Raoni Ciasca", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 354, 
+        "name": "Antonio Antunes", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 347, 
+        "name": "Luiz Eduardo", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 249, 
+        "name": "Wagner Tonhao", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Thomaz Marra", 
+            "player1points": 100, 
+            "player2": "Antonio Antunes", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Huamani", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Raoni Ciasca", 
+            "player1points": 42, 
+            "player2": "Luiz Eduardo", 
+            "player2points": 88, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Phelipe Tornich", 
+            "player1points": 100, 
+            "player2": "Wagner Tonhao", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Antonio Antunes", 
+            "player1points": 100, 
+            "player2": "Raoni Ciasca", 
+            "player2points": 18, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Phelipe Tornich", 
+            "player1points": 44, 
+            "player2": "Thomaz Marra", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Huamani", 
+            "player1points": 100, 
+            "player2": "Luiz Eduardo", 
+            "player2points": 54, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wagner Tonhao", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Raoni Ciasca", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Daniel Huamani", 
+            "player1points": 44, 
+            "player2": "Thomaz Marra", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Antonio Antunes", 
+            "player1points": 0, 
+            "player2": "Phelipe Tornich", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luiz Eduardo", 
+            "player1points": 46, 
+            "player2": "Wagner Tonhao", 
+            "player2points": 21, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Wagner Tonhao", 
+            "player1points": 24, 
+            "player2": "Raoni Ciasca", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Antonio Antunes", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Daniel Huamani", 
+            "player1points": 100, 
+            "player2": "Phelipe Tornich", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luiz Eduardo", 
+            "player1points": 22, 
+            "player2": "Thomaz Marra", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Raoni Ciasca", 
+            "player1points": 100, 
+            "player2": "Daniel Huamani", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Phelipe Tornich", 
+            "player1points": 100, 
+            "player2": "Thomaz Marra", 
+            "player2points": 58, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Phelipe Tornich", 
+            "player1points": 100, 
+            "player2": "Raoni Ciasca", 
+            "player2points": 29, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 6, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Kalgoorlie ", 
+      "country": "Australia", 
+      "lat": "59.329300000000", 
+      "lon": "18.068600000000", 
+      "name": "Boulder Bowling Club", 
+      "state": "Western Australia"
+    }
+  }
+}

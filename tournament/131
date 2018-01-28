@@ -1,0 +1,231 @@
+{
+  "tournament": {
+    "date": "2015-02-07", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 131, 
+    "name": "JBC Store Championship", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist", 
+                  "janors"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }, 
+            {
+              "name": "hortonsalm", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r2d6"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "protontorpedoes"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": null, 
+        "name": "Spencer", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "hansolo", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "r2d2-swx22"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": null, 
+        "name": "Carlo", 
+        "rank": {
+          "elimination": 3, 
+          "swiss": 2
+        }, 
+        "score": 16, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "eadenvrill", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ]
+              }
+            }, 
+            {
+              "name": "tarnmison", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r7astromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 576, 
+        "name": "Lucas", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "commanderkenkirk", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "ysanneisard", 
+                  "marajade", 
+                  "moffjerjerrod"
+                ], 
+                "ept": [
+                  "determination"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": null, 
+        "name": "Chris", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.00"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Waterloo", 
+      "country": "Canada", 
+      "lat": "43.465552400000", 
+      "lon": "-80.521778500000", 
+      "name": "Just By Chance Games", 
+      "state": "Ontario"
+    }
+  }
+}

@@ -1,0 +1,742 @@
+{
+  "tournament": {
+    "date": "2017-10-04", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3546, 
+    "name": "Generic Pilots Mini Tournament", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "patrolleader", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "operationsspecialist", 
+                  "boshek"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "starkillerbasepilot", 
+              "ship": "upsilonclassshuttle", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 139, 
+        "name": "Mike Carpenter", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.42"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "torpedo": [
+                  "protontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "adaptability", 
+                  "crackshot"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 200, 
+        "name": "Caleb Flanagan", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.75"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "riggedcargochute"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunassassin", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "virago", 
+                  "starvipermkii"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunace", 
+              "ship": "kihraxzfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "blackmarketslicertools"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "guidancechips", 
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "vaksai"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 448, 
+        "name": "Steve DeBirk", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.61"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "concorddawnace", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunvigo", 
+              "ship": "starviper"
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "gonk"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 400, 
+        "name": "Bart Elison", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "patrolleader", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive", 
+                  "operationsspecialist", 
+                  "darthvader"
+                ]
+              }
+            }, 
+            {
+              "name": "glaivesquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 368, 
+        "name": "Dan Hale", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "tansariipointveteran", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "title": [
+                  "heavyscykinterceptor"
+                ]
+              }
+            }, 
+            {
+              "name": "gandfindsman", 
+              "ship": "g1astarfighter", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "misthunter"
+                ]
+              }
+            }, 
+            {
+              "name": "concorddawnace", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunace", 
+              "ship": "kihraxzfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 329, 
+        "name": "David Butler", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "wardensquadronpilot", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "crew": [
+                  "dashrendar"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronnovice", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 255, 
+        "name": "Reece Hanzon", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "patrolleader", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "marajade", 
+                  "fleetofficer", 
+                  "gunner"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }, 
+            {
+              "name": "bountyhunter", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "tailgunner"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "slavei"
+                ], 
+                "torpedo": [
+                  "protontorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 239, 
+        "name": "Josh Futch", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "redsquadronveteran", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "tech": [
+                  "weaponsguidance"
+                ], 
+                "torpedo": [
+                  "seismictorpedo"
+                ]
+              }
+            }, 
+            {
+              "name": "wookieeliberator", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "bistan", 
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "redsquadronpilot", 
+              "ship": "xwing", 
+              "upgrades": {
+                "torpedo": [
+                  "protontorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 207, 
+        "name": "Jeff Norton", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "bountyhunter", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "reconspecialist"
+                ]
+              }
+            }, 
+            {
+              "name": "deltasquadronpilot", 
+              "ship": "tiedefender"
+            }, 
+            {
+              "name": "alphasquadronpilot", 
+              "ship": "tieinterceptor"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 215, 
+        "name": "Matt Thompson", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Steve DeBirk", 
+            "player1points": 100, 
+            "player2": "Caleb Flanagan", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bart Elison", 
+            "player1points": 100, 
+            "player2": "Reece Hanzon", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Butler", 
+            "player1points": 30, 
+            "player2": "Matt Thompson", 
+            "player2points": 19, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Futch", 
+            "player1points": 61, 
+            "player2": "Mike Carpenter", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dan Hale", 
+            "player1points": 100, 
+            "player2": "Jeff Norton", 
+            "player2points": 61, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Steve DeBirk", 
+            "player1points": 100, 
+            "player2": "Dan Hale", 
+            "player2points": 80, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bart Elison", 
+            "player1points": 26, 
+            "player2": "David Butler", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Carpenter", 
+            "player1points": 0, 
+            "player2": "Caleb Flanagan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Futch", 
+            "player1points": 100, 
+            "player2": "Reece Hanzon", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeff Norton", 
+            "player1points": 52, 
+            "player2": "Matt Thompson", 
+            "player2points": 33, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "David Butler", 
+            "player1points": 18, 
+            "player2": "Steve DeBirk", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bart Elison", 
+            "player1points": 100, 
+            "player2": "Jeff Norton", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Futch", 
+            "player1points": 51, 
+            "player2": "Dan Hale", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt Thompson", 
+            "player1points": 0, 
+            "player2": "Reece Hanzon", 
+            "player2points": 55, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Salt Lake City", 
+      "country": "United States of America", 
+      "lat": "40.767012600000", 
+      "lon": "-111.890430700000", 
+      "name": "Demolition Games", 
+      "state": "Utah"
+    }
+  }
+}

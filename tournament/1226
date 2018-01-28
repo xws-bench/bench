@@ -1,0 +1,66 @@
+{
+  "tournament": {
+    "date": "2016-03-05", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1226, 
+    "name": "Crossroads Casual", 
+    "players": [
+      {
+        "mov": 279, 
+        "name": "Gary No", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 121, 
+        "name": "Matt Maggitti ", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Gary No", 
+            "player1points": 99, 
+            "player2": "Matt Maggitti ", 
+            "player2points": 10, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Matt Maggitti ", 
+            "player1points": 15, 
+            "player2": "Gary No", 
+            "player2points": 5, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Kalgoorlie ", 
+      "country": "Australia", 
+      "lat": "59.329300000000", 
+      "lon": "18.068600000000", 
+      "name": "Boulder Bowling Club", 
+      "state": "Western Australia"
+    }
+  }
+}

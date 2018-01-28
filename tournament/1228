@@ -1,0 +1,923 @@
+{
+  "tournament": {
+    "date": "2016-02-27", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1228, 
+    "name": "Game On Store Championship", 
+    "players": [
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 625, 
+        "name": "Connor McDade", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "leebo", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "landocalrissian", 
+                  "gunner"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 624, 
+        "name": "Craig Heterick", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ]
+              }
+            }, 
+            {
+              "name": "wampa", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "omegasquadronpilot", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "omegasquadronpilot", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 619, 
+        "name": "Jeff Dunster", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "epsilonsquadronpilot", 
+              "ship": "tiefofighter"
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "hullupgrade"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "rexlerbrath", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "predator"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 508, 
+        "name": "Michael Rudder", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "wampa", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 483, 
+        "name": "David Moloney", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing"
+            }, 
+            {
+              "name": "prototypepilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "missile": [
+                  "chardaanrefit"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 436, 
+        "name": "Alastair McLean", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 378, 
+        "name": "Tarquin Murray", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "palobgodalhi", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "experthandling"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "kavil", 
+              "ship": "ywing", 
+              "upgrades": {
+                "bomb": [
+                  "ionbombs"
+                ], 
+                "ept": [
+                  "experthandling"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "bombloadout", 
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "bomb": [
+                  "ionbombs"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "torpedo": [
+                  "bombloadout"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 376, 
+        "name": "Rob McLean", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "zetaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "tech": [
+                  "weaponsguidance"
+                ]
+              }
+            }, 
+            {
+              "name": "omegasquadronpilot", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "intimidation"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "zetasquadronpilot", 
+              "ship": "tiefofighter"
+            }, 
+            {
+              "name": "epsilonsquadronpilot", 
+              "ship": "tiefofighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 308, 
+        "name": "Justin Diggerman", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 298, 
+        "name": "Andrew Buckley", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "neradantels", 
+              "ship": "bwing", 
+              "upgrades": {
+                "crew": [
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "gemmersojan", 
+              "ship": "awing", 
+              "upgrades": {
+                "missile": [
+                  "protonrockets"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "crew": [
+                  "c3po"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 289, 
+        "name": "Kristian Miller", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "captainkagi", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "enhancedscopes"
+                ]
+              }
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 258, 
+        "name": "Mark Wiggins", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "cutlasssquadronpilot", 
+              "ship": "tiepunisher", 
+              "upgrades": {
+                "missile": [
+                  "clustermissiles", 
+                  "assaultmissiles"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "darthvader", 
+                  "ysanneisard", 
+                  "weaponsengineer"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "title": [
+                  "dauntless"
+                ], 
+                "torpedo": [
+                  "advprotontorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 193, 
+        "name": "Mathew Lindsay", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 205, 
+        "name": "Aidan Bateman", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Michael Rudder", 
+            "player1points": 100, 
+            "player2": "Mathew Lindsay", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Craig Heterick", 
+            "player1points": 100, 
+            "player2": "Aidan Bateman", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Connor McDade", 
+            "player1points": 100, 
+            "player2": "Alastair McLean", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tarquin Murray", 
+            "player1points": 35, 
+            "player2": "Rob McLean", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Diggerman", 
+            "player1points": 100, 
+            "player2": "David Moloney", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kristian Miller", 
+            "player1points": 18, 
+            "player2": "Jeff Dunster", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew Buckley", 
+            "player1points": 68, 
+            "player2": "Mark Wiggins", 
+            "player2points": 57, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Craig Heterick", 
+            "player1points": 100, 
+            "player2": "Justin Diggerman", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Rudder", 
+            "player1points": 35, 
+            "player2": "Rob McLean", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Connor McDade", 
+            "player1points": 100, 
+            "player2": "Jeff Dunster", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew Buckley", 
+            "player1points": 78, 
+            "player2": "Aidan Bateman", 
+            "player2points": 41, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mathew Lindsay", 
+            "player1points": 15, 
+            "player2": "David Moloney", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tarquin Murray", 
+            "player1points": 68, 
+            "player2": "Mark Wiggins", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kristian Miller", 
+            "player1points": 62, 
+            "player2": "Alastair McLean", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Rob McLean", 
+            "player1points": 26, 
+            "player2": "Connor McDade", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Craig Heterick", 
+            "player1points": 100, 
+            "player2": "Andrew Buckley", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Moloney", 
+            "player1points": 100, 
+            "player2": "Mark Wiggins", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Diggerman", 
+            "player1points": 18, 
+            "player2": "Jeff Dunster", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kristian Miller", 
+            "player1points": 62, 
+            "player2": "Michael Rudder", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aidan Bateman", 
+            "player1points": 75, 
+            "player2": "Tarquin Murray", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mathew Lindsay", 
+            "player1points": 30, 
+            "player2": "Alastair McLean", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Connor McDade", 
+            "player1points": 100, 
+            "player2": "Craig Heterick", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rob McLean", 
+            "player1points": 20, 
+            "player2": "Jeff Dunster", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Moloney", 
+            "player1points": 50, 
+            "player2": "Michael Rudder", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew Buckley", 
+            "player1points": 50, 
+            "player2": "Tarquin Murray", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Diggerman", 
+            "player1points": 100, 
+            "player2": "Kristian Miller", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark Wiggins", 
+            "player1points": 22, 
+            "player2": "Alastair McLean", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aidan Bateman", 
+            "player1points": 67, 
+            "player2": "Mathew Lindsay", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Bathurst", 
+      "country": "Australia", 
+      "lat": "-33.418090700000", 
+      "lon": "149.578592600000", 
+      "name": "Game On Cards and Games", 
+      "state": "New South Wales"
+    }
+  }
+}

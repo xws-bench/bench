@@ -1,0 +1,157 @@
+{
+  "tournament": {
+    "date": "2017-09-17", 
+    "format": "Epic Play - 300 points", 
+    "id": 3429, 
+    "name": "Battle Zone Ursa 2017 Epic Tournament", 
+    "players": [
+      {
+        "mov": 1537, 
+        "name": "Tim", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 1112, 
+        "name": "Bruce", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 901, 
+        "name": "Ty", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 917, 
+        "name": "Daniel", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 639, 
+        "name": "Gary", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 294, 
+        "name": "Andrew", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.67"
+      }
+    ], 
+    "round_length": 150, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Bruce", 
+            "player1points": 147, 
+            "player2": "Tim", 
+            "player2points": 300, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel", 
+            "player1points": 186, 
+            "player2": "Gary", 
+            "player2points": 214, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ty", 
+            "player1points": 218, 
+            "player2": "Andrew", 
+            "player2points": 54, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Gary", 
+            "player1points": 186, 
+            "player2": "Ty", 
+            "player2points": 238, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tim", 
+            "player1points": 300, 
+            "player2": "Andrew", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruce", 
+            "player1points": 300, 
+            "player2": "Daniel", 
+            "player2points": 172, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Ty", 
+            "player1points": 85, 
+            "player2": "Tim", 
+            "player2points": 300, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gary", 
+            "player1points": 63, 
+            "player2": "Bruce", 
+            "player2points": 300, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew", 
+            "player1points": 0, 
+            "player2": "Daniel", 
+            "player2points": 173, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Anchorage", 
+      "country": "United States of America", 
+      "lat": "61.216312900000", 
+      "lon": "-149.894852200000", 
+      "name": "", 
+      "state": "Alaska"
+    }
+  }
+}

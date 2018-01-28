@@ -1,0 +1,276 @@
+{
+  "tournament": {
+    "date": "2016-04-09", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1472, 
+    "name": "Introductory Tournament", 
+    "players": [
+      {
+        "mov": 704, 
+        "name": "Jacob Lovegren", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 540, 
+        "name": "Micah  Bennett", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 470, 
+        "name": "Tim Chapman", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 443, 
+        "name": "Will Eck", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 375, 
+        "name": "Seth Munson", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 368, 
+        "name": "William Kline", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 320, 
+        "name": "John McCullough", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 307, 
+        "name": "Nate Grim", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 283, 
+        "name": "Jesse Tonkay", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 190, 
+        "name": "Steven Smith", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Micah  Bennett", 
+            "player1points": 100, 
+            "player2": "William Kline", 
+            "player2points": 18, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Will Eck", 
+            "player1points": 100, 
+            "player2": "Seth Munson", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John McCullough", 
+            "player1points": 52, 
+            "player2": "Tim Chapman", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jesse Tonkay", 
+            "player1points": 32, 
+            "player2": "Jacob Lovegren", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nate Grim", 
+            "player1points": 100, 
+            "player2": "Steven Smith", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Micah  Bennett", 
+            "player1points": 100, 
+            "player2": "Tim Chapman", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Will Eck", 
+            "player1points": 100, 
+            "player2": "Nate Grim", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jacob Lovegren", 
+            "player1points": 100, 
+            "player2": "Seth Munson", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steven Smith", 
+            "player1points": 55, 
+            "player2": "Jesse Tonkay", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John McCullough", 
+            "player1points": 26, 
+            "player2": "William Kline", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Will Eck", 
+            "player1points": 68, 
+            "player2": "Micah  Bennett", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jacob Lovegren", 
+            "player1points": 100, 
+            "player2": "William Kline", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tim Chapman", 
+            "player1points": 100, 
+            "player2": "Jesse Tonkay", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nate Grim", 
+            "player1points": 62, 
+            "player2": "Seth Munson", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steven Smith", 
+            "player1points": 100, 
+            "player2": "John McCullough", 
+            "player2points": 84, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jacob Lovegren", 
+            "player1points": 68, 
+            "player2": "Micah  Bennett", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Will Eck", 
+            "player1points": 52, 
+            "player2": "Tim Chapman", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nate Grim", 
+            "player1points": 24, 
+            "player2": "William Kline", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Seth Munson", 
+            "player1points": 100, 
+            "player2": "Steven Smith", 
+            "player2points": 19, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jesse Tonkay", 
+            "player1points": 69, 
+            "player2": "John McCullough", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Mechanicsburg", 
+      "country": "United States of America", 
+      "lat": "40.210197200000", 
+      "lon": "-77.004727500000", 
+      "name": "", 
+      "state": "Pennsylvania"
+    }
+  }
+}

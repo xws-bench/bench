@@ -1,0 +1,276 @@
+{
+  "tournament": {
+    "date": "2016-10-22", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2224, 
+    "name": "Torneio Dragons House Ciclo Final de Ano - Etapa 1", 
+    "players": [
+      {
+        "mov": 301, 
+        "name": "Tiago Stein", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 491, 
+        "name": "Rodrigo de Souza", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 381, 
+        "name": "Marcelo Paulsen", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 334, 
+        "name": "Joo Paulo da Silva", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 361, 
+        "name": "Daniel Born", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 370, 
+        "name": "Diogo da Luz", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 263, 
+        "name": "Joo Victor", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 220, 
+        "name": "Jonatan da Silva", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 217, 
+        "name": "Diego de Souza", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 212, 
+        "name": "Lauro Aguirre", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Tiago Stein", 
+            "player1points": 100, 
+            "player2": "Daniel Born", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Diego de Souza", 
+            "player1points": 19, 
+            "player2": "Marcelo Paulsen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lauro Aguirre", 
+            "player1points": 0, 
+            "player2": "Jonatan da Silva", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joo Paulo da Silva", 
+            "player1points": 100, 
+            "player2": "Joo Victor", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Diogo da Luz", 
+            "player1points": 42, 
+            "player2": "Rodrigo de Souza", 
+            "player2points": 61, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jonatan da Silva", 
+            "player1points": 0, 
+            "player2": "Marcelo Paulsen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joo Paulo da Silva", 
+            "player1points": 28, 
+            "player2": "Rodrigo de Souza", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tiago Stein", 
+            "player1points": 0, 
+            "player2": "Diogo da Luz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Born", 
+            "player1points": 100, 
+            "player2": "Joo Victor", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Diego de Souza", 
+            "player1points": 12, 
+            "player2": "Lauro Aguirre", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Marcelo Paulsen", 
+            "player1points": 0, 
+            "player2": "Rodrigo de Souza", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Diogo da Luz", 
+            "player1points": 50, 
+            "player2": "Daniel Born", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonatan da Silva", 
+            "player1points": 20, 
+            "player2": "Joo Paulo da Silva", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lauro Aguirre", 
+            "player1points": 24, 
+            "player2": "Tiago Stein", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joo Victor", 
+            "player1points": 100, 
+            "player2": "Diego de Souza", 
+            "player2points": 36, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Rodrigo de Souza", 
+            "player1points": 0, 
+            "player2": "Joo Paulo da Silva", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joo Paulo da Silva", 
+            "player1points": 0, 
+            "player2": "Daniel Born", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Diogo da Luz", 
+            "player1points": 0, 
+            "player2": "Joo Victor", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonatan da Silva", 
+            "player1points": 0, 
+            "player2": "Lauro Aguirre", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Diego de Souza", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Florianopolis", 
+      "country": "Brazil", 
+      "lat": "-27.597300100000", 
+      "lon": "-48.549609700000", 
+      "name": "Dragons House", 
+      "state": "Santa Catarina"
+    }
+  }
+}

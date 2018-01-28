@@ -1,0 +1,48 @@
+{
+  "tournament": {
+    "date": "2016-12-08", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2380, 
+    "name": "Test Israel", 
+    "players": [
+      {
+        "mov": 256, 
+        "name": "Player 1", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 78, 
+        "name": "Player 2", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 13, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 123, 
+        "name": "Player 3", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 11, 
+        "sos": "0.00"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [], 
+    "type": "Vassal play", 
+    "venue": {
+      "city": "Bene Ayish", 
+      "country": "Israel", 
+      "lat": null, 
+      "lon": null, 
+      "name": "home", 
+      "state": "Southern"
+    }
+  }
+}

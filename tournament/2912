@@ -1,0 +1,763 @@
+{
+  "tournament": {
+    "date": "2017-05-28", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2912, 
+    "name": "Store Championship", 
+    "players": [
+      {
+        "mov": 29, 
+        "name": "William McDonald", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "teltrevura", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 633, 
+        "name": "Stephen Van Mil", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "wardensquadronpilot", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines", 
+                  "clustermines"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "tarnmison", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r7astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "braylenstramm", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "crew": [
+                  "gunner"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 621, 
+        "name": "Brian Lindamood", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "norrawexley", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "crew": [
+                  "chewbacca"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }, 
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "kananjarrus", 
+                  "finn"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "smugglingcompartment", 
+                  "countermeasures"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 518, 
+        "name": "Ben Benton", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "teltrevura", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 482, 
+        "name": "Chris Clay", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.75"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "kananjarrus", 
+                  "finn"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "smugglingcompartment", 
+                  "countermeasures"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }, 
+            {
+              "name": "janors", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "chewbacca"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 511, 
+        "name": "Morgan Dean", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "title": [
+                  "shadowcaster"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 422, 
+        "name": "Kevin Miller", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ]
+              }
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 413, 
+        "name": "James McKinley", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.69"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "onyxsquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 407, 
+        "name": "Ty Traughber", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 217, 
+        "name": "Joseph Shaubach", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 200, 
+        "name": "Ray Weber", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.38"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 197, 
+        "name": "Nathan Squartsoff", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Ben Benton", 
+            "player1points": 100, 
+            "player2": "Ray Weber", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephen Van Mil", 
+            "player1points": 100, 
+            "player2": "Joseph Shaubach", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ty Traughber", 
+            "player1points": 0, 
+            "player2": "James McKinley", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Clay", 
+            "player1points": 100, 
+            "player2": "Kevin Miller", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian Lindamood", 
+            "player1points": 100, 
+            "player2": "Nathan Squartsoff", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "William McDonald", 
+            "player1points": 29, 
+            "player2": "Morgan Dean", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Stephen Van Mil", 
+            "player1points": 100, 
+            "player2": "James McKinley", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ben Benton", 
+            "player1points": 100, 
+            "player2": "Morgan Dean", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian Lindamood", 
+            "player1points": 78, 
+            "player2": "Chris Clay", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ray Weber", 
+            "player1points": 50, 
+            "player2": "Nathan Squartsoff", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Miller", 
+            "player1points": 100, 
+            "player2": "Joseph Shaubach", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ty Traughber", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Ben Benton", 
+            "player1points": 49, 
+            "player2": "Chris Clay", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephen Van Mil", 
+            "player1points": 100, 
+            "player2": "Morgan Dean", 
+            "player2points": 78, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ty Traughber", 
+            "player1points": 100, 
+            "player2": "Nathan Squartsoff", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James McKinley", 
+            "player1points": 100, 
+            "player2": "Kevin Miller", 
+            "player2points": 76, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian Lindamood", 
+            "player1points": 100, 
+            "player2": "Joseph Shaubach", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ray Weber", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Chris Clay", 
+            "player1points": 49, 
+            "player2": "Stephen Van Mil", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ty Traughber", 
+            "player1points": 57, 
+            "player2": "Brian Lindamood", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ben Benton", 
+            "player1points": 100, 
+            "player2": "James McKinley", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Squartsoff", 
+            "player1points": 47, 
+            "player2": "Kevin Miller", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Morgan Dean", 
+            "player1points": 100, 
+            "player2": "Ray Weber", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joseph Shaubach", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Wasilla", 
+      "country": "United States of America", 
+      "lat": "61.582823400000", 
+      "lon": "-149.438098400000", 
+      "name": "Area 51 Hobby and Games", 
+      "state": "Alaska"
+    }
+  }
+}

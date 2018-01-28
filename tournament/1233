@@ -1,0 +1,951 @@
+{
+  "tournament": {
+    "date": "2016-02-27", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1233, 
+    "name": "Titan Duluth X-Wing SC", 
+    "players": [
+      {
+        "mov": 683, 
+        "name": "Sam Talley", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 536, 
+        "name": "Josh Bartlett", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 626, 
+        "name": "Wilson Wise", 
+        "rank": {
+          "elimination": 3, 
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 584, 
+        "name": "Charles Holcomb", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "captainyorr", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 535, 
+        "name": "Jesse Cheung", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 528, 
+        "name": "James Ayers", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 517, 
+        "name": "JT Torrance", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 481, 
+        "name": "Daniel Luh", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88d", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 445, 
+        "name": "Thomas Teadt", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 441, 
+        "name": "Ian Hettenhouse", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 436, 
+        "name": "Cory Slate", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "squadleader"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 419, 
+        "name": "Alyssa Myers", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 417, 
+        "name": "Chris Myers", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 389, 
+        "name": "Jason Becker", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 362, 
+        "name": "Mark Moore", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 339, 
+        "name": "Kevin Blackwell", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 346, 
+        "name": "Brandon  White", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 377, 
+        "name": "Kurt Kless", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 301, 
+        "name": "jason bailey", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 246, 
+        "name": "Jonathan Jones", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 200, 
+        "name": "Chris Powell", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 200, 
+        "name": "Jason Cook", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 100, 
+        "name": "Steph Bartlett", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 92, 
+        "name": "Kristen Hill", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Jonathan Jones", 
+            "player1points": 25, 
+            "player2": "Thomas Teadt", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wilson Wise", 
+            "player1points": 100, 
+            "player2": "Brandon  White", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jesse Cheung", 
+            "player1points": 19, 
+            "player2": "Sam Talley", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kristen Hill", 
+            "player1points": 61, 
+            "player2": "Kevin Blackwell", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cory Slate", 
+            "player1points": 100, 
+            "player2": "jason bailey", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ian Hettenhouse", 
+            "player1points": 48, 
+            "player2": "Charles Holcomb", 
+            "player2points": 83, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Becker", 
+            "player1points": 100, 
+            "player2": "Steph Bartlett", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alyssa Myers", 
+            "player1points": 15, 
+            "player2": "Josh Bartlett", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "JT Torrance", 
+            "player1points": 100, 
+            "player2": "Chris Myers", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark Moore", 
+            "player1points": 24, 
+            "player2": "James Ayers", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Luh", 
+            "player1points": 100, 
+            "player2": "Jason Cook", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Powell", 
+            "player1points": 0, 
+            "player2": "Kurt Kless", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Daniel Luh", 
+            "player1points": 100, 
+            "player2": "Kurt Kless", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Becker", 
+            "player1points": 15, 
+            "player2": "Sam Talley", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cory Slate", 
+            "player1points": 24, 
+            "player2": "James Ayers", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wilson Wise", 
+            "player1points": 100, 
+            "player2": "Thomas Teadt", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "JT Torrance", 
+            "player1points": 15, 
+            "player2": "Josh Bartlett", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Blackwell", 
+            "player1points": 0, 
+            "player2": "Charles Holcomb", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ian Hettenhouse", 
+            "player1points": 100, 
+            "player2": "Kristen Hill", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alyssa Myers", 
+            "player1points": 28, 
+            "player2": "Chris Myers", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brandon  White", 
+            "player1points": 100, 
+            "player2": "Jonathan Jones", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark Moore", 
+            "player1points": 12, 
+            "player2": "jason bailey", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jesse Cheung", 
+            "player1points": 100, 
+            "player2": "Steph Bartlett", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Cook", 
+            "player1points": 0, 
+            "player2": "Chris Powell", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "James Ayers", 
+            "player1points": 16, 
+            "player2": "Jesse Cheung", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Daniel Luh", 
+            "player1points": 34, 
+            "player2": "Sam Talley", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James Ayers", 
+            "player1points": 0, 
+            "player2": "Charles Holcomb", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Bartlett", 
+            "player1points": 25, 
+            "player2": "Wilson Wise", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Teadt", 
+            "player1points": 100, 
+            "player2": "Ian Hettenhouse", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brandon  White", 
+            "player1points": 68, 
+            "player2": "Kurt Kless", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Becker", 
+            "player1points": 100, 
+            "player2": "jason bailey", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cory Slate", 
+            "player1points": 100, 
+            "player2": "Chris Myers", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Powell", 
+            "player1points": 0, 
+            "player2": "Jesse Cheung", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "JT Torrance", 
+            "player1points": 100, 
+            "player2": "Kevin Blackwell", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kristen Hill", 
+            "player1points": 0, 
+            "player2": "Alyssa Myers", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark Moore", 
+            "player1points": 100, 
+            "player2": "Steph Bartlett", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan Jones", 
+            "player1points": 100, 
+            "player2": "Jason Cook", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Charles Holcomb", 
+            "player1points": 49, 
+            "player2": "Sam Talley", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wilson Wise", 
+            "player1points": 100, 
+            "player2": "Daniel Luh", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jesse Cheung", 
+            "player1points": 100, 
+            "player2": "Thomas Teadt", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "JT Torrance", 
+            "player1points": 100, 
+            "player2": "Cory Slate", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Becker", 
+            "player1points": 24, 
+            "player2": "James Ayers", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Bartlett", 
+            "player1points": 100, 
+            "player2": "Brandon  White", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kurt Kless", 
+            "player1points": 68, 
+            "player2": "Alyssa Myers", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ian Hettenhouse", 
+            "player1points": 100, 
+            "player2": "jason bailey", 
+            "player2points": 43, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Myers", 
+            "player1points": 100, 
+            "player2": "Jonathan Jones", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Powell", 
+            "player1points": 0, 
+            "player2": "Mark Moore", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Blackwell", 
+            "player1points": 100, 
+            "player2": "Steph Bartlett", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kristen Hill", 
+            "player1points": 0, 
+            "player2": "Jason Cook", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Wilson Wise", 
+            "player1points": 74, 
+            "player2": "James Ayers", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Charles Holcomb", 
+            "player1points": 16, 
+            "player2": "Jesse Cheung", 
+            "player2points": 76, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Atlanta ", 
+      "country": "United States of America", 
+      "lat": "33.749098700000", 
+      "lon": "-84.390184800000", 
+      "name": "Titan Duluth", 
+      "state": "Georgia"
+    }
+  }
+}

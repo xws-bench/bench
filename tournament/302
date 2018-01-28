@@ -1,0 +1,472 @@
+{
+  "tournament": {
+    "date": "2015-03-21", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 302, 
+    "name": "Sun City Games Inaugural Tourney ", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2f2"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ]
+              }
+            }, 
+            {
+              "name": "airencracken", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }, 
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "janors", 
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "drawtheirfire"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 360, 
+        "name": "Jason", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "prototypepilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "prototypepilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "hansolo", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist", 
+                  "gunner"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 387, 
+        "name": "Bryan", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "gunner", 
+                  "ysanneisard"
+                ], 
+                "ept": [
+                  "determination"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ]
+              }
+            }, 
+            {
+              "name": "captainkagi", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "flightinstructor"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 383, 
+        "name": "Nelson", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "lieutenantblount", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "missile": [
+                  "ionpulsemissiles"
+                ], 
+                "mod": [
+                  "munitionsfailsafe"
+                ]
+              }
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5k6"
+                ]
+              }
+            }, 
+            {
+              "name": "leebo", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "chewbacca"
+                ], 
+                "ept": [
+                  "determination"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 360, 
+        "name": "Mike", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "blacksunsoldier", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "protonrockets"
+                ]
+              }
+            }, 
+            {
+              "name": "ndrusuhlak", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ]
+              }
+            }, 
+            {
+              "name": "serissu", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "swarmtactics"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ]
+              }
+            }, 
+            {
+              "name": "palobgodalhi", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "bodyguard"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "blasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 310, 
+        "name": "Sean", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "prototypepilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "missile": [
+                  "assaultmissiles"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "prototypepilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "missile": [
+                  "assaultmissiles"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "outmaneuver", 
+                  "determination"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ]
+              }
+            }, 
+            {
+              "name": "arvelcrynyd", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "intimidation"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 0, 
+        "name": "Wookie", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Bryan", 
+            "player1points": 57, 
+            "player2": "Mike", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean", 
+            "player1points": 24, 
+            "player2": "Jason", 
+            "player2points": 57, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wookie", 
+            "player1points": 0, 
+            "player2": "Nelson", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Nelson", 
+            "player1points": 26, 
+            "player2": "Bryan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason", 
+            "player1points": 57, 
+            "player2": "Mike", 
+            "player2points": 45, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean", 
+            "player1points": 100, 
+            "player2": "Wookie", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Bryan", 
+            "player1points": 31, 
+            "player2": "Jason", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean", 
+            "player1points": 43, 
+            "player2": "Nelson", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike", 
+            "player1points": 100, 
+            "player2": "Wookie", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "El Paso", 
+      "country": "United States of America", 
+      "lat": "31.811130500000", 
+      "lon": "-106.501349295577", 
+      "name": "Sun City Games", 
+      "state": "Texas"
+    }
+  }
+}

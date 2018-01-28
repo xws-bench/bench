@@ -1,0 +1,807 @@
+{
+  "tournament": {
+    "date": "2016-11-19", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2314, 
+    "name": "Point 5 Past Lightspeed", 
+    "players": [
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "palobgodalhi", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "dengar"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "fearlessness"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "blackmarketslicertools"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 768, 
+        "name": "Chris Sonnenburg", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "keyanfarlander", 
+              "ship": "bwing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "torpedo": [
+                  "advprotontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "hortonsalm", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 592, 
+        "name": "Brian Sonnenburg", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "blueace", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "snapwexley", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "tech": [
+                  "sensorcluster"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "elloasty", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "tech": [
+                  "sensorcluster"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 571, 
+        "name": "Josh Bailey", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 481, 
+        "name": "Nathan Morley", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 418, 
+        "name": "Pete Whittenberger", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "experthandling"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 412, 
+        "name": "Nick Gaston", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.75"
+      }, 
+      {
+        "mov": 380, 
+        "name": "Justin Barnes", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "blackone"
+                ], 
+                "torpedo": [
+                  "seismictorpedo"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 373, 
+        "name": "Mike Wolfe", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "lukeskywalker"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 323, 
+        "name": "Thomas Kohler", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "crackshot", 
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "snapwexley", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "targetingastromech"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 300, 
+        "name": "Donald Allen", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 319, 
+        "name": "Chris Harlan", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 285, 
+        "name": "Sean Ismail", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "esegetuketu", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges", 
+                  "connernet"
+                ], 
+                "crew": [
+                  "bombardier"
+                ], 
+                "missile": [
+                  "xx23sthreadtracers"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "protontorpedoes"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "neradantels", 
+              "ship": "bwing", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines"
+                ], 
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "marksmanship"
+                ], 
+                "mod": [
+                  "bwinge2"
+                ], 
+                "system": [
+                  "enhancedscopes"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "protontorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 178, 
+        "name": "Mark Johnston", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Brian Sonnenburg", 
+            "player1points": 100, 
+            "player2": "Donald Allen", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Kohler", 
+            "player1points": 0, 
+            "player2": "Mike Wolfe", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Bailey", 
+            "player1points": 0, 
+            "player2": "Nick Gaston", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean Ismail", 
+            "player1points": 70, 
+            "player2": "Nathan Morley", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pete Whittenberger", 
+            "player1points": 32, 
+            "player2": "Chris Sonnenburg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark Johnston", 
+            "player1points": 36, 
+            "player2": "Chris Harlan", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Barnes", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Brian Sonnenburg", 
+            "player1points": 34, 
+            "player2": "Nathan Morley", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Barnes", 
+            "player1points": 30, 
+            "player2": "Nick Gaston", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Wolfe", 
+            "player1points": 0, 
+            "player2": "Chris Sonnenburg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark Johnston", 
+            "player1points": 0, 
+            "player2": "Josh Bailey", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Harlan", 
+            "player1points": 100, 
+            "player2": "Pete Whittenberger", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean Ismail", 
+            "player1points": 65, 
+            "player2": "Donald Allen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Kohler", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Chris Sonnenburg", 
+            "player1points": 100, 
+            "player2": "Nick Gaston", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Morley", 
+            "player1points": 100, 
+            "player2": "Thomas Kohler", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Harlan", 
+            "player1points": 29, 
+            "player2": "Josh Bailey", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark Johnston", 
+            "player1points": 0, 
+            "player2": "Brian Sonnenburg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Wolfe", 
+            "player1points": 100, 
+            "player2": "Donald Allen", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Barnes", 
+            "player1points": 100, 
+            "player2": "Sean Ismail", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pete Whittenberger", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Nathan Morley", 
+            "player1points": 0, 
+            "player2": "Chris Sonnenburg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian Sonnenburg", 
+            "player1points": 100, 
+            "player2": "Nick Gaston", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Bailey", 
+            "player1points": 100, 
+            "player2": "Justin Barnes", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Wolfe", 
+            "player1points": 0, 
+            "player2": "Pete Whittenberger", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Harlan", 
+            "player1points": 62, 
+            "player2": "Donald Allen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark Johnston", 
+            "player1points": 42, 
+            "player2": "Thomas Kohler", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean Ismail", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Reno", 
+      "country": "United States of America", 
+      "lat": "39.529270000000", 
+      "lon": "-119.813674300000", 
+      "name": "Comic Kingdom", 
+      "state": "Nevada"
+    }
+  }
+}

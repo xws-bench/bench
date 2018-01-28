@@ -1,0 +1,791 @@
+{
+  "tournament": {
+    "date": "2017-07-30", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3251, 
+    "name": "5 Torneio Covil da Lua", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "connernet", 
+                  "seismiccharges"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 50, 
+        "name": "Jonatan Pedro da Silva", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "echo", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine", 
+                  "gunner"
+                ], 
+                "ept": [
+                  "intimidation"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 181, 
+        "name": "Angelo Cossa", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.42"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "zeborrelios", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }, 
+            {
+              "name": "chewbacca-swx57", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "rey"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 710, 
+        "name": "Daniel Bonn Schutz", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r4d6"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "title": [
+                  "phantom"
+                ]
+              }
+            }, 
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "rey"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 577, 
+        "name": "Diego de Souza", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.46"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "inaldra", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "title": [
+                  "lightscykinterceptor"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 530, 
+        "name": "Paulo Schmidt", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.25"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "epsilonsquadronpilot", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "tech": [
+                  "primedthrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "epsilonsquadronpilot", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "tech": [
+                  "primedthrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "deltasquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "mod": [
+                  "shieldupgrade"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "intensity"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 441, 
+        "name": "Maurcio Comini", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "kyloren", 
+                  "emperorpalpatine"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 439, 
+        "name": "Diogo Luiz da Luz", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.58"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "jesspava", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 305, 
+        "name": "Marcelo Comini", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.25"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "torpedo": [
+                  "advprotontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "janors", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 263, 
+        "name": "Antnio Henrique Botticelli", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 1, 
+        "sos": "0.75"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon", 
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon", 
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 254, 
+        "name": "Thiago B. Silveira", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.63"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Jonatan Pedro da Silva", 
+            "player1points": 26, 
+            "player2": "Paulo Schmidt", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maurcio Comini", 
+            "player1points": 62, 
+            "player2": "Diogo Luiz da Luz", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcelo Comini", 
+            "player1points": 25, 
+            "player2": "Thiago B. Silveira", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Antnio Henrique Botticelli", 
+            "player1points": 25, 
+            "player2": "Daniel Bonn Schutz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Angelo Cossa", 
+            "player1points": 0, 
+            "player2": "Diego de Souza", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Maurcio Comini", 
+            "player1points": 100, 
+            "player2": "Thiago B. Silveira", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Diego de Souza", 
+            "player1points": 26, 
+            "player2": "Daniel Bonn Schutz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paulo Schmidt", 
+            "player1points": 58, 
+            "player2": "Antnio Henrique Botticelli", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonatan Pedro da Silva", 
+            "player1points": 24, 
+            "player2": "Marcelo Comini", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Angelo Cossa", 
+            "player1points": 31, 
+            "player2": "Diogo Luiz da Luz", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Daniel Bonn Schutz", 
+            "player1points": 100, 
+            "player2": "Maurcio Comini", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcelo Comini", 
+            "player1points": 0, 
+            "player2": "Diogo Luiz da Luz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paulo Schmidt", 
+            "player1points": 100, 
+            "player2": "Thiago B. Silveira", 
+            "player2points": 14, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Diego de Souza", 
+            "player1points": 100, 
+            "player2": "Antnio Henrique Botticelli", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Angelo Cossa", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Daniel Bonn Schutz", 
+            "player1points": 100, 
+            "player2": "Diogo Luiz da Luz", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maurcio Comini", 
+            "player1points": 40, 
+            "player2": "Paulo Schmidt", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Diego de Souza", 
+            "player1points": 100, 
+            "player2": "Thiago B. Silveira", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Antnio Henrique Botticelli", 
+            "player1points": 52, 
+            "player2": "Marcelo Comini", 
+            "player2points": 56, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Sao Jose", 
+      "country": "Brazil", 
+      "lat": "-27.616233400000", 
+      "lon": "-48.627013500000", 
+      "name": "Covil da Lua", 
+      "state": "Santa Catarina"
+    }
+  }
+}

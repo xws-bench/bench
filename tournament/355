@@ -1,0 +1,1429 @@
+{
+  "tournament": {
+    "date": "2015-04-04", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 355, 
+    "name": "Gothcon Tournament", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 523, 
+        "name": "Rickard", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "gunner"
+                ], 
+                "ept": [
+                  "determination"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }, 
+            {
+              "name": "leebo", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "determination"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 506, 
+        "name": "Carl", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "princexizor", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "virago"
+                ]
+              }
+            }, 
+            {
+              "name": "guri", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "serissu", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 426, 
+        "name": "Jan-Joel", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 421, 
+        "name": "Roine", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88d", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 411, 
+        "name": "Torbjrn", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "patrolleader", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive", 
+                  "darthvader"
+                ]
+              }
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 381, 
+        "name": "Andreas", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "ndrusuhlak", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ]
+              }
+            }, 
+            {
+              "name": "laetinashera", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "heavyscykinterceptor"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 365, 
+        "name": "Patrick", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "ysanneisard"
+                ], 
+                "ept": [
+                  "expose"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ]
+              }
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 356, 
+        "name": "Jimmy", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "r4agromech"
+                ], 
+                "turret": [
+                  "blasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "r4agromech"
+                ], 
+                "turret": [
+                  "blasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "r4agromech"
+                ], 
+                "turret": [
+                  "blasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "r4agromech"
+                ], 
+                "turret": [
+                  "blasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 304, 
+        "name": "Fritte", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "majorrhymer", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "torpedo": [
+                  "protontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "captainjonus", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "ept": [
+                  "drawtheirfire"
+                ], 
+                "torpedo": [
+                  "protontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "backstabber", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "alphasquadronpilot", 
+              "ship": "tieinterceptor"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 227, 
+        "name": "Claes-Erik", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "cannon": [
+                  "autoblaster"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "illicit": [
+                  "feedbackarray"
+                ]
+              }
+            }, 
+            {
+              "name": "kavil", 
+              "ship": "ywing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 312, 
+        "name": "Marcus", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "turrphennir", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "krassistrelix", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rebelcaptive"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "marajade", 
+                  "tactician"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 307, 
+        "name": "Joel", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "maulermithel", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "darkcurse", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor"
+            }, 
+            {
+              "name": "kirkanos", 
+              "ship": "tieinterceptor"
+            }, 
+            {
+              "name": "backstabber", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 270, 
+        "name": "Robert", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "kathscarlet", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "outlawtech"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 216, 
+        "name": "Bjrn", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "royalguardpilot", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 200, 
+        "name": "Anton", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "roarkgarnet", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 187, 
+        "name": "Peter", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "cannon": [
+                  "flechettecannon"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "roarkgarnet", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "janors"
+                ]
+              }
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 164, 
+        "name": "Emil", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }, 
+            {
+              "name": "palobgodalhi", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "opportunist"
+                ], 
+                "turret": [
+                  "blasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 205, 
+        "name": "Mattias", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "airencracken", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "wingman"
+                ]
+              }
+            }, 
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "torpedo": [
+                  "iontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 147, 
+        "name": "Johannes", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "royalguardpilot", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "crew": [
+                  "darthvader", 
+                  "gunner"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 72, 
+        "name": "Atle", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 65, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Fritte", 
+            "player1points": 100, 
+            "player2": "Atle", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anton", 
+            "player1points": 0, 
+            "player2": "Marcus", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick", 
+            "player1points": 100, 
+            "player2": "Andreas", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Claes-Erik", 
+            "player1points": 74, 
+            "player2": "Joel", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carl", 
+            "player1points": 100, 
+            "player2": "Bjrn", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rickard", 
+            "player1points": 60, 
+            "player2": "Robert", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Peter", 
+            "player1points": 26, 
+            "player2": "Jan-Joel", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Emil", 
+            "player1points": 100, 
+            "player2": "Mattias", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jimmy", 
+            "player1points": 26, 
+            "player2": "Roine", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Torbjrn", 
+            "player1points": 100, 
+            "player2": "Johannes", 
+            "player2points": 50, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Marcus", 
+            "player1points": 35, 
+            "player2": "Jan-Joel", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Roine", 
+            "player1points": 100, 
+            "player2": "Emil", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rickard", 
+            "player1points": 100, 
+            "player2": "Patrick", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carl", 
+            "player1points": 100, 
+            "player2": "Fritte", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Torbjrn", 
+            "player1points": 100, 
+            "player2": "Claes-Erik", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joel", 
+            "player1points": 100, 
+            "player2": "Johannes", 
+            "player2points": 54, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Atle", 
+            "player1points": 24, 
+            "player2": "Andreas", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bjrn", 
+            "player1points": 75, 
+            "player2": "Robert", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mattias", 
+            "player1points": 75, 
+            "player2": "Peter", 
+            "player2points": 88, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jimmy", 
+            "player1points": 100, 
+            "player2": "Anton", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Roine", 
+            "player1points": 100, 
+            "player2": "Jan-Joel", 
+            "player2points": 65, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Roine", 
+            "player1points": 47, 
+            "player2": "Carl", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Torbjrn", 
+            "player1points": 61, 
+            "player2": "Jan-Joel", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rickard", 
+            "player1points": 100, 
+            "player2": "Marcus", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joel", 
+            "player1points": 42, 
+            "player2": "Jimmy", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andreas", 
+            "player1points": 100, 
+            "player2": "Bjrn", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick", 
+            "player1points": 100, 
+            "player2": "Emil", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fritte", 
+            "player1points": 100, 
+            "player2": "Peter", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Claes-Erik", 
+            "player1points": 100, 
+            "player2": "Mattias", 
+            "player2points": 82, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robert", 
+            "player1points": 100, 
+            "player2": "Johannes", 
+            "player2points": 43, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Atle", 
+            "player1points": 0, 
+            "player2": "Anton", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Rickard", 
+            "player1points": 65, 
+            "player2": "Roine", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carl", 
+            "player1points": 0, 
+            "player2": "Jan-Joel", 
+            "player2points": 47, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Gteborg", 
+      "country": "Sweden", 
+      "lat": null, 
+      "lon": null, 
+      "name": "Gothcon", 
+      "state": "Vastra Gotalands"
+    }
+  }
+}

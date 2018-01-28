@@ -1,0 +1,307 @@
+{
+  "tournament": {
+    "date": "2016-11-26", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2340, 
+    "name": "Dawno temu w Gnomie 4", 
+    "players": [
+      {
+        "mov": 541, 
+        "name": "Swietlik", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 362, 
+        "name": "Gobei", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "kaatoleeachos", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "illicit": [
+                  "blackmarketslicertools"
+                ]
+              }
+            }, 
+            {
+              "name": "4lom", 
+              "ship": "g1astarfighter", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "misthunter"
+                ]
+              }
+            }, 
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "lattsrazzi"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "riggedcargochute"
+                ], 
+                "mod": [
+                  "gyroscopictargeting"
+                ], 
+                "title": [
+                  "shadowcaster"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 360, 
+        "name": "Patsy", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "deathfire", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "bomb": [
+                  "connernet"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 297, 
+        "name": "Piotr Nitka", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 279, 
+        "name": "Mooniak", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 225, 
+        "name": "Pilwa", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 186, 
+        "name": "Dzuki", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Dzuki", 
+            "player1points": 0, 
+            "player2": "Swietlik", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Piotr Nitka", 
+            "player1points": 52, 
+            "player2": "Patsy", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pilwa", 
+            "player1points": 58, 
+            "player2": "Mooniak", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gobei", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Swietlik", 
+            "player1points": 100, 
+            "player2": "Pilwa", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Piotr Nitka", 
+            "player1points": 14, 
+            "player2": "Gobei", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mooniak", 
+            "player1points": 52, 
+            "player2": "Patsy", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dzuki", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Swietlik", 
+            "player1points": 100, 
+            "player2": "Gobei", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dzuki", 
+            "player1points": 36, 
+            "player2": "Patsy", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pilwa", 
+            "player1points": 69, 
+            "player2": "Piotr Nitka", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mooniak", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Bielsko Biaa", 
+      "country": "Poland", 
+      "lat": null, 
+      "lon": null, 
+      "name": "", 
+      "state": "Slaskie"
+    }
+  }
+}

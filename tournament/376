@@ -1,0 +1,777 @@
+{
+  "tournament": {
+    "date": "2015-04-11", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 376, 
+    "name": "FCB Tabletop Day", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "wedgeantilles", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "predator"
+                ]
+              }
+            }, 
+            {
+              "name": "tennumb", 
+              "ship": "bwing", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "swarmtactics"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 527, 
+        "name": "Kurt Kless", 
+        "rank": {
+          "elimination": 3, 
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ]
+              }
+            }, 
+            {
+              "name": "airencracken", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }, 
+            {
+              "name": "tennumb", 
+              "ship": "bwing", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 641, 
+        "name": "Jon Spamer", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "royalguardpilot", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 606, 
+        "name": "James Ayers", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "jakefarrell", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts", 
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "hansolo", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "r2d2-swx22"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 567, 
+        "name": "Rich Meade", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "ept": [
+                  "lonewolf"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "chewbacca"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 525, 
+        "name": "Liam Thomas", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "cartelspacer", 
+              "ship": "m3ainterceptor"
+            }, 
+            {
+              "name": "cartelspacer", 
+              "ship": "m3ainterceptor"
+            }, 
+            {
+              "name": "cartelspacer", 
+              "ship": "m3ainterceptor"
+            }, 
+            {
+              "name": "serissu", 
+              "ship": "m3ainterceptor"
+            }, 
+            {
+              "name": "princexizor", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "virago"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 528, 
+        "name": "Joe Greene", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 433, 
+        "name": "Brendan Nagle", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 409, 
+        "name": "Charles Holcomb", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 328, 
+        "name": "John Riggins", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 280, 
+        "name": "Andrew Hartley", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 220, 
+        "name": "Chad Woyce", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 197, 
+        "name": "Patrick D", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 152, 
+        "name": "Benjamin Consolie", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 187, 
+        "name": "Logan D", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Brendan Nagle", 
+            "player1points": 100, 
+            "player2": "Benjamin Consolie", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joe Greene", 
+            "player1points": 60, 
+            "player2": "Kurt Kless", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon Spamer", 
+            "player1points": 100, 
+            "player2": "Rich Meade", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick D", 
+            "player1points": 0, 
+            "player2": "Andrew Hartley", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Charles Holcomb", 
+            "player1points": 100, 
+            "player2": "Logan D", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James Ayers", 
+            "player1points": 100, 
+            "player2": "John Riggins", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Liam Thomas", 
+            "player1points": 100, 
+            "player2": "Chad Woyce", 
+            "player2points": 44, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Kurt Kless", 
+            "player1points": 100, 
+            "player2": "Andrew Hartley", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Charles Holcomb", 
+            "player1points": 100, 
+            "player2": "Jon Spamer", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brendan Nagle", 
+            "player1points": 0, 
+            "player2": "James Ayers", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Liam Thomas", 
+            "player1points": 48, 
+            "player2": "Joe Greene", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chad Woyce", 
+            "player1points": 0, 
+            "player2": "Rich Meade", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick D", 
+            "player1points": 61, 
+            "player2": "John Riggins", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Logan D", 
+            "player1points": 71, 
+            "player2": "Benjamin Consolie", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Rich Meade", 
+            "player1points": 0, 
+            "player2": "Jon Spamer", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "James Ayers", 
+            "player1points": 48, 
+            "player2": "Charles Holcomb", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kurt Kless", 
+            "player1points": 100, 
+            "player2": "Liam Thomas", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon Spamer", 
+            "player1points": 100, 
+            "player2": "Andrew Hartley", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brendan Nagle", 
+            "player1points": 33, 
+            "player2": "Rich Meade", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Riggins", 
+            "player1points": 100, 
+            "player2": "Benjamin Consolie", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joe Greene", 
+            "player1points": 100, 
+            "player2": "Logan D", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick D", 
+            "player1points": 24, 
+            "player2": "Chad Woyce", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "James Ayers", 
+            "player1points": 52, 
+            "player2": "Kurt Kless", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon Spamer", 
+            "player1points": 100, 
+            "player2": "John Riggins", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Charles Holcomb", 
+            "player1points": 0, 
+            "player2": "Rich Meade", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chad Woyce", 
+            "player1points": 0, 
+            "player2": "Joe Greene", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew Hartley", 
+            "player1points": 0, 
+            "player2": "Brendan Nagle", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benjamin Consolie", 
+            "player1points": 0, 
+            "player2": "Liam Thomas", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Logan D", 
+            "player1points": 88, 
+            "player2": "Patrick D", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Kurt Kless", 
+            "player1points": 33, 
+            "player2": "Rich Meade", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon Spamer", 
+            "player1points": 100, 
+            "player2": "James Ayers", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Alpharetta", 
+      "country": "United States of America", 
+      "lat": "34.070957600000", 
+      "lon": "-84.274732800000", 
+      "name": "FCB Comics and Games", 
+      "state": "Georgia"
+    }
+  }
+}

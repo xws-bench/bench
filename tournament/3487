@@ -1,0 +1,249 @@
+{
+  "tournament": {
+    "date": "2017-09-30", 
+    "format": "Large Ship Only", 
+    "id": 3487, 
+    "name": "Large Ship Only Mini", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "expose"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ]
+              }
+            }, 
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist", 
+                  "rey"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 502, 
+        "name": "Frank Palocyi", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.33"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "smugglingcompartment", 
+                  "antipursuitlasers"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }, 
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ], 
+                "ept": [
+                  "expose"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 349, 
+        "name": "Chris Parillo", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "emonazzameen", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "crew": [
+                  "tailgunner"
+                ], 
+                "illicit": [
+                  "blackmarketslicertools"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "andrasta"
+                ]
+              }
+            }, 
+            {
+              "name": "kathscarlet", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "tailgunner"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "illicit": [
+                  "blackmarketslicertools"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "slavei"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 199, 
+        "name": "John Hazen", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Chris Parillo", 
+            "player1points": 24, 
+            "player2": "Frank Palocyi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Hazen", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Frank Palocyi", 
+            "player1points": 100, 
+            "player2": "John Hazen", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Parillo", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Chris Parillo", 
+            "player1points": 100, 
+            "player2": "John Hazen", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Frank Palocyi", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Boardman", 
+      "country": "United States of America", 
+      "lat": "41.025042650000", 
+      "lon": "-80.664962915708", 
+      "name": "ALL AMERICAN CARDS AND COMICS", 
+      "state": "Ohio"
+    }
+  }
+}

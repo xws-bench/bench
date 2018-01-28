@@ -1,0 +1,318 @@
+{
+  "tournament": {
+    "date": "2017-01-28", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2524, 
+    "name": "Silesian Run vol. 13", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r4d6"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "norrawexley", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "crew": [
+                  "tailgunner"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }, 
+            {
+              "name": "jakefarrell", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts", 
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 548, 
+        "name": "Swietlik", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.33"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "burnoutslam"
+                ], 
+                "mod": [
+                  "smugglingcompartment"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 319, 
+        "name": "Adam Uhl", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 283, 
+        "name": "Pawel Kasprzyk", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 327, 
+        "name": "Grzegorz G", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 271, 
+        "name": "Toudi", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rexlerbrath", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "outmaneuver"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "backdraft", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "system": [
+                  "collisiondetector"
+                ], 
+                "tech": [
+                  "weaponsguidance"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "duchess", 
+              "ship": "tiestriker", 
+              "upgrades": {
+                "ept": [
+                  "marksmanship"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 52, 
+        "name": "Marek Kolbuk", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.56"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Marek Kolbuk", 
+            "player1points": 26, 
+            "player2": "Swietlik", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Toudi", 
+            "player1points": 71, 
+            "player2": "Adam Uhl", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pawel Kasprzyk", 
+            "player1points": 100, 
+            "player2": "Grzegorz G", 
+            "player2points": 79, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Pawel Kasprzyk", 
+            "player1points": 100, 
+            "player2": "Adam Uhl", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Swietlik", 
+            "player1points": 100, 
+            "player2": "Toudi", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grzegorz G", 
+            "player1points": 100, 
+            "player2": "Marek Kolbuk", 
+            "player2points": 26, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Swietlik", 
+            "player1points": 100, 
+            "player2": "Pawel Kasprzyk", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Uhl", 
+            "player1points": 100, 
+            "player2": "Grzegorz G", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marek Kolbuk", 
+            "player1points": 0, 
+            "player2": "Toudi", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Katowice", 
+      "country": "Poland", 
+      "lat": "50.259898700000", 
+      "lon": "19.021585200000", 
+      "name": "Inny Wymiar", 
+      "state": "Slaskie"
+    }
+  }
+}

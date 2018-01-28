@@ -1,0 +1,1523 @@
+{
+  "tournament": {
+    "date": "2016-11-05", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2262, 
+    "name": "NNXW League II", 
+    "players": [
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 771, 
+        "name": "(#5) Nate Morley", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 25, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 651, 
+        "name": "Brian Sonnenburg", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "fearlessness"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "zuckuss", 
+              "ship": "g1astarfighter", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "misthunter"
+                ]
+              }
+            }, 
+            {
+              "name": "ndrusuhlak", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }, 
+            {
+              "name": "serissu", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 681, 
+        "name": "(C) Ryan Wuebbles", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r4d6"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "norrawexley", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "crew": [
+                  "tailgunner"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }, 
+            {
+              "name": "sharabey", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "crew": [
+                  "weaponsengineer"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 650, 
+        "name": "(#3) Nick Gaston", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 18, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 629, 
+        "name": "(#2) Justin Barnes", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "valenrudor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 594, 
+        "name": "(#6) Rodger Moore", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegasquadronpilot", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "omegasquadronpilot", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "omegasquadronpilot", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "omegasquadronpilot", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 550, 
+        "name": "Thomas Kohler", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "jakefarrell", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts", 
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "tennumb", 
+              "ship": "bwing", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "protontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "wesjanson", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 548, 
+        "name": "Bryan Luce", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 614, 
+        "name": "Mike Wolfe", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "epsilonsquadronpilot", 
+              "ship": "tiefofighter"
+            }, 
+            {
+              "name": "epsilonsquadronpilot", 
+              "ship": "tiefofighter"
+            }, 
+            {
+              "name": "deltasquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 469, 
+        "name": "Stephen Downs", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "oldteroch", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "zealousrecruit", 
+              "ship": "protectoratestarfighter"
+            }, 
+            {
+              "name": "zealousrecruit", 
+              "ship": "protectoratestarfighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 513, 
+        "name": "Sean Ismail", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "rage"
+                ], 
+                "system": [
+                  "electronicbaffle"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "echo", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "collisiondetector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 513, 
+        "name": "(#7) Donald Allen", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "tychocelchu", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ]
+              }
+            }, 
+            {
+              "name": "norrawexley", 
+              "ship": "arc170", 
+              "upgrades": {
+                "crew": [
+                  "weaponsengineer"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "tech": [
+                  "sensorcluster"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 498, 
+        "name": "(#8) Peter Whittenberger", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "talonbanecobra", 
+              "ship": "kihraxzfighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "dacebonearm", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "bossk"
+                ], 
+                "ept": [
+                  "wired"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 427, 
+        "name": "(#4) Jayson Guy", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "chewbacca", 
+                  "herasyndulla"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "title": [
+                  "phantom"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "wired"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 390, 
+        "name": "(#9) Brian Shannon", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "illicit": [
+                  "blackmarketslicertools", 
+                  "riggedcargochute"
+                ], 
+                "mod": [
+                  "gyroscopictargeting"
+                ], 
+                "title": [
+                  "shadowcaster"
+                ]
+              }
+            }, 
+            {
+              "name": "ketsuonyo", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "dengar"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "blackmarketslicertools", 
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "gyroscopictargeting"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 423, 
+        "name": "Jordan Sindt", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 6, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "tennumb", 
+              "ship": "bwing", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "advprotontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 304, 
+        "name": "Micah Grover", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 6, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "marksmanship"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }, 
+            {
+              "name": "ketsuonyo", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "navigator"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "blackmarketslicertools", 
+                  "glitterstim"
+                ], 
+                "title": [
+                  "shadowcaster"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 334, 
+        "name": "(#1) Jaeremy Clarke (RotL)", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "marksmanship", 
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "munitionsfailsafe"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "rage"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "marksmanship", 
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "munitionsfailsafe"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 263, 
+        "name": "Ken Ferguson", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "xx23sthreadtracers"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "electronicbaffle"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "zetaspecialist", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "system": [
+                  "collisiondetector"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "majorrhymer", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines"
+                ], 
+                "ept": [
+                  "juke"
+                ], 
+                "missile": [
+                  "ionpulsemissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "torpedo": [
+                  "iontorpedoes", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 178, 
+        "name": "Logan Ferguson", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "(#2) Justin Barnes", 
+            "player1points": 42, 
+            "player2": "Brian Sonnenburg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#8) Peter Whittenberger", 
+            "player1points": 0, 
+            "player2": "Mike Wolfe", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#4) Jayson Guy", 
+            "player1points": 100, 
+            "player2": "(#9) Brian Shannon", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephen Downs", 
+            "player1points": 30, 
+            "player2": "(C) Ryan Wuebbles", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#7) Donald Allen", 
+            "player1points": 26, 
+            "player2": "(#3) Nick Gaston", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jordan Sindt", 
+            "player1points": 50, 
+            "player2": "(#6) Rodger Moore", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Micah Grover", 
+            "player1points": 0, 
+            "player2": "Thomas Kohler", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean Ismail", 
+            "player1points": 100, 
+            "player2": "Logan Ferguson", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#1) Jaeremy Clarke (RotL)", 
+            "player1points": 60, 
+            "player2": "Bryan Luce", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ken Ferguson", 
+            "player1points": 50, 
+            "player2": "(#5) Nate Morley", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Mike Wolfe", 
+            "player1points": 32, 
+            "player2": "Bryan Luce", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#5) Nate Morley", 
+            "player1points": 71, 
+            "player2": "(#6) Rodger Moore", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(C) Ryan Wuebbles", 
+            "player1points": 52, 
+            "player2": "Sean Ismail", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#4) Jayson Guy", 
+            "player1points": 33, 
+            "player2": "Brian Sonnenburg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Kohler", 
+            "player1points": 0, 
+            "player2": "(#3) Nick Gaston", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Micah Grover", 
+            "player1points": 30, 
+            "player2": "Stephen Downs", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#7) Donald Allen", 
+            "player1points": 76, 
+            "player2": "(#1) Jaeremy Clarke (RotL)", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#2) Justin Barnes", 
+            "player1points": 100, 
+            "player2": "Logan Ferguson", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#8) Peter Whittenberger", 
+            "player1points": 29, 
+            "player2": "Ken Ferguson", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#9) Brian Shannon", 
+            "player1points": 75, 
+            "player2": "Jordan Sindt", 
+            "player2points": 23, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Brian Sonnenburg", 
+            "player1points": 18, 
+            "player2": "(C) Ryan Wuebbles", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#3) Nick Gaston", 
+            "player1points": 100, 
+            "player2": "Bryan Luce", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#5) Nate Morley", 
+            "player1points": 100, 
+            "player2": "(#9) Brian Shannon", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#6) Rodger Moore", 
+            "player1points": 65, 
+            "player2": "Mike Wolfe", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Kohler", 
+            "player1points": 100, 
+            "player2": "Ken Ferguson", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#2) Justin Barnes", 
+            "player1points": 100, 
+            "player2": "(#4) Jayson Guy", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#1) Jaeremy Clarke (RotL)", 
+            "player1points": 36, 
+            "player2": "Stephen Downs", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean Ismail", 
+            "player1points": 100, 
+            "player2": "(#7) Donald Allen", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jordan Sindt", 
+            "player1points": 75, 
+            "player2": "Micah Grover", 
+            "player2points": 75, 
+            "result": "draw"
+          }, 
+          {
+            "player1": "(#8) Peter Whittenberger", 
+            "player1points": 100, 
+            "player2": "Logan Ferguson", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "(C) Ryan Wuebbles", 
+            "player1points": 100, 
+            "player2": "(#3) Nick Gaston", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#5) Nate Morley", 
+            "player1points": 100, 
+            "player2": "Bryan Luce", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian Sonnenburg", 
+            "player1points": 100, 
+            "player2": "Stephen Downs", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#2) Justin Barnes", 
+            "player1points": 48, 
+            "player2": "Sean Ismail", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Kohler", 
+            "player1points": 0, 
+            "player2": "Mike Wolfe", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#1) Jaeremy Clarke (RotL)", 
+            "player1points": 50, 
+            "player2": "(#6) Rodger Moore", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#4) Jayson Guy", 
+            "player1points": 60, 
+            "player2": "(#8) Peter Whittenberger", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#9) Brian Shannon", 
+            "player1points": 100, 
+            "player2": "Ken Ferguson", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jordan Sindt", 
+            "player1points": 75, 
+            "player2": "Micah Grover", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#7) Donald Allen", 
+            "player1points": 100, 
+            "player2": "Logan Ferguson", 
+            "player2points": 50, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "(C) Ryan Wuebbles", 
+            "player1points": 75, 
+            "player2": "(#5) Nate Morley", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#2) Justin Barnes", 
+            "player1points": 59, 
+            "player2": "(#3) Nick Gaston", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian Sonnenburg", 
+            "player1points": 100, 
+            "player2": "Mike Wolfe", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Kohler", 
+            "player1points": 100, 
+            "player2": "Sean Ismail", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#8) Peter Whittenberger", 
+            "player1points": 69, 
+            "player2": "Stephen Downs", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#9) Brian Shannon", 
+            "player1points": 31, 
+            "player2": "(#6) Rodger Moore", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bryan Luce", 
+            "player1points": 100, 
+            "player2": "Micah Grover", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ken Ferguson", 
+            "player1points": 0, 
+            "player2": "(#7) Donald Allen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "(#1) Jaeremy Clarke (RotL)", 
+            "player1points": 34, 
+            "player2": "(#4) Jayson Guy", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jordan Sindt", 
+            "player1points": 100, 
+            "player2": "Logan Ferguson", 
+            "player2points": 50, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Regional", 
+    "venue": {
+      "city": "Sparks", 
+      "country": "United States of America", 
+      "lat": "39.534843100000", 
+      "lon": "-119.752768200000", 
+      "name": "", 
+      "state": "Nevada"
+    }
+  }
+}

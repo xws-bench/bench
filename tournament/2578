@@ -1,0 +1,432 @@
+{
+  "tournament": {
+    "date": "2017-02-04", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2578, 
+    "name": "One With The Force", 
+    "players": [
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "4lom", 
+                  "zuckuss", 
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "missile": [
+                  "assaultmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 681, 
+        "name": "Kedzior", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 553, 
+        "name": "Esek", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "hansolo", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "lukeskywalker"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 525, 
+        "name": "Seba", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 470, 
+        "name": "Marian", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 465, 
+        "name": "Szymon", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle"
+            }, 
+            {
+              "name": "lieutenantdormitz", 
+              "ship": "upsilonclassshuttle"
+            }, 
+            {
+              "name": "commanderkenkirk", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "ysanneisard"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 403, 
+        "name": "Bartek", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 356, 
+        "name": "Marcin W", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 327, 
+        "name": "May Krasnolu", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 294, 
+        "name": "Bruno", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 273, 
+        "name": "Igor", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 253, 
+        "name": "Maciek", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Bartek", 
+            "player1points": 0, 
+            "player2": "Szymon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruno", 
+            "player1points": 27, 
+            "player2": "Marian", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Igor", 
+            "player1points": 49, 
+            "player2": "May Krasnolu", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kedzior", 
+            "player1points": 100, 
+            "player2": "Maciek", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Seba", 
+            "player1points": 100, 
+            "player2": "Marcin W", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Esek", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Kedzior", 
+            "player1points": 100, 
+            "player2": "Szymon", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Seba", 
+            "player1points": 100, 
+            "player2": "Igor", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marian", 
+            "player1points": 100, 
+            "player2": "Esek", 
+            "player2points": 55, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin W", 
+            "player1points": 100, 
+            "player2": "Bruno", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "May Krasnolu", 
+            "player1points": 100, 
+            "player2": "Maciek", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bartek", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Seba", 
+            "player1points": 24, 
+            "player2": "Kedzior", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marian", 
+            "player1points": 60, 
+            "player2": "Bartek", 
+            "player2points": 55, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Esek", 
+            "player1points": 100, 
+            "player2": "May Krasnolu", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin W", 
+            "player1points": 34, 
+            "player2": "Igor", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Szymon", 
+            "player1points": 100, 
+            "player2": "Maciek", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruno", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Kedzior", 
+            "player1points": 100, 
+            "player2": "Marian", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin W", 
+            "player1points": 52, 
+            "player2": "Esek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Szymon", 
+            "player1points": 67, 
+            "player2": "Seba", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "May Krasnolu", 
+            "player1points": 75, 
+            "player2": "Bruno", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Igor", 
+            "player1points": 42, 
+            "player2": "Bartek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maciek", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Olsztyn", 
+      "country": "Poland", 
+      "lat": "53.775410600000", 
+      "lon": "20.481224800000", 
+      "name": "Crazy Dwarf", 
+      "state": "Warminsko-Mazurskie"
+    }
+  }
+}

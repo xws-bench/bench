@@ -1,0 +1,370 @@
+{
+  "tournament": {
+    "date": "2015-11-07", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 802, 
+    "name": "Iksy w Tricity S1T2", 
+    "players": [
+      {
+        "mov": 611, 
+        "name": "Piotr Romasiuk", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 508, 
+        "name": "Andrzej Kleczkowski", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "roarkgarnet", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "niennunb"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 502, 
+        "name": "Andrzej Sosnowski", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 466, 
+        "name": "Patrys Gesiak", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 465, 
+        "name": "Radek Brzana", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 410, 
+        "name": "Krzysztof Mludzik", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 406, 
+        "name": "Wojciech Dziorawiec", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 370, 
+        "name": "Jan Zieniewicz", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 296, 
+        "name": "Marcin Filanski", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 6, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 300, 
+        "name": "Pawe Chajecki", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 212, 
+        "name": "Adam Adamski", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 254, 
+        "name": "Off Jenkins", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Jan Zieniewicz", 
+            "player1points": 100, 
+            "player2": "Pawe Chajecki", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wojciech Dziorawiec", 
+            "player1points": 100, 
+            "player2": "Krzysztof Mludzik", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Piotr Romasiuk", 
+            "player1points": 50, 
+            "player2": "Andrzej Kleczkowski", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej Sosnowski", 
+            "player1points": 100, 
+            "player2": "Patrys Gesiak", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin Filanski", 
+            "player1points": 38, 
+            "player2": "Off Jenkins", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Adamski", 
+            "player1points": 25, 
+            "player2": "Radek Brzana", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Wojciech Dziorawiec", 
+            "player1points": 0, 
+            "player2": "Radek Brzana", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jan Zieniewicz", 
+            "player1points": 24, 
+            "player2": "Andrzej Sosnowski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Piotr Romasiuk", 
+            "player1points": 27, 
+            "player2": "Marcin Filanski", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Off Jenkins", 
+            "player1points": 75, 
+            "player2": "Andrzej Kleczkowski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pawe Chajecki", 
+            "player1points": 65, 
+            "player2": "Patrys Gesiak", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Adamski", 
+            "player1points": 100, 
+            "player2": "Krzysztof Mludzik", 
+            "player2points": 61, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Radek Brzana", 
+            "player1points": 48, 
+            "player2": "Andrzej Sosnowski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Adamski", 
+            "player1points": 0, 
+            "player2": "Piotr Romasiuk", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin Filanski", 
+            "player1points": 50, 
+            "player2": "Andrzej Kleczkowski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jan Zieniewicz", 
+            "player1points": 48, 
+            "player2": "Wojciech Dziorawiec", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrys Gesiak", 
+            "player1points": 100, 
+            "player2": "Off Jenkins", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pawe Chajecki", 
+            "player1points": 46, 
+            "player2": "Krzysztof Mludzik", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Patrys Gesiak", 
+            "player1points": 100, 
+            "player2": "Radek Brzana", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej Sosnowski", 
+            "player1points": 0, 
+            "player2": "Piotr Romasiuk", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej Kleczkowski", 
+            "player1points": 100, 
+            "player2": "Jan Zieniewicz", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Adamski", 
+            "player1points": 48, 
+            "player2": "Wojciech Dziorawiec", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin Filanski", 
+            "player1points": 29, 
+            "player2": "Krzysztof Mludzik", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Off Jenkins", 
+            "player1points": 37, 
+            "player2": "Pawe Chajecki", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Gdansk", 
+      "country": "Poland", 
+      "lat": "54.348225900000", 
+      "lon": "18.654288800000", 
+      "name": "Centrum Hobbystyczne \"Orc &amp;amp; Goblin\"", 
+      "state": "Pomorskie"
+    }
+  }
+}

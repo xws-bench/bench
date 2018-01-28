@@ -1,0 +1,78 @@
+{
+  "tournament": {
+    "date": "2016-03-15", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1225, 
+    "name": "Critical Hit Monthly Tournament ", 
+    "players": [
+      {
+        "mov": 200, 
+        "name": "Victor", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 5, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 171, 
+        "name": "Billy", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 5, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 29, 
+        "name": "Zach", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Dan", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Billy", 
+            "player1points": 100, 
+            "player2": "Zach", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dan", 
+            "player1points": 0, 
+            "player2": "Victor", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Kalgoorlie ", 
+      "country": "Australia", 
+      "lat": "59.329300000000", 
+      "lon": "18.068600000000", 
+      "name": "Boulder Bowling Club", 
+      "state": "Western Australia"
+    }
+  }
+}

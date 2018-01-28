@@ -1,0 +1,196 @@
+{
+  "tournament": {
+    "date": "2016-11-27", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2349, 
+    "name": "November", 
+    "players": [
+      {
+        "mov": null, 
+        "name": "Pl", 
+        "rank": {
+          "swiss": null
+        }, 
+        "score": null, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 600, 
+        "name": "Pl", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 400, 
+        "name": "Sondre", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 280, 
+        "name": "Robert", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 278, 
+        "name": "Arild Julius", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 272, 
+        "name": "Benjamin", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 216, 
+        "name": "Svein Ivar", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 204, 
+        "name": "Andreas", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Sondre", 
+            "player1points": 100, 
+            "player2": "Benjamin", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andreas", 
+            "player1points": 54, 
+            "player2": "Svein Ivar", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pl", 
+            "player1points": 97, 
+            "player2": "Arild Julius", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robert", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Sondre", 
+            "player1points": 0, 
+            "player2": "Pl", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Arild Julius", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Robert", 
+            "player1points": 100, 
+            "player2": "Svein Ivar", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andreas", 
+            "player1points": 0, 
+            "player2": "Benjamin", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Benjamin", 
+            "player1points": 72, 
+            "player2": "Arild Julius", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andreas", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Robert", 
+            "player1points": 0, 
+            "player2": "Pl", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Svein Ivar", 
+            "player1points": 0, 
+            "player2": "Sondre", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Hemingway", 
+      "country": "De forente stater", 
+      "lat": null, 
+      "lon": null, 
+      "name": "", 
+      "state": "SC"
+    }
+  }
+}

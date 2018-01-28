@@ -1,0 +1,977 @@
+{
+  "tournament": {
+    "date": "2016-02-06", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1130, 
+    "name": "Whose Turn Is It? Games Store Championship ", 
+    "players": [
+      {
+        "mov": 917, 
+        "name": "Gene Hogle", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 1
+        }, 
+        "score": 25, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 687, 
+        "name": "Jason Switzer", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 2
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 684, 
+        "name": "Will Eldridge", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 3
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ndrusuhlak", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "hotshotblaster"
+                ], 
+                "missile": [
+                  "assaultmissiles"
+                ]
+              }
+            }, 
+            {
+              "name": "palobgodalhi", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "greedo"
+                ], 
+                "ept": [
+                  "determination"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 625, 
+        "name": "Michael Pearcy", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "landocalrissian"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 704, 
+        "name": "Clay Longino", 
+        "rank": {
+          "elimination": 3, 
+          "swiss": 5
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 667, 
+        "name": "Matthew Leibowitz", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 577, 
+        "name": "Andy Metz", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 571, 
+        "name": "Marc Sebo", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 526, 
+        "name": "Trent Guerra", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "epsilonsquadronpilot", 
+              "ship": "tiefofighter"
+            }, 
+            {
+              "name": "epsilonsquadronpilot", 
+              "ship": "tiefofighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "commanderkenkirk", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "gunner", 
+                  "moffjerjerrod", 
+                  "ysanneisard"
+                ], 
+                "ept": [
+                  "determination"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 518, 
+        "name": "Erich Fields", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 497, 
+        "name": "John Kallaugher", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 501, 
+        "name": "Erin Cain", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 11, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 477, 
+        "name": "Paul Trupia", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 11, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 513, 
+        "name": "Justin Lewandowski", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 463, 
+        "name": "Derek Drohan", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 457, 
+        "name": "Doug Wright", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 397, 
+        "name": "Jensen Dempsey", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 388, 
+        "name": "CQ", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 356, 
+        "name": "TJ Perryman", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 342, 
+        "name": "Austin Jenkins", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 341, 
+        "name": "Brandon Bruce", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 295, 
+        "name": "Thomas Achhireddy", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 291, 
+        "name": "Martin Bolt", 
+        "rank": {
+          "swiss": 23
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 271, 
+        "name": "Hunter Shelburne", 
+        "rank": {
+          "swiss": 24
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 218, 
+        "name": "Sarah Sparks", 
+        "rank": {
+          "swiss": 25
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 208, 
+        "name": "Jon Garcia", 
+        "rank": {
+          "swiss": 26
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 109, 
+        "name": "James Tomsett", 
+        "rank": {
+          "swiss": 27
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Sean Brocklehurst", 
+        "rank": {
+          "swiss": 28
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "TJ Perryman", 
+            "player1points": 15, 
+            "player2": "Gene Hogle", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erin Cain", 
+            "player1points": 100, 
+            "player2": "Jensen Dempsey", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andy Metz", 
+            "player1points": 99, 
+            "player2": "Martin Bolt", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sarah Sparks", 
+            "player1points": 99, 
+            "player2": "Jon Garcia", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Kallaugher", 
+            "player1points": 48, 
+            "player2": "Paul Trupia", 
+            "player2points": 99, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brandon Bruce", 
+            "player1points": 30, 
+            "player2": "Thomas Achhireddy", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Pearcy", 
+            "player1points": 27, 
+            "player2": "Erich Fields", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "CQ", 
+            "player1points": 100, 
+            "player2": "Doug Wright", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marc Sebo", 
+            "player1points": 100, 
+            "player2": "James Tomsett", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Trent Guerra", 
+            "player1points": 26, 
+            "player2": "Will Eldridge", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matthew Leibowitz", 
+            "player1points": 99, 
+            "player2": "Sean Brocklehurst", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Derek Drohan", 
+            "player1points": 72, 
+            "player2": "Jason Switzer", 
+            "player2points": 98, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Austin Jenkins", 
+            "player1points": 100, 
+            "player2": "Clay Longino", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Lewandowski", 
+            "player1points": 75, 
+            "player2": "Hunter Shelburne", 
+            "player2points": 99, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Justin Lewandowski", 
+            "player1points": 60, 
+            "player2": "Thomas Achhireddy", 
+            "player2points": 99, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Pearcy", 
+            "player1points": 100, 
+            "player2": "James Tomsett", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Will Eldridge", 
+            "player1points": 100, 
+            "player2": "Erin Cain", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Trent Guerra", 
+            "player1points": 100, 
+            "player2": "Jensen Dempsey", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Kallaugher", 
+            "player1points": 100, 
+            "player2": "Clay Longino", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Austin Jenkins", 
+            "player1points": 73, 
+            "player2": "Paul Trupia", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andy Metz", 
+            "player1points": 99, 
+            "player2": "Matthew Leibowitz", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erich Fields", 
+            "player1points": 100, 
+            "player2": "Marc Sebo", 
+            "player2points": 55, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brandon Bruce", 
+            "player1points": 25, 
+            "player2": "CQ", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Doug Wright", 
+            "player1points": 24, 
+            "player2": "Derek Drohan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon Garcia", 
+            "player1points": 100, 
+            "player2": "TJ Perryman", 
+            "player2points": 41, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gene Hogle", 
+            "player1points": 99, 
+            "player2": "Sarah Sparks", 
+            "player2points": 18, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin Bolt", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Hunter Shelburne", 
+            "player1points": 74, 
+            "player2": "Jason Switzer", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jason Switzer", 
+            "player1points": 100, 
+            "player2": "CQ", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erin Cain", 
+            "player1points": 0, 
+            "player2": "Matthew Leibowitz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Hunter Shelburne", 
+            "player1points": 72, 
+            "player2": "Trent Guerra", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Pearcy", 
+            "player1points": 99, 
+            "player2": "Martin Bolt", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Kallaugher", 
+            "player1points": 99, 
+            "player2": "Jon Garcia", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jensen Dempsey", 
+            "player1points": 14, 
+            "player2": "Doug Wright", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andy Metz", 
+            "player1points": 15, 
+            "player2": "Gene Hogle", 
+            "player2points": 98, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Lewandowski", 
+            "player1points": 100, 
+            "player2": "Brandon Bruce", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marc Sebo", 
+            "player1points": 99, 
+            "player2": "Sarah Sparks", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Achhireddy", 
+            "player1points": 62, 
+            "player2": "Austin Jenkins", 
+            "player2points": 99, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Will Eldridge", 
+            "player1points": 99, 
+            "player2": "Erich Fields", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul Trupia", 
+            "player1points": 48, 
+            "player2": "Derek Drohan", 
+            "player2points": 98, 
+            "result": "win"
+          }, 
+          {
+            "player1": "TJ Perryman", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Clay Longino", 
+            "player1points": 100, 
+            "player2": "James Tomsett", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Martin Bolt", 
+            "player1points": 0, 
+            "player2": "Brandon Bruce", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Switzer", 
+            "player1points": 35, 
+            "player2": "Marc Sebo", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Clay Longino", 
+            "player1points": 100, 
+            "player2": "Doug Wright", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul Trupia", 
+            "player1points": 50, 
+            "player2": "Michael Pearcy", 
+            "player2points": 98, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jensen Dempsey", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "CQ", 
+            "player1points": 49, 
+            "player2": "Justin Lewandowski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gene Hogle", 
+            "player1points": 99, 
+            "player2": "Will Eldridge", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Derek Drohan", 
+            "player1points": 63, 
+            "player2": "Andy Metz", 
+            "player2points": 98, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erin Cain", 
+            "player1points": 100, 
+            "player2": "TJ Perryman", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erich Fields", 
+            "player1points": 99, 
+            "player2": "Matthew Leibowitz", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Kallaugher", 
+            "player1points": 100, 
+            "player2": "Trent Guerra", 
+            "player2points": 64, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "TJ Perryman", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Jensen Dempsey", 
+            "player1points": 99, 
+            "player2": "Martin Bolt", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Doug Wright", 
+            "player1points": 100, 
+            "player2": "Brandon Bruce", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Trent Guerra", 
+            "player1points": 100, 
+            "player2": "CQ", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Pearcy", 
+            "player1points": 99, 
+            "player2": "Justin Lewandowski", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gene Hogle", 
+            "player1points": 65, 
+            "player2": "Marc Sebo", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erin Cain", 
+            "player1points": 98, 
+            "player2": "Paul Trupia", 
+            "player2points": 100, 
+            "result": "draw"
+          }, 
+          {
+            "player1": "Erich Fields", 
+            "player1points": 29, 
+            "player2": "Clay Longino", 
+            "player2points": 99, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Kallaugher", 
+            "player1points": 26, 
+            "player2": "Will Eldridge", 
+            "player2points": 99, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andy Metz", 
+            "player1points": 25, 
+            "player2": "Jason Switzer", 
+            "player2points": 98, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matthew Leibowitz", 
+            "player1points": 98, 
+            "player2": "Derek Drohan", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Will Eldridge", 
+            "player1points": 25, 
+            "player2": "Jason Switzer", 
+            "player2points": 99, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gene Hogle", 
+            "player1points": 100, 
+            "player2": "Clay Longino", 
+            "player2points": 30, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 6, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jason Switzer", 
+            "player1points": 0, 
+            "player2": "Gene Hogle", 
+            "player2points": 99, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 7, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Store Championship", 
+    "venue": {
+      "city": "Austin", 
+      "country": "United States", 
+      "lat": "30.271128600000", 
+      "lon": "-97.743699400000", 
+      "name": "Whose Turn Is It? Games", 
+      "state": "TX"
+    }
+  }
+}

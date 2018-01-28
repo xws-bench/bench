@@ -1,0 +1,1424 @@
+{
+  "tournament": {
+    "date": "2017-02-04", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2569, 
+    "name": "Atomic Empire Local", 
+    "players": [
+      {
+        "mov": 149, 
+        "name": "Connor Winkler", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.55"
+      }, 
+      {
+        "mov": 200, 
+        "name": "Brian Sloan", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.55"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lukeskywalker", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "wesjanson", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "wedgeantilles", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "torpedo": [
+                  "flechettetorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 268, 
+        "name": "Aaron Walker", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.35"
+      }, 
+      {
+        "mov": 301, 
+        "name": "Justin Grandinetti", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.55"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "kyloren", 
+              "ship": "upsilonclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 737, 
+        "name": "Chris Allen", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 1
+        }, 
+        "score": 5, 
+        "sos": "0.60"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid", 
+                  "zuckuss", 
+                  "4lom"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "bomb": [
+                  "thermaldetonators"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "slavei"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 724, 
+        "name": "Jacob McFalls", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 2
+        }, 
+        "score": 4, 
+        "sos": "0.64"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla"
+                ], 
+                "title": [
+                  "phantom"
+                ]
+              }
+            }, 
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist", 
+                  "rey"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 679, 
+        "name": "Blake McKenzie", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 3
+        }, 
+        "score": 4, 
+        "sos": "0.45"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "collisiondetector"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 675, 
+        "name": "Chris Deitz", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 4
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 675, 
+        "name": "Joshua Tracy", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 4, 
+        "sos": "0.48"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "glaivesquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "trickshot"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "swarmleader"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "glaivesquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "trickshot"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 658, 
+        "name": "Ryan Mahon", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 4, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lukeskywalker", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "mod": [
+                  "shieldupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "crew": [
+                  "c3po"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "captainrex", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "mod": [
+                  "twinionenginemkii"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 635, 
+        "name": "Josh Benjamin", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 3, 
+        "sos": "0.60"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "unkarplutt", 
+              "ship": "quadjumper", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "mod": [
+                  "spacetugtractorarray"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "boshek"
+                ], 
+                "ept": [
+                  "intimidation"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ], 
+                "samd": [
+                  "r5p8"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 592, 
+        "name": "Jason Lux", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 3, 
+        "sos": "0.74"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive", 
+                  "generalhux", 
+                  "boshek"
+                ], 
+                "ept": [
+                  "swarmleader"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 578, 
+        "name": "Tyler Barnett", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 3, 
+        "sos": "0.52"
+      }, 
+      {
+        "mov": 564, 
+        "name": "Joel Williams", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 3, 
+        "sos": "0.49"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "zuckuss"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }, 
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "gonk"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "samd": [
+                  "r5p8"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 564, 
+        "name": "James Deitz", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 3, 
+        "sos": "0.46"
+      }, 
+      {
+        "mov": 556, 
+        "name": "Jon Bruns", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 3, 
+        "sos": "0.37"
+      }, 
+      {
+        "mov": 545, 
+        "name": "Chad Prince", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 3, 
+        "sos": "0.40"
+      }, 
+      {
+        "mov": 500, 
+        "name": "Micah Williams", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 479, 
+        "name": "Ethan King", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 2, 
+        "sos": "0.53"
+      }, 
+      {
+        "mov": 469, 
+        "name": "Brian Harper", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 2, 
+        "sos": "0.68"
+      }, 
+      {
+        "mov": 461, 
+        "name": "Daniel Westerfield", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 2, 
+        "sos": "0.36"
+      }, 
+      {
+        "mov": 436, 
+        "name": "Matthew Phillippi", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 2, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 420, 
+        "name": "Connor Prince", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 2, 
+        "sos": "0.49"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "maulermithel", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ]
+              }
+            }, 
+            {
+              "name": "zetaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "swarmleader"
+                ]
+              }
+            }, 
+            {
+              "name": "puresabacc", 
+              "ship": "tiestriker", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ]
+              }
+            }, 
+            {
+              "name": "countdown", 
+              "ship": "tiestriker"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 419, 
+        "name": "Bud McClernan", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 409, 
+        "name": "Patrick Brown", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 2, 
+        "sos": "0.42"
+      }, 
+      {
+        "mov": 435, 
+        "name": "Mario Calderon", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 1, 
+        "sos": "0.32"
+      }, 
+      {
+        "mov": 372, 
+        "name": "Ryan Ledford", 
+        "rank": {
+          "swiss": 23
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 237, 
+        "name": "Patrick McGavisk", 
+        "rank": {
+          "swiss": 24
+        }, 
+        "score": 1, 
+        "sos": "0.52"
+      }, 
+      {
+        "mov": 213, 
+        "name": "Jonah Smiley", 
+        "rank": {
+          "swiss": 25
+        }, 
+        "score": 1, 
+        "sos": "0.52"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Chad Prince", 
+            "player1points": 15, 
+            "player2": "Josh Benjamin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mario Calderon", 
+            "player1points": 66, 
+            "player2": "Jonah Smiley", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick Brown", 
+            "player1points": 0, 
+            "player2": "Chris Deitz", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ethan King", 
+            "player1points": 25, 
+            "player2": "Micah Williams", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Allen", 
+            "player1points": 100, 
+            "player2": "Bud McClernan", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron Walker", 
+            "player1points": 62, 
+            "player2": "Connor Prince", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jacob McFalls", 
+            "player1points": 100, 
+            "player2": "Tyler Barnett", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matthew Phillippi", 
+            "player1points": 100, 
+            "player2": "Daniel Westerfield", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Lux", 
+            "player1points": 100, 
+            "player2": "Joshua Tracy", 
+            "player2points": 57, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Grandinetti", 
+            "player1points": 71, 
+            "player2": "Jon Bruns", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Blake McKenzie", 
+            "player1points": 100, 
+            "player2": "James Deitz", 
+            "player2points": 82, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Mahon", 
+            "player1points": 100, 
+            "player2": "Patrick McGavisk", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Connor Winkler", 
+            "player1points": 0, 
+            "player2": "Brian Sloan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian Harper", 
+            "player1points": 100, 
+            "player2": "Joel Williams", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Ledford", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jacob McFalls", 
+            "player1points": 100, 
+            "player2": "Micah Williams", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Connor Prince", 
+            "player1points": 29, 
+            "player2": "Chris Deitz", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Lux", 
+            "player1points": 100, 
+            "player2": "Brian Sloan", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Ledford", 
+            "player1points": 33, 
+            "player2": "Matthew Phillippi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Allen", 
+            "player1points": 66, 
+            "player2": "Brian Harper", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Benjamin", 
+            "player1points": 100, 
+            "player2": "Jon Bruns", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonah Smiley", 
+            "player1points": 68, 
+            "player2": "Ryan Mahon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Blake McKenzie", 
+            "player1points": 71, 
+            "player2": "Ethan King", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James Deitz", 
+            "player1points": 51, 
+            "player2": "Connor Winkler", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Westerfield", 
+            "player1points": 71, 
+            "player2": "Mario Calderon", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick Brown", 
+            "player1points": 25, 
+            "player2": "Justin Grandinetti", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chad Prince", 
+            "player1points": 0, 
+            "player2": "Joshua Tracy", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron Walker", 
+            "player1points": 27, 
+            "player2": "Joel Williams", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bud McClernan", 
+            "player1points": 76, 
+            "player2": "Tyler Barnett", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick McGavisk", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Chris Allen", 
+            "player1points": 100, 
+            "player2": "Blake McKenzie", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Chris Deitz", 
+            "player1points": 22, 
+            "player2": "Chris Allen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Lux", 
+            "player1points": 100, 
+            "player2": "Josh Benjamin", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Mahon", 
+            "player1points": 100, 
+            "player2": "Matthew Phillippi", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jacob McFalls", 
+            "player1points": 100, 
+            "player2": "Ryan Ledford", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Micah Williams", 
+            "player1points": 100, 
+            "player2": "Jon Bruns", 
+            "player2points": 76, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick McGavisk", 
+            "player1points": 0, 
+            "player2": "Tyler Barnett", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joel Williams", 
+            "player1points": 50, 
+            "player2": "Daniel Westerfield", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Connor Prince", 
+            "player1points": 100, 
+            "player2": "Jonah Smiley", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Grandinetti", 
+            "player1points": 55, 
+            "player2": "Blake McKenzie", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joshua Tracy", 
+            "player1points": 66, 
+            "player2": "Brian Harper", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ethan King", 
+            "player1points": 65, 
+            "player2": "Bud McClernan", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mario Calderon", 
+            "player1points": 43, 
+            "player2": "James Deitz", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron Walker", 
+            "player1points": 29, 
+            "player2": "Patrick Brown", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chad Prince", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jacob McFalls", 
+            "player1points": 100, 
+            "player2": "Ryan Mahon", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Lux", 
+            "player1points": 70, 
+            "player2": "Chris Allen", 
+            "player2points": 77, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Micah Williams", 
+            "player1points": 0, 
+            "player2": "Joel Williams", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Connor Prince", 
+            "player1points": 15, 
+            "player2": "Josh Benjamin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Deitz", 
+            "player1points": 100, 
+            "player2": "Tyler Barnett", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matthew Phillippi", 
+            "player1points": 55, 
+            "player2": "Blake McKenzie", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joshua Tracy", 
+            "player1points": 38, 
+            "player2": "Patrick McGavisk", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon Bruns", 
+            "player1points": 59, 
+            "player2": "Ryan Ledford", 
+            "player2points": 41, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick Brown", 
+            "player1points": 43, 
+            "player2": "James Deitz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Westerfield", 
+            "player1points": 44, 
+            "player2": "Brian Harper", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ethan King", 
+            "player1points": 100, 
+            "player2": "Justin Grandinetti", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonah Smiley", 
+            "player1points": 20, 
+            "player2": "Chad Prince", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bud McClernan", 
+            "player1points": 100, 
+            "player2": "Mario Calderon", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron Walker", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Chris Allen", 
+            "player1points": 100, 
+            "player2": "Chris Deitz", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jacob McFalls", 
+            "player1points": 55, 
+            "player2": "Blake McKenzie", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Chris Allen", 
+            "player1points": 100, 
+            "player2": "Jacob McFalls", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Blake McKenzie", 
+            "player1points": 100, 
+            "player2": "Jason Lux", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joshua Tracy", 
+            "player1points": 100, 
+            "player2": "Joel Williams", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Benjamin", 
+            "player1points": 36, 
+            "player2": "Ryan Mahon", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Deitz", 
+            "player1points": 100, 
+            "player2": "Matthew Phillippi", 
+            "player2points": 14, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James Deitz", 
+            "player1points": 100, 
+            "player2": "Bud McClernan", 
+            "player2points": 54, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Micah Williams", 
+            "player1points": 100, 
+            "player2": "Brian Harper", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ethan King", 
+            "player1points": 31, 
+            "player2": "Tyler Barnett", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chad Prince", 
+            "player1points": 100, 
+            "player2": "Connor Prince", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon Bruns", 
+            "player1points": 100, 
+            "player2": "Jonah Smiley", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick McGavisk", 
+            "player1points": 25, 
+            "player2": "Daniel Westerfield", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Ledford", 
+            "player1points": 0, 
+            "player2": "Patrick Brown", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mario Calderon", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Durham", 
+      "country": "United States of America", 
+      "lat": "35.994032900000", 
+      "lon": "-78.898618900000", 
+      "name": "Atomic Empire ", 
+      "state": "Alabama"
+    }
+  }
+}

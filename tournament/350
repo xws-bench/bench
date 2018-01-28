@@ -1,0 +1,611 @@
+{
+  "tournament": {
+    "date": "2015-03-29", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 350, 
+    "name": "Store Championship Ukronium 1828", 
+    "players": [
+      {
+        "mov": 0, 
+        "name": "Marconain", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "swarmtactics"
+                ]
+              }
+            }, 
+            {
+              "name": "maulermithel", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "targetingcomputer", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 0, 
+        "name": " PaCintosh", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Dalarisse", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "airencracken", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "swarmtactics"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ]
+              }
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "homingmissiles"
+                ]
+              }
+            }, 
+            {
+              "name": "wedgeantilles", 
+              "ship": "xwing", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "torpedo": [
+                  "flechettetorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 0, 
+        "name": "Nino", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 13, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "DrK", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 13, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ]
+              }
+            }, 
+            {
+              "name": "princexizor", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ]
+              }
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 0, 
+        "name": "Ismoule", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "gunner", 
+                  "ysanneisard", 
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "captainjonus", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 0, 
+        "name": "Sacks", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "kathscarlet", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "emonazzameen", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines", 
+                  "protonbombs", 
+                  "protonbombs"
+                ], 
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "title": [
+                  "andrasta"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 0, 
+        "name": "Pop421", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Jijibe", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 10, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": " OreillesdOurs", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 8, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "kathscarlet", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 0, 
+        "name": "royda", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 8, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "marajade", 
+                  "rebelcaptive"
+                ], 
+                "system": [
+                  "enhancedscopes"
+                ]
+              }
+            }, 
+            {
+              "name": "kathscarlet", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 0, 
+        "name": "Lizardo", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 8, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "blacksunsoldier", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunsoldier", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunsoldier", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "ept": [
+                  "outmaneuver"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 0, 
+        "name": "Sixwood", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 5, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "landocalrissian", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 0, 
+        "name": "Birdy38", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 5, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": " Belylith", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "marajade", 
+                  "ysanneisard", 
+                  "gunner"
+                ]
+              }
+            }, 
+            {
+              "name": "kathscarlet", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "ept": [
+                  "lonewolf"
+                ], 
+                "missile": [
+                  "assaultmissiles"
+                ], 
+                "mod": [
+                  "munitionsfailsafe"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 0, 
+        "name": "willow", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Lyon", 
+      "country": "France", 
+      "lat": "45.757813700000", 
+      "lon": "4.832011400000", 
+      "name": "Ukronium 1828", 
+      "state": "Rhone-Alpes"
+    }
+  }
+}

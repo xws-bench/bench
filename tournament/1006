@@ -1,0 +1,226 @@
+{
+  "tournament": {
+    "date": "2016-01-16", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1006, 
+    "name": "Dogs of War Winter Kit 2016", 
+    "players": [
+      {
+        "mov": 500, 
+        "name": "Carlos Ramirez", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 362, 
+        "name": "Eric Hall", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 337, 
+        "name": "Chris Chilcote", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 357, 
+        "name": "Marcous M", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 310, 
+        "name": "Dred Loke", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 322, 
+        "name": "Bruce Somich", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 250, 
+        "name": "Kenney FIchter", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 240, 
+        "name": "Chris K.", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 172, 
+        "name": "Stephen H.", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Eric Hall", 
+            "player1points": 34, 
+            "player2": "Bruce Somich", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carlos Ramirez", 
+            "player1points": 100, 
+            "player2": "Kenney FIchter", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris K.", 
+            "player1points": 40, 
+            "player2": "Marcous M", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Chilcote", 
+            "player1points": 100, 
+            "player2": "Dred Loke", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephen H.", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Bruce Somich", 
+            "player1points": 60, 
+            "player2": "Marcous M", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephen H.", 
+            "player1points": 0, 
+            "player2": "Carlos Ramirez", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Chilcote", 
+            "player1points": 100, 
+            "player2": "Kenney FIchter", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dred Loke", 
+            "player1points": 100, 
+            "player2": "Chris K.", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric Hall", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Carlos Ramirez", 
+            "player1points": 100, 
+            "player2": "Chris Chilcote", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric Hall", 
+            "player1points": 100, 
+            "player2": "Stephen H.", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcous M", 
+            "player1points": 50, 
+            "player2": "Dred Loke", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruce Somich", 
+            "player1points": 63, 
+            "player2": "Kenney FIchter", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris K.", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Palm Bay", 
+      "country": "United States of America", 
+      "lat": "28.033188600000", 
+      "lon": "-80.642969400000", 
+      "name": "Dogs of War", 
+      "state": "Florida"
+    }
+  }
+}

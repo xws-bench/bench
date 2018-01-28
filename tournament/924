@@ -1,0 +1,331 @@
+{
+  "tournament": {
+    "date": "2015-12-12", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 924, 
+    "name": "Xmaswing", 
+    "players": [
+      {
+        "mov": 693, 
+        "name": "Aeropig", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "56.00"
+      }, 
+      {
+        "mov": 710, 
+        "name": "KrustyDave", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 18, 
+        "sos": "46.00"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "junoeclipse", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 529, 
+        "name": "Mr C", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 18, 
+        "sos": "56.00"
+      }, 
+      {
+        "mov": 533, 
+        "name": "Bethor", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 11, 
+        "sos": "51.00"
+      }, 
+      {
+        "mov": 492, 
+        "name": "The Voice", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "64.00"
+      }, 
+      {
+        "mov": 490, 
+        "name": "Dr T", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "66.00"
+      }, 
+      {
+        "mov": 391, 
+        "name": "Swervo", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "57.00"
+      }, 
+      {
+        "mov": 162, 
+        "name": "TheNooo", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "64.00"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "final_salvo": false, 
+            "player1": "Swervo", 
+            "player1points": 19, 
+            "player2": "Bethor", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Aeropig", 
+            "player1points": 72, 
+            "player2": "TheNooo", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Dr T", 
+            "player1points": 32, 
+            "player2": "KrustyDave", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Mr C", 
+            "player1points": 66, 
+            "player2": "The Voice", 
+            "player2points": 26, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "final_salvo": false, 
+            "player1": "TheNooo", 
+            "player1points": 35, 
+            "player2": "Dr T", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Swervo", 
+            "player1points": 41, 
+            "player2": "The Voice", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Aeropig", 
+            "player1points": 100, 
+            "player2": "KrustyDave", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Bethor", 
+            "player1points": 12, 
+            "player2": "Mr C", 
+            "player2points": 70, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "final_salvo": false, 
+            "player1": "Bethor", 
+            "player1points": 75, 
+            "player2": "KrustyDave", 
+            "player2points": 86, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Dr T", 
+            "player1points": 53, 
+            "player2": "The Voice", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "TheNooo", 
+            "player1points": 15, 
+            "player2": "Swervo", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Aeropig", 
+            "player1points": 74, 
+            "player2": "Mr C", 
+            "player2points": 82, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "final_salvo": false, 
+            "player1": "The Voice", 
+            "player1points": 36, 
+            "player2": "Bethor", 
+            "player2points": 43, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Dr T", 
+            "player1points": 40, 
+            "player2": "Aeropig", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Mr C", 
+            "player1points": 75, 
+            "player2": "Swervo", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "KrustyDave", 
+            "player1points": 100, 
+            "player2": "TheNooo", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "final_salvo": false, 
+            "player1": "TheNooo", 
+            "player1points": 12, 
+            "player2": "Bethor", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Swervo", 
+            "player1points": 0, 
+            "player2": "KrustyDave", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Mr C", 
+            "player1points": 0, 
+            "player2": "Dr T", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "The Voice", 
+            "player1points": 0, 
+            "player2": "Aeropig", 
+            "player2points": 30, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Beaminster", 
+      "country": "United Kingdom", 
+      "lat": "50.809869800000", 
+      "lon": "-2.739423700000", 
+      "name": "Hooke Court", 
+      "state": "England"
+    }
+  }
+}

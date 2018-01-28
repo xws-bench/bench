@@ -1,0 +1,2642 @@
+{
+  "tournament": {
+    "date": "2015-06-12", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 485, 
+    "name": "Regio Tricity", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "gunner", 
+                  "ysanneisard", 
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "hullupgrade", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 78, 
+        "name": "Grzegorz Palach", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "hotshotblaster"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "hotshotblaster"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 902, 
+        "name": "Michal Stepien", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 1
+        }, 
+        "score": 25, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "darthvader", 
+                  "ysanneisard", 
+                  "marajade"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 860, 
+        "name": "Arkadiusz Cala", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 2
+        }, 
+        "score": 21, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "leebo", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "determination"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "lukeskywalker"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 755, 
+        "name": "Malwina Konieczna", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 3
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }, 
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "lukeskywalker"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 690, 
+        "name": "Adam Adamski", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 4
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "darthvader", 
+                  "ysanneisard", 
+                  "marajade"
+                ], 
+                "ept": [
+                  "determination"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 700, 
+        "name": "Patryk Gesiak", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 5
+        }, 
+        "score": 16, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "royalguardpilot", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ]
+              }
+            }, 
+            {
+              "name": "royalguardpilot", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ]
+              }
+            }, 
+            {
+              "name": "commanderkenkirk", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "darthvader", 
+                  "moffjerjerrod"
+                ], 
+                "ept": [
+                  "determination"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 575, 
+        "name": "Michal Bobrowski", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 6
+        }, 
+        "score": 16, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 656, 
+        "name": "Maciej Rzepinski", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 7
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "determination"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 642, 
+        "name": "Filip Vukic", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 8
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }, 
+            {
+              "name": "keyanfarlander", 
+              "ship": "bwing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }, 
+            {
+              "name": "tennumb", 
+              "ship": "bwing", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 636, 
+        "name": "Maciej Kurek", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive", 
+                  "darthvader", 
+                  "gunner"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "shieldupgrade", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 603, 
+        "name": "Karol Grzymala", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "bountyhunter", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "crew": [
+                  "reconspecialist"
+                ]
+              }
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "moffjerjerrod", 
+                  "darthvader", 
+                  "ysanneisard"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 560, 
+        "name": "Krzysztof Teclaw", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon", 
+                  "ioncannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon", 
+                  "ioncannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 557, 
+        "name": "Jacek Szczesny", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing"
+            }, 
+            {
+              "name": "jakefarrell", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts", 
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 540, 
+        "name": "Michal Wielewski", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "torkilmux", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "torpedo": [
+                  "bombloadout"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "torpedo": [
+                  "bombloadout"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 500, 
+        "name": "Konrad Fuczkiewicz", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 452, 
+        "name": "Pawel Szymkowiak", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "scimitarsquadronpilot", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "missile": [
+                  "assaultmissiles"
+                ], 
+                "mod": [
+                  "munitionsfailsafe"
+                ]
+              }
+            }, 
+            {
+              "name": "scimitarsquadronpilot", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "mod": [
+                  "munitionsfailsafe"
+                ], 
+                "torpedo": [
+                  "iontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "swarmtactics"
+                ]
+              }
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 452, 
+        "name": "Tomasz Czekajlo", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "autoblaster", 
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 519, 
+        "name": "Krzysztof Mludzik", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 12, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "cannon": [
+                  "manglercannon", 
+                  "autoblaster"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 500, 
+        "name": "Jakub Siedlecki", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon", 
+                  "autoblaster"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon", 
+                  "ioncannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 467, 
+        "name": "Mateusz Matuszewski", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon", 
+                  "autoblaster"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon", 
+                  "autoblaster"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 452, 
+        "name": "Karol Pruszkowski", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon", 
+                  "ioncannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon", 
+                  "ioncannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 422, 
+        "name": "Radek Brzana", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "tennumb", 
+              "ship": "bwing", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "hansolo", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 403, 
+        "name": "Michal Lasecki", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "darthvader", 
+                  "moffjerjerrod", 
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "predator"
+                ]
+              }
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 394, 
+        "name": "Piotr Romasiuk", 
+        "rank": {
+          "swiss": 23
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ]
+              }
+            }, 
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "gunner", 
+                  "weaponsengineer", 
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "determination"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 394, 
+        "name": "Marcin Lipecki", 
+        "rank": {
+          "swiss": 24
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines"
+                ], 
+                "torpedo": [
+                  "bombloadout"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines"
+                ], 
+                "torpedo": [
+                  "bombloadout"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "shieldupgrade"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "torpedo": [
+                  "flechettetorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 343, 
+        "name": "Andrzej Sosnowski", 
+        "rank": {
+          "swiss": 25
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "determination"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 435, 
+        "name": "Marcin \"emo\" Naprawski", 
+        "rank": {
+          "swiss": 26
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "backstabber", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "krassistrelix", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 425, 
+        "name": "Wojciech Ruchniewicz", 
+        "rank": {
+          "swiss": 27
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "blacksunsoldier", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "illicit": [
+                  "feedbackarray"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunsoldier", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "illicit": [
+                  "feedbackarray"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunsoldier", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "illicit": [
+                  "feedbackarray"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunsoldier", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "illicit": [
+                  "feedbackarray"
+                ]
+              }
+            }, 
+            {
+              "name": "princexizor", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "virago"
+                ], 
+                "torpedo": [
+                  "flechettetorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 416, 
+        "name": "Jan Zieniewicz", 
+        "rank": {
+          "swiss": 28
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 447, 
+        "name": "Przemslaw Kosinski", 
+        "rank": {
+          "swiss": 29
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "ysanneisard", 
+                  "gunner", 
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "determination"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "hullupgrade", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 324, 
+        "name": "Mikolaj Szenk", 
+        "rank": {
+          "swiss": 30
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 248, 
+        "name": "Marcin Filanski", 
+        "rank": {
+          "swiss": 31
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2f2"
+                ]
+              }
+            }, 
+            {
+              "name": "kylekatarn", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "airencracken", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 103, 
+        "name": "Michal Romasiuk", 
+        "rank": {
+          "swiss": 32
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Mikolaj Szenk", 
+            "player1points": 100, 
+            "player2": "Tomasz Czekajlo", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maciej Kurek", 
+            "player1points": 49, 
+            "player2": "Michal Stepien", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin Lipecki", 
+            "player1points": 25, 
+            "player2": "Michal Bobrowski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej Sosnowski", 
+            "player1points": 0, 
+            "player2": "Radek Brzana", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Adamski", 
+            "player1points": 100, 
+            "player2": "Karol Pruszkowski", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin Filanski", 
+            "player1points": 100, 
+            "player2": "Michal Lasecki", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wojciech Ruchniewicz", 
+            "player1points": 58, 
+            "player2": "Michal Wielewski", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Przemslaw Kosinski", 
+            "player1points": 39, 
+            "player2": "Marcin \"emo\" Naprawski", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patryk Gesiak", 
+            "player1points": 100, 
+            "player2": "Piotr Romasiuk", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Karol Grzymala", 
+            "player1points": 100, 
+            "player2": "Krzysztof Teclaw", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Arkadiusz Cala", 
+            "player1points": 100, 
+            "player2": "Grzegorz Palach", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Filip Vukic", 
+            "player1points": 0, 
+            "player2": "Jacek Szczesny", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jakub Siedlecki", 
+            "player1points": 52, 
+            "player2": "Pawel Szymkowiak", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Krzysztof Mludzik", 
+            "player1points": 58, 
+            "player2": "Maciej Rzepinski", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Malwina Konieczna", 
+            "player1points": 100, 
+            "player2": "Michal Romasiuk", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jan Zieniewicz", 
+            "player1points": 76, 
+            "player2": "Konrad Fuczkiewicz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mateusz Matuszewski", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Patryk Gesiak", 
+            "player1points": 100, 
+            "player2": "Radek Brzana", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Malwina Konieczna", 
+            "player1points": 100, 
+            "player2": "Mikolaj Szenk", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michal Bobrowski", 
+            "player1points": 100, 
+            "player2": "Karol Grzymala", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Arkadiusz Cala", 
+            "player1points": 100, 
+            "player2": "Adam Adamski", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin Filanski", 
+            "player1points": 0, 
+            "player2": "Michal Stepien", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mateusz Matuszewski", 
+            "player1points": 100, 
+            "player2": "Pawel Szymkowiak", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jacek Szczesny", 
+            "player1points": 0, 
+            "player2": "Konrad Fuczkiewicz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wojciech Ruchniewicz", 
+            "player1points": 50, 
+            "player2": "Krzysztof Mludzik", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin \"emo\" Naprawski", 
+            "player1points": 0, 
+            "player2": "Maciej Rzepinski", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michal Wielewski", 
+            "player1points": 100, 
+            "player2": "Przemslaw Kosinski", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jan Zieniewicz", 
+            "player1points": 61, 
+            "player2": "Filip Vukic", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jakub Siedlecki", 
+            "player1points": 35, 
+            "player2": "Maciej Kurek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michal Lasecki", 
+            "player1points": 100, 
+            "player2": "Karol Pruszkowski", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grzegorz Palach", 
+            "player1points": 38, 
+            "player2": "Krzysztof Teclaw", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin Lipecki", 
+            "player1points": 27, 
+            "player2": "Andrzej Sosnowski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michal Romasiuk", 
+            "player1points": 42, 
+            "player2": "Tomasz Czekajlo", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Piotr Romasiuk", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Filip Vukic", 
+            "player1points": 0, 
+            "player2": "Arkadiusz Cala", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Patryk Gesiak", 
+            "player1points": 100, 
+            "player2": "Arkadiusz Cala", 
+            "player2points": 100, 
+            "result": "draw"
+          }, 
+          {
+            "player1": "Malwina Konieczna", 
+            "player1points": 49, 
+            "player2": "Michal Stepien", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mateusz Matuszewski", 
+            "player1points": 50, 
+            "player2": "Michal Bobrowski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Konrad Fuczkiewicz", 
+            "player1points": 0, 
+            "player2": "Krzysztof Mludzik", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maciej Rzepinski", 
+            "player1points": 100, 
+            "player2": "Mikolaj Szenk", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michal Wielewski", 
+            "player1points": 100, 
+            "player2": "Karol Grzymala", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maciej Kurek", 
+            "player1points": 100, 
+            "player2": "Radek Brzana", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Krzysztof Teclaw", 
+            "player1points": 100, 
+            "player2": "Michal Lasecki", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej Sosnowski", 
+            "player1points": 0, 
+            "player2": "Adam Adamski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin Filanski", 
+            "player1points": 0, 
+            "player2": "Piotr Romasiuk", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pawel Szymkowiak", 
+            "player1points": 0, 
+            "player2": "Jacek Szczesny", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wojciech Ruchniewicz", 
+            "player1points": 15, 
+            "player2": "Jan Zieniewicz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin \"emo\" Naprawski", 
+            "player1points": 64, 
+            "player2": "Tomasz Czekajlo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Filip Vukic", 
+            "player1points": 100, 
+            "player2": "Przemslaw Kosinski", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Karol Pruszkowski", 
+            "player1points": 100, 
+            "player2": "Michal Romasiuk", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jakub Siedlecki", 
+            "player1points": 100, 
+            "player2": "Grzegorz Palach", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin Lipecki", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Michal Stepien", 
+            "player1points": 100, 
+            "player2": "Michal Bobrowski", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patryk Gesiak", 
+            "player1points": 100, 
+            "player2": "Krzysztof Mludzik", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maciej Rzepinski", 
+            "player1points": 100, 
+            "player2": "Konrad Fuczkiewicz", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Arkadiusz Cala", 
+            "player1points": 100, 
+            "player2": "Michal Wielewski", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Malwina Konieczna", 
+            "player1points": 100, 
+            "player2": "Mateusz Matuszewski", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Krzysztof Teclaw", 
+            "player1points": 0, 
+            "player2": "Maciej Kurek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Adamski", 
+            "player1points": 100, 
+            "player2": "Piotr Romasiuk", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jacek Szczesny", 
+            "player1points": 100, 
+            "player2": "Jan Zieniewicz", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tomasz Czekajlo", 
+            "player1points": 61, 
+            "player2": "Filip Vukic", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Karol Pruszkowski", 
+            "player1points": 0, 
+            "player2": "Jakub Siedlecki", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mikolaj Szenk", 
+            "player1points": 36, 
+            "player2": "Karol Grzymala", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Radek Brzana", 
+            "player1points": 46, 
+            "player2": "Marcin Lipecki", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michal Lasecki", 
+            "player1points": 54, 
+            "player2": "Andrzej Sosnowski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin Filanski", 
+            "player1points": 48, 
+            "player2": "Pawel Szymkowiak", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wojciech Ruchniewicz", 
+            "player1points": 22, 
+            "player2": "Marcin \"emo\" Naprawski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Przemslaw Kosinski", 
+            "player1points": 100, 
+            "player2": "Michal Romasiuk", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Filip Vukic", 
+            "player1points": 100, 
+            "player2": "Adam Adamski", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michal Bobrowski", 
+            "player1points": 0, 
+            "player2": "Arkadiusz Cala", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Michal Stepien", 
+            "player1points": 100, 
+            "player2": "Patryk Gesiak", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Arkadiusz Cala", 
+            "player1points": 100, 
+            "player2": "Maciej Rzepinski", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Malwina Konieczna", 
+            "player1points": 100, 
+            "player2": "Maciej Kurek", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jacek Szczesny", 
+            "player1points": 22, 
+            "player2": "Adam Adamski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michal Bobrowski", 
+            "player1points": 50, 
+            "player2": "Krzysztof Mludzik", 
+            "player2points": 50, 
+            "result": "draw"
+          }, 
+          {
+            "player1": "Jakub Siedlecki", 
+            "player1points": 13, 
+            "player2": "Filip Vukic", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michal Wielewski", 
+            "player1points": 100, 
+            "player2": "Mateusz Matuszewski", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Karol Grzymala", 
+            "player1points": 100, 
+            "player2": "Piotr Romasiuk", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Krzysztof Teclaw", 
+            "player1points": 100, 
+            "player2": "Marcin Lipecki", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Konrad Fuczkiewicz", 
+            "player1points": 100, 
+            "player2": "Andrzej Sosnowski", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pawel Szymkowiak", 
+            "player1points": 100, 
+            "player2": "Marcin \"emo\" Naprawski", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jan Zieniewicz", 
+            "player1points": 54, 
+            "player2": "Tomasz Czekajlo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Przemslaw Kosinski", 
+            "player1points": 0, 
+            "player2": "Karol Pruszkowski", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mikolaj Szenk", 
+            "player1points": 41, 
+            "player2": "Michal Lasecki", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Radek Brzana", 
+            "player1points": 100, 
+            "player2": "Marcin Filanski", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wojciech Ruchniewicz", 
+            "player1points": 100, 
+            "player2": "Michal Romasiuk", 
+            "player2points": 12, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Michal Stepien", 
+            "player1points": 0, 
+            "player2": "Filip Vukic", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Adamski", 
+            "player1points": 100, 
+            "player2": "Patryk Gesiak", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Malwina Konieczna", 
+            "player1points": 0, 
+            "player2": "Michal Bobrowski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Arkadiusz Cala", 
+            "player1points": 100, 
+            "player2": "Maciej Rzepinski", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 8, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Regional", 
+    "venue": {
+      "city": "Reda", 
+      "country": "Poland", 
+      "lat": "54.607936000000", 
+      "lon": "18.296358900000", 
+      "name": "Miejski Dom Kultury w Redzie", 
+      "state": "Pomorskie"
+    }
+  }
+}

@@ -1,0 +1,683 @@
+{
+  "tournament": {
+    "date": "2016-09-10", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2061, 
+    "name": "Summer Kit", 
+    "players": [
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "oldteroch", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 616, 
+        "name": "Morgan Kolafa", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 597, 
+        "name": "Jim Frank", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "electronicbaffle"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "collisiondetector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 517, 
+        "name": "Jon Conley", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rexlerbrath", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "lonewolf"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 450, 
+        "name": "Eugene Jordan", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.69"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "ndrusuhlak", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "cartelspacer", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 438, 
+        "name": "Lee Lahti", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 420, 
+        "name": "Jeff Pollmiller", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 387, 
+        "name": "Michael Baswell", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 315, 
+        "name": "Sean Lahti", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "zertikstrom", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "missile": [
+                  "xx23sthreadtracers"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "tempestsquadronpilot", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "tempestsquadronpilot", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "tempestsquadronpilot", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 304, 
+        "name": "Braden Jeffs", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 294, 
+        "name": "David Bernstein", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 194, 
+        "name": "Chris Laufert", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 268, 
+        "name": "Mike Russell", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 0, 
+        "sos": "0.31"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Braden Jeffs", 
+            "player1points": 68, 
+            "player2": "Morgan Kolafa", 
+            "player2points": 76, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Russell", 
+            "player1points": 23, 
+            "player2": "Michael Baswell", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Bernstein", 
+            "player1points": 44, 
+            "player2": "Jim Frank", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lee Lahti", 
+            "player1points": 30, 
+            "player2": "Jon Conley", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean Lahti", 
+            "player1points": 100, 
+            "player2": "Jeff Pollmiller", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eugene Jordan", 
+            "player1points": 100, 
+            "player2": "Chris Laufert", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jon Conley", 
+            "player1points": 63, 
+            "player2": "Eugene Jordan", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jim Frank", 
+            "player1points": 100, 
+            "player2": "Sean Lahti", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Morgan Kolafa", 
+            "player1points": 76, 
+            "player2": "Michael Baswell", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Laufert", 
+            "player1points": 18, 
+            "player2": "Lee Lahti", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Bernstein", 
+            "player1points": 50, 
+            "player2": "Jeff Pollmiller", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Russell", 
+            "player1points": 48, 
+            "player2": "Braden Jeffs", 
+            "player2points": 50, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Sean Lahti", 
+            "player1points": 0, 
+            "player2": "Morgan Kolafa", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eugene Jordan", 
+            "player1points": 74, 
+            "player2": "Jim Frank", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeff Pollmiller", 
+            "player1points": 100, 
+            "player2": "Lee Lahti", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Braden Jeffs", 
+            "player1points": 62, 
+            "player2": "Jon Conley", 
+            "player2points": 76, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Baswell", 
+            "player1points": 77, 
+            "player2": "Chris Laufert", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Russell", 
+            "player1points": 27, 
+            "player2": "David Bernstein", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Morgan Kolafa", 
+            "player1points": 100, 
+            "player2": "Eugene Jordan", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeff Pollmiller", 
+            "player1points": 62, 
+            "player2": "Jon Conley", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Baswell", 
+            "player1points": 24, 
+            "player2": "Jim Frank", 
+            "player2points": 76, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean Lahti", 
+            "player1points": 100, 
+            "player2": "David Bernstein", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lee Lahti", 
+            "player1points": 100, 
+            "player2": "Braden Jeffs", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Russell", 
+            "player1points": 45, 
+            "player2": "Chris Laufert", 
+            "player2points": 75, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Loveland", 
+      "country": "United States of America", 
+      "lat": "40.397761200000", 
+      "lon": "-105.074980000000", 
+      "name": "Grand Slam Sports Cards and Comics", 
+      "state": "Colorado"
+    }
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "tournament": {
+    "date": "2015-11-14", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 801, 
+    "name": "QGC Summer Summer Tournament", 
+    "players": [
+      {
+        "mov": 352, 
+        "name": "Niz", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 200, 
+        "name": "Shandon ", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 200, 
+        "name": "Stephen Donn", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 48, 
+        "name": "Dieter", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Stephen Donn", 
+            "player1points": 0, 
+            "player2": "Shandon ", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dieter", 
+            "player1points": 48, 
+            "player2": "Niz", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Stephen Donn", 
+            "player1points": 100, 
+            "player2": "Dieter", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shandon ", 
+            "player1points": 0, 
+            "player2": "Niz", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Dieter", 
+            "player1points": 0, 
+            "player2": "Stephen Donn", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shandon ", 
+            "player1points": 0, 
+            "player2": "Niz", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Kalgoorlie ", 
+      "country": "Australia", 
+      "lat": "59.329300000000", 
+      "lon": "18.068600000000", 
+      "name": "Boulder Bowling Club", 
+      "state": "Western Australia"
+    }
+  }
+}

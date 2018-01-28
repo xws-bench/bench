@@ -1,0 +1,174 @@
+{
+  "tournament": {
+    "date": "2016-06-20", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1841, 
+    "name": "X-Wing South SC Head's UP", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ]
+              }
+            }, 
+            {
+              "name": "turrphennir", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "marksmanship"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "squadleader"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 106, 
+        "name": "Robson F. M. Belloli", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.00"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "guri", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ], 
+                "title": [
+                  "virago"
+                ]
+              }
+            }, 
+            {
+              "name": "laetinashera", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ]
+              }
+            }, 
+            {
+              "name": "palobgodalhi", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "bodyguard"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 94, 
+        "name": "Eduardo E. Maciel", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Robson F. M. Belloli", 
+            "player1points": 34, 
+            "player2": "Eduardo E. Maciel", 
+            "player2points": 28, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Robson F. M. Belloli", 
+            "player1points": 0, 
+            "player2": "Eduardo E. Maciel", 
+            "player2points": 0, 
+            "result": "draw"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Urussanga", 
+      "country": "Brazil", 
+      "lat": "-28.522071700000", 
+      "lon": "-49.318367700000", 
+      "name": "None", 
+      "state": "Santa Catarina"
+    }
+  }
+}

@@ -1,0 +1,756 @@
+{
+  "tournament": {
+    "date": "2017-01-28", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2545, 
+    "name": "PBKW 100pt Winter Tournament", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist", 
+                  "rey"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla"
+                ], 
+                "title": [
+                  "phantom"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 838, 
+        "name": "Blake M", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 1
+        }, 
+        "score": 5, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 720, 
+        "name": "Dan S", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 2
+        }, 
+        "score": 4, 
+        "sos": "0.48"
+      }, 
+      {
+        "mov": 700, 
+        "name": "Chase G", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 3
+        }, 
+        "score": 4, 
+        "sos": "0.64"
+      }, 
+      {
+        "mov": 687, 
+        "name": "David M", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 4
+        }, 
+        "score": 4, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 658, 
+        "name": "Nymz", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 5
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 638, 
+        "name": "Kyle J", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 6
+        }, 
+        "score": 3, 
+        "sos": "0.64"
+      }, 
+      {
+        "mov": 637, 
+        "name": "AJ B", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 7
+        }, 
+        "score": 3, 
+        "sos": "0.52"
+      }, 
+      {
+        "mov": 614, 
+        "name": "Ryan L", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 8
+        }, 
+        "score": 3, 
+        "sos": "0.48"
+      }, 
+      {
+        "mov": 578, 
+        "name": "Miguel O", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 3, 
+        "sos": "0.48"
+      }, 
+      {
+        "mov": 517, 
+        "name": "Scott E", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 3, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 474, 
+        "name": "Brian S", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 3, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 472, 
+        "name": "Sean M", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 474, 
+        "name": "Will F", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 471, 
+        "name": "Jason D", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 454, 
+        "name": "Doc C", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 2, 
+        "sos": "0.52"
+      }, 
+      {
+        "mov": 403, 
+        "name": "Jacob B", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 2, 
+        "sos": "0.52"
+      }, 
+      {
+        "mov": 370, 
+        "name": "Tyler S", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 2, 
+        "sos": "0.40"
+      }, 
+      {
+        "mov": 327, 
+        "name": "Ethan S", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 1, 
+        "sos": "0.40"
+      }, 
+      {
+        "mov": 265, 
+        "name": "Jesse D", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 1, 
+        "sos": "0.32"
+      }, 
+      {
+        "mov": 242, 
+        "name": "Bradley", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 211, 
+        "name": "Chris M", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 1, 
+        "sos": "0.48"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Sean M", 
+            "player1points": 42, 
+            "player2": "Scott E", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ethan S", 
+            "player1points": 27, 
+            "player2": "Miguel O", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris M", 
+            "player1points": 0, 
+            "player2": "Dan S", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kyle J", 
+            "player1points": 100, 
+            "player2": "Jacob B", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian S", 
+            "player1points": 60, 
+            "player2": "AJ B", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jesse D", 
+            "player1points": 0, 
+            "player2": "Bradley", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Will F", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Nymz", 
+            "player1points": 84, 
+            "player2": "David M", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason D", 
+            "player1points": 27, 
+            "player2": "Ryan L", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Blake M", 
+            "player1points": 100, 
+            "player2": "Doc C", 
+            "player2points": 55, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chase G", 
+            "player1points": 100, 
+            "player2": "Tyler S", 
+            "player2points": 20, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Dan S", 
+            "player1points": 100, 
+            "player2": "Bradley", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Blake M", 
+            "player1points": 100, 
+            "player2": "Will F", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chase G", 
+            "player1points": 100, 
+            "player2": "Ryan L", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott E", 
+            "player1points": 0, 
+            "player2": "David M", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kyle J", 
+            "player1points": 100, 
+            "player2": "Brian S", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Miguel O", 
+            "player1points": 100, 
+            "player2": "Doc C", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ethan S", 
+            "player1points": 65, 
+            "player2": "Sean M", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tyler S", 
+            "player1points": 0, 
+            "player2": "Jason D", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nymz", 
+            "player1points": 41, 
+            "player2": "Jacob B", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "AJ B", 
+            "player1points": 100, 
+            "player2": "Chris M", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jesse D", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Blake M", 
+            "player1points": 100, 
+            "player2": "Dan S", 
+            "player2points": 29, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Kyle J", 
+            "player1points": 100, 
+            "player2": "David M", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dan S", 
+            "player1points": 55, 
+            "player2": "Blake M", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chase G", 
+            "player1points": 100, 
+            "player2": "Miguel O", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jacob B", 
+            "player1points": 0, 
+            "player2": "AJ B", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason D", 
+            "player1points": 100, 
+            "player2": "Will F", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jesse D", 
+            "player1points": 61, 
+            "player2": "Sean M", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott E", 
+            "player1points": 100, 
+            "player2": "Ryan L", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian S", 
+            "player1points": 100, 
+            "player2": "Bradley", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nymz", 
+            "player1points": 100, 
+            "player2": "Chris M", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ethan S", 
+            "player1points": 17, 
+            "player2": "Doc C", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tyler S", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Chase G", 
+            "player1points": 26, 
+            "player2": "Blake M", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kyle J", 
+            "player1points": 40, 
+            "player2": "AJ B", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian S", 
+            "player1points": 100, 
+            "player2": "Scott E", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David M", 
+            "player1points": 100, 
+            "player2": "Miguel O", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dan S", 
+            "player1points": 100, 
+            "player2": "Jason D", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean M", 
+            "player1points": 100, 
+            "player2": "Will F", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nymz", 
+            "player1points": 100, 
+            "player2": "Tyler S", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bradley", 
+            "player1points": 27, 
+            "player2": "Ryan L", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jacob B", 
+            "player1points": 65, 
+            "player2": "Ethan S", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jesse D", 
+            "player1points": 34, 
+            "player2": "Doc C", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris M", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Blake M", 
+            "player1points": 100, 
+            "player2": "David M", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chase G", 
+            "player1points": 63, 
+            "player2": "Dan S", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Blake M", 
+            "player1points": 100, 
+            "player2": "Brian S", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chase G", 
+            "player1points": 100, 
+            "player2": "Sean M", 
+            "player2points": 54, 
+            "result": "win"
+          }, 
+          {
+            "player1": "AJ B", 
+            "player1points": 29, 
+            "player2": "David M", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kyle J", 
+            "player1points": 72, 
+            "player2": "Dan S", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan L", 
+            "player1points": 100, 
+            "player2": "Doc C", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott E", 
+            "player1points": 100, 
+            "player2": "Jacob B", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason D", 
+            "player1points": 34, 
+            "player2": "Nymz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Miguel O", 
+            "player1points": 100, 
+            "player2": "Bradley", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris M", 
+            "player1points": 0, 
+            "player2": "Tyler S", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jesse D", 
+            "player1points": 20, 
+            "player2": "Will F", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ethan S", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Blake M", 
+            "player1points": 100, 
+            "player2": "Ryan L", 
+            "player2points": 55, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David M", 
+            "player1points": 65, 
+            "player2": "Nymz", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chase G", 
+            "player1points": 100, 
+            "player2": "Kyle J", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dan S", 
+            "player1points": 100, 
+            "player2": "AJ B", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 8, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Cornelius", 
+      "country": "United States of America", 
+      "lat": "35.486803200000", 
+      "lon": "-80.860073500000", 
+      "name": "Parker, Banner, Kent, and Wayne", 
+      "state": "North Carolina"
+    }
+  }
+}

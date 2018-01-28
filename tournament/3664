@@ -1,0 +1,850 @@
+{
+  "tournament": {
+    "date": "2017-11-19", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3664, 
+    "name": "Q3 Tournament Ep. Finale Il Labirinto", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "title": [
+                  "phantom"
+                ]
+              }
+            }, 
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ], 
+                "ept": [
+                  "drawtheirfire"
+                ]
+              }
+            }, 
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist", 
+                  "rey"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 457, 
+        "name": "Francesco Bellina", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "25.00"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "kananjarrus", 
+                  "finn"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "illicit": [
+                  "scavengercrane"
+                ], 
+                "mod": [
+                  "smugglingcompartment", 
+                  "countermeasures"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "intensity"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 428, 
+        "name": "Nevio Sorgato", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "30.00"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ketsuonyo", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "title": [
+                  "shadowcaster"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 408, 
+        "name": "Gabriele Salati", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "30.00"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "burnoutslam"
+                ], 
+                "mod": [
+                  "smugglingcompartment"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 403, 
+        "name": "Liborio Di Vincenzo", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "25.00"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "wardensquadronpilot", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "wardensquadronpilot", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines", 
+                  "seismiccharges"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "wardensquadronpilot", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 356, 
+        "name": "Mattia Minzolini", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "20.00"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "braylenstramm", 
+              "ship": "arc170", 
+              "upgrades": {
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }, 
+            {
+              "name": "thanekyrell", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }, 
+            {
+              "name": "norrawexley", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r5k6"
+                ], 
+                "crew": [
+                  "niennunb"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 302, 
+        "name": "Massimo Gaffuri", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "10.00"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ketsuonyo", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "title": [
+                  "shadowcaster"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 278, 
+        "name": "Alessandro Sacchi", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "15.00"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 225, 
+        "name": "Corrado Negri", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 5, 
+        "sos": "25.00"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "solsixxa", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines", 
+                  "bombletgenerator"
+                ], 
+                "crew": [
+                  "cadbane"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "ept": [
+                  "fearlessness"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 203, 
+        "name": "Dario Bocchetti", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 5, 
+        "sos": "15.00"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 197, 
+        "name": "Luca Sacchi", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 5, 
+        "sos": "25.00"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "title": [
+                  "phantom"
+                ]
+              }
+            }, 
+            {
+              "name": "captainrex", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "mod": [
+                  "stealthdevice"
+                ]
+              }
+            }, 
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 193, 
+        "name": "Iolanda Paolini", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 0, 
+        "sos": "25.00"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Francesco Bellina", 
+            "player1points": 100, 
+            "player2": "Corrado Negri", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Iolanda Paolini", 
+            "player1points": 33, 
+            "player2": "Mattia Minzolini", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Massimo Gaffuri", 
+            "player1points": 0, 
+            "player2": "Liborio Di Vincenzo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gabriele Salati", 
+            "player1points": 100, 
+            "player2": "Dario Bocchetti", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luca Sacchi", 
+            "player1points": 0, 
+            "player2": "Nevio Sorgato", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alessandro Sacchi", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Nevio Sorgato", 
+            "player1points": 100, 
+            "player2": "Liborio Di Vincenzo", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gabriele Salati", 
+            "player1points": 56, 
+            "player2": "Francesco Bellina", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alessandro Sacchi", 
+            "player1points": 0, 
+            "player2": "Mattia Minzolini", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Iolanda Paolini", 
+            "player1points": 35, 
+            "player2": "Corrado Negri", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dario Bocchetti", 
+            "player1points": 29, 
+            "player2": "Luca Sacchi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Massimo Gaffuri", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Nevio Sorgato", 
+            "player1points": 57, 
+            "player2": "Francesco Bellina", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mattia Minzolini", 
+            "player1points": 24, 
+            "player2": "Gabriele Salati", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Liborio Di Vincenzo", 
+            "player1points": 100, 
+            "player2": "Luca Sacchi", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Corrado Negri", 
+            "player1points": 72, 
+            "player2": "Alessandro Sacchi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Massimo Gaffuri", 
+            "player1points": 100, 
+            "player2": "Iolanda Paolini", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dario Bocchetti", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Bollate", 
+      "country": "Italy", 
+      "lat": "45.543835000000", 
+      "lon": "9.117707500000", 
+      "name": "Il Labirinto - Comics, Cards & Games", 
+      "state": "Lombardia"
+    }
+  }
+}

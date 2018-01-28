@@ -1,0 +1,957 @@
+{
+  "tournament": {
+    "date": "2017-06-11", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2983, 
+    "name": "2017 Dragons Den Store Championship", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "backdraft", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "outmaneuver"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 751, 
+        "name": "Bryan Maenz", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "teltrevura", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 743, 
+        "name": "Shawn Morris", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 4, 
+        "sos": "0.48"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "kyloren", 
+                  "hotshotcopilot", 
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 701, 
+        "name": "Rob Sveinbjurnson", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 4, 
+        "sos": "0.60"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 638, 
+        "name": "Joel Anderson", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "kyloren", 
+              "ship": "upsilonclassshuttle", 
+              "upgrades": {
+                "tech": [
+                  "hyperwavecommscanner"
+                ], 
+                "title": [
+                  "kylorensshuttle"
+                ]
+              }
+            }, 
+            {
+              "name": "starkillerbasepilot", 
+              "ship": "upsilonclassshuttle", 
+              "upgrades": {
+                "tech": [
+                  "hyperwavecommscanner"
+                ]
+              }
+            }, 
+            {
+              "name": "lieutenantdormitz", 
+              "ship": "upsilonclassshuttle", 
+              "upgrades": {
+                "tech": [
+                  "hyperwavecommscanner"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 502, 
+        "name": "Darren Mathieu", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 3, 
+        "sos": "0.52"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r4d6"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 482, 
+        "name": "Leslie Ball", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 3, 
+        "sos": "0.40"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "sensorcluster"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "ept": [
+                  "ruthlessness"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }, 
+            {
+              "name": "imperialtrainee", 
+              "ship": "tiestriker", 
+              "upgrades": {
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "title": [
+                  "adaptiveailerons"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 450, 
+        "name": "Gary Ball", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.68"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "decoy"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "expertise"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 426, 
+        "name": "Patrick", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.60"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "rey", 
+                  "finn"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "m9g8"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "crew": [
+                  "chopper"
+                ], 
+                "title": [
+                  "phantom"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 410, 
+        "name": "Tristan Ball", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.36"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 396, 
+        "name": "Brent Fast", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 2, 
+        "sos": "0.36"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "scimitarsquadronpilot", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "scimitarsquadronpilot", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "scimitarsquadronpilot", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "missile": [
+                  "ionpulsemissiles"
+                ]
+              }
+            }, 
+            {
+              "name": "deathrain", 
+              "ship": "tiepunisher", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines", 
+                  "protonbombs"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 251, 
+        "name": "Cody Martinka", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Rob Sveinbjurnson", 
+            "player1points": 100, 
+            "player2": "Patrick", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joel Anderson", 
+            "player1points": 100, 
+            "player2": "Tristan Ball", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gary Ball", 
+            "player1points": 100, 
+            "player2": "Brent Fast", 
+            "player2points": 19, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bryan Maenz", 
+            "player1points": 100, 
+            "player2": "Leslie Ball", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shawn Morris", 
+            "player1points": 100, 
+            "player2": "Cody Martinka", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Darren Mathieu", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Rob Sveinbjurnson", 
+            "player1points": 100, 
+            "player2": "Shawn Morris", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Darren Mathieu", 
+            "player1points": 65, 
+            "player2": "Joel Anderson", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bryan Maenz", 
+            "player1points": 19, 
+            "player2": "Gary Ball", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cody Martinka", 
+            "player1points": 28, 
+            "player2": "Patrick", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brent Fast", 
+            "player1points": 52, 
+            "player2": "Leslie Ball", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tristan Ball", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Rob Sveinbjurnson", 
+            "player1points": 100, 
+            "player2": "Gary Ball", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Darren Mathieu", 
+            "player1points": 29, 
+            "player2": "Shawn Morris", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick", 
+            "player1points": 34, 
+            "player2": "Bryan Maenz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joel Anderson", 
+            "player1points": 100, 
+            "player2": "Leslie Ball", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tristan Ball", 
+            "player1points": 50, 
+            "player2": "Brent Fast", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cody Martinka", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Rob Sveinbjurnson", 
+            "player1points": 100, 
+            "player2": "Darren Mathieu", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bryan Maenz", 
+            "player1points": 100, 
+            "player2": "Joel Anderson", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shawn Morris", 
+            "player1points": 100, 
+            "player2": "Gary Ball", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tristan Ball", 
+            "player1points": 100, 
+            "player2": "Cody Martinka", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick", 
+            "player1points": 100, 
+            "player2": "Brent Fast", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Leslie Ball", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Rob Sveinbjurnson", 
+            "player1points": 0, 
+            "player2": "Bryan Maenz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shawn Morris", 
+            "player1points": 100, 
+            "player2": "Patrick", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gary Ball", 
+            "player1points": 33, 
+            "player2": "Joel Anderson", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Darren Mathieu", 
+            "player1points": 100, 
+            "player2": "Tristan Ball", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Leslie Ball", 
+            "player1points": 100, 
+            "player2": "Cody Martinka", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brent Fast", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Saskatoon", 
+      "country": "Canada", 
+      "lat": "52.130379400000", 
+      "lon": "-106.660512300000", 
+      "name": "Dragon's Den", 
+      "state": "Saskatchewan"
+    }
+  }
+}

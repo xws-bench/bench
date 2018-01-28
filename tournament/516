@@ -1,0 +1,350 @@
+{
+  "tournament": {
+    "date": "2015-06-27", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 516, 
+    "name": "Ho Down Throw Down Show Down", 
+    "players": [
+      {
+        "mov": 724, 
+        "name": "Gene Hogle", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 600, 
+        "name": "Jeff Rodriguez", 
+        "rank": {
+          "elimination": 3, 
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 550, 
+        "name": "Paul Trupia", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 535, 
+        "name": "Clay Longino", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 460, 
+        "name": "Christopher Williams", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 459, 
+        "name": "Dereck Drohan", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 387, 
+        "name": "Kris Foster", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 299, 
+        "name": "CQ", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 236, 
+        "name": "Marty Miller", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 179, 
+        "name": "Michael Allen", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 171, 
+        "name": "Kyle Juusola", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Paul Trupia", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Jeff Rodriguez", 
+            "player1points": 22, 
+            "player2": "Clay Longino", 
+            "player2points": 99, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dereck Drohan", 
+            "player1points": 99, 
+            "player2": "CQ", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Allen", 
+            "player1points": 0, 
+            "player2": "Gene Hogle", 
+            "player2points": 99, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christopher Williams", 
+            "player1points": 98, 
+            "player2": "Kyle Juusola", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marty Miller", 
+            "player1points": 35, 
+            "player2": "Kris Foster", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Dereck Drohan", 
+            "player1points": 22, 
+            "player2": "Clay Longino", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "CQ", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Marty Miller", 
+            "player1points": 0, 
+            "player2": "Jeff Rodriguez", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gene Hogle", 
+            "player1points": 100, 
+            "player2": "Christopher Williams", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kyle Juusola", 
+            "player1points": 99, 
+            "player2": "Michael Allen", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kris Foster", 
+            "player1points": 0, 
+            "player2": "Paul Trupia", 
+            "player2points": 98, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Michael Allen", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Gene Hogle", 
+            "player1points": 97, 
+            "player2": "Paul Trupia", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Clay Longino", 
+            "player1points": 100, 
+            "player2": "Christopher Williams", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kyle Juusola", 
+            "player1points": 0, 
+            "player2": "Kris Foster", 
+            "player2points": 98, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dereck Drohan", 
+            "player1points": 0, 
+            "player2": "Jeff Rodriguez", 
+            "player2points": 97, 
+            "result": "win"
+          }, 
+          {
+            "player1": "CQ", 
+            "player1points": 100, 
+            "player2": "Marty Miller", 
+            "player2points": 51, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Gene Hogle", 
+            "player1points": 100, 
+            "player2": "Clay Longino", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Allen", 
+            "player1points": 0, 
+            "player2": "Christopher Williams", 
+            "player2points": 99, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kyle Juusola", 
+            "player1points": 0, 
+            "player2": "Dereck Drohan", 
+            "player2points": 98, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul Trupia", 
+            "player1points": 99, 
+            "player2": "CQ", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeff Rodriguez", 
+            "player1points": 98, 
+            "player2": "Kris Foster", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marty Miller", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Paul Trupia", 
+            "player1points": 99, 
+            "player2": "Jeff Rodriguez", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Clay Longino", 
+            "player1points": 50, 
+            "player2": "Gene Hogle", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Gene Hogle", 
+            "player1points": 97, 
+            "player2": "Paul Trupia", 
+            "player2points": 24, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 6, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Austin", 
+      "country": "United States", 
+      "lat": "30.271128600000", 
+      "lon": "-97.743699400000", 
+      "name": "Mage's Sanctum", 
+      "state": "TX"
+    }
+  }
+}

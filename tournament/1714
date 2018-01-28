@@ -1,0 +1,792 @@
+{
+  "tournament": {
+    "date": "2016-05-29", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1714, 
+    "name": "Hangar Bay Heroes XIII", 
+    "players": [
+      {
+        "mov": 166, 
+        "name": "Daniel Ross", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 517, 
+        "name": "Rhys", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 542, 
+        "name": "Vincent", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 18, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 645, 
+        "name": "Mark T", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 917, 
+        "name": "Barry E", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 25, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 728, 
+        "name": "Vlad", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 2
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 653, 
+        "name": "Mark Bruce", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 3
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 615, 
+        "name": "Simon T", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 608, 
+        "name": "Ev Cheng", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 5
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "dutchvander", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r2d6"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "protontorpedoes"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }, 
+            {
+              "name": "wesjanson", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 556, 
+        "name": "Matt Goodman", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 552, 
+        "name": "Liam Early", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 7
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 482, 
+        "name": "Neil", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 8
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 527, 
+        "name": "Greg McKenzie", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 496, 
+        "name": "Jon W", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 476, 
+        "name": "Nathanael", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 456, 
+        "name": "Gregg J", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 434, 
+        "name": "Dan Cheng", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 431, 
+        "name": "Josh Cheng", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 394, 
+        "name": "Scott", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 374, 
+        "name": "Kris Sanders", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 349, 
+        "name": "Mark Cheng", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 363, 
+        "name": "Garrick", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 269, 
+        "name": "Tim", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Daniel Ross", 
+            "player1points": 100, 
+            "player2": "Garrick", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark T", 
+            "player1points": 32, 
+            "player2": "Vlad", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark Bruce", 
+            "player1points": 100, 
+            "player2": "Rhys", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ev Cheng", 
+            "player1points": 0, 
+            "player2": "Jon W", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott", 
+            "player1points": 100, 
+            "player2": "Dan Cheng", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tim", 
+            "player1points": 0, 
+            "player2": "Simon T", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Cheng", 
+            "player1points": 31, 
+            "player2": "Matt Goodman", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark Cheng", 
+            "player1points": 50, 
+            "player2": "Barry E", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Greg McKenzie", 
+            "player1points": 100, 
+            "player2": "Kris Sanders", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Liam Early", 
+            "player1points": 50, 
+            "player2": "Gregg J", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathanael", 
+            "player1points": 100, 
+            "player2": "Neil", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vincent", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Nathanael", 
+            "player1points": 25, 
+            "player2": "Gregg J", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Greg McKenzie", 
+            "player1points": 100, 
+            "player2": "Daniel Ross", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Barry E", 
+            "player1points": 100, 
+            "player2": "Jon W", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simon T", 
+            "player1points": 100, 
+            "player2": "Matt Goodman", 
+            "player2points": 54, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott", 
+            "player1points": 48, 
+            "player2": "Vincent", 
+            "player2points": 86, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vlad", 
+            "player1points": 42, 
+            "player2": "Mark Bruce", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kris Sanders", 
+            "player1points": 39, 
+            "player2": "Dan Cheng", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark Cheng", 
+            "player1points": 0, 
+            "player2": "Mark T", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Neil", 
+            "player1points": 100, 
+            "player2": "Josh Cheng", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ev Cheng", 
+            "player1points": 52, 
+            "player2": "Rhys", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Garrick", 
+            "player1points": 33, 
+            "player2": "Liam Early", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tim", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Barry E", 
+            "player1points": 100, 
+            "player2": "Mark Bruce", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vincent", 
+            "player1points": 100, 
+            "player2": "Greg McKenzie", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simon T", 
+            "player1points": 100, 
+            "player2": "Gregg J", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rhys", 
+            "player1points": 0, 
+            "player2": "Mark T", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon W", 
+            "player1points": 31, 
+            "player2": "Matt Goodman", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dan Cheng", 
+            "player1points": 100, 
+            "player2": "Daniel Ross", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tim", 
+            "player1points": 32, 
+            "player2": "Vlad", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathanael", 
+            "player1points": 64, 
+            "player2": "Liam Early", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott", 
+            "player1points": 0, 
+            "player2": "Neil", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ev Cheng", 
+            "player1points": 100, 
+            "player2": "Kris Sanders", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Cheng", 
+            "player1points": 100, 
+            "player2": "Garrick", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark Cheng", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Vincent", 
+            "player1points": 78, 
+            "player2": "Simon T", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Barry E", 
+            "player1points": 100, 
+            "player2": "Neil", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gregg J", 
+            "player1points": 18, 
+            "player2": "Vlad", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Liam Early", 
+            "player1points": 100, 
+            "player2": "Matt Goodman", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark Bruce", 
+            "player1points": 100, 
+            "player2": "Dan Cheng", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Greg McKenzie", 
+            "player1points": 29, 
+            "player2": "Mark T", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott", 
+            "player1points": 22, 
+            "player2": "Ev Cheng", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathanael", 
+            "player1points": 0, 
+            "player2": "Jon W", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rhys", 
+            "player1points": 100, 
+            "player2": "Mark Cheng", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Ross", 
+            "player1points": 0, 
+            "player2": "Josh Cheng", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tim", 
+            "player1points": 74, 
+            "player2": "Garrick", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kris Sanders", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Barry E", 
+            "player1points": 100, 
+            "player2": "Ev Cheng", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt Goodman", 
+            "player1points": 82, 
+            "player2": "Vlad", 
+            "player2points": 68, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Barry E", 
+            "player1points": 100, 
+            "player2": "Simon T", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Liam Early", 
+            "player1points": 32, 
+            "player2": "Vlad", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark T", 
+            "player1points": 42, 
+            "player2": "Mark Bruce", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Neil", 
+            "player1points": 65, 
+            "player2": "Jon W", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rhys", 
+            "player1points": 100, 
+            "player2": "Dan Cheng", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gregg J", 
+            "player1points": 69, 
+            "player2": "Matt Goodman", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Cheng", 
+            "player1points": 0, 
+            "player2": "Ev Cheng", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Greg McKenzie", 
+            "player1points": 10, 
+            "player2": "Mark Cheng", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kris Sanders", 
+            "player1points": 100, 
+            "player2": "Garrick", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tim", 
+            "player1points": 13, 
+            "player2": "Nathanael", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Barry E", 
+            "player1points": 100, 
+            "player2": "Neil", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simon T", 
+            "player1points": 22, 
+            "player2": "Ev Cheng", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark Bruce", 
+            "player1points": 0, 
+            "player2": "Matt Goodman", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vlad", 
+            "player1points": 100, 
+            "player2": "Liam Early", 
+            "player2points": 32, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 8, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Wangara", 
+      "country": "Australia", 
+      "lat": "-31.952712000000", 
+      "lon": "115.860479600000", 
+      "name": "Gamagori", 
+      "state": "Western Australia"
+    }
+  }
+}

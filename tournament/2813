@@ -1,0 +1,196 @@
+{
+  "tournament": {
+    "date": "2017-04-22", 
+    "format": "Hangar Bay", 
+    "id": 2813, 
+    "name": "505th Redemption - PHX", 
+    "players": [
+      {
+        "mov": 517, 
+        "name": "Riley Estes", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 408, 
+        "name": "John Famas", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 402, 
+        "name": "Mike Huege", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 330, 
+        "name": "Nathan Smith", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 271, 
+        "name": "Sean McGlaughlin", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 223, 
+        "name": "Ron Olson", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 164, 
+        "name": "Paul Kim", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 85, 
+        "name": "Brett Roberts", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Paul Kim", 
+            "player1points": 72, 
+            "player2": "Sean McGlaughlin", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Riley Estes", 
+            "player1points": 100, 
+            "player2": "Ron Olson", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Smith", 
+            "player1points": 64, 
+            "player2": "John Famas", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brett Roberts", 
+            "player1points": 0, 
+            "player2": "Mike Huege", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Nathan Smith", 
+            "player1points": 33, 
+            "player2": "Mike Huege", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul Kim", 
+            "player1points": 0, 
+            "player2": "Riley Estes", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean McGlaughlin", 
+            "player1points": 19, 
+            "player2": "John Famas", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brett Roberts", 
+            "player1points": 29, 
+            "player2": "Ron Olson", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Mike Huege", 
+            "player1points": 67, 
+            "player2": "Riley Estes", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Smith", 
+            "player1points": 75, 
+            "player2": "Paul Kim", 
+            "player2points": 14, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ron Olson", 
+            "player1points": 36, 
+            "player2": "John Famas", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean McGlaughlin", 
+            "player1points": 100, 
+            "player2": "Brett Roberts", 
+            "player2points": 56, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Gilbert", 
+      "country": "United States of America", 
+      "lat": "33.294207000000", 
+      "lon": "-111.737946518640", 
+      "name": "GamesU", 
+      "state": "Arizona"
+    }
+  }
+}

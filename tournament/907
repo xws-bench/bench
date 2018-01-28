@@ -1,0 +1,235 @@
+{
+  "tournament": {
+    "date": "2015-12-05", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 907, 
+    "name": "Double Play", 
+    "players": [
+      {
+        "mov": 475, 
+        "name": "Kyle OConnell", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 451, 
+        "name": "Kevin Lientz", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 382, 
+        "name": "Tate Rose", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 381, 
+        "name": "Mitch Tetzlof", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 361, 
+        "name": "Seth Whalen", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 337, 
+        "name": "Bret Ulrich", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 240, 
+        "name": "JP", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 215, 
+        "name": "Derrick Jungers", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 132, 
+        "name": "Sean Tweeten", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 26, 
+        "name": "Tyler Keesee", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Tate Rose", 
+            "player1points": 69, 
+            "player2": "Mitch Tetzlof", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "JP", 
+            "player1points": 100, 
+            "player2": "Tyler Keesee", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Derrick Jungers", 
+            "player1points": 0, 
+            "player2": "Kyle OConnell", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Lientz", 
+            "player1points": 29, 
+            "player2": "Bret Ulrich", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean Tweeten", 
+            "player1points": 50, 
+            "player2": "Seth Whalen", 
+            "player2points": 76, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Seth Whalen", 
+            "player1points": 100, 
+            "player2": "Mitch Tetzlof", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bret Ulrich", 
+            "player1points": 100, 
+            "player2": "Sean Tweeten", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Derrick Jungers", 
+            "player1points": 15, 
+            "player2": "Tate Rose", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kyle OConnell", 
+            "player1points": 99, 
+            "player2": "JP", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tyler Keesee", 
+            "player1points": 26, 
+            "player2": "Kevin Lientz", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "JP", 
+            "player1points": 0, 
+            "player2": "Kevin Lientz", 
+            "player2points": 99, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean Tweeten", 
+            "player1points": 0, 
+            "player2": "Mitch Tetzlof", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bret Ulrich", 
+            "player1points": 30, 
+            "player2": "Tate Rose", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Seth Whalen", 
+            "player1points": 60, 
+            "player2": "Kyle OConnell", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tyler Keesee", 
+            "player1points": 0, 
+            "player2": "Derrick Jungers", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Le Sueur", 
+      "country": "United States", 
+      "lat": "44.377165200000", 
+      "lon": "-93.711442900000", 
+      "name": "613 N 4th St", 
+      "state": "MN"
+    }
+  }
+}

@@ -1,0 +1,705 @@
+{
+  "tournament": {
+    "date": "2017-12-03", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3716, 
+    "name": "Beyond the Dungeon Tournament", 
+    "players": [
+      {
+        "mov": 39, 
+        "name": "David C", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "crew": [
+                  "c3po"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 519, 
+        "name": "Robert R", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom"
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "sensorcluster"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "epsilonsquadronpilot", 
+              "ship": "tiefofighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 477, 
+        "name": "David Light", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle"
+            }, 
+            {
+              "name": "herasyndulla", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "ezrabridger", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "crew": [
+                  "inspiringrecruit"
+                ], 
+                "ept": [
+                  "rage"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "sabinewren", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "ept": [
+                  "intensity"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 415, 
+        "name": "Chris S", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 387, 
+        "name": "Cass", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "wedgeantilles", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "airencracken", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 372, 
+        "name": "Dave Do", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "quinnjast", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "sunnybounder", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "title": [
+                  "lightscykinterceptor"
+                ]
+              }
+            }, 
+            {
+              "name": "torkilmux", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "dengar"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "palobgodalhi", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "4lom"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 277, 
+        "name": "Jeremy", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 270, 
+        "name": "Katie", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "unkarplutt", 
+              "ship": "quadjumper", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "illicit": [
+                  "cloakingdevice"
+                ], 
+                "mod": [
+                  "spacetugtractorarray"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "lattsrazzi"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "burnoutslam"
+                ], 
+                "title": [
+                  "shadowcaster"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 205, 
+        "name": "Lee", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 177, 
+        "name": "Trevor", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.83"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "tactician", 
+                  "breachspecialist"
+                ], 
+                "ept": [
+                  "expertise"
+                ]
+              }
+            }, 
+            {
+              "name": "ezrabridger", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "crew": [
+                  "inspiringrecruit"
+                ], 
+                "ept": [
+                  "rage"
+                ]
+              }
+            }, 
+            {
+              "name": "jesspava", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "captainrex", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 162, 
+        "name": "Jesse C", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Cass", 
+            "player1points": 27, 
+            "player2": "Robert R", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris S", 
+            "player1points": 100, 
+            "player2": "Trevor", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dave Do", 
+            "player1points": 64, 
+            "player2": "Jesse C", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David C", 
+            "player1points": 25, 
+            "player2": "Jeremy", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lee", 
+            "player1points": 25, 
+            "player2": "Katie", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Light", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "David Light", 
+            "player1points": 100, 
+            "player2": "Jeremy", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Katie", 
+            "player1points": 27, 
+            "player2": "Robert R", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jesse C", 
+            "player1points": 0, 
+            "player2": "Chris S", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lee", 
+            "player1points": 24, 
+            "player2": "Dave Do", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cass", 
+            "player1points": 100, 
+            "player2": "David C", 
+            "player2points": 14, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Trevor", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "David Light", 
+            "player1points": 100, 
+            "player2": "Chris S", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robert R", 
+            "player1points": 100, 
+            "player2": "Trevor", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cass", 
+            "player1points": 100, 
+            "player2": "Jesse C", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dave Do", 
+            "player1points": 100, 
+            "player2": "Katie", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeremy", 
+            "player1points": 44, 
+            "player2": "Lee", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Spring", 
+      "country": "United States of America", 
+      "lat": "30.079882600000", 
+      "lon": "-95.417254900000", 
+      "name": "Beyond the Dungeon", 
+      "state": "Texas"
+    }
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "tournament": {
+    "date": "2016-04-09", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1469, 
+    "name": "The Dark Side Monthly Tournament", 
+    "players": [
+      {
+        "mov": 470, 
+        "name": "Gus Vriniotis", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 456, 
+        "name": "Dan Feder", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 399, 
+        "name": "Jason Rivera", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 333, 
+        "name": "Garrett Hensley", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 285, 
+        "name": "Justin Reber", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 225, 
+        "name": "Barrie Critzer", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 155, 
+        "name": "Tony LaManna", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 3, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 77, 
+        "name": "Josh Cooley", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Jason Rivera", 
+            "player1points": 100, 
+            "player2": "Barrie Critzer", 
+            "player2points": 54, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Garrett Hensley", 
+            "player1points": 100, 
+            "player2": "Justin Reber", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Cooley", 
+            "player1points": 32, 
+            "player2": "Gus Vriniotis", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tony LaManna", 
+            "player1points": 69, 
+            "player2": "Dan Feder", 
+            "player2points": 59, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Garrett Hensley", 
+            "player1points": 16, 
+            "player2": "Gus Vriniotis", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Rivera", 
+            "player1points": 100, 
+            "player2": "Tony LaManna", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dan Feder", 
+            "player1points": 100, 
+            "player2": "Barrie Critzer", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Reber", 
+            "player1points": 100, 
+            "player2": "Josh Cooley", 
+            "player2points": 16, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Gus Vriniotis", 
+            "player1points": 100, 
+            "player2": "Jason Rivera", 
+            "player2points": 82, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dan Feder", 
+            "player1points": 100, 
+            "player2": "Justin Reber", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Garrett Hensley", 
+            "player1points": 100, 
+            "player2": "Tony LaManna", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Barrie Critzer", 
+            "player1points": 100, 
+            "player2": "Josh Cooley", 
+            "player2points": 29, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Sarasta", 
+      "country": "United States of America", 
+      "lat": null, 
+      "lon": null, 
+      "name": "", 
+      "state": "Florida"
+    }
+  }
+}

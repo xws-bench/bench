@@ -1,0 +1,162 @@
+{
+  "tournament": {
+    "date": "2016-01-31", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1079, 
+    "name": "Tuesday Night", 
+    "players": [
+      {
+        "mov": 166, 
+        "name": "Steve Dodd", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 152, 
+        "name": "Speedy", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 119, 
+        "name": "David Gearhart", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 102, 
+        "name": "John Louis Rumingan", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 98, 
+        "name": "Ned Ash ", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 81, 
+        "name": "Derek Tokaz", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 48, 
+        "name": "Quinn Coveny", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 34, 
+        "name": "Deke Taylor", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Deke Taylor", 
+            "player1points": 34, 
+            "player2": "Steve Dodd", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Louis Rumingan", 
+            "player1points": 74, 
+            "player2": "Ned Ash ", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Gearhart", 
+            "player1points": 64, 
+            "player2": "Derek Tokaz", 
+            "player2points": 45, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Quinn Coveny", 
+            "player1points": 48, 
+            "player2": "Speedy", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "David Gearhart", 
+            "player1points": 0, 
+            "player2": "John Louis Rumingan", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steve Dodd", 
+            "player1points": 0, 
+            "player2": "Speedy", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Quinn Coveny", 
+            "player1points": 0, 
+            "player2": "Deke Taylor", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ned Ash ", 
+            "player1points": 0, 
+            "player2": "Derek Tokaz", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Kalgoorlie ", 
+      "country": "Australia", 
+      "lat": "59.329300000000", 
+      "lon": "18.068600000000", 
+      "name": "Boulder Bowling Club", 
+      "state": "Western Australia"
+    }
+  }
+}

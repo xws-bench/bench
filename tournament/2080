@@ -1,0 +1,78 @@
+{
+  "tournament": {
+    "date": "2016-09-13", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2080, 
+    "name": "Test", 
+    "players": [
+      {
+        "mov": 0, 
+        "name": "Bendorak", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Link E8", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Frantz", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Eric", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Link E8", 
+            "player1points": 0, 
+            "player2": "Frantz", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric", 
+            "player1points": 0, 
+            "player2": "Bendorak", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Vaires sur Marne", 
+      "country": "France", 
+      "lat": "48.870701700000", 
+      "lon": "2.633385400000", 
+      "name": "", 
+      "state": "le-de-France"
+    }
+  }
+}

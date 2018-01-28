@@ -1,0 +1,983 @@
+{
+  "tournament": {
+    "date": "2016-04-16", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1523, 
+    "name": "NNXW: XVII Who's Scruffy Looking", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "echo", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "ept": [
+                  "lonewolf"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 98, 
+        "name": "Thomas Fox", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 719, 
+        "name": "Nathan Morley", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "junoeclipse", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "bomb": [
+                  "thermaldetonators"
+                ], 
+                "crew": [
+                  "moffjerjerrod", 
+                  "emperorpalpatine"
+                ], 
+                "ept": [
+                  "expose"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 571, 
+        "name": "Bryan Luce", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 569, 
+        "name": "Steve Hines", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "crew": [
+                  "c3po"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 556, 
+        "name": "Ray Pena", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "torkilmux", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "4lom"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "4lom"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 527, 
+        "name": "Dominick deRosa", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "wired"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 460, 
+        "name": "Nick Gaston", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 381, 
+        "name": "Aaron H", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "tempestsquadronpilot", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "mod": [
+                  "hullupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "tempestsquadronpilot", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "mod": [
+                  "hullupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "tempestsquadronpilot", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "mod": [
+                  "hullupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "tempestsquadronpilot", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "mod": [
+                  "hullupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 345, 
+        "name": "Matt Kendler", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 298, 
+        "name": "Rodger Moore", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "outmaneuver"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "sienartestpilot", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "sienartestpilot", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "bountyhunter", 
+              "ship": "firespray31"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 355, 
+        "name": "Ryan Wuebbles", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "sabinewren", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "title": [
+                  "phantom"
+                ]
+              }
+            }, 
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "chopper", 
+                  "herasyndulla"
+                ], 
+                "system": [
+                  "reinforceddeflectors"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "torpedo": [
+                  "protontorpedoes"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }, 
+            {
+              "name": "dutchvander", 
+              "ship": "ywing", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "torpedo": [
+                  "bombloadout"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 233, 
+        "name": "Geoffrey Whitt", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "determination"
+                ], 
+                "missile": [
+                  "concussionmissiles"
+                ]
+              }
+            }, 
+            {
+              "name": "echo", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "mod": [
+                  "advancedcloakingdevice"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "daredevil"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 225, 
+        "name": "Aaron Mouritsen", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine", 
+                  "ysanneisard"
+                ], 
+                "ept": [
+                  "expose"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 213, 
+        "name": "Michelle Bailey", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Nathan Morley", 
+            "player1points": 100, 
+            "player2": "Michelle Bailey", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Wuebbles", 
+            "player1points": 100, 
+            "player2": "Bryan Luce", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron Mouritsen", 
+            "player1points": 0, 
+            "player2": "Steve Hines", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ray Pena", 
+            "player1points": 100, 
+            "player2": "Dominick deRosa", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron H", 
+            "player1points": 37, 
+            "player2": "Nick Gaston", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Geoffrey Whitt", 
+            "player1points": 99, 
+            "player2": "Thomas Fox", 
+            "player2points": 79, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rodger Moore", 
+            "player1points": 25, 
+            "player2": "Matt Kendler", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Nick Gaston", 
+            "player1points": 29, 
+            "player2": "Rodger Moore", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Morley", 
+            "player1points": 100, 
+            "player2": "Steve Hines", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ray Pena", 
+            "player1points": 100, 
+            "player2": "Geoffrey Whitt", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Wuebbles", 
+            "player1points": 65, 
+            "player2": "Michelle Bailey", 
+            "player2points": 83, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bryan Luce", 
+            "player1points": 100, 
+            "player2": "Aaron Mouritsen", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dominick deRosa", 
+            "player1points": 100, 
+            "player2": "Thomas Fox", 
+            "player2points": 18, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt Kendler", 
+            "player1points": 29, 
+            "player2": "Aaron H", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Rodger Moore", 
+            "player1points": 39, 
+            "player2": "Ray Pena", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Morley", 
+            "player1points": 100, 
+            "player2": "Ryan Wuebbles", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron H", 
+            "player1points": 31, 
+            "player2": "Bryan Luce", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Geoffrey Whitt", 
+            "player1points": 75, 
+            "player2": "Steve Hines", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michelle Bailey", 
+            "player1points": 37, 
+            "player2": "Dominick deRosa", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nick Gaston", 
+            "player1points": 100, 
+            "player2": "Thomas Fox", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron Mouritsen", 
+            "player1points": 75, 
+            "player2": "Matt Kendler", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Ray Pena", 
+            "player1points": 15, 
+            "player2": "Nathan Morley", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bryan Luce", 
+            "player1points": 100, 
+            "player2": "Nick Gaston", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steve Hines", 
+            "player1points": 100, 
+            "player2": "Rodger Moore", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dominick deRosa", 
+            "player1points": 100, 
+            "player2": "Geoffrey Whitt", 
+            "player2points": 18, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron H", 
+            "player1points": 100, 
+            "player2": "Michelle Bailey", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt Kendler", 
+            "player1points": 16, 
+            "player2": "Ryan Wuebbles", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron Mouritsen", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Carson City", 
+      "country": "United States of America", 
+      "lat": "39.163798400000", 
+      "lon": "-119.767403300000", 
+      "name": "Nerdvana", 
+      "state": "Nevada"
+    }
+  }
+}

@@ -1,0 +1,285 @@
+{
+  "tournament": {
+    "date": "2016-06-27", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1814, 
+    "name": "Good Games Cannington X-Wing League - Round 5", 
+    "players": [
+      {
+        "mov": 425, 
+        "name": "Nate", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "darthvader", 
+                  "gunner"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 376, 
+        "name": "Andrew", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 375, 
+        "name": "Vincent", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "kananjarrus", 
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }, 
+            {
+              "name": "chopper", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla"
+                ], 
+                "mod": [
+                  "ionprojector"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 349, 
+        "name": "Rob", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 241, 
+        "name": "Shane", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 239, 
+        "name": "Sean", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 206, 
+        "name": "Mark", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 189, 
+        "name": "Ian", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Nate", 
+            "player1points": 100, 
+            "player2": "Rob", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ian", 
+            "player1points": 70, 
+            "player2": "Andrew", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vincent", 
+            "player1points": 100, 
+            "player2": "Shane", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark", 
+            "player1points": 79, 
+            "player2": "Sean", 
+            "player2points": 31, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Andrew", 
+            "player1points": 100, 
+            "player2": "Mark", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nate", 
+            "player1points": 100, 
+            "player2": "Vincent", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shane", 
+            "player1points": 100, 
+            "player2": "Ian", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rob", 
+            "player1points": 100, 
+            "player2": "Sean", 
+            "player2points": 44, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Andrew", 
+            "player1points": 75, 
+            "player2": "Nate", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rob", 
+            "player1points": 62, 
+            "player2": "Shane", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark", 
+            "player1points": 29, 
+            "player2": "Vincent", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean", 
+            "player1points": 100, 
+            "player2": "Ian", 
+            "player2points": 57, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Cannington", 
+      "country": "Australia", 
+      "lat": "-32.013728700000", 
+      "lon": "115.945170400000", 
+      "name": "Good Games Cannington", 
+      "state": "Western Australia"
+    }
+  }
+}

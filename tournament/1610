@@ -1,0 +1,1498 @@
+{
+  "tournament": {
+    "date": "2016-05-07", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1610, 
+    "name": "May 2016", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 108, 
+        "name": "Andre Melo", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 586, 
+        "name": "Joao Vaz", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 1
+        }, 
+        "score": 18, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r4d6"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist", 
+                  "chopper"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "daggersquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla"
+                ], 
+                "mod": [
+                  "bwinge2"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 579, 
+        "name": "Paulo Rocha", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "tychocelchu", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit", 
+                  "predator"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 574, 
+        "name": "Daniel Almeida", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }, 
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "4lom", 
+                  "zuckuss", 
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "illicit": [
+                  "hotshotblaster"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 568, 
+        "name": "Fernando Santos", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "xx23sthreadtracers"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "xx23sthreadtracers"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 555, 
+        "name": "Andre Araujo", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ]
+              }
+            }, 
+            {
+              "name": "wampa", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 470, 
+        "name": "Paulo Perre", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 441, 
+        "name": "Andre Goncalves", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ]
+              }
+            }, 
+            {
+              "name": "wampa", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 426, 
+        "name": "Mapril Santos", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "sabersquadronpilot", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "sabersquadronpilot", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "sabersquadronpilot", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 406, 
+        "name": "Pedro Meireles", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "darthvader", 
+                  "gunner", 
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 346, 
+        "name": "Antonio Carvalho", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 327, 
+        "name": "Rui Sousa", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "4lom"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 310, 
+        "name": "Ricardo Coelho", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "cutlasssquadronpilot", 
+              "ship": "tiepunisher", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "torpedo": [
+                  "flechettetorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "scimitarsquadronpilot", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "bomb": [
+                  "connernet"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "xx23sthreadtracers"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 369, 
+        "name": "Paulo Dias", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "scourge", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "maulermithel", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 342, 
+        "name": "Pedro Rodrigues", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "illicit": [
+                  "feedbackarray"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 259, 
+        "name": "Ricardo Babo", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "gonk"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunsoldier", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunsoldier", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunsoldier", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "xx23sthreadtracers"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 251, 
+        "name": "Rui Silva", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "ept": [
+                  "expose"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ]
+              }
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 233, 
+        "name": "Pedro Pinto", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Andre Melo", 
+            "player1points": 31, 
+            "player2": "Paulo Perre", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andre Araujo", 
+            "player1points": 0, 
+            "player2": "Fernando Santos", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ricardo Coelho", 
+            "player1points": 68, 
+            "player2": "Daniel Almeida", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rui Silva", 
+            "player1points": 0, 
+            "player2": "Paulo Rocha", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paulo Dias", 
+            "player1points": 100, 
+            "player2": "Antonio Carvalho", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rui Sousa", 
+            "player1points": 22, 
+            "player2": "Pedro Meireles", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mapril Santos", 
+            "player1points": 100, 
+            "player2": "Ricardo Babo", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pedro Pinto", 
+            "player1points": 25, 
+            "player2": "Andre Goncalves", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joao Vaz", 
+            "player1points": 52, 
+            "player2": "Pedro Rodrigues", 
+            "player2points": 47, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Paulo Perre", 
+            "player1points": 24, 
+            "player2": "Fernando Santos", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paulo Rocha", 
+            "player1points": 100, 
+            "player2": "Mapril Santos", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paulo Dias", 
+            "player1points": 22, 
+            "player2": "Pedro Meireles", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andre Goncalves", 
+            "player1points": 47, 
+            "player2": "Joao Vaz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ricardo Coelho", 
+            "player1points": 100, 
+            "player2": "Rui Silva", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andre Araujo", 
+            "player1points": 100, 
+            "player2": "Ricardo Babo", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Antonio Carvalho", 
+            "player1points": 100, 
+            "player2": "Pedro Pinto", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andre Melo", 
+            "player1points": 44, 
+            "player2": "Rui Sousa", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Almeida", 
+            "player1points": 100, 
+            "player2": "Pedro Rodrigues", 
+            "player2points": 22, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Fernando Santos", 
+            "player1points": 49, 
+            "player2": "Paulo Rocha", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Pedro Meireles", 
+            "player1points": 26, 
+            "player2": "Paulo Rocha", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fernando Santos", 
+            "player1points": 16, 
+            "player2": "Joao Vaz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ricardo Coelho", 
+            "player1points": 29, 
+            "player2": "Paulo Perre", 
+            "player2points": 84, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andre Goncalves", 
+            "player1points": 69, 
+            "player2": "Antonio Carvalho", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paulo Dias", 
+            "player1points": 50, 
+            "player2": "Rui Sousa", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Almeida", 
+            "player1points": 43, 
+            "player2": "Mapril Santos", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andre Araujo", 
+            "player1points": 100, 
+            "player2": "Andre Melo", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pedro Rodrigues", 
+            "player1points": 100, 
+            "player2": "Rui Silva", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pedro Pinto", 
+            "player1points": 50, 
+            "player2": "Ricardo Babo", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Paulo Rocha", 
+            "player1points": 33, 
+            "player2": "Joao Vaz", 
+            "player2points": 77, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Antonio Carvalho", 
+            "player1points": 45, 
+            "player2": "Paulo Perre", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Almeida", 
+            "player1points": 100, 
+            "player2": "Pedro Meireles", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fernando Santos", 
+            "player1points": 100, 
+            "player2": "Rui Sousa", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andre Araujo", 
+            "player1points": 100, 
+            "player2": "Ricardo Coelho", 
+            "player2points": 14, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mapril Santos", 
+            "player1points": 67, 
+            "player2": "Pedro Rodrigues", 
+            "player2points": 43, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ricardo Babo", 
+            "player1points": 50, 
+            "player2": "Andre Goncalves", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paulo Dias", 
+            "player1points": 72, 
+            "player2": "Pedro Pinto", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rui Silva", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Joao Vaz", 
+            "player1points": 48, 
+            "player2": "Fernando Santos", 
+            "player2points": 77, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paulo Rocha", 
+            "player1points": 100, 
+            "player2": "Daniel Almeida", 
+            "player2points": 54, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Lisboa", 
+      "country": "Portugal", 
+      "lat": "38.707792600000", 
+      "lon": "-9.136506900000", 
+      "name": "Kult Games", 
+      "state": "Lisboa"
+    }
+  }
+}

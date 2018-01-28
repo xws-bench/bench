@@ -1,0 +1,168 @@
+{
+  "tournament": {
+    "date": "2017-11-04", 
+    "format": "Refit 100pts", 
+    "id": 3594, 
+    "name": "November Mini Micro", 
+    "players": [
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dacebonearm", 
+              "ship": "hwk290"
+            }, 
+            {
+              "name": "blacksunace", 
+              "ship": "kihraxzfighter"
+            }, 
+            {
+              "name": "talonbanecobra", 
+              "ship": "kihraxzfighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 424, 
+        "name": "John Hazen", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.33"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "kylekatarn", 
+              "ship": "hwk290"
+            }, 
+            {
+              "name": "cassianandor", 
+              "ship": "uwing"
+            }, 
+            {
+              "name": "wullffwarro", 
+              "ship": "auzituckgunship"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 330, 
+        "name": "Chris Parillo", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing"
+            }, 
+            {
+              "name": "rey", 
+              "ship": "yt1300"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 296, 
+        "name": "Frank Palocyi", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Chris Parillo", 
+            "player1points": 63, 
+            "player2": "John Hazen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Frank Palocyi", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "John Hazen", 
+            "player1points": 100, 
+            "player2": "Frank Palocyi", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Parillo", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Chris Parillo", 
+            "player1points": 100, 
+            "player2": "Frank Palocyi", 
+            "player2points": 83, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Hazen", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Boardman", 
+      "country": "United States of America", 
+      "lat": "41.025042650000", 
+      "lon": "-80.664962915708", 
+      "name": "ALL AMERICAN CARDS AND COMICS", 
+      "state": "Ohio"
+    }
+  }
+}

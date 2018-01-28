@@ -1,0 +1,809 @@
+{
+  "tournament": {
+    "date": "2017-07-15", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3127, 
+    "name": "Reaper Game Store Store Championship", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla", 
+                  "chopper"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "illicit": [
+                  "burnoutslam"
+                ], 
+                "mod": [
+                  "smugglingcompartment", 
+                  "countermeasures"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 566, 
+        "name": "Cody Taylor", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 700, 
+        "name": "Jeremy Chamblee", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "puresabacc", 
+              "ship": "tiestriker", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "title": [
+                  "adaptiveailerons"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 641, 
+        "name": "Raul Flores", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.38"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "wampa", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "puresabacc", 
+              "ship": "tiestriker", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "title": [
+                  "adaptiveailerons"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "sensorcluster"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 587, 
+        "name": "Chris Williams", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "juke", 
+                  "snapshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "juke", 
+                  "snapshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "juke", 
+                  "snapshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "jesspava", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d6"
+                ], 
+                "ept": [
+                  "swarmleader"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 505, 
+        "name": "Dave Parsons", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 538, 
+        "name": "David Whiting", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.25"
+      }, 
+      {
+        "mov": 449, 
+        "name": "Robby Goodhue", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 342, 
+        "name": "Chris Parker", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "lieutenantkestal", 
+              "ship": "tieaggressor", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 323, 
+        "name": "Casey Dzendolet", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 317, 
+        "name": "Rick Parker", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "gonk"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "kaatoleeachos", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 204, 
+        "name": "Arnold Galvan", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 150, 
+        "name": "Phillip (Alex) Easton", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronnovice", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronnovice", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronnovice", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronnovice", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 141, 
+        "name": "Duane Cummings", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 0, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 137, 
+        "name": "Joshua Snyder", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 0, 
+        "sos": "0.50"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Arnold Galvan", 
+            "player1points": 42, 
+            "player2": "Cody Taylor", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dave Parsons", 
+            "player1points": 51, 
+            "player2": "David Whiting", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Casey Dzendolet", 
+            "player1points": 0, 
+            "player2": "Chris Williams", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Phillip (Alex) Easton", 
+            "player1points": 0, 
+            "player2": "Robby Goodhue", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeremy Chamblee", 
+            "player1points": 100, 
+            "player2": "Duane Cummings", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Raul Flores", 
+            "player1points": 78, 
+            "player2": "Rick Parker", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joshua Snyder", 
+            "player1points": 29, 
+            "player2": "Chris Parker", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Robby Goodhue", 
+            "player1points": 0, 
+            "player2": "Dave Parsons", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Parker", 
+            "player1points": 0, 
+            "player2": "Jeremy Chamblee", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rick Parker", 
+            "player1points": 35, 
+            "player2": "Chris Williams", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cody Taylor", 
+            "player1points": 100, 
+            "player2": "Phillip (Alex) Easton", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Arnold Galvan", 
+            "player1points": 49, 
+            "player2": "David Whiting", 
+            "player2points": 43, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Duane Cummings", 
+            "player1points": 0, 
+            "player2": "Casey Dzendolet", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joshua Snyder", 
+            "player1points": 37, 
+            "player2": "Raul Flores", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Dave Parsons", 
+            "player1points": 0, 
+            "player2": "Jeremy Chamblee", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cody Taylor", 
+            "player1points": 100, 
+            "player2": "Chris Williams", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Arnold Galvan", 
+            "player1points": 0, 
+            "player2": "Casey Dzendolet", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robby Goodhue", 
+            "player1points": 100, 
+            "player2": "Rick Parker", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Parker", 
+            "player1points": 0, 
+            "player2": "Raul Flores", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Whiting", 
+            "player1points": 100, 
+            "player2": "Duane Cummings", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Phillip (Alex) Easton", 
+            "player1points": 100, 
+            "player2": "Joshua Snyder", 
+            "player2points": 71, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Cody Taylor", 
+            "player1points": 100, 
+            "player2": "Jeremy Chamblee", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Casey Dzendolet", 
+            "player1points": 0, 
+            "player2": "Raul Flores", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Williams", 
+            "player1points": 100, 
+            "player2": "Robby Goodhue", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dave Parsons", 
+            "player1points": 100, 
+            "player2": "Phillip (Alex) Easton", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Parker", 
+            "player1points": 100, 
+            "player2": "Arnold Galvan", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Duane Cummings", 
+            "player1points": 40, 
+            "player2": "Rick Parker", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joshua Snyder", 
+            "player1points": 0, 
+            "player2": "David Whiting", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Denton", 
+      "country": "United States of America", 
+      "lat": "33.183878700000", 
+      "lon": "-97.141341700000", 
+      "name": "Reaper Game Store", 
+      "state": "Texas"
+    }
+  }
+}

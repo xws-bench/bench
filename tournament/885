@@ -1,0 +1,524 @@
+{
+  "tournament": {
+    "date": "2015-11-28", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 885, 
+    "name": "Kessel Run", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 536, 
+        "name": "Simon Wiippola", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 503, 
+        "name": "Johan Nilsson", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "crew": [
+                  "gunner", 
+                  "tactician", 
+                  "bossk"
+                ]
+              }
+            }, 
+            {
+              "name": "cartelmarauder", 
+              "ship": "kihraxzfighter"
+            }, 
+            {
+              "name": "cartelmarauder", 
+              "ship": "kihraxzfighter"
+            }, 
+            {
+              "name": "cartelmarauder", 
+              "ship": "kihraxzfighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 488, 
+        "name": "Staffan Ekvall", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "r4agromech"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "r4agromech"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 420, 
+        "name": "Tobias Sundin", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "torpedo": [
+                  "advprotontorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 415, 
+        "name": "Marc Harrison", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "patrolleader", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ]
+              }
+            }, 
+            {
+              "name": "royalguardpilot", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "hullupgrade"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "royalguardpilot", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "hullupgrade"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 405, 
+        "name": "Elis Frolen", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "k4securitydroid", 
+                  "reconspecialist", 
+                  "weaponsengineer"
+                ], 
+                "ept": [
+                  "calculation"
+                ]
+              }
+            }, 
+            {
+              "name": "cartelspacer", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "title": [
+                  "heavyscykinterceptor"
+                ]
+              }
+            }, 
+            {
+              "name": "cartelspacer", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "title": [
+                  "heavyscykinterceptor"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 284, 
+        "name": "Ola Juhlin", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 149, 
+        "name": "Goran Nina", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Staffan Ekvall", 
+            "player1points": 50, 
+            "player2": "Tobias Sundin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ola Juhlin", 
+            "player1points": 29, 
+            "player2": "Johan Nilsson", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marc Harrison", 
+            "player1points": 60, 
+            "player2": "Simon Wiippola", 
+            "player2points": 98, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Goran Nina", 
+            "player1points": 30, 
+            "player2": "Elis Frolen", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Johan Nilsson", 
+            "player1points": 100, 
+            "player2": "Elis Frolen", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marc Harrison", 
+            "player1points": 20, 
+            "player2": "Staffan Ekvall", 
+            "player2points": 98, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Goran Nina", 
+            "player1points": 50, 
+            "player2": "Ola Juhlin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tobias Sundin", 
+            "player1points": 30, 
+            "player2": "Simon Wiippola", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Tobias Sundin", 
+            "player1points": 100, 
+            "player2": "Ola Juhlin", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Elis Frolen", 
+            "player1points": 40, 
+            "player2": "Staffan Ekvall", 
+            "player2points": 78, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simon Wiippola", 
+            "player1points": 99, 
+            "player2": "Johan Nilsson", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Goran Nina", 
+            "player1points": 0, 
+            "player2": "Marc Harrison", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Johan Nilsson", 
+            "player1points": 100, 
+            "player2": "Goran Nina", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ola Juhlin", 
+            "player1points": 80, 
+            "player2": "Staffan Ekvall", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tobias Sundin", 
+            "player1points": 65, 
+            "player2": "Marc Harrison", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simon Wiippola", 
+            "player1points": 56, 
+            "player2": "Elis Frolen", 
+            "player2points": 98, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Stockholm", 
+      "country": "Sweden", 
+      "lat": "59.325117200000", 
+      "lon": "18.071093500000", 
+      "name": "Dragon's Lair", 
+      "state": "Stockholm"
+    }
+  }
+}

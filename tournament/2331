@@ -1,0 +1,909 @@
+{
+  "tournament": {
+    "date": "2016-11-20", 
+    "format": "Hangar Bay", 
+    "id": 2331, 
+    "name": "Skirmish for Safety 2016", 
+    "players": [
+      {
+        "mov": 358, 
+        "name": "Mike Kaufman", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 571, 
+        "name": "Marek", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "norrawexley", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "crew": [
+                  "tailgunner"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r4d6"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "thanekyrell", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "crew": [
+                  "tailgunner"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 598, 
+        "name": "Bruno", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 580, 
+        "name": "Stephen Wooten", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 575, 
+        "name": "Joaquin", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 521, 
+        "name": "Landon Knoblock", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 506, 
+        "name": "Mike D'Ambroise", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 3, 
+        "sos": "0.69"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "4lom", 
+                  "zuckuss", 
+                  "dengar"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "torkilmux", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 478, 
+        "name": "Chuck C", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 476, 
+        "name": "Ben Fullon", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 434, 
+        "name": "Cal Nuevost", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 530, 
+        "name": "Chad", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 468, 
+        "name": "Rolando", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 460, 
+        "name": "Matthew Kriener", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 452, 
+        "name": "Rich Stable", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 2, 
+        "sos": "0.75"
+      }, 
+      {
+        "mov": 418, 
+        "name": "Andrew Langston", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "airencracken", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "swarmtactics"
+                ], 
+                "missile": [
+                  "assaultmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "norrawexley", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "crew": [
+                  "tailgunner"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 396, 
+        "name": "Chase Grimdark", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 380, 
+        "name": "Sean Duffy", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 375, 
+        "name": "Brendan C", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 2, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 362, 
+        "name": "Andre Tessier", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 324, 
+        "name": "Boris", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 253, 
+        "name": "Dane Anker", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 462, 
+        "name": "Franek", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 1, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 317, 
+        "name": "Ariel", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 1, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 340, 
+        "name": "Chris Vendetti", 
+        "rank": {
+          "swiss": 23
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 305, 
+        "name": "Ian S", 
+        "rank": {
+          "swiss": 24
+        }, 
+        "score": 1, 
+        "sos": "0.69"
+      }, 
+      {
+        "mov": 272, 
+        "name": "Alex De Rosa", 
+        "rank": {
+          "swiss": 25
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 262, 
+        "name": "Matt Sokol", 
+        "rank": {
+          "swiss": 26
+        }, 
+        "score": 1, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 190, 
+        "name": "Mike Bird", 
+        "rank": {
+          "swiss": 27
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 163, 
+        "name": "Conor", 
+        "rank": {
+          "swiss": 28
+        }, 
+        "score": 1, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 142, 
+        "name": "Andrew G", 
+        "rank": {
+          "swiss": 29
+        }, 
+        "score": 0, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Landon Knoblock", 
+            "player1points": 25, 
+            "player2": "Franek", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Vendetti", 
+            "player1points": 26, 
+            "player2": "Ben Fullon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruno", 
+            "player1points": 100, 
+            "player2": "Boris", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Conor", 
+            "player1points": 0, 
+            "player2": "Stephen Wooten", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marek", 
+            "player1points": 82, 
+            "player2": "Chad", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew G", 
+            "player1points": 58, 
+            "player2": "Sean Duffy", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Kaufman", 
+            "player1points": 100, 
+            "player2": "Ian S", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dane Anker", 
+            "player1points": 65, 
+            "player2": "Brendan C", 
+            "player2points": 43, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew Langston", 
+            "player1points": 27, 
+            "player2": "Mike D'Ambroise", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt Sokol", 
+            "player1points": 0, 
+            "player2": "Matthew Kriener", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joaquin", 
+            "player1points": 58, 
+            "player2": "Alex De Rosa", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rich Stable", 
+            "player1points": 100, 
+            "player2": "Andre Tessier", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rolando", 
+            "player1points": 25, 
+            "player2": "Chuck C", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ariel", 
+            "player1points": 74, 
+            "player2": "Mike Bird", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cal Nuevost", 
+            "player1points": 82, 
+            "player2": "Chase Grimdark", 
+            "player2points": 80, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Cal Nuevost", 
+            "player1points": 21, 
+            "player2": "Mike Kaufman", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joaquin", 
+            "player1points": 0, 
+            "player2": "Mike D'Ambroise", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Landon Knoblock", 
+            "player1points": 100, 
+            "player2": "Chuck C", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matthew Kriener", 
+            "player1points": 31, 
+            "player2": "Stephen Wooten", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dane Anker", 
+            "player1points": 28, 
+            "player2": "Ben Fullon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Bird", 
+            "player1points": 0, 
+            "player2": "Sean Duffy", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rich Stable", 
+            "player1points": 66, 
+            "player2": "Bruno", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marek", 
+            "player1points": 100, 
+            "player2": "Ian S", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Conor", 
+            "player1points": 0, 
+            "player2": "Matt Sokol", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chase Grimdark", 
+            "player1points": 88, 
+            "player2": "Andrew Langston", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andre Tessier", 
+            "player1points": 100, 
+            "player2": "Andrew G", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Franek", 
+            "player1points": 82, 
+            "player2": "Boris", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex De Rosa", 
+            "player1points": 0, 
+            "player2": "Chad", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rolando", 
+            "player1points": 100, 
+            "player2": "Brendan C", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ariel", 
+            "player1points": 60, 
+            "player2": "Chris Vendetti", 
+            "player2points": 65, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Marek", 
+            "player1points": 88, 
+            "player2": "Rich Stable", 
+            "player2points": 57, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Landon Knoblock", 
+            "player1points": 68, 
+            "player2": "Stephen Wooten", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike D'Ambroise", 
+            "player1points": 100, 
+            "player2": "Ben Fullon", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean Duffy", 
+            "player1points": 0, 
+            "player2": "Joaquin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rolando", 
+            "player1points": 56, 
+            "player2": "Andre Tessier", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chuck C", 
+            "player1points": 100, 
+            "player2": "Boris", 
+            "player2points": 80, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cal Nuevost", 
+            "player1points": 100, 
+            "player2": "Mike Bird", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chase Grimdark", 
+            "player1points": 28, 
+            "player2": "Bruno", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dane Anker", 
+            "player1points": 42, 
+            "player2": "Chad", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Vendetti", 
+            "player1points": 21, 
+            "player2": "Matthew Kriener", 
+            "player2points": 80, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt Sokol", 
+            "player1points": 0, 
+            "player2": "Ian S", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew G", 
+            "player1points": 68, 
+            "player2": "Brendan C", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex De Rosa", 
+            "player1points": 34, 
+            "player2": "Andrew Langston", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Franek", 
+            "player1points": 59, 
+            "player2": "Ariel", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Conor", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Marek", 
+            "player1points": 100, 
+            "player2": "Stephen Wooten", 
+            "player2points": 79, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike D'Ambroise", 
+            "player1points": 0, 
+            "player2": "Landon Knoblock", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ben Fullon", 
+            "player1points": 100, 
+            "player2": "Matthew Kriener", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andre Tessier", 
+            "player1points": 34, 
+            "player2": "Joaquin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chuck C", 
+            "player1points": 100, 
+            "player2": "Dane Anker", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cal Nuevost", 
+            "player1points": 60, 
+            "player2": "Rich Stable", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean Duffy", 
+            "player1points": 38, 
+            "player2": "Bruno", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Vendetti", 
+            "player1points": 32, 
+            "player2": "Boris", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew Langston", 
+            "player1points": 99, 
+            "player2": "Conor", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Bird", 
+            "player1points": 48, 
+            "player2": "Chad", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chase Grimdark", 
+            "player1points": 100, 
+            "player2": "Matt Sokol", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rolando", 
+            "player1points": 100, 
+            "player2": "Ariel", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ian S", 
+            "player1points": 84, 
+            "player2": "Brendan C", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew G", 
+            "player1points": 0, 
+            "player2": "Franek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex De Rosa", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Brooklyn", 
+      "country": "United States of America", 
+      "lat": "40.650103800000", 
+      "lon": "-73.949582200000", 
+      "name": "Nu Brand Gaming", 
+      "state": "New York"
+    }
+  }
+}

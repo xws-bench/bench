@@ -1,0 +1,983 @@
+{
+  "tournament": {
+    "date": "2017-06-25", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3034, 
+    "name": "Dice Latte Championship", 
+    "players": [
+      {
+        "mov": 372, 
+        "name": "Greg", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "bountyhunter", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "marajade"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "title": [
+                  "slavei"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 647, 
+        "name": "Joe", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist", 
+                  "reconspecialist"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "ahsokatano", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "crew": [
+                  "janors"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "empdevice"
+                ], 
+                "mod": [
+                  "capturedtie"
+                ], 
+                "title": [
+                  "sabinesmasterpiece"
+                ]
+              }
+            }, 
+            {
+              "name": "herasyndulla", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "phantom"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 628, 
+        "name": "Bill", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "collisiondetector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 536, 
+        "name": "Hoon", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "inaldra", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "title": [
+                  "lightscykinterceptor"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 517, 
+        "name": "Till", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "captainrex", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "illicit": [
+                  "blackmarketslicertools"
+                ], 
+                "title": [
+                  "sabinesmasterpiece"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "thermaldetonators", 
+                  "clustermines"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "flechettetorpedoes", 
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "braylenstramm", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "crew": [
+                  "gunner"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 431, 
+        "name": "William", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla", 
+                  "inspiringrecruit"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r4d6"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "norrawexley", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "crew": [
+                  "niennunb"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 536, 
+        "name": "Sukjoo", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "unkarplutt", 
+              "ship": "quadjumper", 
+              "upgrades": {
+                "bomb": [
+                  "ionbombs"
+                ], 
+                "crew": [
+                  "ketsuonyo"
+                ], 
+                "mod": [
+                  "stygiumparticleaccelerator"
+                ]
+              }
+            }, 
+            {
+              "name": "torkilmux", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 432, 
+        "name": "Mark", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "backdraft", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 425, 
+        "name": "Poi", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 404, 
+        "name": "Nathan", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 342, 
+        "name": "Ben C.", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 317, 
+        "name": "TJ", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "unkarplutt", 
+              "ship": "quadjumper", 
+              "upgrades": {
+                "bomb": [
+                  "ionbombs"
+                ], 
+                "crew": [
+                  "ketsuonyo"
+                ], 
+                "mod": [
+                  "stygiumparticleaccelerator"
+                ]
+              }
+            }, 
+            {
+              "name": "torkilmux", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 339, 
+        "name": "Ty", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 1, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 318, 
+        "name": "Leo", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 1, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 279, 
+        "name": "Jisuhwa", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 1, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 242, 
+        "name": "Benjamin", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 1, 
+        "sos": "0.42"
+      }, 
+      {
+        "mov": 194, 
+        "name": "Cat", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 191, 
+        "name": "Tommy", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 0, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Till", 
+            "player1points": 100, 
+            "player2": "Leo", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark", 
+            "player1points": 68, 
+            "player2": "William", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan", 
+            "player1points": 63, 
+            "player2": "Poi", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "TJ", 
+            "player1points": 100, 
+            "player2": "Benjamin", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Hoon", 
+            "player1points": 100, 
+            "player2": "Jisuhwa", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Greg", 
+            "player1points": 74, 
+            "player2": "Ty", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joe", 
+            "player1points": 100, 
+            "player2": "Cat", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bill", 
+            "player1points": 100, 
+            "player2": "Ben C.", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sukjoo", 
+            "player1points": 100, 
+            "player2": "Tommy", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "William", 
+            "player1points": 68, 
+            "player2": "Greg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bill", 
+            "player1points": 36, 
+            "player2": "Joe", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sukjoo", 
+            "player1points": 100, 
+            "player2": "TJ", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Till", 
+            "player1points": 100, 
+            "player2": "Hoon", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Poi", 
+            "player1points": 64, 
+            "player2": "Tommy", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cat", 
+            "player1points": 20, 
+            "player2": "Mark", 
+            "player2points": 78, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Leo", 
+            "player1points": 56, 
+            "player2": "Ben C.", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jisuhwa", 
+            "player1points": 100, 
+            "player2": "Nathan", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benjamin", 
+            "player1points": 14, 
+            "player2": "Ty", 
+            "player2points": 52, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Greg", 
+            "player1points": 100, 
+            "player2": "Sukjoo", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Poi", 
+            "player1points": 32, 
+            "player2": "Till", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joe", 
+            "player1points": 100, 
+            "player2": "Ben C.", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bill", 
+            "player1points": 100, 
+            "player2": "Jisuhwa", 
+            "player2points": 55, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Hoon", 
+            "player1points": 100, 
+            "player2": "Mark", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ty", 
+            "player1points": 50, 
+            "player2": "William", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "TJ", 
+            "player1points": 32, 
+            "player2": "Tommy", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cat", 
+            "player1points": 100, 
+            "player2": "Leo", 
+            "player2points": 76, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benjamin", 
+            "player1points": 30, 
+            "player2": "Nathan", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Till", 
+            "player1points": 44, 
+            "player2": "Joe", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Poi", 
+            "player1points": 50, 
+            "player2": "William", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sukjoo", 
+            "player1points": 64, 
+            "player2": "Hoon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "TJ", 
+            "player1points": 0, 
+            "player2": "Bill", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jisuhwa", 
+            "player1points": 24, 
+            "player2": "Mark", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cat", 
+            "player1points": 28, 
+            "player2": "Ben C.", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan", 
+            "player1points": 71, 
+            "player2": "Ty", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Leo", 
+            "player1points": 100, 
+            "player2": "Tommy", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benjamin", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Seoul", 
+      "country": "Korea, South", 
+      "lat": null, 
+      "lon": null, 
+      "name": "Dice Latte", 
+      "state": "Soul-t'ukpyolsi"
+    }
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "tournament": {
+    "date": "2016-12-08", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2387, 
+    "name": "Monday League", 
+    "players": [
+      {
+        "mov": 168, 
+        "name": "1", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 5, 
+        "sos": "5.00"
+      }, 
+      {
+        "mov": 136, 
+        "name": "4", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 5, 
+        "sos": "5.00"
+      }, 
+      {
+        "mov": 109, 
+        "name": "6", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "3.00"
+      }, 
+      {
+        "mov": 101, 
+        "name": "7", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "3.00"
+      }, 
+      {
+        "mov": 99, 
+        "name": "3", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 0, 
+        "sos": "3.00"
+      }, 
+      {
+        "mov": 91, 
+        "name": "5", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "3.00"
+      }, 
+      {
+        "mov": 64, 
+        "name": "2", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 0, 
+        "sos": "5.00"
+      }, 
+      {
+        "mov": 32, 
+        "name": "8", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "5.00"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "final_salvo": false, 
+            "player1": "3", 
+            "player1points": 10, 
+            "player2": "7", 
+            "player2points": 11, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "1", 
+            "player1points": 100, 
+            "player2": "8", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "5", 
+            "player1points": 12, 
+            "player2": "6", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "2", 
+            "player1points": 54, 
+            "player2": "4", 
+            "player2points": 90, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "final_salvo": false, 
+            "player1": "6", 
+            "player1points": 0, 
+            "player2": "7", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "1", 
+            "player1points": 0, 
+            "player2": "4", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "5", 
+            "player1points": 0, 
+            "player2": "3", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "2", 
+            "player1points": 0, 
+            "player2": "8", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other"
+  }
+}
