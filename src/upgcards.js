@@ -5402,7 +5402,7 @@ var UPGRADES=window.UPGRADES= [
     {name:"Pattern Analyzer",
      type:Unit.TECH,
      points:2,
-	 done:false,
+	 done:true,
      init: function(sh) {
 		var self=this;
 		sh.wrap_before("resolvemaneuver",this,function() {
@@ -6373,7 +6373,7 @@ var UPGRADES=window.UPGRADES= [
 	{
 		name: "Flight-Assist Astromech",
 		type:Unit.ASTROMECH,
-		done:false,
+		done:true,
 		points: 1,
 		init: function(sh) {
 			sh.wrap_before("endmaneuver",this,function() {
