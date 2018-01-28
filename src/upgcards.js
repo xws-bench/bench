@@ -5404,7 +5404,6 @@ var UPGRADES=window.UPGRADES= [
      points:2,
 	 done:true,
      init: function(sh) {
-		var self=this;
 		sh.wrap_before("resolvemaneuver",this,function() {
 			if(this.stress==0) this.checkpilotstress = false;
 		});
