@@ -5401,7 +5401,22 @@ var UPGRADES=window.UPGRADES= [
     },
     {name:"Pattern Analyzer",
      type:Unit.TECH,
-     points:2
+     points:2,
+	 done:false,
+     init: function(sh) {
+		var self=this;
+		sh.wrap_before("resolvemaneuver",this,function() {
+			if(this.stress==0) this.checkpilotstress = false;
+		});
+		sh.wrap_before("endactivate",this,function() {
+			if(!this.checkpilotstress) {
+				this.addafteractions(function() {
+					this.checkpilotstress = true;
+					this.handledifficulty(this.maneuverdifficulty);
+				}.bind(this));
+			}
+		}).unwrapper("endactivate");
+	 },
     },
     {name:"General Hux",
      type:Unit.CREW,
