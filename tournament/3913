@@ -970,6 +970,75 @@
         "sos": "0.63"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "expertise"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "rhosquadronveteran", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "rhosquadronveteran", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 831, 
         "name": "Mark Moreau", 
         "rank": {
@@ -2003,6 +2072,71 @@
         "sos": "0.65"
       }, 
       {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "solsixxa", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines", 
+                  "clustermines"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "system": [
+                  "minefieldmapper"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator", 
+                  "clustermines"
+                ], 
+                "crew": [
+                  "cadbane"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 742, 
         "name": "Pierre Plourde", 
         "rank": {
@@ -2295,6 +2429,61 @@
         "sos": "0.50"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "burnoutslam"
+                ], 
+                "mod": [
+                  "smugglingcompartment", 
+                  "countermeasures"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 639, 
         "name": "Mathieu Raymond", 
         "rank": {
@@ -2467,6 +2656,66 @@
         "sos": "0.51"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 575, 
         "name": "Frdric Banville", 
         "rank": {
@@ -2695,6 +2944,55 @@
         "sos": "0.53"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "scimitarsquadronpilot", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "missile": [
+                  "cruisemissiles", 
+                  "xx23sthreadtracers"
+                ]
+              }
+            }, 
+            {
+              "name": "maarekstele", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }, 
+            {
+              "name": "rexlerbrath", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 529, 
         "name": "Benoit Richardson", 
         "rank": {
@@ -2704,6 +3002,64 @@
         "sos": "0.53"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "ezrabridger", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "crew": [
+                  "herasyndulla"
+                ], 
+                "ept": [
+                  "snapshot"
+                ]
+              }
+            }, 
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "tactician", 
+                  "c3po"
+                ], 
+                "ept": [
+                  "lightningreflexes"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 520, 
         "name": "Jeffrey Pickles", 
         "rank": {

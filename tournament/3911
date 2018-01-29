@@ -1298,6 +1298,56 @@
         "sos": "0.53"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "rey"
+                ], 
+                "ept": [
+                  "predator"
+                ]
+              }
+            }, 
+            {
+              "name": "wullffwarro", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "ezrabridger", 
+                  "maul"
+                ], 
+                "ept": [
+                  "selflessness"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "flightassistastromech"
+                ], 
+                "crew": [
+                  "hotshotcopilot"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 688, 
         "name": "Richard Polley", 
         "rank": {

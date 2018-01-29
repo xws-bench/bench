@@ -127,7 +127,7 @@
           "version": "4.2.0"
         }, 
         "mov": 769, 
-        "name": "Mr. \"Always Second\"", 
+        "name": "Konstantin Pavlov", 
         "rank": {
           "swiss": 2
         }, 
@@ -144,6 +144,74 @@
         "sos": "0.00"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator", 
+                  "proximitymines"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "protonbombs", 
+                  "seismiccharges"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 666, 
         "name": "Maxim Shavarin", 
         "rank": {
@@ -153,6 +221,61 @@
         "sos": "0.00"
       }, 
       {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "inaldra", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "trickshot"
+                ], 
+                "mod": [
+                  "pulsedrayshield"
+                ]
+              }
+            }, 
+            {
+              "name": "thweek", 
+              "ship": "starviper", 
+              "upgrades": {
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "starvipermkii", 
+                  "virago"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "inspiringrecruit"
+                ], 
+                "ept": [
+                  "rage"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 0, 
         "name": "Player 5", 
         "rank": {
@@ -226,12 +349,78 @@
         "sos": "0.00"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "zetaspecialist", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "zetaspecialist", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "zetaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "swarmleader"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ]
+              }
+            }, 
+            {
+              "name": "youngster", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "debrisgambit"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 0, 
-        "name": "Player 8", 
+        "name": "Ivan Malashenko", 
         "rank": {
           "swiss": 8
         }, 
-        "score": 0, 
+        "score": 3, 
         "sos": "0.00"
       }, 
       {
@@ -324,12 +513,73 @@
         "sos": "0.00"
       }, 
       {
-        "mov": 0, 
-        "name": "Player 12", 
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "protonbombs", 
+                  "ionbombs"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "marksmanship"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 407, 
+        "name": "Nikita Dolganov", 
         "rank": {
           "swiss": 12
         }, 
-        "score": 0, 
+        "score": 2, 
         "sos": "0.00"
       }, 
       {
@@ -413,8 +663,78 @@
         "sos": "0.00"
       }, 
       {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "thweek", 
+              "ship": "starviper", 
+              "upgrades": {
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "starvipermkii", 
+                  "virago"
+                ]
+              }
+            }, 
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "dalanoberos", 
+              "ship": "m12lkimogilafighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 0, 
-        "name": "Player 17", 
+        "name": "Dmitry Muraviev", 
         "rank": {
           "swiss": 17
         }, 
