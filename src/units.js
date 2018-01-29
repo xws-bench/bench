@@ -1398,6 +1398,7 @@ Unit.prototype = {
 		}
 	    }
 	}
+
 	return al;
     },
     getupgactionlist: function() {
@@ -1442,7 +1443,8 @@ Unit.prototype = {
 	var ual=this.getupgactionlist();
 	var cal=this.getcritactionlist();
 	var condal=this.getcondactionlist();
-	return sal.concat(ual).concat(cal).concat(condal);
+	var al = sal.concat(ual).concat(cal).concat(condal);
+	return al;
     },
     addevadetoken: function() {
 	this.evade++;
@@ -2390,7 +2392,7 @@ Unit.prototype = {
 		&&this.canusetarget(sh)) {
 		this.reroll=0; 
 	    }
-	    // If TL and focus are required, use both...TODO
+	    // If TL and focus are required, use both...TODOenemylist
 	    if (wp.consumes==true
 		&&"Focus".match(this.getrequirements(wp))
 		&&this.canusefocus()) {
@@ -2951,12 +2953,15 @@ Unit.prototype = {
 	}
 	return true;
     },
+    getactiveweapons: function(enemylist) {
+	return this.weapons;
+    },
     showattack: function(weaponlist,enemylist) {
 	var str="";
 	var wn=[],wp=[];
 	var i,j,w;
 	$("#attackdial").show();
-	if (typeof weaponlist=="undefined") weaponlist=this.weapons;
+	if (typeof weaponlist=="undefined") weaponlist=this.getactiveweapons();
 	//else this.attackweapons=weaponlist;
 	var r=this.getenemiesinrange(weaponlist,enemylist);
 	var d=$("<div>");

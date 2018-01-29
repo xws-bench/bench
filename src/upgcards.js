@@ -3649,8 +3649,12 @@ var UPGRADES=window.UPGRADES= [
 	points: 2,
 	init: function(sh) {
 	    var self=this;
+	    // action cannot be wrapped right after resolveslam, but only after the slam maneuver is performed
+	    // otherwise target lock action could be missing, because before maneuver ship could be out of range
 	    sh.wrap_after("resolveslam",this,function() {
-		this.doaction(this.getactionlist(),"+1 free action (Skip to cancel) ["+self.name+"]");
+		sh.wrap_after("endmaneuver", this,function() {
+			this.doaction(this.getactionbarlist(),"+1 free action from action bar (Skip to cancel) ["+self.name+"]");
+		}).unwrapper("endactivationphase");
 	    });
 	}
     },
@@ -6190,7 +6194,7 @@ var UPGRADES=window.UPGRADES= [
 	},
 	{
 		name:"Havoc",
-		done:false, // FIXME: squad builder will accept salvaged, but not the game
+		done:true,
 		points:0,
 		type:Unit.TITLE,
 		unique:true,
@@ -6344,7 +6348,7 @@ var UPGRADES=window.UPGRADES= [
 	{
 		name: "Xg-1 Assault Configuration",
 		type:Unit.TITLE,
-		done:false,
+		done:true,
 		upgrades:[Unit.CANNON, Unit.CANNON],
 		points: 1,
 		ship: "Alpha-class Star Wing",
@@ -6353,7 +6357,7 @@ var UPGRADES=window.UPGRADES= [
 			for (var i=0; i<sh.weapons.length; i++) {
 				var w = sh.weapons[i];
 				if (w.type==Unit.CANNON&&w.points<=2) {
-					cannons2pt.push(i);
+					cannons2pt.push(w);
 				}
 			}
 			sh.canfire = function() {
@@ -6363,30 +6367,49 @@ var UPGRADES=window.UPGRADES= [
 					&&!this.isfireobstructed();
 			        return b;
 			}.bind(sh);
-
-// TODO			
-/*			
-			sh.doattack = function(weaponlist, enemies) {
+			sh.getactiveweapons = function(enemylist) {
 				if (this.noattack<round) {
-					this.activeweapons=weaponlist;
-					this.activeenemies=enemies;
-					this.showattack(weaponlist,enemies);
+					return this.weapons;
 				} else {
-					this.activeweapons=cannons2pt;
-					this.activeenemies=enemies;
-					this.showattack(cannons2pt,enemies);				}
+					return cannons2pt;
+				}
 			}.bind(sh);
-*/
 		}
 	},
 	{
 		name: "Os-1 Arsenal Loadout",
 		type:Unit.TITLE,
-		done:false,
+		done:false, // TODO: needs to test with Focus-based ordnance (e.g. Proton Rockets)
 		upgrades:[Unit.TORPEDO, Unit.MISSILE],
 		points: 2,
 		ship: "Alpha-class Star Wing",
-		// TODO
+		getactiveordnance: function(sh) {
+			var ordnance = [];
+			for (var i=0; i<sh.weapons.length; i++) {
+				var w = sh.weapons[i];
+				if (w.type==Unit.TORPEDO || w.type==Unit.MISSILE) {
+					ordnance.push(w);
+				}
+			}
+			return ordnance;
+		},
+		init: function(sh) {
+			var self = this;
+			sh.canfire = function() {
+				var b=(this.noattack<round || self.getactiveordnance(sh).length>0)
+					&&(this.hasfired<this.maxfired)
+					&&!this.iscloaked
+					&&!this.isfireobstructed();
+			        return b;
+			}.bind(sh);
+			sh.getactiveweapons = function(enemylist) {
+				if (this.noattack<round) {
+					return this.weapons;
+				} else {
+					return self.getactiveordnance(this);
+				}
+			}.bind(sh);
+		}
 	},
 	{
 		name: "Flight-Assist Astromech",
