@@ -1053,19 +1053,6 @@
           "faction": "rebel", 
           "pilots": [
             {
-              "name": "lowhhrick", 
-              "ship": "auzituckgunship", 
-              "upgrades": {
-                "crew": [
-                  "inspiringrecruit", 
-                  "maul"
-                ], 
-                "ept": [
-                  "wired"
-                ]
-              }
-            }, 
-            {
               "name": "ezrabridger", 
               "ship": "sheathipedeclassshuttle", 
               "upgrades": {
@@ -1081,6 +1068,19 @@
               }
             }, 
             {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "inspiringrecruit", 
+                  "maul"
+                ], 
+                "ept": [
+                  "wired"
+                ]
+              }
+            }, 
+            {
               "name": "poedameron-swx57", 
               "ship": "t70xwing", 
               "upgrades": {
@@ -1091,7 +1091,7 @@
                   "veteraninstincts"
                 ], 
                 "mod": [
-                  "autothrusters"
+                  "vectoredthrusters"
                 ], 
                 "tech": [
                   "advancedoptics"
@@ -2493,6 +2493,59 @@
         "sos": "0.47"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "kyloren", 
+                  "hotshotcopilot", 
+                  "inspiringrecruit"
+                ], 
+                "ept": [
+                  "experthandling"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 628, 
         "name": "Mathieu Guibord", 
         "rank": {
@@ -2870,14 +2923,23 @@
           "faction": "imperial", 
           "pilots": [
             {
+              "name": "doubleedge", 
+              "ship": "tieaggressor", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
               "name": "quickdraw", 
               "ship": "tiesffighter", 
               "upgrades": {
                 "ept": [
-                  "expertise"
-                ], 
-                "missile": [
-                  "harpoonmissiles"
+                  "debrisgambit"
                 ], 
                 "mod": [
                   "lightweightframe"
@@ -2885,47 +2947,26 @@
                 "system": [
                   "firecontrolsystem"
                 ], 
-                "tech": [
-                  "advancedoptics"
-                ], 
                 "title": [
                   "specialopstraining"
                 ]
               }
             }, 
             {
-              "name": "rhosquadronveteran", 
-              "ship": "alphaclassstarwing", 
+              "name": "testpilotblackout", 
+              "ship": "tiesilencer", 
               "upgrades": {
                 "ept": [
-                  "deadeye"
-                ], 
-                "missile": [
-                  "harpoonmissiles"
+                  "trickshot"
                 ], 
                 "mod": [
-                  "guidancechips"
+                  "autothrusters"
                 ], 
-                "torpedo": [
-                  "extramunitions"
-                ]
-              }
-            }, 
-            {
-              "name": "rhosquadronveteran", 
-              "ship": "alphaclassstarwing", 
-              "upgrades": {
-                "ept": [
-                  "deadeye"
+                "system": [
+                  "firecontrolsystem"
                 ], 
-                "missile": [
-                  "harpoonmissiles"
-                ], 
-                "mod": [
-                  "guidancechips"
-                ], 
-                "torpedo": [
-                  "extramunitions"
+                "tech": [
+                  "advancedoptics"
                 ]
               }
             }
@@ -3069,6 +3110,74 @@
         "sos": "0.54"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "ezrabridger", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "crew": [
+                  "c3po"
+                ], 
+                "ept": [
+                  "trickshot"
+                ]
+              }
+            }, 
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "sabinewren", 
+                  "tactician"
+                ], 
+                "ept": [
+                  "selflessness"
+                ]
+              }
+            }, 
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "thermaldetonators", 
+                  "seismiccharges"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 502, 
         "name": "Maxime Bluteau", 
         "rank": {
@@ -3130,6 +3239,61 @@
         "sos": "0.43"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "burnoutslam"
+                ], 
+                "mod": [
+                  "smugglingcompartment", 
+                  "countermeasures"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 549, 
         "name": "Sbastien Trpanier", 
         "rank": {
