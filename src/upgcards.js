@@ -219,7 +219,9 @@ var UPGRADES=window.UPGRADES= [
 	     if (k==-1||!self.isactive) return p;
 	     var pp=$.Deferred();
 	     p.then(function(cf) {
-		 if (this.shield+this.hull==1||(cf.face==Critical.FACEUP&&cf.crit.lethal&&this.shield+this.hull<=2)) {
+                 var danger = (this.shield + this.hull) == 1;
+                 var muchdanger = (cf.face==Critical.FACEUP&&cf.crit.lethal&&this.shield+this.hull<=2);
+                 if (self.isactive && (danger || muchdanger)) {
 		     this.upgrades[k].desactivate();
 		     this.log("%0 is inactive, damage discarded [%1]",this.upgrades[k].name,self.name);
 		     self.desactivate();
