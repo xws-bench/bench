@@ -3649,8 +3649,12 @@ var UPGRADES=window.UPGRADES= [
 	points: 2,
 	init: function(sh) {
 	    var self=this;
+	    // action cannot be wrapped right after resolveslam, but only after the slam maneuver is performed
+	    // otherwise target lock action could be missing, because before maneuver ship could be out of range
 	    sh.wrap_after("resolveslam",this,function() {
-		this.doaction(this.getactionlist(),"+1 free action (Skip to cancel) ["+self.name+"]");
+		sh.wrap_after("endmaneuver", this,function() {
+			this.doaction(this.getactionbarlist(),"+1 free action from action bar (Skip to cancel) ["+self.name+"]");
+		}).unwrapper("endactivationphase");
 	    });
 	}
     },
@@ -5420,7 +5424,21 @@ var UPGRADES=window.UPGRADES= [
     },
     {name:"Pattern Analyzer",
      type:Unit.TECH,
-     points:2
+     points:2,
+	 done:true,
+     init: function(sh) {
+		sh.wrap_before("resolvemaneuver",this,function() {
+			if(this.stress==0) this.checkpilotstress = false;
+		});
+		sh.wrap_before("endactivate",this,function() {
+			if(!this.checkpilotstress) {
+				this.addafteractions(function() {
+					this.checkpilotstress = true;
+					this.handledifficulty(this.maneuverdifficulty);
+				}.bind(this));
+			}
+		}).unwrapper("endactivate");
+	 },
     },
     {name:"General Hux",
      type:Unit.CREW,
@@ -6176,7 +6194,7 @@ var UPGRADES=window.UPGRADES= [
 	},
 	{
 		name:"Havoc",
-		done:false, // FIXME: squad builder will accept salvaged, but not the game
+		done:true,
 		points:0,
 		type:Unit.TITLE,
 		unique:true,
@@ -6330,7 +6348,7 @@ var UPGRADES=window.UPGRADES= [
 	{
 		name: "Xg-1 Assault Configuration",
 		type:Unit.TITLE,
-		done:false,
+		done:true,
 		upgrades:[Unit.CANNON, Unit.CANNON],
 		points: 1,
 		ship: "Alpha-class Star Wing",
@@ -6339,7 +6357,7 @@ var UPGRADES=window.UPGRADES= [
 			for (var i=0; i<sh.weapons.length; i++) {
 				var w = sh.weapons[i];
 				if (w.type==Unit.CANNON&&w.points<=2) {
-					cannons2pt.push(i);
+					cannons2pt.push(w);
 				}
 			}
 			sh.canfire = function() {
@@ -6349,29 +6367,82 @@ var UPGRADES=window.UPGRADES= [
 					&&!this.isfireobstructed();
 			        return b;
 			}.bind(sh);
-
-// TODO			
-/*			
-			sh.doattack = function(weaponlist, enemies) {
+			sh.getactiveweapons = function(enemylist) {
 				if (this.noattack<round) {
-					this.activeweapons=weaponlist;
-					this.activeenemies=enemies;
-					this.showattack(weaponlist,enemies);
+					return this.weapons;
 				} else {
-					this.activeweapons=cannons2pt;
-					this.activeenemies=enemies;
-					this.showattack(cannons2pt,enemies);				}
+					return cannons2pt;
+				}
 			}.bind(sh);
-*/
 		}
 	},
 	{
 		name: "Os-1 Arsenal Loadout",
 		type:Unit.TITLE,
-		done:false,
+		done:false, // TODO: needs to test with Focus-based ordnance (e.g. Proton Rockets)
 		upgrades:[Unit.TORPEDO, Unit.MISSILE],
 		points: 2,
 		ship: "Alpha-class Star Wing",
-		// TODO
+		getactiveordnance: function(sh) {
+			var ordnance = [];
+			for (var i=0; i<sh.weapons.length; i++) {
+				var w = sh.weapons[i];
+				if (w.type==Unit.TORPEDO || w.type==Unit.MISSILE) {
+					ordnance.push(w);
+				}
+			}
+			return ordnance;
+		},
+		init: function(sh) {
+			var self = this;
+			sh.canfire = function() {
+				var b=(this.noattack<round || self.getactiveordnance(sh).length>0)
+					&&(this.hasfired<this.maxfired)
+					&&!this.iscloaked
+					&&!this.isfireobstructed();
+			        return b;
+			}.bind(sh);
+			sh.getactiveweapons = function(enemylist) {
+				if (this.noattack<round) {
+					return this.weapons;
+				} else {
+					return self.getactiveordnance(this);
+				}
+			}.bind(sh);
+		}
+	},
+	{
+		name: "Flight-Assist Astromech",
+		type:Unit.ASTROMECH,
+		done:true,
+		points: 1,
+		init: function(sh) {
+			sh.wrap_before("endmaneuver",this,function() {
+				if(this.candoaction() && !this.collision && !this.hascollidedobstacle()) {
+					var enemies = this.getenemiesinrange(this.weapons, this.selectnearbyenemy(3))[0];
+					if(enemies.length == 0) {
+						var p=[];
+						if (this.candoboost())
+						p.push(this.newaction(this.resolveboost,"BOOST"));
+						if (this.candoroll())
+						p.push(this.newaction(this.resolveroll,"ROLL"));
+						this.doaction(p,"free %BOOST% or %ROLL% action");
+					}
+				}
+			});
+			var turret=[];
+			var self=this;
+			for (var i=0; i<sh.weapons.length; i++) {
+				var w=sh.weapons[i];
+				if (w.type==Unit.TURRET&&w.isprimary===false) {
+					turret.push(w);
+					w.wrap_after("isTurret",self,function() { return false; });
+				}
+			}
+			if (turret.length===0) return;
+			sh.wrap_after("isTurret",this,function(w,b) {
+				return false;
+			});
+		}
 	}
 ];

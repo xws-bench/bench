@@ -382,6 +382,7 @@ function Unit(team,pilotid) {
 	this.istargeted=[];
 	this.targeting=[];
 	this.stress=0;
+	this.checkpilotstress=true;
 	this.ionized=0;
 	//this.removeionized=false;
 	this.evade=0;
@@ -1397,6 +1398,7 @@ Unit.prototype = {
 		}
 	    }
 	}
+
 	return al;
     },
     getupgactionlist: function() {
@@ -1441,7 +1443,8 @@ Unit.prototype = {
 	var ual=this.getupgactionlist();
 	var cal=this.getcritactionlist();
 	var condal=this.getcondactionlist();
-	return sal.concat(ual).concat(cal).concat(condal);
+	var al = sal.concat(ual).concat(cal).concat(condal);
+	return al;
     },
     addevadetoken: function() {
 	this.evade++;
@@ -2389,7 +2392,7 @@ Unit.prototype = {
 		&&this.canusetarget(sh)) {
 		this.reroll=0; 
 	    }
-	    // If TL and focus are required, use both...TODO
+	    // If TL and focus are required, use both...TODOenemylist
 	    if (wp.consumes==true
 		&&"Focus".match(this.getrequirements(wp))
 		&&this.canusefocus()) {
@@ -2599,10 +2602,12 @@ Unit.prototype = {
 	}
     },
     handledifficulty: function(difficulty) {
-	if (difficulty=="RED") {
-	    this.addstress();
-	} else if (difficulty=="GREEN" && this.stress>0) {
-	    this.removestresstoken();
+	if(this.checkpilotstress) {
+		if (difficulty=="RED") {
+			this.addstress();
+		} else if (difficulty=="GREEN" && this.stress>0) {
+			this.removestresstoken();
+		}
 	}
     },
     premove:function() {
@@ -2948,12 +2953,15 @@ Unit.prototype = {
 	}
 	return true;
     },
+    getactiveweapons: function(enemylist) {
+	return this.weapons;
+    },
     showattack: function(weaponlist,enemylist) {
 	var str="";
 	var wn=[],wp=[];
 	var i,j,w;
 	$("#attackdial").show();
-	if (typeof weaponlist=="undefined") weaponlist=this.weapons;
+	if (typeof weaponlist=="undefined") weaponlist=this.getactiveweapons();
 	//else this.attackweapons=weaponlist;
 	var r=this.getenemiesinrange(weaponlist,enemylist);
 	var d=$("<div>");
@@ -3001,13 +3009,15 @@ Unit.prototype = {
     addactivationdial: function(pred,action,html,elt) {
 	this.activationdial.push({pred:pred,action:action,html:html,elt:elt});
     },
+	endactivate:function() {},
     actionbarrier:function() {
 	actionrlock=$.Deferred();
 	if (this.areactionspending()) {
-	    actionrlock.done(function() { this.unlock(); }.bind(this));
+	    actionrlock.done(function() { this.unlock(); if(phase==ACTIVATION_PHASE) this.endactivate(); }.bind(this));
 	} else {
 	    actionrlock.resolve();
 	    this.unlock();
+		if(phase==ACTIVATION_PHASE) this.endactivate();
 	}
     },
     addafteractions: function(f) {
