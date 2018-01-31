@@ -216,7 +216,7 @@ Team.prototype = {
 		    if (upg.id>=0&&typeof UPGRADES[upg.id].uninstall=="function")
 			UPGRADES[upg.id].uninstall(u);
 		    // Now install the upgrades added during the tosquadron call
-		    if (typeof upg.install=="function") upg.install(u);
+		    if (typeof upg.install=="function" && upg.install !== Upgrade.prototype.install) upg.install(u);
 		    Upgrade.prototype.install.call(upg,u);
 		}
 	    }
