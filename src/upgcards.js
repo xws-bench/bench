@@ -219,7 +219,9 @@ var UPGRADES=window.UPGRADES= [
 	     if (k==-1||!self.isactive) return p;
 	     var pp=$.Deferred();
 	     p.then(function(cf) {
-		 if (this.shield+this.hull==1||(cf.face==Critical.FACEUP&&cf.crit.lethal&&this.shield+this.hull<=2)) {
+                 var danger = (this.shield + this.hull) == 1;
+                 var muchdanger = (cf.face==Critical.FACEUP&&cf.crit.lethal&&this.shield+this.hull<=2);
+                 if (self.isactive && (danger || muchdanger)) {
 		     this.upgrades[k].desactivate();
 		     this.log("%0 is inactive, damage discarded [%1]",this.upgrades[k].name,self.name);
 		     self.desactivate();
@@ -2648,7 +2650,12 @@ var UPGRADES=window.UPGRADES= [
 	uninstall:function(sh) {
 	    sh.hull--; sh.ship.hull--;
 	    sh.showstats();
+            sh.checkdead();
 	},
+        desactivate:function() {
+            this.uninstall(this.unit);
+            Unit.prototype.desactivate.call(this);
+        },
         points: 3,
     },
     {
@@ -2953,17 +2960,23 @@ var UPGRADES=window.UPGRADES= [
         points: 2,
         ship: "M3-A Interceptor", 
 	install: function(s) {
+            s.hull++;
 	    s.ship.hull++;
 	    s.installed=true;
 	    s.showstats();	    
 	},
 	init: function(sh) {
-	    this.wrap_after("uninstall",this,function(s) {
-		/*s.hull--; */
+            this.wrap_after("uninstall",this,function(s) {
+		s.hull--; 
 		s.ship.hull--;
 		s.showstats();
+                s.checkdead();
 	    });
 	},
+        desactivate:function() {
+            this.uninstall(this.unit);
+            Unit.prototype.desactivate.call(this);
+        },
     },
     {
         name: 'IG-2000',
@@ -4375,7 +4388,7 @@ var UPGRADES=window.UPGRADES= [
 			    var p=[];
 			    for (var i in t.upgrades) {
 				var upg=t.upgrades[i];
-				if (upg.type.match(/Missile|Torpedo|Crew|Bomb|Cannon|Turret|Astromech|System|Illicit|Salvaged|Tech|Elite/)) {
+				if (upg.type.match(/Missile|Torpedo|Crew|Bomb|Cannon|Turret|Astromech|System|Illicit|Salvaged|Tech|Elite|Title|Mod/)) {
 				    p.push(upg);
 				}
 			    }
