@@ -3108,7 +3108,7 @@ var UPGRADES=window.UPGRADES= [
 	init: function(sh) { 
 	    for (var i=0; i<sh.upgrades.length; i++) {
 		var u=sh.upgrades[i];
-		if (u.type.match(/Missile|Torpedo|Bomb/)) u.ordnance=true;
+		if (u.type.match(/Missile|Torpedo|Bomb/)) u.ordnance=1;
 	    }
 	},
     },
@@ -6089,7 +6089,7 @@ var UPGRADES=window.UPGRADES= [
      type:Unit.CREW,
      points:2
     },
-    {name:"Pulse Ray Shield",
+    {name:"Pulsed Ray Shield",
      type:Unit.MOD,
      faction:"REBEL|SCUM",
      points:2,
@@ -6134,7 +6134,7 @@ var UPGRADES=window.UPGRADES= [
 		 for (var i in u.upgrades) {
 		     if (u.upgrades[i].type==Unit.ILLICIT) {
 			 u.log("x2 %0 [%1]",u.upgrades[i].name,self.name);
-			 u.upgrades[i].ordnance=true;
+			 u.upgrades[i].ordnance=1;
 		     }
 		 }
 	     }
@@ -6443,6 +6443,59 @@ var UPGRADES=window.UPGRADES= [
 			sh.wrap_after("isTurret",this,function(w,b) {
 				return false;
 			});
+		}
+	},
+	{
+		name: "First Order Vanguard",
+		type:Unit.TITLE,
+		done:false,
+		points:2,
+		unique:true,
+		ship: "TIE Silencer",
+		init: function(sh) {
+			var self=this;
+			sh.adddicemodifier(Unit.ATTACK_M,Unit.REROLL_M,Unit.ATTACK_M,this,{
+			dice:["blank","focus"],
+			n:function() { return 1; },
+			req:function(a,w,defender) {
+				var p=this.unit.getenemiesinrange(this.unit.weapons, this.unit.selectnearbyenemy(3))[0];
+				if (p.length===1&&self.isactive) {
+					this.unit.log("+1 reroll [%0]",self.name);
+				}
+				return p.length===1&&self.isactive;
+			}.bind(this)});
+			sh.adddicemodifier(Unit.DEFENSE_M,Unit.REROLL_M,Unit.DEFENSE_M,this,{
+			dice:["blank","focus","evade"],
+			req:function() { return self.isactive; }.bind(this),
+			n:function() { return 9; },
+			f:function(m,n) {
+				this.unit.log("reroll all dice results [%0]",self.name);
+				self.desactivate();
+				return {'m':m,'n':n};
+			}.bind(this)});
+		}
+	},
+	{
+		name: "Deflective Plating",
+		type:Unit.MOD,
+		done:false,
+		points:1,
+		ship: "B/SF-17 Bomber",
+		// TODO: Similar to Captain Nym
+	},
+	{
+		name: "Ordnance Silos",
+		type:Unit.BOMB,
+		done:true,
+		points:2,
+		ship: "B/SF-17 Bomber",
+		isBomb: function() { return false; },
+		isWeapon: function() { return false; },
+		init: function(sh) {
+			for (var i=0; i<sh.upgrades.length; i++) {
+				var u=sh.upgrades[i];
+				if (u.type.match(/Bomb/)) u.ordnance=3;
+			}
 		}
 	}
 ];
