@@ -1005,8 +1005,66 @@
         "sos": "0.56"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "connernet", 
+                  "ionbombs"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 500, 
-        "name": "Rudi Joubert", 
+        "name": "Rudy Joubert", 
         "rank": {
           "swiss": 21
         }, 
@@ -1313,6 +1371,61 @@
         "sos": "0.52"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "ionpulsemissiles"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "kyloren", 
+              "ship": "tiesilencer", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "firstordervanguard"
+                ]
+              }
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 377, 
         "name": "Ryan Young", 
         "rank": {
@@ -1683,7 +1796,7 @@
           {
             "player1": "Shaun Rushmer", 
             "player1points": 100, 
-            "player2": "Rudi Joubert", 
+            "player2": "Rudy Joubert", 
             "player2points": 49, 
             "result": "win"
           }, 
@@ -1843,7 +1956,7 @@
           {
             "player1": "Jaco Meintjes", 
             "player1points": 0, 
-            "player2": "Rudi Joubert", 
+            "player2": "Rudy Joubert", 
             "player2points": 55, 
             "result": "win"
           }, 
@@ -2000,7 +2113,7 @@
             "result": "win"
           }, 
           {
-            "player1": "Rudi Joubert", 
+            "player1": "Rudy Joubert", 
             "player1points": 69, 
             "player2": "Douw Pretorius", 
             "player2points": 100, 
@@ -2139,7 +2252,7 @@
             "result": "win"
           }, 
           {
-            "player1": "Rudi Joubert", 
+            "player1": "Rudy Joubert", 
             "player1points": 100, 
             "player2": "David Liu", 
             "player2points": 0, 
@@ -2300,7 +2413,7 @@
           {
             "player1": "Cedric Jacques", 
             "player1points": 100, 
-            "player2": "Rudi Joubert", 
+            "player2": "Rudy Joubert", 
             "player2points": 27, 
             "result": "win"
           }, 
