@@ -738,7 +738,7 @@ hammer2.0.8.min.js sheetrock.min.js
 	<td style="display:{{#left}}none{{/left}}{{^left}}block{{/left}}"><code class="{{type}} upgrades"></code></td>
 	<td class="tdstat">
 	  <span>
-	    {{{trname}}}{{#ordnance}}<sup class="ordnance">x2</sup>{{/ordnance}}
+	    {{{trname}}}{{#isBomb}}{{#ordnance}}<sup class="ordnance">x{{showOrdnance}}</sup>{{/ordnance}}{{/isBomb}}
 	  </span>
 	</td>
 	<td style="display:{{#left}}block{{/left}}{{^left}}none{{/left}}"><code class="{{type}} upgrades"></code></td>
@@ -778,7 +778,7 @@ hammer2.0.8.min.js sheetrock.min.js
 	</td>
 	<td class="tdstat">
 	  <span>
-	    {{{trname}}}{{#ordnance}}<sup class="ordnance">x2</sup>{{/ordnance}}
+	    {{{trname}}}{{#isWeapon}}{{#ordnance}}<sup class="ordnance">x{{showOrdnance}}</sup>{{/ordnance}}{{/isWeapon}}
 	    <span style="font-size:smaller">
 	      {{#req}}<span class="symbols">{{.}}</span>{{/req}}[{{getlowrange}}-{{gethighrange}}]
 	    </span>
@@ -805,7 +805,7 @@ hammer2.0.8.min.js sheetrock.min.js
 	</td>
 	<td class="tdstat">
 	  <span>
-	    {{{trname}}}{{#ordnance}}<sup class="ordnance">x2</sup>{{/ordnance}}{{#hasshield}}<code class="cshield" title="{{shield}} shield(s)"></code><sup class="ordnance">x{{shield}}</sup>{{/hasshield}}{{#hasfocus}}<code class="xfocustoken" title="{{focus}}"></code><sup class="ordnance">x{{focus}}</sup>{{/hasfocus}}{{#variant}} ({{.}}){{/variant}}{{#hasswitch}}<code class="smallbutton symbols" onclick="if (!squadron[{{uid}}].isdocked) squadron[{{uid}}].upgrades[{{uuid}}].switch();">/</code>{{/hasswitch}}
+	    {{{trname}}}{{#isWeapon}}{{#ordnance}}<sup class="ordnance">x{{showOrdnance}}</sup>{{/ordnance}}{{/isWeapon}}{{#hasshield}}<code class="cshield" title="{{shield}} shield(s)"></code><sup class="ordnance">x{{shield}}</sup>{{/hasshield}}{{#hasfocus}}<code class="xfocustoken" title="{{focus}}"></code><sup class="ordnance">x{{focus}}</sup>{{/hasfocus}}{{#variant}} ({{.}}){{/variant}}{{#hasswitch}}<code class="smallbutton symbols" onclick="if (!squadron[{{uid}}].isdocked) squadron[{{uid}}].upgrades[{{uuid}}].switch();">/</code>{{/hasswitch}}
 	  </span>
 	</td>
 	<td style="display:{{^left}}none{{/left}}{{#left}}table-cell{{/left}}">

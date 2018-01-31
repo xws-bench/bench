@@ -293,7 +293,6 @@ function Unit(team,pilotid) {
     this.faction=TEAMS[team].faction;
     this.shipactionList=[];
     this.dial=[];
-    this.ordnance=false;
     this.dialselect="<table class='dial' id='dial"+id+"'></table>";
     this.text="<span id='text"+id+"' class='details'></span>";
     this.upgradesno=0;

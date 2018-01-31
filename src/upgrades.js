@@ -29,6 +29,7 @@ Bomb.prototype = {
     wrap_after:Unit.prototype.wrap_after,
     isWeapon() { return false; },
     isBomb() { return true; },
+	showOrdnance() { return this+1; },
     canbedropped() { return this.isactive&&!this.unit.hasmoved&&this.unit.lastdrop!=round; },
     desactivate() { this.isactive=false;this.unit.movelog("D-"+this.unit.upgrades.indexOf(this)); },
     getBall() {
@@ -118,8 +119,8 @@ Bomb.prototype = {
     },
     drop(lm,n) {
 	var dropped=this;
-	if (this.ordnance) { 
-	    this.ordnance=false; 
+	if (this.ordnance>0) { 
+	    this.ordnance-=1; 
 	    dropped=$.extend({},this);
 	} else this.desactivate();
 	dropped.resolveactionmove(this.unit.getbombposition(lm,this.size), function(k) {
@@ -204,7 +205,7 @@ function Weapon(sh,wdesc) {
 	$.extend(this,wdesc);
 	sh.upgrades[sh.upgrades.length]=this;
 	this.wrapping=[];
-	this.ordnance=false;
+	this.ordnance=0;
 	//log("Installing weapon "+this.name+" ["+this.type+"]");
 	this.isactive=true;
 	this.unit=sh;
@@ -243,9 +244,10 @@ Weapon.prototype={
     wrap_after:Unit.prototype.wrap_after,
     isBomb() { return false; },
     isWeapon() { return true; },
+	showOrdnance() { return this+1; },
     desactivate() {
-	if (this.ordnance&&this.type.match(/Torpedo|Missile|Illicit/)) {
-	    this.ordnance=false;
+	if (this.ordnance>0&&this.type.match(/Torpedo|Missile|Bomb|Illicit/)) {
+	    this.ordnance-=1;
 	} else { this.isactive=false; /*this.unit.movelog("D-"+this.unit.upgrades.indexOf(this)); this.unit.show();*/ }
     },
     toString() {
@@ -318,6 +320,7 @@ Weapon.prototype={
     },
     declareattack(sh) { 
 	if (typeof this.getrequirements()!="undefined") {
+		this.twinattack=false;
 	    var s="Target";
 	    var u="Focus";
 	    if (s.match(this.getrequirements())&&this.consumes===true&&this.unit.canusetarget(sh)) {
@@ -367,7 +370,7 @@ Weapon.prototype={
 	return 0;
     },
     endattack(c,h) {
-	if (this.type.match(/Torpedo|Missile/)) this.desactivate();
+	if (this.type.match(/Torpedo|Missile/) && (this.twinattack != true)) this.desactivate();
     },
     hasdoubleattack() { return false; },
     hasenemiesinrange() {
@@ -401,10 +404,13 @@ Weapon.prototype={
 function Upgradefromid(sh,i) {
     var upg=UPGRADES[i];
     upg.id=i;
-    if (upg.type==Unit.BOMB) return new Bomb(sh,upg);
-    if (typeof upg.isWeapon != "undefined") { 
-	if (upg.isWeapon()) return new Weapon(sh,upg);
-	else return new Upgrade(sh,i);
+    if (upg.type==Unit.BOMB) {
+		if (typeof upg.isBomb != "undefined" && !upg.isBomb()) return new Upgrade(sh,i);
+		return new Bomb(sh,upg);
+	}
+    if (typeof upg.isWeapon != "undefined") {
+		if (upg.isWeapon()) return new Weapon(sh,upg);
+		else return new Upgrade(sh,i);
     }
     if (upg.type.match(/Turretlaser|Bilaser|Mobilelaser|Laser180|Laser|Torpedo|Cannon|Missile|Turret/)||upg.isweapon===true) return new Weapon(sh,upg);
     return new Upgrade(sh,i);
@@ -416,7 +422,7 @@ function Upgrade(sh,i) {
 	this.isactive=true;
 	this.unit=sh;
 	this.wrapping=[];
-	this.ordnance=false;
+	this.ordnance=0;
 	/*
 	 var addedaction=this.addedaction;
 	 if (typeof addedaction!="undefined") {
@@ -443,6 +449,7 @@ Upgrade.prototype={
     },
     isWeapon() { return false; },
     isBomb() { return false; },
+	showOrdnance() { return this+1; },
     getlowrange() {
 	return this.range[0];
     },
@@ -451,8 +458,8 @@ Upgrade.prototype={
     },
     endround() {},
     desactivate() {
-	if (this.ordnance&&this.type.match(/Torpedo|Missile|Illicit/)) {
-	    this.ordnance=false;
+	if (this.ordnance>0&&this.type.match(/Torpedo|Missile|Bomb|Illicit/)) {
+	    this.ordnance-=1;
 	} else { this.isactive=false; this.unit.movelog("D-"+this.unit.upgrades.indexOf(this)); this.unit.show(); }
     },
     show() {},
