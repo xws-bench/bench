@@ -3,61 +3,37 @@ From github.com:baranidlo/bench
 Already up-to-date.
 Moving old 'tournaments' to 'tournaments.old'...
 Downloading new 'tournaments' file...
---2018-01-31 00:00:02--  http://lists.starwarsclubhouse.com/api/v1/tournaments
+--2018-02-01 00:00:01--  http://lists.starwarsclubhouse.com/api/v1/tournaments
 Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
 Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 36413 (36K) [application/json]
+Length: 36435 (36K) [application/json]
 Saving to: ‘tournaments’
 
-     0K .......... .......... .......... .....                100%  404K=0.09s
+     0K .......... .......... .......... .....                100%  383K=0.09s
 
-2018-01-31 00:00:02 (404 KB/s) - ‘tournaments’ saved [36413/36413]
+2018-02-01 00:00:02 (383 KB/s) - ‘tournaments’ saved [36435/36435]
 
 Downloading new tournament list data...
---2018-01-31 00:00:02--  http://lists.starwarsclubhouse.com/api/v1/tournament/3922
+--2018-02-01 00:00:02--  http://lists.starwarsclubhouse.com/api/v1/tournament/3926
 Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
 Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 28301 (28K) [application/json]
-Saving to: ‘3922’
+Length: 12620 (12K) [application/json]
+Saving to: ‘3926’
 
-     0K .......... .......... .......                         100%  319K=0.09s
+     0K .......... ..                                         100% 13.2M=0.001s
 
-2018-01-31 00:00:03 (319 KB/s) - ‘3922’ saved [28301/28301]
+2018-02-01 00:00:03 (13.2 MB/s) - ‘3926’ saved [12620/12620]
 
---2018-01-31 00:00:03--  http://lists.starwarsclubhouse.com/api/v1/tournament/3923
+--2018-02-01 00:00:03--  http://lists.starwarsclubhouse.com/api/v1/tournament/3927
 Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
 Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 28185 (28K) [application/json]
-Saving to: ‘3923’
+Length: 3171 (3.1K) [application/json]
+Saving to: ‘3927’
 
-     0K .......... .......... .......                         100%  326K=0.08s
+     0K ...                                                   100% 5.07M=0.001s
 
-2018-01-31 00:00:04 (326 KB/s) - ‘3923’ saved [28185/28185]
+2018-02-01 00:00:03 (5.07 MB/s) - ‘3927’ saved [3171/3171]
 
---2018-01-31 00:00:04--  http://lists.starwarsclubhouse.com/api/v1/tournament/3924
-Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
-Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 4425 (4.3K) [application/json]
-Saving to: ‘3924’
-
-     0K ....                                                  100% 5.66M=0.001s
-
-2018-01-31 00:00:04 (5.66 MB/s) - ‘3924’ saved [4425/4425]
-
---2018-01-31 00:00:04--  http://lists.starwarsclubhouse.com/api/v1/tournament/3925
-Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
-Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 8746 (8.5K) [application/json]
-Saving to: ‘3925’
-
-     0K ........                                              100% 4.12M=0.002s
-
-2018-01-31 00:00:04 (4.12 MB/s) - ‘3925’ saved [8746/8746]
-
-To git@github.com:baranidlo/bench.git
-   69b297c..bfffb0e  gh-pages -> gh-pages

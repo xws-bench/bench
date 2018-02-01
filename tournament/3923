@@ -242,7 +242,7 @@
           "version": "4.2.0"
         }, 
         "mov": 584, 
-        "name": "John Paul", 
+        "name": "John-Paul", 
         "rank": {
           "elimination": 5, 
           "swiss": 4
@@ -663,6 +663,59 @@
         "sos": "0.00"
       }, 
       {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ruthlessfreelancer", 
+              "ship": "g1astarfighter", 
+              "upgrades": {
+                "crew": [
+                  "courierdroid"
+                ], 
+                "system": [
+                  "collisiondetector"
+                ]
+              }
+            }, 
+            {
+              "name": "ruthlessfreelancer", 
+              "ship": "g1astarfighter", 
+              "upgrades": {
+                "crew": [
+                  "courierdroid"
+                ], 
+                "system": [
+                  "collisiondetector"
+                ]
+              }
+            }, 
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "navigator", 
+                  "k4securitydroid", 
+                  "outlawtech"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 349, 
         "name": "Kent H", 
         "rank": {
