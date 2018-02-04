@@ -5125,12 +5125,14 @@ window.PILOTS = [
 	       upgrades:[Unit.ELITE,Unit.TORPEDO,Unit.MISSILE,Unit.SALVAGED,Unit.ILLICIT]
 	},
 	{
-	       name:"Dalan Oberos (Kimogila)",
+	       name:"Dalan Oberos",
 	       faction:Unit.SCUM,
 	       pilotid:266,
 	       unique:true,
 	       done:false,
 	       unit:"M12-L Kimogila Fighter",
+		   ambiguous:true,
+		   edition:"Kimogila Fighter",
 	       skill:7,
 	       points:25,
 	       upgrades:[Unit.ELITE,Unit.TORPEDO,Unit.MISSILE,Unit.SALVAGED,Unit.ILLICIT]
@@ -5163,7 +5165,7 @@ window.PILOTS = [
 		unique:true,
     	    	unit:"Sheathipede-class Shuttle",
     	    	skill:9,
-                edition:"Sheathipede",
+                edition:"Sheathipede-class Shuttle",
                 ambiguous:true,
 		pilotid:269,
 		points:20,

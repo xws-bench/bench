@@ -219,7 +219,9 @@ var UPGRADES=window.UPGRADES= [
 	     if (k==-1||!self.isactive) return p;
 	     var pp=$.Deferred();
 	     p.then(function(cf) {
-		 if (this.shield+this.hull==1||(cf.face==Critical.FACEUP&&cf.crit.lethal&&this.shield+this.hull<=2)) {
+                 var danger = (this.shield + this.hull) == 1;
+                 var muchdanger = (cf.face==Critical.FACEUP&&cf.crit.lethal&&this.shield+this.hull<=2);
+                 if (self.isactive && (danger || muchdanger)) {
 		     this.upgrades[k].desactivate();
 		     this.log("%0 is inactive, damage discarded [%1]",this.upgrades[k].name,self.name);
 		     self.desactivate();
@@ -2648,7 +2650,12 @@ var UPGRADES=window.UPGRADES= [
 	uninstall:function(sh) {
 	    sh.hull--; sh.ship.hull--;
 	    sh.showstats();
+            sh.checkdead();
 	},
+        desactivate:function() {
+            this.uninstall(this.unit);
+            Unit.prototype.desactivate.call(this);
+        },
         points: 3,
     },
     {
@@ -2953,17 +2960,23 @@ var UPGRADES=window.UPGRADES= [
         points: 2,
         ship: "M3-A Interceptor", 
 	install: function(s) {
+            s.hull++;
 	    s.ship.hull++;
 	    s.installed=true;
 	    s.showstats();	    
 	},
 	init: function(sh) {
-	    this.wrap_after("uninstall",this,function(s) {
-		/*s.hull--; */
+            this.wrap_after("uninstall",this,function(s) {
+		s.hull--; 
 		s.ship.hull--;
 		s.showstats();
+                s.checkdead();
 	    });
 	},
+        desactivate:function() {
+            this.uninstall(this.unit);
+            Unit.prototype.desactivate.call(this);
+        },
     },
     {
         name: 'IG-2000',
@@ -3108,7 +3121,7 @@ var UPGRADES=window.UPGRADES= [
 	init: function(sh) { 
 	    for (var i=0; i<sh.upgrades.length; i++) {
 		var u=sh.upgrades[i];
-		if (u.type.match(/Missile|Torpedo|Bomb/)) u.ordnance=true;
+		if (u.type.match(/Missile|Torpedo|Bomb/)) u.ordnance=1;
 	    }
 	},
     },
@@ -4375,7 +4388,7 @@ var UPGRADES=window.UPGRADES= [
 			    var p=[];
 			    for (var i in t.upgrades) {
 				var upg=t.upgrades[i];
-				if (upg.type.match(/Missile|Torpedo|Crew|Bomb|Cannon|Turret|Astromech|System|Illicit|Salvaged|Tech|Elite/)) {
+				if (upg.type.match(/Missile|Torpedo|Crew|Bomb|Cannon|Turret|Astromech|System|Illicit|Salvaged|Tech|Elite|Title|Mod/)) {
 				    p.push(upg);
 				}
 			    }
@@ -6089,7 +6102,7 @@ var UPGRADES=window.UPGRADES= [
      type:Unit.CREW,
      points:2
     },
-    {name:"Pulse Ray Shield",
+    {name:"Pulsed Ray Shield",
      type:Unit.MOD,
      faction:"REBEL|SCUM",
      points:2,
@@ -6134,7 +6147,7 @@ var UPGRADES=window.UPGRADES= [
 		 for (var i in u.upgrades) {
 		     if (u.upgrades[i].type==Unit.ILLICIT) {
 			 u.log("x2 %0 [%1]",u.upgrades[i].name,self.name);
-			 u.upgrades[i].ordnance=true;
+			 u.upgrades[i].ordnance=1;
 		     }
 		 }
 	     }
@@ -6444,5 +6457,72 @@ var UPGRADES=window.UPGRADES= [
 				return false;
 			});
 		}
-	}
+	},
+	{
+		name: "First Order Vanguard",
+		type:Unit.TITLE,
+		done:false,
+		points:2,
+		unique:true,
+		ship: "TIE Silencer",
+		init: function(sh) {
+			var self=this;
+			sh.adddicemodifier(Unit.ATTACK_M,Unit.REROLL_M,Unit.ATTACK_M,this,{
+			dice:["blank","focus"],
+			n:function() { return 1; },
+			req:function(a,w,defender) {
+				var p=this.unit.getenemiesinrange(this.unit.weapons, this.unit.selectnearbyenemy(3))[0];
+				if (p.length===1&&self.isactive) {
+					this.unit.log("+1 reroll [%0]",self.name);
+				}
+				return p.length===1&&self.isactive;
+			}.bind(this)});
+			sh.adddicemodifier(Unit.DEFENSE_M,Unit.REROLL_M,Unit.DEFENSE_M,this,{
+			dice:["blank","focus","evade"],
+			req:function() { return self.isactive; }.bind(this),
+			n:function() { return 9; },
+			f:function(m,n) {
+				this.unit.log("reroll all dice results [%0]",self.name);
+				self.desactivate();
+				return {'m':m,'n':n};
+			}.bind(this)});
+		}
+	},
+	{
+		name: "Deflective Plating",
+		type:Unit.MOD,
+		done:false,
+		points:1,
+		ship: "B/SF-17 Bomber",
+		// TODO: Similar to Captain Nym
+	},
+	{
+		name: "Ordnance Silos",
+		type:Unit.BOMB,
+		done:true,
+		points:2,
+		ship: "B/SF-17 Bomber",
+		isBomb: function() { return false; },
+		isWeapon: function() { return false; },
+		init: function(sh) {
+			for (var i=0; i<sh.upgrades.length; i++) {
+				var u=sh.upgrades[i];
+				if (u.type.match(/Bomb/)) u.ordnance=3;
+			}
+		}
+	},
+	{
+		name: "Vaksai",
+		type:Unit.TITLE,
+		done:true,
+		upgrades:[Unit.MOD, Unit.MOD],
+		pointsupg:-1,
+		points: 0,
+		ship: "Kihraxz Fighter",
+		init: function(sh) {
+			for (var i=0; i<sh.upgradetype.length; i++) {
+				sh.upgbonus[sh.upgradetype[i]]=this.pointsupg;
+			}
+		}
+	},
 ];
