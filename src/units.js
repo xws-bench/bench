@@ -2245,7 +2245,7 @@ Unit.prototype = {
 	var p=[];
 	if (typeof f=="undefined") f=function() { return true; };
 	for (var i in squadron) {
-	    if (f(this,squadron[i])&&(this.getrange(squadron[i])<=n)) p.push(squadron[i]);
+	    if (!squadron[i].isdocked&&f(this,squadron[i])&&(this.getrange(squadron[i])<=n)) p.push(squadron[i]);
 	}
 	return p;
     },
@@ -3205,12 +3205,11 @@ Unit.prototype = {
 	this.g.attr({display:"block"});
 	this.geffect.attr({display:"block"});
 	this.m=parent.m.clone();
-	this.isdocked=false;
 	this.log("deploying from %0",parent.name);
 	this.show();
 	parent.docked=null;
 	this.log("select maneuver for deployment");
-	//this.wrap_after("timeformaneuver",this,function() { return true; }).unwrapper("endcombatphase");
+	//this.wrap_after("timeformaneuver",this,function(d) { return true; }).unwrapper("endcombatphase");
 	//this.wrap_after("canfire",this,function(t) { return false; }).unwrapper("endcombatphase");
 	parent.doselection(function(n) {
 	    this.resolveactionmove(dm,function(t,k) {
@@ -3219,6 +3218,7 @@ Unit.prototype = {
 		else this.m.translate(0,20).rotate(180,0,0);
 		this.maneuver=k;
 		this.resolvemaneuver();
+                this.isdocked=false;
 		//this.show();
 	    }.bind(this),false,true);
 	    parent.endnoaction(n,"DEPLOY");

@@ -3774,6 +3774,8 @@ var UPGRADES=window.UPGRADES= [
 		});
 		u.noattack=round;
 		u.deploy(this,self.getdeploymentmatrix(u));
+                u.showstats();
+                u.showpanel();
 	    });
 	}
     },
