@@ -6510,5 +6510,19 @@ var UPGRADES=window.UPGRADES= [
 				if (u.type.match(/Bomb/)) u.ordnance=3;
 			}
 		}
-	}
+	},
+	{
+		name: "Vaksai",
+		type:Unit.TITLE,
+		done:true,
+		upgrades:[Unit.MOD, Unit.MOD],
+		pointsupg:-1,
+		points: 0,
+		ship: "Kihraxz Fighter",
+		init: function(sh) {
+			for (var i=0; i<sh.upgradetype.length; i++) {
+				sh.upgbonus[sh.upgradetype[i]]=this.pointsupg;
+			}
+		}
+	},
 ];
