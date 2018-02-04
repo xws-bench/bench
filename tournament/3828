@@ -135,51 +135,63 @@
       }, 
       {
         "list": {
-          "faction": "imperial", 
+          "faction": "scum", 
           "pilots": [
             {
-              "name": "blackeightsqpilot", 
-              "ship": "tiepunisher", 
+              "name": "toranikulda", 
+              "ship": "m12lkimogilafighter", 
               "upgrades": {
-                "bomb": [
-                  "protonbombs", 
-                  "protonbombs"
+                "ept": [
+                  "veteraninstincts"
                 ], 
-                "mod": [
-                  "longrangescanners"
-                ], 
-                "system": [
-                  "sensorjammer"
-                ], 
-                "torpedo": [
-                  "seismictorpedo", 
-                  "protontorpedoes"
-                ]
-              }
-            }, 
-            {
-              "name": "krassistrelix", 
-              "ship": "firespray31", 
-              "upgrades": {
-                "bomb": [
-                  "bombletgenerator", 
-                  "protonbombs", 
-                  "seismiccharges"
-                ], 
-                "cannon": [
-                  "arccaster"
-                ], 
-                "crew": [
-                  "maul"
+                "illicit": [
+                  "contrabandcybernetics"
                 ], 
                 "missile": [
                   "harpoonmissiles"
                 ], 
                 "mod": [
-                  "longrangescanners"
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "dalanoberos", 
+              "ship": "m12lkimogilafighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "contrabandcybernetics"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "thweek", 
+              "ship": "starviper", 
+              "upgrades": {
+                "illicit": [
+                  "contrabandcybernetics"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
                 ], 
                 "title": [
-                  "andrasta"
+                  "virago", 
+                  "starvipermkii"
                 ]
               }
             }

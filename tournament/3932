@@ -6,6 +6,51 @@
     "name": "CDG Feb Micro", 
     "players": [
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "kashyyykdefender", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ]
+              }
+            }, 
+            {
+              "name": "kashyyykdefender", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ]
+              }
+            }, 
+            {
+              "name": "kashyyykdefender", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ]
+              }
+            }, 
+            {
+              "name": "kashyyykdefender", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 536, 
         "name": "Glen \"Weazel\" Gearhart Jr", 
         "rank": {
@@ -15,6 +60,66 @@
         "sos": "0.56"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "ezrabridger", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "crew": [
+                  "gunner"
+                ], 
+                "ept": [
+                  "adaptability"
+                ]
+              }
+            }, 
+            {
+              "name": "redace", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "hyperwavecommscanner"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 423, 
         "name": "David A. Brennan", 
         "rank": {
@@ -24,6 +129,59 @@
         "sos": "0.44"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "hefftobber", 
+              "ship": "uwing", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla", 
+                  "ezrabridger"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "pivotwing"
+                ]
+              }
+            }, 
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "title": [
+                  "phantom"
+                ]
+              }
+            }, 
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "maul", 
+                  "rey"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 494, 
         "name": "John Hazen (Evil)", 
         "rank": {
@@ -42,6 +200,67 @@
         "sos": "0.33"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "crimsonspecialist", 
+              "ship": "bsf17bomber", 
+              "upgrades": {
+                "bomb": [
+                  "ordnancesilos", 
+                  "protonbombs"
+                ], 
+                "mod": [
+                  "deflectiveplating"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 346, 
         "name": "Jeremy Brennan", 
         "rank": {
@@ -252,13 +471,13 @@
         "round-type": "swiss"
       }
     ], 
-    "type": "Vassal play", 
+    "type": "Other", 
     "venue": {
       "city": "Niles", 
       "country": "United States of America", 
       "lat": "41.182835300000", 
       "lon": "-80.765358000000", 
-      "name": "", 
+      "name": "Crystal Dragon", 
       "state": "Ohio"
     }, 
     "video_url": "http://"

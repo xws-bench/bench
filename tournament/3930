@@ -1019,6 +1019,57 @@
         "sos": "0.53"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "swarmleader"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 716, 
         "name": "Przemysaw Woniak", 
         "rank": {
@@ -1496,6 +1547,55 @@
         "sos": "0.50"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "rey"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r5astromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r5astromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 418, 
         "name": "Andrzej Orliski", 
         "rank": {
