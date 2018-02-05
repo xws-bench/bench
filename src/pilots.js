@@ -3593,6 +3593,10 @@ window.PILOTS = [
 	wave:["8"],
         points: 0,
         upgrades: [],
+        init: function() {
+            self=this;
+            self.upg=[];
+        }
     },
     {
 	name:"Dengar",

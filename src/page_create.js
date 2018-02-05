@@ -227,12 +227,13 @@ function addunit(n,faction,u) {
     if (typeof u=="undefined") {
 	u=new Unit(currentteam.team,n);
 	u.faction=faction;
-	for (var i in metaUnit.prototype) u[i]=metaUnit.prototype[i];
-	for (var j in PILOTS[u.pilotid]) {
-	    var p=PILOTS[u.pilotid];
-	    if (typeof p[j]=="function") u[j]=p[j];
-	}
     }
+    for (var i in metaUnit.prototype) u[i]=metaUnit.prototype[i];
+    for (var j in PILOTS[u.pilotid]) {
+        var p=PILOTS[u.pilotid];
+        if (typeof p[j]=="function") u[j]=p[j];
+    }
+
     if (typeof u.init!="undefined") {
 	u.init();
     }

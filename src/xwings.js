@@ -983,6 +983,7 @@ function createsquad(f) {
 	var u=generics[i];
 	if (u.team==currentteam.team) {
 	    addunit(u.pilotid,currentteam.faction,u);
+            //u.tosquadron(s);
 	    for (var j=0; j<u.upgradetype.length; j++) {
 		var upg=u.upg[j];
 		if (upg>-1) {

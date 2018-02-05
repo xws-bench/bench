@@ -3729,6 +3729,7 @@ var UPGRADES=window.UPGRADES= [
         unique: true,
         ship: "YV-666",
 	done:true,
+        uid:null,
 	getdeploymentmatrix:function(u) {
 	    var gd=u.getdial();
 	    var p=[];
@@ -3745,38 +3746,76 @@ var UPGRADES=window.UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    // find or clone the pilot
-	    var i,found=-1,p;
+	    var i,j,found=-1,p;
 	    for (i in squadron) 
-		if (squadron[i].name=="Nashtah Pup Pilot") { found=i; break; }
-	    if (found>-1) {
+		if (squadron[i].name=="Nashtah Pup Pilot") { found=i; j=-1; break; }
+            if(found==-1){ // When loading from a saved list, squadron is not filled but generics is
+                for (j in generics){
+                    if (generics[j].name=="Nashtah Pup Pilot") { found=j; i=-1; break; }
+                }
+            }
+	    if (found!=-1 && j==-1) { // Nashtah Pup was already added manually
 		p=squadron[found];
-		p.skill=sh.skill;
-	    } else {
+                p.skill=sh.skill;
+                for(var card in sh.upgrades){
+                    if(sh.upgrades[card].name=="Veteran Instincts"){
+                        p.skill=sh.skill + 2;
+                        break;
+                    }
+                }
+	    } else if (found!=-1 && i==-1){ // List was loaded from saved list row
+                p=generics[found];
+//                p.upg=[];
+                for(var card in sh.upgrades){
+                    if(sh.upgrades[card].name=="Veteran Instincts"){
+                        p.skill=sh.skill + 2;
+                        break;
+                    }
+                }
+            } else { // Hound's Tooth title was added first so add Nashtah Pup automatically
 		for (i=0; i<PILOTS.length; i++) {
 		    if (PILOTS[i].name=="Nashtah Pup Pilot") break;
 		}
-		p=new Unit(sh.team,i);
-		p.upg=[];
+		p=addunit(i,Unit.SCUM);
 		p.skill=sh.skill;
-		p.tosquadron(s);
-		allunits.push(p);
-		squadron.push(p);
-		TEAMS[sh.team].units.push(p);
+                for(var card in sh.upgrades){
+                    if(sh.upgrades[card].name=="Veteran Instincts"){
+                        p.skill=sh.skill + 2;
+                        break;
+                    }
+                }
+		p.tosquadron(s); // Necessary to connect p to graphics context
 	    }
+            self.uid=p.id;
 	    p.dock(sh);
-	    p.show();
+	    if(phase!==SELECT_PHASE){ // Calling show in Select phase unbinds all click events(!?)
+                p.show();
+            }
 	    sh.wrap_before("dies",self,function() {
-		var u=this.docked;
-		this.init.call(u); // Copy capacities
-		this.hasfired=0;
-		u.wrap_before("endphase",u,function() {
-		    this.hasmoved=false;
-		});
-		u.noattack=round;
-		u.deploy(this,self.getdeploymentmatrix(u));
-                u.showstats();
-                u.showpanel();
+                if(self.isactive){ // Accounting for Boba Fett
+                    var u=this.docked;
+                    this.init.call(u); // Copy capacities
+                    this.hasfired=0;
+                    u.wrap_before("endphase",u,function() {
+                        this.hasmoved=false;
+                    });
+                    u.noattack=round;
+                    u.deploy(this,self.getdeploymentmatrix(u));
+                    u.showstats();
+                    u.showpanel();
+                }
+                else{ // Docked ship must be killed if Hound's Tooth has been deactivated
+                    this.docked.dead=true;
+                    this.docked.checkdead();
+                }
 	    });
+            this.uninstall = function(){
+                if(phase===SELECT_PHASE){
+                    // Need to remove Nashtah Pup Pilot if "Hound's Tooth" is uninstalled
+                    // but only during list selection phase; UI click() is not defined otherwise
+                    $("#unit"+self.uid+" .close").click();
+                }
+            };
 	}
     },
     {
@@ -4075,7 +4114,7 @@ var UPGRADES=window.UPGRADES= [
      type:Unit.TITLE,
      points:0,
      unique:true,
-     done:false,
+     done:true,
      ship:"Sheathipede-class Shuttle"
     },
     {name:"Reinforced Deflectors",

@@ -3182,14 +3182,15 @@ Unit.prototype = {
     }, 
     dock:function(parent) {
 	this.isdocked=true;
-	$("#"+this.id).attr("onclick","");
-	$("#"+this.id).addClass("docked");
-	$("#"+this.id).html(""+this);
-
-	this.g.attr({display:"none"});
-	this.geffect.attr({display:"none"});
-	this.log("docked on %0",parent.name);
-	this.show();
+        $("#"+this.id).attr("onclick","");
+        $("#"+this.id).addClass("docked");
+        $("#"+this.id).html(""+this);
+        if(phase!==SELECT_PHASE){ // No log in select phase; don't want to call show() b/c overwrites UI handlers
+            this.g.attr({display:"none"});
+            this.geffect.attr({display:"none"});
+            this.log("docked on %0",parent.name);
+            this.show();
+        }
 	parent.docked=this;
     },
     deploy: function(parent,dm) {
@@ -3226,7 +3227,6 @@ Unit.prototype = {
                     this.isdocked=false;
                     //this.show();
                 }.bind(this),false,true);
-                //parent.endaction(n,"DEPLOY");
                 parent.endnoaction(n,"DEPLOY");
             }.bind(this));
         }
