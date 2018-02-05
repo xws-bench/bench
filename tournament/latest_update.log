@@ -1,96 +1,184 @@
 From github.com:baranidlo/bench
  * branch            gh-pages   -> FETCH_HEAD
-Already up-to-date.
+   bf0cc3c..2d05d7c  gh-pages   -> origin/gh-pages
+Updating bf0cc3c..2d05d7c
+Fast-forward
+ data/strings.en.json                               |  10 +-
+ data/xws.json                                      |  11 +-
+ index.html                                         |   3 +-
+ js/all.min.js                                      | 202 +++++++++++----------
+ main.html                                          |   6 +-
+ png/EMPIRE/doubleedge.png                          | Bin 0 -> 13403 bytes
+ png/EMPIRE/firstordertestpilot.png                 | Bin 0 -> 15340 bytes
+ png/EMPIRE/kyloren-tiesilencer.png                 | Bin 0 -> 10967 bytes
+ png/EMPIRE/lieutenantkarsabi.png                   | Bin 0 -> 13655 bytes
+ png/EMPIRE/lieutenantkestal.png                    | Bin 28922 -> 14147 bytes
+ png/EMPIRE/majorvynder.png                         | Bin 0 -> 12901 bytes
+ png/EMPIRE/nusquadronpilot.png                     | Bin 0 -> 13976 bytes
+ png/EMPIRE/onyxsquadronescort.png                  | Bin 0 -> 14754 bytes
+ png/EMPIRE/rhosquadronveteran.png                  | Bin 0 -> 11528 bytes
+ png/EMPIRE/sienarjaemusanalyst.png                 | Bin 0 -> 14063 bytes
+ png/EMPIRE/sienarspecialist.png                    | Bin 0 -> 13595 bytes
+ png/EMPIRE/testpilotblackout.png                   | Bin 0 -> 15422 bytes
+ png/REBEL/ap5.png                                  | Bin 0 -> 12055 bytes
+ png/REBEL/captainnym.png                           | Bin 0 -> 12971 bytes
+ png/REBEL/cobaltleader.png                         | Bin 0 -> 14725 bytes
+ png/REBEL/crimsonleader.png                        | Bin 0 -> 12756 bytes
+ png/REBEL/crimsonspecialist.png                    | Bin 0 -> 14516 bytes
+ png/REBEL/crimsonsquadronpilot.png                 | Bin 0 -> 14322 bytes
+ png/REBEL/ezrabridger-sheathipede-classshuttle.png | Bin 0 -> 11351 bytes
+ png/REBEL/fennrau-sheathipede-classshuttle.png     | Bin 0 -> 11163 bytes
+ png/REBEL/kashyyykdefender.png                     | Bin 0 -> 13213 bytes
+ png/REBEL/lowhhrick.png                            | Bin 0 -> 16004 bytes
+ png/REBEL/wookieeliberator.png                     | Bin 0 -> 13426 bytes
+ png/REBEL/wullffwarro.png                          | Bin 0 -> 14859 bytes
+ png/REBEL/zeborrelios-sheathipede-classshuttle.png | Bin 0 -> 13514 bytes
+ png/SCUM/blacksunassassin.png                      | Bin 0 -> 13737 bytes
+ png/SCUM/captainjostero.png                        | Bin 0 -> 15675 bytes
+ png/SCUM/captainnym.png                            | Bin 0 -> 13169 bytes
+ png/SCUM/cartelbrute.png                           | Bin 0 -> 14602 bytes
+ png/SCUM/cartelexecutioner.png                     | Bin 0 -> 14991 bytes
+ png/SCUM/dalanoberos-kimogilafighter.png           | Bin 0 -> 12687 bytes
+ png/SCUM/dalanoberos.png                           | Bin 0 -> 13302 bytes
+ png/SCUM/karthakkpirate.png                        | Bin 0 -> 14426 bytes
+ png/SCUM/lokrevenant.png                           | Bin 0 -> 12083 bytes
+ png/SCUM/solsixxa.png                              | Bin 0 -> 13207 bytes
+ png/SCUM/thweek.png                                | Bin 0 -> 13303 bytes
+ png/SCUM/toranikulda.png                           | Bin 0 -> 13206 bytes
+ png/SCUM/viktorhel.png                             | Bin 0 -> 15793 bytes
+ src/page_create.js                                 |   2 +-
+ src/pilots.js                                      |   6 +-
+ src/team.js                                        |   2 +-
+ src/units.js                                       |   1 -
+ src/upgcards.js                                    |  96 +++++++++-
+ src/upgrades.js                                    |  33 ++--
+ 49 files changed, 237 insertions(+), 135 deletions(-)
+ create mode 100644 png/EMPIRE/doubleedge.png
+ create mode 100644 png/EMPIRE/firstordertestpilot.png
+ create mode 100644 png/EMPIRE/kyloren-tiesilencer.png
+ create mode 100644 png/EMPIRE/lieutenantkarsabi.png
+ create mode 100644 png/EMPIRE/majorvynder.png
+ create mode 100644 png/EMPIRE/nusquadronpilot.png
+ create mode 100644 png/EMPIRE/onyxsquadronescort.png
+ create mode 100644 png/EMPIRE/rhosquadronveteran.png
+ create mode 100644 png/EMPIRE/sienarjaemusanalyst.png
+ create mode 100644 png/EMPIRE/sienarspecialist.png
+ create mode 100644 png/EMPIRE/testpilotblackout.png
+ create mode 100644 png/REBEL/ap5.png
+ create mode 100644 png/REBEL/captainnym.png
+ create mode 100644 png/REBEL/cobaltleader.png
+ create mode 100644 png/REBEL/crimsonleader.png
+ create mode 100644 png/REBEL/crimsonspecialist.png
+ create mode 100644 png/REBEL/crimsonsquadronpilot.png
+ create mode 100644 png/REBEL/ezrabridger-sheathipede-classshuttle.png
+ create mode 100644 png/REBEL/fennrau-sheathipede-classshuttle.png
+ create mode 100644 png/REBEL/kashyyykdefender.png
+ create mode 100644 png/REBEL/lowhhrick.png
+ create mode 100644 png/REBEL/wookieeliberator.png
+ create mode 100644 png/REBEL/wullffwarro.png
+ create mode 100644 png/REBEL/zeborrelios-sheathipede-classshuttle.png
+ create mode 100644 png/SCUM/blacksunassassin.png
+ create mode 100644 png/SCUM/captainjostero.png
+ create mode 100644 png/SCUM/captainnym.png
+ create mode 100644 png/SCUM/cartelbrute.png
+ create mode 100644 png/SCUM/cartelexecutioner.png
+ create mode 100644 png/SCUM/dalanoberos-kimogilafighter.png
+ create mode 100644 png/SCUM/dalanoberos.png
+ create mode 100644 png/SCUM/karthakkpirate.png
+ create mode 100644 png/SCUM/lokrevenant.png
+ create mode 100644 png/SCUM/solsixxa.png
+ create mode 100644 png/SCUM/thweek.png
+ create mode 100644 png/SCUM/toranikulda.png
+ create mode 100644 png/SCUM/viktorhel.png
 Moving old 'tournaments' to 'tournaments.old'...
 Downloading new 'tournaments' file...
---2018-02-04 00:00:01--  http://lists.starwarsclubhouse.com/api/v1/tournaments
+--2018-02-05 00:00:02--  http://lists.starwarsclubhouse.com/api/v1/tournaments
 Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
 Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 36578 (36K) [application/json]
+Length: 36655 (36K) [application/json]
 Saving to: ‘tournaments’
 
-     0K .......... .......... .......... .....                100%  398K=0.09s
+     0K .......... .......... .......... .....                100%  400K=0.09s
 
-2018-02-04 00:00:02 (398 KB/s) - ‘tournaments’ saved [36578/36578]
+2018-02-05 00:00:02 (400 KB/s) - ‘tournaments’ saved [36655/36655]
 
 Downloading new tournament list data...
---2018-02-04 00:00:02--  http://lists.starwarsclubhouse.com/api/v1/tournament/3936
+--2018-02-05 00:00:02--  http://lists.starwarsclubhouse.com/api/v1/tournament/3941
 Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
 Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 18031 (18K) [application/json]
-Saving to: ‘3936’
+Length: 17276 (17K) [application/json]
+Saving to: ‘3941’
 
-     0K .......... .......                                    100%  199K=0.09s
+     0K .......... ......                                     100%  191K=0.09s
 
-2018-02-04 00:00:03 (199 KB/s) - ‘3936’ saved [18031/18031]
+2018-02-05 00:00:03 (191 KB/s) - ‘3941’ saved [17276/17276]
 
---2018-02-04 00:00:03--  http://lists.starwarsclubhouse.com/api/v1/tournament/3937
+--2018-02-05 00:00:03--  http://lists.starwarsclubhouse.com/api/v1/tournament/3942
 Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
 Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 25913 (25K) [application/json]
-Saving to: ‘3937’
+Length: 5893 (5.8K) [application/json]
+Saving to: ‘3942’
 
-     0K .......... .......... .....                           100%  282K=0.09s
+     0K .....                                                 100% 7.15M=0.001s
 
-2018-02-04 00:00:03 (282 KB/s) - ‘3937’ saved [25913/25913]
+2018-02-05 00:00:03 (7.15 MB/s) - ‘3942’ saved [5893/5893]
 
---2018-02-04 00:00:03--  http://lists.starwarsclubhouse.com/api/v1/tournament/3938
+--2018-02-05 00:00:03--  http://lists.starwarsclubhouse.com/api/v1/tournament/3944
 Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
 Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 8267 (8.1K) [application/json]
-Saving to: ‘3938’
+Length: 23700 (23K) [application/json]
+Saving to: ‘3944’
 
-     0K ........                                              100% 11.1M=0.001s
+     0K .......... .......... ...                             100%  258K=0.09s
 
-2018-02-04 00:00:04 (11.1 MB/s) - ‘3938’ saved [8267/8267]
+2018-02-05 00:00:04 (258 KB/s) - ‘3944’ saved [23700/23700]
 
---2018-02-04 00:00:04--  http://lists.starwarsclubhouse.com/api/v1/tournament/3939
+--2018-02-05 00:00:04--  http://lists.starwarsclubhouse.com/api/v1/tournament/3945
 Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
 Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 3839 (3.7K) [application/json]
-Saving to: ‘3939’
+Length: 21640 (21K) [application/json]
+Saving to: ‘3945’
 
-     0K ...                                                   100% 5.45M=0.001s
+     0K .......... .......... .                               100%  239K=0.09s
 
-2018-02-04 00:00:04 (5.45 MB/s) - ‘3939’ saved [3839/3839]
+2018-02-05 00:00:04 (239 KB/s) - ‘3945’ saved [21640/21640]
 
---2018-02-04 00:00:04--  http://lists.starwarsclubhouse.com/api/v1/tournament/3940
+--2018-02-05 00:00:04--  http://lists.starwarsclubhouse.com/api/v1/tournament/3946
 Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
 Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 15017 (15K) [application/json]
-Saving to: ‘3940’
+Length: 75111 (73K) [application/json]
+Saving to: ‘3946’
 
-     0K .......... ....                                       100%  172K=0.09s
+     0K .......... .......... .......... .......... .......... 68%  274K 0s
+    50K .......... .......... ...                             100% 6.33M=0.2s
 
-2018-02-04 00:00:05 (172 KB/s) - ‘3940’ saved [15017/15017]
+2018-02-05 00:00:05 (394 KB/s) - ‘3946’ saved [75111/75111]
 
---2018-02-04 00:00:05--  http://lists.starwarsclubhouse.com/api/v1/tournament/3934
+--2018-02-05 00:00:05--  http://lists.starwarsclubhouse.com/api/v1/tournament/3947
 Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
 Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 19363 (19K) [application/json]
-Saving to: ‘3934’
+Length: 7309 (7.1K) [application/json]
+Saving to: ‘3947’
 
-     0K .......... ........                                   100%  215K=0.09s
+     0K .......                                               100% 8.76M=0.001s
 
-2018-02-04 00:00:05 (215 KB/s) - ‘3934’ saved [19363/19363]
+2018-02-05 00:00:06 (8.76 MB/s) - ‘3947’ saved [7309/7309]
 
---2018-02-04 00:00:05--  http://lists.starwarsclubhouse.com/api/v1/tournament/3935
+--2018-02-05 00:00:06--  http://lists.starwarsclubhouse.com/api/v1/tournament/3948
 Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
 Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 11414 (11K) [application/json]
-Saving to: ‘3935’
+Length: 27811 (27K) [application/json]
+Saving to: ‘3948’
 
-     0K .......... .                                          100% 11.8M=0.001s
+     0K .......... .......... .......                         100%  304K=0.09s
 
-2018-02-04 00:00:06 (11.8 MB/s) - ‘3935’ saved [11414/11414]
+2018-02-05 00:00:07 (304 KB/s) - ‘3948’ saved [27811/27811]
 
-To git@github.com:baranidlo/bench.git
-   c571c6a..9825b72  gh-pages -> gh-pages
