@@ -3185,9 +3185,9 @@ Unit.prototype = {
         $("#"+this.id).attr("onclick","");
         $("#"+this.id).addClass("docked");
         $("#"+this.id).html(""+this);
+        this.g.attr({display:"none"});
+        this.geffect.attr({display:"none"});
         if(phase!==SELECT_PHASE){ // No log in select phase; don't want to call show() b/c overwrites UI handlers
-            this.g.attr({display:"none"});
-            this.geffect.attr({display:"none"});
             this.log("docked on %0",parent.name);
             this.show();
         }

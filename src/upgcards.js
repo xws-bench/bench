@@ -3747,6 +3747,7 @@ var UPGRADES=window.UPGRADES= [
 	    var self=this;
 	    // find or clone the pilot
 	    var i,j,found=-1,p;
+            
 	    for (i in squadron) 
 		if (squadron[i].name=="Nashtah Pup Pilot") { found=i; j=-1; break; }
             if(found==-1){ // When loading from a saved list, squadron is not filled but generics is
@@ -3754,38 +3755,30 @@ var UPGRADES=window.UPGRADES= [
                     if (generics[j].name=="Nashtah Pup Pilot") { found=j; i=-1; break; }
                 }
             }
+            
 	    if (found!=-1 && j==-1) { // Nashtah Pup was already added manually
 		p=squadron[found];
-                p.skill=sh.skill;
-                for(var card in sh.upgrades){
-                    if(sh.upgrades[card].name=="Veteran Instincts"){
-                        p.skill=sh.skill + 2;
-                        break;
-                    }
-                }
 	    } else if (found!=-1 && i==-1){ // List was loaded from saved list row
                 p=generics[found];
-//                p.upg=[];
-                for(var card in sh.upgrades){
-                    if(sh.upgrades[card].name=="Veteran Instincts"){
-                        p.skill=sh.skill + 2;
-                        break;
-                    }
-                }
             } else { // Hound's Tooth title was added first so add Nashtah Pup automatically
 		for (i=0; i<PILOTS.length; i++) {
 		    if (PILOTS[i].name=="Nashtah Pup Pilot") break;
 		}
 		p=addunit(i,Unit.SCUM);
-		p.skill=sh.skill;
-                for(var card in sh.upgrades){
-                    if(sh.upgrades[card].name=="Veteran Instincts"){
-                        p.skill=sh.skill + 2;
-                        break;
-                    }
-                }
 		p.tosquadron(s); // Necessary to connect p to graphics context
 	    }
+            // Set up skill; "Hound's Tooth" may be init-ed before VI or Adaptability
+            p.skill=sh.skill;
+            for(var card in sh.upgrades){
+                if(sh.upgrades[card].name=="Veteran Instincts"){
+                    p.skill=sh.skill + 2;
+                    break;
+                }
+                else if(sh.upgrades[card].name=="Adaptability"){
+                    p.skill=sh.skill + 1; // Assumes Bossk will only ever raise his PS
+                    break;
+                }
+            }
             self.uid=p.id;
 	    p.dock(sh);
 	    if(phase!==SELECT_PHASE){ // Calling show in Select phase unbinds all click events(!?)
@@ -4425,7 +4418,7 @@ var UPGRADES=window.UPGRADES= [
 		if (!self.isactive) return;
 		t.wrap_after("deal",self,function(c,f,p) {
 		    p.then(function(crit) {
-			if (crit.face==Critical.FACEUP) {
+			if (self.isactive && crit.face==Critical.FACEUP) {
 			    var p=[];
 			    for (var i in t.upgrades) {
 				var upg=t.upgrades[i];
