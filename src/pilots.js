@@ -4812,7 +4812,7 @@ window.PILOTS = [
 		     }
 		 }
 		 this.endnoaction(n,"");
-	     }.bind(this),type:"Unit.TORPEDO",name:this.name}],"",true);
+	     }.bind(this),type:"TORPEDO",name:this.name}],"",true);
 	    });
      }
    },
