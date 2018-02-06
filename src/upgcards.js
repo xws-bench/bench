@@ -3210,7 +3210,7 @@ var UPGRADES=window.UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    var self=this;
-	    sh.glitter=-1;
+	    self.glitter=-1;
 	    sh.wrap_after("modifyattackroll",this,function(m,n,d,mm) {
 		var f=Unit.FCH_focus(mm);
 		if (f>0 && this.stress===0) {
@@ -3224,22 +3224,22 @@ var UPGRADES=window.UPGRADES= [
 		    this.donoaction([
 			{org:self,name:self.name,type:"ILLICIT",action:function(n) {
 			    this.addstress();
-			    this.glitter=round;
+			    self.glitter=round;
 			    this.endnoaction(n,"ILLICIT");
 			}.bind(this)}],"",true);
 		}
 		return lock;
 	    });
 	    sh.wrap_before("endphase",this,function() {
-		if (this.glitter==round) self.desactivate();
+		if (self.glitter==round) self.desactivate();
 	    });
 	    /*TODO: to change into canchangefocusdice
 	      sh.wrap_after("canusefocus",this,function(r) {
-		return r||(this.glitter==round);
+		return r||(self.glitter==round);
 	    });*/
 	    sh.adddicemodifier(Unit.ATTACK_M,Unit.MOD_M,Unit.ATTACK_M,this,{
 		req:function(m,n) {
-		    return this.glitter==round&&self.isactive;
+		    return self.glitter==round&&self.isactive;
 		}.bind(sh),
 		f:function(m,n) {
 		    var f=Unit.FCH_focus(m);
@@ -3251,7 +3251,7 @@ var UPGRADES=window.UPGRADES= [
 		}.bind(sh),str:"focus",noreroll:"focus"});
 	    sh.adddicemodifier(Unit.DEFENSE_M,Unit.MOD_M,Unit.DEFENSE_M,this,{
 		req:function(m,n) {
-		    return this.glitter==round&&self.isactive;
+		    return self.glitter==round&&self.isactive;
 		}.bind(sh),
 		f:function(m,n) {
 		    var f=Unit.FE_focus(m);
