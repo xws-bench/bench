@@ -1,0 +1,395 @@
+{
+  "tournament": {
+    "date": "2018-02-03", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3953, 
+    "name": "NERD's Store Championship", 
+    "players": [
+      {
+        "mov": 644, 
+        "name": "Jacy Paulo", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "lieutenantcolzet", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 614, 
+        "name": "Bruno Lovatti", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 589, 
+        "name": "Roberto Ferrareis", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 535, 
+        "name": "Jehan Albuquerque", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 424, 
+        "name": "Eduardo Judice", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.25"
+      }, 
+      {
+        "mov": 393, 
+        "name": "Caetano Nunes", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 366, 
+        "name": "Tarcisio Simes", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 297, 
+        "name": "Franscisco Nunes", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 258, 
+        "name": "Fbio Macal", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 258, 
+        "name": "Matheus Filipe", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 222, 
+        "name": "Bruno Franco", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 200, 
+        "name": "Luciano Leal", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 0, 
+        "sos": "0.63"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Bruno Lovatti", 
+            "player1points": 34, 
+            "player2": "Roberto Ferrareis", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eduardo Judice", 
+            "player1points": 48, 
+            "player2": "Bruno Franco", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matheus Filipe", 
+            "player1points": 25, 
+            "player2": "Franscisco Nunes", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tarcisio Simes", 
+            "player1points": 32, 
+            "player2": "Fbio Macal", 
+            "player2points": 87, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Caetano Nunes", 
+            "player1points": 34, 
+            "player2": "Jacy Paulo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jehan Albuquerque", 
+            "player1points": 100, 
+            "player2": "Luciano Leal", 
+            "player2points": 26, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Franscisco Nunes", 
+            "player1points": 100, 
+            "player2": "Fbio Macal", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruno Franco", 
+            "player1points": 0, 
+            "player2": "Jacy Paulo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jehan Albuquerque", 
+            "player1points": 34, 
+            "player2": "Roberto Ferrareis", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tarcisio Simes", 
+            "player1points": 60, 
+            "player2": "Matheus Filipe", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruno Lovatti", 
+            "player1points": 75, 
+            "player2": "Luciano Leal", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Caetano Nunes", 
+            "player1points": 59, 
+            "player2": "Eduardo Judice", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jacy Paulo", 
+            "player1points": 100, 
+            "player2": "Franscisco Nunes", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jehan Albuquerque", 
+            "player1points": 100, 
+            "player2": "Fbio Macal", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Roberto Ferrareis", 
+            "player1points": 100, 
+            "player2": "Tarcisio Simes", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruno Lovatti", 
+            "player1points": 100, 
+            "player2": "Caetano Nunes", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruno Franco", 
+            "player1points": 70, 
+            "player2": "Matheus Filipe", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luciano Leal", 
+            "player1points": 40, 
+            "player2": "Eduardo Judice", 
+            "player2points": 75, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jacy Paulo", 
+            "player1points": 82, 
+            "player2": "Jehan Albuquerque", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruno Lovatti", 
+            "player1points": 100, 
+            "player2": "Franscisco Nunes", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Roberto Ferrareis", 
+            "player1points": 100, 
+            "player2": "Bruno Franco", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Caetano Nunes", 
+            "player1points": 100, 
+            "player2": "Matheus Filipe", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eduardo Judice", 
+            "player1points": 100, 
+            "player2": "Fbio Macal", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tarcisio Simes", 
+            "player1points": 100, 
+            "player2": "Luciano Leal", 
+            "player2points": 50, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Vitria", 
+      "country": "Brazil", 
+      "lat": null, 
+      "lon": null, 
+      "name": "", 
+      "state": "Espirito Santo"
+    }, 
+    "video_url": "http://"
+  }
+}

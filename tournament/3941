@@ -1,6 +1,6 @@
 {
   "tournament": {
-    "date": "2018-03-02", 
+    "date": "2018-02-03", 
     "format": "Standard - 100 Point Dogfight", 
     "id": 3941, 
     "name": "ZIma z X;em", 
@@ -9,36 +9,6 @@
         "list": {
           "faction": "rebel", 
           "pilots": [
-            {
-              "name": "ap5", 
-              "ship": "sheathipedeclassshuttle", 
-              "upgrades": {
-                "amd": [
-                  "r5astromech"
-                ], 
-                "crew": [
-                  "inspiringrecruit"
-                ], 
-                "mod": [
-                  "pulsedrayshield"
-                ]
-              }
-            }, 
-            {
-              "name": "crimsonspecialist", 
-              "ship": "bsf17bomber", 
-              "upgrades": {
-                "bomb": [
-                  "bombletgenerator"
-                ], 
-                "mod": [
-                  "deflectiveplating"
-                ], 
-                "system": [
-                  "trajectorysimulator"
-                ]
-              }
-            }, 
             {
               "name": "mirandadoni", 
               "ship": "kwing", 
@@ -58,6 +28,36 @@
                 ], 
                 "turret": [
                   "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "crimsonspecialist", 
+              "ship": "bsf17bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "mod": [
+                  "deflectiveplating"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ]
+              }
+            }, 
+            {
+              "name": "ap5", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "crew": [
+                  "inspiringrecruit"
+                ], 
+                "mod": [
+                  "pulsedrayshield"
                 ]
               }
             }
@@ -137,6 +137,72 @@
         "sos": "0.63"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "nusquadronpilot", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "os1arsenalloadout"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 600, 
         "name": "Arxx", 
         "rank": {
@@ -383,6 +449,48 @@
         "sos": "0.50"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "dashrendar"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 338, 
         "name": "Mateusz", 
         "rank": {
