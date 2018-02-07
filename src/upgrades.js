@@ -355,6 +355,9 @@ Weapon.prototype={
 	var r=this.unit.getprimarysector(sh,m);
 	if (r<4) return r;
 	if (typeof this.auxiliary=="undefined") return 4;
+        if (typeof this.auxiliary!="undefined" && !this.type.match(/Turretlaser|Bilaser|Mobilelaser|Laser180|Laser|Turret/)){
+            return this.getauxiliarysector(sh); // For VCX-100 w/o Phantom & Ghost, etc.
+        }
 	return this.unit.getauxiliarysector(sh,m);
     },
     getrange(sh) {
