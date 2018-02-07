@@ -276,6 +276,61 @@
         "sos": "0.00"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "doubleedge", 
+              "ship": "tieaggressor", 
+              "upgrades": {
+                "ept": [
+                  "rage"
+                ]
+              }
+            }, 
+            {
+              "name": "captainkagi", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "cannon": [
+                  "arccaster"
+                ], 
+                "crew": [
+                  "operationsspecialist", 
+                  "kyloren"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }, 
+            {
+              "name": "coloneljendon", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "cannon": [
+                  "arccaster"
+                ], 
+                "crew": [
+                  "navigator"
+                ], 
+                "mod": [
+                  "shieldupgrade"
+                ], 
+                "title": [
+                  "st321"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 946, 
         "name": "Joe Desmon", 
         "rank": {

@@ -191,6 +191,62 @@
         "sos": "0.56"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines", 
+                  "proximitymines"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "iontorpedoes"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "janors", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "ezrabridger"
+                ], 
+                "ept": [
+                  "wired"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 377, 
         "name": "John Garzanich", 
         "rank": {
