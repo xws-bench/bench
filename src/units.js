@@ -3852,20 +3852,22 @@ Unit.prototype = {
 	    }
 	    this.endnoaction(n,"CREW");
 	}.bind(this);
-	this.doselection(function(n) {
-	    var i,str="";
-	    $("#actiondial").empty();
-	    for (var i=0; i<upglist.length; i++) {
-		(function(k) {
-		    var e=$("<button>").text(upglist[k].name)
-			.click(function() { resolve(upglist[k],n);});
-		    $("#actiondial").append(e);
-		}.bind(this))(i);
-	    }
-	    var e=$("<button>").addClass("m-skip").addClass("wbutton").click(function() { resolve(null,n); });
-	    $("#actiondial").append(e);
-	    $("#actiondial").show();
-	}.bind(this),"upgrade");
+        if(self.isactive){
+            this.doselection(function(n) {
+                var i,str="";
+                $("#actiondial").empty();
+                for (var i=0; i<upglist.length; i++) {
+                    (function(k) {
+                        var e=$("<button>").text(upglist[k].name)
+                            .click(function() { resolve(upglist[k],n);});
+                        $("#actiondial").append(e);
+                    }.bind(this))(i);
+                }
+                var e=$("<button>").addClass("m-skip").addClass("wbutton").click(function() { resolve(null,n); });
+                $("#actiondial").append(e);
+                $("#actiondial").show();
+            }.bind(this),"upgrade");
+        }
     },
 
     selectdamage: function() {
