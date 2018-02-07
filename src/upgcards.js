@@ -6326,48 +6326,50 @@ var UPGRADES=window.UPGRADES= [
 		return d;
 	    })
 	},
+    },
+    {
+        name: "Bomblet Generator",
+        done:true,
+        img:"seismic.png",
+        snd:"explode",
+        width: 16,
+        height:8,
+        size:15,
+        unique:true,
+        explode:function() {
+            if (phase==ACTIVATION_PHASE&&!this.exploded) {
+                var r=this.getrangeallunits();
+                for (var i=0; i<r[1].length; i++) {
+                    var u=squadron[r[1][i].unit];
+                    var roll=this.unit.rollattackdie(2,this,"hit");
+                    for (var j=0; j<2; j++) {
+                        if (roll[j]=="hit") { 
+                            u.log("+1 %HIT% [%0]",this.name); 
+                            u.resolvehit(1); 
+                            u.checkdead(); 
+                        } else if (roll[i]=="critical") { 
+                            u.log("+1 %CRIT% [%0]",this.name); 
+                            u.resolvecritical(1);
+                            u.checkdead();
+                        }
+                        else u.log("No damage from [%0]", this.name);
+                    }
+                }
+                this.explode_base();
+                this.exploded = false;
+            }
         },
-	{
-		name: "Bomblet Generator",
-		done:true,
-		img:"seismic.png",
-		snd:"explode",
-		width: 16,
-		height:8,
-		size:15,
-		explode:function() {
-			if (phase==ACTIVATION_PHASE&&!this.exploded) {
-				var r=this.getrangeallunits();
-				for (var i=0; i<r[1].length; i++) {
-					var u=squadron[r[1][i].unit];
-					var roll=this.unit.rollattackdie(2,this,"hit");
-					for (var j=0; j<2; j++) {
-						if (roll[j]=="hit") { 
-							u.log("+1 %HIT% [%0]",this.name); 
-							u.resolvehit(1); 
-							u.checkdead(); 
-						} else if (roll[i]=="critical") { 
-							u.log("+1 %CRIT% [%0]",this.name); 
-							u.resolvecritical(1);
-							u.checkdead();
-						}
-					}
-				}
-				this.explode_base();
-				this.exploded = false;
-		    }
-		},
-		drop: function(lm,n) {
-			var dropped=this;
-			dropped.resolveactionmove(this.unit.getbombposition(lm,this.size), function(k) {
-			    this.display(0,0);
-			    this.unit.bombdropped(this);
-			    if (typeof n!="undefined") this.unit.endnoaction(n,"DROP");
-			}.bind(dropped),false,true);
-		},
-		type: Unit.BOMB,
-		points: 3,
-		takesdouble: true
+        drop: function(lm,n) {
+            var dropped=this;
+            dropped.resolveactionmove(this.unit.getbombposition(lm,this.size), function(k) {
+                this.display(0,0);
+                this.unit.bombdropped(this);
+                if (typeof n!="undefined") this.unit.endnoaction(n,"DROP");
+            }.bind(dropped),false,true);
+        },
+        type: Unit.BOMB,
+        points: 3,
+        takesdouble: true
     },    
     { 
 		name:"Wookiee Commandos",
