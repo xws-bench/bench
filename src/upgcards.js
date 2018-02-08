@@ -6525,4 +6525,23 @@ var UPGRADES=window.UPGRADES= [
 			}
 		}
 	},
+	{
+		name: "Linked Battery",
+		type:Unit.CANNON,
+		done:true,
+		points:2,
+		limited:true,
+		isLarge:false,
+		isWeapon: function() { return false; },
+		init: function(sh) {
+			sh.adddicemodifier(Unit.ATTACK_M,Unit.REROLL_M,Unit.ATTACK_M,this,{
+				dice:["blank","focus"],
+				n:function() { return 1; },
+				req:function(a,w,defender) {
+					var w1=a.weapons[a.activeweapon];
+					return this.isactive && (w1.isprimary || w1.type==Unit.CANNON);
+				}.bind(this)
+			});
+		}
+	}
 ];
