@@ -6543,5 +6543,28 @@ var UPGRADES=window.UPGRADES= [
 				}.bind(this)
 			});
 		}
+	},
+    {
+		name: "Unguided Rockets",
+		type:Unit.MISSILE,
+		done:true,
+		points:2,
+		attack:3,
+		range:[1,3],
+		firesnd:"missile",
+		requires:"Focus",
+		consumes:false,
+		init: function(sh) {
+			var self = this;
+			sh.wrap_before("resolveattack",this,function(w,t) {
+			if(this.weapons[this.activeweapon]==self)
+				this.wrap_after("getdicemodifiers",this,function(mods) {
+				var p=[];
+				for (var i=0; i<mods.length; i++)
+					if (mods[i].from==Unit.ATTACK_M && mods[i].str=="focus" && mods[i].token==true) p.push(mods[i]);
+				return p;
+				}).unwrapper("cleanupattack");
+			});
+		}
 	}
 ];
