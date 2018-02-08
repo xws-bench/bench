@@ -6554,6 +6554,7 @@ var UPGRADES=window.UPGRADES= [
 		firesnd:"missile",
 		requires:"Focus",
 		consumes:false,
+		takesdouble: true,
 		init: function(sh) {
 			var self = this;
 			sh.wrap_before("resolveattack",this,function(w,t) {
