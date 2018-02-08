@@ -3192,7 +3192,7 @@ window.PILOTS = [
 			var p=[];
 			for (var i=0; i<mods.length; i++)
 			    if (mods[i].from!=Unit.ATTACK_M) p.push(mods[i]);
-			return mods;
+			return p;
 		    }).unwrapper("endattack");
 	    });
 	    this.wrap_before("resolveattack",this,function(w,t) {
@@ -3201,8 +3201,7 @@ window.PILOTS = [
 			var p=[];
 			for (var i=0; i<mods.length; i++)
 			    if (mods[i].from!=Unit.DEFENSE_M) p.push(mods[i]);
-			
-			return mods;
+			return p;
 		    }).unwrapper("endbeingattacked");
 	    });
 	   this.wrap_after("setpriority",this,function(a) {
