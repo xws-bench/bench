@@ -6566,6 +6566,9 @@ var UPGRADES=window.UPGRADES= [
 				return p;
 				}).unwrapper("cleanupattack");
 			});
+		},
+		desactivate: function() {
+			return false;
 		}
 	}
 ];
