@@ -6561,4 +6561,50 @@ var UPGRADES=window.UPGRADES= [
 			}
 		}
 	},
+	{
+		name: "Linked Battery",
+		type:Unit.CANNON,
+		done:true,
+		points:2,
+		limited:true,
+		isLarge:false,
+		isWeapon: function() { return false; },
+		init: function(sh) {
+			sh.adddicemodifier(Unit.ATTACK_M,Unit.REROLL_M,Unit.ATTACK_M,this,{
+				dice:["blank","focus"],
+				n:function() { return 1; },
+				req:function(a,w,defender) {
+					var w1=a.weapons[a.activeweapon];
+					return this.isactive && (w1.isprimary || w1.type==Unit.CANNON);
+				}.bind(this)
+			});
+		}
+	},
+    {
+		name: "Unguided Rockets",
+		type:Unit.MISSILE,
+		done:true,
+		points:2,
+		attack:3,
+		range:[1,3],
+		firesnd:"missile",
+		requires:"Focus",
+		consumes:false,
+		takesdouble: true,
+		init: function(sh) {
+			var self = this;
+			sh.wrap_before("resolveattack",this,function(w,t) {
+			if(this.weapons[this.activeweapon]==self)
+				this.wrap_after("getdicemodifiers",this,function(mods) {
+				var p=[];
+				for (var i=0; i<mods.length; i++)
+					if (mods[i].from==Unit.ATTACK_M && mods[i].str=="focus" && mods[i].token==true) p.push(mods[i]);
+				return p;
+				}).unwrapper("cleanupattack");
+			});
+		},
+		desactivate: function() {
+			return false;
+		}
+	}
 ];
