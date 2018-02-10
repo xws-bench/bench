@@ -296,7 +296,7 @@ Weapon.prototype={
 	if (typeof sh=="undefined") {
 	    return true;
 	}
-	if (!this.isactive||this.unit.isally(sh)) return false;
+	if (!this.isactive||sh.isdocked||this.unit.isally(sh)) return false;
 	if (this.unit.checkcollision(sh)) return false;
 	if (typeof this.getrequirements()!="undefined") {
 	    var s="Target";
@@ -388,7 +388,7 @@ Weapon.prototype={
 	if (typeof enemylist=="undefined") enemylist=squadron;
 	for (var i in enemylist) {
 	    var sh=enemylist[i];
-	    if (sh.isenemy(this.unit)&&this.getrange(sh)>0) r.push(sh);
+	    if (!sh.isdocked&&sh.isenemy(this.unit)&&this.getrange(sh)>0) r.push(sh);
 	}
 	return r;
     },

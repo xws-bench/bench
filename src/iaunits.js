@@ -6,11 +6,21 @@ IAUnit.prototype = {
     /* TODO: getmaneuverlist instead of getdial */
     IAinit:function() {
 	// create environment
-	this.init={
-	    shield:this.shield,
-	    hull:this.hull,
-	    m:this.m
-	};
+        // N.B.: these values are only used by IAunits2.js code; modifying the
+        // default init object instead of overriding it prevents breaking some
+        // upgrades like IG-2000/IG-88D/Nashtah Pup Pilot that explicitly call .init()
+        if(typeof this.init!=="undefined"){
+            this.init.shield=this.shield;
+            this.init.hull=this.hull;
+            this.init.m=this.m;
+        }
+	else{
+            this.init={
+                shield:this.shield,
+                hull:this.hull,
+                m:this.m
+            };
+        }
         this.ia = true;
     },
 	/*
