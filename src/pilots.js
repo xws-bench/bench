@@ -3593,6 +3593,10 @@ window.PILOTS = [
 	wave:["8"],
         points: 0,
         upgrades: [],
+        init: function() {
+            self=this;
+            self.upg=[];
+        }
     },
     {
 	name:"Dengar",
@@ -4808,7 +4812,7 @@ window.PILOTS = [
 		     }
 		 }
 		 this.endnoaction(n,"");
-	     }.bind(this),type:"Unit.TORPEDO",name:this.name}],"",true);
+	     }.bind(this),type:"TORPEDO",name:this.name}],"",true);
 	    });
      }
    },

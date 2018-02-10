@@ -2245,7 +2245,7 @@ Unit.prototype = {
 	var p=[];
 	if (typeof f=="undefined") f=function() { return true; };
 	for (var i in squadron) {
-	    if (f(this,squadron[i])&&(this.getrange(squadron[i])<=n)) p.push(squadron[i]);
+	    if (!squadron[i].isdocked&&f(this,squadron[i])&&(this.getrange(squadron[i])<=n)) p.push(squadron[i]);
 	}
 	return p;
     },
@@ -3182,47 +3182,54 @@ Unit.prototype = {
     }, 
     dock:function(parent) {
 	this.isdocked=true;
-	$("#"+this.id).attr("onclick","");
-	$("#"+this.id).addClass("docked");
-	$("#"+this.id).html(""+this);
-
-	this.g.attr({display:"none"});
-	this.geffect.attr({display:"none"});
-	this.log("docked on %0",parent.name);
-	this.show();
+        $("#"+this.id).attr("onclick","");
+        $("#"+this.id).addClass("docked");
+        $("#"+this.id).html(""+this);
+        this.g.attr({display:"none"});
+        this.geffect.attr({display:"none"});
+        if(phase!==SELECT_PHASE){ // No log in select phase; don't want to call show() b/c overwrites UI handlers
+            this.log("docked on %0",parent.name);
+            this.show();
+        }
 	parent.docked=this;
     },
     deploy: function(parent,dm) {
-	this.movelog("DPY");
-	$("#"+this.id).removeClass("docked");
-	$("#"+this.id).html(""+this);
-	$("#"+this.id+" .outoverflow").each(function(index) { 
-	    if ($(this).css("top")!="auto") {
-		$(this).css("top",$(this).parent().offset().top+"px");
-	    }
-	});
-	$("#"+this.id).click(function() { this.select(); }.bind(this));
-	this.g.attr({display:"block"});
-	this.geffect.attr({display:"block"});
-	this.m=parent.m.clone();
-	this.isdocked=false;
-	this.log("deploying from %0",parent.name);
-	this.show();
-	parent.docked=null;
-	this.log("select maneuver for deployment");
-	//this.wrap_after("timeformaneuver",this,function() { return true; }).unwrapper("endcombatphase");
-	//this.wrap_after("canfire",this,function(t) { return false; }).unwrapper("endcombatphase");
-	parent.doselection(function(n) {
-	    this.resolveactionmove(dm,function(t,k) {
-		var half=this.getdial().length;
-		if (k>=half) { this.m.translate(0,-20); k=k-half; }
-		else this.m.translate(0,20).rotate(180,0,0);
-		this.maneuver=k;
-		this.resolvemaneuver();
-		//this.show();
-	    }.bind(this),false,true);
-	    parent.endnoaction(n,"DEPLOY");
-	}.bind(this));
+        this.movelog("DPY");
+        $("#"+this.id).removeClass("docked");
+        $("#"+this.id).html(""+this);
+        $("#"+this.id+" .outoverflow").each(function(index) { 
+            if ($(this).css("top")!="auto") {
+                $(this).css("top",$(this).parent().offset().top+"px");
+            }
+        });
+        $("#"+this.id).click(function() { this.select(); }.bind(this));
+        this.g.attr({display:"block"});
+        this.geffect.attr({display:"block"});
+        this.m=parent.m.clone();
+        this.show();
+        parent.docked=null;
+        if(!parent.isinzone(parent.m)){
+            this.log("Cannot deploy from fleeing ship; destroyed!");
+            this.checkdead();            
+        }
+        else{
+            this.log("deploying from %0",parent.name);
+            this.log("select maneuver for deployment");
+            //this.wrap_after("timeformaneuver",this,function(d) { return true; }).unwrapper("endcombatphase");
+            //this.wrap_after("canfire",this,function(t) { return false; }).unwrapper("endcombatphase");
+            parent.doselection(function(n) {
+                this.resolveactionmove(dm,function(t,k) {
+                    var half=this.getdial().length;
+                    if (k>=half) { this.m.translate(0,-20); k=k-half; }
+                    else this.m.translate(0,20).rotate(180,0,0);
+                    this.maneuver=k;
+                    this.resolvemaneuver();
+                    this.isdocked=false;
+                    //this.show();
+                }.bind(this),false,true);
+                parent.endnoaction(n,"DEPLOY");
+            }.bind(this));
+        }
     },
     endcombatphase:function() { $(".fireline").remove(); },
     endphase: function() { },
@@ -3845,20 +3852,22 @@ Unit.prototype = {
 	    }
 	    this.endnoaction(n,"CREW");
 	}.bind(this);
-	this.doselection(function(n) {
-	    var i,str="";
-	    $("#actiondial").empty();
-	    for (var i=0; i<upglist.length; i++) {
-		(function(k) {
-		    var e=$("<button>").text(upglist[k].name)
-			.click(function() { resolve(upglist[k],n);});
-		    $("#actiondial").append(e);
-		}.bind(this))(i);
-	    }
-	    var e=$("<button>").addClass("m-skip").addClass("wbutton").click(function() { resolve(null,n); });
-	    $("#actiondial").append(e);
-	    $("#actiondial").show();
-	}.bind(this),"upgrade");
+        if(self.isactive){
+            this.doselection(function(n) {
+                var i,str="";
+                $("#actiondial").empty();
+                for (var i=0; i<upglist.length; i++) {
+                    (function(k) {
+                        var e=$("<button>").text(upglist[k].name)
+                            .click(function() { resolve(upglist[k],n);});
+                        $("#actiondial").append(e);
+                    }.bind(this))(i);
+                }
+                var e=$("<button>").addClass("m-skip").addClass("wbutton").click(function() { resolve(null,n); });
+                $("#actiondial").append(e);
+                $("#actiondial").show();
+            }.bind(this),"upgrade");
+        }
     },
 
     selectdamage: function() {

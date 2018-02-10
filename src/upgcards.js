@@ -3210,7 +3210,7 @@ var UPGRADES=window.UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    var self=this;
-	    sh.glitter=-1;
+	    self.glitter=-1;
 	    sh.wrap_after("modifyattackroll",this,function(m,n,d,mm) {
 		var f=Unit.FCH_focus(mm);
 		if (f>0 && this.stress===0) {
@@ -3224,22 +3224,22 @@ var UPGRADES=window.UPGRADES= [
 		    this.donoaction([
 			{org:self,name:self.name,type:"ILLICIT",action:function(n) {
 			    this.addstress();
-			    this.glitter=round;
+			    self.glitter=round;
 			    this.endnoaction(n,"ILLICIT");
 			}.bind(this)}],"",true);
 		}
 		return lock;
 	    });
 	    sh.wrap_before("endphase",this,function() {
-		if (this.glitter==round) self.desactivate();
+		if (self.glitter==round) self.desactivate();
 	    });
 	    /*TODO: to change into canchangefocusdice
 	      sh.wrap_after("canusefocus",this,function(r) {
-		return r||(this.glitter==round);
+		return r||(self.glitter==round);
 	    });*/
 	    sh.adddicemodifier(Unit.ATTACK_M,Unit.MOD_M,Unit.ATTACK_M,this,{
 		req:function(m,n) {
-		    return this.glitter==round&&self.isactive;
+		    return self.glitter==round&&self.isactive;
 		}.bind(sh),
 		f:function(m,n) {
 		    var f=Unit.FCH_focus(m);
@@ -3251,7 +3251,7 @@ var UPGRADES=window.UPGRADES= [
 		}.bind(sh),str:"focus",noreroll:"focus"});
 	    sh.adddicemodifier(Unit.DEFENSE_M,Unit.MOD_M,Unit.DEFENSE_M,this,{
 		req:function(m,n) {
-		    return this.glitter==round&&self.isactive;
+		    return self.glitter==round&&self.isactive;
 		}.bind(sh),
 		f:function(m,n) {
 		    var f=Unit.FE_focus(m);
@@ -3729,6 +3729,7 @@ var UPGRADES=window.UPGRADES= [
         unique: true,
         ship: "YV-666",
 	done:true,
+        uid:null,
 	getdeploymentmatrix:function(u) {
 	    var gd=u.getdial();
 	    var p=[];
@@ -3745,36 +3746,69 @@ var UPGRADES=window.UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    // find or clone the pilot
-	    var i,found=-1,p;
+	    var i,j,found=-1,p;
+            
 	    for (i in squadron) 
-		if (squadron[i].name=="Nashtah Pup Pilot") { found=i; break; }
-	    if (found>-1) {
+		if (squadron[i].name=="Nashtah Pup Pilot") { found=i; j=-1; break; }
+            if(found==-1){ // When loading from a saved list, squadron is not filled but generics is
+                for (j in generics){
+                    if (generics[j].name=="Nashtah Pup Pilot") { found=j; i=-1; break; }
+                }
+            }
+            
+	    if (found!=-1 && j==-1) { // Nashtah Pup was already added manually
 		p=squadron[found];
-		p.skill=sh.skill;
-	    } else {
+	    } else if (found!=-1 && i==-1){ // List was loaded from saved list row
+                p=generics[found];
+            } else { // Hound's Tooth title was added first so add Nashtah Pup automatically
 		for (i=0; i<PILOTS.length; i++) {
 		    if (PILOTS[i].name=="Nashtah Pup Pilot") break;
 		}
-		p=new Unit(sh.team,i);
-		p.upg=[];
-		p.skill=sh.skill;
-		p.tosquadron(s);
-		allunits.push(p);
-		squadron.push(p);
-		TEAMS[sh.team].units.push(p);
+		p=addunit(i,Unit.SCUM);
+		p.tosquadron(s); // Necessary to connect p to graphics context
 	    }
+            // Set up skill; "Hound's Tooth" may be init-ed before VI or Adaptability
+            p.skill=sh.skill;
+            for(var card in sh.upgrades){
+                if(sh.upgrades[card].name=="Veteran Instincts"){
+                    p.skill=sh.skill + 2;
+                    break;
+                }
+                else if(sh.upgrades[card].name=="Adaptability"){
+                    p.skill=sh.skill + 1; // Assumes Bossk will only ever raise his PS
+                    break;
+                }
+            }
+            self.uid=p.id;
 	    p.dock(sh);
-	    p.show();
+	    if(phase!==SELECT_PHASE){ // Calling show in Select phase unbinds all click events(!?)
+                p.show();
+            }
 	    sh.wrap_before("dies",self,function() {
-		var u=this.docked;
-		this.init.call(u); // Copy capacities
-		this.hasfired=0;
-		u.wrap_before("endphase",u,function() {
-		    this.hasmoved=false;
-		});
-		u.noattack=round;
-		u.deploy(this,self.getdeploymentmatrix(u));
+                if(self.isactive){ // Accounting for Boba Fett
+                    var u=this.docked;
+                    this.init.call(u); // Copy capacities
+                    this.hasfired=0;
+                    u.wrap_before("endphase",u,function() {
+                        this.hasmoved=false;
+                    });
+                    u.noattack=round;
+                    u.deploy(this,self.getdeploymentmatrix(u));
+                    u.showstats();
+                    u.showpanel();
+                }
+                else{ // Docked ship must be killed if Hound's Tooth has been deactivated
+                    this.docked.dead=true;
+                    this.docked.checkdead();
+                }
 	    });
+            this.uninstall = function(){
+                if(phase===SELECT_PHASE){
+                    // Need to remove Nashtah Pup Pilot if "Hound's Tooth" is uninstalled
+                    // but only during list selection phase; UI click() is not defined otherwise
+                    $("#unit"+self.uid+" .close").click();
+                }
+            };
 	}
     },
     {
@@ -4073,7 +4107,7 @@ var UPGRADES=window.UPGRADES= [
      type:Unit.TITLE,
      points:0,
      unique:true,
-     done:false,
+     done:true,
      ship:"Sheathipede-class Shuttle"
     },
     {name:"Reinforced Deflectors",
@@ -4384,7 +4418,7 @@ var UPGRADES=window.UPGRADES= [
 		if (!self.isactive) return;
 		t.wrap_after("deal",self,function(c,f,p) {
 		    p.then(function(crit) {
-			if (crit.face==Critical.FACEUP) {
+			if (self.isactive && crit.face==Critical.FACEUP) {
 			    var p=[];
 			    for (var i in t.upgrades) {
 				var upg=t.upgrades[i];
@@ -6292,48 +6326,50 @@ var UPGRADES=window.UPGRADES= [
 		return d;
 	    })
 	},
+    },
+    {
+        name: "Bomblet Generator",
+        done:true,
+        img:"seismic.png",
+        snd:"explode",
+        width: 16,
+        height:8,
+        size:15,
+        unique:true,
+        explode:function() {
+            if (phase==ACTIVATION_PHASE&&!this.exploded) {
+                var r=this.getrangeallunits();
+                for (var i=0; i<r[1].length; i++) {
+                    var u=squadron[r[1][i].unit];
+                    var roll=this.unit.rollattackdie(2,this,"hit");
+                    for (var j=0; j<2; j++) {
+                        if (roll[j]=="hit") { 
+                            u.log("+1 %HIT% [%0]",this.name); 
+                            u.resolvehit(1); 
+                            u.checkdead(); 
+                        } else if (roll[i]=="critical") { 
+                            u.log("+1 %CRIT% [%0]",this.name); 
+                            u.resolvecritical(1);
+                            u.checkdead();
+                        }
+                        else u.log("No damage from [%0]", this.name);
+                    }
+                }
+                this.explode_base();
+                this.exploded = false;
+            }
         },
-	{
-		name: "Bomblet Generator",
-		done:true,
-		img:"seismic.png",
-		snd:"explode",
-		width: 16,
-		height:8,
-		size:15,
-		explode:function() {
-			if (phase==ACTIVATION_PHASE&&!this.exploded) {
-				var r=this.getrangeallunits();
-				for (var i=0; i<r[1].length; i++) {
-					var u=squadron[r[1][i].unit];
-					var roll=this.unit.rollattackdie(2,this,"hit");
-					for (var j=0; j<2; j++) {
-						if (roll[j]=="hit") { 
-							u.log("+1 %HIT% [%0]",this.name); 
-							u.resolvehit(1); 
-							u.checkdead(); 
-						} else if (roll[i]=="critical") { 
-							u.log("+1 %CRIT% [%0]",this.name); 
-							u.resolvecritical(1);
-							u.checkdead();
-						}
-					}
-				}
-				this.explode_base();
-				this.exploded = false;
-		    }
-		},
-		drop: function(lm,n) {
-			var dropped=this;
-			dropped.resolveactionmove(this.unit.getbombposition(lm,this.size), function(k) {
-			    this.display(0,0);
-			    this.unit.bombdropped(this);
-			    if (typeof n!="undefined") this.unit.endnoaction(n,"DROP");
-			}.bind(dropped),false,true);
-		},
-		type: Unit.BOMB,
-		points: 3,
-		takesdouble: true
+        drop: function(lm,n) {
+            var dropped=this;
+            dropped.resolveactionmove(this.unit.getbombposition(lm,this.size), function(k) {
+                this.display(0,0);
+                this.unit.bombdropped(this);
+                if (typeof n!="undefined") this.unit.endnoaction(n,"DROP");
+            }.bind(dropped),false,true);
+        },
+        type: Unit.BOMB,
+        points: 3,
+        takesdouble: true
     },    
     { 
 		name:"Wookiee Commandos",
