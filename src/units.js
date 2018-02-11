@@ -2044,7 +2044,7 @@ Unit.prototype = {
 		this.m=m;
 	    }
 	    var mine=this.getmcollisions(this.m);
-	    if (mine.length>0) 
+	    if (mine.length>0){ 
 		for (i=0; i<mine.length; i++) {
 		    var o=OBSTACLES[mine[i]];
 		    if (o.type==Unit.BOMB&&typeof o.detonate=="function") 
@@ -2055,6 +2055,12 @@ Unit.prototype = {
 			if (!possible) this.resolveocollision(1,[]);
 		    }
 		}
+            }
+            else{
+                // If a ship is able to roll/boost/slam off of an obstacle,
+                // it should then be able to fire after all.  Reset ocollision.overlap
+                this.ocollision.overlap=-1; // Dash Rendar 
+            }
 	    if (automove) {
 		var gpm=m.split();
 		this.movelog("am-"+Math.floor(300+gpm.dx)+"-"+Math.floor(300+gpm.dy)+"-"+Math.floor((360+Math.floor(gpm.rotate))%360));

@@ -1590,7 +1590,8 @@ var UPGRADES=window.UPGRADES= [
 	done:true,
 	getattack: function() {
 	    var a=this.attack;
-	    if (this.unit.agility<=3) a+=this.unit.agility;
+            var curAgility = this.unit.getagility();
+	    if (curAgility<=3) a+=curAgility;
 	    else a+=3;
 	    return a;
 	},
