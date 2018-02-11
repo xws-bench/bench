@@ -75,6 +75,21 @@
           "faction": "rebel", 
           "pilots": [
             {
+              "name": "fennrau", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "flightassistastromech"
+                ], 
+                "crew": [
+                  "hotshotcopilot"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }, 
+            {
               "name": "lothalrebel", 
               "ship": "vcx100", 
               "upgrades": {
@@ -93,21 +108,6 @@
                 ], 
                 "turret": [
                   "twinlaserturret"
-                ]
-              }
-            }, 
-            {
-              "name": "fennrau", 
-              "ship": "sheathipedeclassshuttle", 
-              "upgrades": {
-                "amd": [
-                  "flightassistastromech"
-                ], 
-                "crew": [
-                  "hotshotcopilot"
-                ], 
-                "ept": [
-                  "veteraninstincts"
                 ]
               }
             }, 
@@ -996,6 +996,75 @@
         "sos": "0.00"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "sharabey", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "flightassistastromech"
+                ], 
+                "crew": [
+                  "jynerso"
+                ], 
+                "ept": [
+                  "intensity"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "captainrex", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "bomb": [
+                  "ionbombs"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "title": [
+                  "sabinesmasterpiece"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 390, 
         "name": "Anthony Saba", 
         "rank": {
