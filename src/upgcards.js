@@ -4013,6 +4013,12 @@ var UPGRADES=window.UPGRADES= [
 	points:0,
 	unique:true,
 	done:true,
+        aiactivate: function() { // Let IAunits determine whether to deploy based on some criteria
+            var deploynow = false;
+            if(this.unit.shield + this.unit.hull <= 4)
+                deploynow = true;
+            return deploynow;
+        },
 	getdeploymentmatrix:function(u) {
 	    var gd=u.getdial();
 	    var p=[];
