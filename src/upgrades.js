@@ -31,17 +31,20 @@ Bomb.prototype = {
     isBomb() { return true; },
     showOrdnance() { return this+1; },
     aiactivate() {
-        if(this.canbedropped() || this.candoaction()){
-            // Add something using subauxiliary function call to determine count of ships
-            // behind the bomber
-            var victims = [], ship;
-            for(var i in squadron){
-                ship=squadron[i];
-                if(this.unit.isenemy(ship)&&this.unit.getrange(ship)<=3&&!this.unit.isinprimaryfiringarc(ship))
-                    victims.push(ship);
-            }
-            return victims.length>0;
+        var victims = [], ship;
+        var bRange = 0;
+        if(this.canbedropped()){  // Probably dropping early
+            bRange=3;
         }
+        else if(this.candoaction()){ // Probably dropping after closing
+            bRange=2;
+        }
+        for(var i in squadron){
+            ship=squadron[i];
+            if(this.unit.isenemy(ship)&&this.unit.getrange(ship)<=bRange&&!this.unit.isinprimaryfiringarc(ship))
+                victims.push(ship);
+        }
+        return victims.length>0;
     },
     canbedropped() { return this.isactive&&!this.unit.hasmoved&&this.unit.lastdrop!=round; },
     desactivate() { this.isactive=false;this.unit.movelog("D-"+this.unit.upgrades.indexOf(this)); },
@@ -112,6 +115,9 @@ Bomb.prototype = {
 	    for (i=0; i<moves.length; i++) this.pos[i].remove();
 	    f(this,k);
 	}.bind(this);
+        if(this.unit.ia){ // Reduce possible bomb locations 
+            moves=this.unit.chooseBombDrop(moves);
+        }
 	if (moves.length==1) {
 	    this.pos[0]=this.getOutline(moves[0]).attr({fill:this.unit.color,opacity:0.7});
 	    resolve(moves[0],0,cleanup);

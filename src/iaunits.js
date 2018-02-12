@@ -63,6 +63,41 @@ IAUnit.prototype = {
 	     });
 	*/
     confirm(a) { return true;},
+    chooseBombDrop(positions){
+        //Note: Snap.Matrix.e = dx from 0; Snap.Matrix.f = dy from 0
+        if(positions.length<=1) return positions;
+        var index,tempDist,distance=9999.9,dx,dy,ship,centroid,victims=[];
+        // Get all enemies within 3 of this ship; farther ships don't really matter
+        for(i in squadron){
+            ship=squadron[i];
+            if(this.isenemy(ship) && this.getrange(ship)<=3) 
+                victims.push(ship.m);
+        }
+        // Find the average center point amongst all victims (or just the .m if 1 victim)
+        if(victims.length===1) centroid=victims[0];
+        else{
+            var x=0,y=0;
+            for (v in victims){
+                x+=victims[v].e;
+                y+=victims[v].f;
+            }
+            x=x*1.0/victims.length;
+            y=y*1.0/victims.length;
+            centroid=new Snap.Matrix(1,0,0,1,x,y);
+        }
+        // Find the closest bomb position to the centroid.  This cuts down cycles used
+        for(var pos in positions){
+            dx=Math.abs(positions[pos].e - centroid.e);
+            dy=Math.abs(positions[pos].f - centroid.f);
+            tempDist=Math.sqrt(dx*dx+dy*dy);
+            if(tempDist<distance){
+                index=pos;
+                distance=tempDist;
+            }
+        }
+        return [positions[index]];  // Return a length 1 array for easy handling
+        
+    },
     guessevades(roll,promise) {
 	if (this.rand(roll.dice+1)==Unit.FE_evade(roll.roll)) {
 	    this.log("guessed correctly the number of evades ! +1 %EVADE% [%0]",self.name);
