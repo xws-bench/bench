@@ -107,6 +107,18 @@ IAUnit.prototype = {
 	promise.resolve(roll);
     },
     findpositions(gd) {
+        // More intelligent planning for stressed extra-action pilots (extend as needed)
+        let actions=this.shipactionList.length;
+        var addaction=0;
+        for(var u in this.upgrades){
+            if(this.upgrades[u].name.match(/Push the Limit|Experimental Interface/))
+                addaction+=1;
+            else if(typeof this.upgrades[u].action!== "undefined")
+                actions+=1;
+        }
+        if(this.name.match(/Darth Vader/))
+            addaction+=1;
+        
 	var q=[],c,j,i;
 	// Find all possible moves, with no collision and with units in range 
 	var COLOR=[GREEN,WHITE,YELLOW,RED];
@@ -122,6 +134,7 @@ IAUnit.prototype = {
 	    this.m=mm;
 	    var ep=this.evaluateposition();
 	    n+=ep.self-ep.enemy-ep.dist;
+            if (d.difficulty=="GREEN" && (d.color==GREEN || d.color==WHITE)) n+=(addaction+actions)*this.stress;
 	    if (d.difficulty=="RED") n=n-1.5;
 	    //this.log(d.move+" "+d.color+" "+n);
 	    this.m=oldm;
