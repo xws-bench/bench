@@ -5039,6 +5039,16 @@ var UPGRADES=window.UPGRADES= [
       islarge:true,
       points:1,
       done:true,
+      aiactivate: function() { // Attempting to keep AI from just dumping RCCs immediately
+          var ship;
+          var victims = [];
+          for(var i in squadron){
+            ship=squadron[i];
+            if(this.unit.isenemy(ship) && this.unit.getrange(ship)<=1) 
+                victims.push(ship);
+        }
+        return victims.length>0;
+      },
       candoaction: function() { 
           return this.isactive; 
       },
