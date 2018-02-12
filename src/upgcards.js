@@ -5079,28 +5079,50 @@ var UPGRADES=window.UPGRADES= [
 	  self.endaction(n,Unit.ILLICIT);
       }
     },
-    { name:"Black Market Slicer Tools",
-      type:Unit.ILLICIT,
-      points:1,
-      done:true,
-      candoaction: function() { return this.isactive; },
-      action: function(n) {
-	  var self=this;
-	  var p=self.unit.selectnearbyenemy(2,function(s,t) {
-	      return t.stress>0;
-	  });
-	  if (p.length>0&&this.isactive) {
-	      this.unit.selectunit(p,function(q,k) {
-		  var roll=self.unit.rollattackdie(1,self,"blank")[0];
-		  if (roll=="hit"||roll=="critical") { 
-		      q[k].applydamage(1); 
-		      q[k].removestresstoken();
-		      q[k].checkdead(); 
-		  }
-	      },["select unit [%0]",self.name],false);
-	  }
-	  this.unit.endaction(n,Unit.ILLICIT);
-      }
+    {   name:"Black Market Slicer Tools",
+        type:Unit.ILLICIT,
+        points:1,
+        done:true,
+        aiactivate: function() {
+            var activate=false;
+            var ship=this.unit;
+            var threshold=2;  // Arbitrary value; needs tuning.
+            var weight=1;
+            for (var upg in ship.upgrades){
+                if(ship.upgrades[upg].name.match(/Push the Limit|Experimental Interface/))
+                    weight+=1;  // Better ROI if ship has many actions available
+            }
+            var victims=ship.selectnearbyenemy(2,function(s,t){
+                // Ignore targets without stress, or in weapon range, or that are tough
+                return t.stress>0 && (s.getenemiesinrange(t)===[] || (t.hull<=2||t.getagility()>=3));
+            });
+            
+            if(victims.length*weight>=threshold)
+                activate=true;
+            
+            return activate;
+            
+        },
+        candoaction: function() { return this.isactive; },
+        action: function(n) {
+            var self=this;
+            var p=self.unit.selectnearbyenemy(2,function(s,t) {
+                return t.stress>0;
+            });
+            if (p.length>0&&this.isactive) {
+                this.unit.selectunit(p,function(q,k) {
+                    self.unit.log("Activating %0 against %1...",self.name,q[k].name);
+                    var roll=self.unit.rollattackdie(1,self,"blank")[0];
+                    if (roll=="hit"||roll=="critical") { 
+                        q[k].applydamage(1); 
+                        q[k].removestresstoken();
+                        q[k].checkdead(); 
+                    }
+                    else self.unit.log("No damage from %0 against %1.", self.name, q[k].name);
+                },["select unit [%0]",self.name],false);
+            }
+            this.unit.endaction(n,Unit.ILLICIT);
+        }
     },
     { name:"Gyroscopic Targeting",
       ship:"Lancer-class Pursuit Craft",
