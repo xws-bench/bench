@@ -25,11 +25,18 @@ function Bomb(sh,bdesc) {
 	//if (this.init != undefined) this.init(sh);
 };
 Bomb.prototype = { 
-   wrap_before:Unit.prototype.wrap_before,
+    wrap_before:Unit.prototype.wrap_before,
     wrap_after:Unit.prototype.wrap_after,
     isWeapon() { return false; },
     isBomb() { return true; },
-	showOrdnance() { return this+1; },
+    showOrdnance() { return this+1; },
+    aiactivate() {
+        if(this.canbedropped()){
+            // Add something using subauxiliary function call to determine count of ships
+            // behind the bomber
+            return true;
+        }
+    },
     canbedropped() { return this.isactive&&!this.unit.hasmoved&&this.unit.lastdrop!=round; },
     desactivate() { this.isactive=false;this.unit.movelog("D-"+this.unit.upgrades.indexOf(this)); },
     getBall() {

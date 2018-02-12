@@ -447,6 +447,8 @@ IAUnit.prototype = {
                     }
                     else if (list[i].type=="FOCUS") {
 			if (this.candofocus()) { a=list[i]; break; }
+                    } else if (typeof list[i].org.aiactivate !== "undefined"){
+                        if (list[i].org.aiactivate()) {a = list[i]; break; }
 		    } else { a = list[i]; break }
 		}
 		/*if (a==null) this.log("no possible action");
