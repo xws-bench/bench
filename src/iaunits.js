@@ -67,10 +67,10 @@ IAUnit.prototype = {
         //Note: Snap.Matrix.e = dx from 0; Snap.Matrix.f = dy from 0
         if(positions.length<=1) return positions;
         var index,tempDist,distance=9999.9,dx,dy,ship,centroid,victims=[];
-        // Get all enemies within 3 of this ship; farther ships don't really matter
+        // Get all enemies within 2 of this ship; farther ships don't really matter
         for(i in squadron){
             ship=squadron[i];
-            if(this.isenemy(ship) && this.getrange(ship)<=3) 
+            if(this.isenemy(ship) && this.getrange(ship)<=2) 
                 victims.push(ship.m);
         }
         // Find the average center point amongst all victims (or just the .m if 1 victim)

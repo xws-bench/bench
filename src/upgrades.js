@@ -34,14 +34,19 @@ Bomb.prototype = {
         var victims = [], ship;
         var bRange = 0;
         if(this.canbedropped()){  // Probably dropping early
+            // Fill in with maneuver-drop bomb logic
             bRange=3;
         }
         else if(this.candoaction()){ // Probably dropping after closing
+            // Fill in with action-drop bomb logic
             bRange=2;
         }
         for(var i in squadron){
             ship=squadron[i];
-            if(this.unit.isenemy(ship)&&this.unit.getrange(ship)<=bRange&&!this.unit.isinprimaryfiringarc(ship))
+            if(this.unit.isenemy(ship)
+                    &&((this.unit.getrange(ship)<=bRange && !this.unit.isinprimaryfiringarc(ship))
+                    ||this.unit.getrange(ship)<=1) // For Deathrain
+                    )
                 victims.push(ship);
         }
         return victims.length>0;
