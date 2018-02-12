@@ -3061,7 +3061,7 @@ Unit.prototype = {
 	if (this.candropbomb()&&(this.hasionizationeffect())) {
 	    //this.log("ionized, cannot drop bombs");
 	} else if (self.lastdrop!=round) {
-	    switch(this.bombs.length) {
+	    switch(this.bombs.length) { // Assumes max of 3 bomb types
 	    case 3: if (this.bombs[2].canbedropped()) 
 		this.addactivationdial(
 		    function() { return self.lastdrop!=round&&self.bombs[2].canbedropped(); },

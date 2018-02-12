@@ -31,10 +31,16 @@ Bomb.prototype = {
     isBomb() { return true; },
     showOrdnance() { return this+1; },
     aiactivate() {
-        if(this.canbedropped()){
+        if(this.canbedropped() || this.candoaction()){
             // Add something using subauxiliary function call to determine count of ships
             // behind the bomber
-            return true;
+            var victims = [], ship;
+            for(var i in squadron){
+                ship=squadron[i];
+                if(this.unit.isenemy(ship)&&this.unit.getrange(ship)<=3&&!this.unit.isinprimaryfiringarc(ship))
+                    victims.push(ship);
+            }
+            return victims.length>0;
         }
     },
     canbedropped() { return this.isactive&&!this.unit.hasmoved&&this.unit.lastdrop!=round; },

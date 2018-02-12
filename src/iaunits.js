@@ -363,8 +363,37 @@ IAUnit.prototype = {
     timetoshowmaneuver() {
 	return this.maneuver>-1&&skillturn>=this.getskill()&&phase==ACTIVATION_PHASE&&subphase==ACTIVATION_PHASE;
     },
+    updateactivationdial: function() { //IAUnits-specific version
+	var self=this;
+	this.activationdial=[]; // We treat this like an action list for donoaction()
+	if (this.candropbomb()&&(this.hasionizationeffect())) {
+	    //this.log("ionized, cannot drop bombs");
+	} else if (self.lastdrop!=round) {
+	    switch(this.bombs.length) { // Assumes max of 3 bomb types
+	    case 3: if (this.bombs[2].canbedropped()) 
+                this.activationdial.push({action:self.bombs[2].actiondrop,
+                    org:self.bombs[2],
+                    type:self.bombs[2].type,
+                    name:self.bombs[2].name});
+	    case 2:if (this.bombs[1].canbedropped()) 
+                this.activationdial.push({action:self.bombs[1].actiondrop,
+                    org:self.bombs[1],
+                    type:self.bombs[1].type,
+                    name:self.bombs[1].name});
+	    case 1:if (this.bombs[0].canbedropped()) 
+                this.activationdial.push({action:self.bombs[0].actiondrop,
+                    org:self.bombs[0],
+                    type:self.bombs[0].type,
+                    name:self.bombs[0].name});
+	    }
+	}
+	return this.activationdial;
+    },
     doactivation() {
 	var ad=this.updateactivationdial();
+        if(ad.length>0){
+            this.donoaction(ad);
+        }
 	if (this.timeformaneuver()) {
 	    //this.log("resolvemaneuver");
 	    this.resolvemaneuver();
