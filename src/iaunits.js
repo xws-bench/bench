@@ -390,7 +390,7 @@ IAUnit.prototype = {
 	return this.activationdial;
     },
     doactivation() {
-	var ad=this.updateactivationdial();
+	var ad=this.updateactivationdial(); // Warning: list of actions, not dial texts
         if(ad.length>0){
             this.donoaction(ad);
         }
