@@ -1886,44 +1886,53 @@
       }, 
       {
         "list": {
-          "faction": "rebel", 
+          "faction": "imperial", 
           "pilots": [
             {
-              "name": "corranhorn", 
-              "ship": "ewing", 
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
               "upgrades": {
-                "amd": [
-                  "bb8"
-                ], 
-                "ept": [
-                  "intensity"
-                ], 
-                "mod": [
-                  "engineupgrade"
-                ], 
-                "system": [
-                  "advancedsensors"
-                ]
-              }
-            }, 
-            {
-              "name": "poedameron-swx57", 
-              "ship": "t70xwing", 
-              "upgrades": {
-                "amd": [
-                  "r2d2"
-                ], 
                 "ept": [
                   "veteraninstincts"
                 ], 
                 "mod": [
-                  "autothrusters"
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
                 ], 
                 "tech": [
                   "advancedoptics"
                 ], 
                 "title": [
-                  "blackone"
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "captainyorr", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "collisiondetector"
                 ]
               }
             }
