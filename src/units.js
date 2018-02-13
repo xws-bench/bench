@@ -2856,8 +2856,15 @@ Unit.prototype = {
 	    &&!this.collision
 	    &&!this.hascollidedobstacle(); },
     doendmaneuveraction: function() {
-	return this.doaction(this.getactionlist(true),"",this.candoendmaneuveraction);
-	/*
+        if(this.candoendmaneuveraction()) // hacky fix for PTL triggering too liberally
+            return this.doaction(this.getactionlist(true),"",this.candoendmaneuveraction);
+	else{
+            // this.log("Cannot perform actions after maneuver");
+	    return this.enqueueaction(function(n) {
+		this.endnoaction(n);
+	    }.bind(this),this.name);
+        }
+        /*
 	this.action=-1; 
 	*/
     },
