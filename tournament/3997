@@ -10,14 +10,17 @@
           "faction": "imperial", 
           "pilots": [
             {
-              "name": "captainyorr", 
-              "ship": "lambdaclassshuttle", 
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
               "upgrades": {
-                "crew": [
-                  "emperorpalpatine"
+                "ept": [
+                  "expertise"
                 ], 
                 "system": [
-                  "collisiondetector"
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "specialopstraining"
                 ]
               }
             }, 
@@ -37,20 +40,14 @@
               }
             }, 
             {
-              "name": "quickdraw", 
-              "ship": "tiesffighter", 
+              "name": "captainyorr", 
+              "ship": "lambdaclassshuttle", 
               "upgrades": {
-                "ept": [
-                  "expertise"
-                ], 
-                "mod": [
-                  "lightweightframe"
+                "crew": [
+                  "emperorpalpatine"
                 ], 
                 "system": [
-                  "firecontrolsystem"
-                ], 
-                "title": [
-                  "specialopstraining"
+                  "collisiondetector"
                 ]
               }
             }
