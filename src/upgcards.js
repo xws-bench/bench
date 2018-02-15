@@ -4102,7 +4102,7 @@ var UPGRADES=window.UPGRADES= [
 		});
 		if(upg.name=="Phantom"){
                     sh.wrap_after("endcombatphase",this,function() {
-                        if (this.docked) 
+                        if (this.docked&&!this.isfireobstructed()) // Can't use additional while on an obstacle
                             for (var i=0; i<this.weapons.length; i++) {
                                 var u=this.weapons[i];
                                 if (u.type==Unit.TURRET&&u.isactive&&this.noattack<round) {
