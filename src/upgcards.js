@@ -1630,11 +1630,12 @@ var UPGRADES=window.UPGRADES= [
 	done:true,
         endround: function () { this.jan = null; },
 	init: function(sh) {
+            TEAMS[sh.team].hasJan=true; // Signal that a Jan is on this team
 	    this.jan=null;
 	    var self=this;
             var waiting=false;
             //"#"+sh.id
-            $(document).on("addfocustoken", function(event, ship) {
+            $(document).on("addfocustoken"+sh.team, function(event, ship) {
                 /*Cases: (assuming Jan's side is active
                   1) "this" is Jan's ship (this.isally(sh) && this.getrange(sh)<=3 -> Jan action
                   2) "this" is an ally of Jan's ship w/in 3 ( ditto ) -> Jan action
@@ -1645,43 +1646,50 @@ var UPGRADES=window.UPGRADES= [
                   Two Jans leads to infinite recursion because each invocation of addfocus
                   calls the wrap_before twice: once for each instance of Jan.
                 */
-                if(ship.isally(sh)){
-                    if(!waiting){
-                        if (!self.unit.dead&&self.jan===null&&ship.getrange(sh)<=3) {
-                            waiting=true;
-                            ship.log("select %FOCUS% or %EVADE% token [%0]",self.name);
-                            ship.donoaction(
-                                [{name:self.name,org:self,type:"FOCUS",action:function(n) { 
-                                    ship.realaddfocustoken();
-                                    ship.endnoaction(n,"FOCUS");
-                                    waiting=false;}.bind(ship)},
-                                 {name:self.name,org:self,type:"EVADE",action:function(n) { 
-                                    self.jan=ship;
-                                    //this.focus--; /* fix for bug with Garven */
-                                    ship.addevadetoken(); 
-                                    ship.endnoaction(n,"EVADE");
-                                    waiting=false;}.bind(ship)}],
-                                "",false);
-                        }
-                        else{
-                            ship.realaddfocustoken();
-                            waiting=false;
-                        }
+                if(!waiting){ // Needed to lock out Jan effect while player is deciding whether to take focus or evade
+                    if (!self.unit.dead&&self.jan===null&&ship.getrange(sh)<=3) {
+                        waiting=true;
+                        ship.log("select %FOCUS% or %EVADE% token [%0]",self.name);
+                        ship.donoaction(
+                            [{name:self.name,org:self,type:"FOCUS",action:function(n) { 
+                                ship.realaddfocustoken();
+                                ship.endnoaction(n,"FOCUS");
+                                waiting=false;}.bind(ship)},
+                             {name:self.name,org:self,type:"EVADE",action:function(n) { 
+                                self.jan=ship;
+                                //this.focus--; /* fix for bug with Garven */
+                                ship.addevadetoken(); 
+                                ship.endnoaction(n,"EVADE");
+                                waiting=false;}.bind(ship)}],
+                            "",false);
                     }
-                }
-                else{
-                    waiting=true;
-                    ship.realaddfocustoken();
-                    waiting=false;
+                    else{
+                        ship.realaddfocustoken();
+                        waiting=false;
+                    }
                 }
 	    });
             // Jan Ors needs to *intercept* Focus allocation, rather than *wrap* it.
-            Unit.prototype.realaddfocustoken=Unit.prototype.addfocustoken;
-            Unit.prototype.addfocustoken=function(){ return; };
-            Unit.prototype.wrap_before("addfocustoken",this,function() { // Only one wrapping is allowed, even if two Jans in play
-                $(document).trigger("addfocustoken",[this]);            // so this triggers both Jans, which then check their relationship to the "this"
-	    });
-	},
+            // As far as I can tell there is no safe, easy way to deep copy an existing function.  This sucks.
+            Unit.prototype.realaddfocustoken=function() {
+                    this.focus++;
+                    this.animateaddtoken("xfocustoken");
+                    this.movelog("FO");
+                    this.show();
+                };
+            Unit.prototype.addfocustoken=function(){
+                if(TEAMS[this.team].hasJan===true)
+                    $(document).trigger("addfocustoken"+this.team,[this]);
+                else
+                    this.realaddfocustoken();
+            };
+            self.uninstall = function(){
+                TEAMS[sh.team].hasJan=false;
+            };
+            sh.wrap_after("dies", self, function(){
+                self.uninstall();
+            });
+	}
     },
     {
         name: "R4-D6",
