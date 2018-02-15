@@ -1630,30 +1630,66 @@ var UPGRADES=window.UPGRADES= [
 	done:true,
         endround: function () { this.jan = null; },
 	init: function(sh) {
+            TEAMS[sh.team].hasJan=true; // Signal that a Jan is on this team
 	    this.jan=null;
 	    var self=this;
-            // Jan Ors needs to *intercept* Focus allocation, rather than *wrap* it.
-            Unit.prototype.realaddfocustoken=Unit.prototype.addfocustoken;
-            Unit.prototype.addfocustoken=function(){ return; };
-	    Unit.prototype.wrap_before("addfocustoken",this,function() {
-		if (!self.unit.dead&&this.isally(sh)&&self.jan===null&&this.getrange(sh)<=3) {
-		    this.log("select %FOCUS% or %EVADE% token [%0]",self.name);
-		    this.donoaction(
-			[{name:self.name,org:self,type:"FOCUS",action:function(n) { 
-			    this.realaddfocustoken();
-                            this.endnoaction(n,"FOCUS"); }.bind(this)},
-			 {name:self.name,org:self,type:"EVADE",action:function(n) { 
-			     self.jan=this;
-                             //this.focus--; /* fix for bug with Garven */
-			     this.addevadetoken(); 
-			     this.endnoaction(n,"EVADE"); }.bind(this)}],
-			"",false);
-		}
-                else{
-                    this.realaddfocustoken();
+            var waiting=false;
+            //"#"+sh.id
+            $(document).on("addfocustoken"+sh.team, function(event, ship) {
+                /*Cases: (assuming Jan's side is active
+                  1) "this" is Jan's ship (this.isally(sh) && this.getrange(sh)<=3 -> Jan action
+                  2) "this" is an ally of Jan's ship w/in 3 ( ditto ) -> Jan action
+                  3) "this" is an ally of Jan's but outside 3 -> this.realaddfocustoken()
+                  4) "this" is not an ally of Jan's but inside 3 -> this.realaddfocustoken()
+                  5) "this" is not an ally of Jan's and is outside 3 -> this.realaddfocustoken() ;_;
+                  6) Two Jans, but currently active team is not this' team. -> do nothing!
+                  Two Jans leads to infinite recursion because each invocation of addfocus
+                  calls the wrap_before twice: once for each instance of Jan.
+                */
+                if(!waiting){ // Needed to lock out Jan effect while player is deciding whether to take focus or evade
+                    if (!self.unit.dead&&self.jan===null&&ship.getrange(sh)<=3) {
+                        waiting=true;
+                        ship.log("select %FOCUS% or %EVADE% token [%0]",self.name);
+                        ship.donoaction(
+                            [{name:self.name,org:self,type:"FOCUS",action:function(n) { 
+                                ship.realaddfocustoken();
+                                ship.endnoaction(n,"FOCUS");
+                                waiting=false;}.bind(ship)},
+                             {name:self.name,org:self,type:"EVADE",action:function(n) { 
+                                self.jan=ship;
+                                //this.focus--; /* fix for bug with Garven */
+                                ship.addevadetoken(); 
+                                ship.endnoaction(n,"EVADE");
+                                waiting=false;}.bind(ship)}],
+                            "",false);
+                    }
+                    else{
+                        ship.realaddfocustoken();
+                        waiting=false;
+                    }
                 }
 	    });
-	},
+            // Jan Ors needs to *intercept* Focus allocation, rather than *wrap* it.
+            // As far as I can tell there is no safe, easy way to deep copy an existing function.  This sucks.
+            Unit.prototype.realaddfocustoken=function() {
+                    this.focus++;
+                    this.animateaddtoken("xfocustoken");
+                    this.movelog("FO");
+                    this.show();
+                };
+            Unit.prototype.addfocustoken=function(){
+                if(TEAMS[this.team].hasJan===true)
+                    $(document).trigger("addfocustoken"+this.team,[this]);
+                else
+                    this.realaddfocustoken();
+            };
+            self.uninstall = function(){
+                TEAMS[sh.team].hasJan=false;
+            };
+            sh.wrap_after("dies", self, function(){
+                self.uninstall();
+            });
+	}
     },
     {
         name: "R4-D6",
@@ -4056,7 +4092,6 @@ var UPGRADES=window.UPGRADES= [
 		sh.wrap_after("endmaneuver",this,function() {
 		    if (this.docked) {
 			u.donoaction([{org:self,type:"TITLE",name:self.name,action:function(n) {
-
 			    this.weapons[0].auxiliary=undefined;
 			    this.weapons[0].subauxiliary=undefined;
 			    this.weapons[0].type="Laser";
@@ -4067,7 +4102,7 @@ var UPGRADES=window.UPGRADES= [
 		});
 		if(upg.name=="Phantom"){
                     sh.wrap_after("endcombatphase",this,function() {
-                        if (this.docked) 
+                        if (this.docked&&!this.isfireobstructed()) // Can't use additional while on an obstacle
                             for (var i=0; i<this.weapons.length; i++) {
                                 var u=this.weapons[i];
                                 if (u.type==Unit.TURRET&&u.isactive&&this.noattack<round) {
