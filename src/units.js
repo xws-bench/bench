@@ -2760,6 +2760,7 @@ Unit.prototype = {
     },
     endmaneuver: function() {
 	var p=this.ionized;
+        var notThisTeam=(this.team===1?2:1);
 	if (this.hasionizationeffect()) 
 	    for (var i=0; i<p; i++) this.removeiontoken();
 	this.maneuver=-1;
@@ -2767,7 +2768,18 @@ Unit.prototype = {
 	this.show();
 	this.moves=[];
 	if (this.checkdead()) { this.hull=0; this.shield=0; } 
-	else this.doendmaneuveraction();
+        else { 
+            // First-pass event handler triggering for endmaneuver stuff
+            if(TEAMS[this.team].initiative){ // Possibly unnecessary init order
+                $(document).trigger("endmaneuver"+this.team, [this]);
+                $(document).trigger("endmaneuver"+notThisTeam, [this]);
+            }
+            else{ // Trigger order matters for e.g. Kanan v. Snap Shot
+                $(document).trigger("endmaneuver"+notThisTeam, [this]);
+                $(document).trigger("endmaneuver"+this.team, [this]);
+            }
+            this.doendmaneuveraction();
+        }
 	//this.log("endmaneuver");
 	this.cleanupmaneuver();
     },
