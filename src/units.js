@@ -2936,7 +2936,9 @@ Unit.prototype = {
 	    for (i=0; i<list.length; i++) {
 		(function(k,h) {
 		    var e=$("<div title='"+k.name+"'>").addClass("symbols").text(A[k.type].key)
-			.click(function () { this.resolvenoaction(k,n) }.bind(this));
+			.click(function () { 
+                            this.resolvenoaction(k,n) 
+                }.bind(this));
 		    $("#actiondial > div").append(e);
 		}.bind(this))(list[i],i);
 	    }

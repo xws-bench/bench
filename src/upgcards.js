@@ -5462,16 +5462,46 @@ var UPGRADES=window.UPGRADES= [
             if(!ship.isally(sh))
                 if(self.getenemiesinrange([ship]).length>0)
                     if(self.phase < phase){
+                        sh.wrap_after("getdicemodifiers",self,function() {
+                            // Iterate back through arguments (all mods available to self.unit
+                            // and remove any that Mod or Reroll the Attack Dice 
+                             var i = arguments[0].length;
+                             var newargs = arguments[0].slice();
+                             var nextarg;
+                             while (i--) {
+                                 nextarg = newargs[i];
+                                 if(nextarg.to == Unit.ATTACK_M || nextarg.from == Unit.ATTACK_M){
+                                     if (newargs[i].type==Unit.MOD_M || newargs[i].type==Unit.REROLL_M) { 
+                                         newargs.splice(i, 1);
+                                     } 
+                                 }
+                             }
+                             return newargs;
+                        }).unwrapper("cleanupattack");
+                        var number;
                         ship.log("Bang Bang! %0 attack from %1 against %2", self.name, sh.name, ship.name);
+                        sh.donoaction([{org:self,type:"LASER",name:self.name,action:function(n){
+                            number=n;
+                            if(sh.ia)
+                                this.doattack([self],[ship]);
+                            else
+                                this.resolveattack(self.index,ship);
+                                    //this.endnoaction(n,"LASER"); // This is the call that unlocks further execution!
+                        }.bind(sh)}],"",true).done([
+                            sh.endnoaction(number),
+                            ship.select()]
+                        );
+                        
+                        
                         //self.unit.selecttargetforattack(self.index,[ship]);
-                        $("#attackdial").empty();
-                        ENGAGED=true;
-                        sh.selectunit([ship],function(q,k) {
-                            if (this.declareattack(self.index,q[k])) 
-                                this.resolveattack(self.index,q[k]);
-                            else this.cleanupattack();
-                        }.bind(sh),[""],false);
-                        self.phase = phase;
+//                        $("#attackdial").empty();
+//                        ENGAGED=true;
+//                        sh.selectunit([ship],function(q,k) {
+//                            if (this.declareattack(self.index,q[k])) 
+//                                this.resolveattack(self.index,q[k]);
+//                            else this.cleanupattack();
+//                        }.bind(sh),[""],false);
+//                        self.phase = phase;
                     }
          });
 //	 Unit.prototype.wrap_before("endmaneuver",self,function() {
