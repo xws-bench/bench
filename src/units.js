@@ -3042,8 +3042,10 @@ Unit.prototype = {
 	    actionrlock.done(function() { this.unlock(); if(phase==ACTIVATION_PHASE) this.endactivate(); }.bind(this));
 	} else {
 	    actionrlock.resolve();
-	    this.unlock();
+	    if(phase!==ACTIVATION_PHASE||this.hasmoved){
+                this.unlock();
 		if(phase==ACTIVATION_PHASE) this.endactivate();
+            }
 	}
     },
     addafteractions: function(f) {

@@ -5478,30 +5478,16 @@ var UPGRADES=window.UPGRADES= [
                              }
                              return newargs;
                         }).unwrapper("cleanupattack");
-                        var number;
                         ship.log("Bang Bang! %0 attack from %1 against %2", self.name, sh.name, ship.name);
-                        sh.donoaction([{org:self,type:"LASER",name:self.name,action:function(n){
-                            number=n;
-                            if(sh.ia)
-                                this.doattack([self],[ship]);
-                            else
-                                this.resolveattack(self.index,ship);
-                                    //this.endnoaction(n,"LASER"); // This is the call that unlocks further execution!
-                        }.bind(sh)}],"",true).done([
-                            sh.endnoaction(number),
-                            ship.select()]
-                        );
-                        
-                        
                         //self.unit.selecttargetforattack(self.index,[ship]);
-//                        $("#attackdial").empty();
-//                        ENGAGED=true;
-//                        sh.selectunit([ship],function(q,k) {
-//                            if (this.declareattack(self.index,q[k])) 
-//                                this.resolveattack(self.index,q[k]);
-//                            else this.cleanupattack();
-//                        }.bind(sh),[""],false);
-//                        self.phase = phase;
+                        $("#attackdial").empty();
+                        ENGAGED=true;
+                        sh.selectunit([ship],function(q,k) {
+                            if (this.declareattack(self.index,q[k])) 
+                                this.resolveattack(self.index,q[k]);
+                            else ENGAGED=false;
+                        }.bind(sh),["Do Snap Shot attack? (Select self to cancel)"],true);
+                        self.phase = phase;
                     }
          });
 //	 Unit.prototype.wrap_before("endmaneuver",self,function() {
