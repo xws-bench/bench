@@ -5483,11 +5483,14 @@ var UPGRADES=window.UPGRADES= [
                         $("#attackdial").empty();
                         ENGAGED=true;
                         sh.selectunit([ship],function(q,k) {
-                            if (this.declareattack(self.index,q[k])) 
+                            if (this.declareattack(self.index,q[k])){ 
                                 this.resolveattack(self.index,q[k]);
+                                activeunit=ship;
+                            }
                             else ENGAGED=false;
                         }.bind(sh),["Do Snap Shot attack? (Select self to cancel)"],true);
                         self.phase = phase;
+                        ENGAGED=false;
                     }
          });
 //	 Unit.prototype.wrap_before("endmaneuver",self,function() {

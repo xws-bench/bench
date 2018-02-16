@@ -3493,7 +3493,7 @@ Unit.prototype = {
 	this.showpanel();
 	this.showdial();
 	this.showmaneuver();
-	if (phase==ACTIVATION_PHASE) this.showactivation();
+	if (phase==ACTIVATION_PHASE&&!this.hasfired) this.showactivation();
 	if (!ENGAGED&&phase==COMBAT_PHASE){
 	    if (this.canfire()&&!this.areactionspending()&&!INREPLAY) this.showattack(this.activeweapons,this.activeenemies); 
 	    else $("#attackdial").empty();
