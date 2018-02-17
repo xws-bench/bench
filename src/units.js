@@ -2356,6 +2356,11 @@ Unit.prototype = {
 	actionr[n].resolve(type);
 	//this.log("n="+n+" "+(actionr.length-1));
 	if (n==actionr.length-1) {
+            if(actionrlock.state()=="resolved"){
+                actionrlock.done(function() { // Attempt to handle resolve inversion
+                    this.unlock(); 
+                    if(phase==ACTIVATION_PHASE) this.endactivate(); }.bind(this));
+                }
 	    actionrlock.resolve();
 	}
 	this.show();
@@ -2760,6 +2765,7 @@ Unit.prototype = {
     },
     endmaneuver: function() {
 	var p=this.ionized;
+        var notThisTeam=(this.team===1?2:1);
 	if (this.hasionizationeffect()) 
 	    for (var i=0; i<p; i++) this.removeiontoken();
 	this.maneuver=-1;
@@ -2767,7 +2773,18 @@ Unit.prototype = {
 	this.show();
 	this.moves=[];
 	if (this.checkdead()) { this.hull=0; this.shield=0; } 
-	else this.doendmaneuveraction();
+        else { 
+            // First-pass event handler triggering for endmaneuver stuff
+            if(TEAMS[this.team].initiative){ // Possibly unnecessary init order
+                $(document).trigger("endmaneuver"+this.team, [this]);
+                $(document).trigger("endmaneuver"+notThisTeam, [this]);
+            }
+            else{ // Trigger order matters for e.g. Kanan v. Snap Shot
+                $(document).trigger("endmaneuver"+notThisTeam, [this]);
+                $(document).trigger("endmaneuver"+this.team, [this]);
+            }
+            this.doendmaneuveraction();
+        }
 	//this.log("endmaneuver");
 	this.cleanupmaneuver();
     },
@@ -2924,7 +2941,9 @@ Unit.prototype = {
 	    for (i=0; i<list.length; i++) {
 		(function(k,h) {
 		    var e=$("<div title='"+k.name+"'>").addClass("symbols").text(A[k.type].key)
-			.click(function () { this.resolvenoaction(k,n) }.bind(this));
+			.click(function () { 
+                            this.resolvenoaction(k,n) 
+                }.bind(this));
 		    $("#actiondial > div").append(e);
 		}.bind(this))(list[i],i);
 	    }
@@ -3025,11 +3044,15 @@ Unit.prototype = {
     actionbarrier:function() {
 	actionrlock=$.Deferred();
 	if (this.areactionspending()) {
-	    actionrlock.done(function() { this.unlock(); if(phase==ACTIVATION_PHASE) this.endactivate(); }.bind(this));
+	    actionrlock.done(function() { 
+                this.unlock(); 
+                if(phase==ACTIVATION_PHASE) this.endactivate(); }.bind(this));
 	} else {
 	    actionrlock.resolve();
-	    this.unlock();
+	    if(phase!==ACTIVATION_PHASE||this.hasmoved){
+                this.unlock();
 		if(phase==ACTIVATION_PHASE) this.endactivate();
+            }
 	}
     },
     addafteractions: function(f) {
@@ -3477,7 +3500,7 @@ Unit.prototype = {
 	this.showpanel();
 	this.showdial();
 	this.showmaneuver();
-	if (phase==ACTIVATION_PHASE) this.showactivation();
+	if (phase==ACTIVATION_PHASE&&!this.hasfired) this.showactivation();
 	if (!ENGAGED&&phase==COMBAT_PHASE){
 	    if (this.canfire()&&!this.areactionspending()&&!INREPLAY) this.showattack(this.activeweapons,this.activeenemies); 
 	    else $("#attackdial").empty();
