@@ -682,7 +682,7 @@ Unit.prototype = {
 	return s;	
     },
     setpriority:function(action) {
-	var PRIORITIES={"FOCUS":3,"EVADE":1,"CLOAK":4,"TARGET":2,"CRITICAL":100,"BOMB":5,"ILLICIT":6};
+	var PRIORITIES={"FOCUS":3,"EVADE":1,"REINFORCE":7,"CLOAK":4,"TARGET":2,"CRITICAL":100,"BOMB":5,"ILLICIT":6};
 	var p=PRIORITIES[action.type];
 	if (typeof p=="undefined") p=0;
 	action.priority=p;
@@ -940,6 +940,17 @@ Unit.prototype = {
 		     this.removeevadetoken(); 
 		     return {m:m+Unit.FE_EVADE,n:n+1} 
 		 }.bind(this),str:"evade",token:true,noreroll:"focus"},
+		 {
+			 from:Unit.DEFENSE_M,type:Unit.ADD_M,to:Unit.DEFENSE_M,org:this,
+			 req:function() {return this.canusereinforce(); }.bind(this),
+			 aiactivate:function(m,n) {
+				 mm=getattackvalue();
+				 return (Unit.FCH_hit(mm)+Unit.FCH_crit(mm)>Unit.FE_evade(m));
+			 },
+			 f: function(m,n) {
+				return {m:m+Unit.FE_EVADE,n:n+1}
+			 }.bind(this),str:"reinforce",token:true,noreroll:"focus"
+		 }
 	       ];
     },
     adddicemodifier: function(from,type,to,org,mod) {
