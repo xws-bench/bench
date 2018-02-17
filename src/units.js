@@ -680,7 +680,7 @@ Unit.prototype = {
 	return s;	
     },
     setpriority:function(action) {
-	var PRIORITIES={"FOCUS":3,"EVADE":1,"CLOAK":4,"TARGET":2,"CRITICAL":100};
+	var PRIORITIES={"FOCUS":3,"EVADE":1,"CLOAK":4,"TARGET":2,"CRITICAL":100,"BOMB":5,"ILLICIT":6};
 	var p=PRIORITIES[action.type];
 	if (typeof p=="undefined") p=0;
 	action.priority=p;
@@ -2044,7 +2044,7 @@ Unit.prototype = {
 		this.m=m;
 	    }
 	    var mine=this.getmcollisions(this.m);
-	    if (mine.length>0) 
+	    if (mine.length>0){ 
 		for (i=0; i<mine.length; i++) {
 		    var o=OBSTACLES[mine[i]];
 		    if (o.type==Unit.BOMB&&typeof o.detonate=="function") 
@@ -2055,6 +2055,12 @@ Unit.prototype = {
 			if (!possible) this.resolveocollision(1,[]);
 		    }
 		}
+            }
+            else{
+                // If a ship is able to roll/boost/slam off of an obstacle,
+                // it should then be able to fire after all.  Reset ocollision.overlap
+                this.ocollision.overlap=-1; // Dash Rendar 
+            }
 	    if (automove) {
 		var gpm=m.split();
 		this.movelog("am-"+Math.floor(300+gpm.dx)+"-"+Math.floor(300+gpm.dy)+"-"+Math.floor((360+Math.floor(gpm.rotate))%360));
@@ -2850,8 +2856,15 @@ Unit.prototype = {
 	    &&!this.collision
 	    &&!this.hascollidedobstacle(); },
     doendmaneuveraction: function() {
-	return this.doaction(this.getactionlist(true),"",this.candoendmaneuveraction);
-	/*
+        if(this.candoendmaneuveraction()) // hacky fix for PTL triggering too liberally
+            return this.doaction(this.getactionlist(true),"",this.candoendmaneuveraction);
+	else{
+            // this.log("Cannot perform actions after maneuver");
+	    return this.enqueueaction(function(n) {
+		this.endnoaction(n);
+	    }.bind(this),this.name);
+        }
+        /*
 	this.action=-1; 
 	*/
     },
@@ -3055,7 +3068,7 @@ Unit.prototype = {
 	if (this.candropbomb()&&(this.hasionizationeffect())) {
 	    //this.log("ionized, cannot drop bombs");
 	} else if (self.lastdrop!=round) {
-	    switch(this.bombs.length) {
+	    switch(this.bombs.length) { // Assumes max of 3 bomb types
 	    case 3: if (this.bombs[2].canbedropped()) 
 		this.addactivationdial(
 		    function() { return self.lastdrop!=round&&self.bombs[2].canbedropped(); },

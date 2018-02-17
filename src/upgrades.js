@@ -25,11 +25,32 @@ function Bomb(sh,bdesc) {
 	//if (this.init != undefined) this.init(sh);
 };
 Bomb.prototype = { 
-   wrap_before:Unit.prototype.wrap_before,
+    wrap_before:Unit.prototype.wrap_before,
     wrap_after:Unit.prototype.wrap_after,
     isWeapon() { return false; },
     isBomb() { return true; },
-	showOrdnance() { return this+1; },
+    showOrdnance() { return this+1; },
+    aiactivate() {
+        var victims = [], ship;
+        var bRange = 0;
+        if(this.canbedropped()){  // Probably dropping early
+            // Fill in with maneuver-drop bomb logic
+            bRange=3;
+        }
+        else if(this.candoaction()){ // Probably dropping after closing
+            // Fill in with action-drop bomb logic
+            bRange=2;
+        }
+        for(var i in squadron){
+            ship=squadron[i];
+            if(this.unit.isenemy(ship)
+                    &&((this.unit.getrange(ship)<=bRange && !this.unit.isinprimaryfiringarc(ship))
+                    ||this.unit.getrange(ship)<=1) // For Deathrain
+                    )
+                victims.push(ship);
+        }
+        return victims.length>0;
+    },
     canbedropped() { return this.isactive&&!this.unit.hasmoved&&this.unit.lastdrop!=round; },
     desactivate() { this.isactive=false;this.unit.movelog("D-"+this.unit.upgrades.indexOf(this)); },
     getBall() {
@@ -99,6 +120,9 @@ Bomb.prototype = {
 	    for (i=0; i<moves.length; i++) this.pos[i].remove();
 	    f(this,k);
 	}.bind(this);
+        if(this.unit.ia){ // Reduce possible bomb locations 
+            moves=this.unit.chooseBombDrop(moves);
+        }
 	if (moves.length==1) {
 	    this.pos[0]=this.getOutline(moves[0]).attr({fill:this.unit.color,opacity:0.7});
 	    resolve(moves[0],0,cleanup);
@@ -296,7 +320,7 @@ Weapon.prototype={
 	if (typeof sh=="undefined") {
 	    return true;
 	}
-	if (!this.isactive||this.unit.isally(sh)) return false;
+	if (!this.isactive||sh.isdocked||this.unit.isally(sh)) return false;
 	if (this.unit.checkcollision(sh)) return false;
 	if (typeof this.getrequirements()!="undefined") {
 	    var s="Target";
@@ -388,7 +412,7 @@ Weapon.prototype={
 	if (typeof enemylist=="undefined") enemylist=squadron;
 	for (var i in enemylist) {
 	    var sh=enemylist[i];
-	    if (sh.isenemy(this.unit)&&this.getrange(sh)>0) r.push(sh);
+	    if (!sh.isdocked&&sh.isenemy(this.unit)&&this.getrange(sh)>0) r.push(sh);
 	}
 	return r;
     },

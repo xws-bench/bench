@@ -1590,7 +1590,8 @@ var UPGRADES=window.UPGRADES= [
 	done:true,
 	getattack: function() {
 	    var a=this.attack;
-	    if (this.unit.agility<=3) a+=this.unit.agility;
+            var curAgility = this.unit.getagility();
+	    if (curAgility<=3) a+=curAgility;
 	    else a+=3;
 	    return a;
 	},
@@ -1629,30 +1630,66 @@ var UPGRADES=window.UPGRADES= [
 	done:true,
         endround: function () { this.jan = null; },
 	init: function(sh) {
+            TEAMS[sh.team].hasJan=true; // Signal that a Jan is on this team
 	    this.jan=null;
 	    var self=this;
-            // Jan Ors needs to *intercept* Focus allocation, rather than *wrap* it.
-            Unit.prototype.realaddfocustoken=Unit.prototype.addfocustoken;
-            Unit.prototype.addfocustoken=function(){ return; };
-	    Unit.prototype.wrap_before("addfocustoken",this,function() {
-		if (!self.unit.dead&&this.isally(sh)&&self.jan===null&&this.getrange(sh)<=3) {
-		    this.log("select %FOCUS% or %EVADE% token [%0]",self.name);
-		    this.donoaction(
-			[{name:self.name,org:self,type:"FOCUS",action:function(n) { 
-			    this.realaddfocustoken();
-                            this.endnoaction(n,"FOCUS"); }.bind(this)},
-			 {name:self.name,org:self,type:"EVADE",action:function(n) { 
-			     self.jan=this;
-                             //this.focus--; /* fix for bug with Garven */
-			     this.addevadetoken(); 
-			     this.endnoaction(n,"EVADE"); }.bind(this)}],
-			"",false);
-		}
-                else{
-                    this.realaddfocustoken();
+            var waiting=false;
+            //"#"+sh.id
+            $(document).on("addfocustoken"+sh.team, function(event, ship) {
+                /*Cases: (assuming Jan's side is active
+                  1) "this" is Jan's ship (this.isally(sh) && this.getrange(sh)<=3 -> Jan action
+                  2) "this" is an ally of Jan's ship w/in 3 ( ditto ) -> Jan action
+                  3) "this" is an ally of Jan's but outside 3 -> this.realaddfocustoken()
+                  4) "this" is not an ally of Jan's but inside 3 -> this.realaddfocustoken()
+                  5) "this" is not an ally of Jan's and is outside 3 -> this.realaddfocustoken() ;_;
+                  6) Two Jans, but currently active team is not this' team. -> do nothing!
+                  Two Jans leads to infinite recursion because each invocation of addfocus
+                  calls the wrap_before twice: once for each instance of Jan.
+                */
+                if(!waiting){ // Needed to lock out Jan effect while player is deciding whether to take focus or evade
+                    if (!self.unit.dead&&self.jan===null&&ship.getrange(sh)<=3) {
+                        waiting=true;
+                        ship.log("select %FOCUS% or %EVADE% token [%0]",self.name);
+                        ship.donoaction(
+                            [{name:self.name,org:self,type:"FOCUS",action:function(n) { 
+                                ship.realaddfocustoken();
+                                ship.endnoaction(n,"FOCUS");
+                                waiting=false;}.bind(ship)},
+                             {name:self.name,org:self,type:"EVADE",action:function(n) { 
+                                self.jan=ship;
+                                //this.focus--; /* fix for bug with Garven */
+                                ship.addevadetoken(); 
+                                ship.endnoaction(n,"EVADE");
+                                waiting=false;}.bind(ship)}],
+                            "",false);
+                    }
+                    else{
+                        ship.realaddfocustoken();
+                        waiting=false;
+                    }
                 }
 	    });
-	},
+            // Jan Ors needs to *intercept* Focus allocation, rather than *wrap* it.
+            // As far as I can tell there is no safe, easy way to deep copy an existing function.  This sucks.
+            Unit.prototype.realaddfocustoken=function() {
+                    this.focus++;
+                    this.animateaddtoken("xfocustoken");
+                    this.movelog("FO");
+                    this.show();
+                };
+            Unit.prototype.addfocustoken=function(){
+                if(TEAMS[this.team].hasJan===true)
+                    $(document).trigger("addfocustoken"+this.team,[this]);
+                else
+                    this.realaddfocustoken();
+            };
+            self.uninstall = function(){
+                TEAMS[sh.team].hasJan=false;
+            };
+            sh.wrap_after("dies", self, function(){
+                self.uninstall();
+            });
+	}
     },
     {
         name: "R4-D6",
@@ -4013,6 +4050,12 @@ var UPGRADES=window.UPGRADES= [
 	points:0,
 	unique:true,
 	done:true,
+        aiactivate: function() { // Let IAunits determine whether to deploy based on some criteria
+            var deploynow = false;
+            if(this.unit.shield + this.unit.hull <= 4)
+                deploynow = true;
+            return deploynow;
+        },
 	getdeploymentmatrix:function(u) {
 	    var gd=u.getdial();
 	    var p=[];
@@ -4049,7 +4092,6 @@ var UPGRADES=window.UPGRADES= [
 		sh.wrap_after("endmaneuver",this,function() {
 		    if (this.docked) {
 			u.donoaction([{org:self,type:"TITLE",name:self.name,action:function(n) {
-
 			    this.weapons[0].auxiliary=undefined;
 			    this.weapons[0].subauxiliary=undefined;
 			    this.weapons[0].type="Laser";
@@ -4060,7 +4102,7 @@ var UPGRADES=window.UPGRADES= [
 		});
 		if(upg.name=="Phantom"){
                     sh.wrap_after("endcombatphase",this,function() {
-                        if (this.docked) 
+                        if (this.docked&&!this.isfireobstructed()) // Can't use additional while on an obstacle
                             for (var i=0; i<this.weapons.length; i++) {
                                 var u=this.weapons[i];
                                 if (u.type==Unit.TURRET&&u.isactive&&this.noattack<round) {
@@ -5032,6 +5074,16 @@ var UPGRADES=window.UPGRADES= [
       islarge:true,
       points:1,
       done:true,
+      aiactivate: function() { // Attempting to keep AI from just dumping RCCs immediately
+          var ship;
+          var victims = [];
+          for(var i in squadron){
+            ship=squadron[i];
+            if(this.unit.isenemy(ship) && this.unit.getrange(ship)<=1) 
+                victims.push(ship);
+        }
+        return victims.length>0;
+      },
       candoaction: function() { 
           return this.isactive; 
       },
@@ -5062,28 +5114,50 @@ var UPGRADES=window.UPGRADES= [
 	  self.endaction(n,Unit.ILLICIT);
       }
     },
-    { name:"Black Market Slicer Tools",
-      type:Unit.ILLICIT,
-      points:1,
-      done:true,
-      candoaction: function() { return this.isactive; },
-      action: function(n) {
-	  var self=this;
-	  var p=self.unit.selectnearbyenemy(2,function(s,t) {
-	      return t.stress>0;
-	  });
-	  if (p.length>0&&this.isactive) {
-	      this.unit.selectunit(p,function(q,k) {
-		  var roll=self.unit.rollattackdie(1,self,"blank")[0];
-		  if (roll=="hit"||roll=="critical") { 
-		      q[k].applydamage(1); 
-		      q[k].removestresstoken();
-		      q[k].checkdead(); 
-		  }
-	      },["select unit [%0]",self.name],false);
-	  }
-	  this.unit.endaction(n,Unit.ILLICIT);
-      }
+    {   name:"Black Market Slicer Tools",
+        type:Unit.ILLICIT,
+        points:1,
+        done:true,
+        aiactivate: function() {
+            var activate=false;
+            var ship=this.unit;
+            var threshold=2;  // Arbitrary value; needs tuning.
+            var weight=1;
+            for (var upg in ship.upgrades){
+                if(ship.upgrades[upg].name.match(/Push the Limit|Experimental Interface/))
+                    weight+=1;  // Better ROI if ship has many actions available
+            }
+            var victims=ship.selectnearbyenemy(2,function(s,t){
+                // Ignore targets without stress, or in weapon range, or that are tough
+                return t.stress>0 && (s.getenemiesinrange(t)===[] || (t.hull<=2||t.getagility()>=3));
+            });
+            
+            if(victims.length*weight>=threshold)
+                activate=true;
+            
+            return activate;
+            
+        },
+        candoaction: function() { return this.isactive; },
+        action: function(n) {
+            var self=this;
+            var p=self.unit.selectnearbyenemy(2,function(s,t) {
+                return t.stress>0;
+            });
+            if (p.length>0&&this.isactive) {
+                this.unit.selectunit(p,function(q,k) {
+                    self.unit.log("Activating %0 against %1...",self.name,q[k].name);
+                    var roll=self.unit.rollattackdie(1,self,"blank")[0];
+                    if (roll=="hit"||roll=="critical") { 
+                        q[k].applydamage(1); 
+                        q[k].removestresstoken();
+                        q[k].checkdead(); 
+                    }
+                    else self.unit.log("No damage from %0 against %1.", self.name, q[k].name);
+                },["select unit [%0]",self.name],false);
+            }
+            this.unit.endaction(n,Unit.ILLICIT);
+        }
     },
     { name:"Gyroscopic Targeting",
       ship:"Lancer-class Pursuit Craft",
