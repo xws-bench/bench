@@ -2356,6 +2356,11 @@ Unit.prototype = {
 	actionr[n].resolve(type);
 	//this.log("n="+n+" "+(actionr.length-1));
 	if (n==actionr.length-1) {
+            if(actionrlock.state()=="resolved"){
+                actionrlock.done(function() { // Attempt to handle resolve inversion
+                    this.unlock(); 
+                    if(phase==ACTIVATION_PHASE) this.endactivate(); }.bind(this));
+                }
 	    actionrlock.resolve();
 	}
 	this.show();
