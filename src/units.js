@@ -258,7 +258,7 @@ var A = {
     TECH:{key:"X",color:WHITE},
     RELOAD:{key:"/",color:YELLOW}
 };
-var AINDEX = ["ROLL","FOCUS","TARGET","EVADE","BOOST","STRESS","CLOAK","ISTARGETED","ASTRO","CANNON","CREW","MISSILE","TORPEDO","ELITE","TURRET","RELOAD","UPGRADE","CRITICAL","NOTHING"];
+var AINDEX = ["ROLL","FOCUS","TARGET","EVADE","BOOST","STRESS","CLOAK","ISTARGETED","ASTRO","CANNON","CREW","MISSILE","TORPEDO","ELITE","TURRET","RELOAD","REINFORCE","UPGRADE","CRITICAL","NOTHING"];
 
 function repeat(pattern, count) {
     var result = '';
@@ -385,6 +385,8 @@ function Unit(team,pilotid) {
 	this.ionized=0;
 	//this.removeionized=false;
 	this.evade=0;
+	this.reinforce=0;
+	this.reinforceAft=0;
 	this.hasfired=0;
 	this.maxfired=1;
 	this.hitresolved=0;
@@ -1361,7 +1363,8 @@ Unit.prototype = {
 	return b;
     },
     candocoordinate: function() { return this.selectnearbyally(2).length>0; },
-    candoreload: function() { return true; }, // TODO add some condition
+	candoreload: function() { return true; }, // TODO add some condition
+	candoreinforce: function() { return true },
     newaction:function(a,str) {
 	return {action:a,org:this,type:str,name:str};
     },
@@ -1393,7 +1396,9 @@ Unit.prototype = {
 		    case "COORDINATE": if (this.candocoordinate()) 
 		    	al.push(this.newaction(this.resolvecoordinate,"COORDINATE"));break;
 		    case "RELOAD": if(this.candoreload())
-			al.push(this.newaction(this.resolvereload,"RELOAD"));break;
+				al.push(this.newaction(this.resolvereload,"RELOAD"));break;
+			case "REINFORCE": if (this.candoreinforce()) 
+				al.push(this.newaction(this.addreinforce,"REINFORCE"));break;
 		}
 	    }
 	}
@@ -1460,7 +1465,13 @@ Unit.prototype = {
 	this.animateaddtoken("xfocustoken");
 	this.movelog("FO");
 	this.show();
-    },
+	},
+    addreinforcetoken: function() {
+		this.reinforce++;
+		this.animateaddtoken("xreinforcetoken");
+		this.movelog("E");
+		this.show();
+		},	
     addtractorbeam:function(u) {
 	this.addtractorbeamtoken();
 	if (this.tractorbeam==1&&!this.islarge) {
@@ -1697,7 +1708,10 @@ Unit.prototype = {
     },
     resetevade: function() {
 	return 0;
-    },
+	},
+	resetreinforce: function() {
+		return 0;
+	},
     resettractorbeam: function() {
 	return 0;
     },   
@@ -1706,6 +1720,7 @@ Unit.prototype = {
 	    this.upgrades[i].endround();
 	this.focus=this.resetfocus();
 	this.evade=this.resetevade();
+	this.reinforce=this.resetreinforce();
 	this.hasfired=0;
 	this.maxfired=1;
 	this.tractorbeam=this.resettractorbeam();
@@ -2029,7 +2044,8 @@ Unit.prototype = {
 	}
 	if (this.targeting.length==0) $("#atokens > .xtargettoken").remove();
     },
-    removeevadetoken: function() { this.animateremovetoken("xevadetoken"); this.evade--; this.movelog("e"); this.show();},
+	removeevadetoken: function() { this.animateremovetoken("xevadetoken"); this.evade--; this.movelog("e"); this.show();},
+	removereinforcetoken: function() { this.animateremovetoken("xreinforcetoken"); this.reinforce--; this.movelog("i"); this.show();},
     removefocustoken: function() { this.animateremovetoken("xfocustoken"); this.focus--; this.movelog("fo"); this.show();},
     resolveactionmove: function(moves,cleanup,automove,possible) {
 	var i;
@@ -2131,15 +2147,19 @@ Unit.prototype = {
 	}
     },
     resolvereload: function(n) {
-	for (var i=0; i<this.upgrades.length;i++) {
+		for (var i=0; i<this.upgrades.length;i++) {
 	        if (this.upgrades[i].type.match(/Torpedo|Missile/)) {
-			this.upgrades[i].isactive=true;
+				this.upgrades[i].isactive=true;
+			}
 		}
-	}
- 	this.noattack=round;
-	this.showstats();
-	this.endaction(n,"RELOAD");
-    },
+ 		this.noattack=round;
+		this.showstats();
+		this.endaction(n,"RELOAD");
+	},
+	addreinforce: function(n) {
+		this.addreinforcetoken();
+		this.endaction(n, "REINFORCE");	
+	},
     candoarcrotate: function() { return this.hasmobilearc; },
     setarcrotate: function(r) { this.arcrotation=90*r; },
     resolvearcrotate: function(n,noaction) {
@@ -3197,7 +3217,9 @@ Unit.prototype = {
 	if (this.focus>0) {
 	    this.infoicon[i++].attr({text:A.FOCUS.key,fill:A.FOCUS.color});}
 	if (this.evade>0) {
-	    this.infoicon[i++].attr({text:A.EVADE.key,fill:A.EVADE.color});}
+		this.infoicon[i++].attr({text:A.EVADE.key,fill:A.EVADE.color});}
+	if (this.reinforce>0) {
+		this.infoicon[i++].attr({text:A.REINFORCE.key,fill:A.REINFORCE.color});}
 	if (this.iscloaked==true) {
 	    this.infoicon[i++].attr({text:A.CLOAK.key,fill:A.CLOAK.color});}
 	if (this.targeting.length>0&&i<6) {
@@ -3384,7 +3406,10 @@ Unit.prototype = {
     },
     canuseevade: function() {
 	return this.evade>0;
-    },
+	},
+	canusereinforce: function() {
+		return this.reinforce>0; // TODO fore/aft
+	},
     canusetarget:function(sh) {
 	//console.log(this.name+" targeting "+sh.name+":"+this.targeting.length+" "+this.targeting.indexOf(sh));
 	return this.targeting.length>0
@@ -3393,6 +3418,7 @@ Unit.prototype = {
     getusabletokens: function() {
 	this.focuses=(this.focus>1?[this.focus]:[]);
 	this.evades=(this.evade>1?[this.evade]:[]);
+	this.reinforces=(this.reinforce>1?[this.reinforce]:[]);
 	this.stresses=(this.stress>1?[this.stress]:[]);
 	this.ionizedes=(this.ionized>1?[this.ionized]:[]);
 	this.tractorbeames=(this.tractorbeam>1?[this.tractorbeam]:[]);
