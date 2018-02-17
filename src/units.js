@@ -3039,7 +3039,9 @@ Unit.prototype = {
     actionbarrier:function() {
 	actionrlock=$.Deferred();
 	if (this.areactionspending()) {
-	    actionrlock.done(function() { this.unlock(); if(phase==ACTIVATION_PHASE) this.endactivate(); }.bind(this));
+	    actionrlock.done(function() { 
+                this.unlock(); 
+                if(phase==ACTIVATION_PHASE) this.endactivate(); }.bind(this));
 	} else {
 	    actionrlock.resolve();
 	    if(phase!==ACTIVATION_PHASE||this.hasmoved){
