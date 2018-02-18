@@ -1590,7 +1590,8 @@ var UPGRADES=window.UPGRADES= [
 	done:true,
 	getattack: function() {
 	    var a=this.attack;
-	    if (this.unit.agility<=3) a+=this.unit.agility;
+            var curAgility = this.unit.getagility();
+	    if (curAgility<=3) a+=curAgility;
 	    else a+=3;
 	    return a;
 	},
@@ -1629,30 +1630,66 @@ var UPGRADES=window.UPGRADES= [
 	done:true,
         endround: function () { this.jan = null; },
 	init: function(sh) {
+            TEAMS[sh.team].hasJan=true; // Signal that a Jan is on this team
 	    this.jan=null;
 	    var self=this;
-            // Jan Ors needs to *intercept* Focus allocation, rather than *wrap* it.
-            Unit.prototype.realaddfocustoken=Unit.prototype.addfocustoken;
-            Unit.prototype.addfocustoken=function(){ return; };
-	    Unit.prototype.wrap_before("addfocustoken",this,function() {
-		if (!self.unit.dead&&this.isally(sh)&&self.jan===null&&this.getrange(sh)<=3) {
-		    this.log("select %FOCUS% or %EVADE% token [%0]",self.name);
-		    this.donoaction(
-			[{name:self.name,org:self,type:"FOCUS",action:function(n) { 
-			    this.realaddfocustoken();
-                            this.endnoaction(n,"FOCUS"); }.bind(this)},
-			 {name:self.name,org:self,type:"EVADE",action:function(n) { 
-			     self.jan=this;
-                             //this.focus--; /* fix for bug with Garven */
-			     this.addevadetoken(); 
-			     this.endnoaction(n,"EVADE"); }.bind(this)}],
-			"",false);
-		}
-                else{
-                    this.realaddfocustoken();
+            var waiting=false;
+            //"#"+sh.id
+            $(document).on("addfocustoken"+sh.team, function(event, ship) {
+                /*Cases: (assuming Jan's side is active
+                  1) "this" is Jan's ship (this.isally(sh) && this.getrange(sh)<=3 -> Jan action
+                  2) "this" is an ally of Jan's ship w/in 3 ( ditto ) -> Jan action
+                  3) "this" is an ally of Jan's but outside 3 -> this.realaddfocustoken()
+                  4) "this" is not an ally of Jan's but inside 3 -> this.realaddfocustoken()
+                  5) "this" is not an ally of Jan's and is outside 3 -> this.realaddfocustoken() ;_;
+                  6) Two Jans, but currently active team is not this' team. -> do nothing!
+                  Two Jans leads to infinite recursion because each invocation of addfocus
+                  calls the wrap_before twice: once for each instance of Jan.
+                */
+                if(!waiting){ // Needed to lock out Jan effect while player is deciding whether to take focus or evade
+                    if (!self.unit.dead&&self.jan===null&&ship.getrange(sh)<=3) {
+                        waiting=true;
+                        ship.log("select %FOCUS% or %EVADE% token [%0]",self.name);
+                        ship.donoaction(
+                            [{name:self.name,org:self,type:"FOCUS",action:function(n) { 
+                                ship.realaddfocustoken();
+                                ship.endnoaction(n,"FOCUS");
+                                waiting=false;}.bind(ship)},
+                             {name:self.name,org:self,type:"EVADE",action:function(n) { 
+                                self.jan=ship;
+                                //this.focus--; /* fix for bug with Garven */
+                                ship.addevadetoken(); 
+                                ship.endnoaction(n,"EVADE");
+                                waiting=false;}.bind(ship)}],
+                            "",false);
+                    }
+                    else{
+                        ship.realaddfocustoken();
+                        waiting=false;
+                    }
                 }
 	    });
-	},
+            // Jan Ors needs to *intercept* Focus allocation, rather than *wrap* it.
+            // As far as I can tell there is no safe, easy way to deep copy an existing function.  This sucks.
+            Unit.prototype.realaddfocustoken=function() {
+                    this.focus++;
+                    this.animateaddtoken("xfocustoken");
+                    this.movelog("FO");
+                    this.show();
+                };
+            Unit.prototype.addfocustoken=function(){
+                if(TEAMS[this.team].hasJan===true)
+                    $(document).trigger("addfocustoken"+this.team,[this]);
+                else
+                    this.realaddfocustoken();
+            };
+            self.uninstall = function(){
+                TEAMS[sh.team].hasJan=false;
+            };
+            sh.wrap_after("dies", self, function(){
+                self.uninstall();
+            });
+	}
     },
     {
         name: "R4-D6",
@@ -3210,7 +3247,7 @@ var UPGRADES=window.UPGRADES= [
 	done:true,
 	init: function(sh) {
 	    var self=this;
-	    sh.glitter=-1;
+	    self.glitter=-1;
 	    sh.wrap_after("modifyattackroll",this,function(m,n,d,mm) {
 		var f=Unit.FCH_focus(mm);
 		if (f>0 && this.stress===0) {
@@ -3224,22 +3261,22 @@ var UPGRADES=window.UPGRADES= [
 		    this.donoaction([
 			{org:self,name:self.name,type:"ILLICIT",action:function(n) {
 			    this.addstress();
-			    this.glitter=round;
+			    self.glitter=round;
 			    this.endnoaction(n,"ILLICIT");
 			}.bind(this)}],"",true);
 		}
 		return lock;
 	    });
 	    sh.wrap_before("endphase",this,function() {
-		if (this.glitter==round) self.desactivate();
+		if (self.glitter==round) self.desactivate();
 	    });
 	    /*TODO: to change into canchangefocusdice
 	      sh.wrap_after("canusefocus",this,function(r) {
-		return r||(this.glitter==round);
+		return r||(self.glitter==round);
 	    });*/
 	    sh.adddicemodifier(Unit.ATTACK_M,Unit.MOD_M,Unit.ATTACK_M,this,{
 		req:function(m,n) {
-		    return this.glitter==round&&self.isactive;
+		    return self.glitter==round&&self.isactive;
 		}.bind(sh),
 		f:function(m,n) {
 		    var f=Unit.FCH_focus(m);
@@ -3251,7 +3288,7 @@ var UPGRADES=window.UPGRADES= [
 		}.bind(sh),str:"focus",noreroll:"focus"});
 	    sh.adddicemodifier(Unit.DEFENSE_M,Unit.MOD_M,Unit.DEFENSE_M,this,{
 		req:function(m,n) {
-		    return this.glitter==round&&self.isactive;
+		    return self.glitter==round&&self.isactive;
 		}.bind(sh),
 		f:function(m,n) {
 		    var f=Unit.FE_focus(m);
@@ -3729,6 +3766,7 @@ var UPGRADES=window.UPGRADES= [
         unique: true,
         ship: "YV-666",
 	done:true,
+        uid:null,
 	getdeploymentmatrix:function(u) {
 	    var gd=u.getdial();
 	    var p=[];
@@ -3745,36 +3783,69 @@ var UPGRADES=window.UPGRADES= [
 	init: function(sh) {
 	    var self=this;
 	    // find or clone the pilot
-	    var i,found=-1,p;
+	    var i,j,found=-1,p;
+            
 	    for (i in squadron) 
-		if (squadron[i].name=="Nashtah Pup Pilot") { found=i; break; }
-	    if (found>-1) {
+		if (squadron[i].name=="Nashtah Pup Pilot") { found=i; j=-1; break; }
+            if(found==-1){ // When loading from a saved list, squadron is not filled but generics is
+                for (j in generics){
+                    if (generics[j].name=="Nashtah Pup Pilot") { found=j; i=-1; break; }
+                }
+            }
+            
+	    if (found!=-1 && j==-1) { // Nashtah Pup was already added manually
 		p=squadron[found];
-		p.skill=sh.skill;
-	    } else {
+	    } else if (found!=-1 && i==-1){ // List was loaded from saved list row
+                p=generics[found];
+            } else { // Hound's Tooth title was added first so add Nashtah Pup automatically
 		for (i=0; i<PILOTS.length; i++) {
 		    if (PILOTS[i].name=="Nashtah Pup Pilot") break;
 		}
-		p=new Unit(sh.team,i);
-		p.upg=[];
-		p.skill=sh.skill;
-		p.tosquadron(s);
-		allunits.push(p);
-		squadron.push(p);
-		TEAMS[sh.team].units.push(p);
+		p=addunit(i,Unit.SCUM);
+		p.tosquadron(s); // Necessary to connect p to graphics context
 	    }
+            // Set up skill; "Hound's Tooth" may be init-ed before VI or Adaptability
+            p.skill=sh.skill;
+            for(var card in sh.upgrades){
+                if(sh.upgrades[card].name=="Veteran Instincts"){
+                    p.skill=sh.skill + 2;
+                    break;
+                }
+                else if(sh.upgrades[card].name=="Adaptability"){
+                    p.skill=sh.skill + 1; // Assumes Bossk will only ever raise his PS
+                    break;
+                }
+            }
+            self.uid=p.id;
 	    p.dock(sh);
-	    p.show();
+	    if(phase!==SELECT_PHASE){ // Calling show in Select phase unbinds all click events(!?)
+                p.show();
+            }
 	    sh.wrap_before("dies",self,function() {
-		var u=this.docked;
-		this.init.call(u); // Copy capacities
-		this.hasfired=0;
-		u.wrap_before("endphase",u,function() {
-		    this.hasmoved=false;
-		});
-		u.noattack=round;
-		u.deploy(this,self.getdeploymentmatrix(u));
+                if(self.isactive){ // Accounting for Boba Fett
+                    var u=this.docked;
+                    this.init.call(u); // Copy capacities
+                    this.hasfired=0;
+                    u.wrap_before("endphase",u,function() {
+                        this.hasmoved=false;
+                    });
+                    u.noattack=round;
+                    u.deploy(this,self.getdeploymentmatrix(u));
+                    u.showstats();
+                    u.showpanel();
+                }
+                else{ // Docked ship must be killed if Hound's Tooth has been deactivated
+                    this.docked.dead=true;
+                    this.docked.checkdead();
+                }
 	    });
+            this.uninstall = function(){
+                if(phase===SELECT_PHASE){
+                    // Need to remove Nashtah Pup Pilot if "Hound's Tooth" is uninstalled
+                    // but only during list selection phase; UI click() is not defined otherwise
+                    $("#unit"+self.uid+" .close").click();
+                }
+            };
 	}
     },
     {
@@ -3979,6 +4050,12 @@ var UPGRADES=window.UPGRADES= [
 	points:0,
 	unique:true,
 	done:true,
+        aiactivate: function() { // Let IAunits determine whether to deploy based on some criteria
+            var deploynow = false;
+            if(this.unit.shield + this.unit.hull <= 4)
+                deploynow = true;
+            return deploynow;
+        },
 	getdeploymentmatrix:function(u) {
 	    var gd=u.getdial();
 	    var p=[];
@@ -4015,7 +4092,6 @@ var UPGRADES=window.UPGRADES= [
 		sh.wrap_after("endmaneuver",this,function() {
 		    if (this.docked) {
 			u.donoaction([{org:self,type:"TITLE",name:self.name,action:function(n) {
-
 			    this.weapons[0].auxiliary=undefined;
 			    this.weapons[0].subauxiliary=undefined;
 			    this.weapons[0].type="Laser";
@@ -4026,7 +4102,7 @@ var UPGRADES=window.UPGRADES= [
 		});
 		if(upg.name=="Phantom"){
                     sh.wrap_after("endcombatphase",this,function() {
-                        if (this.docked) 
+                        if (this.docked&&!this.isfireobstructed()) // Can't use additional while on an obstacle
                             for (var i=0; i<this.weapons.length; i++) {
                                 var u=this.weapons[i];
                                 if (u.type==Unit.TURRET&&u.isactive&&this.noattack<round) {
@@ -4073,7 +4149,7 @@ var UPGRADES=window.UPGRADES= [
      type:Unit.TITLE,
      points:0,
      unique:true,
-     done:false,
+     done:true,
      ship:"Sheathipede-class Shuttle"
     },
     {name:"Reinforced Deflectors",
@@ -4384,7 +4460,7 @@ var UPGRADES=window.UPGRADES= [
 		if (!self.isactive) return;
 		t.wrap_after("deal",self,function(c,f,p) {
 		    p.then(function(crit) {
-			if (crit.face==Critical.FACEUP) {
+			if (self.isactive && crit.face==Critical.FACEUP) {
 			    var p=[];
 			    for (var i in t.upgrades) {
 				var upg=t.upgrades[i];
@@ -4998,6 +5074,16 @@ var UPGRADES=window.UPGRADES= [
       islarge:true,
       points:1,
       done:true,
+      aiactivate: function() { // Attempting to keep AI from just dumping RCCs immediately
+          var ship;
+          var victims = [];
+          for(var i in squadron){
+            ship=squadron[i];
+            if(this.unit.isenemy(ship) && this.unit.getrange(ship)<=1) 
+                victims.push(ship);
+        }
+        return victims.length>0;
+      },
       candoaction: function() { 
           return this.isactive; 
       },
@@ -5028,28 +5114,50 @@ var UPGRADES=window.UPGRADES= [
 	  self.endaction(n,Unit.ILLICIT);
       }
     },
-    { name:"Black Market Slicer Tools",
-      type:Unit.ILLICIT,
-      points:1,
-      done:true,
-      candoaction: function() { return this.isactive; },
-      action: function(n) {
-	  var self=this;
-	  var p=self.unit.selectnearbyenemy(2,function(s,t) {
-	      return t.stress>0;
-	  });
-	  if (p.length>0&&this.isactive) {
-	      this.unit.selectunit(p,function(q,k) {
-		  var roll=self.unit.rollattackdie(1,self,"blank")[0];
-		  if (roll=="hit"||roll=="critical") { 
-		      q[k].applydamage(1); 
-		      q[k].removestresstoken();
-		      q[k].checkdead(); 
-		  }
-	      },["select unit [%0]",self.name],false);
-	  }
-	  this.unit.endaction(n,Unit.ILLICIT);
-      }
+    {   name:"Black Market Slicer Tools",
+        type:Unit.ILLICIT,
+        points:1,
+        done:true,
+        aiactivate: function() {
+            var activate=false;
+            var ship=this.unit;
+            var threshold=2;  // Arbitrary value; needs tuning.
+            var weight=1;
+            for (var upg in ship.upgrades){
+                if(ship.upgrades[upg].name.match(/Push the Limit|Experimental Interface/))
+                    weight+=1;  // Better ROI if ship has many actions available
+            }
+            var victims=ship.selectnearbyenemy(2,function(s,t){
+                // Ignore targets without stress, or in weapon range, or that are tough
+                return t.stress>0 && (s.getenemiesinrange(t)===[] || (t.hull<=2||t.getagility()>=3));
+            });
+            
+            if(victims.length*weight>=threshold)
+                activate=true;
+            
+            return activate;
+            
+        },
+        candoaction: function() { return this.isactive; },
+        action: function(n) {
+            var self=this;
+            var p=self.unit.selectnearbyenemy(2,function(s,t) {
+                return t.stress>0;
+            });
+            if (p.length>0&&this.isactive) {
+                this.unit.selectunit(p,function(q,k) {
+                    self.unit.log("Activating %0 against %1...",self.name,q[k].name);
+                    var roll=self.unit.rollattackdie(1,self,"blank")[0];
+                    if (roll=="hit"||roll=="critical") { 
+                        q[k].applydamage(1); 
+                        q[k].removestresstoken();
+                        q[k].checkdead(); 
+                    }
+                    else self.unit.log("No damage from %0 against %1.", self.name, q[k].name);
+                },["select unit [%0]",self.name],false);
+            }
+            this.unit.endaction(n,Unit.ILLICIT);
+        }
     },
     { name:"Gyroscopic Targeting",
       ship:"Lancer-class Pursuit Craft",
@@ -5327,71 +5435,83 @@ var UPGRADES=window.UPGRADES= [
      firing: false,
      index: -1,
      init: function(sh) {
-	 var self=this;
-         self.firesnd=self.unit.ship.firesnd;
-         for (var i in self.unit.weapons){
-             if (self.unit.weapons[i] == self){
-                 this.index = i;
-                 break;
-             }
-         }
-         sh.wrap_after("resolveattack", self, function(){
-             if(phase != COMBAT_PHASE){
-                 sh.hasfired = 0;
-             }
-         });
-         sh.wrap_after("cancelattack", self, function(){
-             if(phase != COMBAT_PHASE){
-                 sh.hasfired = 0;
-             }
-         });
-	 Unit.prototype.wrap_before("endmaneuver",self,function() {
-             // There are some restrictions on Snap Shot that should be checked prior
-             // to adding any functionality to the holder (self.unit):
-             // 1) activeunit is not self.unit                          check
-             // 2) activeunit is not ally of self.unit                  check
-             // 3) activeunit is within this weapon's range             check
-             // 4) weapon has not fired this *phase*                    check
-             // 5) weapon has not been activated for another target.    N/A
-            if(this!=self.unit && (!this.isally(self.unit)) &&
-                this.getrange(self.unit)<=self.unit.weapons[self.index].gethighrange())
-            {
-                if(self.phase < phase){
-                   sh.doselection(function(n) {
-                       self.unit.select();
-                       self.unit.wrap_before("selecttargetforattack",self,function() {
-                           self.unit.endnoaction(n,"ATTACK");
-                       }).unwrapper("cleanupattack");
-                       self.unit.wrap_after("getdicemodifiers",self,function() {
-                           // Iterate back through arguments (all mods available to self.unit
-                           // and remove any that Mod or Reroll the Attack Dice 
-                            var i = arguments[0].length;
-                            var newargs = arguments[0].slice();
-                            var nextarg;
-                            while (i--) {
-                                nextarg = newargs[i];
-                                if(nextarg.to == Unit.ATTACK_M || nextarg.from == Unit.ATTACK_M){
-                                    if (newargs[i].type==Unit.MOD_M || newargs[i].type==Unit.REROLL_M) { 
-                                        newargs.splice(i, 1);
-                                    } 
-                                }
-                            }
-                            return newargs;
-                       }).unwrapper("cleanupattack");
-                       self.unit.wrap_before("cancelattack",self,function() {
-                           //self.unit.maxfired++;
-                           self.phase = self.lastphase;
-                           $("#attackdial").hide();
-                           self.unit.endnoaction(n,"ATTACK");
-                       }).unwrapper("cleanupattack");
-                       // Check if this != this.isally(self.unit)?
-                       // In this context, self.unit is Snap Shot host
-                       // this is any ship
-                        self.unit.doattack([self.unit.weapons[self.index]],[this]);
-                   }.bind(this), this);
+        var self=this;
+        self.firesnd=self.unit.ship.firesnd;
+        var notThisTeam=(sh.team===1)?2:1;
+        //var onElement=(sh.team===1)?"#player1":"player2"; // May use if document gets too crowded
+        for (var i in self.unit.weapons){
+            if (self.unit.weapons[i] == self){
+                this.index = i;
+                break;
+            }
+        }
+        sh.wrap_after("endcombatphase", self, function(){
+            self.lastphase=self.phase;
+            self.phase=-1;
+        });        
+        $(document).on("endmaneuver"+notThisTeam, function(e,ship){
+            if(!ship.isally(sh)&&!sh.dead){ // Dead ships still have handlers
+                if(self.getenemiesinrange([ship]).length>0){
+                    if(self.phase < phase){
+                        sh.donoaction([{org:self,type:"LASER",name:self.name,action:function(n){
+                            // Part of declareattack, possibly necessary for combatdial
+                            targetunit=ship;
+                            this.activeweapon=self.index;
+                            this.log("attacks %0 with %1",ship.name,this.weapons[self.index].name);
+                            ship.isattackedby(self.index,this);
+                            // Deep dive into resolveattack, removing EVERY SINGLE deferred usage!
+                            var i;
+                            //var r=this.gethitrange(w,targetunit);  // We know the range
+                            //this.addhasfired();  // We just remove this later, so why do it?
+                            this.hasdamaged=false;
+                            displaycombatdial();    // Let's see what this does...
+                            var bb=ship.g.getBBox();
+                            var start=transformPoint(this.m,{x:0,y:-(this.islarge?40:20)});
+                            s.path("M "+start.x+" "+start.y+" L "+(bb.x+bb.w/2)+" "+(bb.y+bb.h/2))
+                                .appendTo(VIEWPORT)
+                                .attr({stroke:this.color,
+                                       strokeWidth:2,
+                                       strokeDasharray:100,
+                                       "class":"animated fireline"});
+                            //this.select();        // Unnecessary
+                            for (i in squadron) if (squadron[i]==this) break;
+                            this.preattackroll(self.index,ship);
+                            var attack=this.getattackstrength(self.index,ship);
+                            //this.doattackroll(,,,i,n);
+
+                            //doattackroll: function(ar,ad,w,me=index of sh in squadron,n) {
+                            var ar=this.weapons[self.index].modifydamagegiven(this.attackroll(attack));
+                            this.weapons[self.index].lastattackroll=ar;
+                            displayattackroll(ar,attack);
+                            //this.log("target:"+targetunit.name+" "+defense+" "+ar+" "+ad+" "+defense+" "+n+" me:"+squadron[me].name);
+                            this.ar=ar;this.ad=attack;
+                            displayattacktokens(this,function(t) {
+                                    targetunit.predefenseroll(self.index,t);
+                                    targetunit.defenseroll(targetunit.getdefensestrength(self.index,t)).done(function(r){
+                                        //targetunit.dodefenseroll(r.roll,r.dice,me,n);
+                                        this.dr=r.roll; this.dd=r.dice;
+                                        displaydefenseroll(this.dr,this.dd);
+                                        displaydefensetokens(this,function() {
+                                            this.resolvedamage();
+                                            this.endnoaction(n,"LASER");
+                                            //this.endnoaction(n,"in combat");
+                                        }.bind(sh));
+                                }.bind(ship));
+                            });
+                            
+                            //ship.log("Bang Bang! %0 attack from %1 against %2", self.name, sh.name, ship.name);
+                            self.lastphase=self.phase;
+                            self.phase=phase;
+//                            this.endnoaction(n,"LASER");
+                                    //self.unit.selecttargetforattack(self.index,[ship]);
+                        }.bind(sh)}],"Snap Shot",true);
+                        if(phase != COMBAT_PHASE){
+                            sh.hasfired = 0;
+                        }
+                    }
                 }
             }
-	 });
+         });
         }
     },
     {name:"M9-G8",
@@ -6292,48 +6412,50 @@ var UPGRADES=window.UPGRADES= [
 		return d;
 	    })
 	},
+    },
+    {
+        name: "Bomblet Generator",
+        done:true,
+        img:"seismic.png",
+        snd:"explode",
+        width: 16,
+        height:8,
+        size:15,
+        unique:true,
+        explode:function() {
+            if (phase==ACTIVATION_PHASE&&!this.exploded) {
+                var r=this.getrangeallunits();
+                for (var i=0; i<r[1].length; i++) {
+                    var u=squadron[r[1][i].unit];
+                    var roll=this.unit.rollattackdie(2,this,"hit");
+                    for (var j=0; j<2; j++) {
+                        if (roll[j]=="hit") { 
+                            u.log("+1 %HIT% [%0]",this.name); 
+                            u.resolvehit(1); 
+                            u.checkdead(); 
+                        } else if (roll[i]=="critical") { 
+                            u.log("+1 %CRIT% [%0]",this.name); 
+                            u.resolvecritical(1);
+                            u.checkdead();
+                        }
+                        else u.log("No damage from [%0]", this.name);
+                    }
+                }
+                this.explode_base();
+                this.exploded = false;
+            }
         },
-	{
-		name: "Bomblet Generator",
-		done:true,
-		img:"seismic.png",
-		snd:"explode",
-		width: 16,
-		height:8,
-		size:15,
-		explode:function() {
-			if (phase==ACTIVATION_PHASE&&!this.exploded) {
-				var r=this.getrangeallunits();
-				for (var i=0; i<r[1].length; i++) {
-					var u=squadron[r[1][i].unit];
-					var roll=this.unit.rollattackdie(2,this,"hit");
-					for (var j=0; j<2; j++) {
-						if (roll[j]=="hit") { 
-							u.log("+1 %HIT% [%0]",this.name); 
-							u.resolvehit(1); 
-							u.checkdead(); 
-						} else if (roll[i]=="critical") { 
-							u.log("+1 %CRIT% [%0]",this.name); 
-							u.resolvecritical(1);
-							u.checkdead();
-						}
-					}
-				}
-				this.explode_base();
-				this.exploded = false;
-		    }
-		},
-		drop: function(lm,n) {
-			var dropped=this;
-			dropped.resolveactionmove(this.unit.getbombposition(lm,this.size), function(k) {
-			    this.display(0,0);
-			    this.unit.bombdropped(this);
-			    if (typeof n!="undefined") this.unit.endnoaction(n,"DROP");
-			}.bind(dropped),false,true);
-		},
-		type: Unit.BOMB,
-		points: 3,
-		takesdouble: true
+        drop: function(lm,n) {
+            var dropped=this;
+            dropped.resolveactionmove(this.unit.getbombposition(lm,this.size), function(k) {
+                this.display(0,0);
+                this.unit.bombdropped(this);
+                if (typeof n!="undefined") this.unit.endnoaction(n,"DROP");
+            }.bind(dropped),false,true);
+        },
+        type: Unit.BOMB,
+        points: 3,
+        takesdouble: true
     },    
     { 
 		name:"Wookiee Commandos",
@@ -6525,4 +6647,50 @@ var UPGRADES=window.UPGRADES= [
 			}
 		}
 	},
+	{
+		name: "Linked Battery",
+		type:Unit.CANNON,
+		done:true,
+		points:2,
+		limited:true,
+		isLarge:false,
+		isWeapon: function() { return false; },
+		init: function(sh) {
+			sh.adddicemodifier(Unit.ATTACK_M,Unit.REROLL_M,Unit.ATTACK_M,this,{
+				dice:["blank","focus"],
+				n:function() { return 1; },
+				req:function(a,w,defender) {
+					var w1=a.weapons[a.activeweapon];
+					return this.isactive && (w1.isprimary || w1.type==Unit.CANNON);
+				}.bind(this)
+			});
+		}
+	},
+    {
+		name: "Unguided Rockets",
+		type:Unit.MISSILE,
+		done:true,
+		points:2,
+		attack:3,
+		range:[1,3],
+		firesnd:"missile",
+		requires:"Focus",
+		consumes:false,
+		takesdouble: true,
+		init: function(sh) {
+			var self = this;
+			sh.wrap_before("resolveattack",this,function(w,t) {
+			if(this.weapons[this.activeweapon]==self)
+				this.wrap_after("getdicemodifiers",this,function(mods) {
+				var p=[];
+				for (var i=0; i<mods.length; i++)
+					if (mods[i].from==Unit.ATTACK_M && mods[i].str=="focus" && mods[i].token==true) p.push(mods[i]);
+				return p;
+				}).unwrapper("cleanupattack");
+			});
+		},
+		desactivate: function() {
+			return false;
+		}
+	}
 ];

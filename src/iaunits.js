@@ -6,11 +6,21 @@ IAUnit.prototype = {
     /* TODO: getmaneuverlist instead of getdial */
     IAinit:function() {
 	// create environment
-	this.init={
-	    shield:this.shield,
-	    hull:this.hull,
-	    m:this.m
-	};
+        // N.B.: these values are only used by IAunits2.js code; modifying the
+        // default init object instead of overriding it prevents breaking some
+        // upgrades like IG-2000/IG-88D/Nashtah Pup Pilot that explicitly call .init()
+        if(typeof this.init!=="undefined"){
+            this.init.shield=this.shield;
+            this.init.hull=this.hull;
+            this.init.m=this.m;
+        }
+	else{
+            this.init={
+                shield:this.shield,
+                hull:this.hull,
+                m:this.m
+            };
+        }
         this.ia = true;
     },
 	/*
@@ -53,6 +63,41 @@ IAUnit.prototype = {
 	     });
 	*/
     confirm(a) { return true;},
+    chooseBombDrop(positions){
+        //Note: Snap.Matrix.e = dx from 0; Snap.Matrix.f = dy from 0
+        if(positions.length<=1) return positions;
+        var index,tempDist,distance=9999.9,dx,dy,ship,centroid,victims=[];
+        // Get all enemies within 2 of this ship; farther ships don't really matter
+        for(i in squadron){
+            ship=squadron[i];
+            if(this.isenemy(ship) && this.getrange(ship)<=2) 
+                victims.push(ship.m);
+        }
+        // Find the average center point amongst all victims (or just the .m if 1 victim)
+        if(victims.length===1) centroid=victims[0];
+        else{
+            var x=0,y=0;
+            for (v in victims){
+                x+=victims[v].e;
+                y+=victims[v].f;
+            }
+            x=x*1.0/victims.length;
+            y=y*1.0/victims.length;
+            centroid=new Snap.Matrix(1,0,0,1,x,y);
+        }
+        // Find the closest bomb position to the centroid.  This cuts down cycles used
+        for(var pos in positions){
+            dx=Math.abs(positions[pos].e - centroid.e);
+            dy=Math.abs(positions[pos].f - centroid.f);
+            tempDist=Math.sqrt(dx*dx+dy*dy);
+            if(tempDist<distance){
+                index=pos;
+                distance=tempDist;
+            }
+        }
+        return [positions[index]];  // Return a length 1 array for easy handling
+        
+    },
     guessevades(roll,promise) {
 	if (this.rand(roll.dice+1)==Unit.FE_evade(roll.roll)) {
 	    this.log("guessed correctly the number of evades ! +1 %EVADE% [%0]",self.name);
@@ -62,6 +107,18 @@ IAUnit.prototype = {
 	promise.resolve(roll);
     },
     findpositions(gd) {
+        // More intelligent planning for stressed extra-action pilots (extend as needed)
+        let actions=this.shipactionList.length;
+        var addaction=0;
+        for(var u in this.upgrades){
+            if(this.upgrades[u].name.match(/Push the Limit|Experimental Interface/))
+                addaction+=1;
+            else if(typeof this.upgrades[u].action!== "undefined")
+                actions+=1;
+        }
+        if(this.name.match(/Darth Vader/))
+            addaction+=1;
+        
 	var q=[],c,j,i;
 	// Find all possible moves, with no collision and with units in range 
 	var COLOR=[GREEN,WHITE,YELLOW,RED];
@@ -77,6 +134,7 @@ IAUnit.prototype = {
 	    this.m=mm;
 	    var ep=this.evaluateposition();
 	    n+=ep.self-ep.enemy-ep.dist;
+            if (d.difficulty=="GREEN" && (d.color==GREEN || d.color==WHITE)) n+=(addaction+actions)*this.stress;
 	    if (d.difficulty=="RED") n=n-1.5;
 	    //this.log(d.move+" "+d.color+" "+n);
 	    this.m=oldm;
@@ -353,8 +411,37 @@ IAUnit.prototype = {
     timetoshowmaneuver() {
 	return this.maneuver>-1&&skillturn>=this.getskill()&&phase==ACTIVATION_PHASE&&subphase==ACTIVATION_PHASE;
     },
+    updateactivationdial: function() { //IAUnits-specific version
+	var self=this;
+	this.activationdial=[]; // We treat this like an action list for donoaction()
+	if (this.candropbomb()&&(this.hasionizationeffect())) {
+	    //this.log("ionized, cannot drop bombs");
+	} else if (self.lastdrop!=round) {
+	    switch(this.bombs.length) { // Assumes max of 3 bomb types
+	    case 3: if (this.bombs[2].canbedropped()) 
+                this.activationdial.push({action:self.bombs[2].actiondrop,
+                    org:self.bombs[2],
+                    type:self.bombs[2].type,
+                    name:self.bombs[2].name});
+	    case 2:if (this.bombs[1].canbedropped()) 
+                this.activationdial.push({action:self.bombs[1].actiondrop,
+                    org:self.bombs[1],
+                    type:self.bombs[1].type,
+                    name:self.bombs[1].name});
+	    case 1:if (this.bombs[0].canbedropped()) 
+                this.activationdial.push({action:self.bombs[0].actiondrop,
+                    org:self.bombs[0],
+                    type:self.bombs[0].type,
+                    name:self.bombs[0].name});
+	    }
+	}
+	return this.activationdial;
+    },
     doactivation() {
-	var ad=this.updateactivationdial();
+	var ad=this.updateactivationdial(); // Warning: list of actions, not dial texts
+        if(ad.length>0){
+            this.donoaction(ad);
+        }
 	if (this.timeformaneuver()) {
 	    //this.log("resolvemaneuver");
 	    this.resolvemaneuver();
@@ -394,7 +481,9 @@ IAUnit.prototype = {
                         else if(this.focus>=1) { a=list[i]; break;}
 		    } else if (list[i].type=="FOCUS") {
 			if (this.candofocus()) { a=list[i]; break; }
-		    } else { a = list[i]; break }
+                    } else if (typeof list[i].org.aiactivate !== "undefined"){
+                        if (list[i].org.aiactivate()) {a = list[i]; break; }
+		    } else { a = list[i]; break; }
 		}
 		this.resolvenoaction(a,n);
 	    }.bind(this),"donoaction ia");
@@ -435,6 +524,8 @@ IAUnit.prototype = {
                     }
                     else if (list[i].type=="FOCUS") {
 			if (this.candofocus()) { a=list[i]; break; }
+                    } else if (typeof list[i].org.aiactivate !== "undefined"){
+                        if (list[i].org.aiactivate()) {a = list[i]; break; }
 		    } else { a = list[i]; break }
 		}
 		/*if (a==null) this.log("no possible action");

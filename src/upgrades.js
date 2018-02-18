@@ -25,11 +25,32 @@ function Bomb(sh,bdesc) {
 	//if (this.init != undefined) this.init(sh);
 };
 Bomb.prototype = { 
-   wrap_before:Unit.prototype.wrap_before,
+    wrap_before:Unit.prototype.wrap_before,
     wrap_after:Unit.prototype.wrap_after,
     isWeapon() { return false; },
     isBomb() { return true; },
-	showOrdnance() { return this+1; },
+    showOrdnance() { return this+1; },
+    aiactivate() {
+        var victims = [], ship;
+        var bRange = 0;
+        if(this.canbedropped()){  // Probably dropping early
+            // Fill in with maneuver-drop bomb logic
+            bRange=3;
+        }
+        else if(this.candoaction()){ // Probably dropping after closing
+            // Fill in with action-drop bomb logic
+            bRange=2;
+        }
+        for(var i in squadron){
+            ship=squadron[i];
+            if(this.unit.isenemy(ship)
+                    &&((this.unit.getrange(ship)<=bRange && !this.unit.isinprimaryfiringarc(ship))
+                    ||this.unit.getrange(ship)<=1) // For Deathrain
+                    )
+                victims.push(ship);
+        }
+        return victims.length>0;
+    },
     canbedropped() { return this.isactive&&!this.unit.hasmoved&&this.unit.lastdrop!=round; },
     desactivate() { this.isactive=false;this.unit.movelog("D-"+this.unit.upgrades.indexOf(this)); },
     getBall() {
@@ -99,6 +120,9 @@ Bomb.prototype = {
 	    for (i=0; i<moves.length; i++) this.pos[i].remove();
 	    f(this,k);
 	}.bind(this);
+        if(this.unit.ia){ // Reduce possible bomb locations 
+            moves=this.unit.chooseBombDrop(moves);
+        }
 	if (moves.length==1) {
 	    this.pos[0]=this.getOutline(moves[0]).attr({fill:this.unit.color,opacity:0.7});
 	    resolve(moves[0],0,cleanup);
@@ -296,7 +320,7 @@ Weapon.prototype={
 	if (typeof sh=="undefined") {
 	    return true;
 	}
-	if (!this.isactive||this.unit.isally(sh)) return false;
+	if (!this.isactive||sh.isdocked||this.unit.isally(sh)) return false;
 	if (this.unit.checkcollision(sh)) return false;
 	if (typeof this.getrequirements()!="undefined") {
 	    var s="Target";
@@ -355,6 +379,9 @@ Weapon.prototype={
 	var r=this.unit.getprimarysector(sh,m);
 	if (r<4) return r;
 	if (typeof this.auxiliary=="undefined") return 4;
+        if (typeof this.auxiliary!="undefined" && !this.type.match(/Turretlaser|Bilaser|Mobilelaser|Laser180|Laser|Turret/)){
+            return this.getauxiliarysector(sh); // For VCX-100 w/o Phantom & Ghost, etc.
+        }
 	return this.unit.getauxiliarysector(sh,m);
     },
     getrange(sh) {
@@ -385,7 +412,7 @@ Weapon.prototype={
 	if (typeof enemylist=="undefined") enemylist=squadron;
 	for (var i in enemylist) {
 	    var sh=enemylist[i];
-	    if (sh.isenemy(this.unit)&&this.getrange(sh)>0) r.push(sh);
+	    if (!sh.isdocked&&sh.isenemy(this.unit)&&this.getrange(sh)>0) r.push(sh);
 	}
 	return r;
     },
@@ -495,17 +522,46 @@ Upgrade.prototype={
 	    }
 	    sh.showupgradeadd();
 	}
-	// Emperor
+	// Emperor, Bomblet Generator, Jabba
 	if (typeof this.takesdouble!="undefined") {
-	    for (j=0; j<sh.upgradetype.length; j++){
-		if (sh.upgradetype[j]==this.type&&(sh.upg[j]<0||UPGRADES[sh.upg[j]].name!=this.name)) {
-		    break;
-		}
-	    }
-	    if (j<sh.upgradetype.length) {
-		if (sh.upg[j]>-1) removeupgrade(sh,j,sh.upg[j]);
-		sh.upg[j]=-2;
-	    }
+            var typeslots = [];
+            var installedtype = 0;
+            //var typeslots = 0,installedtype = 0;
+            // Possibly track slots and ID numbers of all same-type upgrades
+            for (var k=0; k<sh.upgradetype.length; k++){ // Count all avail same-type slots
+                if(sh.upgradetype[k]==this.type) typeslots.push({index: k});
+            }
+            for (k=0; k<sh.upgrades.length; k++){
+                if(sh.upgrades[k].type===this.type){ // upgrades' order is dependent on install order
+                    if(typeof sh.upgrades[k].takesdouble==="undefined"||sh.upgrades[k].takesdouble===false){
+                        installedtype++;
+                    }
+                    else{
+                        installedtype+=2; // also counts current double card
+                    }
+                }
+            }
+            if(installedtype > typeslots.length){ // Check if there are enough slots for all upgrades of this.type
+                // If not, just uninstall this and NOTHING ELSE!
+                removeupgrade(sh,typeslots[typeslots.length-2].index,this.id);                
+//                for (j=0; j<sh.upgradetype.length; j++){
+//                    if (sh.upgradetype[j]==this.type&&(sh.upg[j]<0||UPGRADES[sh.upg[j]].name!=this.name)) {
+//                        break;
+//                    }
+//                }
+//                if (j<sh.upgradetype.length) {
+//                    if (sh.upg[j]>-1) removeupgrade(sh,j,sh.upg[j]);
+//                    sh.upg[j]=-2;
+//                }
+            }
+            else { // Remove one upgrade slot
+                for(var u in typeslots){
+                    if (sh.upg[typeslots[u].index]==-1){
+                        sh.upg[typeslots[u].index] = -2;
+                        break;
+                    }
+                }
+            }
 	    sh.showupgradeadd();
 	}
     },
@@ -540,10 +596,19 @@ Upgrade.prototype={
 		    sh.upg[i]=-1;
 	}
 	if (typeof this.takesdouble!="undefined") {
-	    for (i=0; i<sh.upgradetype.length; i++)
-		if (sh.upgradetype[i]==this.type&&sh.upg[i]==-2)
+	    for (i=0; i<sh.upgradetype.length; i++){
+		if (sh.upgradetype[i]==this.type&&sh.upg[i]==-2){
 		    sh.upg[i]=-1;
+                    break;
+                }
+            }
 	}
+        for(i in sh.upgrades){ // We need to delete this from upgrades or other stuff gets broken
+            if(sh.upgrades[i].type==this.type && sh.upgrades[i].id==this.id){
+                sh.upgrades.splice(i,1);
+                break;
+            }
+        }
     }
 }
 
