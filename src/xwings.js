@@ -770,7 +770,15 @@ function enablenextphase() {
 	if (skillturn<0) {
 	    $("#attackdial").hide();
 	    for (var i in squadron) squadron[i].endcombatphase();
-	    log(UI_translation["No more firing units, ready to end phase."]);
+	    if(TEAMS[1].initiative){ // Possibly unnecessary init order
+                $(document).trigger("endcombatphase"+"1");
+                $(document).trigger("endcombatphase"+"2");
+            }
+            else{ 
+                $(document).trigger("endcombatphase"+"2");
+                $(document).trigger("endcombatphase"+"1");
+            }
+            log(UI_translation["No more firing units, ready to end phase."]);
 	    barrier(endphase);
 	    ready=true; 
 	} else ready=false;
