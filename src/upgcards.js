@@ -5435,71 +5435,83 @@ var UPGRADES=window.UPGRADES= [
      firing: false,
      index: -1,
      init: function(sh) {
-	 var self=this;
-         self.firesnd=self.unit.ship.firesnd;
-         for (var i in self.unit.weapons){
-             if (self.unit.weapons[i] == self){
-                 this.index = i;
-                 break;
-             }
-         }
-         sh.wrap_after("resolveattack", self, function(){
-             if(phase != COMBAT_PHASE){
-                 sh.hasfired = 0;
-             }
-         });
-         sh.wrap_after("cancelattack", self, function(){
-             if(phase != COMBAT_PHASE){
-                 sh.hasfired = 0;
-             }
-         });
-	 Unit.prototype.wrap_before("endmaneuver",self,function() {
-             // There are some restrictions on Snap Shot that should be checked prior
-             // to adding any functionality to the holder (self.unit):
-             // 1) activeunit is not self.unit                          check
-             // 2) activeunit is not ally of self.unit                  check
-             // 3) activeunit is within this weapon's range             check
-             // 4) weapon has not fired this *phase*                    check
-             // 5) weapon has not been activated for another target.    N/A
-            if(this!=self.unit && (!this.isally(self.unit)) &&
-                this.getrange(self.unit)<=self.unit.weapons[self.index].gethighrange())
-            {
-                if(self.phase < phase){
-                   sh.doselection(function(n) {
-                       self.unit.select();
-                       self.unit.wrap_before("selecttargetforattack",self,function() {
-                           self.unit.endnoaction(n,"ATTACK");
-                       }).unwrapper("cleanupattack");
-                       self.unit.wrap_after("getdicemodifiers",self,function() {
-                           // Iterate back through arguments (all mods available to self.unit
-                           // and remove any that Mod or Reroll the Attack Dice 
-                            var i = arguments[0].length;
-                            var newargs = arguments[0].slice();
-                            var nextarg;
-                            while (i--) {
-                                nextarg = newargs[i];
-                                if(nextarg.to == Unit.ATTACK_M || nextarg.from == Unit.ATTACK_M){
-                                    if (newargs[i].type==Unit.MOD_M || newargs[i].type==Unit.REROLL_M) { 
-                                        newargs.splice(i, 1);
-                                    } 
-                                }
-                            }
-                            return newargs;
-                       }).unwrapper("cleanupattack");
-                       self.unit.wrap_before("cancelattack",self,function() {
-                           //self.unit.maxfired++;
-                           self.phase = self.lastphase;
-                           $("#attackdial").hide();
-                           self.unit.endnoaction(n,"ATTACK");
-                       }).unwrapper("cleanupattack");
-                       // Check if this != this.isally(self.unit)?
-                       // In this context, self.unit is Snap Shot host
-                       // this is any ship
-                        self.unit.doattack([self.unit.weapons[self.index]],[this]);
-                   }.bind(this), this);
+        var self=this;
+        self.firesnd=self.unit.ship.firesnd;
+        var notThisTeam=(sh.team===1)?2:1;
+        //var onElement=(sh.team===1)?"#player1":"player2"; // May use if document gets too crowded
+        for (var i in self.unit.weapons){
+            if (self.unit.weapons[i] == self){
+                this.index = i;
+                break;
+            }
+        }
+        sh.wrap_after("endcombatphase", self, function(){
+            self.lastphase=self.phase;
+            self.phase=-1;
+        });        
+        $(document).on("endmaneuver"+notThisTeam, function(e,ship){
+            if(!ship.isally(sh)&&!sh.dead){ // Dead ships still have handlers
+                if(self.getenemiesinrange([ship]).length>0){
+                    if(self.phase < phase){
+                        sh.donoaction([{org:self,type:"LASER",name:self.name,action:function(n){
+                            // Part of declareattack, possibly necessary for combatdial
+                            targetunit=ship;
+                            this.activeweapon=self.index;
+                            this.log("attacks %0 with %1",ship.name,this.weapons[self.index].name);
+                            ship.isattackedby(self.index,this);
+                            // Deep dive into resolveattack, removing EVERY SINGLE deferred usage!
+                            var i;
+                            //var r=this.gethitrange(w,targetunit);  // We know the range
+                            //this.addhasfired();  // We just remove this later, so why do it?
+                            this.hasdamaged=false;
+                            displaycombatdial();    // Let's see what this does...
+                            var bb=ship.g.getBBox();
+                            var start=transformPoint(this.m,{x:0,y:-(this.islarge?40:20)});
+                            s.path("M "+start.x+" "+start.y+" L "+(bb.x+bb.w/2)+" "+(bb.y+bb.h/2))
+                                .appendTo(VIEWPORT)
+                                .attr({stroke:this.color,
+                                       strokeWidth:2,
+                                       strokeDasharray:100,
+                                       "class":"animated fireline"});
+                            //this.select();        // Unnecessary
+                            for (i in squadron) if (squadron[i]==this) break;
+                            this.preattackroll(self.index,ship);
+                            var attack=this.getattackstrength(self.index,ship);
+                            //this.doattackroll(,,,i,n);
+
+                            //doattackroll: function(ar,ad,w,me=index of sh in squadron,n) {
+                            var ar=this.weapons[self.index].modifydamagegiven(this.attackroll(attack));
+                            this.weapons[self.index].lastattackroll=ar;
+                            displayattackroll(ar,attack);
+                            //this.log("target:"+targetunit.name+" "+defense+" "+ar+" "+ad+" "+defense+" "+n+" me:"+squadron[me].name);
+                            this.ar=ar;this.ad=attack;
+                            displayattacktokens(this,function(t) {
+                                    targetunit.predefenseroll(self.index,t);
+                                    targetunit.defenseroll(targetunit.getdefensestrength(self.index,t)).done(function(r){
+                                        //targetunit.dodefenseroll(r.roll,r.dice,me,n);
+                                        this.dr=r.roll; this.dd=r.dice;
+                                        displaydefenseroll(this.dr,this.dd);
+                                        displaydefensetokens(this,function() {
+                                            this.resolvedamage();
+                                            this.endnoaction(n,"LASER");
+                                            //this.endnoaction(n,"in combat");
+                                        }.bind(sh));
+                                }.bind(ship));
+                            });
+                            
+                            //ship.log("Bang Bang! %0 attack from %1 against %2", self.name, sh.name, ship.name);
+                            self.lastphase=self.phase;
+                            self.phase=phase;
+//                            this.endnoaction(n,"LASER");
+                                    //self.unit.selecttargetforattack(self.index,[ship]);
+                        }.bind(sh)}],"Snap Shot",true);
+                        if(phase != COMBAT_PHASE){
+                            sh.hasfired = 0;
+                        }
+                    }
                 }
             }
-	 });
+         });
         }
     },
     {name:"M9-G8",
