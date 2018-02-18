@@ -1478,11 +1478,28 @@ Unit.prototype = {
 	this.show();
 	},
     addreinforcetoken: function() {
-		this.reinforce++;
-		this.animateaddtoken("xreinforcetoken");
-		this.movelog("E");
-		this.show();
-		},	
+		var resolvereinforce=function(aft) {
+			this.reinforceaft = aft;
+			this.reinforce++;
+			this.log("Adding reinforce token on " + (aft==0 ? "fore" : "aft") + " side");
+			this.animateaddtoken("xreinforcetoken");
+			this.movelog("E");
+			$("#actiondial").empty();
+			this.unlock();
+		}.bind(this);
+		
+		$("#actiondial").empty();
+		var fore=$("<button>").html("Fore").on("touch click",function() { resolvereinforce(0);}.bind(this));
+		$("#actiondial").append(fore);
+		var aft=$("<button>").html("Aft").on("touch click",function() { resolvereinforce(1);}.bind(this));
+		$("#actiondial").append(aft);
+		
+		this.latedeferred=this.deferred;
+		this.newlock().done(function() {
+			this.deferred=this.latedeferred;
+		}.bind(this));
+
+	},	
     addtractorbeam:function(u) {
 	this.addtractorbeamtoken();
 	if (this.tractorbeam==1&&!this.islarge) {
@@ -3419,8 +3436,23 @@ Unit.prototype = {
 	return this.evade>0;
 	},
 	canusereinforce: function() {
-		var result = this.isinfiringarc(attackunit) && this.reinforce>0;
-		return result;
+		if (this.reinforce>0) {
+			var inarc = this.isinfiringarc(attackunit);
+			if (this.reinforceaft == 0) {
+				if (inarc) {
+					return true;
+				} else {
+					this.log("Attacker is not in arc, therefore cannot use reinforce on fore side");
+				}
+			} else if (this.reinforceaft == 1) {
+				if (inarc) {
+					this.log("Attacker is in arc, therefore cannot use reinforce on aft side");
+				} else {
+					return true;
+				}
+			}
+		}
+		return false;
 	},
     canusetarget:function(sh) {
 	//console.log(this.name+" targeting "+sh.name+":"+this.targeting.length+" "+this.targeting.indexOf(sh));
