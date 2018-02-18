@@ -386,7 +386,7 @@ function Unit(team,pilotid) {
 	//this.removeionized=false;
 	this.evade=0;
 	this.reinforce=0;
-	this.reinforceAft=0;
+	this.reinforceaft=0;
 	this.hasfired=0;
 	this.maxfired=1;
 	this.hitresolved=0;
@@ -1375,7 +1375,7 @@ Unit.prototype = {
     },
     candocoordinate: function() { return this.selectnearbyally(2).length>0; },
 	candoreload: function() { return true; }, // TODO add some condition
-	candoreinforce: function() { return true },
+	candoreinforce: function() { return true; },
     newaction:function(a,str) {
 	return {action:a,org:this,type:str,name:str};
     },
@@ -3419,7 +3419,8 @@ Unit.prototype = {
 	return this.evade>0;
 	},
 	canusereinforce: function() {
-		return this.reinforce>0; // TODO fore/aft
+		var result = this.isinfiringarc(attackunit) && this.reinforce>0;
+		return result;
 	},
     canusetarget:function(sh) {
 	//console.log(this.name+" targeting "+sh.name+":"+this.targeting.length+" "+this.targeting.indexOf(sh));
