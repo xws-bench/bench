@@ -258,7 +258,7 @@ var A = {
     TECH:{key:"X",color:WHITE},
     RELOAD:{key:"/",color:YELLOW}
 };
-var AINDEX = ["ROLL","FOCUS","TARGET","EVADE","BOOST","STRESS","CLOAK","ISTARGETED","ASTRO","CANNON","CREW","MISSILE","TORPEDO","ELITE","TURRET","RELOAD","REINFORCE","UPGRADE","CRITICAL","NOTHING"];
+var AINDEX = ["ROLL","FOCUS","TARGET","EVADE","BOOST","STRESS","CLOAK","ISTARGETED","ASTRO","CANNON","CREW","MISSILE","TORPEDO","ELITE","TURRET","RELOAD","UPGRADE","CRITICAL","NOTHING"];
 
 function repeat(pattern, count) {
     var result = '';
@@ -385,8 +385,6 @@ function Unit(team,pilotid) {
 	this.ionized=0;
 	//this.removeionized=false;
 	this.evade=0;
-	this.reinforce=0;
-	this.reinforceaft=0;
 	this.hasfired=0;
 	this.maxfired=1;
 	this.hitresolved=0;
@@ -682,7 +680,7 @@ Unit.prototype = {
 	return s;	
     },
     setpriority:function(action) {
-	var PRIORITIES={"FOCUS":3,"EVADE":1,"REINFORCE":7,"CLOAK":4,"TARGET":2,"CRITICAL":100,"BOMB":5,"ILLICIT":6};
+	var PRIORITIES={"FOCUS":3,"EVADE":1,"CLOAK":4,"TARGET":2,"CRITICAL":100,"BOMB":5,"ILLICIT":6};
 	var p=PRIORITIES[action.type];
 	if (typeof p=="undefined") p=0;
 	action.priority=p;
@@ -940,17 +938,6 @@ Unit.prototype = {
 		     this.removeevadetoken(); 
 		     return {m:m+Unit.FE_EVADE,n:n+1} 
 		 }.bind(this),str:"evade",token:true,noreroll:"focus"},
-		 {
-			 from:Unit.DEFENSE_M,type:Unit.ADD_M,to:Unit.DEFENSE_M,org:this,
-			 req:function() {return this.canusereinforce(); }.bind(this),
-			 aiactivate:function(m,n) {
-				 mm=getattackvalue();
-				 return (Unit.FCH_hit(mm)+Unit.FCH_crit(mm)>Unit.FE_evade(m));
-			 },
-			 f: function(m,n) {
-				return {m:m+Unit.FE_EVADE,n:n+1}
-			 }.bind(this),str:"reinforce",token:true,noreroll:"focus"
-		 }
 	       ];
     },
     adddicemodifier: function(from,type,to,org,mod) {
@@ -1374,8 +1361,7 @@ Unit.prototype = {
 	return b;
     },
     candocoordinate: function() { return this.selectnearbyally(2).length>0; },
-	candoreload: function() { return true; }, // TODO add some condition
-	candoreinforce: function() { return true; },
+    candoreload: function() { return true; }, // TODO add some condition
     newaction:function(a,str) {
 	return {action:a,org:this,type:str,name:str};
     },
@@ -1407,9 +1393,7 @@ Unit.prototype = {
 		    case "COORDINATE": if (this.candocoordinate()) 
 		    	al.push(this.newaction(this.resolvecoordinate,"COORDINATE"));break;
 		    case "RELOAD": if(this.candoreload())
-				al.push(this.newaction(this.resolvereload,"RELOAD"));break;
-			case "REINFORCE": if (this.candoreinforce()) 
-				al.push(this.newaction(this.addreinforce,"REINFORCE"));break;
+			al.push(this.newaction(this.resolvereload,"RELOAD"));break;
 		}
 	    }
 	}
@@ -1476,30 +1460,7 @@ Unit.prototype = {
 	this.animateaddtoken("xfocustoken");
 	this.movelog("FO");
 	this.show();
-	},
-    addreinforcetoken: function() {
-		var resolvereinforce=function(aft) {
-			this.reinforceaft = aft;
-			this.reinforce++;
-			this.log("Adding reinforce token on " + (aft==0 ? "fore" : "aft") + " side");
-			this.animateaddtoken("xreinforcetoken");
-			this.movelog("E");
-			$("#actiondial").empty();
-			this.unlock();
-		}.bind(this);
-		
-		$("#actiondial").empty();
-		var fore=$("<button>").html("Fore").on("touch click",function() { resolvereinforce(0);}.bind(this));
-		$("#actiondial").append(fore);
-		var aft=$("<button>").html("Aft").on("touch click",function() { resolvereinforce(1);}.bind(this));
-		$("#actiondial").append(aft);
-		
-		this.latedeferred=this.deferred;
-		this.newlock().done(function() {
-			this.deferred=this.latedeferred;
-		}.bind(this));
-
-	},	
+    },
     addtractorbeam:function(u) {
 	this.addtractorbeamtoken();
 	if (this.tractorbeam==1&&!this.islarge) {
@@ -1736,10 +1697,7 @@ Unit.prototype = {
     },
     resetevade: function() {
 	return 0;
-	},
-	resetreinforce: function() {
-		return 0;
-	},
+    },
     resettractorbeam: function() {
 	return 0;
     },   
@@ -1748,7 +1706,6 @@ Unit.prototype = {
 	    this.upgrades[i].endround();
 	this.focus=this.resetfocus();
 	this.evade=this.resetevade();
-	this.reinforce=this.resetreinforce();
 	this.hasfired=0;
 	this.maxfired=1;
 	this.tractorbeam=this.resettractorbeam();
@@ -2072,8 +2029,7 @@ Unit.prototype = {
 	}
 	if (this.targeting.length==0) $("#atokens > .xtargettoken").remove();
     },
-	removeevadetoken: function() { this.animateremovetoken("xevadetoken"); this.evade--; this.movelog("e"); this.show();},
-	removereinforcetoken: function() { this.animateremovetoken("xreinforcetoken"); this.reinforce--; this.movelog("i"); this.show();},
+    removeevadetoken: function() { this.animateremovetoken("xevadetoken"); this.evade--; this.movelog("e"); this.show();},
     removefocustoken: function() { this.animateremovetoken("xfocustoken"); this.focus--; this.movelog("fo"); this.show();},
     resolveactionmove: function(moves,cleanup,automove,possible) {
 	var i;
@@ -2175,19 +2131,15 @@ Unit.prototype = {
 	}
     },
     resolvereload: function(n) {
-		for (var i=0; i<this.upgrades.length;i++) {
+	for (var i=0; i<this.upgrades.length;i++) {
 	        if (this.upgrades[i].type.match(/Torpedo|Missile/)) {
-				this.upgrades[i].isactive=true;
-			}
+			this.upgrades[i].isactive=true;
 		}
- 		this.noattack=round;
-		this.showstats();
-		this.endaction(n,"RELOAD");
-	},
-	addreinforce: function(n) {
-		this.addreinforcetoken();
-		this.endaction(n, "REINFORCE");	
-	},
+	}
+ 	this.noattack=round;
+	this.showstats();
+	this.endaction(n,"RELOAD");
+    },
     candoarcrotate: function() { return this.hasmobilearc; },
     setarcrotate: function(r) { this.arcrotation=90*r; },
     resolvearcrotate: function(n,noaction) {
@@ -3245,9 +3197,7 @@ Unit.prototype = {
 	if (this.focus>0) {
 	    this.infoicon[i++].attr({text:A.FOCUS.key,fill:A.FOCUS.color});}
 	if (this.evade>0) {
-		this.infoicon[i++].attr({text:A.EVADE.key,fill:A.EVADE.color});}
-	if (this.reinforce>0) {
-		this.infoicon[i++].attr({text:A.REINFORCE.key,fill:A.REINFORCE.color});}
+	    this.infoicon[i++].attr({text:A.EVADE.key,fill:A.EVADE.color});}
 	if (this.iscloaked==true) {
 	    this.infoicon[i++].attr({text:A.CLOAK.key,fill:A.CLOAK.color});}
 	if (this.targeting.length>0&&i<6) {
@@ -3434,26 +3384,7 @@ Unit.prototype = {
     },
     canuseevade: function() {
 	return this.evade>0;
-	},
-	canusereinforce: function() {
-		if (this.reinforce>0) {
-			var inarc = this.isinfiringarc(attackunit);
-			if (this.reinforceaft == 0) {
-				if (inarc) {
-					return true;
-				} else {
-					this.log("Attacker is not in arc, therefore cannot use reinforce on fore side");
-				}
-			} else if (this.reinforceaft == 1) {
-				if (inarc) {
-					this.log("Attacker is in arc, therefore cannot use reinforce on aft side");
-				} else {
-					return true;
-				}
-			}
-		}
-		return false;
-	},
+    },
     canusetarget:function(sh) {
 	//console.log(this.name+" targeting "+sh.name+":"+this.targeting.length+" "+this.targeting.indexOf(sh));
 	return this.targeting.length>0
@@ -3462,7 +3393,6 @@ Unit.prototype = {
     getusabletokens: function() {
 	this.focuses=(this.focus>1?[this.focus]:[]);
 	this.evades=(this.evade>1?[this.evade]:[]);
-	this.reinforces=(this.reinforce>1?[this.reinforce]:[]);
 	this.stresses=(this.stress>1?[this.stress]:[]);
 	this.ionizedes=(this.ionized>1?[this.ionized]:[]);
 	this.tractorbeames=(this.tractorbeam>1?[this.tractorbeam]:[]);

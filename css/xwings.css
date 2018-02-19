@@ -742,7 +742,7 @@ nav {
     border-radius: 0 15px 15px 0;
     color: #FFF;
     text-align: center; }
-    #creation #unitfilter .GREEN, #creation #unitfilter .sROLL, #creation #unitfilter .sSLAM, #creation #unitfilter .sCOORDINATE, #creation #unitfilter .sFOCUS, #creation #unitfilter .sARCROTATE, #creation #unitfilter .sCLOAK, #creation #unitfilter .sEVADE, #creation #unitfilter .sBOOST, #creation #unitfilter .xevadetoken, #creation #unitfilter .xfocustoken, #creation #unitfilter .xreinforcetoken {
+    #creation #unitfilter .GREEN, #creation #unitfilter .sROLL, #creation #unitfilter .sSLAM, #creation #unitfilter .sCOORDINATE, #creation #unitfilter .sFOCUS, #creation #unitfilter .sARCROTATE, #creation #unitfilter .sCLOAK, #creation #unitfilter .sEVADE, #creation #unitfilter .sBOOST, #creation #unitfilter .xevadetoken, #creation #unitfilter .xfocustoken {
       font-size: larger; }
     #creation #unitfilter input[type=range] {
       border: white;
@@ -1252,7 +1252,7 @@ tttable {
 .maneuverdial td {
   vertical-align: bottom; }
 
-.GREEN, .sROLL, .sSLAM, .sCOORDINATE, .sFOCUS, .sARCROTATE, .sCLOAK, .sEVADE, .sBOOST, .xevadetoken, .xfocustoken, .xreinforcetoken {
+.GREEN, .sROLL, .sSLAM, .sCOORDINATE, .sFOCUS, .sARCROTATE, .sCLOAK, .sEVADE, .sBOOST, .xevadetoken, .xfocustoken {
   color: #0F0;
   border-color: #0F0; }
 
@@ -1383,9 +1383,6 @@ tttable {
 .Evade::after, .evademodtokena::after, .evademodtokend::after, .xevadetoken::after {
   content: "é"; }
 
-.Reinforce::after, .reinforcemodtokena::after, .reinforcemodtokend::after, .xreinforcetoken::after {
-  content: "i"; }
-
 .Target::after, .targetmodtokena::after, .targetmodtokend::after, .xtargettoken::after, .xtargetedtoken::after {
   content: "l"; }
 
@@ -1398,7 +1395,7 @@ tttable {
 .Noattack::after, .xnomoreattacktoken::after {
   content: "í"; }
 
-.UPG, .Laser, .Turretlaser, .Mod, .xmodtoken::after, .Title, .Elite, .TOP, .Tech, .Torpedo, .Astromech, .Bomb, .CannonTorpedoMissile, .Missile, .Illicit, .illicitmodtokena::after, .illicitmodtokend::after, .Cannon, .Crew, .crewmodtokena::after, .crewmodtokend::after, .System, .Turret, .Salvaged, .Stress, .stressmodtokena::after, .stressmodtokend::after, .xstresstoken::after, .Ion, .ionmodtokena::after, .ionmodtokend::after, .xionizedtoken::after, .Focus, .focusmodtokena::after, .focusmodtokend::after, .xfocustoken::after, .Hit, .hitmodtokena::after, .hitmodtokend::after, .Critical, .criticalmodtokena::after, .criticalmodtokend::after, .Blank, .blankmodtokena::after, .blankmodtokend::after, .Evade, .evademodtokena::after, .evademodtokend::after, .xevadetoken::after, .xreinforcetoken::after, .Target, .targetmodtokena::after, .targetmodtokend::after, .xtargettoken::after, .xtargetedtoken::after, .Cloak, .xcloaktoken::after, .Tractor, .xtractorbeamtoken::after, .Noattack, .xnomoreattacktoken::after {
+.UPG, .Laser, .Turretlaser, .Mod, .xmodtoken::after, .Title, .Elite, .TOP, .Tech, .Torpedo, .Astromech, .Bomb, .CannonTorpedoMissile, .Missile, .Illicit, .illicitmodtokena::after, .illicitmodtokend::after, .Cannon, .Crew, .crewmodtokena::after, .crewmodtokend::after, .System, .Turret, .Salvaged, .Stress, .stressmodtokena::after, .stressmodtokend::after, .xstresstoken::after, .Ion, .ionmodtokena::after, .ionmodtokend::after, .xionizedtoken::after, .Focus, .focusmodtokena::after, .focusmodtokend::after, .xfocustoken::after, .Hit, .hitmodtokena::after, .hitmodtokend::after, .Critical, .criticalmodtokena::after, .criticalmodtokend::after, .Blank, .blankmodtokena::after, .blankmodtokend::after, .Evade, .evademodtokena::after, .evademodtokend::after, .xevadetoken::after, .Target, .targetmodtokena::after, .targetmodtokend::after, .xtargettoken::after, .xtargetedtoken::after, .Cloak, .xcloaktoken::after, .Tractor, .xtractorbeamtoken::after, .Noattack, .xnomoreattacktoken::after {
   font-family: 'symbols';
   padding: 0;
   display: inline-block;
@@ -1424,7 +1421,7 @@ tttable {
   width: 2ex;
   line-height: 3ex; }
 
-.xtoken, .xevadetoken, .xreinforcetoken, .xfocustoken, .xtargettoken, .xcloaktoken, .xstresstoken, .xtargetedtoken, .xionizedtoken, .xtractorbeamtoken, .xnomoreattacktoken, .xmodtoken {
+.xtoken, .xevadetoken, .xfocustoken, .xtargettoken, .xcloaktoken, .xstresstoken, .xtargetedtoken, .xionizedtoken, .xtractorbeamtoken, .xnomoreattacktoken, .xmodtoken {
   font-family: 'symbols';
   padding: 0;
   display: inline-block;
@@ -2055,7 +2052,7 @@ table.dataTable td {
     border: 0;
     resize: none; }
 
-.symbols.maneuver.GREEN:hover, .symbols.maneuver.sROLL:hover, .symbols.maneuver.sSLAM:hover, .symbols.maneuver.sCOORDINATE:hover, .symbols.maneuver.sFOCUS:hover, .symbols.maneuver.sARCROTATE:hover, .symbols.maneuver.sCLOAK:hover, .symbols.maneuver.sEVADE:hover, .symbols.maneuver.sBOOST:hover, .symbols.maneuver.xevadetoken:hover, .symbols.maneuver.xreinforcetoken::hover, .symbols.maneuver.xfocustoken:hover, .symbols.maneuver.GREEN.selected, .symbols.maneuver.selected.sROLL, .symbols.maneuver.selected.sSLAM, .symbols.maneuver.selected.sCOORDINATE, .symbols.maneuver.selected.sFOCUS, .symbols.maneuver.selected.sARCROTATE, .symbols.maneuver.selected.sCLOAK, .symbols.maneuver.selected.sEVADE, .symbols.maneuver.selected.sBOOST, .symbols.maneuver.selected.xevadetoken, .symbols.maneuver.selected.xfocustoken {
+.symbols.maneuver.GREEN:hover, .symbols.maneuver.sROLL:hover, .symbols.maneuver.sSLAM:hover, .symbols.maneuver.sCOORDINATE:hover, .symbols.maneuver.sFOCUS:hover, .symbols.maneuver.sARCROTATE:hover, .symbols.maneuver.sCLOAK:hover, .symbols.maneuver.sEVADE:hover, .symbols.maneuver.sBOOST:hover, .symbols.maneuver.xevadetoken:hover, .symbols.maneuver.xfocustoken:hover, .symbols.maneuver.GREEN.selected, .symbols.maneuver.selected.sROLL, .symbols.maneuver.selected.sSLAM, .symbols.maneuver.selected.sCOORDINATE, .symbols.maneuver.selected.sFOCUS, .symbols.maneuver.selected.sARCROTATE, .symbols.maneuver.selected.sCLOAK, .symbols.maneuver.selected.sEVADE, .symbols.maneuver.selected.sBOOST, .symbols.maneuver.selected.xevadetoken, .symbols.maneuver.selected.xfocustoken {
   color: #000;
   background: #0F0; }
 
