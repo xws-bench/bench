@@ -69,6 +69,7 @@
         "mov": 0, 
         "name": "Sergi Tubert Orea", 
         "rank": {
+          "elimination": 16, 
           "swiss": 1
         }, 
         "score": 0, 
@@ -130,6 +131,7 @@
         "mov": 0, 
         "name": "Pol Mones", 
         "rank": {
+          "elimination": 16, 
           "swiss": 2
         }, 
         "score": 0, 
@@ -193,6 +195,7 @@
         "mov": 0, 
         "name": "Daniel Alzueta", 
         "rank": {
+          "elimination": 8, 
           "swiss": 3
         }, 
         "score": 0, 
@@ -254,6 +257,7 @@
         "mov": 0, 
         "name": "Oriol Salvador", 
         "rank": {
+          "elimination": 4, 
           "swiss": 4
         }, 
         "score": 0, 
@@ -326,6 +330,7 @@
         "mov": 0, 
         "name": "Oriol Barnes", 
         "rank": {
+          "elimination": 16, 
           "swiss": 5
         }, 
         "score": 0, 
@@ -404,6 +409,7 @@
         "mov": 0, 
         "name": "Alberto Guindo- ADG", 
         "rank": {
+          "elimination": 4, 
           "swiss": 6
         }, 
         "score": 0, 
@@ -468,6 +474,7 @@
         "mov": 0, 
         "name": "Raul luque Torner", 
         "rank": {
+          "elimination": 16, 
           "swiss": 7
         }, 
         "score": 0, 
@@ -532,6 +539,7 @@
         "mov": 0, 
         "name": "Oriol Zapata Cortes", 
         "rank": {
+          "elimination": 16, 
           "swiss": 8
         }, 
         "score": 0, 
@@ -610,6 +618,7 @@
         "mov": 0, 
         "name": "Zurita", 
         "rank": {
+          "elimination": 8, 
           "swiss": 9
         }, 
         "score": 0, 
@@ -682,6 +691,7 @@
         "mov": 0, 
         "name": "David Ribas Arredondo", 
         "rank": {
+          "elimination": 16, 
           "swiss": 10
         }, 
         "score": 0, 
@@ -763,6 +773,7 @@
         "mov": 0, 
         "name": "Pedro Gutierrez", 
         "rank": {
+          "elimination": 16, 
           "swiss": 11
         }, 
         "score": 0, 
@@ -830,6 +841,7 @@
         "mov": 0, 
         "name": "Albert Vico Oton", 
         "rank": {
+          "elimination": 8, 
           "swiss": 12
         }, 
         "score": 0, 
@@ -892,6 +904,7 @@
         "mov": 0, 
         "name": "Jordi Fabre Alarcon", 
         "rank": {
+          "elimination": 16, 
           "swiss": 13
         }, 
         "score": 0, 
@@ -951,6 +964,7 @@
         "mov": 0, 
         "name": "Kevin Moreno", 
         "rank": {
+          "elimination": 16, 
           "swiss": 14
         }, 
         "score": 0, 
@@ -1020,6 +1034,7 @@
         "mov": 0, 
         "name": "Bernat Montiel ", 
         "rank": {
+          "elimination": 2, 
           "swiss": 15
         }, 
         "score": 0, 
@@ -1084,14 +1099,62 @@
         "mov": 0, 
         "name": "Juan del Rio - Juanito", 
         "rank": {
+          "elimination": 1, 
           "swiss": 16
         }, 
         "score": 0, 
         "sos": "0.00"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "tactician", 
+                  "c3po"
+                ], 
+                "ept": [
+                  "expertise"
+                ]
+              }
+            }, 
+            {
+              "name": "jesspava", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "wookieeliberator", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "tactician", 
+                  "gunner"
+                ], 
+                "ept": [
+                  "drawtheirfire"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 0, 
-        "name": "Player 17", 
+        "name": "Ruben Barrio Guerrero", 
         "rank": {
           "swiss": 17
         }, 
@@ -1135,8 +1198,75 @@
         "sos": "0.00"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "crimsonspecialist", 
+              "ship": "bsf17bomber", 
+              "upgrades": {
+                "bomb": [
+                  "ordnancesilos", 
+                  "thermaldetonators"
+                ], 
+                "mod": [
+                  "deflectiveplating"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ]
+              }
+            }, 
+            {
+              "name": "ap5", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "flightassistastromech"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ]
+              }
+            }, 
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 0, 
-        "name": "Player 22", 
+        "name": "aritz", 
         "rank": {
           "swiss": 22
         }, 
@@ -1351,8 +1481,65 @@
         "sos": "0.00"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "backdraft", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "sensorcluster"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 0, 
-        "name": "Player 46", 
+        "name": "Alex ", 
         "rank": {
           "swiss": 46
         }, 
@@ -1405,8 +1592,63 @@
         "sos": "0.00"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "intensity"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "burnoutslam"
+                ], 
+                "mod": [
+                  "smugglingcompartment", 
+                  "countermeasures"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 0, 
-        "name": "Player 52", 
+        "name": "Manu Fernandez", 
         "rank": {
           "swiss": 52
         }, 
@@ -1828,8 +2070,65 @@
         "sos": "0.00"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "jesspava", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "flightassistastromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "m9g8"
+                ], 
+                "crew": [
+                  "hotshotcopilot"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 0, 
-        "name": "Player 99", 
+        "name": "Bernat Guixeras", 
         "rank": {
           "swiss": 99
         }, 
@@ -1891,8 +2190,62 @@
         "sos": "0.00"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "shadowsquadronpilot", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "shadowsquadronpilot", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "shadowsquadronpilot", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 0, 
-        "name": "Player 106", 
+        "name": "Berni", 
         "rank": {
           "swiss": 106
         }, 
