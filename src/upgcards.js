@@ -5494,6 +5494,10 @@ var UPGRADES=window.UPGRADES= [
                                         displaydefensetokens(this,function() {
                                             this.resolvedamage();
                                             this.endnoaction(n,"LASER");
+                                            this.newlock().done(function() { // Copied from Adaptive Ailerons
+                                                this.newlock().done(nextactivation);
+                                                nextactivation();
+                                            }.bind(this));
                                             //this.endnoaction(n,"in combat");
                                         }.bind(sh));
                                 }.bind(ship));
