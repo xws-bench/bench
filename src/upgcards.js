@@ -5454,6 +5454,10 @@ var UPGRADES=window.UPGRADES= [
                 if(self.getenemiesinrange([ship]).length>0){
                     if(self.phase < phase){
                         sh.donoaction([{org:self,type:"LASER",name:self.name,action:function(n){
+                            // Wrapping is the easiest way to prevent dice mods for Snap Shot
+                            sh.wrap_after("getresultmodifiers",this,function() {
+                                return [];
+                            }).unwrapper("resolvedamage");
                             // Part of declareattack, possibly necessary for combatdial
                             targetunit=ship;
                             this.activeweapon=self.index;
@@ -5464,7 +5468,7 @@ var UPGRADES=window.UPGRADES= [
                             //var r=this.gethitrange(w,targetunit);  // We know the range
                             //this.addhasfired();  // We just remove this later, so why do it?
                             this.hasdamaged=false;
-                            displaycombatdial();    // Let's see what this does...
+                            displaycombatdial();
                             var bb=ship.g.getBBox();
                             var start=transformPoint(this.m,{x:0,y:-(this.islarge?40:20)});
                             s.path("M "+start.x+" "+start.y+" L "+(bb.x+bb.w/2)+" "+(bb.y+bb.h/2))
@@ -5473,12 +5477,10 @@ var UPGRADES=window.UPGRADES= [
                                        strokeWidth:2,
                                        strokeDasharray:100,
                                        "class":"animated fireline"});
-                            //this.select();        // Unnecessary
+                            
                             for (i in squadron) if (squadron[i]==this) break;
                             this.preattackroll(self.index,ship);
-                            var attack=this.getattackstrength(self.index,ship);
-                            //this.doattackroll(,,,i,n);
-
+                            var attack=this.getattackstrength(self.index,ship)
                             //doattackroll: function(ar,ad,w,me=index of sh in squadron,n) {
                             var ar=this.weapons[self.index].modifydamagegiven(this.attackroll(attack));
                             this.weapons[self.index].lastattackroll=ar;
