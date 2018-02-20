@@ -481,7 +481,7 @@ IAUnit.prototype = {
                         else if(this.focus>=1) { a=list[i]; break;}
 		    } else if (list[i].type=="FOCUS") {
 			if (this.candofocus()) { a=list[i]; break; }
-                    } else if (typeof list[i].org.aiactivate !== "undefined"){
+                    } else if (typeof list[i].org !== "undefined" && typeof list[i].org.aiactivate !== "undefined"){
                         if (list[i].org.aiactivate()) {a = list[i]; break; }
 		    } else { a = list[i]; break; }
 		}
@@ -524,7 +524,7 @@ IAUnit.prototype = {
                     }
                     else if (list[i].type=="FOCUS") {
 			if (this.candofocus()) { a=list[i]; break; }
-                    } else if (typeof list[i].org.aiactivate !== "undefined"){
+                    } else if (typeof list[i].org !== "undefined" && typeof list[i].org.aiactivate !== "undefined"){
                         if (list[i].org.aiactivate()) {a = list[i]; break; }
 		    } else { a = list[i]; break }
 		}

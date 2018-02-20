@@ -3245,6 +3245,13 @@ var UPGRADES=window.UPGRADES= [
         points: 2,
 	activated: -1,
 	done:true,
+        aiactivate: function(){
+            var useGS = false;
+            if(self.glitter<round){  // Just prevent double-activating
+                useGS=true;
+            }
+            return useGS;
+        },
 	init: function(sh) {
 	    var self=this;
 	    self.glitter=-1;
