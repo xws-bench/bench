@@ -1563,13 +1563,25 @@ window.PILOTS = [
 	done:true,
 	pilotid:79,
 	init: function() {
-	    this.addattack(function() { return true; },
-			   this,this.weapons,
-			   function() { 
-			       this.log("no attack next round"); 
-			       this.noattack=round+1; }.bind(this),
-			   null,
-			   "endcombatphase");
+            var self=this;
+            var number;
+            $(document).on("endcombatphase"+this.team, function(e){
+                self.select();
+                self.donoaction([{org:self,type:"LASER",name:self.name,action:function(n){
+                    number=n;
+                    var allenemies=squadron.filter(ship => ship.team!==self.team);
+                    self.doattack(self.weapons,allenemies); 
+//                    self.endnoaction(number);
+                }.bind(self)}],"",true);
+                self.endnoaction(number);
+            });
+//	    this.addattack(function() { return true; },
+//			   this,this.weapons,
+//			   function() { 
+//			       this.log("no attack next round"); 
+//			       this.noattack=round+1; }.bind(this),
+//			   null,
+//			   "endcombatphase");
 	},
         unique: true,
         unit: "E-Wing",
