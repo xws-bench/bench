@@ -3245,6 +3245,13 @@ var UPGRADES=window.UPGRADES= [
         points: 2,
 	activated: -1,
 	done:true,
+        aiactivate: function(){
+            var useGS = false;
+            if(self.glitter<round){  // Just prevent double-activating
+                useGS=true;
+            }
+            return useGS;
+        },
 	init: function(sh) {
 	    var self=this;
 	    self.glitter=-1;
@@ -5454,6 +5461,10 @@ var UPGRADES=window.UPGRADES= [
                 if(self.getenemiesinrange([ship]).length>0){
                     if(self.phase < phase){
                         sh.donoaction([{org:self,type:"LASER",name:self.name,action:function(n){
+                            // Wrapping is the easiest way to prevent dice mods for Snap Shot
+                            sh.wrap_after("getresultmodifiers",this,function() {
+                                return [];
+                            }).unwrapper("resolvedamage");
                             // Part of declareattack, possibly necessary for combatdial
                             targetunit=ship;
                             this.activeweapon=self.index;
@@ -5464,7 +5475,7 @@ var UPGRADES=window.UPGRADES= [
                             //var r=this.gethitrange(w,targetunit);  // We know the range
                             //this.addhasfired();  // We just remove this later, so why do it?
                             this.hasdamaged=false;
-                            displaycombatdial();    // Let's see what this does...
+                            displaycombatdial();
                             var bb=ship.g.getBBox();
                             var start=transformPoint(this.m,{x:0,y:-(this.islarge?40:20)});
                             s.path("M "+start.x+" "+start.y+" L "+(bb.x+bb.w/2)+" "+(bb.y+bb.h/2))
@@ -5473,12 +5484,10 @@ var UPGRADES=window.UPGRADES= [
                                        strokeWidth:2,
                                        strokeDasharray:100,
                                        "class":"animated fireline"});
-                            //this.select();        // Unnecessary
+                            
                             for (i in squadron) if (squadron[i]==this) break;
                             this.preattackroll(self.index,ship);
-                            var attack=this.getattackstrength(self.index,ship);
-                            //this.doattackroll(,,,i,n);
-
+                            var attack=this.getattackstrength(self.index,ship)
                             //doattackroll: function(ar,ad,w,me=index of sh in squadron,n) {
                             var ar=this.weapons[self.index].modifydamagegiven(this.attackroll(attack));
                             this.weapons[self.index].lastattackroll=ar;
@@ -6020,7 +6029,39 @@ var UPGRADES=window.UPGRADES= [
 					       this.getpathmatrix(p,T[1]),
 					       this.getpathmatrix(p,T[2])]);
 	 });
-     
+        /* There is an AI conundrum involved in executing Adaptive Ailerons:
+         * 1) The AI does not know that it has Adaptive Ailerons so computes its maneuver
+         *    without factoring that information in.
+         * 2) The AI is supposed to decide which AA maneuver to take at Activation time, but
+         *    currently knows nothing about its actual maneuver at this point.
+         *    
+         * In order to make AI use Adaptive Ailerons intelligently, it should break the 
+         * order of activation used by human players to plan its moves more effectively.
+         * Adding knowledge of the actual maneuver at AA-use time would be closer to human
+         * usage but require much more custom code.
+         * Making the existing IAUnits computemaneuver work off of the predicted AA move
+         * would be much easier to implement.
+         */
+        self.processing=false;
+        sh.wrap_before("evaluatemoves", this, function(){
+            if(sh.ia&&!self.processing){
+                self.processing=true;
+                self.oldm = sh.m;  // Need to restore current position when activating
+                if(sh.stress<=0){  // Don't plan for AA if stressed
+                    var d; 
+                    var oldMeanMRound=sh.meanmround;  // Save for post-evaluatemoves()
+                    sh.evaluatemoves(true,true);  // Processing-heavy!
+                    sh.meanmround=oldMeanMRound;
+                    var gd=this.getdial().filter(amove => amove.move.match(/F1|BL1|BR1/));
+                    var q = sh.findpositions(gd); // Decide which AA move is best
+                    q.sort(function(a,b) { return b.n-a.n; }); // Sort AA moves by value
+                    d=q[0].m; // Store the location of this move.
+                    sh.m=sh.getpathmatrix(self.oldm,gd[d].move); // Assign project m for planning 
+                    self.maneuverchoice=d;
+                }
+                self.processing=false;
+            }
+        });
 	 sh.wrap_before("beginactivation",this,function() {
 	     var old=this.maneuver;
 	     var gd=this.getdial();
@@ -6059,9 +6100,12 @@ var UPGRADES=window.UPGRADES= [
 		     }.bind(this));
 		 });
 		 this.resolveactionmove(p,function(t,k) {
-                     if (k === -1) k=0;
-		     this.maneuver=q[k];
-		     this.resolvemaneuver();
+                    if (k === -1) k=0;
+                    else if (this.ia){
+                        k=self.maneuverchoice; // Choose the same AA move as decided above
+                    }
+		    this.maneuver=q[k];
+		    this.resolvemaneuver();
 		 }.bind(this),false,true);
 	     }.bind(this)}],"",this.facultativeailerons);
 	    }

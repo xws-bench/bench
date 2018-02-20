@@ -1563,13 +1563,16 @@ window.PILOTS = [
 	done:true,
 	pilotid:79,
 	init: function() {
-	    this.addattack(function() { return true; },
-			   this,this.weapons,
-			   function() { 
-			       this.log("no attack next round"); 
-			       this.noattack=round+1; }.bind(this),
-			   null,
-			   "endcombatphase");
+            var self=this;
+            var number;
+            $(document).on("endcombatphase"+this.team, function(e){
+//                var latedeferred=self.deferred;
+                self.select();
+                self.log("+1 attack at end of Combat phase");
+                self.maxfired++;
+                var allenemies=squadron.filter(ship => ship.team!==self.team);
+                self.doattack(self.weapons,allenemies); 
+            });
 	},
         unique: true,
         unit: "E-Wing",
@@ -2189,7 +2192,7 @@ window.PILOTS = [
 	    }
 	    if (wn.length==0) return;
 	    var wp=this.weapons.indexOf(wn[0]);
-	    for (var i in this.weapons) 
+	    //for (var i in this.weapons) //  Remember the importance of { }
 		// TODO: immediateattack unused ?
 		//this.weapons[i].immediateattack={pred:function(k) { return k==0; },weapon:function() { return wp;}};
 	    this.addattack(function(c,h) { 
