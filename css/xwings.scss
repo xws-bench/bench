@@ -1365,6 +1365,7 @@ color:#F33
 			    Critical: "c",
 			    Blank: "\00a0",
 			    Evade: "é",
+			    Reinforce: "i",
 			    Target: "l",
 			    Cloak: "ô",
 			   ) {
@@ -1423,6 +1424,7 @@ text-shadow:-2px -2px 5px #000,-2px 2px 5px #000,2px -2px 5px #000,2px 2px 5px #
 /* Modifier tokens, for combat effects */
 @each $header, $content in (evade: ".Evade",
 			    focus: ".Focus",
+			    reinforce: ".Reinforce",
 			    target: ".Target",
 			    hit: ".Hit",
 			    critical: ".Critical",
@@ -1448,6 +1450,7 @@ text-shadow:-2px -2px 5px #000,-2px 2px 5px #000,2px -2px 5px #000,2px 2px 5px #
 }
 /* Modifier tokens, for combat effects */
 @each $name, $content,$color in (("evade",".Evade",".GREEN"),
+			    ("reinforce",".Reinforce",".GREEN"),
 			    ("focus",".Focus",".GREEN"),
 			    ("target",".Target",".BLUE"),
 			    ("cloak",".Cloak",".BLUE"),
@@ -1555,14 +1558,14 @@ font-size:smaller
 }
 
 
-.evadetoken:hover,.focustoken:hover {
+.evadetoken:hover,.focustoken:hover,.reinforcetoken:hover {
 background:#050;
 color:#000
 }
 
 
 
-.focusgreendice,.evadegreendice,.blankgreendice,.focusreddice,.hitreddice,.criticalreddice,.blankreddice,.reddice,.evadegreen,.greendice {
+.focusgreendice,.evadegreendice,.blankgreendice,.focusreddice,.hitreddice,.criticalreddice,.blankreddice,.reddice,.evadegreen,.greendice,.reinforcegreen {
 padding:5px;
 margin:2px 0;
 border:0;
@@ -1606,6 +1609,11 @@ background:#2e2;
 color:#fff
 }
 
+.reinforcegreen {
+background:#2e2;
+color:#fff
+}
+
 .focusreddice::after,.focusgreendice::after {
 font-family:'symbols';
 content:"f"
@@ -1632,7 +1640,10 @@ font-family:'symbols';
 content:"e"
 }
 
-
+.reinforcegreen::after {
+font-family:'symbols';
+content:"e"
+}
 
 .permalink,.import {
 background:#fff;

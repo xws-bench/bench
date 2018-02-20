@@ -2201,7 +2201,7 @@ window.PILOTS = [
 	    }
 	    if (wn.length==0) return;
 	    var wp=this.weapons.indexOf(wn[0]);
-	    for (var i in this.weapons) 
+	    //for (var i in this.weapons) //  Remember the importance of { }
 		// TODO: immediateattack unused ?
 		//this.weapons[i].immediateattack={pred:function(k) { return k==0; },weapon:function() { return wp;}};
 	    this.addattack(function(c,h) { 
