@@ -5721,33 +5721,59 @@ var UPGRADES=window.UPGRADES= [
 	  });
       }
     },
-    { name:"Hyperwave Comm Scanner",
-      type:Unit.TECH,
-      done:true,
-      points:1,
-      init: function(sh) {
-	  var self=this;
-	  sh.wrap_after("endsetupphase",this,function() {
-	      var p=this.selectnearbyally(2);
-	      if (!self.isactive) return;
-	      for (var i in p) {
-		  var u=p[i];
-		  u.donoaction([{type:"FOCUS",name:self.name,org:self,
-				 action:function(n) {
-				     this.addfocustoken();
-				     this.endnoaction(n,"TECH");
-				 }.bind(u)},
-				{type:"EVADE",name:self.name,org:self,
-				 action:function(n) {
-				     self.desactivate();
-				     this.addevadetoken();
-				     this.endnoaction(n,"TECH");
-				 }.bind(u)}],
-			       "+1 %EVADE% / %FOCUS%",
-			       true);
-	      }	      
-	  });
-      }
+    { 
+        name:"Hyperwave Comm Scanner",
+        type:Unit.TECH,
+        done:true,
+        points:1,
+        ps:0,
+        variant:"0",
+        canswitch: function() {
+            return phase <=SETUP_PHASE;
+        },
+        switch: function() {
+	    switch(this.ps){
+                case 0: this.ps=6;
+                        this.variant="6";
+                        break;
+                case 6: this.ps=12;
+                        this.variant="12";
+                        break;
+                case 12:this.ps=0;
+                        this.variant="0";
+                        break;
+            }
+	    this.unit.showskill();
+	},
+        init: function(sh) {
+            var self=this;
+            sh.wrap_after("getskill",this,function(s){
+                return self.ps;  // Unwrapping should let getskill() work correctly
+            }).unwrapper("endsetupphase");
+            sh.wrap_after("endsetupphase",this,function() {
+                var p=this.selectnearbyally(2);
+                if (!self.isactive) return;
+                for (var i in p) {
+                    var u=p[i];
+                    u.donoaction([{type:"FOCUS",name:self.name,org:self,
+                                   action:function(n) {
+                                       self.desactivate();
+                                       this.addfocustoken();
+                                       this.endnoaction(n,"TECH");
+                                   }.bind(u)},
+                                  {type:"EVADE",name:self.name,org:self,
+                                   action:function(n) {
+                                       self.desactivate();
+                                       this.addevadetoken();
+                                       this.endnoaction(n,"TECH");
+                                   }.bind(u)}],
+                                 "+1 %EVADE% / %FOCUS%",
+                                 true);
+                }	      
+            });
+            self.switch();
+            sh.showskill();
+        }
     },
     { name:"A Score To Settle",
       type:Unit.ELITE,
