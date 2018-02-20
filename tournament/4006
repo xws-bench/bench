@@ -61,13 +61,13 @@
           }, 
           "version": "4.2.0"
         }, 
-        "mov": 671, 
+        "mov": 1170, 
         "name": "Arnaud \"KirKanos\" D'esparbes", 
         "rank": {
           "elimination": 1, 
           "swiss": 1
         }, 
-        "score": 4, 
+        "score": 7, 
         "sos": "0.00"
       }, 
       {
@@ -133,13 +133,13 @@
           }, 
           "version": "4.2.0"
         }, 
-        "mov": 603, 
+        "mov": 783, 
         "name": "Cedric \"Yeu\" Santucci", 
         "rank": {
-          "elimination": 2, 
+          "elimination": 4, 
           "swiss": 2
         }, 
-        "score": 3, 
+        "score": 4, 
         "sos": "0.00"
       }, 
       {
@@ -200,10 +200,10 @@
           }, 
           "version": "4.2.0"
         }, 
-        "mov": 599, 
+        "mov": 649, 
         "name": "Aurelien \"Aristidio\" Vrignon", 
         "rank": {
-          "elimination": 3, 
+          "elimination": 8, 
           "swiss": 3
         }, 
         "score": 3, 
@@ -279,7 +279,7 @@
         "mov": 539, 
         "name": "Matthias \"DarthArkham\" Combrade", 
         "rank": {
-          "elimination": 4, 
+          "elimination": 8, 
           "swiss": 4
         }, 
         "score": 3, 
@@ -350,10 +350,10 @@
           }, 
           "version": "4.2.0"
         }, 
-        "mov": 463, 
+        "mov": 511, 
         "name": "Alain \"Zyg\" Grondin\t", 
         "rank": {
-          "elimination": 5, 
+          "elimination": 8, 
           "swiss": 5
         }, 
         "score": 3, 
@@ -415,13 +415,13 @@
           }, 
           "version": "4.2.0"
         }, 
-        "mov": 458, 
+        "mov": 780, 
         "name": "Dimitri \"Hudson_D\" Achimov\t", 
         "rank": {
-          "elimination": 6, 
+          "elimination": 2, 
           "swiss": 6
         }, 
-        "score": 2, 
+        "score": 4, 
         "sos": "0.00"
       }, 
       {
@@ -476,10 +476,10 @@
           }, 
           "version": "4.2.0"
         }, 
-        "mov": 446, 
+        "mov": 497, 
         "name": "Loic \"Arkanta974\" Grondin", 
         "rank": {
-          "elimination": 7, 
+          "elimination": 8, 
           "swiss": 7
         }, 
         "score": 2, 
@@ -544,7 +544,7 @@
         "mov": 402, 
         "name": "Thomas Francois", 
         "rank": {
-          "elimination": 8, 
+          "elimination": 9, 
           "swiss": 8
         }, 
         "score": 2, 
@@ -656,6 +656,64 @@
         "sos": "0.00"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "crimsonleader", 
+              "ship": "bsf17bomber", 
+              "upgrades": {
+                "bomb": [
+                  "thermaldetonators", 
+                  "ordnancesilos"
+                ], 
+                "mod": [
+                  "deflectiveplating"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ]
+              }
+            }, 
+            {
+              "name": "ezrabridger", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "crew": [
+                  "gunner"
+                ], 
+                "ept": [
+                  "trickshot"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 266, 
         "name": "Philippe Venner", 
         "rank": {

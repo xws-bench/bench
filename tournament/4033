@@ -15,6 +15,73 @@
         "sos": "0.57"
       }, 
       {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "thermaldetonators", 
+                  "ionbombs"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 244, 
         "name": "Jeremy Wilcox", 
         "rank": {
@@ -69,6 +136,63 @@
         "sos": "0.61"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "kyloren", 
+              "ship": "tiesilencer", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ], 
+                "title": [
+                  "firstordervanguard"
+                ]
+              }
+            }, 
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "tailgunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "slavei"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 101, 
         "name": "David Trevino", 
         "rank": {
@@ -133,6 +257,61 @@
         "sos": "0.51"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "flightassistastromech"
+                ], 
+                "crew": [
+                  "hotshotcopilot"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }, 
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "title": [
+                  "phantom"
+                ]
+              }
+            }, 
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "ezrabridger", 
+                  "maul"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 919, 
         "name": "David Feith", 
         "rank": {
@@ -697,6 +876,55 @@
         "sos": "0.36"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "c3po"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 348, 
         "name": "Ricky Lopez", 
         "rank": {
@@ -2425,7 +2653,7 @@
       "country": "United States of America", 
       "lat": "29.758938200000", 
       "lon": "-95.367697400000", 
-      "name": "", 
+      "name": "Dragon's Lair", 
       "state": "Texas"
     }, 
     "video_url": "https://www.youtube.com/watch?v=T6nqnfUBAvI"

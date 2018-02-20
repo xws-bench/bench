@@ -6,6 +6,75 @@
     "name": "SPb Regular", 
     "players": [
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "nusquadronpilot", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "title": [
+                  "os1arsenalloadout"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 688, 
         "name": "Konstantin Pavlov", 
         "rank": {

@@ -1061,6 +1061,74 @@
         "sos": "0.00"
       }, 
       {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "toranikulda", 
+              "ship": "m12lkimogilafighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "contrabandcybernetics"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "talonbanecobra", 
+              "ship": "kihraxzfighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "illicit": [
+                  "scavengercrane"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "engineupgrade", 
+                  "autothrusters", 
+                  "guidancechips"
+                ], 
+                "title": [
+                  "vaksai"
+                ]
+              }
+            }, 
+            {
+              "name": "serissu", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "heavyscykinterceptor"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 310, 
         "name": "Tashi Duane", 
         "rank": {

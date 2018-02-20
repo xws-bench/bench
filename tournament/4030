@@ -648,8 +648,59 @@
         "sos": "0.56"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "marksmanship"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 227, 
-        "name": "Alvaro", 
+        "name": "Alvaro Gomez", 
         "rank": {
           "swiss": 12
         }, 
@@ -712,8 +763,72 @@
         "sos": "0.44"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "redline", 
+              "ship": "tiepunisher", 
+              "upgrades": {
+                "missile": [
+                  "harpoonmissiles", 
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "rhosquadronveteran", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 109, 
-        "name": "Manuel Sachez \"Lete\"", 
+        "name": "Manuel Sanchez \"Lete\"", 
         "rank": {
           "swiss": 14
         }, 
@@ -871,7 +986,7 @@
             "result": "win"
           }, 
           {
-            "player1": "Manuel Sachez \"Lete\"", 
+            "player1": "Manuel Sanchez \"Lete\"", 
             "player1points": 0, 
             "player2": "Jose Calero", 
             "player2points": 100, 
@@ -887,7 +1002,7 @@
           {
             "player1": "Borja Jimenez", 
             "player1points": 100, 
-            "player2": "Alvaro", 
+            "player2": "Alvaro Gomez", 
             "player2points": 34, 
             "result": "win"
           }, 
@@ -942,7 +1057,7 @@
           {
             "player1": "Jorge Paredes", 
             "player1points": 32, 
-            "player2": "Manuel Sachez \"Lete\"", 
+            "player2": "Manuel Sanchez \"Lete\"", 
             "player2points": 41, 
             "result": "win"
           }, 
@@ -954,7 +1069,7 @@
             "result": "win"
           }, 
           {
-            "player1": "Alvaro", 
+            "player1": "Alvaro Gomez", 
             "player1points": 26, 
             "player2": "Alejandro Tejero", 
             "player2points": 100, 
@@ -990,7 +1105,7 @@
           {
             "player1": "Enrique Torres", 
             "player1points": 100, 
-            "player2": "Manuel Sachez \"Lete\"", 
+            "player2": "Manuel Sanchez \"Lete\"", 
             "player2points": 0, 
             "result": "win"
           }, 
@@ -1025,7 +1140,7 @@
           {
             "player1": "Jorge Paredes", 
             "player1points": 33, 
-            "player2": "Alvaro", 
+            "player2": "Alvaro Gomez", 
             "player2points": 100, 
             "result": "win"
           }
