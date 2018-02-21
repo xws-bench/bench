@@ -5688,7 +5688,7 @@ var UPGRADES=window.UPGRADES= [
 			      p[k].addstress();
 			      p[0].endnoaction(n,Unit.TITLE);
 			  });
-		      });
+		      }.bind(p[0]));
 		  }
 	      }
 	  });
@@ -5729,27 +5729,31 @@ var UPGRADES=window.UPGRADES= [
         ps:0,
         variant:"0",
         canswitch: function() {
-            return phase <=SETUP_PHASE;
+            return phase <=SETUP_PHASE && this.unit.hasHCS!=="undefined" && this.unit.hasHCS===this;
         },
         switch: function() {
-	    switch(this.ps){
-                case 0: this.ps=6;
-                        this.variant="6";
-                        break;
-                case 6: this.ps=12;
-                        this.variant="12";
-                        break;
-                case 12:this.ps=0;
-                        this.variant="0";
-                        break;
+            if(typeof this.unit.hasHCS!=="undefined" && this.unit.hasHCS===this){
+                switch(this.ps){
+                    case 0: this.ps=6;
+                            this.variant="6";
+                            break;
+                    case 6: this.ps=12;
+                            this.variant="12";
+                            break;
+                    case 12:this.ps=0;
+                            this.variant="0";
+                            break;
+                }
+                this.unit.showskill();
             }
-	    this.unit.showskill();
 	},
         init: function(sh) {
             var self=this;
-            sh.wrap_after("getskill",this,function(s){
-                return self.ps;  // Unwrapping should let getskill() work correctly
-            }).unwrapper("endsetupphase");
+            if(typeof self.unit.hasHCS==="undefined"){
+                sh.wrap_after("getskill",this,function(s){
+                    return self.ps;  // Unwrapping should let getskill() work correctly
+                }).unwrapper("endsetupphase");
+            }
             sh.wrap_after("endsetupphase",this,function() {
                 var p=this.selectnearbyally(2);
                 if (!self.isactive) return;
@@ -5771,8 +5775,11 @@ var UPGRADES=window.UPGRADES= [
                                  true);
                 }	      
             });
-            self.switch();
-            sh.showskill();
+            if(typeof self.unit.hasHCS === "undefined"){
+                self.switch();
+                sh.showskill();
+                self.unit.hasHCS=self;
+            }
         }
     },
     { name:"A Score To Settle",
