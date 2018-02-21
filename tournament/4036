@@ -47,14 +47,14 @@
           }, 
           "version": "4.2.0"
         }, 
-        "mov": 0, 
+        "mov": 1051, 
         "name": "Gordon Pinkerton", 
         "rank": {
           "elimination": 1, 
           "swiss": 1
         }, 
         "score": 6, 
-        "sos": "0.00"
+        "sos": "0.56"
       }, 
       {
         "list": {
@@ -150,14 +150,14 @@
           }, 
           "version": "4.2.0"
         }, 
-        "mov": 0, 
+        "mov": 921, 
         "name": "Blair Bunke", 
         "rank": {
           "elimination": 8, 
           "swiss": 2
         }, 
         "score": 6, 
-        "sos": "0.00"
+        "sos": "0.53"
       }, 
       {
         "list": {
@@ -218,14 +218,14 @@
           }, 
           "version": "4.2.0"
         }, 
-        "mov": 0, 
+        "mov": 977, 
         "name": "Taylor Seidlitz", 
         "rank": {
           "elimination": 2, 
           "swiss": 3
         }, 
         "score": 5, 
-        "sos": "0.00"
+        "sos": "0.53"
       }, 
       {
         "list": {
@@ -276,14 +276,14 @@
           }, 
           "version": "4.2.0"
         }, 
-        "mov": 0, 
+        "mov": 910, 
         "name": "Chris Norris", 
         "rank": {
           "elimination": 4, 
           "swiss": 4
         }, 
         "score": 5, 
-        "sos": "0.00"
+        "sos": "0.47"
       }, 
       {
         "list": {
@@ -337,14 +337,14 @@
           }, 
           "version": "4.2.0"
         }, 
-        "mov": 0, 
+        "mov": 857, 
         "name": "Ee Ern Low", 
         "rank": {
           "elimination": 8, 
           "swiss": 5
         }, 
         "score": 5, 
-        "sos": "0.00"
+        "sos": "0.64"
       }, 
       {
         "list": {
@@ -399,14 +399,14 @@
           }, 
           "version": "4.2.0"
         }, 
-        "mov": 0, 
+        "mov": 857, 
         "name": "Benjamin Gaetke", 
         "rank": {
           "elimination": 8, 
           "swiss": 6
         }, 
         "score": 5, 
-        "sos": "0.00"
+        "sos": "0.42"
       }, 
       {
         "list": {
@@ -463,14 +463,14 @@
           }, 
           "version": "4.2.0"
         }, 
-        "mov": 0, 
+        "mov": 786, 
         "name": "Andrew Bunn", 
         "rank": {
           "elimination": 4, 
           "swiss": 7
         }, 
         "score": 5, 
-        "sos": "0.00"
+        "sos": "0.42"
       }, 
       {
         "list": {
@@ -524,14 +524,14 @@
           }, 
           "version": "4.2.0"
         }, 
-        "mov": 0, 
+        "mov": 765, 
         "name": "Calen Wong", 
         "rank": {
           "elimination": 8, 
           "swiss": 8
         }, 
         "score": 5, 
-        "sos": "0.00"
+        "sos": "0.60"
       }, 
       {
         "list": {
@@ -612,19 +612,66 @@
           }, 
           "version": "4.2.0"
         }, 
-        "mov": 0, 
+        "mov": 755, 
         "name": "Michael Pinto", 
         "rank": {
           "elimination": 9, 
           "swiss": 9
         }, 
         "score": 5, 
-        "sos": "0.00"
+        "sos": "0.52"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "tactician"
+                ], 
+                "ept": [
+                  "expertise"
+                ]
+              }
+            }, 
+            {
+              "name": "wookieeliberator", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "predator"
+                ]
+              }
+            }, 
+            {
+              "name": "wookieeliberator", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "expertise"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 797, 
         "name": "David Tam", 
         "rank": {
+          "elimination": 10, 
           "swiss": 10
         }, 
         "score": 4, 
@@ -634,6 +681,7 @@
         "mov": 787, 
         "name": "James Kelly", 
         "rank": {
+          "elimination": 11, 
           "swiss": 11
         }, 
         "score": 4, 
@@ -643,48 +691,248 @@
         "mov": 780, 
         "name": "Jeffrey Raiford", 
         "rank": {
+          "elimination": 12, 
           "swiss": 12
         }, 
         "score": 4, 
         "sos": "0.58"
       }, 
       {
-        "mov": 0, 
-        "name": "Player 13", 
+        "mov": 778, 
+        "name": "Christopher Constans", 
         "rank": {
+          "elimination": 13, 
           "swiss": 13
         }, 
-        "score": 0, 
-        "sos": "0.00"
+        "score": 4, 
+        "sos": "0.61"
       }, 
       {
-        "mov": 0, 
-        "name": "Player 14", 
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "kashyyykdefender", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ]
+              }
+            }, 
+            {
+              "name": "kashyyykdefender", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ]
+              }
+            }, 
+            {
+              "name": "kashyyykdefender", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ]
+              }
+            }, 
+            {
+              "name": "kashyyykdefender", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 758, 
+        "name": "Bryan Schnetter", 
         "rank": {
+          "elimination": 14, 
           "swiss": 14
         }, 
-        "score": 0, 
-        "sos": "0.00"
+        "score": 4, 
+        "sos": "0.39"
       }, 
       {
-        "mov": 0, 
-        "name": "Player 15", 
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "jynerso", 
+                  "rey"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "torpedo": [
+                  "flechettetorpedoes"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "flightassistastromech"
+                ], 
+                "crew": [
+                  "janors"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }, 
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle", 
+              "upgrades": {}
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 755, 
+        "name": "Kainoa Pestana", 
         "rank": {
+          "elimination": 15, 
           "swiss": 15
         }, 
-        "score": 0, 
-        "sos": "0.00"
+        "score": 4, 
+        "sos": "0.57"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "finn"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }, 
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 743, 
         "name": "Timothy Pansch", 
         "rank": {
+          "elimination": 16, 
           "swiss": 16
         }, 
         "score": 4, 
         "sos": "0.53"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "kananjarrus", 
+                  "finn"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "illicit": [
+                  "burnoutslam"
+                ], 
+                "mod": [
+                  "smugglingcompartment"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }, 
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "maul", 
+                  "ezrabridger"
+                ], 
+                "system": [
+                  "collisiondetector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 735, 
         "name": "Ryan Moore", 
         "rank": {
@@ -694,85 +942,436 @@
         "sos": "0.42"
       }, 
       {
-        "mov": 0, 
-        "name": "Player 18", 
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "c3po"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 702, 
+        "name": "Bradley Ho", 
         "rank": {
           "swiss": 18
         }, 
-        "score": 0, 
-        "sos": "0.00"
+        "score": 4, 
+        "sos": "0.58"
       }, 
       {
-        "mov": 0, 
-        "name": "Player 19", 
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "nusquadronpilot", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam", 
+                  "linkedbattery"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "title": [
+                  "xg1assaultconfiguration"
+                ]
+              }
+            }, 
+            {
+              "name": "nusquadronpilot", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon", 
+                  "linkedbattery"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "title": [
+                  "xg1assaultconfiguration"
+                ]
+              }
+            }, 
+            {
+              "name": "nusquadronpilot", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon", 
+                  "linkedbattery"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "title": [
+                  "xg1assaultconfiguration"
+                ]
+              }
+            }, 
+            {
+              "name": "sienarspecialist", 
+              "ship": "tieaggressor", 
+              "upgrades": {
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 692, 
+        "name": "Andy Devlin", 
         "rank": {
           "swiss": 19
         }, 
-        "score": 0, 
-        "sos": "0.00"
+        "score": 4, 
+        "sos": "0.66"
       }, 
       {
-        "mov": 0, 
-        "name": "Player 20", 
+        "mov": 679, 
+        "name": "Sean Cathcart", 
         "rank": {
           "swiss": 20
         }, 
-        "score": 0, 
-        "sos": "0.00"
+        "score": 4, 
+        "sos": "0.58"
       }, 
       {
-        "mov": 0, 
-        "name": "Player 21", 
+        "mov": 674, 
+        "name": "Justin Clapper", 
         "rank": {
           "swiss": 21
         }, 
-        "score": 0, 
-        "sos": "0.00"
+        "score": 4, 
+        "sos": "0.53"
       }, 
       {
-        "mov": 0, 
-        "name": "Player 22", 
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "crew": [
+                  "chopper"
+                ], 
+                "title": [
+                  "phantom"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "flightassistastromech"
+                ], 
+                "crew": [
+                  "hotshotcopilot"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }, 
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "ezrabridger", 
+                  "maul"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 670, 
+        "name": "Jackson Bogart", 
         "rank": {
           "swiss": 22
         }, 
-        "score": 0, 
-        "sos": "0.00"
+        "score": 4, 
+        "sos": "0.58"
       }, 
       {
-        "mov": 0, 
-        "name": "Player 23", 
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rhosquadronveteran", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ]
+              }
+            }, 
+            {
+              "name": "rhosquadronveteran", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ]
+              }
+            }, 
+            {
+              "name": "kyloren", 
+              "ship": "tiesilencer", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "firstordervanguard"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 670, 
+        "name": "Dave Tryon", 
         "rank": {
           "swiss": 23
         }, 
-        "score": 0, 
-        "sos": "0.00"
+        "score": 4, 
+        "sos": "0.56"
       }, 
       {
-        "mov": 0, 
-        "name": "Player 24", 
+        "mov": 654, 
+        "name": "Lyle Hayhurst", 
         "rank": {
           "swiss": 24
         }, 
-        "score": 0, 
-        "sos": "0.00"
+        "score": 4, 
+        "sos": "0.46"
       }, 
       {
-        "mov": 0, 
-        "name": "Player 25", 
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "samd": [
+                  "r5p8"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 652, 
+        "name": "Ian Oliver", 
         "rank": {
           "swiss": 25
         }, 
-        "score": 0, 
-        "sos": "0.00"
+        "score": 4, 
+        "sos": "0.50"
       }, 
       {
-        "mov": 0, 
-        "name": "Player 26", 
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "ezrabridger", 
+                  "maul"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "flightassistastromech"
+                ], 
+                "crew": [
+                  "hotshotcopilot"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }, 
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "crew": [
+                  "chopper"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 720, 
+        "name": "Tom Wiggin", 
         "rank": {
           "swiss": 26
         }, 
-        "score": 0, 
-        "sos": "0.00"
+        "score": 3, 
+        "sos": "0.56"
       }, 
       {
         "mov": 0, 
@@ -847,13 +1446,13 @@
         "sos": "0.00"
       }, 
       {
-        "mov": 0, 
-        "name": "Player 35", 
+        "mov": 510, 
+        "name": "Geoffrey Frost", 
         "rank": {
           "swiss": 35
         }, 
         "score": 0, 
-        "sos": "0.00"
+        "sos": "0.42"
       }, 
       {
         "mov": 0, 
@@ -1422,7 +2021,7 @@
       "country": "United States of America", 
       "lat": "45.520247100000", 
       "lon": "-122.674194900000", 
-      "name": "", 
+      "name": "Oregon Convention Center", 
       "state": "Oregon"
     }, 
     "video_url": "https://www.youtube.com/playlist?list=PL7nFEFabTU5jnzy-5QKZ05iKJ-1qGnUuY"

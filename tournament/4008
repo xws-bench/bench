@@ -13,11 +13,17 @@
               "name": "fennrau", 
               "ship": "sheathipedeclassshuttle", 
               "upgrades": {
+                "amd": [
+                  "flightassistastromech"
+                ], 
                 "crew": [
                   "hotshotcopilot"
                 ], 
                 "ept": [
-                  "adaptability"
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
                 ]
               }
             }, 
@@ -26,20 +32,20 @@
               "ship": "vcx100", 
               "upgrades": {
                 "crew": [
-                  "maul", 
-                  "ezrabridger"
+                  "rey", 
+                  "reconspecialist"
                 ], 
                 "mod": [
                   "engineupgrade"
                 ], 
                 "system": [
-                  "sensorjammer"
+                  "firecontrolsystem"
                 ], 
                 "title": [
                   "ghost"
                 ], 
                 "turret": [
-                  "twinlaserturret"
+                  "syncedturret"
                 ]
               }
             }, 
