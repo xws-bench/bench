@@ -3247,14 +3247,18 @@ var UPGRADES=window.UPGRADES= [
 	done:true,
         aiactivate: function(){
             var useGS = false;
-            if(self.glitter<round){  // Just prevent double-activating
-                useGS=true;
+            if(this.unit.glitter<round){  // Just prevent double-activating
+                if(this.unit.getenemiesinrange(this.unit.weapons, this.unit.selectnearbyenemy(3)).length!==0)
+                {
+                    useGS=true;
+                }
             }
             return useGS;
         },
 	init: function(sh) {
 	    var self=this;
 	    self.glitter=-1;
+            sh.glitter=-1;
 	    sh.wrap_after("modifyattackroll",this,function(m,n,d,mm) {
 		var f=Unit.FCH_focus(mm);
 		if (f>0 && this.stress===0) {
@@ -3268,7 +3272,7 @@ var UPGRADES=window.UPGRADES= [
 		    this.donoaction([
 			{org:self,name:self.name,type:"ILLICIT",action:function(n) {
 			    this.addstress();
-			    self.glitter=round;
+			    sh.glitter=self.glitter=round;
 			    this.endnoaction(n,"ILLICIT");
 			}.bind(this)}],"",true);
 		}
@@ -5690,6 +5694,9 @@ var UPGRADES=window.UPGRADES= [
 			  });
 		      }.bind(p[0]));
 		  }
+                  else {
+                      p[0].addstress();
+                  }
 	      }
 	  });
       }
@@ -5752,33 +5759,36 @@ var UPGRADES=window.UPGRADES= [
             if(typeof self.unit.hasHCS==="undefined"){
                 sh.wrap_after("getskill",this,function(s){
                     return self.ps;  // Unwrapping should let getskill() work correctly
-                }).unwrapper("endsetupphase");
+                }).unwrapper("beginplanningphase");
             }
-            sh.wrap_after("endsetupphase",this,function() {
-                var p=this.selectnearbyally(2);
+            $(document).on("endsetupphase"+sh.team,function(e) {
                 if (!self.isactive) return;
+                var p=sh.selectnearbyally(2);
                 for (var i in p) {
                     var u=p[i];
+                    if(u.getskill()<sh.getskill()) continue; // Can't give tokens to earlier-deploying ships
                     u.donoaction([{type:"FOCUS",name:self.name,org:self,
-                                   action:function(n) {
-                                       self.desactivate();
-                                       this.addfocustoken();
-                                       this.endnoaction(n,"TECH");
-                                   }.bind(u)},
-                                  {type:"EVADE",name:self.name,org:self,
-                                   action:function(n) {
-                                       self.desactivate();
-                                       this.addevadetoken();
-                                       this.endnoaction(n,"TECH");
-                                   }.bind(u)}],
-                                 "+1 %EVADE% / %FOCUS%",
-                                 true);
-                }	      
+                        action:function(n) {
+                            this.select();
+                            this.addfocustoken();
+                            this.endnoaction(n,"TECH");
+                        }.bind(u)},
+                       {type:"EVADE",name:self.name,org:self,
+                        action:function(n) {
+                            this.select();
+                            this.addevadetoken();
+                            this.endnoaction(n,"TECH");
+                        }.bind(u)}],
+                      "+1 %EVADE% / %FOCUS%",
+                      true
+                    );
+                }
+                self.desactivate();
             });
             if(typeof self.unit.hasHCS === "undefined"){
+                self.unit.hasHCS=self;
                 self.switch();
                 sh.showskill();
-                self.unit.hasHCS=self;
             }
         }
     },

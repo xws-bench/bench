@@ -1101,23 +1101,58 @@ function movelog(s) {
     ANIM+="_-"+s;
 }
 function endsetupphase() {
-    $(".buttonbar .share-buttons").hide();
-    $("#leftpanel").show();
-    $(".bigbutton").hide();
-    $(".playertype").prop("disabled",true);
-    ZONE[2].remove();
-    ZONE[3].remove();
-    TEAMS[1].endsetup();
-    TEAMS[2].endsetup();
-    PERMALINK=permalink(true);
-    $("#turnselector").append("<option value='0'>"+UI_translation["phase"+SETUP_PHASE]+"</option>");
-    $(".playerselect").remove();
-    $(".nextphase").addClass("disabled");
-    $(".unit").css("cursor","pointer");
-    $("#positiondial").hide();
-    for (var i=0; i<OBSTACLES.length; i++) OBSTACLES[i].unDrag();
-    HISTORY=[];
-    for (var i in squadron) squadron[i].endsetupphase();
+    if(subphase!==SETUP_PHASE){ // If there are post-setup actions, skip this
+        $(".buttonbar .share-buttons").hide();
+        $("#leftpanel").show();
+        $(".bigbutton").hide();
+        $(".playertype").prop("disabled",true);
+        ZONE[2].remove();
+        ZONE[3].remove();
+        TEAMS[1].endsetup();
+        TEAMS[2].endsetup();
+        PERMALINK=permalink(true);
+        $("#turnselector").append("<option value='0'>"+UI_translation["phase"+SETUP_PHASE]+"</option>");
+        $(".playerselect").remove();
+        $(".nextphase").addClass("disabled");
+        $(".unit").css("cursor","pointer");
+        $("#positiondial").hide();
+        for (var i=0; i<OBSTACLES.length; i++) OBSTACLES[i].unDrag();
+        HISTORY=[];
+        // Set up for handling actions during the end of setup phase
+        if(actionr.length===0){ // Jury rig an action queue 
+            actionr.push($.Deferred().resolve());
+            actionr[0].name="endofactivation lock";
+            actionrlock=$.Deferred().resolve();
+        }
+        for (var i in squadron) squadron[i].endsetupphase();
+        // Signal all event handler upgrades/abilities as well
+        if(TEAMS[1].initiative){ // Possibly unnecessary init order
+            $(document).trigger("endsetupphase"+"1");
+            $(document).trigger("endsetupphase"+"2");
+        }
+        else{ 
+            $(document).trigger("endsetupphase"+"2");
+            $(document).trigger("endsetupphase"+"1");
+        }
+        
+        if(actionr.length===1) { // If no actions to perform, continue!
+            return true;}
+        else { // Make continuation to planning phase contingent on *all* 
+            subphase=SETUP_PHASE;
+            
+            // Chain all endofsetupphase actions together
+            actionr[actionr.length-1].done(nextphase);  
+            
+            for(var j=0; j<actionr.length-2; j++){
+                actionr[j].done(actionr[j+1]); // Explicitly link actions
+            }
+            return false;
+        }
+    }
+    else{ // Second time around means all post-setup actions are complete!
+        return true;
+    }
+    
 }
 function nextphase() {
     var i;
@@ -1141,24 +1176,30 @@ function nextphase() {
 	$("#leftpanel").show();
  	break;
     case SETUP_PHASE:
-	if (mode==SCENARIOCREATOR) {
-	    phase=SELECT_PHASE-1;
-	    SCENARIOLIST.addrow(SCENARIOTITLE,HEADER,WINCOND,permalink(true));
-	    break;
-	}
-	var ending=true;
-	for (var i in squadron) if  (squadron[i].areactionspending()) ending=false;
-	if (ending==false) return;
-	if ($("#player1 option:checked").val()=="human") 
-	    TEAMS[1].isia=false; else TEAMS[1].isia=true;
-	if ($("#player2 option:checked").val()=="human") 
-	    TEAMS[2].isia=false; else TEAMS[2].isia=true;
-	if (TEAMS[1].isia==true) TEAMS[1].setia();
-	if (TEAMS[2].isia==true) TEAMS[2].setia();
-	/*ZONE[0].attr({fillOpacity:0});*/
-	/*ZONE[1].attr({fillOpacity:0});*/
-	$(".imagebg").hide();
-	endsetupphase();
+        if(subphase!==SETUP_PHASE){
+            if (mode==SCENARIOCREATOR) {
+                phase=SELECT_PHASE-1;
+                SCENARIOLIST.addrow(SCENARIOTITLE,HEADER,WINCOND,permalink(true));
+                break;
+            }
+            var ending=true;
+            for (var i in squadron) if  (squadron[i].areactionspending()) ending=false;
+            if (ending==false) return;
+            if ($("#player1 option:checked").val()=="human") 
+                TEAMS[1].isia=false; else TEAMS[1].isia=true;
+            if ($("#player2 option:checked").val()=="human") 
+                TEAMS[2].isia=false; else TEAMS[2].isia=true;
+            if (TEAMS[1].isia==true) TEAMS[1].setia();
+            if (TEAMS[2].isia==true) TEAMS[2].setia();
+            /*ZONE[0].attr({fillOpacity:0});*/
+            /*ZONE[1].attr({fillOpacity:0});*/
+            $(".imagebg").hide();
+        }
+	if(endsetupphase())
+            break;  // Continue to next phase as per usual
+        else
+            return; // Exit out of phase selection loop to allow e.g.
+                    // Hyperspace Comm Scanner to work fully
 	/*
 	if (REPLAY.length>0) {
 	    replayid=0;
@@ -1167,7 +1208,6 @@ function nextphase() {
 
 	}*/
 	//$(".permalink").hide();
-	break;
     case PLANNING_PHASE:
 	$("#maneuverdial").hide();
 	for (i in squadron) {
@@ -1196,6 +1236,7 @@ function nextphase() {
 	if (-WINCOND<round&&WINCOND<0) win(0);
 	break;
     }
+    // Advance phase
     if (phase>=SELECT_PHASE) {
 	phase=(phase==COMBAT_PHASE)?PLANNING_PHASE:phase+1;
 	movelog("P-"+round+"-"+(phase));
