@@ -1540,6 +1540,18 @@ Unit.prototype = {
 	this.movelog("I");
 	this.show();
     },
+    addweapondisabledtoken: function() {
+        this.noattack=round;
+        this.animateaddtoken("xnomoreattacktoken");
+        this.movelog("WD");
+        this.show();
+    },
+    removeweapondisabledtoken: function() {
+        this.noattack=-1;
+        this.animateremovetoken("xnomoreattacktoken");
+        this.movelog("wd");
+        this.show();
+    },
     removeiontoken: function() {
 	this.ionized--;
 	this.animateremovetoken("xionizedtoken");

@@ -328,6 +328,7 @@ function formatstring(s) {
 	.replace(/%CREW%/g,"<code class='symbols'>W</code>")
 	.replace(/%MOD%/g,"<code class='symbols'>m</code>")
 	.replace(/%SLAM%/g,"<code class='symbols'>s</code>")
+        .replace(/%WEAPONDISABLED%/g,"<code class='xnomoreattacktoken'></code>")
     ;
 }
 function displayplayertype(team,img) {
@@ -1423,13 +1424,17 @@ function setphase(cannotreplay) {
 	jwerty.key("alt+4", function() { activeunit.addstress();activeunit.show();});
 	jwerty.key("alt+5", function() { activeunit.addiontoken();activeunit.show();});
 	jwerty.key("alt+6", function() { activeunit.addtractorbeamtoken();activeunit.show();});
-	jwerty.key("alt+shift+1", function() { if (activeunit.focus>0) activeunit.removefocustoken();activeunit.show();});
+	jwerty.key("alt+7", function() { 
+            if (activeunit.noattack<round) {activeunit.addweapondisabledtoken(); activeunit.show();}});
+        jwerty.key("alt+shift+1", function() { if (activeunit.focus>0) activeunit.removefocustoken();activeunit.show();});
 	jwerty.key("alt+shift+2", function() { if (activeunit.evade>0) activeunit.removeevadetoken();activeunit.show();});
 	jwerty.key("alt+shift+3", function() { if (activeunit.iscloaked) {activeunit.removecloaktoken();activeunit.show();}});
 	jwerty.key("alt+shift+4", function() { if (activeunit.stress>0) activeunit.removestresstoken();activeunit.show();});
 	jwerty.key("alt+shift+5", function() { if (activeunit.ionized>0) activeunit.removeiontoken();});
 	jwerty.key("alt+shift+6", function() { if (activeunit.tractorbeam>0) activeunit.removetractorbeamtoken();});
-	jwerty.key("alt+d",function() { activeunit.resolvehit(1);});
+	jwerty.key("alt+shift+7", function() { 
+            if (activeunit.noattack===round) {activeunit.removeweapondisabledtoken(); activeunit.show();}});
+        jwerty.key("alt+d",function() { activeunit.resolvehit(1);});
 	jwerty.key("alt+c",function() { activeunit.resolvecritical(1);});
 	jwerty.key("alt+shift+d",function() { 
 	    if (activeunit.hull<activeunit.ship.hull) activeunit.addhull(1); 
