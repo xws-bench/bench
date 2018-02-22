@@ -1062,28 +1062,32 @@ var UPGRADES=window.UPGRADES= [
         attack: 3,
         range: [1,2],
         init: function(sh) {
-          var self=this;
-          sh.wrap_after("attackrerolls",this,function(w,t,r) {
-              if (w===self && sh.isinfiringarc(t)){ 
+            var self=this;
+            sh.wrap_after("setpriority",this,function(a) {
+                if (a.type=="TARGET"&&self.isactive&&this.candotarget()) 
+                    a.priority+=10;
+            });
+            sh.wrap_after("attackrerolls",this,function(w,t,r) {
+                if (w===self && sh.isinfiringarc(t)){ 
+                    return sh.weapons[0].getattack();
+                }
+                else return 0;
+            });
+            sh.adddicemodifier(Unit.ATTACK_M,Unit.REROLL_M,Unit.ATTACK_M,this,{
+                dice:["blank","focus"],
+                n:function() { 
                   return sh.weapons[0].getattack();
-              }
-              else return 0;
-          });
-          sh.adddicemodifier(Unit.ATTACK_M,Unit.REROLL_M,Unit.ATTACK_M,this,{
-              dice:["blank","focus"],
-              n:function() { 
-                return sh.weapons[0].getattack();
-              },
-              req:function(attacker,w,defender) {
-                  var functional=false;
-                  if(w === self && attacker.isinfiringarc(defender) && self.isactive){
-                      this.log("+%1 reroll(s) [%0]",self.name,(sh.weapons[0].getattack()));
-                      functional=true;
-                  }                  
-                  return functional;
-              }.bind(sh),
-              aiactivate: function(m,n) { return true; }
-          });
+                },
+                req:function(attacker,w,defender) {
+                    var functional=false;
+                    if(w === self && attacker.isinfiringarc(defender) && self.isactive){
+                        this.log("+%1 reroll(s) [%0]",self.name,(sh.weapons[0].getattack()));
+                        functional=true;
+                    }                  
+                    return functional;
+                }.bind(sh),
+                aiactivate: function(m,n) { return true; }
+            });
 	}
     },
     {
@@ -3920,7 +3924,13 @@ var UPGRADES=window.UPGRADES= [
 		this.unit.hitresolved=0;
 		this.unit.criticalresolved=0;
 	    }
-	}
+	},
+        init:function(sh){
+            sh.wrap_after("setpriority",this,function(a) {
+		if (a.type=="FOCUS"&&self.isactive&&this.candofocus()) 
+		    a.priority+=10;
+	    });
+        }
     },
     { 
 	name:"Comm Relay",
