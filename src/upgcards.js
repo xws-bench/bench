@@ -4786,6 +4786,94 @@ var UPGRADES=window.UPGRADES= [
 	    sh.showskill();
 	},
     },
+    { 
+        name:"Intensity",
+        rating:0,
+        type: Unit.ELITE,
+        points:2,
+        islarge:false,
+        done:true,
+        faceup:true,
+        canswitch: function() {
+            return false;
+        },
+        switch: function() {
+            this.faceup=!this.faceup;
+            if(this.faceup){
+                this.variant="Active";
+            }
+            else{
+                this.variant="Exhausted";
+            }
+        },
+        init: function(sh) {
+            var self=this;
+            self.variant="Active";
+            sh.wrap_after("endaction",this,function(n,s) {
+                if (s!="BOOST"&&s!="ROLL") return; // Stolen from Black One
+                if(self.faceup){ // Can't use if facedown.
+                    this.donoaction(
+                       [{type:"FOCUS",name:self.name,org:self,
+                        action:function(n) {
+                            self.switch();
+                            this.addfocustoken();
+                            this.endnoaction(n,"ELITE");
+                        }.bind(this)},
+                       {type:"EVADE",name:self.name,org:self,
+                        action:function(n) {
+                            self.switch();
+                            this.addevadetoken();
+                            this.endnoaction(n,"ELITE");
+                        }.bind(this)}],
+                      `Add %EVADE% or %FOCUS% and flip ${self.name}`,
+                      true);
+                }
+	     
+            });
+            sh.wrap_after("setpriority",this,function(a) { // Prioritize AI ops
+		if(self.faceup) {
+                    if((a.type==="BOOST"||a.type==="ROLL")) 
+                        a.priority+=5;
+                }
+                else {
+                    if((a.type==="FOCUS"||a.type==="EVADE")) 
+                        a.priority+=5;
+                }
+	    });
+            $(document).on("endcombatphase"+sh.team, function(e){
+                if(!self.faceup && !sh.dead && (sh.focus+sh.evade)>0){
+                    var opts = [];
+                    if(sh.focus>0){
+                        opts.push(
+                            {type:"FOCUS",name:self.name,org:self,
+                            action:function(n) {
+                                self.switch();
+                                this.removefocustoken();
+                                this.endnoaction(n,"ELITE");
+                            }.bind(sh)}
+                        );
+                    }
+                    if(sh.evade){
+                        opts.push(
+                            {type:"EVADE",name:self.name,org:self,
+                            action:function(n) {
+                                self.switch();
+                                this.removeevadetoken();
+                                this.endnoaction(n,"ELITE");
+                            }.bind(sh)}
+                        );
+                    }
+                    if(opts.length>0){
+                        sh.donoaction(
+                           opts,
+                          `Remove %EVADE% or %FOCUS% and flip ${self.name}`,
+                           true
+                        );
+                    }
+                } 
+            });
+        }
+    },
     {
 	name:"Systems Officer",
 	type:Unit.CREW,
