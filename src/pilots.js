@@ -4849,17 +4849,40 @@ window.PILOTS = [
 	    }
 	}
     },
-	{
-		name: "Lieutenant Kestal",
-		faction: Unit.EMPIRE,
-		unique: true,
-		done: false,
-		pilotid: 243,
-		unit: "TIE Aggressor",
-		skill: 7,
-		points: 22,
-		upgrades: [Unit.ELITE, Unit.TURRET, Unit.MISSILE, Unit.MISSILE]
-	},
+    {
+        name: "Lieutenant Kestal",
+        faction: Unit.EMPIRE,
+        unique: true,
+        done: false,
+        pilotid: 243,
+        unit: "TIE Aggressor",
+        skill: 7,
+        points: 22,
+        init: function() {
+            this.wrap_after("modifydefenseroll",this,function(attacker,m,defense,ch) { // CH is result of modifydefenseroll
+		if (attacker===this&&attacker.focus>0){ 
+                    ch=Unit.FE_evade(ch); // When calculating probability, cancel all blanks and eyeballs
+                }
+		return ch;
+	    });
+            this.adddicemodifier(Unit.ATTACK_M,Unit.ADD_M,Unit.DEFENSE_M,this,{
+                req:function(m,n) { 
+                    return this.canusefocus();
+                }.bind(this),
+                aiactivate:function(results,number){
+                    //AI should only use this if there are eyeballs in play.
+                    return(Unit.FE_focus(results)!==0);
+                },
+                f:function(result,number) {
+                    this.removefocustoken();
+                    this.log("Cancelling all %FOCUS% and <span class='blankgreendice'></span> results");
+                    return {m:Unit.FE_evade(result),n:Unit.FE_evade(result)};
+                }.bind(this),
+                str:"focus"
+            });
+        },
+        upgrades: [Unit.ELITE, Unit.TURRET, Unit.MISSILE, Unit.MISSILE]
+    },
 	{
 		name: "'Double Edge'",
 		faction: Unit.EMPIRE,
@@ -5006,7 +5029,7 @@ window.PILOTS = [
 	{
             name: "Thweek",
             faction:Unit.SCUM,
-            done:false,
+            done:true,
             unique:true,
             pilotid:257,
             unit: "StarViper",
@@ -5032,17 +5055,6 @@ window.PILOTS = [
                         ["select unit for condition (or self to cancel) [%0]",self.name],
                         true); //somehow, "noskip" == allow skip
                 });
-//                this.wrap_after("endsetupphase",this,function() {
-//                    var p=[];
-//                    for (var i in squadron)
-//                        if (squadron[i].team!=this.team) p.push(squadron[i]);
-//                    if (p.length>0) {
-//                        this.log("select unit for condition [%0]","Shadowed");
-//                        this.resolveactionselection(p,function(k) {
-//                            new Condition(p[k],this,"Shadowed");
-//                        }.bind(this));
-//                    }
-//                });
             }
 	},
 	{

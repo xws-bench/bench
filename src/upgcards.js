@@ -3908,12 +3908,12 @@ var UPGRADES=window.UPGRADES= [
 	done:true,
 	requires:"Focus",
 	consumes:false,
-	modifyhit: function(ch) { return 0; },
+	modifyhit: function(ch){return 0;},
 	prehit:function(t,c,h) {
 	    var p=this.unit.selectnearbyally(2);
+            p=p.concat(this.unit); // Current code needs at least one entry in p or breaks
 	    var s="";
 	    if (p.length>0) {
-		p=p.concat(this.unit);
 		for (var i=0; i<p.length; i++) {
 		    if (p[i].gettargetableunits(3).indexOf(t)>-1) {
 			p[i].addtarget(t);
@@ -3926,6 +3926,7 @@ var UPGRADES=window.UPGRADES= [
 	    }
 	},
         init:function(sh){
+            var self=this;
             sh.wrap_after("setpriority",this,function(a) {
 		if (a.type=="FOCUS"&&self.isactive&&this.candofocus()) 
 		    a.priority+=10;
