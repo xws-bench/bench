@@ -5078,15 +5078,24 @@ window.PILOTS = [
 		points: 24
         },
 	{
-        	name: "Major Vynder",
-	        faction:Unit.EMPIRE,
-	        unique: true,
-		done:false,
-		pilotid:261,
-	        unit: "Alpha-class Star Wing",
-	        skill: 7,
-	        points: 26,
-	        upgrades: [Unit.ELITE,Unit.TORPEDO,Unit.MISSILE]
+            name: "Major Vynder",
+            faction:Unit.EMPIRE,
+            unique: true,
+            done:true,
+            pilotid:261,
+            unit: "Alpha-class Star Wing",
+            skill: 7,
+            points: 26,
+            init: function() {
+                this.wrap_after("getdefensestrength",this,function(i,sh,a) {
+                    if (this.nomoreattack) { // Currently equivalent to this.noattack==round
+                        a=a+1;
+                        this.log("+1 defense die for defending while %WEAPONDISABLED%");
+                    }
+                    return a;
+                });
+            },
+            upgrades: [Unit.ELITE,Unit.TORPEDO,Unit.MISSILE]
 	},
 	{
             name: "Lieutenant Karsabi",
