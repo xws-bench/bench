@@ -4806,7 +4806,7 @@ window.PILOTS = [
      init: function() {
 	 this.wrap_before("begincombatphase",this,function() {
 	     this.donoaction([{action:function(n) {
-		 this.noattack=round;
+		 this.addweapondisabledtoken();
 		 for (var i in this.upgrades) {
 		     var u=this.upgrades[i];
 		     if ((u.type==Unit.TORPEDO||u.type==Unit.MISSILE)&&u.isactive==false) {
@@ -5089,15 +5089,29 @@ window.PILOTS = [
 	        upgrades: [Unit.ELITE,Unit.TORPEDO,Unit.MISSILE]
 	},
 	{
-        	name: "Lieutenant Karsabi",
-	        faction:Unit.EMPIRE,
-	        unique: true,
-		done:false,
-		pilotid:262,
-	        unit: "Alpha-class Star Wing",
-	        skill: 5,
-	        points: 24,
-	        upgrades: [Unit.ELITE,Unit.TORPEDO,Unit.MISSILE]
+            name: "Lieutenant Karsabi",
+            faction:Unit.EMPIRE,
+            unique: true,
+            done: true,
+            pilotid:262,
+            unit: "Alpha-class Star Wing",
+            init: function(){
+                this.wrap_after("addweapondisabledtoken",this,function() {
+                    if(this.stress<=0){
+                        this.donoaction([{type:"CREW",name:this.name,org:this,
+                               action:function(n) {
+                                   this.removeweapondisabledtoken();
+                                   this.log("-1 %WEAPONDISABLED%, +1 %STRESS%");
+                                   this.addstress();
+                                   this.endnoaction(n,"CREW");
+                                }.bind(this)
+                        }],"Take 1 %STRESS% instead of %WEAPONDISABLED% token",true);
+                    }
+                });
+            },
+            skill: 5,
+            points: 24,
+            upgrades: [Unit.ELITE,Unit.TORPEDO,Unit.MISSILE]
 	},
 	{
         	name: "Rho Squadron Veteran",

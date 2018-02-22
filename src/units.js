@@ -2379,7 +2379,7 @@ Unit.prototype = {
 		q.push(i);
 	    }
 	this.log("select maneuver for SLAM");
-	this.noattack=round;
+	this.addweapondisabledtoken();
 	this.wrap_after("getdial",this,function(gd) {
 	    var p=[];
 	    for (var i=0; i<gd.length; i++) {
