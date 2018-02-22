@@ -211,6 +211,58 @@
         "sos": "0.42"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "cassianandor", 
+              "ship": "uwing", 
+              "upgrades": {
+                "crew": [
+                  "kylekatarn", 
+                  "inspiringrecruit"
+                ], 
+                "ept": [
+                  "experthandling"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "pivotwing"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 74, 
         "name": "Jeremy Green", 
         "rank": {
@@ -2626,6 +2678,27 @@
         "sos": "0.45"
       }, 
       {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "guri", 
+              "ship": "starviper"
+            }, 
+            {
+              "name": "talonbanecobra", 
+              "ship": "kihraxzfighter"
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 490, 
         "name": "Joaquin Bonel", 
         "rank": {
