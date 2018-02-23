@@ -33,7 +33,7 @@
       <ul class="buttonbar">
 	<li class="symbols" onclick="resetlink(true,true); page_select();" >&#xFE;</li>
 	<li><select id="turnselector" onchange="resetlink(false,false,true);"><option value="-1">&lt; Back</option></select></li>
-	<li><label for="imagebg" class="imagebg">Import setup image</label>
+	<li><label for="imagebg" class="imagebg m-imagebg"></label>
 	  <input type="file" id="imagebg">
 	<span id="savebtn" class="symbols" onclick="document.location='#save'; save()" >&#x101;</span></li>
 	<li onclick="document.location='#kb'" class="symbols">&#x100;</li>
@@ -46,7 +46,7 @@
       <section id="settings"  class="modalDialog">
       <div>
 	<h2>
-	  <span>Settings</span>
+	  <span class="m-settings"></span>
 	  <a href="#" title="Close" class="close">&#10060;</a>
 	</h2>
 	<div>
@@ -58,13 +58,13 @@
 	  </td>
 	</tr>
 	<tr>
-	  <td>Console color</td>
+	  <td class="m-consol-color"></td>
 	  <td>
 	    <input type="radio" id="cb1" value="2" checked name="colorconsole" onclick="$('footer').css('filter','none');"/>
-	    <label for="cb1" class="m-sbintern">Black</label><br/>
-	    
+	    <label for="cb1" class="m-sbintern m-black"></label><br/>
+
 	    <input type="radio" id="cb2" value="1" name="colorconsole" onclick="$('footer').css('filter','invert(100%)');"/>
-	    <label for="cb2" class="m-sbintern">White</label><br/>
+	    <label for="cb2" class="m-sbintern m-white"></label><br/>
 	  </td>
 	</tr><tr>
 	  <td class="m-trace"></td>
@@ -73,13 +73,13 @@
 	  </td>
 	</tr>
 	<tr>
-	  <td>AI strategy</td>
+	  <td class="m-strategy"></td>
 	  <td>
 	    <input type="radio" id="ia1" value="2" name="ias" onclick="changeia(JOUSTER);"/>
-	    <label for="ia1">Move in formation</label><br/>
-	    
+	    <label for="ia1" class="m-formation"></label><br/>
+
 	    <input type="radio" id="ia2" value="1" checked name="ias" onclick="changeia(ALONE);"/>
-	    <label for="ia2">Move individually</label><br/>
+	    <label for="ia2" class="m-individually"></label><br/>
 	  </td>
 	</tr>
 	<tr>
@@ -107,7 +107,7 @@
 	<h2 style='display:none'>List of units</h2>
       </section>
     </aside>
-    
+
     <article id="game" class="main">
       <h2 style='display:none'>Main panel</h2>
       <section class="phasepanel">
@@ -136,16 +136,16 @@
 	  <div id="dtokens"></div>
 	</div>
       </section>
-      
+
       <section class="playmat">
 	<h2 style='display:none'>Game area</h2>
 	<svg id="svgout"></svg>
       </section>
-      
+
       <section class="info">
 	<h2 style='display:none'>Info panel</h2>
       </section>
-      
+
       <section id="titles">
 	<h6 id="titlecontent"></h6>
       </section>
@@ -160,14 +160,14 @@
 	</h2>
 	<div>
 	  <table class="victory-table"></table>
-	  <div class="replays">Share combat: 
+	  <div class="replays">Share combat:
 	    <a href="#" class="victory-link m-replay"></a>
 	    <span class="share-button social"></span>
 	  </div>
 	</div>
       </div>
     </section>
-    
+
     <section id="save" class="modalDialog">
       <div>
 	<h2>
@@ -181,7 +181,7 @@
 	</div>
       </div>
     </section>
-    
+
     <article id="creation" class="mainarticle">
       <div class="bg filter"></div>
       <ul class="buttonbar">
@@ -272,7 +272,7 @@
       <table class="squadlists">
 	<tr>
 	  <td>
-	    <div class="scenariocreator squadbg">	
+	    <div class="scenariocreator squadbg">
 	      <p><b>Scenario Creation</b></p><br/>
 	      Title:<input maxlength="30" size="30" type="text" onchange="SCENARIOTITLE=$(this).val();"><br/>
 	      Description of the objectives of the combat<br/>
@@ -308,7 +308,7 @@
 	  </td>
 	</tr>
 	<tr>
-	  <td colspan=2>	    
+	  <td colspan=2>
 	    <ul class="buttonbar" style="height:1em;padding:0;margin:0">
 	      <li class="nextphase disabled" onclick="if (!$(this).hasClass('disabled')) nextphase()">Go !</li>
 	    </ul>
@@ -329,7 +329,7 @@
       </div>
 	<table id="squadlist" style="height:100%" >
 	</table>
-      
+
 
     </article>
 
@@ -352,11 +352,11 @@
 	  <td class="m-victorycond"></td>
 	  <td>
 	    <input checked type="radio" id="vc1" name="wincond" value="2" onclick="WINCOND=0;"/>
-	    <label for="vc1">Death match</label><br/>
+	    <label for="vc1" class="m-deathmatch"></label><br/>
 	    <input checked type="radio" id="vc2" name="wincond" value="2" onclick="WINCOND=parseInt($('#turnvc option:selected').text(),10)"/>
-	    <label for="vc2">Destroy all units before Turn</label><select id="turnvc" onchange="$('#vc2').trigger('click');"><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option selected >15</option></select><br/>
+	    <label for="vc2" class="m-destroyturns"></label> <select id="turnvc" onchange="$('#vc2').trigger('click');"><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option selected >15</option></select><br/>
 	    <input type="radio" id="vc3" name="wincond" value="3" onclick="WINCOND=-parseInt($('#highvc option:selected').text(),10)"/>
-	    <label for="vc3">Highest score after</label><select id="highvc" onchange="$('#vc3').trigger('click');"><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option></select> Turns
+	    <label for="vc3" class="m-highescore"></label> <select id="highvc" onchange="$('#vc3').trigger('click');"><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option></select><br/>
 	</td></tr>
 	<tr class="squadbg">
 	  <td class="m-deckversion"></td>
@@ -367,18 +367,18 @@
 	    <label for="ver2" class="m-ver2"></label>
 	  </td>
 	</tr>
-	
+
 	<tr class="squadbg">
-	  <td>Moving asteroids<sup>&beta;</sup></td>
+	  <td class="m-asteroids"></td>
 	  <td>
 	    <input type="radio" id="ma1" name="mamove" value="1" onclick="MOVING_ASTER=true"/>
-	    <label for="ma1">Yes</label><br/>
+	    <label for="ma1" class="m-yes"></label><br/>
 	    <input type="radio" id="ma2" checked name="mamove" value="2" onclick="MOVING_ASTER=false"/>
-	    <label for="ma2">No</label>
+	    <label for="ma2" class="m-no"></label>
 	  </td>
 	</tr>
-	
-	
+
+
 	<tr class="squadbg">
 	  <td class="m-normalmap"></td>
 	  <td>
@@ -430,7 +430,7 @@
         </h2>
         <div>
           <p>
-            This table gives the % of chance to hit for an attacker. In rows, the number of dice for the attacker, and in column the number of dice of the defender. You can set the tokens or rerolls for both units. Each cell gives the % of chance for the attacker to hit the defender, the mean number of hits (<code class="hit"></code>) and criticals (<code class="critical"></code>) given. 
+            This table gives the % of chance to hit for an attacker. In rows, the number of dice for the attacker, and in column the number of dice of the defender. You can set the tokens or rerolls for both units. Each cell gives the % of chance for the attacker to hit the defender, the mean number of hits (<code class="hit"></code>) and criticals (<code class="critical"></code>) given.
           </p>
           <table>
             <tr><td>Attacker</td><td>Defender</td></tr>
@@ -451,7 +451,7 @@
               </td>
             </tr>
           </table>
-          <table id="probatable">  
+          <table id="probatable">
           </table>
 
         </div>
@@ -509,7 +509,7 @@
 <!-- "Compiled version" -->
 <script src="js/all.min.js" ></script>
 
-<!-- "Source version: uncomment for debugging" 
+<!-- "Source version: uncomment for debugging"
 <script src="js/api.js"></script>
 <script src="js/snap.svg-min-0.4.1.js"></script>
 <script src="js/jwerty.min.js"></script>
@@ -540,8 +540,8 @@
 <script src="src/page_combat.js"></script>
 -->
 
-<!-- api.js snap.svg-min-0.4.1.js jwerty.min.js mustache.min.js jquery-3.1.1.min.js 
-jquery.a-tools-1.4.1.js jquery.asuggest.js lz-string.min.js howler2.0.2.min.js 
+<!-- api.js snap.svg-min-0.4.1.js jwerty.min.js mustache.min.js jquery-3.1.1.min.js
+jquery.a-tools-1.4.1.js jquery.asuggest.js lz-string.min.js howler2.0.2.min.js
 hammer2.0.8.min.js sheetrock.min.js
 -->
 
@@ -550,7 +550,7 @@ hammer2.0.8.min.js sheetrock.min.js
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      
+
       ga('create', 'UA-63149795-1', 'auto');
       ga('send', 'pageview');
     </script>
@@ -626,7 +626,7 @@ hammer2.0.8.min.js sheetrock.min.js
 	</table>
       </div>
     </script>
-    
+
     <script id="faction" type="text/template">
       <table>
 	<tr>
@@ -637,7 +637,7 @@ hammer2.0.8.min.js sheetrock.min.js
 	      <div class="xsymbols YELLOW">{{hull}}</div>
 	      <div class="xsymbols BLUE">{{shield}}</div>
 	    </div>
-	    <div class="shipdial"  onclick="switchdialimg(false)"> 
+	    <div class="shipdial"  onclick="switchdialimg(false)">
 	      <table>
 		{{#diallist}}
 		<tr>
@@ -819,7 +819,7 @@ hammer2.0.8.min.js sheetrock.min.js
 	{{^tooltip}}<td></td>{{/tooltip}}
       </tr>
     </script>
-    
+
     <script id="usabletokens" type="text/template">
       {{#focus}}<span class="xfocustoken"></span>{{/focus}}{{#focuses}}<sup class="counttoken">x{{.}}</sup>{{/focuses}}
       {{#evade}}<span class="xevadetoken"></span>{{/evade}}{{#evades}}<sup class="counttoken">x{{.}}</sup>{{/evades}}
@@ -861,7 +861,7 @@ hammer2.0.8.min.js sheetrock.min.js
       </tr>
       {{/upglist}}
     </script>
-    
+
     <script id="combat-display" type="text/template">
       <div><span><b>Score:</b>{{score}}</span><button style="float:right" onclick="SQUADLIST.displaycombats()">Next</button></div>
       <table style="font-size:smaller;width:100%"><tr><td>{{{s1}}}</td><td>{{{s2}}}</td></tr></table>
@@ -909,18 +909,17 @@ hammer2.0.8.min.js sheetrock.min.js
 	<td>
 	  <div class="squadtop">
 	    <span class="smallbutton m-edit" onclick="SQUADLIST.createfromrow({{nrows}})"></span>
-	    
+
 	    <span class="smallbutton symbols" onclick="SQUADLIST.printfromrow({{nrows}})">¶</span>
 	  </div>
 	  <div class="squadtop" style="margin-top:1em">
 	    <span class="squadmiddle" onclick="SQUADLIST.checkrow(1,{{nrows}}); page_select();">1</span>
 	    <span class="squadmiddle right" onclick="SQUADLIST.checkrow(2,{{nrows}}); page_select();">2</span>
 	  </div>
-	  <div class="smallbutton closemiddle" onclick="SQUADLIST.removerow({{nrows}});">Delete</div>
+	  <div class="smallbutton closemiddle m-delet" onclick="SQUADLIST.removerow({{nrows}});"></div>
 	</td>
       </tr>
     </script>
 
   </body>
 </html>
-
