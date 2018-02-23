@@ -1540,6 +1540,18 @@ Unit.prototype = {
 	this.movelog("I");
 	this.show();
     },
+    addweapondisabledtoken: function() {
+        this.noattack=round;
+        this.animateaddtoken("xnomoreattacktoken");
+        this.movelog("WD");
+        this.show();
+    },
+    removeweapondisabledtoken: function() {
+        this.noattack=-1;
+        this.animateremovetoken("xnomoreattacktoken");
+        this.movelog("wd");
+        this.show();
+    },
     removeiontoken: function() {
 	this.ionized--;
 	this.animateremovetoken("xionizedtoken");
@@ -2367,7 +2379,7 @@ Unit.prototype = {
 		q.push(i);
 	    }
 	this.log("select maneuver for SLAM");
-	this.noattack=round;
+	this.addweapondisabledtoken();
 	this.wrap_after("getdial",this,function(gd) {
 	    var p=[];
 	    for (var i=0; i<gd.length; i++) {

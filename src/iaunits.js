@@ -555,8 +555,10 @@ IAUnit.prototype = {
 	    for (i=0;i<el.length; i++) {
 		var p=this.evaluatetohit(wp,el[i]).tohit;
 		//this.log("power "+p+" "+el[i].name);
-		if (p>power&&!el[i].isdocked) {
-		    tp=el[i]; power=p; this.activeweapon=wp; 
+		if (!el[i].isdocked&&(p>power
+                        ||(weaponlist[w].name==="XX-23 S-Thread Tracers" && this.selectnearbyally(2).length!==0 && this.targeting.length===0))
+                    ) { // Encourage Tracer shots, hail-Mary laser shots
+                    tp=el[i]; power=p; this.activeweapon=wp; 
 		}
 	    }
 	}

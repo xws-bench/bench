@@ -4176,26 +4176,41 @@ window.PILOTS = [
         upgrades: [Unit.ELITE,Unit.TORPEDO,Unit.CREW,Unit.ASTROMECH],
 	points:28,
 	init: function() {
+            TEAMS[this.team].hasSharaBey=true;
 	    var self=this;
-	    Unit.prototype.wrap_after("declareattack",self,function(w,target,b) {
-		if (b&&self!=this&&self.isally(this)) {
-		    this.wrap_after("canusetarget",self,function(sh,r) {
+            $(document).on("begincombatphase"+this.team, function(e,ship){
+                if((!self.dead)&&self!=ship&&self.isally(ship)){
+                    ship.wrap_after("canusetarget",self,function(sh,r) {
 			if (self.getrange(this)<=2&&self.targeting.indexOf(sh)>-1) {
 			    return true;
 			}
 			return r;
-		    }).unwrap("cleanupattack");
-		    this.wrap_before("removetarget",self,function(t) {
+		    }.bind(ship)).unwrap("cleanupattack");
+                }
+            });
+            $(document).on("declareattack"+this.team, function(e,ship,args){
+                if (args.b&&(!self.dead)&&self!=ship&&self.isally(ship)) {
+		    ship.wrap_before("removetarget",self,function(t) {
 			if (self.getrange(this)<=2
 			    &&this.targeting.indexOf(t)==-1
 			    &&self.targeting.indexOf(t)>-1) {
 			    self.removetarget(t);
 			}
-		    }).unwrap("cleanupattack");
+		    }.bind(ship)).unwrap("cleanupattack");
 		}
-		return b;
 	    });
-	}
+            Unit.prototype.wrap_before("begincombatphase",self,function(){
+                if(TEAMS[this.team].hasSharaBey){
+                    $(document).trigger("begincombatphase"+this.team,[this]);
+                }
+            });
+	    Unit.prototype.wrap_after("declareattack",self,function(w,target,b) {
+		if(TEAMS[this.team].hasSharaBey){ // Works with 0 or 1 Shara per team
+                    $(document).trigger("declareattack"+this.team,[this,{w:w, target:target, b:b}]);
+                }
+                return b;
+            });
+        }
     },
     {
         name: "Thane Kyrell",
@@ -4806,7 +4821,7 @@ window.PILOTS = [
      init: function() {
 	 this.wrap_before("begincombatphase",this,function() {
 	     this.donoaction([{action:function(n) {
-		 this.noattack=round;
+		 this.addweapondisabledtoken();
 		 for (var i in this.upgrades) {
 		     var u=this.upgrades[i];
 		     if ((u.type==Unit.TORPEDO||u.type==Unit.MISSILE)&&u.isactive==false) {
@@ -4849,28 +4864,83 @@ window.PILOTS = [
 	    }
 	}
     },
-	{
-		name: "Lieutenant Kestal",
-		faction: Unit.EMPIRE,
-		unique: true,
-		done: false,
-		pilotid: 243,
-		unit: "TIE Aggressor",
-		skill: 7,
-		points: 22,
-		upgrades: [Unit.ELITE, Unit.TURRET, Unit.MISSILE, Unit.MISSILE]
-	},
-	{
-		name: "'Double Edge'",
-		faction: Unit.EMPIRE,
-		unique: true,
-		done: false,
-		pilotid: 244,
-		unit: "TIE Aggressor",
-		skill: 4,
-		points: 19,
-		upgrades: [Unit.ELITE, Unit.TURRET, Unit.MISSILE, Unit.MISSILE]
-	},
+    {
+        name: "Lieutenant Kestal",
+        faction: Unit.EMPIRE,
+        unique: true,
+        done: false,
+        pilotid: 243,
+        unit: "TIE Aggressor",
+        skill: 7,
+        points: 22,
+        init: function() {
+            this.wrap_after("modifydefenseroll",this,function(attacker,m,defense,ch) { // CH is result of modifydefenseroll
+		if (attacker===this&&attacker.focus>0){ 
+                    ch=Unit.FE_evade(ch); // When calculating probability, cancel all blanks and eyeballs
+                }
+		return ch;
+	    });
+            this.adddicemodifier(Unit.ATTACK_M,Unit.ADD_M,Unit.DEFENSE_M,this,{
+                req:function(m,n) { 
+                    return this.canusefocus();
+                }.bind(this),
+                aiactivate:function(results,number){
+                    //AI should only use this if there are eyeballs in play.
+                    return(Unit.FE_focus(results)!==0);
+                },
+                f:function(result,number) {
+                    this.removefocustoken();
+                    this.log("Cancelling all %FOCUS% and <span class='blankgreendice'></span> results");
+                    return {m:Unit.FE_evade(result),n:Unit.FE_evade(result)};
+                }.bind(this),
+                str:"focus"
+            });
+        },
+        upgrades: [Unit.ELITE, Unit.TURRET, Unit.MISSILE, Unit.MISSILE]
+    },
+    {
+        name: "'Double Edge'",
+        faction: Unit.EMPIRE,
+        unique: true,
+        done: true,
+        pilotid: 244,
+        unit: "TIE Aggressor",
+        skill: 4,
+        points: 19,
+        init: function() {
+            this.doubleEdgeAttack=-1;
+            this.processing=false;
+            this.lastusedweapon=null;
+            this.returnactive=true;
+            this.addattack(
+                function(c,h) {
+                    var canFire=false;
+                    if((c+h===0)&&this.doubleEdgeAttack<round&&this.activeweapon!==0){
+                        this.lastusedweapon=this.weapons[this.activeweapon]; // Remember the first-fired weapon.
+                        if(!this.processing){ // Don't overwrite state variables!
+                            this.processing=true;
+                            this.returnactive=this.lastusedweapon.isactive; // Only reactivate weapons that aren't used up
+                            this.lastusedweapon.isactive=false; // Make sure lastusedweapon is inactive for 2nd attack
+                        }
+                        canFire=true;
+                    }
+                    return canFire;
+                },
+                {name:"'Double Edge'"},
+                this.weapons,
+                function(){
+                    this.doubleEdgeAttack=round;
+                }
+            );
+            this.wrap_after("endcombatphase",this,function(){ // cleanup isactive value
+                if(this.doubleEdgeAttack>=round){
+                    this.processing=false;
+                    this.lastusedweapon.isactive=this.returnactive; // Restore weapon range
+                }
+            });
+        },
+        upgrades: [Unit.ELITE, Unit.TURRET, Unit.MISSILE, Unit.MISSILE]
+    },
 	{
 		name: "Onyx Squadron Escort",
 		faction: Unit.EMPIRE,
@@ -5006,7 +5076,7 @@ window.PILOTS = [
 	{
             name: "Thweek",
             faction:Unit.SCUM,
-            done:false,
+            done:true,
             unique:true,
             pilotid:257,
             unit: "StarViper",
@@ -5032,17 +5102,6 @@ window.PILOTS = [
                         ["select unit for condition (or self to cancel) [%0]",self.name],
                         true); //somehow, "noskip" == allow skip
                 });
-//                this.wrap_after("endsetupphase",this,function() {
-//                    var p=[];
-//                    for (var i in squadron)
-//                        if (squadron[i].team!=this.team) p.push(squadron[i]);
-//                    if (p.length>0) {
-//                        this.log("select unit for condition [%0]","Shadowed");
-//                        this.resolveactionselection(p,function(k) {
-//                            new Condition(p[k],this,"Shadowed");
-//                        }.bind(this));
-//                    }
-//                });
             }
 	},
 	{
@@ -5078,26 +5137,49 @@ window.PILOTS = [
 		points: 24
         },
 	{
-        	name: "Major Vynder",
-	        faction:Unit.EMPIRE,
-	        unique: true,
-		done:false,
-		pilotid:261,
-	        unit: "Alpha-class Star Wing",
-	        skill: 7,
-	        points: 26,
-	        upgrades: [Unit.ELITE,Unit.TORPEDO,Unit.MISSILE]
+            name: "Major Vynder",
+            faction:Unit.EMPIRE,
+            unique: true,
+            done:true,
+            pilotid:261,
+            unit: "Alpha-class Star Wing",
+            skill: 7,
+            points: 26,
+            init: function() {
+                this.wrap_after("getdefensestrength",this,function(i,sh,a) {
+                    if (this.nomoreattack) { // Currently equivalent to this.noattack==round
+                        a=a+1;
+                        this.log("+1 defense die for defending while %WEAPONDISABLED%");
+                    }
+                    return a;
+                });
+            },
+            upgrades: [Unit.ELITE,Unit.TORPEDO,Unit.MISSILE]
 	},
 	{
-        	name: "Lieutenant Karsabi",
-	        faction:Unit.EMPIRE,
-	        unique: true,
-		done:false,
-		pilotid:262,
-	        unit: "Alpha-class Star Wing",
-	        skill: 5,
-	        points: 24,
-	        upgrades: [Unit.ELITE,Unit.TORPEDO,Unit.MISSILE]
+            name: "Lieutenant Karsabi",
+            faction:Unit.EMPIRE,
+            unique: true,
+            done: true,
+            pilotid:262,
+            unit: "Alpha-class Star Wing",
+            init: function(){
+                this.wrap_after("addweapondisabledtoken",this,function() {
+                    if(this.stress<=0){
+                        this.donoaction([{type:"CREW",name:this.name,org:this,
+                               action:function(n) {
+                                   this.removeweapondisabledtoken();
+                                   this.log("-1 %WEAPONDISABLED%, +1 %STRESS%");
+                                   this.addstress();
+                                   this.endnoaction(n,"CREW");
+                                }.bind(this)
+                        }],"Take 1 %STRESS% instead of %WEAPONDISABLED% token",true);
+                    }
+                });
+            },
+            skill: 5,
+            points: 24,
+            upgrades: [Unit.ELITE,Unit.TORPEDO,Unit.MISSILE]
 	},
 	{
         	name: "Rho Squadron Veteran",
