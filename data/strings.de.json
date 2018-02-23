@@ -589,7 +589,9 @@
         "Sabine's Masterpiece": {"name": "Sabines Meisterwerk","text": "Füge deiner Aufwertungsleiste die Symbole %CREW% und %ILLICIT% hinzu."},
         "Kylo Ren's Shuttle": {"name": "Kylo Rens Shuttle","text": "Wähle am Ende der Kampfphase ein nicht-gestresstes feindliches Schiff in Reichweite 1-2. Sein Besitzer muss ihm einen Stressmarker zuordnen oder er muss einem anderen Schiff in Reichweite 1-2 zu dir, das er kontrolliert, einen Stressmarker zuordnen."},
         "Pivot Wing": {"name": "Schwenkflügel","text": "<strong>Angriffsposition:</strong> Erhöhe deinen Wendigkeitswert um 1.Nachdem du ein Manöver ausgeführt hast, darfst du diese Karte umdrehen.<strong>Landeposition:</strong> Sobald du ein (0 %STOP%)-Manöver aufdeckst, darfst du dein Schiff um 180&deg; drehen.Nachdem du ein Manöver ausgeführt hast, darfst du diese Karte umdrehen."},
-        "Adaptive Ailerons": {"name": "Adaptive Querruder","text": "Unmittelbar bevor du dein Rad aufdeckst, <strong>musst</strong> du ein weißes (%BANKLEFT% 1)-, (%STRAIGHT% 1)- oder (%BANKRIGHT% 1)-Manöver ausführen, falls du nicht gestresst bist."}
+        "Adaptive Ailerons": {"name": "Adaptive Querruder","text": "Unmittelbar bevor du dein Rad aufdeckst, <strong>musst</strong> du ein weißes (%BANKLEFT% 1)-, (%STRAIGHT% 1)- oder (%BANKRIGHT% 1)-Manöver ausführen, falls du nicht gestresst bist."},
+        "Unguided Rockets": {"name": "Ungelenkte Raketen", "text": "<strong>Angriff (Fokus):</strong> Greife 1 Schiff an. Deine Angriffswürfel können nur durch das Ausgeben eines Fokusmarkers für dessen normalen Effekt modifiziert werden."},
+        "Synced Turret": {"name": "Gekoppeltes Geschütz", "text": "<strong>Angriff (Zielerfassung):</strong> Greife 1 Schiff an (auch außerhalb deines Feuerwinkels). Falls der Verteidiger innerhalb deines normalen Feuerwinkels ist, darfst du bis zu X Angriffswürfel neu würfeln, X ist dein Primärwaffenwert."}
 },
     "criticals":{
 	"Weapons Failure":{"text":"When attacking, roll 1 fewer attack die. %ACTION% Roll 1 attack die. On a %HIT% or %CRIT% result, flip this card facedown."},
@@ -662,7 +664,7 @@
 	"m-draw":"Zusammenfassung!",
 	"m-nocasualty":"Keine feindliche Einheit wurde zerstört",
 	"m-proba":"Wahrscheinlichkeit",
-	"np":"Nächste Phase",
+	"np":"Weiter",
 	"m-export":"Export",
 	"m-plainformat":"Einfache Listen",
 	"m-xwsformat":"XWS-Json-Format",
