@@ -4176,26 +4176,41 @@ window.PILOTS = [
         upgrades: [Unit.ELITE,Unit.TORPEDO,Unit.CREW,Unit.ASTROMECH],
 	points:28,
 	init: function() {
+            TEAMS[this.team].hasSharaBey=true;
 	    var self=this;
-	    Unit.prototype.wrap_after("declareattack",self,function(w,target,b) {
-		if (b&&self!=this&&self.isally(this)) {
-		    this.wrap_after("canusetarget",self,function(sh,r) {
+            $(document).on("begincombatphase"+this.team, function(e,ship){
+                if((!self.dead)&&self!=ship&&self.isally(ship)){
+                    ship.wrap_after("canusetarget",self,function(sh,r) {
 			if (self.getrange(this)<=2&&self.targeting.indexOf(sh)>-1) {
 			    return true;
 			}
 			return r;
-		    }).unwrap("cleanupattack");
-		    this.wrap_before("removetarget",self,function(t) {
+		    }.bind(ship)).unwrap("cleanupattack");
+                }
+            });
+            $(document).on("declareattack"+this.team, function(e,ship,args){
+                if (args.b&&(!self.dead)&&self!=ship&&self.isally(ship)) {
+		    ship.wrap_before("removetarget",self,function(t) {
 			if (self.getrange(this)<=2
 			    &&this.targeting.indexOf(t)==-1
 			    &&self.targeting.indexOf(t)>-1) {
 			    self.removetarget(t);
 			}
-		    }).unwrap("cleanupattack");
+		    }.bind(ship)).unwrap("cleanupattack");
 		}
-		return b;
 	    });
-	}
+            Unit.prototype.wrap_before("begincombatphase",self,function(){
+                if(TEAMS[this.team].hasSharaBey){
+                    $(document).trigger("begincombatphase"+this.team,[this]);
+                }
+            });
+	    Unit.prototype.wrap_after("declareattack",self,function(w,target,b) {
+		if(TEAMS[this.team].hasSharaBey){ // Works with 0 or 1 Shara per team
+                    $(document).trigger("declareattack"+this.team,[this,{w:w, target:target, b:b}]);
+                }
+                return b;
+            });
+        }
     },
     {
         name: "Thane Kyrell",
