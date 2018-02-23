@@ -602,7 +602,7 @@ var UPGRADES=window.UPGRADES= [
 	    var ptl=this;
 	    ptl.r=-1;
 	    sh.wrap_before("endaction",this,function(n,type) {
-		if (ptl.r!=round&&this.candoaction()&&type!==null) {
+		if (ptl.r!=round&&this.candoaction()&&type!==null) { // Only Stress prevents EI/PTL once an action has occurred.
 		    ptl.r=round;
 		    this.doaction(this.getactionbarlist(),"+1 free action (Skip to cancel) ["+ptl.name+"]").done(function(type2) {
 			if (type2===null || typeof type2 === "undefined") ptl.r=-1; 
@@ -2834,7 +2834,7 @@ var UPGRADES=window.UPGRADES= [
 	    var upg=this;
 	    upg.r=-1;
 	    sh.wrap_before("endaction",this,function(n,type) {
-		if (upg.r!=round&&this.candoaction()&&type!==null) {
+		if (upg.r!=round&&this.candoaction()&&type!==null) { // Only stress prevents EI/PTL once an action has occurred.
 		    upg.r=round;
 		    this.doaction(this.getupgactionlist(),"+1 free action (Skip to cancel)").done(function(type2) {
 			if (type2===null || typeof type2 === "undefined") upg.r=-1;
@@ -3753,7 +3753,11 @@ var UPGRADES=window.UPGRADES= [
 	    // otherwise target lock action could be missing, because before maneuver ship could be out of range
 	    sh.wrap_after("resolveslam",this,function() {
 		sh.wrap_after("endmaneuver", this,function() {
+                    if(this.candoaction()  // Can't use "candoendmaneuveraction" because it's wrapped
+                        &&!this.collision  // by resolveslam().
+                        &&!this.hascollidedobstacle()){ // But ASLAM is prevented by overlapping a ship or obstacle
 			this.doaction(this.getactionbarlist(),"+1 free action from action bar (Skip to cancel) ["+self.name+"]");
+                    }
 		}).unwrapper("endactivationphase");
 	    });
 	}
