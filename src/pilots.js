@@ -4883,17 +4883,49 @@ window.PILOTS = [
         },
         upgrades: [Unit.ELITE, Unit.TURRET, Unit.MISSILE, Unit.MISSILE]
     },
-	{
-		name: "'Double Edge'",
-		faction: Unit.EMPIRE,
-		unique: true,
-		done: false,
-		pilotid: 244,
-		unit: "TIE Aggressor",
-		skill: 4,
-		points: 19,
-		upgrades: [Unit.ELITE, Unit.TURRET, Unit.MISSILE, Unit.MISSILE]
-	},
+    {
+        name: "'Double Edge'",
+        faction: Unit.EMPIRE,
+        unique: true,
+        done: true,
+        pilotid: 244,
+        unit: "TIE Aggressor",
+        skill: 4,
+        points: 19,
+        init: function() {
+            this.doubleEdgeAttack=-1;
+            this.processing=false;
+            this.lastusedweapon=null;
+            this.returnactive=true;
+            this.addattack(
+                function(c,h) {
+                    var canFire=false;
+                    if((c+h===0)&&this.doubleEdgeAttack<round&&this.activeweapon!==0){
+                        this.lastusedweapon=this.weapons[this.activeweapon]; // Remember the first-fired weapon.
+                        if(!this.processing){ // Don't overwrite state variables!
+                            this.processing=true;
+                            this.returnactive=this.lastusedweapon.isactive; // Only reactivate weapons that aren't used up
+                            this.lastusedweapon.isactive=false; // Make sure lastusedweapon is inactive for 2nd attack
+                        }
+                        canFire=true;
+                    }
+                    return canFire;
+                },
+                {name:"'Double Edge'"},
+                this.weapons,
+                function(){
+                    this.doubleEdgeAttack=round;
+                }
+            );
+            this.wrap_after("endcombatphase",this,function(){ // cleanup isactive value
+                if(this.doubleEdgeAttack>=round){
+                    this.processing=false;
+                    this.lastusedweapon.isactive=this.returnactive; // Restore weapon range
+                }
+            });
+        },
+        upgrades: [Unit.ELITE, Unit.TURRET, Unit.MISSILE, Unit.MISSILE]
+    },
 	{
 		name: "Onyx Squadron Escort",
 		faction: Unit.EMPIRE,
