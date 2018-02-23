@@ -3,51 +3,59 @@ From github.com:baranidlo/bench
 Already up-to-date.
 Moving old 'tournaments' to 'tournaments.old'...
 Downloading new 'tournaments' file...
---2018-02-22 00:00:01--  http://lists.starwarsclubhouse.com/api/v1/tournaments
+--2018-02-23 00:00:02--  http://lists.starwarsclubhouse.com/api/v1/tournaments
 Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
 Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 37535 (37K) [application/json]
+Length: 37579 (37K) [application/json]
 Saving to: ‘tournaments’
 
-     0K .......... .......... .......... ......               100%  409K=0.09s
+     0K .......... .......... .......... ......               100%  392K=0.09s
 
-2018-02-22 00:00:02 (409 KB/s) - ‘tournaments’ saved [37535/37535]
+2018-02-23 00:00:02 (392 KB/s) - ‘tournaments’ saved [37579/37579]
 
 Downloading new tournament list data...
---2018-02-22 00:00:02--  http://lists.starwarsclubhouse.com/api/v1/tournament/4042
+--2018-02-23 00:00:02--  http://lists.starwarsclubhouse.com/api/v1/tournament/4048
 Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
 Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 58381 (57K) [application/json]
-Saving to: ‘4042’
+Length: 11343 (11K) [application/json]
+Saving to: ‘4048’
 
-     0K .......... .......... .......... .......... .......... 87%  289K 0s
-    50K .......                                               100% 13.7M=0.2s
+     0K .......... .                                          100% 13.1M=0.001s
 
-2018-02-22 00:00:03 (329 KB/s) - ‘4042’ saved [58381/58381]
+2018-02-23 00:00:02 (13.1 MB/s) - ‘4048’ saved [11343/11343]
 
---2018-02-22 00:00:03--  http://lists.starwarsclubhouse.com/api/v1/tournament/4043
+--2018-02-23 00:00:02--  http://lists.starwarsclubhouse.com/api/v1/tournament/4045
 Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
 Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 40373 (39K) [application/json]
-Saving to: ‘4043’
+Length: 19904 (19K) [application/json]
+Saving to: ‘4045’
 
-     0K .......... .......... .......... .........            100%  438K=0.09s
+     0K .......... .........                                  100%  210K=0.09s
 
-2018-02-22 00:00:04 (438 KB/s) - ‘4043’ saved [40373/40373]
+2018-02-23 00:00:03 (210 KB/s) - ‘4045’ saved [19904/19904]
 
---2018-02-22 00:00:04--  http://lists.starwarsclubhouse.com/api/v1/tournament/4044
+--2018-02-23 00:00:03--  http://lists.starwarsclubhouse.com/api/v1/tournament/4046
 Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
 Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 16100 (16K) [application/json]
-Saving to: ‘4044’
+Length: 2338 (2.3K) [application/json]
+Saving to: ‘4046’
 
-     0K .......... .....                                      100%  183K=0.09s
+     0K ..                                                    100% 2.96M=0.001s
 
-2018-02-22 00:00:05 (183 KB/s) - ‘4044’ saved [16100/16100]
+2018-02-23 00:00:03 (2.96 MB/s) - ‘4046’ saved [2338/2338]
 
-To git@github.com:baranidlo/bench.git
-   452f21f..be5d780  gh-pages -> gh-pages
+--2018-02-23 00:00:03--  http://lists.starwarsclubhouse.com/api/v1/tournament/4047
+Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
+Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 12989 (13K) [application/json]
+Saving to: ‘4047’
+
+     0K .......... ..                                         100% 13.4M=0.001s
+
+2018-02-23 00:00:04 (13.4 MB/s) - ‘4047’ saved [12989/12989]
+
