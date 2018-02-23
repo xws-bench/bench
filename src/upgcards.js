@@ -2804,10 +2804,41 @@ var UPGRADES=window.UPGRADES= [
 	type:Unit.MOD,
         islarge:true,
 	done:true,
+        aiactivate: function (){
+            var en;
+            var utilize=false;
+            var factor=2;
+            var locEnemies=this.unit.selectnearbyenemy(3);
+            var prockets=(this.unit.weapons.filter(
+                    weap=>weap.name==="Proton Rockets" && weap.isactive
+                ).length>0);
+            if(locEnemies.length>0){  // Don't even bother if there are no enemies
+                for(var i in locEnemies){
+                   en=locEnemies[i];
+                   if(en.isinfiringarc(this.unit)){ //check if enemy has bead on us
+                       for(var j in en.weapons){    //and can do major damage
+                           if(en.weapons[j].attack>=this.unit.getagility()*factor){
+                               utilize=true;
+                               break;  // It only takes one!
+                           }
+                           else if(this.unit.hull<=this.unit.ship.hull/2.0){
+                               utilize=true; // Or if we've taken a beating already
+                               break;
+                           }
+                       }
+                   }
+                   else if(prockets && this.unit.isinfiringarc(en) && this.unit.focus>0){
+                       utilize=true; // Use Countermeasures offensively with Prockets
+                       break;
+                   }
+                }
+            }
+            return utilize;
+        },
 	init: function(sh) {
 	    var mod=this;/* TODO: same time as attack */
 	    sh.wrap_before("begincombatphase",this,function() {
-		if (mod.isactive) 
+		if (mod.isactive&&(!sh.ia||mod.aiactivate())) 
 		    this.donoaction([{action:function(n) {
 			mod.desactivate();
 			this.wrap_after("getagility",mod,function(a) {
