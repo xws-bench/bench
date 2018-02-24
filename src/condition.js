@@ -134,6 +134,26 @@ var CONDITIONS=[
 	},
   },
   {
+        name: "Mimicked",
+        assign: function(target) {
+            var self=this;
+            this.org.log("copying %0 abilities [%1]",target.name,this.name);
+            target.init.call(this.org);
+            // Redefine Condition() to check if the org is the owner of this
+            var newCondition=function(){
+                var tempbase=Condition; // Copied from "http://www.i-programmer.info/programming/javascript/1735-overriding-a-javascript-global-function-parseint.html"
+                return (function(sh,org,n){
+                    if (org === self.org) { // Clojure assures this test works
+                        return;
+                    }
+                    return new tempbase(sh,org,n);
+                });
+            }(); // Has to execute immediately so that Condition is still correct w/in context
+            if (Condition!==newCondition) {Condition=newCondition;};
+            this.org.show();
+        }
+  },
+  {
 	name: "Harpooned!",
 	assign: function(target) {
 		var self=this;

@@ -726,6 +726,7 @@ hammer2.0.8.min.js sheetrock.min.js
 	    <td></td>
 	    {{/isinleft}}
 	  </tr>
+          {{#variant}}{{{.}}}{{/variant}}{{#hasswitch}}<code class="smallbutton symbols" onclick="if (!squadron[{{uid}}].isdocked) squadron[{{uid}}].switch();">/</code>{{/hasswitch}}
 	  {{#upgrades}}{{{.}}}{{/upgrades}}
 	  {{#criticals}}{{{.}}}{{/criticals}}
 	  {{#conds}}{{{.}}}{{/conds}}

@@ -3430,6 +3430,9 @@ Unit.prototype = {
 	    for (i in this.conditions) {
 		this.conds.push(this.conditions[i]);
 	    }
+            if (typeof this.switch!="undefined"&&this.canswitch()) {
+                this.hasswitch={uid:this.id,uuid:-1};
+            } else this.hasswitch=false;
 	    var rendered = Mustache.render(TEMPLATES["unit-combat"], this);
 	    return rendered;
 	}
