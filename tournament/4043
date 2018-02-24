@@ -958,6 +958,84 @@
         "sos": "0.48"
       }, 
       {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "ionpulsemissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "trickshot"
+                ], 
+                "illicit": [
+                  "riggedcargochute"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "trickshot"
+                ], 
+                "illicit": [
+                  "riggedcargochute"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 518, 
         "name": "Dubics kos", 
         "rank": {
@@ -967,6 +1045,61 @@
         "sos": "0.30"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "burnoutslam"
+                ], 
+                "mod": [
+                  "smugglingcompartment", 
+                  "countermeasures"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 487, 
         "name": "Barna", 
         "rank": {
@@ -1012,6 +1145,57 @@
         "sos": "0.50"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "jesspava", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5x3"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "crew": [
+                  "bazemalbus"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 506, 
         "name": "Caniz", 
         "rank": {

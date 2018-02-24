@@ -778,6 +778,63 @@
         "sos": "0.60"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "testpilotblackout", 
+              "ship": "tiesilencer", 
+              "upgrades": {
+                "ept": [
+                  "trickshot"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "firstordervanguard"
+                ]
+              }
+            }, 
+            {
+              "name": "onyxsquadronescort", 
+              "ship": "tieaggressor", 
+              "upgrades": {
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "lieutenantkestal", 
+              "ship": "tieaggressor", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 575, 
         "name": "Pian76", 
         "rank": {
