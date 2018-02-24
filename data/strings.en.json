@@ -36,7 +36,7 @@
 	"'Quickdraw'":{"text":"Once per round, when you lose a shield token, you may perform a primary weapon attack."},
 	"'Backdraft'":{"text":"When attacking a ship inside your auxiliary firing arc, you may add 1 %CRIT% result."},
 	"Rey":{"text":"When attacking or defending, if the enemy ship is inside your firing arc, you may reroll up to 2 of your blank results."},
-	"Turbolaser":{"text":"A laser cannon turret. It cannot move."}, 
+	"Turbolaser":{"text":"A laser cannon turret. It cannot move."},
 	"Thermal Exhaust Port":{"text":"The thermal exhaust of the Death Star. Destruction of the exhaust port causes automatic win for the opponent."},
     "Wedge Antilles":{"text":
     "When attacking, reduce the defender's agility value by 1 (to a minimum of 0)."},
@@ -669,7 +669,7 @@
         "Lightning Reflexes":{
             "text":"After you execute a white or green maneuver on your dial, you may discard this card to rotate your ship 180&deg;.  Then receive 1 stress token <strong>after</strong> the 'Check Pilot Stress' step."},
         "Twin Laser Turret":{
-            "text":"<strong>Attack:</strong> Perform this attack <strong>twice</strong> (even against a ship outside your firing arc). Each time this attack hits, the defender suffers 1 damage.  Then cancel <strong>all</strong> dice results."},        
+            "text":"<strong>Attack:</strong> Perform this attack <strong>twice</strong> (even against a ship outside your firing arc). Each time this attack hits, the defender suffers 1 damage.  Then cancel <strong>all</strong> dice results."},
 "Plasma Torpedoes":{
             "text":"<strong>Attack (target lock):</strong> Spend your target lock and discard this card to perform this attack. If this attack hits, after dealing damage, remove 1 shield token from the defender."},
 "R5-X3":{
@@ -699,9 +699,9 @@
             {"text": "You may treat all bank maneuvers (%BANKLEFT% and %BANKRIGHT%) as green maneuvers."},
         "Maneuvering Fins":
             {"text": "When you reveal a turn maneuver (%TURNLEFT% or %TURNRIGHT%), you may rotate your dial to the corresponding bank maneuver (%BANKLEFT% or %BANKRIGHT%) of the same speed."},
-        "Ion Projector":   
+        "Ion Projector":
             {"text": "After an enemy ship executes a maneuver that causes it to overlap your ship, roll 1 attack die.  On a %HIT% or %CRIT% result, the enemy ship receives 1 ion token."},
-	    "Integrated Astromech":{"text":"When you are dealt a Damage card, you may discard 1 of your %ASTROMECH% Upgrade cards to discard that Damage card (without resolving its effect)."},  
+	    "Integrated Astromech":{"text":"When you are dealt a Damage card, you may discard 1 of your %ASTROMECH% Upgrade cards to discard that Damage card (without resolving its effect)."},
         "Hound's Tooth":
             {"text": "After you are destroyed, before you are removed from the play area, you may <strong>deploy</strong> the <em>Nashtah Pup</em> ship. It cannot attack this round."},
      "Hera Syndulla(Crew)":{"text":"You can reveal and execute red maneuvers even while you are stressed."},
@@ -880,7 +880,23 @@
 	"m-latest":"Tournaments",
 	"m-combat":"Combat Trainer",
 	"m-simulation":"Combat",
-	"m-scenario":"Scenarios"
+	"m-scenario":"Scenarios",
+  "m-delet":"delet",
+  "m-back":"Back",
+  "m-imagebg":"Import setup image",
+  "m-strategy":"AI strategy",
+  "m-consol-color":"Console color",
+  "m-black":"Black",
+  "m-white":"White",
+  "m-settings":"Settings",
+  "m-formation":"Move in formation",
+  "m-individually":"Move individually",
+  "m-deathmatch":"Death match",
+  "m-destroyturns":"Destroy all units before Turn",
+  "m-highescore":"Highest score after Turn",
+  "m-asteroids":"Moving asteroids (BETA)",
+  "m-yes":"Yes",
+  "m-no":"No"
     },
     "ui":{
 	"selects":"Select a squad",
