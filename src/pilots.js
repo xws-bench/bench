@@ -5083,25 +5083,46 @@ window.PILOTS = [
             skill: 4,
             points: 28,
             upgrades: [Unit.TORPEDO],
+            canswitch: function() {
+                return phase <=SETUP_PHASE && !this.assigned;
+            },
+            switch: function() {
+                if(this.variant==="Shadowed"){
+                    this.variant="Mimicked";
+                }
+                else{
+                    this.variant="Shadowed";
+                }
+                this.show();
+            },
             init: function() {
                 var self=this;
-                this.wrap_after("endsetupphase",this,function() {
+                var handleSelection = function(e) {
                     var p=[];
                     for (var i in squadron){
-                        if (squadron[i].team!=this.team) 
+                        if (squadron[i].team!=self.team) 
                             p.push(squadron[i]);
                     };
-                    var lock=$.Deferred();
-                    this.selectunit( //Gives us skip functionality
+                    if(typeof self.mimicking!=="undefined" && self.mimicking.name===self.name){ // Prevent AI looping when duelling Thweeks
+                        p=p.filter(ship => ship.name!==self.name) //Remove non-mimicking Thweek
+                    }
+                    self.selectunit( //Gives us skip functionality
                         p,
 			function(p,k) {
-                            this.log("select unit for condition [%0]","Shadowed");
-                            new Condition(p[k],this,"Shadowed");
-                            lock.resolve();
-                        }.bind(this),
-                        ["select unit for condition (or self to cancel) [%0]",self.name],
+                            new Condition(p[k],this,self.variant);
+                            self.assigned=true;
+                        }.bind(self),
+                        ["select unit for condition [%1] (or self to cancel) [%0]",self.name,self.variant],
                         true); //somehow, "noskip" == allow skip
-                });
+                };
+                if(typeof self.mimicking==="undefined"){ //Thweek actually init-ing for first time
+                    self.assigned=false;
+                    self.variant="Shadowed";               
+                    $(document).on("endsetupphase"+self.team,handleSelection);
+                }
+                else{ // Thweek Mimicking Thweek Shadowing X
+                    handleSelection(null);
+                }
             }
 	},
 	{
