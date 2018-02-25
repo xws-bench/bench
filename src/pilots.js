@@ -4988,6 +4988,34 @@ window.PILOTS = [
 		unique: true,
 		done: false,
 		pilotid: 248,
+                init: function(){
+                    var self=this;
+                    $(document).on("predefenseroll"+self.team, 
+                    function(e,ship){
+                        if(ship!==self&&self.getrange(ship)<=1&&self.reinforce>0){
+                            // For calculating attack odds
+                            ship.wrap_after("modifydefenseroll",this,function(attacker,m,n,ch){
+                                if(this.getrange(self)<=1&&self.reinforce>0){
+                                    ch=ch+Unit.FE_EVADE;
+                                }
+                                return ch;
+                            }).unwrapper("endbeingattacked");
+                            // For actually adding defense mod
+                            ship.adddicemodifier(Unit.DEFENSE_M,Unit.ADD_M,Unit.DEFENSE_M,self,{
+                                req:function(m,n) {
+                                    return (this.getrange(self)<=1&&self.reinforce>0);
+                                }.bind(ship),
+                                f:function(m,n) {
+                                    this.log("-1 %REINFORCE% [%0] -> +1 %EVADE%",self.name);
+                                    self.removereinforcetoken();
+                                    m=m+Unit.FE_EVADE;
+                                    n=n+1;
+                                    return {m:m,n:n};
+                                }.bind(ship),
+                                str:"reinforce"}).unwrapper("endbeingattacked");
+                        }
+                    });
+                },
 		unit: "Auzituck Gunship",
 		skill: 5,
 		points: 28,

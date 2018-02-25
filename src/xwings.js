@@ -329,6 +329,7 @@ function formatstring(s) {
 	.replace(/%MOD%/g,"<code class='symbols'>m</code>")
 	.replace(/%SLAM%/g,"<code class='symbols'>s</code>")
         .replace(/%WEAPONDISABLED%/g,"<code class='xnomoreattacktoken'></code>")
+        .replace(/%REINFORCE%/g,"<code class='xreinforcetoken'></code>")
     ;
 }
 function displayplayertype(team,img) {

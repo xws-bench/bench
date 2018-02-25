@@ -958,7 +958,7 @@ Unit.prototype = {
 	mod.type=type;
 	mod.from=from;
 	mod.to=to;
-	this.wrap_after("getdicemodifiers",org,function(m) {
+	return this.wrap_after("getdicemodifiers",org,function(m) {
 	    return m.concat(mod);
 	});
     },
@@ -2580,8 +2580,12 @@ Unit.prototype = {
 	//this.show();
     },
     preattackroll:function(w,targetunit) {
+        $(document).trigger("preattackroll"+this.team,
+        [this,w,targetunit]); // Presumably some predefenseroll stuff needs w and attacker
     },
     predefenseroll:function(w,attacker) {
+        $(document).trigger("predefenseroll"+this.team,
+        [this,w,attacker]); // Presumably some predefenseroll stuff needs w and attacker
     },
     doattack: function(weaponlist,enemies) {
 	this.activeweapons=weaponlist;
