@@ -4967,8 +4967,16 @@ window.PILOTS = [
 		name: "Wullffwarro",
 		faction: Unit.REBEL,
 		unique: true,
-		done: false,
+		done: true,
 		pilotid: 247,
+                init:  function() {
+                    this.wrap_after("getattackstrength",this,function(w,sh,a) {
+                        if(this.criticals.length>=1 && this.shield<=0){
+                            a=a+1;
+                        }
+                        return a;
+                    });
+                },
 		unit: "Auzituck Gunship",
 		skill: 7,
 		points: 30,
