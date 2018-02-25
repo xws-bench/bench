@@ -1477,28 +1477,33 @@ Unit.prototype = {
 	this.movelog("FO");
 	this.show();
 	},
+    addreinforce: function(n){
+        
+            var resolvereinforce=function(n,aft) {
+                $("#actiondial").empty();
+                this.reinforceaft = aft;
+                this.log("Adding reinforce token on " + (aft==0 ? "fore" : "aft") + " side");    
+                this.addreinforcetoken();
+                this.endnoaction(n,"REINFORCE");
+                //this.unlock();
+            }.bind(this);
+            
+            this.doselection(function(n) {
+                $("#actiondial").empty();
+                var fore=$("<button>").html("Fore").on("touch click",function() { resolvereinforce(n,0);}.bind(this));
+                $("#actiondial").append(fore);
+                var aft=$("<button>").html("Aft").on("touch click",function() { resolvereinforce(n,1);}.bind(this));
+                $("#actiondial").append(aft);    
+                $("#actiondial").show();
+            }.bind(this),"REINFORCE");
+            
+            this.endaction(n,"REINFORCE"); // End addreinforce to start selection action         
+        },
     addreinforcetoken: function() {
-		var resolvereinforce=function(aft) {
-			this.reinforceaft = aft;
-			this.reinforce++;
-			this.log("Adding reinforce token on " + (aft==0 ? "fore" : "aft") + " side");
-			this.animateaddtoken("xreinforcetoken");
-			this.movelog("E");
-			$("#actiondial").empty();
-			this.unlock();
-		}.bind(this);
-		
-		$("#actiondial").empty();
-		var fore=$("<button>").html("Fore").on("touch click",function() { resolvereinforce(0);}.bind(this));
-		$("#actiondial").append(fore);
-		var aft=$("<button>").html("Aft").on("touch click",function() { resolvereinforce(1);}.bind(this));
-		$("#actiondial").append(aft);
-		
-		this.latedeferred=this.deferred;
-		this.newlock().done(function() {
-			this.deferred=this.latedeferred;
-		}.bind(this));
-
+            this.reinforce++;
+            this.animateaddtoken("xreinforcetoken");
+            this.movelog("E");
+            this.show();
 	},	
     addtractorbeam:function(u) {
 	this.addtractorbeamtoken();
@@ -2195,10 +2200,6 @@ Unit.prototype = {
  		this.noattack=round;
 		this.showstats();
 		this.endaction(n,"RELOAD");
-	},
-	addreinforce: function(n) {
-		this.addreinforcetoken();
-		this.endaction(n, "REINFORCE");	
 	},
     candoarcrotate: function() { return this.hasmobilearc; },
     setarcrotate: function(r) { this.arcrotation=90*r; },
