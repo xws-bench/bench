@@ -875,17 +875,45 @@ var UPGRADES=window.UPGRADES= [
         init: function(sh) {
 	    var self=this;
 	    self.ea=Unit.prototype.resolvecritical;
-	    Unit.prototype.resolvecritical=function(c) {
-		if (!self.unit.dead&&self.isactive
-		    &&c>0&&(self.unit in this.selectnearbyally(1))){
-		    this.selectunit([this,sh],function(p,k) {
-			if (k===0) { self.ea.call(this,1); }
-			else { self.ea.call(sh,1);}
-		    },["select unit [%0]",self.name],false);
-		    self.ea.call(this,c-1);
-		} else self.ea.call(this,c);
-		return c;
-	    };
+            $(document).on("predefenseroll"+sh.team,function(e,ship)                {
+                    ship.resolvecritical=function(c) {
+                        if (!self.unit.dead&&self.isactive&&c>0&&sh.getrange(ship)<=1){
+                            ship.selectunit([ship,sh],function(p,k) {
+                                if (k===0) { self.ea.call(ship,1); }
+                                else { self.ea.call(sh,1);
+                            }
+                        },["select unit [%0] or self to cancel",self.name],false);
+                        self.ea.call(ship,c-1);
+                    } else self.ea.call(ship,c);
+                    return c;
+                };           
+            });
+	    
+	}, 
+	done:true,
+        type: Unit.ELITE,
+        points: 1,
+    },
+    { /* TODO: a ship is still hit if crit is transferred ? */
+        name: "Selflessness",
+	rating:1,
+        init: function(sh) {
+	    var self=this;
+	    self.ea=Unit.prototype.resolvehit;
+            $(document).on("predefenseroll"+sh.team,function(e,ship){
+                    ship.resolvehit=function(h) {   
+                        if (!self.unit.dead&&self.isactive&&h>0&&sh.getrange(ship)<=1){
+                            ship.selectunit([ship,sh],function(p,k) {
+                                if (k===0) { self.ea.call(ship,h); }
+                                else {
+                                    // If the Selflessness ship takes the damage, deactivate the card
+                                    self.ea.call(sh,h);}
+                                    self.desactivate();
+                        },["select unit [%0] or self to cancel",self.name],false);
+                    } else self.ea.call(ship,h);
+                    return h;
+                };           
+            });  
 	}, 
 	done:true,
         type: Unit.ELITE,
