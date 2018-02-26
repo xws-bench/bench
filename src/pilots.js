@@ -5145,6 +5145,13 @@ window.PILOTS = [
                     self.selectunit( //Gives us skip functionality
                         p,
 			function(p,k) {
+                            if(this.ia){ // Select the highest-skill pilot, or k==0
+                                var max=this.skill;
+                                for(var i in p){
+                                    k=(p[i].getskill()>max)?i:k;
+                                    max=(p[i].getskill()>max)?p[i].getskill():max;
+                                }
+                            }
                             new Condition(p[k],this,self.variant);
                             self.assigned=true;
                         }.bind(self),
