@@ -4868,7 +4868,7 @@ window.PILOTS = [
         name: "Lieutenant Kestal",
         faction: Unit.EMPIRE,
         unique: true,
-        done: false,
+        done: true,
         pilotid: 243,
         unit: "TIE Aggressor",
         skill: 7,
@@ -4986,7 +4986,7 @@ window.PILOTS = [
 		name: "Lowhhrick",
 		faction: Unit.REBEL,
 		unique: true,
-		done: false,
+		done: true,
 		pilotid: 248,
                 init: function(){
                     var self=this;
@@ -5088,15 +5088,67 @@ window.PILOTS = [
 		upgrades: [Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
 	},
 	{
-		name: "Captain Nym",
-		faction: Unit.REBEL,
-		unique: true,
-		done: false,
-		pilotid: 255,
-		unit: "Scurrg H-6 Bomber",
-		skill: 8,
-		points: 30,
-		upgrades: [Unit.ELITE,Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
+            name: "Captain Nym",
+            faction: Unit.REBEL,
+            unique: true,
+            done: true,
+            pilotid: 255,
+            unit: "Scurrg H-6 Bomber",
+            skill: 8,
+            points: 30,
+            init: function(){
+                var self=this;
+                self.round=-1;
+                self.canceled=[];
+                $(document).on("preexplode"+self.team,function(e,bomb,asMine,args){
+                    // Only called by friendly bombs, so team check unnecessary
+                    self.canceled.push(bomb);
+                    bomb.realexplode=bomb.explode;
+                    bomb.realdetonate=bomb.detonate;
+                    bomb.explode=function(){};
+                    bomb.detonate=function(){};
+                    if(asMine&&self.round!==round){ // Handle each detonated mine separately
+                        self.canceled.unshift(self);
+                        self.selectunit(self.canceled,function(p,k){ // Choose a bomb to halt
+                            if(k===0){
+                                p[1].realdetonate.apply(p[1],args); // Need a way to get args for detonate :(
+                            }
+                            else{
+                                self.round=round;
+                                self.log("prevented detonation of %0",p[1].name);
+                                // Reset this mine
+                                p[k].explode=bomb.realexplode;
+                                p[k].detonate=bomb.realdetonate;
+                            }
+                        }.bind(self),["Select mine to halt (or self to cancel)"],false);
+                        self.canceled=[];
+                    }
+                });
+                $(document).on("endbombs"+self.team,function(e){
+                    if(self.round<round&&self.canceled.length!==0){
+                        self.canceled.unshift(self); // Need to add self but not use "cancelleable"
+                        self.selectunit(self.canceled,function(p,k){ // Choose a bomb to halt
+                            for(var bomb=1; bomb<p.length; bomb++){ // If k===0, blow them al
+                                if(bomb===k){ // Reset this bomb
+                                    self.round=round;
+                                    self.log("halted explosion of %0",p[bomb].name);
+                                    p[bomb].explode=bomb.realexplode;
+                                    p[bomb].detonate=bomb.realdetonate;
+                                }
+                                else{ // Explode all other bombs.
+                                    p[bomb].realexplode();
+                                    if(!p[bomb].exploded){ // Reset any mines
+                                        p[bomb].explode=p[bomb].realexplode;
+                                        p[bomb].detonate=p[bomb].realdetonate;
+                                    }
+                                }
+                            }
+                        }.bind(self),["Select bomb to halt (or self to cancel)"],false);
+                    }
+                    self.canceled=[];
+                });
+            },
+            upgrades: [Unit.ELITE,Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
 	},
 	{
         	name: "Dalan Oberos",

@@ -2108,8 +2108,11 @@ Unit.prototype = {
 	    if (mine.length>0){ 
 		for (i=0; i<mine.length; i++) {
 		    var o=OBSTACLES[mine[i]];
-		    if (o.type==Unit.BOMB&&typeof o.detonate=="function") 
-			o.detonate(this,false)
+		    if (o.type==Unit.BOMB&&typeof o.detonate=="function"){ 
+			o.preexplode(true,[this,false]);
+                        o.detonate(this,false)
+                        o.postexplode(true,[this,false]);
+                    }
 		    else {
 			this.ocollision.overlap=i;
 			this.log("colliding with obstacle");
@@ -2773,10 +2776,15 @@ Unit.prototype = {
 		//path.remove();
 		if (this.hascollidedobstacle()) 
 		    this.resolveocollision(this.ocollision.overlap,this.ocollision.template);
-		if (this.ocollision.mine.length>0) 
+		if (this.ocollision.mine.length>0){
+                    var mine;
 		    for (i=0; i<this.ocollision.mine.length; i++) {
-			this.ocollision.mine[i].detonate(this,false);
+                        mine=this.ocollision.mine[i];
+			mine.preexplode(true,[this,false]);
+                        mine.detonate(this,false);
+                        mine.postexplode(true,[this,false]);
 		    }
+                }
 		if (this.collision) this.resolvecollision();
 		this.endmaneuver();
 	    }.bind(this));
