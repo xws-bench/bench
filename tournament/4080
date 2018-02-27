@@ -1,0 +1,801 @@
+{
+  "tournament": {
+    "date": "2018-02-24", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 4080, 
+    "name": "Summer 2018 BTM", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "nusquadronpilot", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 688, 
+        "name": "Raul Rodriguez Boba", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "thermaldetonators", 
+                  "ionbombs"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines", 
+                  "bombletgenerator"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 627, 
+        "name": "Juan Pablo Intrepido", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 569, 
+        "name": "Francisco Hernandez", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.31"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "emonazzameen", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines", 
+                  "clustermines"
+                ], 
+                "crew": [
+                  "cadbane"
+                ], 
+                "illicit": [
+                  "riggedcargochute"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ], 
+                "title": [
+                  "slavei"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 516, 
+        "name": "Rodolfo Lazo", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 406, 
+        "name": "Diego Romero", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 5
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "kananjarrus", 
+                  "finn"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "illicit": [
+                  "burnoutslam"
+                ], 
+                "mod": [
+                  "smugglingcompartment"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 558, 
+        "name": "Victor Cepeda", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 454, 
+        "name": "Salvador Tobar", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 444, 
+        "name": "Felipe Rodrigo", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 431, 
+        "name": "Pablo Marin", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 330, 
+        "name": "Lucy Besser", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "lattsrazzi"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "burnoutslam"
+                ]
+              }
+            }, 
+            {
+              "name": "ndrusuhlak", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "thweek", 
+              "ship": "starviper", 
+              "upgrades": {
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "virago", 
+                  "starvipermkii"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 313, 
+        "name": "Francisco Salazar", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 294, 
+        "name": "Jp Ogaz", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 1, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 290, 
+        "name": "Francisco Fernandez", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 1, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 206, 
+        "name": "Marcelo Lagos", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 155, 
+        "name": "Jesus Bastias", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 119, 
+        "name": "Tomas Leiva", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 0, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Salvador Tobar", 
+            "player1points": 100, 
+            "player2": "Tomas Leiva", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Victor Cepeda", 
+            "player1points": 0, 
+            "player2": "Rodolfo Lazo", 
+            "player2points": 41, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Diego Romero", 
+            "player1points": 32, 
+            "player2": "Felipe Rodrigo", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juan Pablo Intrepido", 
+            "player1points": 100, 
+            "player2": "Jesus Bastias", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francisco Salazar", 
+            "player1points": 100, 
+            "player2": "Jp Ogaz", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lucy Besser", 
+            "player1points": 29, 
+            "player2": "Pablo Marin", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francisco Hernandez", 
+            "player1points": 21, 
+            "player2": "Francisco Fernandez", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Raul Rodriguez Boba", 
+            "player1points": 100, 
+            "player2": "Marcelo Lagos", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Pablo Marin", 
+            "player1points": 26, 
+            "player2": "Rodolfo Lazo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francisco Fernandez", 
+            "player1points": 74, 
+            "player2": "Diego Romero", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Raul Rodriguez Boba", 
+            "player1points": 100, 
+            "player2": "Juan Pablo Intrepido", 
+            "player2points": 76, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francisco Salazar", 
+            "player1points": 35, 
+            "player2": "Salvador Tobar", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jp Ogaz", 
+            "player1points": 24, 
+            "player2": "Jesus Bastias", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lucy Besser", 
+            "player1points": 29, 
+            "player2": "Tomas Leiva", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Felipe Rodrigo", 
+            "player1points": 70, 
+            "player2": "Victor Cepeda", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcelo Lagos", 
+            "player1points": 0, 
+            "player2": "Francisco Hernandez", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Rodolfo Lazo", 
+            "player1points": 24, 
+            "player2": "Victor Cepeda", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Rodolfo Lazo", 
+            "player1points": 36, 
+            "player2": "Raul Rodriguez Boba", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Diego Romero", 
+            "player1points": 100, 
+            "player2": "Francisco Salazar", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juan Pablo Intrepido", 
+            "player1points": 100, 
+            "player2": "Felipe Rodrigo", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jesus Bastias", 
+            "player1points": 52, 
+            "player2": "Francisco Hernandez", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lucy Besser", 
+            "player1points": 63, 
+            "player2": "Francisco Fernandez", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Salvador Tobar", 
+            "player1points": 65, 
+            "player2": "Pablo Marin", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Victor Cepeda", 
+            "player1points": 100, 
+            "player2": "Tomas Leiva", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jp Ogaz", 
+            "player1points": 100, 
+            "player2": "Marcelo Lagos", 
+            "player2points": 27, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Diego Romero", 
+            "player1points": 0, 
+            "player2": "Raul Rodriguez Boba", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Salvador Tobar", 
+            "player1points": 0, 
+            "player2": "Rodolfo Lazo", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francisco Salazar", 
+            "player1points": 0, 
+            "player2": "Francisco Hernandez", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lucy Besser", 
+            "player1points": 0, 
+            "player2": "Juan Pablo Intrepido", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jesus Bastias", 
+            "player1points": 0, 
+            "player2": "Victor Cepeda", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pablo Marin", 
+            "player1points": 100, 
+            "player2": "Jp Ogaz", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francisco Fernandez", 
+            "player1points": 0, 
+            "player2": "Felipe Rodrigo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcelo Lagos", 
+            "player1points": 100, 
+            "player2": "Tomas Leiva", 
+            "player2points": 21, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Felipe Rodrigo", 
+            "player1points": 25, 
+            "player2": "Rodolfo Lazo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Victor Cepeda", 
+            "player1points": 100, 
+            "player2": "Juan Pablo Intrepido", 
+            "player2points": 29, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Raul Rodriguez Boba", 
+            "player1points": 0, 
+            "player2": "Felipe Rodrigo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rodolfo Lazo", 
+            "player1points": 100, 
+            "player2": "Diego Romero", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francisco Hernandez", 
+            "player1points": 59, 
+            "player2": "Victor Cepeda", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juan Pablo Intrepido", 
+            "player1points": 100, 
+            "player2": "Salvador Tobar", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 8, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Regional", 
+    "venue": {
+      "city": "Via del Mar", 
+      "country": "Chile", 
+      "lat": null, 
+      "lon": null, 
+      "name": "", 
+      "state": "Valparaiso"
+    }, 
+    "video_url": "https://www.youtube.com/channel/UCqhuzJK8kAcZaSr5_3RNi7Q?view_as=subscriber"
+  }
+}

@@ -72,7 +72,18 @@
           "pilots": [
             {
               "name": "chewbacca", 
-              "ship": "yt1300"
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "bistan"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
             }, 
             {
               "name": "kashyyykdefender", 

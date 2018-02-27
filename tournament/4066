@@ -6,8 +6,67 @@
     "name": "Sunday X-Wing Pod One - 2/25", 
     "players": [
       {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "lattsrazzi"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "glitterstim", 
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "gyroscopictargeting"
+                ], 
+                "title": [
+                  "shadowcaster"
+                ]
+              }
+            }, 
+            {
+              "name": "solsixxa", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines", 
+                  "connernet"
+                ], 
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 500, 
-        "name": "Jim Mc", 
+        "name": "Jim McGovern", 
         "rank": {
           "swiss": 1
         }, 
@@ -84,7 +143,7 @@
         "matches": [
           {
             "final_salvo": false, 
-            "player1": "Jim Mc", 
+            "player1": "Jim McGovern", 
             "player1points": 100, 
             "player2": "Ken R", 
             "player2points": 0, 
@@ -122,7 +181,7 @@
         "matches": [
           {
             "final_salvo": false, 
-            "player1": "Jim Mc", 
+            "player1": "Jim McGovern", 
             "player1points": 100, 
             "player2": "Alex P", 
             "player2points": 50, 
@@ -160,7 +219,7 @@
         "matches": [
           {
             "final_salvo": false, 
-            "player1": "Jim Mc", 
+            "player1": "Jim McGovern", 
             "player1points": 100, 
             "player2": "Cal ", 
             "player2points": 50, 
