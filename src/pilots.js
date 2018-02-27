@@ -5100,7 +5100,7 @@ window.PILOTS = [
                 var self=this;
                 self.round=-1;
                 self.canceled=[];
-                $(document).on("preexplode"+self.team,function(e,bomb,asMine,args){
+                var handlePreExplode=function(e,bomb,asMine,args){
                     // Only called by friendly bombs, so team check unnecessary
                     self.canceled.push(bomb);
                     bomb.realexplode=bomb.explode;
@@ -5123,8 +5123,8 @@ window.PILOTS = [
                         }.bind(self),["Select mine to halt (or self to cancel)"],false);
                         self.canceled=[];
                     }
-                });
-                $(document).on("endbombs"+self.team,function(e){
+                };
+                var handleEndBombs=function(e){
                     if(self.round<round&&self.canceled.length!==0){
                         self.canceled.unshift(self); // Need to add self but not use "cancelleable"
                         self.selectunit(self.canceled,function(p,k){ // Choose a bomb to halt
@@ -5146,7 +5146,15 @@ window.PILOTS = [
                         }.bind(self),["Select bomb to halt (or self to cancel)"],false);
                     }
                     self.canceled=[];
-                });
+                };
+                // Set handlers
+                $(document).on("preexplode"+self.team,handlePreExplode);
+                $(document).on("endbombs"+self.team,handleEndBombs);
+                // Remove only the Nym handlers for this team on Nym's death
+                self.wrap_after("dies",this,function() {
+		    $(document).off("preexplode"+self.team,handlePreExplode);
+                    $(document).off("endbombs"+self.team,handleEndBombs);
+		});
             },
             upgrades: [Unit.ELITE,Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
 	},
