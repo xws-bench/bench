@@ -5110,11 +5110,12 @@ window.PILOTS = [
 		name: "Sol Sixxa",
 		faction: Unit.SCUM,
 		unique: true,
-		done: false,
+		done: true,
 		pilotid: 252,
 		unit: "Scurrg H-6 Bomber",
 		skill: 6,
 		points: 28,
+                getbomblocation:function() {  return ["F1","TL1","TR1"]; },
 		upgrades: [Unit.ELITE,Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
 	},
 	{
