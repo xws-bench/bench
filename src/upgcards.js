@@ -2752,9 +2752,11 @@ var UPGRADES=window.UPGRADES= [
 	    sh.showstats();
 	},     
 	uninstall:function(sh) {
-	    sh.hull--; sh.ship.hull--;
-	    sh.showstats();
-            sh.checkdead();
+            if(phase!==SETUP_PHASE){
+                sh.hull--; sh.ship.hull--;
+                sh.showstats();
+                sh.checkdead();
+            }
 	},
         desactivate:function() {
             this.uninstall(this.unit);
