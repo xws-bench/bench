@@ -4084,8 +4084,10 @@ Unit.prototype = {
 	return min;
     },
     // Returns the range separating both units and if an obstacle is inbetween
-    getoutlinerange:function(m,sh) {
-	var ro=this.getOutlinePoints(m);
+    getoutlinerange:function(m,sh,withBombs,teams) {
+        if(typeof withBombs==="undefined") {withBombs=false;teams=[];} // Need to allow bomb checks for Nym
+	else {teams=(typeof teams==="undefined")?[sh.team]:teams;} // Need to check team types
+        var ro=this.getOutlinePoints(m);
 	var rsh = sh.getOutlinePoints(sh.m);
 	var min=90001;
 	var i,j,k=0;
@@ -4103,11 +4105,17 @@ Unit.prototype = {
 	var dy=rsh[minj].y-ro[mini].y;
 	var a=-ro[mini].x*dy+ro[mini].y*dx; //(x-x0)*dy-(y-y0)*dx>0
 	if (OBSTACLES.length>0) {
+            var curObs;
 	    for (k=0; k<OBSTACLES.length; k++) {
-		if (OBSTACLES[k].type==NONE) continue;
-		var op=OBSTACLES[k].getOutlineString().p;
+                curObs=OBSTACLES[k];
+		if (curObs.type==NONE) continue;
+		var op=curObs.getOutlineString().p;
 		// The object is not yet intialized. Should not be here...
-		if (op.length==0||OBSTACLES[k].type==Unit.BOMB) break;
+                // Breaking out earlier makes for faster processing than chained && / ||
+		if (op.length==0) break; // Something bad happened
+                if (!withBombs&&curObs.type===Unit.BOMB) continue; // doesn't block
+                if (withBombs&&curObs.type===Unit.BOMB&&!teams.includes(curObs.unit.team)) // doesn't block 
+                    { continue; }
 		var s=op[0].x*dy-op[0].y*dx+a;
 		var v=s;
 		for (i=1; i<op.length; i++) {
@@ -4120,7 +4128,9 @@ Unit.prototype = {
 		if (v*s<0) break;
 	    }
 	}
-	if (k<OBSTACLES.length) obs=true;
+        // if the above loop breaks before exhausting all asteroids, or all
+        // mines if mines are also being checked, there is an obstruction
+	if (k<SETUP.asteroids||withBombs&&k<OBSTACLES.length) obs=true;
 	if (min<=10000) {return {d:1,o:obs}; }
 	if (min<=40000) { return {d:2,o:obs}; }
 	return {d:3,o:obs};

@@ -5043,17 +5043,69 @@ window.PILOTS = [
 		points: 24,
 		upgrades: [Unit.CREW,Unit.CREW]
 	},
-	{
-		name: "Captain Nym",
-		faction: Unit.SCUM,
-		unique: true,
-		done: false,
-		pilotid: 251,
-		unit: "Scurrg H-6 Bomber",
-		skill: 8,
-		points: 30,
-		upgrades: [Unit.ELITE,Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
-	},
+    {
+        name: "Captain Nym",
+        faction: Unit.SCUM,
+        unique: true,
+        done: true,
+        pilotid: 251,
+        unit: "Scurrg H-6 Bomber",
+        skill: 8,
+        points: 30,
+        init:function(){
+            var self=this;
+            var saved=null;
+            var savedDetonate=null;
+            var disableDamage=function(e,bomb,asMine,args){
+                // Make Nym not collide with any mine
+                if(asMine){
+                    // Apparently Scum Nym actually *prevents* friendly mines from
+                    // exploding, not just avoiding their damage, when colliding with them
+                    if(args[0]===self){
+                        self.log("ignores (no trigger) [%0]",bomb.name);
+                        self.saved=bomb;
+                        self.savedDetonate=bomb.detonate;
+                        bomb.detonate=function(){}; // Make detonate a no-op for this specific detonation only
+                    }
+                }
+                else{
+                    // Make Nym not in range of any friendly bomb but not prevent them
+                    bomb.wrap_after("getrange",this,function(ship,range){
+                        self.log("ignores (no damage) [%0]",bomb.name);
+                        if(ship===self){ range=4; }
+                        return range;
+                    }).unwrapper("postexplode");
+                }
+            };
+            var enableDamage=function(e,bomb,asMine,args){
+                if(asMine&&self.saved===bomb){
+                    //restore halted bomb's detonate function
+                    bomb.detonate=self.savedDetonate;
+                    self.saved=null;
+                    self.savedDetonate=null;
+                }
+            };
+            var addMineDefense=function(e,friendly,weapon,attacker){
+                attacker.wrap_after("getobstructiondef",self,function(target,def){
+                    // Re-check attack LOS with mines included
+                    if(Unit.prototype.getoutlinerange.call(attacker,attacker.m,target,true,[self.team]).o){
+                        target.log("%0 grants (obstructing bomb):",self.name);
+                        def=def+1;
+                    }
+                    return def;
+                }).unwrapper("endattack");;
+            };
+            $(document).on("preexplode"+self.team,disableDamage);
+            $(document).on("postexplode"+self.team,enableDamage);
+            $(document).on("predefenseroll"+self.team,addMineDefense);
+            self.wrap_after("dies",this,function() { // Clear handlers on Nym's death
+		    $(document).off("preexplosion"+self.team,disableDamage);
+                    $(document).off("postexplosion"+self.team,enableDamage);
+                    $(document).off("predefenseroll"+self.team,addMineDefense);
+            });
+        },
+        upgrades: [Unit.ELITE,Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
+    },
 	{
 		name: "Sol Sixxa",
 		faction: Unit.SCUM,
