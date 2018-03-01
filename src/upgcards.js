@@ -6870,36 +6870,38 @@ var UPGRADES=window.UPGRADES= [
 			});
 		}
 	},
-	{
-		name: "First Order Vanguard",
-		type:Unit.TITLE,
-		done:false,
-		points:2,
-		unique:true,
-		ship: "TIE Silencer",
-		init: function(sh) {
-			var self=this;
-			sh.adddicemodifier(Unit.ATTACK_M,Unit.REROLL_M,Unit.ATTACK_M,this,{
-			dice:["blank","focus"],
-			n:function() { return 1; },
-			req:function(a,w,defender) {
-				var p=this.unit.getenemiesinrange(this.unit.weapons, this.unit.selectnearbyenemy(3))[0];
-				if (p.length===1&&self.isactive) {
-					this.unit.log("+1 reroll [%0]",self.name);
-				}
-				return p.length===1&&self.isactive;
-			}.bind(this)});
-			sh.adddicemodifier(Unit.DEFENSE_M,Unit.REROLL_M,Unit.DEFENSE_M,this,{
-			dice:["blank","focus","evade"],
-			req:function() { return self.isactive; }.bind(this),
-			n:function() { return 9; },
-			f:function(m,n) {
-				this.unit.log("reroll all dice results [%0]",self.name);
-				self.desactivate();
-				return {'m':m,'n':n};
-			}.bind(this)});
-		}
-	},
+    {
+        name: "First Order Vanguard",
+        type:Unit.TITLE,
+        done:true,
+        points:2,
+        unique:true,
+        ship: "TIE Silencer",
+        init: function(sh) {
+            var self=this;
+            sh.adddicemodifier(Unit.ATTACK_M,Unit.REROLL_M,Unit.ATTACK_M,this,{
+                dice:["blank","focus"],
+                n:function() { return 1; },
+                req:function(a,w,defender) {
+                    var p=this.unit.getenemiesinrange(this.unit.weapons, this.unit.selectnearbyenemy(3))[0];
+                    if (p.length===1&&self.isactive) {
+                        this.unit.log("+1 reroll [%0]",self.name);
+                    }
+                    return p.length===1&&self.isactive;
+                }.bind(this)});
+            sh.adddicemodifier(Unit.DEFENSE_M,Unit.REROLL_M,Unit.DEFENSE_M,this,{
+                dice:["blank","focus","evade"],
+                req:function() { return self.isactive; }.bind(this),
+                aiactivate:function(results,count){
+                    return(Unit.FE_blank(results,count)>count/2.0 || (Unit.FE_focus(results) > 0 && this.focuses.length===0));
+                }.bind(this),
+                n:function() { return 9; },
+                f:function() {
+                    this.unit.log("reroll all dice results [%0]",self.name);
+                    self.desactivate();
+                }.bind(this)});
+        }
+    },
 	{
 		name: "Deflective Plating",
 		type:Unit.MOD,

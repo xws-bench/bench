@@ -711,7 +711,7 @@ function reroll(n,from,to,a,id) {
 		    m+=l.length;
 		    n-=l.length;
 		} else {
-		    $("."+attackroll[i]+"greendice:lt("+n+"):not([noreroll])").remove();
+		    $("."+defenseroll[i]+"greendice:lt("+n+"):not([noreroll])").remove();
 		    m+=n;
 		    n=0;
 		    break;
