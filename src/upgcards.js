@@ -4475,7 +4475,7 @@ var UPGRADES=window.UPGRADES= [
 	     req: function() { return targetunit.canuseevade(); },
 	     f: function(m,n) {
 		 this.addiontoken();
-		 if (targetunit.canusefocus()) {
+		 if (targetunit.canuseevade()) {
 		     targetunit.log("cannot use evade in this attack [%0]",self.name);
 		     targetunit.wrap_after("canuseevade",this,function() {
 			 return false;

@@ -3458,26 +3458,26 @@ Unit.prototype = {
     },
     canuseevade: function() {
 	return this.evade>0;
-	},
-	canusereinforce: function() {
-		if (this.reinforce>0) {
-			var inarc = this.isinfiringarc(attackunit);
-			if (this.reinforceaft == 0) {
-				if (inarc) {
-					return true;
-				} else {
-					this.log("Attacker is not in arc, therefore cannot use reinforce on fore side");
-				}
-			} else if (this.reinforceaft == 1) {
-				if (inarc) {
-					this.log("Attacker is in arc, therefore cannot use reinforce on aft side");
-				} else {
-					return true;
-				}
-			}
-		}
-		return false;
-	},
+    },
+    canusereinforce: function() {
+        if (this.reinforce>0) {
+            var inarc = this.isinfiringarc(attackunit);
+            if (this.reinforceaft == 0) {
+                if (inarc) {
+                    return true;
+                } else {
+                    this.log("Attacker is not in arc, therefore cannot use reinforce on fore side");
+                }
+            } else if (this.reinforceaft == 1) {
+                if (inarc) {
+                    this.log("Attacker is in arc, therefore cannot use reinforce on aft side");
+                } else {
+                    return true;
+                }
+            }
+        }
+        return false;
+    },
     canusetarget:function(sh) {
 	//console.log(this.name+" targeting "+sh.name+":"+this.targeting.length+" "+this.targeting.indexOf(sh));
 	return this.targeting.length>0
