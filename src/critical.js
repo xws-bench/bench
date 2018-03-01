@@ -365,13 +365,29 @@ var CRITICAL_DECK=[
 	name:"Blinded Pilot",
 	count:2,
 	init:2,
-	version:[V1,V2],
+	version:[V1],
 	type:"pilot",
 	faceup: function() {
 	    var self=this;
 	    this.log();
 	    this.isactive=true;
 	    this.unit.wrap_after("getattackstrength",this,function(w,t,a) { this.getattackstrength.unwrap(self); self.isactive=false; return 0; });
+	},
+	facedown: function() {
+	    this.isactive=false;
+	}
+    },
+    { 
+	name:"Blinded Pilot",
+	count:2,
+	init:2,
+	version:[V2],
+	type:"pilot",
+	faceup: function() {
+	    var self=this;
+	    this.log();
+	    this.isactive=true;
+	    this.unit.wrap_after("canfire",this,function(b) { this.isactive=false; return false; }).unwrapper("endcombatphase");
 	},
 	facedown: function() {
 	    this.isactive=false;
