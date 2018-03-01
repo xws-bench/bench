@@ -1,0 +1,369 @@
+{
+  "tournament": {
+    "date": "2018-02-10", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 4005, 
+    "name": "GD Games: Not All Stars", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "flightassistastromech"
+                ], 
+                "crew": [
+                  "hotshotcopilot"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }, 
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "title": [
+                  "phantom"
+                ]
+              }
+            }, 
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "maul", 
+                  "ezrabridger"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 587, 
+        "name": "Guillermo Saona", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 594, 
+        "name": "Andrs Romero", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 577, 
+        "name": "Renzo Segura", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 450, 
+        "name": "Alec Sands", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 475, 
+        "name": "Carlos Garcia", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 449, 
+        "name": "Arturo Aliaga", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.69"
+      }, 
+      {
+        "mov": 402, 
+        "name": "Sebastian Nuez", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 340, 
+        "name": "Rafael Navarrete", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 322, 
+        "name": "Jose Fernandez", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.75"
+      }, 
+      {
+        "mov": 254, 
+        "name": "Salvador Otoya", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 150, 
+        "name": "Nicolas Bruce", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Jose Fernandez", 
+            "player1points": 41, 
+            "player2": "Renzo Segura", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sebastian Nuez", 
+            "player1points": 0, 
+            "player2": "Carlos Garcia", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafael Navarrete", 
+            "player1points": 23, 
+            "player2": "Arturo Aliaga", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nicolas Bruce", 
+            "player1points": 0, 
+            "player2": "Andrs Romero", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Salvador Otoya", 
+            "player1points": 26, 
+            "player2": "Guillermo Saona", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alec Sands", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Alec Sands", 
+            "player1points": 0, 
+            "player2": "Arturo Aliaga", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carlos Garcia", 
+            "player1points": 22, 
+            "player2": "Andrs Romero", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jose Fernandez", 
+            "player1points": 54, 
+            "player2": "Guillermo Saona", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Renzo Segura", 
+            "player1points": 100, 
+            "player2": "Salvador Otoya", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafael Navarrete", 
+            "player1points": 79, 
+            "player2": "Sebastian Nuez", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nicolas Bruce", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Arturo Aliaga", 
+            "player1points": 37, 
+            "player2": "Andrs Romero", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Guillermo Saona", 
+            "player1points": 100, 
+            "player2": "Carlos Garcia", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nicolas Bruce", 
+            "player1points": 0, 
+            "player2": "Renzo Segura", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alec Sands", 
+            "player1points": 100, 
+            "player2": "Jose Fernandez", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafael Navarrete", 
+            "player1points": 100, 
+            "player2": "Salvador Otoya", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sebastian Nuez", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Guillermo Saona", 
+            "player1points": 100, 
+            "player2": "Andrs Romero", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafael Navarrete", 
+            "player1points": 0, 
+            "player2": "Alec Sands", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Renzo Segura", 
+            "player1points": 100, 
+            "player2": "Arturo Aliaga", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carlos Garcia", 
+            "player1points": 100, 
+            "player2": "Jose Fernandez", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sebastian Nuez", 
+            "player1points": 100, 
+            "player2": "Nicolas Bruce", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Salvador Otoya", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Lima", 
+      "country": "Peru", 
+      "lat": "-12.062106400000", 
+      "lon": "-77.036525500000", 
+      "name": "GD Games", 
+      "state": "Lima"
+    }, 
+    "video_url": "http://"
+  }
+}
