@@ -344,6 +344,7 @@ Team.prototype = {
 	return s;
     },
     parseJuggler : function(str,translated) {
+        var faction=(typeof this.faction!=="undefined")?this.faction:null;
 	var f,i,j,k;
 	var pid=-1;
 	var getf=function(f) {
@@ -361,15 +362,23 @@ Team.prototype = {
 	for (i=0; i<pilots.length; i++) {
 	    var pstr=pilots[i].split(/\s+\+\s+/);
 	    var lf=0;
-	    for (j=0;j<PILOTS.length; j++) {
-		var v=PILOTS[j].name;
-		var vat=translate(v);
-		var pu="";
-		if (PILOTS[j].ambiguous==true&&typeof PILOTS[j].edition!="undefined") pu="("+PILOTS[j].edition+")";
-		vat+=pu; v+=pu;
-		if (v.replace(/\'/g,"")==pstr[0]) lf=lf|getf(PILOTS[j].faction);
-		if (vat.replace(/\'/g,"")==pstr[0]) lf=lf|getf(PILOTS[j].faction);
-	    }
+	    //for (j=0;j<PILOTS.length; j++) { // Replace with fast lookup
+                // This section iterates over every *single* pilot and tries to get the faction
+                // of the current pilots[i] pilot name?!
+            //direct lookup should be faster, but need to handle multi-faction pilots
+            j=PILOTSNAMEINDEX.indexOf(pstr[0]);
+            if(j===-1){j=PILOTSNAMEINDEX.indexOf("'"+pstr[0]+"'");}
+            if(j===-1){
+                return;
+            }
+            var v=PILOTS[j].name;
+            var vat=translate(v);
+            var pu="";
+            if (PILOTS[j].ambiguous==true&&typeof PILOTS[j].edition!="undefined") pu="("+PILOTS[j].edition+")";
+            vat+=pu; v+=pu;
+            if (v.replace(/\'/g,"")==pstr[0]) lf=lf|getf(PILOTS[j].faction);
+            if (vat.replace(/\'/g,"")==pstr[0]) lf=lf|getf(PILOTS[j].faction);
+	    //}
 	    f=f&lf;
 	}
 	if ((f&1)==1) this.faction=Unit.REBEL; else if ((f&2)==2) this.faction=Unit.SCUM; else this.faction=Unit.EMPIRE;
@@ -510,39 +519,80 @@ Team.prototype = {
 	    var pid=-1;
 	    pilot.team=this.team;
 	    if (pilot.name.match(/-/)!=null) {
-	   	pilot.name=pilot.name.split("-")[0];
-	    }
-	    
-	    for (j=0; j<PILOTS.length; j++) {
-		if (PILOTS[j].faction==this.faction&&
-		   PILOTS[j].unit==PILOT_dict[pilot.ship]) {
-		    var va=PILOTS[j].name;
-		    if (va==PILOT_dict[pilot.name]) { pid=j; break; }
-		}
-	    }
-	    if (pid==-1) throw("pid undefined:"+PILOT_dict[pilot.name]+"-"+pilot.name+"/"+this.faction+"/"+PILOT_dict[pilot.ship]);
+                console.log("Using xws-spec name instead of truncated name: " + pilot.name);
+            }
+            var j=PILOTSNAMEINDEX.indexOf(PILOT_dict[pilot.name]); // INDEX lookup is much faster than iterating over PILOTS
+            var possiblePilots=[];
+            while(j!==-1){  // Fix for Fenn Rau, possibly others
+                possiblePilots.push(j);
+                j=PILOTSNAMEINDEX.indexOf(PILOT_dict[pilot.name],j+1);
+            }
+            for(var p in possiblePilots){
+                j=possiblePilots[p];
+                if (j!==-1 && PILOTS[j].faction==this.faction&&
+                       PILOTS[j].unit==PILOT_dict[pilot.ship]) { 
+                        pid=j;
+                        break;
+                }
+            }
+            
+            if(pid===-1){ 
+                throw("pid undefined:"+PILOT_dict[pilot.name]+"-"+pilot.name+"/"+this.faction+"/"+PILOT_dict[pilot.ship]); 
+            }
 
 	    p=new Unit(this.team,pid);
 	    p.upg=[];
 	    for (var j=0; j<10; j++) p.upg[j]=-1;
 
 	    if (typeof pilot.upgrades!="undefined")  {
-		var nupg=0;
-		for (j in pilot.upgrades) { 
-		    var upg=pilot.upgrades[j];
-		    for (k=0; k<upg.length; k++) {
-			nupg++;
-			for (var z=0; z<UPGRADES.length; z++) 
-			    if (UPGRADES[z].name==UPGRADE_dict[upg[k]]) {
-				for (var f=0; f<p.upgradetype.length; f++)
-				    if (p.upgradetype[f]==UPGRADES[z].type&&p.upg[f]==-1) { p.upg[f]=z; break; }
-				//if (typeof UPGRADES[z].install != "undefined") UPGRADES[z].install(p);
-				break;
-			    }
-		    }
-		}
+                // Need to apply all valid upgrades, but also need to install upgrades first
+                var impUpgList=[];
+                var upgType;
+                var upgInfo;
+                var realUpg;
+                var listIndex=0;
+                // Iterate over imported pilot's upgrades and get their info from
+                // UPGRADES if possible.
+                for (var j in pilot.upgrades){
+                    var upgType=pilot.upgrades[j];
+                    for (var k=0, len=upgType.length; k<len; k++){
+                        upgInfo={"name":upgType[k], "type":j, "index":-1, "hasUpgrades":false, "entry":null};
+                        upgInfo.index=UPGRADESNAMEINDEX.indexOf(UPGRADE_dict[upgInfo.name]); // ~2 faster than iterating over UPGRADES
+                        if(upgInfo.index===-1){
+                            break;
+                        }
+                        else{
+                            realUpg=UPGRADES[upgInfo.index];
+                            upgInfo.hasUpgrades=(
+                                (typeof realUpg.upgrades!=="undefined")||
+                                (typeof realUpg.pointsupg!=="undefined")
+                            );
+                            upgInfo.entry=realUpg;
+                            impUpgList.push(upgInfo);
+                        }
+                    }
+                }
+                //In fact, it doesn't really even matter.  If we can't trust XWS lists,
+                //we should expose that rather than hiding the issue.
+                //Let's just assume there will always be *at least* as many upgrade slots as necessary.
+                var installed=false;
+                while(impUpgList.length>0){
+                    for (var f=0, unusedSlots=(typeof p.upgradetype!=="undefined")?p.upgradetype.length:0; f<unusedSlots; f++){
+                        if (p.upgradetype[f]==impUpgList[0].entry.type&&p.upg[f]==-1) { p.upg[f]=impUpgList[0].index; installed=true; impUpgList.shift(); break; }
+                    }
+                    if(installed){installed=false; continue;} // If we found a slot, great!  Move on.
+                    else{ // Not enough of required type of slots.
+                        var idx=p.upgradetype.length; // Find last index of upgradetype array
+                        p.upgradetype.push(impUpgList[0].entry.type); // Add a new entry of the type we want to install
+                        while(p.upg.length<=idx){p.upg.push(-1);} // lengthen p.upg as well.
+                        p.upg[idx]=impUpgList[0].index;
+                        impUpgList.shift();
+                        continue;
+                    }
+                    throw("Upgrade not instlled:"+impUpgList[0].entry.name+"-"+impUpgList[0].index+"/"+this.faction+"/"+PILOT_dict[pilot.ship]);
+                    break; // In case of emergency
+                }
 	    }
 	}
-	//nextphase();
     }
 }

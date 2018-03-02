@@ -6986,3 +6986,7 @@ var UPGRADES=window.UPGRADES= [
 		}
 	}
 ];
+var UPGRADESNAMEINDEX=window.UPGRADESNAMEINDEX=UPGRADES.map(function(upgcrd){
+    if(upgcrd.ambiguous===true&&typeof upgcrd.edition!=="undefined") return upgcrd.name+" ("+upgcrd.edition+")";
+    return upgcrd.name; // for faster seeking; see http://www.andygup.net/fastest-way-to-find-an-item-in-a-javascript-array/
+});
