@@ -766,6 +766,64 @@
         "sos": "0.00"
       }, 
       {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "trickshot"
+                ], 
+                "illicit": [
+                  "riggedcargochute"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "courierdroid"
+                ], 
+                "ept": [
+                  "trickshot"
+                ], 
+                "illicit": [
+                  "riggedcargochute"
+                ]
+              }
+            }, 
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "lattsrazzi"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "contrabandcybernetics", 
+                  "contrabandcybernetics"
+                ], 
+                "title": [
+                  "shadowcaster"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 0, 
         "name": "Player 16", 
         "rank": {
