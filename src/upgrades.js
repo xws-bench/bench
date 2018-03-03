@@ -153,7 +153,7 @@ Bomb.prototype = {
 	    this.display(0,0);
 	    this.unit.bombdropped(this);
 	    //this.unit.log("endaction dropped "+n);
-	    if (typeof n!="undefined") this.unit.endnoaction(n,"DROP");
+	    if (typeof n!="undefined") this.unit.endaction(n,"DROP");
 	}.bind(dropped),false,true);
     },
     display(x,y) {

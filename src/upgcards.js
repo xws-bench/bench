@@ -1785,7 +1785,7 @@ var UPGRADES=window.UPGRADES= [
             });
             // After an action taken while stressed, may discard to drop one stress
             sh.wrap_after("endaction",this,function() {
-	      if (!(self.isactive&&sh.stress>0&&!self.waiting)) return;
+	      if (!(self.isactive&&sh.actionsdone.length>0&&sh.stress>0&&!self.waiting)) return;
               self.waiting=true;
 	      this.donoaction([{type:"ASTROMECH",name:self.name,org:self,
 				action:function(n) {
@@ -3194,7 +3194,14 @@ var UPGRADES=window.UPGRADES= [
 	    //sh.weapons[0].followupattack=function() { return sh.indexOf(turret[0]); };
 	    sh.addattack(function(c,h) { 
 		return this.weapons[this.activeweapon].isprimary;
-	    },self,turret); 
+	    },self,turret);
+            
+            sh.wrap_after("evaluatetohit",self,function(wpIdx,enemy,thp){
+                if(sh.ia){
+                    if(wpIdx===0&&thp.tohit!==0){thp.tohit=100;}
+                    return thp;
+                }
+            });
 	},
         points: 0,
         ship: "Y-Wing",
