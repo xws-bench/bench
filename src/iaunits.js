@@ -297,8 +297,12 @@ IAUnit.prototype = {
 	    var mine=this.getmcollisions(this.m);
 	    if (mine.length>0) 
 		for (i=0; i<mine.length; i++) {
-		    if (typeof OBSTACLES[mine[i]].detonate=="function") 
-			OBSTACLES[mine[i]].detonate(this)
+                    var o=OBSTACLES[mine[i]];
+		    if (o.type==Unit.BOMB&&typeof o.detonate=="function"){ 
+			o.preexplode(true,[this,false]);
+                        o.detonate(this,false)
+                        o.postexplode(true,[this,false]);
+                    }
 		    else {
 			this.log("colliding with obstacle");
 			this.resolveocollision(1,[]);
@@ -586,10 +590,8 @@ IAUnit.prototype = {
 			addroll(d.f,i,to);
 		} if (d.type==Unit.REROLL_M&&d.req(activeunit,activeunit.weapons[activeunit.activeweapon],targetunit)) {
 		    if (typeof d.aiactivate!="function"||d.aiactivate(m,n)==true) {
-                        if( $(".blankreddice").length > 0 || ($(".focusreddice").length > 0 && this.focuses.length == 0 )){ // Attempt to make TL-spending smarter
-                            if (typeof d.f=="function") d.f();
-                            reroll(n,from,to,d,i);
-                        }
+                        if (typeof d.f=="function") d.f();
+                        reroll(n,from,to,d,i);
 		    }
 		}
 	    }

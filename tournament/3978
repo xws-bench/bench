@@ -1,0 +1,732 @@
+{
+  "tournament": {
+    "date": "2018-02-11", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3978, 
+    "name": "Beyond the Dungeon Sunday Tournament", 
+    "players": [
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "spicerunner", 
+              "ship": "hwk290"
+            }, 
+            {
+              "name": "spicerunner", 
+              "ship": "hwk290"
+            }, 
+            {
+              "name": "spicerunner", 
+              "ship": "hwk290"
+            }, 
+            {
+              "name": "spicerunner", 
+              "ship": "hwk290"
+            }, 
+            {
+              "name": "spicerunner", 
+              "ship": "hwk290"
+            }, 
+            {
+              "name": "spicerunner", 
+              "ship": "hwk290"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 51, 
+        "name": "Jeremy Green", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.67"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "maarekstele", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 218, 
+        "name": "Chris Marek", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "bountyhunter", 
+              "ship": "firespray31"
+            }, 
+            {
+              "name": "bountyhunter", 
+              "ship": "firespray31"
+            }, 
+            {
+              "name": "bountyhunter", 
+              "ship": "firespray31"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 504, 
+        "name": "David Light", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 481, 
+        "name": "Casey", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.22"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 432, 
+        "name": "Lee", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "saboteur"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "saboteur"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "saboteur"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "saboteur"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 376, 
+        "name": "Adrian", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.61"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts", 
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 350, 
+        "name": "Jesse", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 277, 
+        "name": "Erik Larsen", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 1, 
+        "sos": "0.78"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 230, 
+        "name": "Gerry", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronpathfinder", 
+              "ship": "uwing", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpathfinder", 
+              "ship": "uwing", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpathfinder", 
+              "ship": "uwing", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpathfinder", 
+              "ship": "uwing", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpathfinder", 
+              "ship": "uwing", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpathfinder", 
+              "ship": "uwing", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpathfinder", 
+              "ship": "uwing", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 215, 
+        "name": "Chris Scafer", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 183, 
+        "name": "Wayne", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "flightassistastromech"
+                ], 
+                "crew": [
+                  "hotshotcopilot"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }, 
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "janors", 
+                  "chopper"
+                ], 
+                "ept": [
+                  "drawtheirfire"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 83, 
+        "name": "Brent", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 0, 
+        "sos": "0.56"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Chris Marek", 
+            "player1points": 100, 
+            "player2": "Gerry", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jesse", 
+            "player1points": 17, 
+            "player2": "Erik Larsen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lee", 
+            "player1points": 100, 
+            "player2": "Wayne", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Light", 
+            "player1points": 100, 
+            "player2": "Jeremy Green", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adrian", 
+            "player1points": 100, 
+            "player2": "Chris Scafer", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Casey", 
+            "player1points": 100, 
+            "player2": "Brent", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "David Light", 
+            "player1points": 100, 
+            "player2": "Lee", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erik Larsen", 
+            "player1points": 50, 
+            "player2": "Casey", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Marek", 
+            "player1points": 56, 
+            "player2": "Adrian", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gerry", 
+            "player1points": 100, 
+            "player2": "Brent", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wayne", 
+            "player1points": 33, 
+            "player2": "Jesse", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeremy Green", 
+            "player1points": 19, 
+            "player2": "Chris Scafer", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "David Light", 
+            "player1points": 100, 
+            "player2": "Adrian", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Casey", 
+            "player1points": 100, 
+            "player2": "Gerry", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Scafer", 
+            "player1points": 34, 
+            "player2": "Jesse", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Erik Larsen", 
+            "player1points": 0, 
+            "player2": "Lee", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brent", 
+            "player1points": 50, 
+            "player2": "Wayne", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Vassal play", 
+    "venue": {
+      "city": "Spring", 
+      "country": "United States of America", 
+      "lat": "30.079882600000", 
+      "lon": "-95.417254900000", 
+      "name": "Beyond the Dungeon", 
+      "state": "Texas"
+    }, 
+    "video_url": "http://"
+  }
+}

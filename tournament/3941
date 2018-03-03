@@ -1,0 +1,831 @@
+{
+  "tournament": {
+    "date": "2018-02-03", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3941, 
+    "name": "ZIma z X;em", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "connernet", 
+                  "proximitymines"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "crimsonspecialist", 
+              "ship": "bsf17bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "mod": [
+                  "deflectiveplating"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ]
+              }
+            }, 
+            {
+              "name": "ap5", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "crew": [
+                  "inspiringrecruit"
+                ], 
+                "mod": [
+                  "pulsedrayshield"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 709, 
+        "name": "Norbert", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.33"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "mod": [
+                  "smugglingcompartment", 
+                  "countermeasures"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 640, 
+        "name": "Misiek", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "nusquadronpilot", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "os1arsenalloadout"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 600, 
+        "name": "Arxx", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 572, 
+        "name": "Drozd", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 473, 
+        "name": "Regrof", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "lonewolf"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine", 
+                  "kyloren"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 401, 
+        "name": "MEDZIK", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 480, 
+        "name": "Maku", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "lattsrazzi"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "glitterstim", 
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "illicit": [
+                  "burnoutslam"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 404, 
+        "name": "Matamata", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "blacksunassassin", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "starvipermkii"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunassassin", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "starvipermkii"
+                ]
+              }
+            }, 
+            {
+              "name": "guri", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "contrabandcybernetics"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "starvipermkii", 
+                  "virago"
+                ], 
+                "torpedo": [
+                  "seismictorpedo"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 381, 
+        "name": "Cypek", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.54"
+      }, 
+      {
+        "mov": 365, 
+        "name": "Elvis", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 2, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 364, 
+        "name": "Sawek Lech", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 353, 
+        "name": "Remik", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "dashrendar"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 338, 
+        "name": "Mateusz", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 1, 
+        "sos": "0.25"
+      }, 
+      {
+        "mov": 289, 
+        "name": "Przemek", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 238, 
+        "name": "Duszek", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 1, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 221, 
+        "name": "Szymon", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 31, 
+        "name": "FILIP", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 141, 
+        "name": "Szawas", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 0, 
+        "sos": "0.42"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Sawek Lech", 
+            "player1points": 38, 
+            "player2": "Maku", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Misiek", 
+            "player1points": 100, 
+            "player2": "Drozd", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "MEDZIK", 
+            "player1points": 73, 
+            "player2": "Remik", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Arxx", 
+            "player1points": 100, 
+            "player2": "Regrof", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matamata", 
+            "player1points": 0, 
+            "player2": "Elvis", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cypek", 
+            "player1points": 100, 
+            "player2": "Szawas", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "FILIP", 
+            "player1points": 100, 
+            "player2": "Przemek", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Duszek", 
+            "player1points": 0, 
+            "player2": "Norbert", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Szymon", 
+            "player1points": 26, 
+            "player2": "Mateusz", 
+            "player2points": 12, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Norbert", 
+            "player1points": 59, 
+            "player2": "Elvis", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cypek", 
+            "player1points": 100, 
+            "player2": "Arxx", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "FILIP", 
+            "player1points": 17, 
+            "player2": "Maku", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "MEDZIK", 
+            "player1points": 100, 
+            "player2": "Misiek", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Szymon", 
+            "player1points": 0, 
+            "player2": "Sawek Lech", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mateusz", 
+            "player1points": 27, 
+            "player2": "Remik", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Duszek", 
+            "player1points": 38, 
+            "player2": "Regrof", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Szawas", 
+            "player1points": 48, 
+            "player2": "Matamata", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Przemek", 
+            "player1points": 28, 
+            "player2": "Drozd", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Maku", 
+            "player1points": 52, 
+            "player2": "MEDZIK", 
+            "player2points": 80, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cypek", 
+            "player1points": 26, 
+            "player2": "Regrof", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Drozd", 
+            "player1points": 100, 
+            "player2": "Szymon", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Arxx", 
+            "player1points": 100, 
+            "player2": "Remik", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sawek Lech", 
+            "player1points": 0, 
+            "player2": "Misiek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "FILIP", 
+            "player1points": 28, 
+            "player2": "Elvis", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Przemek", 
+            "player1points": 100, 
+            "player2": "Mateusz", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Duszek", 
+            "player1points": 100, 
+            "player2": "Szawas", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "MEDZIK", 
+            "player1points": 0, 
+            "player2": "Arxx", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matamata", 
+            "player1points": 100, 
+            "player2": "Cypek", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Drozd", 
+            "player1points": 100, 
+            "player2": "Duszek", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maku", 
+            "player1points": 63, 
+            "player2": "Regrof", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Misiek", 
+            "player1points": 100, 
+            "player2": "Elvis", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sawek Lech", 
+            "player1points": 54, 
+            "player2": "Przemek", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Szymon", 
+            "player1points": 19, 
+            "player2": "Remik", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "FILIP", 
+            "player1points": 0, 
+            "player2": "Norbert", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Szawas", 
+            "player1points": 24, 
+            "player2": "Mateusz", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Tarnow", 
+      "country": "Poland", 
+      "lat": "50.012378400000", 
+      "lon": "20.988073900000", 
+      "name": "Trening przed SOS", 
+      "state": "Malopolskie"
+    }, 
+    "video_url": "http://"
+  }
+}

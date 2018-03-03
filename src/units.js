@@ -912,7 +912,10 @@ Unit.prototype = {
 		 }.bind(this),str:"focus",token:true,noreroll:"focus"},
 		{from:Unit.ATTACK_M,type:Unit.REROLL_M,to:Unit.ATTACK_M,org:this,
 		 req:function(a,w,t) {return this.canusetarget(t);}.bind(this),
-		 n:function() { return 9; },
+		 aiactivate:function(m,n){
+                    return(Unit.FCH_blank(m,n)>0 || (Unit.FCH_focus(m)>0 && this.focuses.length == 0 )); // Attempt to make TL-spending smarter
+                 }.bind(this),
+                 n:function() { return 9; },
 		 dice:["blank","focus"],
 		 f:function() {
 		     activeunit.removetarget(targetunit);
@@ -958,7 +961,7 @@ Unit.prototype = {
 	mod.type=type;
 	mod.from=from;
 	mod.to=to;
-	this.wrap_after("getdicemodifiers",org,function(m) {
+	return this.wrap_after("getdicemodifiers",org,function(m) {
 	    return m.concat(mod);
 	});
     },
@@ -1477,28 +1480,33 @@ Unit.prototype = {
 	this.movelog("FO");
 	this.show();
 	},
+    addreinforce: function(n){
+        
+            var resolvereinforce=function(n,aft) {
+                $("#actiondial").empty();
+                this.reinforceaft = aft;
+                this.log("Adding reinforce token on " + (aft==0 ? "fore" : "aft") + " side");    
+                this.addreinforcetoken();
+                this.endnoaction(n,"REINFORCE");
+                //this.unlock();
+            }.bind(this);
+            
+            this.doselection(function(n) {
+                $("#actiondial").empty();
+                var fore=$("<button>").html("Fore").on("touch click",function() { resolvereinforce(n,0);}.bind(this));
+                $("#actiondial").append(fore);
+                var aft=$("<button>").html("Aft").on("touch click",function() { resolvereinforce(n,1);}.bind(this));
+                $("#actiondial").append(aft);    
+                $("#actiondial").show();
+            }.bind(this),"REINFORCE");
+            
+            this.endaction(n,"REINFORCE"); // End addreinforce to start selection action         
+        },
     addreinforcetoken: function() {
-		var resolvereinforce=function(aft) {
-			this.reinforceaft = aft;
-			this.reinforce++;
-			this.log("Adding reinforce token on " + (aft==0 ? "fore" : "aft") + " side");
-			this.animateaddtoken("xreinforcetoken");
-			this.movelog("E");
-			$("#actiondial").empty();
-			this.unlock();
-		}.bind(this);
-		
-		$("#actiondial").empty();
-		var fore=$("<button>").html("Fore").on("touch click",function() { resolvereinforce(0);}.bind(this));
-		$("#actiondial").append(fore);
-		var aft=$("<button>").html("Aft").on("touch click",function() { resolvereinforce(1);}.bind(this));
-		$("#actiondial").append(aft);
-		
-		this.latedeferred=this.deferred;
-		this.newlock().done(function() {
-			this.deferred=this.latedeferred;
-		}.bind(this));
-
+            this.reinforce++;
+            this.animateaddtoken("xreinforcetoken");
+            this.movelog("E");
+            this.show();
 	},	
     addtractorbeam:function(u) {
 	this.addtractorbeamtoken();
@@ -2103,8 +2111,11 @@ Unit.prototype = {
 	    if (mine.length>0){ 
 		for (i=0; i<mine.length; i++) {
 		    var o=OBSTACLES[mine[i]];
-		    if (o.type==Unit.BOMB&&typeof o.detonate=="function") 
-			o.detonate(this,false)
+		    if (o.type==Unit.BOMB&&typeof o.detonate=="function"){ 
+			o.preexplode(true,[this,false]);
+                        o.detonate(this,false)
+                        o.postexplode(true,[this,false]);
+                    }
 		    else {
 			this.ocollision.overlap=i;
 			this.log("colliding with obstacle");
@@ -2195,10 +2206,6 @@ Unit.prototype = {
  		this.noattack=round;
 		this.showstats();
 		this.endaction(n,"RELOAD");
-	},
-	addreinforce: function(n) {
-		this.addreinforcetoken();
-		this.endaction(n, "REINFORCE");	
 	},
     candoarcrotate: function() { return this.hasmobilearc; },
     setarcrotate: function(r) { this.arcrotation=90*r; },
@@ -2580,8 +2587,12 @@ Unit.prototype = {
 	//this.show();
     },
     preattackroll:function(w,targetunit) {
+        $(document).trigger("preattackroll"+this.team,
+        [this,w,targetunit]); // Presumably some predefenseroll stuff needs w and attacker
     },
     predefenseroll:function(w,attacker) {
+        $(document).trigger("predefenseroll"+this.team,
+        [this,w,attacker]); // Presumably some predefenseroll stuff needs w and attacker
     },
     doattack: function(weaponlist,enemies) {
 	this.activeweapons=weaponlist;
@@ -2768,10 +2779,15 @@ Unit.prototype = {
 		//path.remove();
 		if (this.hascollidedobstacle()) 
 		    this.resolveocollision(this.ocollision.overlap,this.ocollision.template);
-		if (this.ocollision.mine.length>0) 
+		if (this.ocollision.mine.length>0){
+                    var mine;
 		    for (i=0; i<this.ocollision.mine.length; i++) {
-			this.ocollision.mine[i].detonate(this,false);
+                        mine=this.ocollision.mine[i];
+			mine.preexplode(true,[this,false]);
+                        mine.detonate(this,false);
+                        mine.postexplode(true,[this,false]);
 		    }
+                }
 		if (this.collision) this.resolvecollision();
 		this.endmaneuver();
 	    }.bind(this));
@@ -3127,7 +3143,7 @@ Unit.prototype = {
 	}
 	this.actionbarrier();
     },
-    getbomblocation: function() {
+    getbomblocation: function(bomb) {
 	return ["F1"];
     },
     getbombposition: function(lm,size) {
@@ -3442,26 +3458,26 @@ Unit.prototype = {
     },
     canuseevade: function() {
 	return this.evade>0;
-	},
-	canusereinforce: function() {
-		if (this.reinforce>0) {
-			var inarc = this.isinfiringarc(attackunit);
-			if (this.reinforceaft == 0) {
-				if (inarc) {
-					return true;
-				} else {
-					this.log("Attacker is not in arc, therefore cannot use reinforce on fore side");
-				}
-			} else if (this.reinforceaft == 1) {
-				if (inarc) {
-					this.log("Attacker is in arc, therefore cannot use reinforce on aft side");
-				} else {
-					return true;
-				}
-			}
-		}
-		return false;
-	},
+    },
+    canusereinforce: function() {
+        if (this.reinforce>0) {
+            var inarc = this.isinfiringarc(attackunit);
+            if (this.reinforceaft == 0) {
+                if (inarc) {
+                    return true;
+                } else {
+                    this.log("Attacker is not in arc, therefore cannot use reinforce on fore side");
+                }
+            } else if (this.reinforceaft == 1) {
+                if (inarc) {
+                    this.log("Attacker is in arc, therefore cannot use reinforce on aft side");
+                } else {
+                    return true;
+                }
+            }
+        }
+        return false;
+    },
     canusetarget:function(sh) {
 	//console.log(this.name+" targeting "+sh.name+":"+this.targeting.length+" "+this.targeting.indexOf(sh));
 	return this.targeting.length>0
@@ -4071,8 +4087,10 @@ Unit.prototype = {
 	return min;
     },
     // Returns the range separating both units and if an obstacle is inbetween
-    getoutlinerange:function(m,sh) {
-	var ro=this.getOutlinePoints(m);
+    getoutlinerange:function(m,sh,withBombs,teams) {
+        if(typeof withBombs==="undefined") {withBombs=false;teams=[];} // Need to allow bomb checks for Nym
+	else {teams=(typeof teams==="undefined")?[sh.team]:teams;} // Need to check team types
+        var ro=this.getOutlinePoints(m);
 	var rsh = sh.getOutlinePoints(sh.m);
 	var min=90001;
 	var i,j,k=0;
@@ -4090,11 +4108,17 @@ Unit.prototype = {
 	var dy=rsh[minj].y-ro[mini].y;
 	var a=-ro[mini].x*dy+ro[mini].y*dx; //(x-x0)*dy-(y-y0)*dx>0
 	if (OBSTACLES.length>0) {
+            var curObs;
 	    for (k=0; k<OBSTACLES.length; k++) {
-		if (OBSTACLES[k].type==NONE) continue;
-		var op=OBSTACLES[k].getOutlineString().p;
+                curObs=OBSTACLES[k];
+		if (curObs.type==NONE) continue;
+		var op=curObs.getOutlineString().p;
 		// The object is not yet intialized. Should not be here...
-		if (op.length==0||OBSTACLES[k].type==Unit.BOMB) break;
+                // Breaking out earlier makes for faster processing than chained && / ||
+		if (op.length==0) break; // Something bad happened
+                if (!withBombs&&curObs.type===Unit.BOMB) continue; // doesn't block
+                if (withBombs&&curObs.type===Unit.BOMB&&!teams.includes(curObs.unit.team)) // doesn't block 
+                    { continue; }
 		var s=op[0].x*dy-op[0].y*dx+a;
 		var v=s;
 		for (i=1; i<op.length; i++) {
@@ -4107,7 +4131,9 @@ Unit.prototype = {
 		if (v*s<0) break;
 	    }
 	}
-	if (k<OBSTACLES.length) obs=true;
+        // if the above loop breaks before exhausting all asteroids, or all
+        // mines if mines are also being checked, there is an obstruction
+	if (k<SETUP.asteroids||withBombs&&k<OBSTACLES.length) obs=true;
 	if (min<=10000) {return {d:1,o:obs}; }
 	if (min<=40000) { return {d:2,o:obs}; }
 	return {d:3,o:obs};

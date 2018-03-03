@@ -27,6 +27,8 @@ function Bomb(sh,bdesc) {
 Bomb.prototype = { 
     wrap_before:Unit.prototype.wrap_before,
     wrap_after:Unit.prototype.wrap_after,
+    setclickhandler:Unit.prototype.setclickhandler,
+    setdefaultclickhandler:Unit.prototype.setdefaultclickhandler,
     isWeapon() { return false; },
     isBomb() { return true; },
     showOrdnance() { return this+1; },
@@ -60,7 +62,7 @@ Bomb.prototype = {
     actiondrop(n) {
 	this.unit.lastdrop=round;
 	$(".bombs").remove(); 
-	this.drop(this.unit.getbomblocation(),n);
+	this.drop(this.unit.getbomblocation(this),n);
 	//this.unit.showactivation();
     },
     toString() {
@@ -151,7 +153,7 @@ Bomb.prototype = {
 	    this.display(0,0);
 	    this.unit.bombdropped(this);
 	    //this.unit.log("endaction dropped "+n);
-	    if (typeof n!="undefined") this.unit.endnoaction(n,"DROP");
+	    if (typeof n!="undefined") this.unit.endaction(n,"DROP");
 	}.bind(dropped),false,true);
     },
     display(x,y) {
@@ -190,7 +192,9 @@ Bomb.prototype = {
 	    OBSTACLES.push(this);
 	    var p=this.getcollisions();
 	    if (p.length>0) this.unit.resolveactionselection(p,function(k) {
+                this.preexplode(true,[p[k],true]);
 		this.detonate(p[k],true);
+                this.postexplode(true,[p[k],true]);
 	    }.bind(this));
 	}
     },
@@ -215,6 +219,8 @@ Bomb.prototype = {
 	this.g.remove();
 	BOMBS.splice(BOMBS.indexOf(this),1);
     },
+    preexplode(isMine,args) {$(document).trigger("preexplode"+this.unit.team,[this,isMine,args]); },
+    postexplode(isMine,args) {$(document).trigger("postexplode"+this.unit.team,[this,isMine,args]); },
     explode() { this.explode_base(); },
     detonate(t,immediate) {
 	OBSTACLES.splice(OBSTACLES.indexOf(this),1);

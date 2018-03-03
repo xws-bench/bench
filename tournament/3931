@@ -1,0 +1,119 @@
+{
+  "tournament": {
+    "date": "2018-01-20", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3931, 
+    "name": "CDG Jan", 
+    "players": [
+      {
+        "mov": 509, 
+        "name": "John Hazen \"Evil\"", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 350, 
+        "name": "Jim Misavage", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 153, 
+        "name": "Chris King", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 188, 
+        "name": "Glen Gearhart", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 0, 
+        "sos": "0.67"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Jim Misavage", 
+            "player1points": 100, 
+            "player2": "Glen Gearhart", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris King", 
+            "player1points": 26, 
+            "player2": "John Hazen \"Evil\"", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jim Misavage", 
+            "player1points": 50, 
+            "player2": "John Hazen \"Evil\"", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Glen Gearhart", 
+            "player1points": 65, 
+            "player2": "Chris King", 
+            "player2points": 67, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Chris King", 
+            "player1points": 25, 
+            "player2": "Jim Misavage", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Glen Gearhart", 
+            "player1points": 15, 
+            "player2": "John Hazen \"Evil\"", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Vassal play", 
+    "venue": {
+      "city": "Niles", 
+      "country": "United States of America", 
+      "lat": "41.182835300000", 
+      "lon": "-80.765358000000", 
+      "name": "", 
+      "state": "Ohio"
+    }, 
+    "video_url": "http://"
+  }
+}

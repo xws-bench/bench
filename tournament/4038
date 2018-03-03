@@ -1,0 +1,353 @@
+{
+  "tournament": {
+    "date": "2018-02-17", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 4038, 
+    "name": "Episodio VIII - Os Ultimos Jedi", 
+    "players": [
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "lattsrazzi"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "scavengercrane", 
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "title": [
+                  "shadowcaster"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 451, 
+        "name": "Viny", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "wookieeliberator", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "expertise"
+                ]
+              }
+            }, 
+            {
+              "name": "wookieeliberator", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "expertise"
+                ]
+              }
+            }, 
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "tactician", 
+                  "c3po"
+                ], 
+                "ept": [
+                  "predator"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 463, 
+        "name": "Rodrigo Sampaio Rodriguez", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "kavil", 
+              "ship": "ywing", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "bombloadout", 
+                  "plasmatorpedoes"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines"
+                ], 
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "illicit": [
+                  "hotshotblaster"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ], 
+                "title": [
+                  "slavei"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 420, 
+        "name": "JP", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 294, 
+        "name": "Pedro", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.78"
+      }, 
+      {
+        "mov": 285, 
+        "name": "Cleber", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.83"
+      }, 
+      {
+        "mov": 187, 
+        "name": "Fred", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 150, 
+        "name": "Rodrigo d20", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 1, 
+        "sos": "0.83"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Rodrigo Sampaio Rodriguez", 
+            "player1points": 30, 
+            "player2": "Pedro", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fred", 
+            "player1points": 35, 
+            "player2": "JP", 
+            "player2points": 98, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Viny", 
+            "player1points": 51, 
+            "player2": "Cleber", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rodrigo d20", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "JP", 
+            "player1points": 57, 
+            "player2": "Pedro", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rodrigo d20", 
+            "player1points": 0, 
+            "player2": "Viny", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rodrigo Sampaio Rodriguez", 
+            "player1points": 100, 
+            "player2": "Cleber", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fred", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Pedro", 
+            "player1points": 50, 
+            "player2": "Viny", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rodrigo d20", 
+            "player1points": 0, 
+            "player2": "JP", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rodrigo Sampaio Rodriguez", 
+            "player1points": 100, 
+            "player2": "Fred", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cleber", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Ribeiro Preto", 
+      "country": "Brazil", 
+      "lat": "-20.613500000000", 
+      "lon": "-48.918837719298", 
+      "name": "d20 Game Center", 
+      "state": "Sao Paulo"
+    }, 
+    "video_url": "http://"
+  }
+}

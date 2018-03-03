@@ -7,6 +7,7 @@ const VERSION="v0.99.2";
 var LANG="en";
 var FILTER="none";
 var DECLOAK_PHASE=1;
+var BOMBS_PHASE=9;
 const WEBSITE="https://baranidlo.github.io/bench/main.html";
 const DICES=["focusred","hitred","criticalred","blankred","focusgreen","evadegreen","blankgreen"];
 const SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6,XP_PHASE=7,MAIN_PHASE=0;
@@ -329,6 +330,7 @@ function formatstring(s) {
 	.replace(/%MOD%/g,"<code class='symbols'>m</code>")
 	.replace(/%SLAM%/g,"<code class='symbols'>s</code>")
         .replace(/%WEAPONDISABLED%/g,"<code class='xnomoreattacktoken'></code>")
+        .replace(/%REINFORCE%/g,"<code class='xreinforcetoken'></code>")
     ;
 }
 function displayplayertype(team,img) {
@@ -709,7 +711,7 @@ function reroll(n,from,to,a,id) {
 		    m+=l.length;
 		    n-=l.length;
 		} else {
-		    $("."+attackroll[i]+"greendice:lt("+n+"):not([noreroll])").remove();
+		    $("."+defenseroll[i]+"greendice:lt("+n+"):not([noreroll])").remove();
 		    m+=n;
 		    n=0;
 		    break;
@@ -1153,7 +1155,26 @@ function endsetupphase() {
     else{ // Second time around means all post-setup actions are complete!
         return true;
     }
-    
+}
+function bombsHandled(actionsLength){
+    if(subphase!==BOMBS_PHASE){ // If there are post-activation actions, skip this
+        if(actionr.length===actionsLength) { // If no actions to perform, continue!
+            return true;}
+        else { // Make continuation to planning phase contingent on *all* 
+            subphase=BOMBS_PHASE;
+            
+            // Chain all endofsetupphase actions together
+            actionr[actionr.length-1].done(nextphase);  
+            
+            for(var j=actionsLength; j<actionr.length-2; j++){
+                actionr[j].done(actionr[j+1]); // Explicitly link actions
+            }
+            return false;
+        }
+    }
+    else{ // Second time around means all post-setup actions are complete!
+        return true;
+    }
 }
 function nextphase() {
     var i;
@@ -1216,17 +1237,32 @@ function nextphase() {
 	}
 	break;
     case ACTIVATION_PHASE:
-	$("#activationdial").hide();
-	for (i in squadron) {
-	    squadron[i].hasmoved=false; 
-	    squadron[i].hasdecloaked=false;
-	    squadron[i].actiondone=false;
-	    squadron[i].endactivationphase();
-	}
-	var b=[];
-	for (i=0; i<BOMBS.length; i++) b[i]=BOMBS[i];
-	for (i=0; i<b.length; i++) b[i].explode();
-	break;
+        if(subphase!==BOMBS_PHASE){
+            $("#activationdial").hide();
+            for (i in squadron) {
+                squadron[i].hasmoved=false; 
+                squadron[i].hasdecloaked=false;
+                squadron[i].actiondone=false;
+                squadron[i].endactivationphase();
+            }
+            var actionLength = actionr.length;
+            var b=[];
+            for (i=0; i<BOMBS.length; i++) b[i]=BOMBS[i];
+
+            $(document).trigger("beginbombs"+(TEAMS[1].initiative?"1":"2"));
+            $(document).trigger("beginbombs"+(TEAMS[2].initiative?"1":"2"));
+            for (i=0; i<b.length; i++){ 
+                b[i].preexplode(false); // bombs that are not mines
+                b[i].explode();
+                b[i].postexplode(false);
+            }
+            $(document).trigger("endbombs"+(TEAMS[1].initiative?"1":"2"));
+            $(document).trigger("endbombs"+(TEAMS[2].initiative?"1":"2"));
+        }
+        if(bombsHandled(actionLength))
+            break;
+        else
+            return;
     case COMBAT_PHASE:
 	$("#attackdial").hide();
 	$("#listunits").html("");
@@ -1971,8 +2007,8 @@ $(document).ready(function() {
 
 	if (typeof localStorage.volume=="undefined") localStorage.volume=0.8;
 
-	//Howler.volume(localStorage.volume);
-	//$("#vol").val(localStorage.volume*100);
+	Howler.volume(localStorage.volume);
+	$("#vol").val(localStorage.volume*100);
 
 	var mc= new Hammer(document.getElementById('svgout'));
 	mc.get("pinch").set({enable:true});

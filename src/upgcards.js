@@ -875,17 +875,45 @@ var UPGRADES=window.UPGRADES= [
         init: function(sh) {
 	    var self=this;
 	    self.ea=Unit.prototype.resolvecritical;
-	    Unit.prototype.resolvecritical=function(c) {
-		if (!self.unit.dead&&self.isactive
-		    &&c>0&&(self.unit in this.selectnearbyally(1))){
-		    this.selectunit([this,sh],function(p,k) {
-			if (k===0) { self.ea.call(this,1); }
-			else { self.ea.call(sh,1);}
-		    },["select unit [%0]",self.name],false);
-		    self.ea.call(this,c-1);
-		} else self.ea.call(this,c);
-		return c;
-	    };
+            $(document).on("predefenseroll"+sh.team,function(e,ship)                {
+                    ship.resolvecritical=function(c) {
+                        if (!self.unit.dead&&self.isactive&&c>0&&sh.getrange(ship)<=1){
+                            ship.selectunit([ship,sh],function(p,k) {
+                                if (k===0) { self.ea.call(ship,1); }
+                                else { self.ea.call(sh,1);
+                            }
+                        },["select unit [%0] or self to cancel",self.name],false);
+                        self.ea.call(ship,c-1);
+                    } else self.ea.call(ship,c);
+                    return c;
+                };           
+            });
+	    
+	}, 
+	done:true,
+        type: Unit.ELITE,
+        points: 1,
+    },
+    { /* TODO: a ship is still hit if crit is transferred ? */
+        name: "Selflessness",
+	rating:1,
+        init: function(sh) {
+	    var self=this;
+	    self.ea=Unit.prototype.resolvehit;
+            $(document).on("predefenseroll"+sh.team,function(e,ship){
+                    ship.resolvehit=function(h) {   
+                        if (!self.unit.dead&&self.isactive&&h>0&&sh.getrange(ship)<=1){
+                            ship.selectunit([ship,sh],function(p,k) {
+                                if (k===0) { self.ea.call(ship,h); }
+                                else {
+                                    // If the Selflessness ship takes the damage, deactivate the card
+                                    self.ea.call(sh,h);}
+                                    self.desactivate();
+                        },["select unit [%0] or self to cancel",self.name],false);
+                    } else self.ea.call(ship,h);
+                    return h;
+                };           
+            });  
 	}, 
 	done:true,
         type: Unit.ELITE,
@@ -1729,6 +1757,46 @@ var UPGRADES=window.UPGRADES= [
                 self.uninstall();
             });
 	}
+    },
+    {
+        name: "R4-E1",
+        done:true,
+        unique:true,
+        type: Unit.SALVAGED,
+        points: 1,
+        init: function(sh){
+            var self=this;
+            self.waiting=false;
+            // Cleanest way to allow actions while stressed
+            sh.wrap_after("hasnostresseffect",this,function(b) {
+	      if(self.isactive){return true;}
+              else{return b;}
+            });
+            // If the host ship is stressed but preparing for an action, only pass
+            // TORPEDO and BOMB actions through
+            sh.wrap_after("getactionlist",this,function(isendmaneuver,al){
+                if(self.isactive&&sh.stress>0){
+                    al=sh.getupgactionlist();
+                    al=al.filter(
+                        actItem=>(actItem.type==="TORPEDO"||actItem.type==="BOMB")
+                    );
+                }
+                return al;
+            });
+            // After an action taken while stressed, may discard to drop one stress
+            sh.wrap_after("endaction",this,function() {
+	      if (!(self.isactive&&sh.actionsdone.length>0&&sh.stress>0&&!self.waiting)) return;
+              self.waiting=true;
+	      this.donoaction([{type:"ASTROMECH",name:self.name,org:self,
+				action:function(n) {
+				    self.desactivate();
+				    this.removestresstoken();
+				    this.endnoaction(n,"ASTROMECH");
+				}.bind(this)}],
+			      "Discard to remove 1 %STRESS%",
+			      true,function(){self.waiting=false;});
+	  });    
+        }
     },
     {
         name: "R4-D6",
@@ -2724,9 +2792,11 @@ var UPGRADES=window.UPGRADES= [
 	    sh.showstats();
 	},     
 	uninstall:function(sh) {
-	    sh.hull--; sh.ship.hull--;
-	    sh.showstats();
-            sh.checkdead();
+            if(phase!==SETUP_PHASE){
+                sh.hull--; sh.ship.hull--;
+                sh.showstats();
+                sh.checkdead();
+            }
 	},
         desactivate:function() {
             this.uninstall(this.unit);
@@ -3124,7 +3194,14 @@ var UPGRADES=window.UPGRADES= [
 	    //sh.weapons[0].followupattack=function() { return sh.indexOf(turret[0]); };
 	    sh.addattack(function(c,h) { 
 		return this.weapons[this.activeweapon].isprimary;
-	    },self,turret); 
+	    },self,turret);
+            
+            sh.wrap_after("evaluatetohit",self,function(wpIdx,enemy,thp){
+                if(sh.ia){
+                    if(wpIdx===0&&thp.tohit!==0){thp.tohit=100;}
+                    return thp;
+                }
+            });
 	},
         points: 0,
         ship: "Y-Wing",
@@ -4445,7 +4522,7 @@ var UPGRADES=window.UPGRADES= [
 	     req: function() { return targetunit.canuseevade(); },
 	     f: function(m,n) {
 		 this.addiontoken();
-		 if (targetunit.canusefocus()) {
+		 if (targetunit.canuseevade()) {
 		     targetunit.log("cannot use evade in this attack [%0]",self.name);
 		     targetunit.wrap_after("canuseevade",this,function() {
 			 return false;
@@ -6667,8 +6744,10 @@ var UPGRADES=window.UPGRADES= [
 	points: 1,
 	done:true,
 	init:function(sh) {
-	    sh.wrap_after("getbomblocation",this,function(d) {
-		if (d.indexOf("F1")>-1) return d.concat("RF5");
+	    sh.wrap_after("getbomblocation",this,function(bomb,d) {
+                var be=bomb.explode.toString();
+                var minebe="function () {}";
+		if (be!==minebe&& d.indexOf("F1")>-1) return d.concat("RF5");
 		return d;
 	    })
 	},
@@ -6840,36 +6919,38 @@ var UPGRADES=window.UPGRADES= [
 			});
 		}
 	},
-	{
-		name: "First Order Vanguard",
-		type:Unit.TITLE,
-		done:false,
-		points:2,
-		unique:true,
-		ship: "TIE Silencer",
-		init: function(sh) {
-			var self=this;
-			sh.adddicemodifier(Unit.ATTACK_M,Unit.REROLL_M,Unit.ATTACK_M,this,{
-			dice:["blank","focus"],
-			n:function() { return 1; },
-			req:function(a,w,defender) {
-				var p=this.unit.getenemiesinrange(this.unit.weapons, this.unit.selectnearbyenemy(3))[0];
-				if (p.length===1&&self.isactive) {
-					this.unit.log("+1 reroll [%0]",self.name);
-				}
-				return p.length===1&&self.isactive;
-			}.bind(this)});
-			sh.adddicemodifier(Unit.DEFENSE_M,Unit.REROLL_M,Unit.DEFENSE_M,this,{
-			dice:["blank","focus","evade"],
-			req:function() { return self.isactive; }.bind(this),
-			n:function() { return 9; },
-			f:function(m,n) {
-				this.unit.log("reroll all dice results [%0]",self.name);
-				self.desactivate();
-				return {'m':m,'n':n};
-			}.bind(this)});
-		}
-	},
+    {
+        name: "First Order Vanguard",
+        type:Unit.TITLE,
+        done:true,
+        points:2,
+        unique:true,
+        ship: "TIE Silencer",
+        init: function(sh) {
+            var self=this;
+            sh.adddicemodifier(Unit.ATTACK_M,Unit.REROLL_M,Unit.ATTACK_M,this,{
+                dice:["blank","focus"],
+                n:function() { return 1; },
+                req:function(a,w,defender) {
+                    var p=this.unit.getenemiesinrange(this.unit.weapons, this.unit.selectnearbyenemy(3))[0];
+                    if (p.length===1&&self.isactive) {
+                        this.unit.log("+1 reroll [%0]",self.name);
+                    }
+                    return p.length===1&&self.isactive;
+                }.bind(this)});
+            sh.adddicemodifier(Unit.DEFENSE_M,Unit.REROLL_M,Unit.DEFENSE_M,this,{
+                dice:["blank","focus","evade"],
+                req:function() { return self.isactive; }.bind(this),
+                aiactivate:function(results,count){
+                    return(Unit.FE_blank(results,count)>count/2.0 || (Unit.FE_focus(results) > 0 && this.focuses.length===0));
+                }.bind(this),
+                n:function() { return 9; },
+                f:function() {
+                    this.unit.log("reroll all dice results [%0]",self.name);
+                    self.desactivate();
+                }.bind(this)});
+        }
+    },
 	{
 		name: "Deflective Plating",
 		type:Unit.MOD,
