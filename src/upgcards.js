@@ -6750,37 +6750,36 @@ var UPGRADES=window.UPGRADES= [
             self.activeBombs=[];
             var handleSelection = function(e) {
                 var bombButtons=[];
-                for(var i in this.bombs){
-                    var bomb=this.bombs[i];
-                    var resolveBomb=function(droppable){
+                for(var i in this.bombs)(function(i){
+                    var bomb=sh.bombs[i];
+                    var resolveBomb=function(){
                         //Do an action?  Or just drop a bomb token and let the player move it
                         //1. drop bomb @ some position
                         //2. bomb.addDrag
                         //3. add bomb to list of resolved bombs
-                        var dropped=droppable;
-                        if (droppable.ordnance>0) { 
-                            droppable.ordnance-=1; 
-                            dropped=$.extend({},droppable);
-                        } else droppable.desactivate();
+                        var dropped=bomb;
+                        if (bomb.ordnance>0) { 
+                            bomb.ordnance-=1; 
+                            dropped=$.extend({},bomb);
+                        } else bomb.desactivate();
                         //var dm=this.getpathmatrix(this.m.clone().rotate(0,0,0).translate(0,GW/2+i*dropped.size*2),"F0");
-                        dropped.m=sh.m.clone();
-                        dropped.display(GW/3+i*2*dropped.size);
+                        dropped.m=sh.m.clone().rotate(270,0,0);
+                        dropped.display(GW/3+(i*10*dropped.size),0); //offset position
                         sh.bombdropped(dropped);
                         dropped.addDrag();
                         self.activeBombs.push(dropped);
                     };
-                    // Will try $(this).prop('disabled', true); as well
-                    bombButtons.push($("<button>").html(bomb.name).on("touch click",function() {resolveBomb(bomb);}));
-                    
-                }
+                    bombButtons.push($("<button>").html(bomb.name).on("touch click",function() {$(this).prop('disabled', true);resolveBomb();}));
+                })(i); // Closure to generate 
                 // Create one action for each bomb.
                 sh.doselection(function(n){
+                    sh.select();
                     $("#actiondial").empty();
                     for(var j in bombButtons){
                         $("#actiondial").append(bombButtons[j]);
                     }
                     $("#actiondial").append(
-                        $("<button>").html("End").on("touch click",function(n){
+                        $("<button>").html("End").on("touch click",function(){
                                 $("#actiondial").empty();
                                 for(var b in self.activeBombs){
                                     self.activeBombs[b].unDrag();

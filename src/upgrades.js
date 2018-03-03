@@ -37,6 +37,7 @@ Bomb.prototype = {
     dragstart:Rock.prototype.dragstart,
     dragshow:Rock.prototype.dragshow,
     dragstop:Rock.prototype.dragstop,
+    showhitsector:Rock.prototype.showhitsector,
     showpanel() { },
     isWeapon() { return false; },
     isBomb() { return true; },
@@ -195,6 +196,13 @@ Bomb.prototype = {
 	}.bind(this));
 	this.g.transform(this.m);
 	this.g.appendTo(VIEWPORT);
+        // Drag setup
+        var b=this.g.getBBox();
+        this.o=[];
+        var scale=0.27; // Magic number stolen from Rock constructor
+	for (var k=1; k<4; k++) {
+	    this.o[k]=s.ellipse(0,0,100*k+b.width/2,100*k+b.height/2).attr({pointerEvents:"none",display:"none",fill:WHITE,opacity:0.3,strokeWidth:2});
+	}
 	this.g.attr("display","block");
 	BOMBS.push(this);
 	if (this.stay) {
