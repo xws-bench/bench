@@ -3354,12 +3354,14 @@ var UPGRADES=window.UPGRADES= [
 	    }
 	},
 	display: function(x,y) {
+            x=(typeof x==="undefined")?0:x;
+            y=(typeof y==="undefined")?0:y;
 	    this.getOutlineString=this.getOutlineStringsmall;
 	    var b1=$.extend({},this);
 	    var b2=$.extend({},this);
-	    Bomb.prototype.display.call(b1,this.repeatx,0);
-	    Bomb.prototype.display.call(b2,-this.repeatx,0);
-	    Bomb.prototype.display.call(this,0,0);
+	    Bomb.prototype.display.call(b1,x+this.repeatx,y);
+	    Bomb.prototype.display.call(b2,x-this.repeatx,y);
+	    Bomb.prototype.display.call(this,x,y);
 	},
 	init: function(u) {
 	    var p=s.path("M41.844,-21 C54.632,-21 65,-11.15 65,1 C65,13.15 54.632,23 41.844,23 C33.853,22.912 25.752,18.903 21.904,12.169 C17.975,18.963 10.014,22.806 1.964,23 C-7.439,22.934 -14.635,18.059 -18.94,10.466 C-22.908,18.116 -30.804,22.783 -39.845,23 C-52.633,23 -63,13.15 -63,1 C-63,-11.15 -52.633,-21 -39.845,-21 C-30.441,-20.935 -23.246,-16.06 -18.94,-8.466 C-14.972,-16.116 -7.076,-20.783 1.964,-21 C9.956,-20.913 18.055,-16.902 21.904,-10.17 C25.832,-16.964 33.795,-20.807 41.844,-21 z").attr({display:"none"});
@@ -6738,7 +6740,66 @@ var UPGRADES=window.UPGRADES= [
 			return a;
 		},
 	},
-	{
+    {
+        name: "Minefield Mapper",
+        type: Unit.SYSTEM,
+        points: 0,
+        done:false,
+        init: function(sh){
+            var self=this;
+            self.activeBombs=[];
+            var handleSelection = function(e) {
+                var bombButtons=[];
+                for(var i in this.bombs){
+                    var bomb=this.bombs[i];
+                    var resolveBomb=function(droppable){
+                        //Do an action?  Or just drop a bomb token and let the player move it
+                        //1. drop bomb @ some position
+                        //2. bomb.addDrag
+                        //3. add bomb to list of resolved bombs
+                        var dropped=droppable;
+                        if (droppable.ordnance>0) { 
+                            droppable.ordnance-=1; 
+                            dropped=$.extend({},droppable);
+                        } else droppable.desactivate();
+                        //var dm=this.getpathmatrix(this.m.clone().rotate(0,0,0).translate(0,GW/2+i*dropped.size*2),"F0");
+                        dropped.m=sh.m.clone();
+                        dropped.display(GW/3+i*2*dropped.size);
+                        sh.bombdropped(dropped);
+                        dropped.addDrag();
+                        self.activeBombs.push(dropped);
+                    };
+                    // Will try $(this).prop('disabled', true); as well
+                    bombButtons.push($("<button>").html(bomb.name).on("touch click",function() {resolveBomb(bomb);}));
+                    
+                }
+                // Create one action for each bomb.
+                sh.doselection(function(n){
+                    $("#actiondial").empty();
+                    for(var j in bombButtons){
+                        $("#actiondial").append(bombButtons[j]);
+                    }
+                    $("#actiondial").append(
+                        $("<button>").html("End").on("touch click",function(n){
+                                $("#actiondial").empty();
+                                for(var b in self.activeBombs){
+                                    self.activeBombs[b].unDrag();
+                                }
+                                sh.endnoaction(n,"Minefield Mapper");
+                            }
+                        )  
+                    ); // Create "end" button as well.
+                    $("#actiondial").show();
+                }.bind(sh),"Minefield Mapper");
+            }.bind(sh);
+            
+            $(document).on("endsetupphase"+sh.team,handleSelection);
+            sh.wrap_after("dies",self,function(){
+                $(document).off("endsetupphase"+sh.team,handleSelection);
+            });
+        },
+    },
+    {
 	name: "Trajectory Simulator",
 	type: Unit.SYSTEM,
 	points: 1,

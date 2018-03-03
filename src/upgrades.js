@@ -29,6 +29,15 @@ Bomb.prototype = {
     wrap_after:Unit.prototype.wrap_after,
     setclickhandler:Unit.prototype.setclickhandler,
     setdefaultclickhandler:Unit.prototype.setdefaultclickhandler,
+    addDrag:Rock.prototype.addDrag,
+    unDrag:Rock.prototype.unDrag,
+    unselect:Rock.prototype.unselect,
+    select:Rock.prototype.select,
+    dragmove:Rock.prototype.dragmove,
+    dragstart:Rock.prototype.dragstart,
+    dragshow:Rock.prototype.dragshow,
+    dragstop:Rock.prototype.dragstop,
+    showpanel() { },
     isWeapon() { return false; },
     isBomb() { return true; },
     showOrdnance() { return this+1; },
@@ -227,7 +236,7 @@ Bomb.prototype = {
 	this.explode_base();
     },
     endround() {},
-    show() {},
+    show() {}
 }
 function Weapon(sh,wdesc) {
 	this.isprimary=false;
