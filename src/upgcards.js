@@ -1759,6 +1759,46 @@ var UPGRADES=window.UPGRADES= [
 	}
     },
     {
+        name: "R4-E1",
+        done:true,
+        unique:true,
+        type: Unit.SALVAGED,
+        points: 1,
+        init: function(sh){
+            var self=this;
+            self.waiting=false;
+            // Cleanest way to allow actions while stressed
+            sh.wrap_after("hasnostresseffect",this,function(b) {
+	      if(self.isactive){return true;}
+              else{return b;}
+            });
+            // If the host ship is stressed but preparing for an action, only pass
+            // TORPEDO and BOMB actions through
+            sh.wrap_after("getactionlist",this,function(isendmaneuver,al){
+                if(self.isactive&&sh.stress>0){
+                    al=sh.getupgactionlist();
+                    al=al.filter(
+                        actItem=>(actItem.type==="TORPEDO"||actItem.type==="BOMB")
+                    );
+                }
+                return al;
+            });
+            // After an action taken while stressed, may discard to drop one stress
+            sh.wrap_after("endaction",this,function() {
+	      if (!(self.isactive&&sh.stress>0&&!self.waiting)) return;
+              self.waiting=true;
+	      this.donoaction([{type:"ASTROMECH",name:self.name,org:self,
+				action:function(n) {
+				    self.desactivate();
+				    this.removestresstoken();
+				    this.endnoaction(n,"ASTROMECH");
+				}.bind(this)}],
+			      "Discard to remove 1 %STRESS%",
+			      true,function(){self.waiting=false;});
+	  });    
+        }
+    },
+    {
         name: "R4-D6",
         done:true,
         unique: true,
@@ -6697,8 +6737,10 @@ var UPGRADES=window.UPGRADES= [
 	points: 1,
 	done:true,
 	init:function(sh) {
-	    sh.wrap_after("getbomblocation",this,function(d) {
-		if (d.indexOf("F1")>-1) return d.concat("RF5");
+	    sh.wrap_after("getbomblocation",this,function(bomb,d) {
+                var be=bomb.explode.toString();
+                var minebe="function () {}";
+		if (be!==minebe&& d.indexOf("F1")>-1) return d.concat("RF5");
 		return d;
 	    })
 	},

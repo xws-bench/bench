@@ -3143,7 +3143,7 @@ Unit.prototype = {
 	}
 	this.actionbarrier();
     },
-    getbomblocation: function() {
+    getbomblocation: function(bomb) {
 	return ["F1"];
     },
     getbombposition: function(lm,size) {

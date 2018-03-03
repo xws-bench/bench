@@ -62,7 +62,7 @@ Bomb.prototype = {
     actiondrop(n) {
 	this.unit.lastdrop=round;
 	$(".bombs").remove(); 
-	this.drop(this.unit.getbomblocation(),n);
+	this.drop(this.unit.getbomblocation(this),n);
 	//this.unit.showactivation();
     },
     toString() {
