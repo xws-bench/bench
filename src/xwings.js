@@ -2007,8 +2007,8 @@ $(document).ready(function() {
 
 	if (typeof localStorage.volume=="undefined") localStorage.volume=0.8;
 
-	//Howler.volume(localStorage.volume);
-	//$("#vol").val(localStorage.volume*100);
+	Howler.volume(localStorage.volume);
+	$("#vol").val(localStorage.volume*100);
 
 	var mc= new Hammer(document.getElementById('svgout'));
 	mc.get("pinch").set({enable:true});
