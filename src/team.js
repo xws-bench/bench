@@ -338,6 +338,7 @@ Team.prototype = {
     toJuggler:function(translated,improved) {
 	var s="";
 	var f={REBEL:"rebels",SCUM:"scum",EMPIRE:"empire"};
+        //s+=f[this.faction]+": ";
 	var sortable = this.sortedgenerics();
 	for (var i=0; i<sortable.length; i++) 
 	    s+=sortable[i].toJuggler(translated,improved)+"\n";
@@ -359,30 +360,42 @@ Team.prototype = {
 	for (i in generics) { 
 	    if (generics[i].team==this.team) delete generics[i];
 	}
-	for (i=0; i<pilots.length; i++) {
-	    var pstr=pilots[i].split(/\s+\+\s+/);
-	    var lf=0;
-	    //for (j=0;j<PILOTS.length; j++) { // Replace with fast lookup
-                // This section iterates over every *single* pilot and tries to get the faction
-                // of the current pilots[i] pilot name?!
-            //direct lookup should be faster, but need to handle multi-faction pilots
-            j=PILOTSNAMEINDEX.indexOf(pstr[0]);
-            if(j===-1){j=PILOTSNAMEINDEX.indexOf("'"+pstr[0]+"'");}
-            if(j===-1){
-                return;
-            }
-            var v=PILOTS[j].name;
-            var vat=translate(v);
-            var pu="";
-            if (PILOTS[j].ambiguous==true&&typeof PILOTS[j].edition!="undefined") pu="("+PILOTS[j].edition+")";
-            vat+=pu; v+=pu;
-            if (v.replace(/\'/g,"")==pstr[0]) lf=lf|getf(PILOTS[j].faction);
-            if (vat.replace(/\'/g,"")==pstr[0]) lf=lf|getf(PILOTS[j].faction);
-	    //}
-	    f=f&lf;
-	}
-	if ((f&1)==1) this.faction=Unit.REBEL; else if ((f&2)==2) this.faction=Unit.SCUM; else this.faction=Unit.EMPIRE;
-	this.color=(this.faction==Unit.REBEL)?RED:(this.faction==Unit.EMPIRE)?GREEN:YELLOW;
+        /** THIS WHOLE SECTION CAN BE AVOIDED IF WE ASSUME WE KNOW THE FACTION **/
+//	for (i=0; i<pilots.length; i++) {
+//	    var pstr=pilots[i].split(/\s+\+\s+/);
+//	    var lf=0;
+//	    //for (j=0;j<PILOTS.length; j++) { // Replace with fast lookup
+//                // This section iterates over every *single* pilot and tries to get the faction
+//                // of the current pilots[i] pilot name?!
+//            //direct lookup should be faster, but need to handle multi-faction pilots
+//            var j=PILOTSNAMEINDEX.indexOf(pstr[0]); // INDEX lookup is much faster than iterating over PILOTS
+//            var possiblePilots=[];
+//            while(j!==-1){  // Fix for Fenn Rau, possibly others
+//                possiblePilots.push(j);
+//                j=PILOTSNAMEINDEX.indexOf(pstr[0],j+1);
+//            }
+//            for(var p in possiblePilots){
+//                j=possiblePilots[p];
+//                if (j!==-1 && PILOTS[j].faction==this.faction&&
+//                       PILOTS[j].unit==PILOT_dict[pilot.ship]) { 
+//                        pid=j;
+//                        break;
+//                }
+//            }
+//            
+//            var v=PILOTS[pid].name;
+//            var vat=translate(v);
+//            var pu="";
+//            if (PILOTS[pid].ambiguous==true&&typeof PILOTS[pid].edition!="undefined") pu="("+PILOTS[pid].edition+")";
+//            vat+=pu; v+=pu;
+//            if (v.replace(/\'/g,"")==pstr[0]) lf=lf|getf(PILOTS[pid].faction);
+//            if (vat.replace(/\'/g,"")==pstr[0]) lf=lf|getf(PILOTS[pid].faction);
+//	    //}
+//	    f=f&lf;
+//	}
+//	if ((f&1)==1) this.faction=Unit.REBEL; else if ((f&2)==2) this.faction=Unit.SCUM; else this.faction=Unit.EMPIRE;
+        this.faction=(faction!==null)?faction:Unit.EMPIRE;
+        this.color=(this.faction==Unit.REBEL)?RED:(this.faction==Unit.EMPIRE)?GREEN:YELLOW;
 	for (i=0; i<pilots.length; i++) {
 	    pid=-1;
 	    var pstr=pilots[i].split(/\s+\+\s+/);
