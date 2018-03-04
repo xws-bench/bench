@@ -5155,7 +5155,7 @@ window.PILOTS = [
                 self.canceled=[];
                 var handlePreExplode=function(e,bomb,asMine,args){
                     // Only called by friendly bombs, so team check unnecessary
-                    self.canceled.push(bomb); 
+
                     // Need to make test more careful, or realexplode doesn't get initialized!
                     bomb.realexplode=(typeof bomb.realexplode!=="undefined")?bomb.realexplode:bomb.explode;
                     bomb.realdetonate=(typeof bomb.realdetonate!=="undefined")?bomb.realdetonate:bomb.detonate;
@@ -5163,8 +5163,7 @@ window.PILOTS = [
                     bomb.detonate=function(){};
                     if(asMine){ // Handle each detonated mine separately
                         if(self.round<round){
-                            self.canceled.unshift(self); // Add self to specify cancel functionality
-                            self.selectunit(self.canceled,function(p,k){ // Choose a bomb to halt
+                            self.selectunit([self,bomb],function(p,k){ // Choose self or mine to halt
                                 if(k===0||self.round>=round){
                                     p[1].realdetonate.apply(p[1],args); // Need a way to get args for detonate :(
                                 }
@@ -5175,14 +5174,14 @@ window.PILOTS = [
                                     p[k].explode=bomb.realexplode;
                                     p[k].detonate=bomb.realdetonate;
                                 }
-                                self.canceled.pop(); // remove last-added, now dead mine
-                                self.canceled.shift();//remove self from self.canceled once choice is made
                             }.bind(self),["Select mine to halt (or self to cancel)"],false);
                         }
                         else{ // Can't use ability again this round, so mine explodes
                             bomb.realdetonate.apply(bomb,args); 
-                            self.canceled.pop(); // remove last-added, now dead mine
                         }
+                    }
+                    else{ 
+                        self.canceled.push(bomb); 
                     }
                 };
                 var handleEndBombs=function(e){
@@ -5193,8 +5192,8 @@ window.PILOTS = [
                                 if(bomb===k){ // Reset this bomb
                                     self.round=round;
                                     self.log("halted explosion of %0",p[bomb].name);
-                                    p[bomb].explode=bomb.realexplode;
-                                    p[bomb].detonate=bomb.realdetonate;
+                                    p[bomb].explode=p[bomb].realexplode;
+                                    p[bomb].detonate=p[bomb].realdetonate;
                                 }
                                 else{ // Explode all other bombs.
                                     p[bomb].realexplode();
