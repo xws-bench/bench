@@ -604,7 +604,7 @@ var UPGRADES=window.UPGRADES= [
 	    sh.wrap_before("endaction",this,function(n,type) {
 		if (ptl.r!=round&&this.candoaction()&&type!==null) { // Only Stress prevents EI/PTL once an action has occurred.
 		    ptl.r=round;
-		    this.doaction(this.getactionbarlist(),"+1 free action (Skip to cancel) ["+ptl.name+"]").done(function(type2) {
+		    this.doaction(this.getactionbarlist(false),"+1 free action (Skip to cancel) ["+ptl.name+"]").done(function(type2) {
 			if (type2===null || typeof type2 === "undefined") ptl.r=-1; 
 			else this.addafteractions(function() { this.addstress(); }.bind(this));
 		    }.bind(this));
