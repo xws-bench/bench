@@ -1783,6 +1783,13 @@ var UPGRADES=window.UPGRADES= [
                 }
                 return al;
             });
+            // Don't allow PTL to get actionbar list if stressed
+            sh.wrap_after("getactionbarlist",this,function(isendmaneuver,al){
+                if(self.isactive&&sh.stress>0){
+                    al=[];
+                }
+                return al;
+            });
             // After an action taken while stressed, may discard to drop one stress
             sh.wrap_after("endaction",this,function() {
 	      if (!(self.isactive&&sh.actionsdone.length>0&&sh.stress>0&&!self.waiting)) return;
