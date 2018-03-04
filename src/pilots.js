@@ -5155,38 +5155,45 @@ window.PILOTS = [
                 self.canceled=[];
                 var handlePreExplode=function(e,bomb,asMine,args){
                     // Only called by friendly bombs, so team check unnecessary
-                    self.canceled.push(bomb);
-                    bomb.realexplode=bomb.explode;
-                    bomb.realdetonate=bomb.detonate;
+
+                    // Need to make test more careful, or realexplode doesn't get initialized!
+                    bomb.realexplode=(typeof bomb.realexplode!=="undefined")?bomb.realexplode:bomb.explode;
+                    bomb.realdetonate=(typeof bomb.realdetonate!=="undefined")?bomb.realdetonate:bomb.detonate;
                     bomb.explode=function(){};
                     bomb.detonate=function(){};
-                    if(asMine&&self.round!==round){ // Handle each detonated mine separately
-                        self.canceled.unshift(self);
-                        self.selectunit(self.canceled,function(p,k){ // Choose a bomb to halt
-                            if(k===0){
-                                p[1].realdetonate.apply(p[1],args); // Need a way to get args for detonate :(
-                            }
-                            else{
-                                self.round=round;
-                                self.log("prevented detonation of %0",p[1].name);
-                                // Reset this mine
-                                p[k].explode=bomb.realexplode;
-                                p[k].detonate=bomb.realdetonate;
-                            }
-                        }.bind(self),["Select mine to halt (or self to cancel)"],false);
-                        self.canceled=[];
+                    if(asMine){ // Handle each detonated mine separately
+                        if(self.round<round){
+                            self.selectunit([self,bomb],function(p,k){ // Choose self or mine to halt
+                                if(k===0||self.round>=round){
+                                    p[1].realdetonate.apply(p[1],args); // Need a way to get args for detonate :(
+                                }
+                                else{
+                                    self.round=round;
+                                    self.log("prevented detonation of %0",p[k].name);
+                                    // Reset this mine
+                                    p[k].explode=bomb.realexplode;
+                                    p[k].detonate=bomb.realdetonate;
+                                }
+                            }.bind(self),["Select mine to halt (or self to cancel)"],false);
+                        }
+                        else{ // Can't use ability again this round, so mine explodes
+                            bomb.realdetonate.apply(bomb,args); 
+                        }
+                    }
+                    else{ 
+                        self.canceled.push(bomb); 
                     }
                 };
                 var handleEndBombs=function(e){
-                    if(self.round<round&&self.canceled.length!==0){
+                    if(self.round<round&&self.canceled.length!==0){ // Didn't use this round and bombs were going to go off
                         self.canceled.unshift(self); // Need to add self but not use "cancelleable"
                         self.selectunit(self.canceled,function(p,k){ // Choose a bomb to halt
                             for(var bomb=1; bomb<p.length; bomb++){ // If k===0, blow them al
                                 if(bomb===k){ // Reset this bomb
                                     self.round=round;
                                     self.log("halted explosion of %0",p[bomb].name);
-                                    p[bomb].explode=bomb.realexplode;
-                                    p[bomb].detonate=bomb.realdetonate;
+                                    p[bomb].explode=p[bomb].realexplode;
+                                    p[bomb].detonate=p[bomb].realdetonate;
                                 }
                                 else{ // Explode all other bombs.
                                     p[bomb].realexplode();
@@ -5197,6 +5204,16 @@ window.PILOTS = [
                                 }
                             }
                         }.bind(self),["Select bomb to halt (or self to cancel)"],false);
+                    }else{ // Did use ability prior to end of activation phase, so all bombs explode
+                        var bombs=self.canceled;
+                        for(var bomb=0; bomb<bombs.length; bomb++){
+                            // Explode all other bombs.
+                            bombs[bomb].realexplode();
+                            if(!bombs[bomb].exploded){ // Reset any mines
+                                bombs[bomb].explode=bombs[bomb].realexplode;
+                                bombs[bomb].detonate=bombs[bomb].realdetonate;
+                            }
+                        }
                     }
                     self.canceled=[];
                 };
