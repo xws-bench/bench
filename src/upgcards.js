@@ -3357,10 +3357,10 @@ var UPGRADES=window.UPGRADES= [
             x=(typeof x==="undefined")?0:x;
             y=(typeof y==="undefined")?0:y;
 	    this.getOutlineString=this.getOutlineStringsmall;
-	    var b1=$.extend({},this);
-	    var b2=$.extend({},this);
-	    Bomb.prototype.display.call(b1,x+this.repeatx,y);
-	    Bomb.prototype.display.call(b2,x-this.repeatx,y);
+	    this.b1=$.extend({},this);
+	    this.b2=$.extend({},this);
+	    Bomb.prototype.display.call(this.b1,x+this.repeatx,y);
+	    Bomb.prototype.display.call(this.b2,x-this.repeatx,y);
 	    Bomb.prototype.display.call(this,x,y);
 	},
 	init: function(u) {
@@ -3370,6 +3370,8 @@ var UPGRADES=window.UPGRADES= [
 	    for (var i=0; i<60; i++) {
 		this.op0[i]=p.getPointAtLength(i*l/60);
 	    }
+            this.b1=null;
+            this.b2=null;
 	},
 	getOutlineString: function(m) {
 	    var s="M ";
@@ -3386,6 +3388,16 @@ var UPGRADES=window.UPGRADES= [
 	    s+="Z";
 	    return {s:s,p:this.op};
 	},
+        addDrag: function(){
+            Bomb.prototype.addDrag.call(this);
+            Bomb.prototype.addDrag.call(this.b1);
+            Bomb.prototype.addDrag.call(this.b2);
+        },
+        unDrag: function(){
+            Bomb.prototype.unDrag.call(this);
+            Bomb.prototype.unDrag.call(this.b1);
+            Bomb.prototype.unDrag.call(this.b2);
+        },
         points: 4,
     },
     {
@@ -6744,7 +6756,7 @@ var UPGRADES=window.UPGRADES= [
         name: "Minefield Mapper",
         type: Unit.SYSTEM,
         points: 0,
-        done:false,
+        done:true,
         init: function(sh){
             var self=this;
             self.activeBombs=[];
@@ -6753,7 +6765,6 @@ var UPGRADES=window.UPGRADES= [
                 for(var i in this.bombs)(function(i){
                     var bomb=sh.bombs[i];
                     var resolveBomb=function(){
-                        //Do an action?  Or just drop a bomb token and let the player move it
                         //1. drop bomb @ some position
                         //2. bomb.addDrag
                         //3. add bomb to list of resolved bombs
@@ -6766,6 +6777,7 @@ var UPGRADES=window.UPGRADES= [
                         dropped.m=sh.m.clone().rotate(270,0,0);
                         dropped.display(GW/3+(i*10*dropped.size),0); //offset position
                         sh.bombdropped(dropped);
+                        dropped.setdefaultclickhandler();
                         dropped.addDrag();
                         self.activeBombs.push(dropped);
                     };
@@ -6773,6 +6785,7 @@ var UPGRADES=window.UPGRADES= [
                 })(i); // Closure to generate 
                 // Create one action for each bomb.
                 sh.doselection(function(n){
+                    $("#bombpositiondial").show();
                     sh.select();
                     $("#actiondial").empty();
                     for(var j in bombButtons){
@@ -6784,6 +6797,7 @@ var UPGRADES=window.UPGRADES= [
                                 for(var b in self.activeBombs){
                                     self.activeBombs[b].unDrag();
                                 }
+                                $("#bombpositiondial").hide();
                                 sh.endnoaction(n,"Minefield Mapper");
                             }
                         )  

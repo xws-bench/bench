@@ -27,8 +27,8 @@ function Bomb(sh,bdesc) {
 Bomb.prototype = { 
     wrap_before:Unit.prototype.wrap_before,
     wrap_after:Unit.prototype.wrap_after,
-    setclickhandler:Unit.prototype.setclickhandler,
-    setdefaultclickhandler:Unit.prototype.setdefaultclickhandler,
+    setclickhandler:Rock.prototype.setclickhandler,
+    setdefaultclickhandler:Rock.prototype.setdefaultclickhandler,
     addDrag:Rock.prototype.addDrag,
     unDrag:Rock.prototype.unDrag,
     unselect:Rock.prototype.unselect,
@@ -38,7 +38,16 @@ Bomb.prototype = {
     dragshow:Rock.prototype.dragshow,
     dragstop:Rock.prototype.dragstop,
     showhitsector:Rock.prototype.showhitsector,
-    showpanel() { },
+    showpanel() { 
+	Unit.prototype.showpanel.call(this); 
+	$("#bombpositiondial button").show();
+    },
+    //showpanel:Rock.prototype.showpanel,
+//    turn(n) {
+//        this.m.rotate(n,0,0);
+//        this.show();
+//    },
+    turn:Rock.prototype.turn,
     isWeapon() { return false; },
     isBomb() { return true; },
     showOrdnance() { return this+1; },
@@ -197,6 +206,7 @@ Bomb.prototype = {
 	this.g.transform(this.m);
 	this.g.appendTo(VIEWPORT);
         // Drag setup
+        this.g.addClass("unit");
         var b=this.g.getBBox();
         this.o=[];
         var scale=0.27; // Magic number stolen from Rock constructor
@@ -244,7 +254,7 @@ Bomb.prototype = {
 	this.explode_base();
     },
     endround() {},
-    show() {}
+    show:Rock.prototype.show
 }
 function Weapon(sh,wdesc) {
 	this.isprimary=false;

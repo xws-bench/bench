@@ -1486,6 +1486,7 @@ function setphase(cannotreplay) {
 	$("footer").show();
 	$(".unit").css("cursor","move");
 	$("#positiondial").show();
+        $("#bombpositiondial").hide();
 	$(".permalink").show();
 	$("#savebtn").hide();
 	for (i in squadron) squadron[i].beginsetupphase();
