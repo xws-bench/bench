@@ -7,6 +7,7 @@ const VERSION="v0.99.2";
 var LANG="en";
 var FILTER="none";
 var DECLOAK_PHASE=1;
+var BOMBS_PHASE=9;
 const WEBSITE="https://baranidlo.github.io/bench/main.html";
 const DICES=["focusred","hitred","criticalred","blankred","focusgreen","evadegreen","blankgreen"];
 const SETUP_PHASE=2,PLANNING_PHASE=3,ACTIVATION_PHASE=4,COMBAT_PHASE=5,SELECT_PHASE=1,CREATION_PHASE=6,XP_PHASE=7,MAIN_PHASE=0;
@@ -328,6 +329,8 @@ function formatstring(s) {
 	.replace(/%CREW%/g,"<code class='symbols'>W</code>")
 	.replace(/%MOD%/g,"<code class='symbols'>m</code>")
 	.replace(/%SLAM%/g,"<code class='symbols'>s</code>")
+        .replace(/%WEAPONDISABLED%/g,"<code class='xnomoreattacktoken'></code>")
+        .replace(/%REINFORCE%/g,"<code class='xreinforcetoken'></code>")
     ;
 }
 function displayplayertype(team,img) {
@@ -708,7 +711,7 @@ function reroll(n,from,to,a,id) {
 		    m+=l.length;
 		    n-=l.length;
 		} else {
-		    $("."+attackroll[i]+"greendice:lt("+n+"):not([noreroll])").remove();
+		    $("."+defenseroll[i]+"greendice:lt("+n+"):not([noreroll])").remove();
 		    m+=n;
 		    n=0;
 		    break;
@@ -1101,23 +1104,77 @@ function movelog(s) {
     ANIM+="_-"+s;
 }
 function endsetupphase() {
-    $(".buttonbar .share-buttons").hide();
-    $("#leftpanel").show();
-    $(".bigbutton").hide();
-    $(".playertype").prop("disabled",true);
-    ZONE[2].remove();
-    ZONE[3].remove();
-    TEAMS[1].endsetup();
-    TEAMS[2].endsetup();
-    PERMALINK=permalink(true);
-    $("#turnselector").append("<option value='0'>"+UI_translation["phase"+SETUP_PHASE]+"</option>");
-    $(".playerselect").remove();
-    $(".nextphase").addClass("disabled");
-    $(".unit").css("cursor","pointer");
-    $("#positiondial").hide();
-    for (var i=0; i<OBSTACLES.length; i++) OBSTACLES[i].unDrag();
-    HISTORY=[];
-    for (var i in squadron) squadron[i].endsetupphase();
+    if(subphase!==SETUP_PHASE){ // If there are post-setup actions, skip this
+        $(".buttonbar .share-buttons").hide();
+        $("#leftpanel").show();
+        $(".bigbutton").hide();
+        $(".playertype").prop("disabled",true);
+        ZONE[2].remove();
+        ZONE[3].remove();
+        TEAMS[1].endsetup();
+        TEAMS[2].endsetup();
+        PERMALINK=permalink(true);
+        $("#turnselector").append("<option value='0'>"+UI_translation["phase"+SETUP_PHASE]+"</option>");
+        $(".playerselect").remove();
+        $(".nextphase").addClass("disabled");
+        $(".unit").css("cursor","pointer");
+        $("#positiondial").hide();
+        for (var i=0; i<OBSTACLES.length; i++) OBSTACLES[i].unDrag();
+        HISTORY=[];
+        // Set up for handling actions during the end of setup phase
+        if(actionr.length===0){ // Jury rig an action queue 
+            actionr.push($.Deferred().resolve());
+            actionr[0].name="endofactivation lock";
+            actionrlock=$.Deferred().resolve();
+        }
+        for (var i in squadron) squadron[i].endsetupphase();
+        // Signal all event handler upgrades/abilities as well
+        if(TEAMS[1].initiative){ // Possibly unnecessary init order
+            $(document).trigger("endsetupphase"+"1");
+            $(document).trigger("endsetupphase"+"2");
+        }
+        else{ 
+            $(document).trigger("endsetupphase"+"2");
+            $(document).trigger("endsetupphase"+"1");
+        }
+        
+        if(actionr.length===1) { // If no actions to perform, continue!
+            return true;}
+        else { // Make continuation to planning phase contingent on *all* 
+            subphase=SETUP_PHASE;
+            
+            // Chain all endofsetupphase actions together
+            actionr[actionr.length-1].done(nextphase);  
+            
+            for(var j=0; j<actionr.length-2; j++){
+                actionr[j].done(actionr[j+1]); // Explicitly link actions
+            }
+            return false;
+        }
+    }
+    else{ // Second time around means all post-setup actions are complete!
+        return true;
+    }
+}
+function bombsHandled(actionsLength){
+    if(subphase!==BOMBS_PHASE){ // If there are post-activation actions, skip this
+        if(actionr.length===actionsLength) { // If no actions to perform, continue!
+            return true;}
+        else { // Make continuation to planning phase contingent on *all* 
+            subphase=BOMBS_PHASE;
+            
+            // Chain all endofsetupphase actions together
+            actionr[actionr.length-1].done(nextphase);  
+            
+            for(var j=actionsLength; j<actionr.length-2; j++){
+                actionr[j].done(actionr[j+1]); // Explicitly link actions
+            }
+            return false;
+        }
+    }
+    else{ // Second time around means all post-setup actions are complete!
+        return true;
+    }
 }
 function nextphase() {
     var i;
@@ -1141,24 +1198,30 @@ function nextphase() {
 	$("#leftpanel").show();
  	break;
     case SETUP_PHASE:
-	if (mode==SCENARIOCREATOR) {
-	    phase=SELECT_PHASE-1;
-	    SCENARIOLIST.addrow(SCENARIOTITLE,HEADER,WINCOND,permalink(true));
-	    break;
-	}
-	var ending=true;
-	for (var i in squadron) if  (squadron[i].areactionspending()) ending=false;
-	if (ending==false) return;
-	if ($("#player1 option:checked").val()=="human") 
-	    TEAMS[1].isia=false; else TEAMS[1].isia=true;
-	if ($("#player2 option:checked").val()=="human") 
-	    TEAMS[2].isia=false; else TEAMS[2].isia=true;
-	if (TEAMS[1].isia==true) TEAMS[1].setia();
-	if (TEAMS[2].isia==true) TEAMS[2].setia();
-	/*ZONE[0].attr({fillOpacity:0});*/
-	/*ZONE[1].attr({fillOpacity:0});*/
-	$(".imagebg").hide();
-	endsetupphase();
+        if(subphase!==SETUP_PHASE){
+            if (mode==SCENARIOCREATOR) {
+                phase=SELECT_PHASE-1;
+                SCENARIOLIST.addrow(SCENARIOTITLE,HEADER,WINCOND,permalink(true));
+                break;
+            }
+            var ending=true;
+            for (var i in squadron) if  (squadron[i].areactionspending()) ending=false;
+            if (ending==false) return;
+            if ($("#player1 option:checked").val()=="human") 
+                TEAMS[1].isia=false; else TEAMS[1].isia=true;
+            if ($("#player2 option:checked").val()=="human") 
+                TEAMS[2].isia=false; else TEAMS[2].isia=true;
+            if (TEAMS[1].isia==true) TEAMS[1].setia();
+            if (TEAMS[2].isia==true) TEAMS[2].setia();
+            /*ZONE[0].attr({fillOpacity:0});*/
+            /*ZONE[1].attr({fillOpacity:0});*/
+            $(".imagebg").hide();
+        }
+	if(endsetupphase())
+            break;  // Continue to next phase as per usual
+        else
+            return; // Exit out of phase selection loop to allow e.g.
+                    // Hyperspace Comm Scanner to work fully
 	/*
 	if (REPLAY.length>0) {
 	    replayid=0;
@@ -1167,7 +1230,6 @@ function nextphase() {
 
 	}*/
 	//$(".permalink").hide();
-	break;
     case PLANNING_PHASE:
 	$("#maneuverdial").hide();
 	for (i in squadron) {
@@ -1175,17 +1237,32 @@ function nextphase() {
 	}
 	break;
     case ACTIVATION_PHASE:
-	$("#activationdial").hide();
-	for (i in squadron) {
-	    squadron[i].hasmoved=false; 
-	    squadron[i].hasdecloaked=false;
-	    squadron[i].actiondone=false;
-	    squadron[i].endactivationphase();
-	}
-	var b=[];
-	for (i=0; i<BOMBS.length; i++) b[i]=BOMBS[i];
-	for (i=0; i<b.length; i++) b[i].explode();
-	break;
+        if(subphase!==BOMBS_PHASE){
+            $("#activationdial").hide();
+            for (i in squadron) {
+                squadron[i].hasmoved=false; 
+                squadron[i].hasdecloaked=false;
+                squadron[i].actiondone=false;
+                squadron[i].endactivationphase();
+            }
+            var actionLength = actionr.length;
+            var b=[];
+            for (i=0; i<BOMBS.length; i++) b[i]=BOMBS[i];
+
+            $(document).trigger("beginbombs"+(TEAMS[1].initiative?"1":"2"));
+            $(document).trigger("beginbombs"+(TEAMS[2].initiative?"1":"2"));
+            for (i=0; i<b.length; i++){ 
+                b[i].preexplode(false); // bombs that are not mines
+                b[i].explode();
+                b[i].postexplode(false);
+            }
+            $(document).trigger("endbombs"+(TEAMS[1].initiative?"1":"2"));
+            $(document).trigger("endbombs"+(TEAMS[2].initiative?"1":"2"));
+        }
+        if(bombsHandled(actionLength))
+            break;
+        else
+            return;
     case COMBAT_PHASE:
 	$("#attackdial").hide();
 	$("#listunits").html("");
@@ -1196,6 +1273,7 @@ function nextphase() {
 	if (-WINCOND<round&&WINCOND<0) win(0);
 	break;
     }
+    // Advance phase
     if (phase>=SELECT_PHASE) {
 	phase=(phase==COMBAT_PHASE)?PLANNING_PHASE:phase+1;
 	movelog("P-"+round+"-"+(phase));
@@ -1382,13 +1460,17 @@ function setphase(cannotreplay) {
 	jwerty.key("alt+4", function() { activeunit.addstress();activeunit.show();});
 	jwerty.key("alt+5", function() { activeunit.addiontoken();activeunit.show();});
 	jwerty.key("alt+6", function() { activeunit.addtractorbeamtoken();activeunit.show();});
-	jwerty.key("alt+shift+1", function() { if (activeunit.focus>0) activeunit.removefocustoken();activeunit.show();});
+	jwerty.key("alt+7", function() { 
+            if (activeunit.noattack<round) {activeunit.addweapondisabledtoken(); activeunit.show();}});
+        jwerty.key("alt+shift+1", function() { if (activeunit.focus>0) activeunit.removefocustoken();activeunit.show();});
 	jwerty.key("alt+shift+2", function() { if (activeunit.evade>0) activeunit.removeevadetoken();activeunit.show();});
 	jwerty.key("alt+shift+3", function() { if (activeunit.iscloaked) {activeunit.removecloaktoken();activeunit.show();}});
 	jwerty.key("alt+shift+4", function() { if (activeunit.stress>0) activeunit.removestresstoken();activeunit.show();});
 	jwerty.key("alt+shift+5", function() { if (activeunit.ionized>0) activeunit.removeiontoken();});
 	jwerty.key("alt+shift+6", function() { if (activeunit.tractorbeam>0) activeunit.removetractorbeamtoken();});
-	jwerty.key("alt+d",function() { activeunit.resolvehit(1);});
+	jwerty.key("alt+shift+7", function() { 
+            if (activeunit.noattack===round) {activeunit.removeweapondisabledtoken(); activeunit.show();}});
+        jwerty.key("alt+d",function() { activeunit.resolvehit(1);});
 	jwerty.key("alt+c",function() { activeunit.resolvecritical(1);});
 	jwerty.key("alt+shift+d",function() { 
 	    if (activeunit.hull<activeunit.ship.hull) activeunit.addhull(1); 
@@ -1404,6 +1486,7 @@ function setphase(cannotreplay) {
 	$("footer").show();
 	$(".unit").css("cursor","move");
 	$("#positiondial").show();
+        $("#bombpositiondial").hide();
 	$(".permalink").show();
 	$("#savebtn").hide();
 	for (i in squadron) squadron[i].beginsetupphase();
@@ -1925,8 +2008,8 @@ $(document).ready(function() {
 
 	if (typeof localStorage.volume=="undefined") localStorage.volume=0.8;
 
-	//Howler.volume(localStorage.volume);
-	//$("#vol").val(localStorage.volume*100);
+	Howler.volume(localStorage.volume);
+	$("#vol").val(localStorage.volume*100);
 
 	var mc= new Hammer(document.getElementById('svgout'));
 	mc.get("pinch").set({enable:true});

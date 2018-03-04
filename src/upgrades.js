@@ -27,6 +27,27 @@ function Bomb(sh,bdesc) {
 Bomb.prototype = { 
     wrap_before:Unit.prototype.wrap_before,
     wrap_after:Unit.prototype.wrap_after,
+    setclickhandler:Rock.prototype.setclickhandler,
+    setdefaultclickhandler:Rock.prototype.setdefaultclickhandler,
+    addDrag:Rock.prototype.addDrag,
+    unDrag:Rock.prototype.unDrag,
+    unselect:Rock.prototype.unselect,
+    select:Rock.prototype.select,
+    dragmove:Rock.prototype.dragmove,
+    dragstart:Rock.prototype.dragstart,
+    dragshow:Rock.prototype.dragshow,
+    dragstop:Rock.prototype.dragstop,
+    showhitsector:Rock.prototype.showhitsector,
+    showpanel() { 
+	Unit.prototype.showpanel.call(this); 
+	$("#bombpositiondial button").show();
+    },
+    //showpanel:Rock.prototype.showpanel,
+//    turn(n) {
+//        this.m.rotate(n,0,0);
+//        this.show();
+//    },
+    turn:Rock.prototype.turn,
     isWeapon() { return false; },
     isBomb() { return true; },
     showOrdnance() { return this+1; },
@@ -60,7 +81,7 @@ Bomb.prototype = {
     actiondrop(n) {
 	this.unit.lastdrop=round;
 	$(".bombs").remove(); 
-	this.drop(this.unit.getbomblocation(),n);
+	this.drop(this.unit.getbomblocation(this),n);
 	//this.unit.showactivation();
     },
     toString() {
@@ -151,7 +172,7 @@ Bomb.prototype = {
 	    this.display(0,0);
 	    this.unit.bombdropped(this);
 	    //this.unit.log("endaction dropped "+n);
-	    if (typeof n!="undefined") this.unit.endnoaction(n,"DROP");
+	    if (typeof n!="undefined") this.unit.endaction(n,"DROP");
 	}.bind(dropped),false,true);
     },
     display(x,y) {
@@ -184,13 +205,23 @@ Bomb.prototype = {
 	}.bind(this));
 	this.g.transform(this.m);
 	this.g.appendTo(VIEWPORT);
+        // Drag setup
+        this.g.addClass("unit");
+        var b=this.g.getBBox();
+        this.o=[];
+        var scale=0.27; // Magic number stolen from Rock constructor
+	for (var k=1; k<4; k++) {
+	    this.o[k]=s.ellipse(0,0,100*k+b.width/2,100*k+b.height/2).attr({pointerEvents:"none",display:"none",fill:WHITE,opacity:0.3,strokeWidth:2});
+	}
 	this.g.attr("display","block");
 	BOMBS.push(this);
 	if (this.stay) {
 	    OBSTACLES.push(this);
 	    var p=this.getcollisions();
 	    if (p.length>0) this.unit.resolveactionselection(p,function(k) {
+                this.preexplode(true,[p[k],true]);
 		this.detonate(p[k],true);
+                this.postexplode(true,[p[k],true]);
 	    }.bind(this));
 	}
     },
@@ -215,13 +246,15 @@ Bomb.prototype = {
 	this.g.remove();
 	BOMBS.splice(BOMBS.indexOf(this),1);
     },
+    preexplode(isMine,args) {$(document).trigger("preexplode"+this.unit.team,[this,isMine,args]); },
+    postexplode(isMine,args) {$(document).trigger("postexplode"+this.unit.team,[this,isMine,args]); },
     explode() { this.explode_base(); },
     detonate(t,immediate) {
 	OBSTACLES.splice(OBSTACLES.indexOf(this),1);
 	this.explode_base();
     },
     endround() {},
-    show() {},
+    show:Rock.prototype.show
 }
 function Weapon(sh,wdesc) {
 	this.isprimary=false;

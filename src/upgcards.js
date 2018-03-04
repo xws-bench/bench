@@ -602,7 +602,7 @@ var UPGRADES=window.UPGRADES= [
 	    var ptl=this;
 	    ptl.r=-1;
 	    sh.wrap_before("endaction",this,function(n,type) {
-		if (ptl.r!=round&&this.candoaction()&&type!==null) {
+		if (ptl.r!=round&&this.candoaction()&&type!==null) { // Only Stress prevents EI/PTL once an action has occurred.
 		    ptl.r=round;
 		    this.doaction(this.getactionbarlist(),"+1 free action (Skip to cancel) ["+ptl.name+"]").done(function(type2) {
 			if (type2===null || typeof type2 === "undefined") ptl.r=-1; 
@@ -875,17 +875,45 @@ var UPGRADES=window.UPGRADES= [
         init: function(sh) {
 	    var self=this;
 	    self.ea=Unit.prototype.resolvecritical;
-	    Unit.prototype.resolvecritical=function(c) {
-		if (!self.unit.dead&&self.isactive
-		    &&c>0&&(self.unit in this.selectnearbyally(1))){
-		    this.selectunit([this,sh],function(p,k) {
-			if (k===0) { self.ea.call(this,1); }
-			else { self.ea.call(sh,1);}
-		    },["select unit [%0]",self.name],false);
-		    self.ea.call(this,c-1);
-		} else self.ea.call(this,c);
-		return c;
-	    };
+            $(document).on("predefenseroll"+sh.team,function(e,ship)                {
+                    ship.resolvecritical=function(c) {
+                        if (!self.unit.dead&&self.isactive&&c>0&&sh.getrange(ship)<=1){
+                            ship.selectunit([ship,sh],function(p,k) {
+                                if (k===0) { self.ea.call(ship,1); }
+                                else { self.ea.call(sh,1);
+                            }
+                        },["select unit [%0] or self to cancel",self.name],false);
+                        self.ea.call(ship,c-1);
+                    } else self.ea.call(ship,c);
+                    return c;
+                };           
+            });
+	    
+	}, 
+	done:true,
+        type: Unit.ELITE,
+        points: 1,
+    },
+    { /* TODO: a ship is still hit if crit is transferred ? */
+        name: "Selflessness",
+	rating:1,
+        init: function(sh) {
+	    var self=this;
+	    self.ea=Unit.prototype.resolvehit;
+            $(document).on("predefenseroll"+sh.team,function(e,ship){
+                    ship.resolvehit=function(h) {   
+                        if (!self.unit.dead&&self.isactive&&h>0&&sh.getrange(ship)<=1){
+                            ship.selectunit([ship,sh],function(p,k) {
+                                if (k===0) { self.ea.call(ship,h); }
+                                else {
+                                    // If the Selflessness ship takes the damage, deactivate the card
+                                    self.ea.call(sh,h);}
+                                    self.desactivate();
+                        },["select unit [%0] or self to cancel",self.name],false);
+                    } else self.ea.call(ship,h);
+                    return h;
+                };           
+            });  
 	}, 
 	done:true,
         type: Unit.ELITE,
@@ -1050,6 +1078,45 @@ var UPGRADES=window.UPGRADES= [
         points: 4,
         attack: 3,
         range: [1,2],
+    },
+    {
+        name: "Synced Turret",
+        type: Unit.TURRET,
+        done:true,
+        firesnd:"falcon_fire",
+        requires:"Target",
+        consumes:false,
+        points: 4,
+        attack: 3,
+        range: [1,2],
+        init: function(sh) {
+            var self=this;
+            sh.wrap_after("setpriority",this,function(a) {
+                if (a.type=="TARGET"&&self.isactive&&this.candotarget()) 
+                    a.priority+=10;
+            });
+            sh.wrap_after("attackrerolls",this,function(w,t,r) {
+                if (w===self && sh.isinfiringarc(t)){ 
+                    return sh.weapons[0].getattack();
+                }
+                else return 0;
+            });
+            sh.adddicemodifier(Unit.ATTACK_M,Unit.REROLL_M,Unit.ATTACK_M,this,{
+                dice:["blank","focus"],
+                n:function() { 
+                  return sh.weapons[0].getattack();
+                },
+                req:function(attacker,w,defender) {
+                    var functional=false;
+                    if(w === self && attacker.isinfiringarc(defender) && self.isactive){
+                        this.log("+%1 reroll(s) [%0]",self.name,(sh.weapons[0].getattack()));
+                        functional=true;
+                    }                  
+                    return functional;
+                }.bind(sh),
+                aiactivate: function(m,n) { return true; }
+            });
+	}
     },
     {
         name: "Recon Specialist",
@@ -1690,6 +1757,46 @@ var UPGRADES=window.UPGRADES= [
                 self.uninstall();
             });
 	}
+    },
+    {
+        name: "R4-E1",
+        done:true,
+        unique:true,
+        type: Unit.SALVAGED,
+        points: 1,
+        init: function(sh){
+            var self=this;
+            self.waiting=false;
+            // Cleanest way to allow actions while stressed
+            sh.wrap_after("hasnostresseffect",this,function(b) {
+	      if(self.isactive){return true;}
+              else{return b;}
+            });
+            // If the host ship is stressed but preparing for an action, only pass
+            // TORPEDO and BOMB actions through
+            sh.wrap_after("getactionlist",this,function(isendmaneuver,al){
+                if(self.isactive&&sh.stress>0){
+                    al=sh.getupgactionlist();
+                    al=al.filter(
+                        actItem=>(actItem.type==="TORPEDO"||actItem.type==="BOMB")
+                    );
+                }
+                return al;
+            });
+            // After an action taken while stressed, may discard to drop one stress
+            sh.wrap_after("endaction",this,function() {
+	      if (!(self.isactive&&sh.actionsdone.length>0&&sh.stress>0&&!self.waiting)) return;
+              self.waiting=true;
+	      this.donoaction([{type:"ASTROMECH",name:self.name,org:self,
+				action:function(n) {
+				    self.desactivate();
+				    this.removestresstoken();
+				    this.endnoaction(n,"ASTROMECH");
+				}.bind(this)}],
+			      "Discard to remove 1 %STRESS%",
+			      true,function(){self.waiting=false;});
+	  });    
+        }
     },
     {
         name: "R4-D6",
@@ -2685,9 +2792,11 @@ var UPGRADES=window.UPGRADES= [
 	    sh.showstats();
 	},     
 	uninstall:function(sh) {
-	    sh.hull--; sh.ship.hull--;
-	    sh.showstats();
-            sh.checkdead();
+            if(phase!==SETUP_PHASE){
+                sh.hull--; sh.ship.hull--;
+                sh.showstats();
+                sh.checkdead();
+            }
 	},
         desactivate:function() {
             this.uninstall(this.unit);
@@ -2765,10 +2874,41 @@ var UPGRADES=window.UPGRADES= [
 	type:Unit.MOD,
         islarge:true,
 	done:true,
+        aiactivate: function (){
+            var en;
+            var utilize=false;
+            var factor=2;
+            var locEnemies=this.unit.selectnearbyenemy(3);
+            var prockets=(this.unit.weapons.filter(
+                    weap=>weap.name==="Proton Rockets" && weap.isactive
+                ).length>0);
+            if(locEnemies.length>0){  // Don't even bother if there are no enemies
+                for(var i in locEnemies){
+                   en=locEnemies[i];
+                   if(en.isinfiringarc(this.unit)){ //check if enemy has bead on us
+                       for(var j in en.weapons){    //and can do major damage
+                           if(en.weapons[j].attack>=this.unit.getagility()*factor){
+                               utilize=true;
+                               break;  // It only takes one!
+                           }
+                           else if(this.unit.hull<=this.unit.ship.hull/2.0){
+                               utilize=true; // Or if we've taken a beating already
+                               break;
+                           }
+                       }
+                   }
+                   else if(prockets && this.unit.isinfiringarc(en) && this.unit.focus>0){
+                       utilize=true; // Use Countermeasures offensively with Prockets
+                       break;
+                   }
+                }
+            }
+            return utilize;
+        },
 	init: function(sh) {
 	    var mod=this;/* TODO: same time as attack */
 	    sh.wrap_before("begincombatphase",this,function() {
-		if (mod.isactive) 
+		if (mod.isactive&&(!sh.ia||mod.aiactivate())) 
 		    this.donoaction([{action:function(n) {
 			mod.desactivate();
 			this.wrap_after("getagility",mod,function(a) {
@@ -2795,7 +2935,7 @@ var UPGRADES=window.UPGRADES= [
 	    var upg=this;
 	    upg.r=-1;
 	    sh.wrap_before("endaction",this,function(n,type) {
-		if (upg.r!=round&&this.candoaction()&&type!==null) {
+		if (upg.r!=round&&this.candoaction()&&type!==null) { // Only stress prevents EI/PTL once an action has occurred.
 		    upg.r=round;
 		    this.doaction(this.getupgactionlist(),"+1 free action (Skip to cancel)").done(function(type2) {
 			if (type2===null || typeof type2 === "undefined") upg.r=-1;
@@ -3054,7 +3194,14 @@ var UPGRADES=window.UPGRADES= [
 	    //sh.weapons[0].followupattack=function() { return sh.indexOf(turret[0]); };
 	    sh.addattack(function(c,h) { 
 		return this.weapons[this.activeweapon].isprimary;
-	    },self,turret); 
+	    },self,turret);
+            
+            sh.wrap_after("evaluatetohit",self,function(wpIdx,enemy,thp){
+                if(sh.ia){
+                    if(wpIdx===0&&thp.tohit!==0){thp.tohit=100;}
+                    return thp;
+                }
+            });
 	},
         points: 0,
         ship: "Y-Wing",
@@ -3207,12 +3354,14 @@ var UPGRADES=window.UPGRADES= [
 	    }
 	},
 	display: function(x,y) {
+            x=(typeof x==="undefined")?0:x;
+            y=(typeof y==="undefined")?0:y;
 	    this.getOutlineString=this.getOutlineStringsmall;
-	    var b1=$.extend({},this);
-	    var b2=$.extend({},this);
-	    Bomb.prototype.display.call(b1,this.repeatx,0);
-	    Bomb.prototype.display.call(b2,-this.repeatx,0);
-	    Bomb.prototype.display.call(this,0,0);
+	    this.b1=$.extend({},this);
+	    this.b2=$.extend({},this);
+	    Bomb.prototype.display.call(this.b1,x+this.repeatx,y);
+	    Bomb.prototype.display.call(this.b2,x-this.repeatx,y);
+	    Bomb.prototype.display.call(this,x,y);
 	},
 	init: function(u) {
 	    var p=s.path("M41.844,-21 C54.632,-21 65,-11.15 65,1 C65,13.15 54.632,23 41.844,23 C33.853,22.912 25.752,18.903 21.904,12.169 C17.975,18.963 10.014,22.806 1.964,23 C-7.439,22.934 -14.635,18.059 -18.94,10.466 C-22.908,18.116 -30.804,22.783 -39.845,23 C-52.633,23 -63,13.15 -63,1 C-63,-11.15 -52.633,-21 -39.845,-21 C-30.441,-20.935 -23.246,-16.06 -18.94,-8.466 C-14.972,-16.116 -7.076,-20.783 1.964,-21 C9.956,-20.913 18.055,-16.902 21.904,-10.17 C25.832,-16.964 33.795,-20.807 41.844,-21 z").attr({display:"none"});
@@ -3221,6 +3370,8 @@ var UPGRADES=window.UPGRADES= [
 	    for (var i=0; i<60; i++) {
 		this.op0[i]=p.getPointAtLength(i*l/60);
 	    }
+            this.b1=null;
+            this.b2=null;
 	},
 	getOutlineString: function(m) {
 	    var s="M ";
@@ -3237,6 +3388,16 @@ var UPGRADES=window.UPGRADES= [
 	    s+="Z";
 	    return {s:s,p:this.op};
 	},
+        addDrag: function(){
+            Bomb.prototype.addDrag.call(this);
+            Bomb.prototype.addDrag.call(this.b1);
+            Bomb.prototype.addDrag.call(this.b2);
+        },
+        unDrag: function(){
+            Bomb.prototype.unDrag.call(this);
+            Bomb.prototype.unDrag.call(this.b1);
+            Bomb.prototype.unDrag.call(this.b2);
+        },
         points: 4,
     },
     {
@@ -3247,14 +3408,18 @@ var UPGRADES=window.UPGRADES= [
 	done:true,
         aiactivate: function(){
             var useGS = false;
-            if(self.glitter<round){  // Just prevent double-activating
-                useGS=true;
+            if(this.unit.glitter<round){  // Just prevent double-activating
+                if(this.unit.getenemiesinrange(this.unit.weapons, this.unit.selectnearbyenemy(3)).length!==0)
+                {
+                    useGS=true;
+                }
             }
             return useGS;
         },
 	init: function(sh) {
 	    var self=this;
 	    self.glitter=-1;
+            sh.glitter=-1;
 	    sh.wrap_after("modifyattackroll",this,function(m,n,d,mm) {
 		var f=Unit.FCH_focus(mm);
 		if (f>0 && this.stress===0) {
@@ -3268,7 +3433,7 @@ var UPGRADES=window.UPGRADES= [
 		    this.donoaction([
 			{org:self,name:self.name,type:"ILLICIT",action:function(n) {
 			    this.addstress();
-			    self.glitter=round;
+			    sh.glitter=self.glitter=round;
 			    this.endnoaction(n,"ILLICIT");
 			}.bind(this)}],"",true);
 		}
@@ -3710,7 +3875,11 @@ var UPGRADES=window.UPGRADES= [
 	    // otherwise target lock action could be missing, because before maneuver ship could be out of range
 	    sh.wrap_after("resolveslam",this,function() {
 		sh.wrap_after("endmaneuver", this,function() {
+                    if(this.candoaction()  // Can't use "candoendmaneuveraction" because it's wrapped
+                        &&!this.collision  // by resolveslam().
+                        &&!this.hascollidedobstacle()){ // But ASLAM is prevented by overlapping a ship or obstacle
 			this.doaction(this.getactionbarlist(),"+1 free action from action bar (Skip to cancel) ["+self.name+"]");
+                    }
 		}).unwrapper("endactivationphase");
 	    });
 	}
@@ -3865,12 +4034,12 @@ var UPGRADES=window.UPGRADES= [
 	done:true,
 	requires:"Focus",
 	consumes:false,
-	modifyhit: function(ch) { return 0; },
+	modifyhit: function(ch){return 0;},
 	prehit:function(t,c,h) {
 	    var p=this.unit.selectnearbyally(2);
+            p=p.concat(this.unit); // Current code needs at least one entry in p or breaks
 	    var s="";
 	    if (p.length>0) {
-		p=p.concat(this.unit);
 		for (var i=0; i<p.length; i++) {
 		    if (p[i].gettargetableunits(3).indexOf(t)>-1) {
 			p[i].addtarget(t);
@@ -3881,7 +4050,14 @@ var UPGRADES=window.UPGRADES= [
 		this.unit.hitresolved=0;
 		this.unit.criticalresolved=0;
 	    }
-	}
+	},
+        init:function(sh){
+            var self=this;
+            sh.wrap_after("setpriority",this,function(a) {
+		if (a.type=="FOCUS"&&self.isactive&&this.candofocus()) 
+		    a.priority+=10;
+	    });
+        }
     },
     { 
 	name:"Comm Relay",
@@ -4360,7 +4536,7 @@ var UPGRADES=window.UPGRADES= [
 	     req: function() { return targetunit.canuseevade(); },
 	     f: function(m,n) {
 		 this.addiontoken();
-		 if (targetunit.canusefocus()) {
+		 if (targetunit.canuseevade()) {
 		     targetunit.log("cannot use evade in this attack [%0]",self.name);
 		     targetunit.wrap_after("canuseevade",this,function() {
 			 return false;
@@ -4736,6 +4912,94 @@ var UPGRADES=window.UPGRADES= [
 	    this.switch();
 	    sh.showskill();
 	},
+    },
+    { 
+        name:"Intensity",
+        rating:0,
+        type: Unit.ELITE,
+        points:2,
+        islarge:false,
+        done:true,
+        faceup:true,
+        canswitch: function() {
+            return false;
+        },
+        switch: function() {
+            this.faceup=!this.faceup;
+            if(this.faceup){
+                this.variant="Active";
+            }
+            else{
+                this.variant="Exhausted";
+            }
+        },
+        init: function(sh) {
+            var self=this;
+            self.variant="Active";
+            sh.wrap_after("endaction",this,function(n,s) {
+                if (s!="BOOST"&&s!="ROLL") return; // Stolen from Black One
+                if(self.faceup){ // Can't use if facedown.
+                    this.donoaction(
+                       [{type:"FOCUS",name:self.name,org:self,
+                        action:function(n) {
+                            self.switch();
+                            this.addfocustoken();
+                            this.endnoaction(n,"ELITE");
+                        }.bind(this)},
+                       {type:"EVADE",name:self.name,org:self,
+                        action:function(n) {
+                            self.switch();
+                            this.addevadetoken();
+                            this.endnoaction(n,"ELITE");
+                        }.bind(this)}],
+                      `Add %EVADE% or %FOCUS% and flip ${self.name}`,
+                      true);
+                }
+	     
+            });
+            sh.wrap_after("setpriority",this,function(a) { // Prioritize AI ops
+		if(self.faceup) {
+                    if((a.type==="BOOST"||a.type==="ROLL")) 
+                        a.priority+=5;
+                }
+                else {
+                    if((a.type==="FOCUS"||a.type==="EVADE")) 
+                        a.priority+=5;
+                }
+	    });
+            $(document).on("endcombatphase"+sh.team, function(e){
+                if(!self.faceup && !sh.dead && (sh.focus+sh.evade)>0){
+                    var opts = [];
+                    if(sh.focus>0){
+                        opts.push(
+                            {type:"FOCUS",name:self.name,org:self,
+                            action:function(n) {
+                                self.switch();
+                                this.removefocustoken();
+                                this.endnoaction(n,"ELITE");
+                            }.bind(sh)}
+                        );
+                    }
+                    if(sh.evade){
+                        opts.push(
+                            {type:"EVADE",name:self.name,org:self,
+                            action:function(n) {
+                                self.switch();
+                                this.removeevadetoken();
+                                this.endnoaction(n,"ELITE");
+                            }.bind(sh)}
+                        );
+                    }
+                    if(opts.length>0){
+                        sh.donoaction(
+                           opts,
+                          `Remove %EVADE% or %FOCUS% and flip ${self.name}`,
+                           true
+                        );
+                    }
+                } 
+            });
+        }
     },
     {
 	name:"Systems Officer",
@@ -5688,8 +5952,11 @@ var UPGRADES=window.UPGRADES= [
 			      p[k].addstress();
 			      p[0].endnoaction(n,Unit.TITLE);
 			  });
-		      });
+		      }.bind(p[0]));
 		  }
+                  else {
+                      p[0].addstress();
+                  }
 	      }
 	  });
       }
@@ -5721,33 +5988,69 @@ var UPGRADES=window.UPGRADES= [
 	  });
       }
     },
-    { name:"Hyperwave Comm Scanner",
-      type:Unit.TECH,
-      done:true,
-      points:1,
-      init: function(sh) {
-	  var self=this;
-	  sh.wrap_after("endsetupphase",this,function() {
-	      var p=this.selectnearbyally(2);
-	      if (!self.isactive) return;
-	      for (var i in p) {
-		  var u=p[i];
-		  u.donoaction([{type:"FOCUS",name:self.name,org:self,
-				 action:function(n) {
-				     this.addfocustoken();
-				     this.endnoaction(n,"TECH");
-				 }.bind(u)},
-				{type:"EVADE",name:self.name,org:self,
-				 action:function(n) {
-				     self.desactivate();
-				     this.addevadetoken();
-				     this.endnoaction(n,"TECH");
-				 }.bind(u)}],
-			       "+1 %EVADE% / %FOCUS%",
-			       true);
-	      }	      
-	  });
-      }
+    { 
+        name:"Hyperwave Comm Scanner",
+        type:Unit.TECH,
+        done:true,
+        points:1,
+        ps:0,
+        variant:"0",
+        canswitch: function() {
+            return phase <=SETUP_PHASE && this.unit.hasHCS!=="undefined" && this.unit.hasHCS===this;
+        },
+        switch: function() {
+            if(typeof this.unit.hasHCS!=="undefined" && this.unit.hasHCS===this){
+                switch(this.ps){
+                    case 0: this.ps=6;
+                            this.variant="6";
+                            break;
+                    case 6: this.ps=12;
+                            this.variant="12";
+                            break;
+                    case 12:this.ps=0;
+                            this.variant="0";
+                            break;
+                }
+                this.unit.showskill();
+            }
+	},
+        init: function(sh) {
+            var self=this;
+            if(typeof self.unit.hasHCS==="undefined"){
+                sh.wrap_after("getskill",this,function(s){
+                    return self.ps;  // Unwrapping should let getskill() work correctly
+                }).unwrapper("beginplanningphase");
+            }
+            $(document).on("endsetupphase"+sh.team,function(e) {
+                if (!self.isactive) return;
+                var p=sh.selectnearbyally(2);
+                for (var i in p) {
+                    var u=p[i];
+                    if(u.getskill()<sh.getskill()) continue; // Can't give tokens to earlier-deploying ships
+                    u.donoaction([{type:"FOCUS",name:self.name,org:self,
+                        action:function(n) {
+                            this.select();
+                            this.addfocustoken();
+                            this.endnoaction(n,"TECH");
+                        }.bind(u)},
+                       {type:"EVADE",name:self.name,org:self,
+                        action:function(n) {
+                            this.select();
+                            this.addevadetoken();
+                            this.endnoaction(n,"TECH");
+                        }.bind(u)}],
+                      "+1 %EVADE% / %FOCUS%",
+                      true
+                    );
+                }
+                self.desactivate();
+            });
+            if(typeof self.unit.hasHCS === "undefined"){
+                self.unit.hasHCS=self;
+                self.switch();
+                sh.showskill();
+            }
+        }
     },
     { name:"A Score To Settle",
       type:Unit.ELITE,
@@ -6449,14 +6752,76 @@ var UPGRADES=window.UPGRADES= [
 			return a;
 		},
 	},
-	{
+    {
+        name: "Minefield Mapper",
+        type: Unit.SYSTEM,
+        points: 0,
+        done:true,
+        init: function(sh){
+            var self=this;
+            self.activeBombs=[];
+            var handleSelection = function(e) {
+                var bombButtons=[];
+                for(var i in this.bombs)(function(i){
+                    var bomb=sh.bombs[i];
+                    var resolveBomb=function(){
+                        //1. drop bomb @ some position
+                        //2. bomb.addDrag
+                        //3. add bomb to list of resolved bombs
+                        var dropped=bomb;
+                        if (bomb.ordnance>0) { 
+                            bomb.ordnance-=1; 
+                            dropped=$.extend({},bomb);
+                        } else bomb.desactivate();
+                        //var dm=this.getpathmatrix(this.m.clone().rotate(0,0,0).translate(0,GW/2+i*dropped.size*2),"F0");
+                        dropped.m=sh.m.clone().rotate(270,0,0);
+                        dropped.display(GW/3+(i*10*dropped.size),0); //offset position
+                        sh.bombdropped(dropped);
+                        dropped.setdefaultclickhandler();
+                        dropped.addDrag();
+                        self.activeBombs.push(dropped);
+                    };
+                    bombButtons.push($("<button>").html(bomb.name).on("touch click",function() {$(this).prop('disabled', true);resolveBomb();}));
+                })(i); // Closure to generate 
+                // Create one action for each bomb.
+                sh.doselection(function(n){
+                    $("#bombpositiondial").show();
+                    sh.select();
+                    $("#actiondial").empty();
+                    for(var j in bombButtons){
+                        $("#actiondial").append(bombButtons[j]);
+                    }
+                    $("#actiondial").append(
+                        $("<button>").html("End").on("touch click",function(){
+                                $("#actiondial").empty();
+                                for(var b in self.activeBombs){
+                                    self.activeBombs[b].unDrag();
+                                }
+                                $("#bombpositiondial").hide();
+                                sh.endnoaction(n,"Minefield Mapper");
+                            }
+                        )  
+                    ); // Create "end" button as well.
+                    $("#actiondial").show();
+                }.bind(sh),"Minefield Mapper");
+            }.bind(sh);
+            
+            $(document).on("endsetupphase"+sh.team,handleSelection);
+            sh.wrap_after("dies",self,function(){
+                $(document).off("endsetupphase"+sh.team,handleSelection);
+            });
+        },
+    },
+    {
 	name: "Trajectory Simulator",
 	type: Unit.SYSTEM,
 	points: 1,
 	done:true,
 	init:function(sh) {
-	    sh.wrap_after("getbomblocation",this,function(d) {
-		if (d.indexOf("F1")>-1) return d.concat("RF5");
+	    sh.wrap_after("getbomblocation",this,function(bomb,d) {
+                var be=bomb.explode.toString();
+                var minebe="function () {}";
+		if (be!==minebe&& d.indexOf("F1")>-1) return d.concat("RF5");
 		return d;
 	    })
 	},
@@ -6628,36 +6993,38 @@ var UPGRADES=window.UPGRADES= [
 			});
 		}
 	},
-	{
-		name: "First Order Vanguard",
-		type:Unit.TITLE,
-		done:false,
-		points:2,
-		unique:true,
-		ship: "TIE Silencer",
-		init: function(sh) {
-			var self=this;
-			sh.adddicemodifier(Unit.ATTACK_M,Unit.REROLL_M,Unit.ATTACK_M,this,{
-			dice:["blank","focus"],
-			n:function() { return 1; },
-			req:function(a,w,defender) {
-				var p=this.unit.getenemiesinrange(this.unit.weapons, this.unit.selectnearbyenemy(3))[0];
-				if (p.length===1&&self.isactive) {
-					this.unit.log("+1 reroll [%0]",self.name);
-				}
-				return p.length===1&&self.isactive;
-			}.bind(this)});
-			sh.adddicemodifier(Unit.DEFENSE_M,Unit.REROLL_M,Unit.DEFENSE_M,this,{
-			dice:["blank","focus","evade"],
-			req:function() { return self.isactive; }.bind(this),
-			n:function() { return 9; },
-			f:function(m,n) {
-				this.unit.log("reroll all dice results [%0]",self.name);
-				self.desactivate();
-				return {'m':m,'n':n};
-			}.bind(this)});
-		}
-	},
+    {
+        name: "First Order Vanguard",
+        type:Unit.TITLE,
+        done:true,
+        points:2,
+        unique:true,
+        ship: "TIE Silencer",
+        init: function(sh) {
+            var self=this;
+            sh.adddicemodifier(Unit.ATTACK_M,Unit.REROLL_M,Unit.ATTACK_M,this,{
+                dice:["blank","focus"],
+                n:function() { return 1; },
+                req:function(a,w,defender) {
+                    var p=this.unit.getenemiesinrange(this.unit.weapons, this.unit.selectnearbyenemy(3))[0];
+                    if (p.length===1&&self.isactive) {
+                        this.unit.log("+1 reroll [%0]",self.name);
+                    }
+                    return p.length===1&&self.isactive;
+                }.bind(this)});
+            sh.adddicemodifier(Unit.DEFENSE_M,Unit.REROLL_M,Unit.DEFENSE_M,this,{
+                dice:["blank","focus","evade"],
+                req:function() { return self.isactive; }.bind(this),
+                aiactivate:function(results,count){
+                    return(Unit.FE_blank(results,count)>count/2.0 || (Unit.FE_focus(results) > 0 && this.focuses.length===0));
+                }.bind(this),
+                n:function() { return 9; },
+                f:function() {
+                    this.unit.log("reroll all dice results [%0]",self.name);
+                    self.desactivate();
+                }.bind(this)});
+        }
+    },
 	{
 		name: "Deflective Plating",
 		type:Unit.MOD,

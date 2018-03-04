@@ -94,6 +94,8 @@ var replayall=function() {
 		"DPY":"deploy",
 		"st":"removestresstoken",
 		"d":"dies",
+                "wd":"removeweapondisabledtoken",
+                "WD":"addweapondisabledtoken"
 	   };
     if (typeof FTABLE[c[1]]=="string") {
 	var f=Unit.prototype[FTABLE[c[1]]];

@@ -1,4 +1,4 @@
-{ 
+{
     "ships":{
 	"X-Wing":"Ala-X",
 	"Y-Wing":"Ala-Y",
@@ -499,7 +499,23 @@
 	"m-latest":"Tournaments",
 	"m-combat":"Free Combat",
 	"m-scenario":"Scenarios",
-	"m-simulation":"Combat"
+	"m-simulation":"Combat",
+  "m-delet":"delet",
+  "m-back":"Back",
+  "m-imagebg":"Import setup image",
+  "m-strategy":"AI strategy",
+  "m-consol-color":"Console color",
+  "m-black":"Black",
+  "m-white":"White",
+  "m-settings":"Settings",
+  "m-formation":"Move in formation",
+  "m-individually":"Move individually",
+  "m-deathmatch":"Death match",
+  "m-destroyturns":"Destroy all units before Turn",
+  "m-highescore":"Highest score after Turn",
+  "m-asteroids":"Moving asteroids (BETA)",
+  "m-yes":"Yes",
+  "m-no":"No"
     },
     "ui":{
 	"selects":"Select a squad",
@@ -532,4 +548,3 @@
 "(filtered from _MAX_ total records)":"(filtered from _MAX_ total records)"
     }
 }
-
