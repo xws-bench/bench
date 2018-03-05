@@ -1,0 +1,197 @@
+{
+  "tournament": {
+    "date": "2018-03-04", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 4110, 
+    "name": "Beyond the Dungeon Sunday Tournament", 
+    "players": [
+      {
+        "mov": 116, 
+        "name": "Jeremy Green", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 399, 
+        "name": "Kevin Allen", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 428, 
+        "name": "Sean Hird", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.61"
+      }, 
+      {
+        "mov": 399, 
+        "name": "David Light", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 353, 
+        "name": "Gerry Russell", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 301, 
+        "name": "Chris Schafer", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 221, 
+        "name": "Vince", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 133, 
+        "name": "Adrian Parra", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 0, 
+        "sos": "0.61"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Vince", 
+            "player1points": 36, 
+            "player2": "Sean Hird", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gerry Russell", 
+            "player1points": 50, 
+            "player2": "David Light", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adrian Parra", 
+            "player1points": 30, 
+            "player2": "Jeremy Green", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Allen", 
+            "player1points": 100, 
+            "player2": "Chris Schafer", 
+            "player2points": 64, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Kevin Allen", 
+            "player1points": 100, 
+            "player2": "David Light", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean Hird", 
+            "player1points": 100, 
+            "player2": "Jeremy Green", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Schafer", 
+            "player1points": 100, 
+            "player2": "Vince", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gerry Russell", 
+            "player1points": 100, 
+            "player2": "Adrian Parra", 
+            "player2points": 25, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Sean Hird", 
+            "player1points": 64, 
+            "player2": "Kevin Allen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gerry Russell", 
+            "player1points": 100, 
+            "player2": "Chris Schafer", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Light", 
+            "player1points": 100, 
+            "player2": "Adrian Parra", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vince", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Spring", 
+      "country": "United States of America", 
+      "lat": "30.079882600000", 
+      "lon": "-95.417254900000", 
+      "name": "Beyond the Dungeon", 
+      "state": "Texas"
+    }, 
+    "video_url": "http://"
+  }
+}

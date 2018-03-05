@@ -10,185 +10,6 @@
           "faction": "imperial", 
           "pilots": [
             {
-              "name": "rearadmiralchiraneau", 
-              "ship": "vt49decimator", 
-              "upgrades": {
-                "bomb": [
-                  "protonbombs"
-                ], 
-                "crew": [
-                  "mercenarycopilot", 
-                  "gunner", 
-                  "rebelcaptive"
-                ], 
-                "ept": [
-                  "marksmanship"
-                ], 
-                "mod": [
-                  "shieldupgrade"
-                ], 
-                "torpedo": [
-                  "extramunitions"
-                ]
-              }
-            }, 
-            {
-              "name": "academypilot", 
-              "ship": "tiefighter", 
-              "upgrades": {
-                "mod": [
-                  "stealthdevice"
-                ]
-              }
-            }, 
-            {
-              "name": "academypilot", 
-              "ship": "tiefighter", 
-              "upgrades": {
-                "mod": [
-                  "stealthdevice"
-                ]
-              }
-            }
-          ], 
-          "vendor": {
-            "listjuggler": {}
-          }, 
-          "version": "4.2.0"
-        }, 
-        "mov": 206, 
-        "name": "Steve Coats", 
-        "rank": {
-          "swiss": 0
-        }, 
-        "score": 1, 
-        "sos": "0.50"
-      }, 
-      {
-        "list": {
-          "faction": "scum", 
-          "pilots": [
-            {
-              "name": "kathscarlet", 
-              "ship": "firespray31", 
-              "upgrades": {
-                "bomb": [
-                  "bombletgenerator"
-                ], 
-                "cannon": [
-                  "manglercannon"
-                ], 
-                "crew": [
-                  "dengar"
-                ], 
-                "ept": [
-                  "expertise"
-                ], 
-                "mod": [
-                  "engineupgrade"
-                ], 
-                "title": [
-                  "andrasta"
-                ]
-              }
-            }, 
-            {
-              "name": "asajjventress", 
-              "ship": "lancerclasspursuitcraft", 
-              "upgrades": {
-                "crew": [
-                  "tactician"
-                ], 
-                "ept": [
-                  "adaptability"
-                ], 
-                "mod": [
-                  "gyroscopictargeting"
-                ], 
-                "title": [
-                  "shadowcaster"
-                ]
-              }
-            }
-          ], 
-          "vendor": {
-            "listjuggler": {}
-          }, 
-          "version": "4.2.0"
-        }, 
-        "mov": 648, 
-        "name": "Derek Jaskula", 
-        "rank": {
-          "swiss": 1
-        }, 
-        "score": 4, 
-        "sos": "0.63"
-      }, 
-      {
-        "list": {
-          "faction": "rebel", 
-          "pilots": [
-            {
-              "name": "dashrendar", 
-              "ship": "yt2400", 
-              "upgrades": {
-                "cannon": [
-                  "heavylasercannon"
-                ], 
-                "crew": [
-                  "rey"
-                ], 
-                "ept": [
-                  "lonewolf"
-                ], 
-                "mod": [
-                  "countermeasures"
-                ], 
-                "title": [
-                  "outrider"
-                ]
-              }
-            }, 
-            {
-              "name": "mirandadoni", 
-              "ship": "kwing", 
-              "upgrades": {
-                "bomb": [
-                  "bombletgenerator"
-                ], 
-                "crew": [
-                  "c3po"
-                ], 
-                "missile": [
-                  "harpoonmissiles"
-                ], 
-                "mod": [
-                  "longrangescanners"
-                ], 
-                "turret": [
-                  "twinlaserturret"
-                ]
-              }
-            }
-          ], 
-          "vendor": {
-            "listjuggler": {}
-          }, 
-          "version": "4.2.0"
-        }, 
-        "mov": 621, 
-        "name": "Ryan Rumsey", 
-        "rank": {
-          "swiss": 2
-        }, 
-        "score": 3, 
-        "sos": "0.44"
-      }, 
-      {
-        "list": {
-          "faction": "imperial", 
-          "pilots": [
-            {
               "name": "colonelvessery", 
               "ship": "tiedefender", 
               "upgrades": {
@@ -242,38 +63,30 @@
           }, 
           "version": "4.2.0"
         }, 
-        "mov": 597, 
+        "mov": 670, 
         "name": "Ross Bennett", 
         "rank": {
-          "swiss": 3
+          "swiss": 1
         }, 
-        "score": 3, 
-        "sos": "0.38"
+        "score": 4, 
+        "sos": "0.31"
       }, 
       {
         "list": {
-          "faction": "rebel", 
+          "faction": "scum", 
           "pilots": [
             {
-              "name": "lowhhrick", 
-              "ship": "auzituckgunship", 
+              "name": "kathscarlet", 
+              "ship": "firespray31", 
               "upgrades": {
-                "crew": [
-                  "tactician", 
-                  "c3po"
+                "bomb": [
+                  "bombletgenerator"
                 ], 
-                "ept": [
-                  "expertise"
-                ]
-              }
-            }, 
-            {
-              "name": "rey", 
-              "ship": "yt1300", 
-              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
                 "crew": [
-                  "kananjarrus", 
-                  "finn"
+                  "dengar"
                 ], 
                 "ept": [
                   "expertise"
@@ -282,7 +95,25 @@
                   "engineupgrade"
                 ], 
                 "title": [
-                  "millenniumfalcon-swx57"
+                  "andrasta"
+                ]
+              }
+            }, 
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "gyroscopictargeting"
+                ], 
+                "title": [
+                  "shadowcaster"
                 ]
               }
             }
@@ -292,13 +123,73 @@
           }, 
           "version": "4.2.0"
         }, 
-        "mov": 448, 
-        "name": "Myron Rumsey", 
+        "mov": 650, 
+        "name": "Derek Jaskula", 
         "rank": {
-          "swiss": 4
+          "swiss": 2
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "crew": [
+                  "c3po"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 622, 
+        "name": "Ryan Rumsey", 
+        "rank": {
+          "swiss": 3
         }, 
         "score": 3, 
-        "sos": "0.63"
+        "sos": "0.44"
       }, 
       {
         "list": {
@@ -371,10 +262,60 @@
         "mov": 439, 
         "name": "Steve Gustin", 
         "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.67"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "tactician", 
+                  "c3po"
+                ], 
+                "ept": [
+                  "expertise"
+                ]
+              }
+            }, 
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "kananjarrus", 
+                  "finn"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 429, 
+        "name": "Myron Rumsey", 
+        "rank": {
           "swiss": 5
         }, 
         "score": 2, 
-        "sos": "0.58"
+        "sos": "0.69"
       }, 
       {
         "list": {
@@ -434,7 +375,7 @@
           }, 
           "version": "4.2.0"
         }, 
-        "mov": 428, 
+        "mov": 424, 
         "name": "Zess Williams", 
         "rank": {
           "swiss": 6
@@ -489,7 +430,7 @@
           }, 
           "version": "4.2.0"
         }, 
-        "mov": 381, 
+        "mov": 383, 
         "name": "Alan Pipe", 
         "rank": {
           "swiss": 7
@@ -633,7 +574,7 @@
           }, 
           "version": "4.2.0"
         }, 
-        "mov": 182, 
+        "mov": 180, 
         "name": "Eric Stickler", 
         "rank": {
           "swiss": 9
@@ -642,13 +583,117 @@
         "sos": "0.69"
       }, 
       {
-        "mov": 28, 
-        "name": "Matt Page", 
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "bomb": [
+                  "protonbombs"
+                ], 
+                "crew": [
+                  "mercenarycopilot", 
+                  "gunner", 
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "marksmanship"
+                ], 
+                "mod": [
+                  "shieldupgrade"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "mod": [
+                  "stealthdevice"
+                ]
+              }
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "mod": [
+                  "stealthdevice"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 153, 
+        "name": "Steve Coats", 
         "rank": {
           "swiss": 10
         }, 
+        "score": 1, 
+        "sos": "0.38"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "tech": [
+                  "weaponsguidance"
+                ]
+              }
+            }, 
+            {
+              "name": "tarnmison", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "torpedo": [
+                  "protontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "wesjanson", 
+              "ship": "xwing", 
+              "upgrades": {
+                "ept": [
+                  "wired"
+                ], 
+                "torpedo": [
+                  "protontorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 28, 
+        "name": "Matt Page", 
+        "rank": {
+          "swiss": 11
+        }, 
         "score": 0, 
-        "sos": "0.56"
+        "sos": "0.63"
       }
     ], 
     "round_length": 75, 
