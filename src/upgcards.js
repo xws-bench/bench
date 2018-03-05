@@ -3771,7 +3771,7 @@ var UPGRADES=window.UPGRADES= [
 	points: 1,
 	done:true,
 	init:function(sh) {
-	    sh.wrap_after("getbomblocation",this,function(d) {
+	    sh.wrap_after("getbomblocation",this,function(bomb,d) {
 		if (d.indexOf("F1")>-1) return d.concat("F2");
 		return d;
 	    })

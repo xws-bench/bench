@@ -2385,7 +2385,7 @@ window.PILOTS = [
 	unique:true,
 	wave:["6"],
 	pilotid:118,
-	getbomblocation:function() {  return ["F1","TL3","TR3","F3"]; },
+	getbomblocation:function(bomb) {  return ["F1","TL3","TR3","F3"]; },
 	faction:Unit.SCUM,
         unit: "Firespray-31",
         skill: 6,
@@ -5115,7 +5115,7 @@ window.PILOTS = [
 		unit: "Scurrg H-6 Bomber",
 		skill: 6,
 		points: 28,
-                getbomblocation:function() {  return ["F1","TL1","TR1"]; },
+                getbomblocation:function(bomb) {  return ["F1","TL1","TR1"]; },
 		upgrades: [Unit.ELITE,Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
 	},
 	{
