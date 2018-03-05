@@ -256,9 +256,9 @@
 	"'Double Edge'":{"text":"Once per round, after you perform a secondary weapon attack that does not hit, you may perform an attack with a different weapon."},
 	"Wullffwarro":{"text":"When attacking, if you have no shields and at least 1 Damage card assigned to you, roll 1 additional attack die."},
 	"Lowhhrick":{"text":"When another friendly ship at Range 1 is defending, you may spend 1 reinforce token. If you do, the defender adds 1 evade result."},
-	"Captain Nym":{"text":"You may ignore friendly bombs. When a friendly ship is defending, if the attacker measures range through a friendly bomb token, the defender may add one evade result."},
+	"Captain Nym (Scum)":{"text":"You may ignore friendly bombs. When a friendly ship is defending, if the attacker measures range through a friendly bomb token, the defender may add one evade result."},
 	"Sol Sixxa":{"text":"When dropping a bomb, you may use the Left Turn 1 or Right Turn 1 template instead of the Straight 1 template."},
-	"Captain Nym (Rebel)":{"text":"Once per round, you may prevent a friendly bomb from detonating."},
+	"Captain Nym":{"text":"Once per round, you may prevent a friendly bomb from detonating."},
 	"Dalan Oberos":{"text":"If you are not stressed, when you reveal a turn, bank, or Segnor's Loop maneuver, you may instead treat it as a red Tallon Roll maneuver of the same direction [left or right] using the template of the original revealed maneuver."},
 	"Thweek":{"text":"During setup, before the 'Place Forces' step, you may choose 1 enemy ship and assign the 'Shadowed' or 'Mimicked' Condition card to it. "},
 	"Viktor Hel":{"text":"After defending, if you did not roll exactly 2 defense dice, the attacker receives 1 stress token."},
@@ -425,6 +425,7 @@
     "When you reveal a red maneuver, you may discard this card to treat that maneuver as a white maneuver until the end of the Activation phase."},
     "Advanced Sensors":{"text":
     "Immediately before you reveal your maneuver, you may perform 1 free action. If you use this ability, you must skip your 'Perform Action' step during this round."},
+    "Minefield Mapper":{"text":"During setup, after the \"Place Forces\" step, you may discard any number of your equipped Bomb upgrade cards. Place all corresponding bomb tokens in the play area beyond Range 3 of enemy ships."},
     "Sensor Jammer":{"text":
     "When defending, you may change 1 of the attacker's %HIT% results into a %FOCUS% result. The attacker cannot reroll the die with the changed result."},
     "Darth Vader(Crew)":{"text":
@@ -583,6 +584,8 @@
     "<strong>Attack:</strong> Attack 1 ship (even a ship outside your firing arc). Your %HIT% results cannot be canceled by defense dice. The defender may cancel %CRIT% results before %HIT% results."},
     "R4 Agromech":{"text":
     "When attacking, after you spend a focus token, you may acquire a target lock on the defender."},
+    "R4-E1":{"text":
+    "You can perform actions on your torpedo and bomb Upgrade cards even if you are stressed. After you perform an action in this way, you may discard this card to remove one stress token from your ship."},
     "K4 Security Droid(Crew)":{"text":
     "After executing a green maneuver, you may acquire a target lock."},
     "Outlaw Tech(Crew)":{"text":

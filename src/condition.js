@@ -134,6 +134,38 @@ var CONDITIONS=[
 	},
   },
   {
+        name: "Mimicked",
+        assign: function(target) {
+            var self=this;
+            self.org.mimicking=target;
+            // Handle duelling Thweeks by Mimicking the other Thweek's target
+            if(target.name===self.org.name&&typeof target.mimicking!=="undefined"){
+                self.org.log("copying %0 abilities [%1]",target.mimicking.name,self.name);
+                target.mimicking.init.call(self.org);
+            }
+            else{ // Mimicking non-Thweek, or a Thweek that is Shadowing (so re-run init)
+                this.org.log("copying %0 abilities [%1]",target.name,this.name);
+                target.init.call(this.org);
+            }
+            // Redefine Condition() to check if the org is the owner of this
+            var newCondition=function(){
+                var tempbase=Condition; // Copied from "http://www.i-programmer.info/programming/javascript/1735-overriding-a-javascript-global-function-parseint.html"
+                return (function(sh,org,n){
+                    var specialCase=false;
+                    if(typeof self.org.mimicking!=="undefined" && self.org.mimicking.name===self.org.name){
+                        specialCase=true; // Only set on first pass, during event handling
+                    }
+                    if (org === self.org && !specialCase) { // Clojure assures this test works
+                        return;
+                    }
+                    return new tempbase(sh,org,n);
+                });
+            }(); // Has to execute immediately so that Condition is still correct w/in context
+            if (Condition.toString()!==newCondition.toString()) {Condition=newCondition;};
+            this.org.show();
+        }
+  },
+  {
 	name: "Harpooned!",
 	assign: function(target) {
 		var self=this;

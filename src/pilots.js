@@ -4868,7 +4868,7 @@ window.PILOTS = [
         name: "Lieutenant Kestal",
         faction: Unit.EMPIRE,
         unique: true,
-        done: false,
+        done: true,
         pilotid: 243,
         unit: "TIE Aggressor",
         skill: 7,
@@ -4967,8 +4967,16 @@ window.PILOTS = [
 		name: "Wullffwarro",
 		faction: Unit.REBEL,
 		unique: true,
-		done: false,
+		done: true,
 		pilotid: 247,
+                init:  function() {
+                    this.wrap_after("getattackstrength",this,function(w,sh,a) {
+                        if(this.criticals.length>=1 && this.shield<=0){
+                            a=a+1;
+                        }
+                        return a;
+                    });
+                },
 		unit: "Auzituck Gunship",
 		skill: 7,
 		points: 30,
@@ -4978,8 +4986,36 @@ window.PILOTS = [
 		name: "Lowhhrick",
 		faction: Unit.REBEL,
 		unique: true,
-		done: false,
+		done: true,
 		pilotid: 248,
+                init: function(){
+                    var self=this;
+                    $(document).on("predefenseroll"+self.team, 
+                    function(e,ship){
+                        if(ship!==self&&self.getrange(ship)<=1&&self.reinforce>0){
+                            // For calculating attack odds
+                            ship.wrap_after("modifydefenseroll",this,function(attacker,m,n,ch){
+                                if(this.getrange(self)<=1&&self.reinforce>0){
+                                    ch=ch+Unit.FE_EVADE;
+                                }
+                                return ch;
+                            }).unwrapper("endbeingattacked");
+                            // For actually adding defense mod
+                            ship.adddicemodifier(Unit.DEFENSE_M,Unit.ADD_M,Unit.DEFENSE_M,self,{
+                                req:function(m,n) {
+                                    return (this.getrange(self)<=1&&self.reinforce>0);
+                                }.bind(ship),
+                                f:function(m,n) {
+                                    this.log("-1 %REINFORCE% [%0] -> +1 %EVADE%",self.name);
+                                    self.removereinforcetoken();
+                                    m=m+Unit.FE_EVADE;
+                                    n=n+1;
+                                    return {m:m,n:n};
+                                }.bind(ship),
+                                str:"reinforce"}).unwrapper("endbeingattacked");
+                        }
+                    });
+                },
 		unit: "Auzituck Gunship",
 		skill: 5,
 		points: 28,
@@ -5007,26 +5043,79 @@ window.PILOTS = [
 		points: 24,
 		upgrades: [Unit.CREW,Unit.CREW]
 	},
-	{
-		name: "Captain Nym",
-		faction: Unit.SCUM,
-		unique: true,
-		done: false,
-		pilotid: 251,
-		unit: "Scurrg H-6 Bomber",
-		skill: 8,
-		points: 30,
-		upgrades: [Unit.ELITE,Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
-	},
+    {
+        name: "Captain Nym",
+        faction: Unit.SCUM,
+        unique: true,
+        done: true,
+        pilotid: 251,
+        unit: "Scurrg H-6 Bomber",
+        skill: 8,
+        points: 30,
+        init:function(){
+            var self=this;
+            var saved=null;
+            var savedDetonate=null;
+            var disableDamage=function(e,bomb,asMine,args){
+                // Make Nym not collide with any mine
+                if(asMine){
+                    // Apparently Scum Nym actually *prevents* friendly mines from
+                    // exploding, not just avoiding their damage, when colliding with them
+                    if(args[0]===self){
+                        self.log("ignores (no trigger) [%0]",bomb.name);
+                        self.saved=bomb;
+                        self.savedDetonate=bomb.detonate;
+                        bomb.detonate=function(){}; // Make detonate a no-op for this specific detonation only
+                    }
+                }
+                else{
+                    // Make Nym not in range of any friendly bomb but not prevent them
+                    bomb.wrap_after("getrange",this,function(ship,range){
+                        self.log("ignores (no damage) [%0]",bomb.name);
+                        if(ship===self){ range=4; }
+                        return range;
+                    }).unwrapper("postexplode");
+                }
+            };
+            var enableDamage=function(e,bomb,asMine,args){
+                if(asMine&&self.saved===bomb){
+                    //restore halted bomb's detonate function
+                    bomb.detonate=self.savedDetonate;
+                    self.saved=null;
+                    self.savedDetonate=null;
+                }
+            };
+            var addMineDefense=function(e,friendly,weapon,attacker){
+                attacker.wrap_after("getobstructiondef",self,function(target,def){
+                    // Re-check attack LOS with mines included
+                    if(Unit.prototype.getoutlinerange.call(attacker,attacker.m,target,true,[self.team]).o){
+                        target.log("%0 grants (obstructing bomb):",self.name);
+                        def=def+1;
+                    }
+                    return def;
+                }).unwrapper("endattack");;
+            };
+            $(document).on("preexplode"+self.team,disableDamage);
+            $(document).on("postexplode"+self.team,enableDamage);
+            $(document).on("predefenseroll"+self.team,addMineDefense);
+            self.wrap_after("dies",this,function() { // Clear handlers on Nym's death
+		    $(document).off("preexplosion"+self.team,disableDamage);
+                    $(document).off("postexplosion"+self.team,enableDamage);
+                    $(document).off("predefenseroll"+self.team,addMineDefense);
+            });
+        },
+        upgrades: [Unit.ELITE,Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
+    },
 	{
 		name: "Sol Sixxa",
 		faction: Unit.SCUM,
 		unique: true,
-		done: false,
+		done: true,
 		pilotid: 252,
 		unit: "Scurrg H-6 Bomber",
 		skill: 6,
 		points: 28,
+                getbomblocation:function() {  return ["F1","TL1","TR1"]; },
 		upgrades: [Unit.ELITE,Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
 	},
 	{
@@ -5052,15 +5141,92 @@ window.PILOTS = [
 		upgrades: [Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
 	},
 	{
-		name: "Captain Nym",
-		faction: Unit.REBEL,
-		unique: true,
-		done: false,
-		pilotid: 255,
-		unit: "Scurrg H-6 Bomber",
-		skill: 8,
-		points: 30,
-		upgrades: [Unit.ELITE,Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
+            name: "Captain Nym",
+            faction: Unit.REBEL,
+            unique: true,
+            done: true,
+            pilotid: 255,
+            unit: "Scurrg H-6 Bomber",
+            skill: 8,
+            points: 30,
+            init: function(){
+                var self=this;
+                self.round=-1;
+                self.canceled=[];
+                var handlePreExplode=function(e,bomb,asMine,args){
+                    // Only called by friendly bombs, so team check unnecessary
+
+                    // Need to make test more careful, or realexplode doesn't get initialized!
+                    bomb.realexplode=(typeof bomb.realexplode!=="undefined")?bomb.realexplode:bomb.explode;
+                    bomb.realdetonate=(typeof bomb.realdetonate!=="undefined")?bomb.realdetonate:bomb.detonate;
+                    bomb.explode=function(){};
+                    bomb.detonate=function(){};
+                    if(asMine){ // Handle each detonated mine separately
+                        if(self.round<round){
+                            self.selectunit([self,bomb],function(p,k){ // Choose self or mine to halt
+                                if(k===0||self.round>=round){
+                                    p[1].realdetonate.apply(p[1],args); // Need a way to get args for detonate :(
+                                }
+                                else{
+                                    self.round=round;
+                                    self.log("prevented detonation of %0",p[k].name);
+                                    // Reset this mine
+                                    p[k].explode=bomb.realexplode;
+                                    p[k].detonate=bomb.realdetonate;
+                                }
+                            }.bind(self),["Select mine to halt (or self to cancel)"],false);
+                        }
+                        else{ // Can't use ability again this round, so mine explodes
+                            bomb.realdetonate.apply(bomb,args); 
+                        }
+                    }
+                    else{ 
+                        self.canceled.push(bomb); 
+                    }
+                };
+                var handleEndBombs=function(e){
+                    if(self.round<round&&self.canceled.length!==0){ // Didn't use this round and bombs were going to go off
+                        self.canceled.unshift(self); // Need to add self but not use "cancelleable"
+                        self.selectunit(self.canceled,function(p,k){ // Choose a bomb to halt
+                            for(var bomb=1; bomb<p.length; bomb++){ // If k===0, blow them al
+                                if(bomb===k){ // Reset this bomb
+                                    self.round=round;
+                                    self.log("halted explosion of %0",p[bomb].name);
+                                    p[bomb].explode=p[bomb].realexplode;
+                                    p[bomb].detonate=p[bomb].realdetonate;
+                                }
+                                else{ // Explode all other bombs.
+                                    p[bomb].realexplode();
+                                    if(!p[bomb].exploded){ // Reset any mines
+                                        p[bomb].explode=p[bomb].realexplode;
+                                        p[bomb].detonate=p[bomb].realdetonate;
+                                    }
+                                }
+                            }
+                        }.bind(self),["Select bomb to halt (or self to cancel)"],false);
+                    }else{ // Did use ability prior to end of activation phase, so all bombs explode
+                        var bombs=self.canceled;
+                        for(var bomb=0; bomb<bombs.length; bomb++){
+                            // Explode all other bombs.
+                            bombs[bomb].realexplode();
+                            if(!bombs[bomb].exploded){ // Reset any mines
+                                bombs[bomb].explode=bombs[bomb].realexplode;
+                                bombs[bomb].detonate=bombs[bomb].realdetonate;
+                            }
+                        }
+                    }
+                    self.canceled=[];
+                };
+                // Set handlers
+                $(document).on("preexplode"+self.team,handlePreExplode);
+                $(document).on("endbombs"+self.team,handleEndBombs);
+                // Remove only the Nym handlers for this team on Nym's death
+                self.wrap_after("dies",this,function() {
+		    $(document).off("preexplode"+self.team,handlePreExplode);
+                    $(document).off("endbombs"+self.team,handleEndBombs);
+		});
+            },
+            upgrades: [Unit.ELITE,Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
 	},
 	{
         	name: "Dalan Oberos",
@@ -5083,25 +5249,53 @@ window.PILOTS = [
             skill: 4,
             points: 28,
             upgrades: [Unit.TORPEDO],
+            canswitch: function() {
+                return phase <=SETUP_PHASE && !this.assigned;
+            },
+            switch: function() {
+                if(this.variant==="Shadowed"){
+                    this.variant="Mimicked";
+                }
+                else{
+                    this.variant="Shadowed";
+                }
+                this.show();
+            },
             init: function() {
                 var self=this;
-                this.wrap_after("endsetupphase",this,function() {
+                var handleSelection = function(e) {
                     var p=[];
                     for (var i in squadron){
-                        if (squadron[i].team!=this.team) 
+                        if (squadron[i].team!=self.team) 
                             p.push(squadron[i]);
                     };
-                    var lock=$.Deferred();
-                    this.selectunit( //Gives us skip functionality
+                    if(typeof self.mimicking!=="undefined" && self.mimicking.name===self.name){ // Prevent AI looping when duelling Thweeks
+                        p=p.filter(ship => ship.name!==self.name) //Remove non-mimicking Thweek
+                    }
+                    self.selectunit( //Gives us skip functionality
                         p,
 			function(p,k) {
-                            this.log("select unit for condition [%0]","Shadowed");
-                            new Condition(p[k],this,"Shadowed");
-                            lock.resolve();
-                        }.bind(this),
-                        ["select unit for condition (or self to cancel) [%0]",self.name],
+                            if(this.ia){ // Select the highest-skill pilot, or k==0
+                                var max=this.skill;
+                                for(var i in p){
+                                    k=(p[i].getskill()>max)?i:k;
+                                    max=(p[i].getskill()>max)?p[i].getskill():max;
+                                }
+                            }
+                            new Condition(p[k],this,self.variant);
+                            self.assigned=true;
+                        }.bind(self),
+                        ["select unit for condition [%1] (or self to cancel) [%0]",self.name,self.variant],
                         true); //somehow, "noskip" == allow skip
-                });
+                };
+                if(typeof self.mimicking==="undefined"){ //Thweek actually init-ing for first time
+                    self.assigned=false;
+                    self.variant="Shadowed";               
+                    $(document).on("endsetupphase"+self.team,handleSelection);
+                }
+                else{ // Thweek Mimicking Thweek Shadowing X
+                    handleSelection(null);
+                }
             }
 	},
 	{

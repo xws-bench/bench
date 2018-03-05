@@ -123,6 +123,16 @@
 	  </div>
 	  <div><button onclick="document.location='#asteroid'; activeunit.selectrocks();">Change</button></div>
 	</div>
+        <div id="bombpositiondial">
+	  <div>
+	    <span onclick="activeunit.turn(-45)" title="key: <T>" class="symbols">4</span>
+	    <span onclick="activeunit.turn(45)" title="key: <t>" class="symbols">6</span>
+	  </div>
+	  <div>
+	    <span onclick="activeunit.turn(-5)" title="key: <B>" class="symbols">7</span>
+	    <span onclick="activeunit.turn(5)" title="key: <b>" class="symbols">9</span>
+	  </div>
+	</div>        
 	<table id="maneuverdial"></table>
 	<div id="activationdial"></div>
 	<div id="actiondial"></div>
@@ -726,6 +736,7 @@ hammer2.0.8.min.js sheetrock.min.js
 	    <td></td>
 	    {{/isinleft}}
 	  </tr>
+          {{#variant}}{{{.}}}{{/variant}}{{#hasswitch}}<code class="smallbutton symbols" onclick="if (!squadron[{{uid}}].isdocked) squadron[{{uid}}].switch();">/</code>{{/hasswitch}}
 	  {{#upgrades}}{{{.}}}{{/upgrades}}
 	  {{#criticals}}{{{.}}}{{/criticals}}
 	  {{#conds}}{{{.}}}{{/conds}}

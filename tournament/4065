@@ -1,0 +1,209 @@
+{
+  "tournament": {
+    "date": "2018-02-25", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 4065, 
+    "name": "Sunday X-Wing Pod Two - 2/25", 
+    "players": [
+      {
+        "mov": 569, 
+        "name": "Jorge", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 368, 
+        "name": "Alex Delanuez", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 344, 
+        "name": "Jade Mc", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 215, 
+        "name": "Alex DeRosa", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 377, 
+        "name": "Mike D", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 269, 
+        "name": "Rolando Garcia", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 224, 
+        "name": "Joe Alden", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 34, 
+        "name": "Matt S", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "0.56"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "final_salvo": false, 
+            "player1": "Alex DeRosa", 
+            "player1points": 33, 
+            "player2": "Mike D", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Matt S", 
+            "player1points": 0, 
+            "player2": "Alex Delanuez", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Jade Mc", 
+            "player1points": 0, 
+            "player2": "Jorge", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Joe Alden", 
+            "player1points": 63, 
+            "player2": "Rolando Garcia", 
+            "player2points": 75, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "final_salvo": false, 
+            "player1": "Alex Delanuez", 
+            "player1points": 31, 
+            "player2": "Jorge", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Rolando Garcia", 
+            "player1points": 75, 
+            "player2": "Alex DeRosa", 
+            "player2points": 81, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Matt S", 
+            "player1points": 34, 
+            "player2": "Jade Mc", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Mike D", 
+            "player1points": 45, 
+            "player2": "Joe Alden", 
+            "player2points": 59, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "final_salvo": false, 
+            "player1": "Alex DeRosa", 
+            "player1points": 0, 
+            "player2": "Jorge", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Rolando Garcia", 
+            "player1points": 63, 
+            "player2": "Alex Delanuez", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Joe Alden", 
+            "player1points": 22, 
+            "player2": "Jade Mc", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Mike D", 
+            "player1points": 100, 
+            "player2": "Matt S", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Boonton", 
+      "country": "United States of America", 
+      "lat": "40.902598900000", 
+      "lon": "-74.407097100000", 
+      "name": "Highlander Games & Comics", 
+      "state": "New Jersey"
+    }, 
+    "video_url": "http://"
+  }
+}
