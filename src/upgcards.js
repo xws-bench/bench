@@ -604,7 +604,7 @@ var UPGRADES=window.UPGRADES= [
 	    sh.wrap_before("endaction",this,function(n,type) {
 		if (ptl.r!=round&&this.candoaction()&&type!==null) { // Only Stress prevents EI/PTL once an action has occurred.
 		    ptl.r=round;
-		    this.doaction(this.getactionbarlist(),"+1 free action (Skip to cancel) ["+ptl.name+"]").done(function(type2) {
+		    this.doaction(this.getactionbarlist(false),"+1 free action (Skip to cancel) ["+ptl.name+"]").done(function(type2) {
 			if (type2===null || typeof type2 === "undefined") ptl.r=-1; 
 			else this.addafteractions(function() { this.addstress(); }.bind(this));
 		    }.bind(this));
@@ -897,6 +897,7 @@ var UPGRADES=window.UPGRADES= [
     { /* TODO: a ship is still hit if crit is transferred ? */
         name: "Selflessness",
 	rating:1,
+        unique:true,
         init: function(sh) {
 	    var self=this;
 	    self.ea=Unit.prototype.resolvehit;
@@ -1000,6 +1001,51 @@ var UPGRADES=window.UPGRADES= [
 	    sh.wrap_after("deal",this,newdeal);
 	},
         points: 4,
+    },
+    {
+        name: "Breach Specialist",
+        done:true,
+        type: Unit.CREW,
+        points: 1,
+        init: function(sh){
+            var self=this;
+            self.working=false;
+            /* Logic:
+             * Check every Damage card.  If faceup, offer UI.
+             * If selected, turn all faceup damage cards face down for this turn then unwrap.
+             * If not selected, leave wrapped
+             */
+            var bspec=function(n){
+                this.removereinforcetoken();
+                self.working=true;
+                this.wrap_before("applycritical",self,function(crits) {
+                    if (self.working) {
+                        this.log("flipping [%1] crits down unresolved [%0]",self.name,crits);
+                        this.applydamage(crits);
+                        return [0]; // Apply all crits as facedown, and apply 0 actual crits
+                    }
+                    else{ return crits; }
+                }).unwrapper("endcombatphase");
+                
+                this.wrap_after("endcombatphase",self,function(){
+                    self.working=false;
+                });
+                
+                this.endnoaction(n,"CREW");
+            }.bind(sh);
+            
+            // From Greedo
+            sh.wrap_before("applycritical",self,function(crits) {
+		if (self.isactive&&this.reinforce>0&&crits>0){
+                    // Provide UI
+                    crits=crits-1;
+                    sh.donoaction([{org:self,type:"CREW",name:self.name,action:bspec}],
+                    "",
+                    true,function(){sh.resolvecritical(1);}); // account for first crit
+                }
+                return crits; //see new wrap_before definition
+	    }.bind(sh));
+        }
     },
     {
         name: "Advanced Proton Torpedoes",
@@ -1757,6 +1803,53 @@ var UPGRADES=window.UPGRADES= [
                 self.uninstall();
             });
 	}
+    },
+    {
+        name: "R4-E1",
+        done:true,
+        unique:true,
+        type: Unit.SALVAGED,
+        points: 1,
+        init: function(sh){
+            var self=this;
+            self.waiting=false;
+            // Cleanest way to allow actions while stressed
+            sh.wrap_after("hasnostresseffect",this,function(b) {
+	      if(self.isactive){return true;}
+              else{return b;}
+            });
+            // If the host ship is stressed but preparing for an action, only pass
+            // TORPEDO and BOMB actions through
+            sh.wrap_after("getactionlist",this,function(isendmaneuver,al){
+                if(self.isactive&&sh.stress>0){
+                    al=sh.getupgactionlist();
+                    al=al.filter(
+                        actItem=>(actItem.type==="TORPEDO"||actItem.type==="BOMB")
+                    );
+                }
+                return al;
+            });
+            // Don't allow PTL to get actionbar list if stressed
+            sh.wrap_after("getactionbarlist",this,function(isendmaneuver,al){
+                if(self.isactive&&sh.stress>0){
+                    al=[];
+                }
+                return al;
+            });
+            // After an action taken while stressed, may discard to drop one stress
+            sh.wrap_after("endaction",this,function() {
+	      if (!(self.isactive&&sh.actionsdone.length>0&&sh.stress>0&&!self.waiting)) return;
+              self.waiting=true;
+	      this.donoaction([{type:"ASTROMECH",name:self.name,org:self,
+				action:function(n) {
+				    self.desactivate();
+				    this.removestresstoken();
+				    this.endnoaction(n,"ASTROMECH");
+				}.bind(this)}],
+			      "Discard to remove 1 %STRESS%",
+			      true,function(){self.waiting=false;});
+	  });    
+        }
     },
     {
         name: "R4-D6",
@@ -3154,7 +3247,14 @@ var UPGRADES=window.UPGRADES= [
 	    //sh.weapons[0].followupattack=function() { return sh.indexOf(turret[0]); };
 	    sh.addattack(function(c,h) { 
 		return this.weapons[this.activeweapon].isprimary;
-	    },self,turret); 
+	    },self,turret);
+            
+            sh.wrap_after("evaluatetohit",self,function(wpIdx,enemy,thp){
+                if(sh.ia){
+                    if(wpIdx===0&&thp.tohit!==0){thp.tohit=100;}
+                    return thp;
+                }
+            });
 	},
         points: 0,
         ship: "Y-Wing",
@@ -3307,12 +3407,14 @@ var UPGRADES=window.UPGRADES= [
 	    }
 	},
 	display: function(x,y) {
+            x=(typeof x==="undefined")?0:x;
+            y=(typeof y==="undefined")?0:y;
 	    this.getOutlineString=this.getOutlineStringsmall;
-	    var b1=$.extend({},this);
-	    var b2=$.extend({},this);
-	    Bomb.prototype.display.call(b1,this.repeatx,0);
-	    Bomb.prototype.display.call(b2,-this.repeatx,0);
-	    Bomb.prototype.display.call(this,0,0);
+	    this.b1=$.extend({},this);
+	    this.b2=$.extend({},this);
+	    Bomb.prototype.display.call(this.b1,x+this.repeatx,y);
+	    Bomb.prototype.display.call(this.b2,x-this.repeatx,y);
+	    Bomb.prototype.display.call(this,x,y);
 	},
 	init: function(u) {
 	    var p=s.path("M41.844,-21 C54.632,-21 65,-11.15 65,1 C65,13.15 54.632,23 41.844,23 C33.853,22.912 25.752,18.903 21.904,12.169 C17.975,18.963 10.014,22.806 1.964,23 C-7.439,22.934 -14.635,18.059 -18.94,10.466 C-22.908,18.116 -30.804,22.783 -39.845,23 C-52.633,23 -63,13.15 -63,1 C-63,-11.15 -52.633,-21 -39.845,-21 C-30.441,-20.935 -23.246,-16.06 -18.94,-8.466 C-14.972,-16.116 -7.076,-20.783 1.964,-21 C9.956,-20.913 18.055,-16.902 21.904,-10.17 C25.832,-16.964 33.795,-20.807 41.844,-21 z").attr({display:"none"});
@@ -3321,6 +3423,8 @@ var UPGRADES=window.UPGRADES= [
 	    for (var i=0; i<60; i++) {
 		this.op0[i]=p.getPointAtLength(i*l/60);
 	    }
+            this.b1=null;
+            this.b2=null;
 	},
 	getOutlineString: function(m) {
 	    var s="M ";
@@ -3337,6 +3441,16 @@ var UPGRADES=window.UPGRADES= [
 	    s+="Z";
 	    return {s:s,p:this.op};
 	},
+        addDrag: function(){
+            Bomb.prototype.addDrag.call(this);
+            Bomb.prototype.addDrag.call(this.b1);
+            Bomb.prototype.addDrag.call(this.b2);
+        },
+        unDrag: function(){
+            Bomb.prototype.unDrag.call(this);
+            Bomb.prototype.unDrag.call(this.b1);
+            Bomb.prototype.unDrag.call(this.b2);
+        },
         points: 4,
     },
     {
@@ -3703,7 +3817,7 @@ var UPGRADES=window.UPGRADES= [
 	points: 1,
 	done:true,
 	init:function(sh) {
-	    sh.wrap_after("getbomblocation",this,function(d) {
+	    sh.wrap_after("getbomblocation",this,function(bomb,d) {
 		if (d.indexOf("F1")>-1) return d.concat("F2");
 		return d;
 	    })
@@ -6691,14 +6805,76 @@ var UPGRADES=window.UPGRADES= [
 			return a;
 		},
 	},
-	{
+    {
+        name: "Minefield Mapper",
+        type: Unit.SYSTEM,
+        points: 0,
+        done:true,
+        init: function(sh){
+            var self=this;
+            self.activeBombs=[];
+            var handleSelection = function(e) {
+                var bombButtons=[];
+                for(var i in this.bombs)(function(i){
+                    var bomb=sh.bombs[i];
+                    var resolveBomb=function(){
+                        //1. drop bomb @ some position
+                        //2. bomb.addDrag
+                        //3. add bomb to list of resolved bombs
+                        var dropped=bomb;
+                        if (bomb.ordnance>0) { 
+                            bomb.ordnance-=1; 
+                            dropped=$.extend({},bomb);
+                        } else bomb.desactivate();
+                        //var dm=this.getpathmatrix(this.m.clone().rotate(0,0,0).translate(0,GW/2+i*dropped.size*2),"F0");
+                        dropped.m=sh.m.clone().rotate(270,0,0);
+                        dropped.display(GW/3+(i*10*dropped.size),0); //offset position
+                        sh.bombdropped(dropped);
+                        dropped.setdefaultclickhandler();
+                        dropped.addDrag();
+                        self.activeBombs.push(dropped);
+                    };
+                    bombButtons.push($("<button>").html(bomb.name).on("touch click",function() {$(this).prop('disabled', true);resolveBomb();}));
+                })(i); // Closure to generate 
+                // Create one action for each bomb.
+                sh.doselection(function(n){
+                    $("#bombpositiondial").show();
+                    sh.select();
+                    $("#actiondial").empty();
+                    for(var j in bombButtons){
+                        $("#actiondial").append(bombButtons[j]);
+                    }
+                    $("#actiondial").append(
+                        $("<button>").html("End").on("touch click",function(){
+                                $("#actiondial").empty();
+                                for(var b in self.activeBombs){
+                                    self.activeBombs[b].unDrag();
+                                }
+                                $("#bombpositiondial").hide();
+                                sh.endnoaction(n,"Minefield Mapper");
+                            }
+                        )  
+                    ); // Create "end" button as well.
+                    $("#actiondial").show();
+                }.bind(sh),"Minefield Mapper");
+            }.bind(sh);
+            
+            $(document).on("endsetupphase"+sh.team,handleSelection);
+            sh.wrap_after("dies",self,function(){
+                $(document).off("endsetupphase"+sh.team,handleSelection);
+            });
+        },
+    },
+    {
 	name: "Trajectory Simulator",
 	type: Unit.SYSTEM,
 	points: 1,
 	done:true,
 	init:function(sh) {
-	    sh.wrap_after("getbomblocation",this,function(d) {
-		if (d.indexOf("F1")>-1) return d.concat("RF5");
+	    sh.wrap_after("getbomblocation",this,function(bomb,d) {
+                var be=bomb.explode.toString();
+                var minebe="function () {}";
+		if (be!==minebe&& d.indexOf("F1")>-1) return d.concat("RF5");
 		return d;
 	    })
 	},

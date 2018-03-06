@@ -1486,6 +1486,7 @@ function setphase(cannotreplay) {
 	$("footer").show();
 	$(".unit").css("cursor","move");
 	$("#positiondial").show();
+        $("#bombpositiondial").hide();
 	$(".permalink").show();
 	$("#savebtn").hide();
 	for (i in squadron) squadron[i].beginsetupphase();
@@ -1804,11 +1805,15 @@ $(document).ready(function() {
 
     $("#squad1").on("paste",function() {
 	setTimeout(function(){
-	    currentteam=TEAMS[1];importsquad(1);}, 4);
+	    currentteam=TEAMS[1];importsquad(1);
+            enablenextphase();
+        }, 4);
     });
     $("#squad2").on("paste",function() {
 	setTimeout(function(){
-	    currentteam=TEAMS[2];importsquad(2);}, 4);
+	    currentteam=TEAMS[2];importsquad(2);
+            enablenextphase();
+        }, 4);
     });
 
     /*
@@ -2007,8 +2012,8 @@ $(document).ready(function() {
 
 	if (typeof localStorage.volume=="undefined") localStorage.volume=0.8;
 
-	//Howler.volume(localStorage.volume);
-	//$("#vol").val(localStorage.volume*100);
+	Howler.volume(localStorage.volume);
+	$("#vol").val(localStorage.volume*100);
 
 	var mc= new Hammer(document.getElementById('svgout'));
 	mc.get("pinch").set({enable:true});
