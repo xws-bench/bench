@@ -897,6 +897,7 @@ var UPGRADES=window.UPGRADES= [
     { /* TODO: a ship is still hit if crit is transferred ? */
         name: "Selflessness",
 	rating:1,
+        unique:true,
         init: function(sh) {
 	    var self=this;
 	    self.ea=Unit.prototype.resolvehit;
@@ -1000,6 +1001,51 @@ var UPGRADES=window.UPGRADES= [
 	    sh.wrap_after("deal",this,newdeal);
 	},
         points: 4,
+    },
+    {
+        name: "Breach Specialist",
+        done:true,
+        type: Unit.CREW,
+        points: 1,
+        init: function(sh){
+            var self=this;
+            self.working=false;
+            /* Logic:
+             * Check every Damage card.  If faceup, offer UI.
+             * If selected, turn all faceup damage cards face down for this turn then unwrap.
+             * If not selected, leave wrapped
+             */
+            var bspec=function(n){
+                this.removereinforcetoken();
+                self.working=true;
+                this.wrap_before("applycritical",self,function(crits) {
+                    if (self.working) {
+                        this.log("flipping [%1] crits down unresolved [%0]",self.name,crits);
+                        this.applydamage(crits);
+                        return [0]; // Apply all crits as facedown, and apply 0 actual crits
+                    }
+                    else{ return crits; }
+                }).unwrapper("endcombatphase");
+                
+                this.wrap_after("endcombatphase",self,function(){
+                    self.working=false;
+                });
+                
+                this.endnoaction(n,"CREW");
+            }.bind(sh);
+            
+            // From Greedo
+            sh.wrap_before("applycritical",self,function(crits) {
+		if (self.isactive&&this.reinforce>0&&crits>0){
+                    // Provide UI
+                    crits=crits-1;
+                    sh.donoaction([{org:self,type:"CREW",name:self.name,action:bspec}],
+                    "",
+                    true,function(){sh.resolvecritical(1);}); // account for first crit
+                }
+                return crits; //see new wrap_before definition
+	    }.bind(sh));
+        }
     },
     {
         name: "Advanced Proton Torpedoes",
