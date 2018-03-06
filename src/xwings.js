@@ -1805,11 +1805,15 @@ $(document).ready(function() {
 
     $("#squad1").on("paste",function() {
 	setTimeout(function(){
-	    currentteam=TEAMS[1];importsquad(1);}, 4);
+	    currentteam=TEAMS[1];importsquad(1);
+            enablenextphase();
+        }, 4);
     });
     $("#squad2").on("paste",function() {
 	setTimeout(function(){
-	    currentteam=TEAMS[2];importsquad(2);}, 4);
+	    currentteam=TEAMS[2];importsquad(2);
+            enablenextphase();
+        }, 4);
     });
 
     /*
