@@ -7164,5 +7164,5 @@ var UPGRADES=window.UPGRADES= [
 ];
 var UPGRADESNAMEINDEX=window.UPGRADESNAMEINDEX=UPGRADES.map(function(upgcrd){
     if(upgcrd.ambiguous===true&&typeof upgcrd.edition!=="undefined") return upgcrd.name.replace(/\'/g,"")+" ("+upgcrd.edition+")";
-    return upgcrd.name.replace(/\'/g,""); // for faster seeking; see http://www.andygup.net/fastest-way-to-find-an-item-in-a-javascript-array/
+    return upgcrd.name;//.replace(/\'/g,""); // for faster seeking; see http://www.andygup.net/fastest-way-to-find-an-item-in-a-javascript-array/
 });

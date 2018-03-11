@@ -5590,5 +5590,5 @@ window.PILOTS = [
 var PILOTSNAMEINDEX=window.PILOTSNAMEINDEX=PILOTS.map(function(pilcard){
     
     if(pilcard.ambiguous===true&&typeof pilcard.edition!=="undefined") return pilcard.name.replace(/\'/g,"")+" ("+pilcard.edition+")";
-    return pilcard.name.replace(/\'/g,""); // for faster seeking; see http://www.andygup.net/fastest-way-to-find-an-item-in-a-javascript-array/
+    return pilcard.name;//.replace(/\'/g,""); // for faster seeking; see http://www.andygup.net/fastest-way-to-find-an-item-in-a-javascript-array/
 });

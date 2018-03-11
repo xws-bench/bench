@@ -51,8 +51,8 @@ Squadlist.prototype = {
 	var n=faction.toUpperCase();
 	if (typeof localStorage[name]=="undefined"||fill==true) {
 	    this.rows[this.nrows]=jug;
-	    TEAMS[0].parseJuggler(jug,false);//true);
-	    var jjug = TEAMS[0].toJuggler(true,true);
+	    //TEAMS[0].parseJuggler(jug,false);//true);
+	    //var jjug = TEAMS[0].toJuggler(true,true);
 	    $(this.id +" tbody").append(
 		Mustache.render(TEMPLATES["row-manage"],{
 		    nrows:this.nrows,
@@ -60,7 +60,7 @@ Squadlist.prototype = {
 		    pts:pts,
 		    name:name,
 		    tournament:tournament,
-		    jug:jjug//.replace(/\n/g,"<br>")
+		    jug:jug//.replace(/\n/g,"<br>")
 		}));
 	    this.nrows++;
 	}
@@ -137,13 +137,15 @@ Squadlist.prototype = {
 		    for (var i in t.tournament.players) {
 			var p=t.tournament.players[i];
 			if (typeof p.list!="undefined") {
+                            var newTeamList=new TeamList(JSON.stringify(p.list));
 			    TEAMS[0].parseJSON(p.list);
 			    TEAMS[0].toJSON();
 			    var key=TEAMS[0].toKey();
 			    if (this.allresults[key]!=true) {
 				var jug=TEAMS[0].toJuggler(false);
-				list.push({points:TEAMS[0].points,faction:TEAMS[0].faction,jug:jug});
-				this.addrow(0,"COMPETITION"+key,TEAMS[0].points,TEAMS[0].faction,jug,false,event); 
+                                var jug2=newTeamList.outputJuggler();
+				list.push({points:TEAMS[0].points,faction:TEAMS[0].faction,jug:jug2});
+				this.addrow(0,"COMPETITION"+key,newTeamList.pointCost,newTeamList.listFaction,jug2,false,event); 
 				this.allresults[key]=true;
 			    }
 			}
