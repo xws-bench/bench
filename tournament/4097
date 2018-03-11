@@ -6,6 +6,54 @@
     "name": "Moscow Feb", 
     "players": [
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "jynerso", 
+                  "janors"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "targetingcomputer"
+                ]
+              }
+            }, 
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "kananjarrus", 
+                  "finn"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "illicit": [
+                  "scavengercrane"
+                ], 
+                "mod": [
+                  "smugglingcompartment", 
+                  "countermeasures"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 602, 
         "name": "Vladimir Maksimov", 
         "rank": {
