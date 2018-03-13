@@ -199,8 +199,8 @@
 	<li class="symbols" onclick="$('#linklist').text(WEBSITE+'?'+savesquad()); $('#xwsjsonlist').text(JSON.stringify(TEAMS[3].toJSON())); $('#jugglerlist').text(TEAMS[3].toJuggler(true)); document.location='#export'">&#xB9;</li>
 	<li class="symbols" onclick="printunits(); window.print()">&#xB6;</li>
 	<li onclick="$('#unitfilter').toggle();" class="symbols">&#x102;</li>
-	<li onclick="page_select();prepareforcombat(TEAMS[3].toJuggler(true),1)"><span class="squadmiddle">1</span></li>
-	<li onclick="page_select();prepareforcombat(TEAMS[3].toJuggler(true),2)"><span class="squadmiddle right">2</span></li>
+	<li onclick="page_select();prepareforcombat(TEAMS[3].teamlist,1)"><span class="squadmiddle">1</span></li>
+	<li onclick="page_select();prepareforcombat(TEAMS[3].teamlist,2)"><span class="squadmiddle right">2</span></li>
       </ul>
       <h1 class="m-new"></h1>
 

@@ -47,10 +47,10 @@ Squadlist.prototype = {
     },
     import:function(t) {
     },
-    addrow: function(team,name,pts,faction,jug,fill,tournament) {
+    addrow: function(team,name,pts,faction,jug,fill,tournament,teamlist) {
 	var n=faction.toUpperCase();
 	if (typeof localStorage[name]=="undefined"||fill==true) {
-	    this.rows[this.nrows]=jug;
+	    this.rows[this.nrows]=teamlist;
 	    //TEAMS[0].parseJuggler(jug,false);//true);
 	    //var jjug = TEAMS[0].toJuggler(true,true);
 	    $(this.id +" tbody").append(
@@ -60,25 +60,30 @@ Squadlist.prototype = {
 		    pts:pts,
 		    name:name,
 		    tournament:tournament,
-		    jug:jug//.replace(/\n/g,"<br>")
+		    jug:teamlist.outputJuggler(true,true),//.replace(/\n/g,"<br>")
+                    teamlist:teamlist
 		}));
 	    this.nrows++;
 	}
     },
     removerow:function(t) {
 	var u=this.rows[t];
-	TEAMS[0].parseJuggler(u,false);
-	var name="SQUAD."+TEAMS[0].toASCII();
+	//TEAMS[0].parseJuggler(u.outputJuggler(),false);
+        //var name="SQUAD."+TEAMS[0].toASCII();
+	var name="SQUAD."+u.toASCII();
 	$("#r"+t).remove();
 	delete this.rows[t];
-	if (typeof localStorage[name]!="undefined") delete localStorage[name];
+	if (typeof localStorage[name]!="undefined") {
+            delete localStorage[name];
+        }
     },
     createfromrow:function(t) {
 	var data = this.rows[t];
 	currentteam=TEAMS[3];
-	currentteam.parseJuggler(data,true);
+        currentteam.setteamlist(data);
+	//currentteam.parseJuggler(data,true);
 	//console.log("data is "+data);
-	createsquad(currentteam.faction);
+	createsquad(data.listFaction,data);
 	for (var j in generics) {
 	    var u=generics[j];
 	    if (u.team==3) {
@@ -138,14 +143,14 @@ Squadlist.prototype = {
 			var p=t.tournament.players[i];
 			if (typeof p.list!="undefined") {
                             var newTeamList=new TeamList(JSON.stringify(p.list));
-			    TEAMS[0].parseJSON(p.list);
-			    TEAMS[0].toJSON();
-			    var key=TEAMS[0].toKey();
+			    //TEAMS[0].parseJSON(p.list);
+			    //TEAMS[0].toJSON();
+			    var key=newTeamList.toKey();
 			    if (this.allresults[key]!=true) {
-				var jug=TEAMS[0].toJuggler(false);
+				//var jug=TEAMS[0].toJuggler(false);
                                 var jug2=newTeamList.outputJuggler();
-				list.push({points:TEAMS[0].points,faction:TEAMS[0].faction,jug:jug2});
-				this.addrow(0,"COMPETITION"+key,newTeamList.pointCost,newTeamList.listFaction,jug2,false,event); 
+				list.push({points:newTeamList.getCost(),faction:newTeamList.listFaction,jug:jug2});
+				this.addrow(0,"COMPETITION"+key,newTeamList.getCost(),newTeamList.listFaction,jug2,false,event,newTeamList); 
 				this.allresults[key]=true;
 			    }
 			}
@@ -208,58 +213,11 @@ Squadlist.prototype = {
     req.send();
 	
     },
-    latest2: function() {
-	this.rows=[];
-	this.nrows=0;
-	$(this.id+" tbody").html("");
-	this.log={};
-	for (var i=0; i<mySpreadsheets.length; i++) {
-	    $('#squadlist').sheetrock({
-		url: mySpreadsheets[i],
-		query:"select C order by A desc",
-		//callback:myCallbacksl,
-		fetchSize:40,
-		rowTemplate:this.myTemplatesl//function () { return "";},
-	    });
-	}  
-    },
-    myTemplatesl: function(o) { 
-	var cells= o.cellsArray;
-	var s="";
-	var squad=cells[0];
-	var tt=squad.split("VS");
-	if (tt.length<2) return;
-	var team1=mk2split(tt[0]);
-	var team2=mk2split(tt[1]);
-	var t1="",s1="",t2="",s2="";
-
-	for (var j=0; j<team1.length-1; j++) {
-	    s1+=team1[j].replace(/\*/g," + ").replace(/_/g," ")+"\n";
-	    t1+=team1[j].replace(/\*/g," + ").replace(/_/g," ")+"\n";
-	}
-	for (var j=0; j<team2.length-1; j++) {
-	    s2+=team2[j].replace(/\*/g," + ").replace(/_/g," ")+"\n";
-	    t2+=team2[j].replace(/\*/g," + ").replace(/_/g," ")+"\n";
-	}
-	TEAMS[0].parseJuggler(s1,false);
-	TEAMS[0].toJSON();
-	if (typeof SQUADLIST.log[t1]=="undefined") {
-	    SQUADLIST.addrow(0,"SQUAD."+TEAMS[0].toASCII(),TEAMS[0].points,TEAMS[0].faction,t1,true);
-	    SQUADLIST.log[t1]=true;
-	}
-	TEAMS[0].parseJuggler(s2,false);
-	TEAMS[0].toJSON();
-	if (typeof SQUADLIST.log[t2]=="undefined") {
-	    SQUADLIST.addrow(0,"SQUAD."+TEAMS[0].toASCII(),TEAMS[0].points,TEAMS[0].faction,t2,true);
-	    SQUADLIST.log[t2]=true;
-	}
-
-    },
     displaycombats: function(data) {
 	generics=[];
 	squadron=[];
 	if (typeof data!="undefined") { 
-	    var d=this.rows[data];
+	    var d=this.rows[data].outputJuggler();
 	    TEAMS[0].parseJuggler(d,true);
 	    var team=TEAMS[0].toJuggler(false);
 	    team=team.replace(/\n/g,".");
@@ -299,7 +257,7 @@ Squadlist.prototype = {
 	var data = this.rows[t];
 	generics=[];
 	squadron=[];
-	TEAMS[0].parseJuggler(data,true);
+	//TEAMS[0].parseJuggler(data,true);
 	currentteam = TEAMS[0];
 	for (var i in generics) {
 	    var u=generics[i];

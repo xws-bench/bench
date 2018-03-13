@@ -10,6 +10,7 @@ function Team(team) {
     this.isdead=false;
     this.isia=false;
     this.initiative=false;
+    this.teamlist=null;   // New for teamlist functionality
     this.units=[];
     this.conditions=[];
     this.captain=null;
@@ -17,6 +18,14 @@ function Team(team) {
     this.allhits=this.allcrits=this.allevade=this.allred=this.allgreen=0;
 }
 Team.prototype = {
+    setteamlist: function(teamlist){
+        if(typeof teamlist!=="undefined"){
+            this.teamlist=teamlist;
+        }
+        else{
+            this.teamlist=null;
+        }
+    },
     setia: function() {
 	for (var i in squadron) {
 	    var u=squadron[i];

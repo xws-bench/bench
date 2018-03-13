@@ -9,7 +9,9 @@ function TeamList(jsonString){
     // do initialization stuff
     this.listJSON=null;     // JSON-based object containing all list info
     this.listJuggler=null;  // Human-readable list; read-only usually
-    this.listHTML=null;     // enhanced listJuggler list with HTML hinting
+    this.listTJuggler=null; // Translated human-readable list.
+    this.listHTML=null;     // Enhanced listJuggler list with HTML hinting
+    this.listTHTML=null;    // Translated, enhanced listJuggler list
     this.listShips=[];      // IDs of all ships and upgrades for this list.
     this.listFaction="";    // should be one of Unit.REBEL, Unit.EMPIRE, Unit.SCUM
     this.pointCost=0;       // pointCost as computed from listShips
@@ -75,87 +77,6 @@ TeamList.prototype={
                 }
             }
         }
-        
-//	for (i=0; i<s.pilots.length; i++) {
-//	    var pilot=s.pilots[i];
-//	    var p;
-//	    var pid=-1;
-//            var simplePilot=new SimpleUnit();
-//	    
-//            var j=PILOTSNAMEINDEX.indexOf(PILOT_dict[pilot.name]); // INDEX lookup is much faster than iterating over PILOTS
-//            var possiblePilots=[];
-//            while(j!==-1){  // Fix for Fenn Rau, possibly others
-//                possiblePilots.push(j);
-//                j=PILOTSNAMEINDEX.indexOf(PILOT_dict[pilot.name],j+1);
-//            }
-//            for(var p in possiblePilots){
-//                j=possiblePilots[p];
-//                if (j!==-1 && PILOTS[j].faction==this.listFaction&&
-//                       PILOTS[j].unit==PILOT_dict[pilot.ship]) { 
-//                        pid=j;
-//                        break;
-//                }
-//            }
-//            if(pid===-1){ 
-//                throw("pid undefined:"+PILOT_dict[pilot.name]+"-"+pilot.name+"/"+this.listFaction+"/"+PILOT_dict[pilot.ship]); 
-//            }
-//            // Record cost
-//            this.pointCost+=PILOTS[pid].points;
-//            // Record PID
-//            simplePilot.pilotID=pid;
-//	    
-//            if (typeof pilot.upgrades!="undefined")  {
-//                // Need to apply all valid upgrades, but also need to install upgrades first
-//                var impUpgList=[];
-//                var upgType;
-//                var upgInfo;
-//                var realUpg;
-//                var vaksai=false;
-//                var tiex1=false;
-//                // Iterate over imported pilot's upgrades and get their info from
-//                // UPGRADES if possible.
-//                for (var j in pilot.upgrades){
-//                    var upgType=pilot.upgrades[j];
-//                    for (var k=0, len=upgType.length; k<len; k++){
-//                        upgInfo={"name":upgType[k], "type":j, "index":-1, "hasUpgrades":false, "entry":null};
-//                        upgInfo.index=UPGRADESNAMEINDEX.indexOf(UPGRADE_dict[upgInfo.name]); // ~2 faster than iterating over UPGRADES
-//                        if(upgInfo.index===-1){
-//                            console.log(`[teamlist.js][updateCost] Could not find upgrade ${upgInfo.name}`);
-//                            break;
-//                        }
-//                        else{
-//                            realUpg=UPGRADES[upgInfo.index];
-//                            upgInfo.hasUpgrades=(
-//                                (typeof realUpg.upgrades!=="undefined")||
-//                                (typeof realUpg.pointsupg!=="undefined")
-//                            );
-//                            upgInfo.entry=realUpg;
-//                            impUpgList.push(upgInfo);
-//                            // Store upgrade ID
-//                            simplePilot.upgrades.push(upgInfo.index);
-//                        }
-//                    }
-//                }
-//                for(var k in impUpgList){
-//                    if(impUpgList[k].entry.name==="TIE/x1"){tiex1=true;}
-//                    else if (impUpgList[k].entry.name==="Vaksai"){vaksai=true;}
-//                }
-//                for(k in impUpgList){ // Actually calculate cost
-//                    var cost;
-//                    var upg=impUpgList[k];
-//                    cost=upg.entry.points;
-//                    if(tiex1&&upg.entry.type===Unit.SYSTEM){
-//                        cost=(cost-4<0)?0:cost-4;
-//                    }
-//                    if(vaksai){
-//                        cost=(cost-1<0)?0:cost-1;
-//                    }
-//                    this.pointCost+=cost;
-//                }
-//	    }
-//            // Add this ship to the list of simpleUnits.
-//            this.addShip(simplePilot);
-//	}
     },
     getCost: function(){
         // Accessor to return current list cost.
@@ -232,92 +153,87 @@ TeamList.prototype={
             this.addShip(simplePilot);
 	}
     },
-    outputJuggler: function(){
-        // Output current list state as List Juggler format
-        var s=`${this.listFaction.replace(/\B[A-Z]/g,l => l.toLowerCase())}`;
+    outputJuggler: function(translated,improved){
+        /* Output current list state as List Juggler formats
+         There are four possible output states, and I want to cache them all:
+            1) "plain" Juggler format (not translated, no HTML formatting)
+            2) Translated Juggler format (tranlated pilot & upgrades, no HTML)
+            3) HTML-formatted Juggler (not translated, HTML formatting for icons etc.)
+            4) Translated HTML-formatted (translated pilot & Upgrades with HTML for icons, etc.)
+        */
+
         // Shortcuts
         if(this.listJSON===null) return "";
-        else if(!this.dirty){
-            return this.listJuggler;
+        else if(!this.dirty){ // No changes since last call to outputJuggler, so use cache
+            if(translated && improved){
+                return this.listTHTML;
+            }
+            else if(translated){
+                return this.listTJuggler;
+            }
+            else if(improved){
+                return this.listHTML;
+            }
+            else{
+                return this.listJuggler;
+            }
         }
-        else if(this.listShips!==[]){
+        
+        // Start strings with faction name (no translation at this point)
+        var s=`${this.listFaction.replace(/\B[A-Z]/g,l => l.toLowerCase())}`;
+        var st=`${translate(s)}`;
+        var si=`<span class='${this.listFaction==Unit.REBEL?"HALFRED":(this.listFaction==Unit.EMPIRE?"HALFGREEN":"HALFYELLOW")}'>${s}</span>`;
+        var sti=`<span class='${this.listFaction==Unit.REBEL?"HALFRED":(this.listFaction==Unit.EMPIRE?"HALFGREEN":"HALFYELLOW")}'>${st}</span>`; // NO JOKES!!!
+        
+        // Should never be [] once JSON has been imported
+        if(this.listShips!==[]){
             var ships=this.listShips;
             for(var i in ships){
                 var ship=ships[i];
+                var pName=PILOTS[ship.pilotID].name;
+                var uName=PILOTS[ship.pilotID].unit;
                 // Set pilot name, edition (if necessary [Poe!]), and unit name
                 if(PILOTS[ship.pilotID].ambiguous){
-                    s+=`\n${PILOTS[ship.pilotID].name} (${PILOTS[ship.pilotID].edition}) (${PILOTS[ship.pilotID].unit})`;
+                    s+=`\n${pName} (${PILOTS[ship.pilotID].edition}) (${uName})`;
+                    st+=`\n${translate(pName)} (${PILOTS[ship.pilotID].edition}) (${translate(uName)})`;
+                    si+=`\n<span class='ship'>${unitlist[uName].code}</span> <span class='${this.listFaction==Unit.REBEL?"HALFRED":(this.listFaction==Unit.EMPIRE?"HALFGREEN":"HALFYELLOW")}'>${pName} (${PILOTS[ship.pilotID].edition}) (${uName})</span>`;
+                    sti+=`\n<span class='ship'>${unitlist[uName].code}</span> <span class='${this.listFaction==Unit.REBEL?"HALFRED":(this.listFaction==Unit.EMPIRE?"HALFGREEN":"HALFYELLOW")}'>${translate(pName)} (${PILOTS[ship.pilotID].edition}) (${translate(uName)})</span>`;
                 }
                 else{
-                    s+=`\n${PILOTS[ship.pilotID].name} (${PILOTS[ship.pilotID].unit})`;
+                    s+=`\n${pName} (${uName})`;
+                    st+=`\n${translate(pName)} (${translate(uName)})`;
+                    si+=`\n<span class='ship'>${unitlist[uName].code}</span> <span class='${this.listFaction==Unit.REBEL?"HALFRED":(this.listFaction==Unit.EMPIRE?"HALFGREEN":"HALFYELLOW")}'>${pName} (${uName})</span>`;
+                    sti+=`\n<span class='ship'>${unitlist[uName].code}</span> <span class='${this.listFaction==Unit.REBEL?"HALFRED":(this.listFaction==Unit.EMPIRE?"HALFGREEN":"HALFYELLOW")}'>${translate(pName)} (${translate(uName)})</span>`;
                 }
                 if(ship.upgrades!==[]){
                     for(var k in ship.upgrades){
                         var id=ship.upgrades[k];
-                        s+=` + ${UPGRADES[id].name}`;
+                        var upgName=UPGRADES[id].name;
+                        s+=` + ${upgName}`;
+                        st+=` + ${translate(upgName)}`;
+                        si+=` + <span class="${UPGRADES[id].type}"></span> ${upgName}`;
+                        sti+=` + <span class="${UPGRADES[id].type}"></span> ${translate(upgName)}`;
                     }
                 }
             }
-            s+="\n";
-            this.listJuggler=s;
+            s+="\n";    // Finish off the strings with newlines
+            st+="\n";
+            si+="\n";
+            sti+="\n";
+            this.listJuggler=s;     // Store strings in appropriate caches
+            this.listTJuggler=st;
+            this.listHTML=si;
+            this.listTHTML=sti;
             this.dirty=false;
-            return s;
+            
+            // Now that all strings are generated and this.dirty is unset, just returns
+            // the appropriate string (I chose this way for compactness)
+            return this.outputJuggler(translated,improved);
         }
         else{
-            // Setup for turning JSON into List Juggler human-readable text
-            var js=this.listJSON;
-
-
-            // Find the human-readable pilot string
-            var j,pilot;
-            try{
-                for(var i in js.pilots){
-                    // Search all pilots whose names match this;
-                    pilot=js.pilots[i];            
-                    s+=`\n${PILOT_dict[pilot.name]} (${PILOT_dict[pilot.ship]})`;
-
-                    if (typeof pilot.upgrades!="undefined")  {
-                        // Need to apply all valid upgrades, but also need to install upgrades first
-                        var upgType;
-                        var upgInfo;
-                        // Iterate over imported pilot's upgrades and get their info from
-                        // UPGRADES if possible.
-                        for (var j in pilot.upgrades){
-                            var upgType=pilot.upgrades[j];
-                            for (var k=0, len=upgType.length; k<len; k++){
-                                upgInfo={"name":upgType[k], "type":j, "index":-1, "hasUpgrades":false, "entry":null};
-                                upgInfo.index=UPGRADESNAMEINDEX.indexOf(UPGRADE_dict[upgInfo.name]); // ~2 faster than iterating over UPGRADES
-                                if(upgInfo.index===-1){
-                                    console.log(`[teamlist.js][outputJuggler] Could not find upgrade ${upgInfo.name}`);
-                                    break;
-                                }
-                                else{
-                                    s+=` + ${UPGRADE_dict[upgInfo.name]}`;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            catch(e){
-                console.log(`[teamlist.js][outputJuggler] Could not parse part of ${pilot.name}`);
-                console.log(e.message);
-            }
-            this.listJuggler=s; // update cached Juggler string
-            this.dirty=false;
-            return s;
+            console.log(`[teamlist][outputJuggler] Something went wrong!!!\n${JSON.stringify(this.listJSON)}`);
+            return "";
         }
-    },
-    outputHTML: function(translated){
-        var s;
-        if(this.dirty){
-            s=this.outputJuggler();
-        }
-        else{
-            s=this.listJuggler;
-        }
-        // Improve 
-        
     },
     inputJuggler: function(jString){
         this.dirty=true;
@@ -336,7 +252,7 @@ TeamList.prototype={
     },
     removeShip: function(ship){
         if(ship instanceof SimpleUnit){
-            this.listShips.splice(this.listShips.indexOf(ship));
+            this.listShips.splice(this.listShips.indexOf(ship),1);
         }
         else{ // handle Unit <blech!>
             
@@ -346,9 +262,6 @@ TeamList.prototype={
     getShips: function(){
         return this.listShips;
     },
-    computeScore: function(){
-        
-    },
     outputLocal: function(){
         
     },
@@ -356,10 +269,36 @@ TeamList.prototype={
         this.dirty=true;
     },
     toASCII: function(){
-        
+        //output list as pilot ID#s followed by upgrades;
+        //Format: <ID>[,<upgID>[,...]]:<Math.floor(this.tx)>,<Math.floor(this.ty)>,<Math.floor(this.alpha)>;[<ID>...;]
+        var s="";
+        var i,j,ship,upg;
+        // traverse each ship and its upgrades
+        for(i in this.listShips){
+            ship=this.listShips[i];
+            s+=ship.pilotID;
+            for(j in ship.upgrades){
+                upg=ship.upgrades[i];
+                s+=upg;
+            }
+            s+=":0,0,0;"
+        }
+        return s;
     },
     toKey: function(){
-        
+        //Converts a teamlist to a key used to reference stored data.
+        var str="";
+	var p=this.listShips.slice();
+	p.sort(function(a,b) { return a.pilotID-b.pilotID; });
+	for (var i=0; i<p.length; i++) {
+            var str2=("00"+p[i].pilotID.toString(32)).slice(-2);
+            var q=p[i].upgrades.slice();
+            q.sort();
+            for (var j=0; j<q.length; j++) str2+=("00"+q[j].toString(32)).slice(-2);
+	    str+=str2+";";
+        }
+	//s+=p[0].toKey();
+	return str;
     }
 };
 // Lightweight Unit object
