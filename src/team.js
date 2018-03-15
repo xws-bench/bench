@@ -177,31 +177,76 @@ Team.prototype = {
 	this.updatepoints();
     },
     tosquadron:function(s) {
-	var team=this.team;
+        // Refactor to generate squadron from teamlist.
 	var i,j;
-	var sortable = this.sortedgenerics();
-	var team1=0;
+        this.points=this.teamlist.getCost();
+        var shiplist=this.teamlist.getShips();
+	var team1=(this.teamlist!==null)?shiplist.length:0;
+        var sortable = this.sortedgenerics();
 	var id=0;
-	for (i in generics) 
-	    if (generics[i].team==1) team1++;
 	this.captain=null;
 	//log("found team1:"+team1);
-	for (var i=0; i<sortable.length; i++) {
-	    if (this.team==sortable[i].team) {
-		sortable[i].id=id++;
-		if (sortable[i].team==2) sortable[i].id+=team1;
-		var u=sortable[i];
-		/* Copy all functions for manual inheritance.  */
-		for (var j in PILOTS[u.pilotid]) {
-		    var p=PILOTS[u.pilotid];
-		    if (typeof p[j]=="function") u[j]=p[j];
-		}
-		u.tosquadron(s);
-		allunits.push(u);
-		squadron.push(u);
-		this.units.push(u);
-	    }
-	}	
+        // Iterate over ships on this team, create them, add them to allunits and squadron
+	for(i in shiplist){
+            var ship=shiplist[i];
+            var u=addunit(ship.pilotID,this.teamlist.listFaction);
+            u.tosquadron(s);
+            u.team=this.team;
+
+            //Let's just assume there will always be *at least* as many upgrade slots as necessary.
+            var impUpgList=ship.upgrades.slice(); // list of upgrade indices
+            var installed=false;
+            while(impUpgList.length>0){
+                var upg=UPGRADES[impUpgList[0]]; // first upgrade from the top of the array
+                for (var f=0, unusedSlots=(typeof u.upgradetype!=="undefined")?u.upgradetype.length:0; f<unusedSlots; f++){
+                    if (u.upgradetype[f]==upg.type&&u.upg[f]==-1) { 
+                        addupgrade(u,impUpgList[0],f);
+                        //u.upg[f]=impUpgList[0]; 
+                        installed=true; 
+                        impUpgList.shift(); break; }
+                }
+                if(installed){installed=false; continue;} // If we found a slot, great!  Move on.
+                else{ // Not enough of required type of slots.
+                    var idx=u.upgradetype.length; // Find last index of upgradetype array
+                    u.upgradetype.push(upg.type); // Add a new entry of the type we want to install
+                    while(u.upg.length<=idx){u.upg.push(-1);} // lengthen p.upg as well.
+                    addupgrade(u,impUpgList[0],idx);
+                    //u.upg[idx]=impUpgList[0];
+                    impUpgList.shift();
+                    continue;
+                }
+                throw("Upgrade not installed:"+upg.name+"-"+impUpgList[0]+"/"+currentteam.faction+"/"+PILOT_dict[pilot.pilotID]);
+                break; // In case of emergency
+            }
+            // Set graphical context, add u to various lists
+            u.id=id++;
+            //if (sortable[i].team==2) sortable[i].id+=team1;
+            /* Copy all functions for manual inheritance.  */
+            for (var j in PILOTS[u.pilotid]) {
+                var p=PILOTS[u.pilotid];
+                if (typeof p[j]=="function") u[j]=p[j];
+            }
+            allunits.push(u);
+            squadron.push(u);
+            this.units.push(u);
+        }
+        
+//        for (var i=0; i<sortable.length; i++) {
+//	    if (this.team==sortable[i].team) {
+//		sortable[i].id=id++;
+//		if (sortable[i].team==2) sortable[i].id+=team1;
+//		var u=sortable[i];
+//		/* Copy all functions for manual inheritance.  */
+//		for (var j in PILOTS[u.pilotid]) {
+//		    var p=PILOTS[u.pilotid];
+//		    if (typeof p[j]=="function") u[j]=p[j];
+//		}
+//		u.tosquadron(s);
+//		allunits.push(u);
+//		squadron.push(u);
+//		this.units.push(u);
+//	    }
+//	}	
 	
 /*	for (i in squadron) {
 	    u=squadron[i];

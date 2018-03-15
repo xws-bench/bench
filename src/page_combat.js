@@ -6,6 +6,7 @@ function prepareforcombat(t,n) {
         //TEAMS[n].parseJuggler(t,true);
         $("#squad"+n).html(t.outputJuggler(true));
         TEAMS[n].name="SQUAD."+t.toASCII();
+        TEAMS[n].setteamlist(t);
         //TEAMS[n].toJSON();// Just for points
 
         if (typeof localStorage[TEAMS[n].name]=="undefined") {
