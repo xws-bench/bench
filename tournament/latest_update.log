@@ -3,42 +3,15 @@ From github.com:baranidlo/bench
 Already up-to-date.
 Moving old 'tournaments' to 'tournaments.old'...
 Downloading new 'tournaments' file...
---2018-03-16 00:00:02--  http://lists.starwarsclubhouse.com/api/v1/tournaments
+--2018-03-17 00:00:01--  http://lists.starwarsclubhouse.com/api/v1/tournaments
 Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
 Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 38712 (38K) [application/json]
 Saving to: ‘tournaments’
 
-     0K .......... .......... .......... .......              100%  389K=0.1s
+     0K .......... .......... .......... .......              100%  402K=0.09s
 
-2018-03-16 00:00:03 (389 KB/s) - ‘tournaments’ saved [38712/38712]
+2018-03-17 00:00:02 (402 KB/s) - ‘tournaments’ saved [38712/38712]
 
 Downloading new tournament list data...
---2018-03-16 00:00:03--  http://lists.starwarsclubhouse.com/api/v1/tournament/4163
-Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
-Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 106967 (104K) [application/json]
-Saving to: ‘4163’
-
-     0K .......... .......... .......... .......... .......... 47%  257K 0s
-    50K .......... .......... .......... .......... .......... 95%  541K 0s
-   100K ....                                                  100% 8507G=0.3s
-
-2018-03-16 00:00:04 (364 KB/s) - ‘4163’ saved [106967/106967]
-
---2018-03-16 00:00:04--  http://lists.starwarsclubhouse.com/api/v1/tournament/4164
-Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
-Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 51536 (50K) [application/json]
-Saving to: ‘4164’
-
-     0K .......... .......... .......... .......... .......... 99%  256K 0s
-    50K                                                       100%  626G=0.2s
-
-2018-03-16 00:00:05 (258 KB/s) - ‘4164’ saved [51536/51536]
-
-To git@github.com:baranidlo/bench.git
-   2a14f2a..1a00036  gh-pages -> gh-pages
