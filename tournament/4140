@@ -447,6 +447,63 @@
         "sos": "0.48"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "sensorcluster"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "captainyorr", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "collisiondetector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 839, 
         "name": "Carlo Tozzi", 
         "rank": {
@@ -868,6 +925,70 @@
         "sos": "0.57"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "protonbombs", 
+                  "protonbombs"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 821, 
         "name": "Roberto Pezzutto", 
         "rank": {
@@ -939,6 +1060,63 @@
         "sos": "0.56"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "jesspava", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d6"
+                ], 
+                "ept": [
+                  "selflessness"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ], 
+                "ept": [
+                  "drawtheirfire"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "ezrabridger", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "ept": [
+                  "trickshot"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 810, 
         "name": "Alessandro Marmorini", 
         "rank": {
@@ -1612,6 +1790,52 @@
         "sos": "0.50"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "janors", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "chewbacca"
+                ], 
+                "ept": [
+                  "trickshot"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "kananjarrus", 
+                  "finn"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 648, 
         "name": "Alessio Cialli", 
         "rank": {
@@ -2087,6 +2311,67 @@
         "sos": "0.56"
       }, 
       {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "thweek", 
+              "ship": "starviper", 
+              "upgrades": {
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "starvipermkii", 
+                  "virago"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "cartelexecutioner", 
+              "ship": "m12lkimogilafighter", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 491, 
         "name": "Nicolo' Acquisto", 
         "rank": {
