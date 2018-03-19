@@ -3029,6 +3029,67 @@
         "sos": "0.00"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "duchess", 
+              "ship": "tiestriker", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "title": [
+                  "adaptiveailerons"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "testpilotblackout", 
+              "ship": "tiesilencer", 
+              "upgrades": {
+                "ept": [
+                  "wired"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "collisiondetector"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ], 
+                "title": [
+                  "firstordervanguard"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 0, 
         "name": "Player 106", 
         "rank": {

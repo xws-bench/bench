@@ -6,6 +6,51 @@
     "name": "TMV X-Wing Tournament", 
     "players": [
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "saboteur"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "saboteur"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "saboteur"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "saboteur"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 708, 
         "name": "Dan Stallard", 
         "rank": {
@@ -82,6 +127,76 @@
         "sos": "0.63"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "protonbombs", 
+                  "thermaldetonators"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "tennumb", 
+              "ship": "bwing", 
+              "upgrades": {
+                "bomb": [
+                  "protonbombs"
+                ], 
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "bwinge2"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 532, 
         "name": "Aaron Edwards", 
         "rank": {
