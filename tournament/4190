@@ -10,50 +10,38 @@
           "faction": "imperial", 
           "pilots": [
             {
-              "name": "omegaleader", 
-              "ship": "tiefofighter", 
-              "upgrades": {
-                "ept": [
-                  "ascoretosettle"
-                ], 
-                "mod": [
-                  "hullupgrade"
-                ], 
-                "tech": [
-                  "commrelay"
-                ]
-              }
-            }, 
-            {
-              "name": "captainyorr", 
+              "name": "omicrongrouppilot", 
               "ship": "lambdaclassshuttle", 
               "upgrades": {
                 "crew": [
-                  "emperorpalpatine"
-                ], 
-                "system": [
-                  "collisiondetector"
+                  "saboteur"
                 ]
               }
             }, 
             {
-              "name": "quickdraw", 
-              "ship": "tiesffighter", 
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
               "upgrades": {
-                "ept": [
-                  "expertise"
-                ], 
-                "mod": [
-                  "lightweightframe"
-                ], 
-                "system": [
-                  "firecontrolsystem"
-                ], 
-                "tech": [
-                  "sensorcluster"
-                ], 
-                "title": [
-                  "specialopstraining"
+                "crew": [
+                  "saboteur"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "saboteur"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "saboteur"
                 ]
               }
             }
@@ -211,7 +199,7 @@
           "version": "4.2.0"
         }, 
         "mov": 1116, 
-        "name": "Jeremy Howard", 
+        "name": "Jeremy \"Wrong\" Howard", 
         "rank": {
           "elimination": 1, 
           "swiss": 3
@@ -1503,6 +1491,75 @@
         "sos": "0.50"
       }, 
       {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "thermaldetonators"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "genesisred", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "heavyscykinterceptor"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "dengar"
+                ], 
+                "ept": [
+                  "adaptability"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 853, 
         "name": "Eric Verrier", 
         "rank": {
@@ -1521,6 +1578,49 @@
         "sos": "0.50"
       }, 
       {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "lattsrazzi"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "glitterstim", 
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 625, 
         "name": "Patrick Murphy", 
         "rank": {
@@ -1592,7 +1692,7 @@
             "result": "bye"
           }, 
           {
-            "player1": "Jeremy Howard", 
+            "player1": "Jeremy \"Wrong\" Howard", 
             "player1points": null, 
             "player2": "", 
             "player2points": null, 
@@ -1689,7 +1789,7 @@
             "result": "win"
           }, 
           {
-            "player1": "Jeremy Howard", 
+            "player1": "Jeremy \"Wrong\" Howard", 
             "player1points": 57, 
             "player2": "Sebastien Dupuis", 
             "player2points": 30, 
@@ -1842,7 +1942,7 @@
             "result": "win"
           }, 
           {
-            "player1": "Jeremy Howard", 
+            "player1": "Jeremy \"Wrong\" Howard", 
             "player1points": 59, 
             "player2": "Greg Chandler Burns", 
             "player2points": 53, 

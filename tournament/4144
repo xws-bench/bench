@@ -455,18 +455,6 @@
           "faction": "imperial", 
           "pilots": [
             {
-              "name": "omegaleader", 
-              "ship": "tiefofighter", 
-              "upgrades": {
-                "ept": [
-                  "juke"
-                ], 
-                "tech": [
-                  "sensorcluster"
-                ]
-              }
-            }, 
-            {
               "name": "quickdraw", 
               "ship": "tiesffighter", 
               "upgrades": {
@@ -484,6 +472,18 @@
                 ], 
                 "title": [
                   "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
                 ]
               }
             }, 

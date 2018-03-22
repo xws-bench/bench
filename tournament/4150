@@ -6,6 +6,45 @@
     "name": "Regional X-Wing PB 2018", 
     "players": [
       {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "lattsrazzi"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 186, 
         "name": "Pablo Cavalcanti", 
         "rank": {
@@ -66,6 +105,63 @@
         "sos": "0.63"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "collisiondetector"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 624, 
         "name": "Anderson \"Panda\"", 
         "rank": {
@@ -129,6 +225,51 @@
         "sos": "0.38"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "kashyyykdefender", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ]
+              }
+            }, 
+            {
+              "name": "kashyyykdefender", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ]
+              }
+            }, 
+            {
+              "name": "kashyyykdefender", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ]
+              }
+            }, 
+            {
+              "name": "kashyyykdefender", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 574, 
         "name": "Diogo Melo", 
         "rank": {
@@ -139,6 +280,75 @@
         "sos": "0.44"
       }, 
       {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "lokrevenant", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "crew": [
+                  "outlawtech"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "lokrevenant", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "crew": [
+                  "outlawtech"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "adaptability"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 562, 
         "name": "Adamah Bezerra", 
         "rank": {
@@ -149,6 +359,63 @@
         "sos": "0.44"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "captainyorr", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "collisiondetector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 500, 
         "name": "Alison Rodrigues", 
         "rank": {
@@ -275,8 +542,66 @@
         "sos": "0.46"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "ezrabridger", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "snapshot"
+                ]
+              }
+            }, 
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "operationsspecialist", 
+                  "tactician"
+                ], 
+                "ept": [
+                  "selflessness"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 482, 
-        "name": "Joo Mariani", 
+        "name": "Joao Mariani", 
         "rank": {
           "swiss": 9
         }, 
@@ -284,6 +609,55 @@
         "sos": "0.44"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "rey", 
+                  "reconspecialist"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "janors"
+                ], 
+                "ept": [
+                  "ascoretosettle"
+                ]
+              }
+            }, 
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "title": [
+                  "phantom"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 460, 
         "name": "Kennedy Caldas", 
         "rank": {
@@ -293,6 +667,63 @@
         "sos": "0.56"
       }, 
       {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "ascoretosettle"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ]
+              }
+            }, 
+            {
+              "name": "cartelspacer", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ]
+              }
+            }, 
+            {
+              "name": "cartelspacer", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ]
+              }
+            }, 
+            {
+              "name": "inaldra", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "trickshot"
+                ], 
+                "mod": [
+                  "pulsedrayshield"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 374, 
         "name": "Rafael Rodriguez", 
         "rank": {
@@ -302,6 +733,61 @@
         "sos": "0.67"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "burnoutslam"
+                ], 
+                "mod": [
+                  "smugglingcompartment", 
+                  "countermeasures"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 334, 
         "name": "Danilo Almeida", 
         "rank": {
@@ -311,8 +797,56 @@
         "sos": "0.50"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "sienarspecialist", 
+              "ship": "tieaggressor", 
+              "upgrades": {
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 332, 
-        "name": "Antnio Odon", 
+        "name": "Antonio Odon", 
         "rank": {
           "swiss": 13
         }, 
@@ -390,7 +924,7 @@
           "version": "4.2.0"
         }, 
         "mov": 294, 
-        "name": "Rafael Tenrio", 
+        "name": "Rafael Tenorio", 
         "rank": {
           "swiss": 14
         }, 
@@ -456,7 +990,7 @@
           "version": "4.2.0"
         }, 
         "mov": 230, 
-        "name": "Eric Nbrega", 
+        "name": "Eric Nobrega", 
         "rank": {
           "swiss": 15
         }, 
@@ -514,7 +1048,7 @@
           "version": "4.2.0"
         }, 
         "mov": 209, 
-        "name": "Svio Cavalcanti", 
+        "name": "Savio Cavalcanti", 
         "rank": {
           "swiss": 16
         }, 
@@ -522,8 +1056,50 @@
         "sos": "0.69"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "wookieeliberator", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "ept": [
+                  "expertise"
+                ]
+              }
+            }, 
+            {
+              "name": "wookieeliberator", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "ept": [
+                  "expertise"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 180, 
-        "name": "Matheus Valrio", 
+        "name": "Matheus Valerio", 
         "rank": {
           "swiss": 17
         }, 
@@ -531,8 +1107,66 @@
         "sos": "0.50"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "targetingcomputer"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 131, 
-        "name": "Fbio Montenegro", 
+        "name": "Fabio Montenegro", 
         "rank": {
           "swiss": 18
         }, 
@@ -545,14 +1179,14 @@
       {
         "matches": [
           {
-            "player1": "Rafael Tenrio", 
+            "player1": "Rafael Tenorio", 
             "player1points": 37, 
             "player2": "Adamah Bezerra", 
             "player2points": 100, 
             "result": "win"
           }, 
           {
-            "player1": "Joo Mariani", 
+            "player1": "Joao Mariani", 
             "player1points": 53, 
             "player2": "Mateus Dantas", 
             "player2points": 57, 
@@ -561,7 +1195,7 @@
           {
             "player1": "Bruno Miranda", 
             "player1points": 100, 
-            "player2": "Matheus Valrio", 
+            "player2": "Matheus Valerio", 
             "player2points": 0, 
             "result": "win"
           }, 
@@ -573,28 +1207,28 @@
             "result": "win"
           }, 
           {
-            "player1": "Svio Cavalcanti", 
+            "player1": "Savio Cavalcanti", 
             "player1points": 60, 
             "player2": "Andrey Davino", 
             "player2points": 54, 
             "result": "win"
           }, 
           {
-            "player1": "Eric Nbrega", 
+            "player1": "Eric Nobrega", 
             "player1points": 0, 
             "player2": "Danilo Almeida", 
             "player2points": 75, 
             "result": "win"
           }, 
           {
-            "player1": "Fbio Montenegro", 
+            "player1": "Fabio Montenegro", 
             "player1points": 0, 
             "player2": "Diogo Melo", 
             "player2points": 35, 
             "result": "win"
           }, 
           {
-            "player1": "Antnio Odon", 
+            "player1": "Antonio Odon", 
             "player1points": 0, 
             "player2": "Filipe Luna", 
             "player2points": 100, 
@@ -635,7 +1269,7 @@
             "result": "win"
           }, 
           {
-            "player1": "Svio Cavalcanti", 
+            "player1": "Savio Cavalcanti", 
             "player1points": 0, 
             "player2": "Diogo Melo", 
             "player2points": 100, 
@@ -665,33 +1299,33 @@
           {
             "player1": "Anderson \"Panda\"", 
             "player1points": 100, 
-            "player2": "Fbio Montenegro", 
+            "player2": "Fabio Montenegro", 
             "player2points": 14, 
             "result": "win"
           }, 
           {
             "player1": "Andrey Davino", 
             "player1points": 100, 
-            "player2": "Eric Nbrega", 
+            "player2": "Eric Nobrega", 
             "player2points": 30, 
             "result": "win"
           }, 
           {
             "player1": "Kennedy Caldas", 
             "player1points": 100, 
-            "player2": "Rafael Tenrio", 
+            "player2": "Rafael Tenorio", 
             "player2points": 52, 
             "result": "win"
           }, 
           {
-            "player1": "Joo Mariani", 
+            "player1": "Joao Mariani", 
             "player1points": 0, 
-            "player2": "Antnio Odon", 
+            "player2": "Antonio Odon", 
             "player2points": 57, 
             "result": "win"
           }, 
           {
-            "player1": "Matheus Valrio", 
+            "player1": "Matheus Valerio", 
             "player1points": null, 
             "player2": "", 
             "player2points": null, 
@@ -747,19 +1381,19 @@
           {
             "player1": "Andrey Davino", 
             "player1points": 100, 
-            "player2": "Antnio Odon", 
+            "player2": "Antonio Odon", 
             "player2points": 0, 
             "result": "win"
           }, 
           {
-            "player1": "Svio Cavalcanti", 
+            "player1": "Savio Cavalcanti", 
             "player1points": 71, 
             "player2": "Danilo Almeida", 
             "player2points": 100, 
             "result": "win"
           }, 
           {
-            "player1": "Matheus Valrio", 
+            "player1": "Matheus Valerio", 
             "player1points": 30, 
             "player2": "Kennedy Caldas", 
             "player2points": 100, 
@@ -768,19 +1402,19 @@
           {
             "player1": "Adamah Bezerra", 
             "player1points": 100, 
-            "player2": "Fbio Montenegro", 
+            "player2": "Fabio Montenegro", 
             "player2points": 0, 
             "result": "win"
           }, 
           {
-            "player1": "Rafael Tenrio", 
+            "player1": "Rafael Tenorio", 
             "player1points": 57, 
-            "player2": "Joo Mariani", 
+            "player2": "Joao Mariani", 
             "player2points": 100, 
             "result": "win"
           }, 
           {
-            "player1": "Eric Nbrega", 
+            "player1": "Eric Nobrega", 
             "player1points": null, 
             "player2": "", 
             "player2points": null, 
@@ -830,28 +1464,28 @@
           {
             "player1": "Alison Rodrigues", 
             "player1points": 100, 
-            "player2": "Svio Cavalcanti", 
+            "player2": "Savio Cavalcanti", 
             "player2points": 32, 
             "result": "win"
           }, 
           {
-            "player1": "Joo Mariani", 
+            "player1": "Joao Mariani", 
             "player1points": 100, 
-            "player2": "Matheus Valrio", 
+            "player2": "Matheus Valerio", 
             "player2points": 0, 
             "result": "win"
           }, 
           {
-            "player1": "Antnio Odon", 
+            "player1": "Antonio Odon", 
             "player1points": 100, 
-            "player2": "Eric Nbrega", 
+            "player2": "Eric Nobrega", 
             "player2points": 25, 
             "result": "win"
           }, 
           {
-            "player1": "Fbio Montenegro", 
+            "player1": "Fabio Montenegro", 
             "player1points": 52, 
-            "player2": "Rafael Tenrio", 
+            "player2": "Rafael Tenorio", 
             "player2points": 100, 
             "result": "win"
           }
@@ -916,11 +1550,11 @@
     ], 
     "type": "Regional", 
     "venue": {
-      "city": "Jo", 
+      "city": "Joao", 
       "country": "Brazil", 
       "lat": "-7.222706400000", 
       "lon": "-35.883644600000", 
-      "name": "", 
+      "name": "Livraria Leitura", 
       "state": "Paraiba"
     }, 
     "video_url": "http://"
