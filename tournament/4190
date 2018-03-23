@@ -10,38 +10,50 @@
           "faction": "imperial", 
           "pilots": [
             {
-              "name": "omicrongrouppilot", 
-              "ship": "lambdaclassshuttle", 
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
               "upgrades": {
-                "crew": [
-                  "saboteur"
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "sensorcluster"
+                ], 
+                "title": [
+                  "specialopstraining"
                 ]
               }
             }, 
             {
-              "name": "omicrongrouppilot", 
-              "ship": "lambdaclassshuttle", 
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
               "upgrades": {
-                "crew": [
-                  "saboteur"
+                "ept": [
+                  "ascoretosettle"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ], 
+                "tech": [
+                  "commrelay"
                 ]
               }
             }, 
             {
-              "name": "omicrongrouppilot", 
+              "name": "captainyorr", 
               "ship": "lambdaclassshuttle", 
               "upgrades": {
                 "crew": [
-                  "saboteur"
-                ]
-              }
-            }, 
-            {
-              "name": "omicrongrouppilot", 
-              "ship": "lambdaclassshuttle", 
-              "upgrades": {
-                "crew": [
-                  "saboteur"
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "collisiondetector"
                 ]
               }
             }
@@ -52,7 +64,7 @@
           "version": "4.2.0"
         }, 
         "mov": 1284, 
-        "name": "Duncan Howard", 
+        "name": "Duncan \"Schrdinger's Harpoon\" Howard", 
         "rank": {
           "elimination": 2, 
           "swiss": 1
@@ -473,6 +485,82 @@
         "sos": "0.75"
       }, 
       {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "captainjostero", 
+              "ship": "kihraxzfighter", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "illicit": [
+                  "contrabandcybernetics"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "munitionsfailsafe", 
+                  "guidancechips"
+                ], 
+                "title": [
+                  "vaksai"
+                ]
+              }
+            }, 
+            {
+              "name": "toranikulda", 
+              "ship": "m12lkimogilafighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 1159, 
         "name": "Greg Chandler Burns", 
         "rank": {
@@ -628,6 +716,55 @@
         "sos": "0.83"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine", 
+                  "kyloren"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 1080, 
         "name": "Matt Cairamitaro", 
         "rank": {
@@ -1651,7 +1788,7 @@
             "result": "bye"
           }, 
           {
-            "player1": "Duncan Howard", 
+            "player1": "Duncan \"Schrdinger's Harpoon\" Howard", 
             "player1points": null, 
             "player2": "", 
             "player2points": null, 
@@ -1664,7 +1801,7 @@
       {
         "matches": [
           {
-            "player1": "Duncan Howard", 
+            "player1": "Duncan \"Schrdinger's Harpoon\" Howard", 
             "player1points": null, 
             "player2": "", 
             "player2points": null, 
@@ -1782,7 +1919,7 @@
       {
         "matches": [
           {
-            "player1": "Duncan Howard", 
+            "player1": "Duncan \"Schrdinger's Harpoon\" Howard", 
             "player1points": 100, 
             "player2": "Greg Chandler Burns", 
             "player2points": 32, 
@@ -1928,7 +2065,7 @@
       {
         "matches": [
           {
-            "player1": "Duncan Howard", 
+            "player1": "Duncan \"Schrdinger's Harpoon\" Howard", 
             "player1points": 100, 
             "player2": "Matt Cairamitaro", 
             "player2points": 100, 

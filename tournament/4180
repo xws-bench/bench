@@ -6,52 +6,101 @@
     "name": "March Trondheim", 
     "players": [
       {
-        "mov": 0, 
-        "name": "Doc Tor", 
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "inspiringrecruit"
+                ], 
+                "ept": [
+                  "rage"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }, 
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "lattsrazzi"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "glitterstim", 
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 365, 
+        "name": "DrNibe", 
         "rank": {
           "swiss": 1
         }, 
-        "score": 0, 
+        "score": 2, 
         "sos": "0.00"
       }, 
       {
-        "mov": 0, 
+        "mov": 360, 
         "name": "Eirik Garshol", 
         "rank": {
           "swiss": 2
         }, 
-        "score": 0, 
+        "score": 2, 
         "sos": "0.00"
       }, 
       {
-        "mov": 0, 
+        "mov": 333, 
         "name": "Robert Mortensen", 
         "rank": {
           "swiss": 3
         }, 
-        "score": 0, 
+        "score": 2, 
         "sos": "0.00"
       }, 
       {
-        "mov": 0, 
+        "mov": 308, 
         "name": "Gaute N. Helberg", 
         "rank": {
           "swiss": 4
         }, 
-        "score": 0, 
+        "score": 2, 
         "sos": "0.00"
       }, 
       {
-        "mov": 0, 
+        "mov": 314, 
         "name": "Sondre Auestad", 
         "rank": {
           "swiss": 5
         }, 
-        "score": 0, 
+        "score": 1, 
         "sos": "0.00"
       }, 
       {
-        "mov": 0, 
+        "mov": 120, 
         "name": "Kristoffer Melkvik", 
         "rank": {
           "swiss": 6
