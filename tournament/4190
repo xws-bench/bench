@@ -6,8 +6,65 @@
     "name": "Canadian Nationals Day 2", 
     "players": [
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "sensorcluster"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "captainyorr", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "collisiondetector"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "ascoretosettle"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 1284, 
-        "name": "Duncan \"Schrdinger's Harpoon\" Howard", 
+        "name": "Duncan Howard", 
         "rank": {
           "elimination": 2, 
           "swiss": 1
@@ -1731,7 +1788,7 @@
             "result": "bye"
           }, 
           {
-            "player1": "Duncan \"Schrdinger's Harpoon\" Howard", 
+            "player1": "Duncan Howard", 
             "player1points": null, 
             "player2": "", 
             "player2points": null, 
@@ -1744,7 +1801,7 @@
       {
         "matches": [
           {
-            "player1": "Duncan \"Schrdinger's Harpoon\" Howard", 
+            "player1": "Duncan Howard", 
             "player1points": null, 
             "player2": "", 
             "player2points": null, 
@@ -1862,7 +1919,7 @@
       {
         "matches": [
           {
-            "player1": "Duncan \"Schrdinger's Harpoon\" Howard", 
+            "player1": "Duncan Howard", 
             "player1points": 100, 
             "player2": "Greg Chandler Burns", 
             "player2points": 32, 
@@ -2008,7 +2065,7 @@
       {
         "matches": [
           {
-            "player1": "Duncan \"Schrdinger's Harpoon\" Howard", 
+            "player1": "Duncan Howard", 
             "player1points": 100, 
             "player2": "Matt Cairamitaro", 
             "player2points": 100, 
