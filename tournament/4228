@@ -87,6 +87,64 @@
         "sos": "0.28"
       }, 
       {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "thweek", 
+              "ship": "starviper", 
+              "upgrades": {
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "starvipermkii", 
+                  "virago"
+                ]
+              }
+            }, 
+            {
+              "name": "guri", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "intensity"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "starvipermkii"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 273, 
         "name": "Daniel Smith", 
         "rank": {
@@ -298,6 +356,52 @@
         "sos": "0.67"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "norrawexley", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "crew": [
+                  "niennunb"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }, 
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 294, 
         "name": "David Cook", 
         "rank": {
@@ -526,6 +630,80 @@
         "sos": "0.51"
       }, 
       {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "lattsrazzi"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "riggedcargochute"
+                ], 
+                "mod": [
+                  "gyroscopictargeting"
+                ], 
+                "title": [
+                  "shadowcaster"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunace", 
+              "ship": "kihraxzfighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "blackmarketslicertools"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "munitionsfailsafe", 
+                  "guidancechips"
+                ], 
+                "title": [
+                  "vaksai"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunace", 
+              "ship": "kihraxzfighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "blackmarketslicertools"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "munitionsfailsafe", 
+                  "guidancechips"
+                ], 
+                "title": [
+                  "vaksai"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 270, 
         "name": "Colin Nicholls", 
         "rank": {
@@ -787,13 +965,71 @@
         "sos": "0.58"
       }, 
       {
-        "mov": 354, 
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "ezrabridger", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "crew": [
+                  "herasyndulla"
+                ], 
+                "ept": [
+                  "snapshot"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "crew": [
+                  "c3po"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "rey", 
+                  "tactician"
+                ], 
+                "ept": [
+                  "drawtheirfire"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": null, 
         "name": "*Ross Goodenough", 
         "rank": {
           "swiss": 0
         }, 
         "score": 2, 
-        "sos": "0.80"
+        "sos": "0.00"
       }, 
       {
         "mov": 353, 
@@ -1394,13 +1630,13 @@
         "sos": "0.56"
       }, 
       {
-        "mov": 169, 
-        "name": "Chris Stokes", 
+        "mov": 172, 
+        "name": "Ryan Jones", 
         "rank": {
           "swiss": 0
         }, 
         "score": 1, 
-        "sos": "0.30"
+        "sos": "0.56"
       }, 
       {
         "mov": 192, 
@@ -2659,6 +2895,61 @@
         "sos": "0.47"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "tactician", 
+                  "maul"
+                ], 
+                "ept": [
+                  "expertise"
+                ]
+              }
+            }, 
+            {
+              "name": "ezrabridger", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "crew": [
+                  "herasyndulla"
+                ], 
+                "ept": [
+                  "snapshot"
+                ]
+              }
+            }, 
+            {
+              "name": "norrawexley", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "crew": [
+                  "c3po"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 526, 
         "name": "Mourjan Emir-Senglat", 
         "rank": {
@@ -3280,13 +3571,13 @@
         "sos": "0.42"
       }, 
       {
-        "mov": 172, 
-        "name": "Ryan Jones", 
+        "mov": 169, 
+        "name": "Chris Stokes", 
         "rank": {
           "swiss": 0
         }, 
         "score": 1, 
-        "sos": "0.56"
+        "sos": "0.30"
       }, 
       {
         "list": {
@@ -3420,6 +3711,50 @@
         "sos": "0.75"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }, 
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "tactician", 
+                  "courierdroid"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 577, 
         "name": "Matt Balding", 
         "rank": {
@@ -3516,6 +3851,57 @@
         "sos": "0.46"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "intensity"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 597, 
         "name": "Richard Polley", 
         "rank": {
@@ -3561,6 +3947,63 @@
         "sos": "0.48"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "m9g8"
+                ], 
+                "crew": [
+                  "hotshotcopilot"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }, 
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "wookieecommandos"
+                ], 
+                "ept": [
+                  "selflessness"
+                ]
+              }
+            }, 
+            {
+              "name": "norrawexley", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "crew": [
+                  "c3po"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 563, 
         "name": "Sean Livingstone", 
         "rank": {
@@ -3831,6 +4274,63 @@
         "sos": "0.36"
       }, 
       {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 404, 
         "name": "Seb Brady", 
         "rank": {
@@ -3849,6 +4349,67 @@
         "sos": "0.53"
       }, 
       {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "thermaldetonators", 
+                  "ionbombs"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 379, 
         "name": "Sam Ledwich", 
         "rank": {
@@ -3912,15 +4473,6 @@
         "sos": "0.50"
       }, 
       {
-        "mov": 368, 
-        "name": "Dan Sellen", 
-        "rank": {
-          "swiss": 0
-        }, 
-        "score": 2, 
-        "sos": "0.45"
-      }, 
-      {
         "mov": 356, 
         "name": "Jim Roberts", 
         "rank": {
@@ -3928,6 +4480,15 @@
         }, 
         "score": 2, 
         "sos": "0.42"
+      }, 
+      {
+        "mov": 368, 
+        "name": "Dan Sellen", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 2, 
+        "sos": "0.45"
       }, 
       {
         "mov": 371, 
@@ -4029,13 +4590,13 @@
         "sos": "0.39"
       }, 
       {
-        "mov": 355, 
-        "name": "Mark Threakall", 
+        "mov": 457, 
+        "name": "Ben Saunders", 
         "rank": {
           "swiss": 0
         }, 
         "score": 2, 
-        "sos": "0.53"
+        "sos": "0.43"
       }, 
       {
         "mov": 486, 
@@ -4092,15 +4653,6 @@
         "sos": "0.54"
       }, 
       {
-        "mov": 454, 
-        "name": "Paul Clouder", 
-        "rank": {
-          "swiss": 0
-        }, 
-        "score": 2, 
-        "sos": "0.52"
-      }, 
-      {
         "mov": 469, 
         "name": "Michael Maggs", 
         "rank": {
@@ -4111,12 +4663,12 @@
       }, 
       {
         "mov": 454, 
-        "name": "Stephen Gage", 
+        "name": "Paul Clouder", 
         "rank": {
           "swiss": 0
         }, 
         "score": 2, 
-        "sos": "0.58"
+        "sos": "0.52"
       }, 
       {
         "mov": 468, 
@@ -4128,6 +4680,15 @@
         "sos": "0.71"
       }, 
       {
+        "mov": 454, 
+        "name": "Stephen Gage", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 2, 
+        "sos": "0.58"
+      }, 
+      {
         "mov": 465, 
         "name": "Dan Carter", 
         "rank": {
@@ -4137,13 +4698,13 @@
         "sos": "0.33"
       }, 
       {
-        "mov": 457, 
-        "name": "Ben Saunders", 
+        "mov": 459, 
+        "name": "Harrison Sharp", 
         "rank": {
           "swiss": 0
         }, 
         "score": 2, 
-        "sos": "0.43"
+        "sos": "0.50"
       }, 
       {
         "mov": 449, 
@@ -4182,15 +4743,6 @@
         "sos": "0.46"
       }, 
       {
-        "mov": 431, 
-        "name": "Henry Westcott", 
-        "rank": {
-          "swiss": 0
-        }, 
-        "score": 2, 
-        "sos": "0.38"
-      }, 
-      {
         "mov": 483, 
         "name": "OJ Hemmings", 
         "rank": {
@@ -4198,6 +4750,15 @@
         }, 
         "score": 2, 
         "sos": "0.52"
+      }, 
+      {
+        "mov": 431, 
+        "name": "Henry Westcott", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 2, 
+        "sos": "0.38"
       }, 
       {
         "mov": 479, 
@@ -4209,6 +4770,15 @@
         "sos": "0.54"
       }, 
       {
+        "mov": 355, 
+        "name": "Mark Threakall", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 2, 
+        "sos": "0.53"
+      }, 
+      {
         "mov": 437, 
         "name": "David Young", 
         "rank": {
@@ -4218,8 +4788,17 @@
         "sos": "0.57"
       }, 
       {
-        "mov": 459, 
-        "name": "Harrison Sharp", 
+        "mov": 475, 
+        "name": "Elliott Weights", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 2, 
+        "sos": "0.57"
+      }, 
+      {
+        "mov": 439, 
+        "name": "Phil GC", 
         "rank": {
           "swiss": 0
         }, 
@@ -4280,24 +4859,6 @@
         }, 
         "score": 2, 
         "sos": "0.58"
-      }, 
-      {
-        "mov": 439, 
-        "name": "Phil GC", 
-        "rank": {
-          "swiss": 0
-        }, 
-        "score": 2, 
-        "sos": "0.50"
-      }, 
-      {
-        "mov": 475, 
-        "name": "Elliott Weights", 
-        "rank": {
-          "swiss": 0
-        }, 
-        "score": 2, 
-        "sos": "0.57"
       }, 
       {
         "list": {
@@ -4396,66 +4957,6 @@
                   "heavylasercannon"
                 ], 
                 "crew": [
-                  "kananjarrus"
-                ], 
-                "ept": [
-                  "pushthelimit"
-                ], 
-                "mod": [
-                  "engineupgrade"
-                ], 
-                "title": [
-                  "outrider"
-                ]
-              }
-            }, 
-            {
-              "name": "poedameron-swx57", 
-              "ship": "t70xwing", 
-              "upgrades": {
-                "amd": [
-                  "bb8"
-                ], 
-                "ept": [
-                  "intensity"
-                ], 
-                "mod": [
-                  "autothrusters"
-                ], 
-                "tech": [
-                  "primedthrusters"
-                ], 
-                "title": [
-                  "blackone"
-                ]
-              }
-            }
-          ], 
-          "vendor": {
-            "listjuggler": {}
-          }, 
-          "version": "4.2.0"
-        }, 
-        "mov": 543, 
-        "name": "Dave Bocca", 
-        "rank": {
-          "swiss": 3
-        }, 
-        "score": 6, 
-        "sos": "0.43"
-      }, 
-      {
-        "list": {
-          "faction": "rebel", 
-          "pilots": [
-            {
-              "name": "dashrendar", 
-              "ship": "yt2400", 
-              "upgrades": {
-                "cannon": [
-                  "heavylasercannon"
-                ], 
-                "crew": [
                   "rey"
                 ], 
                 "ept": [
@@ -4503,6 +5004,66 @@
         }, 
         "score": 6, 
         "sos": "0.68"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "intensity"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 543, 
+        "name": "Dave Bocca", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 6, 
+        "sos": "0.43"
       }, 
       {
         "mov": 947, 
@@ -4626,6 +5187,16 @@
         }, 
         "score": 5, 
         "sos": "0.74"
+      }, 
+      {
+        "mov": 1043, 
+        "name": "Robert Ramm", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 9
+        }, 
+        "score": 5, 
+        "sos": "0.46"
       }, 
       {
         "mov": 983, 
@@ -4854,6 +5425,66 @@
         "sos": "0.50"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "epsilonleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "tech": [
+                  "advancedoptics"
+                ]
+              }
+            }, 
+            {
+              "name": "lieutenantdormitz", 
+              "ship": "upsilonclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "courierdroid"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "kylorensshuttle"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 889, 
         "name": "Benjamin Moore", 
         "rank": {
@@ -4959,6 +5590,75 @@
         "sos": "0.83"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "chopper-swx72"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "torpedo": [
+                  "bombloadout"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "ezrabridger", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "crew": [
+                  "herasyndulla"
+                ], 
+                "ept": [
+                  "snapshot"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }, 
+            {
+              "name": "roarkgarnet", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "chewbacca"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 856, 
         "name": "*Nand Torfs", 
         "rank": {
@@ -5768,6 +6468,57 @@
         "sos": "0.67"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 663, 
         "name": "Juan Riera", 
         "rank": {
@@ -6204,6 +6955,59 @@
         "sos": "0.46"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "bomb": [
+                  "ionbombs"
+                ], 
+                "crew": [
+                  "kyloren", 
+                  "operationsspecialist", 
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 518, 
         "name": "Michael Warren", 
         "rank": {
@@ -6213,6 +7017,60 @@
         "sos": "0.49"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "wesjanson", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "flightassistastromech"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "wedgeantilles", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "flightassistastromech"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "lukeskywalker", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 500, 
         "name": "Michael Carey", 
         "rank": {
