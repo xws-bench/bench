@@ -6737,6 +6737,64 @@
         "sos": "0.61"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "crew": [
+                  "c3po"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "rey", 
+                  "tactician"
+                ], 
+                "ept": [
+                  "selflessness"
+                ]
+              }
+            }, 
+            {
+              "name": "ezrabridger", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "crew": [
+                  "herasyndulla"
+                ], 
+                "ept": [
+                  "snapshot"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 606, 
         "name": "Omar Velazquez", 
         "rank": {
@@ -6849,7 +6907,7 @@
         "rank": {
           "swiss": 66
         }, 
-        "score": 3, 
+        "score": 4, 
         "sos": "0.47"
       }, 
       {
