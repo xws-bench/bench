@@ -1,0 +1,33 @@
+# Edit this file to introduce tasks to be run by cron.
+# 
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+# 
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').# 
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+# 
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+# 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# N.B.: because we're using @reboot and scheduling bootup through AWS,
+# 	each job is now set to start some seconds after bootup.
+#	60 seconds for the refresh, 480 (7 min + 60 sec) for the data update,
+#	560 (7 min + 120 sec) for the commit and log file push.
+#	Current runtimes for each command:
+#		refresh_recent_files.sh 		-> 330 seconds
+#		update_tournaments.sh			->   5 seconds
+#		git add && git commit && git push	->   5 seconds
+# m h  dom mon dow   command
+ @reboot	     sleep 60 && cd /home/ubuntu/bench/tournament/ && ./refresh_recent_files.sh 300
+ @reboot	     sleep 480 && cd /home/ubuntu/bench/tournament/ && ./update_tournaments.sh > ./latest_update.log 2>&1
+ @reboot	     sleep 560 && cd /home/ubuntu/bench/tournament/ && git add ./latest_update.log && git commit -m "Updating log file" && git push origin gh-pages

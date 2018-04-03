@@ -1,31 +1,17 @@
-Warning: Permanently added the RSA host key for IP address '192.30.255.112' to the list of known hosts.
 From github.com:baranidlo/bench
  * branch            gh-pages   -> FETCH_HEAD
 Already up-to-date.
 Moving old 'tournaments' to 'tournaments.old'...
 Downloading new 'tournaments' file...
---2018-04-03 22:06:59--  http://lists.starwarsclubhouse.com/api/v1/tournaments
+--2018-04-03 22:28:01--  http://lists.starwarsclubhouse.com/api/v1/tournaments
 Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
 Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 39515 (39K) [application/json]
 Saving to: ‘tournaments’
 
-     0K .......... .......... .......... ........             100%  491K=0.08s
+     0K .......... .......... .......... ........             100%  494K=0.08s
 
-2018-04-03 22:07:00 (491 KB/s) - ‘tournaments’ saved [39515/39515]
+2018-04-03 22:28:01 (494 KB/s) - ‘tournaments’ saved [39515/39515]
 
 Downloading new tournament list data...
---2018-04-03 22:07:00--  http://lists.starwarsclubhouse.com/api/v1/tournament/4241
-Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
-Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 11010 (11K) [application/json]
-Saving to: ‘4241’
-
-     0K ..........                                            100%  197M=0s
-
-2018-04-03 22:07:00 (197 MB/s) - ‘4241’ saved [11010/11010]
-
-To git@github.com:baranidlo/bench.git
-   f7fb76f..9b0ef2e  gh-pages -> gh-pages
