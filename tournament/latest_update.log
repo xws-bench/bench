@@ -3,17 +3,37 @@ From github.com:baranidlo/bench
 Already up-to-date.
 Moving old 'tournaments' to 'tournaments.old'...
 Downloading new 'tournaments' file...
---2018-04-03 22:58:21--  http://lists.starwarsclubhouse.com/api/v1/tournaments
+--2018-04-04 07:03:44--  http://lists.starwarsclubhouse.com/api/v1/tournaments
 Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
 Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
 HTTP request sent, awaiting response... 200 OK
-Length: 39515 (39K) [application/json]
+Length: 39537 (39K) [application/json]
 Saving to: ‘tournaments’
 
-     0K .......... .......... .......... ........             100%  482K=0.08s
+     0K .......... .......... .......... ........             100%  499K=0.08s
 
-2018-04-03 22:58:22 (482 KB/s) - ‘tournaments’ saved [39515/39515]
+2018-04-04 07:03:44 (499 KB/s) - ‘tournaments’ saved [39537/39537]
 
 Downloading new tournament list data...
-To git@github.com:baranidlo/bench.git
-   aee3197..3c2bcb8  gh-pages -> gh-pages
+--2018-04-04 07:03:44--  http://lists.starwarsclubhouse.com/api/v1/tournament/4242
+Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
+Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 5810 (5.7K) [application/json]
+Saving to: ‘4242’
+
+     0K .....                                                 100%  557M=0s
+
+2018-04-04 07:03:45 (557 MB/s) - ‘4242’ saved [5810/5810]
+
+--2018-04-04 07:03:45--  http://lists.starwarsclubhouse.com/api/v1/tournament/4243
+Resolving lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)... 34.206.101.184
+Connecting to lists.starwarsclubhouse.com (lists.starwarsclubhouse.com)|34.206.101.184|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 12007 (12K) [application/json]
+Saving to: ‘4243’
+
+     0K .......... .                                          100%  200M=0s
+
+2018-04-04 07:03:45 (200 MB/s) - ‘4243’ saved [12007/12007]
+
