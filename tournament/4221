@@ -2671,6 +2671,68 @@
         "sos": "0.59"
       }, 
       {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rhosquadronveteran", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "cannon": [
+                  "linkedbattery", 
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "title": [
+                  "xg1assaultconfiguration"
+                ]
+              }
+            }, 
+            {
+              "name": "rhosquadronveteran", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "cannon": [
+                  "linkedbattery", 
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "title": [
+                  "xg1assaultconfiguration"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "trickshot"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 561, 
         "name": "Ken Hoskins", 
         "rank": {
