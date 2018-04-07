@@ -11,7 +11,7 @@ function Team(team) {
     this.isia=false;
     this.initiative=false;
     this.units=[];
-    this.conditions={};
+    this.conditions=[];
     this.captain=null;
     this.faction=Unit.REBEL;
     this.allhits=this.allcrits=this.allevade=this.allred=this.allgreen=0;
@@ -216,7 +216,7 @@ Team.prototype = {
 		    if (upg.id>=0&&typeof UPGRADES[upg.id].uninstall=="function")
 			UPGRADES[upg.id].uninstall(u);
 		    // Now install the upgrades added during the tosquadron call
-		    if (typeof upg.install=="function") upg.install(u);
+		    if (typeof upg.install=="function" && upg.install !== Upgrade.prototype.install) upg.install(u);
 		    Upgrade.prototype.install.call(upg,u);
 		}
 	    }
@@ -259,6 +259,7 @@ Team.prototype = {
 	$("#team"+team).empty();
 	$("#importexport"+team).remove();
 	var sq=this.tosquadron(s);
+        // Init ship positions at beginning of game
 	for (i=0; i<sq.length; i++) {
 	    if (team==1) {
 		if (sq[i].tx<=0||sq[i].ty<=0) {
@@ -269,7 +270,7 @@ Team.prototype = {
 		$("#team1").append("<div id=\""+sq[i].id+"\" onclick='select($(this).attr(\"id\"))'>"+sq[i]+"</div>");
 	    } else {
 		if (sq[i].tx<=0||sq[i].ty<=0) {
-		    sq[i].tx=820+(sq[i].islarge?20:0);
+		    sq[i].tx=(GW - 80)+(sq[i].islarge?20:0);
 		    sq[i].ty=70+82*i;
 		    sq[i].alpha=-90;
 		}
@@ -330,7 +331,7 @@ Team.prototype = {
 	s.points=pts;
 	// update also the number of points
 	this.points=pts;
-	s.vendor={xwsbenchmark:{builder:"Squadron Benchmark",builder_url:"http://xws-bench.github.io/bench/"}};
+	s.vendor={xwsbenchmark:{builder:"Squadron Benchmark",builder_url:"http://baranidlo.github.io/bench/"}};
 	s.version="0.3.0";
 	return s;
     },
@@ -398,7 +399,7 @@ Team.prototype = {
 	    }
 	    var p=new Unit(this.team,pid);
 	    p.upg=[];
-	    for (j=0; j<10; j++) p.upg[j]=-1;
+	    for (j=0; j<20; j++) p.upg[j]=-1;
 	    if (typeof p.pilotid=="undefined") {
 		console.log(pid+" "+p.name+" "+p.pilotid);
 		console.trace();

@@ -1,0 +1,175 @@
+{
+  "tournament": {
+    "date": "2016-01-07", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2453, 
+    "name": "Black Moon January Tourney", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rexlerbrath", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "outmaneuver"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 420, 
+        "name": "Drew Brown", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 449, 
+        "name": "Jon Williams", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 434, 
+        "name": "Travis Gardner", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 208, 
+        "name": "Brandon Kier", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 196, 
+        "name": "Jake Rusczek", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 93, 
+        "name": "Ira Sargent", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.56"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Travis Gardner", 
+            "player1points": 100, 
+            "player2": "Jake Rusczek", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brandon Kier", 
+            "player1points": 40, 
+            "player2": "Drew Brown", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon Williams", 
+            "player1points": 100, 
+            "player2": "Ira Sargent", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Travis Gardner", 
+            "player1points": 60, 
+            "player2": "Drew Brown", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jon Williams", 
+            "player1points": 100, 
+            "player2": "Brandon Kier", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jake Rusczek", 
+            "player1points": 65, 
+            "player2": "Ira Sargent", 
+            "player2points": 58, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jon Williams", 
+            "player1points": 80, 
+            "player2": "Drew Brown", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ira Sargent", 
+            "player1points": 0, 
+            "player2": "Travis Gardner", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jake Rusczek", 
+            "player1points": 63, 
+            "player2": "Brandon Kier", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Lebanon ", 
+      "country": "United States of America", 
+      "lat": "43.642538100000", 
+      "lon": "-72.251382900000", 
+      "name": "Black Moon Games", 
+      "state": "New Hampshire"
+    }
+  }
+}

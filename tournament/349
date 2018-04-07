@@ -1,0 +1,936 @@
+{
+  "tournament": {
+    "date": "2015-03-29", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 349, 
+    "name": "Games of Berkeley - SF Bay Area Tour 8 of 8", 
+    "players": [
+      {
+        "mov": 50, 
+        "name": "Jeff Wilder", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 150, 
+        "name": "Brendan Kendrick", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 200, 
+        "name": "Chris Monroe", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 663, 
+        "name": "Drew Bishop", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "jakefarrell", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts", 
+                  "outmaneuver"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "tarnmison", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r7astromech"
+                ]
+              }
+            }, 
+            {
+              "name": "janors", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 526, 
+        "name": "Audrey Carstensen", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 2
+        }, 
+        "score": 18, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 594, 
+        "name": "Eric Knudtzon", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 554, 
+        "name": "JP Stephens", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "darthvader", 
+                  "tactician"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "flechettecannon"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 494, 
+        "name": "Eli Stevens", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 5
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 467, 
+        "name": "Bernie Lin", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 6
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 463, 
+        "name": "Sebastian Martinez", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 7
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "hansolo", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "gunner", 
+                  "c3po"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 557, 
+        "name": "Adam Sownie", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 8
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 490, 
+        "name": "Noel Cuevas", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 504, 
+        "name": "Jason Phillips", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 457, 
+        "name": "Brian Francis", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 451, 
+        "name": "Jimmy Caadium", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 440, 
+        "name": "Tristan Telson", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 432, 
+        "name": "Eric Chen", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 390, 
+        "name": "Darryl McMillon", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 374, 
+        "name": "Sherry Tsai", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 286, 
+        "name": "Mia Staus", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 367, 
+        "name": "Zach Lehrer", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 344, 
+        "name": "Geordan Rosario", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 315, 
+        "name": "Chris Langland", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 299, 
+        "name": "Jonas Malapas", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 268, 
+        "name": "Gunner Scott", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 260, 
+        "name": "Mike Brown", 
+        "rank": {
+          "swiss": 23
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 219, 
+        "name": "Thomas Carrieri", 
+        "rank": {
+          "swiss": 24
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 136, 
+        "name": "Garrett Jost", 
+        "rank": {
+          "swiss": 25
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 70, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Mia Staus", 
+            "player1points": 100, 
+            "player2": "Zach Lehrer", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeff Wilder", 
+            "player1points": 0, 
+            "player2": "Geordan Rosario", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric Knudtzon", 
+            "player1points": 100, 
+            "player2": "Brendan Kendrick", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Noel Cuevas", 
+            "player1points": 13, 
+            "player2": "Adam Sownie", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sebastian Martinez", 
+            "player1points": 50, 
+            "player2": "Gunner Scott", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Carrieri", 
+            "player1points": 0, 
+            "player2": "Darryl McMillon", 
+            "player2points": 77, 
+            "result": "win"
+          }, 
+          {
+            "player1": "JP Stephens", 
+            "player1points": 100, 
+            "player2": "Sherry Tsai", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bernie Lin", 
+            "player1points": 100, 
+            "player2": "Jimmy Caadium", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Drew Bishop", 
+            "player1points": 100, 
+            "player2": "Eric Chen", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Audrey Carstensen", 
+            "player1points": 36, 
+            "player2": "Tristan Telson", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian Francis", 
+            "player1points": 49, 
+            "player2": "Jonas Malapas", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Monroe", 
+            "player1points": 100, 
+            "player2": "Garrett Jost", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Langland", 
+            "player1points": 27, 
+            "player2": "Mike Brown", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Phillips", 
+            "player1points": 100, 
+            "player2": "Eli Stevens", 
+            "player2points": 24, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Eric Knudtzon", 
+            "player1points": 100, 
+            "player2": "Chris Monroe", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Geordan Rosario", 
+            "player1points": 39, 
+            "player2": "Adam Sownie", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Darryl McMillon", 
+            "player1points": 36, 
+            "player2": "Jason Phillips", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Brown", 
+            "player1points": 0, 
+            "player2": "JP Stephens", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Drew Bishop", 
+            "player1points": 100, 
+            "player2": "Mia Staus", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bernie Lin", 
+            "player1points": 100, 
+            "player2": "Jonas Malapas", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Audrey Carstensen", 
+            "player1points": 75, 
+            "player2": "Gunner Scott", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sebastian Martinez", 
+            "player1points": 36, 
+            "player2": "Tristan Telson", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian Francis", 
+            "player1points": 100, 
+            "player2": "Jimmy Caadium", 
+            "player2points": 57, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Zach Lehrer", 
+            "player1points": 79, 
+            "player2": "Eric Chen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sherry Tsai", 
+            "player1points": 24, 
+            "player2": "Chris Langland", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eli Stevens", 
+            "player1points": 100, 
+            "player2": "Thomas Carrieri", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Noel Cuevas", 
+            "player1points": 42, 
+            "player2": "Garrett Jost", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeff Wilder", 
+            "player1points": 0, 
+            "player2": "Brendan Kendrick", 
+            "player2points": 50, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "JP Stephens", 
+            "player1points": 12, 
+            "player2": "Audrey Carstensen", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Eric Knudtzon", 
+            "player1points": 35, 
+            "player2": "JP Stephens", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Drew Bishop", 
+            "player1points": 100, 
+            "player2": "Bernie Lin", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Darryl McMillon", 
+            "player1points": 13, 
+            "player2": "Adam Sownie", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Audrey Carstensen", 
+            "player1points": 100, 
+            "player2": "Geordan Rosario", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Phillips", 
+            "player1points": 100, 
+            "player2": "Gunner Scott", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Langland", 
+            "player1points": 12, 
+            "player2": "Sebastian Martinez", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eli Stevens", 
+            "player1points": 100, 
+            "player2": "Jonas Malapas", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian Francis", 
+            "player1points": 100, 
+            "player2": "Mike Brown", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mia Staus", 
+            "player1points": 12, 
+            "player2": "Eric Chen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brendan Kendrick", 
+            "player1points": 0, 
+            "player2": "Noel Cuevas", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tristan Telson", 
+            "player1points": 100, 
+            "player2": "Zach Lehrer", 
+            "player2points": 88, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jimmy Caadium", 
+            "player1points": 100, 
+            "player2": "Garrett Jost", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sherry Tsai", 
+            "player1points": 100, 
+            "player2": "Thomas Carrieri", 
+            "player2points": 20, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Eric Knudtzon", 
+            "player1points": 59, 
+            "player2": "Drew Bishop", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Sownie", 
+            "player1points": 12, 
+            "player2": "Audrey Carstensen", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "JP Stephens", 
+            "player1points": 24, 
+            "player2": "Jason Phillips", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian Francis", 
+            "player1points": 65, 
+            "player2": "Eli Stevens", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bernie Lin", 
+            "player1points": 66, 
+            "player2": "Eric Chen", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sebastian Martinez", 
+            "player1points": 63, 
+            "player2": "Darryl McMillon", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Noel Cuevas", 
+            "player1points": 100, 
+            "player2": "Geordan Rosario", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jimmy Caadium", 
+            "player1points": 50, 
+            "player2": "Chris Langland", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tristan Telson", 
+            "player1points": 100, 
+            "player2": "Gunner Scott", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sherry Tsai", 
+            "player1points": 100, 
+            "player2": "Jonas Malapas", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Brown", 
+            "player1points": 39, 
+            "player2": "Mia Staus", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Zach Lehrer", 
+            "player1points": 100, 
+            "player2": "Garrett Jost", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Carrieri", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Adam Sownie", 
+            "player1points": 0, 
+            "player2": "JP Stephens", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bernie Lin", 
+            "player1points": 25, 
+            "player2": "Audrey Carstensen", 
+            "player2points": 44, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Drew Bishop", 
+            "player1points": 39, 
+            "player2": "Adam Sownie", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "JP Stephens", 
+            "player1points": 100, 
+            "player2": "Eli Stevens", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric Knudtzon", 
+            "player1points": 36, 
+            "player2": "Bernie Lin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Audrey Carstensen", 
+            "player1points": 39, 
+            "player2": "Sebastian Martinez", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 8, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Berkeley", 
+      "country": "United States of America", 
+      "lat": "37.870839300000", 
+      "lon": "-122.272863800000", 
+      "name": "Games of Berkeley", 
+      "state": "California"
+    }
+  }
+}

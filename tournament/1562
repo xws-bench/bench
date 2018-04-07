@@ -1,0 +1,157 @@
+{
+  "tournament": {
+    "date": "2016-04-23", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1562, 
+    "name": "Metal Galaxy - Bi-Weekly Tournament 001", 
+    "players": [
+      {
+        "mov": 500, 
+        "name": "Derek", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 11, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 330, 
+        "name": "Ian", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 349, 
+        "name": "Jerry", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 374, 
+        "name": "Pat", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 6, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 200, 
+        "name": "Mark", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 47, 
+        "name": "Jonah", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Mark", 
+            "player1points": 100, 
+            "player2": "Jonah", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pat", 
+            "player1points": 72, 
+            "player2": "Jerry", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ian", 
+            "player1points": 0, 
+            "player2": "Derek", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Mark", 
+            "player1points": 0, 
+            "player2": "Derek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jerry", 
+            "player1points": 14, 
+            "player2": "Ian", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonah", 
+            "player1points": 24, 
+            "player2": "Pat", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Derek", 
+            "player1points": 50, 
+            "player2": "Pat", 
+            "player2points": 50, 
+            "result": "draw"
+          }, 
+          {
+            "player1": "Ian", 
+            "player1points": 100, 
+            "player2": "Mark", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jerry", 
+            "player1points": 99, 
+            "player2": "Jonah", 
+            "player2points": 22, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Calgary", 
+      "country": "Canada", 
+      "lat": "51.053058800000", 
+      "lon": "-114.062561300000", 
+      "name": "None", 
+      "state": "Alberta"
+    }
+  }
+}

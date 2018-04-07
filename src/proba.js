@@ -265,6 +265,13 @@ function tohitproba(attacker,weapon,defender,at,dt,attack,defense,double) {
 			defender.evade=savedevade;
 		    }
 		}
+                // Holy crow; the probability calculator *repeatedly* calls the attacker's
+                // and defender's dice modification routines to figure out what the attack
+                // odds are.  This is obviously bad for, e.g., Biggs with Stressbot or Garven,
+                // which perform some task **after every single dice modification call!**
+                // Also, the fact that the focus values are reset numerous times means any
+                // functions that trigger on spending or gaining focus may also be re-triggered,
+                // and functions which perform focus modification are not reliable during this period!
 		attacker.focus=focusa;
 		attacker.reroll=savedreroll;
 	    }

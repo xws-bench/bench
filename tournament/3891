@@ -1,0 +1,3198 @@
+{
+  "tournament": {
+    "date": "2018-01-20", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3891, 
+    "name": "Regional Valencia 2018", 
+    "players": [
+      {
+        "mov": 604, 
+        "name": "Jose Maria Blasco", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 2, 
+        "sos": "0.40"
+      }, 
+      {
+        "mov": 153, 
+        "name": "Rafael Torres", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.58"
+      }, 
+      {
+        "mov": 623, 
+        "name": "Juancho Mas", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 3, 
+        "sos": "0.77"
+      }, 
+      {
+        "mov": 744, 
+        "name": "Daniel Lopez", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 4, 
+        "sos": "0.61"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "crimsonleader", 
+              "ship": "bsf17bomber", 
+              "upgrades": {
+                "bomb": [
+                  "thermaldetonators", 
+                  "ordnancesilos"
+                ], 
+                "mod": [
+                  "deflectiveplating"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "ezrabridger", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "crew": [
+                  "gunner"
+                ], 
+                "ept": [
+                  "trickshot"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 998, 
+        "name": "David Diez", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 1
+        }, 
+        "score": 6, 
+        "sos": "0.57"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "thermaldetonators", 
+                  "protonbombs"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 976, 
+        "name": "Lisardo Montagud", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 2
+        }, 
+        "score": 5, 
+        "sos": "0.58"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "rhosquadronveteran", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 914, 
+        "name": "Luis Casass", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 3
+        }, 
+        "score": 5, 
+        "sos": "0.72"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "jesspava", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "tactician", 
+                  "c3po"
+                ], 
+                "ept": [
+                  "expertise"
+                ]
+              }
+            }, 
+            {
+              "name": "wookieeliberator", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "gunner", 
+                  "tactician"
+                ], 
+                "ept": [
+                  "selflessness"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 892, 
+        "name": "Abraham Martinez", 
+        "rank": {
+          "elimination": 16, 
+          "swiss": 4
+        }, 
+        "score": 5, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "m9g8"
+                ], 
+                "crew": [
+                  "hotshotcopilot"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }, 
+            {
+              "name": "norrawexley", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "crew": [
+                  "c3po"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }, 
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "rey", 
+                  "courierdroid"
+                ], 
+                "ept": [
+                  "drawtheirfire"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 875, 
+        "name": "Alejandro Campos", 
+        "rank": {
+          "elimination": 16, 
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.57"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }, 
+            {
+              "name": "sienartestpilot", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 826, 
+        "name": "Pedro Villena", 
+        "rank": {
+          "elimination": 16, 
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "0.67"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "thweek", 
+              "ship": "starviper", 
+              "upgrades": {
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "virago", 
+                  "starvipermkii"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "oldteroch", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 752, 
+        "name": "Alberto Guindo", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "0.55"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "jesspava", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "m9g8"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "wullffwarro", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "jynerso", 
+                  "janors"
+                ], 
+                "ept": [
+                  "selflessness"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ]
+              }
+            }, 
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "rey", 
+                  "c3po"
+                ], 
+                "ept": [
+                  "drawtheirfire"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 884, 
+        "name": "Miquel Pic", 
+        "rank": {
+          "elimination": 16, 
+          "swiss": 8
+        }, 
+        "score": 4, 
+        "sos": "0.35"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "smugglingcompartment", 
+                  "countermeasures"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 795, 
+        "name": "Antonio Roma", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 9
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "deltasquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }, 
+            {
+              "name": "deltasquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }, 
+            {
+              "name": "deltasquadronpilot", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 768, 
+        "name": "Jorge Aumente", 
+        "rank": {
+          "elimination": 16, 
+          "swiss": 10
+        }, 
+        "score": 4, 
+        "sos": "0.67"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunace", 
+              "ship": "kihraxzfighter", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips", 
+                  "munitionsfailsafe"
+                ], 
+                "title": [
+                  "vaksai"
+                ]
+              }
+            }, 
+            {
+              "name": "thweek", 
+              "ship": "starviper", 
+              "upgrades": {
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "virago", 
+                  "starvipermkii"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 753, 
+        "name": "Victor Donnay", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 11
+        }, 
+        "score": 4, 
+        "sos": "0.69"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "protonbombs", 
+                  "ionbombs"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "trajectorysimulator"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 751, 
+        "name": "Ruben Barrio", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 12
+        }, 
+        "score": 4, 
+        "sos": "0.58"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "rey"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "thermaldetonators"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 723, 
+        "name": "Joel Guillamon", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 13
+        }, 
+        "score": 4, 
+        "sos": "0.64"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "targetingsynchronizer"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "backdraft", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "targetingsynchronizer"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "puresabacc", 
+              "ship": "tiestriker", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "title": [
+                  "adaptiveailerons"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 710, 
+        "name": "Ismael Roig", 
+        "rank": {
+          "elimination": 16, 
+          "swiss": 14
+        }, 
+        "score": 4, 
+        "sos": "0.53"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "janors"
+                ], 
+                "ept": [
+                  "drawtheirfire"
+                ]
+              }
+            }, 
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "rey", 
+                  "reconspecialist"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "title": [
+                  "phantom"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 701, 
+        "name": "Sergi Perez", 
+        "rank": {
+          "elimination": 16, 
+          "swiss": 15
+        }, 
+        "score": 4, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }, 
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "lattsrazzi"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 698, 
+        "name": "Javier Navarro", 
+        "rank": {
+          "elimination": 16, 
+          "swiss": 16
+        }, 
+        "score": 4, 
+        "sos": "0.57"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "chopper", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla", 
+                  "finn"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 687, 
+        "name": "Juan Luis Calderon", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 4, 
+        "sos": "0.47"
+      }, 
+      {
+        "mov": 683, 
+        "name": "Neil Donnison", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 4, 
+        "sos": "0.42"
+      }, 
+      {
+        "mov": 662, 
+        "name": "Juan Manuel Galva", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 4, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 635, 
+        "name": "Enric Medina", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 4, 
+        "sos": "0.47"
+      }, 
+      {
+        "mov": 701, 
+        "name": "Carlos Ferrer", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 673, 
+        "name": "Xavi Cardona", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 3, 
+        "sos": "0.36"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "thweek", 
+              "ship": "starviper", 
+              "upgrades": {
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "sensorjammer"
+                ], 
+                "title": [
+                  "starvipermkii", 
+                  "virago"
+                ]
+              }
+            }, 
+            {
+              "name": "kavil", 
+              "ship": "ywing", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "talonbanecobra", 
+              "ship": "kihraxzfighter", 
+              "upgrades": {
+                "ept": [
+                  "fearlessness"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips", 
+                  "engineupgrade", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "vaksai"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 661, 
+        "name": "Oscar Moneva", 
+        "rank": {
+          "swiss": 23
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 650, 
+        "name": "Carlos Llopis", 
+        "rank": {
+          "swiss": 24
+        }, 
+        "score": 3, 
+        "sos": "0.42"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "wildspacefringer", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "dashrendar"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "prototypepilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "missile": [
+                  "chardaanrefit"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 629, 
+        "name": "Sergio Lara", 
+        "rank": {
+          "swiss": 25
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 626, 
+        "name": "Oriol Barnes", 
+        "rank": {
+          "swiss": 26
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 604, 
+        "name": "Martin Belda", 
+        "rank": {
+          "swiss": 27
+        }, 
+        "score": 3, 
+        "sos": "0.54"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "janors", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "chewbacca"
+                ], 
+                "ept": [
+                  "trickshot"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 586, 
+        "name": "Octavio Litarte", 
+        "rank": {
+          "swiss": 28
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 584, 
+        "name": "Guillem Pla", 
+        "rank": {
+          "swiss": 29
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 582, 
+        "name": "Daniel Corral", 
+        "rank": {
+          "swiss": 30
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 571, 
+        "name": "Adrian Zurita", 
+        "rank": {
+          "swiss": 31
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 567, 
+        "name": "Vicente Amoros", 
+        "rank": {
+          "swiss": 32
+        }, 
+        "score": 3, 
+        "sos": "0.36"
+      }, 
+      {
+        "mov": 555, 
+        "name": "Jose Bardn", 
+        "rank": {
+          "swiss": 33
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 543, 
+        "name": "Ramon Cifuentes", 
+        "rank": {
+          "swiss": 34
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 523, 
+        "name": "Jose Ruiz", 
+        "rank": {
+          "swiss": 35
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 506, 
+        "name": "Alberto Hernaiz", 
+        "rank": {
+          "swiss": 36
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 504, 
+        "name": "Anthony Kessler", 
+        "rank": {
+          "swiss": 37
+        }, 
+        "score": 3, 
+        "sos": "0.53"
+      }, 
+      {
+        "mov": 487, 
+        "name": "Mario Modesto Sanchez", 
+        "rank": {
+          "swiss": 38
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 477, 
+        "name": "Enrique Cebri", 
+        "rank": {
+          "swiss": 39
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 582, 
+        "name": "Angel Larraz", 
+        "rank": {
+          "swiss": 40
+        }, 
+        "score": 2, 
+        "sos": "0.47"
+      }, 
+      {
+        "mov": 577, 
+        "name": "Jorge Navarro", 
+        "rank": {
+          "swiss": 41
+        }, 
+        "score": 2, 
+        "sos": "0.47"
+      }, 
+      {
+        "mov": 529, 
+        "name": "Pedro Gomez", 
+        "rank": {
+          "swiss": 42
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 516, 
+        "name": "David Alonso", 
+        "rank": {
+          "swiss": 43
+        }, 
+        "score": 2, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 495, 
+        "name": "Alejandro Claramonte", 
+        "rank": {
+          "swiss": 44
+        }, 
+        "score": 2, 
+        "sos": "0.39"
+      }, 
+      {
+        "mov": 490, 
+        "name": "Pau Ferrando", 
+        "rank": {
+          "swiss": 45
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 466, 
+        "name": "Carlos Moser", 
+        "rank": {
+          "swiss": 46
+        }, 
+        "score": 2, 
+        "sos": "0.47"
+      }, 
+      {
+        "mov": 394, 
+        "name": "Rafael Martin", 
+        "rank": {
+          "swiss": 47
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 392, 
+        "name": "Rafael Lopez", 
+        "rank": {
+          "swiss": 48
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 391, 
+        "name": "Alejandro Asensio", 
+        "rank": {
+          "swiss": 49
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 385, 
+        "name": "Joan Serrat", 
+        "rank": {
+          "swiss": 50
+        }, 
+        "score": 2, 
+        "sos": "0.47"
+      }, 
+      {
+        "mov": 357, 
+        "name": "Luis Fernandez", 
+        "rank": {
+          "swiss": 51
+        }, 
+        "score": 2, 
+        "sos": "0.53"
+      }, 
+      {
+        "mov": 383, 
+        "name": "Adolfo Crespo", 
+        "rank": {
+          "swiss": 52
+        }, 
+        "score": 1, 
+        "sos": "0.53"
+      }, 
+      {
+        "mov": 362, 
+        "name": "Chema Ortiz", 
+        "rank": {
+          "swiss": 53
+        }, 
+        "score": 1, 
+        "sos": "0.47"
+      }, 
+      {
+        "mov": 287, 
+        "name": "Javier Lozano", 
+        "rank": {
+          "swiss": 54
+        }, 
+        "score": 1, 
+        "sos": "0.37"
+      }, 
+      {
+        "mov": 208, 
+        "name": "Juan Carlos Fitor", 
+        "rank": {
+          "swiss": 55
+        }, 
+        "score": 0, 
+        "sos": "0.42"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Chema Ortiz", 
+            "player1points": 20, 
+            "player2": "Oriol Barnes", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carlos Ferrer", 
+            "player1points": 44, 
+            "player2": "Ramon Cifuentes", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jorge Navarro", 
+            "player1points": 100, 
+            "player2": "Jose Bardn", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juancho Mas", 
+            "player1points": 100, 
+            "player2": "Miquel Pic", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adolfo Crespo", 
+            "player1points": 60, 
+            "player2": "David Diez", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Xavi Cardona", 
+            "player1points": 0, 
+            "player2": "Anthony Kessler", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin Belda", 
+            "player1points": 100, 
+            "player2": "Jose Ruiz", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafael Torres", 
+            "player1points": 33, 
+            "player2": "Neil Donnison", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ruben Barrio", 
+            "player1points": 100, 
+            "player2": "Jose Maria Blasco", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vicente Amoros", 
+            "player1points": 27, 
+            "player2": "Joel Guillamon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luis Casass", 
+            "player1points": 100, 
+            "player2": "Juan Luis Calderon", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lisardo Montagud", 
+            "player1points": 100, 
+            "player2": "Mario Modesto Sanchez", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pau Ferrando", 
+            "player1points": 100, 
+            "player2": "Alberto Hernaiz", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Enrique Cebri", 
+            "player1points": 0, 
+            "player2": "Pedro Villena", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carlos Llopis", 
+            "player1points": 100, 
+            "player2": "Alejandro Claramonte", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Guillem Pla", 
+            "player1points": 100, 
+            "player2": "Angel Larraz", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joan Serrat", 
+            "player1points": 0, 
+            "player2": "Alejandro Campos", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Antonio Roma", 
+            "player1points": 100, 
+            "player2": "Carlos Moser", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Victor Donnay", 
+            "player1points": 100, 
+            "player2": "Enric Medina", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pedro Gomez", 
+            "player1points": 100, 
+            "player2": "David Alonso", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafael Lopez", 
+            "player1points": 42, 
+            "player2": "Adrian Zurita", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Abraham Martinez", 
+            "player1points": 100, 
+            "player2": "Rafael Martin", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Javier Lozano", 
+            "player1points": 36, 
+            "player2": "Sergio Lara", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luis Fernandez", 
+            "player1points": 0, 
+            "player2": "Jorge Aumente", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Lopez", 
+            "player1points": 53, 
+            "player2": "Alejandro Asensio", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Oscar Moneva", 
+            "player1points": 32, 
+            "player2": "Juan Carlos Fitor", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Corral", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Juan Manuel Galva", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Sergi Perez", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Ismael Roig", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Javier Navarro", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Alberto Guindo", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Octavio Litarte", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "David Diez", 
+            "player1points": 100, 
+            "player2": "Lisardo Montagud", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Joel Guillamon", 
+            "player1points": 50, 
+            "player2": "Daniel Corral", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin Belda", 
+            "player1points": 51, 
+            "player2": "Juancho Mas", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Guillem Pla", 
+            "player1points": 57, 
+            "player2": "Jorge Navarro", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Javier Navarro", 
+            "player1points": 20, 
+            "player2": "Oriol Barnes", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Diez", 
+            "player1points": 100, 
+            "player2": "Octavio Litarte", 
+            "player2points": 18, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sergi Perez", 
+            "player1points": 25, 
+            "player2": "Daniel Lopez", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alejandro Campos", 
+            "player1points": 26, 
+            "player2": "Luis Casass", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Antonio Roma", 
+            "player1points": 100, 
+            "player2": "Anthony Kessler", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ismael Roig", 
+            "player1points": 46, 
+            "player2": "Ruben Barrio", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alberto Guindo", 
+            "player1points": 100, 
+            "player2": "Carlos Llopis", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adrian Zurita", 
+            "player1points": 100, 
+            "player2": "Pedro Gomez", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Victor Donnay", 
+            "player1points": 100, 
+            "player2": "Sergio Lara", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pedro Villena", 
+            "player1points": 100, 
+            "player2": "Pau Ferrando", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lisardo Montagud", 
+            "player1points": 100, 
+            "player2": "Ramon Cifuentes", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juan Manuel Galva", 
+            "player1points": 35, 
+            "player2": "Oscar Moneva", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jorge Aumente", 
+            "player1points": 100, 
+            "player2": "Neil Donnison", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Abraham Martinez", 
+            "player1points": 0, 
+            "player2": "Chema Ortiz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carlos Ferrer", 
+            "player1points": 100, 
+            "player2": "Enric Medina", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Angel Larraz", 
+            "player1points": 50, 
+            "player2": "Joan Serrat", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Xavi Cardona", 
+            "player1points": 100, 
+            "player2": "Javier Lozano", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luis Fernandez", 
+            "player1points": 59, 
+            "player2": "Jose Ruiz", 
+            "player2points": 78, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juan Carlos Fitor", 
+            "player1points": 36, 
+            "player2": "Alejandro Claramonte", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adolfo Crespo", 
+            "player1points": 0, 
+            "player2": "Jose Bardn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juan Luis Calderon", 
+            "player1points": 100, 
+            "player2": "Rafael Torres", 
+            "player2points": 45, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Alonso", 
+            "player1points": 19, 
+            "player2": "Rafael Lopez", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jose Maria Blasco", 
+            "player1points": 22, 
+            "player2": "Mario Modesto Sanchez", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carlos Moser", 
+            "player1points": 32, 
+            "player2": "Enrique Cebri", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alejandro Asensio", 
+            "player1points": 28, 
+            "player2": "Miquel Pic", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alberto Hernaiz", 
+            "player1points": 74, 
+            "player2": "Vicente Amoros", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafael Martin", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Joel Guillamon", 
+            "player1points": 61, 
+            "player2": "Pedro Villena", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juan Manuel Galva", 
+            "player1points": 100, 
+            "player2": "Guillem Pla", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Lopez", 
+            "player1points": 41, 
+            "player2": "Victor Donnay", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adrian Zurita", 
+            "player1points": 0, 
+            "player2": "Ruben Barrio", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jorge Aumente", 
+            "player1points": 100, 
+            "player2": "Oriol Barnes", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luis Casass", 
+            "player1points": 100, 
+            "player2": "Lisardo Montagud", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Diez", 
+            "player1points": 100, 
+            "player2": "Antonio Roma", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juancho Mas", 
+            "player1points": 100, 
+            "player2": "Alberto Guindo", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sergio Lara", 
+            "player1points": 100, 
+            "player2": "Rafael Lopez", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin Belda", 
+            "player1points": 100, 
+            "player2": "Joan Serrat", 
+            "player2points": 54, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anthony Kessler", 
+            "player1points": 24, 
+            "player2": "Ismael Roig", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Xavi Cardona", 
+            "player1points": 26, 
+            "player2": "Alberto Hernaiz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sergi Perez", 
+            "player1points": 100, 
+            "player2": "Alejandro Claramonte", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Enrique Cebri", 
+            "player1points": 59, 
+            "player2": "Jose Ruiz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juan Luis Calderon", 
+            "player1points": 0, 
+            "player2": "Abraham Martinez", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Oscar Moneva", 
+            "player1points": 55, 
+            "player2": "Javier Navarro", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pedro Gomez", 
+            "player1points": 40, 
+            "player2": "Jose Bardn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pau Ferrando", 
+            "player1points": 56, 
+            "player2": "Carlos Ferrer", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chema Ortiz", 
+            "player1points": 0, 
+            "player2": "Octavio Litarte", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alejandro Campos", 
+            "player1points": 64, 
+            "player2": "Daniel Corral", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jorge Navarro", 
+            "player1points": 22, 
+            "player2": "Ramon Cifuentes", 
+            "player2points": 57, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mario Modesto Sanchez", 
+            "player1points": 100, 
+            "player2": "Neil Donnison", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alejandro Asensio", 
+            "player1points": 0, 
+            "player2": "Rafael Martin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carlos Llopis", 
+            "player1points": 100, 
+            "player2": "Juan Carlos Fitor", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vicente Amoros", 
+            "player1points": 64, 
+            "player2": "Angel Larraz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jose Maria Blasco", 
+            "player1points": 65, 
+            "player2": "Luis Fernandez", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carlos Moser", 
+            "player1points": 65, 
+            "player2": "David Alonso", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Miquel Pic", 
+            "player1points": 100, 
+            "player2": "Rafael Torres", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Javier Lozano", 
+            "player1points": 32, 
+            "player2": "Adolfo Crespo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Enric Medina", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Ruben Barrio", 
+            "player1points": 34, 
+            "player2": "Jorge Aumente", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juancho Mas", 
+            "player1points": 40, 
+            "player2": "David Diez", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pedro Villena", 
+            "player1points": 66, 
+            "player2": "Luis Casass", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juan Manuel Galva", 
+            "player1points": 27, 
+            "player2": "Victor Donnay", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafael Martin", 
+            "player1points": 0, 
+            "player2": "Lisardo Montagud", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Guillem Pla", 
+            "player1points": 35, 
+            "player2": "Jose Bardn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sergio Lara", 
+            "player1points": 100, 
+            "player2": "Carlos Llopis", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carlos Ferrer", 
+            "player1points": 22, 
+            "player2": "Javier Navarro", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jose Ruiz", 
+            "player1points": 0, 
+            "player2": "Abraham Martinez", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adrian Zurita", 
+            "player1points": 100, 
+            "player2": "Mario Modesto Sanchez", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin Belda", 
+            "player1points": 56, 
+            "player2": "Ramon Cifuentes", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Antonio Roma", 
+            "player1points": 26, 
+            "player2": "Alberto Hernaiz", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alberto Guindo", 
+            "player1points": 100, 
+            "player2": "Oriol Barnes", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sergi Perez", 
+            "player1points": 54, 
+            "player2": "Joel Guillamon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Lopez", 
+            "player1points": 100, 
+            "player2": "Ismael Roig", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alejandro Campos", 
+            "player1points": 62, 
+            "player2": "Octavio Litarte", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Oscar Moneva", 
+            "player1points": 36, 
+            "player2": "Daniel Corral", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Miquel Pic", 
+            "player1points": 100, 
+            "player2": "Adolfo Crespo", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juan Luis Calderon", 
+            "player1points": 100, 
+            "player2": "Jorge Navarro", 
+            "player2points": 45, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Xavi Cardona", 
+            "player1points": 35, 
+            "player2": "Luis Fernandez", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pedro Gomez", 
+            "player1points": 73, 
+            "player2": "Enric Medina", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chema Ortiz", 
+            "player1points": 0, 
+            "player2": "Alejandro Asensio", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alejandro Claramonte", 
+            "player1points": 0, 
+            "player2": "Enrique Cebri", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafael Lopez", 
+            "player1points": 0, 
+            "player2": "Carlos Moser", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anthony Kessler", 
+            "player1points": 100, 
+            "player2": "Joan Serrat", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pau Ferrando", 
+            "player1points": 30, 
+            "player2": "Angel Larraz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Neil Donnison", 
+            "player1points": 100, 
+            "player2": "David Alonso", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juan Carlos Fitor", 
+            "player1points": 56, 
+            "player2": "Vicente Amoros", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafael Torres", 
+            "player1points": 28, 
+            "player2": "Jose Maria Blasco", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Javier Lozano", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "David Diez", 
+            "player1points": 100, 
+            "player2": "Joel Guillamon", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Victor Donnay", 
+            "player1points": 0, 
+            "player2": "Lisardo Montagud", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Pedro Villena", 
+            "player1points": 100, 
+            "player2": "Victor Donnay", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Diez", 
+            "player1points": 100, 
+            "player2": "Jorge Aumente", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin Belda", 
+            "player1points": 33, 
+            "player2": "Juan Manuel Galva", 
+            "player2points": 82, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alberto Hernaiz", 
+            "player1points": 0, 
+            "player2": "Alberto Guindo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joel Guillamon", 
+            "player1points": 100, 
+            "player2": "Sergio Lara", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lisardo Montagud", 
+            "player1points": 100, 
+            "player2": "Ruben Barrio", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alejandro Campos", 
+            "player1points": 100, 
+            "player2": "Juancho Mas", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Abraham Martinez", 
+            "player1points": 100, 
+            "player2": "Javier Navarro", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adrian Zurita", 
+            "player1points": 40, 
+            "player2": "Luis Casass", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jose Bardn", 
+            "player1points": 0, 
+            "player2": "Daniel Lopez", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Octavio Litarte", 
+            "player1points": 100, 
+            "player2": "Carlos Ferrer", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jose Ruiz", 
+            "player1points": 63, 
+            "player2": "Neil Donnison", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafael Martin", 
+            "player1points": 19, 
+            "player2": "Enric Medina", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Angel Larraz", 
+            "player1points": 23, 
+            "player2": "Juan Luis Calderon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alejandro Asensio", 
+            "player1points": 38, 
+            "player2": "Ismael Roig", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Oscar Moneva", 
+            "player1points": 100, 
+            "player2": "Carlos Llopis", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Guillem Pla", 
+            "player1points": 100, 
+            "player2": "Ramon Cifuentes", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sergi Perez", 
+            "player1points": 100, 
+            "player2": "Luis Fernandez", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Antonio Roma", 
+            "player1points": 100, 
+            "player2": "Enrique Cebri", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anthony Kessler", 
+            "player1points": 63, 
+            "player2": "Carlos Moser", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Miquel Pic", 
+            "player1points": 100, 
+            "player2": "Oriol Barnes", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mario Modesto Sanchez", 
+            "player1points": 100, 
+            "player2": "Joan Serrat", 
+            "player2points": 43, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pau Ferrando", 
+            "player1points": 100, 
+            "player2": "Rafael Lopez", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chema Ortiz", 
+            "player1points": 42, 
+            "player2": "Pedro Gomez", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Javier Lozano", 
+            "player1points": 69, 
+            "player2": "Jorge Navarro", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Xavi Cardona", 
+            "player1points": 50, 
+            "player2": "Alejandro Claramonte", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Corral", 
+            "player1points": 32, 
+            "player2": "Adolfo Crespo", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jose Maria Blasco", 
+            "player1points": 51, 
+            "player2": "Vicente Amoros", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juan Carlos Fitor", 
+            "player1points": 0, 
+            "player2": "David Alonso", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Pedro Villena", 
+            "player1points": 24, 
+            "player2": "David Diez", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alberto Guindo", 
+            "player1points": 100, 
+            "player2": "Joel Guillamon", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juan Manuel Galva", 
+            "player1points": 71, 
+            "player2": "Abraham Martinez", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lisardo Montagud", 
+            "player1points": 100, 
+            "player2": "Daniel Lopez", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luis Casass", 
+            "player1points": 100, 
+            "player2": "Victor Donnay", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jorge Aumente", 
+            "player1points": 0, 
+            "player2": "Alejandro Campos", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sergi Perez", 
+            "player1points": 100, 
+            "player2": "Adrian Zurita", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin Belda", 
+            "player1points": 51, 
+            "player2": "Ruben Barrio", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Octavio Litarte", 
+            "player1points": 49, 
+            "player2": "Enric Medina", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Neil Donnison", 
+            "player1points": 100, 
+            "player2": "Jose Bardn", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sergio Lara", 
+            "player1points": 62, 
+            "player2": "Ismael Roig", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Antonio Roma", 
+            "player1points": 73, 
+            "player2": "Guillem Pla", 
+            "player2points": 57, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mario Modesto Sanchez", 
+            "player1points": 0, 
+            "player2": "Juan Luis Calderon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Miquel Pic", 
+            "player1points": 100, 
+            "player2": "Oscar Moneva", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anthony Kessler", 
+            "player1points": 0, 
+            "player2": "Javier Navarro", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alberto Hernaiz", 
+            "player1points": 0, 
+            "player2": "Jose Ruiz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carlos Ferrer", 
+            "player1points": 100, 
+            "player2": "Pedro Gomez", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carlos Moser", 
+            "player1points": 0, 
+            "player2": "Xavi Cardona", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vicente Amoros", 
+            "player1points": 100, 
+            "player2": "Rafael Martin", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Angel Larraz", 
+            "player1points": 66, 
+            "player2": "Enrique Cebri", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alejandro Asensio", 
+            "player1points": 31, 
+            "player2": "Daniel Corral", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pau Ferrando", 
+            "player1points": 22, 
+            "player2": "Ramon Cifuentes", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Oriol Barnes", 
+            "player1points": 100, 
+            "player2": "Luis Fernandez", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jorge Navarro", 
+            "player1points": 66, 
+            "player2": "Carlos Llopis", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joan Serrat", 
+            "player1points": 100, 
+            "player2": "Adolfo Crespo", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Alonso", 
+            "player1points": 100, 
+            "player2": "Javier Lozano", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alejandro Claramonte", 
+            "player1points": 100, 
+            "player2": "Chema Ortiz", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juan Carlos Fitor", 
+            "player1points": 19, 
+            "player2": "Rafael Lopez", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jose Maria Blasco", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 6, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "David Diez", 
+            "player1points": 100, 
+            "player2": "Antonio Roma", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ruben Barrio", 
+            "player1points": 0, 
+            "player2": "Joel Guillamon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luis Casass", 
+            "player1points": 0, 
+            "player2": "Victor Donnay", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alberto Guindo", 
+            "player1points": 0, 
+            "player2": "Lisardo Montagud", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 8, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "David Diez", 
+            "player1points": 100, 
+            "player2": "Javier Navarro", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Miquel Pic", 
+            "player1points": 0, 
+            "player2": "Antonio Roma", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alejandro Campos", 
+            "player1points": 0, 
+            "player2": "Ruben Barrio", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Abraham Martinez", 
+            "player1points": 0, 
+            "player2": "Joel Guillamon", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luis Casass", 
+            "player1points": 100, 
+            "player2": "Ismael Roig", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pedro Villena", 
+            "player1points": 0, 
+            "player2": "Victor Donnay", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alberto Guindo", 
+            "player1points": 100, 
+            "player2": "Jorge Aumente", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lisardo Montagud", 
+            "player1points": 100, 
+            "player2": "Sergi Perez", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 16, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Regional", 
+    "venue": {
+      "city": "Valencia", 
+      "country": "Spain", 
+      "lat": null, 
+      "lon": null, 
+      "name": "", 
+      "state": "Communidad Valencian"
+    }, 
+    "video_url": "http://www.twitch.tv/firstearth"
+  }
+}

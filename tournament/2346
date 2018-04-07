@@ -1,0 +1,634 @@
+{
+  "tournament": {
+    "date": "2016-11-26", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2346, 
+    "name": "V Lodzki Turniej X-Wing", 
+    "players": [
+      {
+        "mov": 606, 
+        "name": "Tomasz Skowronski", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "4lom", 
+                  "zuckuss", 
+                  "dengar"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "bomb": [
+                  "thermaldetonators"
+                ], 
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "slavei"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 586, 
+        "name": "Enzeru", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 511, 
+        "name": "Unehru", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 531, 
+        "name": "Sinnert", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ketsuonyo", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "glitterstim", 
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "gyroscopictargeting"
+                ], 
+                "title": [
+                  "shadowcaster"
+                ]
+              }
+            }, 
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "bobafett", 
+                  "dengar", 
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 501, 
+        "name": "Dawid Krosnia", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "epsilonsquadronpilot", 
+              "ship": "tiefofighter"
+            }, 
+            {
+              "name": "omegaace", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "outmaneuver"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "squadleader"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 424, 
+        "name": "Bartosz Leszczynski", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "chopper", 
+                  "herasyndulla"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 394, 
+        "name": "Mirek", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 330, 
+        "name": "Maciej Leja", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "protontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "oldteroch", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 325, 
+        "name": "Border", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ], 
+                "torpedo": [
+                  "advprotontorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 262, 
+        "name": "Endi", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 246, 
+        "name": "Bialy", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 84, 
+        "name": "Michal Woszczek", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 0, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Bartosz Leszczynski", 
+            "player1points": 24, 
+            "player2": "Dawid Krosnia", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tomasz Skowronski", 
+            "player1points": 100, 
+            "player2": "Mirek", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michal Woszczek", 
+            "player1points": 34, 
+            "player2": "Maciej Leja", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Endi", 
+            "player1points": 0, 
+            "player2": "Sinnert", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Border", 
+            "player1points": 64, 
+            "player2": "Unehru", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bialy", 
+            "player1points": 26, 
+            "player2": "Enzeru", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Maciej Leja", 
+            "player1points": 0, 
+            "player2": "Tomasz Skowronski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Border", 
+            "player1points": 23, 
+            "player2": "Enzeru", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sinnert", 
+            "player1points": 100, 
+            "player2": "Dawid Krosnia", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mirek", 
+            "player1points": 29, 
+            "player2": "Unehru", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michal Woszczek", 
+            "player1points": 0, 
+            "player2": "Endi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bialy", 
+            "player1points": 0, 
+            "player2": "Bartosz Leszczynski", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Tomasz Skowronski", 
+            "player1points": 69, 
+            "player2": "Sinnert", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Enzeru", 
+            "player1points": 100, 
+            "player2": "Bartosz Leszczynski", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Border", 
+            "player1points": 0, 
+            "player2": "Dawid Krosnia", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Unehru", 
+            "player1points": 100, 
+            "player2": "Endi", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maciej Leja", 
+            "player1points": 29, 
+            "player2": "Bialy", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michal Woszczek", 
+            "player1points": 50, 
+            "player2": "Mirek", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Enzeru", 
+            "player1points": 35, 
+            "player2": "Tomasz Skowronski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Unehru", 
+            "player1points": 69, 
+            "player2": "Sinnert", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dawid Krosnia", 
+            "player1points": 65, 
+            "player2": "Maciej Leja", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mirek", 
+            "player1points": 100, 
+            "player2": "Bialy", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Border", 
+            "player1points": 100, 
+            "player2": "Endi", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bartosz Leszczynski", 
+            "player1points": 100, 
+            "player2": "Michal Woszczek", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Lodz", 
+      "country": "Poland", 
+      "lat": "51.768749000000", 
+      "lon": "19.456981700000", 
+      "name": "Gralnia", 
+      "state": "Lodzkie"
+    }
+  }
+}

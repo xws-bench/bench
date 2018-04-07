@@ -1,0 +1,247 @@
+{
+  "tournament": {
+    "date": "2017-05-09", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2847, 
+    "name": "X-Wing_2017-05-09", 
+    "players": [
+      {
+        "mov": null, 
+        "name": "Aurlien", 
+        "rank": {
+          "swiss": null
+        }, 
+        "score": null, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 522, 
+        "name": "Lolo", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "23.00"
+      }, 
+      {
+        "mov": 489, 
+        "name": "Tony", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "10.00"
+      }, 
+      {
+        "mov": 435, 
+        "name": "Alex", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "20.00"
+      }, 
+      {
+        "mov": 387, 
+        "name": "Fitz", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "23.00"
+      }, 
+      {
+        "mov": 272, 
+        "name": "Seb", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 8, 
+        "sos": "18.00"
+      }, 
+      {
+        "mov": 203, 
+        "name": "Aurlien", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "25.00"
+      }, 
+      {
+        "mov": 168, 
+        "name": "Michael", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "20.00"
+      }, 
+      {
+        "mov": 253, 
+        "name": "Franck", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 3, 
+        "sos": "18.00"
+      }, 
+      {
+        "mov": 121, 
+        "name": "Jerem", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 0, 
+        "sos": "28.00"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "final_salvo": false, 
+            "player1": "Jerem", 
+            "player1points": 0, 
+            "player2": "Tony", 
+            "player2points": 98, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Michael", 
+            "player1points": 0, 
+            "player2": "Lolo", 
+            "player2points": 99, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Fitz", 
+            "player1points": 100, 
+            "player2": "Franck", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Aurlien", 
+            "player1points": 0, 
+            "player2": "Alex", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Seb", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "final_salvo": false, 
+            "player1": "Michael", 
+            "player1points": 18, 
+            "player2": "Aurlien", 
+            "player2points": 99, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Seb", 
+            "player1points": 34, 
+            "player2": "Franck", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Fitz", 
+            "player1points": 58, 
+            "player2": "Lolo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tony", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Alex", 
+            "player1points": 98, 
+            "player2": "Jerem", 
+            "player2points": 26, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "final_salvo": false, 
+            "player1": "Tony", 
+            "player1points": 99, 
+            "player2": "Alex", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Seb", 
+            "player1points": 20, 
+            "player2": "Lolo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Franck", 
+            "player1points": 70, 
+            "player2": "Jerem", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Aurlien", 
+            "player1points": 21, 
+            "player2": "Fitz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Toulon", 
+      "country": "France", 
+      "lat": "43.125731100000", 
+      "lon": "5.930491900000", 
+      "name": "", 
+      "state": "Provence-Alpes-Cte d'Azur"
+    }
+  }
+}

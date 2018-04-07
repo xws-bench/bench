@@ -1,0 +1,118 @@
+{
+  "tournament": {
+    "date": "2016-12-17", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2437, 
+    "name": "Bump", 
+    "players": [
+      {
+        "mov": 524, 
+        "name": "false", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "15.00"
+      }, 
+      {
+        "mov": 338, 
+        "name": "false again", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "20.00"
+      }, 
+      {
+        "mov": 221, 
+        "name": "bump", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 5, 
+        "sos": "25.00"
+      }, 
+      {
+        "mov": 117, 
+        "name": "false 3", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 0, 
+        "sos": "30.00"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "false 3", 
+            "player1points": 30, 
+            "player2": "false again", 
+            "player2points": 99, 
+            "result": "win"
+          }, 
+          {
+            "player1": "bump", 
+            "player1points": 37, 
+            "player2": "false", 
+            "player2points": 99, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "false again", 
+            "player1points": 0, 
+            "player2": "false", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "bump", 
+            "player1points": 100, 
+            "player2": "false 3", 
+            "player2points": 48, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "false", 
+            "player1points": 100, 
+            "player2": "false 3", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "false again", 
+            "player1points": 100, 
+            "player2": "bump", 
+            "player2points": 31, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Regional", 
+    "venue": {
+      "city": "False", 
+      "country": "Australia", 
+      "lat": "51.221109700000", 
+      "lon": "4.399708100000", 
+      "name": "x", 
+      "state": "Northern Territory"
+    }
+  }
+}

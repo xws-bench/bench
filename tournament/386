@@ -1,0 +1,930 @@
+{
+  "tournament": {
+    "date": "2015-04-25", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 386, 
+    "name": "Spring 2015 at Guardian", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 816, 
+        "name": "Noa", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 25, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "kathscarlet", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "ysanneisard", 
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "predator"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 688, 
+        "name": "Steven P", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "ionpulsemissiles"
+                ], 
+                "mod": [
+                  "munitionsfailsafe"
+                ]
+              }
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 659, 
+        "name": "Daniel M*", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }, 
+            {
+              "name": "keyanfarlander", 
+              "ship": "bwing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ]
+              }
+            }, 
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 620, 
+        "name": "Mark K", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "marajade", 
+                  "fleetofficer"
+                ]
+              }
+            }, 
+            {
+              "name": "lieutenantlorrir", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "krassistrelix", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "gunner"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 597, 
+        "name": "Bishop", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "experthandling"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "experthandling"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 491, 
+        "name": "Joshua C", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "darthvader", 
+                  "rebelcaptive"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 442, 
+        "name": "Xander", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "intimidation"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "intimidation"
+                ]
+              }
+            }, 
+            {
+              "name": "darkcurse", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "kathscarlet", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 386, 
+        "name": "Jason S", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "shieldupgrade"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent", 
+                  "rebelcaptive"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 375, 
+        "name": "Andy D", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }, 
+            {
+              "name": "kathscarlet", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 195, 
+        "name": "Justin O", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ndrusuhlak", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "deadmansswitch"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ]
+              }
+            }, 
+            {
+              "name": "mandalorianmercenary", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "deadmansswitch"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "title": [
+                  "slavei"
+                ]
+              }
+            }, 
+            {
+              "name": "guri", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 361, 
+        "name": "Charles D", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "daredevil"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "bountyhunter", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines"
+                ], 
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "weaponsengineer"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 370, 
+        "name": "Michael W", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Mark K", 
+            "player1points": 100, 
+            "player2": "Steven P", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Charles D", 
+            "player1points": 32, 
+            "player2": "Andy D", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel M*", 
+            "player1points": 100, 
+            "player2": "Justin O", 
+            "player2points": 13, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael W", 
+            "player1points": 42, 
+            "player2": "Noa", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joshua C", 
+            "player1points": 100, 
+            "player2": "Jason S", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bishop", 
+            "player1points": 100, 
+            "player2": "Xander", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Mark K", 
+            "player1points": 100, 
+            "player2": "Bishop", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joshua C", 
+            "player1points": 0, 
+            "player2": "Daniel M*", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Noa", 
+            "player1points": 100, 
+            "player2": "Andy D", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Charles D", 
+            "player1points": 100, 
+            "player2": "Michael W", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin O", 
+            "player1points": 0, 
+            "player2": "Steven P", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason S", 
+            "player1points": 52, 
+            "player2": "Xander", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Daniel M*", 
+            "player1points": 100, 
+            "player2": "Mark K", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Noa", 
+            "player1points": 100, 
+            "player2": "Charles D", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bishop", 
+            "player1points": 0, 
+            "player2": "Steven P", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joshua C", 
+            "player1points": 63, 
+            "player2": "Andy D", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Xander", 
+            "player1points": 100, 
+            "player2": "Michael W", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason S", 
+            "player1points": 50, 
+            "player2": "Justin O", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Daniel M*", 
+            "player1points": 58, 
+            "player2": "Noa", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mark K", 
+            "player1points": 100, 
+            "player2": "Joshua C", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steven P", 
+            "player1points": 100, 
+            "player2": "Xander", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Charles D", 
+            "player1points": 25, 
+            "player2": "Bishop", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andy D", 
+            "player1points": 100, 
+            "player2": "Justin O", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael W", 
+            "player1points": 68, 
+            "player2": "Jason S", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Noa", 
+            "player1points": 100, 
+            "player2": "Mark K", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel M*", 
+            "player1points": 56, 
+            "player2": "Steven P", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bishop", 
+            "player1points": 100, 
+            "player2": "Andy D", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Xander", 
+            "player1points": 50, 
+            "player2": "Joshua C", 
+            "player2points": 78, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Charles D", 
+            "player1points": 48, 
+            "player2": "Jason S", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin O", 
+            "player1points": 0, 
+            "player2": "Michael W", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Portland", 
+      "country": "United States of America", 
+      "lat": "45.520247100000", 
+      "lon": "-122.674194800000", 
+      "name": "Guardian Games", 
+      "state": "Oregon"
+    }
+  }
+}

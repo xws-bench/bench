@@ -1,0 +1,196 @@
+{
+  "tournament": {
+    "date": "2016-03-13", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1328, 
+    "name": "Silver Squadron - March 2016", 
+    "players": [
+      {
+        "mov": 510, 
+        "name": "Brian Allen", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 361, 
+        "name": "Jeff Raiford", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 348, 
+        "name": "Steve Warner", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 334, 
+        "name": "Nathan Harris", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 284, 
+        "name": "Bryan Schnetter", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 282, 
+        "name": "Mason", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 201, 
+        "name": "Gregory Pearson", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 80, 
+        "name": "Chris Raiford", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Mason", 
+            "player1points": 50, 
+            "player2": "Jeff Raiford", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bryan Schnetter", 
+            "player1points": 100, 
+            "player2": "Nathan Harris", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steve Warner", 
+            "player1points": 100, 
+            "player2": "Gregory Pearson", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian Allen", 
+            "player1points": 100, 
+            "player2": "Chris Raiford", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jeff Raiford", 
+            "player1points": 100, 
+            "player2": "Steve Warner", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brian Allen", 
+            "player1points": 100, 
+            "player2": "Bryan Schnetter", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mason", 
+            "player1points": 100, 
+            "player2": "Chris Raiford", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gregory Pearson", 
+            "player1points": 25, 
+            "player2": "Nathan Harris", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jeff Raiford", 
+            "player1points": 61, 
+            "player2": "Brian Allen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steve Warner", 
+            "player1points": 100, 
+            "player2": "Bryan Schnetter", 
+            "player2points": 76, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mason", 
+            "player1points": 62, 
+            "player2": "Nathan Harris", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Raiford", 
+            "player1points": 50, 
+            "player2": "Gregory Pearson", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Bremerton", 
+      "country": "United States of America", 
+      "lat": "47.532797250000", 
+      "lon": "-122.754160974447", 
+      "name": "", 
+      "state": "Washington"
+    }
+  }
+}

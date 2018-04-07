@@ -1,0 +1,312 @@
+{
+  "tournament": {
+    "date": "2016-06-04", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1747, 
+    "name": "NNXW XXI: The Homefront", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "janors", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "niennunb"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "neradantels", 
+              "ship": "bwing", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "keyanfarlander", 
+              "ship": "bwing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 416, 
+        "name": "Ryan Wuebbles", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 428, 
+        "name": "Bryan Luce", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "daggersquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "torpedo": [
+                  "protontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "keyanfarlander", 
+              "ship": "bwing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 377, 
+        "name": "Nick Gaston", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 272, 
+        "name": "Nathan Schmitz", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 110, 
+        "name": "Justin Barnes", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 3, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 197, 
+        "name": "Rodger Moore", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Ryan Wuebbles", 
+            "player1points": 76, 
+            "player2": "Nathan Schmitz", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rodger Moore", 
+            "player1points": 31, 
+            "player2": "Nick Gaston", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Barnes", 
+            "player1points": 0, 
+            "player2": "Bryan Luce", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Nick Gaston", 
+            "player1points": 68, 
+            "player2": "Bryan Luce", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Wuebbles", 
+            "player1points": 100, 
+            "player2": "Justin Barnes", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Schmitz", 
+            "player1points": 100, 
+            "player2": "Rodger Moore", 
+            "player2points": 76, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Ryan Wuebbles", 
+            "player1points": 72, 
+            "player2": "Bryan Luce", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nick Gaston", 
+            "player1points": 100, 
+            "player2": "Nathan Schmitz", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rodger Moore", 
+            "player1points": 50, 
+            "player2": "Justin Barnes", 
+            "player2points": 60, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Reno", 
+      "country": "United States of America", 
+      "lat": "39.529270000000", 
+      "lon": "-119.813674300000", 
+      "name": "Comic Kingdom", 
+      "state": "Nevada"
+    }
+  }
+}

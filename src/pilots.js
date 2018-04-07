@@ -12,6 +12,33 @@
 	this.doaction(p,"free %BOOST% or %ROLL% action");
     }
 }
+var kylo_fct = function() {
+	this.firstroundhit=-1;
+	this.wrap_after("resolveishit",this,function(t) {
+		if (this.firstroundhit<round) {
+			this.firstroundhit=round;
+			new Condition(t,this,"I'll Show You The Dark Side");
+		}
+	});
+}
+
+var ezra_fct = function() {
+    this.adddicemodifier(Unit.DEFENSE_M,Unit.MOD_M,Unit.DEFENSE_M,this,{
+	req:function(m,n) {
+	    return this.stress>0;
+	}.bind(this), 
+	f:function(m,n) {
+	    var f=Unit.FE_focus(m);
+	    if (f>2) f=2;
+	    if (f>0) {
+		this.log("%0 %FOCUS% -> %0 %EVADE%",f);
+		return m-f*Unit.FE_FOCUS+f*Unit.FE_EVADE;
+	    } 
+	    return m;
+	}.bind(this),str:"focus"});
+}
+
+
 var zeb_fct = function(r,t) {
     // first, cancel criticals
     this.log("cancel %CRIT% first");
@@ -25,7 +52,7 @@ var maarek_fct = function() {
 	var pp=$.Deferred();
 	p.then(function(cf) {
 	    var crit=cf.crit;
-	    if (cf.face==Critical.FACEUP&&activeunit==unit&&targetunit==this) {
+	    if (cf.face==Critical.FACEUP&&attackunit==unit&&targetunit==this) {
 		var s1=this.selectdamage();
 		Critical.CRITICAL_DECK[s1].count--;
 		var s2=this.selectdamage();
@@ -100,7 +127,7 @@ window.PILOTS = [
 	unit:"JumpMaster 5000",
 	skill:3,
 	points:25,
-	upgrades:[Unit.ELITE,Unit.TORPEDO,Unit.TORPEDO,Unit.CREW,Unit.SALVAGED,Unit.ILLICIT]
+	upgrades:[Unit.ELITE,Unit.CREW,Unit.ILLICIT]
     },
     {
         name: "Wedge Antilles",    
@@ -128,10 +155,10 @@ window.PILOTS = [
         unit: "X-Wing",
 	init: function() {
 	    this.wrap_after("removefocustoken",this,function() {
-		this.selectunit(this.selectnearbyally(2),function (p,k) { 
-		    p[k].log("+1 %FOCUS%");
-		    p[k].addfocustoken();
-		}.bind(this),["select unit for free %FOCUS%"],false);
+                this.selectunit(this.selectnearbyally(2),function (p,k) { 
+                    p[k].log("+1 %FOCUS%");
+                    p[k].addfocustoken();
+                }.bind(this),["select unit for free %FOCUS%"],false);
 	    });
 	},
 	pilotid:2,
@@ -1536,13 +1563,16 @@ window.PILOTS = [
 	done:true,
 	pilotid:79,
 	init: function() {
-	    this.addattack(function() { return true; },
-			   this,this.weapons,
-			   function() { 
-			       this.log("no attack next round"); 
-			       this.noattack=round+1; },
-			   null,
-			   "endcombatphase");
+            var self=this;
+            var number;
+            $(document).on("endcombatphase"+this.team, function(e){
+//                var latedeferred=self.deferred;
+                self.select();
+                self.log("+1 attack at end of Combat phase");
+                self.maxfired++;
+                var allenemies=squadron.filter(ship => ship.team!==self.team);
+                self.doattack(self.weapons,allenemies); 
+            });
 	},
         unique: true,
         unit: "E-Wing",
@@ -1624,16 +1654,18 @@ window.PILOTS = [
 	pilotid:84,
 	init: function() {
 	    this.wrap_before("cleanupattack",this,function() {
-		if (targetunit.targeting.length>0) {
-		    targetunit.log("-1 %TARGET% [%0]",this.name);
-		    targetunit.removetarget(targetunit.targeting[0]);
-		} else if (targetunit.focus>0) {
-		    targetunit.log("-1 %FOCUS% [%0]",this.name);
-		    targetunit.removefocustoken();
-		} else if (targetunit.evade>0) {
-		    targetunit.log("-1 %EVADE% [%0]",this.name);
-		    targetunit.removeevadetoken();
-		}
+                if(targetunit !== undefined){
+                    if (targetunit.targeting.length>0) {
+                        targetunit.log("-1 %TARGET% [%0]",this.name);
+                        targetunit.removetarget(targetunit.targeting[0]);
+                    } else if (targetunit.focus>0) {
+                        targetunit.log("-1 %FOCUS% [%0]",this.name);
+                        targetunit.removefocustoken();
+                    } else if (targetunit.evade>0) {
+                        targetunit.log("-1 %EVADE% [%0]",this.name);
+                        targetunit.removeevadetoken();
+                    }
+                }
 	    });
 	},
 	faction:Unit.REBEL,
@@ -1654,7 +1686,7 @@ window.PILOTS = [
 		this.removestresstoken();
 		var roll=this.rollattackdie(1,this,"blank")[0];
 		this.log("-1 %STRESS%, roll 1 attack dice")
-		if (roll=="hit") { this.applyhit(1); this.checkdead(); }
+		if (roll=="hit") { this.applydamage(1); this.checkdead(); }
 	    });
 	},
 	faction:Unit.REBEL,
@@ -2160,7 +2192,7 @@ window.PILOTS = [
 	    }
 	    if (wn.length==0) return;
 	    var wp=this.weapons.indexOf(wn[0]);
-	    for (var i in this.weapons) 
+	    //for (var i in this.weapons) //  Remember the importance of { }
 		// TODO: immediateattack unused ?
 		//this.weapons[i].immediateattack={pred:function(k) { return k==0; },weapon:function() { return wp;}};
 	    this.addattack(function(c,h) { 
@@ -3163,7 +3195,7 @@ window.PILOTS = [
 			var p=[];
 			for (var i=0; i<mods.length; i++)
 			    if (mods[i].from!=Unit.ATTACK_M) p.push(mods[i]);
-			return mods;
+			return p;
 		    }).unwrapper("endattack");
 	    });
 	    this.wrap_before("resolveattack",this,function(w,t) {
@@ -3172,8 +3204,7 @@ window.PILOTS = [
 			var p=[];
 			for (var i=0; i<mods.length; i++)
 			    if (mods[i].from!=Unit.DEFENSE_M) p.push(mods[i]);
-			
-			return mods;
+			return p;
 		    }).unwrapper("endbeingattacked");
 	    });
 	   this.wrap_after("setpriority",this,function(a) {
@@ -3242,25 +3273,12 @@ window.PILOTS = [
 	unique:true,
 	done:true,
 	pilotid:164,
-	unit:"Attack Shuttle",
+	ambiguous:true,
+	edition:"Attack Shuttle",
+        unit:"Attack Shuttle",
 	skill:4,
 	points:20,
-	init: function() {
-	    this.adddicemodifier(Unit.DEFENSE_M,Unit.MOD_M,Unit.DEFENSE_M,this,{
-		req:function(m,n) {
-		    return this.stress>0;
-		}.bind(this), 
-		f:function(m,n) {
-		    var f=Unit.FE_focus(m);
-		    if (f>2) f=2;
-		    if (f>0) {
-			this.log("%0 %FOCUS% -> %0 %EVADE%",f);
-			return m-f*Unit.FE_FOCUS+f*Unit.FE_EVADE;
-		    } 
-		    return m;
-		}.bind(this),str:"focus"});
-
-	},        
+	init: ezra_fct,        
 	upgrades:[Unit.ELITE,Unit.TURRET,Unit.CREW]
     },
     {
@@ -3365,13 +3383,26 @@ window.PILOTS = [
 	init: function() {
 	    this.adddicemodifier(Unit.ATTACKCOMPARE_M,Unit.ADD_M,Unit.ATTACK_M,this,{
 		req:function(m,n) { return n>0; },
-		f:function(m,n) {
-		    this.log("cancel all dice");
-		    if (Unit.FCH_crit(m)>0) {
-			targetunit.log("+1 damage card [%0]",this.name);
-			targetunit.applydamage(1);
-		    }
-		    return {m:0,n:0};
+		f:function(m,n) { // AI section needs to save original values
+                    if(activeunit.ia){
+                        var om = m;
+                        var on = n;
+                        if (Unit.FCH_crit(m)>0) {
+                            this.log("cancel all dice");
+                            targetunit.log("+1 damage card [%0]",this.name);
+                            targetunit.applydamage(1);
+                            return {m:0,n:0};
+                        }
+                        else return {m:om,n:on};
+                    }
+                    else{
+                        this.log("cancel all dice");
+                        if (Unit.FCH_crit(m)>0) {
+                            targetunit.log("+1 damage card [%0]",this.name);
+                            targetunit.applydamage(1);
+                        }
+                        return {m:0,n:0};
+                    }
 		}.bind(this),str:"critical"});
 	},
 	upgrades:[]
@@ -3564,6 +3595,10 @@ window.PILOTS = [
 	wave:["8"],
         points: 0,
         upgrades: [],
+        init: function() {
+            self=this;
+            self.upg=[];
+        }
     },
     {
 	name:"Dengar",
@@ -3588,7 +3623,7 @@ window.PILOTS = [
 		return [this.retaliationtarget];
 	    },"endbeingattacked");
 	},
-	upgrades:[Unit.ELITE,Unit.TORPEDO,Unit.TORPEDO,Unit.CREW,Unit.SALVAGED,Unit.ILLICIT]
+	upgrades:[Unit.ELITE,Unit.CREW,Unit.ILLICIT]
     },
     {
 	name:"Tel Trevura",
@@ -3613,7 +3648,7 @@ window.PILOTS = [
 		}
 	    });
 	},
-	upgrades:[Unit.ELITE,Unit.TORPEDO,Unit.TORPEDO,Unit.CREW,Unit.SALVAGED,Unit.ILLICIT]
+	upgrades:[Unit.ELITE,Unit.CREW,Unit.ILLICIT]
     },
     {
 	name:"Manaroo",
@@ -3652,7 +3687,7 @@ window.PILOTS = [
 		},["select unit (or self to cancel) [%0]",this.name],true);
 	    });
 	},
-	upgrades:[Unit.ELITE,Unit.TORPEDO,Unit.TORPEDO,Unit.CREW,Unit.SALVAGED,Unit.ILLICIT]
+	upgrades:[Unit.ELITE,Unit.CREW,Unit.ILLICIT]
     },
     { name:"Tomax Bren",
       faction:Unit.EMPIRE,
@@ -3885,7 +3920,7 @@ window.PILOTS = [
 	points:27,
 	init: function() {
 	    this.wrap_after("modifyattackroll",this,function(m,n,d,mm) {
-		if (this.weapons[0].getauxiliarysector(targetunit)<=3) 
+		 if (this.weapons[0].getauxiliarysector(d)<=3)  
 		    mm+=Unit.FCH_CRIT;
 		return mm;
 	    });
@@ -4141,26 +4176,41 @@ window.PILOTS = [
         upgrades: [Unit.ELITE,Unit.TORPEDO,Unit.CREW,Unit.ASTROMECH],
 	points:28,
 	init: function() {
+            TEAMS[this.team].hasSharaBey=true;
 	    var self=this;
-	    Unit.prototype.wrap_after("declareattack",self,function(w,target,b) {
-		if (b&&self!=this&&self.isally(this)) {
-		    this.wrap_after("canusetarget",self,function(sh,r) {
+            $(document).on("begincombatphase"+this.team, function(e,ship){
+                if((!self.dead)&&self!=ship&&self.isally(ship)){
+                    ship.wrap_after("canusetarget",self,function(sh,r) {
 			if (self.getrange(this)<=2&&self.targeting.indexOf(sh)>-1) {
 			    return true;
 			}
 			return r;
-		    }).unwrap("cleanupattack");
-		    this.wrap_before("removetarget",self,function(t) {
+		    }.bind(ship)).unwrap("cleanupattack");
+                }
+            });
+            $(document).on("declareattack"+this.team, function(e,ship,args){
+                if (args.b&&(!self.dead)&&self!=ship&&self.isally(ship)) {
+		    ship.wrap_before("removetarget",self,function(t) {
 			if (self.getrange(this)<=2
 			    &&this.targeting.indexOf(t)==-1
 			    &&self.targeting.indexOf(t)>-1) {
 			    self.removetarget(t);
 			}
-		    }).unwrap("cleanupattack");
+		    }.bind(ship)).unwrap("cleanupattack");
 		}
-		return b;
 	    });
-	}
+            Unit.prototype.wrap_before("begincombatphase",self,function(){
+                if(TEAMS[this.team].hasSharaBey){
+                    $(document).trigger("begincombatphase"+this.team,[this]);
+                }
+            });
+	    Unit.prototype.wrap_after("declareattack",self,function(w,target,b) {
+		if(TEAMS[this.team].hasSharaBey){ // Works with 0 or 1 Shara per team
+                    $(document).trigger("declareattack"+this.team,[this,{w:w, target:target, b:b}]);
+                }
+                return b;
+            });
+        }
     },
     {
         name: "Thane Kyrell",
@@ -4512,7 +4562,7 @@ window.PILOTS = [
       done:true,
       points:20,
       init: function() {
-	    this.adddicemodifier(Unit.ATTACKCOMPARE_M,Unit.ADD_M,Unit.DEFENSE_M,this,{
+	    this.adddicemodifier(Unit.ATTACKCOMPARE_M,Unit.ADD_M,Unit.ATTACK_M,this,{
 		req:function(m,n) { return this.stress==0&&n>0; }.bind(this),
 		f:function(m,n) {
 		    if (this.stress==0) {
@@ -4606,15 +4656,7 @@ window.PILOTS = [
      done:true,
      upgrades:[Unit.ELITE,Unit.SYSTEM,Unit.CREW,Unit.CREW,Unit.TECH,Unit.TECH],
      points:34,
-     init: function() {
-	 this.firstroundhit=-1;
-	 this.wrap_after("resolveishit",this,function(t) {
-	     if (this.firstroundhit<round) {
-		 this.firstroundhit=round;
-		 new Condition(t,this,"I'll Show You The Dark Side");
-	     }
-	 });
-     }
+     init: kylo_fct
     },
     {name:"Major Stridan",
      faction:Unit.EMPIRE,
@@ -4779,7 +4821,7 @@ window.PILOTS = [
      init: function() {
 	 this.wrap_before("begincombatphase",this,function() {
 	     this.donoaction([{action:function(n) {
-		 this.noattack=round;
+		 this.addweapondisabledtoken();
 		 for (var i in this.upgrades) {
 		     var u=this.upgrades[i];
 		     if ((u.type==Unit.TORPEDO||u.type==Unit.MISSILE)&&u.isactive==false) {
@@ -4787,7 +4829,7 @@ window.PILOTS = [
 		     }
 		 }
 		 this.endnoaction(n,"");
-	     }.bind(this),type:"Unit.TORPEDO",name:this.name}],"",true);
+	     }.bind(this),type:"TORPEDO",name:this.name}],"",true);
 	    });
      }
    },
@@ -4821,8 +4863,727 @@ window.PILOTS = [
 		}
 	    }
 	}
-    }
+    },
+    {
+        name: "Lieutenant Kestal",
+        faction: Unit.EMPIRE,
+        unique: true,
+        done: true,
+        pilotid: 243,
+        unit: "TIE Aggressor",
+        skill: 7,
+        points: 22,
+        init: function() {
+            this.wrap_after("modifydefenseroll",this,function(attacker,m,defense,ch) { // CH is result of modifydefenseroll
+		if (attacker===this&&attacker.focus>0){ 
+                    ch=Unit.FE_evade(ch); // When calculating probability, cancel all blanks and eyeballs
+                }
+		return ch;
+	    });
+            this.adddicemodifier(Unit.ATTACK_M,Unit.ADD_M,Unit.DEFENSE_M,this,{
+                req:function(m,n) { 
+                    return this.canusefocus();
+                }.bind(this),
+                aiactivate:function(results,number){
+                    //AI should only use this if there are eyeballs in play.
+                    return(Unit.FE_focus(results)!==0);
+                },
+                f:function(result,number) {
+                    this.removefocustoken();
+                    this.log("Cancelling all %FOCUS% and <span class='blankgreendice'></span> results");
+                    return {m:Unit.FE_evade(result),n:Unit.FE_evade(result)};
+                }.bind(this),
+                str:"focus"
+            });
+        },
+        upgrades: [Unit.ELITE, Unit.TURRET, Unit.MISSILE, Unit.MISSILE]
+    },
+    {
+        name: "'Double Edge'",
+        faction: Unit.EMPIRE,
+        unique: true,
+        done: true,
+        pilotid: 244,
+        unit: "TIE Aggressor",
+        skill: 4,
+        points: 19,
+        init: function() {
+            this.doubleEdgeAttack=-1;
+            this.processing=false;
+            this.lastusedweapon=null;
+            this.returnactive=true;
+            this.addattack(
+                function(c,h) {
+                    var canFire=false;
+                    if((c+h===0)&&this.doubleEdgeAttack<round&&this.activeweapon!==0){
+                        this.lastusedweapon=this.weapons[this.activeweapon]; // Remember the first-fired weapon.
+                        if(!this.processing){ // Don't overwrite state variables!
+                            this.processing=true;
+                            this.returnactive=this.lastusedweapon.isactive; // Only reactivate weapons that aren't used up
+                            this.lastusedweapon.isactive=false; // Make sure lastusedweapon is inactive for 2nd attack
+                        }
+                        canFire=true;
+                    }
+                    return canFire;
+                },
+                {name:"'Double Edge'"},
+                this.weapons,
+                function(){
+                    this.doubleEdgeAttack=round;
+                }
+            );
+            this.wrap_after("endcombatphase",this,function(){ // cleanup isactive value
+                if(this.doubleEdgeAttack>=round){
+                    this.processing=false;
+                    this.lastusedweapon.isactive=this.returnactive; // Restore weapon range
+                }
+            });
+        },
+        upgrades: [Unit.ELITE, Unit.TURRET, Unit.MISSILE, Unit.MISSILE]
+    },
+	{
+		name: "Onyx Squadron Escort",
+		faction: Unit.EMPIRE,
+		unique: false,
+		done: true,
+		pilotid: 245,
+		unit: "TIE Aggressor",
+		skill: 5,
+		points: 19,
+		upgrades: [Unit.TURRET, Unit.MISSILE, Unit.MISSILE]
+	},
+	{
+		name: "Sienar Specialist",
+		faction: Unit.EMPIRE,
+		unique: false,
+		done: true,
+		pilotid: 246,
+		unit: "TIE Aggressor",
+		skill: 2,
+		points: 17,
+		upgrades: [Unit.TURRET, Unit.MISSILE, Unit.MISSILE]
+	},
+	{
+		name: "Wullffwarro",
+		faction: Unit.REBEL,
+		unique: true,
+		done: true,
+		pilotid: 247,
+                init:  function() {
+                    this.wrap_after("getattackstrength",this,function(w,sh,a) {
+                        if(this.criticals.length>=1 && this.shield<=0){
+                            a=a+1;
+                        }
+                        return a;
+                    });
+                },
+		unit: "Auzituck Gunship",
+		skill: 7,
+		points: 30,
+		upgrades: [Unit.ELITE,Unit.CREW,Unit.CREW]
+	},
+	{
+		name: "Lowhhrick",
+		faction: Unit.REBEL,
+		unique: true,
+		done: true,
+		pilotid: 248,
+                init: function(){
+                    var self=this;
+                    $(document).on("predefenseroll"+self.team, 
+                    function(e,ship){
+                        if(ship!==self&&self.getrange(ship)<=1&&self.reinforce>0){
+                            // For calculating attack odds
+                            ship.wrap_after("modifydefenseroll",this,function(attacker,m,n,ch){
+                                if(this.getrange(self)<=1&&self.reinforce>0){
+                                    ch=ch+Unit.FE_EVADE;
+                                }
+                                return ch;
+                            }).unwrapper("endbeingattacked");
+                            // For actually adding defense mod
+                            ship.adddicemodifier(Unit.DEFENSE_M,Unit.ADD_M,Unit.DEFENSE_M,self,{
+                                req:function(m,n) {
+                                    return (this.getrange(self)<=1&&self.reinforce>0);
+                                }.bind(ship),
+                                f:function(m,n) {
+                                    this.log("-1 %REINFORCE% [%0] -> +1 %EVADE%",self.name);
+                                    self.removereinforcetoken();
+                                    m=m+Unit.FE_EVADE;
+                                    n=n+1;
+                                    return {m:m,n:n};
+                                }.bind(ship),
+                                str:"reinforce"}).unwrapper("endbeingattacked");
+                        }
+                    });
+                },
+		unit: "Auzituck Gunship",
+		skill: 5,
+		points: 28,
+		upgrades: [Unit.ELITE,Unit.CREW,Unit.CREW]
+	},
+	{
+		name: "Wookiee Liberator",
+		faction: Unit.REBEL,
+		unique: false,
+		done: true,
+		pilotid: 249,
+		unit: "Auzituck Gunship",
+		skill: 3,
+		points: 26,
+		upgrades: [Unit.ELITE,Unit.CREW,Unit.CREW]
+	},
+	{
+		name: "Kashyyyk Defender",
+		faction: Unit.REBEL,
+		unique: false,
+		done: true,
+		pilotid: 250,
+		unit: "Auzituck Gunship",
+		skill: 1,
+		points: 24,
+		upgrades: [Unit.CREW,Unit.CREW]
+	},
+    {
+        name: "Captain Nym",
+        faction: Unit.SCUM,
+        unique: true,
+        done: true,
+        pilotid: 251,
+        unit: "Scurrg H-6 Bomber",
+        skill: 8,
+        points: 30,
+        init:function(){
+            var self=this;
+            var saved=null;
+            var savedDetonate=null;
+            var disableDamage=function(e,bomb,asMine,args){
+                // Make Nym not collide with any mine
+                if(asMine){
+                    // Apparently Scum Nym actually *prevents* friendly mines from
+                    // exploding, not just avoiding their damage, when colliding with them
+                    if(args[0]===self){
+                        self.log("ignores (no trigger) [%0]",bomb.name);
+                        self.saved=bomb;
+                        self.savedDetonate=bomb.detonate;
+                        bomb.detonate=function(){}; // Make detonate a no-op for this specific detonation only
+                    }
+                }
+                else{
+                    // Make Nym not in range of any friendly bomb but not prevent them
+                    bomb.wrap_after("getrange",this,function(ship,range){
+                        self.log("ignores (no damage) [%0]",bomb.name);
+                        if(ship===self){ range=4; }
+                        return range;
+                    }).unwrapper("postexplode");
+                }
+            };
+            var enableDamage=function(e,bomb,asMine,args){
+                if(asMine&&self.saved===bomb){
+                    //restore halted bomb's detonate function
+                    bomb.detonate=self.savedDetonate;
+                    self.saved=null;
+                    self.savedDetonate=null;
+                }
+            };
+            var addMineDefense=function(e,friendly,weapon,attacker){
+                attacker.wrap_after("getobstructiondef",self,function(target,def){
+                    // Re-check attack LOS with mines included
+                    if(Unit.prototype.getoutlinerange.call(attacker,attacker.m,target,true,[self.team]).o){
+                        target.log("%0 grants (obstructing bomb):",self.name);
+                        def=def+1;
+                    }
+                    return def;
+                }).unwrapper("endattack");;
+            };
+            $(document).on("preexplode"+self.team,disableDamage);
+            $(document).on("postexplode"+self.team,enableDamage);
+            $(document).on("predefenseroll"+self.team,addMineDefense);
+            self.wrap_after("dies",this,function() { // Clear handlers on Nym's death
+		    $(document).off("preexplosion"+self.team,disableDamage);
+                    $(document).off("postexplosion"+self.team,enableDamage);
+                    $(document).off("predefenseroll"+self.team,addMineDefense);
+            });
+        },
+        upgrades: [Unit.ELITE,Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
+    },
+	{
+		name: "Sol Sixxa",
+		faction: Unit.SCUM,
+		unique: true,
+		done: true,
+		pilotid: 252,
+		unit: "Scurrg H-6 Bomber",
+		skill: 6,
+		points: 28,
+                getbomblocation:function() {  return ["F1","TL1","TR1"]; },
+		upgrades: [Unit.ELITE,Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
+	},
+	{
+		name: "Lok Revenant",
+		faction: Unit.SCUM,
+		unique: false,
+		done: true,
+		pilotid: 253,
+		unit: "Scurrg H-6 Bomber",
+		skill: 3,
+		points: 26,
+		upgrades: [Unit.ELITE,Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
+	},
+	{
+		name: "Karthakk Pirate",
+		faction: Unit.SCUM,
+		unique: false,
+		done: true,
+		pilotid: 254,
+		unit: "Scurrg H-6 Bomber",
+		skill: 1,
+		points: 24,
+		upgrades: [Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
+	},
+	{
+            name: "Captain Nym",
+            faction: Unit.REBEL,
+            unique: true,
+            done: true,
+            pilotid: 255,
+            unit: "Scurrg H-6 Bomber",
+            skill: 8,
+            points: 30,
+            init: function(){
+                var self=this;
+                self.round=-1;
+                self.canceled=[];
+                var handlePreExplode=function(e,bomb,asMine,args){
+                    // Only called by friendly bombs, so team check unnecessary
 
+                    // Need to make test more careful, or realexplode doesn't get initialized!
+                    bomb.realexplode=(typeof bomb.realexplode!=="undefined")?bomb.realexplode:bomb.explode;
+                    bomb.realdetonate=(typeof bomb.realdetonate!=="undefined")?bomb.realdetonate:bomb.detonate;
+                    bomb.explode=function(){};
+                    bomb.detonate=function(){};
+                    if(asMine){ // Handle each detonated mine separately
+                        if(self.round<round){
+                            self.selectunit([self,bomb],function(p,k){ // Choose self or mine to halt
+                                if(k===0||self.round>=round){
+                                    p[1].realdetonate.apply(p[1],args); // Need a way to get args for detonate :(
+                                }
+                                else{
+                                    self.round=round;
+                                    self.log("prevented detonation of %0",p[k].name);
+                                    // Reset this mine
+                                    p[k].explode=bomb.realexplode;
+                                    p[k].detonate=bomb.realdetonate;
+                                }
+                            }.bind(self),["Select mine to halt (or self to cancel)"],false);
+                        }
+                        else{ // Can't use ability again this round, so mine explodes
+                            bomb.realdetonate.apply(bomb,args); 
+                        }
+                    }
+                    else{ 
+                        self.canceled.push(bomb); 
+                    }
+                };
+                var handleEndBombs=function(e){
+                    if(self.round<round&&self.canceled.length!==0){ // Didn't use this round and bombs were going to go off
+                        self.canceled.unshift(self); // Need to add self but not use "cancelleable"
+                        self.selectunit(self.canceled,function(p,k){ // Choose a bomb to halt
+                            for(var bomb=1; bomb<p.length; bomb++){ // If k===0, blow them al
+                                if(bomb===k){ // Reset this bomb
+                                    self.round=round;
+                                    self.log("halted explosion of %0",p[bomb].name);
+                                    p[bomb].explode=p[bomb].realexplode;
+                                    p[bomb].detonate=p[bomb].realdetonate;
+                                }
+                                else{ // Explode all other bombs.
+                                    p[bomb].realexplode();
+                                    if(!p[bomb].exploded){ // Reset any mines
+                                        p[bomb].explode=p[bomb].realexplode;
+                                        p[bomb].detonate=p[bomb].realdetonate;
+                                    }
+                                }
+                            }
+                        }.bind(self),["Select bomb to halt (or self to cancel)"],false);
+                    }else{ // Did use ability prior to end of activation phase, so all bombs explode
+                        var bombs=self.canceled;
+                        for(var bomb=0; bomb<bombs.length; bomb++){
+                            // Explode all other bombs.
+                            bombs[bomb].realexplode();
+                            if(!bombs[bomb].exploded){ // Reset any mines
+                                bombs[bomb].explode=bombs[bomb].realexplode;
+                                bombs[bomb].detonate=bombs[bomb].realdetonate;
+                            }
+                        }
+                    }
+                    self.canceled=[];
+                };
+                // Set handlers
+                $(document).on("preexplode"+self.team,handlePreExplode);
+                $(document).on("endbombs"+self.team,handleEndBombs);
+                // Remove only the Nym handlers for this team on Nym's death
+                self.wrap_after("dies",this,function() {
+		    $(document).off("preexplode"+self.team,handlePreExplode);
+                    $(document).off("endbombs"+self.team,handleEndBombs);
+		});
+            },
+            upgrades: [Unit.ELITE,Unit.TURRET,Unit.TORPEDO,Unit.MISSILE,Unit.CREW,Unit.BOMB,Unit.BOMB]
+	},
+	{
+        	name: "Dalan Oberos",
+	        faction:Unit.SCUM,
+	        done:false,
+		unique:true,
+		pilotid:256,
+	        unit: "StarViper",
+	        skill: 6,
+	        points: 30,
+	        upgrades: [Unit.ELITE,Unit.TORPEDO]
+	},
+	{
+            name: "Thweek",
+            faction:Unit.SCUM,
+            done:true,
+            unique:true,
+            pilotid:257,
+            unit: "StarViper",
+            skill: 4,
+            points: 28,
+            upgrades: [Unit.TORPEDO],
+            canswitch: function() {
+                return phase <=SETUP_PHASE && !this.assigned;
+            },
+            switch: function() {
+                if(this.variant==="Shadowed"){
+                    this.variant="Mimicked";
+                }
+                else{
+                    this.variant="Shadowed";
+                }
+                this.show();
+            },
+            init: function() {
+                var self=this;
+                var handleSelection = function(e) {
+                    var p=[];
+                    for (var i in squadron){
+                        if (squadron[i].team!=self.team) 
+                            p.push(squadron[i]);
+                    };
+                    if(typeof self.mimicking!=="undefined" && self.mimicking.name===self.name){ // Prevent AI looping when duelling Thweeks
+                        p=p.filter(ship => ship.name!==self.name) //Remove non-mimicking Thweek
+                    }
+                    self.selectunit( //Gives us skip functionality
+                        p,
+			function(p,k) {
+                            if(this.ia){ // Select the highest-skill pilot, or k==0
+                                var max=this.skill;
+                                for(var i in p){
+                                    k=(p[i].getskill()>max)?i:k;
+                                    max=(p[i].getskill()>max)?p[i].getskill():max;
+                                }
+                            }
+                            new Condition(p[k],this,self.variant);
+                            self.assigned=true;
+                        }.bind(self),
+                        ["select unit for condition [%1] (or self to cancel) [%0]",self.name,self.variant],
+                        true); //somehow, "noskip" == allow skip
+                };
+                if(typeof self.mimicking==="undefined"){ //Thweek actually init-ing for first time
+                    self.assigned=false;
+                    self.variant="Shadowed";               
+                    $(document).on("endsetupphase"+self.team,handleSelection);
+                }
+                else{ // Thweek Mimicking Thweek Shadowing X
+                    handleSelection(null);
+                }
+            }
+	},
+	{
+        	name: "Black Sun Assassin",
+	        faction:Unit.SCUM,
+	        done:true,
+		pilotid:258,
+	        unit: "StarViper",
+	        skill: 5,
+	        points: 28,
+	        upgrades: [Unit.ELITE,Unit.TORPEDO]
+	},
+	{
+        	name: "Viktor Hel",
+		unique:true,
+	        faction: Unit.SCUM,
+		pilotid:259,
+	        unit: "Kihraxz Fighter",
+		done:false,
+	        skill: 7,
+        	upgrades: [Unit.ELITE,Unit.MISSILE,Unit.ILLICIT],
+		points: 25
+        },
+	{
+        	name: "Captain Jostero",
+		unique:true,
+	        faction: Unit.SCUM,
+		pilotid:260,
+	        unit: "Kihraxz Fighter",
+		done:false,
+	        skill: 4,
+        	upgrades: [Unit.ELITE,Unit.MISSILE,Unit.ILLICIT],
+		points: 24
+        },
+	{
+            name: "Major Vynder",
+            faction:Unit.EMPIRE,
+            unique: true,
+            done:true,
+            pilotid:261,
+            unit: "Alpha-class Star Wing",
+            skill: 7,
+            points: 26,
+            init: function() {
+                this.wrap_after("getdefensestrength",this,function(i,sh,a) {
+                    if (this.nomoreattack) { // Currently equivalent to this.noattack==round
+                        a=a+1;
+                        this.log("+1 defense die for defending while %WEAPONDISABLED%");
+                    }
+                    return a;
+                });
+            },
+            upgrades: [Unit.ELITE,Unit.TORPEDO,Unit.MISSILE]
+	},
+	{
+            name: "Lieutenant Karsabi",
+            faction:Unit.EMPIRE,
+            unique: true,
+            done: true,
+            pilotid:262,
+            unit: "Alpha-class Star Wing",
+            init: function(){
+                this.wrap_after("addweapondisabledtoken",this,function() {
+                    if(this.stress<=0){
+                        this.donoaction([{type:"CREW",name:this.name,org:this,
+                               action:function(n) {
+                                   this.removeweapondisabledtoken();
+                                   this.log("-1 %WEAPONDISABLED%, +1 %STRESS%");
+                                   this.addstress();
+                                   this.endnoaction(n,"CREW");
+                                }.bind(this)
+                        }],"Take 1 %STRESS% instead of %WEAPONDISABLED% token",true);
+                    }
+                });
+            },
+            skill: 5,
+            points: 24,
+            upgrades: [Unit.ELITE,Unit.TORPEDO,Unit.MISSILE]
+	},
+	{
+        	name: "Rho Squadron Veteran",
+	        faction:Unit.EMPIRE,
+		done:true,
+		pilotid:263,
+	        unit: "Alpha-class Star Wing",
+	        skill: 4,
+	        points: 21,
+	        upgrades: [Unit.ELITE,Unit.TORPEDO,Unit.MISSILE]
+	},
+	{
+        	name: "Nu Squadron Pilot",
+	        faction:Unit.EMPIRE,
+		done:true,
+		pilotid:264,
+	        unit: "Alpha-class Star Wing",
+	        skill: 2,
+	        points: 18,
+	        upgrades: [Unit.TORPEDO,Unit.MISSILE]
+	},
+	{
+	       name:"Torani Kulda",
+	       faction:Unit.SCUM,
+	       pilotid:265,
+	       unique:true,
+	       done:false,
+	       unit:"M12-L Kimogila Fighter",
+	       skill:8,
+	       points:27,
+	       upgrades:[Unit.ELITE,Unit.TORPEDO,Unit.MISSILE,Unit.SALVAGED,Unit.ILLICIT]
+	},
+	{
+	       name:"Dalan Oberos",
+	       faction:Unit.SCUM,
+	       pilotid:266,
+	       unique:true,
+	       done:false,
+	       unit:"M12-L Kimogila Fighter",
+		   ambiguous:true,
+		   edition:"Kimogila Fighter",
+	       skill:7,
+	       points:25,
+	       upgrades:[Unit.ELITE,Unit.TORPEDO,Unit.MISSILE,Unit.SALVAGED,Unit.ILLICIT]
+	},
+	{
+	       name:"Cartel Executioner",
+	       faction:Unit.SCUM,
+	       pilotid:267,
+	       unique:false,
+	       done:false,
+	       unit:"M12-L Kimogila Fighter",
+	       skill:5,
+	       points:24,
+	       upgrades:[Unit.ELITE,Unit.TORPEDO,Unit.MISSILE,Unit.SALVAGED,Unit.ILLICIT]
+	},
+	{
+	       name:"Cartel Brute",
+	       faction:Unit.SCUM,
+	       pilotid:268,
+	       unique:false,
+	       done:false,
+	       unit:"M12-L Kimogila Fighter",
+	       skill:3,
+	       points:22,
+	       upgrades:[Unit.TORPEDO,Unit.MISSILE,Unit.SALVAGED,Unit.ILLICIT]
+	},
+	{
+		name:"Fenn Rau",
+		faction:Unit.REBEL,
+		unique:true,
+    	    	unit:"Sheathipede-class Shuttle",
+    	    	skill:9,
+                edition:"Sheathipede-class Shuttle",
+                ambiguous:true,
+		pilotid:269,
+		points:20,
+		done:false,
+		upgrades:[Unit.ELITE,Unit.CREW,Unit.ASTROMECH]
+	},
+	{
+		name:"Ezra Bridger",
+		faction:Unit.REBEL,
+		unique:true,
+		ambiguous:true,
+		edition:"Sheathipede-class Shuttle",
+    	    	unit:"Sheathipede-class Shuttle",
+    	    	skill:5,
+		pilotid:270,
+		points:17,
+		done:true,
+		init: ezra_fct,        
+		upgrades:[Unit.ELITE,Unit.CREW,Unit.ASTROMECH]
+	},
+	{
+		name:"'Zeb' Orrelios",
+		faction:Unit.REBEL,
+		unique:true,
+		ambiguous:true,
+		edition:"Sheathipede-class Shuttle",
+		unit:"Sheathipede-class Shuttle",
+    	    	skill:3,
+		pilotid:271,
+		points:16,
+		done:true,
+		cancelhit:zeb_fct,
+		upgrades:[Unit.CREW,Unit.ASTROMECH]
+	},
+	{
+		name:"AP-5",
+		faction:Unit.REBEL,
+		unique:true,
+    	    	unit:"Sheathipede-class Shuttle",
+    	    	skill:1,
+		pilotid:272,
+		points:15,
+		done:false,
+		upgrades:[Unit.CREW,Unit.ASTROMECH]
+	},
+	{
+		name:"Kylo Ren",
+		faction:Unit.EMPIRE,
+		pilotid:273,
+		unique:true,
+		unit:"TIE Silencer",
+                edition:"TIE Silencer",
+                ambiguous:true,
+		skill:9,
+		done:true,
+		upgrades:[Unit.ELITE,Unit.SYSTEM,Unit.TECH],
+		points:35,
+		init: kylo_fct
+	},
+	{
+		name:"Test Pilot 'Blackout'",
+		faction:Unit.EMPIRE,
+		pilotid:274,
+		unique:true,
+		unit:"TIE Silencer",
+		skill:7,
+		done:false,
+		upgrades:[Unit.ELITE,Unit.SYSTEM,Unit.TECH],
+		points:31
+	},
+	{
+		name:"First Order Test Pilot",
+		faction:Unit.EMPIRE,
+		pilotid:275,
+		unique:false,
+		unit:"TIE Silencer",
+		skill:6,
+		done:true,
+		upgrades:[Unit.ELITE,Unit.SYSTEM,Unit.TECH],
+		points:29
+	},
+	{
+		name:"Sienar-Jaemus Analyst",
+		faction:Unit.EMPIRE,
+		pilotid:276,
+		unique:false,
+		unit:"TIE Silencer",
+		skill:4,
+		done:true,
+		upgrades:[Unit.SYSTEM,Unit.TECH],
+		points:26
+	},
+	{
+		name:"'Crimson Leader'",
+		faction:Unit.REBEL,
+		pilotid:277,
+		unit:"B/SF-17 Bomber",
+		skill:7,
+		unique:true,
+		done:false,
+		upgrades:[Unit.SYSTEM,Unit.BOMB,Unit.BOMB,Unit.TECH],
+		points:29
+	},
+	{
+		name:"'Cobalt Leader'",
+		faction:Unit.REBEL,
+		pilotid:278,
+		unit:"B/SF-17 Bomber",
+		skill:6,
+		unique:true,
+		done:false,
+		upgrades:[Unit.SYSTEM,Unit.BOMB,Unit.BOMB,Unit.TECH],
+		points:28
+	},
+	{
+		name:"'Crimson Specialist'",
+		faction:Unit.REBEL,
+		pilotid:279,
+		unit:"B/SF-17 Bomber",
+		skill:4,
+		unique:true,
+		done:false,
+		upgrades:[Unit.SYSTEM,Unit.BOMB,Unit.BOMB,Unit.TECH],
+		points:27
+	},
+	{
+		name:"Crimson Squadron Pilot",
+		faction:Unit.REBEL,
+		pilotid:280,
+		unit:"B/SF-17 Bomber",
+		skill:1,
+		unique:false,
+		done:true,
+		upgrades:[Unit.SYSTEM,Unit.BOMB,Unit.BOMB,Unit.TECH],
+		points:25
+	}
 ];
 
 })();

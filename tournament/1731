@@ -1,0 +1,1903 @@
+{
+  "tournament": {
+    "date": "2016-06-04", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1731, 
+    "name": "Cape Town Regional Championship", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 599, 
+        "name": "Peter Hayward", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "tactician", 
+                  "reconspecialist"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "ezrabridger", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "title": [
+                  "phantom"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d6"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 648, 
+        "name": "Leon van Zyl", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 2
+        }, 
+        "score": 16, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "prototypepilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "missile": [
+                  "chardaanrefit"
+                ]
+              }
+            }, 
+            {
+              "name": "jakefarrell", 
+              "ship": "awing", 
+              "upgrades": {
+                "missile": [
+                  "protonrockets"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 629, 
+        "name": "James", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 3
+        }, 
+        "score": 16, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "chopper", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 445, 
+        "name": "Johan van Dyk", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "ionbombs"
+                ], 
+                "crew": [
+                  "c3po"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 615, 
+        "name": "Kevin Pedersen", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 5
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "baronoftheempire", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "baronoftheempire", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "baronoftheempire", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "baronoftheempire", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 507, 
+        "name": "Shaun Laubscher", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 6
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla", 
+                  "zeborrelios"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 460, 
+        "name": "Pierre Lopes", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 7
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "captainyorr", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive"
+                ], 
+                "system": [
+                  "enhancedscopes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 388, 
+        "name": "Brandon Carter", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 8
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 521, 
+        "name": "Michael Reynolds", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "graysquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "eadenvrill", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ]
+              }
+            }, 
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 493, 
+        "name": "Carl Visagie", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronnovice", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronnovice", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronnovice", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronnovice", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 417, 
+        "name": "Jacques", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "targetingcomputer", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 414, 
+        "name": "Rudolph", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "k4securitydroid", 
+                  "outlawtech"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "hotshotblaster"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunsoldier", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "blacksunsoldier", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "blacksunsoldier", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "blacksunsoldier", 
+              "ship": "z95headhunter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 414, 
+        "name": "Dieter Engelke", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "kathscarlet", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "reconspecialist"
+                ]
+              }
+            }, 
+            {
+              "name": "hiredgun", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "r4agromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 399, 
+        "name": "Shaun Pretorius", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "tennumb", 
+              "ship": "bwing", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "crew": [
+                  "landocalrissian"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 393, 
+        "name": "Brandon de Vos", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "junoeclipse", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 390, 
+        "name": "Shandon Wallenda", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 318, 
+        "name": "Charles Freestone", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "zuckuss", 
+              "ship": "g1astarfighter", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "misthunter"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "dengar", 
+                  "greedo", 
+                  "bobafett"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 384, 
+        "name": "Bruce", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "wildspacefringer", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "gunner"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 294, 
+        "name": "Marc Farnham", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "gonk"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }, 
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "slavei"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 267, 
+        "name": "Daniel Watson", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "accuracycorrector"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "accuracycorrector"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 264, 
+        "name": "JohanThelander", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "predator"
+                ]
+              }
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 232, 
+        "name": "Dylan Buckle", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 149, 
+        "name": "Pieter v Tonder", 
+        "rank": {
+          "swiss": 23
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "marksmanship"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "shieldupgrade"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "mod": [
+                  "targetingcomputer"
+                ]
+              }
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "mod": [
+                  "targetingcomputer"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 60, 
+        "name": "Giovanni Theunissen", 
+        "rank": {
+          "swiss": 24
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Peter Hayward", 
+            "player1points": 100, 
+            "player2": "Shaun Pretorius", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan van Dyk", 
+            "player1points": 100, 
+            "player2": "Marc Farnham", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rudolph", 
+            "player1points": 68, 
+            "player2": "Shandon Wallenda", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brandon Carter", 
+            "player1points": 100, 
+            "player2": "Brandon de Vos", 
+            "player2points": 54, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dylan Buckle", 
+            "player1points": 17, 
+            "player2": "Bruce", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "JohanThelander", 
+            "player1points": 100, 
+            "player2": "Daniel Watson", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shaun Laubscher", 
+            "player1points": 76, 
+            "player2": "Carl Visagie", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Pedersen", 
+            "player1points": 100, 
+            "player2": "Jacques", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Giovanni Theunissen", 
+            "player1points": 0, 
+            "player2": "Leon van Zyl", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James", 
+            "player1points": 100, 
+            "player2": "Pieter v Tonder", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Charles Freestone", 
+            "player1points": 100, 
+            "player2": "Michael Reynolds", 
+            "player2points": 84, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dieter Engelke", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Pierre Lopes", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "James", 
+            "player1points": 100, 
+            "player2": "JohanThelander", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brandon Carter", 
+            "player1points": 0, 
+            "player2": "Shandon Wallenda", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Charles Freestone", 
+            "player1points": 31, 
+            "player2": "Peter Hayward", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan van Dyk", 
+            "player1points": 0, 
+            "player2": "Kevin Pedersen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruce", 
+            "player1points": 52, 
+            "player2": "Leon van Zyl", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dieter Engelke", 
+            "player1points": 71, 
+            "player2": "Pierre Lopes", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shaun Laubscher", 
+            "player1points": 100, 
+            "player2": "Shaun Pretorius", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rudolph", 
+            "player1points": 100, 
+            "player2": "Marc Farnham", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pieter v Tonder", 
+            "player1points": 62, 
+            "player2": "Brandon de Vos", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dylan Buckle", 
+            "player1points": 28, 
+            "player2": "Carl Visagie", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Reynolds", 
+            "player1points": 100, 
+            "player2": "Giovanni Theunissen", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Watson", 
+            "player1points": 25, 
+            "player2": "Jacques", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Peter Hayward", 
+            "player1points": 100, 
+            "player2": "Pierre Lopes", 
+            "player2points": 29, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Shandon Wallenda", 
+            "player1points": 0, 
+            "player2": "Leon van Zyl", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James", 
+            "player1points": 100, 
+            "player2": "Pierre Lopes", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Pedersen", 
+            "player1points": 31, 
+            "player2": "Peter Hayward", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shaun Laubscher", 
+            "player1points": 100, 
+            "player2": "Brandon de Vos", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carl Visagie", 
+            "player1points": 84, 
+            "player2": "Charles Freestone", 
+            "player2points": 87, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruce", 
+            "player1points": 74, 
+            "player2": "Rudolph", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brandon Carter", 
+            "player1points": 50, 
+            "player2": "JohanThelander", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan van Dyk", 
+            "player1points": 100, 
+            "player2": "Jacques", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dieter Engelke", 
+            "player1points": 17, 
+            "player2": "Michael Reynolds", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shaun Pretorius", 
+            "player1points": 69, 
+            "player2": "Giovanni Theunissen", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dylan Buckle", 
+            "player1points": 100, 
+            "player2": "Pieter v Tonder", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Watson", 
+            "player1points": 42, 
+            "player2": "Marc Farnham", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Leon van Zyl", 
+            "player1points": 100, 
+            "player2": "James", 
+            "player2points": 100, 
+            "result": "draw"
+          }, 
+          {
+            "player1": "Peter Hayward", 
+            "player1points": 50, 
+            "player2": "Shaun Laubscher", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Shandon Wallenda", 
+            "player1points": 58, 
+            "player2": "Kevin Pedersen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pierre Lopes", 
+            "player1points": 60, 
+            "player2": "Rudolph", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan van Dyk", 
+            "player1points": 100, 
+            "player2": "Michael Reynolds", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brandon Carter", 
+            "player1points": 100, 
+            "player2": "Charles Freestone", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "JohanThelander", 
+            "player1points": 24, 
+            "player2": "Brandon de Vos", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marc Farnham", 
+            "player1points": 24, 
+            "player2": "Shaun Pretorius", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dylan Buckle", 
+            "player1points": 24, 
+            "player2": "Dieter Engelke", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruce", 
+            "player1points": 75, 
+            "player2": "Carl Visagie", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jacques", 
+            "player1points": 100, 
+            "player2": "Giovanni Theunissen", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pieter v Tonder", 
+            "player1points": 50, 
+            "player2": "Daniel Watson", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Peter Hayward", 
+            "player1points": 100, 
+            "player2": "Johan van Dyk", 
+            "player2points": 14, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James", 
+            "player1points": 29, 
+            "player2": "Pierre Lopes", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Peter Hayward", 
+            "player1points": 68, 
+            "player2": "Brandon Carter", 
+            "player2points": 14, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan van Dyk", 
+            "player1points": 100, 
+            "player2": "Kevin Pedersen", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James", 
+            "player1points": 100, 
+            "player2": "Shaun Laubscher", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Leon van Zyl", 
+            "player1points": 41, 
+            "player2": "Pierre Lopes", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 8, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Regional", 
+    "venue": {
+      "city": "Cape Town", 
+      "country": "South Africa", 
+      "lat": "-33.928904800000", 
+      "lon": "18.417248500000", 
+      "name": "Quantum Gaming", 
+      "state": "Western Cape"
+    }
+  }
+}

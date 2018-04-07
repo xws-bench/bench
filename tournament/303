@@ -1,0 +1,456 @@
+{
+  "tournament": {
+    "date": "2015-03-21", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 303, 
+    "name": "DracheNaescht S & V Fun Tournament", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "royalguardpilot", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 723, 
+        "name": "Samuel", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88d", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "stayontarget"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 585, 
+        "name": "Cyril", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "kavil", 
+              "ship": "ywing"
+            }, 
+            {
+              "name": "kathscarlet", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "mod": [
+                  "hullupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "princexizor", 
+              "ship": "starviper", 
+              "upgrades": {
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "virago"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 345, 
+        "name": "Colin", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "moffjerjerrod", 
+                  "marajade"
+                ], 
+                "ept": [
+                  "ruthlessness"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ], 
+                "torpedo": [
+                  "protontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "wingedgundark", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "darkcurse", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 259, 
+        "name": "Stephan D", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "alphasquadronpilot", 
+              "ship": "tieinterceptor"
+            }, 
+            {
+              "name": "echo", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "krassistrelix", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 254, 
+        "name": "Fabien", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "backstabber", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "swarmtactics"
+                ]
+              }
+            }, 
+            {
+              "name": "sabersquadronpilot", 
+              "ship": "tieinterceptor"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 234, 
+        "name": "Alain", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Colin", 
+            "player1points": 0, 
+            "player2": "Cyril", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Samuel", 
+            "player1points": 100, 
+            "player2": "Fabien", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephan D", 
+            "player1points": 14, 
+            "player2": "Alain", 
+            "player2points": 84, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Samuel", 
+            "player1points": 83, 
+            "player2": "Alain", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cyril", 
+            "player1points": 55, 
+            "player2": "Stephan D", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Colin", 
+            "player1points": 56, 
+            "player2": "Fabien", 
+            "player2points": 41, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Samuel", 
+            "player1points": 100, 
+            "player2": "Cyril", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alain", 
+            "player1points": 0, 
+            "player2": "Colin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fabien", 
+            "player1points": 16, 
+            "player2": "Stephan D", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Samuel", 
+            "player1points": 100, 
+            "player2": "Colin", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cyril", 
+            "player1points": 100, 
+            "player2": "Stephan D", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alain", 
+            "player1points": 18, 
+            "player2": "Fabien", 
+            "player2points": 71, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Bern", 
+      "country": "Switzerland", 
+      "lat": "46.948271300000", 
+      "lon": "7.451451200000", 
+      "name": "DracheNaescht", 
+      "state": "Bern"
+    }
+  }
+}

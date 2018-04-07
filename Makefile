@@ -8,7 +8,7 @@ js/all.min.js: ${JSSRCS:%=js/%} ${SRCS:%=src/%}
 	git add $@
 
 css/xwing.css: css/xwings.scss
-	sass --style compressed $^ > $@
+	sass -E utf-8 --style compressed $^ > $@
 
 SHIPS=ARC-170 exhaust tie-advanced tie-bomber tie-defender-red tie-defender a-wing-1 ghost tie-fo a-wing-2 hwk290 tie-interceptor-1 tie-interceptor-2 jumpmaster5000 tie-phantom tie-punisher kihraxz tie-sabine b-wing-1 tie-sf b-wing-2 m3a tie-striker protectorate	tie turbolaser quadjumper x-wing-2 x-wing starviper y-wing-1 e-wing t70 z95hunter-1 tie-advanced-prototype z95hunter-2
 LARGESHIPS=YT1300 YT2400 YV666 decimator g1a k-wing lancer shuttle slave u-wing upsilon vcx100 

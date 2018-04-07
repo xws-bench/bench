@@ -1,0 +1,187 @@
+{
+  "tournament": {
+    "date": "2015-10-03", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 636, 
+    "name": "Tournoi 3 Octobre", 
+    "players": [
+      {
+        "mov": 416, 
+        "name": "Philippe Ross", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 370, 
+        "name": "Eric Leblanc", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 352, 
+        "name": "Rmi Dumais", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 313, 
+        "name": "Martin Francoeur", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 285, 
+        "name": "Pascal Riel", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 263, 
+        "name": "Martin Rocheleau", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 251, 
+        "name": "Francis Hebert", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Martin Francoeur", 
+            "player1points": 100, 
+            "player2": "Martin Rocheleau", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Philippe Ross", 
+            "player1points": 62, 
+            "player2": "Eric Leblanc", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rmi Dumais", 
+            "player1points": 100, 
+            "player2": "Francis Hebert", 
+            "player2points": 45, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pascal Riel", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Martin Rocheleau", 
+            "player1points": 42, 
+            "player2": "Eric Leblanc", 
+            "player2points": 98, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rmi Dumais", 
+            "player1points": 90, 
+            "player2": "Pascal Riel", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Philippe Ross", 
+            "player1points": 100, 
+            "player2": "Martin Francoeur", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francis Hebert", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Philippe Ross", 
+            "player1points": 100, 
+            "player2": "Rmi Dumais", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin Rocheleau", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Francis Hebert", 
+            "player1points": 47, 
+            "player2": "Martin Francoeur", 
+            "player2points": 91, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric Leblanc", 
+            "player1points": 88, 
+            "player2": "Pascal Riel", 
+            "player2points": 60, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Store Championship", 
+    "venue": {
+      "city": "Cowansville", 
+      "country": "Canada", 
+      "lat": "45.207009000000", 
+      "lon": "-72.745887100000", 
+      "name": "Zone Vido", 
+      "state": "QC"
+    }
+  }
+}

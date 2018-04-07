@@ -1,0 +1,156 @@
+{
+  "tournament": {
+    "date": "2015-08-12", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 587, 
+    "name": "Test 1", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "squadleader"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "ruthlessness"
+                ]
+              }
+            }, 
+            {
+              "name": "lieutenantcolzet", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 512, 
+        "name": "Crips", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 488, 
+        "name": "Jubs", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Crips", 
+            "player1points": 100, 
+            "player2": "Jubs", 
+            "player2points": 81, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Crips", 
+            "player1points": 82, 
+            "player2": "Jubs", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Crips", 
+            "player1points": 75, 
+            "player2": "Jubs", 
+            "player2points": 88, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jubs", 
+            "player1points": 88, 
+            "player2": "Crips", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jubs", 
+            "player1points": 88, 
+            "player2": "Crips", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Bloomington", 
+      "country": "United States", 
+      "lat": "44.832240500000", 
+      "lon": "-93.320487100000", 
+      "name": "650 E 92nd St", 
+      "state": "MN"
+    }
+  }
+}

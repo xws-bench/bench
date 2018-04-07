@@ -1,0 +1,742 @@
+{
+  "tournament": {
+    "date": "2016-03-26", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1411, 
+    "name": "Silesian Run vol. IV", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "prototypepilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "missile": [
+                  "chardaanrefit"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 558, 
+        "name": "Piotr Krzempek", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "hansolo", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "lukeskywalker"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "shieldupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }, 
+            {
+              "name": "wedgeantilles", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "outmaneuver"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 476, 
+        "name": "Tomasz Olech", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 465, 
+        "name": "Piotr Janeta", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine", 
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 452, 
+        "name": "Mikolaj Szczotka", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "mod": [
+                  "bwinge2"
+                ], 
+                "system": [
+                  "electronicbaffle"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 481, 
+        "name": "Piotr Rudy", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }, 
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "bossk", 
+                  "tactician", 
+                  "gunner"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 373, 
+        "name": "Piotr Swietlicki", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 330, 
+        "name": "Wojtek Kinasz", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "knavesquadronpilot", 
+              "ship": "ewing"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 380, 
+        "name": "Krzysztof Ink", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ], 
+                "samd": [
+                  "r5p8"
+                ]
+              }
+            }, 
+            {
+              "name": "guri", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "talonbanecobra", 
+              "ship": "kihraxzfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 332, 
+        "name": "Pawel Zochowski", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "k4securitydroid", 
+                  "bobafett"
+                ], 
+                "ept": [
+                  "rage"
+                ]
+              }
+            }, 
+            {
+              "name": "zuckuss", 
+              "ship": "g1astarfighter", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "misthunter"
+                ]
+              }
+            }, 
+            {
+              "name": "torkilmux", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 153, 
+        "name": "Tomasz Frankowski", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Mikolaj Szczotka", 
+            "player1points": 100, 
+            "player2": "Krzysztof Ink", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Piotr Swietlicki", 
+            "player1points": 55, 
+            "player2": "Piotr Krzempek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pawel Zochowski", 
+            "player1points": 64, 
+            "player2": "Tomasz Olech", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Piotr Janeta", 
+            "player1points": 26, 
+            "player2": "Piotr Rudy", 
+            "player2points": 76, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tomasz Frankowski", 
+            "player1points": 50, 
+            "player2": "Wojtek Kinasz", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Mikolaj Szczotka", 
+            "player1points": 100, 
+            "player2": "Wojtek Kinasz", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tomasz Olech", 
+            "player1points": 100, 
+            "player2": "Piotr Krzempek", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Piotr Rudy", 
+            "player1points": 100, 
+            "player2": "Piotr Swietlicki", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Piotr Janeta", 
+            "player1points": 100, 
+            "player2": "Tomasz Frankowski", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pawel Zochowski", 
+            "player1points": 100, 
+            "player2": "Krzysztof Ink", 
+            "player2points": 66, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Mikolaj Szczotka", 
+            "player1points": 68, 
+            "player2": "Tomasz Olech", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Piotr Rudy", 
+            "player1points": 55, 
+            "player2": "Piotr Krzempek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wojtek Kinasz", 
+            "player1points": 66, 
+            "player2": "Pawel Zochowski", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Piotr Janeta", 
+            "player1points": 65, 
+            "player2": "Krzysztof Ink", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tomasz Frankowski", 
+            "player1points": 44, 
+            "player2": "Piotr Swietlicki", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Tomasz Olech", 
+            "player1points": 76, 
+            "player2": "Piotr Janeta", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wojtek Kinasz", 
+            "player1points": 0, 
+            "player2": "Piotr Krzempek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Piotr Rudy", 
+            "player1points": 64, 
+            "player2": "Mikolaj Szczotka", 
+            "player2points": 76, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pawel Zochowski", 
+            "player1points": 50, 
+            "player2": "Piotr Swietlicki", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Krzysztof Ink", 
+            "player1points": 100, 
+            "player2": "Tomasz Frankowski", 
+            "player2points": 35, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Katowice", 
+      "country": "Poland", 
+      "lat": "50.259898700000", 
+      "lon": "19.021585200000", 
+      "name": "Inny Wymiar", 
+      "state": "Slaskie"
+    }
+  }
+}

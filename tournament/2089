@@ -1,0 +1,405 @@
+{
+  "tournament": {
+    "date": "2016-09-17", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2089, 
+    "name": "Liga pernambucAna", 
+    "players": [
+      {
+        "mov": 671, 
+        "name": "Danilo Almeida", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 593, 
+        "name": "Joao Henrique", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 521, 
+        "name": "Geraldo Coelho", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 512, 
+        "name": "Flavius Costa", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 398, 
+        "name": "Alison Rodrigues", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 448, 
+        "name": "Diogo Melo", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 436, 
+        "name": "Flavio Mariano", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 429, 
+        "name": "Ricardo Bernardo", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 423, 
+        "name": "Caio Cesar", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 400, 
+        "name": "Filipe Luna", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 369, 
+        "name": "Rafael Tenorio", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 281, 
+        "name": "Julio Cesar", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 277, 
+        "name": "Andre Falcao", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 227, 
+        "name": "Marcelo Ferreira", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 215, 
+        "name": "Douglas Brito", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Julio Cesar", 
+            "player1points": 50, 
+            "player2": "Diogo Melo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Caio Cesar", 
+            "player1points": 29, 
+            "player2": "Geraldo Coelho", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Filipe Luna", 
+            "player1points": 48, 
+            "player2": "Rafael Tenorio", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Douglas Brito", 
+            "player1points": 18, 
+            "player2": "Flavio Mariano", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcelo Ferreira", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Flavius Costa", 
+            "player1points": 50, 
+            "player2": "Danilo Almeida", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alison Rodrigues", 
+            "player1points": 100, 
+            "player2": "Andre Falcao", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joao Henrique", 
+            "player1points": 75, 
+            "player2": "Ricardo Bernardo", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Diogo Melo", 
+            "player1points": 29, 
+            "player2": "Rafael Tenorio", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcelo Ferreira", 
+            "player1points": 29, 
+            "player2": "Danilo Almeida", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andre Falcao", 
+            "player1points": 33, 
+            "player2": "Joao Henrique", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Caio Cesar", 
+            "player1points": 17, 
+            "player2": "Filipe Luna", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ricardo Bernardo", 
+            "player1points": 66, 
+            "player2": "Alison Rodrigues", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Julio Cesar", 
+            "player1points": 31, 
+            "player2": "Flavius Costa", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Geraldo Coelho", 
+            "player1points": 0, 
+            "player2": "Flavio Mariano", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Douglas Brito", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Alison Rodrigues", 
+            "player1points": 63, 
+            "player2": "Rafael Tenorio", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Geraldo Coelho", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Flavio Mariano", 
+            "player1points": 21, 
+            "player2": "Danilo Almeida", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Douglas Brito", 
+            "player1points": 0, 
+            "player2": "Caio Cesar", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Flavius Costa", 
+            "player1points": 100, 
+            "player2": "Ricardo Bernardo", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andre Falcao", 
+            "player1points": 100, 
+            "player2": "Julio Cesar", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joao Henrique", 
+            "player1points": 100, 
+            "player2": "Filipe Luna", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcelo Ferreira", 
+            "player1points": 25, 
+            "player2": "Diogo Melo", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Flavio Mariano", 
+            "player1points": 33, 
+            "player2": "Joao Henrique", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alison Rodrigues", 
+            "player1points": 29, 
+            "player2": "Danilo Almeida", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andre Falcao", 
+            "player1points": 25, 
+            "player2": "Ricardo Bernardo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Diogo Melo", 
+            "player1points": 69, 
+            "player2": "Flavius Costa", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafael Tenorio", 
+            "player1points": 0, 
+            "player2": "Geraldo Coelho", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Caio Cesar", 
+            "player1points": 100, 
+            "player2": "Marcelo Ferreira", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Douglas Brito", 
+            "player1points": 47, 
+            "player2": "Filipe Luna", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Julio Cesar", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Store Championship", 
+    "venue": {
+      "city": "Recife", 
+      "country": "Brazil", 
+      "lat": "-8.064193000000", 
+      "lon": "-34.878151600000", 
+      "name": "", 
+      "state": "PE"
+    }
+  }
+}

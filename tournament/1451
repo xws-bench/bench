@@ -1,0 +1,681 @@
+{
+  "tournament": {
+    "date": "2016-04-03", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1451, 
+    "name": "BEC 2016 Season 1 League Championship", 
+    "players": [
+      {
+        "mov": 209, 
+        "name": "Jason Mayo", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "chopper"
+                ]
+              }
+            }, 
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "system": [
+                  "electronicbaffle"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 672, 
+        "name": "Ryan Fisher", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 566, 
+        "name": "Jack Wilson", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 481, 
+        "name": "Louis Busby", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 470, 
+        "name": "Scott Bullock", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "patrolleader", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "gunner", 
+                  "darthvader"
+                ]
+              }
+            }, 
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 456, 
+        "name": "Eddie Beshoner", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 453, 
+        "name": "Ashton Borne", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 404, 
+        "name": "Kyle Smith", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ndrusuhlak", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "4lom", 
+                  "zuckuss", 
+                  "mercenarycopilot"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 397, 
+        "name": "Sage Thames", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ]
+              }
+            }, 
+            {
+              "name": "wildspacefringer", 
+              "ship": "yt2400"
+            }, 
+            {
+              "name": "outerrimsmuggler", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "zeborrelios"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 390, 
+        "name": "Jason Guidry", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 379, 
+        "name": "Austin Paradelas", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 392, 
+        "name": "Chris McNeil", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 211, 
+        "name": "Amanda Bergeron", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omegasquadronpilot", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "expose"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ]
+              }
+            }, 
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "outmaneuver"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "turrphennir", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 70, 
+        "name": "Gary Parnell", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Jason Guidry", 
+            "player1points": 32, 
+            "player2": "Austin Paradelas", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Fisher", 
+            "player1points": 100, 
+            "player2": "Ashton Borne", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sage Thames", 
+            "player1points": 100, 
+            "player2": "Eddie Beshoner", 
+            "player2points": 83, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott Bullock", 
+            "player1points": 73, 
+            "player2": "Amanda Bergeron", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kyle Smith", 
+            "player1points": 100, 
+            "player2": "Jason Mayo", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jack Wilson", 
+            "player1points": 100, 
+            "player2": "Louis Busby", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gary Parnell", 
+            "player1points": 29, 
+            "player2": "Chris McNeil", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Sage Thames", 
+            "player1points": 58, 
+            "player2": "Jack Wilson", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott Bullock", 
+            "player1points": 29, 
+            "player2": "Ryan Fisher", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Austin Paradelas", 
+            "player1points": 72, 
+            "player2": "Chris McNeil", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kyle Smith", 
+            "player1points": 100, 
+            "player2": "Ashton Borne", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Guidry", 
+            "player1points": 100, 
+            "player2": "Gary Parnell", 
+            "player2points": 14, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eddie Beshoner", 
+            "player1points": 78, 
+            "player2": "Jason Mayo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Louis Busby", 
+            "player1points": 100, 
+            "player2": "Amanda Bergeron", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Ryan Fisher", 
+            "player1points": 100, 
+            "player2": "Jack Wilson", 
+            "player2points": 36, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Kyle Smith", 
+            "player1points": 29, 
+            "player2": "Ryan Fisher", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jack Wilson", 
+            "player1points": 100, 
+            "player2": "Austin Paradelas", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sage Thames", 
+            "player1points": 62, 
+            "player2": "Jason Guidry", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris McNeil", 
+            "player1points": 28, 
+            "player2": "Louis Busby", 
+            "player2points": 43, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott Bullock", 
+            "player1points": 72, 
+            "player2": "Jason Mayo", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Amanda Bergeron", 
+            "player1points": 0, 
+            "player2": "Ashton Borne", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gary Parnell", 
+            "player1points": 27, 
+            "player2": "Eddie Beshoner", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Ryan Fisher", 
+            "player1points": 100, 
+            "player2": "Jack Wilson", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kyle Smith", 
+            "player1points": 36, 
+            "player2": "Scott Bullock", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Louis Busby", 
+            "player1points": 100, 
+            "player2": "Jason Guidry", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Austin Paradelas", 
+            "player1points": 78, 
+            "player2": "Eddie Beshoner", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sage Thames", 
+            "player1points": 100, 
+            "player2": "Chris McNeil", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ashton Borne", 
+            "player1points": 100, 
+            "player2": "Gary Parnell", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Amanda Bergeron", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Ryan Fisher", 
+            "player1points": 100, 
+            "player2": "Scott Bullock", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jack Wilson", 
+            "player1points": 100, 
+            "player2": "Louis Busby", 
+            "player2points": 58, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Covington", 
+      "country": "United States of America", 
+      "lat": "30.475470200000", 
+      "lon": "-90.100910700000", 
+      "name": "Big Easy Comics", 
+      "state": "Louisiana"
+    }
+  }
+}

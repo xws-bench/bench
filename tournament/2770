@@ -1,0 +1,235 @@
+{
+  "tournament": {
+    "date": "2017-03-29", 
+    "format": "Kutyaviadal", 
+    "id": 2770, 
+    "name": "EPT 21", 
+    "players": [
+      {
+        "mov": 500, 
+        "name": "Rafay Jnos", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 460, 
+        "name": "Trk Balzs", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 367, 
+        "name": "Sipos Kristf", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 334, 
+        "name": "Babinszki Istvn", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 307, 
+        "name": "Gyrfi Gerg", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 276, 
+        "name": "Lczy Zoltn", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 272, 
+        "name": "Takcs Isvn", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 236, 
+        "name": "Br Zoltn", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 178, 
+        "name": "Esze Gerg", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 0, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 70, 
+        "name": "Balogh Balzs", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 0, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 70, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Gyrfi Gerg", 
+            "player1points": 100, 
+            "player2": "Br Zoltn", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sipos Kristf", 
+            "player1points": 100, 
+            "player2": "Balogh Balzs", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Trk Balzs", 
+            "player1points": 100, 
+            "player2": "Babinszki Istvn", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Takcs Isvn", 
+            "player1points": 100, 
+            "player2": "Esze Gerg", 
+            "player2points": 45, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lczy Zoltn", 
+            "player1points": 50, 
+            "player2": "Rafay Jnos", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Gyrfi Gerg", 
+            "player1points": 0, 
+            "player2": "Rafay Jnos", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Trk Balzs", 
+            "player1points": 100, 
+            "player2": "Takcs Isvn", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sipos Kristf", 
+            "player1points": 100, 
+            "player2": "Esze Gerg", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lczy Zoltn", 
+            "player1points": 100, 
+            "player2": "Balogh Balzs", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Br Zoltn", 
+            "player1points": 39, 
+            "player2": "Babinszki Istvn", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Trk Balzs", 
+            "player1points": 100, 
+            "player2": "Sipos Kristf", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafay Jnos", 
+            "player1points": 100, 
+            "player2": "Takcs Isvn", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gyrfi Gerg", 
+            "player1points": 100, 
+            "player2": "Lczy Zoltn", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Babinszki Istvn", 
+            "player1points": 37, 
+            "player2": "Esze Gerg", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Balogh Balzs", 
+            "player1points": 70, 
+            "player2": "Br Zoltn", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Budapest", 
+      "country": "Hungary", 
+      "lat": "47.498381500000", 
+      "lon": "19.040470700000", 
+      "name": "Barcraft 2", 
+      "state": "Budapest"
+    }
+  }
+}

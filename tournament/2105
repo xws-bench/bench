@@ -1,0 +1,118 @@
+{
+  "tournament": {
+    "date": "2016-09-18", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2105, 
+    "name": "Walker Invitational", 
+    "players": [
+      {
+        "mov": 433, 
+        "name": "Charles Walker", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 392, 
+        "name": "Evan Zoss", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 346, 
+        "name": "James Ragsdale", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 29, 
+        "name": "Ben Henry", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Evan Zoss", 
+            "player1points": 29, 
+            "player2": "Charles Walker", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James Ragsdale", 
+            "player1points": 100, 
+            "player2": "Ben Henry", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Charles Walker", 
+            "player1points": 46, 
+            "player2": "James Ragsdale", 
+            "player2points": 55, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ben Henry", 
+            "player1points": 0, 
+            "player2": "Evan Zoss", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Charles Walker", 
+            "player1points": 100, 
+            "player2": "Ben Henry", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James Ragsdale", 
+            "player1points": 37, 
+            "player2": "Evan Zoss", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Austin", 
+      "country": "United States", 
+      "lat": "30.271128600000", 
+      "lon": "-97.743699400000", 
+      "name": "", 
+      "state": "TX"
+    }
+  }
+}

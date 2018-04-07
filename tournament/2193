@@ -1,0 +1,157 @@
+{
+  "tournament": {
+    "date": "2016-10-15", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2193, 
+    "name": "Y2Komics October ", 
+    "players": [
+      {
+        "mov": 466, 
+        "name": "Kendall McQueary", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 355, 
+        "name": "Paul Simms", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 354, 
+        "name": "Spencer Marks", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 286, 
+        "name": "Evan Marks", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 232, 
+        "name": "Kenny Hill", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 107, 
+        "name": "Cliff Vaughn", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Paul Simms", 
+            "player1points": 26, 
+            "player2": "Kenny Hill", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Evan Marks", 
+            "player1points": 100, 
+            "player2": "Spencer Marks", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cliff Vaughn", 
+            "player1points": 25, 
+            "player2": "Kendall McQueary", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Paul Simms", 
+            "player1points": 100, 
+            "player2": "Evan Marks", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Spencer Marks", 
+            "player1points": 100, 
+            "player2": "Cliff Vaughn", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kenny Hill", 
+            "player1points": 34, 
+            "player2": "Kendall McQueary", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Spencer Marks", 
+            "player1points": 100, 
+            "player2": "Kenny Hill", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul Simms", 
+            "player1points": 100, 
+            "player2": "Cliff Vaughn", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kendall McQueary", 
+            "player1points": 100, 
+            "player2": "Evan Marks", 
+            "player2points": 75, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Fort Worth", 
+      "country": "United States", 
+      "lat": "32.753177000000", 
+      "lon": "-97.332745800000", 
+      "name": "", 
+      "state": "TX"
+    }
+  }
+}

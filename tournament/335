@@ -1,0 +1,356 @@
+{
+  "tournament": {
+    "date": "2015-03-14", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 335, 
+    "name": "Store BB 14.3.2015", 
+    "players": [
+      {
+        "mov": 633, 
+        "name": "Stephan L.", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 553, 
+        "name": "Heiko C.", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 547, 
+        "name": "Fernandez D.", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 489, 
+        "name": "Patrick R.", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 472, 
+        "name": "Alex K.", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 415, 
+        "name": "Philipp R.", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 414, 
+        "name": "Martin W.", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 348, 
+        "name": "Frank B.", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "rexlerbrath", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ]
+              }
+            }, 
+            {
+              "name": "backstabber", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 324, 
+        "name": "Manuel O.", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 274, 
+        "name": "Constantin M.", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 199, 
+        "name": "Benny K.", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 132, 
+        "name": "Mathias B.", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Fernandez D.", 
+            "player1points": 99, 
+            "player2": "Philipp R.", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mathias B.", 
+            "player1points": 39, 
+            "player2": "Heiko C.", 
+            "player2points": 99, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Constantin M.", 
+            "player1points": 0, 
+            "player2": "Alex K.", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin W.", 
+            "player1points": 60, 
+            "player2": "Manuel O.", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephan L.", 
+            "player1points": 100, 
+            "player2": "Benny K.", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick R.", 
+            "player1points": 100, 
+            "player2": "Frank B.", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Martin W.", 
+            "player1points": 99, 
+            "player2": "Mathias B.", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Philipp R.", 
+            "player1points": 54, 
+            "player2": "Frank B.", 
+            "player2points": 99, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benny K.", 
+            "player1points": 52, 
+            "player2": "Constantin M.", 
+            "player2points": 83, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fernandez D.", 
+            "player1points": 0, 
+            "player2": "Stephan L.", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex K.", 
+            "player1points": 24, 
+            "player2": "Patrick R.", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Manuel O.", 
+            "player1points": 98, 
+            "player2": "Heiko C.", 
+            "player2points": 16, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Martin W.", 
+            "player1points": 52, 
+            "player2": "Constantin M.", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Manuel O.", 
+            "player1points": 0, 
+            "player2": "Alex K.", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick R.", 
+            "player1points": 50, 
+            "player2": "Stephan L.", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benny K.", 
+            "player1points": 53, 
+            "player2": "Philipp R.", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fernandez D.", 
+            "player1points": 99, 
+            "player2": "Mathias B.", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Frank B.", 
+            "player1points": 24, 
+            "player2": "Heiko C.", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Stephan L.", 
+            "player1points": 100, 
+            "player2": "Manuel O.", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mathias B.", 
+            "player1points": 22, 
+            "player2": "Frank B.", 
+            "player2points": 99, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex K.", 
+            "player1points": 0, 
+            "player2": "Heiko C.", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin W.", 
+            "player1points": 100, 
+            "player2": "Benny K.", 
+            "player2points": 77, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Philipp R.", 
+            "player1points": 100, 
+            "player2": "Constantin M.", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick R.", 
+            "player1points": 35, 
+            "player2": "Fernandez D.", 
+            "player2points": 98, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Kalgoorlie ", 
+      "country": "Australia", 
+      "lat": "59.329300000000", 
+      "lon": "18.068600000000", 
+      "name": "Boulder Bowling Club", 
+      "state": "Western Australia"
+    }
+  }
+}

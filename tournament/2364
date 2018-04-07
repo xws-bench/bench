@@ -1,0 +1,119 @@
+{
+  "tournament": {
+    "date": "2016-12-02", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2364, 
+    "name": "Test", 
+    "players": [
+      {
+        "mov": 200, 
+        "name": "Julie", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 5, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 167, 
+        "name": "Christian", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 5, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 150, 
+        "name": "Steve", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 5, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 109, 
+        "name": "Fred", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 91, 
+        "name": "Gab", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 33, 
+        "name": "Julien", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Mikael", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Mikael", 
+            "player1points": 0, 
+            "player2": "Julie", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Julien", 
+            "player1points": 33, 
+            "player2": "Christian", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fred", 
+            "player1points": 65, 
+            "player2": "Gab", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steve", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Qubec", 
+      "country": "Canada", 
+      "lat": "46.825737400000", 
+      "lon": "-71.234911300000", 
+      "name": "", 
+      "state": "QC"
+    }
+  }
+}

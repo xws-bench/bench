@@ -1,0 +1,269 @@
+{
+  "tournament": {
+    "date": "2016-04-15", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1571, 
+    "name": "Summer 2015", 
+    "players": [
+      {
+        "mov": 600, 
+        "name": "Kaspars Bulindzs", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r4d6"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 449, 
+        "name": "Janis Goldmanis", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "wedgeantilles", 
+              "ship": "xwing", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing"
+            }, 
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "ept": [
+                  "drawtheirfire"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 426, 
+        "name": "Haralds", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 361, 
+        "name": "Linas", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 297, 
+        "name": "Dmitrijs", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 267, 
+        "name": "Harijs Osis", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Janis Goldmanis", 
+            "player1points": 53, 
+            "player2": "Dmitrijs", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Linas", 
+            "player1points": 100, 
+            "player2": "Haralds", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kaspars Bulindzs", 
+            "player1points": 100, 
+            "player2": "Harijs Osis", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Kaspars Bulindzs", 
+            "player1points": 100, 
+            "player2": "Janis Goldmanis", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Linas", 
+            "player1points": 38, 
+            "player2": "Harijs Osis", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dmitrijs", 
+            "player1points": 0, 
+            "player2": "Haralds", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Kaspars Bulindzs", 
+            "player1points": 100, 
+            "player2": "Linas", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Janis Goldmanis", 
+            "player1points": 100, 
+            "player2": "Haralds", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dmitrijs", 
+            "player1points": 24, 
+            "player2": "Harijs Osis", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Linas", 
+            "player1points": 52, 
+            "player2": "Janis Goldmanis", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kaspars Bulindzs", 
+            "player1points": 0, 
+            "player2": "Dmitrijs", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Haralds", 
+            "player1points": 100, 
+            "player2": "Harijs Osis", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Riga", 
+      "country": "Latvia", 
+      "lat": "56.949397700000", 
+      "lon": "24.105184600000", 
+      "name": "Privata Alternativa Vidusskola", 
+      "state": "Riga"
+    }
+  }
+}

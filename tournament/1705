@@ -1,0 +1,769 @@
+{
+  "tournament": {
+    "date": "2016-05-29", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1705, 
+    "name": "Bydgoszcz Spring Kit", 
+    "players": [
+      {
+        "mov": 518, 
+        "name": "Karol Pruszkowski", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "mod": [
+                  "shieldupgrade"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "hansolo", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "lukeskywalker"
+                ], 
+                "ept": [
+                  "experthandling"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 510, 
+        "name": "Piotr Glomski", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "hansolo", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "lukeskywalker", 
+                  "c3po"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 492, 
+        "name": "Piotr Komorowski", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "mod": [
+                  "shieldupgrade"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 536, 
+        "name": "Andrzej Orlinski", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 4
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "connernet", 
+                  "protonbombs"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "guardiansquadronpilot", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "connernet", 
+                  "protonbombs"
+                ], 
+                "crew": [
+                  "bombardier"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 475, 
+        "name": "Krzysztof Piszcz", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "weaponsguidance"
+                ]
+              }
+            }, 
+            {
+              "name": "arvelcrynyd", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 438, 
+        "name": "Michal Lewandowski", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "marajade", 
+                  "darthvader"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 374, 
+        "name": "Przemek Durczak", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 335, 
+        "name": "Artur Gorecki", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 369, 
+        "name": "Rafal Mika", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 284, 
+        "name": "Jaroslaw Grawczynski", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "royalguardpilot", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "redline", 
+              "ship": "tiepunisher", 
+              "upgrades": {
+                "missile": [
+                  "assaultmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 199, 
+        "name": "Lechu Slawinski", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 270, 
+        "name": "Pawel Morawski", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 3, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Piotr Komorowski", 
+            "player1points": 100, 
+            "player2": "Karol Pruszkowski", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pawel Morawski", 
+            "player1points": 39, 
+            "player2": "Michal Lewandowski", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej Orlinski", 
+            "player1points": 100, 
+            "player2": "Krzysztof Piszcz", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lechu Slawinski", 
+            "player1points": 30, 
+            "player2": "Piotr Glomski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rafal Mika", 
+            "player1points": 71, 
+            "player2": "Przemek Durczak", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jaroslaw Grawczynski", 
+            "player1points": 69, 
+            "player2": "Artur Gorecki", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Przemek Durczak", 
+            "player1points": 24, 
+            "player2": "Piotr Komorowski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Piotr Glomski", 
+            "player1points": 100, 
+            "player2": "Andrzej Orlinski", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Artur Gorecki", 
+            "player1points": 41, 
+            "player2": "Pawel Morawski", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jaroslaw Grawczynski", 
+            "player1points": 100, 
+            "player2": "Rafal Mika", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Krzysztof Piszcz", 
+            "player1points": 100, 
+            "player2": "Lechu Slawinski", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Karol Pruszkowski", 
+            "player1points": 100, 
+            "player2": "Michal Lewandowski", 
+            "player2points": 71, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Karol Pruszkowski", 
+            "player1points": 100, 
+            "player2": "Piotr Glomski", 
+            "player2points": 79, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Piotr Komorowski", 
+            "player1points": 59, 
+            "player2": "Piotr Glomski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Artur Gorecki", 
+            "player1points": 0, 
+            "player2": "Krzysztof Piszcz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Przemek Durczak", 
+            "player1points": 21, 
+            "player2": "Karol Pruszkowski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej Orlinski", 
+            "player1points": 100, 
+            "player2": "Jaroslaw Grawczynski", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pawel Morawski", 
+            "player1points": 31, 
+            "player2": "Lechu Slawinski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michal Lewandowski", 
+            "player1points": 100, 
+            "player2": "Rafal Mika", 
+            "player2points": 61, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Piotr Glomski", 
+            "player1points": 58, 
+            "player2": "Karol Pruszkowski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Krzysztof Piszcz", 
+            "player1points": 75, 
+            "player2": "Piotr Komorowski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej Orlinski", 
+            "player1points": 35, 
+            "player2": "Artur Gorecki", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Przemek Durczak", 
+            "player1points": 100, 
+            "player2": "Lechu Slawinski", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michal Lewandowski", 
+            "player1points": 100, 
+            "player2": "Jaroslaw Grawczynski", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pawel Morawski", 
+            "player1points": 38, 
+            "player2": "Rafal Mika", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Karol Pruszkowski", 
+            "player1points": 100, 
+            "player2": "Andrzej Orlinski", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Piotr Glomski", 
+            "player1points": 100, 
+            "player2": "Piotr Komorowski", 
+            "player2points": 30, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Bydgoszcz", 
+      "country": "Poland", 
+      "lat": "53.121964800000", 
+      "lon": "18.000252900000", 
+      "name": "Centrum Gier Pegaz", 
+      "state": "Kujawsko-Pomorskie"
+    }
+  }
+}

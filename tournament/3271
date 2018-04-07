@@ -1,0 +1,943 @@
+{
+  "tournament": {
+    "date": "2017-08-05", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3271, 
+    "name": "2017 Cards & Comics Connection Store Championship", 
+    "players": [
+      {
+        "mov": 619, 
+        "name": "David Light", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 243, 
+        "name": "Nathan Rodriguez", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 566, 
+        "name": "Thomas Doan", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.69"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "rey", 
+                  "c3po"
+                ], 
+                "ept": [
+                  "selflessness"
+                ]
+              }
+            }, 
+            {
+              "name": "jesspava", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d6"
+                ], 
+                "ept": [
+                  "drawtheirfire"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ]
+              }
+            }, 
+            {
+              "name": "norrawexley", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "crew": [
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 537, 
+        "name": "Jonah Sanders", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.38"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "intensity"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 533, 
+        "name": "Mike Fay", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "sensorcluster"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 511, 
+        "name": "Gus Smythe", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r5x3"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 473, 
+        "name": "Katie Dessi", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 3, 
+        "sos": "0.46"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "selflessness"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r4d6"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "captainrex", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "jesspava", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d6"
+                ], 
+                "ept": [
+                  "drawtheirfire"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 505, 
+        "name": "Dan Murphy", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "c3po"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }, 
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 462, 
+        "name": "Scott Blanchard", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.69"
+      }, 
+      {
+        "mov": 419, 
+        "name": "Paul Black", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 408, 
+        "name": "Gerry Russell", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.52"
+      }, 
+      {
+        "mov": 391, 
+        "name": "Jeremiah Chamberlain", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 379, 
+        "name": "Dave Do", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 370, 
+        "name": "Kevin Dolan", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 363, 
+        "name": "Daniel Casslasy", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 2, 
+        "sos": "0.42"
+      }, 
+      {
+        "mov": 290, 
+        "name": "Austin Todd", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 256, 
+        "name": "Ross Sanders", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 237, 
+        "name": "Michael Urbanowich", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 1, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 209, 
+        "name": "Sean Hird", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 1, 
+        "sos": "0.40"
+      }, 
+      {
+        "mov": 179, 
+        "name": "Lee Graves", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 0, 
+        "sos": "0.38"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Scott Blanchard", 
+            "player1points": 29, 
+            "player2": "Mike Fay", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeremiah Chamberlain", 
+            "player1points": 0, 
+            "player2": "Paul Black", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dave Do", 
+            "player1points": 100, 
+            "player2": "Jonah Sanders", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ross Sanders", 
+            "player1points": 100, 
+            "player2": "Lee Graves", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Austin Todd", 
+            "player1points": 43, 
+            "player2": "David Light", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gus Smythe", 
+            "player1points": 100, 
+            "player2": "Sean Hird", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dan Murphy", 
+            "player1points": 100, 
+            "player2": "Daniel Casslasy", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gerry Russell", 
+            "player1points": 0, 
+            "player2": "Thomas Doan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Katie Dessi", 
+            "player1points": 100, 
+            "player2": "Nathan Rodriguez", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Dolan", 
+            "player1points": 100, 
+            "player2": "Michael Urbanowich", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Gus Smythe", 
+            "player1points": 100, 
+            "player2": "Ross Sanders", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul Black", 
+            "player1points": 100, 
+            "player2": "Kevin Dolan", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Light", 
+            "player1points": 100, 
+            "player2": "Dan Murphy", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dave Do", 
+            "player1points": 26, 
+            "player2": "Katie Dessi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Fay", 
+            "player1points": 36, 
+            "player2": "Thomas Doan", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean Hird", 
+            "player1points": 30, 
+            "player2": "Nathan Rodriguez", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lee Graves", 
+            "player1points": 29, 
+            "player2": "Jonah Sanders", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott Blanchard", 
+            "player1points": 75, 
+            "player2": "Jeremiah Chamberlain", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Austin Todd", 
+            "player1points": 46, 
+            "player2": "Gerry Russell", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Urbanowich", 
+            "player1points": 40, 
+            "player2": "Daniel Casslasy", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Thomas Doan", 
+            "player1points": 100, 
+            "player2": "Mike Fay", 
+            "player2points": 32, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Paul Black", 
+            "player1points": 32, 
+            "player2": "Thomas Doan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Light", 
+            "player1points": 100, 
+            "player2": "Gus Smythe", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Katie Dessi", 
+            "player1points": 0, 
+            "player2": "Scott Blanchard", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ross Sanders", 
+            "player1points": 47, 
+            "player2": "Dave Do", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonah Sanders", 
+            "player1points": 100, 
+            "player2": "Kevin Dolan", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Rodriguez", 
+            "player1points": 21, 
+            "player2": "Gerry Russell", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Fay", 
+            "player1points": 100, 
+            "player2": "Dan Murphy", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Casslasy", 
+            "player1points": 53, 
+            "player2": "Jeremiah Chamberlain", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Austin Todd", 
+            "player1points": 100, 
+            "player2": "Michael Urbanowich", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean Hird", 
+            "player1points": 100, 
+            "player2": "Lee Graves", 
+            "player2points": 60, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "David Light", 
+            "player1points": 100, 
+            "player2": "Thomas Doan", 
+            "player2points": 76, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dave Do", 
+            "player1points": 0, 
+            "player2": "Mike Fay", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul Black", 
+            "player1points": 34, 
+            "player2": "Jonah Sanders", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott Blanchard", 
+            "player1points": 0, 
+            "player2": "Gus Smythe", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gerry Russell", 
+            "player1points": 75, 
+            "player2": "Katie Dessi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeremiah Chamberlain", 
+            "player1points": 100, 
+            "player2": "Ross Sanders", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Dolan", 
+            "player1points": 100, 
+            "player2": "Austin Todd", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dan Murphy", 
+            "player1points": 100, 
+            "player2": "Sean Hird", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lee Graves", 
+            "player1points": 32, 
+            "player2": "Michael Urbanowich", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Casslasy", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Thomas Doan", 
+            "player1points": 100, 
+            "player2": "Gus Smythe", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonah Sanders", 
+            "player1points": 71, 
+            "player2": "Mike Fay", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Conroe", 
+      "country": "United States of America", 
+      "lat": null, 
+      "lon": null, 
+      "name": "", 
+      "state": "Texas"
+    }
+  }
+}

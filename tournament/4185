@@ -1,0 +1,119 @@
+{
+  "tournament": {
+    "date": "2018-03-17", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 4185, 
+    "name": "Crystal Dragon 3/17/18", 
+    "players": [
+      {
+        "mov": 427, 
+        "name": "Jim Seals", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 286, 
+        "name": "Glen \"Weazel\" Gearhart Jr", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 271, 
+        "name": "John Hazen (Evil)", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 216, 
+        "name": "Jim Athya", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "John Hazen (Evil)", 
+            "player1points": 23, 
+            "player2": "Jim Seals", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Glen \"Weazel\" Gearhart Jr", 
+            "player1points": 22, 
+            "player2": "Jim Athya", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jim Athya", 
+            "player1points": 16, 
+            "player2": "Jim Seals", 
+            "player2points": 78, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Hazen (Evil)", 
+            "player1points": 48, 
+            "player2": "Glen \"Weazel\" Gearhart Jr", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jim Seals", 
+            "player1points": 50, 
+            "player2": "Glen \"Weazel\" Gearhart Jr", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jim Athya", 
+            "player1points": 0, 
+            "player2": "John Hazen (Evil)", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Vassal play", 
+    "venue": {
+      "city": "Niles", 
+      "country": "United States of America", 
+      "lat": "41.182835300000", 
+      "lon": "-80.765357900000", 
+      "name": "Crystal Dragon", 
+      "state": "Ohio"
+    }, 
+    "video_url": "http://"
+  }
+}

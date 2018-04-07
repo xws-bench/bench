@@ -1,0 +1,757 @@
+{
+  "tournament": {
+    "date": "2015-12-27", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 962, 
+    "name": "Year-end tournament", 
+    "players": [
+      {
+        "mov": 700, 
+        "name": "Kenessey Mrton", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 516, 
+        "name": "Simon Zoltn", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "dutchvander", 
+              "ship": "ywing", 
+              "upgrades": {
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 466, 
+        "name": "Radvnyi Zoltn", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "lieutenantcolzet", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "shieldupgrade"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 462, 
+        "name": "rgyeln Gbor", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "mod": [
+                  "targetingcomputer"
+                ]
+              }
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "mod": [
+                  "targetingcomputer"
+                ]
+              }
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "mod": [
+                  "targetingcomputer"
+                ]
+              }
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "swarmtactics"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 331, 
+        "name": "Budai Balzs", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }, 
+            {
+              "name": "wardensquadronpilot", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "connernet"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 298, 
+        "name": "Bartalos Norbert", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "marksmanship"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 350, 
+        "name": "Kardos Zoltn", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 6, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "shieldupgrade"
+                ], 
+                "tech": [
+                  "weaponsguidance"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 332, 
+        "name": "Tth Gbor", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 6, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "r4agromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "kavil", 
+              "ship": "ywing", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "gunner", 
+                  "tactician", 
+                  "bossk"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 351, 
+        "name": "gonston Tibor", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "prototypepilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "missile": [
+                  "chardaanrefit"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "tech": [
+                  "weaponsguidance"
+                ]
+              }
+            }, 
+            {
+              "name": "corranhorn", 
+              "ship": "ewing", 
+              "upgrades": {
+                "amd": [
+                  "r7t1"
+                ], 
+                "ept": [
+                  "marksmanship"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 194, 
+        "name": "Balogh Balzs", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Balogh Balzs", 
+            "player1points": 51, 
+            "player2": "Budai Balzs", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "gonston Tibor", 
+            "player1points": 25, 
+            "player2": "Kenessey Mrton", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simon Zoltn", 
+            "player1points": 100, 
+            "player2": "Tth Gbor", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Radvnyi Zoltn", 
+            "player1points": 24, 
+            "player2": "Kardos Zoltn", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bartalos Norbert", 
+            "player1points": 0, 
+            "player2": "rgyeln Gbor", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "rgyeln Gbor", 
+            "player1points": 25, 
+            "player2": "Kenessey Mrton", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simon Zoltn", 
+            "player1points": 100, 
+            "player2": "Balogh Balzs", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kardos Zoltn", 
+            "player1points": 49, 
+            "player2": "Budai Balzs", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Radvnyi Zoltn", 
+            "player1points": 54, 
+            "player2": "Tth Gbor", 
+            "player2points": 77, 
+            "result": "win"
+          }, 
+          {
+            "player1": "gonston Tibor", 
+            "player1points": 38, 
+            "player2": "Bartalos Norbert", 
+            "player2points": 61, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Kenessey Mrton", 
+            "player1points": 100, 
+            "player2": "Simon Zoltn", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "rgyeln Gbor", 
+            "player1points": 100, 
+            "player2": "Kardos Zoltn", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Budai Balzs", 
+            "player1points": 100, 
+            "player2": "Tth Gbor", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Balogh Balzs", 
+            "player1points": 25, 
+            "player2": "Bartalos Norbert", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Radvnyi Zoltn", 
+            "player1points": 100, 
+            "player2": "gonston Tibor", 
+            "player2points": 75, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Simon Zoltn", 
+            "player1points": 100, 
+            "player2": "rgyeln Gbor", 
+            "player2points": 67, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kenessey Mrton", 
+            "player1points": 100, 
+            "player2": "Budai Balzs", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bartalos Norbert", 
+            "player1points": 0, 
+            "player2": "Radvnyi Zoltn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kardos Zoltn", 
+            "player1points": 0, 
+            "player2": "Tth Gbor", 
+            "player2points": 0, 
+            "result": "draw"
+          }, 
+          {
+            "player1": "Balogh Balzs", 
+            "player1points": 26, 
+            "player2": "gonston Tibor", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Budapest", 
+      "country": "Hungary", 
+      "lat": "47.498381500000", 
+      "lon": "19.040470700000", 
+      "name": "Gp-Hz", 
+      "state": "Budapest"
+    }
+  }
+}

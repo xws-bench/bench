@@ -1,0 +1,213 @@
+{
+  "tournament": {
+    "date": "2016-04-16", 
+    "format": "Escalation", 
+    "id": 1524, 
+    "name": "Spring Escalation Tournament", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "valenrudor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }, 
+            {
+              "name": "scimitarsquadronpilot", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "bomb": [
+                  "connernet"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "experthandling"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 623, 
+        "name": "David T.", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 18, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 338, 
+        "name": "Robert W.", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 477, 
+        "name": "Mike G.", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 242, 
+        "name": "Aaron N.", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "David T.", 
+            "player1points": 60, 
+            "player2": "Aaron N.", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike G.", 
+            "player1points": 38, 
+            "player2": "Robert W.", 
+            "player2points": 40, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "David T.", 
+            "player1points": 90, 
+            "player2": "Robert W.", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike G.", 
+            "player1points": 12, 
+            "player2": "Aaron N.", 
+            "player2points": 69, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "David T.", 
+            "player1points": 71, 
+            "player2": "Aaron N.", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robert W.", 
+            "player1points": 0, 
+            "player2": "Mike G.", 
+            "player2points": 120, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "David T.", 
+            "player1points": 125, 
+            "player2": "Mike G.", 
+            "player2points": 121, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron N.", 
+            "player1points": 24, 
+            "player2": "Robert W.", 
+            "player2points": 150, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Mountain Home", 
+      "country": "United States of America", 
+      "lat": "43.132950400000", 
+      "lon": "-115.691197400000", 
+      "name": "Wondertrail", 
+      "state": "Idaho"
+    }
+  }
+}

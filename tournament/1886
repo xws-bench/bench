@@ -1,0 +1,98 @@
+{
+  "tournament": {
+    "date": "2016-07-23", 
+    "format": "Epic Play - 300 points", 
+    "id": 1886, 
+    "name": "Epic - Spring 2016", 
+    "players": [
+      {
+        "mov": 998, 
+        "name": "Linas", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 2, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 557, 
+        "name": "Janis Goldmanis", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 531, 
+        "name": "Janis Presis", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 1, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 314, 
+        "name": "Alex", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }
+    ], 
+    "round_length": 180, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Linas", 
+            "player1points": 300, 
+            "player2": "Alex", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Janis Presis", 
+            "player1points": 98, 
+            "player2": "Janis Goldmanis", 
+            "player2points": 206, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Janis Goldmanis", 
+            "player1points": 136, 
+            "player2": "Linas", 
+            "player2points": 287, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex", 
+            "player1points": 185, 
+            "player2": "Janis Presis", 
+            "player2points": 224, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Riga", 
+      "country": "Latvia", 
+      "lat": "56.949397700000", 
+      "lon": "24.105184600000", 
+      "name": "", 
+      "state": "Riga"
+    }
+  }
+}

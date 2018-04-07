@@ -1,0 +1,628 @@
+{
+  "tournament": {
+    "date": "2018-03-04", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 4174, 
+    "name": "VI Store Arcadia - Esquenta do Regional", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "captainnym", 
+              "ship": "scurrgh6bomber", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator", 
+                  "proximitymines"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "genius"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "havoc"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "protonbombs", 
+                  "proximitymines"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 556, 
+        "name": "Thyago Carvalho", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "jesspava", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d6"
+                ], 
+                "ept": [
+                  "drawtheirfire"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "breachspecialist", 
+                  "chewbacca"
+                ], 
+                "ept": [
+                  "selflessness"
+                ]
+              }
+            }, 
+            {
+              "name": "norrawexley", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "crew": [
+                  "bistan"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 509, 
+        "name": "Bruno Fernando", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 496, 
+        "name": "Icaro Igreja", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "guri", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "starvipermkii", 
+                  "virago"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "talonbanecobra", 
+              "ship": "kihraxzfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "vectoredthrusters", 
+                  "guidancechips"
+                ], 
+                "title": [
+                  "vaksai"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 546, 
+        "name": "Lucas Dourado", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 492, 
+        "name": "Pedro Lucas Serelepe", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 490, 
+        "name": "David Resende", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "intensity"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }, 
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "c3po"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 335, 
+        "name": "Anne Beatriz", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "sienarspecialist", 
+              "ship": "tieaggressor", 
+              "upgrades": {
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 291, 
+        "name": "Igor Carmo", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 221, 
+        "name": "Lucas Moreira", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 64, 
+        "name": "Sergio Jr", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 0, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "David Resende", 
+            "player1points": 100, 
+            "player2": "Sergio Jr", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruno Fernando", 
+            "player1points": 51, 
+            "player2": "Lucas Dourado", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anne Beatriz", 
+            "player1points": 46, 
+            "player2": "Icaro Igreja", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thyago Carvalho", 
+            "player1points": 100, 
+            "player2": "Pedro Lucas Serelepe", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Igor Carmo", 
+            "player1points": 100, 
+            "player2": "Lucas Moreira", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Bruno Fernando", 
+            "player1points": 100, 
+            "player2": "David Resende", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Igor Carmo", 
+            "player1points": 62, 
+            "player2": "Icaro Igreja", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thyago Carvalho", 
+            "player1points": 56, 
+            "player2": "Lucas Moreira", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lucas Dourado", 
+            "player1points": 70, 
+            "player2": "Anne Beatriz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sergio Jr", 
+            "player1points": 0, 
+            "player2": "Pedro Lucas Serelepe", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Icaro Igreja", 
+            "player1points": 100, 
+            "player2": "Bruno Fernando", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thyago Carvalho", 
+            "player1points": 60, 
+            "player2": "David Resende", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pedro Lucas Serelepe", 
+            "player1points": 100, 
+            "player2": "Igor Carmo", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anne Beatriz", 
+            "player1points": 100, 
+            "player2": "Lucas Moreira", 
+            "player2points": 41, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lucas Dourado", 
+            "player1points": 100, 
+            "player2": "Sergio Jr", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Thyago Carvalho", 
+            "player1points": 100, 
+            "player2": "Icaro Igreja", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruno Fernando", 
+            "player1points": 100, 
+            "player2": "Pedro Lucas Serelepe", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anne Beatriz", 
+            "player1points": 0, 
+            "player2": "David Resende", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lucas Dourado", 
+            "player1points": 100, 
+            "player2": "Igor Carmo", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sergio Jr", 
+            "player1points": 64, 
+            "player2": "Lucas Moreira", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Teresina", 
+      "country": "Brazil", 
+      "lat": "-5.089640300000", 
+      "lon": "-42.809588000000", 
+      "name": "Loja Arcadia", 
+      "state": "Piaui"
+    }, 
+    "video_url": "http://"
+  }
+}

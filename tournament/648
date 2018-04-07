@@ -1,0 +1,498 @@
+{
+  "tournament": {
+    "date": "2015-09-12", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 648, 
+    "name": "Aussenposten III", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }, 
+            {
+              "name": "wardensquadronpilot", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "connernet"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "ioncannonturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 650, 
+        "name": "Stephen lancier", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 1
+        }, 
+        "score": 16, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 558, 
+        "name": "Stephan klopfer", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 519, 
+        "name": "Lars binder", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 533, 
+        "name": "Tobias guderian", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 4
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 500, 
+        "name": "Benjamin kayser", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 11, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 455, 
+        "name": "Christian Haaga", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "outmaneuver"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "redline", 
+              "ship": "tiepunisher", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "darkcurse", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 451, 
+        "name": "Manuel Olynuk", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 444, 
+        "name": "Kevin stenzel", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 403, 
+        "name": "Lucas Binder", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 261, 
+        "name": "Mario Hltge", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 223, 
+        "name": "Sven stenzel", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 203, 
+        "name": "Michael Fiebeler", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 200, 
+        "name": "Armin Ernst", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Mario Hltge", 
+            "player1points": 24, 
+            "player2": "Christian Haaga", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benjamin kayser", 
+            "player1points": 100, 
+            "player2": "Michael Fiebeler", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lars binder", 
+            "player1points": 100, 
+            "player2": "Kevin stenzel", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lucas Binder", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Sven stenzel", 
+            "player1points": 0, 
+            "player2": "Stephan klopfer", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Armin Ernst", 
+            "player1points": 0, 
+            "player2": "Manuel Olynuk", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephen lancier", 
+            "player1points": 100, 
+            "player2": "Tobias guderian", 
+            "player2points": 25, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Benjamin kayser", 
+            "player1points": 0, 
+            "player2": "Stephen lancier", 
+            "player2points": 0, 
+            "result": "draw"
+          }, 
+          {
+            "player1": "Sven stenzel", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Kevin stenzel", 
+            "player1points": 100, 
+            "player2": "Mario Hltge", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lucas Binder", 
+            "player1points": 100, 
+            "player2": "Lars binder", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Fiebeler", 
+            "player1points": 0, 
+            "player2": "Armin Ernst", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Manuel Olynuk", 
+            "player1points": 67, 
+            "player2": "Stephan klopfer", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christian Haaga", 
+            "player1points": 65, 
+            "player2": "Tobias guderian", 
+            "player2points": 75, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Stephen lancier", 
+            "player1points": 100, 
+            "player2": "Stephan klopfer", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Fiebeler", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Manuel Olynuk", 
+            "player1points": 100, 
+            "player2": "Kevin stenzel", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Armin Ernst", 
+            "player1points": 0, 
+            "player2": "Lars binder", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tobias guderian", 
+            "player1points": 98, 
+            "player2": "Mario Hltge", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benjamin kayser", 
+            "player1points": 100, 
+            "player2": "Lucas Binder", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sven stenzel", 
+            "player1points": 24, 
+            "player2": "Christian Haaga", 
+            "player2points": 51, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Christian Haaga", 
+            "player1points": 100, 
+            "player2": "Michael Fiebeler", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephan klopfer", 
+            "player1points": 100, 
+            "player2": "Lucas Binder", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sven stenzel", 
+            "player1points": 0, 
+            "player2": "Kevin stenzel", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benjamin kayser", 
+            "player1points": 65, 
+            "player2": "Lars binder", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mario Hltge", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Stephen lancier", 
+            "player1points": 100, 
+            "player2": "Manuel Olynuk", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tobias guderian", 
+            "player1points": 100, 
+            "player2": "Armin Ernst", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Stephen lancier", 
+            "player1points": 65, 
+            "player2": "Tobias guderian", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lars binder", 
+            "player1points": 67, 
+            "player2": "Stephan klopfer", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Lars binder", 
+            "player1points": 50, 
+            "player2": "Stephen lancier", 
+            "player2points": 50, 
+            "result": "draw"
+          }
+        ], 
+        "round-number": 6, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Kalgoorlie ", 
+      "country": "Australia", 
+      "lat": "59.329300000000", 
+      "lon": "18.068600000000", 
+      "name": "Boulder Bowling Club", 
+      "state": "Western Australia"
+    }
+  }
+}

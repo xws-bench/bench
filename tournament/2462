@@ -1,0 +1,290 @@
+{
+  "tournament": {
+    "date": "2017-01-09", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2462, 
+    "name": "Good Game Cannington - Jan 2017 Round 1", 
+    "players": [
+      {
+        "mov": 481, 
+        "name": "Robert Blackstock", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 467, 
+        "name": "Cain", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 326, 
+        "name": "Ash", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 306, 
+        "name": "Vladimir Piscetek", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 304, 
+        "name": "Jordan", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r4d6"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "braylenstramm", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "crew": [
+                  "tactician"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }, 
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist", 
+                  "chopper"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 331, 
+        "name": "Matt W", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 299, 
+        "name": "Vincent", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 206, 
+        "name": "Ian", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 130, 
+        "name": "Sean", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 0, 
+        "sos": "0.67"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "final_salvo": false, 
+            "player1": "Ian", 
+            "player1points": 74, 
+            "player2": "Matt W", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Ash", 
+            "player1points": 35, 
+            "player2": "Cain", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Sean", 
+            "player1points": 0, 
+            "player2": "Vincent", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Vladimir Piscetek", 
+            "player1points": 17, 
+            "player2": "Robert Blackstock", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jordan", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "final_salvo": false, 
+            "player1": "Jordan", 
+            "player1points": 77, 
+            "player2": "Ian", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Vincent", 
+            "player1points": 17, 
+            "player2": "Robert Blackstock", 
+            "player2points": 45, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Cain", 
+            "player1points": 100, 
+            "player2": "Sean", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Matt W", 
+            "player1points": 59, 
+            "player2": "Vladimir Piscetek", 
+            "player2points": 77, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ash", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "final_salvo": false, 
+            "player1": "Robert Blackstock", 
+            "player1points": 100, 
+            "player2": "Jordan", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Cain", 
+            "player1points": 100, 
+            "player2": "Vincent", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Vladimir Piscetek", 
+            "player1points": 100, 
+            "player2": "Ian", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Ash", 
+            "player1points": 66, 
+            "player2": "Sean", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt W", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Cannington", 
+      "country": "Australia", 
+      "lat": "-32.013728700000", 
+      "lon": "115.945170400000", 
+      "name": "Good Games Cannington", 
+      "state": "Western Australia"
+    }
+  }
+}

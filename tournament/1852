@@ -1,0 +1,157 @@
+{
+  "tournament": {
+    "date": "2016-07-09", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1852, 
+    "name": "Hanger Bay", 
+    "players": [
+      {
+        "mov": 459, 
+        "name": "Neil Tredrey", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 457, 
+        "name": "Adam Willmarth", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 281, 
+        "name": "Chris Willmouth", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 284, 
+        "name": "T.G. Dweezl", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 212, 
+        "name": "Chance Thiel", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 107, 
+        "name": "Scott McMullen", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Chance Thiel", 
+            "player1points": 0, 
+            "player2": "Adam Willmarth", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott McMullen", 
+            "player1points": 46, 
+            "player2": "Neil Tredrey", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Willmouth", 
+            "player1points": 100, 
+            "player2": "T.G. Dweezl", 
+            "player2points": 70, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Adam Willmarth", 
+            "player1points": 52, 
+            "player2": "Chris Willmouth", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chance Thiel", 
+            "player1points": 12, 
+            "player2": "Neil Tredrey", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott McMullen", 
+            "player1points": 0, 
+            "player2": "T.G. Dweezl", 
+            "player2points": 80, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Neil Tredrey", 
+            "player1points": 100, 
+            "player2": "Chris Willmouth", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adam Willmarth", 
+            "player1points": 100, 
+            "player2": "T.G. Dweezl", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott McMullen", 
+            "player1points": 0, 
+            "player2": "Chance Thiel", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Gatineau", 
+      "country": "Canada", 
+      "lat": "45.456305200000", 
+      "lon": "-75.722882700000", 
+      "name": "Boutique FDB", 
+      "state": "Quebec"
+    }
+  }
+}

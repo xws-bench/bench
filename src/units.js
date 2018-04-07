@@ -19,7 +19,7 @@ var TIMEANIM=FAST?0:1000;
 var FACE=["focus","hit","critical","evade","blank"];
 var ATTACKDICE= [0,0,1,1,1,2,4,4];
 var DEFENSEDICE=[0,0,3,3,3,4,4,4];
-var MPOS={ F0:[0,3],RL1:[0,2],RR1:[0,4],RF1:[0,3],F1:[1,3],F2:[2,3],F3:[3,3],F4:[4,3],F5:[5,3],	
+var MPOS={ F0:[0,3],RL1:[0,2],RR1:[0,4],RF1:[0,3],RF5:[0,3],F1:[1,3],F2:[2,3],F3:[3,3],F4:[4,3],F5:[5,3],	
 	   BL1:[1,2],BL2:[2,2],BL3:[3,2],
 	   TL1:[1,1],TL2:[2,1],TL3:[3,1],
 	   BR1:[1,4],BR2:[2,4],BR3:[3,4],
@@ -54,6 +54,7 @@ var squadron=[];
 var active=0;
 var globalid=1;
 var targetunit;
+var attackunit;
 var PATTERN;
 var SOUND_DIR="ogg/";
 var SOUND_FILES=[
@@ -218,7 +219,7 @@ var C = { GREEN:"#0F0",RED:"#F00",WHITE:"#FFF" };
 var P;
 // Table of actions
 var A = {
-    CONDITION:{key:"R",color:YELLOW}, /* TODO */
+    CONDITION:{key:"t",color:YELLOW}, /* TODO */
     ARCROTATE:{key:"R",color:GREEN},
     ROLL:{key:"r",color:GREEN},
     SLAM:{key:"s",color:BLUE},
@@ -254,9 +255,10 @@ var A = {
     NOTHING:{key:"&nbsp;",color:WHITE},
     HIT:{key:"d",color:WHITE},
     SHIELD:{key:"v",color:YELLOW},
-    TECH:{key:"X",color:WHITE}
+    TECH:{key:"X",color:WHITE},
+    RELOAD:{key:"/",color:YELLOW}
 };
-var AINDEX = ["ROLL","FOCUS","TARGET","EVADE","BOOST","STRESS","CLOAK","ISTARGETED","ASTRO","CANNON","CREW","MISSILE","TORPEDO","ELITE","TURRET","UPGRADE","CRITICAL","NOTHING"];
+var AINDEX = ["ROLL","FOCUS","TARGET","EVADE","BOOST","STRESS","CLOAK","ISTARGETED","ASTRO","CANNON","CREW","MISSILE","TORPEDO","ELITE","TURRET","RELOAD","REINFORCE","UPGRADE","CRITICAL","NOTHING"];
 
 function repeat(pattern, count) {
     var result = '';
@@ -291,13 +293,12 @@ function Unit(team,pilotid) {
     this.faction=TEAMS[team].faction;
     this.shipactionList=[];
     this.dial=[];
-    this.ordnance=false;
     this.dialselect="<table class='dial' id='dial"+id+"'></table>";
     this.text="<span id='text"+id+"' class='details'></span>";
     this.upgradesno=0;
     this.upgrades=[];
     this.criticals=[];
-    this.conditions={};
+    this.conditions=[];
     this.DEFENSEREROLLD=[];
     this.ATTACKREROLLA=[];
     this.ATTACKMODA=[];
@@ -337,7 +338,7 @@ function Unit(team,pilotid) {
     this.weapons=[];
     this.upgrades=[];
     this.criticals=[];
-    this.conditions={};
+    this.conditions=[];
     this.bombs=[];
     this.lastdrop=-1;
 
@@ -352,7 +353,7 @@ function Unit(team,pilotid) {
     var up=PILOTS[pilotid].upgrades;
     this.upg=[];
     this.upgbonus=[];
-    for (var j=0; j<10; j++) {this.upg[j]=-1};
+    for (var j=0; j<20; j++) {this.upg[j]=-1};
     this.upgradetype=[];
     for (var k=0; k<up.length; k++) this.upgradetype[k]=up[k];
     this.upgradetype[k++]=Unit.MOD;
@@ -380,9 +381,12 @@ function Unit(team,pilotid) {
 	this.istargeted=[];
 	this.targeting=[];
 	this.stress=0;
+	this.checkpilotstress=true;
 	this.ionized=0;
 	//this.removeionized=false;
 	this.evade=0;
+	this.reinforce=0;
+	this.reinforceaft=0;
 	this.hasfired=0;
 	this.maxfired=1;
 	this.hitresolved=0;
@@ -447,6 +451,7 @@ Unit.MOD_M=2;
 Unit.ATTACK_M=0;
 Unit.DEFENSE_M=1;
 Unit.ATTACKCOMPARE_M=2;
+Unit.DEFENDCOMPARE_M=3;
 Unit.REBEL="REBEL";
 Unit.EMPIRE="EMPIRE";
 Unit.SCUM="SCUM";
@@ -582,7 +587,7 @@ Unit.prototype = {
 	var startY=0;
 	if (h>w) startY=(h-w)/2;
 	else startX=(w-h)/2;
-	var max=Math.max(900./w,900./h);
+	var max=Math.max(GW/w,GH/h);
 	
 	var bbox=this.g.getBBox();
 	var p=$("#svgout").offset();
@@ -677,7 +682,7 @@ Unit.prototype = {
 	return s;	
     },
     setpriority:function(action) {
-	var PRIORITIES={"FOCUS":3,"EVADE":1,"CLOAK":4,"TARGET":2,"CRITICAL":100};
+	var PRIORITIES={"FOCUS":3,"EVADE":1,"REINFORCE":7,"CLOAK":4,"TARGET":2,"CRITICAL":100,"BOMB":5,"ILLICIT":6};
 	var p=PRIORITIES[action.type];
 	if (typeof p=="undefined") p=0;
 	action.priority=p;
@@ -907,7 +912,10 @@ Unit.prototype = {
 		 }.bind(this),str:"focus",token:true,noreroll:"focus"},
 		{from:Unit.ATTACK_M,type:Unit.REROLL_M,to:Unit.ATTACK_M,org:this,
 		 req:function(a,w,t) {return this.canusetarget(t);}.bind(this),
-		 n:function() { return 9; },
+		 aiactivate:function(m,n){
+                    return(Unit.FCH_blank(m,n)>0 || (Unit.FCH_focus(m)>0 && this.focuses.length == 0 )); // Attempt to make TL-spending smarter
+                 }.bind(this),
+                 n:function() { return 9; },
 		 dice:["blank","focus"],
 		 f:function() {
 		     activeunit.removetarget(targetunit);
@@ -935,6 +943,17 @@ Unit.prototype = {
 		     this.removeevadetoken(); 
 		     return {m:m+Unit.FE_EVADE,n:n+1} 
 		 }.bind(this),str:"evade",token:true,noreroll:"focus"},
+		 {
+			 from:Unit.DEFENSE_M,type:Unit.ADD_M,to:Unit.DEFENSE_M,org:this,
+			 req:function() {return this.canusereinforce(); }.bind(this),
+			 aiactivate:function(m,n) {
+				 mm=getattackvalue();
+				 return (Unit.FCH_hit(mm)+Unit.FCH_crit(mm)>Unit.FE_evade(m));
+			 },
+			 f: function(m,n) {
+				return {m:m+Unit.FE_EVADE,n:n+1}
+			 }.bind(this),str:"reinforce",token:true,noreroll:"focus"
+		 }
 	       ];
     },
     adddicemodifier: function(from,type,to,org,mod) {
@@ -942,7 +961,7 @@ Unit.prototype = {
 	mod.type=type;
 	mod.from=from;
 	mod.to=to;
-	this.wrap_after("getdicemodifiers",org,function(m) {
+	return this.wrap_after("getdicemodifiers",org,function(m) {
 	    return m.concat(mod);
 	});
     },
@@ -961,7 +980,7 @@ Unit.prototype = {
     dragmove: function(dx,dy,x,y) {
 	// scaling factor
 	var spl=VIEWPORT.m.split();
-	var max=Math.max(900./$("#svgout").width(),900./$("#svgout").height());
+	var max=Math.max(GW/$("#svgout").width(),GH/$("#svgout").height());
 	var ddx=dx*max/spl.scalex;
 	var ddy=dy*max/spl.scalex;
 	this.dragMatrix=MT(ddx,ddy).add(this.m);
@@ -1099,6 +1118,9 @@ Unit.prototype = {
 	    ||(phase==ACTIVATION_PHASE)
 	    ||(phase==COMBAT_PHASE)) {
 	    var old=activeunit;
+            if(phase==COMBAT_PHASE){
+                attackunit=old;
+            }
 	    activeunit=this;
 	    if (old!=this) old.unselect();
 	    $("#"+this.id).addClass("selected");
@@ -1216,7 +1238,8 @@ Unit.prototype = {
 	var k,i,j;
 	var pathpts=[],os=[],op=[];
 	var collision={overlap:-1,template:[],mine:[]};
-	// Overlapping obstacle ? 
+	// Overlapping obstacle at landing point? 
+        var curOutlStr=this.getOutlineString(mbegin).s;
 	var so=this.getOutlineString(mend);
 	os=so.s;
 	op=so.p;
@@ -1240,22 +1263,24 @@ Unit.prototype = {
 		pathpts[k]={x:mbegin.x(p.x,p.y),y:mbegin.y(p.x,p.y)};
 	    }
 	    for (j=0; j<pathpts.length; j++) {
-		for (k=0; k<OBSTACLES.length; k++) {
-		    var o=OBSTACLES[k];
-		    if (o.type==NONE) continue;
-		    if (k!=collision.overlap&&k!=this.oldoverlap&&collision.template.indexOf(k)==-1&&collision.mine.indexOf(o)==-1) { // Do not count overlapped obstacle twice
-			var o2=o.getOutlineString().p;
-			for(i=0; i<o2.length; i++) {
-			    var dx=(o2[i].x-pathpts[j].x);
-			    var dy=(o2[i].y-pathpts[j].y);
-			    if (dx*dx+dy*dy<=100) { 
-				if (o.type!=Unit.BOMB) collision.template.push(k); 
-				else collision.mine.push(OBSTACLES[k]);
-				break;
-			    } 
-			}
-		    }
-		}
+                if(!(this.isPointInside(curOutlStr,[pathpts[j]]) || this.isPointInside(os,[pathpts[j]]))){ // ignore pathpts inside this's base
+                    for (k=0; k<OBSTACLES.length; k++) {
+                        var o=OBSTACLES[k];
+                        if (o.type==NONE) continue;
+                        if (k!=collision.overlap&&collision.template.indexOf(k)==-1&&collision.mine.indexOf(o)==-1) { // Do not count overlapped obstacle twice
+                            var o2=o.getOutlineString().p;
+                            for(i=0; i<o2.length; i++) {
+                                var dx=(o2[i].x-pathpts[j].x);
+                                var dy=(o2[i].y-pathpts[j].y);
+                                if (dx*dx+dy*dy<=100) { 
+                                    if (o.type!=Unit.BOMB) collision.template.push(k); 
+                                    else collision.mine.push(OBSTACLES[k]);
+                                    break;
+                                } 
+                            }
+                        }
+                    }
+                }
 	    }
 	}	   
 	return collision;
@@ -1288,12 +1313,12 @@ Unit.prototype = {
 	var len=path.getTotalLength();
 	if (this.islarge) len+=40;
 	var m0=m.clone();
-	if (maneuver.match(/RF1|RR1|RL1/)) m0=m0.rotate(180,0,0);
+	if (maneuver.match(/RF1|RF5|RR1|RL1/)) m0=m0.rotate(180,0,0);
 	var mm=this.getmatrixwithmove(m0, path, len);
 	if (maneuver.match(/K\d|SR\d|SL\d/)||halfturn==true) mm.rotate(180,0,0);
 	if (maneuver.match(/TRL\d/)) mm.rotate(-90,0,0);
 	if (maneuver.match(/TRR\d/)) mm.rotate(90,0,0);
-	if (maneuver.match(/RF1|RR1|RL1/)) mm.rotate(180,0,0);
+	if (maneuver.match(/RF1|RF5|RR1|RL1/)) mm.rotate(180,0,0);
 	path.remove();
 	return mm;
     },
@@ -1352,6 +1377,8 @@ Unit.prototype = {
 	return b;
     },
     candocoordinate: function() { return this.selectnearbyally(2).length>0; },
+	candoreload: function() { return true; }, // TODO add some condition
+	candoreinforce: function() { return true; },
     newaction:function(a,str) {
 	return {action:a,org:this,type:str,name:str};
     },
@@ -1378,12 +1405,18 @@ Unit.prototype = {
 			al.push(this.newaction(this.resolveboost,"BOOST"));break;
 		    case "ROLL":if (this.candoroll()) 
 			al.push(this.newaction(this.resolveroll,"ROLL"));break;
-		    case "SLAM":if (isendmaneuver) al.push(this.newaction(this.resolveslam,"SLAM"));break;
+		    case "SLAM":if (isendmaneuver) 
+			al.push(this.newaction(this.resolveslam,"SLAM"));break;
 		    case "COORDINATE": if (this.candocoordinate()) 
-		    al.push(this.newaction(this.resolvecoordinate,"COORDINATE"));break;
+		    	al.push(this.newaction(this.resolvecoordinate,"COORDINATE"));break;
+		    case "RELOAD": if(this.candoreload())
+				al.push(this.newaction(this.resolvereload,"RELOAD"));break;
+			case "REINFORCE": if (this.candoreinforce()) 
+				al.push(this.newaction(this.addreinforce,"REINFORCE"));break;
 		}
 	    }
 	}
+
 	return al;
     },
     getupgactionlist: function() {
@@ -1412,11 +1445,24 @@ Unit.prototype = {
 	}
 	return al;
     },
+    getcondactionlist: function() {
+	    var i,al=[];
+	    for (i=0; i<this.conditions.length; i++) {
+		    var cond = this.conditions[i];
+		    if ((!this.isactiondone(cond.name)) && cond.isactive 
+			    && typeof cond.action == "function" && cond.candoaction()) {
+				    al.push({org:cond,action:cond.action,type:Unit.CONDITION.toUpperCase(),name:cond.name});
+		    }
+	    }
+	    return al;
+    },
     getactionlist: function(isendmaneuver) {
 	var sal=this.getactionbarlist(isendmaneuver);
 	var ual=this.getupgactionlist();
 	var cal=this.getcritactionlist();
-	return sal.concat(ual).concat(cal);
+	var condal=this.getcondactionlist();
+	var al = sal.concat(ual).concat(cal).concat(condal);
+	return al;
     },
     addevadetoken: function() {
 	this.evade++;
@@ -1433,7 +1479,35 @@ Unit.prototype = {
 	this.animateaddtoken("xfocustoken");
 	this.movelog("FO");
 	this.show();
-    },
+	},
+    addreinforce: function(n){
+        
+            var resolvereinforce=function(n,aft) {
+                $("#actiondial").empty();
+                this.reinforceaft = aft;
+                this.log("Adding reinforce token on " + (aft==0 ? "fore" : "aft") + " side");    
+                this.addreinforcetoken();
+                this.endnoaction(n,"REINFORCE");
+                //this.unlock();
+            }.bind(this);
+            
+            this.doselection(function(n) {
+                $("#actiondial").empty();
+                var fore=$("<button>").html("Fore").on("touch click",function() { resolvereinforce(n,0);}.bind(this));
+                $("#actiondial").append(fore);
+                var aft=$("<button>").html("Aft").on("touch click",function() { resolvereinforce(n,1);}.bind(this));
+                $("#actiondial").append(aft);    
+                $("#actiondial").show();
+            }.bind(this),"REINFORCE");
+            
+            this.endaction(n,"REINFORCE"); // End addreinforce to start selection action         
+        },
+    addreinforcetoken: function() {
+            this.reinforce++;
+            this.animateaddtoken("xreinforcetoken");
+            this.movelog("E");
+            this.show();
+	},	
     addtractorbeam:function(u) {
 	this.addtractorbeamtoken();
 	if (this.tractorbeam==1&&!this.islarge) {
@@ -1473,6 +1547,18 @@ Unit.prototype = {
 	this.animateaddtoken("xionizedtoken");
 	this.movelog("I");
 	this.show();
+    },
+    addweapondisabledtoken: function() {
+        this.noattack=round;
+        this.animateaddtoken("xnomoreattacktoken");
+        this.movelog("WD");
+        this.show();
+    },
+    removeweapondisabledtoken: function() {
+        this.noattack=-1;
+        this.animateremovetoken("xnomoreattacktoken");
+        this.movelog("wd");
+        this.show();
     },
     removeiontoken: function() {
 	this.ionized--;
@@ -1670,7 +1756,10 @@ Unit.prototype = {
     },
     resetevade: function() {
 	return 0;
-    },
+	},
+	resetreinforce: function() {
+		return 0;
+	},
     resettractorbeam: function() {
 	return 0;
     },   
@@ -1679,6 +1768,7 @@ Unit.prototype = {
 	    this.upgrades[i].endround();
 	this.focus=this.resetfocus();
 	this.evade=this.resetevade();
+	this.reinforce=this.resetreinforce();
 	this.hasfired=0;
 	this.maxfired=1;
 	this.tractorbeam=this.resettractorbeam();
@@ -2002,7 +2092,8 @@ Unit.prototype = {
 	}
 	if (this.targeting.length==0) $("#atokens > .xtargettoken").remove();
     },
-    removeevadetoken: function() { this.animateremovetoken("xevadetoken"); this.evade--; this.movelog("e"); this.show();},
+	removeevadetoken: function() { this.animateremovetoken("xevadetoken"); this.evade--; this.movelog("e"); this.show();},
+	removereinforcetoken: function() { this.animateremovetoken("xreinforcetoken"); this.reinforce--; this.movelog("i"); this.show();},
     removefocustoken: function() { this.animateremovetoken("xfocustoken"); this.focus--; this.movelog("fo"); this.show();},
     resolveactionmove: function(moves,cleanup,automove,possible) {
 	var i;
@@ -2017,17 +2108,26 @@ Unit.prototype = {
 		this.m=m;
 	    }
 	    var mine=this.getmcollisions(this.m);
-	    if (mine.length>0) 
+	    if (mine.length>0){ 
 		for (i=0; i<mine.length; i++) {
 		    var o=OBSTACLES[mine[i]];
-		    if (o.type==Unit.BOMB&&typeof o.detonate=="function") 
-			o.detonate(this,false)
+		    if (o.type==Unit.BOMB&&typeof o.detonate=="function"){ 
+			o.preexplode(true,[this,false]);
+                        o.detonate(this,false)
+                        o.postexplode(true,[this,false]);
+                    }
 		    else {
 			this.ocollision.overlap=i;
 			this.log("colliding with obstacle");
 			if (!possible) this.resolveocollision(1,[]);
 		    }
 		}
+            }
+            else{
+                // If a ship is able to roll/boost/slam off of an obstacle,
+                // it should then be able to fire after all.  Reset ocollision.overlap
+                this.ocollision.overlap=-1; // Dash Rendar 
+            }
 	    if (automove) {
 		var gpm=m.split();
 		this.movelog("am-"+Math.floor(300+gpm.dx)+"-"+Math.floor(300+gpm.dy)+"-"+Math.floor((360+Math.floor(gpm.rotate))%360));
@@ -2097,6 +2197,16 @@ Unit.prototype = {
 	    });
 	}
     },
+    resolvereload: function(n) {
+		for (var i=0; i<this.upgrades.length;i++) {
+	        if (this.upgrades[i].type.match(/Torpedo|Missile/)) {
+				this.upgrades[i].isactive=true;
+			}
+		}
+ 		this.noattack=round;
+		this.showstats();
+		this.endaction(n,"RELOAD");
+	},
     candoarcrotate: function() { return this.hasmobilearc; },
     setarcrotate: function(r) { this.arcrotation=90*r; },
     resolvearcrotate: function(n,noaction) {
@@ -2208,7 +2318,7 @@ Unit.prototype = {
 	var p=[];
 	if (typeof f=="undefined") f=function() { return true; };
 	for (var i in squadron) {
-	    if (f(this,squadron[i])&&(this.getrange(squadron[i])<=n)) p.push(squadron[i]);
+	    if (!squadron[i].isdocked&&f(this,squadron[i])&&(this.getrange(squadron[i])<=n)) p.push(squadron[i]);
 	}
 	return p;
     },
@@ -2276,7 +2386,7 @@ Unit.prototype = {
 		q.push(i);
 	    }
 	this.log("select maneuver for SLAM");
-	this.noattack=round;
+	this.addweapondisabledtoken();
 	this.wrap_after("getdial",this,function(gd) {
 	    var p=[];
 	    for (var i=0; i<gd.length; i++) {
@@ -2354,7 +2464,7 @@ Unit.prototype = {
 		&&this.canusetarget(sh)) {
 		this.reroll=0; 
 	    }
-	    // If TL and focus are required, use both...TODO
+	    // If TL and focus are required, use both...TODOenemylist
 	    if (wp.consumes==true
 		&&"Focus".match(this.getrequirements(wp))
 		&&this.canusefocus()) {
@@ -2477,8 +2587,12 @@ Unit.prototype = {
 	//this.show();
     },
     preattackroll:function(w,targetunit) {
+        $(document).trigger("preattackroll"+this.team,
+        [this,w,targetunit]); // Presumably some predefenseroll stuff needs w and attacker
     },
     predefenseroll:function(w,attacker) {
+        $(document).trigger("predefenseroll"+this.team,
+        [this,w,attacker]); // Presumably some predefenseroll stuff needs w and attacker
     },
     doattack: function(weaponlist,enemies) {
 	this.activeweapons=weaponlist;
@@ -2487,6 +2601,7 @@ Unit.prototype = {
     },
     doattackroll: function(ar,ad,w,me,n) {
 	ar=this.weapons[w].modifydamagegiven(ar);
+	this.weapons[w].lastattackroll=ar;
 	displayattackroll(ar,ad);
 	//this.log("target:"+targetunit.name+" "+defense+" "+ar+" "+ad+" "+defense+" "+n+" me:"+squadron[me].name);
 	this.ar=ar;this.ad=ad;
@@ -2563,10 +2678,12 @@ Unit.prototype = {
 	}
     },
     handledifficulty: function(difficulty) {
-	if (difficulty=="RED") {
-	    this.addstress();
-	} else if (difficulty=="GREEN" && this.stress>0) {
-	    this.removestresstoken();
+	if(this.checkpilotstress) {
+		if (difficulty=="RED") {
+			this.addstress();
+		} else if (difficulty=="GREEN" && this.stress>0) {
+			this.removestresstoken();
+		}
 	}
     },
     premove:function() {
@@ -2578,7 +2695,7 @@ Unit.prototype = {
 	var m,oldm;
 	var lenC = path.getTotalLength();
 	var m0=this.m.clone();
-	if (dial.match(/RF1|RR1|RL1/)) m0=m0.rotate(180,0,0);
+	if (dial.match(/RF1|RF5|RR1|RL1/)) m0=m0.rotate(180,0,0);
 	if (this.islarge) lenC+=40;
 
 	this.moves=[this.getmatrixwithmove(m0,path,lenC)];
@@ -2635,13 +2752,13 @@ Unit.prototype = {
 	    if (!FAST) SOUNDS[this.ship.flysnd].play();
 	    Snap.animate(0, lenC, function( value ) {
 		m = this.getmatrixwithmove(m0,path,value);
-		if (dial.match(/RF1|RR1|RL1/)) m.rotate(180,0,0);
+		if (dial.match(/RF1|RF5|RR1|RL1/)) m.rotate(180,0,0);
 		this.g.transform(m);
 		this.geffect.transform(m);
 	    }.bind(this), TIMEANIM*lenC/200,mina.linear, function(){
 		if (!this.collision) { 
 		    // Special handling of K turns: half turn at end of movement. Straight line if collision.
-		    if (dial.match(/K\d|SR\d|SL\d|RF1|RR1|RL1/)||halfturn==true) {
+		    if (dial.match(/K\d|SR\d|SL\d|RF1|RF5|RR1|RL1/)||halfturn==true) {
 			this.m.rotate(180,0,0);
 			turn=180;
 		    } else if (dial.match(/TRL\d/)) {
@@ -2662,10 +2779,15 @@ Unit.prototype = {
 		//path.remove();
 		if (this.hascollidedobstacle()) 
 		    this.resolveocollision(this.ocollision.overlap,this.ocollision.template);
-		if (this.ocollision.mine.length>0) 
+		if (this.ocollision.mine.length>0){
+                    var mine;
 		    for (i=0; i<this.ocollision.mine.length; i++) {
-			this.ocollision.mine[i].detonate(this,false);
+                        mine=this.ocollision.mine[i];
+			mine.preexplode(true,[this,false]);
+                        mine.detonate(this,false);
+                        mine.postexplode(true,[this,false]);
 		    }
+                }
 		if (this.collision) this.resolvecollision();
 		this.endmaneuver();
 	    }.bind(this));
@@ -2714,6 +2836,7 @@ Unit.prototype = {
     },
     endmaneuver: function() {
 	var p=this.ionized;
+        var notThisTeam=(this.team===1?2:1);
 	if (this.hasionizationeffect()) 
 	    for (var i=0; i<p; i++) this.removeiontoken();
 	this.maneuver=-1;
@@ -2721,7 +2844,18 @@ Unit.prototype = {
 	this.show();
 	this.moves=[];
 	if (this.checkdead()) { this.hull=0; this.shield=0; } 
-	else this.doendmaneuveraction();
+        else { 
+            // First-pass event handler triggering for endmaneuver stuff
+            if(TEAMS[this.team].initiative){ // Possibly unnecessary init order
+                $(document).trigger("endmaneuver"+this.team, [this]);
+                $(document).trigger("endmaneuver"+notThisTeam, [this]);
+            }
+            else{ // Trigger order matters for e.g. Kanan v. Snap Shot
+                $(document).trigger("endmaneuver"+notThisTeam, [this]);
+                $(document).trigger("endmaneuver"+this.team, [this]);
+            }
+            this.doendmaneuveraction();
+        }
 	//this.log("endmaneuver");
 	this.cleanupmaneuver();
     },
@@ -2810,8 +2944,15 @@ Unit.prototype = {
 	    &&!this.collision
 	    &&!this.hascollidedobstacle(); },
     doendmaneuveraction: function() {
-	return this.doaction(this.getactionlist(true),"",this.candoendmaneuveraction);
-	/*
+        if(this.candoendmaneuveraction()) // hacky fix for PTL triggering too liberally
+            return this.doaction(this.getactionlist(true),"",this.candoendmaneuveraction);
+	else{
+            // this.log("Cannot perform actions after maneuver");
+	    return this.enqueueaction(function(n) {
+		this.endnoaction(n);
+	    }.bind(this),this.name);
+        }
+        /*
 	this.action=-1; 
 	*/
     },
@@ -2871,7 +3012,9 @@ Unit.prototype = {
 	    for (i=0; i<list.length; i++) {
 		(function(k,h) {
 		    var e=$("<div title='"+k.name+"'>").addClass("symbols").text(A[k.type].key)
-			.click(function () { this.resolvenoaction(k,n) }.bind(this));
+			.click(function () { 
+                            this.resolvenoaction(k,n) 
+                }.bind(this));
 		    $("#actiondial > div").append(e);
 		}.bind(this))(list[i],i);
 	    }
@@ -2912,12 +3055,15 @@ Unit.prototype = {
 	}
 	return true;
     },
+    getactiveweapons: function(enemylist) {
+	return this.weapons;
+    },
     showattack: function(weaponlist,enemylist) {
 	var str="";
 	var wn=[],wp=[];
 	var i,j,w;
 	$("#attackdial").show();
-	if (typeof weaponlist=="undefined") weaponlist=this.weapons;
+	if (typeof weaponlist=="undefined") weaponlist=this.getactiveweapons();
 	//else this.attackweapons=weaponlist;
 	var r=this.getenemiesinrange(weaponlist,enemylist);
 	var d=$("<div>");
@@ -2965,13 +3111,17 @@ Unit.prototype = {
     addactivationdial: function(pred,action,html,elt) {
 	this.activationdial.push({pred:pred,action:action,html:html,elt:elt});
     },
+	endactivate:function() {},
     actionbarrier:function() {
 	actionrlock=$.Deferred();
 	if (this.areactionspending()) {
-	    actionrlock.done(function() { this.unlock(); }.bind(this));
+	    actionrlock.done(function() { 
+                this.unlock(); 
+                if(phase==ACTIVATION_PHASE) this.endactivate(); }.bind(this));
 	} else {
 	    actionrlock.resolve();
-	    this.unlock();
+            this.unlock();
+            if(phase==ACTIVATION_PHASE) this.endactivate();
 	}
     },
     addafteractions: function(f) {
@@ -2993,7 +3143,7 @@ Unit.prototype = {
 	}
 	this.actionbarrier();
     },
-    getbomblocation: function() {
+    getbomblocation: function(bomb) {
 	return ["F1"];
     },
     getbombposition: function(lm,size) {
@@ -3010,7 +3160,7 @@ Unit.prototype = {
 	if (this.candropbomb()&&(this.hasionizationeffect())) {
 	    //this.log("ionized, cannot drop bombs");
 	} else if (self.lastdrop!=round) {
-	    switch(this.bombs.length) {
+	    switch(this.bombs.length) { // Assumes max of 3 bomb types
 	    case 3: if (this.bombs[2].canbedropped()) 
 		this.addactivationdial(
 		    function() { return self.lastdrop!=round&&self.bombs[2].canbedropped(); },
@@ -3116,7 +3266,9 @@ Unit.prototype = {
 	if (this.focus>0) {
 	    this.infoicon[i++].attr({text:A.FOCUS.key,fill:A.FOCUS.color});}
 	if (this.evade>0) {
-	    this.infoicon[i++].attr({text:A.EVADE.key,fill:A.EVADE.color});}
+		this.infoicon[i++].attr({text:A.EVADE.key,fill:A.EVADE.color});}
+	if (this.reinforce>0) {
+		this.infoicon[i++].attr({text:A.REINFORCE.key,fill:A.REINFORCE.color});}
 	if (this.iscloaked==true) {
 	    this.infoicon[i++].attr({text:A.CLOAK.key,fill:A.CLOAK.color});}
 	if (this.targeting.length>0&&i<6) {
@@ -3137,47 +3289,54 @@ Unit.prototype = {
     }, 
     dock:function(parent) {
 	this.isdocked=true;
-	$("#"+this.id).attr("onclick","");
-	$("#"+this.id).addClass("docked");
-	$("#"+this.id).html(""+this);
-
-	this.g.attr({display:"none"});
-	this.geffect.attr({display:"none"});
-	this.log("docked on %0",parent.name);
-	this.show();
+        $("#"+this.id).attr("onclick","");
+        $("#"+this.id).addClass("docked");
+        $("#"+this.id).html(""+this);
+        this.g.attr({display:"none"});
+        this.geffect.attr({display:"none"});
+        if(phase!==SELECT_PHASE){ // No log in select phase; don't want to call show() b/c overwrites UI handlers
+            this.log("docked on %0",parent.name);
+            this.show();
+        }
 	parent.docked=this;
     },
     deploy: function(parent,dm) {
-	this.movelog("DPY");
-	$("#"+this.id).removeClass("docked");
-	$("#"+this.id).html(""+this);
-	$("#"+this.id+" .outoverflow").each(function(index) { 
-	    if ($(this).css("top")!="auto") {
-		$(this).css("top",$(this).parent().offset().top+"px");
-	    }
-	});
-	$("#"+this.id).click(function() { this.select(); }.bind(this));
-	this.g.attr({display:"block"});
-	this.geffect.attr({display:"block"});
-	this.m=parent.m.clone();
-	this.isdocked=false;
-	this.log("deploying from %0",parent.name);
-	this.show();
-	parent.docked=null;
-	this.log("select maneuver for deployment");
-	//this.wrap_after("timeformaneuver",this,function() { return true; }).unwrapper("endcombatphase");
-	//this.wrap_after("canfire",this,function(t) { return false; }).unwrapper("endcombatphase");
-	parent.doselection(function(n) {
-	    this.resolveactionmove(dm,function(t,k) {
-		var half=this.getdial().length;
-		if (k>=half) { this.m.translate(0,-20); k=k-half; }
-		else this.m.translate(0,20).rotate(180,0,0);
-		this.maneuver=k;
-		this.resolvemaneuver();
-		//this.show();
-	    }.bind(this),false,true);
-	    parent.endnoaction(n,"DEPLOY");
-	}.bind(this));
+        this.movelog("DPY");
+        $("#"+this.id).removeClass("docked");
+        $("#"+this.id).html(""+this);
+        $("#"+this.id+" .outoverflow").each(function(index) { 
+            if ($(this).css("top")!="auto") {
+                $(this).css("top",$(this).parent().offset().top+"px");
+            }
+        });
+        $("#"+this.id).click(function() { this.select(); }.bind(this));
+        this.g.attr({display:"block"});
+        this.geffect.attr({display:"block"});
+        this.m=parent.m.clone();
+        this.show();
+        parent.docked=null;
+        if(!parent.isinzone(parent.m)){
+            this.log("Cannot deploy from fleeing ship; destroyed!");
+            this.checkdead();            
+        }
+        else{
+            this.log("deploying from %0",parent.name);
+            this.log("select maneuver for deployment");
+            //this.wrap_after("timeformaneuver",this,function(d) { return true; }).unwrapper("endcombatphase");
+            //this.wrap_after("canfire",this,function(t) { return false; }).unwrapper("endcombatphase");
+            parent.doselection(function(n) {
+                this.resolveactionmove(dm,function(t,k) {
+                    var half=this.getdial().length;
+                    if (k>=half) { this.m.translate(0,-20); k=k-half; }
+                    else this.m.translate(0,20).rotate(180,0,0);
+                    this.maneuver=k;
+                    this.resolvemaneuver();
+                    this.isdocked=false;
+                    //this.show();
+                }.bind(this),false,true);
+                parent.endnoaction(n,"DEPLOY");
+            }.bind(this));
+        }
     },
     endcombatphase:function() { $(".fireline").remove(); },
     endphase: function() { },
@@ -3287,6 +3446,9 @@ Unit.prototype = {
 	    for (i in this.conditions) {
 		this.conds.push(this.conditions[i]);
 	    }
+            if (typeof this.switch!="undefined"&&this.canswitch()) {
+                this.hasswitch={uid:this.id,uuid:-1};
+            } else this.hasswitch=false;
 	    var rendered = Mustache.render(TEMPLATES["unit-combat"], this);
 	    return rendered;
 	}
@@ -3297,6 +3459,25 @@ Unit.prototype = {
     canuseevade: function() {
 	return this.evade>0;
     },
+    canusereinforce: function() {
+        if (this.reinforce>0) {
+            var inarc = this.isinfiringarc(attackunit);
+            if (this.reinforceaft == 0) {
+                if (inarc) {
+                    return true;
+                } else {
+                    this.log("Attacker is not in arc, therefore cannot use reinforce on fore side");
+                }
+            } else if (this.reinforceaft == 1) {
+                if (inarc) {
+                    this.log("Attacker is in arc, therefore cannot use reinforce on aft side");
+                } else {
+                    return true;
+                }
+            }
+        }
+        return false;
+    },
     canusetarget:function(sh) {
 	//console.log(this.name+" targeting "+sh.name+":"+this.targeting.length+" "+this.targeting.indexOf(sh));
 	return this.targeting.length>0
@@ -3305,6 +3486,7 @@ Unit.prototype = {
     getusabletokens: function() {
 	this.focuses=(this.focus>1?[this.focus]:[]);
 	this.evades=(this.evade>1?[this.evade]:[]);
+	this.reinforces=(this.reinforce>1?[this.reinforce]:[]);
 	this.stresses=(this.stress>1?[this.stress]:[]);
 	this.ionizedes=(this.ionized>1?[this.ionized]:[]);
 	this.tractorbeames=(this.tractorbeam>1?[this.tractorbeam]:[]);
@@ -3370,7 +3552,7 @@ Unit.prototype = {
 	var startY=0;
 	if (h>w) startY=(h-w)/2;
 	else startX=(w-h)/2;
-	var min=Math.min(w/900.,h/900.);
+	var min=Math.min(w/GW,h/GH);
 	var x=startX+(m.x(bbox.x,bbox.y)+bbox.width/2)*min;
 	var y=startY+(m.y(bbox.x,bbox.y))*min
 	var mm=m.split();
@@ -3412,7 +3594,7 @@ Unit.prototype = {
 	this.showpanel();
 	this.showdial();
 	this.showmaneuver();
-	if (phase==ACTIVATION_PHASE) this.showactivation();
+	if (phase==ACTIVATION_PHASE&&!this.hasfired) this.showactivation();
 	if (!ENGAGED&&phase==COMBAT_PHASE){
 	    if (this.canfire()&&!this.areactionspending()&&!INREPLAY) this.showattack(this.activeweapons,this.activeenemies); 
 	    else $("#attackdial").empty();
@@ -3682,7 +3864,7 @@ Unit.prototype = {
 	var startY=0;
 	if (h>w) startY=(h-w)/2;
 	else startX=(w-h)/2;
-	var max=Math.max(900./w,900./h);
+	var max=Math.max(GW/w,GH/h);
 	var bbox=this.g.getBBox();
 	var p=$("#svgout").offset();
 	var min=Math.min($("#playmat").width(),$("#playmat").height());
@@ -3701,7 +3883,7 @@ Unit.prototype = {
 	var startY=0;
 	if (h>w) startY=(h-w)/2;
 	else startX=(w-h)/2;
-	var max=Math.max(900./w,900./h);
+	var max=Math.max(GW/w,GH/h);
 	var bbox=this.g.getBBox();
 	var p=$("#svgout").offset();
 	var min=Math.min($("#playmat").width(),$("#playmat").height());
@@ -3800,20 +3982,22 @@ Unit.prototype = {
 	    }
 	    this.endnoaction(n,"CREW");
 	}.bind(this);
-	this.doselection(function(n) {
-	    var i,str="";
-	    $("#actiondial").empty();
-	    for (var i=0; i<upglist.length; i++) {
-		(function(k) {
-		    var e=$("<button>").text(upglist[k].name)
-			.click(function() { resolve(upglist[k],n);});
-		    $("#actiondial").append(e);
-		}.bind(this))(i);
-	    }
-	    var e=$("<button>").addClass("m-skip").addClass("wbutton").click(function() { resolve(null,n); });
-	    $("#actiondial").append(e);
-	    $("#actiondial").show();
-	}.bind(this),"upgrade");
+        if(self.isactive){
+            this.doselection(function(n) {
+                var i,str="";
+                $("#actiondial").empty();
+                for (var i=0; i<upglist.length; i++) {
+                    (function(k) {
+                        var e=$("<button>").text(upglist[k].name)
+                            .click(function() { resolve(upglist[k],n);});
+                        $("#actiondial").append(e);
+                    }.bind(this))(i);
+                }
+                var e=$("<button>").addClass("m-skip").addClass("wbutton").click(function() { resolve(null,n); });
+                $("#actiondial").append(e);
+                $("#actiondial").show();
+            }.bind(this),"upgrade");
+        }
     },
 
     selectdamage: function() {
@@ -3903,8 +4087,10 @@ Unit.prototype = {
 	return min;
     },
     // Returns the range separating both units and if an obstacle is inbetween
-    getoutlinerange:function(m,sh) {
-	var ro=this.getOutlinePoints(m);
+    getoutlinerange:function(m,sh,withBombs,teams) {
+        if(typeof withBombs==="undefined") {withBombs=false;teams=[];} // Need to allow bomb checks for Nym
+	else {teams=(typeof teams==="undefined")?[sh.team]:teams;} // Need to check team types
+        var ro=this.getOutlinePoints(m);
 	var rsh = sh.getOutlinePoints(sh.m);
 	var min=90001;
 	var i,j,k=0;
@@ -3922,11 +4108,17 @@ Unit.prototype = {
 	var dy=rsh[minj].y-ro[mini].y;
 	var a=-ro[mini].x*dy+ro[mini].y*dx; //(x-x0)*dy-(y-y0)*dx>0
 	if (OBSTACLES.length>0) {
+            var curObs;
 	    for (k=0; k<OBSTACLES.length; k++) {
-		if (OBSTACLES[k].type==NONE) continue;
-		var op=OBSTACLES[k].getOutlineString().p;
+                curObs=OBSTACLES[k];
+		if (curObs.type==NONE) continue;
+		var op=curObs.getOutlineString().p;
 		// The object is not yet intialized. Should not be here...
-		if (op.length==0||OBSTACLES[k].type==Unit.BOMB) break;
+                // Breaking out earlier makes for faster processing than chained && / ||
+		if (op.length==0) break; // Something bad happened
+                if (!withBombs&&curObs.type===Unit.BOMB) continue; // doesn't block
+                if (withBombs&&curObs.type===Unit.BOMB&&!teams.includes(curObs.unit.team)) // doesn't block 
+                    { continue; }
 		var s=op[0].x*dy-op[0].y*dx+a;
 		var v=s;
 		for (i=1; i<op.length; i++) {
@@ -3939,7 +4131,9 @@ Unit.prototype = {
 		if (v*s<0) break;
 	    }
 	}
-	if (k<OBSTACLES.length) obs=true;
+        // if the above loop breaks before exhausting all asteroids, or all
+        // mines if mines are also being checked, there is an obstruction
+	if (k<SETUP.asteroids||withBombs&&k<OBSTACLES.length) obs=true;
 	if (min<=10000) {return {d:1,o:obs}; }
 	if (min<=40000) { return {d:2,o:obs}; }
 	return {d:3,o:obs};

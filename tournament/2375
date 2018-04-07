@@ -1,0 +1,327 @@
+{
+  "tournament": {
+    "date": "2016-12-03", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2375, 
+    "name": "Late Night X-Wing", 
+    "players": [
+      {
+        "mov": 421, 
+        "name": "Matt hartman", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 377, 
+        "name": "Curt Chandler", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 432, 
+        "name": "Vince Chan", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "dengar", 
+                  "zuckuss", 
+                  "4lom"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "feedbackarray"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "kavil", 
+              "ship": "ywing", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 416, 
+        "name": "Clint D", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 373, 
+        "name": "Travis Kemen", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 329, 
+        "name": "Anthony Woodard", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.22"
+      }, 
+      {
+        "mov": 275, 
+        "name": "Aaron Sankey", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 275, 
+        "name": "Justin Towle", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 261, 
+        "name": "Jim Spur", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 245, 
+        "name": "Evan Stuempfig", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.78"
+      }, 
+      {
+        "mov": 186, 
+        "name": "Ben Johnson", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 0, 
+        "sos": "0.78"
+      }, 
+      {
+        "mov": 10, 
+        "name": "Cole Watkins", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 0, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Jim Spur", 
+            "player1points": 21, 
+            "player2": "Clint D", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt hartman", 
+            "player1points": 61, 
+            "player2": "Travis Kemen", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron Sankey", 
+            "player1points": 53, 
+            "player2": "Justin Towle", 
+            "player2points": 14, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vince Chan", 
+            "player1points": 100, 
+            "player2": "Cole Watkins", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anthony Woodard", 
+            "player1points": 41, 
+            "player2": "Evan Stuempfig", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ben Johnson", 
+            "player1points": 16, 
+            "player2": "Curt Chandler", 
+            "player2points": 48, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Clint D", 
+            "player1points": 100, 
+            "player2": "Vince Chan", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron Sankey", 
+            "player1points": 0, 
+            "player2": "Matt hartman", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Curt Chandler", 
+            "player1points": 58, 
+            "player2": "Evan Stuempfig", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Travis Kemen", 
+            "player1points": 100, 
+            "player2": "Ben Johnson", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jim Spur", 
+            "player1points": 100, 
+            "player2": "Cole Watkins", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anthony Woodard", 
+            "player1points": 100, 
+            "player2": "Justin Towle", 
+            "player2points": 24, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Clint D", 
+            "player1points": 44, 
+            "player2": "Curt Chandler", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt hartman", 
+            "player1points": 60, 
+            "player2": "Jim Spur", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron Sankey", 
+            "player1points": 30, 
+            "player2": "Travis Kemen", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Evan Stuempfig", 
+            "player1points": 0, 
+            "player2": "Vince Chan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anthony Woodard", 
+            "player1points": 55, 
+            "player2": "Ben Johnson", 
+            "player2points": 43, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Towle", 
+            "player1points": 100, 
+            "player2": "Cole Watkins", 
+            "player2points": 10, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Roseville", 
+      "country": "United States of America", 
+      "lat": "45.006076700000", 
+      "lon": "-93.156610600000", 
+      "name": "Fantasy Flight Games Center", 
+      "state": "Minnesota"
+    }
+  }
+}

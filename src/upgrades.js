@@ -25,10 +25,53 @@ function Bomb(sh,bdesc) {
 	//if (this.init != undefined) this.init(sh);
 };
 Bomb.prototype = { 
-   wrap_before:Unit.prototype.wrap_before,
+    wrap_before:Unit.prototype.wrap_before,
     wrap_after:Unit.prototype.wrap_after,
+    setclickhandler:Rock.prototype.setclickhandler,
+    setdefaultclickhandler:Rock.prototype.setdefaultclickhandler,
+    addDrag:Rock.prototype.addDrag,
+    unDrag:Rock.prototype.unDrag,
+    unselect:Rock.prototype.unselect,
+    select:Rock.prototype.select,
+    dragmove:Rock.prototype.dragmove,
+    dragstart:Rock.prototype.dragstart,
+    dragshow:Rock.prototype.dragshow,
+    dragstop:Rock.prototype.dragstop,
+    showhitsector:Rock.prototype.showhitsector,
+    showpanel() { 
+	Unit.prototype.showpanel.call(this); 
+	$("#bombpositiondial button").show();
+    },
+    //showpanel:Rock.prototype.showpanel,
+//    turn(n) {
+//        this.m.rotate(n,0,0);
+//        this.show();
+//    },
+    turn:Rock.prototype.turn,
     isWeapon() { return false; },
     isBomb() { return true; },
+    showOrdnance() { return this+1; },
+    aiactivate() {
+        var victims = [], ship;
+        var bRange = 0;
+        if(this.canbedropped()){  // Probably dropping early
+            // Fill in with maneuver-drop bomb logic
+            bRange=3;
+        }
+        else if(this.candoaction()){ // Probably dropping after closing
+            // Fill in with action-drop bomb logic
+            bRange=2;
+        }
+        for(var i in squadron){
+            ship=squadron[i];
+            if(this.unit.isenemy(ship)
+                    &&((this.unit.getrange(ship)<=bRange && !this.unit.isinprimaryfiringarc(ship))
+                    ||this.unit.getrange(ship)<=1) // For Deathrain
+                    )
+                victims.push(ship);
+        }
+        return victims.length>0;
+    },
     canbedropped() { return this.isactive&&!this.unit.hasmoved&&this.unit.lastdrop!=round; },
     desactivate() { this.isactive=false;this.unit.movelog("D-"+this.unit.upgrades.indexOf(this)); },
     getBall() {
@@ -38,7 +81,7 @@ Bomb.prototype = {
     actiondrop(n) {
 	this.unit.lastdrop=round;
 	$(".bombs").remove(); 
-	this.drop(this.unit.getbomblocation(),n);
+	this.drop(this.unit.getbomblocation(this),n);
 	//this.unit.showactivation();
     },
     toString() {
@@ -98,6 +141,9 @@ Bomb.prototype = {
 	    for (i=0; i<moves.length; i++) this.pos[i].remove();
 	    f(this,k);
 	}.bind(this);
+        if(this.unit.ia){ // Reduce possible bomb locations 
+            moves=this.unit.chooseBombDrop(moves);
+        }
 	if (moves.length==1) {
 	    this.pos[0]=this.getOutline(moves[0]).attr({fill:this.unit.color,opacity:0.7});
 	    resolve(moves[0],0,cleanup);
@@ -118,15 +164,15 @@ Bomb.prototype = {
     },
     drop(lm,n) {
 	var dropped=this;
-	if (this.ordnance) { 
-	    this.ordnance=false; 
+	if (this.ordnance>0) { 
+	    this.ordnance-=1; 
 	    dropped=$.extend({},this);
 	} else this.desactivate();
 	dropped.resolveactionmove(this.unit.getbombposition(lm,this.size), function(k) {
 	    this.display(0,0);
 	    this.unit.bombdropped(this);
 	    //this.unit.log("endaction dropped "+n);
-	    if (typeof n!="undefined") this.unit.endnoaction(n,"DROP");
+	    if (typeof n!="undefined") this.unit.endaction(n,"DROP");
 	}.bind(dropped),false,true);
     },
     display(x,y) {
@@ -143,7 +189,7 @@ Bomb.prototype = {
 	    var startY=0;
 	    if (h>w) startY=(h-w)/2;
 	    else startX=(w-h)/2;
-	    var max=Math.max(900.0/w,900.0/h);
+	    var max=Math.max(GW/w,GH/h);
 	    
 	    var bbox=this.g.getBBox();
 	    var p=$("#svgout").position();
@@ -159,13 +205,23 @@ Bomb.prototype = {
 	}.bind(this));
 	this.g.transform(this.m);
 	this.g.appendTo(VIEWPORT);
+        // Drag setup
+        this.g.addClass("unit");
+        var b=this.g.getBBox();
+        this.o=[];
+        var scale=0.27; // Magic number stolen from Rock constructor
+	for (var k=1; k<4; k++) {
+	    this.o[k]=s.ellipse(0,0,100*k+b.width/2,100*k+b.height/2).attr({pointerEvents:"none",display:"none",fill:WHITE,opacity:0.3,strokeWidth:2});
+	}
 	this.g.attr("display","block");
 	BOMBS.push(this);
 	if (this.stay) {
 	    OBSTACLES.push(this);
 	    var p=this.getcollisions();
 	    if (p.length>0) this.unit.resolveactionselection(p,function(k) {
+                this.preexplode(true,[p[k],true]);
 		this.detonate(p[k],true);
+                this.postexplode(true,[p[k],true]);
 	    }.bind(this));
 	}
     },
@@ -190,13 +246,15 @@ Bomb.prototype = {
 	this.g.remove();
 	BOMBS.splice(BOMBS.indexOf(this),1);
     },
+    preexplode(isMine,args) {$(document).trigger("preexplode"+this.unit.team,[this,isMine,args]); },
+    postexplode(isMine,args) {$(document).trigger("postexplode"+this.unit.team,[this,isMine,args]); },
     explode() { this.explode_base(); },
     detonate(t,immediate) {
 	OBSTACLES.splice(OBSTACLES.indexOf(this),1);
 	this.explode_base();
     },
     endround() {},
-    show() {},
+    show:Rock.prototype.show
 }
 function Weapon(sh,wdesc) {
 	this.isprimary=false;
@@ -204,10 +262,11 @@ function Weapon(sh,wdesc) {
 	$.extend(this,wdesc);
 	sh.upgrades[sh.upgrades.length]=this;
 	this.wrapping=[];
-	this.ordnance=false;
+	this.ordnance=0;
 	//log("Installing weapon "+this.name+" ["+this.type+"]");
 	this.isactive=true;
 	this.unit=sh;
+	this.lastattackroll = -1;
 
 	sh.weapons.push(this);
 }
@@ -242,9 +301,10 @@ Weapon.prototype={
     wrap_after:Unit.prototype.wrap_after,
     isBomb() { return false; },
     isWeapon() { return true; },
+	showOrdnance() { return this+1; },
     desactivate() {
-	if (this.ordnance&&this.type.match(/Torpedo|Missile|Illicit/)) {
-	    this.ordnance=false;
+	if (this.ordnance>0&&this.type.match(/Torpedo|Missile|Bomb|Illicit/)) {
+	    this.ordnance-=1;
 	} else { this.isactive=false; /*this.unit.movelog("D-"+this.unit.upgrades.indexOf(this)); this.unit.show();*/ }
     },
     toString() {
@@ -293,7 +353,7 @@ Weapon.prototype={
 	if (typeof sh=="undefined") {
 	    return true;
 	}
-	if (!this.isactive||this.unit.isally(sh)) return false;
+	if (!this.isactive||sh.isdocked||this.unit.isally(sh)) return false;
 	if (this.unit.checkcollision(sh)) return false;
 	if (typeof this.getrequirements()!="undefined") {
 	    var s="Target";
@@ -317,6 +377,7 @@ Weapon.prototype={
     },
     declareattack(sh) { 
 	if (typeof this.getrequirements()!="undefined") {
+		this.twinattack=false;
 	    var s="Target";
 	    var u="Focus";
 	    if (s.match(this.getrequirements())&&this.consumes===true&&this.unit.canusetarget(sh)) {
@@ -351,6 +412,9 @@ Weapon.prototype={
 	var r=this.unit.getprimarysector(sh,m);
 	if (r<4) return r;
 	if (typeof this.auxiliary=="undefined") return 4;
+        if (typeof this.auxiliary!="undefined" && !this.type.match(/Turretlaser|Bilaser|Mobilelaser|Laser180|Laser|Turret/)){
+            return this.getauxiliarysector(sh); // For VCX-100 w/o Phantom & Ghost, etc.
+        }
 	return this.unit.getauxiliarysector(sh,m);
     },
     getrange(sh) {
@@ -366,7 +430,7 @@ Weapon.prototype={
 	return 0;
     },
     endattack(c,h) {
-	if (this.type.match(/Torpedo|Missile/)) this.desactivate();
+	if (this.type.match(/Torpedo|Missile/) && (this.twinattack != true)) this.desactivate();
     },
     hasdoubleattack() { return false; },
     hasenemiesinrange() {
@@ -381,7 +445,7 @@ Weapon.prototype={
 	if (typeof enemylist=="undefined") enemylist=squadron;
 	for (var i in enemylist) {
 	    var sh=enemylist[i];
-	    if (sh.isenemy(this.unit)&&this.getrange(sh)>0) r.push(sh);
+	    if (!sh.isdocked&&sh.isenemy(this.unit)&&this.getrange(sh)>0) r.push(sh);
 	}
 	return r;
     },
@@ -400,10 +464,13 @@ Weapon.prototype={
 function Upgradefromid(sh,i) {
     var upg=UPGRADES[i];
     upg.id=i;
-    if (upg.type==Unit.BOMB) return new Bomb(sh,upg);
-    if (typeof upg.isWeapon != "undefined") { 
-	if (upg.isWeapon()) return new Weapon(sh,upg);
-	else return new Upgrade(sh,i);
+    if (upg.type==Unit.BOMB) {
+		if (typeof upg.isBomb != "undefined" && !upg.isBomb()) return new Upgrade(sh,i);
+		return new Bomb(sh,upg);
+	}
+    if (typeof upg.isWeapon != "undefined") {
+		if (upg.isWeapon()) return new Weapon(sh,upg);
+		else return new Upgrade(sh,i);
     }
     if (upg.type.match(/Turretlaser|Bilaser|Mobilelaser|Laser180|Laser|Torpedo|Cannon|Missile|Turret/)||upg.isweapon===true) return new Weapon(sh,upg);
     return new Upgrade(sh,i);
@@ -415,7 +482,7 @@ function Upgrade(sh,i) {
 	this.isactive=true;
 	this.unit=sh;
 	this.wrapping=[];
-	this.ordnance=false;
+	this.ordnance=0;
 	/*
 	 var addedaction=this.addedaction;
 	 if (typeof addedaction!="undefined") {
@@ -442,6 +509,7 @@ Upgrade.prototype={
     },
     isWeapon() { return false; },
     isBomb() { return false; },
+	showOrdnance() { return this+1; },
     getlowrange() {
 	return this.range[0];
     },
@@ -450,8 +518,8 @@ Upgrade.prototype={
     },
     endround() {},
     desactivate() {
-	if (this.ordnance&&this.type.match(/Torpedo|Missile|Illicit/)) {
-	    this.ordnance=false;
+	if (this.ordnance>0&&this.type.match(/Torpedo|Missile|Bomb|Illicit/)) {
+	    this.ordnance-=1;
 	} else { this.isactive=false; this.unit.movelog("D-"+this.unit.upgrades.indexOf(this)); this.unit.show(); }
     },
     show() {},
@@ -487,17 +555,46 @@ Upgrade.prototype={
 	    }
 	    sh.showupgradeadd();
 	}
-	// Emperor
+	// Emperor, Bomblet Generator, Jabba
 	if (typeof this.takesdouble!="undefined") {
-	    for (j=0; j<sh.upgradetype.length; j++){
-		if (sh.upgradetype[j]==this.type&&(sh.upg[j]<0||UPGRADES[sh.upg[j]].name!=this.name)) {
-		    break;
-		}
-	    }
-	    if (j<sh.upgradetype.length) {
-		if (sh.upg[j]>-1) removeupgrade(sh,j,sh.upg[j]);
-		sh.upg[j]=-2;
-	    }
+            var typeslots = [];
+            var installedtype = 0;
+            //var typeslots = 0,installedtype = 0;
+            // Possibly track slots and ID numbers of all same-type upgrades
+            for (var k=0; k<sh.upgradetype.length; k++){ // Count all avail same-type slots
+                if(sh.upgradetype[k]==this.type) typeslots.push({index: k});
+            }
+            for (k=0; k<sh.upgrades.length; k++){
+                if(sh.upgrades[k].type===this.type){ // upgrades' order is dependent on install order
+                    if(typeof sh.upgrades[k].takesdouble==="undefined"||sh.upgrades[k].takesdouble===false){
+                        installedtype++;
+                    }
+                    else{
+                        installedtype+=2; // also counts current double card
+                    }
+                }
+            }
+            if(installedtype > typeslots.length){ // Check if there are enough slots for all upgrades of this.type
+                // If not, just uninstall this and NOTHING ELSE!
+                removeupgrade(sh,typeslots[typeslots.length-2].index,this.id);                
+//                for (j=0; j<sh.upgradetype.length; j++){
+//                    if (sh.upgradetype[j]==this.type&&(sh.upg[j]<0||UPGRADES[sh.upg[j]].name!=this.name)) {
+//                        break;
+//                    }
+//                }
+//                if (j<sh.upgradetype.length) {
+//                    if (sh.upg[j]>-1) removeupgrade(sh,j,sh.upg[j]);
+//                    sh.upg[j]=-2;
+//                }
+            }
+            else { // Remove one upgrade slot
+                for(var u in typeslots){
+                    if (sh.upg[typeslots[u].index]==-1){
+                        sh.upg[typeslots[u].index] = -2;
+                        break;
+                    }
+                }
+            }
 	    sh.showupgradeadd();
 	}
     },
@@ -532,10 +629,19 @@ Upgrade.prototype={
 		    sh.upg[i]=-1;
 	}
 	if (typeof this.takesdouble!="undefined") {
-	    for (i=0; i<sh.upgradetype.length; i++)
-		if (sh.upgradetype[i]==this.type&&sh.upg[i]==-2)
+	    for (i=0; i<sh.upgradetype.length; i++){
+		if (sh.upgradetype[i]==this.type&&sh.upg[i]==-2){
 		    sh.upg[i]=-1;
+                    break;
+                }
+            }
 	}
+        for(i in sh.upgrades){ // We need to delete this from upgrades or other stuff gets broken
+            if(sh.upgrades[i].type==this.type && sh.upgrades[i].id==this.id){
+                sh.upgrades.splice(i,1);
+                break;
+            }
+        }
     }
 }
 

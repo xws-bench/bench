@@ -1,0 +1,121 @@
+{
+  "tournament": {
+    "date": "2016-01-31", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1065, 
+    "name": "Torneo De Invierno 2016", 
+    "players": [
+      {
+        "mov": 200, 
+        "name": "0B3LUX", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 180, 
+        "name": "Xavier Cortes", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 159, 
+        "name": "Adrian Zurita", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 41, 
+        "name": "Toni Lopez", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 20, 
+        "name": "Carlos Sole", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Xavier Cortes", 
+            "player1points": 100, 
+            "player2": "Carlos Sole", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "0B3LUX", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Adrian Zurita", 
+            "player1points": 59, 
+            "player2": "Toni Lopez", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Adrian Zurita", 
+            "player1points": 0, 
+            "player2": "Xavier Cortes", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Toni Lopez", 
+            "player1points": 0, 
+            "player2": "0B3LUX", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Carlos Sole", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Roquetes", 
+      "country": "Espaa", 
+      "lat": null, 
+      "lon": null, 
+      "name": "Roquetes", 
+      "state": "Catalua"
+    }
+  }
+}

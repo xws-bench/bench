@@ -1,0 +1,835 @@
+{
+  "tournament": {
+    "date": "2017-05-27", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2908, 
+    "name": "40th Anniversary Tournament", 
+    "players": [
+      {
+        "mov": 130, 
+        "name": "Cody Fenton", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "riggedcargochute"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "kaatoleeachos", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 707, 
+        "name": "Jon Messmore", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "teltrevura", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 589, 
+        "name": "Joshua Gardner", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon", 
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon", 
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 567, 
+        "name": "Jeff Ostler", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 530, 
+        "name": "Samuel Brody-Boyd", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }, 
+            {
+              "name": "puresabacc", 
+              "ship": "tiestriker", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "targetingsynchronizer"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 513, 
+        "name": "Ray Fox", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "thermaldetonators", 
+                  "clustermines"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 512, 
+        "name": "Daniel Fiorentini", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 462, 
+        "name": "Hasan Khan", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 354, 
+        "name": "Doug Culver", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 348, 
+        "name": "Dave Semons", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 343, 
+        "name": "Josh Carney", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 337, 
+        "name": "Nathan Kitchen", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "kaatoleeachos", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "blackmarketslicertools"
+                ]
+              }
+            }, 
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 362, 
+        "name": "Christian Billman", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 1, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 326, 
+        "name": "Weston Thobaben", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 304, 
+        "name": "Michael Pollock", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 1, 
+        "sos": "0.69"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "oldteroch", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "protectoratestarfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "concorddawnprotector"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "kavil", 
+              "ship": "ywing", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "bombloadout"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 299, 
+        "name": "Michael Mulroy", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 1, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 17, 
+        "name": "Michael Harris", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 0, 
+        "sos": "0.50"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Doug Culver", 
+            "player1points": 75, 
+            "player2": "Weston Thobaben", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Pollock", 
+            "player1points": 17, 
+            "player2": "Jon Messmore", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Kitchen", 
+            "player1points": 0, 
+            "player2": "Jeff Ostler", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Mulroy", 
+            "player1points": 49, 
+            "player2": "Josh Carney", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dave Semons", 
+            "player1points": 100, 
+            "player2": "Hasan Khan", 
+            "player2points": 76, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Harris", 
+            "player1points": 0, 
+            "player2": "Ray Fox", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christian Billman", 
+            "player1points": 70, 
+            "player2": "Cody Fenton", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Fiorentini", 
+            "player1points": 40, 
+            "player2": "Joshua Gardner", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Samuel Brody-Boyd", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Samuel Brody-Boyd", 
+            "player1points": 100, 
+            "player2": "Joshua Gardner", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeff Ostler", 
+            "player1points": 100, 
+            "player2": "Doug Culver", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dave Semons", 
+            "player1points": 0, 
+            "player2": "Jon Messmore", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Carney", 
+            "player1points": 62, 
+            "player2": "Ray Fox", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cody Fenton", 
+            "player1points": 0, 
+            "player2": "Daniel Fiorentini", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Weston Thobaben", 
+            "player1points": 100, 
+            "player2": "Michael Mulroy", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Hasan Khan", 
+            "player1points": 25, 
+            "player2": "Michael Pollock", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Harris", 
+            "player1points": 17, 
+            "player2": "Christian Billman", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Kitchen", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Samuel Brody-Boyd", 
+            "player1points": 100, 
+            "player2": "Jeff Ostler", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ray Fox", 
+            "player1points": 25, 
+            "player2": "Jon Messmore", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dave Semons", 
+            "player1points": 76, 
+            "player2": "Daniel Fiorentini", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Carney", 
+            "player1points": 100, 
+            "player2": "Christian Billman", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Weston Thobaben", 
+            "player1points": 63, 
+            "player2": "Nathan Kitchen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Pollock", 
+            "player1points": 38, 
+            "player2": "Doug Culver", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joshua Gardner", 
+            "player1points": 100, 
+            "player2": "Michael Harris", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Hasan Khan", 
+            "player1points": 100, 
+            "player2": "Michael Mulroy", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Samuel Brody-Boyd", 
+            "player1points": 51, 
+            "player2": "Jon Messmore", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ray Fox", 
+            "player1points": 75, 
+            "player2": "Nathan Kitchen", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joshua Gardner", 
+            "player1points": 100, 
+            "player2": "Josh Carney", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Doug Culver", 
+            "player1points": 52, 
+            "player2": "Daniel Fiorentini", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeff Ostler", 
+            "player1points": 100, 
+            "player2": "Michael Pollock", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christian Billman", 
+            "player1points": 39, 
+            "player2": "Hasan Khan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Weston Thobaben", 
+            "player1points": 52, 
+            "player2": "Dave Semons", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Michael Harris", 
+            "player1points": 0, 
+            "player2": "Michael Mulroy", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Columbus", 
+      "country": "United States of America", 
+      "lat": "40.085103000000", 
+      "lon": "-82.974177000000", 
+      "name": "Ravenstone Games", 
+      "state": "Ohio"
+    }
+  }
+}

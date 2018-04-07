@@ -1,0 +1,366 @@
+{
+  "tournament": {
+    "date": "2017-11-25", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3701, 
+    "name": "d20 Game Center Store Championship 2017", 
+    "players": [
+      {
+        "mov": 692, 
+        "name": "Marcelo", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 544, 
+        "name": "Marcos", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 467, 
+        "name": "Henrique L.", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 439, 
+        "name": "Viny", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 527, 
+        "name": "Leandro", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "commanderkenkirk", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "bomb": [
+                  "ionbombs"
+                ], 
+                "crew": [
+                  "emperorpalpatine", 
+                  "ysanneisard"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "targetingcomputer"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 456, 
+        "name": "Leonardo Remanowski", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 441, 
+        "name": "Rodrigo", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 324, 
+        "name": "Clber", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 305, 
+        "name": "Juliano", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 298, 
+        "name": "Pedro", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 167, 
+        "name": "Joo Pedro", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.31"
+      }, 
+      {
+        "mov": 140, 
+        "name": "Henrique D.", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 0, 
+        "sos": "0.38"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Juliano", 
+            "player1points": 0, 
+            "player2": "Marcelo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Clber", 
+            "player1points": 100, 
+            "player2": "Joo Pedro", 
+            "player2points": 12, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcos", 
+            "player1points": 69, 
+            "player2": "Pedro", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Leandro", 
+            "player1points": 56, 
+            "player2": "Henrique L.", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Henrique D.", 
+            "player1points": 0, 
+            "player2": "Rodrigo", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Leonardo Remanowski", 
+            "player1points": 56, 
+            "player2": "Viny", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Clber", 
+            "player1points": 0, 
+            "player2": "Marcelo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Henrique L.", 
+            "player1points": 0, 
+            "player2": "Marcos", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Viny", 
+            "player1points": 100, 
+            "player2": "Rodrigo", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Henrique D.", 
+            "player1points": 32, 
+            "player2": "Leonardo Remanowski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Leandro", 
+            "player1points": 100, 
+            "player2": "Pedro", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juliano", 
+            "player1points": 100, 
+            "player2": "Joo Pedro", 
+            "player2points": 25, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Marcos", 
+            "player1points": 72, 
+            "player2": "Marcelo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Viny", 
+            "player1points": 41, 
+            "player2": "Leandro", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Leonardo Remanowski", 
+            "player1points": 32, 
+            "player2": "Rodrigo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juliano", 
+            "player1points": 62, 
+            "player2": "Clber", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Henrique L.", 
+            "player1points": 100, 
+            "player2": "Pedro", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joo Pedro", 
+            "player1points": 100, 
+            "player2": "Henrique D.", 
+            "player2points": 70, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Viny", 
+            "player1points": 36, 
+            "player2": "Marcelo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcos", 
+            "player1points": 100, 
+            "player2": "Rodrigo", 
+            "player2points": 55, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Henrique L.", 
+            "player1points": 100, 
+            "player2": "Clber", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joo Pedro", 
+            "player1points": 0, 
+            "player2": "Leonardo Remanowski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juliano", 
+            "player1points": 14, 
+            "player2": "Leandro", 
+            "player2points": 73, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Henrique D.", 
+            "player1points": 0, 
+            "player2": "Pedro", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Ribeiro Preto", 
+      "country": "Brazil", 
+      "lat": "-20.613500000000", 
+      "lon": "-48.918837719298", 
+      "name": "d20 Game Center", 
+      "state": "Sao Paulo"
+    }
+  }
+}

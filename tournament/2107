@@ -1,0 +1,118 @@
+{
+  "tournament": {
+    "date": "2016-09-18", 
+    "format": "400", 
+    "id": 2107, 
+    "name": "Battle Zone Ursa 2016 Team Epic", 
+    "players": [
+      {
+        "mov": 1623, 
+        "name": "Jon & Joshua", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 1521, 
+        "name": "Luke & Cody", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 724, 
+        "name": "Tyson & James", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 932, 
+        "name": "Andrew & Gary", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 0, 
+        "sos": "0.67"
+      }
+    ], 
+    "round_length": 150, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Andrew & Gary", 
+            "player1points": 109, 
+            "player2": "Jon & Joshua", 
+            "player2points": 209, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luke & Cody", 
+            "player1points": 324, 
+            "player2": "Tyson & James", 
+            "player2points": 59, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Luke & Cody", 
+            "player1points": 218, 
+            "player2": "Jon & Joshua", 
+            "player2points": 320, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Tyson & James", 
+            "player1points": 129, 
+            "player2": "Andrew & Gary", 
+            "player2points": 119, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jon & Joshua", 
+            "player1points": 265, 
+            "player2": "Tyson & James", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luke & Cody", 
+            "player1points": 215, 
+            "player2": "Andrew & Gary", 
+            "player2points": 57, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Anchorage", 
+      "country": "United States of America", 
+      "lat": "61.216312900000", 
+      "lon": "-149.894852200000", 
+      "name": "", 
+      "state": "Alaska"
+    }
+  }
+}

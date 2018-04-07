@@ -1,0 +1,175 @@
+{
+  "tournament": {
+    "date": "2016-10-29", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2233, 
+    "name": "All Hallow's Wing 2016", 
+    "players": [
+      {
+        "mov": 653, 
+        "name": "Corey Close", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 510, 
+        "name": "Jason Crossen", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 375, 
+        "name": "Billy Appel", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 347, 
+        "name": "Thom Hennen", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 315, 
+        "name": "Paul Appel", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Jason Crossen", 
+            "player1points": 24, 
+            "player2": "Thom Hennen", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Billy Appel", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Corey Close", 
+            "player1points": 100, 
+            "player2": "Paul Appel", 
+            "player2points": 49, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Paul Appel", 
+            "player1points": 64, 
+            "player2": "Jason Crossen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thom Hennen", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Corey Close", 
+            "player1points": 100, 
+            "player2": "Billy Appel", 
+            "player2points": 49, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Billy Appel", 
+            "player1points": 100, 
+            "player2": "Paul Appel", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Crossen", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Thom Hennen", 
+            "player1points": 49, 
+            "player2": "Corey Close", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Thom Hennen", 
+            "player1points": 0, 
+            "player2": "Corey Close", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jason Crossen", 
+            "player1points": 100, 
+            "player2": "Billy Appel", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Paul Appel", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Davenport", 
+      "country": "United States", 
+      "lat": "41.523643600000", 
+      "lon": "-90.577636700000", 
+      "name": "", 
+      "state": "IA"
+    }
+  }
+}

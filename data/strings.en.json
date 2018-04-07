@@ -36,7 +36,7 @@
 	"'Quickdraw'":{"text":"Once per round, when you lose a shield token, you may perform a primary weapon attack."},
 	"'Backdraft'":{"text":"When attacking a ship inside your auxiliary firing arc, you may add 1 %CRIT% result."},
 	"Rey":{"text":"When attacking or defending, if the enemy ship is inside your firing arc, you may reroll up to 2 of your blank results."},
-	"Turbolaser":{"text":"A laser cannon turret. It cannot move."}, 
+	"Turbolaser":{"text":"A laser cannon turret. It cannot move."},
 	"Thermal Exhaust Port":{"text":"The thermal exhaust of the Death Star. Destruction of the exhaust port causes automatic win for the opponent."},
     "Wedge Antilles":{"text":
     "When attacking, reduce the defender's agility value by 1 (to a minimum of 0)."},
@@ -251,9 +251,35 @@
 	"Countess Ryad":{"text":"When you reveal a %STRAIGHT% maneuver, you may treat it as a %UTURN% maneuver."},
 	"'Deathfire'":{"text":"When you reveal your maneuver dial or after you perform an action, you may perform a %BOMB% Upgrade card action as a free action."},
 	"Unkar Plutt (Scum)":{"text":"At the end of the Activation phase you must assign a tractor beam token to each ship you are touching."},
-	"Constable Zuvio (Scum)":{"text":"When you reveal a reverse maneuver, you may drop a bomb using your front guides (including a bomb with the %ACTION% header)."}
+	"Constable Zuvio (Scum)":{"text":"When you reveal a reverse maneuver, you may drop a bomb using your front guides (including a bomb with the %ACTION% header)."},
+	"Lieutenant Kestal":{"text":"When attacking, you may spend 1 focus token to cancel all of the defender's blank and focus results."},
+	"'Double Edge'":{"text":"Once per round, after you perform a secondary weapon attack that does not hit, you may perform an attack with a different weapon."},
+	"Wullffwarro":{"text":"When attacking, if you have no shields and at least 1 Damage card assigned to you, roll 1 additional attack die."},
+	"Lowhhrick":{"text":"When another friendly ship at Range 1 is defending, you may spend 1 reinforce token. If you do, the defender adds 1 evade result."},
+	"Captain Nym (Scum)":{"text":"You may ignore friendly bombs. When a friendly ship is defending, if the attacker measures range through a friendly bomb token, the defender may add one evade result."},
+	"Sol Sixxa":{"text":"When dropping a bomb, you may use the Left Turn 1 or Right Turn 1 template instead of the Straight 1 template."},
+	"Captain Nym":{"text":"Once per round, you may prevent a friendly bomb from detonating."},
+	"Dalan Oberos":{"text":"If you are not stressed, when you reveal a turn, bank, or Segnor's Loop maneuver, you may instead treat it as a red Tallon Roll maneuver of the same direction [left or right] using the template of the original revealed maneuver."},
+	"Thweek":{"text":"During setup, before the 'Place Forces' step, you may choose 1 enemy ship and assign the 'Shadowed' or 'Mimicked' Condition card to it. "},
+	"Viktor Hel":{"text":"After defending, if you did not roll exactly 2 defense dice, the attacker receives 1 stress token."},
+	"Captain Jostero":{"text":"Once per round, after an enemy ship that is not defending against an attack suffers damage or critical damage, you may perform an attack against that ship."},
+	"Major Vynder":{"text":"When defending, if you have a weapons disabled token roll one additional defense die."},
+	"Lieutenant Karsabi":{"text":"When you receive a weapons disabled token, if you are not stressed, you may receive 1 stress token to remove it."},
+	"Torani Kulda":{"text":"After you perform an attack, each enemy ship inside your bullseye firing arc at Range 1-3 must choose to suffer 1 damage or remove all of its focus and evade tokens."},
+	"Dalan Oberos":{"text":"At the start of the Combat phase, you may acquire a target lock on an enemy ship inside your bullseye firing arc at Range 1-3."},
+	"Fenn Rau":{"text":"When an enemy ship inside your firing arc at Range 1-3 becomes the active ship during the Combat Phase, if you are not stressed you may receive one stress token. If you do, that ship cannot spend tokens to modify its dice when attacking this round."},
+	"AP-5":{"text":"When you perform the coordinate action, after you choose a friendly ship and before it performs a free action, you may receive 2 stress tokens to remove 1 stress token from it."},
+	"Kylo Ren (TIE Silencer)":{"text":"The first time you are hit by an attack each round, assign the 'I'll Show You the Dark Side' Condition card to the attacker."},
+	"Test Pilot 'Blackout'":{"text":"When attacking, if the attack is obstructed, the defender rolls 2 fewer defense dice (to a minimum of 0)."},
+	"'Crimson Leader'":{"text":"When attacking, if the defender is inside your firing arc, you may spend one hit or critical hit result to assign the 'Rattled' condition to the defender. "},
+	"'Cobalt Leader'":{"text":"When attacking, if the defender is at range 1 of a bomb token, the defender rolls 1 fewer defense die (to a minimum of 0)."},
+	"'Crimson Specialist'":{"text":"When placing a bomb token you dropped after revealing your maneuver dial, you may place the bomb token anywhere in the play area touching your ship."}
  },
     "upgrades": {
+	"First Order Vanguard":{"text":"TIE SILENCER ONLY. TITLE. When attacking, if the defender is the only ship inside your firing arc at Range 1-3, you may reroll one attack die. When defending, you may discard this card to reroll all of your defense dice."},
+	"Deflective Plating":{"text":"B/SF-17 BOMBER ONLY. When a friendly bomb detonates, you may choose not to suffer its effects. If you do, roll an attack die. On a %HIT% result, discard this card."},
+	"Ordnance Silos":{"text":"B/SF-17 BOMBER ONLY. When you equip this card, place 3 ordnance tokens on each other equipped %BOMB% Upgrade card. When you are instructed to discard an Upgrade card, you may discard 1 ordnance token on that card instead."},
+	"Flight-Assist Astromech":{"text":"You cannot attack ships outside your firing arc. After you execute a maneuver, if you did not overlap a ship or obstacle and there are no enemy ships inside your firing arc at range 1-3, you may perform a free boost or barrel roll action."},
 	"Jabba The Hutt(Crew)":{"text":"When you equip this card, place 1 illicit token on each %ILLICIT% Upgrade card in your squad. When you are instructed to discard an Upgrade card, you may discard 1 illicit token on that card instead."},
 	"Cikatro Vizago(Crew)":{"text":"At the start of the End phase, you may discard this card to replace a faceup %ILLICIT% or Cargo Upgrade card you have equipped with another Upgrade card of the same type of equal or fewer squad points."},
 	"BoShek(Crew)":{"text":"When a ship you are touching activates, you may look at its chosen maneuver. If you do, its owner must rotate the dial to an adjacent maneuver. The ship can reveal and execute that maneuver even while stressed."},
@@ -399,6 +425,7 @@
     "When you reveal a red maneuver, you may discard this card to treat that maneuver as a white maneuver until the end of the Activation phase."},
     "Advanced Sensors":{"text":
     "Immediately before you reveal your maneuver, you may perform 1 free action. If you use this ability, you must skip your 'Perform Action' step during this round."},
+    "Minefield Mapper":{"text":"During setup, after the \"Place Forces\" step, you may discard any number of your equipped Bomb upgrade cards. Place all corresponding bomb tokens in the play area beyond Range 3 of enemy ships."},
     "Sensor Jammer":{"text":
     "When defending, you may change 1 of the attacker's %HIT% results into a %FOCUS% result. The attacker cannot reroll the die with the changed result."},
     "Darth Vader(Crew)":{"text":
@@ -557,6 +584,8 @@
     "<strong>Attack:</strong> Attack 1 ship (even a ship outside your firing arc). Your %HIT% results cannot be canceled by defense dice. The defender may cancel %CRIT% results before %HIT% results."},
     "R4 Agromech":{"text":
     "When attacking, after you spend a focus token, you may acquire a target lock on the defender."},
+    "R4-E1":{"text":
+    "You can perform actions on your torpedo and bomb Upgrade cards even if you are stressed. After you perform an action in this way, you may discard this card to remove one stress token from your ship."},
     "K4 Security Droid(Crew)":{"text":
     "After executing a green maneuver, you may acquire a target lock."},
     "Outlaw Tech(Crew)":{"text":
@@ -643,7 +672,7 @@
         "Lightning Reflexes":{
             "text":"After you execute a white or green maneuver on your dial, you may discard this card to rotate your ship 180&deg;.  Then receive 1 stress token <strong>after</strong> the 'Check Pilot Stress' step."},
         "Twin Laser Turret":{
-            "text":"<strong>Attack:</strong> Perform this attack <strong>twice</strong> (even against a ship outside your firing arc). Each time this attack hits, the defender suffers 1 damage.  Then cancel <strong>all</strong> dice results."},        
+            "text":"<strong>Attack:</strong> Perform this attack <strong>twice</strong> (even against a ship outside your firing arc). Each time this attack hits, the defender suffers 1 damage.  Then cancel <strong>all</strong> dice results."},
 "Plasma Torpedoes":{
             "text":"<strong>Attack (target lock):</strong> Spend your target lock and discard this card to perform this attack. If this attack hits, after dealing damage, remove 1 shield token from the defender."},
 "R5-X3":{
@@ -673,9 +702,9 @@
             {"text": "You may treat all bank maneuvers (%BANKLEFT% and %BANKRIGHT%) as green maneuvers."},
         "Maneuvering Fins":
             {"text": "When you reveal a turn maneuver (%TURNLEFT% or %TURNRIGHT%), you may rotate your dial to the corresponding bank maneuver (%BANKLEFT% or %BANKRIGHT%) of the same speed."},
-        "Ion Projector":   
+        "Ion Projector":
             {"text": "After an enemy ship executes a maneuver that causes it to overlap your ship, roll 1 attack die.  On a %HIT% or %CRIT% result, the enemy ship receives 1 ion token."},
-	    "Integrated Astromech":{"text":"When you are dealt a Damage card, you may discard 1 of your %ASTROMECH% Upgrade cards to discard that Damage card (without resolving its effect)."},  
+	    "Integrated Astromech":{"text":"When you are dealt a Damage card, you may discard 1 of your %ASTROMECH% Upgrade cards to discard that Damage card (without resolving its effect)."},
         "Hound's Tooth":
             {"text": "After you are destroyed, before you are removed from the play area, you may <strong>deploy</strong> the <em>Nashtah Pup</em> ship. It cannot attack this round."},
      "Hera Syndulla(Crew)":{"text":"You can reveal and execute red maneuvers even while you are stressed."},
@@ -718,7 +747,23 @@
 	"Suppressive Fire":{"text":"When attacking a ship other than 'Captain Rex', roll 1 fewer attack die. When you declare an attack targeting 'Captain Rex' or when 'Captain Rex' is destroyed, remove this card. At the end of the Combat phase, if 'Captain Rex' did not perform an attack this phase, remove this card."},
 	"A Debt To Pay":{"text":"When attacking a ship that has the 'A Score to Settle' Upgrade card, you may change 1 %FOCUS% result to a %CRIT% result."},
 	"Arc Caster":{"text":"<b>Attack:</b> Attack 1 ship. If this attack hits, you must choose 1 other ship at Range 1 of the defender to suffer 1 damage. Then flip this card / At the start of the Combat phase, you may receive a weapons disabled token to flip this card."},
-	"Pulse Ray Shield":{"text":"During the End phase, you may receive 1 ion token to recover 1 shield (up to your shield value). You can equip this upgrade only if your shield value is '1'."}
+	"Pulsed Ray Shield":{"text":"During the End phase, you may receive 1 ion token to recover 1 shield (up to your shield value). You can equip this upgrade only if your shield value is '1'."},
+	"Advanced Optics":{"text":"You cannot have more than 1 focus token. During the End phase, do not remove an unused focus token from your ship."},
+	"StarViper Mk. II":{"text":"STARVIPER ONLY. TITLE. You may equip up to 2 different Title upgrades. When performing a barrel roll action, you must use the [Bank Left 1] or [Bank Right 1] template instead of the [Straight 1] template."},
+	"Shadowed":{"text":"'Thweek' is treated as having the pilot skill value you had after setup phase. The pilot skill value of 'Thweek' does not change if your pilot skill value changes or you are destroyed. "},
+	"Harpoon Missiles":{"text":"ATTACK (TARGET LOCK): Discard this card to perform this attack. If this attack hits, after the attack resolves, assign the 'Harpooned!' condition to the defender. "},
+	"Harpooned!":{"text":"When you are hit by an attack if there is at least 1 uncanceled critical result, each other ship at Range 1 suffers 1 damage. Then discard this card and receive 1 facedown Damage card. When you are destroyed, each ship at Range 1 suffers 1 damage. Action: Discard this card. Then roll 1 attack die. On a hit or critical result, suffer 1 damage."},
+	"Havoc":{"text":"SCURRG H-6 BOMBER ONLY. TITLE. Your upgrade bar gains the (System) and (Salvaged Astromech) upgrade icons and loses the (Crew) upgrade icon. You cannot equip non-unique (Salvaged Astromech) Upgrade cards."},
+	"Cad Bane":{"text":"Your upgrade bar gains the Bomb upgrade icon. Once per round, when an enemy ship rolls attack dice due to a friendly bomb detonating, you may choose any number of Focus and blank results. It must reroll those results."},
+	"Cruise Missiles":{"text":"ATTACK (TARGET LOCK): Discard this card to perform this attack. You may roll additional attack dice equal to the speed of the maneuver you executed this round, to a maximum of 4 additional dice."},
+	"Bomblet Generator":{"text":"When you reveal your maneuver, you may drop 1 bomblet token. This token detonates at the end of the Activation phase."},
+	"Trajectory Simulator":{"text":"You may launch bombs using the 5 Straight template instead of dropping them. You cannot launch bombs with the 'ACTION:' header in this way."},
+	"Wookiee Commandos":{"text":"When attacking, you may reroll your focus results."},
+	"Xg-1 Assault Configuration":{"text":"ALPHA-CLASS STAR WING ONLY. TITLE. Your upgrade bar gains two Cannons upgrade icons. You may perform attacks with cannons secondary weapons that cost two or fewer squad points even while you have a weapons disabled token."},
+	"Os-1 Arsenal Loadout":{"text":"ALPHA-CLASS STAR WING ONLY. TITLE. Your upgrade bar gains the Torpedo and Missile upgrade icons. You may perform attacks with torpedo and missile secondary weapons against ships you have locked even while you have a weapons disabled token."},
+    "Vaksai":{"text":"KIHRAXZ FIGHTER ONLY. TITLE. The squad point cost of each of your equipped upgrades is reduced by 1 (to a minimum of 0). You may equip up to 3 different modification upgrades."},
+    "Linked Battery":{"text":"When attacking with a primary weapon or a %CANNON% secondary weapon, you may reroll 1 attack die."},
+    "Unguided Rockets":{"text":"<strong>Attack (Focus):</strong> Attack 1 ship. Your attack dice can be modified only by spending a focus token for its standard effect."}
 },
     "criticals":{
 	"Weapons Failure":{"text":"When attacking, roll 1 fewer attack die. %ACTION% Roll 1 attack die. On a %HIT% or %CRIT% result, flip this card facedown."},
@@ -838,7 +883,23 @@
 	"m-latest":"Tournaments",
 	"m-combat":"Combat Trainer",
 	"m-simulation":"Combat",
-	"m-scenario":"Scenarios"
+	"m-scenario":"Scenarios",
+  "m-delet":"delet",
+  "m-back":"Back",
+  "m-imagebg":"Import setup image",
+  "m-strategy":"AI strategy",
+  "m-consol-color":"Console color",
+  "m-black":"Black",
+  "m-white":"White",
+  "m-settings":"Settings",
+  "m-formation":"Move in formation",
+  "m-individually":"Move individually",
+  "m-deathmatch":"Death match",
+  "m-destroyturns":"Destroy all units before Turn",
+  "m-highescore":"Highest score after Turn",
+  "m-asteroids":"Moving asteroids (BETA)",
+  "m-yes":"Yes",
+  "m-no":"No"
     },
     "ui":{
 	"selects":"Select a squad",

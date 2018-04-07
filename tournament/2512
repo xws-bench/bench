@@ -1,0 +1,688 @@
+{
+  "tournament": {
+    "date": "2017-01-17", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2512, 
+    "name": "Sparta Games X-Wing League Week #4", 
+    "players": [
+      {
+        "mov": 301, 
+        "name": "Aaron Bonar", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 2, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 248, 
+        "name": "Patrick McDonald", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "snapshot", 
+                  "juke"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "snapshot", 
+                  "juke"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "braylenstramm", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "crew": [
+                  "tactician"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }, 
+            {
+              "name": "jesspava", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d6"
+                ], 
+                "ept": [
+                  "swarmleader"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 500, 
+        "name": "Aaron Sayles", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }, 
+            {
+              "name": "chopper", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 374, 
+        "name": "Dan Sammons", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 354, 
+        "name": "Sam Douchey", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 353, 
+        "name": "Dustin Poskichil", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.67"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "airencracken", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "sabinewren", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "crew": [
+                  "landocalrissian"
+                ], 
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ], 
+                "title": [
+                  "phantom"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "zeborrelios"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 334, 
+        "name": "Jim Blakely", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ig88c", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "bomb": [
+                  "ionbombs"
+                ], 
+                "cannon": [
+                  "manglercannon", 
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }, 
+            {
+              "name": "ig88b", 
+              "ship": "aggressor", 
+              "upgrades": {
+                "bomb": [
+                  "ionbombs"
+                ], 
+                "cannon": [
+                  "manglercannon", 
+                  "tractorbeam"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ig2000"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 285, 
+        "name": "Marv Cole", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 323, 
+        "name": "Scott Ostronic", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 266, 
+        "name": "Greg Hilgendorf", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 254, 
+        "name": "Quinn Coveney", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronnovice", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronnovice", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "herasyndulla", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "gunner", 
+                  "captainrex"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 232, 
+        "name": "Marcus McKenna", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 227, 
+        "name": "AJ Meyers", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 217, 
+        "name": "Speedy Coveney", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "zuckuss", 
+              "ship": "g1astarfighter", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "crew": [
+                  "gunner"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "misthunter"
+                ]
+              }
+            }, 
+            {
+              "name": "tansariipointveteran", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "tansariipointveteran", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 182, 
+        "name": "James Bitz", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 0, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 150, 
+        "name": "David Moore", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 0, 
+        "sos": "0.33"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Marcus McKenna", 
+            "player1points": 100, 
+            "player2": "AJ Meyers", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marv Cole", 
+            "player1points": 60, 
+            "player2": "James Bitz", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David Moore", 
+            "player1points": 53, 
+            "player2": "Greg Hilgendorf", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Quinn Coveney", 
+            "player1points": 42, 
+            "player2": "Dan Sammons", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Speedy Coveney", 
+            "player1points": 0, 
+            "player2": "Patrick McDonald", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jim Blakely", 
+            "player1points": 21, 
+            "player2": "Aaron Sayles", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dustin Poskichil", 
+            "player1points": 81, 
+            "player2": "Scott Ostronic", 
+            "player2points": 57, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sam Douchey", 
+            "player1points": 62, 
+            "player2": "Aaron Bonar", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Dan Sammons", 
+            "player1points": 37, 
+            "player2": "Aaron Bonar", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marv Cole", 
+            "player1points": 0, 
+            "player2": "Dustin Poskichil", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Greg Hilgendorf", 
+            "player1points": 52, 
+            "player2": "Patrick McDonald", 
+            "player2points": 54, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcus McKenna", 
+            "player1points": 50, 
+            "player2": "Aaron Sayles", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "AJ Meyers", 
+            "player1points": 62, 
+            "player2": "David Moore", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Quinn Coveney", 
+            "player1points": 45, 
+            "player2": "Jim Blakely", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Scott Ostronic", 
+            "player1points": 31, 
+            "player2": "Sam Douchey", 
+            "player2points": 54, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James Bitz", 
+            "player1points": 27, 
+            "player2": "Speedy Coveney", 
+            "player2points": 40, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Dustin Poskichil", 
+            "player1points": 29, 
+            "player2": "Aaron Sayles", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Greg Hilgendorf", 
+            "player1points": 21, 
+            "player2": "Dan Sammons", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sam Douchey", 
+            "player1points": 100, 
+            "player2": "Marcus McKenna", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "AJ Meyers", 
+            "player1points": 42, 
+            "player2": "Jim Blakely", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marv Cole", 
+            "player1points": 100, 
+            "player2": "Speedy Coveney", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Quinn Coveney", 
+            "player1points": 100, 
+            "player2": "David Moore", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "James Bitz", 
+            "player1points": 0, 
+            "player2": "Scott Ostronic", 
+            "player2points": 70, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Omaha", 
+      "country": "United States of America", 
+      "lat": "41.258731700000", 
+      "lon": "-95.937873100000", 
+      "name": "Sparta Games Omaha", 
+      "state": "Nebraska"
+    }
+  }
+}

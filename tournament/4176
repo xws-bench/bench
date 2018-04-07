@@ -1,0 +1,1261 @@
+{
+  "tournament": {
+    "date": "2018-03-17", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 4176, 
+    "name": "Regional BSB 2018", 
+    "players": [
+      {
+        "mov": 308, 
+        "name": "Taira", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.55"
+      }, 
+      {
+        "mov": 200, 
+        "name": "Bruno Pires", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 1, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 787, 
+        "name": "Joao Mariani", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 1
+        }, 
+        "score": 5, 
+        "sos": "0.65"
+      }, 
+      {
+        "mov": 840, 
+        "name": "Herbert Parasio", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 2
+        }, 
+        "score": 4, 
+        "sos": "0.64"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "scavengercrane"
+                ], 
+                "mod": [
+                  "countermeasures", 
+                  "smugglingcompartment"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron-swx57", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "blackone"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 744, 
+        "name": "Marcos Oliveira", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 3
+        }, 
+        "score": 4, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 704, 
+        "name": "Clauber Alex", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 4
+        }, 
+        "score": 4, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 697, 
+        "name": "Sergio Pedrinha", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 5
+        }, 
+        "score": 4, 
+        "sos": "0.52"
+      }, 
+      {
+        "mov": 670, 
+        "name": "Henrique Lopes", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 6
+        }, 
+        "score": 4, 
+        "sos": "0.48"
+      }, 
+      {
+        "mov": 581, 
+        "name": "Thiago Barbosa", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 7
+        }, 
+        "score": 4, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 568, 
+        "name": "Leonardo Lourenco", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 8
+        }, 
+        "score": 4, 
+        "sos": "0.64"
+      }, 
+      {
+        "mov": 696, 
+        "name": "Diego Verissimo", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 3, 
+        "sos": "0.52"
+      }, 
+      {
+        "mov": 636, 
+        "name": "Renato Lopes", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 3, 
+        "sos": "0.40"
+      }, 
+      {
+        "mov": 613, 
+        "name": "Emerson", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 3, 
+        "sos": "0.40"
+      }, 
+      {
+        "mov": 589, 
+        "name": "Bruno Pugliese", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 3, 
+        "sos": "0.72"
+      }, 
+      {
+        "mov": 588, 
+        "name": "Filipe Campos", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 3, 
+        "sos": "0.36"
+      }, 
+      {
+        "mov": 570, 
+        "name": "Luiz Mituiti", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 548, 
+        "name": "Andre Luis", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "captainyorr", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "system": [
+                  "collisiondetector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 530, 
+        "name": "Gabriel Bonifacio", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 3, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 501, 
+        "name": "Joao Gervasio", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 3, 
+        "sos": "0.62"
+      }, 
+      {
+        "mov": 496, 
+        "name": "Matheus Angelini", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 3, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 423, 
+        "name": "Jefferson Ribeiro", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 3, 
+        "sos": "0.42"
+      }, 
+      {
+        "mov": 542, 
+        "name": "Armando", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 2, 
+        "sos": "0.55"
+      }, 
+      {
+        "mov": 541, 
+        "name": "Alex Kidd", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 2, 
+        "sos": "0.40"
+      }, 
+      {
+        "mov": 487, 
+        "name": "Ricardo Saldanha", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 2, 
+        "sos": "0.55"
+      }, 
+      {
+        "mov": 472, 
+        "name": "Rene", 
+        "rank": {
+          "swiss": 23
+        }, 
+        "score": 2, 
+        "sos": "0.48"
+      }, 
+      {
+        "mov": 466, 
+        "name": "Fabio", 
+        "rank": {
+          "swiss": 24
+        }, 
+        "score": 2, 
+        "sos": "0.48"
+      }, 
+      {
+        "mov": 453, 
+        "name": "Jairo Celani", 
+        "rank": {
+          "swiss": 25
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 441, 
+        "name": "Esau Megias", 
+        "rank": {
+          "swiss": 26
+        }, 
+        "score": 2, 
+        "sos": "0.28"
+      }, 
+      {
+        "mov": 437, 
+        "name": "Eduardo Vieira", 
+        "rank": {
+          "swiss": 27
+        }, 
+        "score": 2, 
+        "sos": "0.52"
+      }, 
+      {
+        "mov": 420, 
+        "name": "Renan de Mattos", 
+        "rank": {
+          "swiss": 28
+        }, 
+        "score": 2, 
+        "sos": "0.64"
+      }, 
+      {
+        "mov": 404, 
+        "name": "Fran Borges", 
+        "rank": {
+          "swiss": 29
+        }, 
+        "score": 2, 
+        "sos": "0.48"
+      }, 
+      {
+        "mov": 390, 
+        "name": "Diogo Said", 
+        "rank": {
+          "swiss": 30
+        }, 
+        "score": 2, 
+        "sos": "0.64"
+      }, 
+      {
+        "mov": 355, 
+        "name": "Rodrigo Vasconcellos", 
+        "rank": {
+          "swiss": 31
+        }, 
+        "score": 2, 
+        "sos": "0.40"
+      }, 
+      {
+        "mov": 348, 
+        "name": "Yan Matta", 
+        "rank": {
+          "swiss": 32
+        }, 
+        "score": 1, 
+        "sos": "0.60"
+      }, 
+      {
+        "mov": 306, 
+        "name": "Thiago Verissimo", 
+        "rank": {
+          "swiss": 33
+        }, 
+        "score": 1, 
+        "sos": "0.52"
+      }, 
+      {
+        "mov": 282, 
+        "name": "Marco Presley", 
+        "rank": {
+          "swiss": 34
+        }, 
+        "score": 1, 
+        "sos": "0.52"
+      }, 
+      {
+        "mov": 228, 
+        "name": "Wagner Oliveira", 
+        "rank": {
+          "swiss": 35
+        }, 
+        "score": 1, 
+        "sos": "0.45"
+      }, 
+      {
+        "mov": 189, 
+        "name": "Daniel Martinez", 
+        "rank": {
+          "swiss": 36
+        }, 
+        "score": 1, 
+        "sos": "0.40"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Thiago Verissimo", 
+            "player1points": 100, 
+            "player2": "Daniel Martinez", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Henrique Lopes", 
+            "player1points": 43, 
+            "player2": "Renan de Mattos", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Renato Lopes", 
+            "player1points": 16, 
+            "player2": "Bruno Pugliese", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex Kidd", 
+            "player1points": 52, 
+            "player2": "Fran Borges", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andre Luis", 
+            "player1points": 52, 
+            "player2": "Marco Presley", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Yan Matta", 
+            "player1points": 72, 
+            "player2": "Leonardo Lourenco", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Emerson", 
+            "player1points": 32, 
+            "player2": "Gabriel Bonifacio", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jairo Celani", 
+            "player1points": 100, 
+            "player2": "Wagner Oliveira", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Herbert Parasio", 
+            "player1points": 71, 
+            "player2": "Marcos Oliveira", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rene", 
+            "player1points": 41, 
+            "player2": "Matheus Angelini", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruno Pires", 
+            "player1points": 0, 
+            "player2": "Joao Gervasio", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Filipe Campos", 
+            "player1points": 52, 
+            "player2": "Jefferson Ribeiro", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fabio", 
+            "player1points": 38, 
+            "player2": "Luiz Mituiti", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Diogo Said", 
+            "player1points": 56, 
+            "player2": "Esau Megias", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Diego Verissimo", 
+            "player1points": 100, 
+            "player2": "Rodrigo Vasconcellos", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sergio Pedrinha", 
+            "player1points": 52, 
+            "player2": "Clauber Alex", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eduardo Vieira", 
+            "player1points": 100, 
+            "player2": "Taira", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ricardo Saldanha", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Armando", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Thiago Barbosa", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }, 
+          {
+            "player1": "Joao Mariani", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Andre Luis", 
+            "player1points": 33, 
+            "player2": "Joao Mariani", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Clauber Alex", 
+            "player1points": 100, 
+            "player2": "Thiago Verissimo", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Herbert Parasio", 
+            "player1points": 100, 
+            "player2": "Eduardo Vieira", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Henrique Lopes", 
+            "player1points": 0, 
+            "player2": "Bruno Pugliese", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Diogo Said", 
+            "player1points": 0, 
+            "player2": "Luiz Mituiti", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Armando", 
+            "player1points": 47, 
+            "player2": "Joao Gervasio", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Diego Verissimo", 
+            "player1points": 29, 
+            "player2": "Matheus Angelini", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jairo Celani", 
+            "player1points": 27, 
+            "player2": "Leonardo Lourenco", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gabriel Bonifacio", 
+            "player1points": 100, 
+            "player2": "Ricardo Saldanha", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thiago Barbosa", 
+            "player1points": 100, 
+            "player2": "Fran Borges", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jefferson Ribeiro", 
+            "player1points": 0, 
+            "player2": "Bruno Pires", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fabio", 
+            "player1points": 22, 
+            "player2": "Sergio Pedrinha", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcos Oliveira", 
+            "player1points": 100, 
+            "player2": "Taira", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Filipe Campos", 
+            "player1points": 0, 
+            "player2": "Rene", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Emerson", 
+            "player1points": 100, 
+            "player2": "Wagner Oliveira", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Esau Megias", 
+            "player1points": 34, 
+            "player2": "Yan Matta", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Presley", 
+            "player1points": 49, 
+            "player2": "Rodrigo Vasconcellos", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Renato Lopes", 
+            "player1points": 0, 
+            "player2": "Renan de Mattos", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex Kidd", 
+            "player1points": 100, 
+            "player2": "Daniel Martinez", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Joao Mariani", 
+            "player1points": 100, 
+            "player2": "Herbert Parasio", 
+            "player2points": 33, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Diogo Said", 
+            "player1points": 0, 
+            "player2": "Herbert Parasio", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thiago Barbosa", 
+            "player1points": 27, 
+            "player2": "Leonardo Lourenco", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Clauber Alex", 
+            "player1points": 100, 
+            "player2": "Matheus Angelini", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gabriel Bonifacio", 
+            "player1points": 52, 
+            "player2": "Joao Gervasio", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruno Pugliese", 
+            "player1points": 33, 
+            "player2": "Joao Mariani", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex Kidd", 
+            "player1points": 36, 
+            "player2": "Andre Luis", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jairo Celani", 
+            "player1points": 52, 
+            "player2": "Jefferson Ribeiro", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Henrique Lopes", 
+            "player1points": 100, 
+            "player2": "Marco Presley", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Armando", 
+            "player1points": 14, 
+            "player2": "Diego Verissimo", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcos Oliveira", 
+            "player1points": 100, 
+            "player2": "Yan Matta", 
+            "player2points": 57, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thiago Verissimo", 
+            "player1points": 0, 
+            "player2": "Luiz Mituiti", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Renan de Mattos", 
+            "player1points": 100, 
+            "player2": "Emerson", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sergio Pedrinha", 
+            "player1points": 73, 
+            "player2": "Ricardo Saldanha", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eduardo Vieira", 
+            "player1points": 100, 
+            "player2": "Fran Borges", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Martinez", 
+            "player1points": 100, 
+            "player2": "Rene", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Filipe Campos", 
+            "player1points": 100, 
+            "player2": "Taira", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Esau Megias", 
+            "player1points": 47, 
+            "player2": "Fabio", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rodrigo Vasconcellos", 
+            "player1points": 32, 
+            "player2": "Renato Lopes", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wagner Oliveira", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Herbert Parasio", 
+            "player1points": 100, 
+            "player2": "Leonardo Lourenco", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joao Gervasio", 
+            "player1points": 0, 
+            "player2": "Clauber Alex", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joao Mariani", 
+            "player1points": 100, 
+            "player2": "Gabriel Bonifacio", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sergio Pedrinha", 
+            "player1points": 57, 
+            "player2": "Diogo Said", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruno Pugliese", 
+            "player1points": 100, 
+            "player2": "Renan de Mattos", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thiago Barbosa", 
+            "player1points": 65, 
+            "player2": "Diego Verissimo", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luiz Mituiti", 
+            "player1points": 61, 
+            "player2": "Jairo Celani", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Henrique Lopes", 
+            "player1points": 49, 
+            "player2": "Andre Luis", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eduardo Vieira", 
+            "player1points": 59, 
+            "player2": "Matheus Angelini", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcos Oliveira", 
+            "player1points": 100, 
+            "player2": "Rene", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Renato Lopes", 
+            "player1points": 100, 
+            "player2": "Yan Matta", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fabio", 
+            "player1points": 0, 
+            "player2": "Armando", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Emerson", 
+            "player1points": 100, 
+            "player2": "Fran Borges", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marco Presley", 
+            "player1points": 41, 
+            "player2": "Alex Kidd", 
+            "player2points": 82, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Filipe Campos", 
+            "player1points": 100, 
+            "player2": "Daniel Martinez", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wagner Oliveira", 
+            "player1points": 0, 
+            "player2": "Ricardo Saldanha", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thiago Verissimo", 
+            "player1points": 52, 
+            "player2": "Jefferson Ribeiro", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Esau Megias", 
+            "player1points": 100, 
+            "player2": "Taira", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rodrigo Vasconcellos", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Joao Mariani", 
+            "player1points": 50, 
+            "player2": "Clauber Alex", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Henrique Lopes", 
+            "player1points": 0, 
+            "player2": "Herbert Parasio", 
+            "player2points": 63, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Leonardo Lourenco", 
+            "player1points": 33, 
+            "player2": "Joao Mariani", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Clauber Alex", 
+            "player1points": 31, 
+            "player2": "Herbert Parasio", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruno Pugliese", 
+            "player1points": 44, 
+            "player2": "Sergio Pedrinha", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Luiz Mituiti", 
+            "player1points": 0, 
+            "player2": "Marcos Oliveira", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Joao Gervasio", 
+            "player1points": 0, 
+            "player2": "Henrique Lopes", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thiago Barbosa", 
+            "player1points": 100, 
+            "player2": "Matheus Angelini", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jefferson Ribeiro", 
+            "player1points": 74, 
+            "player2": "Eduardo Vieira", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Diogo Said", 
+            "player1points": 32, 
+            "player2": "Gabriel Bonifacio", 
+            "player2points": 41, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Emerson", 
+            "player1points": 68, 
+            "player2": "Armando", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andre Luis", 
+            "player1points": 100, 
+            "player2": "Jairo Celani", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Renan de Mattos", 
+            "player1points": 15, 
+            "player2": "Diego Verissimo", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Renato Lopes", 
+            "player1points": 100, 
+            "player2": "Ricardo Saldanha", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex Kidd", 
+            "player1points": 0, 
+            "player2": "Filipe Campos", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fran Borges", 
+            "player1points": 100, 
+            "player2": "Marco Presley", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rodrigo Vasconcellos", 
+            "player1points": 49, 
+            "player2": "Wagner Oliveira", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thiago Verissimo", 
+            "player1points": 28, 
+            "player2": "Esau Megias", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Daniel Martinez", 
+            "player1points": 0, 
+            "player2": "Fabio", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rene", 
+            "player1points": 100, 
+            "player2": "Yan Matta", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Taira", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Joao Mariani", 
+            "player1points": 0, 
+            "player2": "Leonardo Lourenco", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Clauber Alex", 
+            "player1points": 44, 
+            "player2": "Sergio Pedrinha", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcos Oliveira", 
+            "player1points": 41, 
+            "player2": "Henrique Lopes", 
+            "player2points": 57, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Herbert Parasio", 
+            "player1points": 100, 
+            "player2": "Thiago Barbosa", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 8, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Regional", 
+    "venue": {
+      "city": "Brasilia", 
+      "country": "Brazil", 
+      "lat": "-15.793403500000", 
+      "lon": "-47.882317100000", 
+      "name": "Ludoteca BGC", 
+      "state": "Distrito Federal"
+    }, 
+    "video_url": "https://www.youtube.com/channel/UCvuQoo-Z0VvvdAYwaQE05qw"
+  }
+}

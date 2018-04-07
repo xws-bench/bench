@@ -187,7 +187,7 @@ function addupgradeaddhandler(u) {
 	    disabled=(UNIQUE[upg.name]==true)
 		||((upg.limited==true||this.exclupg[upg.type]==true)&&$("#unit"+this.id+" .upg tr[data="+p[i]+"]").length>0);
 	    var pts=upg.points+this.upgbonus[org];
-	    if (upg.points>0&&pts<0) pts=0;
+	    if (upg.points>=0&&pts<0) pts=0;
 	    var text=formatstring(getupgtxttranslation(upg.name,upg.type));
 	    if (upg.done!=true) text+="<div><strong class='m-notimplemented'></strong></div>";
 	    if (typeof upg.attack!="undefined") attacks=[{attack:upg.attack,lrange:upg.range[0],hrange:upg.range[1]}];
@@ -227,12 +227,13 @@ function addunit(n,faction,u) {
     if (typeof u=="undefined") {
 	u=new Unit(currentteam.team,n);
 	u.faction=faction;
-	for (var i in metaUnit.prototype) u[i]=metaUnit.prototype[i];
-	for (var j in PILOTS[u.pilotid]) {
-	    var p=PILOTS[u.pilotid];
-	    if (typeof p[j]=="function") u[j]=p[j];
-	}
     }
+    for (var i in metaUnit.prototype) u[i]=metaUnit.prototype[i];
+    for (var j in PILOTS[u.pilotid]) {
+        var p=PILOTS[u.pilotid];
+        if (typeof p[j]=="function") u[j]=p[j];
+    }
+
     if (typeof u.init!="undefined") {
 	u.init();
     }

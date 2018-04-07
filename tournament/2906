@@ -1,0 +1,602 @@
+{
+  "tournament": {
+    "date": "2017-05-27", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2906, 
+    "name": "VIII Lodzki Turniej X-Wing", 
+    "players": [
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ndrusuhlak", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 603, 
+        "name": "Endi", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "kyloren", 
+                  "hotshotcopilot", 
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 623, 
+        "name": "Mirek", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "sharabey", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "crew": [
+                  "janors"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }, 
+            {
+              "name": "jesspava", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "norrawexley", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "crew": [
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 530, 
+        "name": "Woszczu", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 480, 
+        "name": "Pijana Bantha", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 3, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 489, 
+        "name": "SlaaN", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 460, 
+        "name": "Czarny Kowboj", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "smugglingcompartment"
+                ]
+              }
+            }, 
+            {
+              "name": "norrawexley", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "crew": [
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 370, 
+        "name": "Szymon Blaszczyk", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 312, 
+        "name": "Radek Kierzkowski", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines"
+                ], 
+                "crew": [
+                  "marajade", 
+                  "rebelcaptive", 
+                  "darthvader"
+                ], 
+                "ept": [
+                  "wired"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }, 
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 268, 
+        "name": "Piotr Rzepecki", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 241, 
+        "name": "Franek Kuzanski", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 169, 
+        "name": "Przemo", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 255, 
+        "name": "Maciej Henryk Banasiak", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 0, 
+        "sos": "0.56"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Woszczu", 
+            "player1points": 100, 
+            "player2": "Przemo", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Czarny Kowboj", 
+            "player1points": 100, 
+            "player2": "Pijana Bantha", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Piotr Rzepecki", 
+            "player1points": 30, 
+            "player2": "Szymon Blaszczyk", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Endi", 
+            "player1points": 100, 
+            "player2": "Maciej Henryk Banasiak", 
+            "player2points": 43, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Franek Kuzanski", 
+            "player1points": 0, 
+            "player2": "Mirek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "SlaaN", 
+            "player1points": 100, 
+            "player2": "Radek Kierzkowski", 
+            "player2points": 16, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Czarny Kowboj", 
+            "player1points": 71, 
+            "player2": "Szymon Blaszczyk", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Woszczu", 
+            "player1points": 75, 
+            "player2": "SlaaN", 
+            "player2points": 72, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Endi", 
+            "player1points": 100, 
+            "player2": "Mirek", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Radek Kierzkowski", 
+            "player1points": 100, 
+            "player2": "Piotr Rzepecki", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Franek Kuzanski", 
+            "player1points": 100, 
+            "player2": "Przemo", 
+            "player2points": 41, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pijana Bantha", 
+            "player1points": 100, 
+            "player2": "Maciej Henryk Banasiak", 
+            "player2points": 21, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Woszczu", 
+            "player1points": 100, 
+            "player2": "Szymon Blaszczyk", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Endi", 
+            "player1points": 100, 
+            "player2": "Franek Kuzanski", 
+            "player2points": 43, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mirek", 
+            "player1points": 100, 
+            "player2": "Radek Kierzkowski", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pijana Bantha", 
+            "player1points": 100, 
+            "player2": "SlaaN", 
+            "player2points": 78, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Czarny Kowboj", 
+            "player1points": 100, 
+            "player2": "Przemo", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maciej Henryk Banasiak", 
+            "player1points": 63, 
+            "player2": "Piotr Rzepecki", 
+            "player2points": 66, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Woszczu", 
+            "player1points": 55, 
+            "player2": "Endi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mirek", 
+            "player1points": 100, 
+            "player2": "Czarny Kowboj", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pijana Bantha", 
+            "player1points": 100, 
+            "player2": "Szymon Blaszczyk", 
+            "player2points": 43, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Piotr Rzepecki", 
+            "player1points": 70, 
+            "player2": "SlaaN", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Radek Kierzkowski", 
+            "player1points": 100, 
+            "player2": "Franek Kuzanski", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Maciej Henryk Banasiak", 
+            "player1points": 75, 
+            "player2": "Przemo", 
+            "player2points": 81, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Lodz", 
+      "country": "Poland", 
+      "lat": "51.768732300000", 
+      "lon": "19.456991100000", 
+      "name": "", 
+      "state": "Lodzkie"
+    }
+  }
+}

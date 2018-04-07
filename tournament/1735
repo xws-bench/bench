@@ -1,0 +1,3752 @@
+{
+  "tournament": {
+    "date": "2016-06-04", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1735, 
+    "name": "Regional Namur 2016", 
+    "players": [
+      {
+        "mov": 0, 
+        "name": "dummy 1", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 0, 
+        "name": "dummy 2", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 689, 
+        "name": "Olivier \"DC-14\" van der Vorst", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 1
+        }, 
+        "score": 25, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 811, 
+        "name": "Gaetan \"Arzif\" Eloy", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 2
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "stealthdevice", 
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 803, 
+        "name": "Jonathan \"Elda\" Veil", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 3
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "slavei"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 765, 
+        "name": "Jean-Christophe \"Gnomp\" Delire", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 4
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "gonk"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "shieldupgrade"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }, 
+            {
+              "name": "teltrevura", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 746, 
+        "name": "Olivier \"bong\" Genin", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 5
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "tennumb", 
+              "ship": "bwing", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "crew": [
+                  "chewbacca"
+                ], 
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "airencracken", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 642, 
+        "name": "Guillaume \"Lorccan\" Hennebique", 
+        "rank": {
+          "elimination": 8, 
+          "swiss": 6
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist", 
+                  "janors"
+                ], 
+                "ept": [
+                  "predator"
+                ]
+              }
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 610, 
+        "name": "Nand \"Nand\" Torfs", 
+        "rank": {
+          "elimination": 3, 
+          "swiss": 7
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 650, 
+        "name": "Corentin \"Tyrt\" Lecocq", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 8
+        }, 
+        "score": 18, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ndrusuhlak", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "teltrevura", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "dengar"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "kavil", 
+              "ship": "ywing", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "bombloadout"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 683, 
+        "name": "Adrien \"Linkadi\" Lantieri", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "captainyorr", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ], 
+                "mod": [
+                  "ionprojector"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 648, 
+        "name": "Frederic \"CKlink\" Kleinen", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "wesjanson", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "graysquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "chopper", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "system": [
+                  "reinforceddeflectors"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 621, 
+        "name": "Jrme \"Engueyrrand\" Hennebique", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "crew": [
+                  "niennunb"
+                ], 
+                "mod": [
+                  "bwinge2"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "airencracken", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "swarmtactics"
+                ]
+              }
+            }, 
+            {
+              "name": "roarkgarnet", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 620, 
+        "name": "Quentin \"Gauvain\" Evrard", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "overclockedr4"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "4lom"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 598, 
+        "name": "Raphael \"Rahfa\" Cogneau", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "captainoicunn", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines"
+                ], 
+                "crew": [
+                  "emperorpalpatine", 
+                  "ysanneisard"
+                ], 
+                "ept": [
+                  "determination"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 588, 
+        "name": "Gregory \"lordmurata\" Hordies", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }, 
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "talasquadronpilot", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 567, 
+        "name": "Jean-Christophe \"BJC59\" Brunet", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ]
+              }
+            }, 
+            {
+              "name": "teltrevura", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "gonk"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "mod": [
+                  "antipursuitlasers"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 553, 
+        "name": "Fabrice \"Vobys\" Bovy", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "zeborrelios"
+                ], 
+                "system": [
+                  "reinforceddeflectors"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 520, 
+        "name": "Benoit \"Aslar\" Dieudonn", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "kavil", 
+              "ship": "ywing", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "protontorpedoes"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "protontorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "protontorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 518, 
+        "name": "Xavier \"Cartazimut\" Roussel", 
+        "rank": {
+          "swiss": 18
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "echo", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 504, 
+        "name": "Andy \"Mad_Mek\" Purcica", 
+        "rank": {
+          "swiss": 19
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 473, 
+        "name": "Steve \"Troll_mops\" Libert", 
+        "rank": {
+          "swiss": 20
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }, 
+            {
+              "name": "zuckuss", 
+              "ship": "g1astarfighter", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "crew": [
+                  "gunner"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "cloakingdevice"
+                ], 
+                "mod": [
+                  "stygiumparticleaccelerator"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "misthunter"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 564, 
+        "name": "Jean-Francois \"Bfg9999\" Bergmans", 
+        "rank": {
+          "swiss": 21
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "wesjanson", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "crackshot"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r5astromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 466, 
+        "name": "Vincent \"Rork\" Rycx", 
+        "rank": {
+          "swiss": 22
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "tactician", 
+                  "reconspecialist"
+                ], 
+                "system": [
+                  "reinforceddeflectors"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }, 
+            {
+              "name": "graysquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r2d6"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "protontorpedoes"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "prototypepilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 421, 
+        "name": "Francois \"Easy\" Carlier", 
+        "rank": {
+          "swiss": 23
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "emonazzameen", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines"
+                ], 
+                "crew": [
+                  "bobafett"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "missile": [
+                  "advhomingmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "title": [
+                  "slavei"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "kathscarlet", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "bomb": [
+                  "protonbombs"
+                ], 
+                "crew": [
+                  "dengar"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 540, 
+        "name": "Marcel \"Totoro\" van Riet", 
+        "rank": {
+          "swiss": 24
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "ndrusuhlak", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "lonewolf"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "plasmatorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 504, 
+        "name": "Nicolas \"Nico_85\" Steeger", 
+        "rank": {
+          "swiss": 25
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ndrusuhlak", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunsoldier", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunsoldier", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunsoldier", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunsoldier", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "missile": [
+                  "concussionmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 492, 
+        "name": "Bruno \"Rhen\" Ribeiro", 
+        "rank": {
+          "swiss": 26
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "gandfindsman", 
+              "ship": "g1astarfighter", 
+              "upgrades": {
+                "crew": [
+                  "4lom"
+                ], 
+                "ept": [
+                  "wired"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "bossk", 
+                  "gunner"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "protontorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 486, 
+        "name": "Vincent \"SlipdeBain\" Dieudonn", 
+        "rank": {
+          "swiss": 27
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist", 
+                  "janors"
+                ], 
+                "ept": [
+                  "predator"
+                ]
+              }
+            }, 
+            {
+              "name": "leebo", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 478, 
+        "name": "Alex \"Bellor\" Vanden Weayenbergh", 
+        "rank": {
+          "swiss": 28
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "sabinewren", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "title": [
+                  "phantom"
+                ]
+              }
+            }, 
+            {
+              "name": "kananjarrus", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist", 
+                  "reconspecialist"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 465, 
+        "name": "Raphael \"cillargent\" Vanderlinden", 
+        "rank": {
+          "swiss": 29
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "zuckuss", 
+              "ship": "g1astarfighter", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "crew": [
+                  "outlawtech"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "misthunter"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "protontorpedoes", 
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "trandoshanslaver", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "bobafett", 
+                  "greedo", 
+                  "4lom"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 445, 
+        "name": "Yves \"RookiePilot\" Brostaux", 
+        "rank": {
+          "swiss": 30
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "kavil", 
+              "ship": "ywing", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "syndicatethug", 
+              "ship": "ywing", 
+              "upgrades": {
+                "samd": [
+                  "r4agromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 444, 
+        "name": "Marc-Aurle \"Markatchou\" Gustin", 
+        "rank": {
+          "swiss": 31
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "adaptability", 
+                  "crackshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "adaptability", 
+                  "crackshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "adaptability", 
+                  "crackshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "adaptability", 
+                  "crackshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "adaptability", 
+                  "crackshot"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 441, 
+        "name": "Niek \"Qanar\" Bergans", 
+        "rank": {
+          "swiss": 32
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "bountyhunter", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "crew": [
+                  "reconspecialist"
+                ]
+              }
+            }, 
+            {
+              "name": "sigmasquadronpilot", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "sigmasquadronpilot", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 387, 
+        "name": "Steve \"Frite_Boy\" Bohen", 
+        "rank": {
+          "swiss": 33
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "wedgeantilles", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "ept": [
+                  "swarmtactics"
+                ]
+              }
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing"
+            }, 
+            {
+              "name": "rookiepilot", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ]
+              }
+            }, 
+            {
+              "name": "airencracken", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "swarmtactics"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 373, 
+        "name": "Johan \"lauthian\" De Vos", 
+        "rank": {
+          "swiss": 34
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "keyanfarlander", 
+              "ship": "bwing", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }, 
+            {
+              "name": "herasyndulla", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "niennunb"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "title": [
+                  "ghost"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }, 
+            {
+              "name": "zeborrelios", 
+              "ship": "attackshuttle", 
+              "upgrades": {
+                "title": [
+                  "phantom"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 370, 
+        "name": "Vronique \"Dobbydudu\" Dodmont", 
+        "rank": {
+          "swiss": 35
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "herasyndulla", 
+                  "zeborrelios"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "turret": [
+                  "autoblasterturret"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 422, 
+        "name": "Arnault \"Arnault\" Grimont", 
+        "rank": {
+          "swiss": 36
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }, 
+            {
+              "name": "bluesquadronnovice", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronnovice", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 412, 
+        "name": "Jrmy \"Sombrevanne\" Sonnet", 
+        "rank": {
+          "swiss": 37
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "obsidiansquadronpilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive", 
+                  "ysanneisard"
+                ], 
+                "ept": [
+                  "expose"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 391, 
+        "name": "Frederic \"Gremios\" Klames", 
+        "rank": {
+          "swiss": 38
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "manaroo", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "attannimindlink"
+                ]
+              }
+            }, 
+            {
+              "name": "palobgodalhi", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "illicit": [
+                  "cloakingdevice"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksunace", 
+              "ship": "kihraxzfighter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ]
+              }
+            }, 
+            {
+              "name": "kaatoleeachos", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "attannimindlink"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 323, 
+        "name": "Benoit \"Gyasi\" Ragoen", 
+        "rank": {
+          "swiss": 39
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "chewbacca", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "janors", 
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "predator"
+                ]
+              }
+            }, 
+            {
+              "name": "goldsquadronpilot", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r2astromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 293, 
+        "name": "Arnaud \"Manda\" Wauthier", 
+        "rank": {
+          "swiss": 40
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "mod": [
+                  "stealthdevice"
+                ]
+              }
+            }, 
+            {
+              "name": "youngster", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "expose"
+                ]
+              }
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "academypilot", 
+              "ship": "tiefighter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 285, 
+        "name": "Dimitri \"Moulinsboy\" Greinhofer", 
+        "rank": {
+          "swiss": 41
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2f2"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "dutchvander", 
+              "ship": "ywing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "torpedo": [
+                  "bombloadout", 
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "wired"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 245, 
+        "name": "Jean-Christophe \"ducfeanor\" Voets", 
+        "rank": {
+          "swiss": 42
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ndrusuhlak", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "illicit": [
+                  "hotshotblaster"
+                ], 
+                "missile": [
+                  "concussionmissiles"
+                ]
+              }
+            }, 
+            {
+              "name": "bobafett", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "ept": [
+                  "marksmanship"
+                ]
+              }
+            }, 
+            {
+              "name": "kavil", 
+              "ship": "ywing", 
+              "upgrades": {
+                "ept": [
+                  "wired"
+                ], 
+                "samd": [
+                  "salvagedastromech"
+                ], 
+                "title": [
+                  "btla4ywing"
+                ], 
+                "turret": [
+                  "blasterturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 195, 
+        "name": "Manu \"Obi-man\" Radelet", 
+        "rank": {
+          "swiss": 43
+        }, 
+        "score": 3, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine", 
+                  "gunner"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 149, 
+        "name": "Thierry \"Skroby\" Skrobanski", 
+        "rank": {
+          "swiss": 44
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Jean-Francois \"Bfg9999\" Bergmans", 
+            "player1points": 26, 
+            "player2": "Vincent \"Rork\" Rycx", 
+            "player2points": 41, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benoit \"Aslar\" Dieudonn", 
+            "player1points": 31, 
+            "player2": "Andy \"Mad_Mek\" Purcica", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steve \"Frite_Boy\" Bohen", 
+            "player1points": 75, 
+            "player2": "Nand \"Nand\" Torfs", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Raphael \"cillargent\" Vanderlinden", 
+            "player1points": 76, 
+            "player2": "Francois \"Easy\" Carlier", 
+            "player2points": 79, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nicolas \"Nico_85\" Steeger", 
+            "player1points": 100, 
+            "player2": "Dimitri \"Moulinsboy\" Greinhofer", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jrmy \"Sombrevanne\" Sonnet", 
+            "player1points": 16, 
+            "player2": "Olivier \"DC-14\" van der Vorst", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan \"lauthian\" De Vos", 
+            "player1points": 20, 
+            "player2": "Niek \"Qanar\" Bergans", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Arnaud \"Manda\" Wauthier", 
+            "player1points": 32, 
+            "player2": "Gregory \"lordmurata\" Hordies", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Guillaume \"Lorccan\" Hennebique", 
+            "player1points": 52, 
+            "player2": "Marc-Aurle \"Markatchou\" Gustin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thierry \"Skroby\" Skrobanski", 
+            "player1points": 0, 
+            "player2": "Quentin \"Gauvain\" Evrard", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcel \"Totoro\" van Riet", 
+            "player1points": 30, 
+            "player2": "Jrme \"Engueyrrand\" Hennebique", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benoit \"Gyasi\" Ragoen", 
+            "player1points": 33, 
+            "player2": "Yves \"RookiePilot\" Brostaux", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steve \"Troll_mops\" Libert", 
+            "player1points": 100, 
+            "player2": "Vincent \"SlipdeBain\" Dieudonn", 
+            "player2points": 45, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Manu \"Obi-man\" Radelet", 
+            "player1points": 0, 
+            "player2": "Jean-Christophe \"Gnomp\" Delire", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Xavier \"Cartazimut\" Roussel", 
+            "player1points": 100, 
+            "player2": "Alex \"Bellor\" Vanden Weayenbergh", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adrien \"Linkadi\" Lantieri", 
+            "player1points": 0, 
+            "player2": "Gaetan \"Arzif\" Eloy", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Corentin \"Tyrt\" Lecocq", 
+            "player1points": 82, 
+            "player2": "Raphael \"Rahfa\" Cogneau", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruno \"Rhen\" Ribeiro", 
+            "player1points": 100, 
+            "player2": "Frederic \"Gremios\" Klames", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jean-Christophe \"ducfeanor\" Voets", 
+            "player1points": 0, 
+            "player2": "Olivier \"bong\" Genin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vronique \"Dobbydudu\" Dodmont", 
+            "player1points": 100, 
+            "player2": "Jean-Christophe \"BJC59\" Brunet", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Arnault \"Arnault\" Grimont", 
+            "player1points": 59, 
+            "player2": "Fabrice \"Vobys\" Bovy", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Frederic \"CKlink\" Kleinen", 
+            "player1points": 100, 
+            "player2": "dummy 1", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan \"Elda\" Veil", 
+            "player1points": 100, 
+            "player2": "dummy 2", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Vincent \"Rork\" Rycx", 
+            "player1points": 78, 
+            "player2": "Marc-Aurle \"Markatchou\" Gustin", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jrme \"Engueyrrand\" Hennebique", 
+            "player1points": 50, 
+            "player2": "Yves \"RookiePilot\" Brostaux", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gregory \"lordmurata\" Hordies", 
+            "player1points": 24, 
+            "player2": "Nand \"Nand\" Torfs", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steve \"Troll_mops\" Libert", 
+            "player1points": 28, 
+            "player2": "Quentin \"Gauvain\" Evrard", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fabrice \"Vobys\" Bovy", 
+            "player1points": 72, 
+            "player2": "Olivier \"bong\" Genin", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Xavier \"Cartazimut\" Roussel", 
+            "player1points": 48, 
+            "player2": "Olivier \"DC-14\" van der Vorst", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andy \"Mad_Mek\" Purcica", 
+            "player1points": 14, 
+            "player2": "Corentin \"Tyrt\" Lecocq", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gaetan \"Arzif\" Eloy", 
+            "player1points": 100, 
+            "player2": "Bruno \"Rhen\" Ribeiro", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jean-Christophe \"Gnomp\" Delire", 
+            "player1points": 100, 
+            "player2": "Niek \"Qanar\" Bergans", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan \"Elda\" Veil", 
+            "player1points": 100, 
+            "player2": "Vronique \"Dobbydudu\" Dodmont", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Frederic \"CKlink\" Kleinen", 
+            "player1points": 100, 
+            "player2": "Nicolas \"Nico_85\" Steeger", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francois \"Easy\" Carlier", 
+            "player1points": 71, 
+            "player2": "Jrmy \"Sombrevanne\" Sonnet", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Guillaume \"Lorccan\" Hennebique", 
+            "player1points": 100, 
+            "player2": "Thierry \"Skroby\" Skrobanski", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jean-Francois \"Bfg9999\" Bergmans", 
+            "player1points": 100, 
+            "player2": "Benoit \"Aslar\" Dieudonn", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jean-Christophe \"ducfeanor\" Voets", 
+            "player1points": 25, 
+            "player2": "Alex \"Bellor\" Vanden Weayenbergh", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adrien \"Linkadi\" Lantieri", 
+            "player1points": 100, 
+            "player2": "Raphael \"cillargent\" Vanderlinden", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan \"lauthian\" De Vos", 
+            "player1points": 100, 
+            "player2": "Frederic \"Gremios\" Klames", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vincent \"SlipdeBain\" Dieudonn", 
+            "player1points": 100, 
+            "player2": "Dimitri \"Moulinsboy\" Greinhofer", 
+            "player2points": 48, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jean-Christophe \"BJC59\" Brunet", 
+            "player1points": 42, 
+            "player2": "Arnault \"Arnault\" Grimont", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Arnaud \"Manda\" Wauthier", 
+            "player1points": 0, 
+            "player2": "Raphael \"Rahfa\" Cogneau", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benoit \"Gyasi\" Ragoen", 
+            "player1points": 100, 
+            "player2": "Marcel \"Totoro\" van Riet", 
+            "player2points": 85, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steve \"Frite_Boy\" Bohen", 
+            "player1points": 76, 
+            "player2": "Manu \"Obi-man\" Radelet", 
+            "player2points": 18, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Corentin \"Tyrt\" Lecocq", 
+            "player1points": 100, 
+            "player2": "Jonathan \"Elda\" Veil", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jrme \"Engueyrrand\" Hennebique", 
+            "player1points": 75, 
+            "player2": "Jean-Christophe \"Gnomp\" Delire", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Corentin \"Tyrt\" Lecocq", 
+            "player1points": 65, 
+            "player2": "Gaetan \"Arzif\" Eloy", 
+            "player2points": 54, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nand \"Nand\" Torfs", 
+            "player1points": 85, 
+            "player2": "Fabrice \"Vobys\" Bovy", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Frederic \"CKlink\" Kleinen", 
+            "player1points": 33, 
+            "player2": "Olivier \"DC-14\" van der Vorst", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vincent \"Rork\" Rycx", 
+            "player1points": 47, 
+            "player2": "Quentin \"Gauvain\" Evrard", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan \"Elda\" Veil", 
+            "player1points": 75, 
+            "player2": "Francois \"Easy\" Carlier", 
+            "player2points": 15, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Raphael \"Rahfa\" Cogneau", 
+            "player1points": 100, 
+            "player2": "Marc-Aurle \"Markatchou\" Gustin", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steve \"Frite_Boy\" Bohen", 
+            "player1points": 0, 
+            "player2": "Gregory \"lordmurata\" Hordies", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Niek \"Qanar\" Bergans", 
+            "player1points": 49, 
+            "player2": "Olivier \"bong\" Genin", 
+            "player2points": 80, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan \"lauthian\" De Vos", 
+            "player1points": 32, 
+            "player2": "Xavier \"Cartazimut\" Roussel", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andy \"Mad_Mek\" Purcica", 
+            "player1points": 100, 
+            "player2": "Yves \"RookiePilot\" Brostaux", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nicolas \"Nico_85\" Steeger", 
+            "player1points": 100, 
+            "player2": "Bruno \"Rhen\" Ribeiro", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vronique \"Dobbydudu\" Dodmont", 
+            "player1points": 35, 
+            "player2": "Adrien \"Linkadi\" Lantieri", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jean-Francois \"Bfg9999\" Bergmans", 
+            "player1points": 82, 
+            "player2": "Vincent \"SlipdeBain\" Dieudonn", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benoit \"Gyasi\" Ragoen", 
+            "player1points": 0, 
+            "player2": "Steve \"Troll_mops\" Libert", 
+            "player2points": 59, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Guillaume \"Lorccan\" Hennebique", 
+            "player1points": 75, 
+            "player2": "Alex \"Bellor\" Vanden Weayenbergh", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jean-Christophe \"BJC59\" Brunet", 
+            "player1points": 75, 
+            "player2": "Arnaud \"Manda\" Wauthier", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Arnault \"Arnault\" Grimont", 
+            "player1points": 100, 
+            "player2": "Jean-Christophe \"ducfeanor\" Voets", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dimitri \"Moulinsboy\" Greinhofer", 
+            "player1points": 100, 
+            "player2": "Thierry \"Skroby\" Skrobanski", 
+            "player2points": 57, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benoit \"Aslar\" Dieudonn", 
+            "player1points": 100, 
+            "player2": "Frederic \"Gremios\" Klames", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Manu \"Obi-man\" Radelet", 
+            "player1points": 0, 
+            "player2": "Raphael \"cillargent\" Vanderlinden", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jrmy \"Sombrevanne\" Sonnet", 
+            "player1points": 100, 
+            "player2": "Marcel \"Totoro\" van Riet", 
+            "player2points": 50, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jonathan \"Elda\" Veil", 
+            "player1points": 51, 
+            "player2": "Nand \"Nand\" Torfs", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Olivier \"DC-14\" van der Vorst", 
+            "player1points": 100, 
+            "player2": "Jean-Christophe \"Gnomp\" Delire", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vincent \"Rork\" Rycx", 
+            "player1points": 29, 
+            "player2": "Corentin \"Tyrt\" Lecocq", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Quentin \"Gauvain\" Evrard", 
+            "player1points": 53, 
+            "player2": "Fabrice \"Vobys\" Bovy", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steve \"Troll_mops\" Libert", 
+            "player1points": 0, 
+            "player2": "Gaetan \"Arzif\" Eloy", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Olivier \"bong\" Genin", 
+            "player1points": 100, 
+            "player2": "Gregory \"lordmurata\" Hordies", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adrien \"Linkadi\" Lantieri", 
+            "player1points": 84, 
+            "player2": "Xavier \"Cartazimut\" Roussel", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Guillaume \"Lorccan\" Hennebique", 
+            "player1points": 100, 
+            "player2": "Nicolas \"Nico_85\" Steeger", 
+            "player2points": 63, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Raphael \"Rahfa\" Cogneau", 
+            "player1points": 100, 
+            "player2": "Frederic \"CKlink\" Kleinen", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andy \"Mad_Mek\" Purcica", 
+            "player1points": 100, 
+            "player2": "Jrme \"Engueyrrand\" Hennebique", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Francois \"Easy\" Carlier", 
+            "player1points": 17, 
+            "player2": "Jean-Christophe \"BJC59\" Brunet", 
+            "player2points": 83, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jean-Francois \"Bfg9999\" Bergmans", 
+            "player1points": 68, 
+            "player2": "Steve \"Frite_Boy\" Bohen", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruno \"Rhen\" Ribeiro", 
+            "player1points": 100, 
+            "player2": "Benoit \"Gyasi\" Ragoen", 
+            "player2points": 23, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benoit \"Aslar\" Dieudonn", 
+            "player1points": 100, 
+            "player2": "Marc-Aurle \"Markatchou\" Gustin", 
+            "player2points": 70, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Johan \"lauthian\" De Vos", 
+            "player1points": 100, 
+            "player2": "Jrmy \"Sombrevanne\" Sonnet", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Raphael \"cillargent\" Vanderlinden", 
+            "player1points": 16, 
+            "player2": "Yves \"RookiePilot\" Brostaux", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vronique \"Dobbydudu\" Dodmont", 
+            "player1points": 100, 
+            "player2": "Vincent \"SlipdeBain\" Dieudonn", 
+            "player2points": 82, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Niek \"Qanar\" Bergans", 
+            "player1points": 100, 
+            "player2": "Dimitri \"Moulinsboy\" Greinhofer", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Arnault \"Arnault\" Grimont", 
+            "player1points": 75, 
+            "player2": "Alex \"Bellor\" Vanden Weayenbergh", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcel \"Totoro\" van Riet", 
+            "player1points": 100, 
+            "player2": "Thierry \"Skroby\" Skrobanski", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jean-Christophe \"ducfeanor\" Voets", 
+            "player1points": 50, 
+            "player2": "Arnaud \"Manda\" Wauthier", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Manu \"Obi-man\" Radelet", 
+            "player1points": 26, 
+            "player2": "Frederic \"Gremios\" Klames", 
+            "player2points": 24, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Corentin \"Tyrt\" Lecocq", 
+            "player1points": 100, 
+            "player2": "Jean-Christophe \"Gnomp\" Delire", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan \"Elda\" Veil", 
+            "player1points": 50, 
+            "player2": "Nand \"Nand\" Torfs", 
+            "player2points": 30, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Olivier \"DC-14\" van der Vorst", 
+            "player1points": 100, 
+            "player2": "Nand \"Nand\" Torfs", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Corentin \"Tyrt\" Lecocq", 
+            "player1points": 29, 
+            "player2": "Jonathan \"Elda\" Veil", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Guillaume \"Lorccan\" Hennebique", 
+            "player1points": 100, 
+            "player2": "Xavier \"Cartazimut\" Roussel", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andy \"Mad_Mek\" Purcica", 
+            "player1points": 21, 
+            "player2": "Olivier \"bong\" Genin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gaetan \"Arzif\" Eloy", 
+            "player1points": 100, 
+            "player2": "Raphael \"Rahfa\" Cogneau", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Quentin \"Gauvain\" Evrard", 
+            "player1points": 26, 
+            "player2": "Jean-Christophe \"Gnomp\" Delire", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Vincent \"Rork\" Rycx", 
+            "player1points": 51, 
+            "player2": "Jean-Christophe \"BJC59\" Brunet", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jrme \"Engueyrrand\" Hennebique", 
+            "player1points": 100, 
+            "player2": "Johan \"lauthian\" De Vos", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nicolas \"Nico_85\" Steeger", 
+            "player1points": 69, 
+            "player2": "Steve \"Troll_mops\" Libert", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Frederic \"CKlink\" Kleinen", 
+            "player1points": 100, 
+            "player2": "Yves \"RookiePilot\" Brostaux", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Adrien \"Linkadi\" Lantieri", 
+            "player1points": 100, 
+            "player2": "Steve \"Frite_Boy\" Bohen", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex \"Bellor\" Vanden Weayenbergh", 
+            "player1points": 41, 
+            "player2": "Benoit \"Aslar\" Dieudonn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Niek \"Qanar\" Bergans", 
+            "player1points": 32, 
+            "player2": "Gregory \"lordmurata\" Hordies", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Fabrice \"Vobys\" Bovy", 
+            "player1points": 82, 
+            "player2": "Vronique \"Dobbydudu\" Dodmont", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruno \"Rhen\" Ribeiro", 
+            "player1points": 59, 
+            "player2": "Francois \"Easy\" Carlier", 
+            "player2points": 81, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jean-Francois \"Bfg9999\" Bergmans", 
+            "player1points": 100, 
+            "player2": "Dimitri \"Moulinsboy\" Greinhofer", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jrmy \"Sombrevanne\" Sonnet", 
+            "player1points": 82, 
+            "player2": "Vincent \"SlipdeBain\" Dieudonn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marc-Aurle \"Markatchou\" Gustin", 
+            "player1points": 100, 
+            "player2": "Arnaud \"Manda\" Wauthier", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcel \"Totoro\" van Riet", 
+            "player1points": 100, 
+            "player2": "Arnault \"Arnault\" Grimont", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Raphael \"cillargent\" Vanderlinden", 
+            "player1points": 80, 
+            "player2": "Benoit \"Gyasi\" Ragoen", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Manu \"Obi-man\" Radelet", 
+            "player1points": 26, 
+            "player2": "Jean-Christophe \"ducfeanor\" Voets", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Frederic \"Gremios\" Klames", 
+            "player1points": 100, 
+            "player2": "Thierry \"Skroby\" Skrobanski", 
+            "player2points": 43, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Olivier \"DC-14\" van der Vorst", 
+            "player1points": 53, 
+            "player2": "Corentin \"Tyrt\" Lecocq", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jean-Christophe \"Gnomp\" Delire", 
+            "player1points": 100, 
+            "player2": "Olivier \"bong\" Genin", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jonathan \"Elda\" Veil", 
+            "player1points": 100, 
+            "player2": "Guillaume \"Lorccan\" Hennebique", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gaetan \"Arzif\" Eloy", 
+            "player1points": 63, 
+            "player2": "Nand \"Nand\" Torfs", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 8, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Regional", 
+    "venue": {
+      "city": "Namur", 
+      "country": "Belgium", 
+      "lat": "50.466528400000", 
+      "lon": "4.866189200000", 
+      "name": "", 
+      "state": "Namur"
+    }
+  }
+}

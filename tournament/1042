@@ -1,0 +1,157 @@
+{
+  "tournament": {
+    "date": "2016-01-24", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1042, 
+    "name": "Store championship", 
+    "players": [
+      {
+        "mov": 350, 
+        "name": "Matt Earl", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 325, 
+        "name": "Clay Gilpin", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 200, 
+        "name": "Kevin Healy", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 200, 
+        "name": "Ken Serpa", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 75, 
+        "name": "Stu Hill", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 50, 
+        "name": "Matt Bartel", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Stu Hill", 
+            "player1points": 50, 
+            "player2": "Clay Gilpin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt Earl", 
+            "player1points": 100, 
+            "player2": "Kevin Healy", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ken Serpa", 
+            "player1points": 100, 
+            "player2": "Matt Bartel", 
+            "player2points": 25, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Stu Hill", 
+            "player1points": 25, 
+            "player2": "Clay Gilpin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt Earl", 
+            "player1points": 100, 
+            "player2": "Ken Serpa", 
+            "player2points": 25, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Healy", 
+            "player1points": 100, 
+            "player2": "Matt Bartel", 
+            "player2points": 25, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Matt Earl", 
+            "player1points": 0, 
+            "player2": "Clay Gilpin", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stu Hill", 
+            "player1points": 0, 
+            "player2": "Matt Bartel", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kevin Healy", 
+            "player1points": 0, 
+            "player2": "Ken Serpa", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Store Championship", 
+    "venue": {
+      "city": "Kalgoorlie ", 
+      "country": "Australia", 
+      "lat": "59.329300000000", 
+      "lon": "18.068600000000", 
+      "name": "Boulder Bowling Club", 
+      "state": "Western Australia"
+    }
+  }
+}

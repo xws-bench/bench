@@ -1,0 +1,157 @@
+{
+  "tournament": {
+    "date": "2017-03-19", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3606, 
+    "name": "1. Torneio PG 2017", 
+    "players": [
+      {
+        "mov": 600, 
+        "name": "Rodrigo Vasconcelos", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 480, 
+        "name": "Cleiton Costa", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 360, 
+        "name": "Filipe Malaquias", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 240, 
+        "name": "Lucas Kalabric", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 120, 
+        "name": "Luciano Kalabric", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Cezar Miranda", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.67"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Cezar Miranda", 
+            "player1points": 50, 
+            "player2": "Rodrigo Vasconcelos", 
+            "player2points": 150, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cleiton Costa", 
+            "player1points": 170, 
+            "player2": "Filipe Malaquias", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lucas Kalabric", 
+            "player1points": 170, 
+            "player2": "Luciano Kalabric", 
+            "player2points": 30, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Cezar Miranda", 
+            "player1points": 50, 
+            "player2": "Filipe Malaquias", 
+            "player2points": 150, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cleiton Costa", 
+            "player1points": 170, 
+            "player2": "Luciano Kalabric", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lucas Kalabric", 
+            "player1points": 50, 
+            "player2": "Rodrigo Vasconcelos", 
+            "player2points": 150, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Rodrigo Vasconcelos", 
+            "player1points": 150, 
+            "player2": "Cleiton Costa", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Filipe Malaquias", 
+            "player1points": 150, 
+            "player2": "Lucas Kalabric", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cezar Miranda", 
+            "player1points": 50, 
+            "player2": "Luciano Kalabric", 
+            "player2points": 150, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Store championship", 
+    "venue": {
+      "city": "Salvador", 
+      "country": "Brazil", 
+      "lat": "-12.982444800000", 
+      "lon": "-38.499679400000", 
+      "name": "<a target=\"_blank\" href=\"/venue?venue_id=2815\"></a><a target=\"_blank\" href=\"/venue?venue_id=2815\">Playground Game Store</a>", 
+      "state": "Bahia"
+    }
+  }
+}

@@ -1,0 +1,970 @@
+{
+  "tournament": {
+    "date": "2015-10-11", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 730, 
+    "name": "Donjon casual tournament", 
+    "players": [
+      {
+        "mov": 590, 
+        "name": "Jon Mais", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "omicrongrouppilot", 
+              "ship": "lambdaclassshuttle", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine"
+                ]
+              }
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters", 
+                  "targetingcomputer"
+                ], 
+                "title": [
+                  "royalguardtie"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 641, 
+        "name": "Mic", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 546, 
+        "name": "Frank Beaumont", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 502, 
+        "name": "Claude", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "moraloeval", 
+              "ship": "yv666", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "outlawtech", 
+                  "k4securitydroid"
+                ], 
+                "mod": [
+                  "tacticaljammer"
+                ]
+              }
+            }, 
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "k4securitydroid", 
+                  "outlawtech"
+                ], 
+                "ept": [
+                  "wingman"
+                ], 
+                "title": [
+                  "houndstooth"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 427, 
+        "name": "Gabriel", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "commanderkenkirk", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine", 
+                  "ysanneisard"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 481, 
+        "name": "Didier", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 449, 
+        "name": "Jerome", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "mandalorianmercenary", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ]
+              }
+            }, 
+            {
+              "name": "lattsrazzi", 
+              "ship": "yv666", 
+              "upgrades": {
+                "crew": [
+                  "outlawtech", 
+                  "weaponsengineer", 
+                  "k4securitydroid"
+                ], 
+                "title": [
+                  "houndstooth"
+                ]
+              }
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "illicit": [
+                  "deadmansswitch"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 418, 
+        "name": "Julie", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "jakefarrell", 
+              "ship": "awing", 
+              "upgrades": {
+                "missile": [
+                  "chardaanrefit"
+                ]
+              }
+            }, 
+            {
+              "name": "arvelcrynyd", 
+              "ship": "awing", 
+              "upgrades": {
+                "missile": [
+                  "chardaanrefit"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "missile": [
+                  "chardaanrefit"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "crew": [
+                  "gunner"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 396, 
+        "name": "JP", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "crew": [
+                  "c3po"
+                ], 
+                "missile": [
+                  "assaultmissiles"
+                ], 
+                "mod": [
+                  "shieldupgrade"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "wingman", 
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }, 
+            {
+              "name": "greensquadronpilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "ept": [
+                  "wingman", 
+                  "pushthelimit"
+                ], 
+                "missile": [
+                  "chardaanrefit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "awingtestpilot"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 370, 
+        "name": "Frank Lev", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "binayrepirate", 
+              "ship": "z95headhunter"
+            }, 
+            {
+              "name": "guri", 
+              "ship": "starviper", 
+              "upgrades": {
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "virago"
+                ]
+              }
+            }, 
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "saboteur"
+                ], 
+                "ept": [
+                  "calculation"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 360, 
+        "name": "Martin", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "whisper", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "rebelcaptive", 
+                  "ysanneisard"
+                ], 
+                "ept": [
+                  "expose"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 317, 
+        "name": "Louka", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "kavil", 
+              "ship": "ywing", 
+              "upgrades": {
+                "ept": [
+                  "wired"
+                ], 
+                "samd": [
+                  "unhingedastromech"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "talonbanecobra", 
+              "ship": "kihraxzfighter"
+            }, 
+            {
+              "name": "lattsrazzi", 
+              "ship": "yv666", 
+              "upgrades": {
+                "mod": [
+                  "maneuveringfins"
+                ], 
+                "title": [
+                  "houndstooth"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 264, 
+        "name": "Norm", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "keyanfarlander", 
+              "ship": "bwing", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "bwinge2"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "calculation"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 232, 
+        "name": "Benoit", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "sabersquadronpilot", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ]
+              }
+            }, 
+            {
+              "name": "sabersquadronpilot", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ]
+              }
+            }, 
+            {
+              "name": "shadowsquadronpilot", 
+              "ship": "tiephantom", 
+              "upgrades": {
+                "crew": [
+                  "intelligenceagent"
+                ], 
+                "mod": [
+                  "advancedcloakingdevice"
+                ]
+              }
+            }, 
+            {
+              "name": "scimitarsquadronpilot", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "missile": [
+                  "clustermissiles"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 207, 
+        "name": "Eric Ledru", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 65, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Frank Beaumont", 
+            "player1points": 80, 
+            "player2": "Norm", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin", 
+            "player1points": 71, 
+            "player2": "Jerome", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Louka", 
+            "player1points": 100, 
+            "player2": "Benoit", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "JP", 
+            "player1points": 68, 
+            "player2": "Didier", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Frank Lev", 
+            "player1points": 0, 
+            "player2": "Jon Mais", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Julie", 
+            "player1points": 22, 
+            "player2": "Claude", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gabriel", 
+            "player1points": 29, 
+            "player2": "Mic", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric Ledru", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Mic", 
+            "player1points": 100, 
+            "player2": "Louka", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "JP", 
+            "player1points": 50, 
+            "player2": "Jon Mais", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jerome", 
+            "player1points": 100, 
+            "player2": "Eric Ledru", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Frank Beaumont", 
+            "player1points": 100, 
+            "player2": "Claude", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gabriel", 
+            "player1points": 76, 
+            "player2": "Frank Lev", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benoit", 
+            "player1points": 0, 
+            "player2": "Didier", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin", 
+            "player1points": 100, 
+            "player2": "Julie", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Norm", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jon Mais", 
+            "player1points": 100, 
+            "player2": "Mic", 
+            "player2points": 25, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Mic", 
+            "player1points": 50, 
+            "player2": "Jon Mais", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jerome", 
+            "player1points": 34, 
+            "player2": "Frank Beaumont", 
+            "player2points": 58, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Louka", 
+            "player1points": 79, 
+            "player2": "Martin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Didier", 
+            "player1points": 47, 
+            "player2": "Gabriel", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Claude", 
+            "player1points": 100, 
+            "player2": "Norm", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "JP", 
+            "player1points": 80, 
+            "player2": "Eric Ledru", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benoit", 
+            "player1points": 52, 
+            "player2": "Frank Lev", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Julie", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Frank Beaumont", 
+            "player1points": 76, 
+            "player2": "Jon Mais", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Claude", 
+            "player1points": 100, 
+            "player2": "Jerome", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "JP", 
+            "player1points": 73, 
+            "player2": "Gabriel", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Martin", 
+            "player1points": 14, 
+            "player2": "Mic", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Frank Lev", 
+            "player1points": 72, 
+            "player2": "Norm", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Eric Ledru", 
+            "player1points": 0, 
+            "player2": "Julie", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Didier", 
+            "player1points": 100, 
+            "player2": "Louka", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Benoit", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Quebec City", 
+      "country": "Canada", 
+      "lat": "46.814150000000", 
+      "lon": "-71.225680000000", 
+      "name": "Boutique Donjon", 
+      "state": "Quebec"
+    }
+  }
+}

@@ -1,0 +1,538 @@
+{
+  "tournament": {
+    "date": "2015-03-15", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 268, 
+    "name": "The Game Parlor Monthly X-wing Tournament", 
+    "players": [
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "guri", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "title": [
+                  "virago"
+                ]
+              }
+            }, 
+            {
+              "name": "princexizor", 
+              "ship": "starviper", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "serissu", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 475, 
+        "name": "Pete Hodgkins", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "leebo", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "lonewolf"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "landocalrissian"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "mod": [
+                  "experimentalinterface"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 464, 
+        "name": "John Sargent", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 2
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darkcurse", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "backstabber", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "soontirfel", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ]
+              }
+            }, 
+            {
+              "name": "kathscarlet", 
+              "ship": "firespray31"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 458, 
+        "name": "Sam Durbin", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }, 
+            {
+              "name": "banditsquadronpilot", 
+              "ship": "z95headhunter"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 406, 
+        "name": "Brad Shue", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 310, 
+        "name": "Dan Brown", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 276, 
+        "name": "Jeremy Howard", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 350, 
+        "name": "Matt Berg", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 344, 
+        "name": "Patrick Davey", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 8, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 292, 
+        "name": "Dale Henry", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 267, 
+        "name": "WIll Peterson", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 262, 
+        "name": "Doug Stefnoski", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 237, 
+        "name": "Devin Combs", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 200, 
+        "name": "Mike Hansen", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 128, 
+        "name": "Ryan Rovnak", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 3, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 181, 
+        "name": "Oscar Banos", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "John Sargent", 
+            "player1points": 100, 
+            "player2": "Mike Hansen", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeremy Howard", 
+            "player1points": 100, 
+            "player2": "Sam Durbin", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Patrick Davey", 
+            "player1points": 56, 
+            "player2": "Dale Henry", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "WIll Peterson", 
+            "player1points": 0, 
+            "player2": "Doug Stefnoski", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt Berg", 
+            "player1points": 40, 
+            "player2": "Dan Brown", 
+            "player2points": 78, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pete Hodgkins", 
+            "player1points": 77, 
+            "player2": "Devin Combs", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Oscar Banos", 
+            "player1points": 36, 
+            "player2": "Ryan Rovnak", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brad Shue", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "John Sargent", 
+            "player1points": 100, 
+            "player2": "Doug Stefnoski", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brad Shue", 
+            "player1points": 100, 
+            "player2": "Dan Brown", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeremy Howard", 
+            "player1points": 0, 
+            "player2": "Pete Hodgkins", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ryan Rovnak", 
+            "player1points": 0, 
+            "player2": "Patrick Davey", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Oscar Banos", 
+            "player1points": 0, 
+            "player2": "Dale Henry", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Devin Combs", 
+            "player1points": 0, 
+            "player2": "Sam Durbin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt Berg", 
+            "player1points": 54, 
+            "player2": "WIll Peterson", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Hansen", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Pete Hodgkins", 
+            "player1points": 0, 
+            "player2": "John Sargent", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "John Sargent", 
+            "player1points": 56, 
+            "player2": "Brad Shue", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pete Hodgkins", 
+            "player1points": 100, 
+            "player2": "Patrick Davey", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sam Durbin", 
+            "player1points": 100, 
+            "player2": "Doug Stefnoski", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dale Henry", 
+            "player1points": 28, 
+            "player2": "Dan Brown", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Hansen", 
+            "player1points": 50, 
+            "player2": "Jeremy Howard", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt Berg", 
+            "player1points": 100, 
+            "player2": "Ryan Rovnak", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Oscar Banos", 
+            "player1points": 23, 
+            "player2": "WIll Peterson", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Devin Combs", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Pete Hodgkins", 
+            "player1points": 100, 
+            "player2": "Brad Shue", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Sargent", 
+            "player1points": 100, 
+            "player2": "Sam Durbin", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Chantilly", 
+      "country": "United States of America", 
+      "lat": "38.894379200000", 
+      "lon": "-77.430511700000", 
+      "name": "The Game Parlor", 
+      "state": "Virginia"
+    }
+  }
+}

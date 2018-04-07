@@ -1,0 +1,536 @@
+{
+  "tournament": {
+    "date": "2016-05-28", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1699, 
+    "name": "Przebudzenie Smoka", 
+    "players": [
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "crew": [
+                  "c3po"
+                ], 
+                "missile": [
+                  "homingmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 831, 
+        "name": "Chimera", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 25, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "bobafett"
+                ], 
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }, 
+            {
+              "name": "contractedscout", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "samd": [
+                  "r4agromech"
+                ], 
+                "torpedo": [
+                  "extramunitions", 
+                  "plasmatorpedoes"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 754, 
+        "name": "Dugi", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "guardiansquadronpilot", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "proximitymines", 
+                  "ionbombs"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "mod": [
+                  "advancedslam"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "dashrendar", 
+              "ship": "yt2400", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "title": [
+                  "outrider"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 607, 
+        "name": "Elvis", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 574, 
+        "name": "Dagobert", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 532, 
+        "name": "Pogodyn", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "wardensquadronpilot", 
+              "ship": "kwing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "wardensquadronpilot", 
+              "ship": "kwing", 
+              "upgrades": {
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }, 
+            {
+              "name": "lothalrebel", 
+              "ship": "vcx100", 
+              "upgrades": {
+                "crew": [
+                  "zeborrelios", 
+                  "herasyndulla"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "turret": [
+                  "dorsalturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 371, 
+        "name": "Wincu", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 365, 
+        "name": "Jankes", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "etahnabaht", 
+              "ship": "ewing"
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 312, 
+        "name": "Cypek", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 404, 
+        "name": "Marcin", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Dugi", 
+            "player1points": 100, 
+            "player2": "Jankes", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Elvis", 
+            "player1points": 100, 
+            "player2": "Cypek", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pogodyn", 
+            "player1points": 0, 
+            "player2": "Chimera", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dagobert", 
+            "player1points": 100, 
+            "player2": "Marcin", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wincu", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Dagobert", 
+            "player1points": 100, 
+            "player2": "Wincu", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Elvis", 
+            "player1points": 0, 
+            "player2": "Chimera", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dugi", 
+            "player1points": 100, 
+            "player2": "Pogodyn", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cypek", 
+            "player1points": 57, 
+            "player2": "Marcin", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jankes", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Dagobert", 
+            "player1points": 50, 
+            "player2": "Dugi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chimera", 
+            "player1points": 100, 
+            "player2": "Cypek", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wincu", 
+            "player1points": 64, 
+            "player2": "Jankes", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Elvis", 
+            "player1points": 65, 
+            "player2": "Pogodyn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Chimera", 
+            "player1points": 100, 
+            "player2": "Dugi", 
+            "player2points": 71, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dagobert", 
+            "player1points": 100, 
+            "player2": "Jankes", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pogodyn", 
+            "player1points": 45, 
+            "player2": "Marcin", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Elvis", 
+            "player1points": 100, 
+            "player2": "Wincu", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cypek", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Chimera", 
+            "player1points": 100, 
+            "player2": "Dagobert", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dugi", 
+            "player1points": 100, 
+            "player2": "Cypek", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jankes", 
+            "player1points": 58, 
+            "player2": "Elvis", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcin", 
+            "player1points": 42, 
+            "player2": "Wincu", 
+            "player2points": 57, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pogodyn", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Lublin", 
+      "country": "Poland", 
+      "lat": "51.250559000000", 
+      "lon": "22.570102200000", 
+      "name": "", 
+      "state": "Lubelskie"
+    }
+  }
+}

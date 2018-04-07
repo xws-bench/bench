@@ -1,0 +1,196 @@
+{
+  "tournament": {
+    "date": "2017-10-08", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3548, 
+    "name": "The Force Awakens Etapa 1 - Jakku", 
+    "players": [
+      {
+        "mov": 571, 
+        "name": "Viny Peaguda", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 15, 
+        "sos": "23.00"
+      }, 
+      {
+        "mov": 387, 
+        "name": "Marcos Soares", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "20.00"
+      }, 
+      {
+        "mov": 345, 
+        "name": "Juliano", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "30.00"
+      }, 
+      {
+        "mov": 312, 
+        "name": "Bruno Moreto", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "18.00"
+      }, 
+      {
+        "mov": 270, 
+        "name": "Rodrigo", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "15.00"
+      }, 
+      {
+        "mov": 227, 
+        "name": "Leandro do Vale", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "25.00"
+      }, 
+      {
+        "mov": 127, 
+        "name": "Pedro Augusto", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 3, 
+        "sos": "25.00"
+      }, 
+      {
+        "mov": 161, 
+        "name": "Cleber Pires", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "18.00"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Leandro do Vale", 
+            "player1points": 0, 
+            "player2": "Juliano", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rodrigo", 
+            "player1points": 42, 
+            "player2": "Marcos Soares", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Viny Peaguda", 
+            "player1points": 100, 
+            "player2": "Pedro Augusto", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cleber Pires", 
+            "player1points": 28, 
+            "player2": "Bruno Moreto", 
+            "player2points": 66, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Viny Peaguda", 
+            "player1points": 100, 
+            "player2": "Bruno Moreto", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Juliano", 
+            "player1points": 100, 
+            "player2": "Marcos Soares", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rodrigo", 
+            "player1points": 28, 
+            "player2": "Leandro do Vale", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cleber Pires", 
+            "player1points": 49, 
+            "player2": "Pedro Augusto", 
+            "player2points": 50, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Viny Peaguda", 
+            "player1points": 100, 
+            "player2": "Juliano", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcos Soares", 
+            "player1points": 100, 
+            "player2": "Leandro do Vale", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bruno Moreto", 
+            "player1points": 74, 
+            "player2": "Pedro Augusto", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Cleber Pires", 
+            "player1points": 0, 
+            "player2": "Rodrigo", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Ribeiro Preto", 
+      "country": "Brazil", 
+      "lat": "-20.613500000000", 
+      "lon": "-48.918837719298", 
+      "name": "d20 Game Center", 
+      "state": "Sao Paulo"
+    }
+  }
+}

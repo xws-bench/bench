@@ -1,0 +1,154 @@
+{
+  "tournament": {
+    "date": "2016-12-15", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 2410, 
+    "name": "RCH Rogue One Tourney ", 
+    "players": [
+      {
+        "mov": 0, 
+        "name": "Chaz", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Sid", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Chino", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Kevin D.", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "5", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "final_salvo": false, 
+            "player1": "Chino", 
+            "player1points": 0, 
+            "player2": "5", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Kevin D.", 
+            "player1points": 0, 
+            "player2": "Chaz", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sid", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "final_salvo": false, 
+            "player1": "Chaz", 
+            "player1points": 0, 
+            "player2": "Chino", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Sid", 
+            "player1points": 0, 
+            "player2": "Kevin D.", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "5", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "final_salvo": false, 
+            "player1": "5", 
+            "player1points": 0, 
+            "player2": "Chino", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "final_salvo": false, 
+            "player1": "Kevin D.", 
+            "player1points": 0, 
+            "player2": "Sid", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chaz", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "La Crosse", 
+      "country": "United States", 
+      "lat": "43.801355600000", 
+      "lon": "-91.239580600000", 
+      "name": "", 
+      "state": "WI"
+    }
+  }
+}

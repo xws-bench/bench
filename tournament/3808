@@ -1,0 +1,196 @@
+{
+  "tournament": {
+    "date": "2017-12-03", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 3808, 
+    "name": "Battlegrounds November OP", 
+    "players": [
+      {
+        "mov": 425, 
+        "name": "Chuck Stocky", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 373, 
+        "name": "Christian Erb", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.22"
+      }, 
+      {
+        "mov": 352, 
+        "name": "Alex Taylor", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 334, 
+        "name": "Nick LaPietra", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 285, 
+        "name": "Markley Ligon", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 256, 
+        "name": "John Finn", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 1, 
+        "sos": "0.78"
+      }, 
+      {
+        "mov": 249, 
+        "name": "Lee Reid", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 126, 
+        "name": "Pake Davis", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "0.67"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Nick LaPietra", 
+            "player1points": 0, 
+            "player2": "John Finn", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Markley Ligon", 
+            "player1points": 49, 
+            "player2": "Alex Taylor", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chuck Stocky", 
+            "player1points": 69, 
+            "player2": "Pake Davis", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christian Erb", 
+            "player1points": 0, 
+            "player2": "Lee Reid", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Chuck Stocky", 
+            "player1points": 100, 
+            "player2": "John Finn", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lee Reid", 
+            "player1points": 49, 
+            "player2": "Alex Taylor", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nick LaPietra", 
+            "player1points": 100, 
+            "player2": "Markley Ligon", 
+            "player2points": 66, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pake Davis", 
+            "player1points": 0, 
+            "player2": "Christian Erb", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Alex Taylor", 
+            "player1points": 50, 
+            "player2": "Chuck Stocky", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lee Reid", 
+            "player1points": 0, 
+            "player2": "Nick LaPietra", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Christian Erb", 
+            "player1points": 100, 
+            "player2": "John Finn", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pake Davis", 
+            "player1points": 30, 
+            "player2": "Markley Ligon", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Midlothian", 
+      "country": "United States of America", 
+      "lat": "37.538508700000", 
+      "lon": "-77.434279900000", 
+      "name": "Battlegrounds", 
+      "state": "Virginia"
+    }
+  }
+}

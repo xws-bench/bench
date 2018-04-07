@@ -1,0 +1,832 @@
+{
+  "tournament": {
+    "date": "2016-03-19", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1361, 
+    "name": "NNXW: XIV Ignition", 
+    "players": [
+      {
+        "mov": 50, 
+        "name": "Jesse", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "daggersquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }, 
+            {
+              "name": "daggersquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon"
+                ], 
+                "crew": [
+                  "janors"
+                ], 
+                "mod": [
+                  "bwinge2"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 700, 
+        "name": "Nick Gaston", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "blacksquadronpilot", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "scourge", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ]
+              }
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter", 
+              "upgrades": {
+                "ept": [
+                  "crackshot"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 570, 
+        "name": "Nathan Morley", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 531, 
+        "name": "Jayson Guy", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "bomb": [
+                  "seismiccharges"
+                ], 
+                "crew": [
+                  "emperorpalpatine", 
+                  "ysanneisard"
+                ], 
+                "ept": [
+                  "expose"
+                ], 
+                "mod": [
+                  "shieldupgrade"
+                ], 
+                "title": [
+                  "dauntless"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 469, 
+        "name": "Matt Kendler", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 465, 
+        "name": "Mike Wolfe", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "theinquisitor", 
+              "ship": "tieadvprototype", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "protonrockets"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "title": [
+                  "tiev1"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "mod": [
+                  "stealthdevice"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 441, 
+        "name": "Rodger Moore", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "elloasty", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "keyanfarlander", 
+              "ship": "bwing", 
+              "upgrades": {
+                "crew": [
+                  "kylekatarn"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ]
+              }
+            }, 
+            {
+              "name": "biggsdarklighter", 
+              "ship": "xwing", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "mod": [
+                  "integratedastromech"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 401, 
+        "name": "Justin Barnes", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 360, 
+        "name": "Bryan Luce", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 322, 
+        "name": "Corey Heigter", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing", 
+              "upgrades": {
+                "system": [
+                  "firecontrolsystem"
+                ]
+              }
+            }, 
+            {
+              "name": "prototypepilot", 
+              "ship": "awing", 
+              "upgrades": {
+                "missile": [
+                  "chardaanrefit"
+                ]
+              }
+            }, 
+            {
+              "name": "bluesquadronpilot", 
+              "ship": "bwing"
+            }, 
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "r5p9"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 251, 
+        "name": "Josh Sharon", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "kathscarlet", 
+              "ship": "firespray31", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "k4securitydroid"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ]
+              }
+            }, 
+            {
+              "name": "bossk", 
+              "ship": "yv666", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ], 
+                "crew": [
+                  "k4securitydroid", 
+                  "reconspecialist"
+                ], 
+                "ept": [
+                  "predator"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 410, 
+        "name": "Thomas Fox", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "cutlasssquadronpilot", 
+              "ship": "tiepunisher", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "cutlasssquadronpilot", 
+              "ship": "tiepunisher", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines"
+                ], 
+                "missile": [
+                  "clustermissiles"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }, 
+            {
+              "name": "cutlasssquadronpilot", 
+              "ship": "tiepunisher", 
+              "upgrades": {
+                "bomb": [
+                  "clustermines"
+                ], 
+                "missile": [
+                  "assaultmissiles"
+                ], 
+                "system": [
+                  "accuracycorrector"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 242, 
+        "name": "Steve Dalton", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "maulermithel", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "howlrunner", 
+              "ship": "tiefighter"
+            }, 
+            {
+              "name": "carnorjax", 
+              "ship": "tieinterceptor", 
+              "upgrades": {
+                "ept": [
+                  "experthandling"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "experthandling"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 238, 
+        "name": "Andrew Laurance", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Josh Sharon", 
+            "player1points": 74, 
+            "player2": "Thomas Fox", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steve Dalton", 
+            "player1points": 0, 
+            "player2": "Corey Heigter", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jesse", 
+            "player1points": 0, 
+            "player2": "Andrew Laurance", 
+            "player2points": 50, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt Kendler", 
+            "player1points": 100, 
+            "player2": "Bryan Luce", 
+            "player2points": 65, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rodger Moore", 
+            "player1points": 29, 
+            "player2": "Nick Gaston", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Wolfe", 
+            "player1points": 100, 
+            "player2": "Jayson Guy", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Morley", 
+            "player1points": 100, 
+            "player2": "Justin Barnes", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Mike Wolfe", 
+            "player1points": 100, 
+            "player2": "Josh Sharon", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt Kendler", 
+            "player1points": 100, 
+            "player2": "Nathan Morley", 
+            "player2points": 35, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nick Gaston", 
+            "player1points": 100, 
+            "player2": "Corey Heigter", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew Laurance", 
+            "player1points": 0, 
+            "player2": "Rodger Moore", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Fox", 
+            "player1points": 69, 
+            "player2": "Jayson Guy", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bryan Luce", 
+            "player1points": 100, 
+            "player2": "Steve Dalton", 
+            "player2points": 27, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Barnes", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Mike Wolfe", 
+            "player1points": 65, 
+            "player2": "Matt Kendler", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nick Gaston", 
+            "player1points": 100, 
+            "player2": "Bryan Luce", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Justin Barnes", 
+            "player1points": 15, 
+            "player2": "Josh Sharon", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Morley", 
+            "player1points": 67, 
+            "player2": "Rodger Moore", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew Laurance", 
+            "player1points": 0, 
+            "player2": "Jayson Guy", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Corey Heigter", 
+            "player1points": 0, 
+            "player2": "Thomas Fox", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steve Dalton", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Nick Gaston", 
+            "player1points": 100, 
+            "player2": "Matt Kendler", 
+            "player2points": 34, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nathan Morley", 
+            "player1points": 100, 
+            "player2": "Mike Wolfe", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Sharon", 
+            "player1points": 0, 
+            "player2": "Jayson Guy", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrew Laurance", 
+            "player1points": 35, 
+            "player2": "Justin Barnes", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas Fox", 
+            "player1points": 78, 
+            "player2": "Bryan Luce", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rodger Moore", 
+            "player1points": 100, 
+            "player2": "Steve Dalton", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Corey Heigter", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Carson City", 
+      "country": "United States of America", 
+      "lat": "39.163798400000", 
+      "lon": "-119.767403300000", 
+      "name": "Nerdvana", 
+      "state": "Nevada"
+    }
+  }
+}

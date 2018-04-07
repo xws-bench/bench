@@ -1,0 +1,276 @@
+{
+  "tournament": {
+    "date": "2017-07-01", 
+    "format": "50:50", 
+    "id": 3077, 
+    "name": "Eagle Squadron 50:50", 
+    "players": [
+      {
+        "mov": 623, 
+        "name": "Chris Douglas", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 527, 
+        "name": "Simrandeep Pone", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 452, 
+        "name": "George", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 442, 
+        "name": "Sam", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 429, 
+        "name": "Pete Agg", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 378, 
+        "name": "David", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 301, 
+        "name": "Mike Burton", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 291, 
+        "name": "Simon", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 283, 
+        "name": "Jono Brindley", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 274, 
+        "name": "Henry", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.38"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Pete Agg", 
+            "player1points": 100, 
+            "player2": "Sam", 
+            "player2points": 47, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simon", 
+            "player1points": 100, 
+            "player2": "Henry", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simrandeep Pone", 
+            "player1points": 75, 
+            "player2": "Chris Douglas", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Burton", 
+            "player1points": 100, 
+            "player2": "Jono Brindley", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "George", 
+            "player1points": 100, 
+            "player2": "David", 
+            "player2points": 64, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Simon", 
+            "player1points": 25, 
+            "player2": "Chris Douglas", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Burton", 
+            "player1points": 100, 
+            "player2": "Pete Agg", 
+            "player2points": 75, 
+            "result": "win"
+          }, 
+          {
+            "player1": "George", 
+            "player1points": 33, 
+            "player2": "Sam", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "David", 
+            "player1points": 0, 
+            "player2": "Henry", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simrandeep Pone", 
+            "player1points": 100, 
+            "player2": "Jono Brindley", 
+            "player2points": 25, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Mike Burton", 
+            "player1points": 25, 
+            "player2": "Chris Douglas", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simon", 
+            "player1points": 51, 
+            "player2": "Pete Agg", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Henry", 
+            "player1points": 0, 
+            "player2": "Sam", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simrandeep Pone", 
+            "player1points": 41, 
+            "player2": "George", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jono Brindley", 
+            "player1points": 58, 
+            "player2": "David", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Chris Douglas", 
+            "player1points": 100, 
+            "player2": "Pete Agg", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Burton", 
+            "player1points": 25, 
+            "player2": "Simrandeep Pone", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sam", 
+            "player1points": 28, 
+            "player2": "David", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Simon", 
+            "player1points": 15, 
+            "player2": "George", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Henry", 
+            "player1points": 74, 
+            "player2": "Jono Brindley", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "London", 
+      "country": "United Kingdom", 
+      "lat": "51.457027100000", 
+      "lon": "-0.193260600000", 
+      "name": "Eagle Gaming Club", 
+      "state": "Wandsworth"
+    }
+  }
+}

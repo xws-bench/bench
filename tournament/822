@@ -1,0 +1,391 @@
+{
+  "tournament": {
+    "date": "2015-11-15", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 822, 
+    "name": "Last Game Parlor Tournament", 
+    "players": [
+      {
+        "mov": 143, 
+        "name": "Ron Brannan", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 154, 
+        "name": "Marshal Staggs", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 255, 
+        "name": "Ira Mayers", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 330, 
+        "name": "Pete Hodgkins", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 9, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 676, 
+        "name": "Derek Tokaz", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 20, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 649, 
+        "name": "Devin Combs", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 549, 
+        "name": "Jeremy Howard", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 15, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 468, 
+        "name": "Stephen Michel", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 11, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 415, 
+        "name": "Sam Durbin", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 11, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 415, 
+        "name": "Kris Soehnlin", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 11, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 420, 
+        "name": "Bryan Howard", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 417, 
+        "name": "Ash Moser", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 343, 
+        "name": "Marcus McAllister", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 336, 
+        "name": "Mike Emrich", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 230, 
+        "name": "Wiliam Peterson", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Stephen Michel", 
+            "player1points": 100, 
+            "player2": "Ash Moser", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Emrich", 
+            "player1points": 42, 
+            "player2": "Sam Durbin", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ira Mayers", 
+            "player1points": 31, 
+            "player2": "Derek Tokaz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bryan Howard", 
+            "player1points": 100, 
+            "player2": "Kris Soehnlin", 
+            "player2points": 24, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pete Hodgkins", 
+            "player1points": 41, 
+            "player2": "Wiliam Peterson", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marshal Staggs", 
+            "player1points": 74, 
+            "player2": "Devin Combs", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ron Brannan", 
+            "player1points": 75, 
+            "player2": "Marcus McAllister", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeremy Howard", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Stephen Michel", 
+            "player1points": 32, 
+            "player2": "Pete Hodgkins", 
+            "player2points": 32, 
+            "result": "draw"
+          }, 
+          {
+            "player1": "Derek Tokaz", 
+            "player1points": 100, 
+            "player2": "Sam Durbin", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bryan Howard", 
+            "player1points": 100, 
+            "player2": "Marshal Staggs", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ron Brannan", 
+            "player1points": 16, 
+            "player2": "Jeremy Howard", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Wiliam Peterson", 
+            "player1points": 13, 
+            "player2": "Devin Combs", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcus McAllister", 
+            "player1points": 46, 
+            "player2": "Mike Emrich", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ash Moser", 
+            "player1points": 100, 
+            "player2": "Ira Mayers", 
+            "player2points": 74, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kris Soehnlin", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Derek Tokaz", 
+            "player1points": 100, 
+            "player2": "Bryan Howard", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeremy Howard", 
+            "player1points": 100, 
+            "player2": "Stephen Michel", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pete Hodgkins", 
+            "player1points": 37, 
+            "player2": "Marcus McAllister", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ash Moser", 
+            "player1points": 59, 
+            "player2": "Kris Soehnlin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ron Brannan", 
+            "player1points": 13, 
+            "player2": "Devin Combs", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sam Durbin", 
+            "player1points": 100, 
+            "player2": "Marshal Staggs", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Emrich", 
+            "player1points": 12, 
+            "player2": "Wiliam Peterson", 
+            "player2points": 54, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ira Mayers", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Jeremy Howard", 
+            "player1points": 31, 
+            "player2": "Derek Tokaz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sam Durbin", 
+            "player1points": 58, 
+            "player2": "Kris Soehnlin", 
+            "player2points": 58, 
+            "result": "draw"
+          }, 
+          {
+            "player1": "Devin Combs", 
+            "player1points": 100, 
+            "player2": "Bryan Howard", 
+            "player2points": 13, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Stephen Michel", 
+            "player1points": 100, 
+            "player2": "Marcus McAllister", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ash Moser", 
+            "player1points": 100, 
+            "player2": "Wiliam Peterson", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Emrich", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Chantilly", 
+      "country": "United States of America", 
+      "lat": "38.894379200000", 
+      "lon": "-77.430511700000", 
+      "name": "The Game Parlor", 
+      "state": "Virginia"
+    }
+  }
+}

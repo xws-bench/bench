@@ -1,0 +1,122 @@
+Adding a new ship:
+
+data/ships.js
+data/strings.en.json
+data/xws.json
+
+png/xy.png
+
+src/pilots.js
+
+----------------
+Debugging from source instead of all.min.js:
+
+	1) Replace line in main.html: 
+
+		<script src="js/all.min.js" ></script>
+
+	   with:
+
+		<!-- "Compiled version" 
+		<script src="js/all.min.js" ></script>
+		-->
+		<!-- "Sourcefile version" -->
+		<script src="js/api.js"></script>
+		<script src="js/snap.svg-min-0.4.1.js"></script>
+		<script src="js/jwerty.min.js"></script>
+		<script src="js/mustache.min.js"></script>
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<script src="js/jquery.a-tools-1.4.1.js"></script>
+		<script src="js/jquery.asuggest.js"></script>
+		<script src="js/lz-string.min.js"></script>
+		<script src="js/howler2.0.2.min.js"></script>
+		<script src="js/hammer2.0.8.min.js"></script>
+		<script src="js/sheetrock.min.js"></script>
+
+		<script src="src/obstacles.js"></script>
+		<script src="src/critical.js"></script>
+		<script src="src/condition.js"></script>
+		<script src="src/units.js"></script>
+		<script src="src/upgrades.js"></script>
+		<script src="src/iaunits.js"></script>
+		<script src="src/metaunits.js"></script>
+		<script src="src/pilots.js"></script>
+		<script src="src/upgcards.js"></script>
+		<script src="src/team.js"></script>
+		<script src="src/proba.js"></script>
+		<script src="src/replay.js"></script>
+		<script src="src/xwings.js"></script>
+		<script src="src/page_manage.js"></script>
+		<script src="src/page_create.js"></script>
+		<script src="src/page_combat.js"></script>
+
+		<!-- api.js snap.svg-min-0.4.1.js jwerty.min.js mustache.min.js jquery-3.1.1.min.js 
+		jquery.a-tools-1.4.1.js jquery.asuggest.js lz-string.min.js howler2.0.2.min.js 
+		hammer2.0.8.min.js sheetrock.min.js
+		-->
+
+	2) After recompiling all.min.js, switch back and forth between
+compiled code and source code by switching commented-out blocks (e.g. switch
+
+		<!-- "Compiled version"
+			<script src="js/all.min.js" ></script>
+                -->
+
+	  with:
+
+		<!-- "Compiled version" -->
+			<script src="js/all.min.js" ></script>
+                
+	  and do the reverse for the Sourcefile section.)
+
+	3) Do *not* check this version of main.html in to production branch!
+
+
+----------------
+
+Setting up makefile compilation environment on Windows using Cygwin:
+
+XWS-Bench Windows make env prereqs:
+
+1) This repo itself
+2) Cygwin
+3) gcc + mingw64-[i686 | x64]-gcc*(from Cygwin setup util)
+4) GNU make (from Cygwin setup util)
+5) Ruby-devel (from Cygwin setup util)
+6) libffi-devel, libffi-debuginfo, mingw64-i686-libffi tool (from Cygwin setup util)
+7) rubygems (https://rubygems.org/rubygems/rubygems-2.7.4.tgz), install with 'ruby setup.rb install' from within unpacked dir
+8) Compass for Sass support (from rubygems), install with 'gem install compass'
+9) Java JRE or JDK, with java in bash path (see https://stackoverflow.com/questions/4918830/how-can-i-set-my-cygwin-path-to-find-javac)
+10) git (from Cygwin setup util)
+
+For each step, test that the installation succeeded and that the tools have been installed before proceeding to the next step.
+
+----------------
+
+Setting up ssh-key access for GitHub (useful for automated pushes)
+Taken from https://gist.github.com/developius/c81f021eb5c5916013dc
+
+Create a repo.
+Make sure there is at least one file in it (even just the README)
+Generate ssh key:
+```
+ssh-keygen -t rsa -C "your_email@example.com"
+```
+Copy the contents of the file ~/.ssh/id_rsa.pub to your SSH keys in your GitHub account settings.
+Test SSH key:
+```
+ssh -T git@github.com
+clone the repo:
+git clone git://github.com/username/your-repository
+```
+Now cd to your git clone folder and do:
+```
+git remote set-url origin git@github.com:username/your-repository.git
+```
+Now try editing a file (try the README) and then do:
+
+```
+git add -A
+git commit -am "my update msg"
+git push
+```

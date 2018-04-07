@@ -1,0 +1,103 @@
+{
+  "tournament": {
+    "date": "2016-03-06", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1209, 
+    "name": "", 
+    "players": [
+      {
+        "mov": 0, 
+        "name": "Tommaso Nardi", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Zoppo", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Rocco", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Mandingo", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "John Maccheron", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Chewbecca", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Tommaso Nardi", 
+            "player1points": 0, 
+            "player2": "Mandingo", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chewbecca", 
+            "player1points": 0, 
+            "player2": "Rocco", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Maccheron", 
+            "player1points": 0, 
+            "player2": "Zoppo", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Sarzana", 
+      "country": "Italia", 
+      "lat": "44.111446000000", 
+      "lon": "9.958588000000", 
+      "name": "Sarzana, La Spezia", 
+      "state": "Liguria"
+    }
+  }
+}

@@ -1,0 +1,297 @@
+{
+  "tournament": {
+    "date": "2015-07-05", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1640, 
+    "name": "Imp Assalt", 
+    "players": [
+      {
+        "mov": 0, 
+        "name": "Player 1", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 463, 
+        "name": "Sean M.", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 1
+        }, 
+        "score": 13, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Player 2", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 384, 
+        "name": "Richard", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 2
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 382, 
+        "name": "Matt", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 3
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Player 3", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 376, 
+        "name": "Brendon", 
+        "rank": {
+          "elimination": 3, 
+          "swiss": 4
+        }, 
+        "score": 10, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Player 4", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 294, 
+        "name": "Ghislain", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Player 5", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 205, 
+        "name": "Andrew", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Player 6", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Player 7", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 204, 
+        "name": "Kyle", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 5, 
+        "sos": "0.99"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Player 8", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 92, 
+        "name": "Thomas", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "0.99"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Brendon", 
+            "player1points": 17, 
+            "player2": "Richard", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas", 
+            "player1points": 24, 
+            "player2": "Andrew", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Matt", 
+            "player1points": 40, 
+            "player2": "Kyle", 
+            "player2points": 13, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ghislain", 
+            "player1points": 17, 
+            "player2": "Sean M.", 
+            "player2points": 26, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Richard", 
+            "player1points": 35, 
+            "player2": "Matt", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean M.", 
+            "player1points": 40, 
+            "player2": "Andrew", 
+            "player2points": 16, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kyle", 
+            "player1points": 28, 
+            "player2": "Brendon", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas", 
+            "player1points": 31, 
+            "player2": "Ghislain", 
+            "player2points": 40, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Ghislain", 
+            "player1points": 34, 
+            "player2": "Richard", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Brendon", 
+            "player1points": 40, 
+            "player2": "Andrew", 
+            "player2points": 13, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Thomas", 
+            "player1points": 37, 
+            "player2": "Kyle", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sean M.", 
+            "player1points": 40, 
+            "player2": "Matt", 
+            "player2points": 30, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Brendon", 
+            "player1points": 26, 
+            "player2": "Sean M.", 
+            "player2points": 40, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Richard", 
+            "player1points": 31, 
+            "player2": "Matt", 
+            "player2points": 40, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Matt", 
+            "player1points": 0, 
+            "player2": "Sean M.", 
+            "player2points": 40, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 5, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other"
+  }
+}

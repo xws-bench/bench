@@ -1,0 +1,53 @@
+{
+  "tournament": {
+    "date": "2016-01-30", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 1061, 
+    "name": "UK Games Expo", 
+    "players": [
+      {
+        "mov": 0, 
+        "name": "Kev", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }, 
+      {
+        "mov": 0, 
+        "name": "Jon", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 0, 
+        "sos": "0.00"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Kev", 
+            "player1points": 0, 
+            "player2": "Jon", 
+            "player2points": 0, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Birmingham", 
+      "country": "United Kingdom", 
+      "lat": "52.481367900000", 
+      "lon": "-1.898072500000", 
+      "name": "Hilton Birmingham Metropole Hotel", 
+      "state": "England"
+    }
+  }
+}
