@@ -308,7 +308,7 @@ Team.prototype = {
 	var i;
 	var team=this.team;
 	this.name=$("#teamname"+this.team).val();
-	if (this.name=="") this.name="Squad #"+team;
+	if (this.name=="" || typeof this.name==="undefined") this.name="Squad #"+team;
 	
 	$("#team"+team).empty();
 	$("#importexport"+team).remove();

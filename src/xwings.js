@@ -2110,6 +2110,7 @@ $(document).ready(function() {
 	var args=[];
 	if (arg!=null) args= arg.split('&');
 
+        // Possibly needs to be updated to use teamlists
 	if (args.length>1) {
 	    log("Loading permalink...");
 	    ROCKDATA=args[2];
