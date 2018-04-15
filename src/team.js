@@ -179,6 +179,8 @@ Team.prototype = {
     tosquadron:function(s) {
         // Refactor to generate squadron from teamlist.
 	var i,j;
+        var prevTeam=currentteam;
+        currentteam=this;
         this.points=this.teamlist.getCost();
         var shiplist=this.teamlist.getShips();
 	var team1=(this.teamlist!==null)?shiplist.length:0;
@@ -190,6 +192,9 @@ Team.prototype = {
 	for(i in shiplist){
             var ship=shiplist[i];
             var u=addunit(ship.pilotID,this.teamlist.listFaction);
+            for(var j in Unit.prototype){
+                u[j]=Unit.prototype[j];
+            }
             u.tosquadron(s);
             u.team=this.team;
 
@@ -218,9 +223,11 @@ Team.prototype = {
                 throw("Upgrade not installed:"+upg.name+"-"+impUpgList[0]+"/"+currentteam.faction+"/"+PILOT_dict[pilot.pilotID]);
                 break; // In case of emergency
             }
+
             // Set graphical context, add u to various lists
             u.id=id++;
             //if (sortable[i].team==2) sortable[i].id+=team1;
+
             /* Copy all functions for manual inheritance.  */
             for (var j in PILOTS[u.pilotid]) {
                 var p=PILOTS[u.pilotid];
@@ -256,34 +263,36 @@ Team.prototype = {
 		}
 	    }
 	}
-*/	for (i in squadron) {
-	    u=squadron[i];
-	    if (u.team==this.team&&typeof u.init=="function") u.init();
-	}
-	for (i in squadron) {
-	    u=squadron[i];
-	    if (u.team==this.team) {
-		for (var j=0; j<u.upgrades.length; j++) {
-		    var upg=u.upgrades[j];
-		    //if (upg.id>=0) log("removing "+upg.name+"?"+u.installed+" "+(typeof upg.uninstall));
-		    // Need to unwrap generic upgrades, installed when creating the squad
-		    if (upg.id>=0&&typeof UPGRADES[upg.id].uninstall=="function")
-			UPGRADES[upg.id].uninstall(u);
-		    // Now install the upgrades added during the tosquadron call
-		    if (typeof upg.install=="function" && upg.install !== Upgrade.prototype.install) upg.install(u);
-		    Upgrade.prototype.install.call(upg,u);
-		}
-	    }
-	}
-	for (i in squadron) {
-	    u=squadron[i];
-	    if (u.team==this.team) {
-		for (var j=0; j<u.upgrades.length; j++) {
-		    var upg=u.upgrades[j];
-		    if (typeof upg.init=="function"&&!u.isdocked) upg.init(u);
-		}
-	    }
-	}
+*/	
+        /* This functionality is also already handled in addunit */
+//        for (i in squadron) {
+//	    u=squadron[i];
+//	    if (u.team==this.team&&typeof u.init=="function") u.init();
+//	}
+//	for (i in squadron) {
+//	    u=squadron[i];
+//	    if (u.team==this.team) {
+//		for (var j=0; j<u.upgrades.length; j++) {
+//		    var upg=u.upgrades[j];
+//		    //if (upg.id>=0) log("removing "+upg.name+"?"+u.installed+" "+(typeof upg.uninstall));
+//		    // Need to unwrap generic upgrades, installed when creating the squad
+//		    if (upg.id>=0&&typeof UPGRADES[upg.id].uninstall=="function")
+//			UPGRADES[upg.id].uninstall(u);
+//		    // Now install the upgrades added during the tosquadron call
+//		    if (typeof upg.install=="function" && upg.install !== Upgrade.prototype.install) upg.install(u);
+//		    Upgrade.prototype.install.call(upg,u);
+//		}
+//	    }
+//	}
+//	for (i in squadron) {
+//	    u=squadron[i];
+//	    if (u.team==this.team) {
+//		for (var j=0; j<u.upgrades.length; j++) {
+//		    var upg=u.upgrades[j];
+//		    if (typeof upg.init=="function"&&!u.isdocked) upg.init(u);
+//		}
+//	    }
+//	}
 
 	this.units.sort(function(a,b) {return b.getskill()-a.getskill();});
 	this.history={title: {text: UI_translation["Damage taken per turn"]},
