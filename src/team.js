@@ -183,7 +183,7 @@ Team.prototype = {
         currentteam=this;
         this.points=this.teamlist.getCost();
         var shiplist=this.teamlist.getShips();
-	var team1=(this.teamlist!==null)?shiplist.length:0;
+	var team1=(this.team===1)?0:TEAMS[1].teamlist.getShips().length;
         var sortable = this.sortedgenerics();
 	var id=0;
 	this.captain=null;
@@ -225,7 +225,7 @@ Team.prototype = {
             }
 
             // Set graphical context, add u to various lists
-            u.id=id++;
+            u.id=team1 + id++;
             //if (sortable[i].team==2) sortable[i].id+=team1;
 
             /* Copy all functions for manual inheritance.  */
