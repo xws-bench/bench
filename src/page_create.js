@@ -426,10 +426,11 @@ function convertToTeamList(curTeam){
     }
     // 1. compose JSON version of list
     var jsonRep={};
-    jsonRep["faction"]=curTeam.faction;
+    jsonRep["faction"]=curTeam.faction.toLowerCase();
+    jsonRep["name"]=curTeam.name;
     jsonRep["pilots"]=[];
-    jsonRep["vendor"]={"xws-bench":{}};
-    jsonRep["version"]="1.0.0";
+    jsonRep["vendor"]={xwsbenchmark:{builder:"Squadron Benchmark",builder_url:"http://baranidlo.github.io/bench/"}};
+    jsonRep["version"]="0.4.0";
     
     // 2. fill JSON list's pilots
     for(var i in generics){
