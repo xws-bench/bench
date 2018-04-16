@@ -13,7 +13,7 @@ function prepareforcombat(t,n) {
             localStorage[TEAMS[n].name]=JSON.stringify({"pts":t.getCost(),"faction":t.listFaction,"jug":t.outputJuggler()});
         }
         if (!SQUADLIST.isinrow(t)) {
-            SQUADLIST.addrow(0,TEAMS[n].name,t.getCost(),t.listFaction,t.outputJuggler(true),true,t);
+            SQUADLIST.addrow(0,TEAMS[n].name,t.getCost(),t.listFaction,t.outputJuggler(true),true,null,t);
         }
         $("#squad"+n+"points").html(t.getCost());
     }

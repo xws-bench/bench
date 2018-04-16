@@ -93,7 +93,7 @@ TeamList.prototype={
         // WIP
         var f={"rebel":Unit.REBEL,"scum":Unit.SCUM,"imperial":Unit.EMPIRE};
         this.listJSON=JSON.parse(jsonString);
-        this.listFaction=f[this.listJSON.faction];
+        this.listFaction=f[this.listJSON.faction.toLowerCase()];
         this.populateShips(); // Grab all ship and upgrade indices for updateCost, outputX, etc.
         this.updateCost(); // Probably does too much; let's split this into "populateShips" and "updateCost".
         this.dirty=true; // Let all output functions know to update
