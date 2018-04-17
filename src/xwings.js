@@ -934,10 +934,11 @@ function page_select() {
     enablenextphase();
     phase=SELECT_PHASE;
 }
-function createsquad(f) {
+function createsquad(f,teamlist) {
     page_creation();
-    var faction=currentteam.faction;
-    if (typeof f!="undefined") faction=f;
+    var faction=(typeof f==="undefined")?currentteam.faction:f;
+//    var faction=currentteam.faction;
+//    if (typeof f!="undefined") faction=f;
     $(".activeunit").prop("disabled",true);
     //$("#selectphase").hide();
     //$("#addcomment").hide();
@@ -990,21 +991,61 @@ function createsquad(f) {
 	displayfactionunits(true);
     });
     displayfactionunits(false);
-    for (var i in generics) {
-	var u=generics[i];
-	if (u.team==currentteam.team) {
-	    addunit(u.pilotid,currentteam.faction,u);
-            u.tosquadron(s);
-            u.g.attr({display:"none"});
-            u.geffect.attr({display:"none"});
-	    for (var j=0; j<u.upgradetype.length; j++) {
-		var upg=u.upg[j];
-		if (upg>-1) {
-		    addupgrade(u,upg,j);
-		}
-	    }
-	}
+    if(typeof teamlist!=="undefined"){
+        // New code to create a squadron quickly and easily from a teamlist
+        for(var i in teamlist.listShips){
+            var pilot=teamlist.listShips[i];
+            var u=addunit(pilot.pilotID,currentteam.faction);
+            u.tosquadron(s); // Adds u to the Snap.svg graphics context
+            u.g.attr({display:"none"});      // So that these two calls work
+            u.geffect.attr({display:"none"});// correctly.
+
+            //In fact, it doesn't really even matter.  If we can't trust XWS lists,
+            //we should expose that rather than hiding the issue.
+            //Let's just assume there will always be *at least* as many upgrade slots as necessary.
+            var impUpgList=pilot.upgrades.slice(); // list of upgrade indices
+            var installed=false;
+            while(impUpgList.length>0){
+                var upg=UPGRADES[impUpgList[0]]; // first upgrade from the top of the array
+                for (var f=0, unusedSlots=(typeof u.upgradetype!=="undefined")?u.upgradetype.length:0; f<unusedSlots; f++){
+                    if (u.upgradetype[f]==upg.type&&u.upg[f]==-1) { 
+                        addupgrade(u,impUpgList[0],f);
+                        //u.upg[f]=impUpgList[0]; 
+                        installed=true; 
+                        impUpgList.shift(); break; }
+                }
+                if(installed){installed=false; continue;} // If we found a slot, great!  Move on.
+                else{ // Not enough of required type of slots.
+                    var idx=u.upgradetype.length; // Find last index of upgradetype array
+                    u.upgradetype.push(upg.type); // Add a new entry of the type we want to install
+                    while(u.upg.length<=idx){u.upg.push(-1);} // lengthen p.upg as well.
+                    addupgrade(u,impUpgList[0],idx);
+                    //u.upg[idx]=impUpgList[0];
+                    impUpgList.shift();
+                    continue;
+                }
+                throw("Upgrade not installed:"+upg.name+"-"+impUpgList[0]+"/"+currentteam.faction+"/"+PILOT_dict[pilot.pilotID]);
+                break; // In case of emergency
+            }
+        }
     }
+//    else{ // This section should go away in time
+//        for (var i in generics) {
+//            var u=generics[i];
+//            if (u.team==currentteam.team) {
+//                addunit(u.pilotid,currentteam.faction,u);
+//                u.tosquadron(s);
+//                u.g.attr({display:"none"});
+//                u.geffect.attr({display:"none"});
+//                for (var j=0; j<u.upgradetype.length; j++) {
+//                    var upg=u.upg[j];
+//                    if (upg>-1) {
+//                        addupgrade(u,upg,j);
+//                    }
+//                }
+//            }
+//        }
+//    }
 }
 function switchdialimg(b) {
     if (b==true) {
@@ -1072,15 +1113,30 @@ function getupgtxttranslation(name,type) {
     }
     return "";
 }
-function importsquad(t) {
-    currentteam.parseJSON($("#squad"+t).val(),true);
-    currentteam.name="SQUAD."+currentteam.toASCII();
-    var jug=currentteam.toJuggler(true);
-    currentteam.toJSON(); // just for points
-    $("#squad"+t+"points").html(currentteam.points);
-    localStorage[currentteam.name]=JSON.stringify({"pts":currentteam.points,"faction":currentteam.faction,"jug":currentteam.toJuggler(false)});
-    SQUADLIST.addrow(t,currentteam.name,currentteam.points,currentteam.faction,jug);
-    enablenextphase();
+function importsquad(tb,n) {
+    var newTeamList=new TeamList();
+    if(newTeamList.inputJuggler($("#squad"+tb).val())){
+        // Try handling Juggler human-readable list
+        TEAMS[n].name="SQUAD."+newTeamList.toASCII();
+    }
+    else if(newTeamList.inputJSON($("#squad"+tb).val())){
+        // Try handling JSON list
+        TEAMS[n].name="SQUAD."+newTeamList.toASCII();
+    }
+    else{
+        alert("Could not parse list format!  Please try JSON or List Juggler text");
+        $("#squad"+tb).val("");
+        return;
+    }
+    prepareforcombat(newTeamList,n);
+//    currentteam.setteamlist(newTeamList);
+//    $("#squad"+tb+"points").html(newTeamList.getCost());
+//    $("#squad"+tb).val(newTeamList.outputJuggler(true,false));
+//    localStorage[currentteam.name]=newTeamList.outputJSON();
+//    var jug2=newTeamList.outputJuggler();
+//    SQUADLIST.addrow(0,currentteam.name,newTeamList.getCost(),newTeamList.listFaction,jug2,true,null,newTeamList); 
+//    //SQUADLIST.addrow(t,currentteam.name,currentteam.points,currentteam.faction,jug);
+//    enablenextphase();
 }
 
 function startcombat() {
@@ -1805,13 +1861,13 @@ $(document).ready(function() {
 
     $("#squad1").on("paste",function() {
 	setTimeout(function(){
-	    currentteam=TEAMS[1];importsquad(1);
+	    importsquad(1,1);
             enablenextphase();
         }, 4);
     });
     $("#squad2").on("paste",function() {
 	setTimeout(function(){
-	    currentteam=TEAMS[2];importsquad(2);
+	    importsquad(2,2);
             enablenextphase();
         }, 4);
     });
@@ -2069,6 +2125,7 @@ $(document).ready(function() {
 	var args=[];
 	if (arg!=null) args= arg.split('&');
 
+        // Possibly needs to be updated to use teamlists
 	if (args.length>1) {
 	    log("Loading permalink...");
 	    ROCKDATA=args[2];

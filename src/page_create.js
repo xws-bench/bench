@@ -419,3 +419,29 @@ function removeupgrade(self,num,data) {
     self.showstats();
     currentteam.updatepoints();
 }
+function convertToTeamList(curTeam){
+    // New function to turn created list to teamlist within creation page
+    if(curTeam===null || typeof curTeam === "undefined"){
+        curTeam=currentteam;
+    }
+    // 1. compose JSON version of list
+    var jsonRep={};
+    jsonRep["faction"]=curTeam.faction.toLowerCase();
+    jsonRep["name"]=curTeam.name;
+    jsonRep["pilots"]=[];
+    jsonRep["vendor"]={xwsbenchmark:{builder:"Squadron Benchmark",builder_url:"http://baranidlo.github.io/bench/"}};
+    jsonRep["version"]="0.4.0";
+    
+    // 2. fill JSON list's pilots
+    for(var i in generics){
+        jsonRep["pilots"].push(generics[i].toJSON());
+    }
+    
+    // 3. create new TeamList using JSON data
+    curTeam.teamlist=new TeamList(JSON.stringify(jsonRep));
+    
+    // 4. clear generics
+    for(var i in generics){
+        delete generics[i];
+    }
+}
