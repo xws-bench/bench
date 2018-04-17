@@ -1113,15 +1113,30 @@ function getupgtxttranslation(name,type) {
     }
     return "";
 }
-function importsquad(t) {
-    currentteam.parseJSON($("#squad"+t).val(),true);
-    currentteam.name="SQUAD."+currentteam.toASCII();
-    var jug=currentteam.toJuggler(true);
-    currentteam.toJSON(); // just for points
-    $("#squad"+t+"points").html(currentteam.points);
-    localStorage[currentteam.name]=JSON.stringify({"pts":currentteam.points,"faction":currentteam.faction,"jug":currentteam.toJuggler(false)});
-    SQUADLIST.addrow(t,currentteam.name,currentteam.points,currentteam.faction,jug);
-    enablenextphase();
+function importsquad(tb,n) {
+    var newTeamList=new TeamList();
+    if(newTeamList.inputJuggler($("#squad"+tb).val())){
+        // Try handling Juggler human-readable list
+        TEAMS[n].name="SQUAD."+newTeamList.toASCII();
+    }
+    else if(newTeamList.inputJSON($("#squad"+tb).val())){
+        // Try handling JSON list
+        TEAMS[n].name="SQUAD."+newTeamList.toASCII();
+    }
+    else{
+        alert("Could not parse list format!  Please try JSON or List Juggler text");
+        $("#squad"+tb).val("");
+        return;
+    }
+    prepareforcombat(newTeamList,n);
+//    currentteam.setteamlist(newTeamList);
+//    $("#squad"+tb+"points").html(newTeamList.getCost());
+//    $("#squad"+tb).val(newTeamList.outputJuggler(true,false));
+//    localStorage[currentteam.name]=newTeamList.outputJSON();
+//    var jug2=newTeamList.outputJuggler();
+//    SQUADLIST.addrow(0,currentteam.name,newTeamList.getCost(),newTeamList.listFaction,jug2,true,null,newTeamList); 
+//    //SQUADLIST.addrow(t,currentteam.name,currentteam.points,currentteam.faction,jug);
+//    enablenextphase();
 }
 
 function startcombat() {
@@ -1846,13 +1861,13 @@ $(document).ready(function() {
 
     $("#squad1").on("paste",function() {
 	setTimeout(function(){
-	    currentteam=TEAMS[1];importsquad(1);
+	    importsquad(1,1);
             enablenextphase();
         }, 4);
     });
     $("#squad2").on("paste",function() {
 	setTimeout(function(){
-	    currentteam=TEAMS[2];importsquad(2);
+	    importsquad(2,2);
             enablenextphase();
         }, 4);
     });

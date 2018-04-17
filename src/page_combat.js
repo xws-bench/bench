@@ -3,15 +3,13 @@ var mode=FREECOMBAT;
 
 function prepareforcombat(t,n) {
     if (typeof t !== "undefined" && t.getShips().length!==0){
-        //TEAMS[n].parseJuggler(t,true);
-        $("#squad"+n).html(t.outputJuggler(true));
+        
+        $("textarea#squad"+n).val(t.outputJuggler(true));
         TEAMS[n].name="SQUAD."+t.toASCII();
         TEAMS[n].setteamlist(t);
-        //TEAMS[n].toJSON();// Just for points
 
         if (typeof localStorage[TEAMS[n].name]=="undefined") {
             localStorage.setItem(TEAMS[n].name,t.outputJSON());
-            //localStorage[TEAMS[n].name]=t.outputJSON();
         }
         if (!SQUADLIST.isinrow(t)) {
             SQUADLIST.addrow(0,TEAMS[n].name,t.getCost(),t.listFaction,t.outputJuggler(true),true,null,t);

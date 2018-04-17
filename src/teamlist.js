@@ -27,6 +27,7 @@ function TeamList(jsonString){
 TeamList.prototype={
     // Calculate cost of list, assuming "this" has at least a JSON-backed object already
     updateCost: function(){
+        this.pointCost=0; // Reset cost
         // look up every card and add their costs, accounting for upgrades that decrease cost
         for(var i in this.listShips){
             var pilot=this.listShips[i];
@@ -90,13 +91,23 @@ TeamList.prototype={
     },
     inputJSON: function(jsonString){
         // The real work happens here.
-        // WIP
+        // jsonString can either be a JSON object, or a JSON object's string representation
+        // We really should do more validation here.
         var f={"rebel":Unit.REBEL,"scum":Unit.SCUM,"imperial":Unit.EMPIRE,"empire":Unit.EMPIRE};
-        this.listJSON=(typeof jsonString==="string")?JSON.parse(jsonString):jsonString;
+        try{
+            this.listJSON=(typeof jsonString==="string")?JSON.parse(jsonString):jsonString;
+        }
+        catch (e){
+            console.log("Unable to read JSON object or string");
+            console.log(e.toString());
+            return false;
+        }
         this.listFaction=f[this.listJSON.faction.toLowerCase()];
         this.populateShips(); // Grab all ship and upgrade indices for updateCost, outputX, etc.
         this.updateCost(); // Probably does too much; let's split this into "populateShips" and "updateCost".
         this.dirty=true; // Let all output functions know to update
+        return true;
+        
     },
     populateShips: function(){ // fill in list of SimpleUnits from JSON data
         // look up every card
@@ -236,8 +247,19 @@ TeamList.prototype={
         }
     },
     inputJuggler: function(jString){
+        // Only used for importsquad so I'm not going to optimize this much.
         // WIP
+        // Only allow string input
+        if(typeof jString!=="string"){
+            return false;
+        }
+        
         this.dirty=true;
+        var oldJuggler={};
+        var lines=jString.split("\n");
+        oldJuggler["faction"]=lines.shift(); // Removes first line
+        oldJuggler["jug"]=lines.join("\n");
+        return this.inputOldJuggler(oldJuggler);
     },
     inputOldJuggler: function(ojObj){
         // WIP
@@ -271,9 +293,10 @@ TeamList.prototype={
             this.listFaction=f[ojObj.faction.toLowerCase()];
         }
         else{
-            this.listFaction=Unit.REBEL;
+            console.log("unknown Juggler Faction:"+ojObj.faction);
+            return converted;
         }
-        // Create a JSON file and load it, rather than populate the ships manually?
+        // Create a JSON file and load it, rather than populate the ships manually
         jsonRep["faction"]=this.listFaction.toLowerCase();
         jsonRep["name"]=""; // This may need some work later
         jsonRep["pilots"]=[];
@@ -284,10 +307,21 @@ TeamList.prototype={
         for (i=0; i<pilots.length; i++) {
 	    pid=-1;
 	    var pstr=pilots[i].split(/\s+\+\s+/);
+            // Handle new-style pilot strings ( "pilot name (ship name) [(Edition)]" )
+            var ship=pstr[0].match(/\s?\((.*)\)\s?/)[1];
+            if(typeof ship!=="undefined" && ship!==""){
+                pstr[0]=pstr[0].split("(")[0].trim();
+            }
+            else{
+                ship="";
+            }
             for (j=0;j<PILOTS.length; j++) {
 		var v=PILOTS[j].name;
 		var vat=v;
 		var pu="";
+                if(ship!==""&&PILOTS[j].unit!==ship){
+                    continue;
+                }
 		if (PILOTS[j].faction==this.listFaction) {
 		    vat=translate(v);
 		    if (PILOTS[j].ambiguous==true&&typeof PILOTS[j].edition!="undefined") pu="("+PILOTS[j].edition+")";
@@ -303,7 +337,7 @@ TeamList.prototype={
                 return converted;
 	    }
  	    if (pid==-1) {
-		log("unknown Juggler pilot:"+pilots[i]+"/"+ojObj.jug);
+		console.log("unknown Juggler pilot:"+pilots[i]+"/"+ojObj.jug);
                 return converted;
 	    }
             var p=new Unit(0,pid);
