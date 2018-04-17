@@ -236,17 +236,154 @@ TeamList.prototype={
         }
     },
     inputJuggler: function(jString){
+        // WIP
         this.dirty=true;
     },
-    inputOldJuggler: function(ojString){
+    inputOldJuggler: function(ojObj){
+        // WIP
+        // This code makes me feel dirty.
+        // format of object is {"faction":<string>, "pts":<integer>, "jug":<old Juggler style string>}
         this.dirty=true;
+        
+        // Variables from re-used old team.parseJuggler code
+        var i,j,k;
+        var pid=-1;
+        var translated=false;
+        
+        // Split ojObj.jug string into lines
+//        var re=/\r\n|\n\r|\n|\r/g;
+//        var pilots=ojObj.jug.replace(re,"\n").split("\n");
+        var pilots=ojObj.jug.trim().split("\n");
+        
+        // Store info in JSON format to re-use standard input function
+        var jsonRep={};
+        
+        // Return value so game can decide whether to re-store or delete old list
+        var converted=false;
+        
+        // Get faction
+        var f={"rebel":Unit.REBEL,"scum":Unit.SCUM,"imperial":Unit.EMPIRE};
+        var F=new RegExp("^("+Unit.REBEL+"|"+Unit.SCUM+"|"+Unit.EMPIRE+")$");
+        if(ojObj.faction.match(F)){
+            this.listFaction=ojObj.faction;
+        }
+        else if(typeof f[ojObj.faction.toLowerCase()]!=="undefined"){
+            this.listFaction=f[ojObj.faction.toLowerCase()];
+        }
+        else{
+            this.listFaction=Unit.REBEL;
+        }
+        // Create a JSON file and load it, rather than populate the ships manually?
+        jsonRep["faction"]=this.listFaction.toLowerCase();
+        jsonRep["name"]=""; // This may need some work later
+        jsonRep["pilots"]=[];
+        jsonRep["vendor"]={xwsbenchmark:{builder:"Squadron Benchmark",builder_url:"http://baranidlo.github.io/bench/"}};
+        jsonRep["version"]="0.4.0";
+        
+        // Need to look up xws-spec name strings, not PIDs!
+        for (i=0; i<pilots.length; i++) {
+	    pid=-1;
+	    var pstr=pilots[i].split(/\s+\+\s+/);
+            for (j=0;j<PILOTS.length; j++) {
+		var v=PILOTS[j].name;
+		var vat=v;
+		var pu="";
+		if (PILOTS[j].faction==this.listFaction) {
+		    vat=translate(v);
+		    if (PILOTS[j].ambiguous==true&&typeof PILOTS[j].edition!="undefined") pu="("+PILOTS[j].edition+")";
+		    v+=pu;
+		    vat+=pu;
+		    if (v.replace(/\'/g,"")==pstr[0]) { pid=j; break; }
+		    if (vat.replace(/\'/g,"")==pstr[0]) { pid=j; translated=true; break; }
+		} 
+	    }
+	    if (pid==-1) {
+		//if (translated==false) return this.parseJuggler(str,true);
+		console.log("pid undefined:"+translated+"!!"+pstr[0]+"!!"+this.faction);
+                return converted;
+	    }
+ 	    if (pid==-1) {
+		log("unknown Juggler pilot:"+pilots[i]+"/"+ojObj.jug);
+                return converted;
+	    }
+            var p=new Unit(0,pid);
+	    p.upg=[];
+	    for (j=0; j<20; j++) p.upg[j]=-1;
+	    if (typeof p.pilotid=="undefined") {
+		console.log(pid+" "+p.name+" "+p.pilotid);
+		console.trace();
+                return converted;
+	    }
+	    var authupg=[Unit.TITLE,Unit.MOD].concat(PILOTS[p.pilotid].upgrades);
+	    for (j=1; j<pstr.length; j++) {
+		for (k=0; k<UPGRADES.length; k++) {
+		    if ((translated==true&&translate(UPGRADES[k].name).replace(/\'/g,"").replace(/\(Crew\)/g,"")==pstr[j])
+			||(UPGRADES[k].name.replace(/\'/g,"")==pstr[j])) {
+			if (authupg.indexOf(UPGRADES[k].type)>-1) {
+			    if (typeof UPGRADES[k].upgrades!="undefined") 
+				if (UPGRADES[k].upgrades[0]=="Cannon|Torpedo|Missile") {
+				    authupg=authupg.concat([Unit.CANNON,Unit.TORPEDO,Unit.MISSILE]);
+				    p.upgradetype=p.upgradetype.concat([Unit.CANNON,Unit.TORPEDO,Unit.MISSILE]);
+				}
+			    else { 
+				authupg=authupg.concat(UPGRADES[k].upgrades);
+				p.upgradetype=p.upgradetype.concat(UPGRADES[k].upgrades);
+			    }
+			    break;
+			} 
+		    }
+		    if (k==UPGRADES.length){
+                        log("UPGRADE undefined: "+pstr[j]);
+                        return converted;
+                    }
+		}
+	    }
+	    //for (j=0; j<p.upgradetype.length; j++)
+	    //	p.log("found type "+p.upgradetype[j]);
+	    for (j=1; j<pstr.length; j++) {
+		for (k=0; k<UPGRADES.length; k++) {
+		    if ((translated==true&&translate(UPGRADES[k].name).replace(/\'/g,"").replace(/\(Crew\)/g,"")==pstr[j])
+			||(UPGRADES[k].name.replace(/\'/g,"")==pstr[j])) {
+			if (authupg.indexOf(UPGRADES[k].type)>-1) {
+			    for (f=0; f<p.upgradetype.length; f++) {
+				//log("check ?"+p.upgradetype[f]+" "+UPGRADES[k].type);
+				if (p.upgradetype[f]==UPGRADES[k].type&&p.upg[f]==-1) { p.upg[f]=k; break; }
+			    }
+			    break;
+			} else {
+                            log("** "+pstr[j]+" UPGRADE not listed: "+UPGRADES[k].type+" in "+p.name+"/"+ojObj.jug);
+                            return converted;
+                        }
+		    }
+		}
+	    }
+            jsonRep["pilots"].push(p.toJSON());
+	}
+        // If we got this far, everything went fine
+        converted = true;
+        this.inputJSON(JSON.stringify(jsonRep));
+        this.outputJuggler(false,false); // Force text conversion
+        return converted;
+    },
+    convertUnitToSimpleUnit: function(unitShip){
+        // Helper function for addShip, removeShip
+        
+    },
+    convertJugglerToSimpleUnit: function(unitShip){
+        // Helper function for addShip, removeShip
+        
     },
     addShip: function(ship){
+        // So far, only used internally so extra functionality may be kaput
         if(ship instanceof SimpleUnit){
             this.listShips.push(ship);
         }
-        else{ // handle Unit <blech>
-            
+        else if(ship instanceof Unit){ // handle Unit <blech>
+            // Create new SimpleUnit ship from Unit ship
+            this.addShip(this.convertUnitToSimpleUnit(ship));
+        }
+        else{
+            this.addShip(this.convertJugglerToSimpleUnit(ship));
         }
         this.dirty=true;
     },
@@ -254,8 +391,12 @@ TeamList.prototype={
         if(ship instanceof SimpleUnit){
             this.listShips.splice(this.listShips.indexOf(ship),1);
         }
-        else{ // handle Unit <blech!>
-            
+        else if(ship instanceof Unit){ // handle Unit <blech>
+            // create new SimpleUnit ship from Unit ship, and then delete it.
+            this.removeShip(this.convertUnitToSimpleUnit(ship));
+        }
+        else{
+            this.removeShip(this.convertJugglerToSimpleUnit(ship));
         }
         this.dirty=true;
     },
@@ -263,7 +404,7 @@ TeamList.prototype={
         return this.listShips;
     },
     outputLocal: function(){
-        
+        // WIP
     },
     inputLocal: function(wrappedString){
         this.dirty=true;

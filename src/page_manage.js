@@ -112,10 +112,28 @@ Squadlist.prototype = {
 	for (i in localStorage) {
 	    if (typeof localStorage[i]=="string"&&i.match(/SQUAD.*/)) {
 		var l=$.parseJSON(localStorage[i]);
-		if (typeof l.jug=="undefined"||typeof l.pts=="undefined"||typeof l.faction=="undefined")
+                // Should probably split this check into old and new versions
+		if (typeof l.version==="undefined" && typeof l.jug=="undefined"||l.jug===""||typeof l.pts=="undefined"||l.pts===0||typeof l.faction=="undefined")
 		    delete localStorage[i];
 		else {
-		    this.addrow(0,i,l.pts,l.faction,l.jug,true); 
+                    var newTeamList=new TeamList();
+                    var converted=true;
+                    // One handler for new list types, one for old list types
+                    if(typeof l.version!=="undefined"){
+                        newTeamList.inputJSON(l);
+                    }
+                    else{
+                        converted = newTeamList.inputOldJuggler(l);
+                    }
+                    if(converted){
+                        var jug2=newTeamList.outputJuggler();
+                        var key=newTeamList.toKey();
+                        //this.addrow(0,i,l.pts,l.faction,l.jug,true);
+                        this.addrow(0,i,newTeamList.getCost(),newTeamList.listFaction,jug2,true,null,newTeamList); 
+                    }
+                    else{
+                        delete localStorage[i];
+                    }
 		}
 	    }
 	}
