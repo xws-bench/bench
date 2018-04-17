@@ -184,7 +184,7 @@ Team.prototype = {
         this.points=this.teamlist.getCost();
         var shiplist=this.teamlist.getShips();
 	var team1=(this.team===1)?0:TEAMS[1].teamlist.getShips().length;
-        var sortable = this.sortedgenerics();
+        // var sortable = this.sortedgenerics();
 	var id=0;
 	this.captain=null;
 	//log("found team1:"+team1);
@@ -197,7 +197,7 @@ Team.prototype = {
             }
             u.tosquadron(s);
             u.team=this.team;
-
+            
             //Let's just assume there will always be *at least* as many upgrade slots as necessary.
             var impUpgList=ship.upgrades.slice(); // list of upgrade indices
             var installed=false;
@@ -226,73 +226,50 @@ Team.prototype = {
 
             // Set graphical context, add u to various lists
             u.id=team1 + id++;
-            //if (sortable[i].team==2) sortable[i].id+=team1;
 
             /* Copy all functions for manual inheritance.  */
             for (var j in PILOTS[u.pilotid]) {
                 var p=PILOTS[u.pilotid];
                 if (typeof p[j]=="function") u[j]=p[j];
             }
+            
+            // Add new ship to all relevant lists
             allunits.push(u);
             squadron.push(u);
             this.units.push(u);
-        }
-        
-//        for (var i=0; i<sortable.length; i++) {
-//	    if (this.team==sortable[i].team) {
-//		sortable[i].id=id++;
-//		if (sortable[i].team==2) sortable[i].id+=team1;
-//		var u=sortable[i];
-//		/* Copy all functions for manual inheritance.  */
-//		for (var j in PILOTS[u.pilotid]) {
-//		    var p=PILOTS[u.pilotid];
-//		    if (typeof p[j]=="function") u[j]=p[j];
-//		}
-//		u.tosquadron(s);
-//		allunits.push(u);
-//		squadron.push(u);
-//		this.units.push(u);
-//	    }
-//	}	
+        }	
 	
-/*	for (i in squadron) {
+        /* This section is required to ensure that init functions that rely on
+         * other members of the list (e.g. docking Nashta Pup, Phantom, etc.)
+         * works correctly.  I am very sad that this is necessary. */
+        for (i in squadron) {
+	    u=squadron[i];
+	    if (u.team==this.team&&typeof u.init=="function") u.init();
+	}
+	for (i in squadron) {
 	    u=squadron[i];
 	    if (u.team==this.team) {
-		if (this.isia==true) {
-		    squadron[i]=$.extend(u,IAUnit.prototype);
+		for (var j=0; j<u.upgrades.length; j++) {
+		    var upg=u.upgrades[j];
+		    //if (upg.id>=0) log("removing "+upg.name+"?"+u.installed+" "+(typeof upg.uninstall));
+		    // Need to unwrap generic upgrades, installed when creating the squad
+		    if (upg.id>=0&&typeof UPGRADES[upg.id].uninstall=="function")
+			UPGRADES[upg.id].uninstall(u);
+		    // Now install the upgrades added during the tosquadron call
+		    if (typeof upg.install=="function" && upg.install !== Upgrade.prototype.install) upg.install(u);
+		    Upgrade.prototype.install.call(upg,u);
 		}
 	    }
 	}
-*/	
-        /* This functionality is also already handled in addunit */
-//        for (i in squadron) {
-//	    u=squadron[i];
-//	    if (u.team==this.team&&typeof u.init=="function") u.init();
-//	}
-//	for (i in squadron) {
-//	    u=squadron[i];
-//	    if (u.team==this.team) {
-//		for (var j=0; j<u.upgrades.length; j++) {
-//		    var upg=u.upgrades[j];
-//		    //if (upg.id>=0) log("removing "+upg.name+"?"+u.installed+" "+(typeof upg.uninstall));
-//		    // Need to unwrap generic upgrades, installed when creating the squad
-//		    if (upg.id>=0&&typeof UPGRADES[upg.id].uninstall=="function")
-//			UPGRADES[upg.id].uninstall(u);
-//		    // Now install the upgrades added during the tosquadron call
-//		    if (typeof upg.install=="function" && upg.install !== Upgrade.prototype.install) upg.install(u);
-//		    Upgrade.prototype.install.call(upg,u);
-//		}
-//	    }
-//	}
-//	for (i in squadron) {
-//	    u=squadron[i];
-//	    if (u.team==this.team) {
-//		for (var j=0; j<u.upgrades.length; j++) {
-//		    var upg=u.upgrades[j];
-//		    if (typeof upg.init=="function"&&!u.isdocked) upg.init(u);
-//		}
-//	    }
-//	}
+	for (i in squadron) {
+	    u=squadron[i];
+	    if (u.team==this.team) {
+		for (var j=0; j<u.upgrades.length; j++) {
+		    var upg=u.upgrades[j];
+		    if (typeof upg.init=="function"&&!u.isdocked) upg.init(u);
+		}
+	    }
+	}
 
 	this.units.sort(function(a,b) {return b.getskill()-a.getskill();});
 	this.history={title: {text: UI_translation["Damage taken per turn"]},

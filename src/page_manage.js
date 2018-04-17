@@ -74,7 +74,8 @@ Squadlist.prototype = {
 	$("#r"+t).remove();
 	delete this.rows[t];
 	if (typeof localStorage[name]!="undefined") {
-            delete localStorage[name];
+            //delete localStorage[name];
+            localStorage.removeItem(name);
         }
     },
     createfromrow:function(t) {
@@ -113,7 +114,7 @@ Squadlist.prototype = {
 	    if (typeof localStorage[i]=="string"&&i.match(/SQUAD.*/)) {
 		var l=$.parseJSON(localStorage[i]);
                 // Should probably split this check into old and new versions
-		if (typeof l.version==="undefined" && typeof l.jug=="undefined"||l.jug===""||typeof l.pts=="undefined"||l.pts===0||typeof l.faction=="undefined")
+		if (typeof l.version==="undefined" && (typeof l.jug=="undefined"||l.jug===""||typeof l.pts=="undefined"||l.pts===0||typeof l.faction=="undefined"))
 		    delete localStorage[i];
 		else {
                     var newTeamList=new TeamList();
@@ -124,14 +125,19 @@ Squadlist.prototype = {
                     }
                     else{
                         converted = newTeamList.inputOldJuggler(l);
+                        if(converted){ // If old list is read properly, delete and replace with new version
+                            localStorage.removeItem(i);
+                            localStorage.setItem("SQUAD."+newTeamList.toASCII(),newTeamList.outputJSON());
+                        }
                     }
-                    if(converted){
+                    if(converted){ // If old list was read correctly *only*, erase old list and replace with JSON
                         var jug2=newTeamList.outputJuggler();
                         var key=newTeamList.toKey();
                         //this.addrow(0,i,l.pts,l.faction,l.jug,true);
                         this.addrow(0,i,newTeamList.getCost(),newTeamList.listFaction,jug2,true,null,newTeamList); 
                     }
                     else{
+                        // If an old-type list is not convertible, delete it.
                         delete localStorage[i];
                     }
 		}

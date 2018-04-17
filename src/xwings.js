@@ -1029,23 +1029,23 @@ function createsquad(f,teamlist) {
             }
         }
     }
-    else{ // This section should go away in time
-        for (var i in generics) {
-            var u=generics[i];
-            if (u.team==currentteam.team) {
-                addunit(u.pilotid,currentteam.faction,u);
-                u.tosquadron(s);
-                u.g.attr({display:"none"});
-                u.geffect.attr({display:"none"});
-                for (var j=0; j<u.upgradetype.length; j++) {
-                    var upg=u.upg[j];
-                    if (upg>-1) {
-                        addupgrade(u,upg,j);
-                    }
-                }
-            }
-        }
-    }
+//    else{ // This section should go away in time
+//        for (var i in generics) {
+//            var u=generics[i];
+//            if (u.team==currentteam.team) {
+//                addunit(u.pilotid,currentteam.faction,u);
+//                u.tosquadron(s);
+//                u.g.attr({display:"none"});
+//                u.geffect.attr({display:"none"});
+//                for (var j=0; j<u.upgradetype.length; j++) {
+//                    var upg=u.upg[j];
+//                    if (upg>-1) {
+//                        addupgrade(u,upg,j);
+//                    }
+//                }
+//            }
+//        }
+//    }
 }
 function switchdialimg(b) {
     if (b==true) {

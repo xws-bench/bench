@@ -7,6 +7,28 @@ var Critical=window.Critical || {};
 var Unit=window.Unit || {};
 var PILOTS=window.PILOTS || {};
 var OBSTACLES=window.OBSTACLES || {};
+var phantomInit=function(sh){
+    // Need to re-init Ghost immediately after initing Phantom/Phantom II
+    var ghost=-1;
+    var upg;
+    var u;
+    for (var i in squadron) {
+        u=squadron[i];
+        if (u.isally(sh)&&sh!=u) {
+            for (var j=0; j<u.upgrades.length; j++) {
+                upg=u.upgrades[j];
+                if (upg.name=="Ghost"){
+                    ghost=i; 
+                    break; 
+                }
+            }
+        }
+        if (ghost!=-1) break;
+    }
+    if (ghost!=-1) {
+        upg.init(squadron[ghost]);
+    }
+};
 var UPGRADES=window.UPGRADES= [
     {
 	name: "Ion Cannon Turret",
@@ -4379,14 +4401,16 @@ var UPGRADES=window.UPGRADES= [
      points:0,
      unique:true,
      done:true,
-     ship:"Attack Shuttle"
+     ship:"Attack Shuttle",
+     //init:phantomInit
     },
     {name:"Phantom II",
      type:Unit.TITLE,
      points:0,
      unique:true,
      done:true,
-     ship:"Sheathipede-class Shuttle"
+     ship:"Sheathipede-class Shuttle",
+     //init:phantomInit
     },
     {name:"Reinforced Deflectors",
      points:3,

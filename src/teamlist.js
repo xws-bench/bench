@@ -91,8 +91,8 @@ TeamList.prototype={
     inputJSON: function(jsonString){
         // The real work happens here.
         // WIP
-        var f={"rebel":Unit.REBEL,"scum":Unit.SCUM,"imperial":Unit.EMPIRE};
-        this.listJSON=JSON.parse(jsonString);
+        var f={"rebel":Unit.REBEL,"scum":Unit.SCUM,"imperial":Unit.EMPIRE,"empire":Unit.EMPIRE};
+        this.listJSON=(typeof jsonString==="string")?JSON.parse(jsonString):jsonString;
         this.listFaction=f[this.listJSON.faction.toLowerCase()];
         this.populateShips(); // Grab all ship and upgrade indices for updateCost, outputX, etc.
         this.updateCost(); // Probably does too much; let's split this into "populateShips" and "updateCost".
@@ -299,7 +299,7 @@ TeamList.prototype={
 	    }
 	    if (pid==-1) {
 		//if (translated==false) return this.parseJuggler(str,true);
-		console.log("pid undefined:"+translated+"!!"+pstr[0]+"!!"+this.faction);
+		console.log("pid undefined:"+translated+"!!"+pstr[0]+"!!"+this.listFaction);
                 return converted;
 	    }
  	    if (pid==-1) {
@@ -320,16 +320,17 @@ TeamList.prototype={
 		    if ((translated==true&&translate(UPGRADES[k].name).replace(/\'/g,"").replace(/\(Crew\)/g,"")==pstr[j])
 			||(UPGRADES[k].name.replace(/\'/g,"")==pstr[j])) {
 			if (authupg.indexOf(UPGRADES[k].type)>-1) {
-			    if (typeof UPGRADES[k].upgrades!="undefined") 
+			    if (typeof UPGRADES[k].upgrades!="undefined") {
 				if (UPGRADES[k].upgrades[0]=="Cannon|Torpedo|Missile") {
 				    authupg=authupg.concat([Unit.CANNON,Unit.TORPEDO,Unit.MISSILE]);
 				    p.upgradetype=p.upgradetype.concat([Unit.CANNON,Unit.TORPEDO,Unit.MISSILE]);
 				}
-			    else { 
-				authupg=authupg.concat(UPGRADES[k].upgrades);
-				p.upgradetype=p.upgradetype.concat(UPGRADES[k].upgrades);
-			    }
-			    break;
+                                else { 
+                                    authupg=authupg.concat(UPGRADES[k].upgrades);
+                                    p.upgradetype=p.upgradetype.concat(UPGRADES[k].upgrades);
+                                }
+                                break;
+                            }
 			} 
 		    }
 		    if (k==UPGRADES.length){
@@ -360,6 +361,10 @@ TeamList.prototype={
             jsonRep["pilots"].push(p.toJSON());
 	}
         // If we got this far, everything went fine
+        // Clear generics, as we don't want to leave traces of the created pilots
+        for(var i in generics){
+            delete generics[i];
+        }
         converted = true;
         this.inputJSON(JSON.stringify(jsonRep));
         this.outputJuggler(false,false); // Force text conversion
@@ -419,8 +424,8 @@ TeamList.prototype={
             ship=this.listShips[i];
             s+=ship.pilotID;
             for(j in ship.upgrades){
-                upg=ship.upgrades[i];
-                s+=upg;
+                upg=ship.upgrades[j];
+                s+=","+upg;
             }
             s+=":0,0,0;"
         }

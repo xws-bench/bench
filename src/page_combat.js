@@ -10,7 +10,8 @@ function prepareforcombat(t,n) {
         //TEAMS[n].toJSON();// Just for points
 
         if (typeof localStorage[TEAMS[n].name]=="undefined") {
-            localStorage[TEAMS[n].name]=JSON.stringify({"pts":t.getCost(),"faction":t.listFaction,"jug":t.outputJuggler()});
+            localStorage.setItem(TEAMS[n].name,t.outputJSON());
+            //localStorage[TEAMS[n].name]=t.outputJSON();
         }
         if (!SQUADLIST.isinrow(t)) {
             SQUADLIST.addrow(0,TEAMS[n].name,t.getCost(),t.listFaction,t.outputJuggler(true),true,null,t);
