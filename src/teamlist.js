@@ -458,6 +458,39 @@ TeamList.prototype={
     inputLocal: function(wrappedString){
         this.dirty=true;
     },
+    inputASCII: function(str){
+        // Read ASCII list in and generate Juggler file to load
+        // (Juggler format is fastest and simplest unless we build a SimpleUnit->JSON builder)
+        var jug="";
+        var pilots=str.split(";");
+        var pstr,pnum,upgnums;
+        var pilot,upgrade;
+        var pReg=new RegExp("(?:^|;)(\d{1,3})"); // Match pilot number only
+        var coordReg=new RegExp(":(\d+,\d+,\d+);?"); // Match coordinates
+        // Iterate over each ASCII set
+        //Format: <ID>[,<upgID>[,...]]:<Math.floor(this.tx)>,<Math.floor(this.ty)>,<Math.floor(this.alpha)>;[<ID>...;]
+        for(var i in pilots){
+            var line="";
+            pstr=pilots[i];
+            pnum=pReg.exec(pstr)[1]; // Extract pilot number
+            upgnums=pstr.split(':')[0]; // Grab all ID values...
+            upgnums.shift();            // and remove Pilot ID
+            pilot=PILOTS[pnum];
+            if(jug===""){               // Set faction first
+                jug+=pilot.faction;
+            }
+            line+="\n"+pilot.name + " (" + pilot.unit + ")";
+            if (pilot.ambiguous){
+                line+=" ("+pilot.edition+")";
+            }
+            for(var j in upgnums){
+                upgrade=UPGRADES[upgnums[j]];
+                line+=" + " + upgrade.name;
+            }
+            jug+=line;
+        }
+        return this.inputJuggler(jug);
+    },
     toASCII: function(){
         //output list as pilot ID#s followed by upgrades;
         //Format: <ID>[,<upgID>[,...]]:<Math.floor(this.tx)>,<Math.floor(this.ty)>,<Math.floor(this.alpha)>;[<ID>...;]

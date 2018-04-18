@@ -335,23 +335,16 @@ Team.prototype = {
 	return sortable;
     },
     toASCII: function() {
-	var s="";
-	var sortable=this.sortedgenerics();
-	for (var i=0; i<sortable.length; i++) 
-	    s+=sortable[i].toASCII()+";";
-	return s;
+	if(typeof this.teamlist!=="undefined"&&this.teamlist!==null){
+            return this.teamlist.toASCII();
+        }
+        else return "";
     },
     toKey: function() {
-	var s="";
-	var p=[];
-	for (var i in generics) {
-	    if (generics[i].team==this.team) p.push(generics[i]);
-	}
-	p.sort(function(a,b) { return a.pilotid-b.pilotid; });
-	for (var i=0; i<p.length; i++) 
-	    s+=p[i].toKey()+";";
-	//s+=p[0].toKey();
-	return s;
+	if(typeof this.teamlist!=="undefined"&&this.teamlist!==null){
+            return this.teamlist.toKey();
+        }
+        else return "";
     },
     toJSON:function() {
 	if(typeof this.teamlist!=="undefined"&&this.teamlist!==null){
@@ -367,6 +360,10 @@ Team.prototype = {
     },
     parseJuggler : function(str,translated) {
         if(typeof this.teamlist!=="undefined"&&this.teamlist!==null){
+            return this.teamlist.inputOldJuggler(str);
+        }
+        else{
+            this.teamlist=new TeamList();
             return this.teamlist.inputOldJuggler(str);
         }
     },
@@ -410,105 +407,11 @@ Team.prototype = {
 	//nextphase();
     },
     parseJSON:function(str,translated) {
-	var s;
-	var f={"rebel":Unit.REBEL,"scum":Unit.SCUM,"imperial":Unit.EMPIRE};
-	try {
-	    if (typeof str=="string") s=$.parseJSON(str);
-	    else s=str;
-	    ga('send','event', {
-		eventCategory: 'social',
-		eventAction: 'receive',
-		eventLabel: 'xws'
-	    });
-	} catch(err) {
-	    return this.parseJuggler(str,translated);
-	}
-	var i,j,k;
-	this.name=s.name;
-	this.points=s.points;
-	this.faction=f[s.faction];
-	this.color=(this.faction==Unit.REBEL)?RED:(this.faction==Unit.REBEL)?GREEN:YELLOW;
-	for (i in generics) if (generics[i].team==this.team) delete generics[i];
-	for (i=0; i<s.pilots.length; i++) {
-	    var pilot=s.pilots[i];
-	    var p;
-	    var pid=-1;
-	    pilot.team=this.team;
-	    if (pilot.name.match(/-/)!=null) {
-                console.log("Using xws-spec name instead of truncated name: " + pilot.name);
-            }
-            var j=PILOTSNAMEINDEX.indexOf(PILOT_dict[pilot.name]); // INDEX lookup is much faster than iterating over PILOTS
-            var possiblePilots=[];
-            while(j!==-1){  // Fix for Fenn Rau, possibly others
-                possiblePilots.push(j);
-                j=PILOTSNAMEINDEX.indexOf(PILOT_dict[pilot.name],j+1);
-            }
-            for(var p in possiblePilots){
-                j=possiblePilots[p];
-                if (j!==-1 && PILOTS[j].faction==this.faction&&
-                       PILOTS[j].unit==PILOT_dict[pilot.ship]) { 
-                        pid=j;
-                        break;
-                }
-            }
-            
-            if(pid===-1){ 
-                throw("pid undefined:"+PILOT_dict[pilot.name]+"-"+pilot.name+"/"+this.faction+"/"+PILOT_dict[pilot.ship]); 
-            }
-
-	    p=new Unit(this.team,pid);
-	    p.upg=[];
-	    for (var j=0; j<10; j++) p.upg[j]=-1;
-
-	    if (typeof pilot.upgrades!="undefined")  {
-                // Need to apply all valid upgrades, but also need to install upgrades first
-                var impUpgList=[];
-                var upgType;
-                var upgInfo;
-                var realUpg;
-                var listIndex=0;
-                // Iterate over imported pilot's upgrades and get their info from
-                // UPGRADES if possible.
-                for (var j in pilot.upgrades){
-                    var upgType=pilot.upgrades[j];
-                    for (var k=0, len=upgType.length; k<len; k++){
-                        upgInfo={"name":upgType[k], "type":j, "index":-1, "hasUpgrades":false, "entry":null};
-                        upgInfo.index=UPGRADESNAMEINDEX.indexOf(UPGRADE_dict[upgInfo.name]); // ~2 faster than iterating over UPGRADES
-                        if(upgInfo.index===-1){
-                            break;
-                        }
-                        else{
-                            realUpg=UPGRADES[upgInfo.index];
-                            upgInfo.hasUpgrades=(
-                                (typeof realUpg.upgrades!=="undefined")||
-                                (typeof realUpg.pointsupg!=="undefined")
-                            );
-                            upgInfo.entry=realUpg;
-                            impUpgList.push(upgInfo);
-                        }
-                    }
-                }
-                //In fact, it doesn't really even matter.  If we can't trust XWS lists,
-                //we should expose that rather than hiding the issue.
-                //Let's just assume there will always be *at least* as many upgrade slots as necessary.
-                var installed=false;
-                while(impUpgList.length>0){
-                    for (var f=0, unusedSlots=(typeof p.upgradetype!=="undefined")?p.upgradetype.length:0; f<unusedSlots; f++){
-                        if (p.upgradetype[f]==impUpgList[0].entry.type&&p.upg[f]==-1) { p.upg[f]=impUpgList[0].index; installed=true; impUpgList.shift(); break; }
-                    }
-                    if(installed){installed=false; continue;} // If we found a slot, great!  Move on.
-                    else{ // Not enough of required type of slots.
-                        var idx=p.upgradetype.length; // Find last index of upgradetype array
-                        p.upgradetype.push(impUpgList[0].entry.type); // Add a new entry of the type we want to install
-                        while(p.upg.length<=idx){p.upg.push(-1);} // lengthen p.upg as well.
-                        p.upg[idx]=impUpgList[0].index;
-                        impUpgList.shift();
-                        continue;
-                    }
-                    throw("Upgrade not instlled:"+impUpgList[0].entry.name+"-"+impUpgList[0].index+"/"+this.faction+"/"+PILOT_dict[pilot.ship]);
-                    break; // In case of emergency
-                }
-	    }
-	}
+	if(typeof this.teamlist!=="undefined"&&this.teamlist!==null){
+            return this.teamlist.inputJSON(str);
+        }
+        else{
+            return this.teamlist=new TeamList(str);
+        }
     }
 }
