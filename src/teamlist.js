@@ -308,9 +308,19 @@ TeamList.prototype={
 	    pid=-1;
 	    var pstr=pilots[i].split(/\s+\+\s+/);
             // Handle new-style pilot strings ( "pilot name (ship name) [(Edition)]" )
-            var ship=pstr[0].match(/\s?\((.*)\)\s?/)[1];
-            if(typeof ship!=="undefined" && ship!==""){
-                pstr[0]=pstr[0].split("(")[0].trim();
+            var match=pstr[0].match(/\s?\((.*)\)\s?/);
+            var ship;
+            if(match!==null){
+                switch(match.length){
+                    case 1: break; // Not sure how we got here...
+                    case 2: ship=match[1];
+                            pstr[0]=pstr[0].split("(")[0].trim();
+                            break;
+                    default: ship=match[1]; // Special 
+                            pstr[0]=pstr[0].split("(")[0].trim();
+                            pstr[0]+=" " + match[2];
+                            break;
+                }
             }
             else{
                 ship="";

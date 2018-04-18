@@ -354,158 +354,21 @@ Team.prototype = {
 	return s;
     },
     toJSON:function() {
-	var s={};
-	var f={REBEL:"rebels",SCUM:"scum",EMPIRE:"empire"};
-	s.description="";
-	s.faction=f[this.faction];
-	s.name=this.name;
-	var sq=[];
-	var pts=0;
-	var sortable=this.sortedgenerics();
-	for (var i=0; i<sortable.length; i++) {
-	    var jp=sortable[i].toJSON();
-	    pts+=jp.points;
-	    sq.push(jp);
-	}
-	s.pilots=sq;
-	s.points=pts;
-	// update also the number of points
-	this.points=pts;
-	s.vendor={xwsbenchmark:{builder:"Squadron Benchmark",builder_url:"http://baranidlo.github.io/bench/"}};
-	s.version="0.3.0";
-	return s;
+	if(typeof this.teamlist!=="undefined"&&this.teamlist!==null){
+            return this.teamlist.outputJSON();
+        }
+        else return "";
     },
     toJuggler:function(translated,improved) {
-	var s="";
-	var f={REBEL:"rebels",SCUM:"scum",EMPIRE:"empire"};
-        //s+=f[this.faction]+": ";
-	var sortable = this.sortedgenerics();
-	for (var i=0; i<sortable.length; i++) 
-	    s+=sortable[i].toJuggler(translated,improved)+"\n";
-	return s;
+	if(typeof this.teamlist!=="undefined"&&this.teamlist!==null){
+            return this.teamlist.outputJuggler(translated,improved);
+        }
+        else return "";
     },
     parseJuggler : function(str,translated) {
-        var faction=(typeof this.faction!=="undefined")?this.faction:null;
-	var f,i,j,k;
-	var pid=-1;
-	var getf=function(f) {
-	    if (f==Unit.REBEL) return 1;
-	    if (f==Unit.SCUM) return 2;
-	    return 4;
-	};
-	var f=7;
-	if (str=="") return;
-	var pilots=str.trim().split("\n");
-	var del=[];
-	for (i in generics) { 
-	    if (generics[i].team==this.team) delete generics[i];
-	}
-        /** THIS WHOLE SECTION CAN BE AVOIDED IF WE ASSUME WE KNOW THE FACTION **/
-//	for (i=0; i<pilots.length; i++) {
-//	    var pstr=pilots[i].split(/\s+\+\s+/);
-//	    var lf=0;
-//	    //for (j=0;j<PILOTS.length; j++) { // Replace with fast lookup
-//                // This section iterates over every *single* pilot and tries to get the faction
-//                // of the current pilots[i] pilot name?!
-//            //direct lookup should be faster, but need to handle multi-faction pilots
-//            var j=PILOTSNAMEINDEX.indexOf(pstr[0]); // INDEX lookup is much faster than iterating over PILOTS
-//            var possiblePilots=[];
-//            while(j!==-1){  // Fix for Fenn Rau, possibly others
-//                possiblePilots.push(j);
-//                j=PILOTSNAMEINDEX.indexOf(pstr[0],j+1);
-//            }
-//            for(var p in possiblePilots){
-//                j=possiblePilots[p];
-//                if (j!==-1 && PILOTS[j].faction==this.faction&&
-//                       PILOTS[j].unit==PILOT_dict[pilot.ship]) { 
-//                        pid=j;
-//                        break;
-//                }
-//            }
-//            
-//            var v=PILOTS[pid].name;
-//            var vat=translate(v);
-//            var pu="";
-//            if (PILOTS[pid].ambiguous==true&&typeof PILOTS[pid].edition!="undefined") pu="("+PILOTS[pid].edition+")";
-//            vat+=pu; v+=pu;
-//            if (v.replace(/\'/g,"")==pstr[0]) lf=lf|getf(PILOTS[pid].faction);
-//            if (vat.replace(/\'/g,"")==pstr[0]) lf=lf|getf(PILOTS[pid].faction);
-//	    //}
-//	    f=f&lf;
-//	}
-//	if ((f&1)==1) this.faction=Unit.REBEL; else if ((f&2)==2) this.faction=Unit.SCUM; else this.faction=Unit.EMPIRE;
-        this.faction=(faction!==null)?faction:Unit.EMPIRE;
-        this.color=(this.faction==Unit.REBEL)?RED:(this.faction==Unit.EMPIRE)?GREEN:YELLOW;
-	for (i=0; i<pilots.length; i++) {
-	    pid=-1;
-	    var pstr=pilots[i].split(/\s+\+\s+/);
-	    for (j=0;j<PILOTS.length; j++) {
-		var v=PILOTS[j].name;
-		var vat=v;
-		var pu="";
-		if (PILOTS[j].faction==this.faction) {
-		    vat=translate(v);
-		    if (PILOTS[j].ambiguous==true&&typeof PILOTS[j].edition!="undefined") pu="("+PILOTS[j].edition+")";
-		    v+=pu;
-		    vat+=pu;
-		    if (v.replace(/\'/g,"")==pstr[0]) { pid=j; break; }
-		    if (vat.replace(/\'/g,"")==pstr[0]) { pid=j; translated=true; break; }
-		} 
-	    }
-	    if (pid==-1) {
-		//if (translated==false) return this.parseJuggler(str,true);
-		console.log("pid undefined:"+translated+"!!"+pstr[0]+"!!"+this.faction);
-	    }
- 	    if (pid==-1) {
-		log("unknown Juggler pilot:"+pilots[i]+"/"+str);
-	    }
-	    var p=new Unit(this.team,pid);
-	    p.upg=[];
-	    for (j=0; j<20; j++) p.upg[j]=-1;
-	    if (typeof p.pilotid=="undefined") {
-		console.log(pid+" "+p.name+" "+p.pilotid);
-		console.trace();
-	    }
-	    var authupg=[Unit.TITLE,Unit.MOD].concat(PILOTS[p.pilotid].upgrades);
-	    for (j=1; j<pstr.length; j++) {
-		for (k=0; k<UPGRADES.length; k++) {
-		    if ((translated==true&&translate(UPGRADES[k].name).replace(/\'/g,"").replace(/\(Crew\)/g,"")==pstr[j])
-			||(UPGRADES[k].name.replace(/\'/g,"")==pstr[j])) {
-			if (authupg.indexOf(UPGRADES[k].type)>-1) {
-			    if (typeof UPGRADES[k].upgrades!="undefined") 
-				if (UPGRADES[k].upgrades[0]=="Cannon|Torpedo|Missile") {
-				    authupg=authupg.concat([Unit.CANNON,Unit.TORPEDO,Unit.MISSILE]);
-				    p.upgradetype=p.upgradetype.concat([Unit.CANNON,Unit.TORPEDO,Unit.MISSILE]);
-				}
-			    else { 
-				authupg=authupg.concat(UPGRADES[k].upgrades);
-				p.upgradetype=p.upgradetype.concat(UPGRADES[k].upgrades);
-			    }
-			    break;
-			} 
-		    }
-		    if (k==UPGRADES.length) log("UPGRADE undefined: "+pstr[j]);
-		}
-	    }
-	    //for (j=0; j<p.upgradetype.length; j++)
-	    //	p.log("found type "+p.upgradetype[j]);
-	    for (j=1; j<pstr.length; j++) {
-		for (k=0; k<UPGRADES.length; k++) {
-		    if ((translated==true&&translate(UPGRADES[k].name).replace(/\'/g,"").replace(/\(Crew\)/g,"")==pstr[j])
-			||(UPGRADES[k].name.replace(/\'/g,"")==pstr[j])) {
-			if (authupg.indexOf(UPGRADES[k].type)>-1) {
-			    for (f=0; f<p.upgradetype.length; f++) {
-				//log("check ?"+p.upgradetype[f]+" "+UPGRADES[k].type);
-				if (p.upgradetype[f]==UPGRADES[k].type&&p.upg[f]==-1) { p.upg[f]=k; break; }
-			    }
-			    break;
-			} else log("** "+pstr[j]+" UPGRADE not listed: "+UPGRADES[k].type+" in "+p.name+"/"+str);
-		    }
-		}
-	    }
-	}
-	//nextphase();
-	
+        if(typeof this.teamlist!=="undefined"&&this.teamlist!==null){
+            return this.teamlist.inputOldJuggler(str);
+        }
     },
     parseASCII: function(str) {
 	var pilots=str.split(";");
