@@ -2127,11 +2127,15 @@ $(document).ready(function() {
 
         // Possibly needs to be updated to use teamlists
 	if (args.length>1) {
+            for(var g in generics){
+                delete generics[g];
+            }
 	    log("Loading permalink...");
 	    ROCKDATA=args[2];
 	    //phase=CREATION_PHASE;
 	    TEAMS[1].parseASCII(args[0]);
-	    TEAMS[1].toJSON(); // Just for points
+            //TEAMS[1].tosquadron(s);
+	    //TEAMS[1].toJSON(); // Just for points
 	    if (args[1]=="") {
 		TEAMS[3].parseASCII(args[0]);
 		currentteam=TEAMS[3];
@@ -2145,7 +2149,8 @@ $(document).ready(function() {
 		}
 	    } else {
 		TEAMS[2].parseASCII(args[1]);
-		TEAMS[2].toJSON(); // Just for points
+                //TEAMS[2].tosquadron(s);
+		//TEAMS[2].toJSON(); // Just for points
 		TEAMS[1].isia=false;
 		TEAMS[2].isia=false;
 		//console.log("player name and image:"+args[8]+"<>"+args[7]+"<>");

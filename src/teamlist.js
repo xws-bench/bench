@@ -111,6 +111,7 @@ TeamList.prototype={
     },
     populateShips: function(){ // fill in list of SimpleUnits from JSON data
         // look up every card
+        this.listShips=[];
         var s=this.listJSON;
 	var i,j,k;
 	for (i=0; i<s.pilots.length; i++) {
@@ -337,8 +338,8 @@ TeamList.prototype={
 		    if (PILOTS[j].ambiguous==true&&typeof PILOTS[j].edition!="undefined") pu="("+PILOTS[j].edition+")";
 		    v+=pu;
 		    vat+=pu;
-		    if (v.replace(/\'/g,"")==pstr[0]) { pid=j; break; }
-		    if (vat.replace(/\'/g,"")==pstr[0]) { pid=j; translated=true; break; }
+		    if (v===pstr[0] || v.replace(/\'/g,"")===pstr[0]) { pid=j; break; }
+		    if (vat===pstr[0]|| vat.replace(/\'/g,"")===pstr[0]) { pid=j; translated=true; break; }
 		} 
 	    }
 	    if (pid==-1) {
@@ -396,7 +397,7 @@ TeamList.prototype={
 			    }
 			    break;
 			} else {
-                            log("** "+pstr[j]+" UPGRADE not listed: "+UPGRADES[k].type+" in "+p.name+"/"+ojObj.jug);
+                            log("** "+pstr[j]+" UPGRADE not listed or not valid "+UPGRADES[k].type+" in "+p.name+"/"+ojObj.jug);
                             return converted;
                         }
 		    }
@@ -462,21 +463,21 @@ TeamList.prototype={
         // Read ASCII list in and generate Juggler file to load
         // (Juggler format is fastest and simplest unless we build a SimpleUnit->JSON builder)
         var jug="";
-        var pilots=str.split(";");
+        var pilots=str.trim().split(";");
         var pstr,pnum,upgnums;
         var pilot,upgrade;
-        var pReg=new RegExp("(?:^|;)(\d{1,3})"); // Match pilot number only
-        var coordReg=new RegExp(":(\d+,\d+,\d+);?"); // Match coordinates
+        //var pReg=RegExp("(?:^|;)(\d{1,3})","g"); // Match pilot number only
+        var coordReg=RegExp(":(\d+,\d+,\d+);?","g"); // Match coordinates
         // Iterate over each ASCII set
         //Format: <ID>[,<upgID>[,...]]:<Math.floor(this.tx)>,<Math.floor(this.ty)>,<Math.floor(this.alpha)>;[<ID>...;]
         for(var i in pilots){
             var line="";
             pstr=pilots[i];
-            pnum=pReg.exec(pstr)[1]; // Extract pilot number
-            upgnums=pstr.split(':')[0]; // Grab all ID values...
-            upgnums.shift();            // and remove Pilot ID
+            if(pstr==="") break;
+            upgnums=pstr.split(':')[0].split(","); // Grab all ID values...
+            pnum=upgnums.shift();                  // and Pilot ID
             pilot=PILOTS[pnum];
-            if(jug===""){               // Set faction first
+            if(jug===""){                          // Set faction first
                 jug+=pilot.faction;
             }
             line+="\n"+pilot.name + " (" + pilot.unit + ")";
