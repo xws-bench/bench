@@ -46,7 +46,9 @@ var replayall=function() {
 	FAST=false;
 	filltabskill();
 	//log("setting phase"+phase);
-	if (phase!=SETUP_PHASE) setphase();
+	if (phase!=SETUP_PHASE){
+            setphase();
+        }
 	else {
 	    $(".imagebg").hide();
 	    $(".nextphase").prop("disabled",false);
@@ -70,8 +72,12 @@ var replayall=function() {
     //endsetupphase();
     if (c[0].length>0) {
 	var id=parseInt(c[0],10);
-	for (j in squadron) if (squadron[j].id==id) break; 
-	if (squadron[j].id==id) u=squadron[j];
+	for (j in squadron){
+            if (squadron[j].id==id) break;
+        } 
+	if (squadron[j].id==id){
+            u=squadron[j];
+        }
 	else {
 	    console.log("cannot find id "+id);
 	    //for (j in squadron) console.log("squadron["+j+"]="+squadron[j].name);
