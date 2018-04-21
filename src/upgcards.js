@@ -813,6 +813,7 @@ var UPGRADES=window.UPGRADES= [
 	},
 	uninstall: function(sh) {
 	    if (typeof sh.getskill.unwrap=="function") sh.getskill.unwrap(this);
+            sh.installed=false;
 	    sh.showskill();
 
 	},

@@ -202,7 +202,14 @@ Team.prototype = {
                 u[j]=Unit.prototype[j];
             }
             u.tosquadron(s);
+            u.tlIndex=i;    // Hack to let ships know index of their SimpleUnit
             u.team=this.team;
+            
+            // Set ship's position (mainly for loading ASCII from URL
+            u.tx=ship.position.x;
+            u.ty=ship.position.y;
+            u.alpha=ship.position.rot;
+            //u.m.rotate(ship.position.rot);
             
             //Let's just assume there will always be *at least* as many upgrade slots as necessary.
             var impUpgList=ship.upgrades.slice(); // list of upgrade indices
@@ -252,21 +259,24 @@ Team.prototype = {
 	    u=squadron[i];
 	    if (u.team==this.team&&typeof u.init=="function") u.init();
 	}
-	for (i in squadron) {
-	    u=squadron[i];
-	    if (u.team==this.team) {
-		for (var j=0; j<u.upgrades.length; j++) {
-		    var upg=u.upgrades[j];
-		    //if (upg.id>=0) log("removing "+upg.name+"?"+u.installed+" "+(typeof upg.uninstall));
-		    // Need to unwrap generic upgrades, installed when creating the squad
-		    if (upg.id>=0&&typeof UPGRADES[upg.id].uninstall=="function")
-			UPGRADES[upg.id].uninstall(u);
-		    // Now install the upgrades added during the tosquadron call
-		    if (typeof upg.install=="function" && upg.install !== Upgrade.prototype.install) upg.install(u);
-		    Upgrade.prototype.install.call(upg,u);
-		}
-	    }
-	}
+        /* However, the following section does not seem to be necessary any longer
+         * as we are not instantiating each ship multiple times
+         */
+//	for (i in squadron) {
+//	    u=squadron[i];
+//	    if (u.team==this.team) {
+//		for (var j=0; j<u.upgrades.length; j++) {
+//		    var upg=u.upgrades[j];
+//		    //if (upg.id>=0) log("removing "+upg.name+"?"+u.installed+" "+(typeof upg.uninstall));
+//		    // Need to unwrap generic upgrades, installed when creating the squad
+//		    if (upg.id>=0&&typeof UPGRADES[upg.id].uninstall=="function")
+//			UPGRADES[upg.id].uninstall(u);
+//		    // Now install the upgrades added during the tosquadron call
+//		    if (typeof upg.install=="function" && upg.install !== Upgrade.prototype.install) upg.install(u);
+//		    Upgrade.prototype.install.call(upg,u);
+//		}
+//	    }
+//	}
 	for (i in squadron) {
 	    u=squadron[i];
 	    if (u.team==this.team) {
@@ -342,6 +352,19 @@ Team.prototype = {
     },
     toASCII: function() {
 	if(typeof this.teamlist!=="undefined"&&this.teamlist!==null){
+            // If we are saving ASCII data during play, get actual positions from
+            // each ship before compiling ASCII.
+            // Unfortunately, after re-ordering the units array is not always
+            // in the same order as the teamlist.
+            if(this.units.length!==0){
+                for(var i in this.units){
+                    var pos={x:0,y:0,rot:0};
+                    pos.x=this.units[i].tx;
+                    pos.y=this.units[i].ty;
+                    pos.rot=this.units[i].alpha;
+                    this.teamlist.listShips[this.units[i].tlIndex].position=pos;
+                }
+            }
             return this.teamlist.toASCII();
         }
         else return "";
