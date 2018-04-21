@@ -464,18 +464,19 @@ TeamList.prototype={
         // (Juggler format is fastest and simplest unless we build a SimpleUnit->JSON builder)
         var jug="";
         var pilots=str.trim().split(";");
-        var pstr,pnum,upgnums;
+        var pstr,pnum,upgnums,retval;
+        var coordsList=[];
         var pilot,upgrade;
-        //var pReg=RegExp("(?:^|;)(\d{1,3})","g"); // Match pilot number only
-        var coordReg=RegExp(":(\d+,\d+,\d+);?","g"); // Match coordinates
+
         // Iterate over each ASCII set
         //Format: <ID>[,<upgID>[,...]]:<Math.floor(this.tx)>,<Math.floor(this.ty)>,<Math.floor(this.alpha)>;[<ID>...;]
         for(var i in pilots){
             var line="";
             pstr=pilots[i];
-            if(pstr==="") break;
+            if(pstr==="") break; // Don't handle possible blank lines at the end
             upgnums=pstr.split(':')[0].split(","); // Grab all ID values...
             pnum=upgnums.shift();                  // and Pilot ID
+            coordsList.push(pstr.split(':')[1]);        // Save coordinates
             pilot=PILOTS[pnum];
             if(jug===""){                          // Set faction first
                 jug+=pilot.faction;
@@ -490,7 +491,19 @@ TeamList.prototype={
             }
             jug+=line;
         }
-        return this.inputJuggler(jug);
+        retval=this.inputJuggler(jug);
+        // Position input ships if retval is true
+        if(retval){
+            var coords;
+            for(var i in this.listShips){
+                coords=coordsList[i].split(',');
+                this.listShips[i].position={x:coords[0],
+                                       y:coords[1],
+                                       rot:coords[2]
+                                       };
+            }
+        }
+        return retval;
     },
     toASCII: function(){
         //output list as pilot ID#s followed by upgrades;
@@ -505,7 +518,8 @@ TeamList.prototype={
                 upg=ship.upgrades[j];
                 s+=","+upg;
             }
-            s+=":0,0,0;"
+            s+=":"+ship.position.x+","+ship.position.y+","+ship.position.rot+";";
+            //s+=":0,0,0;"
         }
         return s;
     },
@@ -526,15 +540,19 @@ TeamList.prototype={
     }
 };
 // Lightweight Unit object
-function SimpleUnit(pilotID, upgrades){
+function SimpleUnit(pilotID, upgrades, position){
     this.pilotID=-1;
     this.upgrades=[];
+    this.position={x:0,y:0,rot:0};
     
     if(typeof pilotID !== "undefined" && pilotID>=0 && pilotID<PILOTS.length){
         this.pilotID=pilotID;
     }
     if(typeof upgrades!=="undefined" && upgrades.length>0){
         this.upgrades=upgrades;
+    }
+    if(typeof position!=="undefined" && Object.getOwnPropertyNames(position).length===3 ){
+        this.position=position;
     }
 };
 SimpleUnit.prototype={};
