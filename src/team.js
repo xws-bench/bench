@@ -277,15 +277,15 @@ Team.prototype = {
 //		}
 //	    }
 //	}
-	for (i in squadron) {
-	    u=squadron[i];
-	    if (u.team==this.team) {
-		for (var j=0; j<u.upgrades.length; j++) {
-		    var upg=u.upgrades[j];
-		    if (typeof upg.init=="function"&&!u.isdocked) upg.init(u);
-		}
-	    }
-	}
+//	for (i in squadron) {
+//	    u=squadron[i];
+//	    if (u.team==this.team) {
+//		for (var j=0; j<u.upgrades.length; j++) {
+//		    var upg=u.upgrades[j];
+//		    if (typeof upg.init=="function"&&!u.isdocked) upg.init(u);
+//		}
+//	    }
+//	}
 
 	this.units.sort(function(a,b) {return b.getskill()-a.getskill();});
 	this.history={title: {text: UI_translation["Damage taken per turn"]},

@@ -274,8 +274,6 @@ TeamList.prototype={
         var translated=false;
         
         // Split ojObj.jug string into lines
-//        var re=/\r\n|\n\r|\n|\r/g;
-//        var pilots=ojObj.jug.replace(re,"\n").split("\n");
         var pilots=ojObj.jug.trim().split("\n");
         
         // Store info in JSON format to re-use standard input function
@@ -411,16 +409,18 @@ TeamList.prototype={
             delete generics[i];
         }
         converted = true;
-        this.inputJSON(JSON.stringify(jsonRep));
+        this.inputJSON(JSON.stringify(jsonRep)); // This also populates shiplist
         this.outputJuggler(false,false); // Force text conversion
         return converted;
     },
     convertUnitToSimpleUnit: function(unitShip){
         // Helper function for addShip, removeShip
+        // WIP
         
     },
     convertJugglerToSimpleUnit: function(unitShip){
         // Helper function for addShip, removeShip
+        // WIP
         
     },
     addShip: function(ship){
@@ -494,9 +494,8 @@ TeamList.prototype={
         retval=this.inputJuggler(jug);
         // Position input ships if retval is true
         if(retval){
-            var coords;
             for(var i in this.listShips){
-                coords=coordsList[i].split(',');
+                var coords=coordsList[i].split(',');
                 this.listShips[i].position={x:coords[0],
                                        y:coords[1],
                                        rot:coords[2]
@@ -519,7 +518,6 @@ TeamList.prototype={
                 s+=","+upg;
             }
             s+=":"+ship.position.x+","+ship.position.y+","+ship.position.rot+";";
-            //s+=":0,0,0;"
         }
         return s;
     },
