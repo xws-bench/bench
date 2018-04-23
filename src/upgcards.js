@@ -7074,7 +7074,7 @@ var UPGRADES=window.UPGRADES= [
     { 
     name: "Maul",
     type:Unit.CREW,
-    done:false,
+    done:true,
     points: 3,
     unique:true,
     exceptions:["Ezra Bridger"],
@@ -7082,22 +7082,25 @@ var UPGRADES=window.UPGRADES= [
     init: function(sh) {/* FAQ v4.3 */ /* TODO: not clean */
         var self=this;
         var destressed=-1;
+        var rerolled=-1;
         /* TODO : not a modifier, but rerolls.  */
         sh.adddicemodifier(Unit.ATTACK_M,Unit.MOD_M,Unit.ATTACK_M,this,{
            req: function(m,n) { 
-               return self.isactive&&sh.stress===0; 
+               return self.isactive&&rerolled<round&&sh.stress===0; 
            },
            n:function() { 
                var count=9;
                return count;
            },
            f:function(m,n) {
-               var f=Unit.FCH_focus(m)+Unit.FCH_blank(m,n); // As many rerolls as blanks
-               if (f>0&&sh.stress===0) {
-                   sh.log("Reroll %0 <span class='blankreddice'></span> for +%0 %STRESS% [%1]",f,self.name);
-                   var roll=sh.rollattackdie(f,self,"critical");
-                   m-=f;
-                   for (var i=0; i<f; i++) {
+               var b=Unit.FCH_blank(m,n);
+               var f=(sh.focus>0)?0:Unit.FCH_focus(m); // Only re-roll focus if no focus tokens
+               if ((f+b)>0&&sh.stress===0) {
+                   sh.log("Reroll %0 <span class='blankreddice'></span> for +%0 %STRESS% [%1]",f+b,self.name);
+                   var roll=sh.rollattackdie(f+b,self,"critical");
+                   // Remove any focus / blank results that are being rerolled
+                   m-=Unit.FCH_FOCUS*f; // but blanks count as zero anyhow
+                   for (var i=0; i<f+b; i++) {
                        sh.addstress();
                        switch(roll[i]){
                            case "hit": m+=Unit.FCH_HIT;
@@ -7108,6 +7111,7 @@ var UPGRADES=window.UPGRADES= [
                                break;
                        }
                    }
+                   rerolled=round;
                }
                return m;
            },str:"crew"}
