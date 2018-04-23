@@ -7081,6 +7081,7 @@ var UPGRADES=window.UPGRADES= [
     faction:Unit.SCUM,
     init: function(sh) {/* FAQ v4.3 */ /* TODO: not clean */
         var self=this;
+        var destressed=-1;
         /* TODO : not a modifier, but rerolls.  */
         sh.adddicemodifier(Unit.ATTACK_M,Unit.MOD_M,Unit.ATTACK_M,this,{
            req: function(m,n) { 
@@ -7101,7 +7102,7 @@ var UPGRADES=window.UPGRADES= [
                        switch(roll[i]){
                            case "hit": m+=Unit.FCH_HIT;
                                break;
-                           case "crit": m+=Unit.FCH_CRIT;
+                           case "critical": m+=Unit.FCH_CRIT;
                                break;
                            case "focus": m+=Unit.FCH_FOCUS;
                                break;
@@ -7112,9 +7113,11 @@ var UPGRADES=window.UPGRADES= [
            },str:"crew"}
         );
        sh.addafterattackeffect(this,function(c,h) {
-            if (c+h===0) return;
+            if (c+h===0||destressed>=round) return;
             // Remove one stress token (for now mandatory; later optional)
+            destressed=round;
             sh.removestresstoken();
+            sh.log("-1 %STRESS% [%0]",self.name);
         });
        }
     },
