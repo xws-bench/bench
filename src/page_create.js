@@ -167,6 +167,42 @@ function addlimited(u,data) {
 function removelimited(u,data) {
     $("#unit"+u.id+" .upglist button[data="+data+"]").prop("disabled",false);
 }
+function checkExceptions(u,upg){
+    var foundE=false;
+    for(var e in upg.exceptions){ //format 'exceptions:[<str1>,[<str2>,...]],'
+        var eString=upg.exceptions[e];
+        if(u.name.match(eString)){ // If this ship meets the exception, we're done
+            foundE=true;
+        }
+        else{ // Otherwise, check every other ship and upgrade name
+            for(var s in generics){
+                var eShip=generics[s];
+                if(eShip.name.match(eString)){
+                    foundE=true;
+                    break;
+                }
+                for(var u in eShip.upgrades){
+                    var eUpg = eShip.upgrades[u];
+                    if(eUpg.name.match(eString)){
+                        foundE=true;
+                        break;
+                    }
+                }
+                if(foundE){ // Early escape
+                    break;
+                }
+            }
+            if(foundE){ // Early escape
+                break;
+            }
+        }
+        if(foundE){ // Early escape
+            break;
+        }
+    }
+    
+    return foundE;
+}
 function addupgradeaddhandler(u) {
     $("#unit"+u.id+" button.upgrades").click(function(e) {
 	var org=e.currentTarget.getAttribute("class").split(" ")[1];
@@ -184,6 +220,16 @@ function addupgradeaddhandler(u) {
 	    var disabled;
 	    var attacks=[];
 	    if (upg.invisible) continue;
+            
+            // Added ability to check for exceptions to faction reqs
+            // Upgrades with .exceptions set are added in to 'p' even
+            // if faction doesn't match, but if subsequent exception check
+            // doesn't match this upg doesn't get added
+            if (typeof upg.exceptions!=="undefined" 
+                && !checkExceptions(u,upg)) {
+                continue;
+            }
+            
 	    disabled=(UNIQUE[upg.name]==true)
 		||((upg.limited==true||this.exclupg[upg.type]==true)&&$("#unit"+this.id+" .upg tr[data="+p[i]+"]").length>0);
 	    var pts=upg.points+this.upgbonus[org];

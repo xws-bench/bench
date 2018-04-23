@@ -7037,40 +7037,87 @@ var UPGRADES=window.UPGRADES= [
 			}.bind(sh);
 		}
 	},
-	{
-		name: "Flight-Assist Astromech",
-		type:Unit.ASTROMECH,
-		done:true,
-		points: 1,
-		init: function(sh) {
-			sh.wrap_before("endmaneuver",this,function() {
-				if(this.candoaction() && !this.collision && !this.hascollidedobstacle()) {
-					var enemies = this.getenemiesinrange(this.weapons, this.selectnearbyenemy(3))[0];
-					if(enemies.length == 0) {
-						var p=[];
-						if (this.candoboost())
-						p.push(this.newaction(this.resolveboost,"BOOST"));
-						if (this.candoroll())
-						p.push(this.newaction(this.resolveroll,"ROLL"));
-						this.doaction(p,"free %BOOST% or %ROLL% action");
-					}
-				}
-			});
-			var turret=[];
-			var self=this;
-			for (var i=0; i<sh.weapons.length; i++) {
-				var w=sh.weapons[i];
-				if (w.type==Unit.TURRET&&w.isprimary===false) {
-					turret.push(w);
-					w.wrap_after("isTurret",self,function() { return false; });
-				}
-			}
-			if (turret.length===0) return;
-			sh.wrap_after("isTurret",this,function(w,b) {
-				return false;
-			});
-		}
-	},
+    {
+        name: "Flight-Assist Astromech",
+        type:Unit.ASTROMECH,
+        done:true,
+        points: 1,
+        init: function(sh) {
+                sh.wrap_before("endmaneuver",this,function() {
+                        if(this.candoaction() && !this.collision && !this.hascollidedobstacle()) {
+                                var enemies = this.getenemiesinrange(this.weapons, this.selectnearbyenemy(3))[0];
+                                if(enemies.length == 0) {
+                                        var p=[];
+                                        if (this.candoboost())
+                                        p.push(this.newaction(this.resolveboost,"BOOST"));
+                                        if (this.candoroll())
+                                        p.push(this.newaction(this.resolveroll,"ROLL"));
+                                        this.doaction(p,"free %BOOST% or %ROLL% action");
+                                }
+                        }
+                });
+                var turret=[];
+                var self=this;
+                for (var i=0; i<sh.weapons.length; i++) {
+                        var w=sh.weapons[i];
+                        if (w.type==Unit.TURRET&&w.isprimary===false) {
+                                turret.push(w);
+                                w.wrap_after("isTurret",self,function() { return false; });
+                        }
+                }
+                if (turret.length===0) return;
+                sh.wrap_after("isTurret",this,function(w,b) {
+                        return false;
+                });
+        }
+    },
+    { 
+    name: "Maul",
+    type:Unit.CREW,
+    done:false,
+    points: 3,
+    unique:true,
+    exceptions:["Ezra Bridger"],
+    faction:Unit.SCUM,
+    init: function(sh) {/* FAQ v4.3 */ /* TODO: not clean */
+        var self=this;
+        /* TODO : not a modifier, but rerolls.  */
+        sh.adddicemodifier(Unit.ATTACK_M,Unit.MOD_M,Unit.ATTACK_M,this,{
+           req: function(m,n) { 
+               return self.isactive&&sh.stress===0; 
+           },
+           n:function() { 
+               var count=9;
+               return count;
+           },
+           f:function(m,n) {
+               var f=Unit.FCH_focus(m)+Unit.FCH_blank(m,n); // As many rerolls as blanks
+               if (f>0&&sh.stress===0) {
+                   sh.log("Reroll %0 <span class='blankreddice'></span> for +%0 %STRESS% [%1]",f,self.name);
+                   var roll=sh.rollattackdie(f,self,"critical");
+                   m-=f;
+                   for (var i=0; i<f; i++) {
+                       sh.addstress();
+                       switch(roll[i]){
+                           case "hit": m+=Unit.FCH_HIT;
+                               break;
+                           case "crit": m+=Unit.FCH_CRIT;
+                               break;
+                           case "focus": m+=Unit.FCH_FOCUS;
+                               break;
+                       }
+                   }
+               }
+               return m;
+           },str:"crew"}
+        );
+       sh.addafterattackeffect(this,function(c,h) {
+            if (c+h===0) return;
+            // Remove one stress token (for now mandatory; later optional)
+            sh.removestresstoken();
+        });
+       }
+    },
     {
         name: "First Order Vanguard",
         type:Unit.TITLE,

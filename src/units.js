@@ -808,8 +808,9 @@ Unit.prototype = {
 	var p=[];
 	for (var j=0; j<UPGRADES.length; j++) {
 	    var u=UPGRADES[j];
-	    if (typeof u.faction != "undefined" 
-		&& this.faction.match(u.faction)==null) continue;
+	    if ((typeof u.faction != "undefined" 
+		&& this.faction.match(u.faction)==null)
+                && (typeof u.exceptions === "undefined")) continue;
 	    if (typeof u.ship != "undefined" 
 		&& this.ship.name.search(u.ship)==-1) continue;
 	    if (typeof u.ishuge != "undefined") continue;
