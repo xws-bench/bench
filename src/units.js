@@ -919,7 +919,7 @@ Unit.prototype = {
 		{from:Unit.ATTACK_M,type:Unit.REROLL_M,to:Unit.ATTACK_M,org:this,
 		 req:function(a,w,t) {return this.canusetarget(t);}.bind(this),
 		 aiactivate:function(m,n){
-                    return(Unit.FCH_blank(m,n)>0 || (Unit.FCH_focus(m)>0 && this.focuses.length == 0 )); // Attempt to make TL-spending smarter
+                    return(Unit.FCH_blank(m,n)>0 || (Unit.FCH_focus(m)>0 && (this.focus <= 0 ))); // Attempt to make TL-spending smarter
                  }.bind(this),
                  n:function() { return 9; },
 		 dice:["blank","focus"],

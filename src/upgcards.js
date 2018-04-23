@@ -7148,7 +7148,7 @@ var UPGRADES=window.UPGRADES= [
                 dice:["blank","focus","evade"],
                 req:function() { return self.isactive; }.bind(this),
                 aiactivate:function(results,count){
-                    return(Unit.FE_blank(results,count)>count/2.0 || (Unit.FE_focus(results) > 0 && sh.focuses.length===0));
+                    return(Unit.FE_blank(results,count)>count/2.0 || (Unit.FE_focus(results) > 0 && sh.focuses<=0));
                 }.bind(this),
                 n:function() { return 9; },
                 f:function() {
