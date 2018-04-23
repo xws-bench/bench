@@ -199,8 +199,8 @@
 	<li class="symbols" onclick="$('#linklist').text(WEBSITE+'?'+savesquad()); $('#xwsjsonlist').text(JSON.stringify(TEAMS[3].toJSON())); $('#jugglerlist').text(TEAMS[3].toJuggler(true)); document.location='#export'">&#xB9;</li>
 	<li class="symbols" onclick="printunits(); window.print()">&#xB6;</li>
 	<li onclick="$('#unitfilter').toggle();" class="symbols">&#x102;</li>
-	<li onclick="page_select();prepareforcombat(TEAMS[3].toJuggler(true),1)"><span class="squadmiddle">1</span></li>
-	<li onclick="page_select();prepareforcombat(TEAMS[3].toJuggler(true),2)"><span class="squadmiddle right">2</span></li>
+	<li onclick="page_select();convertToTeamList(TEAMS[3]);prepareforcombat(TEAMS[3].teamlist,1)"><span class="squadmiddle">1</span></li>
+	<li onclick="page_select();convertToTeamList(TEAMS[3]);prepareforcombat(TEAMS[3].teamlist,2)"><span class="squadmiddle right">2</span></li>
       </ul>
       <h1 class="m-new"></h1>
 
@@ -294,7 +294,7 @@
 	      <span id="squad1points">0</span><span class="m-points">&nbsp;</span>
 	      <div class="squadbg">
 		<div>1</div>
-		<textarea onchange="currentteam=TEAMS[1];importsquad(1);" id="squad1" class="squadtext pre" rows="8"></textarea>
+		<textarea onchange="//importsquad(1,1);" id="squad1" class="squadtext pre" rows="8"></textarea>
 	      </div>
 	    </div>
 	  </td>
@@ -305,7 +305,7 @@
 	      <span id="squad2points">0</span><span class="m-points">&nbsp;</span>
 	      <div class="squadbg">
 		<div class="right">2</div>
-		<textarea  onchange="currentteam=TEAMS[2];importsquad(2);" id="squad2" class="squadtext pre" rows="8" ></textarea>
+		<textarea  onchange="//importsquad(2,2);" id="squad2" class="squadtext pre" rows="8" ></textarea>
 	      </div>
 	    </div>
 	    <div class="scenariomode">
@@ -516,10 +516,11 @@
       <div class="log" id="log"></div>
     </footer>
 
-<!-- "Compiled version" -->
+<!-- "Compiled version"
 <script src="js/all.min.js" ></script>
+-->
 
-<!-- "Source version: uncomment for debugging"
+<!-- "Source version: uncomment for debugging" -->
 <script src="js/api.js"></script>
 <script src="js/snap.svg-min-0.4.1.js"></script>
 <script src="js/jwerty.min.js"></script>
@@ -541,6 +542,7 @@
 <script src="src/metaunits.js"></script>
 <script src="src/pilots.js"></script>
 <script src="src/upgcards.js"></script>
+<script src="src/teamlist.js"></script>
 <script src="src/team.js"></script>
 <script src="src/proba.js"></script>
 <script src="src/replay.js"></script>
@@ -548,7 +550,6 @@
 <script src="src/page_manage.js"></script>
 <script src="src/page_create.js"></script>
 <script src="src/page_combat.js"></script>
--->
 
 <!-- api.js snap.svg-min-0.4.1.js jwerty.min.js mustache.min.js jquery-3.1.1.min.js
 jquery.a-tools-1.4.1.js jquery.asuggest.js lz-string.min.js howler2.0.2.min.js

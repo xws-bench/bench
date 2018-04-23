@@ -179,7 +179,12 @@ var wrap_before= function(name,org,before,unwrap) {
     var f=function () {
         var args = Array.prototype.slice.call(arguments),
             result;
-        before.apply( this, args);
+        result = before.apply( this, args); //update to allow changing arguments
+        if(typeof result!=="undefined"){
+            result=(Array.isArray(result))?result:[result]; // normalize return value
+            Array.prototype.splice.apply(args, [0, result.length].concat(result));
+            //args=(typeof result==="undefined")?args:result; //dev is responsible for array-ifying "results"!
+        }
         result = save.apply( this, args);
 	return result;
     }
@@ -803,8 +808,9 @@ Unit.prototype = {
 	var p=[];
 	for (var j=0; j<UPGRADES.length; j++) {
 	    var u=UPGRADES[j];
-	    if (typeof u.faction != "undefined" 
-		&& this.faction.match(u.faction)==null) continue;
+	    if ((typeof u.faction != "undefined" 
+		&& this.faction.match(u.faction)==null)
+                && (typeof u.exceptions === "undefined")) continue;
 	    if (typeof u.ship != "undefined" 
 		&& this.ship.name.search(u.ship)==-1) continue;
 	    if (typeof u.ishuge != "undefined") continue;
@@ -1795,7 +1801,9 @@ Unit.prototype = {
 	for (i=0; i<DICES.length; i++) $("."+DICES[i]+"dice").remove();
 	this.show();
     },
-    endbeingattacked:function(c,h,t) {},
+    endbeingattacked:function(c,h,t) {
+        this.checkdead();
+    },
     showpositions:function(gd) {
 	var i;
 	var o=[];

@@ -280,7 +280,8 @@
 	"Deflective Plating":{"text":"B/SF-17 BOMBER ONLY. When a friendly bomb detonates, you may choose not to suffer its effects. If you do, roll an attack die. On a %HIT% result, discard this card."},
 	"Ordnance Silos":{"text":"B/SF-17 BOMBER ONLY. When you equip this card, place 3 ordnance tokens on each other equipped %BOMB% Upgrade card. When you are instructed to discard an Upgrade card, you may discard 1 ordnance token on that card instead."},
 	"Flight-Assist Astromech":{"text":"You cannot attack ships outside your firing arc. After you execute a maneuver, if you did not overlap a ship or obstacle and there are no enemy ships inside your firing arc at range 1-3, you may perform a free boost or barrel roll action."},
-	"Jabba The Hutt(Crew)":{"text":"When you equip this card, place 1 illicit token on each %ILLICIT% Upgrade card in your squad. When you are instructed to discard an Upgrade card, you may discard 1 illicit token on that card instead."},
+	"Maul":{"text":"<i>Scum only. Ignore this restriction if your squad contains \"Ezra Bridger.\"</i>When attacking, If you are not stressed, you may receive any number of stress tokens to reroll that many attack dice.  After performing an attack that hits, you may remove 1 of your stress tokens."},
+        "Jabba The Hutt(Crew)":{"text":"When you equip this card, place 1 illicit token on each %ILLICIT% Upgrade card in your squad. When you are instructed to discard an Upgrade card, you may discard 1 illicit token on that card instead."},
 	"Cikatro Vizago(Crew)":{"text":"At the start of the End phase, you may discard this card to replace a faceup %ILLICIT% or Cargo Upgrade card you have equipped with another Upgrade card of the same type of equal or fewer squad points."},
 	"BoShek(Crew)":{"text":"When a ship you are touching activates, you may look at its chosen maneuver. If you do, its owner must rotate the dial to an adjacent maneuver. The ship can reveal and execute that maneuver even while stressed."},
 	"Bistan(Crew)":{"text":"When attacking at Range 1-2, you may change 1 of your %HIT% results to a %CRIT% result."},
@@ -404,6 +405,8 @@
     "You may treat all %STRAIGHT% maneuvers as green maneuvers."},
     "Chewbacca(Crew)":{"text":
     "When you are dealt a Damage card, you may immediately discard that card and recover 1 shield. Then, discard this Upgrade card."},
+    "Breach Specialist(Crew)":{"text":
+    "When you are dealt a faceup Damage card, you may spend 1 reinforce token to flip it facedown (without resolving its effect). If you do, until the end of the round, when you are dealt a faceup Damage card, flip it facedown (without resolving its effect)."},
     "Advanced Proton Torpedoes":{"text":
     "<strong>Attack (target lock):</strong> Spend your target lock and discard this card to perform this attack. You may change up to 3 of your blank results to %FOCUS% results."},
     "Autoblaster":{"text":
@@ -715,6 +718,7 @@
      "Sabine Wren(Crew)":{"text":"Your upgrade bar gains the %BOMB% upgrade icon. Once per round, before a friendly bomb token is removed, choose 1 enemy ship at Range 1 of that token. That ship suffers 1 damage."},
      "Ghost":{"text":"Equip the Phantom title card to a friendly Attack Shuttle and dock it to this ship. After you execute a maneuver, you may deploy it from your rear guides."},
      "Phantom":{"text":"While you are docked, the Ghost can perform primary weapon attacks from its special firing arc and, at the end of the Combat phase, it may perform an additional attack with an equipped %TURRET%. If it performs this attack, it cannot attack again this round."},
+     "Phantom II":{"text":"While you are docked, the Ghost can perform primary weapon attacks from its special firing arc. While you are docked, at the end of the Activation phase, the Ghost may perform a free coordinate action."},
      "Reinforced Deflectors":{"text":"After you suffer 3 or more damage from an attack, recover 1 shield (up to your shield value)."},
      "Dorsal Turret":{"text":"<strong>Attack:</strong> Attack 1 ship (even a ship outside your firing arc). If the target of this attack is at Range 1, roll 1 additional attack die."},
      "Targeting Astromech":{"text":"After you execute a red maneuver, you may acquire a target lock."},
@@ -761,9 +765,11 @@
 	"Wookiee Commandos":{"text":"When attacking, you may reroll your focus results."},
 	"Xg-1 Assault Configuration":{"text":"ALPHA-CLASS STAR WING ONLY. TITLE. Your upgrade bar gains two Cannons upgrade icons. You may perform attacks with cannons secondary weapons that cost two or fewer squad points even while you have a weapons disabled token."},
 	"Os-1 Arsenal Loadout":{"text":"ALPHA-CLASS STAR WING ONLY. TITLE. Your upgrade bar gains the Torpedo and Missile upgrade icons. You may perform attacks with torpedo and missile secondary weapons against ships you have locked even while you have a weapons disabled token."},
-    "Vaksai":{"text":"KIHRAXZ FIGHTER ONLY. TITLE. The squad point cost of each of your equipped upgrades is reduced by 1 (to a minimum of 0). You may equip up to 3 different modification upgrades."},
-    "Linked Battery":{"text":"When attacking with a primary weapon or a %CANNON% secondary weapon, you may reroll 1 attack die."},
-    "Unguided Rockets":{"text":"<strong>Attack (Focus):</strong> Attack 1 ship. Your attack dice can be modified only by spending a focus token for its standard effect."}
+        "Vaksai":{"text":"KIHRAXZ FIGHTER ONLY. TITLE. The squad point cost of each of your equipped upgrades is reduced by 1 (to a minimum of 0). You may equip up to 3 different modification upgrades."},
+        "Linked Battery":{"text":"When attacking with a primary weapon or a %CANNON% secondary weapon, you may reroll 1 attack die."},
+        "Unguided Rockets":{"text":"<strong>Attack (Focus):</strong> Attack 1 ship. Your attack dice can be modified only by spending a focus token for its standard effect."},
+        "Intensity":{"text":"SMALL SHIP ONLY. <i>DUAL CARD.</i> After you perform a boost or barrel roll action, you may assign 1 focus or evade token to your ship.  If you do, flip this card."},
+        "Intensity (Exhausted)":{"text":"SMALL SHIP ONLY. <i>DUAL CARD.</i> At teh end of the Combat phase, you may spend 1 focus or evade token to flip this card."}
 },
     "criticals":{
 	"Weapons Failure":{"text":"When attacking, roll 1 fewer attack die. %ACTION% Roll 1 attack die. On a %HIT% or %CRIT% result, flip this card facedown."},

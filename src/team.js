@@ -10,6 +10,7 @@ function Team(team) {
     this.isdead=false;
     this.isia=false;
     this.initiative=false;
+    this.teamlist=null;   // New for teamlist functionality
     this.units=[];
     this.conditions=[];
     this.captain=null;
@@ -17,6 +18,14 @@ function Team(team) {
     this.allhits=this.allcrits=this.allevade=this.allred=this.allgreen=0;
 }
 Team.prototype = {
+    setteamlist: function(teamlist){
+        if(typeof teamlist!=="undefined"){
+            this.teamlist=teamlist;
+        }
+        else{
+            this.teamlist=null;
+        }
+    },
     setia: function() {
 	for (var i in squadron) {
 	    var u=squadron[i];
@@ -168,68 +177,115 @@ Team.prototype = {
 	this.updatepoints();
     },
     tosquadron:function(s) {
-	var team=this.team;
+        // Refactor to generate squadron from teamlist.
 	var i,j;
-	var sortable = this.sortedgenerics();
-	var team1=0;
+        var prevTeam=currentteam;
+        currentteam=this;
+        // Early escape
+        if((typeof this.units==="undefined" || this.units.length===0)
+            && (typeof this.teamlist==="undefined" || this.teamlist.getShips().length===0)){
+            return this.units;
+        }
+        
+        this.points=this.teamlist.getCost();
+        var shiplist=this.teamlist.getShips();
+	var team1=(this.team===1)?0:TEAMS[1].teamlist.getShips().length;
+        // var sortable = this.sortedgenerics();
 	var id=0;
-	for (i in generics) 
-	    if (generics[i].team==1) team1++;
 	this.captain=null;
 	//log("found team1:"+team1);
-	for (var i=0; i<sortable.length; i++) {
-	    if (this.team==sortable[i].team) {
-		sortable[i].id=id++;
-		if (sortable[i].team==2) sortable[i].id+=team1;
-		var u=sortable[i];
-		/* Copy all functions for manual inheritance.  */
-		for (var j in PILOTS[u.pilotid]) {
-		    var p=PILOTS[u.pilotid];
-		    if (typeof p[j]=="function") u[j]=p[j];
-		}
-		u.tosquadron(s);
-		allunits.push(u);
-		squadron.push(u);
-		this.units.push(u);
-	    }
-	}	
+        // Iterate over ships on this team, create them, add them to allunits and squadron
+	for(i in shiplist){
+            var ship=shiplist[i];
+            var u=addunit(ship.pilotID,this.teamlist.listFaction);
+            for(var j in Unit.prototype){
+                u[j]=Unit.prototype[j];
+            }
+            u.tosquadron(s);
+            u.tlIndex=i;    // Hack to let ships know index of their SimpleUnit
+            u.team=this.team;
+            
+            // Set ship's position (mainly for loading ASCII from URL
+            u.tx=ship.position.x;
+            u.ty=ship.position.y;
+            u.alpha=ship.position.rot;
+            //u.m.rotate(ship.position.rot);
+            
+            //Let's just assume there will always be *at least* as many upgrade slots as necessary.
+            var impUpgList=ship.upgrades.slice(); // list of upgrade indices
+            var installed=false;
+            while(impUpgList.length>0){
+                var upg=UPGRADES[impUpgList[0]]; // first upgrade from the top of the array
+                for (var f=0, unusedSlots=(typeof u.upgradetype!=="undefined")?u.upgradetype.length:0; f<unusedSlots; f++){
+                    if (u.upgradetype[f]==upg.type&&u.upg[f]==-1) { 
+                        addupgrade(u,impUpgList[0],f);
+                        //u.upg[f]=impUpgList[0]; 
+                        installed=true; 
+                        impUpgList.shift(); break; }
+                }
+                if(installed){installed=false; continue;} // If we found a slot, great!  Move on.
+                else{ // Not enough of required type of slots.
+                    var idx=u.upgradetype.length; // Find last index of upgradetype array
+                    u.upgradetype.push(upg.type); // Add a new entry of the type we want to install
+                    while(u.upg.length<=idx){u.upg.push(-1);} // lengthen p.upg as well.
+                    addupgrade(u,impUpgList[0],idx);
+                    //u.upg[idx]=impUpgList[0];
+                    impUpgList.shift();
+                    continue;
+                }
+                throw("Upgrade not installed:"+upg.name+"-"+impUpgList[0]+"/"+currentteam.faction+"/"+PILOT_dict[pilot.pilotID]);
+                break; // In case of emergency
+            }
+
+            // Set graphical context, add u to various lists
+            u.id=team1 + id++;
+
+            /* Copy all functions for manual inheritance.  */
+            for (var j in PILOTS[u.pilotid]) {
+                var p=PILOTS[u.pilotid];
+                if (typeof p[j]=="function") u[j]=p[j];
+            }
+            
+            // Add new ship to all relevant lists
+            allunits.push(u);
+            squadron.push(u);
+            this.units.push(u);
+        }	
 	
-/*	for (i in squadron) {
-	    u=squadron[i];
-	    if (u.team==this.team) {
-		if (this.isia==true) {
-		    squadron[i]=$.extend(u,IAUnit.prototype);
-		}
-	    }
-	}
-*/	for (i in squadron) {
+        /* This section is required to ensure that init functions that rely on
+         * other members of the list (e.g. docking Nashta Pup, Phantom, etc.)
+         * works correctly.  I am very sad that this is necessary. */
+        for (i in squadron) {
 	    u=squadron[i];
 	    if (u.team==this.team&&typeof u.init=="function") u.init();
 	}
-	for (i in squadron) {
-	    u=squadron[i];
-	    if (u.team==this.team) {
-		for (var j=0; j<u.upgrades.length; j++) {
-		    var upg=u.upgrades[j];
-		    //if (upg.id>=0) log("removing "+upg.name+"?"+u.installed+" "+(typeof upg.uninstall));
-		    // Need to unwrap generic upgrades, installed when creating the squad
-		    if (upg.id>=0&&typeof UPGRADES[upg.id].uninstall=="function")
-			UPGRADES[upg.id].uninstall(u);
-		    // Now install the upgrades added during the tosquadron call
-		    if (typeof upg.install=="function" && upg.install !== Upgrade.prototype.install) upg.install(u);
-		    Upgrade.prototype.install.call(upg,u);
-		}
-	    }
-	}
-	for (i in squadron) {
-	    u=squadron[i];
-	    if (u.team==this.team) {
-		for (var j=0; j<u.upgrades.length; j++) {
-		    var upg=u.upgrades[j];
-		    if (typeof upg.init=="function"&&!u.isdocked) upg.init(u);
-		}
-	    }
-	}
+        /* However, the following section does not seem to be necessary any longer
+         * as we are not instantiating each ship multiple times
+         */
+//	for (i in squadron) {
+//	    u=squadron[i];
+//	    if (u.team==this.team) {
+//		for (var j=0; j<u.upgrades.length; j++) {
+//		    var upg=u.upgrades[j];
+//		    //if (upg.id>=0) log("removing "+upg.name+"?"+u.installed+" "+(typeof upg.uninstall));
+//		    // Need to unwrap generic upgrades, installed when creating the squad
+//		    if (upg.id>=0&&typeof UPGRADES[upg.id].uninstall=="function")
+//			UPGRADES[upg.id].uninstall(u);
+//		    // Now install the upgrades added during the tosquadron call
+//		    if (typeof upg.install=="function" && upg.install !== Upgrade.prototype.install) upg.install(u);
+//		    Upgrade.prototype.install.call(upg,u);
+//		}
+//	    }
+//	}
+//	for (i in squadron) {
+//	    u=squadron[i];
+//	    if (u.team==this.team) {
+//		for (var j=0; j<u.upgrades.length; j++) {
+//		    var upg=u.upgrades[j];
+//		    if (typeof upg.init=="function"&&!u.isdocked) upg.init(u);
+//		}
+//	    }
+//	}
 
 	this.units.sort(function(a,b) {return b.getskill()-a.getskill();});
 	this.history={title: {text: UI_translation["Damage taken per turn"]},
@@ -254,7 +310,7 @@ Team.prototype = {
 	var i;
 	var team=this.team;
 	this.name=$("#teamname"+this.team).val();
-	if (this.name=="") this.name="Squad #"+team;
+	if (this.name=="" || typeof this.name==="undefined") this.name="Squad #"+team;
 	
 	$("#team"+team).empty();
 	$("#importexport"+team).remove();
@@ -295,254 +351,106 @@ Team.prototype = {
 	return sortable;
     },
     toASCII: function() {
-	var s="";
-	var sortable=this.sortedgenerics();
-	for (var i=0; i<sortable.length; i++) 
-	    s+=sortable[i].toASCII()+";";
-	return s;
+	if(typeof this.teamlist!=="undefined"&&this.teamlist!==null){
+            // If we are saving ASCII data during play, get actual positions from
+            // each ship before compiling ASCII.
+            // Unfortunately, after re-ordering the units array is not always
+            // in the same order as the teamlist.
+            if(this.units.length!==0){
+                for(var i in this.units){
+                    var pos={x:0,y:0,rot:0};
+                    pos.x=this.units[i].tx;
+                    pos.y=this.units[i].ty;
+                    pos.rot=this.units[i].alpha;
+                    this.teamlist.listShips[this.units[i].tlIndex].position=pos;
+                }
+            }
+            return this.teamlist.toASCII();
+        }
+        else return "";
     },
     toKey: function() {
-	var s="";
-	var p=[];
-	for (var i in generics) {
-	    if (generics[i].team==this.team) p.push(generics[i]);
-	}
-	p.sort(function(a,b) { return a.pilotid-b.pilotid; });
-	for (var i=0; i<p.length; i++) 
-	    s+=p[i].toKey()+";";
-	//s+=p[0].toKey();
-	return s;
+	if(typeof this.teamlist!=="undefined"&&this.teamlist!==null){
+            return this.teamlist.toKey();
+        }
+        else return "";
     },
     toJSON:function() {
-	var s={};
-	var f={REBEL:"rebels",SCUM:"scum",EMPIRE:"empire"};
-	s.description="";
-	s.faction=f[this.faction];
-	s.name=this.name;
-	var sq=[];
-	var pts=0;
-	var sortable=this.sortedgenerics();
-	for (var i=0; i<sortable.length; i++) {
-	    var jp=sortable[i].toJSON();
-	    pts+=jp.points;
-	    sq.push(jp);
-	}
-	s.pilots=sq;
-	s.points=pts;
-	// update also the number of points
-	this.points=pts;
-	s.vendor={xwsbenchmark:{builder:"Squadron Benchmark",builder_url:"http://baranidlo.github.io/bench/"}};
-	s.version="0.3.0";
-	return s;
+	if(typeof this.teamlist!=="undefined"&&this.teamlist!==null){
+            return this.teamlist.outputJSON();
+        }
+        else return "";
     },
     toJuggler:function(translated,improved) {
-	var s="";
-	var f={REBEL:"rebels",SCUM:"scum",EMPIRE:"empire"};
-	var sortable = this.sortedgenerics();
-	for (var i=0; i<sortable.length; i++) 
-	    s+=sortable[i].toJuggler(translated,improved)+"\n";
-	return s;
+	if(typeof this.teamlist!=="undefined"&&this.teamlist!==null){
+            return this.teamlist.outputJuggler(translated,improved);
+        }
+        else return "";
     },
     parseJuggler : function(str,translated) {
-	var f,i,j,k;
-	var pid=-1;
-	var getf=function(f) {
-	    if (f==Unit.REBEL) return 1;
-	    if (f==Unit.SCUM) return 2;
-	    return 4;
-	};
-	var f=7;
-	if (str=="") return;
-	var pilots=str.trim().split("\n");
-	var del=[];
-	for (i in generics) { 
-	    if (generics[i].team==this.team) delete generics[i];
-	}
-	for (i=0; i<pilots.length; i++) {
-	    var pstr=pilots[i].split(/\s+\+\s+/);
-	    var lf=0;
-	    for (j=0;j<PILOTS.length; j++) {
-		var v=PILOTS[j].name;
-		var vat=translate(v);
-		var pu="";
-		if (PILOTS[j].ambiguous==true&&typeof PILOTS[j].edition!="undefined") pu="("+PILOTS[j].edition+")";
-		vat+=pu; v+=pu;
-		if (v.replace(/\'/g,"")==pstr[0]) lf=lf|getf(PILOTS[j].faction);
-		if (vat.replace(/\'/g,"")==pstr[0]) lf=lf|getf(PILOTS[j].faction);
-	    }
-	    f=f&lf;
-	}
-	if ((f&1)==1) this.faction=Unit.REBEL; else if ((f&2)==2) this.faction=Unit.SCUM; else this.faction=Unit.EMPIRE;
-	this.color=(this.faction==Unit.REBEL)?RED:(this.faction==Unit.EMPIRE)?GREEN:YELLOW;
-	for (i=0; i<pilots.length; i++) {
-	    pid=-1;
-	    var pstr=pilots[i].split(/\s+\+\s+/);
-	    for (j=0;j<PILOTS.length; j++) {
-		var v=PILOTS[j].name;
-		var vat=v;
-		var pu="";
-		if (PILOTS[j].faction==this.faction) {
-		    vat=translate(v);
-		    if (PILOTS[j].ambiguous==true&&typeof PILOTS[j].edition!="undefined") pu="("+PILOTS[j].edition+")";
-		    v+=pu;
-		    vat+=pu;
-		    if (v.replace(/\'/g,"")==pstr[0]) { pid=j; break; }
-		    if (vat.replace(/\'/g,"")==pstr[0]) { pid=j; translated=true; break; }
-		} 
-	    }
-	    if (pid==-1) {
-		//if (translated==false) return this.parseJuggler(str,true);
-		console.log("pid undefined:"+translated+"!!"+pstr[0]+"!!"+this.faction);
-	    }
- 	    if (pid==-1) {
-		log("unknown Juggler pilot:"+pilots[i]+"/"+str);
-	    }
-	    var p=new Unit(this.team,pid);
-	    p.upg=[];
-	    for (j=0; j<20; j++) p.upg[j]=-1;
-	    if (typeof p.pilotid=="undefined") {
-		console.log(pid+" "+p.name+" "+p.pilotid);
-		console.trace();
-	    }
-	    var authupg=[Unit.TITLE,Unit.MOD].concat(PILOTS[p.pilotid].upgrades);
-	    for (j=1; j<pstr.length; j++) {
-		for (k=0; k<UPGRADES.length; k++) {
-		    if ((translated==true&&translate(UPGRADES[k].name).replace(/\'/g,"").replace(/\(Crew\)/g,"")==pstr[j])
-			||(UPGRADES[k].name.replace(/\'/g,"")==pstr[j])) {
-			if (authupg.indexOf(UPGRADES[k].type)>-1) {
-			    if (typeof UPGRADES[k].upgrades!="undefined") 
-				if (UPGRADES[k].upgrades[0]=="Cannon|Torpedo|Missile") {
-				    authupg=authupg.concat([Unit.CANNON,Unit.TORPEDO,Unit.MISSILE]);
-				    p.upgradetype=p.upgradetype.concat([Unit.CANNON,Unit.TORPEDO,Unit.MISSILE]);
-				}
-			    else { 
-				authupg=authupg.concat(UPGRADES[k].upgrades);
-				p.upgradetype=p.upgradetype.concat(UPGRADES[k].upgrades);
-			    }
-			    break;
-			} 
-		    }
-		    if (k==UPGRADES.length) log("UPGRADE undefined: "+pstr[j]);
-		}
-	    }
-	    //for (j=0; j<p.upgradetype.length; j++)
-	    //	p.log("found type "+p.upgradetype[j]);
-	    for (j=1; j<pstr.length; j++) {
-		for (k=0; k<UPGRADES.length; k++) {
-		    if ((translated==true&&translate(UPGRADES[k].name).replace(/\'/g,"").replace(/\(Crew\)/g,"")==pstr[j])
-			||(UPGRADES[k].name.replace(/\'/g,"")==pstr[j])) {
-			if (authupg.indexOf(UPGRADES[k].type)>-1) {
-			    for (f=0; f<p.upgradetype.length; f++) {
-				//log("check ?"+p.upgradetype[f]+" "+UPGRADES[k].type);
-				if (p.upgradetype[f]==UPGRADES[k].type&&p.upg[f]==-1) { p.upg[f]=k; break; }
-			    }
-			    break;
-			} else log("** "+pstr[j]+" UPGRADE not listed: "+UPGRADES[k].type+" in "+p.name+"/"+str);
-		    }
-		}
-	    }
-	}
-	//nextphase();
-	
+        if(typeof this.teamlist!=="undefined"&&this.teamlist!==null){
+            return this.teamlist.inputOldJuggler(str);
+        }
+        else{
+            this.teamlist=new TeamList();
+            return this.teamlist.inputOldJuggler(str);
+        }
     },
     parseASCII: function(str) {
-	var pilots=str.split(";");
-	for (var i in generics) if (generics[i].team==this.team) delete generics[i];
-	for (var i=0; i<pilots.length-1; i++) {
-	    var coord=pilots[i].split(":");
-	    var updstr=coord[0].split(",");
-	    var pid=parseInt(updstr[0],10);
-	    this.faction=PILOTS[pid].faction;
-	    this.color=(this.faction==Unit.REBEL)?RED:(this.faction==Unit.EMPIRE)?GREEN:YELLOW;
-	    if (pid==-1) {
-		log("unknown ASCII pilot "+pilots[i]);
-	    }
-	    var p=new Unit(this.team,pid);
-	    p.upg=[];
-	    for (var j=0; j<10; j++) p.upg[j]=-1;
-	    for (var j=1; j<updstr.length; j++) {
-		var n=parseInt(updstr[j],10);
-		for (var f=0; f<p.upgradetype.length; f++)
-		    if (p.upgradetype[f]==UPGRADES[n].type&&p.upg[f]==-1) { 
-			p.upg[f]=n; 
-			break; 
-		    } 
-		if (p.upg[f]==n&&typeof UPGRADES[n].upgrades!="undefined") {
-		    if (UPGRADES[n].upgrades[0]=="Cannon|Torpedo|Missile") 
-			p.upgradetype=p.upgradetype.concat([Unit.CANNON,Unit.TORPEDO,Unit.MISSILE]);
-		    else
-			p.upgradetype=p.upgradetype.concat(UPGRADES[n].upgrades);
-		}
-	        //if (typeof UPGRADES[n].install!="undefined") UPGRADES[n].install(p);
-	    }
-	    if (coord.length>1) {
-		var c=coord[1].split(",");
-		p.tx=parseInt(c[0],10);
-		p.ty=parseInt(c[1],10);
-		p.alpha=parseInt(c[2],10);
-	    }
-	}
+        for (var i in generics) if (generics[i].team==this.team) delete generics[i];
+        
+        if(typeof this.teamlist!=="undefined"&&this.teamlist!==null){
+            this.teamlist.inputASCII(str);
+        }
+        else{
+            this.teamlist=new TeamList()
+            this.teamlist.inputASCII(str);
+        }
+//        
+//	var pilots=str.split(";");
+//	for (var i in generics) if (generics[i].team==this.team) delete generics[i];
+//	for (var i=0; i<pilots.length-1; i++) {
+//	    var coord=pilots[i].split(":");
+//	    var updstr=coord[0].split(",");
+//	    var pid=parseInt(updstr[0],10);
+//	    this.faction=PILOTS[pid].faction;
+//	    this.color=(this.faction==Unit.REBEL)?RED:(this.faction==Unit.EMPIRE)?GREEN:YELLOW;
+//	    if (pid==-1) {
+//		log("unknown ASCII pilot "+pilots[i]);
+//	    }
+//	    var p=new Unit(this.team,pid);
+//	    p.upg=[];
+//	    for (var j=0; j<10; j++) p.upg[j]=-1;
+//	    for (var j=1; j<updstr.length; j++) {
+//		var n=parseInt(updstr[j],10);
+//		for (var f=0; f<p.upgradetype.length; f++)
+//		    if (p.upgradetype[f]==UPGRADES[n].type&&p.upg[f]==-1) { 
+//			p.upg[f]=n; 
+//			break; 
+//		    } 
+//		if (p.upg[f]==n&&typeof UPGRADES[n].upgrades!="undefined") {
+//		    if (UPGRADES[n].upgrades[0]=="Cannon|Torpedo|Missile") 
+//			p.upgradetype=p.upgradetype.concat([Unit.CANNON,Unit.TORPEDO,Unit.MISSILE]);
+//		    else
+//			p.upgradetype=p.upgradetype.concat(UPGRADES[n].upgrades);
+//		}
+//	        //if (typeof UPGRADES[n].install!="undefined") UPGRADES[n].install(p);
+//	    }
+//	    if (coord.length>1) {
+//		var c=coord[1].split(",");
+//		p.tx=parseInt(c[0],10);
+//		p.ty=parseInt(c[1],10);
+//		p.alpha=parseInt(c[2],10);
+//	    }
+//	}
 	//nextphase();
     },
     parseJSON:function(str,translated) {
-	var s;
-	var f={"rebel":Unit.REBEL,"scum":Unit.SCUM,"imperial":Unit.EMPIRE};
-	try {
-	    if (typeof str=="string") s=$.parseJSON(str);
-	    else s=str;
-	    ga('send','event', {
-		eventCategory: 'social',
-		eventAction: 'receive',
-		eventLabel: 'xws'
-	    });
-	} catch(err) {
-	    return this.parseJuggler(str,translated);
-	}
-	var i,j,k;
-	this.name=s.name;
-	this.points=s.points;
-	this.faction=f[s.faction];
-	this.color=(this.faction==Unit.REBEL)?RED:(this.faction==Unit.REBEL)?GREEN:YELLOW;
-	for (i in generics) if (generics[i].team==this.team) delete generics[i];
-	for (i=0; i<s.pilots.length; i++) {
-	    var pilot=s.pilots[i];
-	    var p;
-	    var pid=-1;
-	    pilot.team=this.team;
-	    if (pilot.name.match(/-/)!=null) {
-	   	pilot.name=pilot.name.split("-")[0];
-	    }
-	    
-	    for (j=0; j<PILOTS.length; j++) {
-		if (PILOTS[j].faction==this.faction&&
-		   PILOTS[j].unit==PILOT_dict[pilot.ship]) {
-		    var va=PILOTS[j].name;
-		    if (va==PILOT_dict[pilot.name]) { pid=j; break; }
-		}
-	    }
-	    if (pid==-1) throw("pid undefined:"+PILOT_dict[pilot.name]+"-"+pilot.name+"/"+this.faction+"/"+PILOT_dict[pilot.ship]);
-
-	    p=new Unit(this.team,pid);
-	    p.upg=[];
-	    for (var j=0; j<10; j++) p.upg[j]=-1;
-
-	    if (typeof pilot.upgrades!="undefined")  {
-		var nupg=0;
-		for (j in pilot.upgrades) { 
-		    var upg=pilot.upgrades[j];
-		    for (k=0; k<upg.length; k++) {
-			nupg++;
-			for (var z=0; z<UPGRADES.length; z++) 
-			    if (UPGRADES[z].name==UPGRADE_dict[upg[k]]) {
-				for (var f=0; f<p.upgradetype.length; f++)
-				    if (p.upgradetype[f]==UPGRADES[z].type&&p.upg[f]==-1) { p.upg[f]=z; break; }
-				//if (typeof UPGRADES[z].install != "undefined") UPGRADES[z].install(p);
-				break;
-			    }
-		    }
-		}
-	    }
-	}
-	//nextphase();
+	if(typeof this.teamlist!=="undefined"&&this.teamlist!==null){
+            return this.teamlist.inputJSON(str);
+        }
+        else{
+            return this.teamlist=new TeamList(str);
+        }
     }
 }

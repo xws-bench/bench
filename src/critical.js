@@ -540,6 +540,7 @@ var CRITICAL_DECK=[
 	    this.log();
 	    this.isactive=true;
 	    var save=[];
+            var oppPassed=false;
 	    var self=this;
 	    this.unit.wrap_after("getdial",this,function(a) {
                 // Special handling for Ionized; see FAQ
@@ -558,9 +559,12 @@ var CRITICAL_DECK=[
 		}
 		return save;
 	    });
-	    this.unit.wrap_after("timeformaneuver",this,function(t) {
-		if (t&&!this.hasionizationeffect()) self.facedown();
-		return t;
+            this.unit.wrap_after("timeformaneuver",this,function(t){
+                oppPassed=t;
+                return t;
+            });
+	    this.unit.wrap_after("resolvemaneuver",this,function() {
+		if (oppPassed&&!this.hasionizationeffect()) self.facedown();
 	    });	    
 	},
 	facedown: function() {
@@ -568,6 +572,7 @@ var CRITICAL_DECK=[
 		this.isactive=false;
 		this.unit.getdial.unwrap(this);
 		this.unit.timeformaneuver.unwrap(this);
+                this.unit.resolvemaneuver.unwrap(this);
 	    }
 	},
 	version:[V2]

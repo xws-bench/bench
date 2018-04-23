@@ -7,6 +7,28 @@ var Critical=window.Critical || {};
 var Unit=window.Unit || {};
 var PILOTS=window.PILOTS || {};
 var OBSTACLES=window.OBSTACLES || {};
+var phantomInit=function(sh){
+    // Need to re-init Ghost immediately after initing Phantom/Phantom II
+    var ghost=-1;
+    var upg;
+    var u;
+    for (var i in squadron) {
+        u=squadron[i];
+        if (u.isally(sh)&&sh!=u) {
+            for (var j=0; j<u.upgrades.length; j++) {
+                upg=u.upgrades[j];
+                if (upg.name=="Ghost"){
+                    ghost=i; 
+                    break; 
+                }
+            }
+        }
+        if (ghost!=-1) break;
+    }
+    if (ghost!=-1) {
+        upg.init(squadron[ghost]);
+    }
+};
 var UPGRADES=window.UPGRADES= [
     {
 	name: "Ion Cannon Turret",
@@ -791,6 +813,7 @@ var UPGRADES=window.UPGRADES= [
 	},
 	uninstall: function(sh) {
 	    if (typeof sh.getskill.unwrap=="function") sh.getskill.unwrap(this);
+            sh.installed=false;
 	    sh.showskill();
 
 	},
@@ -897,6 +920,7 @@ var UPGRADES=window.UPGRADES= [
     { /* TODO: a ship is still hit if crit is transferred ? */
         name: "Selflessness",
 	rating:1,
+        unique:true,
         init: function(sh) {
 	    var self=this;
 	    self.ea=Unit.prototype.resolvehit;
@@ -1000,6 +1024,51 @@ var UPGRADES=window.UPGRADES= [
 	    sh.wrap_after("deal",this,newdeal);
 	},
         points: 4,
+    },
+    {
+        name: "Breach Specialist",
+        done:true,
+        type: Unit.CREW,
+        points: 1,
+        init: function(sh){
+            var self=this;
+            self.working=false;
+            /* Logic:
+             * Check every Damage card.  If faceup, offer UI.
+             * If selected, turn all faceup damage cards face down for this turn then unwrap.
+             * If not selected, leave wrapped
+             */
+            var bspec=function(n){
+                this.removereinforcetoken();
+                self.working=true;
+                this.wrap_before("applycritical",self,function(crits) {
+                    if (self.working) {
+                        this.log("flipping [%1] crits down unresolved [%0]",self.name,crits);
+                        this.applydamage(crits);
+                        return [0]; // Apply all crits as facedown, and apply 0 actual crits
+                    }
+                    else{ return crits; }
+                }).unwrapper("endcombatphase");
+                
+                this.wrap_after("endcombatphase",self,function(){
+                    self.working=false;
+                });
+                
+                this.endnoaction(n,"CREW");
+            }.bind(sh);
+            
+            // From Greedo
+            sh.wrap_before("applycritical",self,function(crits) {
+		if (self.isactive&&this.reinforce>0&&crits>0){
+                    // Provide UI
+                    crits=crits-1;
+                    sh.donoaction([{org:self,type:"CREW",name:self.name,action:bspec}],
+                    "",
+                    true,function(){sh.resolvecritical(1);}); // account for first crit
+                }
+                return crits; //see new wrap_before definition
+	    }.bind(sh));
+        }
     },
     {
         name: "Advanced Proton Torpedoes",
@@ -3771,7 +3840,7 @@ var UPGRADES=window.UPGRADES= [
 	points: 1,
 	done:true,
 	init:function(sh) {
-	    sh.wrap_after("getbomblocation",this,function(d) {
+	    sh.wrap_after("getbomblocation",this,function(bomb,d) {
 		if (d.indexOf("F1")>-1) return d.concat("F2");
 		return d;
 	    })
@@ -4333,14 +4402,16 @@ var UPGRADES=window.UPGRADES= [
      points:0,
      unique:true,
      done:true,
-     ship:"Attack Shuttle"
+     ship:"Attack Shuttle",
+     //init:phantomInit
     },
     {name:"Phantom II",
      type:Unit.TITLE,
      points:0,
      unique:true,
      done:true,
-     ship:"Sheathipede-class Shuttle"
+     ship:"Sheathipede-class Shuttle",
+     //init:phantomInit
     },
     {name:"Reinforced Deflectors",
      points:3,
@@ -6966,40 +7037,90 @@ var UPGRADES=window.UPGRADES= [
 			}.bind(sh);
 		}
 	},
-	{
-		name: "Flight-Assist Astromech",
-		type:Unit.ASTROMECH,
-		done:true,
-		points: 1,
-		init: function(sh) {
-			sh.wrap_before("endmaneuver",this,function() {
-				if(this.candoaction() && !this.collision && !this.hascollidedobstacle()) {
-					var enemies = this.getenemiesinrange(this.weapons, this.selectnearbyenemy(3))[0];
-					if(enemies.length == 0) {
-						var p=[];
-						if (this.candoboost())
-						p.push(this.newaction(this.resolveboost,"BOOST"));
-						if (this.candoroll())
-						p.push(this.newaction(this.resolveroll,"ROLL"));
-						this.doaction(p,"free %BOOST% or %ROLL% action");
-					}
-				}
-			});
-			var turret=[];
-			var self=this;
-			for (var i=0; i<sh.weapons.length; i++) {
-				var w=sh.weapons[i];
-				if (w.type==Unit.TURRET&&w.isprimary===false) {
-					turret.push(w);
-					w.wrap_after("isTurret",self,function() { return false; });
-				}
-			}
-			if (turret.length===0) return;
-			sh.wrap_after("isTurret",this,function(w,b) {
-				return false;
-			});
-		}
-	},
+    {
+        name: "Flight-Assist Astromech",
+        type:Unit.ASTROMECH,
+        done:true,
+        points: 1,
+        init: function(sh) {
+                sh.wrap_before("endmaneuver",this,function() {
+                        if(this.candoaction() && !this.collision && !this.hascollidedobstacle()) {
+                                var enemies = this.getenemiesinrange(this.weapons, this.selectnearbyenemy(3))[0];
+                                if(enemies.length == 0) {
+                                        var p=[];
+                                        if (this.candoboost())
+                                        p.push(this.newaction(this.resolveboost,"BOOST"));
+                                        if (this.candoroll())
+                                        p.push(this.newaction(this.resolveroll,"ROLL"));
+                                        this.doaction(p,"free %BOOST% or %ROLL% action");
+                                }
+                        }
+                });
+                var turret=[];
+                var self=this;
+                for (var i=0; i<sh.weapons.length; i++) {
+                        var w=sh.weapons[i];
+                        if (w.type==Unit.TURRET&&w.isprimary===false) {
+                                turret.push(w);
+                                w.wrap_after("isTurret",self,function() { return false; });
+                        }
+                }
+                if (turret.length===0) return;
+                sh.wrap_after("isTurret",this,function(w,b) {
+                        return false;
+                });
+        }
+    },
+    { 
+    name: "Maul",
+    type:Unit.CREW,
+    done:false,
+    points: 3,
+    unique:true,
+    exceptions:["Ezra Bridger"],
+    faction:Unit.SCUM,
+    init: function(sh) {/* FAQ v4.3 */ /* TODO: not clean */
+        var self=this;
+        var destressed=-1;
+        /* TODO : not a modifier, but rerolls.  */
+        sh.adddicemodifier(Unit.ATTACK_M,Unit.MOD_M,Unit.ATTACK_M,this,{
+           req: function(m,n) { 
+               return self.isactive&&sh.stress===0; 
+           },
+           n:function() { 
+               var count=9;
+               return count;
+           },
+           f:function(m,n) {
+               var f=Unit.FCH_focus(m)+Unit.FCH_blank(m,n); // As many rerolls as blanks
+               if (f>0&&sh.stress===0) {
+                   sh.log("Reroll %0 <span class='blankreddice'></span> for +%0 %STRESS% [%1]",f,self.name);
+                   var roll=sh.rollattackdie(f,self,"critical");
+                   m-=f;
+                   for (var i=0; i<f; i++) {
+                       sh.addstress();
+                       switch(roll[i]){
+                           case "hit": m+=Unit.FCH_HIT;
+                               break;
+                           case "critical": m+=Unit.FCH_CRIT;
+                               break;
+                           case "focus": m+=Unit.FCH_FOCUS;
+                               break;
+                       }
+                   }
+               }
+               return m;
+           },str:"crew"}
+        );
+       sh.addafterattackeffect(this,function(c,h) {
+            if (c+h===0||destressed>=round) return;
+            // Remove one stress token (for now mandatory; later optional)
+            destressed=round;
+            sh.removestresstoken();
+            sh.log("-1 %STRESS% [%0]",self.name);
+        });
+       }
+    },
     {
         name: "First Order Vanguard",
         type:Unit.TITLE,
@@ -7023,7 +7144,7 @@ var UPGRADES=window.UPGRADES= [
                 dice:["blank","focus","evade"],
                 req:function() { return self.isactive; }.bind(this),
                 aiactivate:function(results,count){
-                    return(Unit.FE_blank(results,count)>count/2.0 || (Unit.FE_focus(results) > 0 && this.focuses.length===0));
+                    return(Unit.FE_blank(results,count)>count/2.0 || (Unit.FE_focus(results) > 0 && sh.focuses.length===0));
                 }.bind(this),
                 n:function() { return 9; },
                 f:function() {
@@ -7116,3 +7237,7 @@ var UPGRADES=window.UPGRADES= [
 		}
 	}
 ];
+var UPGRADESNAMEINDEX=window.UPGRADESNAMEINDEX=UPGRADES.map(function(upgcrd){
+    if(upgcrd.ambiguous===true&&typeof upgcrd.edition!=="undefined") return upgcrd.name.replace(/\'/g,"")+" ("+upgcrd.edition+")";
+    return upgcrd.name;//.replace(/\'/g,""); // for faster seeking; see http://www.andygup.net/fastest-way-to-find-an-item-in-a-javascript-array/
+});
