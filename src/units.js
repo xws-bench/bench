@@ -46,7 +46,74 @@ var upg_lookup=function(s) {
     }
     return "";
 };
-	  
+var doDockableCheck=function(org,docker,dArray,shipArray){
+    /* New global function to check if some ship can be docked to some
+     * other ship at init time.  Previously a ton of wonky double-init
+     * steps happened to ensure this worked.  I'd rather make dockable ships
+     * responsible for ensuring that they get docked.
+     * 
+     * org: card that gives docking ability (title, pilot, etc)
+     * docker: ship that will be docked (currently N/A)
+     * dArray: array of {ship: <str>, type: <str>, name: <str>} entries
+     * shipArray: array of all ship instances to check (usually 'squadron')
+    */
+    if(typeof org==="undefined" 
+           || typeof docker==="undefined" 
+           || typeof dArray==="undefined"){
+        return;
+    }
+    if(typeof shipArray==="undefined"){
+        shipArray=squadron;
+    }
+    
+    var i,j,k;
+    var u,upg;
+    var target,tShip,tOrg,tType,tName;
+    var doDockingInit=function(dockerShip,dockee,initObj){
+        dockerShip.log("Docking to %0 (%1) at init time",dockee.name,dockee.ship.name);
+        initObj.init(dockee);
+    }
+   
+    for(i in dArray){ // Can have multiple dockable definitions
+        target=dArray[i];
+        // A dockable definition must be fully defined
+        if(typeof target.ship==="undefined"
+            || typeof target.type==="undefined"
+            || typeof target.name==="undefined"){
+            continue;
+        }
+        else{
+            for(j in shipArray){
+                // Traverse selection of units (actually instantiated ships, not abstracts
+                u=shipArray[j];
+                if(u.team!==docker.team||u===docker){ continue; } // Can only dock to non-self teammate
+                else{
+                    // Check for match between unit and target values
+                    tShip=target.ship;
+                    tType=target.type;
+                    tName=target.name;
+                    
+                    if(u.ship.name===tShip){ // Either way, ships must match
+                        // In case the docking init is attached to a ship
+                        if(tType===Unit.SHIP && u.name===tName){ // Currently nobody does this
+                            doDockingInit(docker,u,u);
+                            return; 
+                        }
+                        else{ // Vast majority should come here
+                            for(k in u.upgrades){
+                                upg=u.upgrades[k];
+                                if(tType===upg.type && tName===upg.name){
+                                    doDockingInit(docker,u,upg);
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+};
 var activeunit;
 var unitlist;
 var pilotlist;
@@ -448,6 +515,7 @@ Unit.MOD="Mod";
 Unit.TITLE="Title";
 Unit.ROCK="Rock";
 Unit.DEBRIS="Debris";
+Unit.SHIP="Ship";
 Unit.NONE="None";
 Unit.CONDITION="Condition";
 Unit.REROLL_M=0;
@@ -4078,6 +4146,7 @@ Unit.prototype = {
 	return range;
     },
     getrange: function(sh) {
+        if(sh.isdocked){return 0;} // Can't get a range to a docked ship, period
 	return this.getoutlinerange(this.m,sh).d;
     },
     getdist:function(mm,sh) {

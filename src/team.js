@@ -219,7 +219,6 @@ Team.prototype = {
                 for (var f=0, unusedSlots=(typeof u.upgradetype!=="undefined")?u.upgradetype.length:0; f<unusedSlots; f++){
                     if (u.upgradetype[f]==upg.type&&u.upg[f]==-1) { 
                         addupgrade(u,impUpgList[0],f);
-                        //u.upg[f]=impUpgList[0]; 
                         installed=true; 
                         impUpgList.shift(); break; }
                 }
@@ -229,7 +228,6 @@ Team.prototype = {
                     u.upgradetype.push(upg.type); // Add a new entry of the type we want to install
                     while(u.upg.length<=idx){u.upg.push(-1);} // lengthen p.upg as well.
                     addupgrade(u,impUpgList[0],idx);
-                    //u.upg[idx]=impUpgList[0];
                     impUpgList.shift();
                     continue;
                 }
@@ -250,15 +248,26 @@ Team.prototype = {
             allunits.push(u);
             squadron.push(u);
             this.units.push(u);
-        }	
+        }
 	
         /* This section is required to ensure that init functions that rely on
          * other members of the list (e.g. docking Nashta Pup, Phantom, etc.)
          * works correctly.  I am very sad that this is necessary. */
         for (i in squadron) {
 	    u=squadron[i];
-	    if (u.team==this.team&&typeof u.init=="function") u.init();
+	    if (u.team==this.team){
+                if(typeof u.init=="function") u.init();
+                for (var j=0; j<u.upgrades.length; j++) {
+		    var upg=u.upgrades[j];
+		    if (typeof upg.dockable!=="undefined" 
+                            && upg.dockable 
+                            && typeof upg.init=="function") {
+                        upg.init(u);
+                    }
+		}
+            }            
 	}
+        
         /* However, the following section does not seem to be necessary any longer
          * as we are not instantiating each ship multiple times
          */
@@ -406,44 +415,6 @@ Team.prototype = {
             this.teamlist=new TeamList()
             this.teamlist.inputASCII(str);
         }
-//        
-//	var pilots=str.split(";");
-//	for (var i in generics) if (generics[i].team==this.team) delete generics[i];
-//	for (var i=0; i<pilots.length-1; i++) {
-//	    var coord=pilots[i].split(":");
-//	    var updstr=coord[0].split(",");
-//	    var pid=parseInt(updstr[0],10);
-//	    this.faction=PILOTS[pid].faction;
-//	    this.color=(this.faction==Unit.REBEL)?RED:(this.faction==Unit.EMPIRE)?GREEN:YELLOW;
-//	    if (pid==-1) {
-//		log("unknown ASCII pilot "+pilots[i]);
-//	    }
-//	    var p=new Unit(this.team,pid);
-//	    p.upg=[];
-//	    for (var j=0; j<10; j++) p.upg[j]=-1;
-//	    for (var j=1; j<updstr.length; j++) {
-//		var n=parseInt(updstr[j],10);
-//		for (var f=0; f<p.upgradetype.length; f++)
-//		    if (p.upgradetype[f]==UPGRADES[n].type&&p.upg[f]==-1) { 
-//			p.upg[f]=n; 
-//			break; 
-//		    } 
-//		if (p.upg[f]==n&&typeof UPGRADES[n].upgrades!="undefined") {
-//		    if (UPGRADES[n].upgrades[0]=="Cannon|Torpedo|Missile") 
-//			p.upgradetype=p.upgradetype.concat([Unit.CANNON,Unit.TORPEDO,Unit.MISSILE]);
-//		    else
-//			p.upgradetype=p.upgradetype.concat(UPGRADES[n].upgrades);
-//		}
-//	        //if (typeof UPGRADES[n].install!="undefined") UPGRADES[n].install(p);
-//	    }
-//	    if (coord.length>1) {
-//		var c=coord[1].split(",");
-//		p.tx=parseInt(c[0],10);
-//		p.ty=parseInt(c[1],10);
-//		p.alpha=parseInt(c[2],10);
-//	    }
-//	}
-	//nextphase();
     },
     parseJSON:function(str,translated) {
 	if(typeof this.teamlist!=="undefined"&&this.teamlist!==null){

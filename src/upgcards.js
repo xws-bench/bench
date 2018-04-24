@@ -4403,7 +4403,12 @@ var UPGRADES=window.UPGRADES= [
      unique:true,
      done:true,
      ship:"Attack Shuttle",
-     //init:phantomInit
+     dockable: true,
+     init: function(sh){
+        var self=this;
+        self.dockables=[{ship: "VCX-100",type:Unit.TITLE,name:"Ghost"}];
+        doDockableCheck(self,sh,self.dockables,squadron);
+     }
     },
     {name:"Phantom II",
      type:Unit.TITLE,
@@ -4411,7 +4416,12 @@ var UPGRADES=window.UPGRADES= [
      unique:true,
      done:true,
      ship:"Sheathipede-class Shuttle",
-     //init:phantomInit
+     dockable: true,
+     init: function(sh){
+        var self=this;
+        self.dockables=[{ship: "VCX-100",type:Unit.TITLE,name:"Ghost"}];
+        doDockableCheck(self,sh,self.dockables,squadron);
+     }
     },
     {name:"Reinforced Deflectors",
      points:3,
