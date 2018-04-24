@@ -58,11 +58,20 @@ Team.prototype = {
 	$("#debris").hide();
 	$("#caroussel").show();
 	if (this.faction!=faction||force==true) {
+            var u, upg;
 	    for (var i in generics) {
-		if (generics[i].team==this.team) {
-		    delete generics[i];
-		}
+                u=generics[i];
+                if(u.unique){
+                    removeunique(u.name);
+                }
+                for(var j in u.upgrades){
+                    upg=u.upgrades[j];
+                    if(upg.unique){
+                        removeunique(upg.name);
+                    }
+                }
 	    }
+            generics=[];
 	    $("#totalpts").html(0);
 	    this.setfaction(faction);
 	    displayfactionunits();
