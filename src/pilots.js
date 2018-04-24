@@ -3597,11 +3597,11 @@ window.PILOTS = [
 	wave:["8"],
         points: 0,
         upgrades: [],
-        dockable: true,
         init: function() {
             var self=this;
             self.upg=[];  // Cannot have *any* upgrades.  Period.
             // May need to change how this works, but for now just set a dockables value
+            self.dockable=true;
             self.dockables=[{ship: "YV-666",type:Unit.TITLE,name:"Hound's Tooth"}];
             doDockableCheck(self,self,self.dockables,squadron);
         }
