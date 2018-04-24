@@ -265,7 +265,11 @@ Team.prototype = {
         for (i in squadron) {
 	    u=squadron[i];
 	    if (u.team==this.team){
-                if(typeof u.init=="function") u.init();
+                if(typeof u.init=="function"
+                    && typeof u.dockable!=="undefined"
+                    && u.dockable){ 
+                    u.init();
+                }
                 for (var j=0; j<u.upgrades.length; j++) {
 		    var upg=u.upgrades[j];
 		    if (typeof upg.dockable!=="undefined" 
