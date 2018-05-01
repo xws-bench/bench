@@ -225,7 +225,8 @@ function addupgradeaddhandler(u) {
             // Upgrades with .exceptions set are added in to 'p' even
             // if faction doesn't match, but if subsequent exception check
             // doesn't match this upg doesn't get added
-            if (typeof upg.exceptions!=="undefined" 
+            if (u.faction!==upg.faction
+                && typeof upg.exceptions!=="undefined" 
                 && !checkExceptions(u,upg)) {
                 continue;
             }

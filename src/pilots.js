@@ -1,7 +1,8 @@
 (function() {
-    var Critical=window.Critical || {};
-    var Unit=window.Unit || {};
-    var sabine_fct=function() {
+
+var Critical=window.Critical || {};
+var Unit=window.Unit || {};
+var sabine_fct=function() {
     var p=[];
     if (this.hasionizationeffect()) return;
     if (this.candoaction()) {
@@ -12,6 +13,7 @@
 	this.doaction(p,"free %BOOST% or %ROLL% action");
     }
 }
+
 var kylo_fct = function() {
 	this.firstroundhit=-1;
 	this.wrap_after("resolveishit",this,function(t) {
@@ -3596,8 +3598,12 @@ window.PILOTS = [
         points: 0,
         upgrades: [],
         init: function() {
-            self=this;
-            self.upg=[];
+            var self=this;
+            self.upg=[];  // Cannot have *any* upgrades.  Period.
+            // May need to change how this works, but for now just set a dockables value
+            self.dockable=true;
+            self.dockables=[{ship: "YV-666",type:Unit.TITLE,name:"Hound's Tooth"}];
+            doDockableCheck(self,self,self.dockables,squadron);
         }
     },
     {
