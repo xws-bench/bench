@@ -1,0 +1,416 @@
+{
+  "tournament": {
+    "date": "2018-05-01", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 4326, 
+    "name": "Tuesday 5/1/18", 
+    "players": [
+      {
+        "mov": 492, 
+        "name": "Larry Turnbull", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 388, 
+        "name": "Craig Ferguson", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 387, 
+        "name": "Josh Taylor", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 387, 
+        "name": "Clayton Webb", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 377, 
+        "name": "Billy Evans", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 368, 
+        "name": "Steve Dodd", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 341, 
+        "name": "Ned Ash", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 338, 
+        "name": "Derek Tokaz", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "intensity"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "patternanalyzer"
+                ]
+              }
+            }, 
+            {
+              "name": "ezrabridger", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "r3a2"
+                ], 
+                "crew": [
+                  "inspiringrecruit"
+                ], 
+                "ept": [
+                  "wired"
+                ]
+              }
+            }, 
+            {
+              "name": "mirandadoni", 
+              "ship": "kwing", 
+              "upgrades": {
+                "bomb": [
+                  "bombletgenerator"
+                ], 
+                "crew": [
+                  "sabinewren"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 311, 
+        "name": "Phil Potts", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 245, 
+        "name": "Aaron Guyer", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 225, 
+        "name": "Grant Bennett", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 223, 
+        "name": "Charles Hutchinson", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 210, 
+        "name": "Travis Upton", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 205, 
+        "name": "Chris Cunningham", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 193, 
+        "name": "Phil Karash", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 0, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 110, 
+        "name": "Robert Hoover", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 0, 
+        "sos": "0.56"
+      }
+    ], 
+    "round_length": 65, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Craig Ferguson", 
+            "player1points": 0, 
+            "player2": "Aaron Guyer", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Clayton Webb", 
+            "player1points": 100, 
+            "player2": "Phil Potts", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Larry Turnbull", 
+            "player1points": 100, 
+            "player2": "Grant Bennett", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Taylor", 
+            "player1points": 100, 
+            "player2": "Ned Ash", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robert Hoover", 
+            "player1points": 32, 
+            "player2": "Steve Dodd", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Charles Hutchinson", 
+            "player1points": 62, 
+            "player2": "Derek Tokaz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Cunningham", 
+            "player1points": 25, 
+            "player2": "Travis Upton", 
+            "player2points": 78, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Billy Evans", 
+            "player1points": 72, 
+            "player2": "Phil Karash", 
+            "player2points": 62, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Travis Upton", 
+            "player1points": 37, 
+            "player2": "Clayton Webb", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Billy Evans", 
+            "player1points": 53, 
+            "player2": "Larry Turnbull", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Craig Ferguson", 
+            "player1points": 100, 
+            "player2": "Josh Taylor", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steve Dodd", 
+            "player1points": 100, 
+            "player2": "Derek Tokaz", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Charles Hutchinson", 
+            "player1points": 100, 
+            "player2": "Phil Karash", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Cunningham", 
+            "player1points": 100, 
+            "player2": "Grant Bennett", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Phil Potts", 
+            "player1points": 0, 
+            "player2": "Aaron Guyer", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ned Ash", 
+            "player1points": 75, 
+            "player2": "Robert Hoover", 
+            "player2points": 53, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Craig Ferguson", 
+            "player1points": 100, 
+            "player2": "Clayton Webb", 
+            "player2points": 56, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Larry Turnbull", 
+            "player1points": 100, 
+            "player2": "Steve Dodd", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Aaron Guyer", 
+            "player1points": 24, 
+            "player2": "Billy Evans", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Ned Ash", 
+            "player1points": 100, 
+            "player2": "Travis Upton", 
+            "player2points": 20, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chris Cunningham", 
+            "player1points": 0, 
+            "player2": "Derek Tokaz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Taylor", 
+            "player1points": 100, 
+            "player2": "Charles Hutchinson", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Phil Potts", 
+            "player1points": 100, 
+            "player2": "Robert Hoover", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Phil Karash", 
+            "player1points": 34, 
+            "player2": "Grant Bennett", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Springfield", 
+      "country": "United States of America", 
+      "lat": "38.789052200000", 
+      "lon": "-77.187036800000", 
+      "name": "Curio Cavern", 
+      "state": "Virginia"
+    }, 
+    "video_url": "http://"
+  }
+}

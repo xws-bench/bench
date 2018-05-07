@@ -1,0 +1,197 @@
+{
+  "tournament": {
+    "date": "2018-04-21", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 4327, 
+    "name": "April 21", 
+    "players": [
+      {
+        "mov": 416, 
+        "name": "John Hazen (Evil)", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 456, 
+        "name": "Jeff Carney", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 359, 
+        "name": "David A. Brennan", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "mov": 339, 
+        "name": "Brian Ludwick", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.78"
+      }, 
+      {
+        "mov": 308, 
+        "name": "Jeremy Brennan", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.22"
+      }, 
+      {
+        "mov": 264, 
+        "name": "Jim Seals", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 234, 
+        "name": "Glen \"Weazel\" Gearhart Jr", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 24, 
+        "name": "Dillan Long", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 0, 
+        "sos": "0.56"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Dillan Long", 
+            "player1points": 24, 
+            "player2": "David A. Brennan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeff Carney", 
+            "player1points": 56, 
+            "player2": "Brian Ludwick", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jim Seals", 
+            "player1points": 54, 
+            "player2": "Jeremy Brennan", 
+            "player2points": 39, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John Hazen (Evil)", 
+            "player1points": 100, 
+            "player2": "Glen \"Weazel\" Gearhart Jr", 
+            "player2points": 57, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Brian Ludwick", 
+            "player1points": 100, 
+            "player2": "David A. Brennan", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jim Seals", 
+            "player1points": 99, 
+            "player2": "John Hazen (Evil)", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jeremy Brennan", 
+            "player1points": 23, 
+            "player2": "Glen \"Weazel\" Gearhart Jr", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dillan Long", 
+            "player1points": 0, 
+            "player2": "Jeff Carney", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "John Hazen (Evil)", 
+            "player1points": 100, 
+            "player2": "Brian Ludwick", 
+            "player2points": 28, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Glen \"Weazel\" Gearhart Jr", 
+            "player1points": 0, 
+            "player2": "Jeff Carney", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jim Seals", 
+            "player1points": 50, 
+            "player2": "David A. Brennan", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dillan Long", 
+            "player1points": 0, 
+            "player2": "Jeremy Brennan", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Vassal play", 
+    "venue": {
+      "city": "Niles", 
+      "country": "United States of America", 
+      "lat": "41.182835300000", 
+      "lon": "-80.765357900000", 
+      "name": "Crystal Dragon", 
+      "state": "Ohio"
+    }, 
+    "video_url": "http://"
+  }
+}

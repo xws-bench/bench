@@ -1,0 +1,372 @@
+{
+  "tournament": {
+    "date": "2018-04-11", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 4263, 
+    "name": "Gralnia - Draft #2", 
+    "players": [
+      {
+        "mov": 0, 
+        "name": "Gregorio", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 511, 
+        "name": "Chudy", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 382, 
+        "name": "Endi", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "cruisemissiles"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "sensorcluster"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "scimitarsquadronpilot", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "crew": [
+                  "courierdroid", 
+                  "fleetofficer"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tieshuttle"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 367, 
+        "name": "Mirek", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.33"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "testpilotblackout", 
+              "ship": "tiesilencer", 
+              "upgrades": {
+                "ept": [
+                  "trickshot"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "drawtheirfire"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "deathfire", 
+              "ship": "tiebomber", 
+              "upgrades": {
+                "bomb": [
+                  "connernet"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "torpedo": [
+                  "extramunitions"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 353, 
+        "name": "Sinnert", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 347, 
+        "name": "Enzeru", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 284, 
+        "name": "Warboss", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 248, 
+        "name": "Roberto", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 226, 
+        "name": "Woszczu", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 1, 
+        "sos": "0.78"
+      }, 
+      {
+        "mov": 182, 
+        "name": "Bartek", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Roberto", 
+            "player1points": 0, 
+            "player2": "Sinnert", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bartek", 
+            "player1points": 32, 
+            "player2": "Warboss", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mirek", 
+            "player1points": 26, 
+            "player2": "Woszczu", 
+            "player2points": 61, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Chudy", 
+            "player1points": 100, 
+            "player2": "Enzeru", 
+            "player2points": 36, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Gregorio", 
+            "player1points": 0, 
+            "player2": "Endi", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Woszczu", 
+            "player1points": 36, 
+            "player2": "Chudy", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sinnert", 
+            "player1points": 100, 
+            "player2": "Warboss", 
+            "player2points": 64, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Endi", 
+            "player1points": 34, 
+            "player2": "Enzeru", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bartek", 
+            "player1points": 0, 
+            "player2": "Mirek", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Roberto", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Chudy", 
+            "player1points": 100, 
+            "player2": "Sinnert", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Warboss", 
+            "player1points": 52, 
+            "player2": "Endi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mirek", 
+            "player1points": 44, 
+            "player2": "Roberto", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Woszczu", 
+            "player1points": 55, 
+            "player2": "Enzeru", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Bartek", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Lodz", 
+      "country": "Poland", 
+      "lat": "51.768749000000", 
+      "lon": "19.456981700000", 
+      "name": "Gralnia", 
+      "state": "Lodzkie"
+    }, 
+    "video_url": "http://"
+  }
+}

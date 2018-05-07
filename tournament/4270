@@ -1,0 +1,678 @@
+{
+  "tournament": {
+    "date": "2018-04-14", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 4270, 
+    "name": "Cleiton's BALL", 
+    "players": [
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "tempestsquadronpilot", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "tempestsquadronpilot", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter"
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 415, 
+        "name": "Alex", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 3, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 675, 
+        "name": "Pedro", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 1
+        }, 
+        "score": 4, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 586, 
+        "name": "Kataki", 
+        "rank": {
+          "elimination": 4, 
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "rearadmiralchiraneau", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "kyloren", 
+                  "emperorpalpatine"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "primedthrusters"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 499, 
+        "name": "Dantas", 
+        "rank": {
+          "elimination": 1, 
+          "swiss": 3
+        }, 
+        "score": 3, 
+        "sos": "0.69"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "quickdraw", 
+              "ship": "tiesffighter", 
+              "upgrades": {
+                "ept": [
+                  "debrisgambit"
+                ], 
+                "mod": [
+                  "lightweightframe"
+                ], 
+                "system": [
+                  "firecontrolsystem"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ], 
+                "title": [
+                  "specialopstraining"
+                ]
+              }
+            }, 
+            {
+              "name": "rhosquadronveteran", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon", 
+                  "linkedbattery"
+                ], 
+                "ept": [
+                  "trickshot"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "title": [
+                  "xg1assaultconfiguration"
+                ]
+              }
+            }, 
+            {
+              "name": "rhosquadronveteran", 
+              "ship": "alphaclassstarwing", 
+              "upgrades": {
+                "cannon": [
+                  "heavylasercannon", 
+                  "linkedbattery"
+                ], 
+                "ept": [
+                  "trickshot"
+                ], 
+                "mod": [
+                  "longrangescanners"
+                ], 
+                "title": [
+                  "xg1assaultconfiguration"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 448, 
+        "name": "Nei", 
+        "rank": {
+          "elimination": 2, 
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "norrawexley", 
+              "ship": "arc170", 
+              "upgrades": {
+                "amd": [
+                  "r2d2"
+                ], 
+                "crew": [
+                  "c3po"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "vectoredthrusters"
+                ], 
+                "title": [
+                  "allianceoverhaul"
+                ]
+              }
+            }, 
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "rey"
+                ], 
+                "ept": [
+                  "drawtheirfire"
+                ]
+              }
+            }, 
+            {
+              "name": "fennrau", 
+              "ship": "sheathipedeclassshuttle", 
+              "upgrades": {
+                "amd": [
+                  "flightassistastromech"
+                ], 
+                "crew": [
+                  "hotshotcopilot"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 420, 
+        "name": "Marcos", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.58"
+      }, 
+      {
+        "mov": 419, 
+        "name": "Felipe", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.50"
+      }, 
+      {
+        "mov": 419, 
+        "name": "Muzzi", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.38"
+      }, 
+      {
+        "mov": 411, 
+        "name": "Hamilton", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 391, 
+        "name": "Quaresma", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 244, 
+        "name": "Renato", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "commanderkenkirk", 
+              "ship": "vt49decimator", 
+              "upgrades": {
+                "crew": [
+                  "emperorpalpatine", 
+                  "ysanneisard"
+                ], 
+                "ept": [
+                  "determination"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ]
+              }
+            }, 
+            {
+              "name": "darthvader", 
+              "ship": "tieadvanced", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "engineupgrade"
+                ], 
+                "system": [
+                  "advtargetingcomputer"
+                ], 
+                "title": [
+                  "tiex1"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 240, 
+        "name": "Jairo", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.63"
+      }, 
+      {
+        "mov": 203, 
+        "name": "Leonardo", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 1, 
+        "sos": "0.13"
+      }, 
+      {
+        "mov": 130, 
+        "name": "Anderson", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 0, 
+        "sos": "0.63"
+      }
+    ], 
+    "round_length": 75, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Kataki", 
+            "player1points": 100, 
+            "player2": "Marcos", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Quaresma", 
+            "player1points": 79, 
+            "player2": "Alex", 
+            "player2points": 53, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jairo", 
+            "player1points": 100, 
+            "player2": "Muzzi", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Renato", 
+            "player1points": 0, 
+            "player2": "Hamilton", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pedro", 
+            "player1points": 100, 
+            "player2": "Anderson", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dantas", 
+            "player1points": 100, 
+            "player2": "Felipe", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Nei", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Nei", 
+            "player1points": 36, 
+            "player2": "Hamilton", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Dantas", 
+            "player1points": 100, 
+            "player2": "Quaresma", 
+            "player2points": 62, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Pedro", 
+            "player1points": 100, 
+            "player2": "Jairo", 
+            "player2points": 17, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kataki", 
+            "player1points": 100, 
+            "player2": "Muzzi", 
+            "player2points": 52, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Renato", 
+            "player1points": 22, 
+            "player2": "Alex", 
+            "player2points": 37, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anderson", 
+            "player1points": 34, 
+            "player2": "Felipe", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcos", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Nei", 
+            "player1points": 62, 
+            "player2": "Dantas", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "elimination"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Pedro", 
+            "player1points": 52, 
+            "player2": "Hamilton", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kataki", 
+            "player1points": 68, 
+            "player2": "Dantas", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Quaresma", 
+            "player1points": 56, 
+            "player2": "Felipe", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex", 
+            "player1points": 26, 
+            "player2": "Marcos", 
+            "player2points": 22, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jairo", 
+            "player1points": 0, 
+            "player2": "Nei", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anderson", 
+            "player1points": 32, 
+            "player2": "Muzzi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Renato", 
+            "player1points": 64, 
+            "player2": "Leonardo", 
+            "player2points": 31, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Pedro", 
+            "player1points": 100, 
+            "player2": "Dantas", 
+            "player2points": 60, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex", 
+            "player1points": 66, 
+            "player2": "Felipe", 
+            "player2points": 44, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kataki", 
+            "player1points": 100, 
+            "player2": "Nei", 
+            "player2points": 30, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Hamilton", 
+            "player1points": 31, 
+            "player2": "Muzzi", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Marcos", 
+            "player1points": 100, 
+            "player2": "Renato", 
+            "player2points": 26, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Jairo", 
+            "player1points": 53, 
+            "player2": "Quaresma", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Anderson", 
+            "player1points": 64, 
+            "player2": "Leonardo", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Pedro", 
+            "player1points": 62, 
+            "player2": "Nei", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Kataki", 
+            "player1points": 32, 
+            "player2": "Dantas", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 4, 
+        "round-type": "elimination"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "BELO HORIZONTE", 
+      "country": "Brazil", 
+      "lat": "-19.922731700000", 
+      "lon": "-43.945094700000", 
+      "name": "Clube Nerd", 
+      "state": "Minas Gerais"
+    }, 
+    "video_url": "http://"
+  }
+}

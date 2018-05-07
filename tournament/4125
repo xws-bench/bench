@@ -1,0 +1,754 @@
+{
+  "tournament": {
+    "date": "2018-03-06", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 4125, 
+    "name": "Tuesday 3/6/18", 
+    "players": [
+      {
+        "mov": 32, 
+        "name": "Ned Ash", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 0, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "cartelexecutioner", 
+              "ship": "m12lkimogilafighter", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "cartelexecutioner", 
+              "ship": "m12lkimogilafighter", 
+              "upgrades": {
+                "ept": [
+                  "deadeye"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "lattsrazzi"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 500, 
+        "name": "Derek Tokaz", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 451, 
+        "name": "Daniel Orkwis", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 3, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "toranikulda", 
+              "ship": "m12lkimogilafighter", 
+              "upgrades": {
+                "ept": [
+                  "adaptability"
+                ], 
+                "illicit": [
+                  "contrabandcybernetics"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "dalanoberos", 
+              "ship": "m12lkimogilafighter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "contrabandcybernetics"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "zuckuss", 
+              "ship": "g1astarfighter", 
+              "upgrades": {
+                "cannon": [
+                  "tractorbeam"
+                ], 
+                "crew": [
+                  "dengar"
+                ], 
+                "ept": [
+                  "drawtheirfire"
+                ], 
+                "system": [
+                  "advancedsensors"
+                ], 
+                "title": [
+                  "misthunter"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 465, 
+        "name": "Steve Dodd", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "ketsuonyo", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "dengar"
+                ], 
+                "ept": [
+                  "adaptability"
+                ], 
+                "illicit": [
+                  "glitterstim", 
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "title": [
+                  "shadowcaster"
+                ]
+              }
+            }, 
+            {
+              "name": "asajjventress", 
+              "ship": "lancerclasspursuitcraft", 
+              "upgrades": {
+                "crew": [
+                  "lattsrazzi"
+                ], 
+                "ept": [
+                  "predator"
+                ], 
+                "illicit": [
+                  "glitterstim", 
+                  "glitterstim"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 384, 
+        "name": "Travis Upton", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 2, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 368, 
+        "name": "John-Louis Rumingan", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 358, 
+        "name": "Miguel Justiniano", 
+        "rank": {
+          "swiss": 6
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 353, 
+        "name": "Clayton Webb", 
+        "rank": {
+          "swiss": 7
+        }, 
+        "score": 2, 
+        "sos": "0.67"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "tactician"
+                ], 
+                "ept": [
+                  "predator"
+                ]
+              }
+            }, 
+            {
+              "name": "wookieeliberator", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "expertise"
+                ]
+              }
+            }, 
+            {
+              "name": "wookieeliberator", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "expertise"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 332, 
+        "name": "Alex Hendrix", 
+        "rank": {
+          "swiss": 8
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "lowhhrick", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "tactician"
+                ], 
+                "ept": [
+                  "predator"
+                ]
+              }
+            }, 
+            {
+              "name": "wookieeliberator", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "expertise"
+                ]
+              }
+            }, 
+            {
+              "name": "wookieeliberator", 
+              "ship": "auzituckgunship", 
+              "upgrades": {
+                "crew": [
+                  "tactician"
+                ], 
+                "ept": [
+                  "expertise"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 306, 
+        "name": "Phil Karash", 
+        "rank": {
+          "swiss": 9
+        }, 
+        "score": 2, 
+        "sos": "0.44"
+      }, 
+      {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "rey", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "finn", 
+                  "kananjarrus"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "illicit": [
+                  "riggedcargochute"
+                ], 
+                "mod": [
+                  "smugglingcompartment"
+                ], 
+                "title": [
+                  "millenniumfalcon-swx57"
+                ]
+              }
+            }, 
+            {
+              "name": "janors", 
+              "ship": "hwk290", 
+              "upgrades": {
+                "crew": [
+                  "chewbacca"
+                ], 
+                "ept": [
+                  "trickshot"
+                ], 
+                "mod": [
+                  "hullupgrade"
+                ], 
+                "title": [
+                  "moldycrow"
+                ], 
+                "turret": [
+                  "twinlaserturret"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 314, 
+        "name": "Robert Hoover", 
+        "rank": {
+          "swiss": 10
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 310, 
+        "name": "Josh Taylor", 
+        "rank": {
+          "swiss": 11
+        }, 
+        "score": 1, 
+        "sos": "0.33"
+      }, 
+      {
+        "list": {
+          "faction": "imperial", 
+          "pilots": [
+            {
+              "name": "countessryad", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "twinionenginemkii"
+                ], 
+                "title": [
+                  "tiex7"
+                ]
+              }
+            }, 
+            {
+              "name": "colonelvessery", 
+              "ship": "tiedefender", 
+              "upgrades": {
+                "cannon": [
+                  "ioncannon"
+                ], 
+                "ept": [
+                  "ascoretosettle"
+                ], 
+                "title": [
+                  "tied"
+                ]
+              }
+            }, 
+            {
+              "name": "omegaleader", 
+              "ship": "tiefofighter", 
+              "upgrades": {
+                "ept": [
+                  "juke"
+                ], 
+                "tech": [
+                  "commrelay"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 294, 
+        "name": "Mike Darcy", 
+        "rank": {
+          "swiss": 12
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 222, 
+        "name": "Alan Scherer", 
+        "rank": {
+          "swiss": 13
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 201, 
+        "name": "Craig Ferguson", 
+        "rank": {
+          "swiss": 14
+        }, 
+        "score": 1, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 199, 
+        "name": "Rob Snyder", 
+        "rank": {
+          "swiss": 15
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }, 
+      {
+        "mov": 171, 
+        "name": "Grant Bennett", 
+        "rank": {
+          "swiss": 16
+        }, 
+        "score": 1, 
+        "sos": "0.83"
+      }, 
+      {
+        "mov": 90, 
+        "name": "Charles Hutchinson", 
+        "rank": {
+          "swiss": 17
+        }, 
+        "score": 0, 
+        "sos": "0.33"
+      }
+    ], 
+    "round_length": 65, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Derek Tokaz", 
+            "player1points": 100, 
+            "player2": "Grant Bennett", 
+            "player2points": 21, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Robert Hoover", 
+            "player1points": 75, 
+            "player2": "Miguel Justiniano", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Taylor", 
+            "player1points": 100, 
+            "player2": "Charles Hutchinson", 
+            "player2points": 29, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Steve Dodd", 
+            "player1points": 100, 
+            "player2": "Mike Darcy", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Clayton Webb", 
+            "player1points": 100, 
+            "player2": "Rob Snyder", 
+            "player2points": 31, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Craig Ferguson", 
+            "player1points": 25, 
+            "player2": "Daniel Orkwis", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Travis Upton", 
+            "player1points": 60, 
+            "player2": "Alan Scherer", 
+            "player2points": 51, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John-Louis Rumingan", 
+            "player1points": 100, 
+            "player2": "Ned Ash", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Phil Karash", 
+            "player1points": 0, 
+            "player2": "Alex Hendrix", 
+            "player2points": 100, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Steve Dodd", 
+            "player1points": 65, 
+            "player2": "Clayton Webb", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Miguel Justiniano", 
+            "player1points": 100, 
+            "player2": "Josh Taylor", 
+            "player2points": 46, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Travis Upton", 
+            "player1points": 75, 
+            "player2": "Daniel Orkwis", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John-Louis Rumingan", 
+            "player1points": 0, 
+            "player2": "Derek Tokaz", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex Hendrix", 
+            "player1points": 100, 
+            "player2": "Robert Hoover", 
+            "player2points": 68, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Mike Darcy", 
+            "player1points": 100, 
+            "player2": "Ned Ash", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Rob Snyder", 
+            "player1points": 100, 
+            "player2": "Charles Hutchinson", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grant Bennett", 
+            "player1points": 0, 
+            "player2": "Phil Karash", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Craig Ferguson", 
+            "player1points": 100, 
+            "player2": "Alan Scherer", 
+            "player2points": 24, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Daniel Orkwis", 
+            "player1points": 100, 
+            "player2": "Clayton Webb", 
+            "player2points": 49, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Derek Tokaz", 
+            "player1points": 100, 
+            "player2": "Miguel Justiniano", 
+            "player2points": 79, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Alex Hendrix", 
+            "player1points": 0, 
+            "player2": "Travis Upton", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "John-Louis Rumingan", 
+            "player1points": 100, 
+            "player2": "Rob Snyder", 
+            "player2points": 0, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Phil Karash", 
+            "player1points": 38, 
+            "player2": "Mike Darcy", 
+            "player2points": 32, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Craig Ferguson", 
+            "player1points": 0, 
+            "player2": "Steve Dodd", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Josh Taylor", 
+            "player1points": 62, 
+            "player2": "Alan Scherer", 
+            "player2points": 69, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Charles Hutchinson", 
+            "player1points": 29, 
+            "player2": "Robert Hoover", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Grant Bennett", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Springfield", 
+      "country": "United States of America", 
+      "lat": "38.789052200000", 
+      "lon": "-77.187036800000", 
+      "name": "Curio Cavern", 
+      "state": "Virginia"
+    }, 
+    "video_url": "http://"
+  }
+}

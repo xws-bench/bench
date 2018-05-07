@@ -505,6 +505,49 @@
         "sos": "0.83"
       }, 
       {
+        "list": {
+          "faction": "rebel", 
+          "pilots": [
+            {
+              "name": "poedameron", 
+              "ship": "t70xwing", 
+              "upgrades": {
+                "amd": [
+                  "bb8"
+                ], 
+                "ept": [
+                  "pushthelimit"
+                ], 
+                "mod": [
+                  "autothrusters"
+                ], 
+                "tech": [
+                  "advancedoptics"
+                ]
+              }
+            }, 
+            {
+              "name": "hansolo", 
+              "ship": "yt1300", 
+              "upgrades": {
+                "crew": [
+                  "c3po", 
+                  "lukeskywalker"
+                ], 
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "title": [
+                  "millenniumfalcon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
         "mov": 314, 
         "name": "Milos O.", 
         "rank": {
@@ -604,11 +647,11 @@
     "rounds": [], 
     "type": "Other", 
     "venue": {
-      "city": "Beograd", 
+      "city": "Belgrade", 
       "country": "Yugoslavia", 
-      "lat": null, 
-      "lon": null, 
-      "name": "Astal", 
+      "lat": "0E-12", 
+      "lon": "0E-12", 
+      "name": "<a target=\"_blank\" href=\"/venue?venue_id=4136\">Astal</a>", 
       "state": "Serbia"
     }, 
     "video_url": "http://"

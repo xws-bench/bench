@@ -1,0 +1,215 @@
+{
+  "tournament": {
+    "date": "2018-04-08", 
+    "format": "Standard - 100 Point Dogfight", 
+    "id": 4282, 
+    "name": "Localis Bydgostianis 1", 
+    "players": [
+      {
+        "mov": 209, 
+        "name": "Adam", 
+        "rank": {
+          "swiss": 0
+        }, 
+        "score": 2, 
+        "sos": "0.67"
+      }, 
+      {
+        "mov": 431, 
+        "name": "Marcin", 
+        "rank": {
+          "swiss": 1
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 384, 
+        "name": "Lechu", 
+        "rank": {
+          "swiss": 2
+        }, 
+        "score": 2, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 264, 
+        "name": "Sebastian", 
+        "rank": {
+          "swiss": 3
+        }, 
+        "score": 1, 
+        "sos": "0.50"
+      }, 
+      {
+        "list": {
+          "faction": "scum", 
+          "pilots": [
+            {
+              "name": "dengar", 
+              "ship": "jumpmaster5000", 
+              "upgrades": {
+                "crew": [
+                  "maul"
+                ], 
+                "ept": [
+                  "expertise"
+                ], 
+                "illicit": [
+                  "inertialdampeners"
+                ], 
+                "mod": [
+                  "countermeasures"
+                ], 
+                "title": [
+                  "punishingone"
+                ]
+              }
+            }, 
+            {
+              "name": "ndrusuhlak", 
+              "ship": "z95headhunter", 
+              "upgrades": {
+                "ept": [
+                  "veteraninstincts"
+                ], 
+                "illicit": [
+                  "glitterstim"
+                ], 
+                "missile": [
+                  "harpoonmissiles"
+                ], 
+                "mod": [
+                  "guidancechips"
+                ]
+              }
+            }, 
+            {
+              "name": "cartelspacer", 
+              "ship": "m3ainterceptor", 
+              "upgrades": {
+                "cannon": [
+                  "manglercannon"
+                ]
+              }
+            }
+          ], 
+          "vendor": {
+            "listjuggler": {}
+          }, 
+          "version": "4.2.0"
+        }, 
+        "mov": 251, 
+        "name": "Karol", 
+        "rank": {
+          "swiss": 4
+        }, 
+        "score": 1, 
+        "sos": "0.56"
+      }, 
+      {
+        "mov": 211, 
+        "name": "Andrzej", 
+        "rank": {
+          "swiss": 5
+        }, 
+        "score": 1, 
+        "sos": "0.44"
+      }
+    ], 
+    "round_length": 60, 
+    "rounds": [
+      {
+        "matches": [
+          {
+            "player1": "Marcin", 
+            "player1points": 100, 
+            "player2": "Karol", 
+            "player2points": 42, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej", 
+            "player1points": 100, 
+            "player2": "Sebastian", 
+            "player2points": 33, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Lechu", 
+            "player1points": 99, 
+            "player2": "Adam", 
+            "player2points": 101, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 1, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Marcin", 
+            "player1points": 31, 
+            "player2": "Adam", 
+            "player2points": 38, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej", 
+            "player1points": 24, 
+            "player2": "Karol", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sebastian", 
+            "player1points": 37, 
+            "player2": "Lechu", 
+            "player2points": 56, 
+            "result": "win"
+          }
+        ], 
+        "round-number": 2, 
+        "round-type": "swiss"
+      }, 
+      {
+        "matches": [
+          {
+            "player1": "Karol", 
+            "player1points": 33, 
+            "player2": "Lechu", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Andrzej", 
+            "player1points": 20, 
+            "player2": "Marcin", 
+            "player2points": 100, 
+            "result": "win"
+          }, 
+          {
+            "player1": "Sebastian", 
+            "player1points": null, 
+            "player2": "", 
+            "player2points": null, 
+            "result": "bye"
+          }
+        ], 
+        "round-number": 3, 
+        "round-type": "swiss"
+      }
+    ], 
+    "type": "Other", 
+    "venue": {
+      "city": "Bydgoszcz", 
+      "country": "Poland", 
+      "lat": "53.121964800000", 
+      "lon": "18.000252900000", 
+      "name": "Centrum Gier Pegaz", 
+      "state": "Kujawsko-Pomorskie"
+    }, 
+    "video_url": "http://"
+  }
+}
